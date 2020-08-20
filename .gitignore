@@ -1,0 +1,5 @@
+# Directories
+biocyc/
+__pycache__/
+# Files
+*.log
