@@ -7,8 +7,8 @@ from GLS import get_xml_from_biocyc, add_reaction_from_root,\
     add_meta_line_to_model, add_meta_from_file, add_reaction_line_to_model
 import cobra as cb
 
-dirBiocyc = Path.cwd().joinpath("CoreModelGLS").joinpath("biocyc")
-dirInput = Path.cwd().joinpath("CoreModelGLS").joinpath("input")
+dirBiocyc = Path.cwd().joinpath("biocyc")
+dirInput = Path.cwd().joinpath("input")
 
 
 class ModulTesting(unittest.TestCase):

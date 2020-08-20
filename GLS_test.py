@@ -5,8 +5,8 @@ import unittest
 import xml.etree.ElementTree as ET
 import cobra as cb
 
-dirBiocyc = Path.cwd().joinpath("CoreModelGLS").joinpath("biocyc")
-dirInput = Path.cwd().joinpath("CoreModelGLS").joinpath("input")
+dirBiocyc = Path.cwd().joinpath("biocyc")
+dirInput = Path.cwd().joinpath("input")
 
 
 class ModulTesting(unittest.TestCase):
