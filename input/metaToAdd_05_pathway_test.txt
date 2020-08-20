@@ -1,0 +1,9 @@
+# For pathway test
+OXYGEN-MOLECULE, c
+WATER, c
+PROTON, c
+CO-A, c
+CARBON-DIOXIDE,c
+NAD, c
+NADH, c
+MAL, c

@@ -1,0 +1,3 @@
+# ID, name , compartment, formula,  charge
+HOMOMETHIONINE, c
+MALTOSE_b, MALTOSE[b], b, C12H22O11, 0
