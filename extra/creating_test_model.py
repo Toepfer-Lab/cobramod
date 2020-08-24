@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import cobra as cb
 from pathlib import Path
 import logging
@@ -14,8 +15,8 @@ DebugHandler.setFormatter(DebugFormatter)
 DebugLog = logging.getLogger("DebugLog")
 DebugLog.setLevel(logging.DEBUG)
 # Directories
-extraDir = Path.cwd().joinpath("CoreModelGLS").joinpath("extra")
-dirBiocyc = Path.cwd().joinpath("CoreModelGLS").joinpath("biocyc")
+extraDir = Path.cwd().joinpath("extra")
+dirBiocyc = Path.cwd().joinpath("biocyc")
 
 # INFO: !!
 # Model should have enough reactions/ metabolites for 2 short pathways

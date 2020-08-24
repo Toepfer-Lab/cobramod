@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import xml.etree.ElementTree as ET
 import logging
-from typing import Union
+from typing import Union, Generator
 from GLS import get_xml_from_biocyc, build_reaction_from_xml,\
     stopAndShowMassBalance
 from cobra import Model, Reaction
@@ -16,12 +16,15 @@ DebugLog = logging.getLogger("DebugLog")
 DebugLog.setLevel(logging.DEBUG)
 # TODO!!: change name for proper python conventions
 
+
 def fix_single_reaction_dict(xmlRoot: ET.Element, rootDict: dict) -> dict:
+    # These are single exceptions
     if len(rootDict) == 0:
         single_rxn = xmlRoot.find(
             "Pathway/reaction-list/Reaction").attrib["frameid"]
         rootDict = {single_rxn: single_rxn}
     return rootDict
+
 
 def dictRxnForPathway(xmlRoot: Union[ET.Element, str], **kwargs) -> dict:
     """Returns a dictionary from the root of a .xml file, where the keys
@@ -47,7 +50,10 @@ def dictRxnForPathway(xmlRoot: Union[ET.Element, str], **kwargs) -> dict:
         # If the direction of keys and values changes, then
         # many reactions would get lost. This way, even with
         # multiple compounds, pathways remain
-        rootDict[current] = prior
+        try:
+            rootDict[current].append(prior)
+        except KeyError:
+            rootDict[current] = list(prior)
     name = xmlRoot.find("Pathway").attrib["frameid"]
     # NOTE: Add correspoding test
     rootDict = fix_single_reaction_dict(xmlRoot=xmlRoot, rootDict=rootDict)
@@ -62,6 +68,22 @@ def fix_if_cycle(start: Union[str, None], ends: list, rootDict: dict) -> tuple:
         if len(ends) == 0:
             ends = [start]
     return start, ends
+
+
+def find_start_vertex(vertex_dict: dict) -> Generator:
+    for key in vertex_dict.keys():
+        if key not in [
+            item for sublist in
+                vertex_dict.values() for item in sublist]:
+            yield key
+
+
+def find_end_vertex(vertex_dict: dict) -> Generator:
+    for value in vertex_dict.values():
+        if value not in [
+            item for sublist in
+                vertex_dict.values() for item in sublist]:
+            yield value
 
 
 def get_edges_from_dict(rootDict: dict) -> tuple:
@@ -86,6 +108,17 @@ def get_edges_from_dict(rootDict: dict) -> tuple:
     # FIXME: cycles not working properly
     start, ends = fix_if_cycle(start=start, ends=ends, rootDict=rootDict)
     return start, ends
+
+
+def give_path_graph(vertex, graph_dict: dict):
+    while True:
+        try:
+            new_vertex = graph_dict[vertex]
+            yield new_vertex
+            graph_dict.pop(vertex)
+            vertex = new_vertex
+        except KeyError:
+            break
 
 
 def createPathway(
@@ -127,6 +160,7 @@ def createPathway(
         tmpList = list()  # sorted list
         tmpDict = rootDict.copy()  # copy is needed
         tmpList.append(path)  # end-metabolite
+        # FIXME: Find a new solution to overcome cyclic graphs!!
         while True:
             try:
                 if tmpDict[tmpList[-1]] in tmpDict.keys():
