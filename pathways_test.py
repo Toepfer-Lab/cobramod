@@ -21,45 +21,76 @@ class ModulTesting(unittest.TestCase):
                 get_xml_from_biocyc(bioID="PWY-1187", directory=dirBiocyc)),
             dict)
         # TODO: check for correct dictionary
-    
+
+    def test_find_end_vertex(self):
+        # CASE 1: regular lineal / 2 child edges
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E"}
+        self.assertIn("E", list(
+            pathways.find_end_vertex(vertex_dict=test_dict)))
+        # CASE 2: lineal with a cycle in the middle
+        test_dict = {
+            "A": "B",
+            "B": "C",  # D
+            "C": "F",
+            "D": "E",
+            "E": "F",
+            "F": "G"}
+        self.assertIn("G", list(
+            pathways.find_end_vertex(vertex_dict=test_dict)))
+        # CASE 3: cyclical (regular), other cases will be examined further
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E",
+            "E": "F",
+            "F": "A"
+            }
+        self.assertEqual(0, len(
+            list(pathways.find_end_vertex(vertex_dict=test_dict))))
 
     def test_find_start_vertex(self):
+        """" Start vertex are always keys """
         # CASE 1: regular lineal
         test_dict = {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"]}
-        test_result = list(pathways.find_start_vertex(
-            vertex_dict=test_dict))
-        # CASE 2: lineal with 3 paths
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E"}
+        self.assertIn("E", list(
+            pathways.find_start_vertex(vertex_dict=test_dict)))
+        # CASE 2: lineal with 2 paths
         test_dict = {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "F": ["G"],
-            "G": ["H", "Z"]
-            }
-        test_result = list(pathways.find_start_vertex(
-            vertex_dict=test_dict))
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E",
+            "F": "G",
+            "G": "D"}
+        start_vertex = list(pathways.find_start_vertex(vertex_dict=test_dict))
+        self.assertIn("E", start_vertex)
+        self.assertIn("F", start_vertex)
         # CASE 3: cyclical
         test_dict = {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "E": ["A"]
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E",
+            "E": "A"
             }
         test_result = list(pathways.find_start_vertex(
             vertex_dict=test_dict))
         # CASE 4: cyclical with multiple paths
         test_dict= {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D", "G"],
-            "D": ["E"],
-            "E": ["A"],
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E",
+            "E": "A",
             # In the middle
             "F": ["A"],
             "G": ["F"],
@@ -69,52 +100,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 5: Regular cluster TODO: !!
         pass
 
-    def test_find_end_vertex(self):
-        # CASE 1: regular lineal
-        test_dict = {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"]}
-        test_result = list(pathways.find_end_vertex(
-            vertex_dict=test_dict))
-        # CASE 2: lineal with 2 paths
-        test_dict = {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "F": ["G"],
-            "G": ["H", "Z"]
-            }
-        test_result = list(pathways.find_end_vertex(
-            vertex_dict=test_dict))
-        # CASE 3: cyclical
-        test_dict = {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "E": ["A"]
-            }
-        test_result = list(pathways.find_end_vertex(
-            vertex_dict=test_dict))
-        # CASE 4: cyclical with multiple paths
-        test_dict= {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "E": ["A"],
-            # In the middle
-            "F": ["A"],
-            "G": ["F"],
-        }
-        test_result = list(pathways.find_start_vertex(
-            vertex_dict=test_dict))        
-        pass
-
-
+    @unittest.skip
     def test_get_margin_vertex(self):
         # FIXME: find new solution for cyclical paths
         # CASE 1: regular
@@ -161,7 +147,7 @@ class ModulTesting(unittest.TestCase):
             "G": ["F"],
         })
         pass
-
+    @unittest.skip
     def test_give_path_graph(self):
         # FIXME: add test
         # # CASE 1: Lineal
@@ -213,7 +199,12 @@ class ModulTesting(unittest.TestCase):
             Warning, pathways.createPathway,
             xmlRoot=ET.Element(0), customDict=dict())
         # CASE 1: Custom dictionary
-        test_dict = {"A": "B", "B": "C", "C": "D", "D": "E", "G": "E"}
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E",
+            "G": "E"}
         listTest = pathways.createPathway(customDict=test_dict)
         toTest = [
             ["E", "D", "C", "B", "A"],
