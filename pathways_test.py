@@ -22,7 +22,7 @@ class ModulTesting(unittest.TestCase):
             dict)
         # TODO: check for correct dictionary
     
-    @unittest.skip
+
     def test_find_start_vertex(self):
         # CASE 1: regular lineal
         test_dict = {
@@ -32,7 +32,7 @@ class ModulTesting(unittest.TestCase):
             "D": ["E"]}
         test_result = list(pathways.find_start_vertex(
             vertex_dict=test_dict))
-        # CASE 2: lineal with 2 paths
+        # CASE 2: lineal with 3 paths
         test_dict = {
             "A": ["B"],
             "B": ["C"],
@@ -43,6 +43,30 @@ class ModulTesting(unittest.TestCase):
             }
         test_result = list(pathways.find_start_vertex(
             vertex_dict=test_dict))
+        # CASE 3: cyclical
+        test_dict = {
+            "A": ["B"],
+            "B": ["C"],
+            "C": ["D"],
+            "D": ["E"],
+            "E": ["A"]
+            }
+        test_result = list(pathways.find_start_vertex(
+            vertex_dict=test_dict))
+        # CASE 4: cyclical with multiple paths
+        test_dict= {
+            "A": ["B"],
+            "B": ["C"],
+            "C": ["D", "G"],
+            "D": ["E"],
+            "E": ["A"],
+            # In the middle
+            "F": ["A"],
+            "G": ["F"],
+        }
+        test_result = list(pathways.find_start_vertex(
+            vertex_dict=test_dict))
+        # CASE 5: Regular cluster TODO: !!
         pass
 
     def test_find_end_vertex(self):
@@ -65,13 +89,36 @@ class ModulTesting(unittest.TestCase):
             }
         test_result = list(pathways.find_end_vertex(
             vertex_dict=test_dict))
+        # CASE 3: cyclical
+        test_dict = {
+            "A": ["B"],
+            "B": ["C"],
+            "C": ["D"],
+            "D": ["E"],
+            "E": ["A"]
+            }
+        test_result = list(pathways.find_end_vertex(
+            vertex_dict=test_dict))
+        # CASE 4: cyclical with multiple paths
+        test_dict= {
+            "A": ["B"],
+            "B": ["C"],
+            "C": ["D"],
+            "D": ["E"],
+            "E": ["A"],
+            # In the middle
+            "F": ["A"],
+            "G": ["F"],
+        }
+        test_result = list(pathways.find_start_vertex(
+            vertex_dict=test_dict))        
         pass
 
-    @unittest.skip
-    def test_get_edges_from_dict(self):
+
+    def test_get_margin_vertex(self):
         # FIXME: find new solution for cyclical paths
         # CASE 1: regular
-        start, ends = pathways.get_edges_from_dict({
+        start, ends = pathways.get_margin_vertex({
             "A": ["B"],
             "B": ["C"],
             "C": ["D"],
@@ -80,17 +127,17 @@ class ModulTesting(unittest.TestCase):
             len(start) == 1,
             len(ends) == 1]))
         # CASE 2: two ends
-        start, ends = pathways.get_edges_from_dict({
+        start, ends = pathways.get_margin_vertex({
             "A": ["B"],
             "B": ["C"],
             "C": ["D"],
             "D": ["E"],
             "G": ["E"]})
         self.assertTrue(all([
-            len(start) == 1,  # E
+            len(start) == 2,  # E
             len(ends) == 2]))  # G, A
         # CASE 3: cycles
-        start, ends = pathways.get_edges_from_dict({
+        start, ends = pathways.get_margin_vertex({
             "A": ["B"],
             "B": ["C"],
             "C": ["D"],
@@ -103,7 +150,7 @@ class ModulTesting(unittest.TestCase):
             start == ends[0]]))
         # FIXME: add test
         # CASE 4: Cycle with 2 paths
-        start, ends = pathways.get_edges_from_dict({
+        start, ends = pathways.get_margin_vertex({
             "A": ["B"],
             "B": ["C"],
             "C": ["D", "G"],
@@ -114,35 +161,49 @@ class ModulTesting(unittest.TestCase):
             "G": ["F"],
         })
         pass
-    @unittest.skip
+
     def test_give_path_graph(self):
         # FIXME: add test
-        # CASE 0: Lineal
-        test_dict = {"A": "B", "B": "C", "C": "D", "D": "E"}
-        test = pathways.give_path_graph(vertex="A", graph_dict=test_dict)
-        # CASE 1: Lineal with two ends
-        test_dict = {"A": "B", "B": "C", "C": "D", "D": "E", "G": "E"}
-        start, ends = pathways.get_edges_from_dict(rootDict=test_dict)
-        test_ends = [
-            list(pathways.give_path_graph(
-                vertex=vertex, graph_dict=test_dict)) for vertex in ends]
+        # # CASE 1: Lineal
+        # test_dict = {
+        #     "A": ["B"],
+        #     "B": ["C"],
+        #     "C": ["D"],
+        #     "D": ["E"]}
+        # start, ends = pathways.get_margin_vertex(vertex_dict=test_dict)
+        # test = [
+        #     list(pathways.give_path_graph(
+        #         start_vertex=vertex, graph_dict=test_dict,
+        #         end_vertex_list=ends)) for vertex in start]
+        # # CASE 2: Lineal with two ends
+        # test_dict = {
+        #     "A": ["B"],
+        #     "B": ["C"],
+        #     "C": ["D"],
+        #     "D": ["E"],
+        #     "F": ["G"],
+        #     "G": ["H", "Z"]
+        #     }
+        # start, ends = pathways.get_margin_vertex(vertex_dict=test_dict)
+        # test = [
+        #     list(pathways.give_path_graph(
+        #         start_vertex=vertex, graph_dict=test_dict,
+        #         end_vertex_list=ends)) for vertex in start]
         # CASE 2: Cyclic
         test_dict = {
-            "A": "B",
-            "B": "C",
-            "C": "D",
-            "D": "E",
-            "E": "A",
-            # In the middle
-            "F": "A",
-            "G": "F",
-            "C": "G"
-            }
-        test_ends = list(pathways.give_path_graph(
-                vertex="A", graph_dict=test_dict))
+            "A": ["B"],
+            "B": ["C"],
+            "C": ["D"],
+            "D": ["E"],
+            "E": ["A"]}
+        start, ends = pathways.get_margin_vertex(vertex_dict=test_dict)
+        test = [
+            list(pathways.give_path_graph(
+                start_vertex=vertex, graph_dict=test_dict,
+                end_vertex_list=ends)) for vertex in start]
+        pass
         # CASE 3: Cyclic with multiple ends
 
-        pass
     @unittest.skip
     def test_createPathway(self):
         # CASE 0a: nothing passed

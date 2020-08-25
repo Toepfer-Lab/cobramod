@@ -61,15 +61,6 @@ def dictRxnForPathway(xmlRoot: Union[ET.Element, str], **kwargs) -> dict:
     return rootDict
 
 
-def fix_if_cycle(start: Union[str, None], ends: list, rootDict: dict) -> tuple:
-    if start is None:
-        # TODO: check if randonmess affects model
-        start = list(rootDict.keys())[0]
-        if len(ends) == 0:
-            ends = [start]
-    return start, ends
-
-
 def find_start_vertex(vertex_dict: dict) -> Generator:
     for key in vertex_dict.keys():
         if key not in [
@@ -79,46 +70,49 @@ def find_start_vertex(vertex_dict: dict) -> Generator:
 
 
 def find_end_vertex(vertex_dict: dict) -> Generator:
-    for value in vertex_dict.values():
+    for value in [
+            item for sublist in vertex_dict.values() for item in sublist]:
         if value not in [
             item for sublist in
-                vertex_dict.values() for item in sublist]:
+                vertex_dict.keys() for item in sublist]:
             yield value
 
 
-def get_edges_from_dict(rootDict: dict) -> tuple:
-    """From a dictionary of Reactions IDs and their predecessors, returns the
-    initial reaction and side/end-reactions.
-
-    :param rootDict: dictionary with Reactions IDs and their predecessors
-    :type rootDict: dict
-    :return: ID of the first reactions and and list of side/end metabolites
-    :rtype: tuple
-    """
-    start = None
-    ends = list()  # could be multiple or cyclic
-    for current, prior in rootDict.items():
-        # Finding ends
-        if current not in rootDict.values():
-            endRxn = current
-            ends.append(endRxn)  # could be multiple
-        # Finding start
-        if prior not in rootDict.keys():
-            start = prior  # always one
-    # FIXME: cycles not working properly
-    start, ends = fix_if_cycle(start=start, ends=ends, rootDict=rootDict)
+def fix_if_cycle(start: list, ends: list, vertex_dict: dict) -> tuple:
+    if len(start) == 0:
+        # TODO: check if randonmess affects model
+        start = list(vertex_dict.keys())[0]
+        if len(ends) == 0:
+            ends = vertex_dict[start]
     return start, ends
 
 
-def give_path_graph(vertex, graph_dict: dict):
-    while True:
-        try:
-            new_vertex = graph_dict[vertex]
-            yield new_vertex
-            graph_dict.pop(vertex)
-            vertex = new_vertex
-        except KeyError:
-            break
+def get_margin_vertex(vertex_dict: dict) -> tuple:
+    """From a dictionary of Reactions IDs and their predecessors, returns the
+    initial reaction and side/end-reactions.
+    """
+    vertex_start = list(
+        find_start_vertex(vertex_dict=vertex_dict))
+    vertex_ends = list(
+        # could be multiple or cyclic
+        find_end_vertex(vertex_dict=vertex_dict))
+    # FIXME: cycles not working properly
+    vertex_start, vertex_ends = fix_if_cycle(
+        start=vertex_start, ends=vertex_ends, vertex_dict=vertex_dict)
+    return vertex_start, vertex_ends
+
+
+def give_path_graph(start_vertex: str, end_vertex_list: list, graph_dict: dict):
+    # TO avoid cyclic
+    # if start_vertex in end_vertex_list:
+    #     end_vertex_list = []
+    while start_vertex not in end_vertex_list:
+        # try:
+        next_vertex = graph_dict[start_vertex]
+        for test in next_vertex:
+            yield test
+            # graph_dict.pop(test)
+            start_vertex = test
 
 
 def createPathway(
