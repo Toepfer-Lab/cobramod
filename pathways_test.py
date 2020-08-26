@@ -6,18 +6,19 @@ import xml.etree.ElementTree as ET
 from GLS import get_xml_from_biocyc, add_reaction_from_root,\
     add_meta_line_to_model, add_meta_from_file, add_reaction_line_to_model
 import cobra as cb
+from itertools import chain
 
 dirBiocyc = Path.cwd().joinpath("biocyc")
 dirInput = Path.cwd().joinpath("input")
 
 
 class ModulTesting(unittest.TestCase):
-    @unittest.skip
-    def test_dictRxnForPathway(self):
+
+    def test_create_vertex_dict(self):
         self.assertRaises(
-            TypeError, pathways.dictRxnForPathway, xmlRoot=str())
+            TypeError, pathways.create_vertex_dict, root=str())
         self.assertIsInstance(
-            pathways.dictRxnForPathway(
+            pathways.create_vertex_dict(
                 get_xml_from_biocyc(bioID="PWY-1187", directory=dirBiocyc)),
             dict)
         # TODO: check for correct dictionary
@@ -29,8 +30,7 @@ class ModulTesting(unittest.TestCase):
             "B": "C",
             "C": "D",
             "D": "E"}
-        self.assertIn("E", list(
-            pathways.find_end_vertex(vertex_dict=test_dict)))
+        self.assertIn("E", pathways.find_end_vertex(vertex_dict=test_dict))
         # CASE 2: lineal with a cycle in the middle
         test_dict = {
             "A": "B",
@@ -39,8 +39,7 @@ class ModulTesting(unittest.TestCase):
             "D": "E",
             "E": "F",
             "F": "G"}
-        self.assertIn("G", list(
-            pathways.find_end_vertex(vertex_dict=test_dict)))
+        self.assertIn("G", pathways.find_end_vertex(vertex_dict=test_dict))
         # CASE 3: cyclical (regular), other cases will be examined further
         test_dict = {
             "A": "B",
@@ -50,8 +49,9 @@ class ModulTesting(unittest.TestCase):
             "E": "F",
             "F": "A"
             }
-        self.assertEqual(0, len(
-            list(pathways.find_end_vertex(vertex_dict=test_dict))))
+        self.assertRaises(
+            StopIteration, next, pathways.find_end_vertex(
+                vertex_dict=test_dict))
 
     def test_find_start_vertex(self):
         """" Start vertex are always keys """
@@ -61,182 +61,249 @@ class ModulTesting(unittest.TestCase):
             "B": "C",
             "C": "D",
             "D": "E"}
-        self.assertIn("E", list(
-            pathways.find_start_vertex(vertex_dict=test_dict)))
+        self.assertIn("A", pathways.find_start_vertex(vertex_dict=test_dict))
         # CASE 2: lineal with 2 paths
         test_dict = {
             "A": "B",
-            "B": "C",
-            "C": "D",
+            "B": "C",  # D
+            "C": "F",
             "D": "E",
-            "F": "G",
-            "G": "D"}
-        start_vertex = list(pathways.find_start_vertex(vertex_dict=test_dict))
-        self.assertIn("E", start_vertex)
-        self.assertIn("F", start_vertex)
-        # CASE 3: cyclical
+            "E": "F",
+            "F": "G"}
+        self.assertIn("A", pathways.find_start_vertex(vertex_dict=test_dict))
+        self.assertIn("D", pathways.find_start_vertex(vertex_dict=test_dict))
+        # CASE 3: cyclical (regular), other cases will be examined further
         test_dict = {
             "A": "B",
             "B": "C",
             "C": "D",
             "D": "E",
-            "E": "A"
+            "E": "F",
+            "F": "A"
             }
-        test_result = list(pathways.find_start_vertex(
-            vertex_dict=test_dict))
-        # CASE 4: cyclical with multiple paths
-        test_dict= {
+        self.assertRaises(
+            StopIteration, next, pathways.find_start_vertex(
+                vertex_dict=test_dict))
+
+    def test_verify_return_end_vertex(self):
+        # CASE 1: regular lineal
+        test_dict = {
             "A": "B",
             "B": "C",
             "C": "D",
+            "D": "E"}
+        self.assertIn(
+            "E", pathways.verify_return_end_vertex(vertex_dict=test_dict))
+        # CASE 2: lineal with a cycle in the middle
+        test_dict = {
+            "A": "B",
+            "B": "C",  # D
+            "C": "F",
+            "D": "E",
+            "E": "F",
+            "F": "G"}
+        self.assertIn(
+            "G", pathways.verify_return_end_vertex(vertex_dict=test_dict))
+        # CASE 3: cyclical (regular), other cases will be examined further
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E",
+            "E": "F",
+            "F": "A"
+            }
+        self.assertEqual(
+            1, len(
+                list(pathways.verify_return_end_vertex(vertex_dict=test_dict)))
+        )
+        # CASE 4a: cyclical with reactions in between
+        test_dict = {
+            # cycle
+            "A": "B",
+            "B": "C",  # could also be G
+            "C": "Z",
+            "Z": "D",
             "D": "E",
             "E": "A",
-            # In the middle
-            "F": ["A"],
-            "G": ["F"],
+            # extra reactions
+            "F": "Z",
+            "G": "F"
         }
-        test_result = list(pathways.find_start_vertex(
-            vertex_dict=test_dict))
-        # CASE 5: Regular cluster TODO: !!
-        pass
-
-    @unittest.skip
-    def test_get_margin_vertex(self):
-        # FIXME: find new solution for cyclical paths
-        # CASE 1: regular
-        start, ends = pathways.get_margin_vertex({
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"]})
-        self.assertTrue(all([
-            len(start) == 1,
-            len(ends) == 1]))
-        # CASE 2: two ends
-        start, ends = pathways.get_margin_vertex({
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "G": ["E"]})
-        self.assertTrue(all([
-            len(start) == 2,  # E
-            len(ends) == 2]))  # G, A
-        # CASE 3: cycles
-        start, ends = pathways.get_margin_vertex({
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "E": ["A"]}
+        self.assertEqual(
+            1, len(
+                list(pathways.verify_return_end_vertex(vertex_dict=test_dict)))
         )
-        self.assertTrue(all([
-            len(start) == 1,  # E
-            len(ends) == 1,
-            start == ends[0]]))
-        # FIXME: add test
-        # CASE 4: Cycle with 2 paths
-        start, ends = pathways.get_margin_vertex({
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D", "G"],
-            "D": ["E"],
-            "E": ["A"],
-            # In the middle
-            "F": ["A"],
-            "G": ["F"],
-        })
-        pass
-    @unittest.skip
-    def test_give_path_graph(self):
-        # FIXME: add test
-        # # CASE 1: Lineal
-        # test_dict = {
-        #     "A": ["B"],
-        #     "B": ["C"],
-        #     "C": ["D"],
-        #     "D": ["E"]}
-        # start, ends = pathways.get_margin_vertex(vertex_dict=test_dict)
-        # test = [
-        #     list(pathways.give_path_graph(
-        #         start_vertex=vertex, graph_dict=test_dict,
-        #         end_vertex_list=ends)) for vertex in start]
-        # # CASE 2: Lineal with two ends
-        # test_dict = {
-        #     "A": ["B"],
-        #     "B": ["C"],
-        #     "C": ["D"],
-        #     "D": ["E"],
-        #     "F": ["G"],
-        #     "G": ["H", "Z"]
-        #     }
-        # start, ends = pathways.get_margin_vertex(vertex_dict=test_dict)
-        # test = [
-        #     list(pathways.give_path_graph(
-        #         start_vertex=vertex, graph_dict=test_dict,
-        #         end_vertex_list=ends)) for vertex in start]
-        # CASE 2: Cyclic
+        # CASE 4b: cyclical with reactions in between (G instead of C)
         test_dict = {
-            "A": ["B"],
-            "B": ["C"],
-            "C": ["D"],
-            "D": ["E"],
-            "E": ["A"]}
-        start, ends = pathways.get_margin_vertex(vertex_dict=test_dict)
-        test = [
-            list(pathways.give_path_graph(
-                start_vertex=vertex, graph_dict=test_dict,
-                end_vertex_list=ends)) for vertex in start]
-        pass
-        # CASE 3: Cyclic with multiple ends
+            # cycle
+            "A": "B",
+            "B": "G",  # could also be C
+            "C": "Z",
+            "Z": "D",
+            "D": "E",
+            "E": "A",
+            # extra reactions
+            "F": "Z",
+            "G": "F"
+        }
+        self.assertEqual(
+            1, len(
+                list(pathways.verify_return_end_vertex(vertex_dict=test_dict)))
+        )
+        # CASE 5: cyclycal with one extra out
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "E",
+            "D": "B",
+            "E": "D"
+            }
+        self.assertEqual(
+            1, len(
+                list(pathways.verify_return_end_vertex(vertex_dict=test_dict)))
+        )
 
-    @unittest.skip
-    def test_createPathway(self):
-        # CASE 0a: nothing passed
-        self.assertRaises(TypeError, pathways.createPathway)
-        # CASE 0b: both arguments passed
-        self.assertRaises(
-            Warning, pathways.createPathway,
-            xmlRoot=ET.Element(0), customDict=dict())
-        # CASE 1: Custom dictionary
+    def test_get_graph(self):
+        # CASE 1: regular lineal
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E"}
+        graph_test = pathways.get_graph(vertex_dict=test_dict)
+        self.assertIn(
+            ["A","B","C","D","E"], [
+                list(sequence) for sequence in graph_test])
+        # CASE 2: lineal with a cycle in the middle
+        test_dict = {
+            "A": "B",
+            "B": "C",  # D
+            "C": "F",
+            "D": "E",
+            "E": "F",
+            "F": "G"}
+        # It has to end in G
+        for sequence in pathways.get_graph(vertex_dict=test_dict):
+            self.assertTrue("G"== list(sequence)[-1])
+        # CASE 3: cyclical (regular)
         test_dict = {
             "A": "B",
             "B": "C",
             "C": "D",
             "D": "E",
-            "G": "E"}
-        listTest = pathways.createPathway(customDict=test_dict)
-        toTest = [
-            ["E", "D", "C", "B", "A"],
-            ["E", "G"]]
-        self.assertTrue(
-            all([test in listTest for test in toTest])
-        )
-        # CASE 2: regular BioCycID
-        listTest = pathways.createPathway(
-            xmlRoot=get_xml_from_biocyc(bioID="PWY-1187", directory=dirBiocyc))
+            "E": "F",
+            "F": "A"
+            }
+        graph_test = pathways.get_graph(vertex_dict=test_dict)
+        self.assertEqual(
+            6, len([x for x in set(chain.from_iterable(graph_test))])
+            )
+        # CASE 4a: cyclical with reactions in between
+        # This can only be fix with the next step, checking that all edges
+        # are mentioned at least on in the graph
+
+        # CASE 4b: as 4a but replacing value of B
+        test_dict = {
+            # cycle
+            "A": "B",
+            "B": "G",
+            "C": "Z",
+            "Z": "D",
+            "D": "E",
+            "E": "A",
+            # extra reactions
+            "F": "Z",
+            "G": "F"
+        }
+        # It has to end in G
+        for sequence in pathways.get_graph(vertex_dict=test_dict):
+            self.assertTrue("G" == list(sequence)[-1])
+         # CASE 5: cyclycal with one extra out
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "E",
+            "D": "B",
+            "E": "D"
+            }
+        graph_test = pathways.get_graph(vertex_dict=test_dict)
+        self.assertEqual(
+            5, len([x for x in set(chain.from_iterable(graph_test))])
+            )
+
+    def test_return_verified_graph(self):
+        # CASE 0: regular lineal graph
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E"}
+        graph_test = list(
+            pathways.return_verified_graph(vertex_dict=test_dict))
+        self.assertIn(
+            ["A","B","C","D","E"], [
+                list(sequence) for sequence in graph_test])
+        # CASE 1: cyclical (regular)
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E",
+            "E": "F",
+            "F": "A"
+            }
+        graph_test = list(
+            pathways.return_verified_graph(vertex_dict=test_dict))
+        self.assertEqual(
+            6, len([x for x in set(chain.from_iterable(graph_test))])
+            )
+        # CASE 3: cyclical with reactions in between
+        test_dict = {
+            # cycle
+            "A": "B",
+            "B": "C",  # could also be G
+            "C": "Z",
+            "Z": "D",
+            "D": "E",
+            "E": "A",
+            # extra reactions
+            "F": "Z",
+            "G": "F"
+        }
+        graph_test = list(
+            pathways.return_verified_graph(vertex_dict=test_dict))
+
+    def test_return_graph_from_root(self):
+        # CASE 0: root not string or ET.Element
+        self.assertRaises(
+            AttributeError, pathways.return_graph_from_root, root = int)
+        # CASE 1: regular BioCycID
+        listTest = pathways.return_graph_from_root(
+            root="PWY-1187", directory=dirBiocyc)
         # 3 end-metabolites + 1 in-between path (cyclic)
         self.assertEqual(len(listTest), 4)
-        # CASE 3: cycle
-        listTest = pathways.createPathway(
-            xmlRoot=get_xml_from_biocyc(bioID="PWY-5690", directory=dirBiocyc))
+        # CASE 2: cycle (no repetitions) / root is not a str
+        listTest = pathways.return_graph_from_root(
+            root=get_xml_from_biocyc(bioID="PWY-5690", directory=dirBiocyc))
         # Only one
-        self.assertEqual(len(listTest[0]), 10)
-        listTest = pathways.createPathway(
-            xmlRoot=get_xml_from_biocyc(bioID="CALVIN-PWY", directory=dirBiocyc))
-        pass
+        self.assertEqual(len(
+            list(chain.from_iterable(listTest))), 9)
+        # CASE 2: Cyclical with edges inbetween
+        listTest = pathways.return_graph_from_root(
+            root="CALVIN-PWY", directory=dirBiocyc)
+        # Total of 12, withouth repetitions
+        self.assertEqual(len(
+            set(chain.from_iterable(listTest))), 13)
 
-    @unittest.skip
-    def test_create_reactions_for_list(self):
+    def test_create_reactions_for_iter(self):
         # CASE 1: Regular pathway
-        testList = pathways.createPathway(
-            xmlRoot=get_xml_from_biocyc(
-                bioID="PWY-1187", directory=dirBiocyc)
-        )[0]  # only 1 path
-        testRxns = pathways.create_reactions_for_list(
+        testList = list(pathways.return_graph_from_root(
+            root="PWY-1187", directory=dirBiocyc))[0]  # only 1 path
+        testRxns = pathways.create_reactions_for_iter(
             pathwayList=testList, directory=dirBiocyc, model=cb.Model(0))
         self.assertTrue(all(
-            [isinstance(rxn, cb.Reaction) for rxn in testRxns]
+            (isinstance(rxn, cb.Reaction) for rxn in testRxns)
         ))
     @unittest.skip
     def test_find_next_demand(self):
@@ -254,7 +321,7 @@ class ModulTesting(unittest.TestCase):
         # creating reaction and model
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN",
+            model=testModel, root="OXALODECARB-RXN",
             directory=dirBiocyc)
         # testModel.add_reactions([reactionTest])
         # CASE 1a: left --> right
@@ -289,7 +356,7 @@ class ModulTesting(unittest.TestCase):
     def test_isSink(self):
         # CASE 1: two normal reactions
         testModel = cb.Model(0)
-        rxnList = pathways.create_reactions_for_list(
+        rxnList = pathways.create_reactions_for_iter(
             model=testModel,
             pathwayList=["RXN-2206", "RXN-11414"],
             directory=dirBiocyc)
@@ -313,7 +380,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 0, ignore List
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN",
+            model=testModel, root="OXALODECARB-RXN",
             directory=dirBiocyc)
         self.assertRaises(
             Warning, pathways.fix_meta_for_boundaries, model=testModel,
@@ -321,7 +388,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: PROTON, two normal reactions, one after another
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN",
+            model=testModel, root="OXALODECARB-RXN",
             directory=dirBiocyc)
         pathways.fix_meta_for_boundaries(
             model=testModel, metabolite="PROTON_c")
@@ -330,7 +397,7 @@ class ModulTesting(unittest.TestCase):
                 reaction.id for reaction in testModel.metabolites.get_by_id(
                     "PROTON_c").reactions])
         add_reaction_from_root(
-            model=testModel, xmlRoot="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
+            model=testModel, root="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
             directory=dirBiocyc)
         pathways.fix_meta_for_boundaries(
             model=testModel, metabolite="PROTON_c")
@@ -341,7 +408,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 2: Normal reaction, plus demand, plus test for sink
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN",
+            model=testModel, root="OXALODECARB-RXN",
             directory=dirBiocyc)
         testModel.add_boundary(
             testModel.metabolites.get_by_id("PROTON_c"), "demand")
@@ -354,7 +421,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 3: Adding an extra reaction, nothing should be left but
         # reactions
         add_reaction_from_root(
-            model=testModel, xmlRoot="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
+            model=testModel, root="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
             directory=dirBiocyc)
         pathways.fix_meta_for_boundaries(
             model=testModel, metabolite="PROTON_c")
@@ -379,7 +446,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: normal creation (left side)
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN", directory=dirBiocyc)
+            model=testModel, root="OXALODECARB-RXN", directory=dirBiocyc)
         pathways.tryCreateOrRemoveSinkForSides(
             model=testModel, rxnID="OXALODECARB_RXN_c", side="left",
             ignoreList=["OXALACETIC_ACID_c"])
@@ -405,7 +472,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: Ignore list
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN",
+            model=testModel, root="OXALODECARB-RXN",
             directory=dirBiocyc)
         pathways.createAndCheckSinksForRxn(
             model=testModel, rxnID="OXALODECARB_RXN_c",
@@ -421,7 +488,7 @@ class ModulTesting(unittest.TestCase):
         toCheck = ["PYRUVATE_c", "OXALACETIC_ACID_c"]
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN",
+            model=testModel, root="OXALODECARB-RXN",
             directory=dirBiocyc)
         pathways.createAndCheckSinksForRxn(
             model=testModel, rxnID="OXALODECARB_RXN_c")
@@ -435,14 +502,14 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: Single Regular reaction
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="RXN-2206", directory=dirBiocyc)
+            model=testModel, root="RXN-2206", directory=dirBiocyc)
         pathways.testReactionForSolution(
             model=testModel, rxnID="RXN_2206_c")
         self.assertGreater(abs(testModel.slim_optimize()), 0)
         # CASE 2: direction right to left, with ignoreList
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="1.8.4.9-RXN", directory=dirBiocyc)
+            model=testModel, root="1.8.4.9-RXN", directory=dirBiocyc)
         pathways.testReactionForSolution(
             model=testModel, rxnID="1.8.4.9_RXN_c",
             solutionRange=(0.01, 1000))
@@ -452,7 +519,7 @@ class ModulTesting(unittest.TestCase):
         # new function
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="RXN-2206", directory=dirBiocyc)
+            model=testModel, root="RXN-2206", directory=dirBiocyc)
         testModel.add_boundary(
             testModel.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink")
         pathways.testReactionForSolution(
@@ -462,7 +529,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 4: single reverse reaction (as CASE 2) with a ignoreList
         testModel = cb.Model(0)
         add_reaction_from_root(
-            model=testModel, xmlRoot="1.8.4.9-RXN", directory=dirBiocyc)
+            model=testModel, root="1.8.4.9-RXN", directory=dirBiocyc)
         testModel.add_boundary(
             testModel.metabolites.get_by_id("PROTON_c"), "sink")
         pathways.testReactionForSolution(
@@ -497,7 +564,7 @@ class ModulTesting(unittest.TestCase):
                 f'Ox-NADPH-Hemoprotein-Reductases_c:-1, '
                 f'Red-NADPH-Hemoprotein-Reductases_c: 1'),
             model=testModel, directory=dirBiocyc)
-        testList = pathways.create_reactions_for_list(
+        testList = pathways.create_reactions_for_iter(
             model=testModel,
             pathwayList=["RXN-2206", "RXN-11414", "RXN-11422"],
             directory=dirBiocyc)
@@ -521,7 +588,7 @@ class ModulTesting(unittest.TestCase):
                 f'Ox-NADPH-Hemoprotein-Reductases_c:-1, '
                 f'Red-NADPH-Hemoprotein-Reductases_c: 1'),
             model=testModel, directory=dirBiocyc)
-        testList = pathways.create_reactions_for_list(
+        testList = pathways.create_reactions_for_iter(
             model=testModel,
             pathwayList=["RXN-2206", "RXN-11414", "RXN-11422"],
             directory=dirBiocyc)
@@ -543,9 +610,9 @@ class ModulTesting(unittest.TestCase):
         [testModel.add_boundary(
             testModel.metabolites.get_by_id(meta), "sink") for meta in addSink]
         testList = pathways.createPathway(
-            xmlRoot=get_xml_from_biocyc(
+            root=get_xml_from_biocyc(
                 bioID="PWY-1187", directory=dirBiocyc))
-        testRxns = pathways.create_reactions_for_list(
+        testRxns = pathways.create_reactions_for_iter(
             pathwayList=testList[1], directory=dirBiocyc, model=testModel)
         add_reaction_line_to_model(
             line=(
@@ -558,7 +625,7 @@ class ModulTesting(unittest.TestCase):
             ignoreList=addSink)
         self.assertGreater(abs(testModel.slim_optimize()), 0)
         # CASE 4: Stacking 2 reactions
-        testRxns = pathways.create_reactions_for_list(
+        testRxns = pathways.create_reactions_for_iter(
             pathwayList=testList[2], directory=dirBiocyc, model=testModel)
         pathways.addPathtoModel(
             model=testModel, listReactions=testRxns,
@@ -584,12 +651,12 @@ class ModulTesting(unittest.TestCase):
                 f'Red-NADPH-Hemoprotein-Reductases_c: 1'),
             model=testModel, directory=dirBiocyc)
         pathways.testAndAddCompletePathway(
-            model=testModel, xmlRoot="PWY-1187", directory=dirBiocyc,
+            model=testModel, root="PWY-1187", directory=dirBiocyc,
             ignoreList=addSink
         )
         # CASE 2: stacking another pathways (independent from each other)
         pathways.testAndAddCompletePathway(
-            model=testModel, xmlRoot="AMMOXID-PWY", directory=dirBiocyc,
+            model=testModel, root="AMMOXID-PWY", directory=dirBiocyc,
             ignoreList=addSink
         )
         self.assertGreater(abs(testModel.slim_optimize()), 0)
@@ -607,7 +674,7 @@ class ModulTesting(unittest.TestCase):
         [testModel.add_boundary(
             testModel.metabolites.get_by_id(meta), "sink") for meta in addSink]
         pathways.testAndAddCompletePathway(
-            model=testModel, xmlRoot="PWY-5690", directory=dirBiocyc,
+            model=testModel, root="PWY-5690", directory=dirBiocyc,
             ignoreList = addSink)
         # NOTE: check for correct demands
 

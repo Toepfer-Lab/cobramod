@@ -87,26 +87,26 @@ def create_meta_from_string(line_string: str) -> Metabolite:
 
 
 def create_meta_from_root(
-    xmlRoot: Union[ET.Element, str], compartment: str = "c",
+    root: Union[ET.Element, str], compartment: str = "c",
         **kwargs) -> Metabolite:
-    if isinstance(xmlRoot, str):
-        xmlRoot = get_xml_from_biocyc(bioID=xmlRoot, **kwargs)
-    if not isinstance(xmlRoot, ET.Element):
+    if isinstance(root, str):
+        root = get_xml_from_biocyc(bioID=root, **kwargs)
+    if not isinstance(root, ET.Element):
         raise TypeError(f'Given root is not valid')
-    metaIDBase = xmlRoot.find("*/[@frameid]").attrib["frameid"]
+    metaIDBase = root.find("*/[@frameid]").attrib["frameid"]
     try:
-        formula = xmlRoot.find(  # chemical formula
+        formula = root.find(  # chemical formula
             "./*/cml/*/formula").attrib["concise"].replace(" ", "")
         # obtaining molecular charge
         charge = int(
-            xmlRoot.find("./*/cml/molecule").attrib["formalCharge"])
+            root.find("./*/cml/molecule").attrib["formalCharge"])
     # TODO: distinguish oxidized and reduced members
     except AttributeError:  # must be an enzyme
         formula = "X"
         charge = 0
     metaIDBase = metaIDBase.replace("-", "_") + "_" + compartment
     try:
-        name = xmlRoot.find("*/cml/*").attrib["title"]
+        name = root.find("*/cml/*").attrib["title"]
     except AttributeError:
         name = metaIDBase
     return Metabolite(
@@ -167,12 +167,12 @@ def add_meta_line_to_model(line, model: Model, **kwargs) -> Metabolite:
         # FIX: to gain perfomance, search for name and then create Metabolite
         if has_comma_separator(line):
             parts = get_name_compartment_string(line)
-            xmlRoot = parts[0]
+            root = parts[0]
             kwargs["compartment"] = parts[1]
         else:
-            xmlRoot = line
+            root = line
         newMeta = create_meta_from_root(
-            xmlRoot=xmlRoot, **kwargs)
+            root=root, **kwargs)
         add_if_not_found_model(model=model, metabolite=newMeta)
     else:
         newMeta = create_meta_from_string(line_string=line)
@@ -197,12 +197,12 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
 
 
 def create_base_reaction(
-        xmlRoot: ET.Element, compartment: str = "c", **kwargs) -> Reaction:
-    base_id = xmlRoot.find(
+        root: ET.Element, compartment: str = "c", **kwargs) -> Reaction:
+    base_id = root.find(
         "*/[@frameid]").attrib["frameid"].replace("--", "-").replace("-", "_")
     base_id = f'{base_id}_{compartment}'
     try:
-        base_name = xmlRoot.find(
+        base_name = root.find(
             "*[@ID]/enzymatic-reaction/*/common-name").text
     except AttributeError:
         base_name = base_id
@@ -210,14 +210,14 @@ def create_base_reaction(
 
 
 def create_sides_for_reaction(
-    model: Model, xmlRoot: ET.Element, temp_reaction: Reaction,
+    model: Model, root: ET.Element, temp_reaction: Reaction,
         side: str = "left", **kwargs) -> Reaction:
     if side == "left":
         MULTIPLIER = -1
-        side_metabolites = xmlRoot.findall("./Reaction/left")
+        side_metabolites = root.findall("./Reaction/left")
     elif side == "right":
         MULTIPLIER = 1
-        side_metabolites = xmlRoot.findall("./Reaction/right")
+        side_metabolites = root.findall("./Reaction/right")
     elif not isinstance(side, str):
         raise TypeError(f'Argument side is not valid')
     else:
@@ -240,9 +240,9 @@ def create_sides_for_reaction(
     return temp_reaction
 
 
-def check_change_direction_reaction(reaction: Reaction, xmlRoot: ET.Element):
+def check_change_direction_reaction(reaction: Reaction, root: ET.Element):
     # Reversible <->
-    text = xmlRoot.find("*/reaction-direction").text
+    text = root.find("*/reaction-direction").text
     if "REVERSIBLE" in text:
         reaction.bounds = (-1000, 1000)
     elif "RIGHT-TO-LEFT" in text:
@@ -251,19 +251,19 @@ def check_change_direction_reaction(reaction: Reaction, xmlRoot: ET.Element):
         reaction.bounds = (0, 1000)
 
 
-def build_reaction_from_xml(xmlRoot: ET.Element, **kwargs) -> Reaction:
-    if isinstance(xmlRoot, str):
-        xmlRoot = get_xml_from_biocyc(bioID=xmlRoot, **kwargs)
+def build_reaction_from_xml(root: ET.Element, **kwargs) -> Reaction:
+    if isinstance(root, str):
+        root = get_xml_from_biocyc(bioID=root, **kwargs)
     # retrieve name and create simple reaction
-    new_reaction = create_base_reaction(xmlRoot=xmlRoot, **kwargs)
+    new_reaction = create_base_reaction(root=root, **kwargs)
     # add left side
     new_reaction = create_sides_for_reaction(
-        xmlRoot=xmlRoot, temp_reaction=new_reaction, side="left", **kwargs)
+        root=root, temp_reaction=new_reaction, side="left", **kwargs)
     # direction
-    check_change_direction_reaction(reaction=new_reaction, xmlRoot=xmlRoot)
+    check_change_direction_reaction(reaction=new_reaction, root=root)
     # add right side
     new_reaction = create_sides_for_reaction(
-        xmlRoot=xmlRoot, temp_reaction=new_reaction, side="right", **kwargs)
+        root=root, temp_reaction=new_reaction, side="right", **kwargs)
     return new_reaction
 
 
@@ -280,19 +280,19 @@ def add_if_no_reaction_model(model: Model, reaction: Reaction):
         DebugLog.info(f'Reaction "{reaction.id}" was added to model')
 
 
-def add_reaction_from_root(model: Model, xmlRoot, **kwargs):
-    """Creates Reaction from given xmlRoot. If no metabolites are found in
+def add_reaction_from_root(model: Model, root, **kwargs):
+    """Creates Reaction from given root. If no metabolites are found in
     Model, then rxn will search META
     """
     # validating variables
     if not isinstance(model, Model):
         raise TypeError(f'Model is not valid')
-    if isinstance(xmlRoot, str):
-        xmlRoot = get_xml_from_biocyc(bioID=xmlRoot, **kwargs)
-    if not isinstance(xmlRoot, ET.Element):
+    if isinstance(root, str):
+        root = get_xml_from_biocyc(bioID=root, **kwargs)
+    if not isinstance(root, ET.Element):
         raise TypeError(f'Given root is not valid')
     new_reaction = build_reaction_from_xml(
-        xmlRoot=xmlRoot, model=model, **kwargs)
+        root=root, model=model, **kwargs)
     add_if_no_reaction_model(model=model, reaction=new_reaction)
 
 
@@ -387,7 +387,7 @@ def add_reaction_line_to_model(line: str, model: Model, **kwargs):
         # !! not recognizing compartments
         line = [part.strip().rstrip() for part in line.split(",")]
         add_reaction_from_root(
-            model=model, xmlRoot=line[0], compartment=line[1], **kwargs)
+            model=model, root=line[0], compartment=line[1], **kwargs)
 
 
 def add_reaction_from_file(

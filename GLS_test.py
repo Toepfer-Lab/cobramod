@@ -49,7 +49,7 @@ class ModulTesting(unittest.TestCase):
     def test_create_meta_from_root(self):
         # Case 0a: not string
         self.assertRaises(
-            TypeError, GLS.create_meta_from_root, xmlRoot=list())
+            TypeError, GLS.create_meta_from_root, root=list())
         # CASE 1: Correct input in cytosol
         testMeta = GLS.create_meta_from_root(
             "HOMOMETHIONINE", directory=dirBiocyc)
@@ -116,16 +116,16 @@ class ModulTesting(unittest.TestCase):
             Warning,
             GLS.create_sides_for_reaction,
             model=cb.Model,
-            xmlRoot=ET.Element,
+            root=ET.Element,
             temp_reaction=cb.Reaction,
             side="RiFj")
         # CASE 1a: left side a+b -> c+d 
-        testRoot = GLS.get_xml_from_biocyc(  # xmlroot
+        testRoot = GLS.get_xml_from_biocyc(  # root
             dirBiocyc,
             "OXALODECARB-RXN")
         toCheckList = ["OXALACETIC_ACID_c", "PROTON_c"]
         test_reaction = GLS.create_sides_for_reaction(
-            model=cb.Model(0), xmlRoot=testRoot, temp_reaction=cb.Reaction(0),
+            model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
             side="left", directory=dirBiocyc) # !!
         # size should be 2
         self.assertEqual(2, len(test_reaction.metabolites))
@@ -136,7 +136,7 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 1b: right side a+b -> c+d 
         test_reaction = GLS.create_sides_for_reaction(
-            model=cb.Model(0), xmlRoot=testRoot, temp_reaction=cb.Reaction(0),
+            model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
             side="right", directory=dirBiocyc)
         toCheckList = ["PYRUVATE_c", "CARBON_DIOXIDE_c"]
         self.assertEqual(2, len(test_reaction.metabolites))
@@ -145,12 +145,12 @@ class ModulTesting(unittest.TestCase):
                 for x in toCheckList])
         )
         # CASE 2a: left side a+3b -> c+d+e+2f
-        testRoot = GLS.get_xml_from_biocyc(  # xmlroot
+        testRoot = GLS.get_xml_from_biocyc(  # root
             dirBiocyc,
             "GTP-CYCLOHYDRO-II-RXN")
         toCheckList = ["WATER_c", "GTP_c"]
         test_reaction = GLS.create_sides_for_reaction(
-            model=cb.Model(0), xmlRoot=testRoot, temp_reaction=cb.Reaction(0),
+            model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
             side="left", directory=dirBiocyc)
         # size should be 2
         self.assertEqual(2, len(test_reaction.metabolites))
@@ -164,7 +164,7 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 2b: right side of a+3b -> c+d+e+2f
         test_reaction = GLS.create_sides_for_reaction(
-            model=cb.Model(0), xmlRoot=testRoot, temp_reaction=cb.Reaction(0),
+            model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
             side="right", directory=dirBiocyc)
         toCheckList = [
             "PROTON_c", "PPI_c",
@@ -175,15 +175,15 @@ class ModulTesting(unittest.TestCase):
         self.assertTrue(
             all([x in [meta.id for meta in test_reaction.metabolites]
                 for x in toCheckList]))
-        # CASE 3: xmlroot a+b(Protein)+c -> c+d(Protein)+c
-        testRoot = GLS.get_xml_from_biocyc(  # xmlroot
+        # CASE 3: root a+b(Protein)+c -> c+d(Protein)+c
+        testRoot = GLS.get_xml_from_biocyc(  # root
             dirBiocyc,
             "RXN-11413")
         toCheckList = [
             "INDOLE_3_ACETALDOXIME_c", "Red_NADPH_Hemoprotein_Reductases_c",
             "OXYGEN_MOLECULE_c"]
         test_reaction = GLS.create_sides_for_reaction(
-            model=cb.Model(0), xmlRoot=testRoot, temp_reaction=cb.Reaction(0),
+            model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
             side="left", directory=dirBiocyc)
         # size should be 2
         self.assertEqual(3, len(test_reaction.metabolites))
@@ -238,7 +238,7 @@ class ModulTesting(unittest.TestCase):
             bioID="OXALODECARB-RXN")
         testModel = cb.Model(0)
         GLS.add_reaction_from_root(
-            model=testModel, xmlRoot=testRoot,
+            model=testModel, root=testRoot,
             directory=dirBiocyc)
         # Testing for new metabolites in Reaction
         self.assertTrue(
@@ -250,11 +250,11 @@ class ModulTesting(unittest.TestCase):
                 "OXALODECARB_RXN_c").metabolites]
         self.assertTrue(
             all([test in meta_list for test in toCheckList]))
-        # CASE 2b: as with 2a but a string as xmlRoot
+        # CASE 2b: as with 2a but a string as root
         # Reaction
         testModel = cb.Model(0)
         GLS.add_reaction_from_root(
-            model=testModel, xmlRoot="OXALODECARB-RXN",
+            model=testModel, root="OXALODECARB-RXN",
             directory=dirBiocyc)
         # Testing for new metabolites in Reaction
         self.assertTrue(
@@ -273,7 +273,7 @@ class ModulTesting(unittest.TestCase):
             "DIAMINO_OH_PHOSPHORIBOSYLAMINO_PYR_c", "FORMATE_c"]
         testModel = cb.Model(0)
         GLS.add_reaction_from_root(
-            model=testModel, xmlRoot="GTP-CYCLOHYDRO-II-RXN",
+            model=testModel, root="GTP-CYCLOHYDRO-II-RXN",
             directory=dirBiocyc)
         meta_list = [
             meta.id for meta in testModel.reactions.get_by_id(
@@ -298,14 +298,14 @@ class ModulTesting(unittest.TestCase):
                 "GTP_CYCLOHYDRO_II_RXN_c").get_coefficient("WATER_c")
         )
         # FIXME: check reversibility
-        # CASE 5: xmlroot a+b(Protein)+c -> d+e(Protein)+f
+        # CASE 5: root a+b(Protein)+c -> d+e(Protein)+f
         testModel = cb.Model(0)
         toCheckList = [
             "CPD_12386_c", "Ox_NADPH_Hemoprotein_Reductases_c",
             "WATER_c", "INDOLE_3_ACETALDOXIME_c",
             "Red_NADPH_Hemoprotein_Reductases_c", "OXYGEN_MOLECULE_c"]
         GLS.add_reaction_from_root(
-            model=testModel, xmlRoot="RXN-11413",
+            model=testModel, root="RXN-11413",
             directory=dirBiocyc)
         meta_list = [
             meta.id for meta in testModel.reactions.get_by_id(
@@ -319,14 +319,14 @@ class ModulTesting(unittest.TestCase):
         # names should be there
         self.assertTrue(
             all([test in meta_list for test in toCheckList]))
-        # CASE 6: xmlroot a+b(Protein)+c -> d+e(Protein)+f (compartment p)
+        # CASE 6: root a+b(Protein)+c -> d+e(Protein)+f (compartment p)
         testModel = cb.Model(0)
         toCheckList = [
             "CPD_12386_p", "Ox_NADPH_Hemoprotein_Reductases_p",
             "WATER_p", "INDOLE_3_ACETALDOXIME_p",
             "Red_NADPH_Hemoprotein_Reductases_p", "OXYGEN_MOLECULE_p"]
         GLS.add_reaction_from_root(
-            model=testModel, xmlRoot="RXN-11413",
+            model=testModel, root="RXN-11413",
             directory=dirBiocyc, compartment="p")
         meta_list = [
             meta.id for meta in testModel.reactions.get_by_id(
@@ -343,7 +343,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 7: str not found
         self.assertRaises(
             Warning, GLS.add_reaction_from_root, model=cb.Model(0),
-            xmlRoot="fakeroot", directory=dirBiocyc)
+            root="fakeroot", directory=dirBiocyc)
 
     def test_read_lines(self):
         # CASE 0: Comments and blank lines

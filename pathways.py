@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import xml.etree.ElementTree as ET
 import logging
-from typing import Union, Generator
+from typing import Union, Generator, Iterable
 from GLS import get_xml_from_biocyc, build_reaction_from_xml,\
     stopAndShowMassBalance
 from cobra import Model, Reaction
+from itertools import chain
 # Creating corresponding Logs
 # Format
 DebugFormatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
@@ -17,193 +18,195 @@ DebugLog.setLevel(logging.DEBUG)
 # TODO!!: change name for proper python conventions
 
 
-def fix_single_reaction_dict(xmlRoot: ET.Element, rootDict: dict) -> dict:
+def fix_single_reaction_dict(root: ET.Element, rootDict: dict) -> dict:
+    # TODO: verify
     # These are single exceptions
     if len(rootDict) == 0:
-        single_rxn = xmlRoot.find(
+        single_rxn = root.find(
             "Pathway/reaction-list/Reaction").attrib["frameid"]
         rootDict = {single_rxn: single_rxn}
     return rootDict
 
 
-def dictRxnForPathway(xmlRoot: Union[ET.Element, str], **kwargs) -> dict:
-    """Returns a dictionary from the root of a .xml file, where the keys
+def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> dict:
+    """Returns a dictionary from the root of a XML file, where the keys
     represent a Reaction and the value its predecessor in a pathway. i.e, the
     direction if from right to left
 
-    :param xmlRoot: root of given pathway
-    :type xmlRoot: Union[ET.Element, str]
+    :param root: root of given pathway
+    :type root: Union[ET.Element, str]
     :raises TypeError: if root is not valid
     :return: dictionary with reactions and their predecessors
     :rtype: dict
     """
     rootDict = dict()
-    if isinstance(xmlRoot, str):
-        xmlRoot = get_xml_from_biocyc(bioID=xmlRoot, **kwargs)
-    if not isinstance(xmlRoot, ET.Element):
-        msg = f'xmlRoot is not a valid xml file.'
+    if isinstance(root, str):
+        root = get_xml_from_biocyc(bioID=root, **kwargs)
+    if not isinstance(root, ET.Element):
+        msg = f'root is not a valid xml file.'
         DebugLog.error(msg)
         raise TypeError(msg)
-    for rxnLine in xmlRoot.findall("*/reaction-ordering"):
+    for rxnLine in root.findall("*/reaction-ordering"):
         current = rxnLine.find("*/[@frameid]").attrib["frameid"]
         prior = rxnLine.find("predecessor-reactions/").attrib["frameid"]
         # If the direction of keys and values changes, then
         # many reactions would get lost. This way, even with
         # multiple compounds, pathways remain
         # NOTE: check for behaviour
-        # NOTE: Replacing
+        # Replacing values produces cuts with are needed to avoid cyclic
+        # No reactions are missed
         rootDict[current] = prior
-    name = xmlRoot.find("Pathway").attrib["frameid"]
+    name = root.find("Pathway").attrib["frameid"]
     # NOTE: Add correspoding test
-    rootDict = fix_single_reaction_dict(xmlRoot=xmlRoot, rootDict=rootDict)
+    rootDict = fix_single_reaction_dict(root=root, rootDict=rootDict)
     DebugLog.debug(f'Dictionary for pathway "{name}" succesfully created')
     return rootDict
 
 
-# End metabolite is a single value not in key
 def find_end_vertex(vertex_dict: dict) -> Generator:
+    """Yields for a dictionary of edges, the last vertex. i.e, a single value
+    that is not in a key. They can be seen as end-metabolites
+
+    :param vertex_dict: dictionary with edges
+    :type vertex_dict: dict
+    :yield: last vertex
+    :rtype: Generator
+    """
     for value in vertex_dict.values():
         if value not in vertex_dict.keys():
             yield value
 
 
-# Start-metabolite is a key not in values
 def find_start_vertex(vertex_dict: dict) -> Generator:
+    """Yields the start vertex for given dictionary, i.e. keys are do not
+    appear as values. They can be seen as start-metabolites
+
+    :param vertex_dict: dictionary with edges
+    :type vertex_dict: dict
+    :yield: start vertex
+    :rtype: Generator
+    """
     for key in vertex_dict.keys():
         if key not in vertex_dict.values():
             yield key
 
 
-def is_cyclic_graph(start_vertex: Generator, end_vertex: Generator) -> bool:
-    # TODO: add test
-    return all([
-        len(list(start_vertex)) == 0,
-        len(list(end_vertex)) == 0
-    ])
+def verify_return_end_vertex(vertex_dict: dict) -> Generator:
+    """Verifies that at least one end-vertex and start-vertex are possible
+    to obtained from dictionary of edges. If no start-vertex is found, the
+    graph is cyclical and a edge will be cut
 
-def fix_if_cycle(start: list, ends: list, vertex_dict: dict) -> tuple:
-    if len(start) == 0:
-        # TODO: check if randonmess affects model
-        start = list(vertex_dict.keys())[0]
-        if len(ends) == 0:
-            ends = vertex_dict[start]
-    return start, ends
-
-
-def get_margin_vertex(vertex_dict: dict) -> tuple:
-    """From a dictionary of Reactions IDs and their predecessors, returns the
-    initial reaction and side/end-reactions.
+    :param vertex_dict: dictionary with edges
+    :type vertex_dict: dict
+    :return: end vertex
+    :rtype: Generator
     """
-    vertex_start = find_start_vertex(vertex_dict=vertex_dict)
-    vertex_ends = find_end_vertex(vertex_dict=vertex_dict)
-    # FIXME: cycles not working properly
-    # vertex_start, vertex_ends = fix_if_cycle(
-        # start=vertex_start, ends=vertex_ends, vertex_dict=vertex_dict)
-    return vertex_start, vertex_ends
+    end_vertex = list(find_end_vertex(vertex_dict=vertex_dict))
+    while len(end_vertex) == 0:
+        vertex_dict.popitem()
+        end_vertex = list(find_end_vertex(vertex_dict=vertex_dict))
+    return find_end_vertex(vertex_dict=vertex_dict)
 
 
-# For single metabolite
-def get_lineal_graph(
-        start_vertex: str, end_vertex: str, graph_dict: dict):
-    while end_vertex != start_vertex:
-        # try:
-        yield end_vertex
-        end_vertex = graph_dict[end_vertex]
-        # graph_dict.pop(test)
-        # start_vertex = next_vertex
-    yield start_vertex
-def get_edges_from_dict(rootDict: dict) -> tuple:
-    """From a dictionary of Reactions IDs and their predecessors, returns the
-    initial reaction and side/end-reactions.
+def build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
+    """Build sequence for given edge-dictionary, that starts with
+    given start vertex. It will stop until no keys are available or a cyclical
+    graph is found
 
-    :param rootDict: dictionary with Reactions IDs and their predecessors
-    :type rootDict: dict
-    :return: ID of the first reactions and and list of side/end metabolites
-    :rtype: tuple
+    :param start_vertex: name of edge to start with
+    :type start_vertex: str
+    :param vertex_dict: dictionary with edges
+    :type vertex_dict: dict
+    :yield: Sequence that starts with the start vertex
+    :rtype: Generator
     """
-    start = None
-    ends = list()  # could be multiple or cyclic
-    for current, prior in rootDict.items():
-        # Finding ends
-        if current not in rootDict.values():
-            endRxn = current
-            ends.append(endRxn)  # could be multiple
-        # Finding start
-        if prior not in rootDict.keys():
-            start = prior  # always one
-    # FIXME: cycles not working properly
-    # start, ends = fix_if_cycle(start=start, ends=ends, rootDict=rootDict)
-    return start, ends
+    first_step = vertex_dict[start_vertex]
+    count = 0
+    while True:
+        try:
+            yield start_vertex
+            start_vertex = vertex_dict[start_vertex]
+            count += 1
+        except KeyError:
+            break
+        if start_vertex == first_step and count > 1:
+            break 
 
 
-def createPathway(
-        xmlRoot: Union[ET.Element, str] = None, customDict: dict = None,
-        **kwargs) -> list:
-    """Creates from either a xmlRoot or custom dictionary a list with
-    pathways. At least one argument should be passed.
+def get_graph(vertex_dict: dict) -> Iterable:
+    """Creates graph for given vertex dictionary. For each start vertex found,
+    a sequence will be created. Edges can be cut if a cyclic graph is found
 
-    For custom dictionary direction is right to left
+    :param vertex_dict: dictionary with edges
+    :type vertex_dict: dict
+    :return: list with sequences
+    :rtype: Iterable
+    """
+    end_vertex = verify_return_end_vertex(vertex_dict=vertex_dict)
+    start_vertex = find_start_vertex(vertex_dict=vertex_dict)
+    # a generator with list, otherwise items get lost
+    return (list(build_graph(
+        start_vertex=start, vertex_dict=vertex_dict)) for start in start_vertex)
 
 
-    :param xmlRoot: xmlroot of Pathway, defaults to None
-    :type xmlRoot: Union[ET.Element, str], optional
-    :param customDict: custom dictionary with specific entries, defaults
-    to None
-    :type customDict: dict, optional
-    :raises TypeError: if no arguments are passed
-    :raises Warning: if both arguments are passed. Only one arg is allowed
-    :return: list with multiple list with Reactions IDs as strings
+def return_missing_edges(complete_edges:Iterable, graph:Iterable) -> Generator:
+    """Yields missing vertex in graph.
+
+    :param complete_edges: complete edges of graph
+    :type complete_edges: Iterable
+    :param graph: graph to be tested
+    :type graph: Iterable
+    :yield: sequence of missing vertex
+    :rtype: Generator
+    """
+    for edge in complete_edges:
+        if edge not in graph:
+            yield edge
+
+
+def return_verified_graph(vertex_dict:dict) -> list:
+    """Returns list with ordered sequences for a edge dictionary. If missing
+    vertex are missing in the sequences, they will be appended in the list
+
+    :param vertex_dict: dictionary of edges
+    :type vertex_dict: dict
+    :return: verified list with sequences
     :rtype: list
     """
-
-    # creating dict
-    if xmlRoot is None and customDict is None:
-        raise TypeError(f'No arguments are passed')
-    elif isinstance(xmlRoot, ET.Element) and isinstance(customDict, dict):
-        raise Warning(f'Only one argument is accepted. Please re-run')
-    elif customDict is None:
-        rootDict = dictRxnForPathway(xmlRoot, **kwargs)  # completely normal
-    elif isinstance(customDict, dict):  # custom dictionary
-        rootDict = customDict
-    # finding edges
-    start, ends = get_edges_from_dict(rootDict)
-    # Creating paths
-    finalPaths = list()
-    # TODO: make it more readable
-    for path in ends:
-        DebugLog.debug(f'Creating pathway ending with "{path}"')
-        tmpList = list()  # sorted list
-        tmpDict = rootDict.copy()  # copy is needed
-        tmpList.append(path)  # end-metabolite
-        # FIXME: Find a new solution to overcome cyclic graphs!!
-        while True:
-            try:
-                if tmpDict[tmpList[-1]] in tmpDict.keys():
-                    # When found, append to list and delete entry
-                    # in dictionary.
-                    tmpList.append(tmpDict[tmpList[-1]])
-                    tmpDict.pop(tmpList[-2])
-                # Must be the last metabolite
-                elif tmpDict[tmpList[-1]] == start:
-                    tmpList.append(tmpDict[tmpList[-1]])
-                    break
-            except KeyError:  # If only one key
-                tmpList = ends
-                break
-        # Fixing index. Changing direction
-        newSort = tmpList[::-1]
-        DebugLog.debug(
-            f'New Pathways is: '
-            f'{newSort}')
-        finalPaths.append(newSort)
-    # else:
-    #     # FIXME: This is an exceptio if only a reaction is in a pathway
-    #     finalPaths.append([start])
-    return finalPaths
+    # Backup for comparison
+    vertex_dict_copy = vertex_dict.copy()
+    all_edges = set(
+            chain.from_iterable(vertex_dict_copy.items()))
+    # TODO: check for single reaction
+    graph = list(get_graph(vertex_dict=vertex_dict))
+    missing_edges = list(return_missing_edges(
+        graph=set(chain.from_iterable(graph)),
+        complete_edges=all_edges))
+    graph.append(missing_edges)
+    return list(filter(None, graph))
 
 
-def create_reactions_for_list(
-        pathwayList: list, replaceNameDict: dict = None, **kwargs) -> list:
+def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
+    """Returns graph from given XML rool. All sequences will be included in
+    order.
+
+    :param root: name of root or XML
+    :type root: Union[str, ET.Element]
+    :raises AttributeError: If given root is invalid
+    :return: verified list with sequences
+    :rtype: list
+    """
+    if isinstance(root, str):
+        root = get_xml_from_biocyc(bioID=root, **kwargs)
+    if not isinstance(root, ET.Element):
+        raise AttributeError(f'Given XML root is invalid.')
+    vertex_dict = create_vertex_dict(root=root, **kwargs)
+    return return_verified_graph(vertex_dict=vertex_dict)
+
+
+def create_reactions_for_iter(
+        pathwayList: list, replaceNameDict: dict = None,
+        **kwargs) -> Generator:
     """For each reaction ID in given list, it creates a Reaction object
 
     :param pathwayList: list with original reaction IDs
@@ -214,17 +217,17 @@ def create_reactions_for_list(
     :rtype: list
     """
     search_kwargs = kwargs.copy()
-    # TODO: write short FUN for this part
+    # TODO: verify is this needed
     for arg in ["model"]:
         try:
             del search_kwargs[arg]
         except KeyError:
             continue
-    DebugLog.debug(f'Obtaining xmlRoot for {pathwayList}')
+    DebugLog.debug(f'Obtaining root for {pathwayList}')
     # From given list (which includes None values), retrieve only Reaction
     # Objects.
-    return [build_reaction_from_xml(
-        xmlRoot=reaction, **kwargs) for reaction in pathwayList]
+    return (build_reaction_from_xml(
+        root=reaction, **kwargs) for reaction in pathwayList)
 
 
 def find_next_demand(
@@ -517,18 +520,18 @@ def addPathtoModel(model: Model, listReactions: list, **kwargs):
 
 
 def testAndAddCompletePathway(
-        model: Model, xmlRoot: Union[ET.Element, str], **kwargs):
-    """For given xmlRoot for a pathway, check, test and add all possible
+        model: Model, root: Union[ET.Element, str], **kwargs):
+    """For given root for a pathway, check, test and add all possible
     Reactions to given model. 
 
     :param model: model to append pathway
     :type model: Model
-    :param xmlRoot: root or name of pathway
-    :type xmlRoot: Union[ET.Element, str]
+    :param root: root or name of pathway
+    :type root: Union[ET.Element, str]
     """	
     # Retrieving and creating Pathway with Reactions
-    pathwayList = createPathway(xmlRoot=xmlRoot, **kwargs)
+    pathwayList = createPathway(root=root, **kwargs)
     for pathway in pathwayList:
-        reactionList = create_reactions_for_list(
+        reactionList = create_reactions_for_iter(
             pathwayList=pathway, model=model, **kwargs)
         addPathtoModel(model=model, listReactions=reactionList, **kwargs)
