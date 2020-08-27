@@ -59,7 +59,7 @@ def get_xml_from_biocyc(
                 root = ET.fromstring(r.text)  # defining root
                 tree = ET.ElementTree(root)
                 tree.write(str(filename))
-                DebugLog.debug(f'Object found.')
+                DebugLog.debug('Object found.')
                 return root
     else:
         msg = "Directory not found"
@@ -69,7 +69,7 @@ def get_xml_from_biocyc(
 
 def create_meta_from_string(line_string: str) -> Metabolite:
     if not isinstance(line_string, str):
-        raise TypeError(f'Argument must be a str')
+        raise TypeError('Argument must be a str')
     line = [part.strip().rstrip() for part in line_string.split(",")]
     try:
         meta_id = line[0]
@@ -79,8 +79,8 @@ def create_meta_from_string(line_string: str) -> Metabolite:
         meta_charge = line[4]
     except IndexError:
         raise IndexError(
-            f'Given line is invalid. Format is: id, name, compartment, '
-            f'chemical_formula, molecular_charge')
+            'Given line is invalid. Format is: id, name, compartment, '
+            'chemical_formula, molecular_charge')
     return Metabolite(
         id=meta_id, name=meta_name, compartment=meta_comp, charge=meta_charge,
         formula=meta_formula)
@@ -92,7 +92,7 @@ def create_meta_from_root(
     if isinstance(root, str):
         root = get_xml_from_biocyc(bioID=root, **kwargs)
     if not isinstance(root, ET.Element):
-        raise TypeError(f'Given root is not valid')
+        raise TypeError('Given root is not valid')
     metaIDBase = root.find("*/[@frameid]").attrib["frameid"]
     try:
         formula = root.find(  # chemical formula
@@ -219,9 +219,9 @@ def create_sides_for_reaction(
         MULTIPLIER = 1
         side_metabolites = root.findall("./Reaction/right")
     elif not isinstance(side, str):
-        raise TypeError(f'Argument side is not valid')
+        raise TypeError('Argument side is not valid')
     else:
-        raise Warning(f'Only options are "right" and "left"')
+        raise Warning('Only options are "right" and "left"')
     for meta in side_metabolites:
         try:
             coef = int(meta.find("coefficient").text) * MULTIPLIER
@@ -232,7 +232,7 @@ def create_sides_for_reaction(
             meta_id = meta.find(
                 "*/[@frameid]").attrib["frameid"].strip().rstrip()
         except AttributeError:
-            raise AttributeError(f'Reaction cannot find participants')
+            raise AttributeError('Reaction cannot find participants')
         temp_metabolite = add_meta_line_to_model(
             line=meta_id, model=model, **kwargs)
         temp_reaction.add_metabolites({
@@ -286,19 +286,25 @@ def add_reaction_from_root(model: Model, root, **kwargs):
     """
     # validating variables
     if not isinstance(model, Model):
-        raise TypeError(f'Model is not valid')
+        raise TypeError('Model is not valid')
     if isinstance(root, str):
         root = get_xml_from_biocyc(bioID=root, **kwargs)
     if not isinstance(root, ET.Element):
-        raise TypeError(f'Given root is not valid')
+        raise TypeError('Given root is not valid')
     new_reaction = build_reaction_from_xml(
         root=root, model=model, **kwargs)
     add_if_no_reaction_model(model=model, reaction=new_reaction)
 
 
-def has_delimiter(line_string) -> bool:
-    return "|" in line_string
+def has_delimiter(line_string: str) -> bool:
+    """Returns true if given string has a vertical bar '|'
 
+    :param line_string: line to check
+    :type line_string: str
+    :return: True if delimiter found
+    :rtype: bool
+    """
+    return "|" in line_string
 
 
 def createDictForMetabolites(metaString: list) -> dict:
@@ -315,7 +321,7 @@ def createDictForMetabolites(metaString: list) -> dict:
     :rtype: dict
     """
     if not isinstance(metaString, list):
-        raise TypeError(f'Line format is wrong')
+        raise TypeError('Line format is wrong')
     tmpMetaDict = dict()
     for single in metaString:
         single = [x.strip().rstrip() for x in single.split(":")]
@@ -355,7 +361,7 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
         rxnID = rxnID_name[0]
         rxnName = rxnID_name[1]
     elif rxnID_name == [""]:  # blank space
-        raise Warning(f'Format is wrong. ID not detected')
+        raise Warning('Format is wrong. ID not detected')
     elif len(rxnID_name) == 1:
         rxnID = rxnName = rxnID_name[0]
     new_reaction = Reaction(id=rxnID, name=rxnName)
@@ -413,7 +419,7 @@ def add_reaction_from_file(
     :type stopIfWrongMB: bool, optional
     :raises Warning: If stopIfWrong is TRUE and reaction is unbalanced
     """
-    #NOTE: add mass balance check
+    # NOTE: add mass balance check
     if not isinstance(model, Model):
         raise TypeError("Model given is not a valid")
     if not filename.exists():
@@ -436,5 +442,5 @@ def stopAndShowMassBalance(
         DebugLog.warning(msg)
         print(msg)
         if stopIfWrongMB is True:
-            msg += f'Stopping'
+            msg += 'Stopping'
             raise Warning(msg)
