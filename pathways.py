@@ -24,9 +24,11 @@ def fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
     # TODO: verify
     # These are single exceptions
     if len(root_dict) == 0:
-        single_rxn = root.find(
-            "Pathway/reaction-list/Reaction").attrib["frameid"]
-        root_dict = {single_rxn: single_rxn}
+        # single_rxn = root.find(
+        #     "Pathway/reaction-list/Reaction").attrib["frameid"]
+        # root_dict = {single_rxn: single_rxn}
+        raise NotImplementedError(
+            'Path has only a reaction. Add separately')
     return root_dict
 
 

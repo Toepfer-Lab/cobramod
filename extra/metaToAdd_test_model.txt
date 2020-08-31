@@ -15,3 +15,4 @@ Reduced-ferredoxins, c
 GLT, c
 MAL, c
 CO-A,c
+GAP, c

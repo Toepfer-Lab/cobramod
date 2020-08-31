@@ -9,8 +9,11 @@ from creation import get_xml_from_biocyc, add_reaction_from_root,\
     add_meta_line_to_model, add_meta_from_file, add_reaction_line_to_model
 from itertools import chain
 
-dirBiocyc = Path.cwd().joinpath("biocyc")
-dirInput = Path.cwd().joinpath("tests").joinpath("input")
+dir_input = Path.cwd().joinpath("tests").joinpath("input")
+dir_biocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
+
+if not dir_biocyc.exists():
+    dir_biocyc.mkdir(parents=True)
 
 
 class ModulTesting(unittest.TestCase):
@@ -20,7 +23,7 @@ class ModulTesting(unittest.TestCase):
             TypeError, pt.create_vertex_dict, root=str())
         self.assertIsInstance(
             pt.create_vertex_dict(
-                get_xml_from_biocyc(bioID="PWY-1187", directory=dirBiocyc)),
+                get_xml_from_biocyc(bioID="PWY-1187", directory=dir_biocyc)),
             dict)
         # TODO: check for correct dictionary
 
@@ -283,19 +286,19 @@ class ModulTesting(unittest.TestCase):
             AttributeError, pt.return_graph_from_root, root=int)
         # CASE 1: regular BioCycID
         test_list = pt.return_graph_from_root(
-            root="PWY-1187", directory=dirBiocyc)
+            root="PWY-1187", directory=dir_biocyc)
         # 3 end-metabolites + 1 in-between path (cyclic)
         self.assertEqual(len(
             set(chain.from_iterable(test_list))), 14)
         # CASE 2: cycle (no repetitions) / root is not a str
         test_list = pt.return_graph_from_root(
-            root=get_xml_from_biocyc(bioID="PWY-5690", directory=dirBiocyc))
+            root=get_xml_from_biocyc(bioID="PWY-5690", directory=dir_biocyc))
         # Only one
         self.assertEqual(len(
             set(chain.from_iterable(test_list))), 9)
         # CASE 2: Cyclical with edges inbetween
         test_list = pt.return_graph_from_root(
-            root="CALVIN-PWY", directory=dirBiocyc)
+            root="CALVIN-PWY", directory=dir_biocyc)
         # Total of 12, withouth repetitions
         self.assertEqual(len(
             set(chain.from_iterable(test_list))), 13)
@@ -304,11 +307,11 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: Regular pathway
         test_model = cb.Model(0)
         test_graph = list(pt.return_graph_from_root(
-            root="PWY-1187", directory=dirBiocyc))  # only 1 path
+            root="PWY-1187", directory=dir_biocyc))  # only 1 path
         # Objects
         for sequence in test_graph:
             test_sequence_objects = pt.create_reactions_for_iter(
-                sequence=sequence, directory=dirBiocyc, model=test_model)
+                sequence=sequence, directory=dir_biocyc, model=test_model)
             self.assertTrue(all(
                 (isinstance(rxn, cb.Reaction) for rxn in test_sequence_objects)
                 ))
@@ -319,11 +322,11 @@ class ModulTesting(unittest.TestCase):
         # CASE 2: cycle (no repetitions)
         test_model = cb.Model(0)
         test_graph = list(pt.return_graph_from_root(
-            root="PWY-5690", directory=dirBiocyc))  # only 1 path
+            root="PWY-5690", directory=dir_biocyc))  # only 1 path
         # Objects
         for sequence in test_graph:
             test_sequence_objects = pt.create_reactions_for_iter(
-                sequence=sequence, directory=dirBiocyc, model=test_model)
+                sequence=sequence, directory=dir_biocyc, model=test_model)
             self.assertTrue(all(
                 (isinstance(rxn, cb.Reaction) for rxn in test_sequence_objects)
                 ))
@@ -334,11 +337,11 @@ class ModulTesting(unittest.TestCase):
         # CASE 3: cycle with edgeds inbetween
         test_model = cb.Model(0)
         test_graph = list(pt.return_graph_from_root(
-            root="CALVIN-PWY", directory=dirBiocyc))  # only 1 path
+            root="CALVIN-PWY", directory=dir_biocyc))  # only 1 path
         # Objects
         for sequence in test_graph:
             test_sequence_objects = pt.create_reactions_for_iter(
-                sequence=sequence, directory=dirBiocyc, model=test_model)
+                sequence=sequence, directory=dir_biocyc, model=test_model)
             self.assertTrue(all(
                 (isinstance(rxn, cb.Reaction) for rxn in test_sequence_objects)
                 ))
@@ -363,7 +366,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="OXALODECARB-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         # test_model.add_reactions([test_reaction])
         # CASE 1a: left --> right
         self.assertEqual(
@@ -399,7 +402,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="OXALODECARB-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         self.assertRaises(
             Warning, pt.fix_meta_for_boundaries, model=test_model,
             metabolite="PROTON_c", ignore_list=["PROTON_c"])
@@ -407,7 +410,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="OXALODECARB-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         pt.fix_meta_for_boundaries(
             model=test_model, metabolite="PROTON_c")
         self.assertIn(
@@ -416,7 +419,7 @@ class ModulTesting(unittest.TestCase):
                     "PROTON_c").reactions])
         add_reaction_from_root(
             model=test_model, root="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         pt.fix_meta_for_boundaries(
             model=test_model, metabolite="PROTON_c")
         self.assertNotIn(
@@ -427,7 +430,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="OXALODECARB-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         test_model.add_boundary(
             test_model.metabolites.get_by_id("PROTON_c"), "demand")
         pt.fix_meta_for_boundaries(
@@ -440,7 +443,7 @@ class ModulTesting(unittest.TestCase):
         # reactions
         add_reaction_from_root(
             model=test_model, root="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         pt.fix_meta_for_boundaries(
             model=test_model, metabolite="PROTON_c")
         self.assertNotIn(
@@ -464,7 +467,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: normal creation (left side)
         test_model = cb.Model(0)
         add_reaction_from_root(
-            model=test_model, root="OXALODECARB-RXN", directory=dirBiocyc)
+            model=test_model, root="OXALODECARB-RXN", directory=dir_biocyc)
         pt.verify_side_sinks_for_rxn(
             model=test_model, rxnID="OXALODECARB_RXN_c", side="left",
             ignore_list=["OXALACETIC_ACID_c"])
@@ -491,7 +494,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="OXALODECARB-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         pt.verify_sinks_for_rxn(
             model=test_model, rxnID="OXALODECARB_RXN_c",
             ignore_list=["PROTON_c", "PYRUVATE_c"])
@@ -507,7 +510,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="OXALODECARB-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         pt.verify_sinks_for_rxn(
             model=test_model, rxnID="OXALODECARB_RXN_c")
         self.assertTrue(all([
@@ -520,14 +523,14 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: Single Regular reaction
         test_model = cb.Model(0)
         add_reaction_from_root(
-            model=test_model, root="RXN-2206", directory=dirBiocyc)
+            model=test_model, root="RXN-2206", directory=dir_biocyc)
         pt.test_rxn_for_solution(
             model=test_model, rxnID="RXN_2206_c")
         self.assertGreater(abs(test_model.slim_optimize()), 0)
         # CASE 2: direction right to left, with ignore_list
         test_model = cb.Model(0)
         add_reaction_from_root(
-            model=test_model, root="1.8.4.9-RXN", directory=dirBiocyc)
+            model=test_model, root="1.8.4.9-RXN", directory=dir_biocyc)
         pt.test_rxn_for_solution(
             model=test_model, rxnID="1.8.4.9_RXN_c",
             solutionRange=(0.01, 1000))
@@ -537,7 +540,7 @@ class ModulTesting(unittest.TestCase):
         # new function
         test_model = cb.Model(0)
         add_reaction_from_root(
-            model=test_model, root="RXN-2206", directory=dirBiocyc)
+            model=test_model, root="RXN-2206", directory=dir_biocyc)
         test_model.add_boundary(
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink")
         pt.test_rxn_for_solution(
@@ -547,7 +550,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 4: single reverse reaction (as CASE 2) with a ignore_list
         test_model = cb.Model(0)
         add_reaction_from_root(
-            model=test_model, root="1.8.4.9-RXN", directory=dirBiocyc)
+            model=test_model, root="1.8.4.9-RXN", directory=dir_biocyc)
         test_model.add_boundary(
             test_model.metabolites.get_by_id("PROTON_c"), "sink")
         pt.test_rxn_for_solution(
@@ -570,9 +573,9 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: Normal usage (3 reactions)
         test_model = cb.Model(0)
         add_meta_line_to_model(
-            line="WATER, c", model=test_model, directory=dirBiocyc)
+            line="WATER, c", model=test_model, directory=dir_biocyc)
         add_meta_line_to_model(
-            line="OXYGEN-MOLECULE, c", model=test_model, directory=dirBiocyc)
+            line="OXYGEN-MOLECULE, c", model=test_model, directory=dir_biocyc)
         for meta in ["WATER_c", "OXYGEN_MOLECULE_c"]:
             test_model.add_boundary(
                 test_model.metabolites.get_by_id(meta), "sink")
@@ -581,11 +584,11 @@ class ModulTesting(unittest.TestCase):
                 "Redox_homoproteins_c, Redox_homoproteins_c |"
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
-            model=test_model, directory=dirBiocyc)
+            model=test_model, directory=dir_biocyc)
         test_list = list(pt.create_reactions_for_iter(
             model=test_model,
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
-            directory=dirBiocyc))
+            directory=dir_biocyc))
         pt.add_sequence(
             model=test_model, sequence=test_list, ignore_list=[
                 "WATER_c", "OXYGEN_MOLECULE_c"])
@@ -594,9 +597,9 @@ class ModulTesting(unittest.TestCase):
         # are unbalanced)
         test_model = cb.Model(0)
         add_meta_line_to_model(
-            line="WATER, c", model=test_model, directory=dirBiocyc)
+            line="WATER, c", model=test_model, directory=dir_biocyc)
         add_meta_line_to_model(
-            line="OXYGEN-MOLECULE, c", model=test_model, directory=dirBiocyc)
+            line="OXYGEN-MOLECULE, c", model=test_model, directory=dir_biocyc)
         for meta in ["WATER_c", "OXYGEN_MOLECULE_c"]:
             test_model.add_boundary(
                 test_model.metabolites.get_by_id(meta), "sink")
@@ -605,20 +608,20 @@ class ModulTesting(unittest.TestCase):
                 "Redox_homoproteins_c, Redox_homoproteins_c |"
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
-            model=test_model, directory=dirBiocyc)
+            model=test_model, directory=dir_biocyc)
         test_list = list(pt.create_reactions_for_iter(
             model=test_model,
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
-            directory=dirBiocyc))
+            directory=dir_biocyc))
         self.assertRaises(
             Warning, pt.add_sequence, model=test_model,
             sequence=test_list, ignore_list=["WATER_c"], stopIfWrongMB=True)
         # CASE 3: regular path
         test_model = cb.Model(0)
         add_meta_from_file(
-            model=test_model, filename=dirInput.joinpath(
+            model=test_model, filename=dir_input.joinpath(
                 "metaToAdd_04_pathway_test.txt"),
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         # These metabolites would have normally other reactions to consume,
         # but since this is is testing, these extra metabolites needs to be
         # ignored !!
@@ -630,17 +633,17 @@ class ModulTesting(unittest.TestCase):
                 metabolite=test_model.metabolites.get_by_id(meta),
                 type="sink")
         test_list = list(pt.return_graph_from_root(
-            root="PWY-1187", directory=dirBiocyc))
+            root="PWY-1187", directory=dir_biocyc))
         test_reactions = list(
             pt.create_reactions_for_iter(
-                sequence=test_list[1], directory=dirBiocyc,
+                sequence=test_list[1], directory=dir_biocyc,
                 model=test_model))
         add_reaction_line_to_model(
             line=(
                 "Redox_homoproteins_c, Redox_homoproteins_c |"
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
-            model=test_model, directory=dirBiocyc)
+            model=test_model, directory=dir_biocyc)
         pt.add_sequence(
             model=test_model, sequence=test_reactions,
             ignore_list=new_sink_list)
@@ -648,7 +651,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 4: Stacking 2 reactions
         test_reactions = list(
             pt.create_reactions_for_iter(
-                sequence=test_list[2], directory=dirBiocyc, model=test_model))
+                sequence=test_list[2], directory=dir_biocyc, model=test_model))
         pt.add_sequence(
             model=test_model, sequence=test_reactions,
             ignore_list=new_sink_list)
@@ -658,9 +661,9 @@ class ModulTesting(unittest.TestCase):
         # CASE 1:
         test_model = cb.Model(0)
         add_meta_from_file(
-            model=test_model, filename=dirInput.joinpath(
+            model=test_model, filename=dir_input.joinpath(
                 "metaToAdd_04_pathway_test.txt"),
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         new_sink_list = [
             "PROTON_c", "WATER_c", "OXYGEN_MOLECULE_c",
             "3_5_ADP_c", "CO_A_c", "CARBON_DIOXIDE_c", "CPD_3746_c"]
@@ -673,14 +676,14 @@ class ModulTesting(unittest.TestCase):
                 "Redox_homoproteins_c, Redox_homoproteins_c |"
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
-            model=test_model, directory=dirBiocyc)
+            model=test_model, directory=dir_biocyc)
         pt.add_graph_from_root(
-            model=test_model, root="PWY-1187", directory=dirBiocyc,
+            model=test_model, root="PWY-1187", directory=dir_biocyc,
             ignore_list=new_sink_list
         )
         # CASE 2: stacking another pathways (independent from each other)
         pt.add_graph_from_root(
-            model=test_model, root="AMMOXID-PWY", directory=dirBiocyc,
+            model=test_model, root="AMMOXID-PWY", directory=dir_biocyc,
             ignore_list=new_sink_list
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)
@@ -689,9 +692,9 @@ class ModulTesting(unittest.TestCase):
             self.assertGreater(abs(sol.fluxes[demand.id]), 0)
         test_model = cb.Model(0)
         add_meta_from_file(
-            model=test_model, filename=dirInput.joinpath(
+            model=test_model, filename=dir_input.joinpath(
                 "metaToAdd_05_pathway_test.txt"),
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         new_sink_list = [
             "PROTON_c", "WATER_c", "OXYGEN_MOLECULE_c", "CO_A_c",
             "CARBON_DIOXIDE_c", "MAL_c", "NAD_c", "NADH_c"]
@@ -700,7 +703,7 @@ class ModulTesting(unittest.TestCase):
                 metabolite=test_model.metabolites.get_by_id(meta),
                 type="sink")
         pt.add_graph_from_root(
-            model=test_model, root="PWY-5690", directory=dirBiocyc,
+            model=test_model, root="PWY-5690", directory=dir_biocyc,
             ignore_list=new_sink_list)
         # NOTE: check for correct demands
 

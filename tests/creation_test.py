@@ -5,8 +5,11 @@ import unittest
 import xml.etree.ElementTree as ET
 import cobra as cb
 
-dirBiocyc = Path.cwd().joinpath("biocyc")
-dirInput = Path.cwd().joinpath("tests").joinpath("input")
+dir_input = Path.cwd().joinpath("tests").joinpath("input")
+dir_biocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
+
+if not dir_biocyc.exists():
+    dir_biocyc.mkdir(parents=True)
 
 
 class ModulTesting(unittest.TestCase):
@@ -27,14 +30,14 @@ class ModulTesting(unittest.TestCase):
         self.assertRaises(
             Warning,
             cr.get_xml_from_biocyc,
-            directory=dirBiocyc,
+            directory=dir_biocyc,
             bioID="WATE",
         )
         # CASE 3: Proper usage with ET.Element
-        dirBiocyc.joinpath("WATER.xml").unlink()
+        dir_biocyc.joinpath("WATER.xml").unlink()
         self.assertIsInstance(
             cr.get_xml_from_biocyc(
-                directory=dirBiocyc,
+                directory=dir_biocyc,
                 bioID="WATER"),
             ET.Element)
 
@@ -52,7 +55,7 @@ class ModulTesting(unittest.TestCase):
             TypeError, cr.create_meta_from_root, root=list())
         # CASE 1: Correct input in cytosol
         testMeta = cr.create_meta_from_root(
-            "HOMOMETHIONINE", directory=dirBiocyc)
+            "HOMOMETHIONINE", directory=dir_biocyc)
         self.assertIsInstance(testMeta, cb.Metabolite)
         # TODO: verify attributes
 
@@ -79,26 +82,26 @@ class ModulTesting(unittest.TestCase):
             Warning,
             cr.add_meta_from_file,
             model=testModel,
-            filename=dirInput.joinpath("metaToAdd_02_misspelled.txt"),
+            filename=dir_input.joinpath("metaToAdd_02_misspelled.txt"),
             # Directory to save / check for xml files
-            directory=dirBiocyc
+            directory=dir_biocyc
         )
         # CASE 2: Bad format (e. g. charge is missing).
         self.assertRaises(
             IndexError,
             cr.add_meta_from_file,
             model=testModel,
-            filename=dirInput.joinpath("metaToAdd_03_badFormat.txt"),
+            filename=dir_input.joinpath("metaToAdd_03_badFormat.txt"),
             # Directory to save / check for xml files
-            directory=dirBiocyc
+            directory=dir_biocyc
         )
         # CASE 3: Normal input
         cr.add_meta_from_file(
             model=testModel,
             # File with Metabolites to add
-            filename=dirInput.joinpath("metaToAdd_01_normal.txt"),
+            filename=dir_input.joinpath("metaToAdd_01_normal.txt"),
             # Directory to save / check for xml files
-            directory=dirBiocyc
+            directory=dir_biocyc
         )
         # Length should increase
         self.assertEqual(
@@ -121,12 +124,12 @@ class ModulTesting(unittest.TestCase):
             side="RiFj")
         # CASE 1a: left side a+b -> c+d
         testRoot = cr.get_xml_from_biocyc(  # root
-            dirBiocyc,
+            dir_biocyc,
             "OXALODECARB-RXN")
         toCheckList = ["OXALACETIC_ACID_c", "PROTON_c"]
         test_reaction = cr.create_sides_for_reaction(
             model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
-            side="left", directory=dirBiocyc)
+            side="left", directory=dir_biocyc)
         # size should be 2
         self.assertEqual(2, len(test_reaction.metabolites))
         # names should be there
@@ -137,7 +140,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 1b: right side a+b -> c+d
         test_reaction = cr.create_sides_for_reaction(
             model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
-            side="right", directory=dirBiocyc)
+            side="right", directory=dir_biocyc)
         toCheckList = ["PYRUVATE_c", "CARBON_DIOXIDE_c"]
         self.assertEqual(2, len(test_reaction.metabolites))
         self.assertTrue(
@@ -146,12 +149,12 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 2a: left side a+3b -> c+d+e+2f
         testRoot = cr.get_xml_from_biocyc(  # root
-            dirBiocyc,
+            dir_biocyc,
             "GTP-CYCLOHYDRO-II-RXN")
         toCheckList = ["WATER_c", "GTP_c"]
         test_reaction = cr.create_sides_for_reaction(
             model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
-            side="left", directory=dirBiocyc)
+            side="left", directory=dir_biocyc)
         # size should be 2
         self.assertEqual(2, len(test_reaction.metabolites))
         # names should be there
@@ -165,7 +168,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 2b: right side of a+3b -> c+d+e+2f
         test_reaction = cr.create_sides_for_reaction(
             model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
-            side="right", directory=dirBiocyc)
+            side="right", directory=dir_biocyc)
         toCheckList = [
             "PROTON_c", "PPI_c",
             "DIAMINO_OH_PHOSPHORIBOSYLAMINO_PYR_c", "FORMATE_c"]
@@ -177,14 +180,14 @@ class ModulTesting(unittest.TestCase):
                 for x in toCheckList]))
         # CASE 3: root a+b(Protein)+c -> c+d(Protein)+c
         testRoot = cr.get_xml_from_biocyc(  # root
-            dirBiocyc,
+            dir_biocyc,
             "RXN-11413")
         toCheckList = [
             "INDOLE_3_ACETALDOXIME_c", "Red_NADPH_Hemoprotein_Reductases_c",
             "OXYGEN_MOLECULE_c"]
         test_reaction = cr.create_sides_for_reaction(
             model=cb.Model(0), root=testRoot, temp_reaction=cb.Reaction(0),
-            side="left", directory=dirBiocyc)
+            side="left", directory=dir_biocyc)
         # size should be 2
         self.assertEqual(3, len(test_reaction.metabolites))
         # names should be there
@@ -204,7 +207,7 @@ class ModulTesting(unittest.TestCase):
             'RXN_17742_c, RXN_17742_c |'
             'Oxidized-ferredoxins_c:-1, Reduced-ferredoxins_c: 1')
         cr.add_reaction_line_to_model(
-            line=test_line, model=test_model, directory=dirBiocyc)
+            line=test_line, model=test_model, directory=dir_biocyc)
         self.assertTrue(
             "RXN_17742_c" in [
                 reaction.id for reaction in test_model.reactions])
@@ -212,7 +215,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         test_line = 'RXN-14462, c'
         cr.add_reaction_line_to_model(
-            line=test_line, model=test_model, directory=dirBiocyc)
+            line=test_line, model=test_model, directory=dir_biocyc)
         self.assertTrue(
             "RXN_14462_c" in [
                 reaction.id for reaction in test_model.reactions])
@@ -220,7 +223,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         test_line = 'RXN-14462, p'
         cr.add_reaction_line_to_model(
-            line=test_line, model=test_model, directory=dirBiocyc)
+            line=test_line, model=test_model, directory=dir_biocyc)
         self.assertTrue(
             "RXN_14462_p" in [
                 reaction.id for reaction in test_model.reactions])
@@ -235,12 +238,12 @@ class ModulTesting(unittest.TestCase):
         # CASE 2a: proper root (ET.Element) a+b -> c+d
         # creating test root
         testRoot = cr.get_xml_from_biocyc(
-            directory=dirBiocyc,
+            directory=dir_biocyc,
             bioID="OXALODECARB-RXN")
         testModel = cb.Model(0)
         cr.add_reaction_from_root(
             model=testModel, root=testRoot,
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         # Testing for new metabolites in Reaction
         self.assertTrue(
             "OXALODECARB_RXN_c" in [rxn.id for rxn in testModel.reactions])
@@ -256,7 +259,7 @@ class ModulTesting(unittest.TestCase):
         testModel = cb.Model(0)
         cr.add_reaction_from_root(
             model=testModel, root="OXALODECARB-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         # Testing for new metabolites in Reaction
         self.assertTrue(
             "OXALODECARB_RXN_c" in [rxn.id for rxn in testModel.reactions])
@@ -275,7 +278,7 @@ class ModulTesting(unittest.TestCase):
         testModel = cb.Model(0)
         cr.add_reaction_from_root(
             model=testModel, root="GTP-CYCLOHYDRO-II-RXN",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         meta_list = [
             meta.id for meta in testModel.reactions.get_by_id(
                 "GTP_CYCLOHYDRO_II_RXN_c").metabolites]
@@ -307,7 +310,7 @@ class ModulTesting(unittest.TestCase):
             "Red_NADPH_Hemoprotein_Reductases_c", "OXYGEN_MOLECULE_c"]
         cr.add_reaction_from_root(
             model=testModel, root="RXN-11413",
-            directory=dirBiocyc)
+            directory=dir_biocyc)
         meta_list = [
             meta.id for meta in testModel.reactions.get_by_id(
                 "RXN_11413_c").metabolites]
@@ -328,7 +331,7 @@ class ModulTesting(unittest.TestCase):
             "Red_NADPH_Hemoprotein_Reductases_p", "OXYGEN_MOLECULE_p"]
         cr.add_reaction_from_root(
             model=testModel, root="RXN-11413",
-            directory=dirBiocyc, compartment="p")
+            directory=dir_biocyc, compartment="p")
         meta_list = [
             meta.id for meta in testModel.reactions.get_by_id(
                 "RXN_11413_p").metabolites]
@@ -344,12 +347,12 @@ class ModulTesting(unittest.TestCase):
         # CASE 7: str not found
         self.assertRaises(
             Warning, cr.add_reaction_from_root, model=cb.Model(0),
-            root="fakeroot", directory=dirBiocyc)
+            root="fakeroot", directory=dir_biocyc)
 
     def test_read_lines(self):
         # CASE 0: Comments and blank lines
         with open(
-                file=dirInput.joinpath("test_reading_lines.txt")) as f:
+                file=dir_input.joinpath("test_reading_lines.txt")) as f:
             line = list(cr.read_lines(f=f))
         self.assertEqual(len(line), 4)
 
@@ -377,7 +380,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 2: Normal, ID and name differ
         ReactionTest = cr.create_custom_reaction(
             line_string="GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
-            model=cb.Model(0), directory=dirBiocyc)
+            model=cb.Model(0), directory=dir_biocyc)
         # Checking if ID, name and instance are correct.
         self.assertTrue(
             all([
@@ -403,8 +406,8 @@ class ModulTesting(unittest.TestCase):
         testModel = cb.Model(0)
         cr.add_reaction_from_file(
             model=testModel,
-            filename=dirInput.joinpath("rxnToAdd_01_normal.txt"),
-            directory=dirBiocyc)
+            filename=dir_input.joinpath("rxnToAdd_01_normal.txt"),
+            directory=dir_biocyc)
         test_reactions = ["GLC_cb", "RXN_14462_p"]
         for test in test_reactions:
             self.assertTrue(

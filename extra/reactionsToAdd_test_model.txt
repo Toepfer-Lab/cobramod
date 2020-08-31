@@ -14,6 +14,5 @@ TRANS_Pi_ec, Transport Phosphate | Pi_e:-1, Pi_c:1
 TRANS_COA_ec, Transport Phosphate | Pi_e:-1, Pi_c:1
 # GLUTAMIN-RXN,c
 # BIOMASS test reaction
-Biomass_c, Biomass reaction | GLT_c:-1
 
 # ATP-CITRATE-PRO-S--LYASE-RXN, c
