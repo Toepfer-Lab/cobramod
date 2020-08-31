@@ -17,7 +17,8 @@ DebugLog = logging.getLogger("DebugLog")
 DebugLog.setLevel(logging.DEBUG)
 # Directories
 extraDir = Path.cwd().joinpath("extra")
-dirBiocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
+test_dir = Path.cwd().joinpath("tests")
+dirBiocyc = test_dir.joinpath("data").joinpath("biocyc")
 
 # INFO: !!
 # Model should have enough reactions/ metabolites for 2 short pathways
@@ -97,5 +98,6 @@ test_model.objective_direction = "max"
 # Saving model
 cb.io.write_sbml_model(
     cobra_model=test_model,
-    filename=str(extraDir.joinpath("test_model.sbml"))
+    filename=str(
+        test_dir.joinpath("input").joinpath("test_model01.sbml"))
 )
