@@ -21,10 +21,9 @@ class ModulTesting(unittest.TestCase):
     def test_create_vertex_dict(self):
         self.assertRaises(
             TypeError, pt.create_vertex_dict, root=str())
-        self.assertIsInstance(
-            pt.create_vertex_dict(
-                get_xml_from_biocyc(bioID="PWY-1187", directory=dir_biocyc)),
-            dict)
+        test_dict, _ = pt.create_vertex_dict(
+                get_xml_from_biocyc(bioID="PWY-1187", directory=dir_biocyc))
+        self.assertIsInstance(test_dict, dict)
         # TODO: check for correct dictionary
 
     def test_find_end_vertex(self):
@@ -246,7 +245,10 @@ class ModulTesting(unittest.TestCase):
             "C": "D",
             "D": "E"}
         test_graph = list(
-            pt.return_verified_graph(vertex_dict=test_dict))
+            pt.return_verified_graph(
+                vertex_dict=test_dict, vertex_set=set(
+                    chain.from_iterable(test_dict.items())
+                    )))
         self.assertIn(
             ["E", "D", "C", "B", "A"], [
                 list(sequence) for sequence in test_graph])
@@ -260,7 +262,10 @@ class ModulTesting(unittest.TestCase):
             "F": "A"
             }
         test_graph = list(
-            pt.return_verified_graph(vertex_dict=test_dict))
+            pt.return_verified_graph(
+                vertex_dict=test_dict, vertex_set=set(
+                    chain.from_iterable(test_dict.items())
+                    )))
         self.assertEqual(
             6, len([x for x in set(chain.from_iterable(test_graph))])
             )
@@ -278,7 +283,10 @@ class ModulTesting(unittest.TestCase):
             "G": "F"
         }
         test_graph = list(
-            pt.return_verified_graph(vertex_dict=test_dict))
+            pt.return_verified_graph(
+                vertex_dict=test_dict, vertex_set=set(
+                    chain.from_iterable(test_dict.items())
+                    )))
 
     def test_return_graph_from_root(self):
         # CASE 0: root not string or ET.Element

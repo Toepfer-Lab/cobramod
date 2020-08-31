@@ -32,7 +32,7 @@ def fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
     return root_dict
 
 
-def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> dict:
+def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> tuple:
     """Returns a dictionary from the root of a XML file, where the keys
     represent a Reaction and the value its predecessor in a pathway. i.e, the
     direction if from right to left
@@ -50,6 +50,7 @@ def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> dict:
         msg = 'root is not a valid xml file.'
         DebugLog.error(msg)
         raise TypeError(msg)
+    root_set = set()
     for rxn_line in root.findall("*/reaction-ordering"):
         current = rxn_line.find("*/[@frameid]").attrib["frameid"]
         prior = rxn_line.find("predecessor-reactions/").attrib["frameid"]
@@ -60,11 +61,14 @@ def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> dict:
         # Replacing values produces cuts with are needed to avoid cyclic
         # No reactions are missed
         root_dict[current] = prior
+        # TODO: add information
+        root_set.add(current)
+        root_set.add(prior)
     name = root.find("Pathway").attrib["frameid"]
     # NOTE: Add correspoding test
     root_dict = fix_single_reaction_dict(root=root, root_dict=root_dict)
     DebugLog.debug(f'Dictionary for pathway "{name}" succesfully created')
-    return root_dict
+    return root_dict, root_set
 
 
 def find_end_vertex(vertex_dict: dict) -> Generator:
@@ -173,7 +177,7 @@ def return_missing_edges(
             yield edge
 
 
-def return_verified_graph(vertex_dict: dict) -> list:
+def return_verified_graph(vertex_dict: dict, vertex_set: set) -> list:
     """Returns list with ordered sequences for a edge dictionary. If missing
     vertex are missing in the sequences, they will be appended in the list
 
@@ -183,15 +187,14 @@ def return_verified_graph(vertex_dict: dict) -> list:
     :rtype: list
     """
     # Backup for comparison
-    vertex_dict_copy = vertex_dict.copy()
-    all_edges = set(
-            chain.from_iterable(vertex_dict_copy.items()))
+    # vertex_dict_copy = vertex_dict.copy()
     # TODO: check for single reaction
     graph = list(get_graph(vertex_dict=vertex_dict))
-    missing_edges = list(return_missing_edges(
-        graph=set(chain.from_iterable(graph)),
-        complete_edges=all_edges))
-    graph.append(missing_edges)
+    missing_edges = list(
+        return_missing_edges(
+            graph=set(chain.from_iterable(graph)),
+            complete_edges=vertex_set))
+    graph.insert(0, missing_edges)
     # Filtering NONES from .append()
     return list(filter(None, graph))
 
@@ -210,8 +213,9 @@ def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
         root = get_xml_from_biocyc(bioID=root, **kwargs)
     if not isinstance(root, ET.Element):
         raise AttributeError('Given XML root is invalid.')
-    vertex_dict = create_vertex_dict(root=root, **kwargs)
-    return return_verified_graph(vertex_dict=vertex_dict)
+    vertex_dict, vertex_set = create_vertex_dict(root=root, **kwargs)
+    return return_verified_graph(
+        vertex_dict=vertex_dict, vertex_set=vertex_set)
 
 
 def create_reactions_for_iter(
@@ -277,6 +281,7 @@ def find_next_demand(
     elif model.reactions.get_by_id(check_rxn_id).upper_bound == abs(
             model.reactions.get_by_id(check_rxn_id).lower_bound):
         # TODO: decide what to do (reversibility)
+        # FIXME: isomers sometimes shows double demand
         tmp_list = [
             rxn.id for rxn in tmp_rxn.products if rxn.id not in ignore_list]
     if len(tmp_list) == 0:
@@ -478,6 +483,10 @@ def test_rxn_for_solution(
     :raises ValueError: if solution is infeasible after many recursions
     """
     # TODO: add errors for wrong MODEL or rxnid
+    with suppress(KeyError):
+        if rxnID in kwargs["ignore_list"]:
+            DebugLog.warning(f'Reaction "{rxnID}" found in ignore list. Skipped')
+            return
     if times == 0:
         DebugLog.debug(f'Testing reaction "{rxnID}"')
     # New objective.

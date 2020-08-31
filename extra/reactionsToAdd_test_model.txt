@@ -1,18 +1,24 @@
 # id_rxn, name |{id_meta:value,id_meta2:value} 
 # REDOX
 Redox_NAD_NADH_c, Redox_NAD_NADH_c | NAD_c:-1, NADH_c:1
+Redox_NADP_NADPH_c, Redox_NAD_NADPH_c | NADP_c:-1, NADPH_c:1
 Redox_ADP_ATP_c, Redox_ADP_ATP_c | ADP_c:-1, ATP_c: 1
-Redox_ferrodoxins_c, Redox_ferrodoxins_c | Oxidized_ferredoxins_c:-1, Reduced_ferredoxins_c: 1
+Redox_ferrodoxins_c, Redox_ferrodoxins_c | Oxidized-ferredoxins_c:-1, Reduced-ferredoxins_c: 1
 Redox_Quinol_Quinone_c | ETR-Quinols_c:-1 , ETR-Quinones_c:1
+
+#Redox_Plastoquinol_c | Plastoquinols_c:-1 , PLASTOQUINONE_c:1
+#Redox_Plastocyanin1_c | Oxidized-Plastocyanins_c:-1 , Plastocyanin-Reduced_c:1
+#Redox_Plastocyanin2_c | Oxidized-Plastocyanins_c:1 , Plastocyanin-Reduced_c:-1
+
 # Transports
 TRANS_WATER_ec, Transport Water | WATER_e:-1, WATER_c:1
-# TRANS_WATER_cp, Transport Water | WATER_c:-1, WATER_p:1
 TRANS_NITRATE_ec, Transport NITRATE | NITRATE_e:-1, NITRATE_c:1
-TRANS_PROTON_ec, Transport PROTON | PROTON_e:-1, PROTON_c:1
 TRANS_CARBON_ec, Transport CARBON DIOXIDE | CARBON_DIOXIDE_e:-1, CARBON_DIOXIDE_c:1
+TRANS_PROTON_ec, Transport PROTON | PROTON_e:-1, PROTON_c:1
 TRANS_Pi_ec, Transport Phosphate | Pi_e:-1, Pi_c:1
-TRANS_COA_ec, Transport Phosphate | Pi_e:-1, Pi_c:1
+
 # GLUTAMIN-RXN,c
 # BIOMASS test reaction
 
 # ATP-CITRATE-PRO-S--LYASE-RXN, c
+F16ALDOLASE-RXN,c

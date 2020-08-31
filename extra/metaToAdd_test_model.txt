@@ -8,6 +8,7 @@ NITRATE,e
 NITRATE,c
 CARBON-DIOXIDE,c
 CARBON-DIOXIDE,e
+# Others
 NAD, c
 NADH, c
 Oxidized-ferredoxins, c
@@ -16,3 +17,4 @@ GLT, c
 MAL, c
 CO-A,c
 GAP, c
+SUCROSE, c
