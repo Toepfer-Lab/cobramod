@@ -357,6 +357,30 @@ class ModulTesting(unittest.TestCase):
         self.assertEqual(13, len(
             set(chain.from_iterable(test_graph))
         ))
+        # CASE 4: Compartment p
+        test_model = cb.Model(0)
+        test_model.compartments = {
+            "e": "extracellular",
+            "c": "cytosol",
+            "p": "plastid"}
+        test_graph = list(pt.return_graph_from_root(
+            root="PWY-1187", directory=dir_biocyc))
+        for sequence in test_graph:
+            test_sequence_objects = pt.create_reactions_for_iter(
+                sequence=sequence, directory=dir_biocyc, model=test_model,
+                compartment="p")
+            (self.assertTrue(
+                "p" in rxn.compartments) for rxn in test_sequence_objects)
+        # CASE 5: same pathways with different compartment
+        test_graph = list(pt.return_graph_from_root(
+            root="PWY-1187", directory=dir_biocyc))
+        for sequence in test_graph:
+            test_sequence_objects = pt.create_reactions_for_iter(
+                sequence=sequence, directory=dir_biocyc, model=test_model,
+                compartment="c")
+            (self.assertTrue(
+                "c" in rxn.compartments) for rxn in test_sequence_objects)
+        
 
     def test_find_next_demand(self):
         # CASE 0a: invalid Model
@@ -532,6 +556,7 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="RXN-2206", directory=dir_biocyc)
+        test_model.objective = "RXN_2206_c"
         pt.test_rxn_for_solution(
             model=test_model, rxnID="RXN_2206_c")
         self.assertGreater(abs(test_model.slim_optimize()), 0)
@@ -539,6 +564,8 @@ class ModulTesting(unittest.TestCase):
         test_model = cb.Model(0)
         add_reaction_from_root(
             model=test_model, root="1.8.4.9-RXN", directory=dir_biocyc)
+        test_model.objective = "1.8.4.9_RXN_c"
+        test_model.objective_direction = "min"
         pt.test_rxn_for_solution(
             model=test_model, rxnID="1.8.4.9_RXN_c",
             solutionRange=(0.01, 1000))
@@ -551,6 +578,7 @@ class ModulTesting(unittest.TestCase):
             model=test_model, root="RXN-2206", directory=dir_biocyc)
         test_model.add_boundary(
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink")
+        test_model.objective = "RXN_2206_c"
         pt.test_rxn_for_solution(
             model=test_model, rxnID="RXN_2206_c",
             ignore_list=["OXYGEN_MOLECULE_c"])
@@ -561,6 +589,8 @@ class ModulTesting(unittest.TestCase):
             model=test_model, root="1.8.4.9-RXN", directory=dir_biocyc)
         test_model.add_boundary(
             test_model.metabolites.get_by_id("PROTON_c"), "sink")
+        test_model.objective = "1.8.4.9_RXN_c"
+        test_model.objective_direction = "min"
         pt.test_rxn_for_solution(
             model=test_model, rxnID="1.8.4.9_RXN_c",
             ignore_list=["PROTON_c"])
@@ -593,6 +623,13 @@ class ModulTesting(unittest.TestCase):
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
             model=test_model, directory=dir_biocyc)
+        # Dummy objective reaction
+        add_reaction_line_to_model(
+            line=(
+                "Dummy_c, Dummy_c reaction |" +
+                "CARBON-DIOXIDE_c: -1, OXYGEN_MOLECULE_c: 1"),
+            model=test_model, directory=dir_biocyc)
+        test_model.objective = "Dummy_c"
         test_list = list(pt.create_reactions_for_iter(
             model=test_model,
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
@@ -611,6 +648,13 @@ class ModulTesting(unittest.TestCase):
         for meta in ["WATER_c", "OXYGEN_MOLECULE_c"]:
             test_model.add_boundary(
                 test_model.metabolites.get_by_id(meta), "sink")
+        # Dummy objective reaction
+        add_reaction_line_to_model(
+            line=(
+                "Dummy_c, Dummy_c reaction |" +
+                "CARBON-DIOXIDE_c: -1, WATER_c: 1"),
+            model=test_model, directory=dir_biocyc)
+        test_model.objective = "Dummy_c"
         add_reaction_line_to_model(
             line=(
                 "Redox_homoproteins_c, Redox_homoproteins_c |"
@@ -652,6 +696,13 @@ class ModulTesting(unittest.TestCase):
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
             model=test_model, directory=dir_biocyc)
+        # Dummy objective reaction
+        add_reaction_line_to_model(
+            line=(
+                "Dummy_c, Dummy_c reaction |" +
+                "CARBON-DIOXIDE_c: -1, WATER_c: 1"),
+            model=test_model, directory=dir_biocyc)
+        test_model.objective = "Dummy_c"
         pt.add_sequence(
             model=test_model, sequence=test_reactions,
             ignore_list=new_sink_list)
@@ -685,6 +736,13 @@ class ModulTesting(unittest.TestCase):
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
             model=test_model, directory=dir_biocyc)
+        # Dummy objective reaction
+        add_reaction_line_to_model(
+            line=(
+                "Dummy_c, Dummy reaction |" +
+                "CARBON_DIOXIDE_c: -1, OXYGEN_MOLECULE_c: 1"),
+            model=test_model, directory=dir_biocyc)
+        test_model.objective = "Dummy_c"
         pt.add_graph_from_root(
             model=test_model, root="PWY-1187", directory=dir_biocyc,
             ignore_list=new_sink_list
@@ -698,22 +756,43 @@ class ModulTesting(unittest.TestCase):
         sol = test_model.optimize()
         for demand in test_model.demands:
             self.assertGreater(abs(sol.fluxes[demand.id]), 0)
+        # NOTE: check for correct demands
+        # CASE 3: Same with case 1 but with another compartment
         test_model = cb.Model(0)
+        test_model.compartments = {
+            "e": "extracellular",
+            "c": "cytosol",
+            "p": "plastid"}
         add_meta_from_file(
             model=test_model, filename=dir_input.joinpath(
-                "metaToAdd_05_pathway_test.txt"),
+                "metaToAdd_04_pathway_p_comp_test.txt"),
             directory=dir_biocyc)
         new_sink_list = [
-            "PROTON_c", "WATER_c", "OXYGEN_MOLECULE_c", "CO_A_c",
-            "CARBON_DIOXIDE_c", "MAL_c", "NAD_c", "NADH_c"]
+            "PROTON_p", "WATER_p", "OXYGEN_MOLECULE_p",
+            "3_5_ADP_p", "CO_A_p", "CARBON_DIOXIDE_p", "CPD_3746_p"]
         for meta in new_sink_list:
             test_model.add_boundary(
                 metabolite=test_model.metabolites.get_by_id(meta),
                 type="sink")
+        add_reaction_line_to_model(
+            line=(
+                "Redox_homoproteins_c, Redox_homoproteins_p |"
+                "Ox-NADPH-Hemoprotein-Reductases_p:-1,"
+                "Red-NADPH-Hemoprotein-Reductases_p: 1"),
+            model=test_model, directory=dir_biocyc)
+        # Dummy objective reaction
+        add_reaction_line_to_model(
+            line=(
+                "Dummy_c, Dummy reaction |" +
+                "CARBON-DIOXIDE_p: -1, OXYGEN-MOLECULE_p: 1"),
+            model=test_model, directory=dir_biocyc)
+        test_model.objective = "Dummy_c"
         pt.add_graph_from_root(
-            model=test_model, root="PWY-5690", directory=dir_biocyc,
-            ignore_list=new_sink_list)
-        # NOTE: check for correct demands
+            model=test_model, root="PWY-1187", directory=dir_biocyc,
+            ignore_list=new_sink_list, compartment="p"
+        )
+        pass
+
 
 
 if __name__ == "__main__":

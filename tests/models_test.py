@@ -78,6 +78,29 @@ class TestingModels(unittest.TestCase):
         self.assertGreater(
             abs(test_model.optimize().objective_value), 0)
 
+    def test_multi_compartment(self):
+        test_model = main_model.copy()
+        # add_meta_line_to_model(
+        #     line="ACP, c", model=test_model, directory=dir_biocyc)
+        test_model.add_boundary(test_model.metabolites.get_by_id(
+            "CO_A_c"), "sink")
+        add_reaction_line_to_model(
+            model=test_model,
+            line=(
+                "Redox_Hemoprotein_c, Redox_Hemoprotein_c | " +
+                "Ox-NADPH-Hemoprotein-Reductases_c:-1, " +
+                "Red-NADPH-Hemoprotein-Reductases_c: 1"),
+            directory=dir_biocyc)
+        pt.add_graph_from_root(
+            model=test_model, root="GLUTATHIONESYN-PWY", directory=dir_biocyc,
+            ignore_list=["PYRUVATE_c"], compartment="c")
+        # FIXME: remove demands
+        test_model.remove_reactions(["DM_GLUTATHIONE_c"])
+        pt.add_graph_from_root(
+            model=test_model, root="PWY-1187", directory=dir_biocyc,
+            ignore_list=["PYRUVATE_c", "CO_A_c"], compartment="c")
+        pass
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -490,20 +490,12 @@ def test_rxn_for_solution(
             return
     if times == 0:
         DebugLog.debug(f'Testing reaction "{rxnID}"')
-    # New objective.
-    model.objective = rxnID
     # finding demand for testing
     nextDemand = find_next_demand(model=model, check_rxn_id=rxnID, **kwargs)
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(nextDemand), "demand")
         model.reactions.get_by_id(f'DM_{nextDemand}').lower_bound = 0.1
         DebugLog.debug(f'Demand "DM_{nextDemand}" added')
-    # changing direction for negative solutions
-    model.objective_direction = {
-        "direction": "min" if abs(
-            model.reactions.get_by_id(rxnID).lower_bound) > abs(
-                model.reactions.get_by_id(rxnID).upper_bound) else "max"}.get(
-                    "direction")
     # Setting maximum times for recursion
     if times == len(model.reactions.get_by_id(rxnID).metabolites):
         msg = f'Reaction "{rxnID}" did not passed.'
@@ -569,8 +561,11 @@ def add_graph_from_root(
     :type root: Union[ET.Element, str]
     """
     # Retrieving and creating Pathway with Reactions
+    # original_objective, original_direction = model.objective, \
+    #     model.objective_direction
     graph = return_graph_from_root(root=root, **kwargs)
     for pathway in graph:
         sequence = list(create_reactions_for_iter(
             sequence=pathway, model=model, **kwargs))
-        add_sequence(model=model, sequence=sequence, **kwargs)
+        add_sequence(
+            model=model, sequence=sequence, **kwargs)

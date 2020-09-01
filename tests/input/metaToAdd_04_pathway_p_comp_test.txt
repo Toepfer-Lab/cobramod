@@ -1,0 +1,10 @@
+# For pathway test
+OXYGEN-MOLECULE, p
+WATER, p
+PROTON, p
+3-5-ADP, p
+CO-A, p
+CARBON-DIOXIDE,p
+Red-NADPH-Hemoprotein-Reductases,p
+Ox-NADPH-Hemoprotein-Reductases,p
+CPD-3746,p
