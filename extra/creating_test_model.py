@@ -10,7 +10,7 @@ from pathways import add_graph_from_root
 # Format
 DebugFormatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 # Handler
-DebugHandler = logging.FileHandler("debug.log", mode="a+")  
+DebugHandler = logging.FileHandler("debug.log", mode="a+")
 DebugHandler.setFormatter(DebugFormatter)
 # Log
 DebugLog = logging.getLogger("DebugLog")

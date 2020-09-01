@@ -42,8 +42,11 @@
       <species id="M_ETR_Quinones_c" name="an+electron-transfer+quinone" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0"/>
       <species id="M_Pi_e" name="phosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="H1O4P1"/>
       <species id="M_Pi_c" name="phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="H1O4P1"/>
+      <species id="M_OXYGEN_MOLECULE_e" name="oxygen" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="O2"/>
+      <species id="M_OXYGEN_MOLECULE_c" name="oxygen" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="O2"/>
       <species id="M_FRUCTOSE_16_DIPHOSPHATE_c" name="beta-D-fructose+1,6-bisphosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C6H10O12P2"/>
       <species id="M_DIHYDROXY_ACETONE_PHOSPHATE_c" name="glycerone+phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C3H5O6P1"/>
+      <species id="M_PPI_c" name="diphosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="H1O7P2"/>
       <species id="M_NITRITE_c" name="nitrite" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-1" fbc:chemicalFormula="N1O2"/>
       <species id="M_AMMONIUM_c" name="ammonium" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="1" fbc:chemicalFormula="H4N1"/>
       <species id="M_GLN_c" name="L-glutamine" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10N2O3"/>
@@ -73,7 +76,6 @@
       <species id="M_GLC_1_P_c" name="alpha-D-glucopyranose+1-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
       <species id="M_UTP_c" name="UTP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C9H11N2O15P3"/>
       <species id="M_CPD_12575_c" name="UDP-alpha-D-glucose" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C15H22N2O17P2"/>
-      <species id="M_PPI_c" name="diphosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="H1O7P2"/>
       <species id="M_D_glucopyranose_6_phosphate_c" name="D-glucopyranose+6-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
       <species id="M_SUCROSE_6P_c" name="sucrose+6F-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C12H21O14P1"/>
       <species id="M_UDP_c" name="UDP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C9H11N2O12P2"/>
@@ -167,6 +169,14 @@
           <speciesReference species="M_Pi_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
+      <reaction id="R_TRANS_OXYGEN_ec" name="Transport Oxygen" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_OXYGEN_MOLECULE_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_OXYGEN_MOLECULE_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
       <reaction id="R_F16ALDOLASE_RXN_c" name="fructose-bisphosphate aldolase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_FRUCTOSE_16_DIPHOSPHATE_c" stoichiometry="1" constant="true"/>
@@ -174,6 +184,16 @@
         <listOfProducts>
           <speciesReference species="M_DIHYDROXY_ACETONE_PHOSPHATE_c" stoichiometry="1" constant="true"/>
           <speciesReference species="M_GAP_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_INORGPYROPHOSPHAT_RXN_c" name="inorganic pyrophosphatase" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_WATER_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PPI_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_Pi_c" stoichiometry="2" constant="true"/>
         </listOfProducts>
       </reaction>
       <reaction metaid="meta_R_EX_WATER_e" sboTerm="SBO:0000627" id="R_EX_WATER_e" name="H2O exchange" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
@@ -199,6 +219,11 @@
       <reaction metaid="meta_R_EX_Pi_e" sboTerm="SBO:0000627" id="R_EX_Pi_e" name="phosphate exchange" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_Pi_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction metaid="meta_R_EX_OXYGEN_MOLECULE_e" sboTerm="SBO:0000627" id="R_EX_OXYGEN_MOLECULE_e" name="oxygen exchange" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_OXYGEN_MOLECULE_e" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>
       <reaction metaid="meta_R_SK_MAL_c" sboTerm="SBO:0000632" id="R_SK_MAL_c" name="(S)-malate sink" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
@@ -519,11 +544,6 @@
           <speciesReference species="M_CPD_12575_c" stoichiometry="1" constant="true"/>
           <speciesReference species="M_PPI_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
-      </reaction>
-      <reaction metaid="meta_R_SK_PPI_c" sboTerm="SBO:0000632" id="R_SK_PPI_c" name="diphosphate sink" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_PPI_c" stoichiometry="1" constant="true"/>
-        </listOfReactants>
       </reaction>
       <reaction id="R_GAPOXNPHOSPHN_RXN_c" name="glyceraldehyde-3-phosphate dehydrogenase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>

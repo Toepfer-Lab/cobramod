@@ -485,7 +485,8 @@ def test_rxn_for_solution(
     # TODO: add errors for wrong MODEL or rxnid
     with suppress(KeyError):
         if rxnID in kwargs["ignore_list"]:
-            DebugLog.warning(f'Reaction "{rxnID}" found in ignore list. Skipped')
+            DebugLog.warning(
+                f'Reaction "{rxnID}" found in ignore list. Skipped')
             return
     if times == 0:
         DebugLog.debug(f'Testing reaction "{rxnID}"')
