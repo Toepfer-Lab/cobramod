@@ -293,21 +293,20 @@ def find_next_demand(
         return tmp_list[0]
 
 
-def need_demand_metabolite(
-        model: Model, metaID: str) -> bool:
-    """Returns True if given metabolite needs a demand reaction, i.e. if
-    total reaction for given metabolite is not larger than 2
+def has_demand(
+        model: Model, metabolite: str) -> bool:
+    """Returns True if model has a demand reaction for given metabolite
 
-    :param model: model to check for demands
+    :param model: model to search for reactions
     :type model: Model
-    :param metaID: name in model for metabolites
-    :type metaID: str
-    :return: Whether a demand is needed for metabolite
+    :param metabolite: metabolite ID
+    :type metabolite: str
+    :return: Whether demand can be found
     :rtype: bool
     """
-    return not len([
-        reaction.id for reaction in model.metabolites.get_by_id(
-            metaID).reactions]) > 2
+    return any(
+        ["DM_" in reaction.id for reaction in model.metabolites.get_by_id(
+            metabolite).reactions])
 
 
 def remove_boundary_if_not_model(
@@ -332,34 +331,34 @@ def remove_boundary_if_not_model(
             f'{boundary.capitalize()} reaction for "{metabolite}" removed')
 
 
-def more_than_two_reaction(model: Model, metaID: str) -> bool:
+def more_than_two_reaction(model: Model, metabolite: str) -> bool:
     """Returns True if given metabolite participates more than in two reaction
     for given model.
 
     :param model: model to check for reactions
     :type model: Model
-    :param metaID: name of metabolite
-    :type metaID: str
+    :param metabolite: name of metabolite
+    :type metabolite: str
     :return: True if more than 2 reactions.
     :rtype: bool
     """
-    reactions = model.metabolites.get_by_id(metaID).reactions
+    reactions = model.metabolites.get_by_id(metabolite).reactions
     return len(reactions) > 2
 
 
-def less_than_two_reaction(model: Model, metaID: str) -> bool:
+def less_than_x_reactions(model: Model, metabolite: str, x: int = 2) -> bool:
     """Returns True if given metabolite participates in less than 2 reactions
     for given model.
 
     :param model: model to check for reactions
     :type model: Model
-    :param metaID: name of metabolite
-    :type metaID: str
+    :param metabolite: name of metabolite
+    :type metabolite: str
     :return: True if less than 2 reactions
     :rtype: bool
     """
-    reactions = model.metabolites.get_by_id(metaID).reactions
-    return len(reactions) < 2
+    reactions = model.metabolites.get_by_id(metabolite).reactions
+    return len(reactions) < x
 
 
 def check_if_boundary(model: Model, metabolite: str) -> bool:
@@ -387,23 +386,25 @@ def fix_meta_for_boundaries(
         msg = f'Metabolite "{metabolite}" ignored'
         DebugLog.warning(msg)
         raise Warning(msg)
-    # check if boundaries besides exchange
-    if check_if_boundary(model=model, metabolite=metabolite):
-        # Remove excess sinks
-        if more_than_two_reaction(model=model, metaID=metabolite):
-            remove_boundary_if_not_model(
-                model=model, metabolite=metabolite, boundary="sink")
-        # Remove excess demands
-        if not need_demand_metabolite(model=model, metaID=metabolite):
-            remove_boundary_if_not_model(
-                model=model, metabolite=metabolite, boundary="demand")
-    else:
-        if less_than_two_reaction(model=model, metaID=metabolite):
-            # Add Sink if necesary
+    # Check for to add sinks
+    if has_demand(model=model, metabolite=metabolite):
+        if less_than_x_reactions(model=model, metabolite=metabolite, x=3):
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite),
-                type="sink",)
+                type="sink")
             DebugLog.warning(f'Sink reaction created for "{metabolite}"')
+    else:
+        if less_than_x_reactions(model=model, metabolite=metabolite, x=2):
+            model.add_boundary(
+                metabolite=model.metabolites.get_by_id(metabolite),
+                type="sink")
+            DebugLog.warning(f'Sink reaction created for "{metabolite}"')
+    remove_boundary_if_not_model(
+            model=model, metabolite=metabolite, boundary="demand")
+    if more_than_two_reaction(model=model, metabolite=metabolite):
+        remove_boundary_if_not_model(
+            model=model, metabolite=metabolite, boundary="sink")
+
 
 
 def verify_side_sinks_for_rxn(
@@ -518,9 +519,9 @@ def test_rxn_for_solution(
         DebugLog.debug(f'Reaction "{rxnID}" showed a feasible answer.')
         # for demand
         # FIXME: a metabolite might get new reactions. Recheck for demand
-        if more_than_two_reaction(model=model, metaID=nextDemand):
-            model.remove_reactions([f'DM_{nextDemand}'])
-            DebugLog.warning(f'Demand "DM_{nextDemand}" removed')
+        # if more_than_two_reaction(model=model, metabolite=nextDemand):
+        #     model.remove_reactions([f'DM_{nextDemand}'])
+        #     DebugLog.warning(f'Demand "DM_{nextDemand}" removed')
         verify_sinks_for_rxn(
             model=model, rxnID=rxnID, **kwargs)
 

@@ -445,10 +445,7 @@ class ModulTesting(unittest.TestCase):
             directory=dir_biocyc)
         pt.fix_meta_for_boundaries(
             model=test_model, metabolite="PROTON_c")
-        self.assertIn(
-            "SK_PROTON_c", [
-                reaction.id for reaction in test_model.metabolites.get_by_id(
-                    "PROTON_c").reactions])
+        # Second reactions.
         add_reaction_from_root(
             model=test_model, root="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
             directory=dir_biocyc)
@@ -467,7 +464,7 @@ class ModulTesting(unittest.TestCase):
             test_model.metabolites.get_by_id("PROTON_c"), "demand")
         pt.fix_meta_for_boundaries(
             model=test_model, metabolite="PROTON_c")
-        self.assertIn(
+        self.assertNotIn(
             "DM_PROTON_c", [
                 reaction.id for reaction in test_model.metabolites.get_by_id(
                     "PROTON_c").reactions])
@@ -627,7 +624,7 @@ class ModulTesting(unittest.TestCase):
         add_reaction_line_to_model(
             line=(
                 "Dummy_c, Dummy_c reaction |" +
-                "CARBON-DIOXIDE_c: -1, OXYGEN_MOLECULE_c: 1"),
+                "WATER_c: -1, OXYGEN_MOLECULE_c: 1"),
             model=test_model, directory=dir_biocyc)
         test_model.objective = "Dummy_c"
         test_list = list(pt.create_reactions_for_iter(
@@ -792,7 +789,6 @@ class ModulTesting(unittest.TestCase):
             ignore_list=new_sink_list, compartment="p"
         )
         pass
-
 
 
 if __name__ == "__main__":
