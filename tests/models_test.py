@@ -5,7 +5,8 @@ import unittest
 import pathways as pt
 # import xml.etree.ElementTree as ET
 import cobra as cb
-from creation import add_reaction_line_to_model
+from creation import add_reaction_line_to_model, add_meta_line_to_model,\
+    add_reaction_from_file
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_biocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
@@ -80,26 +81,33 @@ class TestingModels(unittest.TestCase):
 
     def test_multi_compartment(self):
         test_model = main_model.copy()
-        # add_meta_line_to_model(
-        #     line="ACP, c", model=test_model, directory=dir_biocyc)
-        test_model.add_boundary(test_model.metabolites.get_by_id(
-            "CO_A_c"), "sink")
-        add_reaction_line_to_model(
+        add_reaction_from_file(
             model=test_model,
-            line=(
-                "Redox_Hemoprotein_c, Redox_Hemoprotein_c | " +
-                "Ox-NADPH-Hemoprotein-Reductases_c:-1, " +
-                "Red-NADPH-Hemoprotein-Reductases_c: 1"),
+            filename=dir_input.joinpath("test_multi_reactions.txt"),
             directory=dir_biocyc)
         pt.add_graph_from_root(
             model=test_model, root="GLUTATHIONESYN-PWY", directory=dir_biocyc,
-            ignore_list=["PYRUVATE_c"], compartment="c")
-        # FIXME: remove demands
-        test_model.remove_reactions(["DM_GLUTATHIONE_c"])
+            ignore_list=[], compartment="p")
+        # FIXME: Due to be the last metabolite, sink rxn is created
+        test_model.remove_reactions(["SK_GLUTATHIONE_p"])
+        test_model.reactions.get_by_id("Biomass_c").add_metabolites({
+            test_model.metabolites.get_by_id("GLUTATHIONE_p"):
+                -1})
+        self.assertGreater(
+            abs(test_model.optimize().objective_value), 0)
         pt.add_graph_from_root(
             model=test_model, root="PWY-1187", directory=dir_biocyc,
-            ignore_list=["PYRUVATE_c", "CO_A_c"], compartment="c")
-        pass
+            ignore_list=[
+                "PYRUVATE_c", "CO_A_c", "PROTON_c", "CPD_3746_c"],
+            compartment="c")
+        test_model.reactions.get_by_id("Biomass_c").add_metabolites({
+            test_model.metabolites.get_by_id(
+                "3_METHYLSULFINYLPROPYL_GLUCOSINOLATE_c"): -0.75,
+            test_model.metabolites.get_by_id("GLUTATHIONE_p"): 1
+            })
+        self.assertGreater(
+            abs(test_model.optimize().objective_value), 0)
+        # TODO: add one more pathway
 
 
 if __name__ == "__main__":

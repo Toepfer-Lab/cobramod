@@ -34,6 +34,7 @@
       <species id="M_CO_A_c" name="coenzyme+A" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C21H32N7O16P3S1"/>
       <species id="M_GAP_c" name="D-glyceraldehyde+3-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C3H5O6P1"/>
       <species id="M_SUCROSE_c" name="sucrose" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C12H22O11"/>
+      <species id="M_CIT_c" name="citrate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C6H5O7"/>
       <species id="M_NADP_c" name="NADP%2b" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C21H25N7O17P3"/>
       <species id="M_NADPH_c" name="NADPH" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C21H26N7O17P3"/>
       <species id="M_ADP_c" name="ADP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C10H12N5O10P2"/>
@@ -51,7 +52,6 @@
       <species id="M_AMMONIUM_c" name="ammonium" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="1" fbc:chemicalFormula="H4N1"/>
       <species id="M_GLN_c" name="L-glutamine" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C5H10N2O3"/>
       <species id="M_2_KETOGLUTARATE_c" name="2-oxoglutarate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C5H4O5"/>
-      <species id="M_CIT_c" name="citrate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C6H5O7"/>
       <species id="M_CIS_ACONITATE_c" name="cis-aconitate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C6H3O6"/>
       <species id="M_THREO_DS_ISO_CITRATE_c" name="D-threo-isocitrate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C6H5O7"/>
       <species id="M_SUC_COA_c" name="succinyl-CoA" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-5" fbc:chemicalFormula="C25H35N7O19P3S1"/>
@@ -226,11 +226,6 @@
           <speciesReference species="M_OXYGEN_MOLECULE_e" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>
-      <reaction metaid="meta_R_SK_MAL_c" sboTerm="SBO:0000632" id="R_SK_MAL_c" name="(S)-malate sink" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_MAL_c" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-      </reaction>
       <reaction id="R_NITRATE_REDUCTASE_NADH_RXN_c" name="nitrate reductase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_0_bound">
         <listOfReactants>
           <speciesReference species="M_NITRITE_c" stoichiometry="1" constant="true"/>
@@ -267,6 +262,18 @@
           <speciesReference species="M_ADP_c" stoichiometry="1" constant="true"/>
           <speciesReference species="M_Pi_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
+      </reaction>
+      <reaction id="R_Biomass_c" name="Biomass reaction" reversible="false" fast="false" fbc:lowerFluxBound="R_Biomass_c_lower_bound" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_GLN_c" stoichiometry="0.5" constant="true"/>
+          <speciesReference species="M_GLT_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_SUCROSE_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction metaid="meta_R_SK_CIT_c" sboTerm="SBO:0000632" id="R_SK_CIT_c" name="citrate sink" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_CIT_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
       </reaction>
       <reaction id="R_GLUTAMATE_SYNTHASE_FERREDOXIN_RXN_c" name="glutamate synthase (ferredoxin)" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_0_bound">
         <listOfReactants>
@@ -529,11 +536,6 @@
           <speciesReference species="M_GAP_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
-      <reaction metaid="meta_R_SK_DIHYDROXY_ACETONE_PHOSPHATE_c" sboTerm="SBO:0000632" id="R_SK_DIHYDROXY_ACETONE_PHOSPHATE_c" name="glycerone+phosphate sink" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_DIHYDROXY_ACETONE_PHOSPHATE_c" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-      </reaction>
       <reaction id="R_GLUC1PURIDYLTRANS_RXN_c" name="UTP&amp;mdash;glucose-1-phosphate uridylyltransferase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_GLC_1_P_c" stoichiometry="1" constant="true"/>
@@ -594,10 +596,8 @@
           <speciesReference species="M_Pi_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
-      <reaction id="R_Biomass_c" name="Biomass reaction" reversible="false" fast="false" fbc:lowerFluxBound="R_Biomass_c_lower_bound" fbc:upperFluxBound="cobra_default_ub">
+      <reaction metaid="meta_R_SK_SUCROSE_c" sboTerm="SBO:0000632" id="R_SK_SUCROSE_c" name="sucrose sink" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
-          <speciesReference species="M_GLT_c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_GLN_c" stoichiometry="0.5" constant="true"/>
           <speciesReference species="M_SUCROSE_c" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>

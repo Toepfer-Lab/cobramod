@@ -18,3 +18,4 @@ MAL, c
 CO-A,c
 GAP, c
 SUCROSE, c
+CIT, c

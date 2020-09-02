@@ -380,7 +380,6 @@ class ModulTesting(unittest.TestCase):
                 compartment="c")
             (self.assertTrue(
                 "c" in rxn.compartments) for rxn in test_sequence_objects)
-        
 
     def test_find_next_demand(self):
         # CASE 0a: invalid Model

@@ -288,7 +288,7 @@ def find_next_demand(
         # Nothing found
         raise Warning('No metabolite found to become a demand')
     else:
-        DebugLog.info(
+        DebugLog.debug(
             f'Next demand selected for "{check_rxn_id}": "{tmp_list[0]}"')
         return tmp_list[0]
 
@@ -346,7 +346,8 @@ def more_than_two_reaction(model: Model, metabolite: str) -> bool:
     return len(reactions) > 2
 
 
-def less_than_x_reactions(model: Model, metabolite: str, x: int = 2) -> bool:
+def less_equal_than_x_rxns(
+        model: Model, metabolite: str, x: int = 2) -> bool:
     """Returns True if given metabolite participates in less than 2 reactions
     for given model.
 
@@ -358,7 +359,7 @@ def less_than_x_reactions(model: Model, metabolite: str, x: int = 2) -> bool:
     :rtype: bool
     """
     reactions = model.metabolites.get_by_id(metabolite).reactions
-    return len(reactions) < x
+    return len(reactions) <= x
 
 
 def check_if_boundary(model: Model, metabolite: str) -> bool:
@@ -388,23 +389,26 @@ def fix_meta_for_boundaries(
         raise Warning(msg)
     # Check for to add sinks
     if has_demand(model=model, metabolite=metabolite):
-        if less_than_x_reactions(model=model, metabolite=metabolite, x=3):
+        if less_equal_than_x_rxns(model=model, metabolite=metabolite, x=2):
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite),
                 type="sink")
             DebugLog.warning(f'Sink reaction created for "{metabolite}"')
+        else:
+            remove_boundary_if_not_model(
+                model=model, metabolite=metabolite, boundary="sink")
     else:
-        if less_than_x_reactions(model=model, metabolite=metabolite, x=2):
+        if less_equal_than_x_rxns(model=model, metabolite=metabolite, x=1):
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite),
                 type="sink")
             DebugLog.warning(f'Sink reaction created for "{metabolite}"')
+        elif not less_equal_than_x_rxns(
+                model=model, metabolite=metabolite, x=2):
+            remove_boundary_if_not_model(
+                model=model, metabolite=metabolite, boundary="sink")
     remove_boundary_if_not_model(
-            model=model, metabolite=metabolite, boundary="demand")
-    if more_than_two_reaction(model=model, metabolite=metabolite):
-        remove_boundary_if_not_model(
-            model=model, metabolite=metabolite, boundary="sink")
-
+        model=model, metabolite=metabolite, boundary="demand")
 
 
 def verify_side_sinks_for_rxn(
@@ -490,12 +494,12 @@ def test_rxn_for_solution(
                 f'Reaction "{rxnID}" found in ignore list. Skipped')
             return
     if times == 0:
-        DebugLog.debug(f'Testing reaction "{rxnID}"')
+        DebugLog.info(f'Testing reaction "{rxnID}"')
     # finding demand for testing
     nextDemand = find_next_demand(model=model, check_rxn_id=rxnID, **kwargs)
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(nextDemand), "demand")
-        model.reactions.get_by_id(f'DM_{nextDemand}').lower_bound = 0.1
+        model.reactions.get_by_id(f'DM_{nextDemand}').lower_bound = 0.2
         DebugLog.debug(f'Demand "DM_{nextDemand}" added')
     # Setting maximum times for recursion
     if times == len(model.reactions.get_by_id(rxnID).metabolites):
@@ -517,11 +521,8 @@ def test_rxn_for_solution(
     else:
         # if works, pass and return old objective
         DebugLog.debug(f'Reaction "{rxnID}" showed a feasible answer.')
-        # for demand
-        # FIXME: a metabolite might get new reactions. Recheck for demand
-        # if more_than_two_reaction(model=model, metabolite=nextDemand):
-        #     model.remove_reactions([f'DM_{nextDemand}'])
-        #     DebugLog.warning(f'Demand "DM_{nextDemand}" removed')
+        remove_boundary_if_not_model(
+            model=model, metabolite=nextDemand, boundary="demand")
         verify_sinks_for_rxn(
             model=model, rxnID=rxnID, **kwargs)
 
