@@ -672,7 +672,7 @@ class ModulTesting(unittest.TestCase):
             directory=dir_biocyc)
         # These metabolites would have normally other reactions to consume,
         # but since this is is testing, these extra metabolites needs to be
-        # ignored !!
+        # ignored !
         new_sink_list = [
             "PROTON_c", "WATER_c", "OXYGEN_MOLECULE_c",
             "3_5_ADP_c", "CO_A_c"]
@@ -752,7 +752,6 @@ class ModulTesting(unittest.TestCase):
         sol = test_model.optimize()
         for demand in test_model.demands:
             self.assertGreater(abs(sol.fluxes[demand.id]), 0)
-        # NOTE: check for correct demands
         # CASE 3: Same with case 1 but with another compartment
         test_model = cb.Model(0)
         test_model.compartments = {

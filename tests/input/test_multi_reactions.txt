@@ -1,12 +1,22 @@
 # id_rxn, name |{id_meta:value,id_meta2:value} 
 # REDOX (Intentionally unbalanced)
 Redox_ADP_ATP_p, Redox_ADP_ATP_p | ADP_p:-1, ATP_p: 1
+Redox_Hemoprotein_c, Redox_Hemoprotein_c | Ox-NADPH-Hemoprotein-Reductases_c:-1, Red-NADPH-Hemoprotein-Reductases_c: 1
 
+Redox_NAD_NADH_p, Redox_NAD_NADH_p | NAD_p:-1, NADH_p:1
 ## Transports
 TRANS_Pi_cp, Transport Phosphate_cp | Pi_c:-1, Pi_p:1
 TRANS_PROTON_cp, Transport PROTON | PROTON_c:-1, PROTON_p:1
 TRANS_GLT_cp, Transport GLT | GLT_c:-1, GLT_p:1
 TRANS_ATP_cp, Transport ATP_cp | ATP_c:-1, ATP_p:1
 TRANS_ADP_cp, Transport ADP_cp | ADP_c:-1, ADP_p:1
+TRANS_CARBON_cp, Transport CARBON_DIOXIDE_cp | CARBON-DIOXIDE_c:-1, CARBON-DIOXIDE_p:1
 
-Redox_Hemoprotein_c, Redox_Hemoprotein_c | Ox-NADPH-Hemoprotein-Reductases_c:-1, Red-NADPH-Hemoprotein-Reductases_c: 1
+TRANS_GLUTATHIONE_cp, Transport GLUTATHIONE_cp | GLUTATHIONE_c:-1, GLUTATHIONE_p:1
+TRANS_ACETYL_COA_cp, Transport ACETYL_COA_cp | ACETYL-COA_c:-1, ACETYL-COA_p:1
+TRANS_COA_ec, Transport COA_ec | CO-A_e:-1, CO-A_c:1
+TRANS_COA_cp, Transport COA_cp | CO-A_c:-1, CO-A_p:1
+TRANS_PYRUVATE_cp, Transport PYRUVATE_cp | PYRUVATE_c:-1, PYRUVATE_p:1
+
+RXN-6161, p
+ACETALD-DEHYDROG-RXN, p

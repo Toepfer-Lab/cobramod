@@ -10,14 +10,19 @@ from creation import add_reaction_line_to_model, add_meta_line_to_model,\
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_biocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
-main_model = cb.io.read_sbml_model(
+# Short model
+main_model1 = cb.io.read_sbml_model(
     str(dir_input.joinpath("test_model01.sbml")))
+# Large Model
+main_model2 = cb.io.read_sbml_model(
+    str(dir_input.joinpath("test_model02.sbml")))
+
 
 if not dir_biocyc.exists():
     dir_biocyc.mkdir(parents=True)
 
 
-class TestingModels(unittest.TestCase):
+class TestingShortModel(unittest.TestCase):
 
     def test_appending_lineal_pathways(self):
         """For this test, Gluconeogenesis; L-aspartate and L-asparagine
@@ -26,7 +31,7 @@ class TestingModels(unittest.TestCase):
         but is later removed from model without interfering with the the new
         pathways
         """
-        test_model = main_model.copy()
+        test_model = main_model1.copy()
         test_model.add_boundary(test_model.metabolites.get_by_id(
             "ATP_c"), "sink")
         # Adding Gluconeogenesis
@@ -61,7 +66,7 @@ class TestingModels(unittest.TestCase):
             abs(test_model.optimize().objective_value), 0)
 
     def test_cyclical_pathwways(self):
-        test_model = main_model.copy()
+        test_model = main_model1.copy()
         # Adding Mannitol cycle
         pt.add_graph_from_root(
             model=test_model, root="PWY-6531", directory=dir_biocyc,
@@ -72,7 +77,7 @@ class TestingModels(unittest.TestCase):
             ignore_list=[])
         # Updating dummy biomass
         test_model.reactions.get_by_id("Biomass_c").add_metabolites({
-            test_model.metabolites.get_by_id("MANNITOL_c"): -0.25,
+            test_model.metabolites.get_by_id("BETA_D_FRUCTOSE_c"): -1,
             test_model.metabolites.get_by_id("GLYOX_c"): -0.5
             })
         test_model.objective = "Biomass_c"
@@ -80,21 +85,28 @@ class TestingModels(unittest.TestCase):
             abs(test_model.optimize().objective_value), 0)
 
     def test_multi_compartment(self):
-        test_model = main_model.copy()
+        test_model = main_model1.copy()
+        # This files has transports between cytosol and plastids
         add_reaction_from_file(
             model=test_model,
             filename=dir_input.joinpath("test_multi_reactions.txt"),
             directory=dir_biocyc)
+        # ADDING COA as Exchange to omit its biosynthesis
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("CO_A_e"),
+            type="exchange")
         pt.add_graph_from_root(
             model=test_model, root="GLUTATHIONESYN-PWY", directory=dir_biocyc,
             ignore_list=[], compartment="p")
-        # FIXME: Due to be the last metabolite, sink rxn is created
-        test_model.remove_reactions(["SK_GLUTATHIONE_p"])
         test_model.reactions.get_by_id("Biomass_c").add_metabolites({
             test_model.metabolites.get_by_id("GLUTATHIONE_p"):
                 -1})
         self.assertGreater(
             abs(test_model.optimize().objective_value), 0)
+        add_reaction_line_to_model(
+            model=test_model,
+            line="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
+            directory=dir_biocyc)
         pt.add_graph_from_root(
             model=test_model, root="PWY-1187", directory=dir_biocyc,
             ignore_list=[
@@ -107,7 +119,81 @@ class TestingModels(unittest.TestCase):
             })
         self.assertGreater(
             abs(test_model.optimize().objective_value), 0)
-        # TODO: add one more pathway
+        # Lipid initalization
+        pt.add_graph_from_root(
+            model=test_model, root="PWY-4381", directory=dir_biocyc,
+            ignore_list=["CO_A_p"], compartment="p")
+        test_model.reactions.get_by_id("Biomass_c").add_metabolites({
+            test_model.metabolites.get_by_id(
+                "Acetoacetyl_ACPs_p"): -1})
+        # FIXME: get rid of extra sinks
+        test_model.remove_reactions(["SK_Acetoacetyl_ACPs_p"])
+        self.assertGreater(
+            abs(test_model.optimize().objective_value), 0)
+
+
+class TestingLargeModel(unittest.TestCase):
+
+    def test_lineal_pathways(self):
+        """In this test, unrelated pathways are appended to the large model
+        and tested
+        """
+        test_model = main_model2.copy()
+        # Autotroph enviroment
+        test_model.reactions.Sucrose_tx.bounds = (0, 0)  # SUCROSE
+        test_model.reactions.GLC_tx.bounds = (0, 0)  # GLUCOSE
+        # # Photon uptake
+        test_model.reactions.Photon_tx.bounds = (-1000, 250)
+        # No ammonium
+        test_model.reactions.NH4_tx.bounds = (0, 0)
+        test_model.objective = "Biomass_tx"
+        # In order to test, adding precursor as sink (glutathione)
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("GLUTATHIONE_p"),
+            type="sink"
+        )
+        # Adding methiin metabolism
+        pt.add_graph_from_root(
+            model=test_model, root="PWY-7614", directory=dir_biocyc,
+            compartment="p", ignore_list=["GLUTATHIONE_p"]
+        )
+        # Checking demand for Methiin
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("CPD_9277_p"),
+            type="demand")
+        test_model.reactions.get_by_id(
+            "DM_CPD_9277_p").bounds = (1, 1000)
+        self.assertGreater(test_model.optimize().fluxes["RXN_8908_p"], 0)
+        self.assertGreater(test_model.optimize().fluxes["DM_CPD_9277_p"], 0)
+        # Adding stachyose biosynthesis
+        pt.add_graph_from_root(
+            model=test_model, root="PWY-5337", directory=dir_biocyc,
+            compartment="c", ignore_list=["PROTON_c", "MYO_INOSITOL_c"]
+        )
+        # Checking demand for Raffinose (created in the middle of pathway)
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("CPD_1099_c"),
+            type="demand")
+        test_model.reactions.get_by_id(
+            "DM_CPD_1099_c").bounds = (1, 1000)
+        self.assertGreater(test_model.optimize().fluxes["2.4.1.82_RXN_c"], 0)
+        self.assertGreater(test_model.optimize().fluxes["DM_CPD_1099_c"], 0)
+        # Adding Abscisic acid
+        pt.add_graph_from_root(
+            model=test_model, root="PWY-695", directory=dir_biocyc,
+            compartment="p", ignore_list=["PROTON_p"]
+        )
+        # FIXME: remove unneeded sinks
+        test_model.remove_reactions(["SK_CPD_693_p"])
+        # Checking demand for Methiin
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("CPD1F_135_p"),
+            type="demand")
+        test_model.reactions.get_by_id(
+            "DM_CPD1F_135_p").bounds = (1, 1000)
+        self.assertGreater(test_model.optimize().fluxes["RXN1F_155_p"], 0)
+        self.assertGreater(test_model.optimize().fluxes["DM_CPD1F_135_p"], 0)
+        pass
 
 
 if __name__ == "__main__":

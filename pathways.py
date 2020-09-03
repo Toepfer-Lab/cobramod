@@ -571,3 +571,4 @@ def add_graph_from_root(
             sequence=pathway, model=model, **kwargs))
         add_sequence(
             model=model, sequence=sequence, **kwargs)
+    #TODO: Fix sink for metabolites in last sequence
