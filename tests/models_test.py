@@ -163,8 +163,8 @@ class TestingLargeModel(unittest.TestCase):
             type="demand")
         test_model.reactions.get_by_id(
             "DM_CPD_9277_p").bounds = (1, 1000)
-        self.assertGreater(test_model.optimize().fluxes["RXN_8908_p"], 0)
         self.assertGreater(test_model.optimize().fluxes["DM_CPD_9277_p"], 0)
+        self.assertGreater(test_model.optimize().fluxes["RXN_8908_p"], 0)
         # Adding stachyose biosynthesis
         pt.add_graph_from_root(
             model=test_model, root="PWY-5337", directory=dir_biocyc,
@@ -176,23 +176,30 @@ class TestingLargeModel(unittest.TestCase):
             type="demand")
         test_model.reactions.get_by_id(
             "DM_CPD_1099_c").bounds = (1, 1000)
-        self.assertGreater(test_model.optimize().fluxes["2.4.1.82_RXN_c"], 0)
         self.assertGreater(test_model.optimize().fluxes["DM_CPD_1099_c"], 0)
+        self.assertGreater(test_model.optimize().fluxes["2.4.1.82_RXN_c"], 0)
         # Adding Abscisic acid
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("CPD1F_133_p"),
+            type="sink"
+        )
         pt.add_graph_from_root(
             model=test_model, root="PWY-695", directory=dir_biocyc,
-            compartment="p", ignore_list=["PROTON_p"]
+            compartment="p", ignore_list=["PROTON_p", "CPD1F_133_p"]
         )
         # FIXME: remove unneeded sinks
         test_model.remove_reactions(["SK_CPD_693_p"])
         # Checking demand for Methiin
         test_model.add_boundary(
-            metabolite=test_model.metabolites.get_by_id("CPD1F_135_p"),
+            metabolite=test_model.metabolites.get_by_id("CPD_693_p"),
             type="demand")
         test_model.reactions.get_by_id(
-            "DM_CPD1F_135_p").bounds = (1, 1000)
+            "DM_CPD_693_p").bounds = (1, 1000)
+        self.assertGreater(test_model.optimize().fluxes["DM_CPD_693_p"], 0)
+        # Reaction from middle section
         self.assertGreater(test_model.optimize().fluxes["RXN1F_155_p"], 0)
-        self.assertGreater(test_model.optimize().fluxes["DM_CPD1F_135_p"], 0)
+        # Last reaction
+        self.assertGreater(test_model.optimize().fluxes["1.2.3.14_RXN_p"], 0)
         pass
 
 

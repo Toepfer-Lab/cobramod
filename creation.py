@@ -20,7 +20,7 @@ DebugLog.addHandler(DebugHandler)
 
 
 def get_xml_from_biocyc(
-        directory: Path, bioID: str, databaseName: str = "META",
+        directory: Path, bioID: str, database: str = "META",
         **kwargs) -> ET.Element:
     # TODO: make differentation between database in files!! !!
     """Searchs in local DIR if given 'biocyc' .xml is found. If not, query
@@ -30,8 +30,8 @@ def get_xml_from_biocyc(
     :type directory: Path
     :param bioID: Official ID for BioCyc Object ID
     :type bioID: str
-    :param databaseName: Name for subdatabse, defaults to "META"
-    :type databaseName: str, optional
+    :param database: Name for subdatabse, defaults to "META"
+    :type database: str, optional
     :raises Warning: If BioCyc Object ID is not found
     :raises FileNotFoundError: IF file is not located in directory
     :return: root of xml file
@@ -48,11 +48,11 @@ def get_xml_from_biocyc(
                 f'"{bioID}"" not found in directory.')
             # Retrieve from URL
             url_text = (
-                f'https://websvc.biocyc.org/getxml?{databaseName}:{bioID}')
+                f'https://websvc.biocyc.org/getxml?{database}:{bioID}')
             DebugLog.debug(f'Searching in {url_text}')
             r = requests.get(url_text)
             if r.status_code == 404:
-                msg = f'"{bioID}" not found in {databaseName}'
+                msg = f'"{bioID}" not found in {database}'
                 DebugLog.error(msg)
                 raise Warning(msg)
             else:
@@ -90,7 +90,11 @@ def create_meta_from_root(
     root: Union[ET.Element, str], compartment: str = "c",
         **kwargs) -> Metabolite:
     if isinstance(root, str):
-        root = get_xml_from_biocyc(bioID=root, **kwargs)
+        try:
+            root = get_xml_from_biocyc(bioID=root, **kwargs)
+        except Warning:
+            kwargs["database"] = "META"
+            root = get_xml_from_biocyc(bioID=root, **kwargs)
     if not isinstance(root, ET.Element):
         raise TypeError('Given root is not valid')
     metaIDBase = root.find("*/[@frameid]").attrib["frameid"]
@@ -162,10 +166,11 @@ def get_name_compartment_string(line):
     return parts
 
 
-def add_meta_line_to_model(line, model: Model, **kwargs) -> Metabolite:
-    if has_root_name(line):
+def add_meta_line_to_model(
+        line: str, model: Model, **kwargs) -> Metabolite:
+    if has_root_name(line=line):
         # FIX: to gain perfomance, search for name and then create Metabolite
-        if has_comma_separator(line):
+        if has_comma_separator(line=line):
             parts = get_name_compartment_string(line)
             root = parts[0]
             kwargs["compartment"] = parts[1]
@@ -253,7 +258,11 @@ def check_change_direction_reaction(reaction: Reaction, root: ET.Element):
 
 def build_reaction_from_xml(root: ET.Element, **kwargs) -> Reaction:
     if isinstance(root, str):
-        root = get_xml_from_biocyc(bioID=root, **kwargs)
+        try:
+            root = get_xml_from_biocyc(bioID=root, **kwargs)
+        except Warning:
+            kwargs["database"] = "META"
+            root = get_xml_from_biocyc(bioID=root, **kwargs)
     # retrieve name and create simple reaction
     new_reaction = create_base_reaction(root=root, **kwargs)
     # add left side

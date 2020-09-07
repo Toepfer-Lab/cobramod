@@ -13,9 +13,7 @@ if not dir_biocyc.exists():
 
 
 class ModulTesting(unittest.TestCase):
-    # TODO: create tests for more complex models!!
     # TODO: use replacement dictionaries !!
-    # TODO: check for subdatabase in Biocyc
 
     def test_get_xml_from_biocyc(self):
         # CASE 1: Directory does not exist
@@ -40,6 +38,16 @@ class ModulTesting(unittest.TestCase):
                 directory=dir_biocyc,
                 bioID="WATER"),
             ET.Element)
+        # CASE 4: not found in database
+        if dir_biocyc.joinpath("CPD-15326.xml").exists():
+            dir_biocyc.joinpath("CPD-15326.xml").unlink()
+        self.assertRaises(
+            Warning,
+            cr.get_xml_from_biocyc,
+            directory=dir_biocyc,
+            bioID="CPD-15326",
+            database="ARA"
+        )
 
     def test_create_meta_from_string(self):
         # CASE 1: Correct input
@@ -58,6 +66,14 @@ class ModulTesting(unittest.TestCase):
             "HOMOMETHIONINE", directory=dir_biocyc)
         self.assertIsInstance(testMeta, cb.Metabolite)
         # TODO: verify attributes
+
+    def test_add_meta_line_to_model(self):
+        # CASE 1: Not found in ARA, derivate to META
+        test_metabolite = cr.add_meta_line_to_model(
+            line="CPD-15326, c", model=cb.Model(0),
+            database="ARA",
+            directory=dir_biocyc)
+        self.assertIsInstance(test_metabolite, cb.Metabolite)
 
     def test_add_meta_from_file(self):
         # FIXME: fix blank spaces
@@ -196,9 +212,16 @@ class ModulTesting(unittest.TestCase):
                 for x in toCheckList]))
 
     def test_build_reaction_from_xml(self):
-        # TODO: finish this part
-        # test_model = cb.Model(0)
-        pass
+        # CASE 1:  Reaction not found in Ara, derive to META
+        if dir_biocyc.joinpath(
+                "GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN.xml").exists():
+            dir_biocyc.joinpath(
+                "GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN.xml").unlink()
+        test_reaction = cr.build_reaction_from_xml(
+            root="GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN",
+            directory=dir_biocyc, model=cb.Model(0)
+        )
+        self.assertIsInstance(test_reaction, cb.Reaction)
 
     def test_add_reaction_line_to_model(self):
         # CASE 1: using delimiter, compartment is cytosol

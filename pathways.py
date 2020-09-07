@@ -199,6 +199,11 @@ def return_verified_graph(vertex_dict: dict, vertex_set: set) -> list:
     return list(filter(None, graph))
 
 
+def _replace_id(iterable: Iterable, replacement_dict: dict = {}) -> Iterable:
+    pass
+    
+
+
 def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
     """Returns graph from given XML rool. All sequences will be included in
     order.
@@ -219,25 +224,23 @@ def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
 
 
 def create_reactions_for_iter(
-        sequence: Iterable, replacement_dict: dict = None,
+        sequence: Iterable, replacement_dict: dict = {},
         **kwargs) -> Generator:
     """For each item in a sequence, create a Reaction object
     and return. TODO: add replacement_dict!!
 
     :param sequence: Iterable with items, normally strings
     :type sequence: Iterable
-    :param replacement_dict: !!, defaults to None
+    :param replacement_dict: !!, defaults to {}
     :type replacement_dict: dict, optional
     :yield: Sequences with Reactions objects
     :rtype: Generator
     """
-    # search_kwargs = kwargs.copy()
-    # # TODO: verify is this needed
-    # for arg in ["model"]:
-    #     try:
-    #         del search_kwargs[arg]
-    #     except KeyError:
-    #         continue
+    for reaction in sequence:
+        if reaction in replacement_dict.keys():
+            DebugLog.info(
+                f'Replacing "{reaction}" with "{replacement_dict[reaction]}"')
+            reaction = replacement_dict[reaction]
     DebugLog.debug(f'Obtaining root for {sequence}')
     # From given list (which includes None values), retrieve only Reaction
     # Objects.
@@ -544,11 +547,14 @@ def add_sequence(model: Model, sequence: list, **kwargs):
         raise TypeError('Reactions are not valid objects. Check list')
     # only if not in model
     for rxn in sequence:
-        if rxn not in model.reactions:
+        if rxn.id not in model.reactions:
             model.add_reactions([rxn])
             DebugLog.info(f'Reaction "{rxn.id}" added to model')
             test_rxn_for_solution(model=model, rxnID=rxn.id, **kwargs)
             stopAndShowMassBalance(model=model, rxnID=rxn.id, **kwargs)
+        else:
+            # FIXME: avoid creating reaction
+            DebugLog.warning(f'Reaction "{rxn.id}" was found in model')
     DebugLog.debug('Pathway added to Model')
 
 
@@ -561,6 +567,16 @@ def add_graph_from_root(
     :type model: Model
     :param root: root or name of pathway
     :type root: Union[ET.Element, str]
+
+    :Keyword Arguments:
+        :param directory: Path to directory where data is located
+        :type directory: Path
+        :param database: Name for subdatabse, defaults to "META"
+        :type database: str, optional
+        :param comparment: location of the reactions
+        :type comparment: compartment
+        replacement_dict
+
     """
     # Retrieving and creating Pathway with Reactions
     # original_objective, original_direction = model.objective, \
