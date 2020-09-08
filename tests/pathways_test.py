@@ -287,6 +287,21 @@ class ModulTesting(unittest.TestCase):
                 vertex_dict=test_dict, vertex_set=set(
                     chain.from_iterable(test_dict.items())
                     )))
+        # CASE 4: using replacement dict. As Key and value
+        test_dict = {
+            "A": "B",
+            "B": "C",
+            "C": "D",
+            "D": "E"}
+        test_replacement = {"A": "Z", "E": "F"}
+        test_graph = list(
+            pt.return_verified_graph(
+                vertex_dict=test_dict,
+                vertex_set=set(chain.from_iterable(test_dict.items())),
+                replacement_dict=test_replacement
+                    ))
+        self.assertIn("Z", set(chain.from_iterable(test_graph)))
+        self.assertIn("F", set(chain.from_iterable(test_graph)))
 
     def test_return_graph_from_root(self):
         # CASE 0: root not string or ET.Element
@@ -712,7 +727,7 @@ class ModulTesting(unittest.TestCase):
             ignore_list=new_sink_list)
         self.assertGreater(abs(test_model.slim_optimize()), 0)
 
-    def test_add_graph_from_root(self):
+    def test__add_graph_from_root(self):
         # CASE 1:
         test_model = cb.Model(0)
         add_meta_from_file(
@@ -739,12 +754,12 @@ class ModulTesting(unittest.TestCase):
                 "CARBON_DIOXIDE_c: -1, OXYGEN_MOLECULE_c: 1"),
             model=test_model, directory=dir_biocyc)
         test_model.objective = "Dummy_c"
-        pt.add_graph_from_root(
+        pt._add_graph_from_root(
             model=test_model, root="PWY-1187", directory=dir_biocyc,
             ignore_list=new_sink_list
         )
         # CASE 2: stacking another pathways (independent from each other)
-        pt.add_graph_from_root(
+        pt._add_graph_from_root(
             model=test_model, root="AMMOXID-PWY", directory=dir_biocyc,
             ignore_list=new_sink_list
         )
@@ -782,7 +797,7 @@ class ModulTesting(unittest.TestCase):
                 "CARBON-DIOXIDE_p: -1, OXYGEN-MOLECULE_p: 1"),
             model=test_model, directory=dir_biocyc)
         test_model.objective = "Dummy_c"
-        pt.add_graph_from_root(
+        pt._add_graph_from_root(
             model=test_model, root="PWY-1187", directory=dir_biocyc,
             ignore_list=new_sink_list, compartment="p"
         )

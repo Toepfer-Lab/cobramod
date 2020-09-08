@@ -27,9 +27,33 @@ def estimate_maintenance(light_intensity: float) -> float:
 class GlucosinolateTest(unittest.TestCase):
 
     def setUp(self):
-        test_model = main_model.copy()  # copy
+        self.replacement = {
+            # Metabolites
+            "CPD-12575": "UDP-GLUCOSE",
+            "Red-NADPH-Hemoprotein-Reductases": "Reduced-hemoproteins",
+            "Ox-NADPH-Hemoprotein-Reductases": "Oxidized-hemoproteins",
+            # All generic reactions showed Glutamine as commom aminoacid
+            "Amino-Acids-20": "GLT",
+            "2-Oxo-carboxylates": "2-KETOGLUTARATE",
+            # Reactions (generic to specific)
+            "R15-RXN": "RXN-15650"}
+        self.ignore_list = [
+            # no DM rxn or SK rxn will be created from these metabolites
+            "WATER_c", "PROTON_c", "OXYGEN_MOLECULE_c",
+            "CARBON_DIOXIDE_c", "3_5_ADP_c", "CPD_12607_c", "CPD_479_p",
+            "2_Oxo_carboxylates_c"]
+        self.avoid_list = [
+            # Reactions: This helps putting reactions into their correct
+            # compartment.
+            # GLS from tryptophan
+            # oxidation in plastid
+            "RXN_12061_c", "RXN_12062_c", "RXN_12063_c",
+            "RXN_11413_c"  # oxidation in ER
+            ]
+        self.test_model = main_model.copy()  # copy
+        test_model = self.test_model
         # objective = "Biomass_tx"
-        # SETTING ENVIROMENT 
+        # SETTING ENVIROMENT
         # Autotroph
         test_model.reactions.Sucrose_tx.bounds = (0, 0)  # SUCROSE
         test_model.reactions.GLC_tx.bounds = (0, 0)  # GLUCOSE
@@ -51,7 +75,8 @@ class GlucosinolateTest(unittest.TestCase):
             model=test_model,
             filename=dir_test_case.joinpath("new_reactions.txt"),
             database="ARA",
-            directory=dir_biocyc)
+            directory=dir_biocyc,
+            replacement_dict=self.replacement)
         self.assertEqual(len(test_model.reactions), 959)
         # 3:1 rubisco rate
         Rubisco_rate = test_model.problem.Constraint(
@@ -75,39 +100,92 @@ class GlucosinolateTest(unittest.TestCase):
         # Adding RuBisCO and NGAM constraint
         test_model.add_cons_vars([
             Rubisco_rate, NGAM])
-        self.test_model = test_model
+        # self.test_model = test_model
 
-    def test_yeh(self):
+    def test_A_precursors(self):
+        replacement = self.replacement
+        ignore_list = self.ignore_list
         # Adding new pathways
-        replacement = {
-            "R15-RXN": "RXN-15650"
-        }
-        test_model = self.test_model
-        # Precursors
-        pt.add_graph_from_root(
-            model=test_model, root="GLUTATHIONESYN-PWY", database="ARA",
+        # test_model = self.test_model
+        # Glutathione synthesis
+        pt.add_graph_to_model(
+            model=self.test_model, graph="GLUTATHIONESYN-PWY", database="ARA",
             directory=dir_biocyc, compartment="p")
         # Original has an extra demand (total 962)
-        self.assertEqual(len(test_model.reactions), 961)
-        pt.add_graph_from_root(
-            model=test_model, root="PWY-5340", database="ARA",
-            directory=dir_biocyc, compartment="p")
-        # One reaction was already in model
-        self.assertEqual(len(test_model.reactions), 962)
-        pt.add_graph_from_root(
-            model=test_model, root="PWY-1186", database="ARA",
+        self.assertEqual(len(self.test_model.reactions), 961)
+        pt.add_graph_to_model(
+            model=self.test_model, graph="PWY-5340", database="ARA",
             directory=dir_biocyc, compartment="p",
-            replacement_dict=replacement)
-        self.assertIn(
-            "RXN_15650_p",
-            [rxn.id for rxn in test_model.reactions])
-        # Test
-        # test_model.objective = objective
-        # test_solution = cb.flux_analysis.pfba(
-        #     test_model, objective=objective)
-        # test_model.summary(
-        #     solution=test_solution)
-        pass
+            replacement_dict=replacement, ignore_list=ignore_list)
+        # One reaction was already in model
+        self.assertEqual(len(self.test_model.reactions), 962)
+        # Homomethionine synthesis
+        pt.add_graph_to_model(
+            model=self.test_model, graph="PWY-1186", database="ARA",
+            directory=dir_biocyc, compartment="p",
+            replacement_dict=replacement,
+            avoid_list=["R15-RXN"], ignore_list=ignore_list)
+        # Its counterpart in cytosol was added from the file
+        self.assertNotIn(
+            "R15_RXN_p",
+            [rxn.id for rxn in self.test_model.reactions])
+        # Methionine Elogation chain
+        pt.add_graph_to_model(
+            model=self.test_model, graph="PWYQT-4450", database="ARA",
+            directory=dir_biocyc, compartment="p",
+            replacement_dict=replacement, ignore_list=ignore_list)
+        self.assertEqual(len(self.test_model.sinks), 0)
+        # self.test_model = test_model
+
+    def test_B_aliphatic(self):
+        replacement = self.replacement
+        ignore_list = self.ignore_list
+        # Adding new pathways
+        # test_model = self.test_model
+        # From Homomethionine
+        # pt.add_graph_to_model(
+        #     model=test_model, graph=[
+        #         'RXN-11422', 'RXN-11430', 'RXN-11438', 'RXN-2208',
+        #         'RXN-2209', 'RXN-2221'],
+        #     database="ARA",
+        #     directory=dir_biocyc, compartment="c",
+        #     replacement_dict=replacement, ignore_list=ignore_list)
+        # # From Dihomemethionine
+        # pt.add_graph_to_model(
+        #     model=test_model, graph=[
+        #         'RXN-11423', 'RXN-11431',
+        #         'RXN-11439', 'RXNQT-4324', 'RXNQT-4329', 'RXNQT-4334'],
+        #     database="ARA",
+        #     directory=dir_biocyc, compartment="c",
+        #     replacement_dict=replacement, ignore_list=ignore_list)
+        # # From Trihomomethionine
+        # pt.add_graph_to_model(
+        #     model=test_model, graph=[
+        #         'RXN-11424', 'RXN-11432', 'RXN-11440',
+        #         'RXNQT-4325', 'RXNQT-4330', 'RXNQT-4335'],
+        #     database="ARA",
+        #     directory=dir_biocyc, compartment="c",
+        #     replacement_dict=replacement, ignore_list=ignore_list)
+        # # From Tetrahomomethionine
+        # pt.add_graph_to_model(
+        #     model=test_model, graph="PWYQT-4473",
+        #     database="ARA",
+        #     directory=dir_biocyc, compartment="c",
+        #     replacement_dict=replacement, ignore_list=ignore_list)
+        # # From Pentahomomethionine
+        # pt.add_graph_to_model(
+        #     model=test_model, graph="PWYQT-4474",
+        #     database="ARA",
+        #     directory=dir_biocyc, compartment="c",
+        #     replacement_dict=replacement, ignore_list=ignore_list)
+        # # From Hexahomomethionine
+        # pt.add_graph_to_model(
+        #     model=test_model, graph="PWYQT-4475",
+        #     database="ARA",
+        #     directory=dir_biocyc, compartment="c",
+        #     replacement_dict=replacement, ignore_list=ignore_list)
+
+        # pass
 
 
 if __name__ == "__main__":

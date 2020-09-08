@@ -74,6 +74,13 @@ class ModulTesting(unittest.TestCase):
             database="ARA",
             directory=dir_biocyc)
         self.assertIsInstance(test_metabolite, cb.Metabolite)
+        # CASE 2: Replace metabolite
+        test_metabolite = cr.add_meta_line_to_model(
+            line="Amino-Acids-20, p", model=cb.Model(0),
+            database="ARA",
+            directory=dir_biocyc, replacement_dict={
+                "Amino-Acids-20": "GLT"})
+        self.assertEqual(test_metabolite.id, "GLT_p")
 
     def test_add_meta_from_file(self):
         # FIXME: fix blank spaces
@@ -222,6 +229,13 @@ class ModulTesting(unittest.TestCase):
             directory=dir_biocyc, model=cb.Model(0)
         )
         self.assertIsInstance(test_reaction, cb.Reaction)
+        # CASE 2: Replacing name
+        test_reaction = cr.build_reaction_from_xml(
+            root="RXN-2205", directory=dir_biocyc,
+            model=cb.Model(0), replacement_dict={
+                "Amino-Acids-20": "GLT"})
+        self.assertIn(
+            "GLT_c", [meta.id for meta in test_reaction.metabolites])
 
     def test_add_reaction_line_to_model(self):
         # CASE 1: using delimiter, compartment is cytosol

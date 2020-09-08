@@ -3,19 +3,19 @@ import xml.etree.ElementTree as ET
 import logging
 from typing import Union, Generator, Iterable
 from creation import get_xml_from_biocyc, build_reaction_from_xml,\
-    stopAndShowMassBalance
+    stopAndShowMassBalance, DebugLog
 from cobra import Model, Reaction
 from itertools import chain
 from contextlib import suppress
 
 # Creating corresponding Logs
 # Format
-DebugFormatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-# Handler
-DebugHandler = logging.FileHandler("debug.log", mode="a+")
-DebugHandler.setFormatter(DebugFormatter)
-# Log
-DebugLog = logging.getLogger("DebugLog")
+# DebugFormatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+# # Handler
+# DebugHandler = logging.FileHandler("debug.log", mode="a+")
+# DebugHandler.setFormatter(DebugFormatter)
+# # Log
+# DebugLog = logging.getLogger("DebugLog")
 DebugLog.setLevel(logging.DEBUG)
 # TODO!!: change name for proper python conventions
 
@@ -177,7 +177,42 @@ def return_missing_edges(
             yield edge
 
 
-def return_verified_graph(vertex_dict: dict, vertex_set: set) -> list:
+def _replace_item(
+        iterable: Iterable, replacement_dict: dict = {},
+        **kwargs) -> Generator:
+    """Replaces in a Iterable the item for its corresponding key in give
+    dictionary. Returns a generator
+
+    :param iterable: Sequence to modify
+    :type iterable: Iterable
+    :param replacement_dict: Dictionary where keys are to be replaced by
+    given values, defaults to {}
+    :type replacement_dict: dict, optional
+    :yield: Either the original value or the new one
+    :rtype: Generator
+    """
+    for item in iterable:
+        if item in set(chain.from_iterable(replacement_dict.keys())):
+            DebugLog.warning(
+                f'Replacing "{item}" with "{replacement_dict[item]}"')
+            yield replacement_dict[item]
+        else:
+            yield item
+
+
+def _remove_item(
+        iterable: Iterable, avoid_list: Iterable = [], **kwargs) -> Generator:
+    # TODO: add docstring
+    for item in iterable:
+        if item in avoid_list:
+            DebugLog.warning(
+                f'Avoiding root for "{item}"')
+        else:
+            yield item
+
+
+def return_verified_graph(
+        vertex_dict: dict, vertex_set: set, **kwargs) -> list:
     """Returns list with ordered sequences for a edge dictionary. If missing
     vertex are missing in the sequences, they will be appended in the list
 
@@ -195,13 +230,13 @@ def return_verified_graph(vertex_dict: dict, vertex_set: set) -> list:
             graph=set(chain.from_iterable(graph)),
             complete_edges=vertex_set))
     graph.insert(0, missing_edges)
+    # Fixing sequences from graph
+    graph = [list(_replace_item(
+        iterable=sequence, **kwargs)) for sequence in graph]
+    graph = [list(_remove_item(
+        iterable=sequence, **kwargs)) for sequence in graph]
     # Filtering NONES from .append()
     return list(filter(None, graph))
-
-
-def _replace_id(iterable: Iterable, replacement_dict: dict = {}) -> Iterable:
-    pass
-    
 
 
 def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
@@ -220,12 +255,11 @@ def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
         raise AttributeError('Given XML root is invalid.')
     vertex_dict, vertex_set = create_vertex_dict(root=root, **kwargs)
     return return_verified_graph(
-        vertex_dict=vertex_dict, vertex_set=vertex_set)
+        vertex_dict=vertex_dict, vertex_set=vertex_set, **kwargs)
 
 
 def create_reactions_for_iter(
-        sequence: Iterable, replacement_dict: dict = {},
-        **kwargs) -> Generator:
+        sequence: Iterable, **kwargs) -> Generator:
     """For each item in a sequence, create a Reaction object
     and return. TODO: add replacement_dict!!
 
@@ -236,11 +270,7 @@ def create_reactions_for_iter(
     :yield: Sequences with Reactions objects
     :rtype: Generator
     """
-    for reaction in sequence:
-        if reaction in replacement_dict.keys():
-            DebugLog.info(
-                f'Replacing "{reaction}" with "{replacement_dict[reaction]}"')
-            reaction = replacement_dict[reaction]
+
     DebugLog.debug(f'Obtaining root for {sequence}')
     # From given list (which includes None values), retrieve only Reaction
     # Objects.
@@ -558,7 +588,7 @@ def add_sequence(model: Model, sequence: list, **kwargs):
     DebugLog.debug('Pathway added to Model')
 
 
-def add_graph_from_root(
+def _add_graph_from_root(
         model: Model, root: Union[ET.Element, str], **kwargs):
     """For given root for a pathway, check, test and add all possible
     Reactions to given model.
@@ -575,7 +605,10 @@ def add_graph_from_root(
         :type database: str, optional
         :param comparment: location of the reactions
         :type comparment: compartment
+        # TODO: Finish documentation and add more kwargs
         replacement_dict
+        ignore_list
+        avoid_list
 
     """
     # Retrieving and creating Pathway with Reactions
@@ -588,3 +621,21 @@ def add_graph_from_root(
         add_sequence(
             model=model, sequence=sequence, **kwargs)
     #TODO: Fix sink for metabolites in last sequence
+
+
+def _add_graph_from_sequence(
+        model: Model, sequence: Iterable, **kwargs):
+        # TODO: add tests, and docstrings
+    sequence = list(create_reactions_for_iter(
+        model=model, sequence=sequence, **kwargs))
+    add_sequence(
+            model=model, sequence=sequence, **kwargs)
+
+
+def add_graph_to_model(
+        model: Model, graph: Union[list, str, ET.Element, set], **kwargs):
+        # TODO: add tests, and docstrings
+    if isinstance(graph, (ET.Element, str)):
+        _add_graph_from_root(model=model, root=graph, **kwargs)
+    elif isinstance(graph, (list, set)):
+        _add_graph_from_sequence(model=model, sequence=graph, **kwargs)

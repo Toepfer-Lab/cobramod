@@ -167,7 +167,8 @@ def get_name_compartment_string(line):
 
 
 def add_meta_line_to_model(
-        line: str, model: Model, **kwargs) -> Metabolite:
+        line: str, model: Model, replacement_dict: dict = {},
+        **kwargs) -> Metabolite:
     if has_root_name(line=line):
         # FIX: to gain perfomance, search for name and then create Metabolite
         if has_comma_separator(line=line):
@@ -175,9 +176,17 @@ def add_meta_line_to_model(
             root = parts[0]
             kwargs["compartment"] = parts[1]
         else:
+            # This is specific for metabolites coming from reactions
             root = line
-        newMeta = create_meta_from_root(
-            root=root, **kwargs)
+        try:
+            newMeta = create_meta_from_root(
+                root=replacement_dict[root], **kwargs)
+            DebugLog.warning(
+                f'Metabolite "{root}" replaced by '
+                f'"{replacement_dict[root]}".')
+        except KeyError:
+            newMeta = create_meta_from_root(
+                root=root, **kwargs)
         add_if_not_found_model(model=model, metabolite=newMeta)
     else:
         newMeta = create_meta_from_string(line_string=line)
@@ -238,6 +247,7 @@ def create_sides_for_reaction(
                 "*/[@frameid]").attrib["frameid"].strip().rstrip()
         except AttributeError:
             raise AttributeError('Reaction cannot find participants')
+
         temp_metabolite = add_meta_line_to_model(
             line=meta_id, model=model, **kwargs)
         temp_reaction.add_metabolites({
@@ -256,7 +266,8 @@ def check_change_direction_reaction(reaction: Reaction, root: ET.Element):
         reaction.bounds = (0, 1000)
 
 
-def build_reaction_from_xml(root: ET.Element, **kwargs) -> Reaction:
+def build_reaction_from_xml(
+        root: Union[ET.Element, str], **kwargs) -> Reaction:
     if isinstance(root, str):
         try:
             root = get_xml_from_biocyc(bioID=root, **kwargs)
@@ -289,7 +300,9 @@ def add_if_no_reaction_model(model: Model, reaction: Reaction):
         DebugLog.info(f'Reaction "{reaction.id}" was added to model')
 
 
-def add_reaction_from_root(model: Model, root, **kwargs):
+def add_reaction_from_root(
+        model: Model, root: Union[ET.Element, str],
+        replacement_dict: dict = {}, **kwargs):
     """Creates Reaction from given root. If no metabolites are found in
     Model, then rxn will search META
     """
@@ -297,7 +310,12 @@ def add_reaction_from_root(model: Model, root, **kwargs):
     if not isinstance(model, Model):
         raise TypeError('Model is not valid')
     if isinstance(root, str):
-        root = get_xml_from_biocyc(bioID=root, **kwargs)
+        try:
+            root = get_xml_from_biocyc(bioID=replacement_dict[root], **kwargs)
+            DebugLog.warning(
+                f'Replacing "{root}" with "{replacement_dict[root]}"')
+        except KeyError:
+            root = get_xml_from_biocyc(bioID=root, **kwargs)
     if not isinstance(root, ET.Element):
         raise TypeError('Given root is not valid')
     new_reaction = build_reaction_from_xml(
