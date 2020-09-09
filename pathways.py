@@ -560,7 +560,8 @@ def test_rxn_for_solution(
             model=model, rxnID=rxnID, **kwargs)
 
 
-def add_sequence(model: Model, sequence: list, **kwargs):
+def add_sequence(
+        model: Model, sequence: list, avoid_list: Iterable = [], **kwargs):
     """From a sequence of Reaction objects, add reach Reaction to given model. It
     checks if new reaction does not break the metabolic system.
 
@@ -577,6 +578,10 @@ def add_sequence(model: Model, sequence: list, **kwargs):
         raise TypeError('Reactions are not valid objects. Check list')
     # only if not in model
     for rxn in sequence:
+        if rxn.id in avoid_list:
+            DebugLog.warning(
+                f'Reaction "{rxn.id}" found in avoid list. Skipping.')
+            continue
         if rxn.id not in model.reactions:
             model.add_reactions([rxn])
             DebugLog.info(f'Reaction "{rxn.id}" added to model')
