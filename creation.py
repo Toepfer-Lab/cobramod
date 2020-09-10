@@ -223,6 +223,7 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
 
 def _create_base_reaction(
         root: ET.Element, compartment: str = "c", **kwargs) -> Reaction:
+
     base_id = root.find(
         "*/[@frameid]").attrib["frameid"].replace("--", "-").replace("-", "_")
     base_id = f'{base_id}_{compartment}'
@@ -279,6 +280,7 @@ def _check_change_direction_reaction(reaction: Reaction, root: ET.Element):
 
 def build_reaction_from_xml(
         root: Union[ET.Element, str], **kwargs) -> Reaction:
+
     if isinstance(root, str):
         try:
             root = get_xml_from_biocyc(identifier=root, **kwargs)
@@ -378,7 +380,7 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
     (metabolites), it creates a Reactions.
 
     The string should follow the syntax:
-    rxnID, rxnName | id_meta:value,id_meta2:value2....
+    rxn_id, rxnName | id_meta:value,id_meta2:value2....
     delimiter is a vertical bar '|'
 
     :param line_string: string with information
@@ -389,21 +391,21 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
     :rtype: Reaction
     """
     line_string = [x.strip().rstrip() for x in line_string.split("|")]
-    rxnID_name = [x.strip().rstrip() for x in line_string[0].split(",")]
+    rxn_id_name = [x.strip().rstrip() for x in line_string[0].split(",")]
     try:  # no blanks
         string_list = [x.strip().rstrip() for x in line_string[1].split(",")]
         metaDict = _build_dict_for_metabolites(string_list=string_list)
     except IndexError:  # wrong format
         raise IndexError(
-            f'No delimiter "|" found for {rxnID_name[0].split(",")[0]}.')
-    if len(rxnID_name) > 1 and rxnID_name != [""]:
-        rxnID = rxnID_name[0]
-        rxnName = rxnID_name[1]
-    elif rxnID_name == [""]:  # blank space
+            f'No delimiter "|" found for {rxn_id_name[0].split(",")[0]}.')
+    if len(rxn_id_name) > 1 and rxn_id_name != [""]:
+        rxn_id = rxn_id_name[0]
+        rxnName = rxn_id_name[1]
+    elif rxn_id_name == [""]:  # blank space
         raise Warning('Format is wrong. ID not detected')
-    elif len(rxnID_name) == 1:
-        rxnID = rxnName = rxnID_name[0]
-    new_reaction = Reaction(id=rxnID, name=rxnName)
+    elif len(rxn_id_name) == 1:
+        rxn_id = rxnName = rxn_id_name[0]
+    new_reaction = Reaction(id=rxn_id, name=rxnName)
     for meta, coef in metaDict.items():
         if _check_if_meta_in_model(metaID=meta, **kwargs):
             new_reaction.add_metabolites({
@@ -456,15 +458,15 @@ def add_reactions_from_file(
     :type model: Model
     :param filename: Path of file with reactions
     :type filename: Path
-    :param showIfWrongMB: Print to console if reactions are unbalanced,
+    :param show_wrong: Print to console if reactions are unbalanced,
     defaults to True
-    :type showIfWrongMB: bool, optional
-    :param stopIfWrongMB: Raise Warning if reacion is unbalanced,
+    :type show_wrong: bool, optional
+    :param stop_wrong: Raise Warning if reacion is unbalanced,
     defaults to False
-    :type stopIfWrongMB: bool, optional
+    :type stop_wrong: bool, optional
     :raises Warning: If stopIfWrong is TRUE and reaction is unbalanced
     """
-    # NOTE: add mass balance check
+    # TODO: add mass balance check
     if not isinstance(model, Model):
         raise TypeError("Model given is not a valid")
     if not filename.exists():
@@ -476,16 +478,28 @@ def add_reactions_from_file(
 
 
 def check_mass_balance(
-        model: Model, rxnID: str, showIfWrongMB: bool = True,
-        stopIfWrongMB: bool = False, **kwargs):
-    dict_balance = model.reactions.get_by_id(rxnID).check_mass_balance()
+        model: Model, rxn_id: str, show_wrong: bool = True,
+        stop_wrong: bool = False):
+    """
+    [summary]
+
+    Args:
+        model (Model): [description]
+        rxn_id (str): [description]
+        show_wrong (bool, optional): [description]. Defaults to True.
+        stop_wrong (bool, optional): [description]. Defaults to False.
+
+    Raises:
+        Warning: [description]
+    """
+    dict_balance = model.reactions.get_by_id(rxn_id).check_mass_balance()
     # Will stop if True
-    if showIfWrongMB is True and dict_balance != {}:
+    if show_wrong is True and dict_balance != {}:
         msg = (
-            f'Reaction unbalanced found at {rxnID}. '
+            f'Reaction unbalanced found at {rxn_id}. '
             f'Results to {dict_balance}. ')
-        DebugLog.warning(msg)
-        print(msg)
-        if stopIfWrongMB is True:
+        print(f'\n{msg}')
+        if stop_wrong is True:
             msg += 'Stopping'
             raise Warning(msg)
+        DebugLog.warning(msg)

@@ -202,6 +202,9 @@ def _replace_item(
 
 def _remove_item(
         iterable: Iterable, avoid_list: Iterable = [], **kwargs) -> Generator:
+    """
+    Returns Generator of items that are not in the avoid list
+    """
     # TODO: add docstring
     for item in iterable:
         if item in avoid_list:
@@ -221,8 +224,6 @@ def _return_verified_graph(
     :return: verified list with sequences
     :rtype: list
     """
-    # Backup for comparison
-    # vertex_dict_copy = vertex_dict.copy()
     # TODO: check for single reaction
     graph = list(get_graph(vertex_dict=vertex_dict))
     missing_edges = list(
@@ -240,15 +241,25 @@ def _return_verified_graph(
 
 
 def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
-    """Returns graph from given XML rool. All sequences will be included in
-    order.
-
-    :param root: name of root or XML
-    :type root: Union[str, ET.Element]
-    :raises AttributeError: If given root is invalid
-    :return: verified list with sequences
-    :rtype: list
     """
+    Returns graph from given XML root. All sequences are in order.
+
+    Args:
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+
+    Raises:
+        AttributeError: If given root is invalid
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+    Returns:
+        list: sequence with reaction identifiers in order
+    """
+
     if isinstance(root, str):
         root = get_xml_from_biocyc(identifier=root, **kwargs)
     if not isinstance(root, ET.Element):
@@ -260,15 +271,26 @@ def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
 
 def _create_reactions_for_iter(
         sequence: Iterable, **kwargs) -> Generator:
-    """For each item in a sequence, create a Reaction object
-    and return. TODO: add replacement_dict!!
+    """
+    For each identifier in the sequence, a Reaction will be created. It returns
+    a generator
 
-    :param sequence: Iterable with items, normally strings
-    :type sequence: Iterable
-    :param replacement_dict: !!, defaults to {}
-    :type replacement_dict: dict, optional
-    :yield: Sequences with Reactions objects
-    :rtype: Generator
+    Args:
+        sequence (Iterable): sequence with reaction identifiers for given
+        database
+
+    Keyword Arguments:
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+        comparment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+
+    Yields:
+        Generator: Sequence with Reaction objects.
     """
 
     DebugLog.debug(f'Obtaining root for {sequence}')
@@ -279,40 +301,45 @@ def _create_reactions_for_iter(
 
 
 def _find_next_demand(
-        model: Model, check_rxn_id: str, ignore_list: list = [],
+        model: Model, reaction_id: str, ignore_list: list = [],
         **kwargs) -> str:
-    """Returns first metabolites found either in the product or reactant side
-    of given reaction. Reversibility of the reaction is taken into
-    consideration. A list with metabolites IDs can be passed to be ignored
+    """
+    Returns first metabolite found either in the product or reactant side
+    of given reaction.
+    
+    Reversibility of the reaction is taken into consideration. A list with
+    metabolites identifiers can be passed to ignored them.
 
-    :param model: Model where the reaction is located
-    :type model: Model
-    :param check_rxn_id: ID of the reaction in the model
-    :type check_rxn_id: str
-    :param ignore_list: list with metabolites IDs to ignore, defaults to []
-    :type ignore_list: list, optional
-    :raises TypeError: if Model is not valid
-    :raises Warning: if no metabolite was found
-    :return: ID of next metabolite to become demand
-    :rtype: str
+    Args:
+        model (Model): model to test
+        reaction_id (str): reaction identifier for model
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore. Defaults to []
+
+    Raises:
+        TypeError: if model is invalid
+        Warning: if no metabolite was found
+
+    Returns:
+        str: metabolite identifier to create a demand reaction
     """
     if not isinstance(model, Model):
         raise TypeError('Model is invalid')
-    tmp_rxn = model.reactions.get_by_id(check_rxn_id)
+    tmp_rxn = model.reactions.get_by_id(reaction_id)
     # Checking reversibility
     # left --> right
-    if model.reactions.get_by_id(check_rxn_id).upper_bound > abs(
-            model.reactions.get_by_id(check_rxn_id).lower_bound):
+    if model.reactions.get_by_id(reaction_id).upper_bound > abs(
+            model.reactions.get_by_id(reaction_id).lower_bound):
         tmp_list = [
             rxn.id for rxn in tmp_rxn.products if rxn.id not in ignore_list]
     # left <-- right
-    elif model.reactions.get_by_id(check_rxn_id).upper_bound < abs(
-            model.reactions.get_by_id(check_rxn_id).lower_bound):
+    elif model.reactions.get_by_id(reaction_id).upper_bound < abs(
+            model.reactions.get_by_id(reaction_id).lower_bound):
         tmp_list = [
             rxn.id for rxn in tmp_rxn.reactants if rxn.id not in ignore_list]
     # left <--> right
-    elif model.reactions.get_by_id(check_rxn_id).upper_bound == abs(
-            model.reactions.get_by_id(check_rxn_id).lower_bound):
+    elif model.reactions.get_by_id(reaction_id).upper_bound == abs(
+            model.reactions.get_by_id(reaction_id).lower_bound):
         # TODO: decide what to do (reversibility)
         # FIXME: isomers sometimes shows double demand
         tmp_list = [
@@ -322,20 +349,14 @@ def _find_next_demand(
         raise Warning('No metabolite found to become a demand')
     else:
         DebugLog.debug(
-            f'Next demand selected for "{check_rxn_id}": "{tmp_list[0]}"')
+            f'Next demand selected for "{reaction_id}": "{tmp_list[0]}"')
         return tmp_list[0]
 
 
 def _has_demand(
         model: Model, metabolite: str) -> bool:
-    """Returns True if model has a demand reaction for given metabolite
-
-    :param model: model to search for reactions
-    :type model: Model
-    :param metabolite: metabolite ID
-    :type metabolite: str
-    :return: Whether demand can be found
-    :rtype: bool
+    """
+    Returns True if model has a demand reaction for given metabolite identifier
     """
     return any(
         ["DM_" in reaction.id for reaction in model.metabolites.get_by_id(
@@ -344,15 +365,14 @@ def _has_demand(
 
 def _remove_boundary_if_not_model(
         model: Model, metabolite: str, boundary: str):
-    """Removes given type of boundary reaction for a specific metabolite if
-    found in model
+    """
+    Removes given type of boundary reaction for a specified metabolite if found
+    in the model
 
-    :param model: model to check for reactions
-    :type model: Model
-    :param metabolite: name of metabolite
-    :type metabolite: str
-    :param boundary: type of boundary, Options are 'sink' or 'demand'.
-    :type boundary: str
+    Args:
+        model (Model): model to test
+        metabolite (str): metabolite identifier in model
+        boundary (str): type of boundary. Options: "sink", "demand"
     """
     type_prefix = {"sink": "SK_", "demand": "DM_"}
     if f'{type_prefix[boundary]}{metabolite}' in (
@@ -364,57 +384,38 @@ def _remove_boundary_if_not_model(
             f'{boundary.capitalize()} reaction for "{metabolite}" removed')
 
 
-def _more_than_two_reaction(model: Model, metabolite: str) -> bool:
-    """Returns True if given metabolite participates more than in two reaction
-    for given model.
-
-    :param model: model to check for reactions
-    :type model: Model
-    :param metabolite: name of metabolite
-    :type metabolite: str
-    :return: True if more than 2 reactions.
-    :rtype: bool
-    """
-    reactions = model.metabolites.get_by_id(metabolite).reactions
-    return len(reactions) > 2
-
 
 def _less_equal_than_x_rxns(
         model: Model, metabolite: str, x: int = 2) -> bool:
-    """Returns True if given metabolite participates in less than 2 reactions
-    for given model.
-
-    :param model: model to check for reactions
-    :type model: Model
-    :param metabolite: name of metabolite
-    :type metabolite: str
-    :return: True if less than 2 reactions
-    :rtype: bool
+    """
+    Returns True if given metabolite participates in less or equal than
+    X reactions for given model.
     """
     reactions = model.metabolites.get_by_id(metabolite).reactions
     return len(reactions) <= x
 
 
-def _check_if_boundary(model: Model, metabolite: str) -> bool:
-    """Returns True if at least one kind of boundary (with exception of
-    Exchange reactions) is found for given metabolite
-
-    :param model: model to check for reactions
-    :type model: Model
-    :param metabolite: name of metabolite
-    :type metabolite: str
-    :return: If boundary reaction is found
-    :rtype: bool
-    """
-    list_no_exchanges = [demand.id for demand in model.demands]\
-        + [sink.id for sink in model.sinks]
-    return any([
-        f'DM_{metabolite}' in list_no_exchanges,
-        f'SK_{metabolite}' in list_no_exchanges])
-
 
 def _fix_meta_for_boundaries(
         model: Model, metabolite: str, ignore_list: Iterable = [], **kwargs):
+    """
+    Verifies that given metabolite has enough sink and demand reaction. It will
+    create and remove them if necessary.
+
+    If a metabolite has a demand reaction, it will create a sink reaction if
+    the total amount is equal or less than two. If no demand reaction is found
+    it will create a sink reaction if the total reactions is 1. Sink reactions
+    will be delete if total reaction is either more than equal 2, or 3.
+
+    Args:
+        model (Model): model to test
+        metabolite (str): metabolite identifier for given metabolite.
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions. Defaults to []
+
+    Raises:
+        Warning: If a metabolite is found in given ignore list.
+    """
     DebugLog.debug(f'Checking "{metabolite}" in for sinks and demands')
     if metabolite in ignore_list:
         msg = f'Metabolite "{metabolite}" ignored'
@@ -440,37 +441,38 @@ def _fix_meta_for_boundaries(
                 model=model, metabolite=metabolite, x=2):
             _remove_boundary_if_not_model(
                 model=model, metabolite=metabolite, boundary="sink")
+    # remove demand if needed
     _remove_boundary_if_not_model(
         model=model, metabolite=metabolite, boundary="demand")
 
 
 def _verify_side_sinks_for_rxn(
-        model: Model, rxnID: str, side: str, ignore_list: Iterable = []):
-    """Checks for either the product or reactant side of a reactions, if
-    participant-metabolites have enough sink reactions and, if necesary,
-    creates or remove them
+        model: Model, rxn_id: str, side: str, ignore_list: Iterable = []):
+    """
+    Checks for either the product or reactant side of a reactions, if
+    participant-metabolites have enough sink reactions to produce a feasible
+    answer. If necesary, it will creates or remove them.
 
-    :param model: model where Reactions and Metabolite are located
-    :type model: Model
-    :param rxnID: ID of reaction in model
-    :type rxnID: str
-    :param side: which side to check. Options are 'right' or 'left',
-    defaults to "right"
-    :type side: str, optional
-    :param ignore_list: list with metabolites to be ignored, defaults to []
-    :type ignore_list: list, optional
-    :raises TypeError: if model is invalid
-    :raises TypeError: if ignore_list is not passed as a list
-    :raises ValueError: If 'side' is not properly passed
+    Args:
+        model (Model): model to test.
+        rxn_id (str): reaction identifier for given model.
+        side (str): Side to verify. Options: "right", "left"
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions. Defaults to []
+
+    Raises:
+        TypeError: if model is invalid
+        TypeError: if ignore list is not iterable
+        ValueError: if side is not in the options
     """
     if not isinstance(ignore_list, Iterable):
         raise TypeError('Ignore list is not iterable')
     if not isinstance(model, Model):
         raise TypeError('Model is invalid')
     if side == "right":
-        metabolites = model.reactions.get_by_id(rxnID).products
+        metabolites = model.reactions.get_by_id(rxn_id).products
     elif side == "left":
-        metabolites = model.reactions.get_by_id(rxnID).reactants
+        metabolites = model.reactions.get_by_id(rxn_id).reactants
     else:
         raise ValueError('Only valid options are "right" and "left"')
     for meta in metabolites:
@@ -482,61 +484,68 @@ def _verify_side_sinks_for_rxn(
 
 # TODO: check if kwargs are needed
 def verify_sinks_for_rxn(
-        model: Model, rxnID: str, ignore_list: Iterable = [], **kwargs):
-    """Checks, creates or remove sink reactions for metabolites in given
-    Reaction
+        model: Model, rxn_id: str, ignore_list: Iterable = [], **kwargs):
+    """
+    Verifies, creates or removes sink reactions for metabolites found in given
+    reaction if certain conditions are met.
 
-    :param model: model with Reactions
-    :type model: Model
-    :param rxnID: ID of the reaction in model
-    :type rxnID: str
-    :param ignore_list: metabolites to be ignored, defaults to []
-    :type ignore_list: list, optional
+    If a metabolite has a demand reaction, it will create a sink reaction if
+    the total amount is equal or less than two. If no demand reaction is found
+    it will create a sink reaction if the total reactions is 1. Sink reactions
+    will be delete if total reaction is either more than equal 2, or 3.
+
+    Args:
+        model (Model): model to test
+        rxn_id (str): reaction identifier for given model.
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions. Defaults to []
     """
     # reactant side
     _verify_side_sinks_for_rxn(
-        model=model, rxnID=rxnID, ignore_list=ignore_list, side="left")
+        model=model, rxn_id=rxn_id, ignore_list=ignore_list, side="left")
     # product side
     _verify_side_sinks_for_rxn(
-        model=model, rxnID=rxnID, ignore_list=ignore_list, side="right")
+        model=model, rxn_id=rxn_id, ignore_list=ignore_list, side="right")
 
 
 def _test_rxn_for_solution(
-        model: Model, rxnID: str, solution_range: tuple = (0.1, 1000),
+        model: Model, rxn_id: str, solution_range: tuple = (0.1, 1000),
         times: int = 0, **kwargs):
-    """Checks if optimized objective function value of given model lies between
+    """
+    Checks if optimized objective function value of given model lies between
     a determinated range. Function is recursive and checks if sink reactions
     are enough or exceded. It creates a demand reaction for reaction for the
     test and removes it, if necesary.
 
-    :param model: model to test
-    :type model: Model
-    :param rxnID: reaction ID to test
-    :type rxnID: str
-    :param solution_range: range of solution, defaults to (0.1, 1000)
-    :type solution_range: tuple, optional
-    :param times: For recursion, displays how many times the FUN called itself,
-    defaults to 0
-    :type times: int, optional
-    :raises ValueError: if solution is infeasible after many recursions
+    Args:
+        model (Model): model to test reaction
+        rxn_id (str): reaction identifier in given model
+        solution_range (tuple, optional): range of solution to pass the test.
+            Defaults to (0.1, 1000).
+        times (int, optional): Track of recursions. Defaults to 0.
+
+    Raises:
+        ValueError: if solution is infeasible after many recursions. Depends
+            from the amount of metabolites in the reaction
+
     """
-    # TODO: add errors for wrong MODEL or rxnid
+    # TODO: add errors for wrong MODEL or rxn_id
     with suppress(KeyError):
-        if rxnID in kwargs["ignore_list"]:
+        if rxn_id in kwargs["ignore_list"]:
             DebugLog.warning(
-                f'Reaction "{rxnID}" found in ignore list. Skipped')
+                f'Reaction "{rxn_id}" found in ignore list. Skipped')
             return
     if times == 0:
-        DebugLog.info(f'Testing reaction "{rxnID}"')
+        DebugLog.info(f'Testing reaction "{rxn_id}"')
     # finding demand for testing
-    nextDemand = _find_next_demand(model=model, check_rxn_id=rxnID, **kwargs)
+    nextDemand = _find_next_demand(model=model, reaction_id=rxn_id, **kwargs)
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(nextDemand), "demand")
         model.reactions.get_by_id(f'DM_{nextDemand}').lower_bound = 0.2
         DebugLog.debug(f'Demand "DM_{nextDemand}" added')
     # Setting maximum times for recursion
-    if times == len(model.reactions.get_by_id(rxnID).metabolites):
-        msg = f'Reaction "{rxnID}" did not passed.'
+    if times == len(model.reactions.get_by_id(rxn_id).metabolites):
+        msg = f'Reaction "{rxn_id}" did not passed.'
         DebugLog.critical(msg)
         raise ValueError(msg)
     # answer must be reasonable and lie between given ranges
@@ -544,33 +553,38 @@ def _test_rxn_for_solution(
     if not solution_range[0] <= abs(
             model.slim_optimize()) <= solution_range[1]:
         # Append to log
-        DebugLog.debug(f'Reaction "{rxnID}" not in range')
+        DebugLog.debug(f'Reaction "{rxn_id}" not in range')
         verify_sinks_for_rxn(
-            model=model, rxnID=rxnID, **kwargs)
+            model=model, rxn_id=rxn_id, **kwargs)
         # Recursive with 'extra' argument
         _test_rxn_for_solution(
-            model=model, rxnID=rxnID, solution_range=solution_range,
+            model=model, rxn_id=rxn_id, solution_range=solution_range,
             times=times + 1, **kwargs)
     else:
         # if works, pass and return old objective
-        DebugLog.debug(f'Reaction "{rxnID}" showed a feasible answer.')
+        DebugLog.debug(f'Reaction "{rxn_id}" showed a feasible answer.')
         _remove_boundary_if_not_model(
             model=model, metabolite=nextDemand, boundary="demand")
         verify_sinks_for_rxn(
-            model=model, rxnID=rxnID, **kwargs)
+            model=model, rxn_id=rxn_id, **kwargs)
 
 
 def _add_sequence(
         model: Model, sequence: list, avoid_list: Iterable = [], **kwargs):
-    """From a sequence of Reaction objects, add reach Reaction to given model. It
+    """
+    From a sequence of Reaction objects, add each Reaction into given model. It
     checks if new reaction does not break the metabolic system.
 
-    :param model: Model to add the Reactions.
-    :type model: Model
-    :param sequence: List with Reaction objects
-    :type sequence: list
-    :raises TypeError: if Model is invalid
-    :raises TypeError: if Reactions are not valid objects
+    Args:
+        model (Model): model to add reactions to.
+        sequence (list): List with Reaction objects
+        avoid_list (Iterable, optional): A sequence of formatted reactions to
+            avoid adding to the model. This is usefull for long pathways,
+            where X reactions need to be excluded. Defaults to [].
+
+    Raises:
+        TypeError: if model is invalid
+        TypeError: if reactions are not valid Reaction objects
     """
     if not isinstance(model, Model):
         raise TypeError('Model is invalid')
@@ -585,8 +599,8 @@ def _add_sequence(
         if rxn.id not in model.reactions:
             model.add_reactions([rxn])
             DebugLog.info(f'Reaction "{rxn.id}" added to model')
-            _test_rxn_for_solution(model=model, rxnID=rxn.id, **kwargs)
-            check_mass_balance(model=model, rxnID=rxn.id, **kwargs)
+            _test_rxn_for_solution(model=model, rxn_id=rxn.id, **kwargs)
+            check_mass_balance(model=model, rxn_id=rxn.id)
         else:
             # FIXME: avoid creating reaction
             DebugLog.warning(f'Reaction "{rxn.id}" was found in model')
@@ -595,26 +609,14 @@ def _add_sequence(
 
 def _add_graph_from_root(
         model: Model, root: Union[ET.Element, str], **kwargs):
-    """For given root for a pathway, check, test and add all possible
-    Reactions to given model.
+    """
+    Adds root of a pathway into given model.
 
-    :param model: model to append pathway
-    :type model: Model
-    :param root: root or name of pathway
-    :type root: Union[ET.Element, str]
-
-    :Keyword Arguments:
-        :param directory: Path to directory where data is located
-        :type directory: Path
-        :param database: Name for subdatabse, defaults to "META"
-        :type database: str, optional
-        :param comparment: location of the reactions
-        :type comparment: compartment
-        # TODO: Finish documentation and add more kwargs
-        replacement_dict
-        ignore_list
-        avoid_list
-
+    Args:
+        model (Model): model to append root
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+        **kwargs: Same as 'add_graph_to_model'
     """
     # Retrieving and creating Pathway with Reactions
     # original_objective, original_direction = model.objective, \
@@ -630,6 +632,14 @@ def _add_graph_from_root(
 
 def _add_graph_from_sequence(
         model: Model, sequence: Iterable, **kwargs):
+    """
+    Adds a sequence of identifiers to given model
+
+    Args:
+        model (Model): model to append graph
+        sequence (Iterable): Sequence with the idenfiers to add.
+        **kwargs: Same as 'add_graph_to_model'
+    """
     # TODO: add tests, and docstrings
     sequence = list(_create_reactions_for_iter(
         model=model, sequence=sequence, **kwargs))
@@ -639,6 +649,35 @@ def _add_graph_from_sequence(
 
 def add_graph_to_model(
         model: Model, graph: Union[list, str, ET.Element, set], **kwargs):
+    """
+    Adds given graph for a pathways or a sequence of reactions identifiers
+    into given model. Data will be downloaded and structured according
+    to the specified database
+
+    Args:
+        model (Model): model to append graph
+        graph (Union[list, str, ET.Element, set]): The identifier for the
+            pathway or a iterator with the ids of the reactions
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        comparment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions.
+        avoid_list (Iterable, optional): A sequence of formatted reactions to
+            avoid adding to the model. This is usefull for long pathways,
+            where X reactions need to be excluded.
+        show_wrong (bool): For each new reaction, if it is unbalance, it will
+            show the difference for the metabolites. Defaults to True
+        stop_wrong (bool): For each new reaction, if it is unbalance, it will
+            stop and raise an error. Defaults to False
+        solution_range (tuple, optional): range of solution to pass the test
+            for each new reaction. Defaults to (0.1, 1000).
+    """
     # TODO: add tests, and docstrings
     if isinstance(graph, (ET.Element, str)):
         _add_graph_from_root(model=model, root=graph, **kwargs)
