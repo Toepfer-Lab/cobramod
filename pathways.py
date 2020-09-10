@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import logging
 from typing import Union, Generator, Iterable
 from creation import get_xml_from_biocyc, build_reaction_from_xml,\
-    stopAndShowMassBalance, DebugLog
+    check_mass_balance, DebugLog
 from cobra import Model, Reaction
 from itertools import chain
 from contextlib import suppress
@@ -20,7 +20,7 @@ DebugLog.setLevel(logging.DEBUG)
 # TODO!!: change name for proper python conventions
 
 
-def fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
+def _fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
     # TODO: verify
     # These are single exceptions
     if len(root_dict) == 0:
@@ -32,7 +32,7 @@ def fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
     return root_dict
 
 
-def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> tuple:
+def _create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> tuple:
     """Returns a dictionary from the root of a XML file, where the keys
     represent a Reaction and the value its predecessor in a pathway. i.e, the
     direction if from right to left
@@ -45,7 +45,7 @@ def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> tuple:
     """
     root_dict = dict()
     if isinstance(root, str):
-        root = get_xml_from_biocyc(bioID=root, **kwargs)
+        root = get_xml_from_biocyc(identifier=root, **kwargs)
     if not isinstance(root, ET.Element):
         msg = 'root is not a valid xml file.'
         DebugLog.error(msg)
@@ -66,12 +66,12 @@ def create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> tuple:
         root_set.add(prior)
     name = root.find("Pathway").attrib["frameid"]
     # NOTE: Add correspoding test
-    root_dict = fix_single_reaction_dict(root=root, root_dict=root_dict)
+    root_dict = _fix_single_reaction_dict(root=root, root_dict=root_dict)
     DebugLog.debug(f'Dictionary for pathway "{name}" succesfully created')
     return root_dict, root_set
 
 
-def find_end_vertex(vertex_dict: dict) -> Generator:
+def _find_end_vertex(vertex_dict: dict) -> Generator:
     """Yields for a dictionary of edges, the last vertex. i.e, a single value
     that is not in a key. They can be seen as end-metabolites
 
@@ -85,7 +85,7 @@ def find_end_vertex(vertex_dict: dict) -> Generator:
             yield value
 
 
-def find_start_vertex(vertex_dict: dict) -> Generator:
+def _find_start_vertex(vertex_dict: dict) -> Generator:
     """Yields the start vertex for given dictionary, i.e. keys are do not
     appear as values. They can be seen as start-metabolites
 
@@ -99,7 +99,7 @@ def find_start_vertex(vertex_dict: dict) -> Generator:
             yield key
 
 
-def verify_return_end_vertex(vertex_dict: dict) -> Generator:
+def _verify_return_end_vertex(vertex_dict: dict) -> Generator:
     """Verifies that at least one end-vertex and start-vertex are possible
     to obtained from dictionary of edges. If no start-vertex is found, the
     graph is cyclical and a edge will be cut
@@ -109,14 +109,14 @@ def verify_return_end_vertex(vertex_dict: dict) -> Generator:
     :return: end vertex
     :rtype: Generator
     """
-    end_vertex = list(find_end_vertex(vertex_dict=vertex_dict))
+    end_vertex = list(_find_end_vertex(vertex_dict=vertex_dict))
     while len(end_vertex) == 0:
         vertex_dict.popitem()
-        end_vertex = list(find_end_vertex(vertex_dict=vertex_dict))
-    return find_end_vertex(vertex_dict=vertex_dict)
+        end_vertex = list(_find_end_vertex(vertex_dict=vertex_dict))
+    return _find_end_vertex(vertex_dict=vertex_dict)
 
 
-def build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
+def _build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
     """Build sequence for given edge-dictionary, that starts with
     given start vertex. It will stop until no keys are available or a cyclical
     graph is found
@@ -151,17 +151,17 @@ def get_graph(vertex_dict: dict) -> Iterable:
     :rtype: Iterable
     """
     # This step is necesary to reduce the lenght of dictionary
-    _ = verify_return_end_vertex(vertex_dict=vertex_dict)
-    start_vertex = find_start_vertex(vertex_dict=vertex_dict)
+    _ = _verify_return_end_vertex(vertex_dict=vertex_dict)
+    start_vertex = _find_start_vertex(vertex_dict=vertex_dict)
     # a generator with list, otherwise items get lost.
     # True order is opposite
     return (list(
-        build_graph(
+        _build_graph(
             start_vertex=start, vertex_dict=vertex_dict)
             )[::-1] for start in start_vertex)
 
 
-def return_missing_edges(
+def _return_missing_edges(
         complete_edges: Iterable, graph: Iterable) -> Generator:
     """Yields missing vertex in graph.
 
@@ -211,7 +211,7 @@ def _remove_item(
             yield item
 
 
-def return_verified_graph(
+def _return_verified_graph(
         vertex_dict: dict, vertex_set: set, **kwargs) -> list:
     """Returns list with ordered sequences for a edge dictionary. If missing
     vertex are missing in the sequences, they will be appended in the list
@@ -226,7 +226,7 @@ def return_verified_graph(
     # TODO: check for single reaction
     graph = list(get_graph(vertex_dict=vertex_dict))
     missing_edges = list(
-        return_missing_edges(
+        _return_missing_edges(
             graph=set(chain.from_iterable(graph)),
             complete_edges=vertex_set))
     graph.insert(0, missing_edges)
@@ -250,15 +250,15 @@ def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
     :rtype: list
     """
     if isinstance(root, str):
-        root = get_xml_from_biocyc(bioID=root, **kwargs)
+        root = get_xml_from_biocyc(identifier=root, **kwargs)
     if not isinstance(root, ET.Element):
         raise AttributeError('Given XML root is invalid.')
-    vertex_dict, vertex_set = create_vertex_dict(root=root, **kwargs)
-    return return_verified_graph(
+    vertex_dict, vertex_set = _create_vertex_dict(root=root, **kwargs)
+    return _return_verified_graph(
         vertex_dict=vertex_dict, vertex_set=vertex_set, **kwargs)
 
 
-def create_reactions_for_iter(
+def _create_reactions_for_iter(
         sequence: Iterable, **kwargs) -> Generator:
     """For each item in a sequence, create a Reaction object
     and return. TODO: add replacement_dict!!
@@ -278,7 +278,7 @@ def create_reactions_for_iter(
         root=reaction, **kwargs) for reaction in sequence)
 
 
-def find_next_demand(
+def _find_next_demand(
         model: Model, check_rxn_id: str, ignore_list: list = [],
         **kwargs) -> str:
     """Returns first metabolites found either in the product or reactant side
@@ -326,7 +326,7 @@ def find_next_demand(
         return tmp_list[0]
 
 
-def has_demand(
+def _has_demand(
         model: Model, metabolite: str) -> bool:
     """Returns True if model has a demand reaction for given metabolite
 
@@ -342,7 +342,7 @@ def has_demand(
             metabolite).reactions])
 
 
-def remove_boundary_if_not_model(
+def _remove_boundary_if_not_model(
         model: Model, metabolite: str, boundary: str):
     """Removes given type of boundary reaction for a specific metabolite if
     found in model
@@ -364,7 +364,7 @@ def remove_boundary_if_not_model(
             f'{boundary.capitalize()} reaction for "{metabolite}" removed')
 
 
-def more_than_two_reaction(model: Model, metabolite: str) -> bool:
+def _more_than_two_reaction(model: Model, metabolite: str) -> bool:
     """Returns True if given metabolite participates more than in two reaction
     for given model.
 
@@ -379,7 +379,7 @@ def more_than_two_reaction(model: Model, metabolite: str) -> bool:
     return len(reactions) > 2
 
 
-def less_equal_than_x_rxns(
+def _less_equal_than_x_rxns(
         model: Model, metabolite: str, x: int = 2) -> bool:
     """Returns True if given metabolite participates in less than 2 reactions
     for given model.
@@ -395,7 +395,7 @@ def less_equal_than_x_rxns(
     return len(reactions) <= x
 
 
-def check_if_boundary(model: Model, metabolite: str) -> bool:
+def _check_if_boundary(model: Model, metabolite: str) -> bool:
     """Returns True if at least one kind of boundary (with exception of
     Exchange reactions) is found for given metabolite
 
@@ -413,7 +413,7 @@ def check_if_boundary(model: Model, metabolite: str) -> bool:
         f'SK_{metabolite}' in list_no_exchanges])
 
 
-def fix_meta_for_boundaries(
+def _fix_meta_for_boundaries(
         model: Model, metabolite: str, ignore_list: Iterable = [], **kwargs):
     DebugLog.debug(f'Checking "{metabolite}" in for sinks and demands')
     if metabolite in ignore_list:
@@ -421,30 +421,30 @@ def fix_meta_for_boundaries(
         DebugLog.warning(msg)
         raise Warning(msg)
     # Check for to add sinks
-    if has_demand(model=model, metabolite=metabolite):
-        if less_equal_than_x_rxns(model=model, metabolite=metabolite, x=2):
+    if _has_demand(model=model, metabolite=metabolite):
+        if _less_equal_than_x_rxns(model=model, metabolite=metabolite, x=2):
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite),
                 type="sink")
             DebugLog.warning(f'Sink reaction created for "{metabolite}"')
         else:
-            remove_boundary_if_not_model(
+            _remove_boundary_if_not_model(
                 model=model, metabolite=metabolite, boundary="sink")
     else:
-        if less_equal_than_x_rxns(model=model, metabolite=metabolite, x=1):
+        if _less_equal_than_x_rxns(model=model, metabolite=metabolite, x=1):
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite),
                 type="sink")
             DebugLog.warning(f'Sink reaction created for "{metabolite}"')
-        elif not less_equal_than_x_rxns(
+        elif not _less_equal_than_x_rxns(
                 model=model, metabolite=metabolite, x=2):
-            remove_boundary_if_not_model(
+            _remove_boundary_if_not_model(
                 model=model, metabolite=metabolite, boundary="sink")
-    remove_boundary_if_not_model(
+    _remove_boundary_if_not_model(
         model=model, metabolite=metabolite, boundary="demand")
 
 
-def verify_side_sinks_for_rxn(
+def _verify_side_sinks_for_rxn(
         model: Model, rxnID: str, side: str, ignore_list: Iterable = []):
     """Checks for either the product or reactant side of a reactions, if
     participant-metabolites have enough sink reactions and, if necesary,
@@ -476,7 +476,7 @@ def verify_side_sinks_for_rxn(
     for meta in metabolites:
         # create or remove
         with suppress(Warning):
-            fix_meta_for_boundaries(
+            _fix_meta_for_boundaries(
                 model=model, metabolite=meta.id, ignore_list=ignore_list)
 
 
@@ -494,14 +494,14 @@ def verify_sinks_for_rxn(
     :type ignore_list: list, optional
     """
     # reactant side
-    verify_side_sinks_for_rxn(
+    _verify_side_sinks_for_rxn(
         model=model, rxnID=rxnID, ignore_list=ignore_list, side="left")
     # product side
-    verify_side_sinks_for_rxn(
+    _verify_side_sinks_for_rxn(
         model=model, rxnID=rxnID, ignore_list=ignore_list, side="right")
 
 
-def test_rxn_for_solution(
+def _test_rxn_for_solution(
         model: Model, rxnID: str, solution_range: tuple = (0.1, 1000),
         times: int = 0, **kwargs):
     """Checks if optimized objective function value of given model lies between
@@ -529,7 +529,7 @@ def test_rxn_for_solution(
     if times == 0:
         DebugLog.info(f'Testing reaction "{rxnID}"')
     # finding demand for testing
-    nextDemand = find_next_demand(model=model, check_rxn_id=rxnID, **kwargs)
+    nextDemand = _find_next_demand(model=model, check_rxn_id=rxnID, **kwargs)
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(nextDemand), "demand")
         model.reactions.get_by_id(f'DM_{nextDemand}').lower_bound = 0.2
@@ -548,19 +548,19 @@ def test_rxn_for_solution(
         verify_sinks_for_rxn(
             model=model, rxnID=rxnID, **kwargs)
         # Recursive with 'extra' argument
-        test_rxn_for_solution(
+        _test_rxn_for_solution(
             model=model, rxnID=rxnID, solution_range=solution_range,
             times=times + 1, **kwargs)
     else:
         # if works, pass and return old objective
         DebugLog.debug(f'Reaction "{rxnID}" showed a feasible answer.')
-        remove_boundary_if_not_model(
+        _remove_boundary_if_not_model(
             model=model, metabolite=nextDemand, boundary="demand")
         verify_sinks_for_rxn(
             model=model, rxnID=rxnID, **kwargs)
 
 
-def add_sequence(
+def _add_sequence(
         model: Model, sequence: list, avoid_list: Iterable = [], **kwargs):
     """From a sequence of Reaction objects, add reach Reaction to given model. It
     checks if new reaction does not break the metabolic system.
@@ -585,8 +585,8 @@ def add_sequence(
         if rxn.id not in model.reactions:
             model.add_reactions([rxn])
             DebugLog.info(f'Reaction "{rxn.id}" added to model')
-            test_rxn_for_solution(model=model, rxnID=rxn.id, **kwargs)
-            stopAndShowMassBalance(model=model, rxnID=rxn.id, **kwargs)
+            _test_rxn_for_solution(model=model, rxnID=rxn.id, **kwargs)
+            check_mass_balance(model=model, rxnID=rxn.id, **kwargs)
         else:
             # FIXME: avoid creating reaction
             DebugLog.warning(f'Reaction "{rxn.id}" was found in model')
@@ -621,25 +621,25 @@ def _add_graph_from_root(
     #     model.objective_direction
     graph = return_graph_from_root(root=root, **kwargs)
     for pathway in graph:
-        sequence = list(create_reactions_for_iter(
+        sequence = list(_create_reactions_for_iter(
             sequence=pathway, model=model, **kwargs))
-        add_sequence(
+        _add_sequence(
             model=model, sequence=sequence, **kwargs)
-    #TODO: Fix sink for metabolites in last sequence
+    # TODO: Fix sink for metabolites in last sequence
 
 
 def _add_graph_from_sequence(
         model: Model, sequence: Iterable, **kwargs):
-        # TODO: add tests, and docstrings
-    sequence = list(create_reactions_for_iter(
+    # TODO: add tests, and docstrings
+    sequence = list(_create_reactions_for_iter(
         model=model, sequence=sequence, **kwargs))
-    add_sequence(
+    _add_sequence(
             model=model, sequence=sequence, **kwargs)
 
 
 def add_graph_to_model(
         model: Model, graph: Union[list, str, ET.Element, set], **kwargs):
-        # TODO: add tests, and docstrings
+    # TODO: add tests, and docstrings
     if isinstance(graph, (ET.Element, str)):
         _add_graph_from_root(model=model, root=graph, **kwargs)
     elif isinstance(graph, (list, set)):

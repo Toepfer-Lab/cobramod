@@ -16,11 +16,18 @@ DebugLog = logging.getLogger("DebugLog")
 DebugLog.setLevel(logging.DEBUG)
 # GenLog.ad
 DebugLog.addHandler(DebugHandler)
-# TODO!!: change name for proper python conventions
+
+
+def _define_base_dir(directory: Path, database: str) -> Path:
+    if directory.joinpath(database).exists():
+        return directory.joinpath(database)
+    else:
+        directory.joinpath(database).mkdir()
+        return directory.joinpath(database)
 
 
 def get_xml_from_biocyc(
-        directory: Path, bioID: str, database: str = "META",
+        directory: Path, identifier: str, database: str,
         **kwargs) -> ET.Element:
     # TODO: make differentation between database in files!! !!
     """Searchs in local DIR if given 'biocyc' .xml is found. If not, query
@@ -28,9 +35,9 @@ def get_xml_from_biocyc(
 
     :param directory: Path to directory where data is located
     :type directory: Path
-    :param bioID: Official ID for BioCyc Object ID
-    :type bioID: str
-    :param database: Name for subdatabse, defaults to "META"
+    :param identifier: Specific database identifier
+    :type identifier: str
+    :param database: Name for subdatabse. Options are: "META", "ARA"
     :type database: str, optional
     :raises Warning: If BioCyc Object ID is not found
     :raises FileNotFoundError: IF file is not located in directory
@@ -38,28 +45,32 @@ def get_xml_from_biocyc(
     :rtype: ET.Element
     """
     if directory.exists():
-        filename = directory.joinpath(f'{bioID}.xml')
-        DebugLog.debug(f'Searching "{bioID}" in directory.')  # debug
+        data_dir = _define_base_dir(
+            directory=directory, database=database)
+        filename = data_dir.joinpath(f'{identifier}.xml')
+        DebugLog.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
             root = ET.parse(str(filename)).getroot()
+            DebugLog.debug('Found')
             return root
         except FileNotFoundError:
             DebugLog.warning(
-                f'"{bioID}"" not found in directory.')
+                f'"{identifier}" not found in directory "{database}".')
             # Retrieve from URL
             url_text = (
-                f'https://websvc.biocyc.org/getxml?{database}:{bioID}')
+                f'https://websvc.biocyc.org/getxml?{database}:{identifier}')
             DebugLog.debug(f'Searching in {url_text}')
             r = requests.get(url_text)
             if r.status_code == 404:
-                msg = f'"{bioID}" not found in {database}'
+                msg = f'"{identifier}" not available in "{database}"'
                 DebugLog.error(msg)
                 raise Warning(msg)
             else:
                 root = ET.fromstring(r.text)  # defining root
                 tree = ET.ElementTree(root)
                 tree.write(str(filename))
-                DebugLog.debug('Object found.')
+                DebugLog.debug(
+                    f'Object found and saved in directory "{database}".')
                 return root
     else:
         msg = "Directory not found"
@@ -67,7 +78,7 @@ def get_xml_from_biocyc(
         raise FileNotFoundError(msg)
 
 
-def create_meta_from_string(line_string: str) -> Metabolite:
+def _create_meta_from_string(line_string: str) -> Metabolite:
     if not isinstance(line_string, str):
         raise TypeError('Argument must be a str')
     line = [part.strip().rstrip() for part in line_string.split(",")]
@@ -91,13 +102,13 @@ def create_meta_from_root(
         **kwargs) -> Metabolite:
     if isinstance(root, str):
         try:
-            root = get_xml_from_biocyc(bioID=root, **kwargs)
+            root = get_xml_from_biocyc(identifier=root, **kwargs)
         except Warning:
             kwargs["database"] = "META"
-            root = get_xml_from_biocyc(bioID=root, **kwargs)
+            root = get_xml_from_biocyc(identifier=root, **kwargs)
     if not isinstance(root, ET.Element):
         raise TypeError('Given root is not valid')
-    metaIDBase = root.find("*/[@frameid]").attrib["frameid"]
+    id_base = root.find("*/[@frameid]").attrib["frameid"]
     try:
         formula = root.find(  # chemical formula
             "./*/cml/*/formula").attrib["concise"].replace(" ", "")
@@ -108,17 +119,17 @@ def create_meta_from_root(
     except AttributeError:  # must be an enzyme
         formula = "X"
         charge = 0
-    metaIDBase = metaIDBase.replace("-", "_") + "_" + compartment
+    id_base = id_base.replace("-", "_") + "_" + compartment
     try:
         name = root.find("*/cml/*").attrib["title"]
     except AttributeError:
-        name = metaIDBase
+        name = id_base
     return Metabolite(
-        id=metaIDBase, formula=formula, name=name, charge=charge,
+        id=id_base, formula=formula, name=name, charge=charge,
         compartment=compartment)
 
 
-def read_lines(f: TextIO) -> Iterator:
+def _read_lines(f: TextIO) -> Iterator:
     """Reads Text I/O and returns iterator of line that are not comments nor
     blanks spaces
 
@@ -136,18 +147,18 @@ def read_lines(f: TextIO) -> Iterator:
         yield line
 
 
-def has_root_name(line: str) -> bool:
+def _has_root_name(line: str) -> bool:
     # TODO test some names
     line_separated = [part.strip().rstrip() for part in line.split(",")]
     return "_" not in line_separated[0][-3:]
 
 
-def check_if_meta_in_model(metaID, model: Model, **kwargs) -> bool:
+def _check_if_meta_in_model(metaID, model: Model, **kwargs) -> bool:
     return metaID in [meta.id for meta in model.metabolites]
 
 
-def add_if_not_found_model(model: Model, metabolite: Metabolite):
-    if check_if_meta_in_model(model=model, metaID=metabolite.id):
+def _add_if_not_found_model(model: Model, metabolite: Metabolite):
+    if _check_if_meta_in_model(model=model, metaID=metabolite.id):
         DebugLog.warning(
             f'Metabolite "{metabolite.id}" was found in given model. Skipping')
     else:
@@ -155,24 +166,24 @@ def add_if_not_found_model(model: Model, metabolite: Metabolite):
         DebugLog.info(f'Metabolite "{metabolite.id}" was added to model')
 
 
-def has_comma_separator(line: str) -> bool:
+def _has_comma_separator(line: str) -> bool:
     """Returns True if given line has a comma"""
     return "," in line
 
 
-def get_name_compartment_string(line):
+def _get_name_compartment_string(line):
     """Returns list of words separated previously by a comma"""
     parts = [part.strip().rstrip() for part in line.split(",")]
     return parts
 
 
-def add_meta_line_to_model(
+def add_meta_from_string(
         line: str, model: Model, replacement_dict: dict = {},
         **kwargs) -> Metabolite:
-    if has_root_name(line=line):
+    if _has_root_name(line=line):
         # FIX: to gain perfomance, search for name and then create Metabolite
-        if has_comma_separator(line=line):
-            parts = get_name_compartment_string(line)
+        if _has_comma_separator(line=line):
+            parts = _get_name_compartment_string(line)
             root = parts[0]
             kwargs["compartment"] = parts[1]
         else:
@@ -187,10 +198,10 @@ def add_meta_line_to_model(
         except KeyError:
             newMeta = create_meta_from_root(
                 root=root, **kwargs)
-        add_if_not_found_model(model=model, metabolite=newMeta)
+        _add_if_not_found_model(model=model, metabolite=newMeta)
     else:
-        newMeta = create_meta_from_string(line_string=line)
-        add_if_not_found_model(model=model, metabolite=newMeta)
+        newMeta = _create_meta_from_string(line_string=line)
+        _add_if_not_found_model(model=model, metabolite=newMeta)
     return newMeta
 
 
@@ -205,12 +216,12 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
     if not filename.exists():
         raise FileNotFoundError
     with open(filename, "r") as f:
-        lines = list(read_lines(f=f))
-        [add_meta_line_to_model(
+        lines = list(_read_lines(f=f))
+        [add_meta_from_string(
             line=single, model=model, **kwargs) for single in lines]
 
 
-def create_base_reaction(
+def _create_base_reaction(
         root: ET.Element, compartment: str = "c", **kwargs) -> Reaction:
     base_id = root.find(
         "*/[@frameid]").attrib["frameid"].replace("--", "-").replace("-", "_")
@@ -223,7 +234,7 @@ def create_base_reaction(
     return Reaction(id=base_id, name=base_name)
 
 
-def create_sides_for_reaction(
+def _create_sides_for_reaction(
     model: Model, root: ET.Element, temp_reaction: Reaction,
         side: str = "left", **kwargs) -> Reaction:
     if side == "left":
@@ -248,14 +259,14 @@ def create_sides_for_reaction(
         except AttributeError:
             raise AttributeError('Reaction cannot find participants')
 
-        temp_metabolite = add_meta_line_to_model(
+        temp_metabolite = add_meta_from_string(
             line=meta_id, model=model, **kwargs)
         temp_reaction.add_metabolites({
             model.metabolites.get_by_id(temp_metabolite.id): coef})
     return temp_reaction
 
 
-def check_change_direction_reaction(reaction: Reaction, root: ET.Element):
+def _check_change_direction_reaction(reaction: Reaction, root: ET.Element):
     # Reversible <->
     text = root.find("*/reaction-direction").text
     if "REVERSIBLE" in text:
@@ -270,29 +281,29 @@ def build_reaction_from_xml(
         root: Union[ET.Element, str], **kwargs) -> Reaction:
     if isinstance(root, str):
         try:
-            root = get_xml_from_biocyc(bioID=root, **kwargs)
+            root = get_xml_from_biocyc(identifier=root, **kwargs)
         except Warning:
             kwargs["database"] = "META"
-            root = get_xml_from_biocyc(bioID=root, **kwargs)
+            root = get_xml_from_biocyc(identifier=root, **kwargs)
     # retrieve name and create simple reaction
-    new_reaction = create_base_reaction(root=root, **kwargs)
+    new_reaction = _create_base_reaction(root=root, **kwargs)
     # add left side
-    new_reaction = create_sides_for_reaction(
+    new_reaction = _create_sides_for_reaction(
         root=root, temp_reaction=new_reaction, side="left", **kwargs)
     # direction
-    check_change_direction_reaction(reaction=new_reaction, root=root)
+    _check_change_direction_reaction(reaction=new_reaction, root=root)
     # add right side
-    new_reaction = create_sides_for_reaction(
+    new_reaction = _create_sides_for_reaction(
         root=root, temp_reaction=new_reaction, side="right", **kwargs)
     return new_reaction
 
 
-def check_if_reaction_in_model(reaction_id, model: Model) -> bool:
+def _check_if_reaction_in_model(reaction_id, model: Model) -> bool:
     return reaction_id in [reaction.id for reaction in model.reactions]
 
 
-def add_if_no_reaction_model(model: Model, reaction: Reaction):
-    if check_if_reaction_in_model(model=model, reaction_id=reaction.id):
+def _add_if_no_reaction_model(model: Model, reaction: Reaction):
+    if _check_if_reaction_in_model(model=model, reaction_id=reaction.id):
         DebugLog.warning(
             f'Reaction "{reaction.id}" was found in given model. Skipping')
     else:
@@ -311,19 +322,20 @@ def add_reaction_from_root(
         raise TypeError('Model is not valid')
     if isinstance(root, str):
         try:
-            root = get_xml_from_biocyc(bioID=replacement_dict[root], **kwargs)
+            root = get_xml_from_biocyc(
+                identifier=replacement_dict[root], **kwargs)
             DebugLog.warning(
                 f'Replacing "{root}" with "{replacement_dict[root]}"')
         except KeyError:
-            root = get_xml_from_biocyc(bioID=root, **kwargs)
+            root = get_xml_from_biocyc(identifier=root, **kwargs)
     if not isinstance(root, ET.Element):
         raise TypeError('Given root is not valid')
     new_reaction = build_reaction_from_xml(
         root=root, model=model, **kwargs)
-    add_if_no_reaction_model(model=model, reaction=new_reaction)
+    _add_if_no_reaction_model(model=model, reaction=new_reaction)
 
 
-def has_delimiter(line_string: str) -> bool:
+def _has_delimiter(line_string: str) -> bool:
     """Returns true if given string has a vertical bar '|'
 
     :param line_string: line to check
@@ -334,23 +346,23 @@ def has_delimiter(line_string: str) -> bool:
     return "|" in line_string
 
 
-def createDictForMetabolites(metaString: list) -> dict:
+def _build_dict_for_metabolites(string_list: list) -> dict:
     """For given list with string, creates Dictionary where the keys are the IDs of
     metabolites and the values their corresponding values.
     Format should be:
     id_meta:value, id_meta2:value2...
 
-    :param metaString: List with strings of "ID:coeffient"
-    :type metaString: list
+    :param string_list: List with strings of "ID:coeffient"
+    :type string_list: list
     :raises TypeError: if format is wrong
     :raises ValueError: If coeffient is missing (Wrong format)
     :return: Dictionary with new keys and values
     :rtype: dict
     """
-    if not isinstance(metaString, list):
+    if not isinstance(string_list, list):
         raise TypeError('Line format is wrong')
     tmpMetaDict = dict()
-    for single in metaString:
+    for single in string_list:
         single = [x.strip().rstrip() for x in single.split(":")]
         meta_name = single[0]
         try:
@@ -379,8 +391,8 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
     line_string = [x.strip().rstrip() for x in line_string.split("|")]
     rxnID_name = [x.strip().rstrip() for x in line_string[0].split(",")]
     try:  # no blanks
-        metaString = [x.strip().rstrip() for x in line_string[1].split(",")]
-        metaDict = createDictForMetabolites(metaString=metaString)
+        string_list = [x.strip().rstrip() for x in line_string[1].split(",")]
+        metaDict = _build_dict_for_metabolites(string_list=string_list)
     except IndexError:  # wrong format
         raise IndexError(
             f'No delimiter "|" found for {rxnID_name[0].split(",")[0]}.')
@@ -393,12 +405,12 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
         rxnID = rxnName = rxnID_name[0]
     new_reaction = Reaction(id=rxnID, name=rxnName)
     for meta, coef in metaDict.items():
-        if check_if_meta_in_model(metaID=meta, **kwargs):
+        if _check_if_meta_in_model(metaID=meta, **kwargs):
             new_reaction.add_metabolites({
                 kwargs["model"].metabolites.get_by_id(meta): coef})
         else:
             # FIX: avoid double creation of metabolites
-            add_meta_line_to_model(
+            add_meta_from_string(
                 line=meta[:-2], compartment=meta[-1],
                 **kwargs)
             new_reaction.add_metabolites({
@@ -409,21 +421,27 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
     return new_reaction
 
 
-def add_reaction_line_to_model(line: str, model: Model, **kwargs):
-    if has_delimiter(line_string=line):
+def _add_reaction_line_to_model(line: str, model: Model, **kwargs):
+    if _has_delimiter(line_string=line):
         # create custom reaction
         new_reaction = create_custom_reaction(
             line_string=line, model=model, **kwargs)
-        add_if_no_reaction_model(model=model, reaction=new_reaction)
+        _add_if_no_reaction_model(model=model, reaction=new_reaction)
     else:
         # add reaction from root. Get only left part
         # !! not recognizing compartments
         line = [part.strip().rstrip() for part in line.split(",")]
-        add_reaction_from_root(
-            model=model, root=line[0], compartment=line[1], **kwargs)
+        # !!
+        try:
+            add_reaction_from_root(
+                model=model, root=line[0], compartment=line[1], **kwargs)
+        except Warning:
+            kwargs["database"] = "META"
+            add_reaction_from_root(
+                model=model, root=line[0], compartment=line[1], **kwargs)
 
 
-def add_reaction_from_file(
+def add_reactions_from_file(
         model: Model, filename: Path, **kwargs):
     """Adds new reactions to given Model. All reactions can be either created
     manually or retrieved from BioCyc. For each reactions, its always checks
@@ -452,20 +470,20 @@ def add_reaction_from_file(
     if not filename.exists():
         raise FileNotFoundError
     with open(filename, "r") as f:
-        lines = list(read_lines(f=f))
-        [add_reaction_line_to_model(
+        lines = list(_read_lines(f=f))
+        [_add_reaction_line_to_model(
             line=single, model=model, **kwargs) for single in lines]
 
 
-def stopAndShowMassBalance(
+def check_mass_balance(
         model: Model, rxnID: str, showIfWrongMB: bool = True,
         stopIfWrongMB: bool = False, **kwargs):
-    massBalanceDict = model.reactions.get_by_id(rxnID).check_mass_balance()
+    dict_balance = model.reactions.get_by_id(rxnID).check_mass_balance()
     # Will stop if True
-    if showIfWrongMB is True and massBalanceDict != {}:
+    if showIfWrongMB is True and dict_balance != {}:
         msg = (
             f'Reaction unbalanced found at {rxnID}. '
-            f'Results to {massBalanceDict}. ')
+            f'Results to {dict_balance}. ')
         DebugLog.warning(msg)
         print(msg)
         if stopIfWrongMB is True:

@@ -12,6 +12,8 @@ dir_test_case = dir_input.joinpath("case_glucosinolate")
 main_model = cb.io.read_sbml_model(filename=str(path_model))
 test_model = main_model.copy()  # copy
 
+# TODO: add option to stop at unbalanced reactions
+
 
 def estimate_maintenance(light_intensity: float) -> float:
     """Equation for ATPase constraint.
@@ -77,7 +79,7 @@ class GlucosinolateTest(unittest.TestCase):
         # Checking for Reactions
         self.assertEqual(len(test_model.reactions), 892)
         # This includes pathway from homophenylalanine
-        cr.add_reaction_from_file(
+        cr.add_reactions_from_file(
             model=test_model,
             filename=dir_test_case.joinpath("new_reactions.txt"),
             database="ARA",
@@ -252,5 +254,7 @@ class GlucosinolateTest(unittest.TestCase):
 
     def test_E_glucosinolate(self):
         pass
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
