@@ -419,7 +419,7 @@
           <speciesReference species="M_Pyruvate_dehydrogenase_acetylDHlipoyl_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
-      <reaction id="R_RIB5PISOM_RXN_c" name="ribose-5-phosphate isomerase A" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+      <reaction id="R_RIB5PISOM_RXN_c" name="ribose-5-phosphate isomerase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_RIBOSE_5P_c" stoichiometry="1" constant="true"/>
         </listOfReactants>

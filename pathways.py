@@ -1,27 +1,19 @@
 #!/usr/bin/env python3
 import xml.etree.ElementTree as ET
-import logging
 from typing import Union, Generator, Iterable
 from creation import get_xml_from_biocyc, build_reaction_from_xml,\
-    check_mass_balance, DebugLog
+    check_mass_balance, debug_log
 from cobra import Model, Reaction
 from itertools import chain
 from contextlib import suppress
 
-# Creating corresponding Logs
-# Format
-# DebugFormatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-# # Handler
-# DebugHandler = logging.FileHandler("debug.log", mode="a+")
-# DebugHandler.setFormatter(DebugFormatter)
-# # Log
-# DebugLog = logging.getLogger("DebugLog")
-DebugLog.setLevel(logging.DEBUG)
-# TODO!!: change name for proper python conventions
-
 
 def _fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
-    # TODO: verify
+    """
+    Verifies that pathway has more than one item in the dictionary.
+    Otherwise, raise and error
+    """
+    # TODO: add to unit test
     # These are single exceptions
     if len(root_dict) == 0:
         # single_rxn = root.find(
@@ -33,22 +25,32 @@ def _fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
 
 
 def _create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> tuple:
-    """Returns a dictionary from the root of a XML file, where the keys
+    """
+    Returns a dictionary from the root of a XML file, where the keys
     represent a Reaction and the value its predecessor in a pathway. i.e, the
     direction if from right to left
 
-    :param root: root of given pathway
-    :type root: Union[ET.Element, str]
-    :raises TypeError: if root is not valid
-    :return: dictionary with reactions and their predecessors
-    :rtype: dict
+    Args:
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+
+    Raises:
+        TypeError: if root is invalid.
+
+    Returns:
+        tuple: a dictionary of reactions and their predecessors, a set of all
+        reactions.
     """
     root_dict = dict()
     if isinstance(root, str):
         root = get_xml_from_biocyc(identifier=root, **kwargs)
     if not isinstance(root, ET.Element):
         msg = 'root is not a valid xml file.'
-        DebugLog.error(msg)
+        debug_log.error(msg)
         raise TypeError(msg)
     root_set = set()
     for rxn_line in root.findall("*/reaction-ordering"):
@@ -67,18 +69,14 @@ def _create_vertex_dict(root: Union[ET.Element, str], **kwargs) -> tuple:
     name = root.find("Pathway").attrib["frameid"]
     # NOTE: Add correspoding test
     root_dict = _fix_single_reaction_dict(root=root, root_dict=root_dict)
-    DebugLog.debug(f'Dictionary for pathway "{name}" succesfully created')
+    debug_log.debug(f'Dictionary for pathway "{name}" succesfully created')
     return root_dict, root_set
 
 
 def _find_end_vertex(vertex_dict: dict) -> Generator:
-    """Yields for a dictionary of edges, the last vertex. i.e, a single value
+    """
+    Yields for a dictionary of edges, the last vertex. i.e, a single value
     that is not in a key. They can be seen as end-metabolites
-
-    :param vertex_dict: dictionary with edges
-    :type vertex_dict: dict
-    :yield: last vertex
-    :rtype: Generator
     """
     for value in vertex_dict.values():
         if value not in vertex_dict.keys():
@@ -86,13 +84,9 @@ def _find_end_vertex(vertex_dict: dict) -> Generator:
 
 
 def _find_start_vertex(vertex_dict: dict) -> Generator:
-    """Yields the start vertex for given dictionary, i.e. keys are do not
-    appear as values. They can be seen as start-metabolites
-
-    :param vertex_dict: dictionary with edges
-    :type vertex_dict: dict
-    :yield: start vertex
-    :rtype: Generator
+    """
+    Yields the start vertex for given dictionary, i.e. keys are do not
+    appear as values. They can be seen as start-metabolites.
     """
     for key in vertex_dict.keys():
         if key not in vertex_dict.values():
@@ -100,14 +94,17 @@ def _find_start_vertex(vertex_dict: dict) -> Generator:
 
 
 def _verify_return_end_vertex(vertex_dict: dict) -> Generator:
-    """Verifies that at least one end-vertex and start-vertex are possible
+    """
+    Verifies that at least one end-vertex and start-vertex are possible
     to obtained from dictionary of edges. If no start-vertex is found, the
     graph is cyclical and a edge will be cut
 
-    :param vertex_dict: dictionary with edges
-    :type vertex_dict: dict
-    :return: end vertex
-    :rtype: Generator
+    Args:
+        vertex_dict (dict): dictionary with edges
+
+    Returns:
+        Generator: A generator that gives last vertex
+
     """
     end_vertex = list(_find_end_vertex(vertex_dict=vertex_dict))
     while len(end_vertex) == 0:
@@ -117,16 +114,17 @@ def _verify_return_end_vertex(vertex_dict: dict) -> Generator:
 
 
 def _build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
-    """Build sequence for given edge-dictionary, that starts with
+    """
+    Build sequence for given edge-dictionary, that starts with
     given start vertex. It will stop until no keys are available or a cyclical
     graph is found
 
-    :param start_vertex: name of edge to start with
-    :type start_vertex: str
-    :param vertex_dict: dictionary with edges
-    :type vertex_dict: dict
-    :yield: Sequence that starts with the start vertex
-    :rtype: Generator
+    Args:
+        start_vertex (str): name of the first
+        vertex_dict (dict): dictionary with edges
+
+    Yields:
+        Generator: sequence that start with first edge
     """
     first_step = vertex_dict[start_vertex]
     count = 0
@@ -142,13 +140,15 @@ def _build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
 
 
 def get_graph(vertex_dict: dict) -> Iterable:
-    """Creates graph for given vertex dictionary. For each start vertex found,
+    """
+    Creates graph for given vertex dictionary. For each start vertex found,
     a sequence will be created. Edges can be cut if a cyclic graph is found
 
-    :param vertex_dict: dictionary with edges
-    :type vertex_dict: dict
-    :return: list with sequences
-    :rtype: Iterable
+    Args:
+        vertex_dict (dict): dictionary with edges
+
+    Returns:
+        Iterable: List with sequences
     """
     # This step is necesary to reduce the lenght of dictionary
     _ = _verify_return_end_vertex(vertex_dict=vertex_dict)
@@ -163,14 +163,8 @@ def get_graph(vertex_dict: dict) -> Iterable:
 
 def _return_missing_edges(
         complete_edges: Iterable, graph: Iterable) -> Generator:
-    """Yields missing vertex in graph.
-
-    :param complete_edges: complete edges of graph
-    :type complete_edges: Iterable
-    :param graph: graph to be tested
-    :type graph: Iterable
-    :yield: sequence of missing vertex
-    :rtype: Generator
+    """
+    Yields missing vertex in graph.
     """
     for edge in complete_edges:
         if edge not in graph:
@@ -180,20 +174,21 @@ def _return_missing_edges(
 def _replace_item(
         iterable: Iterable, replacement_dict: dict = {},
         **kwargs) -> Generator:
-    """Replaces in a Iterable the item for its corresponding key in give
-    dictionary. Returns a generator
+    """
+    For an item in Iterable, replaces it for its corresponding value in
+    given dictionary
 
-    :param iterable: Sequence to modify
-    :type iterable: Iterable
-    :param replacement_dict: Dictionary where keys are to be replaced by
-    given values, defaults to {}
-    :type replacement_dict: dict, optional
-    :yield: Either the original value or the new one
-    :rtype: Generator
+    Args:
+        iterable (Iterable): sequence to modify
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+
+    Yields:
+        Generator: Either original keys or the replacements
     """
     for item in iterable:
         if item in set(chain.from_iterable(replacement_dict.keys())):
-            DebugLog.warning(
+            debug_log.warning(
                 f'Replacing "{item}" with "{replacement_dict[item]}"')
             yield replacement_dict[item]
         else:
@@ -208,7 +203,7 @@ def _remove_item(
     # TODO: add docstring
     for item in iterable:
         if item in avoid_list:
-            DebugLog.warning(
+            debug_log.warning(
                 f'Avoiding root for "{item}"')
         else:
             yield item
@@ -216,13 +211,17 @@ def _remove_item(
 
 def _return_verified_graph(
         vertex_dict: dict, vertex_set: set, **kwargs) -> list:
-    """Returns list with ordered sequences for a edge dictionary. If missing
-    vertex are missing in the sequences, they will be appended in the list
+    """
+    Returns list with an ordered sequence for a dictionary of edges. If a
+    vertex is missing in the sequence, they will be appended as a extra
+    sequence
 
-    :param vertex_dict: dictionary of edges
-    :type vertex_dict: dict
-    :return: verified list with sequences
-    :rtype: list
+    Args:
+        vertex_dict (dict): dictionary with edges
+        vertex_set (set): set with all members
+
+    Returns:
+        list: verified list of sequences
     """
     # TODO: check for single reaction
     graph = list(get_graph(vertex_dict=vertex_dict))
@@ -293,7 +292,7 @@ def _create_reactions_for_iter(
         Generator: Sequence with Reaction objects.
     """
 
-    DebugLog.debug(f'Obtaining root for {sequence}')
+    debug_log.debug(f'Obtaining root for {sequence}')
     # From given list (which includes None values), retrieve only Reaction
     # Objects.
     return (build_reaction_from_xml(
@@ -306,7 +305,7 @@ def _find_next_demand(
     """
     Returns first metabolite found either in the product or reactant side
     of given reaction.
-    
+
     Reversibility of the reaction is taken into consideration. A list with
     metabolites identifiers can be passed to ignored them.
 
@@ -348,13 +347,12 @@ def _find_next_demand(
         # Nothing found
         raise Warning('No metabolite found to become a demand')
     else:
-        DebugLog.debug(
+        debug_log.debug(
             f'Next demand selected for "{reaction_id}": "{tmp_list[0]}"')
         return tmp_list[0]
 
 
-def _has_demand(
-        model: Model, metabolite: str) -> bool:
+def _has_demand(model: Model, metabolite: str) -> bool:
     """
     Returns True if model has a demand reaction for given metabolite identifier
     """
@@ -380,9 +378,8 @@ def _remove_boundary_if_not_model(
             metabolite).reactions):
         model.remove_reactions([
             f'{type_prefix[boundary]}{metabolite}'])
-        DebugLog.warning(
+        debug_log.warning(
             f'{boundary.capitalize()} reaction for "{metabolite}" removed')
-
 
 
 def _less_equal_than_x_rxns(
@@ -393,7 +390,6 @@ def _less_equal_than_x_rxns(
     """
     reactions = model.metabolites.get_by_id(metabolite).reactions
     return len(reactions) <= x
-
 
 
 def _fix_meta_for_boundaries(
@@ -416,10 +412,10 @@ def _fix_meta_for_boundaries(
     Raises:
         Warning: If a metabolite is found in given ignore list.
     """
-    DebugLog.debug(f'Checking "{metabolite}" in for sinks and demands')
+    debug_log.debug(f'Checking "{metabolite}" in for sinks and demands')
     if metabolite in ignore_list:
         msg = f'Metabolite "{metabolite}" ignored'
-        DebugLog.warning(msg)
+        debug_log.warning(msg)
         raise Warning(msg)
     # Check for to add sinks
     if _has_demand(model=model, metabolite=metabolite):
@@ -427,7 +423,7 @@ def _fix_meta_for_boundaries(
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite),
                 type="sink")
-            DebugLog.warning(f'Sink reaction created for "{metabolite}"')
+            debug_log.warning(f'Sink reaction created for "{metabolite}"')
         else:
             _remove_boundary_if_not_model(
                 model=model, metabolite=metabolite, boundary="sink")
@@ -436,7 +432,7 @@ def _fix_meta_for_boundaries(
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite),
                 type="sink")
-            DebugLog.warning(f'Sink reaction created for "{metabolite}"')
+            debug_log.warning(f'Sink reaction created for "{metabolite}"')
         elif not _less_equal_than_x_rxns(
                 model=model, metabolite=metabolite, x=2):
             _remove_boundary_if_not_model(
@@ -532,28 +528,28 @@ def _test_rxn_for_solution(
     # TODO: add errors for wrong MODEL or rxn_id
     with suppress(KeyError):
         if rxn_id in kwargs["ignore_list"]:
-            DebugLog.warning(
+            debug_log.warning(
                 f'Reaction "{rxn_id}" found in ignore list. Skipped')
             return
     if times == 0:
-        DebugLog.info(f'Testing reaction "{rxn_id}"')
+        debug_log.info(f'Testing reaction "{rxn_id}"')
     # finding demand for testing
     nextDemand = _find_next_demand(model=model, reaction_id=rxn_id, **kwargs)
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(nextDemand), "demand")
         model.reactions.get_by_id(f'DM_{nextDemand}').lower_bound = 0.2
-        DebugLog.debug(f'Demand "DM_{nextDemand}" added')
+        debug_log.debug(f'Demand "DM_{nextDemand}" added')
     # Setting maximum times for recursion
     if times == len(model.reactions.get_by_id(rxn_id).metabolites):
         msg = f'Reaction "{rxn_id}" did not passed.'
-        DebugLog.critical(msg)
+        debug_log.critical(msg)
         raise ValueError(msg)
     # answer must be reasonable and lie between given ranges
     # comparison must be using absolute values
     if not solution_range[0] <= abs(
             model.slim_optimize()) <= solution_range[1]:
         # Append to log
-        DebugLog.debug(f'Reaction "{rxn_id}" not in range')
+        debug_log.debug(f'Reaction "{rxn_id}" not in range')
         verify_sinks_for_rxn(
             model=model, rxn_id=rxn_id, **kwargs)
         # Recursive with 'extra' argument
@@ -562,7 +558,7 @@ def _test_rxn_for_solution(
             times=times + 1, **kwargs)
     else:
         # if works, pass and return old objective
-        DebugLog.debug(f'Reaction "{rxn_id}" showed a feasible answer.')
+        debug_log.debug(f'Reaction "{rxn_id}" showed a feasible answer.')
         _remove_boundary_if_not_model(
             model=model, metabolite=nextDemand, boundary="demand")
         verify_sinks_for_rxn(
@@ -593,18 +589,18 @@ def _add_sequence(
     # only if not in model
     for rxn in sequence:
         if rxn.id in avoid_list:
-            DebugLog.warning(
+            debug_log.warning(
                 f'Reaction "{rxn.id}" found in avoid list. Skipping.')
             continue
         if rxn.id not in model.reactions:
             model.add_reactions([rxn])
-            DebugLog.info(f'Reaction "{rxn.id}" added to model')
+            debug_log.info(f'Reaction "{rxn.id}" added to model')
             _test_rxn_for_solution(model=model, rxn_id=rxn.id, **kwargs)
             check_mass_balance(model=model, rxn_id=rxn.id)
         else:
             # FIXME: avoid creating reaction
-            DebugLog.warning(f'Reaction "{rxn.id}" was found in model')
-    DebugLog.debug('Pathway added to Model')
+            debug_log.warning(f'Reaction "{rxn.id}" was found in model')
+    debug_log.debug('Pathway added to Model')
 
 
 def _add_graph_from_root(

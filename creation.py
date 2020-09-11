@@ -12,10 +12,10 @@ DebugFormatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 DebugHandler = logging.FileHandler("debug.log", mode="a+")
 DebugHandler.setFormatter(DebugFormatter)
 # Log
-DebugLog = logging.getLogger("DebugLog")
-DebugLog.setLevel(logging.DEBUG)
+debug_log = logging.getLogger("debug_log")
+debug_log.setLevel(logging.DEBUG)
 # GenLog.ad
-DebugLog.addHandler(DebugHandler)
+debug_log.addHandler(DebugHandler)
 
 
 def _define_base_dir(directory: Path, database: str) -> Path:
@@ -48,33 +48,33 @@ def get_xml_from_biocyc(
         data_dir = _define_base_dir(
             directory=directory, database=database)
         filename = data_dir.joinpath(f'{identifier}.xml')
-        DebugLog.debug(f'Searching "{identifier}" in directory "{database}"')
+        debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
             root = ET.parse(str(filename)).getroot()
-            DebugLog.debug('Found')
+            debug_log.debug('Found')
             return root
         except FileNotFoundError:
-            DebugLog.warning(
+            debug_log.warning(
                 f'"{identifier}" not found in directory "{database}".')
             # Retrieve from URL
             url_text = (
                 f'https://websvc.biocyc.org/getxml?{database}:{identifier}')
-            DebugLog.debug(f'Searching in {url_text}')
+            debug_log.debug(f'Searching in {url_text}')
             r = requests.get(url_text)
             if r.status_code == 404:
                 msg = f'"{identifier}" not available in "{database}"'
-                DebugLog.error(msg)
+                debug_log.error(msg)
                 raise Warning(msg)
             else:
                 root = ET.fromstring(r.text)  # defining root
                 tree = ET.ElementTree(root)
                 tree.write(str(filename))
-                DebugLog.debug(
+                debug_log.debug(
                     f'Object found and saved in directory "{database}".')
                 return root
     else:
         msg = "Directory not found"
-        DebugLog.error(msg)
+        debug_log.error(msg)
         raise FileNotFoundError(msg)
 
 
@@ -159,11 +159,11 @@ def _check_if_meta_in_model(metaID, model: Model, **kwargs) -> bool:
 
 def _add_if_not_found_model(model: Model, metabolite: Metabolite):
     if _check_if_meta_in_model(model=model, metaID=metabolite.id):
-        DebugLog.warning(
+        debug_log.warning(
             f'Metabolite "{metabolite.id}" was found in given model. Skipping')
     else:
         model.add_metabolites([metabolite])
-        DebugLog.info(f'Metabolite "{metabolite.id}" was added to model')
+        debug_log.info(f'Metabolite "{metabolite.id}" was added to model')
 
 
 def _has_comma_separator(line: str) -> bool:
@@ -192,7 +192,7 @@ def add_meta_from_string(
         try:
             newMeta = create_meta_from_root(
                 root=replacement_dict[root], **kwargs)
-            DebugLog.warning(
+            debug_log.warning(
                 f'Metabolite "{root}" replaced by '
                 f'"{replacement_dict[root]}".')
         except KeyError:
@@ -306,11 +306,11 @@ def _check_if_reaction_in_model(reaction_id, model: Model) -> bool:
 
 def _add_if_no_reaction_model(model: Model, reaction: Reaction):
     if _check_if_reaction_in_model(model=model, reaction_id=reaction.id):
-        DebugLog.warning(
+        debug_log.warning(
             f'Reaction "{reaction.id}" was found in given model. Skipping')
     else:
         model.add_reactions([reaction])
-        DebugLog.info(f'Reaction "{reaction.id}" was added to model')
+        debug_log.info(f'Reaction "{reaction.id}" was added to model')
 
 
 def add_reaction_from_root(
@@ -326,7 +326,7 @@ def add_reaction_from_root(
         try:
             root = get_xml_from_biocyc(
                 identifier=replacement_dict[root], **kwargs)
-            DebugLog.warning(
+            debug_log.warning(
                 f'Replacing "{root}" with "{replacement_dict[root]}"')
         except KeyError:
             root = get_xml_from_biocyc(identifier=root, **kwargs)
@@ -502,4 +502,4 @@ def check_mass_balance(
         if stop_wrong is True:
             msg += 'Stopping'
             raise Warning(msg)
-        DebugLog.warning(msg)
+        debug_log.warning(msg)
