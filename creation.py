@@ -5,20 +5,32 @@ from cobra import Metabolite, Model, Reaction
 from typing import Union, TextIO, Iterator
 import requests
 import logging
+
 # Creating corresponding Logs
 # Format
-DebugFormatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+debug_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 # Handler
-DebugHandler = logging.FileHandler("debug.log", mode="a+")
-DebugHandler.setFormatter(DebugFormatter)
+debug_handler = logging.FileHandler("debug.log", mode="a+")
+debug_handler.setFormatter(debug_formatter)
 # Log
 debug_log = logging.getLogger("debug_log")
 debug_log.setLevel(logging.DEBUG)
 # GenLog.ad
-debug_log.addHandler(DebugHandler)
+debug_log.addHandler(debug_handler)
 
 
 def _define_base_dir(directory: Path, database: str) -> Path:
+    """
+    Returns Path object for given database. If directory does not exist.
+    It will be created.
+
+    Args:
+        directory (Path): Parent directory.
+        database (str): Name of database. Options: "META", "ARA".
+
+    Returns:
+        Path: Path object for database.
+    """
     if directory.joinpath(database).exists():
         return directory.joinpath(database)
     else:
@@ -29,20 +41,22 @@ def _define_base_dir(directory: Path, database: str) -> Path:
 def get_xml_from_biocyc(
         directory: Path, identifier: str, database: str,
         **kwargs) -> ET.Element:
-    # TODO: make differentation between database in files!! !!
-    """Searchs in local DIR if given 'biocyc' .xml is found. If not, query
-    Biocyc to retrive file. Returns root of given file.
+    """
+    Searchs in given parent directory if data is located in their respective
+    database directory. If not, data will be retrievied from the corresponding
+    database. Returns root of given identifier.
 
-    :param directory: Path to directory where data is located
-    :type directory: Path
-    :param identifier: Specific database identifier
-    :type identifier: str
-    :param database: Name for subdatabse. Options are: "META", "ARA"
-    :type database: str, optional
-    :raises Warning: If BioCyc Object ID is not found
-    :raises FileNotFoundError: IF file is not located in directory
-    :return: root of xml file
-    :rtype: ET.Element
+    Args:
+        directory (Path): Path to directory where data is located.
+        identifier (str): identifier for given database.
+        database (str): Name of database. Options: "META", "ARA".
+
+    Raises:
+        Warning: If object is not available in given database
+        FileNotFoundError: If parent directory is not found
+
+    Returns:
+        ET.Element: root of XML file
     """
     if directory.exists():
         data_dir = _define_base_dir(
@@ -79,6 +93,22 @@ def get_xml_from_biocyc(
 
 
 def _create_meta_from_string(line_string: str) -> Metabolite:
+    """
+    Creates a Metabolite object based on a string.
+    The string must follow the syntax:
+    'formatted identifier, name , compartment, chemical_formula,
+    molecular_charge'
+
+    Args:
+        line_string (str): string with information
+
+    Raises:
+        TypeError: if no string is identifier
+        IndexError: if format is invalid
+
+    Returns:
+        Metabolite: New Metabolite with given information.
+    """
     if not isinstance(line_string, str):
         raise TypeError('Argument must be a str')
     line = [part.strip().rstrip() for part in line_string.split(",")]
@@ -100,6 +130,22 @@ def _create_meta_from_string(line_string: str) -> Metabolite:
 def create_meta_from_root(
     root: Union[ET.Element, str], compartment: str = "c",
         **kwargs) -> Metabolite:
+    """
+    Creates a Metabolite object base on a root from a XML file.
+    If not database is found, it will automatically search in the database
+    "META".
+
+    Args:
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+        compartment (str, optional): [description]. Defaults to "c".
+
+    Raises:
+        TypeError: if given root is invalid
+
+    Returns:
+        Metabolite: New Metabolite based on root
+    """
     if isinstance(root, str):
         try:
             root = get_xml_from_biocyc(identifier=root, **kwargs)
@@ -130,13 +176,9 @@ def create_meta_from_root(
 
 
 def _read_lines(f: TextIO) -> Iterator:
-    """Reads Text I/O and returns iterator of line that are not comments nor
+    """
+    Reads Text I/O and returns iterator of line that are not comments nor
     blanks spaces
-
-    :param f: Text input, e.g. a read file
-    :type f: TextIO
-    :yield: lines that are not comments or blanks
-    :rtype: Iterator
     """
     for line in f:
         line = line.strip()
@@ -148,17 +190,31 @@ def _read_lines(f: TextIO) -> Iterator:
 
 
 def _has_root_name(line: str) -> bool:
+    """
+    Returns whether given line includes a unformatted identifier.
+    """
     # TODO test some names
     line_separated = [part.strip().rstrip() for part in line.split(",")]
     return "_" not in line_separated[0][-3:]
 
 
-def _check_if_meta_in_model(metaID, model: Model, **kwargs) -> bool:
-    return metaID in [meta.id for meta in model.metabolites]
+def _check_if_meta_in_model(metabolite: str, model: Model, **kwargs) -> bool:
+    """
+    Returns if metabolite identifier is found in given model.
+    """
+    return metabolite in [meta.id for meta in model.metabolites]
 
 
 def _add_if_not_found_model(model: Model, metabolite: Metabolite):
-    if _check_if_meta_in_model(model=model, metaID=metabolite.id):
+    """
+    Checks if given Metabolite object is found in given Model. If not, it will
+    be added
+
+    Args:
+        model (Model): model to test
+        metabolite (Metabolite): Metabolite object to test
+    """
+    if _check_if_meta_in_model(model=model, metabolite=metabolite.id):
         debug_log.warning(
             f'Metabolite "{metabolite.id}" was found in given model. Skipping')
     else:
@@ -171,7 +227,7 @@ def _has_comma_separator(line: str) -> bool:
     return "," in line
 
 
-def _get_name_compartment_string(line):
+def _get_name_compartment_string(line: str) -> list:
     """Returns list of words separated previously by a comma"""
     parts = [part.strip().rstrip() for part in line.split(",")]
     return parts
@@ -180,6 +236,32 @@ def _get_name_compartment_string(line):
 def add_meta_from_string(
         line: str, model: Model, replacement_dict: dict = {},
         **kwargs) -> Metabolite:
+    """
+    Transform a string into a Metabolite object and appends it into model.
+    The Metabolite can be either custom or from a database. Returns new
+    Metabolite object.
+
+    For custom metabolite the syntax follows:
+    'formatted identifier, name , compartment, chemical_formula,
+    molecular_charge'
+
+    For metabolite from root, syntax is:
+    'identifier, compartment'
+
+    Args:
+        line (str): string with either custom metabolite information or
+            metabolite identifier from specific database
+        model (Model): model
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        comparment (str): location of metabolites. Defaults to cytosol "c"
+    Returns:
+        Metabolite: new created Metabolite object
+    """
     if _has_root_name(line=line):
         # FIX: to gain perfomance, search for name and then create Metabolite
         if _has_comma_separator(line=line):
@@ -206,9 +288,18 @@ def add_meta_from_string(
 
 
 def add_meta_from_file(model: Model, filename: Path, **kwargs):
-    """Creates new metabolites from given file and appends them into model.
-    Metabolites can either be created with custom configuration or directly
-    retrieved from BioCyc.
+    """
+    Creates new Metabolites specified in given file. Syntax is mentioned in
+    function 'add_meta_from_string'
+
+    Args:
+        model (Model): model to test
+        filename (Path): location of the file with metabolites
+        **kwargs: same as 'add_meta_from_string'
+
+    Raises:
+        TypeError: if model is invalid
+        FileNotFoundError: if given file is not found
     """
     # checking validity of objects
     if not isinstance(model, Model):
@@ -223,7 +314,28 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
 
 def _create_base_reaction(
         root: ET.Element, compartment: str = "c", **kwargs) -> Reaction:
+    """
+    From given root from a XML file, creates and returns a base reaction.
+    Location, identifier and name are formatted for the Reaction object.
 
+    Args:
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+        comparment (str, Optional): location of the reactions to take place.
+            Defaults to cytosol "c"
+
+    Keyword Arguments:
+        comparment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+
+
+    Returns:
+        Reaction: Reaction object with basic information
+    """
     base_id = root.find(
         "*/[@frameid]").attrib["frameid"].replace("--", "-").replace("-", "_")
     base_id = f'{base_id}_{compartment}'
@@ -236,8 +348,28 @@ def _create_base_reaction(
 
 
 def _create_sides_for_reaction(
-    model: Model, root: ET.Element, temp_reaction: Reaction,
+        model: Model, root: ET.Element, temp_reaction: Reaction,
         side: str = "left", **kwargs) -> Reaction:
+    """
+    For given root, creates either the reactant or product side of the reaction
+    and adds it to given temporal Reaction object. Metabolites are retrieved
+    from model or from given database.
+
+    Args:
+        model (Model): model to test
+        root (ET.Element): root of XML file or identifier for
+            specific database
+        temp_reaction (Reaction): Base Reaction object
+        side (str, optional): [description]. Defaults to "left".
+        **kwargs: Same as '_create_base_reaction'
+    Raises:
+        TypeError: if side option not a string
+        Warning: if side option is invalid
+        AttributeError: if participants cannot be found.
+
+    Returns:
+        Reaction: Reaction object with new product or reactant side
+    """
     if side == "left":
         MULTIPLIER = -1
         side_metabolites = root.findall("./Reaction/left")
@@ -268,6 +400,10 @@ def _create_sides_for_reaction(
 
 
 def _check_change_direction_reaction(reaction: Reaction, root: ET.Element):
+    """
+    Verifies that the direction of the reactions is the same as stated in the
+    root file.
+    """
     # Reversible <->
     text = root.find("*/reaction-direction").text
     if "REVERSIBLE" in text:
@@ -280,7 +416,27 @@ def _check_change_direction_reaction(reaction: Reaction, root: ET.Element):
 
 def build_reaction_from_xml(
         root: Union[ET.Element, str], **kwargs) -> Reaction:
+    """
+    Creates a Reactions Object from given root. Metabolites are searched in
+    given model, otherwise retrieved from a specified database. If metabolite
+    is not found, it will be search in "META"
 
+    Args:
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+
+    Keyword Arguments:
+        model (Model): model to look up for metabolites
+        comparment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+
+    Returns:
+        Reaction: New Reaction object
+    """
     if isinstance(root, str):
         try:
             root = get_xml_from_biocyc(identifier=root, **kwargs)
@@ -301,10 +457,16 @@ def build_reaction_from_xml(
 
 
 def _check_if_reaction_in_model(reaction_id, model: Model) -> bool:
+    """
+    Returns whether reaction is found in model
+    """
     return reaction_id in [reaction.id for reaction in model.reactions]
 
 
 def _add_if_no_reaction_model(model: Model, reaction: Reaction):
+    """
+    Adds given Reaction objecto into model if this was not in the model,
+    """
     if _check_if_reaction_in_model(model=model, reaction_id=reaction.id):
         debug_log.warning(
             f'Reaction "{reaction.id}" was found in given model. Skipping')
@@ -316,8 +478,26 @@ def _add_if_no_reaction_model(model: Model, reaction: Reaction):
 def add_reaction_from_root(
         model: Model, root: Union[ET.Element, str],
         replacement_dict: dict = {}, **kwargs):
-    """Creates Reaction from given root. If no metabolites are found in
-    Model, then rxn will search META
+    """
+    Creates a Reaction object from given object and adds it to given model if
+    not found in the model
+
+    Args:
+        model (Model): model to test
+        root (Union[ET.Element, str]): root of XML file or identifier for
+            specific database
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+
+    Keyword Arguments:
+        comparment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+
+    Raises:
+        TypeError: If model is invalid
+        TypeError: If given root is invalid
     """
     # validating variables
     if not isinstance(model, Model):
@@ -338,28 +518,35 @@ def add_reaction_from_root(
 
 
 def _has_delimiter(line_string: str) -> bool:
-    """Returns true if given string has a vertical bar '|'
-
-    :param line_string: line to check
-    :type line_string: str
-    :return: True if delimiter found
-    :rtype: bool
+    """
+    Returns true if given string has a vertical bar '|'
     """
     return "|" in line_string
 
 
 def _build_dict_for_metabolites(string_list: list) -> dict:
-    """For given list with string, creates Dictionary where the keys are the IDs of
-    metabolites and the values their corresponding values.
-    Format should be:
-    id_meta:value, id_meta2:value2...
+    """
+    For given list of strings, creates a dictionary where keys are the
+    identifiers of metabolites while values represent their corresponding
+    coefficients
 
-    :param string_list: List with strings of "ID:coeffient"
-    :type string_list: list
-    :raises TypeError: if format is wrong
-    :raises ValueError: If coeffient is missing (Wrong format)
-    :return: Dictionary with new keys and values
-    :rtype: dict
+    Syntax follows:
+    'id_metabolite1: coefficient, id_metabolite2:coefficient ...
+    id_metaboliteX: coefficient'
+
+    Identifier has to end with an underscore and a compartment:
+    E.g OXYGEN-MOLECULE_c: -1
+
+    Args:
+        string_list (list): List with strings with information about the
+            metabolites
+
+    Raises:
+        TypeError: if format is wrong
+        ValueError: if coefficient is missing
+
+    Returns:
+        dict: Dictionary with identifiers and coefficients
     """
     if not isinstance(string_list, list):
         raise TypeError('Line format is wrong')
@@ -376,19 +563,33 @@ def _build_dict_for_metabolites(string_list: list) -> dict:
 
 
 def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
-    """for given string which includes name of the Reaction and its components
-    (metabolites), it creates a Reactions.
+    """
+    For given string, which includes the information of the Reaction and its
+    metabolites. If metabolites are not in given model, it will be retrieved
+    from specified database.
 
-    The string should follow the syntax:
-    rxn_id, rxnName | id_meta:value,id_meta2:value2....
-    delimiter is a vertical bar '|'
+    The Syntax should follow:
+    'reaction_identifier, reaction_name | metabolite_identifier1: coefficient,
+    metabolite_identifier2:coefficient,...,metabolite_identifierX: coefficient'
 
-    :param line_string: string with information
-    :type line_string: str
-    :raises IndexError: if no delimiter '|' is found (Wrong format)
-    :raises Warning: if ID is not found (Wrong format)
-    :return: new custom-created Reaction
-    :rtype: Reaction
+    Identifier has to end with an underscore and a compartment:
+    E.g OXYGEN-MOLECULE_c: -1
+
+    Args:
+        line_string (str): string with information
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+
+    Raises:
+        IndexError: if not identfier '|' is not found
+        Warning: if identifier has a wrong format
+
+    Returns:
+        Reaction: new custom Reaction object
     """
     line_string = [x.strip().rstrip() for x in line_string.split("|")]
     rxn_id_name = [x.strip().rstrip() for x in line_string[0].split(",")]
@@ -407,7 +608,7 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
         rxn_id = rxnName = rxn_id_name[0]
     new_reaction = Reaction(id=rxn_id, name=rxnName)
     for meta, coef in metaDict.items():
-        if _check_if_meta_in_model(metaID=meta, **kwargs):
+        if _check_if_meta_in_model(metabolite=meta, **kwargs):
             new_reaction.add_metabolites({
                 kwargs["model"].metabolites.get_by_id(meta): coef})
         else:
@@ -424,6 +625,16 @@ def create_custom_reaction(line_string: str, **kwargs) -> Reaction:
 
 
 def _add_reaction_line_to_model(line: str, model: Model, **kwargs):
+    """
+    From given string, it will identify if a custom Reaction or a Reaction
+    from root can be created. It will build the reaction and adds it to
+    given model
+
+    Args:
+        line (str): string with information
+        model (Model): model to test
+        **kwargs: same as in 'create_custom_reaction'
+    """
     if _has_delimiter(line_string=line):
         # create custom reaction
         new_reaction = create_custom_reaction(
@@ -445,26 +656,31 @@ def _add_reaction_line_to_model(line: str, model: Model, **kwargs):
 
 def add_reactions_from_file(
         model: Model, filename: Path, **kwargs):
-    """Adds new reactions to given Model. All reactions can be either created
-    manually or retrieved from BioCyc. For each reactions, its always checks
-    for mass balance. Unbalanced Reactions can either raise a Warning to
-    be ignored.
-    ### Format:
-    A vertical bar "|" separates the reactions and metabolites in
-    given file. It should follow the syntax:
-    id_reactiom, name | id_meta_name:value, id_meta2_name:value, ...
+    """
+    Adds new reactions to given Model. All reactions can be either created
+    manually or retrieved from a database. For each reactions, its always
+    checks for mass balance.
 
-    :param model: Model to add new reactions
-    :type model: Model
-    :param filename: Path of file with reactions
-    :type filename: Path
-    :param show_wrong: Print to console if reactions are unbalanced,
-    defaults to True
-    :type show_wrong: bool, optional
-    :param stop_wrong: Raise Warning if reacion is unbalanced,
-    defaults to False
-    :type stop_wrong: bool, optional
-    :raises Warning: If stopIfWrong is TRUE and reaction is unbalanced
+    The Syntax should follow:
+    'reaction_identifier, reaction_name | metabolite_identifier1: coefficient,
+    metabolite_identifier2:coefficient,...,metabolite_identifierX: coefficient'
+
+    Identifier has to end with an underscore and a compartment:
+    E.g OXYGEN-MOLECULE_c: -1
+
+    Args:
+        model (Model): model to test
+        filename (Path): location of the file with reaction information
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+
+    Raises:
+        TypeError: If model is invalid
+        FileNotFoundError: is file does not exists
     """
     # TODO: add mass balance check
     if not isinstance(model, Model):
@@ -481,16 +697,18 @@ def check_mass_balance(
         model: Model, rxn_id: str, show_wrong: bool = True,
         stop_wrong: bool = False):
     """
-    [summary]
+    Verifies if given reaction is unbalanced in given model.
 
     Args:
-        model (Model): [description]
-        rxn_id (str): [description]
-        show_wrong (bool, optional): [description]. Defaults to True.
-        stop_wrong (bool, optional): [description]. Defaults to False.
+        model (Model): model to test
+        rxn_id (str): reaction identifier
+        show_wrong (bool, optional): If unbalance is found, it will show the
+            output. Defaults to True.
+        stop_wrong (bool, optional): If unbalanace is found, raise a Warning.
+            Defaults to False.
 
     Raises:
-        Warning: [description]
+        Warning: if given reaction is unbalanced.
     """
     dict_balance = model.reactions.get_by_id(rxn_id).check_mass_balance()
     # Will stop if True
