@@ -7,12 +7,32 @@ before_script:
   - source activate cobramod
   - conda info
 
-# build1:
-#   stage: build
-#   script:
-#     - echo "Do your build here"
+stages:
+  - build
+  - functions
+  - example
 
-test:
-  stage: test
+build:
+  stage: build
   script:
-    - python3 -m unittest discover -s tests/ -v
+    # This initiates pip and install the corresponding package
+    - pip install . -v
+
+test_logical:
+  stage: functions
+  script:
+    - python3 -m unittest tests/test_creation.py -v
+    - python3 -m unittest tests/test_pathways.py -v
+    - python3 -m unittest tests/test_models.py -v
+
+test_models:
+  stage: functions
+  script:
+    # Building model
+    - python3 tests/extra/creating_test_model.py
+    - python3 -m unittest tests/test_models.py -v
+
+test_example:
+  stage: example
+  script:
+    - python3 -m unittest tests/test_glucosinolate.py -v

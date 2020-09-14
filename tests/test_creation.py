@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import creation as cr
+from cobramod import creation as cr
 import unittest
 import xml.etree.ElementTree as ET
 import cobra as cb

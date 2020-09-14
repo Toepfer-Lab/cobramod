@@ -1,8 +1,8 @@
-import pathways as pt
-import creation as cr
+import cobra as cb
+from cobramod import pathways as pt
+from cobramod import creation as cr
 import unittest
 from pathlib import Path
-import cobra as cb
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 path_model = dir_input.joinpath("test_model02.sbml")
@@ -16,14 +16,10 @@ test_model = main_model.copy()  # copy
 
 
 def estimate_maintenance(light_intensity: float) -> float:
-    """Equation for ATPase constraint.
-
-    :param light_intensity: maximum uptake of photons (in mikromol/m^2s)
-    :type light_intensity: float or int
-    :return: Energy constraint for ATPase.
-    :rtype: float
     """
-    ATPase = (0.0049 * light_intensity) + 2.7851
+    Random equation for ATPase constraint.
+    """
+    ATPase = (0.005 * light_intensity) + 2.8
     return float(ATPase)
 
 

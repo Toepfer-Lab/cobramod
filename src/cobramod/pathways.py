@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import xml.etree.ElementTree as ET
 from typing import Union, Generator, Iterable
-from creation import get_xml_from_biocyc, build_reaction_from_xml,\
-    check_mass_balance, debug_log
 from cobra import Model, Reaction
+from cobramod.creation import get_xml_from_biocyc, build_reaction_from_xml,\
+    check_mass_balance, debug_log
 from itertools import chain
 from contextlib import suppress
 
@@ -13,12 +13,8 @@ def _fix_single_reaction_dict(root: ET.Element, root_dict: dict) -> dict:
     Verifies that pathway has more than one item in the dictionary.
     Otherwise, raise and error
     """
-    # TODO: add to unit test
     # These are single exceptions
     if len(root_dict) == 0:
-        # single_rxn = root.find(
-        #     "Pathway/reaction-list/Reaction").attrib["frameid"]
-        # root_dict = {single_rxn: single_rxn}
         raise NotImplementedError(
             'Path has only a reaction. Add separately')
     return root_dict

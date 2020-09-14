@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import unittest
-# import pathways
-import pathways as pt
-# import xml.etree.ElementTree as ET
 import cobra as cb
-from creation import get_xml_from_biocyc, add_reaction_from_root,\
+from cobramod import pathways as pt
+from cobramod.creation import get_xml_from_biocyc, add_reaction_from_root,\
     add_meta_from_string, add_meta_from_file, _add_reaction_line_to_model
 from itertools import chain
 

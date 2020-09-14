@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import unittest
-# import pathways
-import pathways as pt
-# import xml.etree.ElementTree as ET
 import cobra as cb
-from creation import _add_reaction_line_to_model, add_reactions_from_file
+from cobramod import pathways as pt
+from cobramod.creation import _add_reaction_line_to_model, \
+    add_reactions_from_file
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_biocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
