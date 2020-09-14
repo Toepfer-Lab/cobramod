@@ -12,6 +12,9 @@ dir_test_case = dir_input.joinpath("case_glucosinolate")
 main_model = cb.io.read_sbml_model(filename=str(path_model))
 test_model = main_model.copy()  # copy
 
+if not dir_biocyc.exists():
+    dir_biocyc.mkdir(parents=True)
+
 # TODO: add option to stop at unbalanced reactions
 
 
