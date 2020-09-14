@@ -1,0 +1,408 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:PWYQT-4450"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:PWYQT-4450</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Pathway ID="ARA:PWYQT-4450" detail="full" frameid="PWYQT-4450" orgid="ARA"><parent><Pathway class="true" frameid="GLUCOSINOLATE-SYN" orgid="ARA" resource="getxml?ARA:GLUCOSINOLATE-SYN" /></parent>
+<evidence><Evidence-Code ID="ARA:EV-COMP-HINF" class="true" detail="full" frameid="EV-COMP-HINF" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-COMP" orgid="ARA" resource="getxml?ARA:EV-COMP" /></parent>
+<comment datatype="string">Human inference.  A curator or author inferred this assertion after review of one or more possible types 
+of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
+When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
+<common-name datatype="string">Inferred by a human based on computational evidence</common-name>
+</Evidence-Code>
+<Publication ID="ARA:PUB-PMNRXN2019" detail="full" frameid="PUB-PMNRXN2019" orgid="ARA"><title datatype="string">This pathway, a member of the Conditionally Accepted PMN Pathways (CAPP version 6.0), was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because its genome encodes enzyme(s) predicted by E2P2 (version 4.0) to catalyze key reaction(s) in the pathway.</title>
+<url datatype="string">https://www.plantcyc.org/about/savi-pipeline</url>
+<year datatype="integer">2019</year>
+</Publication>
+</evidence>
+<citation><Publication ID="ARA:PUB-12049923" detail="full" frameid="PUB-12049923" orgid="ARA"><pubmed-id datatype="string">12049923</pubmed-id>
+<source datatype="string">Trends Plant Sci 7(6);263-70</source>
+<title datatype="string">Glucosinolate research in the Arabidopsis era.</title>
+<year datatype="integer">2002</year>
+<author datatype="string">Wittstock U</author>
+<author datatype="string">Halkier BA</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-16669764" detail="full" frameid="PUB-16669764" orgid="ARA"><pubmed-id datatype="string">16669764</pubmed-id>
+<source datatype="string">Annu Rev Plant Biol 57;303-33</source>
+<title datatype="string">Biology and biochemistry of glucosinolates.</title>
+<year datatype="integer">2006</year>
+<author datatype="string">Halkier BA</author>
+<author datatype="string">Gershenzon J</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-TOKUHISA04" detail="full" frameid="PUB-TOKUHISA04" orgid="ARA"><source datatype="string">In: Secondary metabolism in model systems. Romeo JT (ed.). Recent advances in phytochemistry, Vol 38, 19-39</source>
+<title datatype="string">The biochemical and molecular origins of aliphatic glucosinolate diversity in &lt;i&gt;Arabidopsis thaliana&lt;/i&gt;</title>
+<year datatype="integer">2004</year>
+<author datatype="string">Tokuhisa J</author>
+<author datatype="string">de Kraker  J-W</author>
+<author datatype="string">Textor S</author>
+<author datatype="string">Gershenzon J</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-11198818" detail="full" frameid="PUB-11198818" orgid="ARA"><pubmed-id datatype="string">11198818</pubmed-id>
+<source datatype="string">Phytochemistry 56(1);5-51</source>
+<title datatype="string">The chemical diversity and distribution of glucosinolates and isothiocyanates among plants.</title>
+<year datatype="integer">2001</year>
+<author datatype="string">Fahey JW</author>
+<author datatype="string">Zalcmann AT</author>
+<author datatype="string">Talalay P</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-15860428" detail="full" frameid="PUB-15860428" orgid="ARA"><pubmed-id datatype="string">15860428</pubmed-id>
+<source datatype="string">Curr Opin Plant Biol 8(3);308-16</source>
+<title datatype="string">The secondary metabolism of Arabidopsis thaliana: growing like a weed.</title>
+<year datatype="integer">2005</year>
+<author datatype="string">D'Auria JC</author>
+<author datatype="string">Gershenzon J</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-11402209" detail="full" frameid="PUB-11402209" orgid="ARA"><pubmed-id datatype="string">11402209</pubmed-id>
+<source datatype="string">Plant Physiol 126(2);811-25</source>
+<title datatype="string">Genetic control of natural variation in Arabidopsis glucosinolate accumulation.</title>
+<year datatype="integer">2001</year>
+<author datatype="string">Kliebenstein DJ</author>
+<author datatype="string">Kroymann J</author>
+<author datatype="string">Brown P</author>
+<author datatype="string">Figuth A</author>
+<author datatype="string">Pedersen D</author>
+<author datatype="string">Gershenzon J</author>
+<author datatype="string">Mitchell-Olds T</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-11706188" detail="full" frameid="PUB-11706188" orgid="ARA"><pubmed-id datatype="string">11706188</pubmed-id>
+<source datatype="string">Plant Physiol 127(3);1077-88</source>
+<title datatype="string">A gene controlling variation in Arabidopsis glucosinolate composition is part of the methionine chain elongation pathway.</title>
+<year datatype="integer">2001</year>
+<author datatype="string">Kroymann J</author>
+<author datatype="string">Textor S</author>
+<author datatype="string">Tokuhisa JG</author>
+<author datatype="string">Falk KL</author>
+<author datatype="string">Bartram S</author>
+<author datatype="string">Gershenzon J</author>
+<author datatype="string">Mitchell-Olds T</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-14740211" detail="full" frameid="PUB-14740211" orgid="ARA"><pubmed-id datatype="string">14740211</pubmed-id>
+<source datatype="string">Planta 218(6);1026-35</source>
+<title datatype="string">Biosynthesis of methionine-derived glucosinolates in &lt;i&gt;Arabidopsis thaliana&lt;/i&gt;: recombinant expression and characterization of methylthioalkylmalate synthase, the condensing enzyme of the chain-elongation cycle.</title>
+<year datatype="integer">2004</year>
+<author datatype="string">Textor S</author>
+<author datatype="string">Bartram S</author>
+<author datatype="string">Kroymann J</author>
+<author datatype="string">Falk KL</author>
+<author datatype="string">Hick A</author>
+<author datatype="string">Pickett JA</author>
+<author datatype="string">Gershenzon J</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-17369439" detail="full" frameid="PUB-17369439" orgid="ARA"><pubmed-id datatype="string">17369439</pubmed-id>
+<source datatype="string">Plant Physiol NIL</source>
+<title datatype="string">MAM3 Catalyzes the Formation of All Aliphatic Glucosinolate Chain Lengths in Arabidopsis.</title>
+<year datatype="integer">2007</year>
+<author datatype="string">Textor S</author>
+<author datatype="string">de Kraker JW</author>
+<author datatype="string">Hause B</author>
+<author datatype="string">Gershenzon J</author>
+<author datatype="string">Tokuhisa JG</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-16702431" detail="full" frameid="PUB-16702431" orgid="ARA"><pubmed-id datatype="string">16702431</pubmed-id>
+<source datatype="string">Genetics 173(3);1629-36</source>
+<title datatype="string">Natural variation in MAM within and between populations of &lt;i&gt;Arabidopsis lyrata&lt;/i&gt; determines glucosinolate phenotype.</title>
+<year datatype="integer">2006</year>
+<author datatype="string">Heidel AJ</author>
+<author datatype="string">Clauss MJ</author>
+<author datatype="string">Kroymann J</author>
+<author datatype="string">Savolainen O</author>
+<author datatype="string">Mitchell-Olds T</author>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID="ARA:EV-AS-TAS" class="true" detail="full" frameid="EV-AS-TAS" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-AS" orgid="ARA" resource="getxml?ARA:EV-AS" /></parent>
+<comment datatype="string">Traceable author statement.  The assertion was made in a publication -- such as a review or 
+in another database -- that itself did not describe an experiment supporting the
+assertion.  The statement referenced another publication that supported the assertion,
+but it is unclear whether that publication described an experiment that supported
+the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
+is that the former code is used when it is certain that experimental evidence supports the
+assertion, and the latter code is used when there is a possibility that an experiment was
+not done to support the assertion.
+In general, references to the primary literature are preferred,
+but this code can be used when the original article is difficult to locate.</comment>
+<common-name datatype="string">Traceable author statement</common-name>
+</Evidence-Code>
+<Publication frameid="PUB-12049923" orgid="ARA" resource="#ARA:PUB-12049923" /></evidence>
+<evidence><Evidence-Code class="true" frameid="EV-AS-TAS" orgid="ARA" resource="#ARA:EV-AS-TAS" /><Publication frameid="PUB-16669764" orgid="ARA" resource="#ARA:PUB-16669764" /></evidence>
+<evidence><Evidence-Code class="true" frameid="EV-AS-TAS" orgid="ARA" resource="#ARA:EV-AS-TAS" /><Publication frameid="PUB-TOKUHISA04" orgid="ARA" resource="#ARA:PUB-TOKUHISA04" /></evidence>
+<evidence><Evidence-Code ID="ARA:EV-EXP-IDA" class="true" detail="full" frameid="EV-EXP-IDA" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="ARA" resource="getxml?ARA:EV-EXP" /></parent>
+<comment datatype="string">IDA inferred from direct assay.
+
+&lt;br&gt;
+The assertion was inferred from a direct experimental assay such as
+&lt;ul&gt;
+    &lt;li&gt; Enzyme assays
+    &lt;li&gt; In vitro reconstitution (e.g. transcription)
+    &lt;li&gt; Immunofluorescence
+    &lt;li&gt; Cell fractionation
+&lt;/ul&gt;</comment>
+<common-name datatype="string">Inferred from direct assay</common-name>
+</Evidence-Code>
+<Publication frameid="PUB-11402209" orgid="ARA" resource="#ARA:PUB-11402209" /></evidence>
+<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-12049923" orgid="ARA" resource="#ARA:PUB-12049923" /></evidence>
+<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-11706188" orgid="ARA" resource="#ARA:PUB-11706188" /></evidence>
+<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-14740211" orgid="ARA" resource="#ARA:PUB-14740211" /></evidence>
+<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-16702431" orgid="ARA" resource="#ARA:PUB-16702431" /></evidence>
+<comment datatype="string">&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: Enzyme(s) that catalyzes one or more of the key reactions in this pathway were predicted in Arabidopsis thaliana col. &lt;A href="http://www.plantcyc.org/about/savi_pipeline"&gt;[more info]&lt;/A&gt;
+&lt;p&gt;
+&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
+&lt;p&gt;
+&lt;b&gt;General Background&lt;/b&gt;
+
+The biosynthesis of aliphatic glucosinolates is divided into three major stages, 
+first the chain elongation of amino acids such as methionine (this pathway) and phenylalanine, followed by the 
+core biosynthesis of the glucosinolates (compare &lt;a href="/ARA/NEW-IMAGE?type=PATHWAY&amp;object=PWY-1187"&gt;glucosinolate biosynthesis from homomethionine&lt;/a&gt;) and finally secondary modifications of 
+the glucosinolates [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12049923"&gt;Wittstock02&lt;/a&gt;] [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16669764"&gt;Halkier06&lt;/a&gt;]. 
+
+The structural diversity of glucosinolates results from different precursor amino acids, varying length of the 
+side chain and different patterns of secondary oxidation and esterification [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bTOKUHISA04%5d"&gt;Tokuhisa04&lt;/a&gt;]. Over 
+120 different glucosinolates have been described so far in plants [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11198818"&gt;Fahey01&lt;/a&gt;]. Glucosinolates belong 
+to one of the largest group of secondary metabolites found in the model plant &lt;i&gt;Arabidopsis thaliana&lt;/i&gt; 
+[&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15860428"&gt;DAuria05&lt;/a&gt;], where 39 glucosinolates have been identified in 34 different ecotypes indicating the 
+plasticity of glucosinolate biosynthesis. A significant part of that diversity of aliphatic glucosinolates in 
+Arabidopsis is based on varying side chain length [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11402209"&gt;Kliebenstein01&lt;/a&gt;].
+
+&lt;b&gt;About This Pathway&lt;/b&gt;
+
+The reaction sequence that is characteristic for the side chain elongation of 
+methionine comprises three steps. Those reactions form a cycle which is repeatedly run through for the production of the C3 to C8 glucosinolates (the number of C refers to the number of methylene groups in the side chain) found in Arabidopsis [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/17369439"&gt;Textor07&lt;/a&gt;]. The first step is the condensation of acetyl-CoA with the deaminated 2-oxo-derivative of methionine, followed by the isomerization of the generated 2-malate derivative to form a 3-malate derivative which finally undergoes oxidative decarboxylation yielding a 2-oxo acid that is elongated by one more methylene group and can either reenter the cycle or proceed to the core biosynthetic steps [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16669764"&gt;Halkier06&lt;/a&gt;].
+
+This side chain elongation cycle very much resembles the reaction sequence being found in &lt;a href="/ARA/NEW-IMAGE?type=PATHWAY&amp;object=LEUSYN-PWY"&gt;leucine biosynthesis&lt;/a&gt;. Therefore it was not surprising that enzymes of leucine biosynthesis also function in methionine chain elongation leading to glucosinolate biosynthesis, and vise versa [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/18162591"&gt;Knill08&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/19597944"&gt;Knill09&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/19674406"&gt;He09&lt;/a&gt;]. 
+</comment>
+<common-name datatype="string">aliphatic glucosinolate biosynthesis, side chain elongation cycle</common-name>
+<credits><created><date datatype="date">2007-05-07</date>
+<Person ID="ARA:hartmut" detail="full" frameid="hartmut" orgid="ARA"><affiliations><Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
+<revised><date datatype="date">2010-04-22</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></affiliations>
+</Person>
+</revised>
+</credits>
+<dblink><dblink-db>PLANTCYC</dblink-db>
+<dblink-oid>PWYQT-4450</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pmn.plantcyc.org/PLANT/new-image?object=PWYQT-4450</dblink-URL>
+</dblink>
+<dblink><dblink-db>METACYC</dblink-db>
+<dblink-oid>PWYQT-4450</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://biocyc.org/META/new-image?object=PWYQT-4450</dblink-URL>
+</dblink>
+<pathway-link><Compound frameid="CPDQT-41" orgid="ARA" resource="getxml?ARA:CPDQT-41" /><link-target><Pathway frameid="PWYQT-4475" orgid="ARA" resource="getxml?ARA:PWYQT-4475" /></link-target>
+</pathway-link>
+<pathway-link><Compound frameid="CPDQT-30" orgid="ARA" resource="getxml?ARA:CPDQT-30" /><link-target><Pathway frameid="PWYQT-4474" orgid="ARA" resource="getxml?ARA:PWYQT-4474" /></link-target>
+</pathway-link>
+<pathway-link><Compound frameid="CPDQT-29" orgid="ARA" resource="getxml?ARA:CPDQT-29" /><link-target><Pathway frameid="PWYQT-4473" orgid="ARA" resource="getxml?ARA:PWYQT-4473" /></link-target>
+</pathway-link>
+<pathway-link><Compound frameid="CPDQT-28" orgid="ARA" resource="getxml?ARA:CPDQT-28" /><link-target><Pathway frameid="PWYQT-4472" orgid="ARA" resource="getxml?ARA:PWYQT-4472" /></link-target>
+</pathway-link>
+<pathway-link><Compound frameid="CPDQT-27" orgid="ARA" resource="getxml?ARA:CPDQT-27" /><link-target><Pathway frameid="PWYQT-4471" orgid="ARA" resource="getxml?ARA:PWYQT-4471" /></link-target>
+</pathway-link>
+<pathway-link><Compound frameid="2-OXO-5-METHYLTHIOPENTANOIC-ACID" orgid="ARA" resource="getxml?ARA:2-OXO-5-METHYLTHIOPENTANOIC-ACID" /><outgoing-link-target><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></outgoing-link-target>
+<link-target><Pathway frameid="PWY-1186" orgid="ARA" resource="getxml?ARA:PWY-1186" /></link-target>
+</pathway-link>
+<reaction-ordering><Reaction frameid="RXNQT-4348" orgid="ARA" resource="getxml?ARA:RXNQT-4348" /><predecessor-reactions><Reaction frameid="RXN-18203" orgid="ARA" resource="getxml?ARA:RXN-18203" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4347" orgid="ARA" resource="getxml?ARA:RXNQT-4347" /><predecessor-reactions><Reaction frameid="RXN-18205" orgid="ARA" resource="getxml?ARA:RXN-18205" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4346" orgid="ARA" resource="getxml?ARA:RXNQT-4346" /><predecessor-reactions><Reaction frameid="RXN-18207" orgid="ARA" resource="getxml?ARA:RXN-18207" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4345" orgid="ARA" resource="getxml?ARA:RXNQT-4345" /><predecessor-reactions><Reaction frameid="RXN-18209" orgid="ARA" resource="getxml?ARA:RXN-18209" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4349" orgid="ARA" resource="getxml?ARA:RXNQT-4349" /><predecessor-reactions><Reaction frameid="RXN-18201" orgid="ARA" resource="getxml?ARA:RXN-18201" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18201" orgid="ARA" resource="getxml?ARA:RXN-18201" /><predecessor-reactions><Reaction frameid="RXN-18200" orgid="ARA" resource="getxml?ARA:RXN-18200" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18200" orgid="ARA" resource="getxml?ARA:RXN-18200" /><predecessor-reactions><Reaction frameid="RXN-18193" orgid="ARA" resource="getxml?ARA:RXN-18193" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4175" orgid="ARA" resource="getxml?ARA:RXNQT-4175" /><predecessor-reactions><Reaction frameid="RXN-18203" orgid="ARA" resource="getxml?ARA:RXN-18203" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18203" orgid="ARA" resource="getxml?ARA:RXN-18203" /><predecessor-reactions><Reaction frameid="RXN-18202" orgid="ARA" resource="getxml?ARA:RXN-18202" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18202" orgid="ARA" resource="getxml?ARA:RXN-18202" /><predecessor-reactions><Reaction frameid="RXN-18191" orgid="ARA" resource="getxml?ARA:RXN-18191" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4172" orgid="ARA" resource="getxml?ARA:RXNQT-4172" /><predecessor-reactions><Reaction frameid="RXN-18205" orgid="ARA" resource="getxml?ARA:RXN-18205" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18205" orgid="ARA" resource="getxml?ARA:RXN-18205" /><predecessor-reactions><Reaction frameid="RXN-18204" orgid="ARA" resource="getxml?ARA:RXN-18204" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18204" orgid="ARA" resource="getxml?ARA:RXN-18204" /><predecessor-reactions><Reaction frameid="RXN-18189" orgid="ARA" resource="getxml?ARA:RXN-18189" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4169" orgid="ARA" resource="getxml?ARA:RXNQT-4169" /><predecessor-reactions><Reaction frameid="RXN-18207" orgid="ARA" resource="getxml?ARA:RXN-18207" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18207" orgid="ARA" resource="getxml?ARA:RXN-18207" /><predecessor-reactions><Reaction frameid="RXN-18206" orgid="ARA" resource="getxml?ARA:RXN-18206" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18206" orgid="ARA" resource="getxml?ARA:RXN-18206" /><predecessor-reactions><Reaction frameid="RXN-18187" orgid="ARA" resource="getxml?ARA:RXN-18187" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4166" orgid="ARA" resource="getxml?ARA:RXNQT-4166" /><predecessor-reactions><Reaction frameid="RXN-18209" orgid="ARA" resource="getxml?ARA:RXN-18209" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18209" orgid="ARA" resource="getxml?ARA:RXN-18209" /><predecessor-reactions><Reaction frameid="RXN-18208" orgid="ARA" resource="getxml?ARA:RXN-18208" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18208" orgid="ARA" resource="getxml?ARA:RXN-18208" /><predecessor-reactions><Reaction frameid="RXN-18185" orgid="ARA" resource="getxml?ARA:RXN-18185" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18193" orgid="ARA" resource="getxml?ARA:RXN-18193" /><predecessor-reactions><Reaction frameid="RXN-18192" orgid="ARA" resource="getxml?ARA:RXN-18192" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18192" orgid="ARA" resource="getxml?ARA:RXN-18192" /><predecessor-reactions><Reaction frameid="RXNQT-4175" orgid="ARA" resource="getxml?ARA:RXNQT-4175" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18191" orgid="ARA" resource="getxml?ARA:RXN-18191" /><predecessor-reactions><Reaction frameid="RXN-18190" orgid="ARA" resource="getxml?ARA:RXN-18190" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18190" orgid="ARA" resource="getxml?ARA:RXN-18190" /><predecessor-reactions><Reaction frameid="RXNQT-4172" orgid="ARA" resource="getxml?ARA:RXNQT-4172" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18189" orgid="ARA" resource="getxml?ARA:RXN-18189" /><predecessor-reactions><Reaction frameid="RXN-18188" orgid="ARA" resource="getxml?ARA:RXN-18188" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18188" orgid="ARA" resource="getxml?ARA:RXN-18188" /><predecessor-reactions><Reaction frameid="RXNQT-4169" orgid="ARA" resource="getxml?ARA:RXNQT-4169" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18187" orgid="ARA" resource="getxml?ARA:RXN-18187" /><predecessor-reactions><Reaction frameid="RXN-18186" orgid="ARA" resource="getxml?ARA:RXN-18186" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18186" orgid="ARA" resource="getxml?ARA:RXN-18186" /><predecessor-reactions><Reaction frameid="RXNQT-4166" orgid="ARA" resource="getxml?ARA:RXNQT-4166" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18185" orgid="ARA" resource="getxml?ARA:RXN-18185" /><predecessor-reactions><Reaction frameid="RXN-18184" orgid="ARA" resource="getxml?ARA:RXN-18184" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-18184" orgid="ARA" resource="getxml?ARA:RXN-18184" /><predecessor-reactions><Reaction frameid="RXNQT-4163" orgid="ARA" resource="getxml?ARA:RXNQT-4163" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXNQT-4169" orgid="ARA" resource="getxml?ARA:RXNQT-4169" /><predecessor-reactions><Reaction frameid="RXNQT-4163" orgid="ARA" resource="getxml?ARA:RXNQT-4163" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="RXNQT-4348" orgid="ARA" resource="getxml?ARA:RXNQT-4348" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-30" orgid="ARA" resource="getxml?ARA:CPDQT-30" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-256" orgid="ARA" resource="getxml?ARA:CPDQT-256" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4347" orgid="ARA" resource="getxml?ARA:RXNQT-4347" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-29" orgid="ARA" resource="getxml?ARA:CPDQT-29" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-349" orgid="ARA" resource="getxml?ARA:CPDQT-349" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4346" orgid="ARA" resource="getxml?ARA:RXNQT-4346" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-28" orgid="ARA" resource="getxml?ARA:CPDQT-28" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-404" orgid="ARA" resource="getxml?ARA:CPDQT-404" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4345" orgid="ARA" resource="getxml?ARA:RXNQT-4345" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-27" orgid="ARA" resource="getxml?ARA:CPDQT-27" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-340" orgid="ARA" resource="getxml?ARA:CPDQT-340" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4349" orgid="ARA" resource="getxml?ARA:RXNQT-4349" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-41" orgid="ARA" resource="getxml?ARA:CPDQT-41" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-277" orgid="ARA" resource="getxml?ARA:CPDQT-277" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18201" orgid="ARA" resource="getxml?ARA:RXN-18201" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19487" orgid="ARA" resource="getxml?ARA:CPD-19487" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-41" orgid="ARA" resource="getxml?ARA:CPDQT-41" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18200" orgid="ARA" resource="getxml?ARA:RXN-18200" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-40" orgid="ARA" resource="getxml?ARA:CPDQT-40" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19487" orgid="ARA" resource="getxml?ARA:CPD-19487" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18203" orgid="ARA" resource="getxml?ARA:RXN-18203" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19488" orgid="ARA" resource="getxml?ARA:CPD-19488" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-30" orgid="ARA" resource="getxml?ARA:CPDQT-30" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18202" orgid="ARA" resource="getxml?ARA:RXN-18202" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-39" orgid="ARA" resource="getxml?ARA:CPDQT-39" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19488" orgid="ARA" resource="getxml?ARA:CPD-19488" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18205" orgid="ARA" resource="getxml?ARA:RXN-18205" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19489" orgid="ARA" resource="getxml?ARA:CPD-19489" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-29" orgid="ARA" resource="getxml?ARA:CPDQT-29" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18204" orgid="ARA" resource="getxml?ARA:RXN-18204" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-38" orgid="ARA" resource="getxml?ARA:CPDQT-38" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19489" orgid="ARA" resource="getxml?ARA:CPD-19489" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18207" orgid="ARA" resource="getxml?ARA:RXN-18207" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19490" orgid="ARA" resource="getxml?ARA:CPD-19490" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-28" orgid="ARA" resource="getxml?ARA:CPDQT-28" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18206" orgid="ARA" resource="getxml?ARA:RXN-18206" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-37" orgid="ARA" resource="getxml?ARA:CPDQT-37" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19490" orgid="ARA" resource="getxml?ARA:CPD-19490" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18209" orgid="ARA" resource="getxml?ARA:RXN-18209" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19491" orgid="ARA" resource="getxml?ARA:CPD-19491" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-27" orgid="ARA" resource="getxml?ARA:CPDQT-27" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18208" orgid="ARA" resource="getxml?ARA:RXN-18208" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-36" orgid="ARA" resource="getxml?ARA:CPDQT-36" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19491" orgid="ARA" resource="getxml?ARA:CPD-19491" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18193" orgid="ARA" resource="getxml?ARA:RXN-18193" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19481" orgid="ARA" resource="getxml?ARA:CPD-19481" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-40" orgid="ARA" resource="getxml?ARA:CPDQT-40" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18192" orgid="ARA" resource="getxml?ARA:RXN-18192" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-35" orgid="ARA" resource="getxml?ARA:CPDQT-35" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19481" orgid="ARA" resource="getxml?ARA:CPD-19481" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18191" orgid="ARA" resource="getxml?ARA:RXN-18191" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19480" orgid="ARA" resource="getxml?ARA:CPD-19480" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-39" orgid="ARA" resource="getxml?ARA:CPDQT-39" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18190" orgid="ARA" resource="getxml?ARA:RXN-18190" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-34" orgid="ARA" resource="getxml?ARA:CPDQT-34" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19480" orgid="ARA" resource="getxml?ARA:CPD-19480" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18189" orgid="ARA" resource="getxml?ARA:RXN-18189" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19479" orgid="ARA" resource="getxml?ARA:CPD-19479" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-38" orgid="ARA" resource="getxml?ARA:CPDQT-38" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18188" orgid="ARA" resource="getxml?ARA:RXN-18188" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-33" orgid="ARA" resource="getxml?ARA:CPDQT-33" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19479" orgid="ARA" resource="getxml?ARA:CPD-19479" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18187" orgid="ARA" resource="getxml?ARA:RXN-18187" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19478" orgid="ARA" resource="getxml?ARA:CPD-19478" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-37" orgid="ARA" resource="getxml?ARA:CPDQT-37" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18186" orgid="ARA" resource="getxml?ARA:RXN-18186" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-32" orgid="ARA" resource="getxml?ARA:CPDQT-32" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19478" orgid="ARA" resource="getxml?ARA:CPD-19478" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18185" orgid="ARA" resource="getxml?ARA:RXN-18185" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-19477" orgid="ARA" resource="getxml?ARA:CPD-19477" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-36" orgid="ARA" resource="getxml?ARA:CPDQT-36" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-18184" orgid="ARA" resource="getxml?ARA:RXN-18184" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-31" orgid="ARA" resource="getxml?ARA:CPDQT-31" /></left-primaries>
+<right-primaries><Compound frameid="CPD-19477" orgid="ARA" resource="getxml?ARA:CPD-19477" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4175" orgid="ARA" resource="getxml?ARA:RXNQT-4175" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-30" orgid="ARA" resource="getxml?ARA:CPDQT-30" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-35" orgid="ARA" resource="getxml?ARA:CPDQT-35" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4172" orgid="ARA" resource="getxml?ARA:RXNQT-4172" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-29" orgid="ARA" resource="getxml?ARA:CPDQT-29" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-34" orgid="ARA" resource="getxml?ARA:CPDQT-34" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4169" orgid="ARA" resource="getxml?ARA:RXNQT-4169" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-28" orgid="ARA" resource="getxml?ARA:CPDQT-28" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-33" orgid="ARA" resource="getxml?ARA:CPDQT-33" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4166" orgid="ARA" resource="getxml?ARA:RXNQT-4166" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPDQT-27" orgid="ARA" resource="getxml?ARA:CPDQT-27" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-32" orgid="ARA" resource="getxml?ARA:CPDQT-32" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXNQT-4163" orgid="ARA" resource="getxml?ARA:RXNQT-4163" /><direction>L2R</direction>
+<left-primaries><Compound frameid="2-OXO-5-METHYLTHIOPENTANOIC-ACID" orgid="ARA" resource="getxml?ARA:2-OXO-5-METHYLTHIOPENTANOIC-ACID" /></left-primaries>
+<right-primaries><Compound frameid="CPDQT-31" orgid="ARA" resource="getxml?ARA:CPDQT-31" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="RXNQT-4348" orgid="ARA" resource="getxml?ARA:RXNQT-4348" /><Reaction frameid="RXNQT-4347" orgid="ARA" resource="getxml?ARA:RXNQT-4347" /><Reaction frameid="RXNQT-4346" orgid="ARA" resource="getxml?ARA:RXNQT-4346" /><Reaction frameid="RXNQT-4345" orgid="ARA" resource="getxml?ARA:RXNQT-4345" /><Reaction frameid="RXNQT-4349" orgid="ARA" resource="getxml?ARA:RXNQT-4349" /><Reaction frameid="RXN-18201" orgid="ARA" resource="getxml?ARA:RXN-18201" /><Reaction frameid="RXN-18200" orgid="ARA" resource="getxml?ARA:RXN-18200" /><Reaction frameid="RXN-18203" orgid="ARA" resource="getxml?ARA:RXN-18203" /><Reaction frameid="RXN-18202" orgid="ARA" resource="getxml?ARA:RXN-18202" /><Reaction frameid="RXN-18205" orgid="ARA" resource="getxml?ARA:RXN-18205" /><Reaction frameid="RXN-18204" orgid="ARA" resource="getxml?ARA:RXN-18204" /><Reaction frameid="RXN-18207" orgid="ARA" resource="getxml?ARA:RXN-18207" /><Reaction frameid="RXN-18206" orgid="ARA" resource="getxml?ARA:RXN-18206" /><Reaction frameid="RXN-18209" orgid="ARA" resource="getxml?ARA:RXN-18209" /><Reaction frameid="RXN-18208" orgid="ARA" resource="getxml?ARA:RXN-18208" /><Reaction frameid="RXN-18193" orgid="ARA" resource="getxml?ARA:RXN-18193" /><Reaction frameid="RXN-18192" orgid="ARA" resource="getxml?ARA:RXN-18192" /><Reaction frameid="RXN-18191" orgid="ARA" resource="getxml?ARA:RXN-18191" /><Reaction frameid="RXN-18190" orgid="ARA" resource="getxml?ARA:RXN-18190" /><Reaction frameid="RXN-18189" orgid="ARA" resource="getxml?ARA:RXN-18189" /><Reaction frameid="RXN-18188" orgid="ARA" resource="getxml?ARA:RXN-18188" /><Reaction frameid="RXN-18187" orgid="ARA" resource="getxml?ARA:RXN-18187" /><Reaction frameid="RXN-18186" orgid="ARA" resource="getxml?ARA:RXN-18186" /><Reaction frameid="RXN-18185" orgid="ARA" resource="getxml?ARA:RXN-18185" /><Reaction frameid="RXN-18184" orgid="ARA" resource="getxml?ARA:RXN-18184" /><Reaction frameid="RXNQT-4175" orgid="ARA" resource="getxml?ARA:RXNQT-4175" /><Reaction frameid="RXNQT-4172" orgid="ARA" resource="getxml?ARA:RXNQT-4172" /><Reaction frameid="RXNQT-4169" orgid="ARA" resource="getxml?ARA:RXNQT-4169" /><Reaction frameid="RXNQT-4166" orgid="ARA" resource="getxml?ARA:RXNQT-4166" /><Reaction frameid="RXNQT-4163" orgid="ARA" resource="getxml?ARA:RXNQT-4163" /></reaction-list>
+<synonym datatype="string">methionine elongation</synonym>
+</Pathway>
+</ptools-xml>

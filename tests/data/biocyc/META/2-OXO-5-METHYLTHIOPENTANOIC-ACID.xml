@@ -1,0 +1,70 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:2-OXO-5-METHYLTHIOPENTANOIC-ACID"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:2-OXO-5-METHYLTHIOPENTANOIC-ACID</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:2-OXO-5-METHYLTHIOPENTANOIC-ACID" detail="full" frameid="2-OXO-5-METHYLTHIOPENTANOIC-ACID" orgid="META"><parent><Compound class="true" frameid="CPD-19485" orgid="META" resource="getxml?META:CPD-19485" /></parent>
+<cml><molecule formalCharge="-1" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID" title="5-(methylsulfanyl)-2-oxopentanoate"><atomArray><atom elementType="C" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom1" x2="28842.0" y2="-16056.0" /><atom elementType="C" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom2" x2="8798.0" y2="-11940.0" /><atom elementType="C" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom3" x2="1755.0" y2="-16056.0" /><atom elementType="C" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom4" x2="15950.0" y2="-16056.0" /><atom elementType="C" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom5" x2="-5395.0" y2="-11940.0" /><atom elementType="C" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom6" x2="-12547.0" y2="-16056.0" /><atom elementType="O" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom7" x2="-5395.0" y2="-3705.0" /><atom elementType="O" formalCharge="-1" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom8" x2="-19587.0" y2="-11940.0" /><atom elementType="O" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom9" x2="-12547.0" y2="-24184.0" /><atom elementType="S" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom10" x2="22990.0" y2="-11940.0" /></atomArray>
+<bondArray><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom10 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom1" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond1" order="1" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom4 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom10" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond2" order="1" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom6 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom8" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond3" order="1" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom6 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom9" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond4" order="2" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom5 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom6" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond5" order="1" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom5 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom7" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond6" order="2" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom3 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom5" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond7" order="1" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom2 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom3" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond8" order="1" /><bond atomRefs="2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom2 2-OXO-5-METHYLTHIOPENTANOIC-ACID-atom4" id="2-OXO-5-METHYLTHIOPENTANOIC-ACID-bond9" order="1" /></bondArray>
+<formula concise="C 6 H 9 O 3 S 1" /><float title="molecularWeight" units="g/mol">161.195</float>
+<string title="smiles">C([R])(=O)C([O-])=O</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">161.195</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">162.03506</monoisotopic-mw>
+<synonym datatype="string">5-(methylthio)-2-oxopentanoic-acid</synonym>
+<synonym datatype="string">5-(methylthio)-2-oxopentanoate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXNQT-4163" orgid="META" resource="getxml?META:RXNQT-4163" /><Reaction frameid="RXN-2205" orgid="META" resource="getxml?META:RXN-2205" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-18198" orgid="META" resource="getxml?META:RXN-18198" /></appears-in-right-side-of>
+<common-name datatype="string">5-(methylsulfanyl)-2-oxopentanoate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17401</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17401</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM2791</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM2791</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>58815</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58815</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>25203687</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=25203687</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17211</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17211</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007476</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007476</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-6.9319687<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H10O3S/c1-10-4-2-3-5(7)6(8)9/h2-4H2,1H3,(H,8,9)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=MPJMAJLPWRBNBU-UHFFFAOYSA-M</inchi-key>
+</Compound>
+</ptools-xml>

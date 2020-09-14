@@ -1,0 +1,57 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-35"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-35</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-35" detail="full" frameid="CPDQT-35" orgid="ARA"><parent><Compound class="true" frameid="CPD-19482" orgid="ARA" resource="getxml?ARA:CPD-19482" /></parent>
+<cml><molecule formalCharge="-2" id="CPDQT-35" title="2-%5b(7%27-methylsulfanyl)heptyl%5dmalate"><atomArray><atom elementType="C" id="CPDQT-35-atom1" x2="33223.0" y2="56517.0" /><atom elementType="C" id="CPDQT-35-atom2" x2="18933.0" y2="23517.0" /><atom elementType="C" id="CPDQT-35-atom3" x2="11789.0" y2="19392.0" /><atom elementType="C" id="CPDQT-35-atom4" x2="18933.0" y2="31767.0" /><atom elementType="C" id="CPDQT-35-atom5" x2="11788.0" y2="11144.0" /><atom elementType="C" id="CPDQT-35-atom6" x2="26078.0" y2="35892.0" /><atom elementType="C" id="CPDQT-35-atom7" x2="4645.0" y2="7019.0" /><atom elementType="C" id="CPDQT-35-atom8" x2="26078.0" y2="44142.0" /><atom elementType="C" id="CPDQT-35-atom9" x2="11790.0" y2="-5357.0" /><atom elementType="C" id="CPDQT-35-atom10" x2="18935.0" y2="-1232.0" /><atom elementType="C" id="CPDQT-35-atom11" x2="-2499.0" y2="-5357.0" /><atom elementType="C" id="CPDQT-35-atom12" x2="4646.0" y2="-1232.0" /><atom elementType="O" id="CPDQT-35-atom13" x2="18935.0" y2="7018.0" /><atom elementType="O" formalCharge="-1" id="CPDQT-35-atom14" x2="26080.0" y2="-5358.0" /><atom elementType="O" formalCharge="-1" id="CPDQT-35-atom15" x2="-9644.0" y2="-1232.0" /><atom elementType="O" id="CPDQT-35-atom16" x2="-2499.0" y2="-13607.0" /><atom elementType="O" id="CPDQT-35-atom17" x2="4646.0" y2="-9482.0" /><atom elementType="S" id="CPDQT-35-atom18" x2="33223.0" y2="48267.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-35-atom10 CPDQT-35-atom13" id="CPDQT-35-bond1" order="2" /><bond atomRefs="CPDQT-35-atom10 CPDQT-35-atom14" id="CPDQT-35-bond2" order="1" /><bond atomRefs="CPDQT-35-atom3 CPDQT-35-atom2" id="CPDQT-35-bond3" order="1" /><bond atomRefs="CPDQT-35-atom11 CPDQT-35-atom15" id="CPDQT-35-bond4" order="1" /><bond atomRefs="CPDQT-35-atom11 CPDQT-35-atom16" id="CPDQT-35-bond5" order="2" /><bond atomRefs="CPDQT-35-atom12 CPDQT-35-atom11" id="CPDQT-35-bond6" order="1" /><bond atomRefs="CPDQT-35-atom12 CPDQT-35-atom9" id="CPDQT-35-bond7" order="1" /><bond atomRefs="CPDQT-35-atom7 CPDQT-35-atom12" id="CPDQT-35-bond8" order="1" /><bond atomRefs="CPDQT-35-atom5 CPDQT-35-atom3" id="CPDQT-35-bond9" order="1" /><bond atomRefs="CPDQT-35-atom5 CPDQT-35-atom7" id="CPDQT-35-bond10" order="1" /><bond atomRefs="CPDQT-35-atom9 CPDQT-35-atom10" id="CPDQT-35-bond11" order="1" /><bond atomRefs="CPDQT-35-atom2 CPDQT-35-atom4" id="CPDQT-35-bond12" order="1" /><bond atomRefs="CPDQT-35-atom12 CPDQT-35-atom17" id="CPDQT-35-bond13" order="1" /><bond atomRefs="CPDQT-35-atom4 CPDQT-35-atom6" id="CPDQT-35-bond14" order="1" /><bond atomRefs="CPDQT-35-atom6 CPDQT-35-atom8" id="CPDQT-35-bond15" order="1" /><bond atomRefs="CPDQT-35-atom8 CPDQT-35-atom18" id="CPDQT-35-bond16" order="1" /><bond atomRefs="CPDQT-35-atom18 CPDQT-35-atom1" id="CPDQT-35-bond17" order="1" /></bondArray>
+<formula concise="C 12 H 20 O 5 S 1" /><float title="molecularWeight" units="g/mol">276.347</float>
+<string title="smiles">CSCCCCCCCC(O)(CC([O-])=O)C(=O)[O-]</string>
+</molecule>
+</cml>
+<common-name datatype="string">2-[(7'-methylsulfanyl)heptyl]malate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17420</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17420</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>80975</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:80975</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM5450</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM5450</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17230</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17230</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>44237389</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=44237389</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007650</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007650</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">21.674162</gibbs-0>
+<inchi datatype="string">InChI=1S/C12H22O5S/c1-18-8-6-4-2-3-5-7-12(17,11(15)16)9-10(13)14/h17H,2-9H2,1H3,(H,13,14)(H,15,16)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=PWAKELUEEHWVFQ-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">276.347</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">278.1188</monoisotopic-mw>
+<synonym datatype="string">2-[(7'-methylthio)heptyl]malic acid</synonym>
+<synonym datatype="string">2-[(7'-methylthio)heptyl]malate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-18192" orgid="ARA" resource="getxml?ARA:RXN-18192" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXNQT-4175" orgid="ARA" resource="getxml?ARA:RXNQT-4175" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

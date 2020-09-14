@@ -1,0 +1,459 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:ACONITATEDEHYDR-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ACONITATEDEHYDR-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:ACONITATEDEHYDR-RXN" detail="full" frameid="ACONITATEDEHYDR-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="CIS-ACONITATE" orgid="META" resource="getxml?META:CIS-ACONITATE" /></right>
+<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR95386</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR95386</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>10231</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=10231</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>A35544</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A35544</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>A44153</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A44153</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>A44154</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A44154</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>A47184</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A47184</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>A81801</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A81801</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>B48642</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=B48642</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>C64362</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=C64362</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>C64617</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=C64617</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>C81356</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=C81356</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>F64734</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=F64734</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>F70873</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=F70873</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>G64875</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=G64875</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>G69599</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=G69599</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>G86708</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=G86708</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>H81775</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=H81775</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S17526</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S17526</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S18720</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S18720</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S26403</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S26403</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S49849</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S49849</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S50387</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S50387</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S57528</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S57528</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S57805</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S57805</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S76777</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S76777</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T04693</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T04693</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T04820</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T04820</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T07611</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T07611</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T10101</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T10101</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T52543</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T52543</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P16276</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P16276</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q01059</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q01059</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9TSA1</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9TSA1</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JTI5</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JTI5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P37032</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P37032</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PP88</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PP88</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09339</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09339</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9CHQ5</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9CHQ5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JT05</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JT05</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q99798</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q99798</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P28271</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P28271</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P21399</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P21399</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42669</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42669</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19414</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19414</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P20004</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P20004</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P49609</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P49609</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P74582</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P74582</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42560</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42560</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9SZ36</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9SZ36</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O04916</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O04916</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01325</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01325</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P16276</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P16276</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q01059</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q01059</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9TSA1</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9TSA1</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JTI5</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JTI5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P37032</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P37032</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P81291</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P81291</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PP88</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PP88</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P36683</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P36683</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O53166</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O53166</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P25516</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P25516</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09339</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09339</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9CHQ5</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9CHQ5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JT05</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JT05</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q99798</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q99798</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P28271</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P28271</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P21399</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P21399</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42669</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42669</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19414</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19414</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P20004</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P20004</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P49609</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P49609</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P74582</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P74582</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42560</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42560</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9SZ36</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9SZ36</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O04916</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O04916</dblink-URL>
+</dblink>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ACONITATEDEHYDR-ENZRXN" detail="low" frameid="ACONITATEDEHYDR-ENZRXN" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">citrate hydro-lyase (cis-aconitate-forming)</common-name>
+<enzyme><Protein frameid="CPLX0-7760" orgid="META" resource="getxml?META:CPLX0-7760" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ACONITATEDEHYDRB-ENZRXN" detail="low" frameid="ACONITATEDEHYDRB-ENZRXN" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<synonym datatype="string">aconitase B</synonym>
+<synonym datatype="string">citrate hydro-lyase</synonym>
+<synonym datatype="string">aconitate hydratase</synonym>
+<common-name datatype="string">citrate hydro-lyase</common-name>
+<enzyme><Protein frameid="CPLX0-7761" orgid="META" resource="getxml?META:CPLX0-7761" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN3O-1388" detail="low" frameid="ENZRXN3O-1388" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<synonym datatype="string">aconitase</synonym>
+<common-name datatype="string">aconitate hydratase</common-name>
+<enzyme><Protein frameid="YLR304C-MONOMER" orgid="META" resource="getxml?META:YLR304C-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-4448" detail="low" frameid="ENZRXN66-4448" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">Cytoplasmic aconitate hydratase</common-name>
+<enzyme><Protein frameid="HS04597-MONOMER" orgid="META" resource="getxml?META:HS04597-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-2552" detail="low" frameid="ENZRXN66-2552" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">citrate dehydratase</common-name>
+<enzyme><Protein frameid="HS02077-MONOMER" orgid="META" resource="getxml?META:HS02077-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXNQT-5978" detail="low" frameid="ENZRXNQT-5978" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<synonym datatype="string">aconitate hydratase</synonym>
+<synonym datatype="string">citrate hydrolyase (cis-aconitate-forming)</synonym>
+<common-name datatype="string">aconitase</common-name>
+<enzyme><Protein frameid="AT4G35830-MONOMER" orgid="META" resource="getxml?META:AT4G35830-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-14530" detail="low" frameid="ENZRXN-14530" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">aconitase</common-name>
+<enzyme><Protein frameid="MONOMER-13634" orgid="META" resource="getxml?META:MONOMER-13634" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-14514" detail="low" frameid="ENZRXN-14514" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">aconitate hydratase</common-name>
+<enzyme><Protein frameid="MONOMER-65" orgid="META" resource="getxml?META:MONOMER-65" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-14513" detail="low" frameid="ENZRXN-14513" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">aconitate hydratase</common-name>
+<enzyme><Protein frameid="MONOMER-13618" orgid="META" resource="getxml?META:MONOMER-13618" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12461" detail="low" frameid="ENZRXN-12461" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">citrate hydro-lyase (cis-aconitate-forming)</common-name>
+<enzyme><Protein frameid="G185E-5659-MONOMER" orgid="META" resource="getxml?META:G185E-5659-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12355" detail="low" frameid="ENZRXN-12355" orgid="META"><reaction><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="#META:ACONITATEDEHYDR-RXN" /></reaction>
+<common-name datatype="string">citrate hydro-lyase (cis-aconitate-forming)</common-name>
+<enzyme><Protein frameid="MONOMER-11856" orgid="META" resource="getxml?META:MONOMER-11856" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">3.3529968<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="P105-PWY" orgid="META" resource="getxml?META:P105-PWY" /><Pathway frameid="PWY-6969" orgid="META" resource="getxml?META:PWY-6969" /><Pathway frameid="PWY-7254" orgid="META" resource="getxml?META:PWY-7254" /><Pathway frameid="PWY-5913" orgid="META" resource="getxml?META:PWY-5913" /><Pathway frameid="PWY66-398" orgid="META" resource="getxml?META:PWY66-398" /><Pathway frameid="PWY-6728" orgid="META" resource="getxml?META:PWY-6728" /><Pathway frameid="PWY-5690" orgid="META" resource="getxml?META:PWY-5690" /><Pathway frameid="TCA" orgid="META" resource="getxml?META:TCA" /><Pathway frameid="PWY-5392" orgid="META" resource="getxml?META:PWY-5392" /><Pathway frameid="P23-PWY" orgid="META" resource="getxml?META:P23-PWY" /><Reaction frameid="RXN-14047" orgid="META" resource="getxml?META:RXN-14047" /><Pathway frameid="PWY-7124" orgid="META" resource="getxml?META:PWY-7124" /><Pathway frameid="GLYOXYLATE-BYPASS" orgid="META" resource="getxml?META:GLYOXYLATE-BYPASS" /><Pathway frameid="PWY-6549" orgid="META" resource="getxml?META:PWY-6549" /><Pathway frameid="FERMENTATION-PWY" orgid="META" resource="getxml?META:FERMENTATION-PWY" /><Pathway frameid="REDCITCYC" orgid="META" resource="getxml?META:REDCITCYC" /></in-pathway>
+<left><Compound frameid="CIT" orgid="META" resource="getxml?META:CIT" /></left>
+</Reaction>
+</ptools-xml>

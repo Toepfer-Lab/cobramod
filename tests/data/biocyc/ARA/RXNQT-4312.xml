@@ -1,0 +1,39 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:RXNQT-4312"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXNQT-4312</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXNQT-4312" detail="full" frameid="RXNQT-4312" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Composite-Reactions" orgid="ARA" resource="getxml?ARA:Composite-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-1.14.14.42</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-12478" detail="low" frameid="ENZRXNQT-12478" orgid="ARA"><common-name datatype="string">CYP79F2 pentahomomethionine monooxygenase</common-name>
+<enzyme><Protein frameid="CPLX-2303" orgid="ARA" resource="getxml?ARA:CPLX-2303" /></enzyme>
+<reaction><Reaction frameid="RXNQT-4312" orgid="ARA" resource="#ARA:RXNQT-4312" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-12475" detail="low" frameid="ENZRXNQT-12475" orgid="ARA"><common-name datatype="string">CYP79F2 pentahomomethionine monooxygenase</common-name>
+<enzyme><Protein frameid="CPLX-2302" orgid="ARA" resource="getxml?ARA:CPLX-2302" /></enzyme>
+<reaction><Reaction frameid="RXNQT-4312" orgid="ARA" resource="#ARA:RXNQT-4312" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-184.48648</gibbs-0>
+<in-pathway><Pathway frameid="PWYQT-4474" orgid="ARA" resource="getxml?ARA:PWYQT-4474" /></in-pathway>
+<left><Compound frameid="CPDQT-256" orgid="ARA" resource="getxml?ARA:CPDQT-256" /></left>
+<left><Compound frameid="OXYGEN-MOLECULE" orgid="ARA" resource="getxml?ARA:OXYGEN-MOLECULE" /><coefficient datatype="integer">2</coefficient>
+</left>
+<left><Protein class="true" frameid="Red-NADPH-Hemoprotein-Reductases" orgid="ARA" resource="getxml?ARA:Red-NADPH-Hemoprotein-Reductases" /><coefficient datatype="integer">2</coefficient>
+</left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<reaction-list><Reaction frameid="RXN-13003" orgid="ARA" resource="getxml?ARA:RXN-13003" /><Reaction frameid="RXN-13004" orgid="ARA" resource="getxml?ARA:RXN-13004" /><Reaction frameid="RXN-13005" orgid="ARA" resource="getxml?ARA:RXN-13005" /></reaction-list>
+<right><Compound frameid="CPDQT-350" orgid="ARA" resource="getxml?ARA:CPDQT-350" /></right>
+<right><Compound frameid="CARBON-DIOXIDE" orgid="ARA" resource="getxml?ARA:CARBON-DIOXIDE" /></right>
+<right><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /><coefficient datatype="integer">3</coefficient>
+</right>
+<right><Protein class="true" frameid="Ox-NADPH-Hemoprotein-Reductases" orgid="ARA" resource="getxml?ARA:Ox-NADPH-Hemoprotein-Reductases" /><coefficient datatype="integer">2</coefficient>
+</right>
+</Reaction>
+</ptools-xml>

@@ -1,0 +1,167 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:MYO-INOSITOL"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:MYO-INOSITOL</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:MYO-INOSITOL" detail="full" frameid="MYO-INOSITOL" orgid="META"><parent><Compound class="true" frameid="Inositols" orgid="META" resource="getxml?META:Inositols" /></parent>
+<cml><molecule formalCharge="0" id="MYO-INOSITOL" title="myo-inositol"><atomArray><atom elementType="C" id="MYO-INOSITOL-atom1" x2="-13010.0" y2="-14835.0" /><atom elementType="C" id="MYO-INOSITOL-atom2" x2="-20155.0" y2="-10710.0" /><atom elementType="C" id="MYO-INOSITOL-atom3" x2="-5865.0" y2="-10709.0" /><atom elementType="C" id="MYO-INOSITOL-atom4" x2="-20155.0" y2="-2460.0" /><atom elementType="C" id="MYO-INOSITOL-atom5" x2="-5866.0" y2="-2459.0" /><atom elementType="C" id="MYO-INOSITOL-atom6" x2="-13011.0" y2="1665.0" /><atom elementType="O" id="MYO-INOSITOL-atom7" x2="-13010.0" y2="-23084.0" /><atom elementType="O" id="MYO-INOSITOL-atom8" x2="-27299.0" y2="-14835.0" /><atom elementType="O" id="MYO-INOSITOL-atom9" x2="1279.0" y2="-14833.0" /><atom elementType="O" id="MYO-INOSITOL-atom10" x2="-27300.0" y2="1665.0" /><atom elementType="O" id="MYO-INOSITOL-atom11" x2="1278.0" y2="1666.0" /><atom elementType="O" id="MYO-INOSITOL-atom12" x2="-13011.0" y2="9915.0" /></atomArray>
+<bondArray><bond atomRefs="MYO-INOSITOL-atom5 MYO-INOSITOL-atom11" id="MYO-INOSITOL-bond1" order="1" /><bond atomRefs="MYO-INOSITOL-atom3 MYO-INOSITOL-atom9" id="MYO-INOSITOL-bond2" order="1" /><bond atomRefs="MYO-INOSITOL-atom6 MYO-INOSITOL-atom12" id="MYO-INOSITOL-bond3" order="1" /><bond atomRefs="MYO-INOSITOL-atom4 MYO-INOSITOL-atom10" id="MYO-INOSITOL-bond4" order="1" /><bond atomRefs="MYO-INOSITOL-atom2 MYO-INOSITOL-atom8" id="MYO-INOSITOL-bond5" order="1" /><bond atomRefs="MYO-INOSITOL-atom1 MYO-INOSITOL-atom7" id="MYO-INOSITOL-bond6" order="1" /><bond atomRefs="MYO-INOSITOL-atom3 MYO-INOSITOL-atom5" id="MYO-INOSITOL-bond7" order="1" /><bond atomRefs="MYO-INOSITOL-atom1 MYO-INOSITOL-atom3" id="MYO-INOSITOL-bond8" order="1" /><bond atomRefs="MYO-INOSITOL-atom2 MYO-INOSITOL-atom1" id="MYO-INOSITOL-bond9" order="1" /><bond atomRefs="MYO-INOSITOL-atom4 MYO-INOSITOL-atom2" id="MYO-INOSITOL-bond10" order="1" /><bond atomRefs="MYO-INOSITOL-atom6 MYO-INOSITOL-atom5" id="MYO-INOSITOL-bond11" order="1" /><bond atomRefs="MYO-INOSITOL-atom6 MYO-INOSITOL-atom4" id="MYO-INOSITOL-bond12" order="1" /></bondArray>
+<formula concise="C 6 H 12 O 6" /><float title="molecularWeight" units="g/mol">180.157</float>
+<string title="smiles">[C@H]1([C@@H]([C@H]([C@@H]([C@H]([C@H]1O)O)O)O)O)O</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-12937" detail="low" frameid="REG-12937" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-17179" detail="low" frameid="ENZRXN-17179" orgid="META"><reaction><Reaction frameid="3.1.4.10-RXN" orgid="META" resource="getxml?META:3.1.4.10-RXN" /></reaction>
+<common-name datatype="string">phosphatidylinositol diacylglycerol-lyase</common-name>
+<enzyme><Protein frameid="MONOMER-15192" orgid="META" resource="getxml?META:MONOMER-15192" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="MYO-INOSITOL" orgid="META" resource="#META:MYO-INOSITOL" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6073" detail="low" frameid="REG-6073" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13141" detail="low" frameid="ENZRXN-13141" orgid="META"><reaction><Reaction frameid="2.4.1.67-RXN" orgid="META" resource="getxml?META:2.4.1.67-RXN" /></reaction>
+<common-name datatype="string">&amp;alpha;-D-galactosyl-(1-3)-1D-myo-inositol:raffinose galactosyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-12482" orgid="META" resource="getxml?META:MONOMER-12482" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="MYO-INOSITOL" orgid="META" resource="#META:MYO-INOSITOL" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6070" detail="low" frameid="REG-6070" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13147" detail="low" frameid="ENZRXN-13147" orgid="META"><reaction><Reaction frameid="2.4.1.67-RXN" orgid="META" resource="getxml?META:2.4.1.67-RXN" /></reaction>
+<common-name datatype="string">&amp;alpha;-D-galactosyl-(1-3)-1D-myo-inositol:raffinose galactosyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-12485" orgid="META" resource="getxml?META:MONOMER-12485" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="MYO-INOSITOL" orgid="META" resource="#META:MYO-INOSITOL" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6069" detail="low" frameid="REG-6069" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction frameid="ENZRXN-13147" orgid="META" resource="#META:ENZRXN-13147" /></regulated-entity>
+<regulator><Compound frameid="MYO-INOSITOL" orgid="META" resource="#META:MYO-INOSITOL" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6059" detail="low" frameid="REG-6059" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13163" detail="low" frameid="ENZRXN-13163" orgid="META"><reaction><Reaction frameid="2.4.1.82-RXN" orgid="META" resource="getxml?META:2.4.1.82-RXN" /></reaction>
+<common-name datatype="string">raffinose synthase</common-name>
+<enzyme><Protein frameid="MONOMER-12496" orgid="META" resource="getxml?META:MONOMER-12496" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="MYO-INOSITOL" orgid="META" resource="#META:MYO-INOSITOL" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-5965" detail="low" frameid="REG-5965" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13338" detail="low" frameid="ENZRXN-13338" orgid="META"><reaction><Reaction frameid="2.4.1.67-RXN" orgid="META" resource="getxml?META:2.4.1.67-RXN" /></reaction>
+<common-name datatype="string">&amp;alpha;-D-galactosyl-(1-3)-1D-myo-inositol:raffinose galactosyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-12617" orgid="META" resource="getxml?META:MONOMER-12617" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="MYO-INOSITOL" orgid="META" resource="#META:MYO-INOSITOL" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">&lt;i&gt;cis&lt;/i&gt;-1,2,3,5-trans-4,6-cyclohexanehexol</synonym>
+<synonym datatype="string">dambose</synonym>
+<synonym datatype="string">mesoinositol</synonym>
+<synonym datatype="string">&lt;i&gt;meso&lt;/i&gt;-inositol</synonym>
+<synonym datatype="string">M-inositol</synonym>
+<synonym datatype="string">1,2,3,5/4,6 inositol</synonym>
+<appears-in-left-side-of><Reaction frameid="MYO-INOSITOL-OXYGENASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-OXYGENASE-RXN" /><Reaction frameid="RXN-14128" orgid="META" resource="getxml?META:RXN-14128" /><Reaction frameid="RXN-20525" orgid="META" resource="getxml?META:RXN-20525" /><Reaction frameid="2.3.1.72-RXN" orgid="META" resource="getxml?META:2.3.1.72-RXN" /><Reaction frameid="2.4.1.123-RXN" orgid="META" resource="getxml?META:2.4.1.123-RXN" /><Reaction frameid="MYO-INOSITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-2-DEHYDROGENASE-RXN" /><Reaction frameid="2.7.8.11-RXN" orgid="META" resource="getxml?META:2.7.8.11-RXN" /><Reaction frameid="RXN-12209" orgid="META" resource="getxml?META:RXN-12209" /><Reaction frameid="MYO-INOSITOL-1-O-METHYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-1-O-METHYLTRANSFERASE-RXN" /><Reaction frameid="2.1.1.129-RXN" orgid="META" resource="getxml?META:2.1.1.129-RXN" /><Reaction frameid="MYO-INOSITOL-3-O-METHYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-3-O-METHYLTRANSFERASE-RXN" /><Reaction frameid="MYO-INOSITOL-1-KINASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-1-KINASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-3166" orgid="META" resource="getxml?META:RXN-3166" /><Reaction frameid="RXN-7253" orgid="META" resource="getxml?META:RXN-7253" /><Reaction frameid="RXN-8284" orgid="META" resource="getxml?META:RXN-8284" /><Reaction frameid="RXN-8288" orgid="META" resource="getxml?META:RXN-8288" /><Reaction frameid="MYO-INOSITOL-1OR-4-MONOPHOSPHATASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-1OR-4-MONOPHOSPHATASE-RXN" /><Reaction frameid="RXN-10952" orgid="META" resource="getxml?META:RXN-10952" /><Reaction frameid="RXN-10949" orgid="META" resource="getxml?META:RXN-10949" /><Reaction frameid="RXN0-5408" orgid="META" resource="getxml?META:RXN0-5408" /><Reaction frameid="RXN-10954" orgid="META" resource="getxml?META:RXN-10954" /><Reaction frameid="RXN-10953" orgid="META" resource="getxml?META:RXN-10953" /><Reaction frameid="RXN-8433" orgid="META" resource="getxml?META:RXN-8433" /><Reaction frameid="RXN-8292" orgid="META" resource="getxml?META:RXN-8292" /><Reaction frameid="RXN-8281" orgid="META" resource="getxml?META:RXN-8281" /><Reaction frameid="RXN-8279" orgid="META" resource="getxml?META:RXN-8279" /><Reaction frameid="RXN-8278" orgid="META" resource="getxml?META:RXN-8278" /><Reaction frameid="RXN-8277" orgid="META" resource="getxml?META:RXN-8277" /><Reaction frameid="3.1.4.44-RXN" orgid="META" resource="getxml?META:3.1.4.44-RXN" /><Reaction frameid="2.4.1.67-RXN" orgid="META" resource="getxml?META:2.4.1.67-RXN" /><Reaction frameid="2.4.1.82-RXN" orgid="META" resource="getxml?META:2.4.1.82-RXN" /></appears-in-right-side-of>
+<comment datatype="string">&lt;a href="/META/NEW-IMAGE?type=COMPOUND&amp;object=Inositols" title="&lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=Inositols''&gt;Inositol&lt;/a&gt; is the generic name for 1,2,3,4,5,6-cyclohexanehexol. Epimerization of the six hydroxyl groups results in nine stereoisomers. Among the isomers, &lt;a href=''/compound?orgid=META&amp;id=MYO-INOSITOL''&gt;&lt;I&gt;myo&lt;/I&gt;-inositol&lt;/a&gt; is the most abundant in nature and it is an essential compound in eukaryotic cell membranes as a phosphatidylinositol moiety, which plays an important role in signal transduction. Some other forms, such as &lt;a href=''/compound?orgid=META&amp;id=CPD-8050''&gt;&lt;i&gt;scyllo&lt;/i&gt;-inositol&lt;/a&gt;, are also found in nature, although they are less abundant.&amp;#10;&amp;#10;Nomenclature of cyclitols can be quite confusing. Two alternative naming schemes are possible for inositol compounds since carbon-1 could be assigned to either of two enantiotopic carbons. The two methods result in 1D-stereochemistry and 1L-stereochemistry based names. If carbon-1 is placed at the top of the molecule, L-numbering proceeds clockwise, while D-numbering proceeds counter-clockwise. Both the 1D or 1L designations can be employed currently. However, the symbol Ins implies myo-inositol with D- numbering.&amp;#10;&amp;#10;Additional information on the nomenclature of &lt;i&gt;myo&lt;/i&gt;-inositol compounds can be found in the 1973 document &lt;A href=''http://www.iupac.org/publications/pac/1974/pdf/3701x0283.pdf''&gt;Nomenclature of cyclitols&lt;/A&gt; by the Nomenclature Committee of the International Union of Biochemistry (NC-IUB), and the 1988 publication &lt;A href=''https://www.qmul.ac.uk/sbcs/iupac/cyclitol/myo.html''&gt;Numbering of atoms in &lt;i&gt;myo&lt;/i&gt;-inositol&lt;/A&gt;, published by the same body, whose aim was to relax some of the rules specified in the 1973 publication.&amp;#10;&amp;#10;To aid in following the transformations in inositol compounds in pathways, the structures of inositol stereoisomers in MetaCyc have been formatted to show carbon 1 at the top of the ring, with numbering proceeding clockwise. An exception is the structure of &lt;a href=''/compound?orgid=META&amp;id=MYO-INOSITOL''&gt;&lt;I&gt;myo&lt;/I&gt;-inositol&lt;/a&gt;, which is presented with carbon 3 at the top and counter-clockwise numbering. The reason is that carbon 3 of &lt;a href=''/compound?orgid=META&amp;id=MYO-INOSITOL''&gt;&lt;I&gt;myo&lt;/I&gt;-inositol&lt;/a&gt; (which is based on L-numbering) matches the carbon-1 of 1D numbering, which is used for the various phosphorylated and otherwise modified forms, and by presenting the molecule in this way, it is much easier to show structural relationships in reactions and pathways (see for example &lt;a href=''/META/NEW-IMAGE?type=REACTION&amp;object=MYO-INOSITOL-1-KINASE-RXN''&gt;EC 2.7.1.64&lt;/a&gt;)."&gt;Inositol&lt;/a&gt; is the generic name for 1,2,3,4,5,6-cyclohexanehexol. Epimerization of the six hydroxyl groups results in nine stereoisomers. Among the isomers, &lt;a href="/compound?orgid=META&amp;id=MYO-INOSITOL"&gt;&lt;I&gt;myo&lt;/I&gt;-inositol&lt;/a&gt; is the most abundant in nature and it is an essential compound in eukaryotic cell membranes as a phosphatidylinositol moiety, which plays an important role in signal transduction. Some other forms, such as &lt;a href="/compound?orgid=META&amp;id=CPD-8050"&gt;&lt;i&gt;scyllo&lt;/i&gt;-inositol&lt;/a&gt;, are also found in nature, although they are less abundant.
+&lt;p&gt;
+Nomenclature of cyclitols can be quite confusing. Two alternative naming schemes are possible for inositol compounds since carbon-1 could be assigned to either of two enantiotopic carbons. The two methods result in 1D-stereochemistry and 1L-stereochemistry based names. If carbon-1 is placed at the top of the molecule, L-numbering proceeds clockwise, while D-numbering proceeds counter-clockwise. Both the 1D or 1L designations can be employed currently. However, the symbol Ins implies myo-inositol with D- numbering.
+&lt;p&gt;
+Additional information on the nomenclature of &lt;i&gt;myo&lt;/i&gt;-inositol compounds can be found in the 1973 document &lt;A href="http://www.iupac.org/publications/pac/1974/pdf/3701x0283.pdf"&gt;Nomenclature of cyclitols&lt;/A&gt; by the Nomenclature Committee of the International Union of Biochemistry (NC-IUB), and the 1988 publication &lt;A href="https://www.qmul.ac.uk/sbcs/iupac/cyclitol/myo.html"&gt;Numbering of atoms in &lt;i&gt;myo&lt;/i&gt;-inositol&lt;/A&gt;, published by the same body, whose aim was to relax some of the rules specified in the 1973 publication.
+&lt;p&gt;
+To aid in following the transformations in inositol compounds in pathways, the structures of inositol stereoisomers in MetaCyc have been formatted to show carbon 1 at the top of the ring, with numbering proceeding clockwise. An exception is the structure of &lt;a href="/compound?orgid=META&amp;id=MYO-INOSITOL"&gt;&lt;I&gt;myo&lt;/I&gt;-inositol&lt;/a&gt;, which is presented with carbon 3 at the top and counter-clockwise numbering. The reason is that carbon 3 of &lt;a href="/compound?orgid=META&amp;id=MYO-INOSITOL"&gt;&lt;I&gt;myo&lt;/I&gt;-inositol&lt;/a&gt; (which is based on L-numbering) matches the carbon-1 of 1D numbering, which is used for the various phosphorylated and otherwise modified forms, and by presenting the molecule in this way, it is much easier to show structural relationships in reactions and pathways (see for example &lt;a href="/META/NEW-IMAGE?type=REACTION&amp;object=MYO-INOSITOL-1-KINASE-RXN"&gt;EC 2.7.1.64&lt;/a&gt;).</comment>
+<common-name datatype="string">&lt;I&gt;myo&lt;/I&gt;-inositol</common-name>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/134/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/134/</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Myo-inositol</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Myo-inositol</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>inost</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/inost</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17268</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17268</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00211</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00211</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB03106</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB03106</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>868</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/868</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00001164</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00001164</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>6917-35-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=6917-35-7</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17268</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17268</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00137</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00137</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>892</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=892</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>87-89-8</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=87-89-8</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-96.706566<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-</inchi>
+<inchi-key datatype="string">InChIKey=CDAISMWEOUEBRE-GPIVLXJGSA-N</inchi-key>
+</Compound>
+</ptools-xml>

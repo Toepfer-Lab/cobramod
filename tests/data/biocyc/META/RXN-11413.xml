@@ -1,0 +1,55 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:RXN-11413"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RXN-11413</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:RXN-11413" detail="full" frameid="RXN-11413" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-12386" orgid="META" resource="getxml?META:CPD-12386" /></right>
+<right><Protein class="true" frameid="Ox-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Ox-NADPH-Hemoprotein-Reductases" /></right>
+<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
+<credits><created><date datatype="date">2010-04-27</date>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+<common-name datatype="string">Carnegie Institution for Science</common-name>
+</Organization>
+</affiliations>
+<comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<common-name datatype="string">Peifen Zhang</common-name>
+</Person>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><abbrev-name datatype="string">TAIR</abbrev-name>
+<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+</Organization>
+</created>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR116917</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR116917</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-78.35477<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY-601" orgid="META" resource="getxml?META:PWY-601" /><Reaction frameid="RXN-18158" orgid="META" resource="getxml?META:RXN-18158" /></in-pathway>
+<left><Compound frameid="INDOLE-3-ACETALDOXIME" orgid="META" resource="getxml?META:INDOLE-3-ACETALDOXIME" /></left>
+<left><Protein class="true" frameid="Red-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Red-NADPH-Hemoprotein-Reductases" /></left>
+<left><Compound frameid="OXYGEN-MOLECULE" orgid="META" resource="getxml?META:OXYGEN-MOLECULE" /></left>
+</Reaction>
+</ptools-xml>

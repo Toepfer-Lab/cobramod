@@ -1,0 +1,65 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:MANNITOL-2-DEHYDROGENASE-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:MANNITOL-2-DEHYDROGENASE-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:MANNITOL-2-DEHYDROGENASE-RXN" detail="full" frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-15382" orgid="META" resource="getxml?META:CPD-15382" /></right>
+<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR101675</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR101675</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>12087</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=12087</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R00868</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00868</dblink-URL>
+</dblink>
+<ec-number>EC-1.1.1.67<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-18621" detail="low" frameid="ENZRXN-18621" orgid="META"><reaction><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="#META:MANNITOL-2-DEHYDROGENASE-RXN" /></reaction>
+<common-name datatype="string">D-mannitol 2-dehydrogenase</common-name>
+<enzyme><Protein frameid="MONOMER-13194" orgid="META" resource="getxml?META:MONOMER-13194" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-17921" detail="low" frameid="ENZRXN-17921" orgid="META"><reaction><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="#META:MANNITOL-2-DEHYDROGENASE-RXN" /></reaction>
+<common-name datatype="string">D-mannitol 2-dehydrogenase</common-name>
+<enzyme><Protein frameid="MONOMER-15725" orgid="META" resource="getxml?META:MONOMER-15725" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12857" detail="low" frameid="ENZRXN-12857" orgid="META"><reaction><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="#META:MANNITOL-2-DEHYDROGENASE-RXN" /></reaction>
+<common-name datatype="string">D-mannitol 2-dehydrogenase</common-name>
+<enzyme><Protein frameid="MONOMER-12217" orgid="META" resource="getxml?META:MONOMER-12217" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">1.0817871<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY-6531" orgid="META" resource="getxml?META:PWY-6531" /></in-pathway>
+<left><Compound frameid="NAD" orgid="META" resource="getxml?META:NAD" /></left>
+<left><Compound frameid="MANNITOL" orgid="META" resource="getxml?META:MANNITOL" /></left>
+</Reaction>
+</ptools-xml>

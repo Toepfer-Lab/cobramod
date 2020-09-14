@@ -1,0 +1,22 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:RXN-2204"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXN-2204</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXN-2204" detail="full" frameid="RXN-2204" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-1.1.1</ec-number>
+<gibbs-0 datatype="float" units="kcal/mol">3.541809</gibbs-0>
+<in-pathway><Pathway frameid="PWY-1186" orgid="ARA" resource="getxml?ARA:PWY-1186" /></in-pathway>
+<left><Compound frameid="3-2-METHYLTHIOETHYLMALIC-ACID" orgid="ARA" resource="getxml?ARA:3-2-METHYLTHIOETHYLMALIC-ACID" /></left>
+<left><Compound frameid="NAD" orgid="ARA" resource="getxml?ARA:NAD" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-19486" orgid="ARA" resource="getxml?ARA:CPD-19486" /></right>
+<right><Compound frameid="NADH" orgid="ARA" resource="getxml?ARA:NADH" /></right>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+</Reaction>
+</ptools-xml>

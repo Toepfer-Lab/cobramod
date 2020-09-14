@@ -1,0 +1,69 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:INDOLE-3-ACETALDOXIME"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:INDOLE-3-ACETALDOXIME</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:INDOLE-3-ACETALDOXIME" detail="full" frameid="INDOLE-3-ACETALDOXIME" orgid="META"><parent><Compound class="true" frameid="Aldoxime" orgid="META" resource="getxml?META:Aldoxime" /></parent>
+<cml><molecule formalCharge="0" id="INDOLE-3-ACETALDOXIME" title="(E)-(indol-3-yl)acetaldehyde+oxime"><atomArray><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom1" x2="4847.0" y2="21746.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom2" x2="0.0" y2="15071.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom3" x2="13045.0" y2="20885.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom4" x2="3351.0" y2="7534.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom5" x2="31405.0" y2="14927.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom6" x2="38549.0" y2="10802.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom7" x2="24260.0" y2="2548.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom8" x2="24260.0" y2="10802.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom9" x2="16410.0" y2="13351.0" /><atom elementType="C" id="INDOLE-3-ACETALDOXIME-atom10" x2="11563.0" y2="6675.0" /><atom elementType="N" id="INDOLE-3-ACETALDOXIME-atom11" x2="16417.0" y2="0.0" /><atom elementType="N" id="INDOLE-3-ACETALDOXIME-atom12" x2="45694.0" y2="14927.0" /><atom elementType="O" id="INDOLE-3-ACETALDOXIME-atom13" x2="52838.0" y2="10802.0" /></atomArray>
+<bondArray><bond atomRefs="INDOLE-3-ACETALDOXIME-atom9 INDOLE-3-ACETALDOXIME-atom10" id="INDOLE-3-ACETALDOXIME-bond1" order="2" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom8 INDOLE-3-ACETALDOXIME-atom9" id="INDOLE-3-ACETALDOXIME-bond2" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom7 INDOLE-3-ACETALDOXIME-atom8" id="INDOLE-3-ACETALDOXIME-bond3" order="2" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom11 INDOLE-3-ACETALDOXIME-atom10" id="INDOLE-3-ACETALDOXIME-bond4" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom11 INDOLE-3-ACETALDOXIME-atom7" id="INDOLE-3-ACETALDOXIME-bond5" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom3 INDOLE-3-ACETALDOXIME-atom9" id="INDOLE-3-ACETALDOXIME-bond6" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom10 INDOLE-3-ACETALDOXIME-atom4" id="INDOLE-3-ACETALDOXIME-bond7" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom1 INDOLE-3-ACETALDOXIME-atom3" id="INDOLE-3-ACETALDOXIME-bond8" order="2" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom4 INDOLE-3-ACETALDOXIME-atom2" id="INDOLE-3-ACETALDOXIME-bond9" order="2" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom2 INDOLE-3-ACETALDOXIME-atom1" id="INDOLE-3-ACETALDOXIME-bond10" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom8 INDOLE-3-ACETALDOXIME-atom5" id="INDOLE-3-ACETALDOXIME-bond11" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom5 INDOLE-3-ACETALDOXIME-atom6" id="INDOLE-3-ACETALDOXIME-bond12" order="1" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom6 INDOLE-3-ACETALDOXIME-atom12" id="INDOLE-3-ACETALDOXIME-bond13" order="2" /><bond atomRefs="INDOLE-3-ACETALDOXIME-atom12 INDOLE-3-ACETALDOXIME-atom13" id="INDOLE-3-ACETALDOXIME-bond14" order="1" /></bondArray>
+<formula concise="C 10 H 10 N 2 O 1" /><float title="molecularWeight" units="g/mol">174.202</float>
+<string title="smiles">C(/CC1(\C2(/C=C\C=C/C(/N\C=1)=2)))=N\O</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">174.202</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">174.07932</monoisotopic-mw>
+<synonym datatype="string">(&lt;i&gt;E&lt;/i&gt;)-(1&lt;i&gt;H&lt;/i&gt;-indol-3-yl)acetaldehyde oxime</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-20041" orgid="META" resource="getxml?META:RXN-20041" /><Reaction frameid="RXN-19840" orgid="META" resource="getxml?META:RXN-19840" /><Reaction frameid="RXN-19835" orgid="META" resource="getxml?META:RXN-19835" /><Reaction frameid="RXN-19838" orgid="META" resource="getxml?META:RXN-19838" /><Reaction frameid="RXN-18158" orgid="META" resource="getxml?META:RXN-18158" /><Reaction frameid="RXN-11413" orgid="META" resource="getxml?META:RXN-11413" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-1402" orgid="META" resource="getxml?META:RXN-1402" /><Reaction frameid="RXN-1406" orgid="META" resource="getxml?META:RXN-1406" /><Reaction frameid="RXN-12063" orgid="META" resource="getxml?META:RXN-12063" /></appears-in-right-side-of>
+<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-(indol-3-yl)acetaldehyde oxime</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd01880</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd01880</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM1252</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM1252</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>4522197</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/4522197</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>5371769</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=5371769</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17545</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17545</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C02937</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C02937</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">111.41222<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H10N2O/c13-12-6-5-8-7-11-10-4-2-1-3-9(8)10/h1-4,6-7,11,13H,5H2/b12-6+</inchi>
+<inchi-key datatype="string">InChIKey=ZLIGRGHTISHYNH-WUXMJOGZSA-N</inchi-key>
+</Compound>
+</ptools-xml>

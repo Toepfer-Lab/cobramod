@@ -1,0 +1,43 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-419"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-419</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-419" detail="full" frameid="CPDQT-419" orgid="ARA"><parent><Compound class="true" frameid="Desulfoaliphaticglucosinolates" orgid="ARA" resource="getxml?ARA:Desulfoaliphaticglucosinolates" /></parent>
+<cml><molecule formalCharge="0" id="CPDQT-419" title="8-(methylsulfanyl)octyl-desulfoglucosinolate"><atomArray><atom elementType="C" id="CPDQT-419-atom1" x2="90026.0" y2="-37898.0" /><atom elementType="C" id="CPDQT-419-atom2" x2="47158.0" y2="-37898.0" /><atom elementType="C" id="CPDQT-419-atom3" x2="54303.0" y2="-42023.0" /><atom elementType="C" id="CPDQT-419-atom4" x2="40013.0" y2="-42023.0" /><atom elementType="C" id="CPDQT-419-atom5" x2="61448.0" y2="-37898.0" /><atom elementType="C" id="CPDQT-419-atom6" x2="32869.0" y2="-37898.0" /><atom elementType="C" id="CPDQT-419-atom7" x2="68592.0" y2="-42023.0" /><atom elementType="C" id="CPDQT-419-atom8" x2="25724.0" y2="-42023.0" /><atom elementType="C" id="CPDQT-419-atom9" x2="75737.0" y2="-37898.0" /><atom elementType="C" id="CPDQT-419-atom10" x2="-9997.0" y2="-29648.0" /><atom elementType="C" id="CPDQT-419-atom11" x2="-2852.0" y2="-25523.0" /><atom elementType="C" id="CPDQT-419-atom12" x2="18581.0" y2="-37898.0" /><atom elementType="C" id="CPDQT-419-atom13" x2="-2852.0" y2="-17273.0" /><atom elementType="C" id="CPDQT-419-atom14" x2="4293.0" y2="-13149.0" /><atom elementType="C" id="CPDQT-419-atom15" x2="11438.0" y2="-17273.0" /><atom elementType="C" id="CPDQT-419-atom16" x2="11438.0" y2="-25523.0" /><atom elementType="N" id="CPDQT-419-atom17" x2="11436.0" y2="-42023.0" /><atom elementType="O" id="CPDQT-419-atom18" x2="-17140.0" y2="-25523.0" /><atom elementType="O" id="CPDQT-419-atom19" x2="-9997.0" y2="-13149.0" /><atom elementType="O" id="CPDQT-419-atom20" x2="4293.0" y2="-4899.0" /><atom elementType="O" id="CPDQT-419-atom21" x2="18581.0" y2="-13149.0" /><atom elementType="O" id="CPDQT-419-atom22" x2="11436.0" y2="-50273.0" /><atom elementType="O" id="CPDQT-419-atom23" x2="4293.0" y2="-29648.0" /><atom elementType="S" id="CPDQT-419-atom24" x2="82882.0" y2="-42023.0" /><atom elementType="S" id="CPDQT-419-atom25" x2="18581.0" y2="-29648.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-419-atom23 CPDQT-419-atom11" id="CPDQT-419-bond1" order="1" /><bond atomRefs="CPDQT-419-atom11 CPDQT-419-atom13" id="CPDQT-419-bond2" order="1" /><bond atomRefs="CPDQT-419-atom13 CPDQT-419-atom14" id="CPDQT-419-bond3" order="1" /><bond atomRefs="CPDQT-419-atom14 CPDQT-419-atom15" id="CPDQT-419-bond4" order="1" /><bond atomRefs="CPDQT-419-atom15 CPDQT-419-atom16" id="CPDQT-419-bond5" order="1" /><bond atomRefs="CPDQT-419-atom23 CPDQT-419-atom16" id="CPDQT-419-bond6" order="1" /><bond atomRefs="CPDQT-419-atom16 CPDQT-419-atom25" id="CPDQT-419-bond7" order="1" /><bond atomRefs="CPDQT-419-atom15 CPDQT-419-atom21" id="CPDQT-419-bond8" order="1" /><bond atomRefs="CPDQT-419-atom14 CPDQT-419-atom20" id="CPDQT-419-bond9" order="1" /><bond atomRefs="CPDQT-419-atom13 CPDQT-419-atom19" id="CPDQT-419-bond10" order="1" /><bond atomRefs="CPDQT-419-atom11 CPDQT-419-atom10" id="CPDQT-419-bond11" order="1" /><bond atomRefs="CPDQT-419-atom10 CPDQT-419-atom18" id="CPDQT-419-bond12" order="1" /><bond atomRefs="CPDQT-419-atom25 CPDQT-419-atom12" id="CPDQT-419-bond13" order="1" /><bond atomRefs="CPDQT-419-atom12 CPDQT-419-atom17" id="CPDQT-419-bond14" order="2" /><bond atomRefs="CPDQT-419-atom17 CPDQT-419-atom22" id="CPDQT-419-bond15" order="1" /><bond atomRefs="CPDQT-419-atom12 CPDQT-419-atom8" id="CPDQT-419-bond16" order="1" /><bond atomRefs="CPDQT-419-atom6 CPDQT-419-atom4" id="CPDQT-419-bond17" order="1" /><bond atomRefs="CPDQT-419-atom4 CPDQT-419-atom2" id="CPDQT-419-bond18" order="1" /><bond atomRefs="CPDQT-419-atom2 CPDQT-419-atom3" id="CPDQT-419-bond19" order="1" /><bond atomRefs="CPDQT-419-atom3 CPDQT-419-atom5" id="CPDQT-419-bond20" order="1" /><bond atomRefs="CPDQT-419-atom5 CPDQT-419-atom7" id="CPDQT-419-bond21" order="1" /><bond atomRefs="CPDQT-419-atom7 CPDQT-419-atom9" id="CPDQT-419-bond22" order="1" /><bond atomRefs="CPDQT-419-atom9 CPDQT-419-atom24" id="CPDQT-419-bond23" order="1" /><bond atomRefs="CPDQT-419-atom24 CPDQT-419-atom1" id="CPDQT-419-bond24" order="1" /><bond atomRefs="CPDQT-419-atom8 CPDQT-419-atom6" id="CPDQT-419-bond25" order="1" /></bondArray>
+<formula concise="C 16 H 31 N 1 O 6 S 2" /><float title="molecularWeight" units="g/mol">397.544</float>
+<string title="smiles">CSCCCCCCCCC(/S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\O</string>
+</molecule>
+</cml>
+<comment datatype="string">
+</comment>
+<common-name datatype="string">8-(methylsulfanyl)octyl-desulfoglucosinolate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd26643</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd26643</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM10454</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM10454</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>49859709</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=49859709</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">142.67471</gibbs-0>
+<inchi datatype="string">InChI=1S/C16H31NO6S2/c1-24-9-7-5-3-2-4-6-8-12(17-22)25-16-15(21)14(20)13(19)11(10-18)23-16/h11,13-16,18-22H,2-10H2,1H3/b17-12+/t11-,13-,14+,15-,16+/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=JXHZTRXZIXRIDX-STPBKMPXSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">397.544</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">397.15927</monoisotopic-mw>
+<synonym datatype="string">8-(methylthio)octyl-desulfoglucosinolate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXNQT-4333" orgid="ARA" resource="getxml?ARA:RXNQT-4333" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXNQT-4328" orgid="ARA" resource="getxml?ARA:RXNQT-4328" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

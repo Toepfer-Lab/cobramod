@@ -1,0 +1,49 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-349"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-349</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-349" detail="full" frameid="CPDQT-349" orgid="ARA"><parent><Compound class="true" frameid="N-homo-methionine" orgid="ARA" resource="getxml?ARA:N-homo-methionine" /></parent>
+<cml><molecule formalCharge="0" id="CPDQT-349" title="L-tetrahomomethionine"><atomArray><atom elementType="C" id="CPDQT-349-atom1" x2="-5343.0" y2="-7720.0" /><atom elementType="C" id="CPDQT-349-atom2" x2="-7485.0" y2="-4832.0" /><atom elementType="C" id="CPDQT-349-atom3" x2="-6771.0" y2="-5245.0" /><atom elementType="C" id="CPDQT-349-atom4" x2="-7485.0" y2="-4008.0" /><atom elementType="C" id="CPDQT-349-atom5" x2="-6771.0" y2="-6070.0" /><atom elementType="C" id="CPDQT-349-atom6" x2="-8199.0" y2="-3594.0" /><atom elementType="C" id="CPDQT-349-atom7" x2="-6056.0" y2="-6483.0" /><atom elementType="C" id="CPDQT-349-atom8" x2="-8199.0" y2="-2770.0" /><atom elementType="C" id="CPDQT-349-atom9" x2="-7485.0" y2="-2356.0" /><atom elementType="N" formalCharge="1" id="CPDQT-349-atom10" x2="-8914.0" y2="-2358.0" /><atom elementType="O" formalCharge="-1" id="CPDQT-349-atom11" x2="-6771.0" y2="-2769.0" /><atom elementType="O" id="CPDQT-349-atom12" x2="-7485.0" y2="-1532.0" /><atom elementType="S" id="CPDQT-349-atom13" x2="-6056.0" y2="-7307.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-349-atom1 CPDQT-349-atom13" id="CPDQT-349-bond1" order="1" /><bond atomRefs="CPDQT-349-atom13 CPDQT-349-atom7" id="CPDQT-349-bond2" order="1" /><bond atomRefs="CPDQT-349-atom7 CPDQT-349-atom5" id="CPDQT-349-bond3" order="1" /><bond atomRefs="CPDQT-349-atom5 CPDQT-349-atom3" id="CPDQT-349-bond4" order="1" /><bond atomRefs="CPDQT-349-atom3 CPDQT-349-atom2" id="CPDQT-349-bond5" order="1" /><bond atomRefs="CPDQT-349-atom2 CPDQT-349-atom4" id="CPDQT-349-bond6" order="1" /><bond atomRefs="CPDQT-349-atom4 CPDQT-349-atom6" id="CPDQT-349-bond7" order="1" /><bond atomRefs="CPDQT-349-atom6 CPDQT-349-atom8" id="CPDQT-349-bond8" order="1" /><bond atomRefs="CPDQT-349-atom8 CPDQT-349-atom9" id="CPDQT-349-bond9" order="1" /><bond atomRefs="CPDQT-349-atom9 CPDQT-349-atom11" id="CPDQT-349-bond10" order="1" /><bond atomRefs="CPDQT-349-atom9 CPDQT-349-atom12" id="CPDQT-349-bond11" order="2" /><bond atomRefs="CPDQT-349-atom8 CPDQT-349-atom10" id="CPDQT-349-bond12" order="1" /></bondArray>
+<formula concise="C 9 H 19 N 1 O 2 S 1" /><float title="molecularWeight" units="g/mol">205.315</float>
+<string title="smiles">C(=O)([O-])[C@@H]([NH3+])CCCCCCSC</string>
+</molecule>
+</cml>
+<comment datatype="string">This compound was entered into AraCyc based on its presence in the
+&lt;A href="http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007641"&gt;KNApSAcK database&lt;/A&gt;
+which provides reference(s) concerning this compound in Arabidopsis.
+</comment>
+<common-name datatype="string">L-tetrahomomethionine</common-name>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM3367</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM3367</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>134634</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:134634</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>123131544</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131544</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007641</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007641</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">125.7213</gibbs-0>
+<inchi datatype="string">InChI=1S/C9H19NO2S/c1-13-7-5-3-2-4-6-8(10)9(11)12/h8H,2-7,10H2,1H3,(H,11,12)/t8-/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=NBXNZQFZGOQQPE-QMMMGPOBSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">205.315</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">205.11365</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-12989" orgid="ARA" resource="getxml?ARA:RXN-12989" /><Reaction frameid="RXNQT-4311" orgid="ARA" resource="getxml?ARA:RXNQT-4311" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXNQT-4347" orgid="ARA" resource="getxml?ARA:RXNQT-4347" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

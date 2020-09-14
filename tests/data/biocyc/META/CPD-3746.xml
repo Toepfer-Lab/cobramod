@@ -1,0 +1,88 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-3746"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:CPD-3746</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:CPD-3746" detail="full" frameid="CPD-3746" orgid="META"><parent><Compound class="true" frameid="Alkanesulfonates" orgid="META" resource="getxml?META:Alkanesulfonates" /></parent>
+<cml><molecule formalCharge="-1" id="CPD-3746" title="methanesulfonate"><atomArray><atom elementType="C" id="CPD-3746-atom1" x2="825.0" y2="1650.0" /><atom elementType="O" id="CPD-3746-atom2" x2="824.0" y2="0.0" /><atom elementType="O" id="CPD-3746-atom3" x2="1650.0" y2="825.0" /><atom elementType="O" formalCharge="-1" id="CPD-3746-atom4" x2="0.0" y2="825.0" /><atom elementType="S" id="CPD-3746-atom5" x2="825.0" y2="825.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-3746-atom4 CPD-3746-atom5" id="CPD-3746-bond1" order="1" /><bond atomRefs="CPD-3746-atom3 CPD-3746-atom5" id="CPD-3746-bond2" order="2" /><bond atomRefs="CPD-3746-atom2 CPD-3746-atom5" id="CPD-3746-bond3" order="2" /><bond atomRefs="CPD-3746-atom1 CPD-3746-atom5" id="CPD-3746-bond4" order="1" /></bondArray>
+<formula concise="C 1 H 3 O 3 S 1" /><float title="molecularWeight" units="g/mol">95.093</float>
+<string title="smiles">CS(=O)(=O)[O-]</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">95.093</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">95.98811</monoisotopic-mw>
+<synonym datatype="string">methylsulfonate</synonym>
+<synonym datatype="string">MSA</synonym>
+<synonym datatype="string">methanesulfonic acid</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-18086" orgid="META" resource="getxml?META:RXN-18086" /><Reaction frameid="RXN-9770" orgid="META" resource="getxml?META:RXN-9770" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-18180" orgid="META" resource="getxml?META:RXN-18180" /><Reaction frameid="RXNQT-4344" orgid="META" resource="getxml?META:RXNQT-4344" /><Reaction frameid="RXN-18181" orgid="META" resource="getxml?META:RXN-18181" /><Reaction frameid="RXN-2223" orgid="META" resource="getxml?META:RXN-2223" /><Reaction frameid="RXN-2222" orgid="META" resource="getxml?META:RXN-2222" /><Reaction frameid="RXNQT-4341" orgid="META" resource="getxml?META:RXNQT-4341" /><Reaction frameid="RXN-14710" orgid="META" resource="getxml?META:RXN-14710" /></appears-in-right-side-of>
+<comment datatype="string">Methanesulfonate is a very stable strong acid and a key intermediate in the biogeochemical cycling of sulfur. It is formed in megatonne quantities in the atmosphere from the chemical oxidation of atmospheric &lt;a href="/compound?orgid=META&amp;id=CPD-7670"&gt;dimethyl sulfide&lt;/a&gt; and deposited on the earth by rain and snow, and by dry deposition [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10591843"&gt;Kelly99&lt;/a&gt;].</comment>
+<common-name datatype="string">methanesulfonate</common-name>
+<component-of><Compound frameid="CPD-8951" orgid="META" resource="getxml?META:CPD-8951" /></component-of>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd08023</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd08023</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM1485</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM1485</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>mso3</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/mso3</dblink-URL>
+</dblink>
+<dblink><dblink-db>UM-BBD-CPD</dblink-db>
+<dblink-oid>c0347</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0347</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>76888</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/76888</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>85257</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=85257</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>25224</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:25224</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>75-75-2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=75-75-2</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C11145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C11145</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-71.5487<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=AFVFQIVMOAPDHO-UHFFFAOYSA-M</inchi-key>
+</Compound>
+</ptools-xml>

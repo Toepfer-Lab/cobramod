@@ -1,0 +1,66 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-281"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-281</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-281" detail="full" frameid="CPDQT-281" orgid="ARA"><parent><Compound class="true" frameid="Omega-methylthio-alkyl-glucosinolates" orgid="ARA" resource="getxml?ARA:Omega-methylthio-alkyl-glucosinolates" /></parent>
+<cml><molecule formalCharge="-1" id="CPDQT-281" title="4-(methylsulfanyl)butyl-glucosinolate"><atomArray><atom elementType="C" id="CPDQT-281-atom1" x2="614480.0" y2="-378980.0" /><atom elementType="C" id="CPDQT-281-atom2" x2="328690.0" y2="-378980.0" /><atom elementType="C" id="CPDQT-281-atom3" x2="400130.0" y2="-420230.0" /><atom elementType="C" id="CPDQT-281-atom4" x2="257240.0" y2="-420230.0" /><atom elementType="C" id="CPDQT-281-atom5" x2="471580.0" y2="-378980.0" /><atom elementType="C" id="CPDQT-281-atom6" x2="-99970.0" y2="-296480.0" /><atom elementType="C" id="CPDQT-281-atom7" x2="-28520.0" y2="-255230.0" /><atom elementType="C" id="CPDQT-281-atom8" x2="185810.0" y2="-378980.0" /><atom elementType="C" id="CPDQT-281-atom9" x2="-28520.0" y2="-172730.0" /><atom elementType="C" id="CPDQT-281-atom10" x2="42930.0" y2="-131490.0" /><atom elementType="C" id="CPDQT-281-atom11" x2="114380.0" y2="-172730.0" /><atom elementType="C" id="CPDQT-281-atom12" x2="114380.0" y2="-255230.0" /><atom elementType="N" id="CPDQT-281-atom13" x2="114360.0" y2="-420230.0" /><atom elementType="O" id="CPDQT-281-atom14" x2="-171400.0" y2="-255230.0" /><atom elementType="O" id="CPDQT-281-atom15" x2="-99970.0" y2="-131490.0" /><atom elementType="O" id="CPDQT-281-atom16" x2="42930.0" y2="-48990.0" /><atom elementType="O" id="CPDQT-281-atom17" x2="185810.0" y2="-131490.0" /><atom elementType="O" formalCharge="-1" id="CPDQT-281-atom18" x2="-28530.0" y2="-585230.0" /><atom elementType="O" id="CPDQT-281-atom19" x2="84170.0" y2="-615420.0" /><atom elementType="O" id="CPDQT-281-atom20" x2="1660.0" y2="-472530.0" /><atom elementType="O" id="CPDQT-281-atom21" x2="42930.0" y2="-296480.0" /><atom elementType="O" id="CPDQT-281-atom22" x2="114360.0" y2="-502730.0" /><atom elementType="S" id="CPDQT-281-atom23" x2="543030.0" y2="-420230.0" /><atom elementType="S" id="CPDQT-281-atom24" x2="185810.0" y2="-296480.0" /><atom elementType="S" id="CPDQT-281-atom25" x2="42920.0" y2="-543980.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-281-atom21 CPDQT-281-atom7" id="CPDQT-281-bond1" order="1" /><bond atomRefs="CPDQT-281-atom7 CPDQT-281-atom9" id="CPDQT-281-bond2" order="1" /><bond atomRefs="CPDQT-281-atom9 CPDQT-281-atom10" id="CPDQT-281-bond3" order="1" /><bond atomRefs="CPDQT-281-atom10 CPDQT-281-atom11" id="CPDQT-281-bond4" order="1" /><bond atomRefs="CPDQT-281-atom11 CPDQT-281-atom12" id="CPDQT-281-bond5" order="1" /><bond atomRefs="CPDQT-281-atom21 CPDQT-281-atom12" id="CPDQT-281-bond6" order="1" /><bond atomRefs="CPDQT-281-atom12 CPDQT-281-atom24" id="CPDQT-281-bond7" order="1" /><bond atomRefs="CPDQT-281-atom11 CPDQT-281-atom17" id="CPDQT-281-bond8" order="1" /><bond atomRefs="CPDQT-281-atom10 CPDQT-281-atom16" id="CPDQT-281-bond9" order="1" /><bond atomRefs="CPDQT-281-atom9 CPDQT-281-atom15" id="CPDQT-281-bond10" order="1" /><bond atomRefs="CPDQT-281-atom7 CPDQT-281-atom6" id="CPDQT-281-bond11" order="1" /><bond atomRefs="CPDQT-281-atom6 CPDQT-281-atom14" id="CPDQT-281-bond12" order="1" /><bond atomRefs="CPDQT-281-atom24 CPDQT-281-atom8" id="CPDQT-281-bond13" order="1" /><bond atomRefs="CPDQT-281-atom8 CPDQT-281-atom13" id="CPDQT-281-bond14" order="2" /><bond atomRefs="CPDQT-281-atom13 CPDQT-281-atom22" id="CPDQT-281-bond15" order="1" /><bond atomRefs="CPDQT-281-atom22 CPDQT-281-atom25" id="CPDQT-281-bond16" order="1" /><bond atomRefs="CPDQT-281-atom25 CPDQT-281-atom18" id="CPDQT-281-bond17" order="1" /><bond atomRefs="CPDQT-281-atom25 CPDQT-281-atom19" id="CPDQT-281-bond18" order="2" /><bond atomRefs="CPDQT-281-atom25 CPDQT-281-atom20" id="CPDQT-281-bond19" order="2" /><bond atomRefs="CPDQT-281-atom8 CPDQT-281-atom4" id="CPDQT-281-bond20" order="1" /><bond atomRefs="CPDQT-281-atom2 CPDQT-281-atom3" id="CPDQT-281-bond21" order="1" /><bond atomRefs="CPDQT-281-atom3 CPDQT-281-atom5" id="CPDQT-281-bond22" order="1" /><bond atomRefs="CPDQT-281-atom5 CPDQT-281-atom23" id="CPDQT-281-bond23" order="1" /><bond atomRefs="CPDQT-281-atom23 CPDQT-281-atom1" id="CPDQT-281-bond24" order="1" /><bond atomRefs="CPDQT-281-atom4 CPDQT-281-atom2" id="CPDQT-281-bond25" order="1" /></bondArray>
+<formula concise="C 12 H 22 N 1 O 9 S 3" /><float title="molecularWeight" units="g/mol">420.487</float>
+<string title="smiles">CSCCCCC(/S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\OS(=O)(=O)[O-]</string>
+</molecule>
+</cml>
+<comment datatype="string">This compound was entered into AraCyc based on its presence in the
+&lt;A href="http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007344"&gt;KNApSAcK database&lt;/A&gt;
+which provides reference(s) concerning this compound in Arabidopsis.
+</comment>
+<common-name datatype="string">4-(methylsulfanyl)butyl-glucosinolate</common-name>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM55131</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM55131</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>9548894</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=9548894</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC5404</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC5404</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB38403</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB38403</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007344</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007344</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C08409</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C08409</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>5404</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:5404</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-36.65741</gibbs-0>
+<inchi datatype="string">InChI=1S/C12H23NO9S3/c1-23-5-3-2-4-8(13-22-25(18,19)20)24-12-11(17)10(16)9(15)7(6-14)21-12/h7,9-12,14-17H,2-6H2,1H3,(H,18,19,20)/p-1/b13-8+/t7-,9-,10+,11-,12+/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=GKUMMDFLKGFCKH-KALKGZTMSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">420.487</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">421.0535</monoisotopic-mw>
+<synonym datatype="string">glucoerucin</synonym>
+<synonym datatype="string">4-(methylthio)butyl-glucosinolate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXNQT-4334" orgid="ARA" resource="getxml?ARA:RXNQT-4334" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXNQT-4329" orgid="ARA" resource="getxml?ARA:RXNQT-4329" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

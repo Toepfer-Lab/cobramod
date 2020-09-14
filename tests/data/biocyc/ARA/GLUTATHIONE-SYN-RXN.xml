@@ -1,0 +1,176 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:GLUTATHIONE-SYN-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:GLUTATHIONE-SYN-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:GLUTATHIONE-SYN-RXN" detail="full" frameid="GLUTATHIONE-SYN-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O22494</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O22494</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P04425</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P04425</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P73493</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P73493</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P51855</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P51855</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46416</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46416</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48637</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48637</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35668</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35668</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35669</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35669</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35667</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35667</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P45480</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P45480</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46413</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46413</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JTJ6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JTJ6</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R00497</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00497</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>C81799</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=C81799</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>G84993</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=G84993</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>I59346</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=I59346</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JC4291</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JC4291</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JQ1401</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JQ1401</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JT0961</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JT0961</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S38333</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S38333</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S56748</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S56748</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S62654</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S62654</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S68223</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S68223</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S71322</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S71322</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S77430</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S77430</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>SYECGS</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=SYECGS</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T04336</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T04336</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T38705</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T38705</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T52565</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T52565</dblink-URL>
+</dblink>
+<ec-number>EC-6.3.2.3<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-13423" detail="low" frameid="ENZRXN-13423" orgid="ARA"><common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="CPLX-7214" orgid="ARA" resource="getxml?ARA:CPLX-7214" /></enzyme>
+<reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="#ARA:GLUTATHIONE-SYN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-6.265869</gibbs-0>
+<in-pathway><Pathway frameid="PWYQT-4470" orgid="ARA" resource="getxml?ARA:PWYQT-4470" /><Pathway frameid="GLUTATHIONESYN-PWY" orgid="ARA" resource="getxml?ARA:GLUTATHIONESYN-PWY" /></in-pathway>
+<left><Compound frameid="GLY" orgid="ARA" resource="getxml?ARA:GLY" /></left>
+<left><Compound frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="ARA" resource="getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE" /></left>
+<left><Compound frameid="ATP" orgid="ARA" resource="getxml?ARA:ATP" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="GLUTATHIONE" orgid="ARA" resource="getxml?ARA:GLUTATHIONE" /></right>
+<right><Compound frameid="Pi" orgid="ARA" resource="getxml?ARA:Pi" /></right>
+<right><Compound frameid="ADP" orgid="ARA" resource="getxml?ARA:ADP" /></right>
+<synonym datatype="string">Glutathione synthetase</synonym>
+</Reaction>
+</ptools-xml>

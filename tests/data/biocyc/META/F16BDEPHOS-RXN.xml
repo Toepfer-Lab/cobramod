@@ -1,0 +1,270 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:F16BDEPHOS-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:F16BDEPHOS-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:F16BDEPHOS-RXN" detail="full" frameid="F16BDEPHOS-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right>
+<right><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></right>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR96239</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR96239</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>11065</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=11065</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R00762</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00762</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09199</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09199</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19112</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19112</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P22780</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P22780</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09467</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09467</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JUL6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JUL6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9CIU9</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9CIU9</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09202</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09202</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q45597</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q45597</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P45292</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P45292</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PP83</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PP83</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19912</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19912</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19911</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19911</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9HGZ4</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9HGZ4</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09201</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09201</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P0A993</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P0A993</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00636</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00636</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P23014</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P23014</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P27994</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P27994</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P14766</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P14766</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09195</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09195</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M0S7</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M0S7</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P25851</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P25851</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q05079</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q05079</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46275</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46275</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46276</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46276</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q43139</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q43139</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00637</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00637</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O65827</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O65827</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42796</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42796</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46267</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46267</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q07204</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q07204</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P22418</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P22418</dblink-URL>
+</dblink>
+<ec-number>EC-3.1.3.11<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:F16BDEPHOS-ENZRXN" detail="low" frameid="F16BDEPHOS-ENZRXN" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<synonym datatype="string">fructose bisphosphatase</synonym>
+<synonym datatype="string">hexosediphosphatase</synonym>
+<synonym datatype="string">fructose-1,6-P2 1-phosphatase</synonym>
+<common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="F16B-CPLX" orgid="META" resource="getxml?META:F16B-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN0-402" detail="low" frameid="ENZRXN0-402" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="CPLX0-303" orgid="META" resource="getxml?META:CPLX0-303" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN0-6614" detail="low" frameid="ENZRXN0-6614" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="CPLX0-7776" orgid="META" resource="getxml?META:CPLX0-7776" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN0-6263" detail="low" frameid="ENZRXN0-6263" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<synonym datatype="string">HAD14</synonym>
+<common-name datatype="string">fructose 1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="EG11239-MONOMER" orgid="META" resource="getxml?META:EG11239-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN0-7743" detail="low" frameid="ENZRXN0-7743" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-biphosphate phosphatase</common-name>
+<enzyme><Protein frameid="ALKAPHOSPHA-CPLX" orgid="META" resource="getxml?META:ALKAPHOSPHA-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-1451" detail="low" frameid="ENZRXN66-1451" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="CPLX66-504" orgid="META" resource="getxml?META:CPLX66-504" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-1452" detail="low" frameid="ENZRXN66-1452" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="CPLX66-505" orgid="META" resource="getxml?META:CPLX66-505" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-18732" detail="low" frameid="ENZRXN-18732" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<common-name datatype="string">fructose 1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="AT3G54050-WS-MONOMER" orgid="META" resource="getxml?META:AT3G54050-WS-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-18716" detail="low" frameid="ENZRXN-18716" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="AT1G43670-MONOMER" orgid="META" resource="getxml?META:AT1G43670-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-183" detail="low" frameid="ENZRXN-183" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<synonym datatype="string">FBPase</synonym>
+<synonym datatype="string">F-I isozyme</synonym>
+<synonym datatype="string">fructose bisphosphatase</synonym>
+<synonym datatype="string">hexosediphosphatase</synonym>
+<synonym datatype="string">D-fructose-1,6-bisphosphate 1-phosphohydrolase</synonym>
+<common-name datatype="string">fructose 1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="CPLX-162" orgid="META" resource="getxml?META:CPLX-162" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-169" detail="low" frameid="ENZRXN-169" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="#META:F16BDEPHOS-RXN" /></reaction>
+<synonym datatype="string">FBPase</synonym>
+<synonym datatype="string">F-II isozyme</synonym>
+<synonym datatype="string">fructose bisphosphatase</synonym>
+<synonym datatype="string">hexosediphosphatase</synonym>
+<synonym datatype="string">D-fructose-1,6-bisphosphate 1-phosphohydrolase</synonym>
+<common-name datatype="string">fructose 1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="CPLX-143" orgid="META" resource="getxml?META:CPLX-143" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">6.8935547<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="SUCSYN-PWY" orgid="META" resource="getxml?META:SUCSYN-PWY" /></in-pathway>
+<left><Compound frameid="FRUCTOSE-16-DIPHOSPHATE" orgid="META" resource="getxml?META:FRUCTOSE-16-DIPHOSPHATE" /></left>
+<left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
+</Reaction>
+</ptools-xml>

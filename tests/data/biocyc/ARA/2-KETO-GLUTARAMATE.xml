@@ -1,0 +1,95 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:2-KETO-GLUTARAMATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:2-KETO-GLUTARAMATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:2-KETO-GLUTARAMATE" detail="full" frameid="2-KETO-GLUTARAMATE" orgid="ARA"><parent><Compound class="true" frameid="2-Oxo-carboxylates" orgid="ARA" resource="getxml?ARA:2-Oxo-carboxylates" /></parent>
+<parent><Compound class="true" frameid="DICARBOXYLIC-ACID-MONOAMIDES" orgid="ARA" resource="getxml?ARA:DICARBOXYLIC-ACID-MONOAMIDES" /></parent>
+<cml><molecule formalCharge="-1" id="2-KETO-GLUTARAMATE" title="2-oxoglutaramate"><atomArray><atom elementType="C" id="2-KETO-GLUTARAMATE-atom1" x2="1397.0" y2="-11413.0" /><atom elementType="C" id="2-KETO-GLUTARAMATE-atom2" x2="8520.0" y2="-7251.0" /><atom elementType="C" id="2-KETO-GLUTARAMATE-atom3" x2="-5728.0" y2="-7251.0" /><atom elementType="C" id="2-KETO-GLUTARAMATE-atom4" x2="15574.0" y2="-11413.0" /><atom elementType="C" id="2-KETO-GLUTARAMATE-atom5" x2="-12851.0" y2="-11413.0" /><atom elementType="N" id="2-KETO-GLUTARAMATE-atom6" x2="23263.0" y2="-6898.0" /><atom elementType="O" id="2-KETO-GLUTARAMATE-atom7" x2="-5728.0" y2="1636.0" /><atom elementType="O" id="2-KETO-GLUTARAMATE-atom8" x2="15574.0" y2="-20301.0" /><atom elementType="O" id="2-KETO-GLUTARAMATE-atom9" x2="-12851.0" y2="-20301.0" /><atom elementType="O" formalCharge="-1" id="2-KETO-GLUTARAMATE-atom10" x2="-20540.0" y2="-6898.0" /></atomArray>
+<bondArray><bond atomRefs="2-KETO-GLUTARAMATE-atom8 2-KETO-GLUTARAMATE-atom4" id="2-KETO-GLUTARAMATE-bond1" order="2" /><bond atomRefs="2-KETO-GLUTARAMATE-atom4 2-KETO-GLUTARAMATE-atom2" id="2-KETO-GLUTARAMATE-bond2" order="1" /><bond atomRefs="2-KETO-GLUTARAMATE-atom1 2-KETO-GLUTARAMATE-atom3" id="2-KETO-GLUTARAMATE-bond3" order="1" /><bond atomRefs="2-KETO-GLUTARAMATE-atom10 2-KETO-GLUTARAMATE-atom5" id="2-KETO-GLUTARAMATE-bond4" order="1" /><bond atomRefs="2-KETO-GLUTARAMATE-atom3 2-KETO-GLUTARAMATE-atom5" id="2-KETO-GLUTARAMATE-bond5" order="1" /><bond atomRefs="2-KETO-GLUTARAMATE-atom9 2-KETO-GLUTARAMATE-atom5" id="2-KETO-GLUTARAMATE-bond6" order="2" /><bond atomRefs="2-KETO-GLUTARAMATE-atom7 2-KETO-GLUTARAMATE-atom3" id="2-KETO-GLUTARAMATE-bond7" order="2" /><bond atomRefs="2-KETO-GLUTARAMATE-atom6 2-KETO-GLUTARAMATE-atom4" id="2-KETO-GLUTARAMATE-bond8" order="1" /><bond atomRefs="2-KETO-GLUTARAMATE-atom2 2-KETO-GLUTARAMATE-atom1" id="2-KETO-GLUTARAMATE-bond9" order="1" /></bondArray>
+<formula concise="C 5 H 6 N 1 O 4" /><float title="molecularWeight" units="g/mol">144.107</float>
+<string title="smiles">C(CC(N)=O)C(=O)C(=O)[O-]</string>
+</molecule>
+</cml>
+<common-name datatype="string">2-oxoglutaramate</common-name>
+<credits><imported-from-meta><date datatype="date">2015-03-10</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></imported-from-meta>
+</credits>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>893598</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=893598</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00695</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00695</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM575</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM575</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>2-Keto-glutaramic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=2-Keto-glutaramic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16769</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16769</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01552</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01552</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>134184</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/134184</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>152239</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=152239</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16769</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16769</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00940</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00940</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>18465-19-5</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=18465-19-5</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-85.145355</gibbs-0>
+<inchi datatype="string">InChI=1S/C5H7NO4/c6-4(8)2-1-3(7)5(9)10/h1-2H2,(H2,6,8)(H,9,10)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=COJBGNAUUSNXHX-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">144.107</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">145.0375</monoisotopic-mw>
+<synonym datatype="string">2-keto-glutaramate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-15651" orgid="ARA" resource="getxml?ARA:RXN-15651" /><Reaction frameid="RXN-13072" orgid="ARA" resource="getxml?ARA:RXN-13072" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-15650" orgid="ARA" resource="getxml?ARA:RXN-15650" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

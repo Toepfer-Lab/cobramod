@@ -1,0 +1,41 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-411"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-411</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-411" detail="full" frameid="CPDQT-411" orgid="ARA"><parent><Compound class="true" frameid="n-methylthioalkylhydroximate" orgid="ARA" resource="getxml?ARA:n-methylthioalkylhydroximate" /></parent>
+<cml><molecule formalCharge="0" id="CPDQT-411" title="(E)-omega-(methylsulfanyl)pentyl-thiohydroximate"><atomArray><atom elementType="C" id="CPDQT-411-atom1" x2="6145.0" y2="-3790.0" /><atom elementType="C" id="CPDQT-411-atom2" x2="3287.0" y2="-3790.0" /><atom elementType="C" id="CPDQT-411-atom3" x2="4001.0" y2="-4202.0" /><atom elementType="C" id="CPDQT-411-atom4" x2="2572.0" y2="-4202.0" /><atom elementType="C" id="CPDQT-411-atom5" x2="4716.0" y2="-3790.0" /><atom elementType="C" id="CPDQT-411-atom6" x2="1858.0" y2="-3790.0" /><atom elementType="N" id="CPDQT-411-atom7" x2="1144.0" y2="-4202.0" /><atom elementType="O" id="CPDQT-411-atom8" x2="1144.0" y2="-5027.0" /><atom elementType="S" id="CPDQT-411-atom9" x2="1858.0" y2="-2965.0" /><atom elementType="S" id="CPDQT-411-atom10" x2="5430.0" y2="-4202.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-411-atom9 CPDQT-411-atom6" id="CPDQT-411-bond1" order="1" /><bond atomRefs="CPDQT-411-atom6 CPDQT-411-atom7" id="CPDQT-411-bond2" order="2" /><bond atomRefs="CPDQT-411-atom7 CPDQT-411-atom8" id="CPDQT-411-bond3" order="1" /><bond atomRefs="CPDQT-411-atom6 CPDQT-411-atom4" id="CPDQT-411-bond4" order="1" /><bond atomRefs="CPDQT-411-atom4 CPDQT-411-atom2" id="CPDQT-411-bond5" order="1" /><bond atomRefs="CPDQT-411-atom2 CPDQT-411-atom3" id="CPDQT-411-bond6" order="1" /><bond atomRefs="CPDQT-411-atom3 CPDQT-411-atom5" id="CPDQT-411-bond7" order="1" /><bond atomRefs="CPDQT-411-atom5 CPDQT-411-atom10" id="CPDQT-411-bond8" order="1" /><bond atomRefs="CPDQT-411-atom10 CPDQT-411-atom1" id="CPDQT-411-bond9" order="1" /></bondArray>
+<formula concise="C 6 H 13 N 1 O 1 S 2" /><float title="molecularWeight" units="g/mol">179.295</float>
+<string title="smiles">CSCCCCC(/S)=N\O</string>
+</molecule>
+</cml>
+<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-&amp;omega;-(methylsulfanyl)pentyl-thiohydroximate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd26636</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd26636</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM8177</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM8177</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>44237183</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=44237183</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">118.584564</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H13NOS2/c1-10-5-3-2-4-6(9)7-8/h8H,2-5H2,1H3,(H,7,9)</inchi>
+<inchi-key datatype="string">InChIKey=UDHXDZYDFAVOEH-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">179.295</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">179.04385</monoisotopic-mw>
+<synonym datatype="string">(&lt;i&gt;E&lt;/i&gt;)-&lt;i&gt;N&lt;/i&gt;-hydroxy-5-(methylsulfanyl)pentimidothioate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXNQT-4324" orgid="ARA" resource="getxml?ARA:RXNQT-4324" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXNQT-4319" orgid="ARA" resource="getxml?ARA:RXNQT-4319" /><Reaction frameid="RXN-11439" orgid="ARA" resource="getxml?ARA:RXN-11439" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

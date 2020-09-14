@@ -1,0 +1,103 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:SULFATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:SULFATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:SULFATE" detail="full" frameid="SULFATE" orgid="ARA"><parent><Compound class="true" frameid="Inorganic-Anions" orgid="ARA" resource="getxml?ARA:Inorganic-Anions" /></parent>
+<cml><molecule formalCharge="-2" id="SULFATE" title="sulfate"><atomArray><atom elementType="O" id="SULFATE-atom1" x2="825.0" y2="0.0" /><atom elementType="O" id="SULFATE-atom2" x2="0.0" y2="-825.0" /><atom elementType="O" formalCharge="-1" id="SULFATE-atom3" x2="1650.0" y2="-825.0" /><atom elementType="O" formalCharge="-1" id="SULFATE-atom4" x2="825.0" y2="-1650.0" /><atom elementType="S" id="SULFATE-atom5" x2="825.0" y2="-825.0" /></atomArray>
+<bondArray><bond atomRefs="SULFATE-atom4 SULFATE-atom5" id="SULFATE-bond1" order="1" /><bond atomRefs="SULFATE-atom3 SULFATE-atom5" id="SULFATE-bond2" order="1" /><bond atomRefs="SULFATE-atom2 SULFATE-atom5" id="SULFATE-bond3" order="2" /><bond atomRefs="SULFATE-atom1 SULFATE-atom5" id="SULFATE-bond4" order="2" /></bondArray>
+<formula concise="O 4 S 1" /><float title="molecularWeight" units="g/mol">96.058</float>
+<string title="smiles">O=S(=O)([O-])[O-]</string>
+<string title="systematicName">tetraoxosulfate(2-)</string>
+</molecule>
+</cml>
+<common-name datatype="string">sulfate</common-name>
+<component-of><Compound frameid="CPD0-2393" orgid="ARA" resource="getxml?ARA:CPD0-2393" /><Compound frameid="CPD0-2386" orgid="ARA" resource="getxml?ARA:CPD0-2386" /><Compound frameid="NA2SO4" orgid="ARA" resource="getxml?ARA:NA2SO4" /><Compound frameid="CUSO4" orgid="ARA" resource="getxml?ARA:CUSO4" /></component-of>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/57/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/57/</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>so4</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/so4</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16189</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16189</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00059</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00059</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01448</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01448</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>1085</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/1085</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16189</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16189</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>1117</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=1117</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>14808-79-8</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=14808-79-8</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-179.24825</gibbs-0>
+<inchi datatype="string">InChI=1S/H2O4S/c1-5(2,3)4/h(H2,1,2,3,4)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=QAOWNCQODCNURD-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">96.058</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">97.96738</monoisotopic-mw>
+<regulates><Regulation ID="ARA:REG-7452" detail="low" frameid="REG-7452" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulator><Compound frameid="SULFATE" orgid="ARA" resource="#ARA:SULFATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-5991" detail="low" frameid="REG-5991" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXN-13304" detail="low" frameid="ENZRXN-13304" orgid="ARA"><common-name datatype="string">molybdopterin molybdotransferase</common-name>
+<enzyme><Protein frameid="AT5G20990-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G20990-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-8348" orgid="ARA" resource="getxml?ARA:RXN-8348" /></reaction>
+<synonym datatype="string">molybdopterin hydrolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SULFATE" orgid="ARA" resource="#ARA:SULFATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-8815" detail="low" frameid="REG0-8815" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulator><Compound frameid="SULFATE" orgid="ARA" resource="#ARA:SULFATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-332" detail="low" frameid="REGQT-332" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction frameid="ENZRXN-13304" orgid="ARA" resource="#ARA:ENZRXN-13304" /></regulated-entity>
+<regulator><Compound frameid="SULFATE" orgid="ARA" resource="#ARA:SULFATE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">H2SO4</synonym>
+<synonym datatype="string">sulfuric acid</synonym>
+<synonym datatype="string">sulphate</synonym>
+<synonym datatype="string">SO&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;-2&lt;/SUP&gt;</synonym>
+<synonym datatype="string">SO&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;2-&lt;/SUP&gt;</synonym>
+<synonym datatype="string">SO&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;--&lt;/SUP&gt;</synonym>
+<systematic-name datatype="string">tetraoxosulfate(2-)</systematic-name>
+<appears-in-left-side-of><Reaction frameid="ABC-70-RXN" orgid="ARA" resource="getxml?ARA:ABC-70-RXN" /><Reaction frameid="SULFATE-ADENYLYLTRANS-RXN" orgid="ARA" resource="getxml?ARA:SULFATE-ADENYLYLTRANS-RXN" /><Reaction frameid="SULFATE-ADENYLYLTRANSFERASE-ADP-RXN" orgid="ARA" resource="getxml?ARA:SULFATE-ADENYLYLTRANSFERASE-ADP-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-12026" orgid="ARA" resource="getxml?ARA:RXN-12026" /><Reaction frameid="RXN-12027" orgid="ARA" resource="getxml?ARA:RXN-12027" /><Reaction frameid="RXN-12025" orgid="ARA" resource="getxml?ARA:RXN-12025" /><Reaction frameid="RXN-18225" orgid="ARA" resource="getxml?ARA:RXN-18225" /><Reaction frameid="RXNQT-4351" orgid="ARA" resource="getxml?ARA:RXNQT-4351" /><Reaction frameid="RXN-8137" orgid="ARA" resource="getxml?ARA:RXN-8137" /><Reaction frameid="RXN-8135" orgid="ARA" resource="getxml?ARA:RXN-8135" /><Reaction frameid="RXN-8136" orgid="ARA" resource="getxml?ARA:RXN-8136" /><Reaction frameid="ABC-70-RXN" orgid="ARA" resource="getxml?ARA:ABC-70-RXN" /><Reaction frameid="RXNQT-4350" orgid="ARA" resource="getxml?ARA:RXNQT-4350" /><Reaction frameid="RXNQT-4360" orgid="ARA" resource="getxml?ARA:RXNQT-4360" /><Reaction frameid="ADENYLYLSULFATASE-RXN" orgid="ARA" resource="getxml?ARA:ADENYLYLSULFATASE-RXN" /><Reaction frameid="SULFITE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:SULFITE-OXIDASE-RXN" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

@@ -1,0 +1,64 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:MALONYL-ACP"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:MALONYL-ACP</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Protein ID="META:MALONYL-ACP" class="true" detail="full" frameid="MALONYL-ACP" orgid="META"><parent><Protein class="true" frameid="ACYL-ACP" orgid="META" resource="getxml?META:ACYL-ACP" /></parent>
+<parent><Protein class="true" frameid="Saturated-acyl-ACPs" orgid="META" resource="getxml?META:Saturated-acyl-ACPs" /></parent>
+<subclass><Protein class="true" frameid="Malonyl-PedD" orgid="META" resource="getxml?META:Malonyl-PedD" /></subclass>
+<subclass><Protein class="true" frameid="Malonyl-PedN-ACP" orgid="META" resource="getxml?META:Malonyl-PedN-ACP" /></subclass>
+<subclass><Protein class="true" frameid="Malonyl-BryP-ACP" orgid="META" resource="getxml?META:Malonyl-BryP-ACP" /></subclass>
+<subclass><Protein class="true" frameid="Malonyl-BryU-ACP" orgid="META" resource="getxml?META:Malonyl-BryU-ACP" /></subclass>
+<regulates><Regulation ID="META:REG0-7084" detail="low" frameid="REG0-7084" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:MALONYL-COA-ACP-TRANSACYL-ENZRXN" detail="low" frameid="MALONYL-COA-ACP-TRANSACYL-ENZRXN" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="getxml?META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<synonym datatype="string">malonyl-CoA-acyl carrier protein transacylase</synonym>
+<synonym datatype="string">malonyl-CoA-ACP transacylase</synonym>
+<synonym datatype="string">S-malonyltransferase</synonym>
+<synonym datatype="string">malonyl-CoA:[acyl carrier protein] S-malonyltransferase</synonym>
+<synonym datatype="string">malonyl transacylase</synonym>
+<synonym datatype="string">malonyl coenzyme A-acyl carrier protein transacylase</synonym>
+<common-name datatype="string">[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
+<enzyme><Protein frameid="MALONYL-COA-ACP-TRANSACYL-MONOMER" orgid="META" resource="getxml?META:MALONYL-COA-ACP-TRANSACYL-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Protein class="true" frameid="MALONYL-ACP" orgid="META" resource="#META:MALONYL-ACP" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">malonyl-[acyl-carrier protein]</synonym>
+<synonym datatype="string">malonyl-S-ACP</synonym>
+<synonym datatype="string">malonyl-acyl-carrier-protein</synonym>
+<synonym datatype="string">carboxyacetyl-[acyl-carrier protein]</synonym>
+<unmodified-form><Protein class="true" frameid="ACP" orgid="META" resource="getxml?META:ACP" /></unmodified-form>
+<appears-in-left-side-of><Reaction frameid="RXN-19848" orgid="META" resource="getxml?META:RXN-19848" /><Reaction frameid="RXN1G-460" orgid="META" resource="getxml?META:RXN1G-460" /><Reaction frameid="RXN1G-445" orgid="META" resource="getxml?META:RXN1G-445" /><Reaction frameid="RXN1G-368" orgid="META" resource="getxml?META:RXN1G-368" /><Reaction frameid="RXN-21701" orgid="META" resource="getxml?META:RXN-21701" /><Reaction frameid="RXN-21695" orgid="META" resource="getxml?META:RXN-21695" /><Reaction frameid="RXN-21690" orgid="META" resource="getxml?META:RXN-21690" /><Reaction frameid="RXN-21685" orgid="META" resource="getxml?META:RXN-21685" /><Reaction frameid="RXN-21680" orgid="META" resource="getxml?META:RXN-21680" /><Reaction frameid="RXN-21669" orgid="META" resource="getxml?META:RXN-21669" /><Reaction frameid="RXN-21664" orgid="META" resource="getxml?META:RXN-21664" /><Reaction frameid="RXN-21659" orgid="META" resource="getxml?META:RXN-21659" /><Reaction frameid="RXN-21654" orgid="META" resource="getxml?META:RXN-21654" /><Reaction frameid="RXN-21634" orgid="META" resource="getxml?META:RXN-21634" /><Reaction frameid="RXN-21629" orgid="META" resource="getxml?META:RXN-21629" /><Reaction frameid="RXN-21625" orgid="META" resource="getxml?META:RXN-21625" /><Reaction frameid="RXN-21621" orgid="META" resource="getxml?META:RXN-21621" /><Reaction frameid="RXN-21617" orgid="META" resource="getxml?META:RXN-21617" /><Reaction frameid="RXN-21649" orgid="META" resource="getxml?META:RXN-21649" /><Reaction frameid="RXN-21612" orgid="META" resource="getxml?META:RXN-21612" /><Reaction frameid="RXN-21611" orgid="META" resource="getxml?META:RXN-21611" /><Reaction frameid="RXN-21610" orgid="META" resource="getxml?META:RXN-21610" /><Reaction frameid="3-OXOACYL-ACP-SYNTH-RXN" orgid="META" resource="getxml?META:3-OXOACYL-ACP-SYNTH-RXN" /><Reaction frameid="RXN-9632" orgid="META" resource="getxml?META:RXN-9632" /><Reaction frameid="RXN-8391" orgid="META" resource="getxml?META:RXN-8391" /><Reaction frameid="RXN-11474" orgid="META" resource="getxml?META:RXN-11474" /><Reaction frameid="RXN-8926" orgid="META" resource="getxml?META:RXN-8926" /><Reaction frameid="RXN-16615" orgid="META" resource="getxml?META:RXN-16615" /><Reaction frameid="RXN-16621" orgid="META" resource="getxml?META:RXN-16621" /><Reaction frameid="2.3.1.41-RXN" orgid="META" resource="getxml?META:2.3.1.41-RXN" /><Reaction frameid="RXN-20947" orgid="META" resource="getxml?META:RXN-20947" /><Reaction frameid="RXN0-2141" orgid="META" resource="getxml?META:RXN0-2141" /><Reaction frameid="RXN-16911" orgid="META" resource="getxml?META:RXN-16911" /><Reaction frameid="RXN-9535" orgid="META" resource="getxml?META:RXN-9535" /><Reaction frameid="3-OXOACYL-ACP-SYNTH-BASE-RXN" orgid="META" resource="getxml?META:3-OXOACYL-ACP-SYNTH-BASE-RXN" /><Reaction frameid="RXN-19853" orgid="META" resource="getxml?META:RXN-19853" /><Reaction frameid="MALONYL-ACPDECARBOX-RXN" orgid="META" resource="getxml?META:MALONYL-ACPDECARBOX-RXN" /><Reaction frameid="RXN-19849" orgid="META" resource="getxml?META:RXN-19849" /><Reaction frameid="RXN-19847" orgid="META" resource="getxml?META:RXN-19847" /><Reaction frameid="RXN1G-26" orgid="META" resource="getxml?META:RXN1G-26" /><Reaction frameid="RXN-19846" orgid="META" resource="getxml?META:RXN-19846" /><Reaction frameid="RXN-10654" orgid="META" resource="getxml?META:RXN-10654" /><Reaction frameid="RXN-16625" orgid="META" resource="getxml?META:RXN-16625" /><Reaction frameid="RXN-9516" orgid="META" resource="getxml?META:RXN-9516" /><Reaction frameid="RXN-10658" orgid="META" resource="getxml?META:RXN-10658" /><Reaction frameid="RXN-9531" orgid="META" resource="getxml?META:RXN-9531" /><Reaction frameid="RXN-11479" orgid="META" resource="getxml?META:RXN-11479" /><Reaction frameid="RXN-9523" orgid="META" resource="getxml?META:RXN-9523" /><Reaction frameid="RXN-9539" orgid="META" resource="getxml?META:RXN-9539" /><Reaction frameid="RXN-9527" orgid="META" resource="getxml?META:RXN-9527" /><Reaction frameid="RXN-16629" orgid="META" resource="getxml?META:RXN-16629" /><Reaction frameid="RXN1G-202" orgid="META" resource="getxml?META:RXN1G-202" /><Reaction frameid="RXN1G-89" orgid="META" resource="getxml?META:RXN1G-89" /><Reaction frameid="RXN1G-172" orgid="META" resource="getxml?META:RXN1G-172" /><Reaction frameid="RXN1G-580" orgid="META" resource="getxml?META:RXN1G-580" /><Reaction frameid="RXN1G-32" orgid="META" resource="getxml?META:RXN1G-32" /><Reaction frameid="RXN1G-424" orgid="META" resource="getxml?META:RXN1G-424" /><Reaction frameid="RXN1G-660" orgid="META" resource="getxml?META:RXN1G-660" /><Reaction frameid="RXN1G-883" orgid="META" resource="getxml?META:RXN1G-883" /><Reaction frameid="RXN1G-79" orgid="META" resource="getxml?META:RXN1G-79" /><Reaction frameid="RXN1G-334" orgid="META" resource="getxml?META:RXN1G-334" /><Reaction frameid="RXN1G-557" orgid="META" resource="getxml?META:RXN1G-557" /><Reaction frameid="RXN1G-818" orgid="META" resource="getxml?META:RXN1G-818" /><Reaction frameid="RXN1G-1015" orgid="META" resource="getxml?META:RXN1G-1015" /><Reaction frameid="RXN1G-1212" orgid="META" resource="getxml?META:RXN1G-1212" /><Reaction frameid="RXN1G-94" orgid="META" resource="getxml?META:RXN1G-94" /><Reaction frameid="RXN1G-374" orgid="META" resource="getxml?META:RXN1G-374" /><Reaction frameid="RXN1G-582" orgid="META" resource="getxml?META:RXN1G-582" /><Reaction frameid="RXN1G-132" orgid="META" resource="getxml?META:RXN1G-132" /><Reaction frameid="RXN1G-840" orgid="META" resource="getxml?META:RXN1G-840" /><Reaction frameid="RXN1G-324" orgid="META" resource="getxml?META:RXN1G-324" /><Reaction frameid="RXN1G-236" orgid="META" resource="getxml?META:RXN1G-236" /><Reaction frameid="RXN1G-138" orgid="META" resource="getxml?META:RXN1G-138" /><Reaction frameid="RXN1G-218" orgid="META" resource="getxml?META:RXN1G-218" /><Reaction frameid="RXN1G-306" orgid="META" resource="getxml?META:RXN1G-306" /><Reaction frameid="RXN1G-1003" orgid="META" resource="getxml?META:RXN1G-1003" /><Reaction frameid="RXN-13613" orgid="META" resource="getxml?META:RXN-13613" /><Reaction frameid="2.3.1.180-RXN" orgid="META" resource="getxml?META:2.3.1.180-RXN" /><Reaction frameid="RXN-12361" orgid="META" resource="getxml?META:RXN-12361" /><Reaction frameid="2.3.1.179-RXN" orgid="META" resource="getxml?META:2.3.1.179-RXN" /><Reaction frameid="RXN-11475" orgid="META" resource="getxml?META:RXN-11475" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="getxml?META:MALONYL-COA-ACP-TRANSACYL-RXN" /><Reaction frameid="RXN-12360" orgid="META" resource="getxml?META:RXN-12360" /></appears-in-right-side-of>
+<common-name datatype="string">a malonyl-[acp]</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd11492</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd11492</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM184</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM184</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17330</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17330</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>malACP</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/malACP</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C01209</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C01209</dblink-URL>
+</dblink>
+</Protein>
+</ptools-xml>

@@ -1,0 +1,117 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:ADENYLYLSULFKIN-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:ADENYLYLSULFKIN-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:ADENYLYLSULFKIN-RXN" detail="full" frameid="ADENYLYLSULFKIN-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>ZZZRNQ</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=ZZZRNQ</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T08076</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T08076</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T06100</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T06100</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S74917</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S74917</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S47640</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S47640</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S18729</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S18729</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S17244</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S17244</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JW0087</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JW0087</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JC4383</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JC4383</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>I39755</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=I39755</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>H84978</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=H84978</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>G81286</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=G81286</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>C70393</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=C70393</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>B70772</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=B70772</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>B65056</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=B65056</dblink-URL>
+</dblink>
+<ec-number>EC-2.7.1.25<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-30637" detail="low" frameid="ENZRXNQT-30637" orgid="ARA"><common-name datatype="string">adenylyl-sulfate kinase</common-name>
+<enzyme><Protein frameid="AT3G03900-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G03900-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="#ARA:ADENYLYLSULFKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-25774" detail="low" frameid="ENZRXNQT-25774" orgid="ARA"><common-name datatype="string">adenylyl-sulfate kinase</common-name>
+<enzyme><Protein frameid="AT5G67520-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G67520-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="#ARA:ADENYLYLSULFKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-12665" detail="low" frameid="ENZRXN-12665" orgid="ARA"><common-name datatype="string">adenylyl-sulfate kinase</common-name>
+<enzyme><Protein frameid="AT4G39940-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G39940-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="#ARA:ADENYLYLSULFKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-12664" detail="low" frameid="ENZRXN-12664" orgid="ARA"><common-name datatype="string">adenylyl-sulfate kinase</common-name>
+<enzyme><Protein frameid="AT2G14750-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G14750-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="#ARA:ADENYLYLSULFKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-17.312317</gibbs-0>
+<in-pathway><Pathway frameid="PWY-5340" orgid="ARA" resource="getxml?ARA:PWY-5340" /></in-pathway>
+<left><Compound frameid="APS" orgid="ARA" resource="getxml?ARA:APS" /></left>
+<left><Compound frameid="ATP" orgid="ARA" resource="getxml?ARA:ATP" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="PAPS" orgid="ARA" resource="getxml?ARA:PAPS" /></right>
+<right><Compound frameid="ADP" orgid="ARA" resource="getxml?ARA:ADP" /></right>
+<synonym datatype="string">Adenosine-5'phosphosulfate kinase</synonym>
+</Reaction>
+</ptools-xml>

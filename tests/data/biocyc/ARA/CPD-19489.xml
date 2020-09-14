@@ -1,0 +1,60 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-19489"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-19489</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-19489" detail="full" frameid="CPD-19489" orgid="ARA"><parent><Compound class="true" frameid="CPD-21521" orgid="ARA" resource="getxml?ARA:CPD-21521" /></parent>
+<cml><molecule formalCharge="-2" id="CPD-19489" title="3-carboxy-8-(methylsulfanyl)-2-oxooctanoate"><atomArray><atom elementType="C" id="CPD-19489-atom1" x2="7.1445" y2="1.65" /><atom elementType="C" id="CPD-19489-atom2" x2="4.2867" y2="1.65" /><atom elementType="C" id="CPD-19489-atom3" x2="3.5722" y2="1.2375" /><atom elementType="C" id="CPD-19489-atom4" x2="5.0012" y2="1.2375" /><atom elementType="C" id="CPD-19489-atom5" x2="2.8578" y2="1.65" /><atom elementType="C" id="CPD-19489-atom6" x2="5.7155" y2="1.65" /><atom elementType="C" id="CPD-19489-atom7" x2="2.1433" y2="1.2375" /><atom elementType="C" id="CPD-19489-atom8" x2="1.4289" y2="1.65" /><atom elementType="C" id="CPD-19489-atom9" x2="2.1433" y2="0.4125" /><atom elementType="C" id="CPD-19489-atom10" x2="0.7144" y2="1.2375" /><atom elementType="O" id="CPD-19489-atom11" x2="1.4289" y2="2.475" /><atom elementType="O" id="CPD-19489-atom12" x2="1.4289" y2="0.0" /><atom elementType="O" formalCharge="-1" id="CPD-19489-atom13" x2="2.8578" y2="0.0" /><atom elementType="O" id="CPD-19489-atom14" x2="0.7144" y2="0.4125" /><atom elementType="O" formalCharge="-1" id="CPD-19489-atom15" x2="0.0" y2="1.65" /><atom elementType="S" id="CPD-19489-atom16" x2="6.43" y2="1.2375" /></atomArray>
+<bondArray><bond atomRefs="CPD-19489-atom16 CPD-19489-atom1" id="CPD-19489-bond1" order="1" /><bond atomRefs="CPD-19489-atom6 CPD-19489-atom16" id="CPD-19489-bond2" order="1" /><bond atomRefs="CPD-19489-atom10 CPD-19489-atom15" id="CPD-19489-bond3" order="1" /><bond atomRefs="CPD-19489-atom10 CPD-19489-atom14" id="CPD-19489-bond4" order="2" /><bond atomRefs="CPD-19489-atom8 CPD-19489-atom10" id="CPD-19489-bond5" order="1" /><bond atomRefs="CPD-19489-atom8 CPD-19489-atom11" id="CPD-19489-bond6" order="2" /><bond atomRefs="CPD-19489-atom9 CPD-19489-atom13" id="CPD-19489-bond7" order="1" /><bond atomRefs="CPD-19489-atom9 CPD-19489-atom12" id="CPD-19489-bond8" order="2" /><bond atomRefs="CPD-19489-atom7 CPD-19489-atom9" id="CPD-19489-bond9" order="1" /><bond atomRefs="CPD-19489-atom7 CPD-19489-atom8" id="CPD-19489-bond10" order="1" /><bond atomRefs="CPD-19489-atom5 CPD-19489-atom7" id="CPD-19489-bond11" order="1" /><bond atomRefs="CPD-19489-atom3 CPD-19489-atom5" id="CPD-19489-bond12" order="1" /><bond atomRefs="CPD-19489-atom2 CPD-19489-atom3" id="CPD-19489-bond13" order="1" /><bond atomRefs="CPD-19489-atom4 CPD-19489-atom2" id="CPD-19489-bond14" order="1" /><bond atomRefs="CPD-19489-atom6 CPD-19489-atom4" id="CPD-19489-bond15" order="1" /></bondArray>
+<formula concise="C 10 H 14 O 5 S 1" /><float title="molecularWeight" units="g/mol">246.278</float>
+<string title="smiles">CSCCCCCC(C(=O)C(=O)[O-])C(=O)[O-]</string>
+</molecule>
+</cml>
+<common-name datatype="string">3-carboxy-8-(methylsulfanyl)-2-oxooctanoate</common-name>
+<credits><created><date datatype="date">2016-09-06</date>
+<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></created>
+<imported-from-meta><date datatype="date">2017-02-17</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></imported-from-meta>
+</credits>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM164247</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM164247</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>123131579</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131579</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-31.292557</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H16O5S/c1-16-6-4-2-3-5-7(9(12)13)8(11)10(14)15/h7H,2-6H2,1H3,(H,12,13)(H,14,15)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=YOBCOUZBIFVTFN-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">246.278</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">248.07184</monoisotopic-mw>
+<synonym datatype="string">3-carboxy-8-(methylthio)-2-oxooctanoate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-18205" orgid="ARA" resource="getxml?ARA:RXN-18205" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-18204" orgid="ARA" resource="getxml?ARA:RXN-18204" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

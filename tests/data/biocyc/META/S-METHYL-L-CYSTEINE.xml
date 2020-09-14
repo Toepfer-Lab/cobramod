@@ -1,0 +1,87 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:S-METHYL-L-CYSTEINE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:S-METHYL-L-CYSTEINE</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:S-METHYL-L-CYSTEINE" detail="full" frameid="S-METHYL-L-CYSTEINE" orgid="META"><parent><Compound class="true" frameid="Methylated-Amino-Acids" orgid="META" resource="getxml?META:Methylated-Amino-Acids" /></parent>
+<parent><Compound class="true" frameid="S-Alkyl-L-Cysteines" orgid="META" resource="getxml?META:S-Alkyl-L-Cysteines" /></parent>
+<cml><molecule formalCharge="0" id="S-METHYL-L-CYSTEINE" title="S-methyl-L-cysteine"><atomArray><atom elementType="C" id="S-METHYL-L-CYSTEINE-atom1" x2="70350.0" y2="-237100.0" /><atom elementType="C" id="S-METHYL-L-CYSTEINE-atom2" x2="-1100.0" y2="-113350.0" /><atom elementType="C" id="S-METHYL-L-CYSTEINE-atom3" x2="-1100.0" y2="-30850.0" /><atom elementType="C" id="S-METHYL-L-CYSTEINE-atom4" x2="70350.0" y2="10400.0" /><atom elementType="N" formalCharge="1" id="S-METHYL-L-CYSTEINE-atom5" x2="-72550.0" y2="10400.0" /><atom elementType="O" id="S-METHYL-L-CYSTEINE-atom6" x2="70350.0" y2="92900.0" /><atom elementType="O" formalCharge="-1" id="S-METHYL-L-CYSTEINE-atom7" x2="141790.0" y2="-30850.0" /><atom elementType="S" id="S-METHYL-L-CYSTEINE-atom8" x2="70350.0" y2="-154600.0" /></atomArray>
+<bondArray><bond atomRefs="S-METHYL-L-CYSTEINE-atom8 S-METHYL-L-CYSTEINE-atom2" id="S-METHYL-L-CYSTEINE-bond1" order="1" /><bond atomRefs="S-METHYL-L-CYSTEINE-atom3 S-METHYL-L-CYSTEINE-atom5" id="S-METHYL-L-CYSTEINE-bond2" order="1" /><bond atomRefs="S-METHYL-L-CYSTEINE-atom3 S-METHYL-L-CYSTEINE-atom4" id="S-METHYL-L-CYSTEINE-bond3" order="1" /><bond atomRefs="S-METHYL-L-CYSTEINE-atom2 S-METHYL-L-CYSTEINE-atom3" id="S-METHYL-L-CYSTEINE-bond4" order="1" /><bond atomRefs="S-METHYL-L-CYSTEINE-atom6 S-METHYL-L-CYSTEINE-atom4" id="S-METHYL-L-CYSTEINE-bond5" order="2" /><bond atomRefs="S-METHYL-L-CYSTEINE-atom7 S-METHYL-L-CYSTEINE-atom4" id="S-METHYL-L-CYSTEINE-bond6" order="1" /><bond atomRefs="S-METHYL-L-CYSTEINE-atom8 S-METHYL-L-CYSTEINE-atom1" id="S-METHYL-L-CYSTEINE-bond7" order="1" /></bondArray>
+<formula concise="C 4 H 9 N 1 O 2 S 1" /><float title="molecularWeight" units="g/mol">135.181</float>
+<string title="smiles">CSC[C@@H](C([O-])=O)[NH3+]</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">135.181</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">135.0354</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-8908" orgid="META" resource="getxml?META:RXN-8908" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-16201" orgid="META" resource="getxml?META:RXN-16201" /></appears-in-right-side-of>
+<common-name datatype="string">&lt;i&gt;S&lt;/i&gt;-methyl-L-cysteine</common-name>
+<credits><revised><date datatype="date">2013-07-28</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd28135</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd28135</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM81310</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM81310</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Methylcysteine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Methylcysteine</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>133545</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:133545</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7058174</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7058174</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC45658</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC45658</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB02108</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB02108</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">14.9100895<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C4H9NO2S/c1-8-2-3(5)4(6)7/h3H,2,5H2,1H3,(H,6,7)/t3-/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=IDIDJDIHTAOVLG-VKHMYHEASA-N</inchi-key>
+</Compound>
+</ptools-xml>

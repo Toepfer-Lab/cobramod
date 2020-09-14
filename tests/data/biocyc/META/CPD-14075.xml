@@ -1,0 +1,73 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-14075"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:CPD-14075</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:CPD-14075" detail="full" frameid="CPD-14075" orgid="META"><parent><Compound class="true" frameid="Vitamins" orgid="META" resource="getxml?META:Vitamins" /></parent>
+<cml><molecule formalCharge="1" id="CPD-14075" title="1,2-dihydropyrimidine"><atomArray><atom elementType="C" id="CPD-14075-atom1" x2="-73520.0" y2="21000.0" /><atom elementType="C" id="CPD-14075-atom2" x2="-144240.0" y2="-21000.0" /><atom elementType="C" id="CPD-14075-atom3" x2="-2100.0" y2="-20300.0" /><atom elementType="C" id="CPD-14075-atom4" x2="-144240.0" y2="-103630.0" /><atom elementType="C" id="CPD-14075-atom5" x2="-2100.0" y2="-102230.0" /><atom elementType="N" formalCharge="1" id="CPD-14075-atom6" x2="-72820.0" y2="-144240.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-14075-atom4 CPD-14075-atom6" id="CPD-14075-bond1" order="1" /><bond atomRefs="CPD-14075-atom2 CPD-14075-atom4" id="CPD-14075-bond2" order="2" /><bond atomRefs="CPD-14075-atom5 CPD-14075-atom3" id="CPD-14075-bond3" order="1" /><bond atomRefs="CPD-14075-atom6 CPD-14075-atom5" id="CPD-14075-bond4" order="1" /><bond atomRefs="CPD-14075-atom3 CPD-14075-atom1" id="CPD-14075-bond5" order="2" /><bond atomRefs="CPD-14075-atom1 CPD-14075-atom2" id="CPD-14075-bond6" order="1" /></bondArray>
+<formula concise="C 5 H 8 N 1" /><float title="molecularWeight" units="g/mol">82.125</float>
+<string title="smiles">C1(\[NH2+]C\C=C/C=1)</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">82.125</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">81.057846</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-13059" orgid="META" resource="getxml?META:RXN-13059" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-13058" orgid="META" resource="getxml?META:RXN-13058" /></appears-in-right-side-of>
+<citation><Publication ID="META:PUB-FRIESEN90" detail="full" frameid="PUB-FRIESEN90" orgid="META"><source datatype="string">Tetrahedron Letters, 31(44):6295-6298</source>
+<title datatype="string">Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
+<year datatype="integer">1990</year>
+<author datatype="string">Friesen, Brent</author>
+<author datatype="string">Leete, Edward</author>
+</Publication>
+</citation>
+<common-name datatype="string">1,2-dihydropyrimidine</common-name>
+<credits><created><date datatype="date">2012-02-07</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
+</credits>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd24160</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd24160</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM97369</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM97369</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>21954005</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=21954005</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">118.876915<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C5H7N/c1-2-4-6-5-3-1/h1-4,6H,5H2/p+1</inchi>
+<inchi-key datatype="string">InChIKey=MMWRGWQTAMNAFC-UHFFFAOYSA-O</inchi-key>
+</Compound>
+</ptools-xml>

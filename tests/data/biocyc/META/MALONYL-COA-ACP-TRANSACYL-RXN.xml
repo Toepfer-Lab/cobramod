@@ -1,0 +1,249 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:MALONYL-COA-ACP-TRANSACYL-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:MALONYL-COA-ACP-TRANSACYL-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:MALONYL-COA-ACP-TRANSACYL-RXN" detail="full" frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META"><parent><Reaction class="true" frameid="Protein-Modification-Reactions" orgid="META" resource="getxml?META:Protein-Modification-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CO-A" orgid="META" resource="getxml?META:CO-A" /></right>
+<right><Protein class="true" frameid="MALONYL-ACP" orgid="META" resource="getxml?META:MALONYL-ACP" /></right>
+<credits><revised><date datatype="date">2011-12-12</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR101421</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR101421</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01626</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01626</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P72391</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P72391</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P49327</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P49327</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O34825</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O34825</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9RT24</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9RT24</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JW58</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JW58</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P0AAI9</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P0AAI9</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O24916</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O24916</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JXR4</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JXR4</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9ZCJ6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9ZCJ6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9YBK5</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9YBK5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PJ11</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PJ11</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P43712</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P43712</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9Z8P1</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9Z8P1</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O67041</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O67041</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9ZMY1</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9ZMY1</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PKF6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PKF6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P63458</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P63458</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O84241</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O84241</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9WZQ5</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9WZQ5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P71019</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P71019</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P07149</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P07149</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P73242</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P73242</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q8RU07</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q8RU07</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q54205</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q54205</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O54437</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O54437</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q56692</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q56692</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O13698</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O13698</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9RA34</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9RA34</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O69476</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O69476</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P12276</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P12276</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P12785</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P12785</dblink-URL>
+</dblink>
+<ec-number>EC-2.3.1.39<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:MALONYL-COA-ACP-TRANSACYL-ENZRXN" detail="low" frameid="MALONYL-COA-ACP-TRANSACYL-ENZRXN" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="#META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<synonym datatype="string">malonyl-CoA-acyl carrier protein transacylase</synonym>
+<synonym datatype="string">malonyl-CoA-ACP transacylase</synonym>
+<synonym datatype="string">S-malonyltransferase</synonym>
+<synonym datatype="string">malonyl-CoA:[acyl carrier protein] S-malonyltransferase</synonym>
+<synonym datatype="string">malonyl transacylase</synonym>
+<synonym datatype="string">malonyl coenzyme A-acyl carrier protein transacylase</synonym>
+<common-name datatype="string">[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
+<enzyme><Protein frameid="MALONYL-COA-ACP-TRANSACYL-MONOMER" orgid="META" resource="getxml?META:MALONYL-COA-ACP-TRANSACYL-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-26603" detail="low" frameid="ENZRXN-26603" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="#META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<common-name datatype="string">[acyl-carrier-protein] S-malonyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-20578" orgid="META" resource="getxml?META:MONOMER-20578" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-5056" detail="low" frameid="ENZRXN66-5056" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="#META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<common-name datatype="string">malonyl CoA-acyl carrier protein transacylase</common-name>
+<enzyme><Protein frameid="HS02028-MONOMER" orgid="META" resource="getxml?META:HS02028-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN3O-1554" detail="low" frameid="ENZRXN3O-1554" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="#META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<common-name datatype="string">malonyl CoA-acyl carrier protein transacylase, mitochondrial</common-name>
+<enzyme><Protein frameid="YOR221C-MONOMER" orgid="META" resource="getxml?META:YOR221C-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-19130" detail="low" frameid="ENZRXN-19130" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="#META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<common-name datatype="string">malonyl-CoA:ACP transacylase</common-name>
+<enzyme><Protein frameid="MONOMER-16561" orgid="META" resource="getxml?META:MONOMER-16561" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN1G-3539" detail="low" frameid="ENZRXN1G-3539" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="#META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<common-name datatype="string">[acp] S-malonyltransferase</common-name>
+<enzyme><Protein frameid="G185E-6458-MONOMER" orgid="META" resource="getxml?META:G185E-6458-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-11001" detail="low" frameid="ENZRXN-11001" orgid="META"><reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="META" resource="#META:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+<synonym datatype="string">malonyl-CoA:ACP transacylase</synonym>
+<common-name datatype="string">[acyl-carrier protein] S-malonyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-10721" orgid="META" resource="getxml?META:MONOMER-10721" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-8.398743<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY66-429" orgid="META" resource="getxml?META:PWY66-429" /><Pathway frameid="PWY-4381" orgid="META" resource="getxml?META:PWY-4381" /><Pathway frameid="PWY-8012" orgid="META" resource="getxml?META:PWY-8012" /><Pathway frameid="PWY-6799" orgid="META" resource="getxml?META:PWY-6799" /></in-pathway>
+<left><Compound frameid="MALONYL-COA" orgid="META" resource="getxml?META:MALONYL-COA" /></left>
+<left><Protein class="true" frameid="ACP" orgid="META" resource="getxml?META:ACP" /></left>
+</Reaction>
+</ptools-xml>
