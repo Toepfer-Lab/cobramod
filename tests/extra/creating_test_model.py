@@ -9,6 +9,9 @@ test_dir = Path.cwd().joinpath("tests")
 extra_dir = test_dir.joinpath("extra")
 dir_biocyc = test_dir.joinpath("data").joinpath("biocyc")
 
+if not dir_biocyc.exists():
+    dir_biocyc.mkdir(parents=True)
+
 # INFO:
 # Model should have enough reactions/ metabolites for 2 short pathways
 # No sink reactions, but instead a fake Biomass which get end metabolites.

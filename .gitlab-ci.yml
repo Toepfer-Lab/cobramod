@@ -1,4 +1,3 @@
-
 image: continuumio/miniconda3
 
 before_script:
@@ -6,17 +5,12 @@ before_script:
   - conda env create -f environment.yml
   - source activate cobramod
   - conda info
+  # This initiates pip and install the corresponding package
+  - pip install . -v
 
 stages:
-  - build
   - functions
   - example
-
-build:
-  stage: build
-  script:
-    # This initiates pip and install the corresponding package
-    - pip install . -v
 
 test_logical:
   stage: functions
