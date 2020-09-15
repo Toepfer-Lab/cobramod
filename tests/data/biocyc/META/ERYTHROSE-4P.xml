@@ -1,0 +1,131 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:ERYTHROSE-4P"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ERYTHROSE-4P</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:ERYTHROSE-4P" detail="full" frameid="ERYTHROSE-4P" orgid="META"><parent><Compound class="true" frameid="Sugar-Phosphate" orgid="META" resource="getxml?META:Sugar-Phosphate" /></parent>
+<cml><molecule formalCharge="-2" id="ERYTHROSE-4P" title="D-erythrose+4-phosphate"><atomArray><atom elementType="C" id="ERYTHROSE-4P-atom1" x2="-34879.0" y2="-2275.0" /><atom elementType="C" id="ERYTHROSE-4P-atom2" x2="-13446.0" y2="1850.0" /><atom elementType="C" id="ERYTHROSE-4P-atom3" x2="-27735.0" y2="1850.0" /><atom elementType="C" id="ERYTHROSE-4P-atom4" x2="-20591.0" y2="-2275.0" /><atom elementType="O" id="ERYTHROSE-4P-atom5" x2="-34879.0" y2="-10525.0" /><atom elementType="O" id="ERYTHROSE-4P-atom6" x2="-27735.0" y2="10100.0" /><atom elementType="O" id="ERYTHROSE-4P-atom7" x2="-20591.0" y2="-10525.0" /><atom elementType="O" formalCharge="-1" id="ERYTHROSE-4P-atom8" x2="1946.0" y2="-10525.0" /><atom elementType="O" formalCharge="-1" id="ERYTHROSE-4P-atom9" x2="10196.0" y2="-2275.0" /><atom elementType="O" id="ERYTHROSE-4P-atom10" x2="1946.0" y2="5974.0" /><atom elementType="O" id="ERYTHROSE-4P-atom11" x2="-6304.0" y2="-2275.0" /><atom elementType="P" id="ERYTHROSE-4P-atom12" x2="1946.0" y2="-2275.0" /><atom elementType="H" id="ERYTHROSE-4P-atom13" x2="-42024.0" y2="1850.0" /></atomArray>
+<bondArray><bond atomRefs="ERYTHROSE-4P-atom12 ERYTHROSE-4P-atom10" id="ERYTHROSE-4P-bond1" order="2" /><bond atomRefs="ERYTHROSE-4P-atom12 ERYTHROSE-4P-atom8" id="ERYTHROSE-4P-bond2" order="1" /><bond atomRefs="ERYTHROSE-4P-atom12 ERYTHROSE-4P-atom9" id="ERYTHROSE-4P-bond3" order="1" /><bond atomRefs="ERYTHROSE-4P-atom11 ERYTHROSE-4P-atom12" id="ERYTHROSE-4P-bond4" order="1" /><bond atomRefs="ERYTHROSE-4P-atom3 ERYTHROSE-4P-atom6" id="ERYTHROSE-4P-bond5" order="1" /><bond atomRefs="ERYTHROSE-4P-atom4 ERYTHROSE-4P-atom7" id="ERYTHROSE-4P-bond6" order="1" /><bond atomRefs="ERYTHROSE-4P-atom1 ERYTHROSE-4P-atom5" id="ERYTHROSE-4P-bond7" order="2" /><bond atomRefs="ERYTHROSE-4P-atom3 ERYTHROSE-4P-atom1" id="ERYTHROSE-4P-bond8" order="1" /><bond atomRefs="ERYTHROSE-4P-atom4 ERYTHROSE-4P-atom3" id="ERYTHROSE-4P-bond9" order="1" /><bond atomRefs="ERYTHROSE-4P-atom2 ERYTHROSE-4P-atom4" id="ERYTHROSE-4P-bond10" order="1" /><bond atomRefs="ERYTHROSE-4P-atom11 ERYTHROSE-4P-atom2" id="ERYTHROSE-4P-bond11" order="1" /><bond atomRefs="ERYTHROSE-4P-atom1 ERYTHROSE-4P-atom13" id="ERYTHROSE-4P-bond12" order="1" /></bondArray>
+<formula concise="C 4 H 7 O 7 P 1" /><float title="molecularWeight" units="g/mol">198.069</float>
+<string title="smiles">C([C@@H]([C@@H](COP([O-])([O-])=O)O)O)=O</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">198.069</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">200.00859</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-9526" detail="low" frameid="REG-9526" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9441" detail="low" frameid="ENZRXN-9441" orgid="META"><reaction><Reaction frameid="MANNPISOM-RXN" orgid="META" resource="getxml?META:MANNPISOM-RXN" /></reaction>
+<common-name datatype="string">phosphomannose isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-9281" orgid="META" resource="getxml?META:MONOMER-9281" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6307" detail="low" frameid="REG-6307" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13948" detail="low" frameid="ENZRXN-13948" orgid="META"><reaction><Reaction frameid="1.2.1.9-RXN" orgid="META" resource="getxml?META:1.2.1.9-RXN" /></reaction>
+<common-name datatype="string">NADP-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7362" orgid="META" resource="getxml?META:CPLX-7362" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6287" detail="low" frameid="REG-6287" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13915" detail="low" frameid="ENZRXN-13915" orgid="META"><reaction><Reaction frameid="RXN-3341" orgid="META" resource="getxml?META:RXN-3341" /></reaction>
+<common-name datatype="string">6-phosphogluconate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7335" orgid="META" resource="getxml?META:CPLX-7335" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">erythrose-4P</synonym>
+<synonym datatype="string">threose 4-phosphate</synonym>
+<synonym datatype="string">erythrose-4-phosphate</synonym>
+<synonym datatype="string">erythrose-4-P</synonym>
+<synonym datatype="string">D-erythrose-4-P</synonym>
+<appears-in-left-side-of><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="getxml?META:2TRANSKETO-RXN" /><Reaction frameid="ERYTH4PDEHYDROG-RXN" orgid="META" resource="getxml?META:ERYTH4PDEHYDROG-RXN" /><Reaction frameid="DAHPSYN-RXN" orgid="META" resource="getxml?META:DAHPSYN-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="TRANSALDOL-RXN" orgid="META" resource="getxml?META:TRANSALDOL-RXN" /><Reaction frameid="SEDOBISALDOL-RXN" orgid="META" resource="getxml?META:SEDOBISALDOL-RXN" /><Reaction frameid="RXN-17762" orgid="META" resource="getxml?META:RXN-17762" /><Reaction frameid="RXN-15789" orgid="META" resource="getxml?META:RXN-15789" /><Reaction frameid="RXN-8771" orgid="META" resource="getxml?META:RXN-8771" /><Reaction frameid="FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN" orgid="META" resource="getxml?META:FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN" /></appears-in-right-side-of>
+<common-name datatype="string">D-erythrose 4-phosphate</common-name>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>29878</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=29878</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00236</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00236</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM258</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM258</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Erythrose 4-phosphate</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Erythrose 4-phosphate</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>e4p</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/e4p</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16897</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16897</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01321</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01321</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>4573609</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/4573609</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16897</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16897</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>5459862</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=5459862</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00279</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00279</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>585-18-2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=585-18-2</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-284.9704<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C4H9O7P/c5-1-3(6)4(7)2-11-12(8,9)10/h1,3-4,6-7H,2H2,(H2,8,9,10)/p-2/t3-,4+/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=NGHMDNPXVRFFGS-IUYQGCFVSA-L</inchi-key>
+</Compound>
+</ptools-xml>

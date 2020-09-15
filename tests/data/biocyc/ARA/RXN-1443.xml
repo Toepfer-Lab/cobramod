@@ -1,0 +1,37 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:RXN-1443"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXN-1443</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXN-1443" detail="full" frameid="RXN-1443" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-2.8.2.24<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-5016" detail="low" frameid="ENZRXNQT-5016" orgid="ARA"><common-name datatype="string">indole-3-methyl-desulfoglucosinolate sulfotransferase</common-name>
+<enzyme><Protein frameid="AT1G18590-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G18590-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-1443" orgid="ARA" resource="#ARA:RXN-1443" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-12512" detail="low" frameid="ENZRXNQT-12512" orgid="ARA"><common-name datatype="string">indole-3-methyl-desulfoglucosinolate sulfotransferase</common-name>
+<enzyme><Protein frameid="AT1G74090-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G74090-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-1443" orgid="ARA" resource="#ARA:RXN-1443" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-6269" detail="low" frameid="ENZRXN-6269" orgid="ARA"><common-name datatype="string">indole-3-methyl-desulfoglucosinolate sulfotransferase</common-name>
+<enzyme><Protein frameid="AT1G74100-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G74100-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-1443" orgid="ARA" resource="#ARA:RXN-1443" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">8.145874</gibbs-0>
+<in-pathway><Pathway frameid="PWY-601" orgid="ARA" resource="getxml?ARA:PWY-601" /></in-pathway>
+<left><Compound frameid="CPD-1862" orgid="ARA" resource="getxml?ARA:CPD-1862" /></left>
+<left><Compound frameid="PAPS" orgid="ARA" resource="getxml?ARA:PAPS" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="3-5-ADP" orgid="ARA" resource="getxml?ARA:3-5-ADP" /></right>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="CPD-1863" orgid="ARA" resource="getxml?ARA:CPD-1863" /></right>
+</Reaction>
+</ptools-xml>

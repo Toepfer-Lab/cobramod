@@ -1,0 +1,87 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:D-glucopyranose-6-phosphate"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:D-glucopyranose-6-phosphate</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:D-glucopyranose-6-phosphate" class="true" detail="full" frameid="D-glucopyranose-6-phosphate" orgid="META"><parent><Compound class="true" frameid="Glucose-6-phosphate" orgid="META" resource="getxml?META:Glucose-6-phosphate" /></parent>
+<instance><Compound frameid="ALPHA-GLC-6-P" orgid="META" resource="getxml?META:ALPHA-GLC-6-P" /></instance>
+<instance><Compound frameid="GLC-6-P" orgid="META" resource="getxml?META:GLC-6-P" /></instance>
+<cml><molecule formalCharge="-2" id="D-glucopyranose-6-phosphate" title="D-glucopyranose+6-phosphate"><atomArray><atom elementType="C" id="D-glucopyranose-6-phosphate-atom1" x2="22749.0" y2="31223.0" /><atom elementType="C" id="D-glucopyranose-6-phosphate-atom2" x2="29855.0" y2="35325.0" /><atom elementType="C" id="D-glucopyranose-6-phosphate-atom3" x2="29855.0" y2="43620.0" /><atom elementType="C" id="D-glucopyranose-6-phosphate-atom4" x2="36960.0" y2="47813.0" /><atom elementType="C" id="D-glucopyranose-6-phosphate-atom5" x2="44156.0" y2="43620.0" /><atom elementType="C" id="D-glucopyranose-6-phosphate-atom6" x2="44156.0" y2="35325.0" /><atom elementType="O" id="D-glucopyranose-6-phosphate-atom7" x2="22731.0" y2="47688.0" /><atom elementType="O" id="D-glucopyranose-6-phosphate-atom8" x2="36937.0" y2="56018.0" /><atom elementType="O" id="D-glucopyranose-6-phosphate-atom9" x2="51270.0" y2="47708.0" /><atom elementType="O" id="D-glucopyranose-6-phosphate-atom10" x2="51250.0" y2="31203.0" /><atom elementType="O" formalCharge="-1" id="D-glucopyranose-6-phosphate-atom11" x2="-774.0" y2="35325.0" /><atom elementType="O" formalCharge="-1" id="D-glucopyranose-6-phosphate-atom12" x2="7430.0" y2="27120.0" /><atom elementType="O" id="D-glucopyranose-6-phosphate-atom13" x2="7419.0" y2="43529.0" /><atom elementType="O" id="D-glucopyranose-6-phosphate-atom14" x2="15644.0" y2="35325.0" /><atom elementType="O" id="D-glucopyranose-6-phosphate-atom15" x2="36960.0" y2="31223.0" /><atom elementType="P" id="D-glucopyranose-6-phosphate-atom16" x2="7430.0" y2="35325.0" /></atomArray>
+<bondArray><bond atomRefs="D-glucopyranose-6-phosphate-atom16 D-glucopyranose-6-phosphate-atom13" id="D-glucopyranose-6-phosphate-bond1" order="2" /><bond atomRefs="D-glucopyranose-6-phosphate-atom16 D-glucopyranose-6-phosphate-atom12" id="D-glucopyranose-6-phosphate-bond2" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom16 D-glucopyranose-6-phosphate-atom11" id="D-glucopyranose-6-phosphate-bond3" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom14 D-glucopyranose-6-phosphate-atom16" id="D-glucopyranose-6-phosphate-bond4" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom1 D-glucopyranose-6-phosphate-atom14" id="D-glucopyranose-6-phosphate-bond5" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom5 D-glucopyranose-6-phosphate-atom9" id="D-glucopyranose-6-phosphate-bond6" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom3 D-glucopyranose-6-phosphate-atom7" id="D-glucopyranose-6-phosphate-bond7" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom4 D-glucopyranose-6-phosphate-atom8" id="D-glucopyranose-6-phosphate-bond8" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom10 D-glucopyranose-6-phosphate-atom6" id="D-glucopyranose-6-phosphate-bond9" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom2 D-glucopyranose-6-phosphate-atom1" id="D-glucopyranose-6-phosphate-bond10" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom6 D-glucopyranose-6-phosphate-atom15" id="D-glucopyranose-6-phosphate-bond11" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom5 D-glucopyranose-6-phosphate-atom6" id="D-glucopyranose-6-phosphate-bond12" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom4 D-glucopyranose-6-phosphate-atom5" id="D-glucopyranose-6-phosphate-bond13" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom3 D-glucopyranose-6-phosphate-atom4" id="D-glucopyranose-6-phosphate-bond14" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom2 D-glucopyranose-6-phosphate-atom3" id="D-glucopyranose-6-phosphate-bond15" order="1" /><bond atomRefs="D-glucopyranose-6-phosphate-atom2 D-glucopyranose-6-phosphate-atom15" id="D-glucopyranose-6-phosphate-bond16" order="1" /></bondArray>
+<formula concise="C 6 H 11 O 9 P 1" /><float title="molecularWeight" units="g/mol">258.121</float>
+<string title="smiles">C([C@H]1(OC([C@@H]([C@H]([C@@H]1O)O)O)O))OP([O-])([O-])=O</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">258.121</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">260.02972</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-13552" detail="low" frameid="REG-13552" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-19953" detail="low" frameid="ENZRXN-19953" orgid="META"><reaction><Reaction frameid="TREHALOSEPHOSPHA-RXN" orgid="META" resource="getxml?META:TREHALOSEPHOSPHA-RXN" /></reaction>
+<synonym datatype="string">trehalose phosphatase</synonym>
+<synonym datatype="string">trehalose-6-phosphatase</synonym>
+<common-name datatype="string">trehalose-6-phosphate phosphatase</common-name>
+<enzyme><Protein frameid="MONOMER-17102" orgid="META" resource="getxml?META:MONOMER-17102" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="D-glucopyranose-6-phosphate" orgid="META" resource="#META:D-glucopyranose-6-phosphate" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13547" detail="low" frameid="REG-13547" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-19951" detail="low" frameid="ENZRXN-19951" orgid="META"><reaction><Reaction frameid="GLYCOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-RXN" /></reaction>
+<common-name datatype="string">glycogen phosphorylase</common-name>
+<enzyme><Protein frameid="CPLX-8425" orgid="META" resource="getxml?META:CPLX-8425" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="D-glucopyranose-6-phosphate" orgid="META" resource="#META:D-glucopyranose-6-phosphate" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">D-glucopyranose-6-P</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-14819" orgid="META" resource="getxml?META:RXN-14819" /><Reaction frameid="TREHALOSE6PSYN-RXN" orgid="META" resource="getxml?META:TREHALOSE6PSYN-RXN" /><Reaction frameid="TRANS-RXN-33" orgid="META" resource="getxml?META:TRANS-RXN-33" /><Reaction frameid="RXN-761" orgid="META" resource="getxml?META:RXN-761" /><Reaction frameid="RXN66-526" orgid="META" resource="getxml?META:RXN66-526" /><Reaction frameid="RXN-16652" orgid="META" resource="getxml?META:RXN-16652" /><Reaction frameid="GLU6PDEHYDROG-RXN" orgid="META" resource="getxml?META:GLU6PDEHYDROG-RXN" /><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="getxml?META:PGLUCISOM-RXN" /><Reaction frameid="RXN8J2-136" orgid="META" resource="getxml?META:RXN8J2-136" /><Reaction frameid="RXN-13116" orgid="META" resource="getxml?META:RXN-13116" /><Reaction frameid="MYO-INOSITOL-1-PHOSPHATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-1-PHOSPHATE-SYNTHASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-17001" orgid="META" resource="getxml?META:RXN-17001" /><Reaction frameid="RXN-16998" orgid="META" resource="getxml?META:RXN-16998" /><Reaction frameid="TRANS-RXN-33" orgid="META" resource="getxml?META:TRANS-RXN-33" /><Reaction frameid="RXN-18663" orgid="META" resource="getxml?META:RXN-18663" /><Reaction frameid="TRANS-RXN-157" orgid="META" resource="getxml?META:TRANS-RXN-157" /><Reaction frameid="TRE6PHYDRO-RXN" orgid="META" resource="getxml?META:TRE6PHYDRO-RXN" /><Reaction frameid="6-PHOSPHO-BETA-GLUCOSIDASE-RXN" orgid="META" resource="getxml?META:6-PHOSPHO-BETA-GLUCOSIDASE-RXN" /><Reaction frameid="MALTOSE-6-PHOSPHATE-GLUCOSIDASE-RXN" orgid="META" resource="getxml?META:MALTOSE-6-PHOSPHATE-GLUCOSIDASE-RXN" /><Reaction frameid="GLUCOKIN-RXN" orgid="META" resource="getxml?META:GLUCOKIN-RXN" /><Reaction frameid="2.7.1.142-RXN" orgid="META" resource="getxml?META:2.7.1.142-RXN" /><Reaction frameid="2.7.1.63-RXN" orgid="META" resource="getxml?META:2.7.1.63-RXN" /><Reaction frameid="PHOSPHOGLUCMUT-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCMUT-RXN" /><Reaction frameid="ALDOSE-6-PHOSPHATE-REDUCTASE-NADPH-RXN" orgid="META" resource="getxml?META:ALDOSE-6-PHOSPHATE-REDUCTASE-NADPH-RXN" /><Reaction frameid="RXN-16999" orgid="META" resource="getxml?META:RXN-16999" /></appears-in-right-side-of>
+<common-name datatype="string">D-glucopyranose 6-phosphate</common-name>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/90/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/90/</dblink-URL>
+</dblink>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>1629756</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=1629756</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM160</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM160</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>4170</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4170</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00092</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00092</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-319.04593<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H13O9P/c7-3-2(1-14-16(11,12)13)15-6(10)5(9)4(3)8/h2-10H,1H2,(H2,11,12,13)/p-2/t2-,3-,4+,5-,6?/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=NBSCHQHZLSJFNQ-GASJEMHNSA-L</inchi-key>
+</Compound>
+</ptools-xml>

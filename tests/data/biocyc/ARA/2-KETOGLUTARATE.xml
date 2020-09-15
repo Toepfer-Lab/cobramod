@@ -1,0 +1,154 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:2-KETOGLUTARATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:2-KETOGLUTARATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:2-KETOGLUTARATE" detail="full" frameid="2-KETOGLUTARATE" orgid="ARA"><parent><Compound class="true" frameid="2-Oxo-carboxylates" orgid="ARA" resource="getxml?ARA:2-Oxo-carboxylates" /></parent>
+<parent><Compound class="true" frameid="dicarboxylate" orgid="ARA" resource="getxml?ARA:dicarboxylate" /></parent>
+<cml><molecule formalCharge="-2" id="2-KETOGLUTARATE" title="2-oxoglutarate"><atomArray><atom elementType="C" id="2-KETOGLUTARATE-atom1" x2="1396.0" y2="-11470.0" /><atom elementType="C" id="2-KETOGLUTARATE-atom2" x2="8521.0" y2="-7309.0" /><atom elementType="C" id="2-KETOGLUTARATE-atom3" x2="-5728.0" y2="-7309.0" /><atom elementType="C" id="2-KETOGLUTARATE-atom4" x2="15576.0" y2="-11470.0" /><atom elementType="C" id="2-KETOGLUTARATE-atom5" x2="-12853.0" y2="-11470.0" /><atom elementType="O" id="2-KETOGLUTARATE-atom6" x2="-5728.0" y2="804.0" /><atom elementType="O" formalCharge="-1" id="2-KETOGLUTARATE-atom7" x2="22560.0" y2="-7379.0" /><atom elementType="O" id="2-KETOGLUTARATE-atom8" x2="15576.0" y2="-19584.0" /><atom elementType="O" formalCharge="-1" id="2-KETOGLUTARATE-atom9" x2="-19837.0" y2="-7379.0" /><atom elementType="O" id="2-KETOGLUTARATE-atom10" x2="-12853.0" y2="-19584.0" /></atomArray>
+<bondArray><bond atomRefs="2-KETOGLUTARATE-atom8 2-KETOGLUTARATE-atom4" id="2-KETOGLUTARATE-bond1" order="2" /><bond atomRefs="2-KETOGLUTARATE-atom4 2-KETOGLUTARATE-atom2" id="2-KETOGLUTARATE-bond2" order="1" /><bond atomRefs="2-KETOGLUTARATE-atom1 2-KETOGLUTARATE-atom3" id="2-KETOGLUTARATE-bond3" order="1" /><bond atomRefs="2-KETOGLUTARATE-atom7 2-KETOGLUTARATE-atom4" id="2-KETOGLUTARATE-bond4" order="1" /><bond atomRefs="2-KETOGLUTARATE-atom3 2-KETOGLUTARATE-atom5" id="2-KETOGLUTARATE-bond5" order="1" /><bond atomRefs="2-KETOGLUTARATE-atom10 2-KETOGLUTARATE-atom5" id="2-KETOGLUTARATE-bond6" order="2" /><bond atomRefs="2-KETOGLUTARATE-atom6 2-KETOGLUTARATE-atom3" id="2-KETOGLUTARATE-bond7" order="2" /><bond atomRefs="2-KETOGLUTARATE-atom9 2-KETOGLUTARATE-atom5" id="2-KETOGLUTARATE-bond8" order="1" /><bond atomRefs="2-KETOGLUTARATE-atom2 2-KETOGLUTARATE-atom1" id="2-KETOGLUTARATE-bond9" order="1" /></bondArray>
+<formula concise="C 5 H 4 O 5" /><float title="molecularWeight" units="g/mol">144.084</float>
+<string title="smiles">C(CC([O-])=O)C(=O)C([O-])=O</string>
+</molecule>
+</cml>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/18269577"&gt;Fiehn08&lt;/a&gt;] &lt;A href=" http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download"&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href="http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp"&gt;SetupX&lt;/a&gt; (see &lt;A href="http://plantmetabolomics.org/tutorials/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">2-oxoglutarate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00024</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00024</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM20</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM20</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Oxoglutaric acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Oxoglutaric acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>akg</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/akg</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16810</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16810</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00208</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00208</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>144236</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/144236</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16810</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16810</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>164533</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=164533</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00000769</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00000769</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00026</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00026</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>328-50-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=328-50-7</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-149.76376</gibbs-0>
+<inchi datatype="string">InChI=1S/C5H6O5/c6-3(5(9)10)1-2-4(7)8/h1-2H2,(H,7,8)(H,9,10)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=KPGXRSRHYNQIFN-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">144.084</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">146.02153</monoisotopic-mw>
+<regulates><Regulation ID="ARA:REG0-12165" detail="low" frameid="REG0-12165" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-10569" detail="low" frameid="REG0-10569" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-6736" detail="low" frameid="REG0-6736" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-533" detail="low" frameid="REGQT-533" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12854" detail="low" frameid="ENZRXNQT-12854" orgid="ARA"><common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+<enzyme><Protein frameid="CPLXQT-53" orgid="ARA" resource="getxml?ARA:CPLXQT-53" /></enzyme>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<synonym datatype="string">NAD-dependent malic enzyme</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-531" detail="low" frameid="REGQT-531" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12853" detail="low" frameid="ENZRXNQT-12853" orgid="ARA"><common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+<enzyme><Protein frameid="CPLXQT-52" orgid="ARA" resource="getxml?ARA:CPLXQT-52" /></enzyme>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<synonym datatype="string">NAD-dependent malic enzyme</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-523" detail="low" frameid="REGQT-523" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12855" detail="low" frameid="ENZRXNQT-12855" orgid="ARA"><common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+<enzyme><Protein frameid="CPLXQT-54" orgid="ARA" resource="getxml?ARA:CPLXQT-54" /></enzyme>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<synonym datatype="string">NAD malic enzyme</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-9990" detail="low" frameid="REG-9990" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-278" detail="low" frameid="REGQT-278" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-9433" detail="low" frameid="ENZRXNQT-9433" orgid="ARA"><common-name datatype="string">leucine transaminase</common-name>
+<enzyme><Protein frameid="AT1G10060-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G10060-MONOMER" /></enzyme>
+<reaction><Reaction frameid="BRANCHED-CHAINAMINOTRANSFERLEU-RXN" orgid="ARA" resource="getxml?ARA:BRANCHED-CHAINAMINOTRANSFERLEU-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="2-KETOGLUTARATE" orgid="ARA" resource="#ARA:2-KETOGLUTARATE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">a-ketoglutaric acid</synonym>
+<synonym datatype="string">ketoglutarate</synonym>
+<synonym datatype="string">&amp;alpha;-ketoglutarate</synonym>
+<synonym datatype="string">2-oxoglutaric acid</synonym>
+<synonym datatype="string">&amp;alpha;-ketoglutaric acid</synonym>
+<synonym datatype="string">&amp;alpha;-oxoglutarate</synonym>
+<synonym datatype="string">2-oxoglutarate</synonym>
+<synonym datatype="string">2-ketoglutaric acid</synonym>
+<synonym datatype="string">2-ketoglutarate</synonym>
+<synonym datatype="string">2-oxopentanedionic acid</synonym>
+<synonym datatype="string">2-oxopentanedionate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-20027" orgid="ARA" resource="getxml?ARA:RXN-20027" /><Reaction frameid="PSERTRANSAMPYR-RXN" orgid="ARA" resource="getxml?ARA:PSERTRANSAMPYR-RXN" /><Reaction frameid="RXN-20408" orgid="ARA" resource="getxml?ARA:RXN-20408" /><Reaction frameid="RXN-16488" orgid="ARA" resource="getxml?ARA:RXN-16488" /><Reaction frameid="RXN-16489" orgid="ARA" resource="getxml?ARA:RXN-16489" /><Reaction frameid="RXN66-565" orgid="ARA" resource="getxml?ARA:RXN66-565" /><Reaction frameid="RXN-17812" orgid="ARA" resource="getxml?ARA:RXN-17812" /><Reaction frameid="RXN-16989" orgid="ARA" resource="getxml?ARA:RXN-16989" /><Reaction frameid="RXN-16344" orgid="ARA" resource="getxml?ARA:RXN-16344" /><Reaction frameid="RXN-16827" orgid="ARA" resource="getxml?ARA:RXN-16827" /><Reaction frameid="RXN-17811" orgid="ARA" resource="getxml?ARA:RXN-17811" /><Reaction frameid="RXN0-7317" orgid="ARA" resource="getxml?ARA:RXN0-7317" /><Reaction frameid="VAGL-RXN" orgid="ARA" resource="getxml?ARA:VAGL-RXN" /><Reaction frameid="RXN0-7316" orgid="ARA" resource="getxml?ARA:RXN0-7316" /><Reaction frameid="RXN-18385" orgid="ARA" resource="getxml?ARA:RXN-18385" /><Reaction frameid="RXN-18348" orgid="ARA" resource="getxml?ARA:RXN-18348" /><Reaction frameid="HISTAMINOTRANS-RXN" orgid="ARA" resource="getxml?ARA:HISTAMINOTRANS-RXN" /><Reaction frameid="RXN-17679" orgid="ARA" resource="getxml?ARA:RXN-17679" /><Reaction frameid="RXN-16762" orgid="ARA" resource="getxml?ARA:RXN-16762" /><Reaction frameid="ORNITHINE-GLU-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ORNITHINE-GLU-AMINOTRANSFERASE-RXN" /><Reaction frameid="RXN-7591" orgid="ARA" resource="getxml?ARA:RXN-7591" /><Reaction frameid="1.14.11.9-RXN" orgid="ARA" resource="getxml?ARA:1.14.11.9-RXN" /><Reaction frameid="RXN-12963" orgid="ARA" resource="getxml?ARA:RXN-12963" /><Reaction frameid="RXN-14538" orgid="ARA" resource="getxml?ARA:RXN-14538" /><Reaction frameid="PROCOLLAGEN-PROLINE-3-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:PROCOLLAGEN-PROLINE-3-DIOXYGENASE-RXN" /><Reaction frameid="THYMINE-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:THYMINE-DIOXYGENASE-RXN" /><Reaction frameid="1.14.11.18-RXN" orgid="ARA" resource="getxml?ARA:1.14.11.18-RXN" /><Reaction frameid="PROCOLLAGEN-LYSINE-5-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:PROCOLLAGEN-LYSINE-5-DIOXYGENASE-RXN" /><Reaction frameid="RXN-7686" orgid="ARA" resource="getxml?ARA:RXN-7686" /><Reaction frameid="LEUCPEL-RXN" orgid="ARA" resource="getxml?ARA:LEUCPEL-RXN" /><Reaction frameid="2OXOGLUTDECARB-RXN" orgid="ARA" resource="getxml?ARA:2OXOGLUTDECARB-RXN" /><Reaction frameid="RXN-14071" orgid="ARA" resource="getxml?ARA:RXN-14071" /><Reaction frameid="2.6.1.49-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.49-RXN" /><Reaction frameid="RXN-8147" orgid="ARA" resource="getxml?ARA:RXN-8147" /><Reaction frameid="RXN-8152" orgid="ARA" resource="getxml?ARA:RXN-8152" /><Reaction frameid="2.6.1.57-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.57-RXN" /><Reaction frameid="PREPHENATE-TRANSAMINE-RXN" orgid="ARA" resource="getxml?ARA:PREPHENATE-TRANSAMINE-RXN" /><Reaction frameid="2.5.1.64-RXN" orgid="ARA" resource="getxml?ARA:2.5.1.64-RXN" /><Reaction frameid="2.6.1.22-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.22-RXN" /><Reaction frameid="RXN-12349" orgid="ARA" resource="getxml?ARA:RXN-12349" /><Reaction frameid="RXN-10814" orgid="ARA" resource="getxml?ARA:RXN-10814" /><Reaction frameid="RXN-6524" orgid="ARA" resource="getxml?ARA:RXN-6524" /><Reaction frameid="BRANCHED-CHAINAMINOTRANSFERILEU-RXN" orgid="ARA" resource="getxml?ARA:BRANCHED-CHAINAMINOTRANSFERILEU-RXN" /><Reaction frameid="RXN-7737" orgid="ARA" resource="getxml?ARA:RXN-7737" /><Reaction frameid="RXN1F-168" orgid="ARA" resource="getxml?ARA:RXN1F-168" /><Reaction frameid="RXN-886" orgid="ARA" resource="getxml?ARA:RXN-886" /><Reaction frameid="RXN-7922" orgid="ARA" resource="getxml?ARA:RXN-7922" /><Reaction frameid="RXN-8450" orgid="ARA" resource="getxml?ARA:RXN-8450" /><Reaction frameid="RXN-7648" orgid="ARA" resource="getxml?ARA:RXN-7648" /><Reaction frameid="1.14.11.2-RXN" orgid="ARA" resource="getxml?ARA:1.14.11.2-RXN" /><Reaction frameid="RXN-115" orgid="ARA" resource="getxml?ARA:RXN-115" /><Reaction frameid="RXN1F-170" orgid="ARA" resource="getxml?ARA:RXN1F-170" /><Reaction frameid="BRANCHED-CHAINAMINOTRANSFERLEU-RXN" orgid="ARA" resource="getxml?ARA:BRANCHED-CHAINAMINOTRANSFERLEU-RXN" /><Reaction frameid="BRANCHED-CHAINAMINOTRANSFERVAL-RXN" orgid="ARA" resource="getxml?ARA:BRANCHED-CHAINAMINOTRANSFERVAL-RXN" /><Reaction frameid="RXN-7775" orgid="ARA" resource="getxml?ARA:RXN-7775" /><Reaction frameid="RXN-7687" orgid="ARA" resource="getxml?ARA:RXN-7687" /><Reaction frameid="RXN-7680" orgid="ARA" resource="getxml?ARA:RXN-7680" /><Reaction frameid="RXN-113" orgid="ARA" resource="getxml?ARA:RXN-113" /><Reaction frameid="RXN-118" orgid="ARA" resource="getxml?ARA:RXN-118" /><Reaction frameid="RXN-114" orgid="ARA" resource="getxml?ARA:RXN-114" /><Reaction frameid="RXN-171" orgid="ARA" resource="getxml?ARA:RXN-171" /><Reaction frameid="RXN-172" orgid="ARA" resource="getxml?ARA:RXN-172" /><Reaction frameid="RXN-292" orgid="ARA" resource="getxml?ARA:RXN-292" /><Reaction frameid="RXN-947" orgid="ARA" resource="getxml?ARA:RXN-947" /><Reaction frameid="RXN-991" orgid="ARA" resource="getxml?ARA:RXN-991" /><Reaction frameid="RXN1F-169" orgid="ARA" resource="getxml?ARA:RXN1F-169" /><Reaction frameid="RXN1F-167" orgid="ARA" resource="getxml?ARA:RXN1F-167" /><Reaction frameid="RXN-6544" orgid="ARA" resource="getxml?ARA:RXN-6544" /><Reaction frameid="RXN-7590" orgid="ARA" resource="getxml?ARA:RXN-7590" /><Reaction frameid="RXN-7589" orgid="ARA" resource="getxml?ARA:RXN-7589" /><Reaction frameid="RXN1F-164" orgid="ARA" resource="getxml?ARA:RXN1F-164" /><Reaction frameid="RXN1F-163" orgid="ARA" resource="getxml?ARA:RXN1F-163" /><Reaction frameid="RXN1F-162" orgid="ARA" resource="getxml?ARA:RXN1F-162" /><Reaction frameid="2-AMINOADIPATE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:2-AMINOADIPATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="RXN-527" orgid="ARA" resource="getxml?ARA:RXN-527" /><Reaction frameid="RXN1F-93" orgid="ARA" resource="getxml?ARA:RXN1F-93" /><Reaction frameid="RXN1F-165" orgid="ARA" resource="getxml?ARA:RXN1F-165" /><Reaction frameid="RXN1F-99" orgid="ARA" resource="getxml?ARA:RXN1F-99" /><Reaction frameid="RXN1F-101" orgid="ARA" resource="getxml?ARA:RXN1F-101" /><Reaction frameid="RXN-6523" orgid="ARA" resource="getxml?ARA:RXN-6523" /><Reaction frameid="RXN-6522" orgid="ARA" resource="getxml?ARA:RXN-6522" /><Reaction frameid="RXN-6541" orgid="ARA" resource="getxml?ARA:RXN-6541" /><Reaction frameid="RXN-6550" orgid="ARA" resource="getxml?ARA:RXN-6550" /><Reaction frameid="RXN-602" orgid="ARA" resource="getxml?ARA:RXN-602" /><Reaction frameid="NARINGENIN-3-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:NARINGENIN-3-DIOXYGENASE-RXN" /><Reaction frameid="ALANINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ALANINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="TRYPTOPHAN-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:TRYPTOPHAN-AMINOTRANSFERASE-RXN" /><Reaction frameid="GLYCINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="GABATRANSAM-RXN" orgid="ARA" resource="getxml?ARA:GABATRANSAM-RXN" /><Reaction frameid="TYROSINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:TYROSINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="2OXOGLUTARATEDEH-RXN" orgid="ARA" resource="getxml?ARA:2OXOGLUTARATEDEH-RXN" /><Reaction frameid="ORNITHINE-GLU-AMINOTRANSFORASE-RXN" orgid="ARA" resource="getxml?ARA:ORNITHINE-GLU-AMINOTRANSFORASE-RXN" /><Reaction frameid="PSERTRANSAM-RXN" orgid="ARA" resource="getxml?ARA:PSERTRANSAM-RXN" /><Reaction frameid="ASPAMINOTRANS-RXN" orgid="ARA" resource="getxml?ARA:ASPAMINOTRANS-RXN" /><Reaction frameid="ACETYLORNTRANSAM-RXN" orgid="ARA" resource="getxml?ARA:ACETYLORNTRANSAM-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN0-7319" orgid="ARA" resource="getxml?ARA:RXN0-7319" /><Reaction frameid="RXN-20084" orgid="ARA" resource="getxml?ARA:RXN-20084" /><Reaction frameid="RXN-13072" orgid="ARA" resource="getxml?ARA:RXN-13072" /><Reaction frameid="RXN-14932" orgid="ARA" resource="getxml?ARA:RXN-14932" /><Reaction frameid="GLUTDEHYD-RXN" orgid="ARA" resource="getxml?ARA:GLUTDEHYD-RXN" /><Reaction frameid="GLUTAMATE-DEHYDROGENASE-NADP+-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="GLUTAMATE-DEHYDROGENASE-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-DEHYDROGENASE-RXN" /><Reaction frameid="RXN-12878" orgid="ARA" resource="getxml?ARA:RXN-12878" /><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><Reaction frameid="RXN-8642" orgid="ARA" resource="getxml?ARA:RXN-8642" /><Reaction frameid="1.5.1.7-RXN" orgid="ARA" resource="getxml?ARA:1.5.1.7-RXN" /><Reaction frameid="1.5.1.8-RXN" orgid="ARA" resource="getxml?ARA:1.5.1.8-RXN" /><Reaction frameid="GLUTAMATE-SYNTHASE-NADH-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-SYNTHASE-NADH-RXN" /><Reaction frameid="2-HYDROXYGLUTARATE-DEHYDROGENASE-RXN" orgid="ARA" resource="getxml?ARA:2-HYDROXYGLUTARATE-DEHYDROGENASE-RXN" /><Reaction frameid="ISOCITRATE-DEHYDROGENASE-NAD+-RXN" orgid="ARA" resource="getxml?ARA:ISOCITRATE-DEHYDROGENASE-NAD+-RXN" /><Reaction frameid="ISOCITDEH-RXN" orgid="ARA" resource="getxml?ARA:ISOCITDEH-RXN" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

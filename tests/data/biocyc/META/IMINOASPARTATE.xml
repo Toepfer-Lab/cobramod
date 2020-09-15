@@ -1,0 +1,96 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:IMINOASPARTATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:IMINOASPARTATE</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:IMINOASPARTATE" detail="full" frameid="IMINOASPARTATE" orgid="META"><parent><Compound class="true" frameid="Imines" orgid="META" resource="getxml?META:Imines" /></parent>
+<cml><molecule formalCharge="-2" id="IMINOASPARTATE" title="2-iminosuccinate"><atomArray><atom elementType="C" id="IMINOASPARTATE-atom1" x2="13935.0" y2="-9536.0" /><atom elementType="C" id="IMINOASPARTATE-atom2" x2="13935.0" y2="-1287.0" /><atom elementType="C" id="IMINOASPARTATE-atom3" x2="21080.0" y2="-13661.0" /><atom elementType="C" id="IMINOASPARTATE-atom4" x2="21078.0" y2="2836.0" /><atom elementType="N" id="IMINOASPARTATE-atom5" x2="6790.0" y2="2839.0" /><atom elementType="O" formalCharge="-1" id="IMINOASPARTATE-atom6" x2="28225.0" y2="-9536.0" /><atom elementType="O" id="IMINOASPARTATE-atom7" x2="21079.0" y2="-21911.0" /><atom elementType="O" formalCharge="-1" id="IMINOASPARTATE-atom8" x2="28223.0" y2="-1289.0" /><atom elementType="O" id="IMINOASPARTATE-atom9" x2="21078.0" y2="11086.0" /></atomArray>
+<bondArray><bond atomRefs="IMINOASPARTATE-atom3 IMINOASPARTATE-atom1" id="IMINOASPARTATE-bond1" order="1" /><bond atomRefs="IMINOASPARTATE-atom1 IMINOASPARTATE-atom2" id="IMINOASPARTATE-bond2" order="1" /><bond atomRefs="IMINOASPARTATE-atom2 IMINOASPARTATE-atom4" id="IMINOASPARTATE-bond3" order="1" /><bond atomRefs="IMINOASPARTATE-atom4 IMINOASPARTATE-atom8" id="IMINOASPARTATE-bond4" order="1" /><bond atomRefs="IMINOASPARTATE-atom3 IMINOASPARTATE-atom6" id="IMINOASPARTATE-bond5" order="1" /><bond atomRefs="IMINOASPARTATE-atom3 IMINOASPARTATE-atom7" id="IMINOASPARTATE-bond6" order="2" /><bond atomRefs="IMINOASPARTATE-atom2 IMINOASPARTATE-atom5" id="IMINOASPARTATE-bond7" order="2" /><bond atomRefs="IMINOASPARTATE-atom4 IMINOASPARTATE-atom9" id="IMINOASPARTATE-bond8" order="2" /></bondArray>
+<formula concise="C 4 H 3 N 1 O 4" /><float title="molecularWeight" units="g/mol">129.072</float>
+<string title="smiles">C(=O)([O-])CC(C(=O)[O-])=N</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">129.072</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">131.02185</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-9544" detail="low" frameid="REG0-9544" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:L-ASPARTATE-OXID-ENZRXN" detail="low" frameid="L-ASPARTATE-OXID-ENZRXN" orgid="META"><reaction><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-RXN" /></reaction>
+<synonym datatype="string">quinolinate synthetase B</synonym>
+<synonym datatype="string">L-aspartate:oxygen oxidoreductase (deaminating)</synonym>
+<synonym datatype="string">L-aspartate:oxygen transhydrogenase</synonym>
+<synonym datatype="string">LASPO</synonym>
+<common-name datatype="string">L-aspartate oxidase</common-name>
+<enzyme><Protein frameid="L-ASPARTATE-OXID-MONOMER" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="IMINOASPARTATE" orgid="META" resource="#META:IMINOASPARTATE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">2-iminobutanedioate</synonym>
+<synonym datatype="string">&amp;alpha;-iminosuccinate</synonym>
+<synonym datatype="string">iminoaspartate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-9771" orgid="META" resource="getxml?META:RXN-9771" /><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-9772" orgid="META" resource="getxml?META:RXN-9772" /><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-RXN" /></appears-in-right-side-of>
+<comment datatype="string">kr96-7-17: this is an enzyme-bound intermediate.</comment>
+<common-name datatype="string">2-iminosuccinate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd03470</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd03470</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM599</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM599</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>iasp</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/iasp</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01131</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01131</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>19951415</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/19951415</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>58831</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58831</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>23615393</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=23615393</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C05840</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C05840</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-144.0349<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C4H5NO4/c5-2(4(8)9)1-3(6)7/h5H,1H2,(H,6,7)(H,8,9)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=NMUOATVLLQEYHI-UHFFFAOYSA-L</inchi-key>
+</Compound>
+</ptools-xml>

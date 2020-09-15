@@ -1,0 +1,49 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-12404"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-12404</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-12404" detail="full" frameid="CPD-12404" orgid="ARA"><parent><Compound class="true" frameid="CPD-19473" orgid="ARA" resource="getxml?ARA:CPD-19473" /></parent>
+<cml><molecule formalCharge="0" id="CPD-12404" title="1-(methylsulfanyl)-9-aci-nitrononane"><atomArray><atom elementType="C" id="CPD-12404-atom1" x2="499230.0" y2="-210650.0" /><atom elementType="C" id="CPD-12404-atom2" x2="70520.0" y2="-210650.0" /><atom elementType="C" id="CPD-12404-atom3" x2="-940.0" y2="-169410.0" /><atom elementType="C" id="CPD-12404-atom4" x2="141960.0" y2="-169410.0" /><atom elementType="C" id="CPD-12404-atom5" x2="-72400.0" y2="-210650.0" /><atom elementType="C" id="CPD-12404-atom6" x2="213410.0" y2="-210650.0" /><atom elementType="C" id="CPD-12404-atom7" x2="-143850.0" y2="-169410.0" /><atom elementType="C" id="CPD-12404-atom8" x2="284870.0" y2="-169410.0" /><atom elementType="C" id="CPD-12404-atom9" x2="-215290.0" y2="-210650.0" /><atom elementType="C" id="CPD-12404-atom10" x2="356330.0" y2="-210650.0" /><atom elementType="N" formalCharge="1" id="CPD-12404-atom11" x2="-286740.0" y2="-169400.0" /><atom elementType="O" id="CPD-12404-atom12" x2="-358180.0" y2="-210650.0" /><atom elementType="O" formalCharge="-1" id="CPD-12404-atom13" x2="-286740.0" y2="-86900.0" /><atom elementType="S" id="CPD-12404-atom14" x2="427780.0" y2="-169410.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-12404-atom1 CPD-12404-atom14" id="CPD-12404-bond1" order="1" /><bond atomRefs="CPD-12404-atom14 CPD-12404-atom10" id="CPD-12404-bond2" order="1" /><bond atomRefs="CPD-12404-atom10 CPD-12404-atom8" id="CPD-12404-bond3" order="1" /><bond atomRefs="CPD-12404-atom8 CPD-12404-atom6" id="CPD-12404-bond4" order="1" /><bond atomRefs="CPD-12404-atom6 CPD-12404-atom4" id="CPD-12404-bond5" order="1" /><bond atomRefs="CPD-12404-atom4 CPD-12404-atom2" id="CPD-12404-bond6" order="1" /><bond atomRefs="CPD-12404-atom2 CPD-12404-atom3" id="CPD-12404-bond7" order="1" /><bond atomRefs="CPD-12404-atom3 CPD-12404-atom5" id="CPD-12404-bond8" order="1" /><bond atomRefs="CPD-12404-atom5 CPD-12404-atom7" id="CPD-12404-bond9" order="1" /><bond atomRefs="CPD-12404-atom7 CPD-12404-atom9" id="CPD-12404-bond10" order="1" /><bond atomRefs="CPD-12404-atom9 CPD-12404-atom11" id="CPD-12404-bond11" order="2" /><bond atomRefs="CPD-12404-atom11 CPD-12404-atom12" id="CPD-12404-bond12" order="1" /><bond atomRefs="CPD-12404-atom11 CPD-12404-atom13" id="CPD-12404-bond13" order="1" /></bondArray>
+<formula concise="C 10 H 21 N 1 O 2 S 1" /><float title="molecularWeight" units="g/mol">219.341</float>
+<string title="smiles">C(CCCCCCCCSC)=[N+]([O-])O</string>
+</molecule>
+</cml>
+<common-name datatype="string">1-(methylsulfanyl)-9-&lt;i&gt;aci&lt;/i&gt;-nitrononane</common-name>
+<credits><created><date datatype="date">2010-04-26</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
+</credits>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM10476</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM10476</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>123131533</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131533</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">172.27354</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H21NO2S/c1-14-10-8-6-4-2-3-5-7-9-11(12)13/h9H,2-8,10H2,1H3,(H,12,13)</inchi>
+<inchi-key datatype="string">InChIKey=YNGGFUNKMBPTPS-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">219.341</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">221.14494</monoisotopic-mw>
+<synonym datatype="string">9-(methylsulfanyl)nonan-1-ylideneazinate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-11427" orgid="ARA" resource="getxml?ARA:RXN-11427" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-11419" orgid="ARA" resource="getxml?ARA:RXN-11419" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

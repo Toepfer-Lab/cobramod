@@ -1,0 +1,137 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:GLUTATHIONE-SYN-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:GLUTATHIONE-SYN-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:GLUTATHIONE-SYN-RXN" detail="full" frameid="GLUTATHIONE-SYN-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="GLUTATHIONE" orgid="META" resource="getxml?META:GLUTATHIONE" /></right>
+<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
+<right><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR100450</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR100450</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>13558</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=13558</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R00497</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00497</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JTJ6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JTJ6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46413</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46413</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P45480</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P45480</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35667</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35667</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35669</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35669</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35668</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35668</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48637</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48637</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46416</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46416</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P51855</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P51855</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P73493</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P73493</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P04425</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P04425</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O22494</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O22494</dblink-URL>
+</dblink>
+<ec-number>EC-6.3.2.3<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:GLUTATHIONE-SYN-ENZRXN" detail="low" frameid="GLUTATHIONE-SYN-ENZRXN" orgid="META"><reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="#META:GLUTATHIONE-SYN-RXN" /></reaction>
+<synonym datatype="string">GSH synthetase</synonym>
+<synonym datatype="string">&amp;gamma;-L-glutamyl-L-cysteine:glycine ligase (ADP-forming)</synonym>
+<common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="GLUTATHIONE-SYN-CPLX" orgid="META" resource="getxml?META:GLUTATHIONE-SYN-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-26987" detail="low" frameid="ENZRXN-26987" orgid="META"><reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="#META:GLUTATHIONE-SYN-RXN" /></reaction>
+<common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="MONOMER-20776" orgid="META" resource="getxml?META:MONOMER-20776" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13423" detail="low" frameid="ENZRXN-13423" orgid="META"><reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="#META:GLUTATHIONE-SYN-RXN" /></reaction>
+<common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="CPLX-7214" orgid="META" resource="getxml?META:CPLX-7214" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-10142" detail="low" frameid="ENZRXN-10142" orgid="META"><reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="#META:GLUTATHIONE-SYN-RXN" /></reaction>
+<common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="CPLX-5962" orgid="META" resource="getxml?META:CPLX-5962" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-10141" detail="low" frameid="ENZRXN-10141" orgid="META"><reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="#META:GLUTATHIONE-SYN-RXN" /></reaction>
+<common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="CPLX-5961" orgid="META" resource="getxml?META:CPLX-5961" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-6.265869<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="GLUTATHIONESYN-PWY" orgid="META" resource="getxml?META:GLUTATHIONESYN-PWY" /></in-pathway>
+<left><Compound frameid="GLY" orgid="META" resource="getxml?META:GLY" /></left>
+<left><Compound frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="META" resource="getxml?META:L-GAMMA-GLUTAMYLCYSTEINE" /></left>
+<left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /></left>
+</Reaction>
+</ptools-xml>

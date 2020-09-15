@@ -1,0 +1,50 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-1861"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-1861</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-1861" detail="full" frameid="CPD-1861" orgid="ARA"><parent><Compound class="true" frameid="Aldoxime" orgid="ARA" resource="getxml?ARA:Aldoxime" /></parent>
+<cml><molecule formalCharge="-1" id="CPD-1861" title="(E)-2-(1H-indol-3-yl)-1-thioacetohydroximate"><atomArray><atom elementType="C" id="CPD-1861-atom1" x2="5102.0" y2="-5082.0" /><atom elementType="C" id="CPD-1861-atom2" x2="5654.0" y2="-4469.0" /><atom elementType="C" id="CPD-1861-atom3" x2="4295.0" y2="-4910.0" /><atom elementType="C" id="CPD-1861-atom4" x2="5400.0" y2="-3684.0" /><atom elementType="C" id="CPD-1861-atom5" x2="2572.0" y2="-4202.0" /><atom elementType="C" id="CPD-1861-atom6" x2="3373.0" y2="-2969.0" /><atom elementType="C" id="CPD-1861-atom7" x2="3287.0" y2="-3790.0" /><atom elementType="C" id="CPD-1861-atom8" x2="4041.0" y2="-4126.0" /><atom elementType="C" id="CPD-1861-atom9" x2="4593.0" y2="-3512.0" /><atom elementType="C" id="CPD-1861-atom10" x2="1858.0" y2="-3790.0" /><atom elementType="N" id="CPD-1861-atom11" x2="4180.0" y2="-2798.0" /><atom elementType="N" id="CPD-1861-atom12" x2="1144.0" y2="-4202.0" /><atom elementType="O" id="CPD-1861-atom13" x2="1144.0" y2="-5027.0" /><atom elementType="S" formalCharge="-1" id="CPD-1861-atom14" x2="1858.0" y2="-2965.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-1861-atom14 CPD-1861-atom10" id="CPD-1861-bond1" order="1" /><bond atomRefs="CPD-1861-atom10 CPD-1861-atom12" id="CPD-1861-bond2" order="2" /><bond atomRefs="CPD-1861-atom12 CPD-1861-atom13" id="CPD-1861-bond3" order="1" /><bond atomRefs="CPD-1861-atom10 CPD-1861-atom5" id="CPD-1861-bond4" order="1" /><bond atomRefs="CPD-1861-atom5 CPD-1861-atom7" id="CPD-1861-bond5" order="1" /><bond atomRefs="CPD-1861-atom6 CPD-1861-atom11" id="CPD-1861-bond6" order="1" /><bond atomRefs="CPD-1861-atom11 CPD-1861-atom9" id="CPD-1861-bond7" order="1" /><bond atomRefs="CPD-1861-atom8 CPD-1861-atom9" id="CPD-1861-bond8" order="2" /><bond atomRefs="CPD-1861-atom8 CPD-1861-atom7" id="CPD-1861-bond9" order="1" /><bond atomRefs="CPD-1861-atom7 CPD-1861-atom6" id="CPD-1861-bond10" order="2" /><bond atomRefs="CPD-1861-atom9 CPD-1861-atom4" id="CPD-1861-bond11" order="1" /><bond atomRefs="CPD-1861-atom8 CPD-1861-atom3" id="CPD-1861-bond12" order="1" /><bond atomRefs="CPD-1861-atom3 CPD-1861-atom1" id="CPD-1861-bond13" order="2" /><bond atomRefs="CPD-1861-atom4 CPD-1861-atom2" id="CPD-1861-bond14" order="2" /><bond atomRefs="CPD-1861-atom2 CPD-1861-atom1" id="CPD-1861-bond15" order="1" /></bondArray>
+<formula concise="C 10 H 9 N 2 O 1 S 1" /><float title="molecularWeight" units="g/mol">205.254</float>
+<string title="smiles">C1(\NC2(/C=C\C=C/C(/C(\CC(/[S-])=N\O)=1)=2))</string>
+</molecule>
+</cml>
+<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-2-(1&lt;i&gt;H&lt;/i&gt;-indol-3-yl)-1-thioacetohydroximate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd16332</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd16332</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM5185</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM5185</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>136432</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:136432</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>25200900</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=25200900</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C16516</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C16516</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">116.42904</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H10N2OS/c13-12-10(14)5-7-6-11-9-4-2-1-3-8(7)9/h1-4,6,11,13H,5H2,(H,12,14)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=NPTAQBFHUNRJAR-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">205.254</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">206.05138</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-1442" orgid="ARA" resource="getxml?ARA:RXN-1442" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-19586" orgid="ARA" resource="getxml?ARA:RXN-19586" /><Reaction frameid="RXN-11437" orgid="ARA" resource="getxml?ARA:RXN-11437" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

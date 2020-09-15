@@ -1,0 +1,110 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:L-GAMMA-GLUTAMYLCYSTEINE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:L-GAMMA-GLUTAMYLCYSTEINE</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:L-GAMMA-GLUTAMYLCYSTEINE" detail="full" frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="META"><parent><Compound class="true" frameid="5-L-GLUTAMYL-L-AMINO-ACID" orgid="META" resource="getxml?META:5-L-GLUTAMYL-L-AMINO-ACID" /></parent>
+<cml><molecule formalCharge="-1" id="L-GAMMA-GLUTAMYLCYSTEINE" title="gamma-L-glutamyl-L-cysteine"><atomArray><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom1" x2="16916.0" y2="10798.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom2" x2="24061.0" y2="6672.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom3" x2="38351.0" y2="6673.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom4" x2="16916.0" y2="19047.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom5" x2="38351.0" y2="-1577.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom6" x2="24061.0" y2="-1577.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom7" x2="24061.0" y2="23172.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom8" x2="45496.0" y2="-5703.0" /><atom elementType="N" formalCharge="1" id="L-GAMMA-GLUTAMYLCYSTEINE-atom9" x2="9772.0" y2="23173.0" /><atom elementType="N" id="L-GAMMA-GLUTAMYLCYSTEINE-atom10" x2="31206.0" y2="-5702.0" /><atom elementType="O" id="L-GAMMA-GLUTAMYLCYSTEINE-atom11" x2="16916.0" y2="-5702.0" /><atom elementType="O" id="L-GAMMA-GLUTAMYLCYSTEINE-atom12" x2="24060.0" y2="31422.0" /><atom elementType="O" formalCharge="-1" id="L-GAMMA-GLUTAMYLCYSTEINE-atom13" x2="31206.0" y2="19047.0" /><atom elementType="O" formalCharge="-1" id="L-GAMMA-GLUTAMYLCYSTEINE-atom14" x2="52640.0" y2="-1578.0" /><atom elementType="O" id="L-GAMMA-GLUTAMYLCYSTEINE-atom15" x2="45495.0" y2="-13953.0" /><atom elementType="S" id="L-GAMMA-GLUTAMYLCYSTEINE-atom16" x2="45496.0" y2="10799.0" /></atomArray>
+<bondArray><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom10 L-GAMMA-GLUTAMYLCYSTEINE-atom6" id="L-GAMMA-GLUTAMYLCYSTEINE-bond1" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom6 L-GAMMA-GLUTAMYLCYSTEINE-atom2" id="L-GAMMA-GLUTAMYLCYSTEINE-bond2" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom2 L-GAMMA-GLUTAMYLCYSTEINE-atom1" id="L-GAMMA-GLUTAMYLCYSTEINE-bond3" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom1 L-GAMMA-GLUTAMYLCYSTEINE-atom4" id="L-GAMMA-GLUTAMYLCYSTEINE-bond4" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom4 L-GAMMA-GLUTAMYLCYSTEINE-atom7" id="L-GAMMA-GLUTAMYLCYSTEINE-bond5" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom7 L-GAMMA-GLUTAMYLCYSTEINE-atom12" id="L-GAMMA-GLUTAMYLCYSTEINE-bond6" order="2" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom7 L-GAMMA-GLUTAMYLCYSTEINE-atom13" id="L-GAMMA-GLUTAMYLCYSTEINE-bond7" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom4 L-GAMMA-GLUTAMYLCYSTEINE-atom9" id="L-GAMMA-GLUTAMYLCYSTEINE-bond8" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom6 L-GAMMA-GLUTAMYLCYSTEINE-atom11" id="L-GAMMA-GLUTAMYLCYSTEINE-bond9" order="2" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom5 L-GAMMA-GLUTAMYLCYSTEINE-atom10" id="L-GAMMA-GLUTAMYLCYSTEINE-bond10" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom5 L-GAMMA-GLUTAMYLCYSTEINE-atom8" id="L-GAMMA-GLUTAMYLCYSTEINE-bond11" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom5 L-GAMMA-GLUTAMYLCYSTEINE-atom3" id="L-GAMMA-GLUTAMYLCYSTEINE-bond12" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom8 L-GAMMA-GLUTAMYLCYSTEINE-atom15" id="L-GAMMA-GLUTAMYLCYSTEINE-bond13" order="2" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom8 L-GAMMA-GLUTAMYLCYSTEINE-atom14" id="L-GAMMA-GLUTAMYLCYSTEINE-bond14" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom3 L-GAMMA-GLUTAMYLCYSTEINE-atom16" id="L-GAMMA-GLUTAMYLCYSTEINE-bond15" order="1" /></bondArray>
+<formula concise="C 8 H 13 N 2 O 5 S 1" /><float title="molecularWeight" units="g/mol">249.261</float>
+<string title="smiles">C(S)[C@@H](C([O-])=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">249.261</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">250.06235</monoisotopic-mw>
+<synonym datatype="string">&amp;gamma;-glutamylcysteine</synonym>
+<synonym datatype="string">&amp;gamma;-L-glutamylcysteine</synonym>
+<synonym datatype="string">&amp;gamma;-Glu-Cys</synonym>
+<appears-in-left-side-of><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-SYN-RXN" /><Reaction frameid="RXN-14430" orgid="META" resource="getxml?META:RXN-14430" /><Reaction frameid="1.6.4.9-RXN" orgid="META" resource="getxml?META:1.6.4.9-RXN" /><Reaction frameid="HOMOGLUTATHIONE-SYNTHASE-RXN" orgid="META" resource="getxml?META:HOMOGLUTATHIONE-SYNTHASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="GLUTCYSLIG-RXN" orgid="META" resource="getxml?META:GLUTCYSLIG-RXN" /><Reaction frameid="RXN-19585" orgid="META" resource="getxml?META:RXN-19585" /></appears-in-right-side-of>
+<comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=L-GAMMA-GLUTAMYLCYSTEINE"&gt;&amp;gamma;-L-glutamyl-L-cysteine&lt;/a&gt; is the major low molecular weight thiol in halobacteria [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/23560638"&gt;Kim13c&lt;/a&gt;].</comment>
+<common-name datatype="string">&amp;gamma;-L-glutamyl-L-cysteine</common-name>
+<credits><revised><date datatype="date">2013-04-23</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>174393</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=174393</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00506</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00506</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM412</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM412</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>gamma-Glutamyl cysteine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=gamma-Glutamyl cysteine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>glucys</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/glucys</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7059430</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7059430</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC58173</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC58173</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01049</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01049</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>58173</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58173</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00669</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00669</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>686-58-8</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=686-58-8</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-57.157494<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C8H14N2O5S/c9-4(7(12)13)1-2-6(11)10-5(3-16)8(14)15/h4-5,16H,1-3,9H2,(H,10,11)(H,12,13)(H,14,15)/p-1/t4-,5-/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=RITKHVBHSGLULN-WHFBIAKZSA-M</inchi-key>
+</Compound>
+</ptools-xml>

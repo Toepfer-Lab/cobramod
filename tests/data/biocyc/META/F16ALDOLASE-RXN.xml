@@ -1,0 +1,447 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:F16ALDOLASE-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:F16ALDOLASE-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:F16ALDOLASE-RXN" detail="full" frameid="F16ALDOLASE-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="getxml?META:DIHYDROXY-ACETONE-PHOSPHATE" /></right>
+<right><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /></right>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR99464</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR99464</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>14732</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=14732</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01068</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01068</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7LZE8</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7LZE8</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M2K6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M2K6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P07764</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P07764</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9URB4</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9URB4</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P14223</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P14223</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q07159</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q07159</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P07752</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P07752</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P14540</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P14540</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P07341</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P07341</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P0AB71</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P0AB71</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P04075</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P04075</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P05062</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P05062</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09972</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09972</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P05064</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P05064</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P05063</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P05063</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P22197</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P22197</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00883</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00883</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P27995</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P27995</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P05065</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P05065</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00884</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00884</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P09117</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P09117</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P17784</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P17784</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P29356</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P29356</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P16096</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P16096</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P08440</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P08440</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P44429</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P44429</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P13243</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P13243</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O51401</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O51401</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P47269</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P47269</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9CED4</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9CED4</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JW15</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JW15</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q59100</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q59100</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q59101</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q59101</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M4Z5</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M4Z5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M4Z4</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M4Z4</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19537</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19537</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q01516</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q01516</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q01517</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q01517</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q91384</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q91384</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P52210</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P52210</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42690</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42690</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P53447</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P53447</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7LZE9</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7LZE9</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P53818</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P53818</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46257</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46257</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46256</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46256</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42476</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42476</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P75089</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P75089</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O22486</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O22486</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q40677</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q40677</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O65581</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O65581</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9SVJ6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9SVJ6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P93565</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P93565</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P50923</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P50923</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O04975</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O04975</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P36580</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P36580</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P53444</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P53444</dblink-URL>
+</dblink>
+<ec-number>EC-4.1.2.13<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:F16ALDOLASE-ENZRXN-CLASSI" detail="low" frameid="F16ALDOLASE-ENZRXN-CLASSI" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="FRUCBISALD-CLASSI" orgid="META" resource="getxml?META:FRUCBISALD-CLASSI" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:F16ALDOLASE-ENZRXN-CLASSII" detail="low" frameid="F16ALDOLASE-ENZRXN-CLASSII" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<synonym datatype="string">fructose-1,6-bisphosphate aldolase</synonym>
+<synonym datatype="string">fructose-1,6-bisphosphate triosephosphate lyase</synonym>
+<common-name datatype="string">fructose bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="FRUCBISALD-CLASSII" orgid="META" resource="getxml?META:FRUCBISALD-CLASSII" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-1460" detail="low" frameid="ENZRXN66-1460" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX66-215" orgid="META" resource="getxml?META:CPLX66-215" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-2108" detail="low" frameid="ENZRXN66-2108" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX66-214" orgid="META" resource="getxml?META:CPLX66-214" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-2208" detail="low" frameid="ENZRXN66-2208" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX66-300" orgid="META" resource="getxml?META:CPLX66-300" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-16061" detail="low" frameid="ENZRXN-16061" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-7767" orgid="META" resource="getxml?META:CPLX-7767" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-16058" detail="low" frameid="ENZRXN-16058" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">D-fructose-1,6-bisphosphate D-glyceraldehyde-3-phosphate-lyase (glycerone-phosphate-forming)</common-name>
+<enzyme><Protein frameid="CPLX-7766" orgid="META" resource="getxml?META:CPLX-7766" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13905" detail="low" frameid="ENZRXN-13905" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-7326" orgid="META" resource="getxml?META:CPLX-7326" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13752" detail="low" frameid="ENZRXN-13752" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12903" orgid="META" resource="getxml?META:MONOMER-12903" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13751" detail="low" frameid="ENZRXN-13751" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12902" orgid="META" resource="getxml?META:MONOMER-12902" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13750" detail="low" frameid="ENZRXN-13750" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12901" orgid="META" resource="getxml?META:MONOMER-12901" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13749" detail="low" frameid="ENZRXN-13749" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12900" orgid="META" resource="getxml?META:MONOMER-12900" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13744" detail="low" frameid="ENZRXN-13744" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12899" orgid="META" resource="getxml?META:MONOMER-12899" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13743" detail="low" frameid="ENZRXN-13743" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12898" orgid="META" resource="getxml?META:MONOMER-12898" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13741" detail="low" frameid="ENZRXN-13741" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12897" orgid="META" resource="getxml?META:MONOMER-12897" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13739" detail="low" frameid="ENZRXN-13739" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12896" orgid="META" resource="getxml?META:MONOMER-12896" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13735" detail="low" frameid="ENZRXN-13735" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-7289" orgid="META" resource="getxml?META:CPLX-7289" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12253" detail="low" frameid="ENZRXN-12253" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-6992" orgid="META" resource="getxml?META:CPLX-6992" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-9281" detail="low" frameid="ENZRXN-9281" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-5541" orgid="META" resource="getxml?META:CPLX-5541" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-9262" detail="low" frameid="ENZRXN-9262" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">D-fructose 1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-5522" orgid="META" resource="getxml?META:CPLX-5522" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-9261" detail="low" frameid="ENZRXN-9261" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-5521" orgid="META" resource="getxml?META:CPLX-5521" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2865" detail="low" frameid="ENZRXN-2865" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<synonym datatype="string">fructose-1,6-bisphosphate triosephosphate-lyase</synonym>
+<synonym datatype="string">D-fructose-1,6-bisphosphate D-glyceraldehyde-3-phosphate-lyase</synonym>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-546" orgid="META" resource="getxml?META:MONOMER-546" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2683" detail="low" frameid="ENZRXN-2683" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<synonym datatype="string">fructose-1,6-bisphosphate aldolase</synonym>
+<synonym datatype="string">fructose-1,6-bisphosphate triosephosphate-lyase</synonym>
+<synonym datatype="string">D-fructose-1,6-bisphosphate D-glyceraldehyde-3-phosphate lyase</synonym>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-364" orgid="META" resource="getxml?META:MONOMER-364" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-166" detail="low" frameid="ENZRXN-166" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<synonym datatype="string">fructose-1,6-bisphosphate triose-phosphate-lyase</synonym>
+<synonym datatype="string">D-fructose-1,6-bisphosphate D-glyceraldehyde-3-phosphate-lyase</synonym>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-9466" orgid="META" resource="getxml?META:CPLX-9466" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-164" detail="low" frameid="ENZRXN-164" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="#META:F16ALDOLASE-RXN" /></reaction>
+<synonym datatype="string">fructose-1,6-bisphosphate triose-phosphate-lyase</synonym>
+<synonym datatype="string">D-fructose-1,6-bisphosphate D-glyceraldehyde-3-phosphate-lyase</synonym>
+<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-9465" orgid="META" resource="getxml?META:CPLX-9465" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">8.226501<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="SUCSYN-PWY" orgid="META" resource="getxml?META:SUCSYN-PWY" /><Pathway frameid="ANAGLYCOLYSIS-PWY" orgid="META" resource="getxml?META:ANAGLYCOLYSIS-PWY" /><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /><Pathway frameid="PWY-5484" orgid="META" resource="getxml?META:PWY-5484" /><Pathway frameid="PWY-7385" orgid="META" resource="getxml?META:PWY-7385" /><Pathway frameid="P341-PWY" orgid="META" resource="getxml?META:P341-PWY" /><Pathway frameid="PWY-6142" orgid="META" resource="getxml?META:PWY-6142" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY66-399" orgid="META" resource="getxml?META:PWY66-399" /><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /><Pathway frameid="P185-PWY" orgid="META" resource="getxml?META:P185-PWY" /><Pathway frameid="PWY-1861" orgid="META" resource="getxml?META:PWY-1861" /><Pathway frameid="PWY-1042" orgid="META" resource="getxml?META:PWY-1042" /></in-pathway>
+<left><Compound frameid="FRUCTOSE-16-DIPHOSPHATE" orgid="META" resource="getxml?META:FRUCTOSE-16-DIPHOSPHATE" /></left>
+</Reaction>
+</ptools-xml>

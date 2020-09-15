@@ -1,0 +1,199 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:ADP"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:ADP</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:ADP" detail="full" frameid="ADP" orgid="ARA"><parent><Compound class="true" frameid="All-Nucleosides" orgid="ARA" resource="getxml?ARA:All-Nucleosides" /></parent>
+<parent><Compound class="true" frameid="Purine-ribonucleosides-5-PP" orgid="ARA" resource="getxml?ARA:Purine-ribonucleosides-5-PP" /></parent>
+<cml><molecule formalCharge="-3" id="ADP" title="ADP"><atomArray><atom elementType="C" id="ADP-atom1" x2="3911.0" y2="2234.0" /><atom elementType="C" id="ADP-atom2" x2="7003.0" y2="0.0" /><atom elementType="C" id="ADP-atom3" x2="7415.0" y2="2699.0" /><atom elementType="C" id="ADP-atom4" x2="4625.0" y2="2647.0" /><atom elementType="C" id="ADP-atom5" x2="7828.0" y2="1430.0" /><atom elementType="C" id="ADP-atom6" x2="4885.0" y2="3430.0" /><atom elementType="C" id="ADP-atom7" x2="5718.0" y2="3430.0" /><atom elementType="C" id="ADP-atom8" x2="8240.0" y2="715.0" /><atom elementType="C" id="ADP-atom9" x2="7003.0" y2="1430.0" /><atom elementType="C" id="ADP-atom10" x2="6033.0" y2="2626.0" /><atom elementType="N" id="ADP-atom11" x2="9065.0" y2="715.0" /><atom elementType="N" id="ADP-atom12" x2="7828.0" y2="0.0" /><atom elementType="N" id="ADP-atom13" x2="6590.0" y2="715.0" /><atom elementType="N" id="ADP-atom14" x2="8083.0" y2="2214.0" /><atom elementType="N" id="ADP-atom15" x2="6748.0" y2="2214.0" /><atom elementType="O" id="ADP-atom16" x2="4415.0" y2="4101.0" /><atom elementType="O" id="ADP-atom17" x2="6301.0" y2="4013.0" /><atom elementType="O" id="ADP-atom18" x2="825.0" y2="3421.0" /><atom elementType="O" formalCharge="-1" id="ADP-atom19" x2="825.0" y2="1771.0" /><atom elementType="O" formalCharge="-1" id="ADP-atom20" x2="0.0" y2="2596.0" /><atom elementType="O" id="ADP-atom21" x2="2475.0" y2="3421.0" /><atom elementType="O" formalCharge="-1" id="ADP-atom22" x2="2475.0" y2="1771.0" /><atom elementType="O" id="ADP-atom23" x2="3300.0" y2="2596.0" /><atom elementType="O" id="ADP-atom24" x2="5293.0" y2="2168.0" /><atom elementType="O" id="ADP-atom25" x2="1650.0" y2="2596.0" /><atom elementType="P" id="ADP-atom26" x2="825.0" y2="2596.0" /><atom elementType="P" id="ADP-atom27" x2="2475.0" y2="2596.0" /></atomArray>
+<bondArray><bond atomRefs="ADP-atom7 ADP-atom10" id="ADP-bond1" order="1" /><bond atomRefs="ADP-atom6 ADP-atom4" id="ADP-bond2" order="1" /><bond atomRefs="ADP-atom6 ADP-atom7" id="ADP-bond3" order="1" /><bond atomRefs="ADP-atom24 ADP-atom10" id="ADP-bond4" order="1" /><bond atomRefs="ADP-atom24 ADP-atom4" id="ADP-bond5" order="1" /><bond atomRefs="ADP-atom6 ADP-atom16" id="ADP-bond6" order="1" /><bond atomRefs="ADP-atom4 ADP-atom1" id="ADP-bond7" order="1" /><bond atomRefs="ADP-atom10 ADP-atom15" id="ADP-bond8" order="1" /><bond atomRefs="ADP-atom1 ADP-atom23" id="ADP-bond9" order="1" /><bond atomRefs="ADP-atom12 ADP-atom2" id="ADP-bond10" order="2" /><bond atomRefs="ADP-atom2 ADP-atom13" id="ADP-bond11" order="1" /><bond atomRefs="ADP-atom13 ADP-atom9" id="ADP-bond12" order="2" /><bond atomRefs="ADP-atom9 ADP-atom5" id="ADP-bond13" order="1" /><bond atomRefs="ADP-atom5 ADP-atom8" id="ADP-bond14" order="2" /><bond atomRefs="ADP-atom12 ADP-atom8" id="ADP-bond15" order="1" /><bond atomRefs="ADP-atom3 ADP-atom14" id="ADP-bond16" order="2" /><bond atomRefs="ADP-atom5 ADP-atom14" id="ADP-bond17" order="1" /><bond atomRefs="ADP-atom8 ADP-atom11" id="ADP-bond18" order="1" /><bond atomRefs="ADP-atom3 ADP-atom15" id="ADP-bond19" order="1" /><bond atomRefs="ADP-atom15 ADP-atom9" id="ADP-bond20" order="1" /><bond atomRefs="ADP-atom7 ADP-atom17" id="ADP-bond21" order="1" /><bond atomRefs="ADP-atom25 ADP-atom27" id="ADP-bond22" order="1" /><bond atomRefs="ADP-atom22 ADP-atom27" id="ADP-bond23" order="1" /><bond atomRefs="ADP-atom21 ADP-atom27" id="ADP-bond24" order="2" /><bond atomRefs="ADP-atom23 ADP-atom27" id="ADP-bond25" order="1" /><bond atomRefs="ADP-atom20 ADP-atom26" id="ADP-bond26" order="1" /><bond atomRefs="ADP-atom19 ADP-atom26" id="ADP-bond27" order="1" /><bond atomRefs="ADP-atom18 ADP-atom26" id="ADP-bond28" order="2" /><bond atomRefs="ADP-atom25 ADP-atom26" id="ADP-bond29" order="1" /></bondArray>
+<formula concise="C 10 H 12 N 5 O 10 P 2" /><float title="molecularWeight" units="g/mol">424.18</float>
+<string title="smiles">C(OP(=O)([O-])OP(=O)([O-])[O-])[C@H]3(O[C@@H](N1(C2(\C(\N=C/1)=C(N)/N=C\N=2)))[C@H](O)[C@H](O)3)</string>
+</molecule>
+</cml>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to LC-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href="http://plantmetabolomics.org/tutorials/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">ADP</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00008</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00008</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM7</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>ADP</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=ADP</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>adp</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/adp</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC456216</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC456216</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01341</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01341</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>5414423</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/5414423</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>456216</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:456216</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7058055</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7058055</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00008</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00008</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>58-64-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-64-0</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-344.92508</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H15N5O10P2/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(17)6(16)4(24-10)1-23-27(21,22)25-26(18,19)20/h2-4,6-7,10,16-17H,1H2,(H,21,22)(H2,11,12,13)(H2,18,19,20)/p-3/t4-,6-,7-,10-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=XTWYTFMLZFPYCI-KQYNXXCUSA-K</inchi-key>
+<molecular-weight datatype="float" units="Daltons">424.18</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">427.02942</monoisotopic-mw>
+<regulates><Regulation ID="ARA:REG-15215" detail="low" frameid="REG-15215" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-8154" detail="low" frameid="REG0-8154" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-8726" detail="low" frameid="REG0-8726" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-6887" detail="low" frameid="REG0-6887" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-8479" detail="low" frameid="REG0-8479" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-6552" detail="low" frameid="REG-6552" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-11598" detail="low" frameid="REG-11598" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-10568" detail="low" frameid="REG0-10568" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8233" detail="low" frameid="REG-8233" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-13527" detail="low" frameid="REG-13527" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8041" detail="low" frameid="REG-8041" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8051" detail="low" frameid="REG-8051" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-8748" detail="low" frameid="REG0-8748" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-10984" detail="low" frameid="REG-10984" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8119" detail="low" frameid="REG-8119" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-8828" detail="low" frameid="REG0-8828" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-6846" detail="low" frameid="REG0-6846" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-13336" detail="low" frameid="REG-13336" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8584" detail="low" frameid="REG-8584" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-12492" detail="low" frameid="REG-12492" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-9856" detail="low" frameid="REG-9856" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXN-2843" detail="low" frameid="ENZRXN-2843" orgid="ARA"><common-name datatype="string">2-(2'-methylthio)ethylmalate synthase</common-name>
+<enzyme><Protein frameid="CPLX-2301" orgid="ARA" resource="getxml?ARA:CPLX-2301" /></enzyme>
+<reaction><Reaction frameid="RXN-2202" orgid="ARA" resource="getxml?ARA:RXN-2202" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-9477" detail="low" frameid="REG-9477" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-440" detail="low" frameid="REGQT-440" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXN-10564" detail="low" frameid="ENZRXN-10564" orgid="ARA"><common-name datatype="string">succinate semialdehyde dehydrogenase (NAD&lt;sup&gt;+&lt;/sup&gt;)</common-name>
+<enzyme><Protein frameid="CPLX-6121" orgid="ARA" resource="getxml?ARA:CPLX-6121" /></enzyme>
+<reaction><Reaction frameid="SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" orgid="ARA" resource="getxml?ARA:SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-338" detail="low" frameid="REGQT-338" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXN-13423" detail="low" frameid="ENZRXN-13423" orgid="ARA"><common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="CPLX-7214" orgid="ARA" resource="getxml?ARA:CPLX-7214" /></enzyme>
+<reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-SYN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="ARA" resource="#ARA:ADP" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">adenosine pyrophosphate</synonym>
+<synonym datatype="string">adenosine 5'-pyrophosphate</synonym>
+<synonym datatype="string">adenosine-5'-diphosphate</synonym>
+<synonym datatype="string">adenosine-diphosphate</synonym>
+<synonym datatype="string">adenosine-5-diphosphate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-13141" orgid="ARA" resource="getxml?ARA:RXN-13141" /><Reaction frameid="RXN0-6727" orgid="ARA" resource="getxml?ARA:RXN0-6727" /><Reaction frameid="TRANS-RXN-243" orgid="ARA" resource="getxml?ARA:TRANS-RXN-243" /><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="ARA" resource="getxml?ARA:ATP-CITRATE-PRO-S--LYASE-RXN" /><Reaction frameid="SULFATE-ADENYLYLTRANSFERASE-ADP-RXN" orgid="ARA" resource="getxml?ARA:SULFATE-ADENYLYLTRANSFERASE-ADP-RXN" /><Reaction frameid="2.7.7.35-RXN" orgid="ARA" resource="getxml?ARA:2.7.7.35-RXN" /><Reaction frameid="RXN-4305" orgid="ARA" resource="getxml?ARA:RXN-4305" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN1ZN3-10" orgid="ARA" resource="getxml?ARA:RXN1ZN3-10" /><Reaction frameid="RXN-10972" orgid="ARA" resource="getxml?ARA:RXN-10972" /><Reaction frameid="2.7.1.152-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.152-RXN" /><Reaction frameid="RXN0-7115" orgid="ARA" resource="getxml?ARA:RXN0-7115" /><Reaction frameid="2.7.1.127-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.127-RXN" /><Reaction frameid="RXN-20401" orgid="ARA" resource="getxml?ARA:RXN-20401" /><Reaction frameid="RXN-20400" orgid="ARA" resource="getxml?ARA:RXN-20400" /><Reaction frameid="TRANS-RXN-237" orgid="ARA" resource="getxml?ARA:TRANS-RXN-237" /><Reaction frameid="UDP-NACMURALGLDAPLIG-RXN" orgid="ARA" resource="getxml?ARA:UDP-NACMURALGLDAPLIG-RXN" /><Reaction frameid="RXN0-4522" orgid="ARA" resource="getxml?ARA:RXN0-4522" /><Reaction frameid="TRANS-RXN0-202" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-202" /><Reaction frameid="TRANS-RXN0-510" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-510" /><Reaction frameid="TRANS-RXN0-511" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-511" /><Reaction frameid="N-ACETYLGLUCOSAMINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:N-ACETYLGLUCOSAMINE-KINASE-RXN" /><Reaction frameid="DEHYDDEOXGALACTKIN-RXN" orgid="ARA" resource="getxml?ARA:DEHYDDEOXGALACTKIN-RXN" /><Reaction frameid="DEOXYGLUCONOKIN-RXN" orgid="ARA" resource="getxml?ARA:DEOXYGLUCONOKIN-RXN" /><Reaction frameid="3.6.3.21-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.21-RXN" /><Reaction frameid="ABC-13-RXN" orgid="ARA" resource="getxml?ARA:ABC-13-RXN" /><Reaction frameid="TRANS-RXN0-222" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-222" /><Reaction frameid="TRANS-RXN-250" orgid="ARA" resource="getxml?ARA:TRANS-RXN-250" /><Reaction frameid="TRANS-RXN-298" orgid="ARA" resource="getxml?ARA:TRANS-RXN-298" /><Reaction frameid="ABC-10-RXN" orgid="ARA" resource="getxml?ARA:ABC-10-RXN" /><Reaction frameid="3.6.4.7-RXN" orgid="ARA" resource="getxml?ARA:3.6.4.7-RXN" /><Reaction frameid="TRANS-RXN-290" orgid="ARA" resource="getxml?ARA:TRANS-RXN-290" /><Reaction frameid="TRANS-RXN-291" orgid="ARA" resource="getxml?ARA:TRANS-RXN-291" /><Reaction frameid="TRANS-RXN0-508" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-508" /><Reaction frameid="TRANS-RXN0-513" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-513" /><Reaction frameid="TRANS-RXN0-593" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-593" /><Reaction frameid="TRANS-RXN0-617" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-617" /><Reaction frameid="RXN-20080" orgid="ARA" resource="getxml?ARA:RXN-20080" /><Reaction frameid="RXN-20082" orgid="ARA" resource="getxml?ARA:RXN-20082" /><Reaction frameid="3.6.3.15-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.15-RXN" /><Reaction frameid="1.8.98.2-RXN" orgid="ARA" resource="getxml?ARA:1.8.98.2-RXN" /><Reaction frameid="RIBOKIN-RXN" orgid="ARA" resource="getxml?ARA:RIBOKIN-RXN" /><Reaction frameid="CARBAMATE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:CARBAMATE-KINASE-RXN" /><Reaction frameid="ATPSYN-RXN" orgid="ARA" resource="getxml?ARA:ATPSYN-RXN" /><Reaction frameid="3.6.4.8-RXN" orgid="ARA" resource="getxml?ARA:3.6.4.8-RXN" /><Reaction frameid="TRANS-RXN-358" orgid="ARA" resource="getxml?ARA:TRANS-RXN-358" /><Reaction frameid="BIOTIN-CARBOXYL-RXN" orgid="ARA" resource="getxml?ARA:BIOTIN-CARBOXYL-RXN" /><Reaction frameid="2.7.1.149-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.149-RXN" /><Reaction frameid="CYTIKIN-RXN" orgid="ARA" resource="getxml?ARA:CYTIKIN-RXN" /><Reaction frameid="RXN-14196" orgid="ARA" resource="getxml?ARA:RXN-14196" /><Reaction frameid="RXN-16909" orgid="ARA" resource="getxml?ARA:RXN-16909" /><Reaction frameid="GLUCOKIN-RXN" orgid="ARA" resource="getxml?ARA:GLUCOKIN-RXN" /><Reaction frameid="FORMATETHFLIG-RXN" orgid="ARA" resource="getxml?ARA:FORMATETHFLIG-RXN" /><Reaction frameid="3.6.4.1-RXN" orgid="ARA" resource="getxml?ARA:3.6.4.1-RXN" /><Reaction frameid="3.6.4.6-RXN" orgid="ARA" resource="getxml?ARA:3.6.4.6-RXN" /><Reaction frameid="3.6.3.6-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.6-RXN" /><Reaction frameid="ABC-27-RXN" orgid="ARA" resource="getxml?ARA:ABC-27-RXN" /><Reaction frameid="3.6.4.2-RXN" orgid="ARA" resource="getxml?ARA:3.6.4.2-RXN" /><Reaction frameid="RXN-10973" orgid="ARA" resource="getxml?ARA:RXN-10973" /><Reaction frameid="RXNQT-1" orgid="ARA" resource="getxml?ARA:RXNQT-1" /><Reaction frameid="GUANOSINEKIN-RXN" orgid="ARA" resource="getxml?ARA:GUANOSINEKIN-RXN" /><Reaction frameid="RXN-14455" orgid="ARA" resource="getxml?ARA:RXN-14455" /><Reaction frameid="RXN0-5205" orgid="ARA" resource="getxml?ARA:RXN0-5205" /><Reaction frameid="TRIOKINASE-RXN" orgid="ARA" resource="getxml?ARA:TRIOKINASE-RXN" /><Reaction frameid="3.6.3.10-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.10-RXN" /><Reaction frameid="TRANS-RXN0-268" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-268" /><Reaction frameid="RXN-13139" orgid="ARA" resource="getxml?ARA:RXN-13139" /><Reaction frameid="4.2.1.93-RXN" orgid="ARA" resource="getxml?ARA:4.2.1.93-RXN" /><Reaction frameid="ABC-19-RXN" orgid="ARA" resource="getxml?ARA:ABC-19-RXN" /><Reaction frameid="TRANS-RXN0-491" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-491" /><Reaction frameid="TRANS-RXN0-492" orgid="ARA" resource="getxml?ARA:TRANS-RXN0-492" /><Reaction frameid="RXN-10068" orgid="ARA" resource="getxml?ARA:RXN-10068" /><Reaction frameid="TRANS-RXN-243" orgid="ARA" resource="getxml?ARA:TRANS-RXN-243" /><Reaction frameid="3.6.3.26-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.26-RXN" /><Reaction frameid="ABC-9-RXN" orgid="ARA" resource="getxml?ARA:ABC-9-RXN" /><Reaction frameid="ABC-64-RXN" orgid="ARA" resource="getxml?ARA:ABC-64-RXN" /><Reaction frameid="KETOHEXOKINASE-RXN" orgid="ARA" resource="getxml?ARA:KETOHEXOKINASE-RXN" /><Reaction frameid="ABC-11-RXN" orgid="ARA" resource="getxml?ARA:ABC-11-RXN" /><Reaction frameid="ABC-34-RXN" orgid="ARA" resource="getxml?ARA:ABC-34-RXN" /><Reaction frameid="ABC-4-RXN" orgid="ARA" resource="getxml?ARA:ABC-4-RXN" /><Reaction frameid="PYRUVATE-CARBOXYLASE-RXN" orgid="ARA" resource="getxml?ARA:PYRUVATE-CARBOXYLASE-RXN" /><Reaction frameid="RXN0-21" orgid="ARA" resource="getxml?ARA:RXN0-21" /><Reaction frameid="RXN0-3" orgid="ARA" resource="getxml?ARA:RXN0-3" /><Reaction frameid="ABC-12-RXN" orgid="ARA" resource="getxml?ARA:ABC-12-RXN" /><Reaction frameid="RXN-12979" orgid="ARA" resource="getxml?ARA:RXN-12979" /><Reaction frameid="3.6.3.46-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.46-RXN" /><Reaction frameid="3.6.3.41-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.41-RXN" /><Reaction frameid="6.3.5.6-RXN" orgid="ARA" resource="getxml?ARA:6.3.5.6-RXN" /><Reaction frameid="5-FORMYL-THF-CYCLO-LIGASE-RXN" orgid="ARA" resource="getxml?ARA:5-FORMYL-THF-CYCLO-LIGASE-RXN" /><Reaction frameid="RXN-7799" orgid="ARA" resource="getxml?ARA:RXN-7799" /><Reaction frameid="RXN-14325" orgid="ARA" resource="getxml?ARA:RXN-14325" /><Reaction frameid="NICOTINATEPRIBOSYLTRANS-RXN" orgid="ARA" resource="getxml?ARA:NICOTINATEPRIBOSYLTRANS-RXN" /><Reaction frameid="RXN-13202" orgid="ARA" resource="getxml?ARA:RXN-13202" /><Reaction frameid="GLUTAMINESYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMINESYN-RXN" /><Reaction frameid="3.6.3.47-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.47-RXN" /><Reaction frameid="D-RIBULOKIN-RXN" orgid="ARA" resource="getxml?ARA:D-RIBULOKIN-RXN" /><Reaction frameid="RXN-14391" orgid="ARA" resource="getxml?ARA:RXN-14391" /><Reaction frameid="RXN3DJ-11417" orgid="ARA" resource="getxml?ARA:RXN3DJ-11417" /><Reaction frameid="DEOXYADENYLATE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:DEOXYADENYLATE-KINASE-RXN" /><Reaction frameid="RXN-14378" orgid="ARA" resource="getxml?ARA:RXN-14378" /><Reaction frameid="DEOXYADENOSINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:DEOXYADENOSINE-KINASE-RXN" /><Reaction frameid="DEOXYGUANOSINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:DEOXYGUANOSINE-KINASE-RXN" /><Reaction frameid="RXN-14093" orgid="ARA" resource="getxml?ARA:RXN-14093" /><Reaction frameid="PSEUDOURIDINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:PSEUDOURIDINE-KINASE-RXN" /><Reaction frameid="TRANS-RXN-194" orgid="ARA" resource="getxml?ARA:TRANS-RXN-194" /><Reaction frameid="TRANS-RXN-178" orgid="ARA" resource="getxml?ARA:TRANS-RXN-178" /><Reaction frameid="ABC-16-RXN" orgid="ARA" resource="getxml?ARA:ABC-16-RXN" /><Reaction frameid="RXN-13197" orgid="ARA" resource="getxml?ARA:RXN-13197" /><Reaction frameid="ABC-70-RXN" orgid="ARA" resource="getxml?ARA:ABC-70-RXN" /><Reaction frameid="2.7.1.153-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.153-RXN" /><Reaction frameid="2.7.1.68-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.68-RXN" /><Reaction frameid="6.3.5.7-RXN" orgid="ARA" resource="getxml?ARA:6.3.5.7-RXN" /><Reaction frameid="RXN-13336" orgid="ARA" resource="getxml?ARA:RXN-13336" /><Reaction frameid="RXN-11832" orgid="ARA" resource="getxml?ARA:RXN-11832" /><Reaction frameid="2.7.1.154-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.154-RXN" /><Reaction frameid="RXN-11376" orgid="ARA" resource="getxml?ARA:RXN-11376" /><Reaction frameid="1-PHOSPHATIDYLINOSITOL-3-KINASE-RXN" orgid="ARA" resource="getxml?ARA:1-PHOSPHATIDYLINOSITOL-3-KINASE-RXN" /><Reaction frameid="1-PHOSPHATIDYLINOSITOL-KINASE-RXN" orgid="ARA" resource="getxml?ARA:1-PHOSPHATIDYLINOSITOL-KINASE-RXN" /><Reaction frameid="2.7.1.150-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.150-RXN" /><Reaction frameid="FUCOKINASE-RXN" orgid="ARA" resource="getxml?ARA:FUCOKINASE-RXN" /><Reaction frameid="GALACTURONOKINASE-RXN" orgid="ARA" resource="getxml?ARA:GALACTURONOKINASE-RXN" /><Reaction frameid="GLUCURONOKINASE-RXN" orgid="ARA" resource="getxml?ARA:GLUCURONOKINASE-RXN" /><Reaction frameid="HEXOKINASE-RXN" orgid="ARA" resource="getxml?ARA:HEXOKINASE-RXN" /><Reaction frameid="L-ARABINOKINASE-RXN" orgid="ARA" resource="getxml?ARA:L-ARABINOKINASE-RXN" /><Reaction frameid="3.6.3.3-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.3-RXN" /><Reaction frameid="3.6.3.35-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.35-RXN" /><Reaction frameid="RXN-12304" orgid="ARA" resource="getxml?ARA:RXN-12304" /><Reaction frameid="RXN-12307" orgid="ARA" resource="getxml?ARA:RXN-12307" /><Reaction frameid="RXN-12325" orgid="ARA" resource="getxml?ARA:RXN-12325" /><Reaction frameid="CERAMIDE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:CERAMIDE-KINASE-RXN" /><Reaction frameid="RXN-10979" orgid="ARA" resource="getxml?ARA:RXN-10979" /><Reaction frameid="RXN-10974" orgid="ARA" resource="getxml?ARA:RXN-10974" /><Reaction frameid="RXN-4941" orgid="ARA" resource="getxml?ARA:RXN-4941" /><Reaction frameid="RXN-10971" orgid="ARA" resource="getxml?ARA:RXN-10971" /><Reaction frameid="GLUCONOKIN-RXN" orgid="ARA" resource="getxml?ARA:GLUCONOKIN-RXN" /><Reaction frameid="RXN-7202" orgid="ARA" resource="getxml?ARA:RXN-7202" /><Reaction frameid="RXN-7203" orgid="ARA" resource="getxml?ARA:RXN-7203" /><Reaction frameid="RXN-7204" orgid="ARA" resource="getxml?ARA:RXN-7204" /><Reaction frameid="GARTRANSFORMYL2-RXN" orgid="ARA" resource="getxml?ARA:GARTRANSFORMYL2-RXN" /><Reaction frameid="2.7.1.133-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.133-RXN" /><Reaction frameid="2.7.1.148-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.148-RXN" /><Reaction frameid="5-METHYLTHIORIBOSE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:5-METHYLTHIORIBOSE-KINASE-RXN" /><Reaction frameid="6-PHOSPHOFRUCTO-2-KINASE-RXN" orgid="ARA" resource="getxml?ARA:6-PHOSPHOFRUCTO-2-KINASE-RXN" /><Reaction frameid="6PFRUCTPHOS-RXN" orgid="ARA" resource="getxml?ARA:6PFRUCTPHOS-RXN" /><Reaction frameid="ADENOSINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:ADENOSINE-KINASE-RXN" /><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="getxml?ARA:ADENYLYLSULFKIN-RXN" /><Reaction frameid="CHOLINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:CHOLINE-KINASE-RXN" /><Reaction frameid="DEPHOSPHOCOAKIN-RXN" orgid="ARA" resource="getxml?ARA:DEPHOSPHOCOAKIN-RXN" /><Reaction frameid="DIACYLGLYKIN-RXN" orgid="ARA" resource="getxml?ARA:DIACYLGLYKIN-RXN" /><Reaction frameid="DURIDKI-RXN" orgid="ARA" resource="getxml?ARA:DURIDKI-RXN" /><Reaction frameid="ETHANOLAMINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:ETHANOLAMINE-KINASE-RXN" /><Reaction frameid="FRUCTOKINASE-RXN" orgid="ARA" resource="getxml?ARA:FRUCTOKINASE-RXN" /><Reaction frameid="GALACTOKIN-RXN" orgid="ARA" resource="getxml?ARA:GALACTOKIN-RXN" /><Reaction frameid="GLY3KIN-RXN" orgid="ARA" resource="getxml?ARA:GLY3KIN-RXN" /><Reaction frameid="GLYCEROL-KIN-RXN" orgid="ARA" resource="getxml?ARA:GLYCEROL-KIN-RXN" /><Reaction frameid="GLYCERONE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:GLYCERONE-KINASE-RXN" /><Reaction frameid="HOMOSERKIN-RXN" orgid="ARA" resource="getxml?ARA:HOMOSERKIN-RXN" /><Reaction frameid="MEVALONATE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:MEVALONATE-KINASE-RXN" /><Reaction frameid="MYO-INOSITOL-1-KINASE-RXN" orgid="ARA" resource="getxml?ARA:MYO-INOSITOL-1-KINASE-RXN" /><Reaction frameid="NAD-KIN-RXN" orgid="ARA" resource="getxml?ARA:NAD-KIN-RXN" /><Reaction frameid="NADH-KINASE-RXN" orgid="ARA" resource="getxml?ARA:NADH-KINASE-RXN" /><Reaction frameid="OHMETPYRKIN-RXN" orgid="ARA" resource="getxml?ARA:OHMETPYRKIN-RXN" /><Reaction frameid="PANTOTHENATE-KIN-RXN" orgid="ARA" resource="getxml?ARA:PANTOTHENATE-KIN-RXN" /><Reaction frameid="PEPDEPHOS-RXN" orgid="ARA" resource="getxml?ARA:PEPDEPHOS-RXN" /><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="ARA" resource="getxml?ARA:PHOSPHORIBULOKINASE-RXN" /><Reaction frameid="PNKIN-RXN" orgid="ARA" resource="getxml?ARA:PNKIN-RXN" /><Reaction frameid="PYRAMKIN-RXN" orgid="ARA" resource="getxml?ARA:PYRAMKIN-RXN" /><Reaction frameid="PYRIDOXKIN-RXN" orgid="ARA" resource="getxml?ARA:PYRIDOXKIN-RXN" /><Reaction frameid="RIBOFLAVINKIN-RXN" orgid="ARA" resource="getxml?ARA:RIBOFLAVINKIN-RXN" /><Reaction frameid="RXN-7162" orgid="ARA" resource="getxml?ARA:RXN-7162" /><Reaction frameid="RXN-7163" orgid="ARA" resource="getxml?ARA:RXN-7163" /><Reaction frameid="RXN-7182" orgid="ARA" resource="getxml?ARA:RXN-7182" /><Reaction frameid="RXN-7184" orgid="ARA" resource="getxml?ARA:RXN-7184" /><Reaction frameid="RXN-7185" orgid="ARA" resource="getxml?ARA:RXN-7185" /><Reaction frameid="RXN-8443" orgid="ARA" resource="getxml?ARA:RXN-8443" /><Reaction frameid="SHIKIMATE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:SHIKIMATE-KINASE-RXN" /><Reaction frameid="SPHINGANINE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:SPHINGANINE-KINASE-RXN" /><Reaction frameid="TETRAACYLDISACC4KIN-RXN" orgid="ARA" resource="getxml?ARA:TETRAACYLDISACC4KIN-RXN" /><Reaction frameid="THIAZOLSYN3-RXN" orgid="ARA" resource="getxml?ARA:THIAZOLSYN3-RXN" /><Reaction frameid="THYKI-RXN" orgid="ARA" resource="getxml?ARA:THYKI-RXN" /><Reaction frameid="URIDINEKIN-RXN" orgid="ARA" resource="getxml?ARA:URIDINEKIN-RXN" /><Reaction frameid="XYLULOKIN-RXN" orgid="ARA" resource="getxml?ARA:XYLULOKIN-RXN" /><Reaction frameid="ACETYLGLUTKIN-RXN" orgid="ARA" resource="getxml?ARA:ACETYLGLUTKIN-RXN" /><Reaction frameid="ASPARTATEKIN-RXN" orgid="ARA" resource="getxml?ARA:ASPARTATEKIN-RXN" /><Reaction frameid="GLUTKIN-RXN" orgid="ARA" resource="getxml?ARA:GLUTKIN-RXN" /><Reaction frameid="PHOSGLYPHOS-RXN" orgid="ARA" resource="getxml?ARA:PHOSGLYPHOS-RXN" /><Reaction frameid="2.7.4.24-RXN" orgid="ARA" resource="getxml?ARA:2.7.4.24-RXN" /><Reaction frameid="ADENYL-KIN-RXN" orgid="ARA" resource="getxml?ARA:ADENYL-KIN-RXN" /><Reaction frameid="CDPKIN-RXN" orgid="ARA" resource="getxml?ARA:CDPKIN-RXN" /><Reaction frameid="DCDPKIN-RXN" orgid="ARA" resource="getxml?ARA:DCDPKIN-RXN" /><Reaction frameid="DGDPKIN-RXN" orgid="ARA" resource="getxml?ARA:DGDPKIN-RXN" /><Reaction frameid="DTDPKIN-RXN" orgid="ARA" resource="getxml?ARA:DTDPKIN-RXN" /><Reaction frameid="DTMPKI-RXN" orgid="ARA" resource="getxml?ARA:DTMPKI-RXN" /><Reaction frameid="DUDPKIN-RXN" orgid="ARA" resource="getxml?ARA:DUDPKIN-RXN" /><Reaction frameid="GDPKIN-RXN" orgid="ARA" resource="getxml?ARA:GDPKIN-RXN" /><Reaction frameid="GMKALT-RXN" orgid="ARA" resource="getxml?ARA:GMKALT-RXN" /><Reaction frameid="GUANYL-KIN-RXN" orgid="ARA" resource="getxml?ARA:GUANYL-KIN-RXN" /><Reaction frameid="PHOSPHOMEVALONATE-KINASE-RXN" orgid="ARA" resource="getxml?ARA:PHOSPHOMEVALONATE-KINASE-RXN" /><Reaction frameid="PYRIMSYN3-RXN" orgid="ARA" resource="getxml?ARA:PYRIMSYN3-RXN" /><Reaction frameid="RXN-7913" orgid="ARA" resource="getxml?ARA:RXN-7913" /><Reaction frameid="UDPKIN-RXN" orgid="ARA" resource="getxml?ARA:UDPKIN-RXN" /><Reaction frameid="5-OXOPROLINASE-ATP-HYDROLYSING-RXN" orgid="ARA" resource="getxml?ARA:5-OXOPROLINASE-ATP-HYDROLYSING-RXN" /><Reaction frameid="3.6.3.1-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.1-RXN" /><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="ARA" resource="getxml?ARA:PEPCARBOXYKIN-RXN" /><Reaction frameid="RXN-7614" orgid="ARA" resource="getxml?ARA:RXN-7614" /><Reaction frameid="SUCCCOASYN-RXN" orgid="ARA" resource="getxml?ARA:SUCCCOASYN-RXN" /><Reaction frameid="DALADALALIG-RXN" orgid="ARA" resource="getxml?ARA:DALADALALIG-RXN" /><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-SYN-RXN" /><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="getxml?ARA:GLUTCYSLIG-RXN" /><Reaction frameid="SAICARSYN-RXN" orgid="ARA" resource="getxml?ARA:SAICARSYN-RXN" /><Reaction frameid="AIRS-RXN" orgid="ARA" resource="getxml?ARA:AIRS-RXN" /><Reaction frameid="DETHIOBIOTIN-SYN-RXN" orgid="ARA" resource="getxml?ARA:DETHIOBIOTIN-SYN-RXN" /><Reaction frameid="CTPSYN-RXN" orgid="ARA" resource="getxml?ARA:CTPSYN-RXN" /><Reaction frameid="GLYRIBONUCSYN-RXN" orgid="ARA" resource="getxml?ARA:GLYRIBONUCSYN-RXN" /><Reaction frameid="CARBPSYN-RXN" orgid="ARA" resource="getxml?ARA:CARBPSYN-RXN" /><Reaction frameid="FGAMSYN-RXN" orgid="ARA" resource="getxml?ARA:FGAMSYN-RXN" /><Reaction frameid="ACETYL-COA-CARBOXYLTRANSFER-RXN" orgid="ARA" resource="getxml?ARA:ACETYL-COA-CARBOXYLTRANSFER-RXN" /><Reaction frameid="METHYLCROTONYL-COA-CARBOXYLASE-RXN" orgid="ARA" resource="getxml?ARA:METHYLCROTONYL-COA-CARBOXYLASE-RXN" /><Reaction frameid="RXN1F-20" orgid="ARA" resource="getxml?ARA:RXN1F-20" /><Reaction frameid="RXN-12002" orgid="ARA" resource="getxml?ARA:RXN-12002" /><Reaction frameid="2.7.1.134-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.134-RXN" /><Reaction frameid="2.7.1.139-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.139-RXN" /><Reaction frameid="2.7.1.140-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.140-RXN" /><Reaction frameid="2.7.1.151-RXN" orgid="ARA" resource="getxml?ARA:2.7.1.151-RXN" /><Reaction frameid="RXN-7186" orgid="ARA" resource="getxml?ARA:RXN-7186" /><Reaction frameid="RXN3O-458" orgid="ARA" resource="getxml?ARA:RXN3O-458" /><Reaction frameid="DIHYDROFOLATESYNTH-RXN" orgid="ARA" resource="getxml?ARA:DIHYDROFOLATESYNTH-RXN" /><Reaction frameid="RXN-6102" orgid="ARA" resource="getxml?ARA:RXN-6102" /><Reaction frameid="RXN-3742" orgid="ARA" resource="getxml?ARA:RXN-3742" /><Reaction frameid="RXN0-2921" orgid="ARA" resource="getxml?ARA:RXN0-2921" /><Reaction frameid="ADPREDUCT-RXN" orgid="ARA" resource="getxml?ARA:ADPREDUCT-RXN" /><Reaction frameid="3.6.3.44-RXN" orgid="ARA" resource="getxml?ARA:3.6.3.44-RXN" /><Reaction frameid="GLYCOGENSYN-RXN" orgid="ARA" resource="getxml?ARA:GLYCOGENSYN-RXN" /><Reaction frameid="PROLINE-MULTI" orgid="ARA" resource="getxml?ARA:PROLINE-MULTI" /><Reaction frameid="FORMYLTHFGLUSYNTH-RXN" orgid="ARA" resource="getxml?ARA:FORMYLTHFGLUSYNTH-RXN" /><Reaction frameid="DADPKIN-RXN" orgid="ARA" resource="getxml?ARA:DADPKIN-RXN" /><Reaction frameid="DIPHOSPHOMEVALONTE-DECARBOXYLASE-RXN" orgid="ARA" resource="getxml?ARA:DIPHOSPHOMEVALONTE-DECARBOXYLASE-RXN" /><Reaction frameid="FOLYLPOLYGLUTAMATESYNTH-RXN" orgid="ARA" resource="getxml?ARA:FOLYLPOLYGLUTAMATESYNTH-RXN" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

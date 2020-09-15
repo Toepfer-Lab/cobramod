@@ -1,0 +1,77 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:1.8.4.9-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:1.8.4.9-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:1.8.4.9-RXN" detail="full" frameid="1.8.4.9-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="APS" orgid="META" resource="getxml?META:APS" /></right>
+<right><Compound frameid="GLUTATHIONE" orgid="META" resource="getxml?META:GLUTATHIONE" /><coefficient datatype="integer">2</coefficient>
+</right>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR100441</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR100441</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>14143</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=14143</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R05717</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R05717</dblink-URL>
+</dblink>
+<ec-number>EC-1.8.4.9<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-22606" detail="low" frameid="ENZRXN-22606" orgid="META"><reaction><Reaction frameid="1.8.4.9-RXN" orgid="META" resource="#META:1.8.4.9-RXN" /></reaction>
+<common-name datatype="string">adenylyl-sulfate reductase (glutathione)</common-name>
+<enzyme><Protein frameid="MONOMER-18530" orgid="META" resource="getxml?META:MONOMER-18530" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13161" detail="low" frameid="ENZRXN-13161" orgid="META"><reaction><Reaction frameid="1.8.4.9-RXN" orgid="META" resource="#META:1.8.4.9-RXN" /></reaction>
+<synonym datatype="string">adenosine 5'-phosphosulfate reductase</synonym>
+<common-name datatype="string">APS reductase</common-name>
+<enzyme><Protein frameid="CPLX-7175" orgid="META" resource="getxml?META:CPLX-7175" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12661" detail="low" frameid="ENZRXN-12661" orgid="META"><reaction><Reaction frameid="1.8.4.9-RXN" orgid="META" resource="#META:1.8.4.9-RXN" /></reaction>
+<common-name datatype="string">APS reductase</common-name>
+<enzyme><Protein frameid="CPLX-1282" orgid="META" resource="getxml?META:CPLX-1282" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12660" detail="low" frameid="ENZRXN-12660" orgid="META"><reaction><Reaction frameid="1.8.4.9-RXN" orgid="META" resource="#META:1.8.4.9-RXN" /></reaction>
+<common-name datatype="string">APS reductase</common-name>
+<enzyme><Protein frameid="CPLX-1284" orgid="META" resource="getxml?META:CPLX-1284" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12659" detail="low" frameid="ENZRXN-12659" orgid="META"><reaction><Reaction frameid="1.8.4.9-RXN" orgid="META" resource="#META:1.8.4.9-RXN" /></reaction>
+<common-name datatype="string">APS reductase</common-name>
+<enzyme><Protein frameid="CPLX-1283" orgid="META" resource="getxml?META:CPLX-1283" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-3.0724792<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="SULFMETII-PWY" orgid="META" resource="getxml?META:SULFMETII-PWY" /></in-pathway>
+<left><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /><coefficient datatype="integer">2</coefficient>
+</left>
+<left><Compound frameid="SO3" orgid="META" resource="getxml?META:SO3" /></left>
+<left><Compound frameid="AMP" orgid="META" resource="getxml?META:AMP" /></left>
+<left><Compound frameid="OXIDIZED-GLUTATHIONE" orgid="META" resource="getxml?META:OXIDIZED-GLUTATHIONE" /></left>
+</Reaction>
+</ptools-xml>

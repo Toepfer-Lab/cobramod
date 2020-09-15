@@ -1,0 +1,81 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" detail="full" frameid="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" orgid="ARA"><parent><Compound class="true" frameid="omega-methylsulfinylalkylglucosinolate" orgid="ARA" resource="getxml?ARA:omega-methylsulfinylalkylglucosinolate" /></parent>
+<cml><molecule formalCharge="-1" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" title="glucoiberin"><atomArray><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom1" x2="543030.0" y2="-420230.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom2" x2="328690.0" y2="-378980.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom3" x2="257240.0" y2="-420230.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom4" x2="400130.0" y2="-420230.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom5" x2="-99970.0" y2="-296480.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom6" x2="-28520.0" y2="-255230.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom7" x2="185810.0" y2="-378980.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom8" x2="-28520.0" y2="-172730.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom9" x2="42930.0" y2="-131490.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom10" x2="114380.0" y2="-172730.0" /><atom elementType="C" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom11" x2="114380.0" y2="-255230.0" /><atom elementType="N" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom12" x2="114360.0" y2="-420230.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom13" x2="-171400.0" y2="-255230.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom14" x2="-99970.0" y2="-131490.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom15" x2="42930.0" y2="-48990.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom16" x2="185810.0" y2="-131490.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom17" x2="471580.0" y2="-296480.0" /><atom elementType="O" formalCharge="-1" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom18" x2="-28530.0" y2="-585230.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom19" x2="84170.0" y2="-615420.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom20" x2="1660.0" y2="-472530.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom21" x2="42930.0" y2="-296480.0" /><atom elementType="O" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom22" x2="114360.0" y2="-502730.0" /><atom elementType="S" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom23" x2="185810.0" y2="-296480.0" /><atom elementType="S" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom24" x2="471580.0" y2="-378980.0" /><atom elementType="S" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom25" x2="42920.0" y2="-543980.0" /></atomArray>
+<bondArray><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom21 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom6" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond1" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom6 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom8" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond2" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom8 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom9" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond3" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom9 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom10" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond4" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom10 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom11" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond5" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom21 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom11" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond6" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom11 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom23" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond7" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom10 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom16" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond8" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom9 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom15" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond9" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom8 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom14" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond10" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom6 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom5" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond11" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom5 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom13" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond12" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom23 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom7" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond13" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom7 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom12" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond14" order="2" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom12 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom22" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond15" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom22 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom25" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond16" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom25 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom18" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond17" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom25 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom19" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond18" order="2" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom25 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom20" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond19" order="2" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom7 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom3" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond20" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom3 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom2" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond21" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom2 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom4" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond22" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom4 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom24" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond23" order="1" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom24 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom17" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond24" order="2" /><bond atomRefs="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom24 3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-atom1" id="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE-bond25" order="1" /></bondArray>
+<formula concise="C 11 H 20 N 1 O 10 S 3" /><float title="molecularWeight" units="g/mol">422.46</float>
+<string title="smiles">CS(=O)CCCC(/S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\OS(=O)(=O)[O-]</string>
+</molecule>
+</cml>
+<citation><Publication ID="ARA:PUB-11251105" detail="full" frameid="PUB-11251105" orgid="ARA"><pubmed-id datatype="string">11251105</pubmed-id>
+<source datatype="string">Plant Cell 13(3);681-93</source>
+<title datatype="string">Gene duplication in the diversification of secondary metabolism: tandem 2-oxoglutarate-dependent dioxygenases control glucosinolate biosynthesis in Arabidopsis.</title>
+<year datatype="integer">2001</year>
+<author datatype="string">Kliebenstein DJ</author>
+<author datatype="string">Lambrix VM</author>
+<author datatype="string">Reichelt M</author>
+<author datatype="string">Gershenzon J</author>
+<author datatype="string">Mitchell-Olds T</author>
+</Publication>
+</citation>
+<comment datatype="string">This compound was entered into AraCyc based on its presence in the
+&lt;A href="http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007343"&gt;KNApSAcK database&lt;/A&gt;
+which provides reference(s) concerning this compound in Arabidopsis.
+</comment>
+<common-name datatype="string">glucoiberin</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd05323</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd05323</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM8655</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM8655</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB38406</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB38406</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>7827544</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/7827544</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>5406</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:5406</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>9548621</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=9548621</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C08411</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C08411</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007343</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007343</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-100.38967</gibbs-0>
+<inchi datatype="string">InChI=1S/C11H21NO10S3/c1-24(17)4-2-3-7(12-22-25(18,19)20)23-11-10(16)9(15)8(14)6(5-13)21-11/h6,8-11,13-16H,2-5H2,1H3,(H,18,19,20)/p-1/b12-7+/t6-,8-,9+,10-,11+,24?/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=PHYYADMVYQURSX-WWFIZPDBSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">422.46</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">423.03275</monoisotopic-mw>
+<synonym datatype="string">3-(methylsulfinyl)propyl-glucosinolate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-2223" orgid="ARA" resource="getxml?ARA:RXN-2223" /><Reaction frameid="RXN-2222" orgid="ARA" resource="getxml?ARA:RXN-2222" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-2221" orgid="ARA" resource="getxml?ARA:RXN-2221" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

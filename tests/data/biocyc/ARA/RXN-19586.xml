@@ -1,0 +1,40 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:RXN-19586"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXN-19586</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXN-19586" detail="full" frameid="RXN-19586" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<credits><created><date datatype="date">2018-02-10</date>
+<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></created>
+<imported-from-meta><date datatype="date">2019-07-30</date>
+<Person ID="ARA:AUQT-4" detail="full" frameid="AUQT-4" orgid="ARA"><comment datatype="string">Created programmatically by (create-current-user-frame)</comment>
+</Person>
+</imported-from-meta>
+</credits>
+<ec-number>EC-4.4.1.13</ec-number>
+<gibbs-0 datatype="float" units="kcal/mol">0.62878036</gibbs-0>
+<in-pathway><Pathway frameid="PWY-601" orgid="ARA" resource="getxml?ARA:PWY-601" /></in-pathway>
+<left><Compound frameid="CPD-7547" orgid="ARA" resource="getxml?ARA:CPD-7547" /></left>
+<left><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-1861" orgid="ARA" resource="getxml?ARA:CPD-1861" /></right>
+<right><Compound frameid="PYRUVATE" orgid="ARA" resource="getxml?ARA:PYRUVATE" /></right>
+<right><Compound frameid="AMMONIUM" orgid="ARA" resource="getxml?ARA:AMMONIUM" /></right>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+</Reaction>
+</ptools-xml>

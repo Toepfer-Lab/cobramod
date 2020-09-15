@@ -1,0 +1,119 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:RXN-12063"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXN-12063</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXN-12063" detail="full" frameid="RXN-12063" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<citation><Publication ID="ARA:PUB-12464264" detail="full" frameid="PUB-12464264" orgid="ARA"><pubmed-id datatype="string">12464264</pubmed-id>
+<source datatype="string">Arch Biochem Biophys 409(1);235-41</source>
+<title datatype="string">CYP79B1 from Sinapis alba converts tryptophan to indole-3-acetaldoxime.</title>
+<year datatype="integer">2003</year>
+<author datatype="string">Naur P</author>
+<author datatype="string">Hansen CH</author>
+<author datatype="string">Bak S</author>
+<author datatype="string">Hansen BG</author>
+<author datatype="string">Jensen NB</author>
+<author datatype="string">Nielsen HL</author>
+<author datatype="string">Halkier BA</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-12464638" detail="full" frameid="PUB-12464638" orgid="ARA"><pubmed-id datatype="string">12464638</pubmed-id>
+<source datatype="string">Genes Dev 16(23);3100-12</source>
+<title datatype="string">Trp-dependent auxin biosynthesis in Arabidopsis: involvement of cytochrome P450s CYP79B2 and CYP79B3.</title>
+<year datatype="integer">2002</year>
+<author datatype="string">Zhao Y</author>
+<author datatype="string">Hull AK</author>
+<author datatype="string">Gupta NR</author>
+<author datatype="string">Goss KA</author>
+<author datatype="string">Alonso J</author>
+<author datatype="string">Ecker JR</author>
+<author datatype="string">Normanly J</author>
+<author datatype="string">Chory J</author>
+<author datatype="string">Celenza JL</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-10681464" detail="full" frameid="PUB-10681464" orgid="ARA"><pubmed-id datatype="string">10681464</pubmed-id>
+<source datatype="string">Proc Natl Acad Sci U S A 97(5);2379-84</source>
+<title datatype="string">Arabidopsis cytochrome P450s that catalyze the first step of tryptophan-dependent indole-3-acetic acid biosynthesis.</title>
+<year datatype="integer">2000</year>
+<author datatype="string">Hull AK</author>
+<author datatype="string">Vij R</author>
+<author datatype="string">Celenza JL</author>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-10922360" detail="full" frameid="PUB-10922360" orgid="ARA"><pubmed-id datatype="string">10922360</pubmed-id>
+<source datatype="string">J Biol Chem 275(43);33712-7</source>
+<title datatype="string">Cytochrome P450 CYP79B2 from Arabidopsis catalyzes the conversion of tryptophan to indole-3-acetaldoxime, a precursor of indole glucosinolates and indole-3-acetic acid.</title>
+<year datatype="integer">2000</year>
+<author datatype="string">Mikkelsen MD</author>
+<author datatype="string">Hansen CH</author>
+<author datatype="string">Wittstock U</author>
+<author datatype="string">Halkier BA</author>
+</Publication>
+</citation>
+<comment datatype="string">A heme-thiolate protein (P-450). This enzyme catalyses two successive N-hydroxylations of L-tryptophan, the first steps in the biosynthesis of the both auxin and the indole alkaloid phytoalexin camalexin. The product of the two hydroxylations, N,N-dihydroxy-L-tryptophan, is extremely labile and dehydrates spontaneously.The dehydrated product is then subject to a decarboxylation that produces the oxime. It is still not known whether the decarboxylation is spontaneous or catalysed by the enzyme. The product, (E)-indol-3-ylacetaldoxime, undergoes a spontaneous isomerization to the (Z) form.
+&lt;p&gt;
+The overall reaction is
+&lt;p&gt;
+&lt;a href="/ARA/NEW-IMAGE?type=REACTION&amp;object=RXN-1402"&gt;L-tryptophan + 2 NADPH + 2 oxygen + 2 H&lt;SUP&gt;+&lt;/SUP&gt;  =  (&lt;i&gt;E&lt;/i&gt;)-indol-3-ylacetaldoxime + 2 NADP&lt;sup&gt;+&lt;/sup&gt; + CO&lt;SUB&gt;2&lt;/SUB&gt; + 3 H&lt;SUB&gt;2&lt;/SUB&gt;O&lt;/a&gt;
+&lt;p&gt;
+It can be described by the following sub-reactions:
+&lt;p&gt;
+&lt;a href="/ARA/NEW-IMAGE?type=REACTION&amp;object=RXN-12061"&gt;L-tryptophan + NADPH + oxygen  -&gt;  &lt;i&gt;N&lt;/i&gt;-hydroxy-L-tryptophan + NADP&lt;sup&gt;+&lt;/sup&gt; + H&lt;SUB&gt;2&lt;/SUB&gt;O&lt;/a&gt;
+&lt;p&gt;
+&lt;a href="/ARA/NEW-IMAGE?type=REACTION&amp;object=RXN-12062"&gt;&lt;i&gt;N&lt;/i&gt;-hydroxy-L-tryptophan + NADPH + oxygen + H&lt;SUP&gt;+&lt;/SUP&gt;  -&gt;  &lt;i&gt;N,N&lt;/i&gt;-dihydroxy-L-tryptophan + NADP&lt;sup&gt;+&lt;/sup&gt; + H&lt;SUB&gt;2&lt;/SUB&gt;O&lt;/a&gt;
+&lt;p&gt;
+&lt;a href="/ARA/NEW-IMAGE?type=REACTION&amp;object=RXN-12063"&gt;&lt;i&gt;N,N&lt;/i&gt;-dihydroxy-L-tryptophan + H&lt;SUP&gt;+&lt;/SUP&gt;  -&gt;  (&lt;i&gt;E&lt;/i&gt;)-indol-3-ylacetaldoxime + CO&lt;SUB&gt;2&lt;/SUB&gt; + H&lt;SUB&gt;2&lt;/SUB&gt;O&lt;/a&gt; (spontaneous)</comment>
+<common-name datatype="string">&lt;i&gt;N,N&lt;/i&gt;-dihydroxy-L-tryptophan carboxy-lyase</common-name>
+<credits><created><date datatype="date">2011-01-17</date>
+<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></created>
+</credits>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R09585</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R09585</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>25014</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=25014</dblink-URL>
+</dblink>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-5257" detail="low" frameid="ENZRXNQT-5257" orgid="ARA"><common-name datatype="string">&lt;i&gt;N,N&lt;/i&gt;-dihydroxy-L-tryptophan carboxy-lyase</common-name>
+<enzyme><Protein frameid="AT1G58265-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G58265-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-12063" orgid="ARA" resource="#ARA:RXN-12063" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-18603" detail="low" frameid="ENZRXN-18603" orgid="ARA"><common-name datatype="string">&lt;i&gt;N,N&lt;/i&gt;-dihydroxy-L-tryptophan carboxy-lyase</common-name>
+<enzyme><Protein frameid="CPLX-1523" orgid="ARA" resource="getxml?ARA:CPLX-1523" /></enzyme>
+<reaction><Reaction frameid="RXN-12063" orgid="ARA" resource="#ARA:RXN-12063" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-18600" detail="low" frameid="ENZRXN-18600" orgid="ARA"><common-name datatype="string">&lt;i&gt;N,N&lt;/i&gt;-dihydroxy-L-tryptophan carboxy-lyase</common-name>
+<enzyme><Protein frameid="CPLX-2281" orgid="ARA" resource="getxml?ARA:CPLX-2281" /></enzyme>
+<reaction><Reaction frameid="RXN-12063" orgid="ARA" resource="#ARA:RXN-12063" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-6.4728565</gibbs-0>
+<in-pathway><Pathway frameid="PWY-8024" orgid="ARA" resource="getxml?ARA:PWY-8024" /><Pathway frameid="PWY-581" orgid="ARA" resource="getxml?ARA:PWY-581" /><Pathway frameid="CAMALEXIN-SYN" orgid="ARA" resource="getxml?ARA:CAMALEXIN-SYN" /><Pathway frameid="PWY-601" orgid="ARA" resource="getxml?ARA:PWY-601" /><Reaction frameid="RXN-1402" orgid="ARA" resource="getxml?ARA:RXN-1402" /></in-pathway>
+<left><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></left>
+<left><Compound frameid="CPD-13027" orgid="ARA" resource="getxml?ARA:CPD-13027" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="INDOLE-3-ACETALDOXIME" orgid="ARA" resource="getxml?ARA:INDOLE-3-ACETALDOXIME" /></right>
+<right><Compound frameid="CARBON-DIOXIDE" orgid="ARA" resource="getxml?ARA:CARBON-DIOXIDE" /></right>
+<right><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></right>
+<spontaneous datatype="boolean">true</spontaneous>
+</Reaction>
+</ptools-xml>

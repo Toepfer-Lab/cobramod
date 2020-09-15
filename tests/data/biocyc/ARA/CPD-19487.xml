@@ -1,0 +1,60 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-19487"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-19487</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-19487" detail="full" frameid="CPD-19487" orgid="ARA"><parent><Compound class="true" frameid="CPD-21521" orgid="ARA" resource="getxml?ARA:CPD-21521" /></parent>
+<cml><molecule formalCharge="-2" id="CPD-19487" title="3-carboxy-10-(methylsulfanyl)-2-oxodecanoate"><atomArray><atom elementType="C" id="CPD-19487-atom1" x2="8.574" y2="1.65" /><atom elementType="C" id="CPD-19487-atom2" x2="5.0015" y2="1.2376" /><atom elementType="C" id="CPD-19487-atom3" x2="4.287" y2="1.65" /><atom elementType="C" id="CPD-19487-atom4" x2="5.716" y2="1.65" /><atom elementType="C" id="CPD-19487-atom5" x2="3.5725" y2="1.2376" /><atom elementType="C" id="CPD-19487-atom6" x2="6.4305" y2="1.2376" /><atom elementType="C" id="CPD-19487-atom7" x2="2.858" y2="1.65" /><atom elementType="C" id="CPD-19487-atom8" x2="7.1449" y2="1.65" /><atom elementType="C" id="CPD-19487-atom9" x2="2.1435" y2="1.2376" /><atom elementType="C" id="CPD-19487-atom10" x2="1.4291" y2="1.65" /><atom elementType="C" id="CPD-19487-atom11" x2="2.1435" y2="0.4125" /><atom elementType="C" id="CPD-19487-atom12" x2="0.7145" y2="1.2376" /><atom elementType="O" id="CPD-19487-atom13" x2="1.4291" y2="2.475" /><atom elementType="O" id="CPD-19487-atom14" x2="1.4291" y2="0.0" /><atom elementType="O" formalCharge="-1" id="CPD-19487-atom15" x2="2.858" y2="0.0" /><atom elementType="O" id="CPD-19487-atom16" x2="0.7145" y2="0.4125" /><atom elementType="O" formalCharge="-1" id="CPD-19487-atom17" x2="0.0" y2="1.65" /><atom elementType="S" id="CPD-19487-atom18" x2="7.8594" y2="1.2376" /></atomArray>
+<bondArray><bond atomRefs="CPD-19487-atom18 CPD-19487-atom1" id="CPD-19487-bond1" order="1" /><bond atomRefs="CPD-19487-atom8 CPD-19487-atom18" id="CPD-19487-bond2" order="1" /><bond atomRefs="CPD-19487-atom6 CPD-19487-atom8" id="CPD-19487-bond3" order="1" /><bond atomRefs="CPD-19487-atom4 CPD-19487-atom6" id="CPD-19487-bond4" order="1" /><bond atomRefs="CPD-19487-atom12 CPD-19487-atom17" id="CPD-19487-bond5" order="1" /><bond atomRefs="CPD-19487-atom12 CPD-19487-atom16" id="CPD-19487-bond6" order="2" /><bond atomRefs="CPD-19487-atom10 CPD-19487-atom12" id="CPD-19487-bond7" order="1" /><bond atomRefs="CPD-19487-atom10 CPD-19487-atom13" id="CPD-19487-bond8" order="2" /><bond atomRefs="CPD-19487-atom11 CPD-19487-atom15" id="CPD-19487-bond9" order="1" /><bond atomRefs="CPD-19487-atom11 CPD-19487-atom14" id="CPD-19487-bond10" order="2" /><bond atomRefs="CPD-19487-atom9 CPD-19487-atom11" id="CPD-19487-bond11" order="1" /><bond atomRefs="CPD-19487-atom9 CPD-19487-atom10" id="CPD-19487-bond12" order="1" /><bond atomRefs="CPD-19487-atom7 CPD-19487-atom9" id="CPD-19487-bond13" order="1" /><bond atomRefs="CPD-19487-atom5 CPD-19487-atom7" id="CPD-19487-bond14" order="1" /><bond atomRefs="CPD-19487-atom3 CPD-19487-atom5" id="CPD-19487-bond15" order="1" /><bond atomRefs="CPD-19487-atom2 CPD-19487-atom3" id="CPD-19487-bond16" order="1" /><bond atomRefs="CPD-19487-atom4 CPD-19487-atom2" id="CPD-19487-bond17" order="1" /></bondArray>
+<formula concise="C 12 H 18 O 5 S 1" /><float title="molecularWeight" units="g/mol">274.331</float>
+<string title="smiles">CSCCCCCCCC(C(=O)C(=O)[O-])C(=O)[O-]</string>
+</molecule>
+</cml>
+<common-name datatype="string">3-carboxy-10-(methylsulfanyl)-2-oxodecanoate</common-name>
+<credits><created><date datatype="date">2016-09-06</date>
+<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></created>
+<imported-from-meta><date datatype="date">2017-02-17</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></imported-from-meta>
+</credits>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM164244</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM164244</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>123131585</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131585</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">13.031943</gibbs-0>
+<inchi datatype="string">InChI=1S/C12H20O5S/c1-18-8-6-4-2-3-5-7-9(11(14)15)10(13)12(16)17/h9H,2-8H2,1H3,(H,14,15)(H,16,17)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=UKHZBTWECWUVPH-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">274.331</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">276.10315</monoisotopic-mw>
+<synonym datatype="string">3-carboxy-10-(methylthio)-2-oxodecanoate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-18201" orgid="ARA" resource="getxml?ARA:RXN-18201" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-18200" orgid="ARA" resource="getxml?ARA:RXN-18200" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

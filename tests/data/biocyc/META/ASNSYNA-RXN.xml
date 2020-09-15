@@ -1,0 +1,89 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:ASNSYNA-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ASNSYNA-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:ASNSYNA-RXN" detail="full" frameid="ASNSYNA-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PPI" orgid="META" resource="getxml?META:PPI" /></right>
+<right><Compound frameid="AMP" orgid="META" resource="getxml?META:AMP" /></right>
+<right><Compound frameid="ASN" orgid="META" resource="getxml?META:ASN" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR96060</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR96060</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>11373</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=11373</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R00483</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00483</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00963</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00963</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P08243</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P08243</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P44338</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P44338</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P49088</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P49088</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P54264</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P54264</dblink-URL>
+</dblink>
+<ec-number>EC-6.3.1.1<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ASNSYNA-ENZRXN" detail="low" frameid="ASNSYNA-ENZRXN" orgid="META"><reaction><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="#META:ASNSYNA-RXN" /></reaction>
+<synonym datatype="string">aspartate-ammonia ligase</synonym>
+<common-name datatype="string">asparagine synthetase</common-name>
+<enzyme><Protein frameid="ASNSYNA-CPLX" orgid="META" resource="getxml?META:ASNSYNA-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN0-6318" detail="low" frameid="ENZRXN0-6318" orgid="META"><reaction><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="#META:ASNSYNA-RXN" /></reaction>
+<common-name datatype="string">L-aspartate:ammonia ligase (AMP-forming)</common-name>
+<enzyme><Protein frameid="ASNSYNB-CPLX" orgid="META" resource="getxml?META:ASNSYNB-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-14.791748<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Reaction frameid="ASNSYNB-RXN" orgid="META" resource="getxml?META:ASNSYNB-RXN" /><Pathway frameid="ASPARAGINESYN-PWY" orgid="META" resource="getxml?META:ASPARAGINESYN-PWY" /></in-pathway>
+<left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /></left>
+<left><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /></left>
+<left><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></left>
+</Reaction>
+</ptools-xml>

@@ -1,0 +1,133 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:QUINOPRIBOTRANS-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:QUINOPRIBOTRANS-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:QUINOPRIBOTRANS-RXN" detail="full" frameid="QUINOPRIBOTRANS-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="PRPP" orgid="META" resource="getxml?META:PRPP" /></right>
+<right><Compound frameid="QUINOLINATE" orgid="META" resource="getxml?META:QUINOLINATE" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /><coefficient datatype="integer">2</coefficient>
+</right>
+<credits><revised><date datatype="date">2012-02-14</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR101980</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR101980</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>12735</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=12735</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R03348</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R03348</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JSX8</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JSX8</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q57916</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q57916</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P30011</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P30011</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46714</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46714</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q15274</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q15274</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P77938</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P77938</dblink-URL>
+</dblink>
+<ec-number>EC-2.4.2.19<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:QUINOPRIBOTRANS-ENZRXN" detail="low" frameid="QUINOPRIBOTRANS-ENZRXN" orgid="META"><reaction><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="#META:QUINOPRIBOTRANS-RXN" /></reaction>
+<synonym datatype="string">nicotinate-nucleotide pyrophosphorylase (carboxylating)</synonym>
+<synonym datatype="string">QAPRTase</synonym>
+<synonym datatype="string">nicotinic acid mononucleotide pyrophosphorylase</synonym>
+<synonym datatype="string">NaMN pyrophosphorylase</synonym>
+<synonym datatype="string">nicotinate-nucleotide:pyrophosphate phospho-&amp;alpha;-D-ribosyltransferase (carboxylating)</synonym>
+<synonym datatype="string">nicotinate-nucleotide pyrophosphorylase</synonym>
+<synonym datatype="string">QPRTase</synonym>
+<common-name datatype="string">quinolinate phosphoribosyltransferase (decarboxylating)</common-name>
+<enzyme><Protein frameid="QUINOPRIBOTRANS-CPLX" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-2106" detail="low" frameid="ENZRXN66-2106" orgid="META"><reaction><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="#META:QUINOPRIBOTRANS-RXN" /></reaction>
+<common-name datatype="string">nicotinate-nucleotide pyrophosphorylase</common-name>
+<enzyme><Protein frameid="CPLX66-379" orgid="META" resource="getxml?META:CPLX66-379" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13367" detail="low" frameid="ENZRXN-13367" orgid="META"><reaction><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="#META:QUINOPRIBOTRANS-RXN" /></reaction>
+<common-name datatype="string">quinolinate phosphoribosyltransferase (decarboxylating)</common-name>
+<enzyme><Protein frameid="AT2G01350-MONOMER" orgid="META" resource="getxml?META:AT2G01350-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13360" detail="low" frameid="ENZRXN-13360" orgid="META"><reaction><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="#META:QUINOPRIBOTRANS-RXN" /></reaction>
+<common-name datatype="string">quinolinate phosphoribosyltransferase (decarboxylating)</common-name>
+<enzyme><Protein frameid="CPLX-7199" orgid="META" resource="getxml?META:CPLX-7199" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13359" detail="low" frameid="ENZRXN-13359" orgid="META"><reaction><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="#META:QUINOPRIBOTRANS-RXN" /></reaction>
+<common-name datatype="string">quinolinate phosphoribosyltransferase (decarboxylating)</common-name>
+<enzyme><Protein frameid="MONOMER-12623" orgid="META" resource="getxml?META:MONOMER-12623" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13358" detail="low" frameid="ENZRXN-13358" orgid="META"><reaction><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="#META:QUINOPRIBOTRANS-RXN" /></reaction>
+<common-name datatype="string">quinolinate phosphoribosyltransferase (decarboxylating)</common-name>
+<enzyme><Protein frameid="MONOMER-12622" orgid="META" resource="getxml?META:MONOMER-12622" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-8322" detail="low" frameid="ENZRXN-8322" orgid="META"><reaction><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="#META:QUINOPRIBOTRANS-RXN" /></reaction>
+<common-name datatype="string">quinolinate phosphoribosyl transferase (decarboxylating)</common-name>
+<enzyme><Protein frameid="YFR047C-MONOMER" orgid="META" resource="getxml?META:YFR047C-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-15.51709<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY-5653" orgid="META" resource="getxml?META:PWY-5653" /><Pathway frameid="PWY-5316" orgid="META" resource="getxml?META:PWY-5316" /><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /><Pathway frameid="PYRIDNUCSYN-PWY" orgid="META" resource="getxml?META:PYRIDNUCSYN-PWY" /></in-pathway>
+<left><Compound frameid="NICOTINATE_NUCLEOTIDE" orgid="META" resource="getxml?META:NICOTINATE_NUCLEOTIDE" /></left>
+<left><Compound frameid="PPI" orgid="META" resource="getxml?META:PPI" /></left>
+<left><Compound frameid="CARBON-DIOXIDE" orgid="META" resource="getxml?META:CARBON-DIOXIDE" /></left>
+</Reaction>
+</ptools-xml>

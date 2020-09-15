@@ -1,0 +1,32 @@
+image: continuumio/miniconda3
+
+before_script:
+  # creating and entering conda enviroment
+  - conda env create -f environment.yml
+  - source activate cobramod
+  - conda info
+  # This initiates pip and install the corresponding package
+  - pip install . -v
+
+stages:
+  - functions
+  - example
+
+test_logical:
+  stage: functions
+  script:
+    - python3 -m unittest tests/test_creation.py -v
+    - python3 -m unittest tests/test_pathways.py -v
+    - python3 -m unittest tests/test_models.py -v
+
+test_models:
+  stage: functions
+  script:
+    # Building model
+    - python3 tests/extra/creating_test_model.py
+    - python3 -m unittest tests/test_models.py -v
+
+test_example:
+  stage: example
+  script:
+    - python3 -m unittest tests/test_glucosinolate.py -v

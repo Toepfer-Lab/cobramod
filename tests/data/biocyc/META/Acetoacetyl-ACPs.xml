@@ -1,0 +1,19 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:Acetoacetyl-ACPs"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:Acetoacetyl-ACPs</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Protein ID="META:Acetoacetyl-ACPs" class="true" detail="full" frameid="Acetoacetyl-ACPs" orgid="META"><parent><Protein class="true" frameid="Short-Chain-3-oxo-ACPs" orgid="META" resource="getxml?META:Short-Chain-3-oxo-ACPs" /></parent>
+<synonym datatype="string">an acetoacetyl-[acyl-carrier-protein]</synonym>
+<unmodified-form><Protein class="true" frameid="ACP" orgid="META" resource="getxml?META:ACP" /></unmodified-form>
+<appears-in-right-side-of><Reaction frameid="3-OXOACYL-ACP-SYNTH-BASE-RXN" orgid="META" resource="getxml?META:3-OXOACYL-ACP-SYNTH-BASE-RXN" /><Reaction frameid="RXN-9514" orgid="META" resource="getxml?META:RXN-9514" /><Reaction frameid="2.3.1.180-RXN" orgid="META" resource="getxml?META:2.3.1.180-RXN" /><Reaction frameid="RXN-12361" orgid="META" resource="getxml?META:RXN-12361" /></appears-in-right-side-of>
+<common-name datatype="string">an acetoacetyl-[acp]</common-name>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C05744</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C05744</dblink-URL>
+</dblink>
+</Protein>
+</ptools-xml>

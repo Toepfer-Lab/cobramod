@@ -1,0 +1,27 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:RXNQT-4326"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXNQT-4326</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXNQT-4326" detail="full" frameid="RXNQT-4326" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-2.4.1.195</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-12491" detail="low" frameid="ENZRXNQT-12491" orgid="ARA"><common-name datatype="string">UDP-glucose:7-methylthioheptylhydroximate S-glucosyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-6102" orgid="ARA" resource="getxml?ARA:MONOMER-6102" /></enzyme>
+<reaction><Reaction frameid="RXNQT-4326" orgid="ARA" resource="#ARA:RXNQT-4326" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-1.8924255</gibbs-0>
+<in-pathway><Pathway frameid="PWYQT-4473" orgid="ARA" resource="getxml?ARA:PWYQT-4473" /></in-pathway>
+<left><Compound frameid="CPD-12575" orgid="ARA" resource="getxml?ARA:CPD-12575" /></left>
+<left><Compound frameid="CPDQT-413" orgid="ARA" resource="getxml?ARA:CPDQT-413" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="CPDQT-417" orgid="ARA" resource="getxml?ARA:CPDQT-417" /></right>
+<right><Compound frameid="UDP" orgid="ARA" resource="getxml?ARA:UDP" /></right>
+</Reaction>
+</ptools-xml>

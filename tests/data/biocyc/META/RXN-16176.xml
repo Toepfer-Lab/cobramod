@@ -1,0 +1,76 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:RXN-16176"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RXN-16176</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:RXN-16176" detail="full" frameid="RXN-16176" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-17426" orgid="META" resource="getxml?META:CPD-17426" /></right>
+<right><Compound frameid="2-AMINOACRYLATE" orgid="META" resource="getxml?META:2-AMINOACRYLATE" /></right>
+<citation><Publication ID="META:PUB-1385120" detail="full" frameid="PUB-1385120" orgid="META"><pubmed-id datatype="string">1385120</pubmed-id>
+<source datatype="string">Eur J Biochem 209(2);751-7</source>
+<title datatype="string">Isolation and characterization of alliinase cDNA clones from garlic (Allium sativum L.) and related species.</title>
+<year datatype="integer">1992</year>
+<author datatype="string">Van Damme EJ</author>
+<author datatype="string">Smeets K</author>
+<author datatype="string">Torrekens S</author>
+<author datatype="string">Van Leuven F</author>
+<author datatype="string">Peumans WJ</author>
+</Publication>
+</citation>
+<credits><created><date datatype="date">2014-12-05</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR119917</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR119917</dblink-URL>
+</dblink>
+<ec-number>EC-4.4.1.4</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-23423" detail="low" frameid="ENZRXN-23423" orgid="META"><reaction><Reaction frameid="RXN-16176" orgid="META" resource="#META:RXN-16176" /></reaction>
+<common-name datatype="string">methiin lyase</common-name>
+<enzyme><Protein frameid="MONOMER-13505" orgid="META" resource="getxml?META:MONOMER-13505" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-23421" detail="low" frameid="ENZRXN-23421" orgid="META"><reaction><Reaction frameid="RXN-16176" orgid="META" resource="#META:RXN-16176" /></reaction>
+<common-name datatype="string">methliin lyase</common-name>
+<enzyme><Protein frameid="CPLX-8497" orgid="META" resource="getxml?META:CPLX-8497" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-23420" detail="low" frameid="ENZRXN-23420" orgid="META"><reaction><Reaction frameid="RXN-16176" orgid="META" resource="#META:RXN-16176" /></reaction>
+<common-name datatype="string">methliin lyase</common-name>
+<enzyme><Protein frameid="MONOMER-13494" orgid="META" resource="getxml?META:MONOMER-13494" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">79.51999<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY-7614" orgid="META" resource="getxml?META:PWY-7614" /></in-pathway>
+<left><Compound frameid="CPD-9277" orgid="META" resource="getxml?META:CPD-9277" /></left>
+</Reaction>
+</ptools-xml>

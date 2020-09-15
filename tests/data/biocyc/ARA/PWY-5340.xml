@@ -1,0 +1,111 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:PWY-5340"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:PWY-5340</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Pathway ID="ARA:PWY-5340" detail="full" frameid="PWY-5340" orgid="ARA"><parent><Pathway class="true" frameid="Activation" orgid="ARA" resource="getxml?ARA:Activation" /></parent>
+<parent><Pathway class="true" frameid="Sulfur-Metabolism" orgid="ARA" resource="getxml?ARA:Sulfur-Metabolism" /></parent>
+<evidence><Evidence-Code ID="ARA:EV-COMP-HINF" class="true" detail="full" frameid="EV-COMP-HINF" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-COMP" orgid="ARA" resource="getxml?ARA:EV-COMP" /></parent>
+<comment datatype="string">Human inference.  A curator or author inferred this assertion after review of one or more possible types 
+of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
+When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
+<common-name datatype="string">Inferred by a human based on computational evidence</common-name>
+</Evidence-Code>
+<Publication ID="ARA:PUB-PMNCVP2019" detail="full" frameid="PUB-PMNCVP2019" orgid="ARA"><title datatype="string">This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Common Viridiplantae Pathways (CVP version 5.0).</title>
+<url datatype="string">https://www.plantcyc.org/about/savi-pipeline</url>
+<year datatype="integer">2019</year>
+</Publication>
+</evidence>
+<evidence><Evidence-Code ID="ARA:EV-EXP-TAS" class="true" detail="full" frameid="EV-EXP-TAS" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="ARA" resource="getxml?ARA:EV-EXP" /></parent>
+<comment datatype="string">Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
+in another database -- that itself did not describe an experiment supporting the
+assertion.  However, the statement did reference another publication describing an experiment 
+that supports the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
+is that the former code is used when it is certain that experimental evidence supports the
+assertion, and the latter code is used when there is a possibility that an experiment was
+not done to support the assertion.
+In general, references to the primary literature are preferred,
+but this code can be used when the original article is difficult to locate.</comment>
+<common-name datatype="string">Traceable author statement to experimental support</common-name>
+</Evidence-Code>
+<Publication ID="ARA:PUB-LEUSTEK02" detail="full" frameid="PUB-LEUSTEK02" orgid="ARA"><source datatype="string">The Arabidopsis Book, American Society of Plant Biologists</source>
+<title datatype="string">Sulfate metabolism</title>
+<url datatype="string">http://www.bioone.org/perlserv/?request=get-document&amp;issn=1543-8120&amp;volume=42&amp;issue=1&amp;page=1</url>
+<year datatype="integer">2002</year>
+<author datatype="string">Leustek, Thomas</author>
+</Publication>
+</evidence>
+<comment datatype="string">&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: This pathway is on the list of Common Viridiplantae Pathways (CVP) generated for the COMET project, which includes pathways that are thought to be present in all or most Viridiplantae species including algae. All UPP pathways are automatically imported into databases regardless of Pathologic predictions. &lt;A href="http://www.plantcyc.org/about/savi_pipeline"&gt;[more info]&lt;/A&gt;
+&lt;p&gt;
+&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
+&lt;p&gt;
+&lt;b&gt;General Background&lt;/b&gt;
+
+The sulfonation of biological compounds (sulfoconjugation) is a fundamental metabolic process,
+in which a sulfate group is added to an oxygen moiety to form a sulfate ester bond.
+The sulfonation of biomolecules occurs widely and results in a dramatic change in the
+physicochemical property of the sulfonated compounds [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bHuxtable86%5d"&gt;Huxtable86&lt;/a&gt;].
+Sulfonated macromolecules such as &lt;a href="/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Glycosaminoglycans" title="Glycosaminoglycans (also known as mucopolysaccharides) are important components of connective tissues. They are composed of long unbranched polysaccharides consisting of a repeating disaccharide unit. The repeating units consist of an &lt;i&gt;N&lt;/i&gt;-acetyl-hexosamine and a hexose or hexuronic acid, either or both of which are often sulfated.&amp;#10;Members of the glycosaminoglycan family vary in the type of hexosamine, hexose or hexuronic acid&amp;#10;unit they contain (e.g. &lt;a href=''/compound?orgid=ARA&amp;id=CPD-12521''&gt;&amp;beta;-D-glucuronate&lt;/a&gt;, &lt;a href=''/compound?orgid=ARA&amp;id=CPD-12515''&gt;&amp;alpha;-L-idopyranuronate&lt;/a&gt;, galactose, &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12557''&gt;&lt;i&gt;N&lt;/i&gt;-acetyl-&amp;beta;-D-galactosamine&lt;/a&gt;, &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12541''&gt;&lt;i&gt;N&lt;/i&gt;-acetyl-&amp;alpha;-D-glucosamine&lt;/a&gt;). &amp;#10;&amp;#10;Glycosaminoglycans are divided into four main classes: &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Chondroitin-sulfates''&gt;chondroitin sulfate&lt;/a&gt; and &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Dermatan-Sulfate''&gt;dermatan sulfate&lt;/a&gt;; &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=HEPARIN''&gt;heparin&lt;/a&gt; and &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Heparan-Sulfate''&gt;heparan sulfate&lt;/a&gt;;  &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Hyaluronan''&gt;hyaluronan&lt;/a&gt;; and &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=KERATAN-6-SULFATE''&gt;keratan sulfate&lt;/a&gt;. With the exception of hyaluronan, the polysaccharide chains are linked covalently at the reducing end to a core protein through an &lt;i&gt;O&lt;/i&gt;-glycosidic linkage to a serine residue, thus forming proteoglycans."&gt;a glycosaminoglycan&lt;/a&gt;, &lt;a href="/ARA/NEW-IMAGE?type=COMPOUND&amp;object=HEPARIN" title="&lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=HEPARIN''&gt;Heparin&lt;/a&gt; is a glycosaminoglycan polymer with a molecular weight ranging from 3 to 30 kDa. It is composed of a variable sulfated repeating disaccharide units composed of hexuronic (either iduronic or glucuronic) acid and glucosamine residues, in which the 2 position of the hexuronic acid and the 2, 3, or 6 positions of glucosamine may be sulfated. The two residuces within a disaccharide are linked by a (1-&gt;4) bond, as are the disaccharides to each other.&amp;#10;&amp;#10;The main disaccharide unit consists of &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12518''&gt;&amp;alpha;-L-iduronate 2-&lt;i&gt;O&lt;/i&gt;-sulfate&lt;/a&gt; and &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12533''&gt;2-&lt;i&gt;N&lt;/i&gt;,6-&lt;i&gt;O&lt;/i&gt;-disulfo-&amp;alpha;-D-glucosamine&lt;/a&gt; [it is often referred to as IdoA(2S)-(1-&gt;4)-GlcNS(6S)]. However, &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12518''&gt;&amp;alpha;-L-iduronate 2-&lt;i&gt;O&lt;/i&gt;-sulfate&lt;/a&gt; can be substituted by &lt;a href=''/compound?orgid=ARA&amp;id=CPD-12521''&gt;&amp;beta;-D-glucuronate&lt;/a&gt;, and &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12533''&gt;2-&lt;i&gt;N&lt;/i&gt;,6-&lt;i&gt;O&lt;/i&gt;-disulfo-&amp;alpha;-D-glucosamine&lt;/a&gt; can be replaced by &lt;a href=''http://biocyc.org/META/new-image?object=N-ACETYL-D-GLUCOSAMINE''&gt;&lt;i&gt;N&lt;/i&gt;-acetyl-&amp;beta;-D-glucosamine&lt;/a&gt;, &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=N-sulfo-D-glucosamine''&gt;&lt;i&gt;N&lt;/i&gt;-sulfo-D-glucosamine&lt;/a&gt;, &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12545''&gt;&amp;alpha;-D-&lt;i&gt;N&lt;/i&gt;-sulfoglucosamine 3-&lt;i&gt;O&lt;/i&gt;-sulfate&lt;/a&gt; or &lt;a href=''http://biocyc.org/META/new-image?object=CPD-12565''&gt;&lt;i&gt;N&lt;/i&gt;-acetyl-D-galactosamine 6-&lt;i&gt;O&lt;/i&gt;-sulfate&lt;/a&gt;.&amp;#10;&amp;#10;The basic IdoA(2S)-(1-&gt;4)-GlcNS(6S) disaccharide accounts for at least 85% of heparin isolated from beef lung and about 75% of heparin from porcine intestinal mucosa [&lt;a href=''/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bCasu89%5d''&gt;Casu89&lt;/a&gt;, &lt;a href=''/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bGatti79%5d''&gt;Gatti79&lt;/a&gt;].&amp;#10;&amp;#10;Variations in the extent and location of sulfation, as well as the conformation of the alternating hexuronic acid residues, lead to a high degree of heterogeneity. By convention, heparin refers to molecules which possess a high sulfate content and large amounts of iduronic acid.&amp;#10;&amp;#10;The structure of &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=HEPARIN''&gt;heparin&lt;/a&gt; is very similar to that of &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Heparan-Sulfate''&gt;heparan sulfate&lt;/a&gt; (also known as heparitin sulfate). Heparan sulfate contains lower amounts of sulfate and less iduronic acid than heparin [&lt;a href=''http://www.ncbi.nlm.nih.gov/pubmed/5484472''&gt;Hovingh70&lt;/a&gt;]. In addition, heparan sulfates disaccharide units are organized into distinct sulfated and non-sulfated domains, while heparin disaccharides are sulfated more uniformly [&lt;a href=''http://www.ncbi.nlm.nih.gov/pubmed/15047699''&gt;Murphy04&lt;/a&gt;]."&gt;heparin&lt;/a&gt;
+or &lt;a href="/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Glucosinolates" title="&lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Glucosinolates''&gt;Glucosinolates&lt;/a&gt; are secondary metabolites found in 16 plant families, including agriculturally important crop plants of the &lt;a href=''/ARA/NEW-IMAGE?object=TAX-3700''&gt;&lt;i&gt;Brassicaceae&lt;/i&gt;&lt;/a&gt; such cabbage, mustard, oilseed rape, and broccoli, as well as the model plant &lt;a href=''/ARA/NEW-IMAGE?object=TAX-3702''&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt;, and are responsible for the typical sharp taste and odor of these plants.&amp;#10;&amp;#10;The glucosinolates are substituted &amp;beta;-thioglucoside &lt;i&gt;N&lt;/i&gt;-hydroxysulfates that are formed from any one of eight amino acids, namely, &lt;a href=''/compound?orgid=ARA&amp;id=L-ALPHA-ALANINE''&gt;L-alanine&lt;/a&gt;, &lt;a href=''/compound?orgid=ARA&amp;id=VAL''&gt;L-valine&lt;/a&gt;, &lt;a href=''/compound?orgid=ARA&amp;id=LEU''&gt;L-leucine&lt;/a&gt;, &lt;a href=''/compound?orgid=ARA&amp;id=ILE''&gt;L-isoleucine&lt;/a&gt;, &lt;a href=''/compound?orgid=ARA&amp;id=PHE''&gt;L-phenylalanine&lt;/a&gt;, &lt;a href=''/compound?orgid=ARA&amp;id=MET''&gt;L-methionine&lt;/a&gt;, &lt;a href=''/compound?orgid=ARA&amp;id=TYR''&gt;L-tyrosine&lt;/a&gt; and &lt;a href=''/compound?orgid=ARA&amp;id=TRP''&gt;L-tryptophan&lt;/a&gt;. Over 115 naturally occurring glucosinolates have been identified. Much of the diversity amongst glucosinolates arises from the addition of different sized alkyl groups to the side chain of the amino acids, principally valine, phenylalanine and methionine [&lt;a href=''http://www.ncbi.nlm.nih.gov/pubmed/18458837''&gt;Hayes08&lt;/a&gt;]. They are grouped into aliphatic, aromatic, and indolic types, depending on whether they are derived from methionine, phenylalanine and tyrosine, or tryptophan. Indolylmethyl glucosinolates are found mainly in leaves. For a review, see [&lt;a href=''http://www.ncbi.nlm.nih.gov/pubmed/12049923''&gt;Wittstock02&lt;/a&gt;].&amp;#10;&amp;#10;Glucosinolates are stored in the vacuole and come into contact with the enzyme &lt;a href=''/ARA/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.2.1.147''&gt;EC 3.2.1.147, thioglucosidase&lt;/a&gt; (myrosinase) upon breakage of the cell. Myrosinase de-glucosylates the glucosinolates, resulting in formation of nitriles, isothiocyanates and thiocyanates. The precise product that is formed depends on the glucosinolate and whether an epithiospecifier protein is present. &amp;#10;&amp;#10;The breakdown products give the typical sharp taste and odor to many of the members of brassicaceae that are eaten, such as raddish and mustard. Arabidopsis has been shown to accumulate at least 23 different glucosinolates in both seeds and leaves."&gt;a glucosinolate&lt;/a&gt; are involved in many important processes, such as cell adhesion,
+hemostasis, the viscoelastic properties of connective tissue, and plant defense mechanisms.
+&lt;p&gt;
+&lt;b&gt;About This Pathway&lt;/b&gt;
+
+In the course of sulfonation, inorganic sulfate must be activated prior to being transferred to an acceptor
+molecule [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/13851709"&gt;GREGORY60&lt;/a&gt;]. In many organisms, including plants and mammals, &lt;a href="/compound?orgid=ARA&amp;id=PAPS"&gt;3'-phosphoadenylyl-sulfate&lt;/a&gt;
+(PAPS) is used as the universal sulfonate donor for all sulfotransferase reactions  [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/13575436"&gt;ROBBINS58&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/6107250"&gt;Farooqui80&lt;/a&gt;].
+ 
+It should be mentioned that in plants most of the APS is used for biosynthesis of &lt;a href="/compound?orgid=ARA&amp;id=CYS"&gt;L-cysteine&lt;/a&gt; and
+&lt;a href="/compound?orgid=ARA&amp;id=MET"&gt;L-methionine&lt;/a&gt; via the further reduction of APS to sulfide (see &lt;a href="/ARA/NEW-IMAGE?type=PATHWAY&amp;object=SULFMETII-PWY"&gt;assimilatory sulfate reduction II&lt;/a&gt;).
+In mammals, however, all of the APS is converted to PAPS and used for sulfonation.
+&lt;p&gt;
+For an extensive list of sulfonation reactions using &lt;a href="/compound?orgid=ARA&amp;id=PAPS"&gt;3'-phosphoadenylyl-sulfate&lt;/a&gt;, please look at that compound's
+page.</comment>
+<common-name datatype="string">sulfate activation for sulfonation</common-name>
+<credits><created><date datatype="date">2006-09-19</date>
+<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></created>
+</credits>
+<dblink><dblink-db>PLANTCYC</dblink-db>
+<dblink-oid>PWY-5340</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pmn.plantcyc.org/PLANT/new-image?object=PWY-5340</dblink-URL>
+</dblink>
+<dblink><dblink-db>METACYC</dblink-db>
+<dblink-oid>PWY-5340</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://biocyc.org/META/new-image?object=PWY-5340</dblink-URL>
+</dblink>
+<pathway-link><Compound frameid="SULFATE" orgid="ARA" resource="getxml?ARA:SULFATE" /><link-target><Pathway frameid="PWY-5326" orgid="ARA" resource="getxml?ARA:PWY-5326" /></link-target>
+</pathway-link>
+<pathway-link><Compound frameid="APS" orgid="ARA" resource="getxml?ARA:APS" /><outgoing-link-target><Pathway frameid="SULFMETII-PWY" orgid="ARA" resource="getxml?ARA:SULFMETII-PWY" /></outgoing-link-target>
+</pathway-link>
+<pathway-link><Compound frameid="PAPS" orgid="ARA" resource="getxml?ARA:PAPS" /><link-target><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></link-target>
+<link-target><Pathway frameid="PWY-2821" orgid="ARA" resource="getxml?ARA:PWY-2821" /></link-target>
+<link-target><Pathway frameid="PWY-601" orgid="ARA" resource="getxml?ARA:PWY-601" /></link-target>
+</pathway-link>
+<reaction-ordering><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="getxml?ARA:ADENYLYLSULFKIN-RXN" /><predecessor-reactions><Reaction frameid="SULFATE-ADENYLYLTRANS-RXN" orgid="ARA" resource="getxml?ARA:SULFATE-ADENYLYLTRANS-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="getxml?ARA:ADENYLYLSULFKIN-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="APS" orgid="ARA" resource="getxml?ARA:APS" /></left-primaries>
+<right-primaries><Compound frameid="PAPS" orgid="ARA" resource="getxml?ARA:PAPS" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="SULFATE-ADENYLYLTRANS-RXN" orgid="ARA" resource="getxml?ARA:SULFATE-ADENYLYLTRANS-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="SULFATE" orgid="ARA" resource="getxml?ARA:SULFATE" /></left-primaries>
+<right-primaries><Compound frameid="APS" orgid="ARA" resource="getxml?ARA:APS" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="ARA" resource="getxml?ARA:ADENYLYLSULFKIN-RXN" /><Reaction frameid="SULFATE-ADENYLYLTRANS-RXN" orgid="ARA" resource="getxml?ARA:SULFATE-ADENYLYLTRANS-RXN" /></reaction-list>
+<synonym datatype="string">sulfation pathway</synonym>
+</Pathway>
+</ptools-xml>

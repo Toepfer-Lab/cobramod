@@ -1,0 +1,83 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:L-GAMMA-GLUTAMYLCYSTEINE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:L-GAMMA-GLUTAMYLCYSTEINE" detail="full" frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="ARA"><parent><Compound class="true" frameid="5-L-GLUTAMYL-L-AMINO-ACID" orgid="ARA" resource="getxml?ARA:5-L-GLUTAMYL-L-AMINO-ACID" /></parent>
+<cml><molecule formalCharge="-1" id="L-GAMMA-GLUTAMYLCYSTEINE" title="gamma-L-glutamyl-L-cysteine"><atomArray><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom1" x2="16916.0" y2="10798.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom2" x2="24061.0" y2="6672.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom3" x2="38351.0" y2="6673.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom4" x2="16916.0" y2="19047.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom5" x2="38351.0" y2="-1577.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom6" x2="24061.0" y2="-1577.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom7" x2="24061.0" y2="23172.0" /><atom elementType="C" id="L-GAMMA-GLUTAMYLCYSTEINE-atom8" x2="45496.0" y2="-5703.0" /><atom elementType="N" formalCharge="1" id="L-GAMMA-GLUTAMYLCYSTEINE-atom9" x2="9772.0" y2="23173.0" /><atom elementType="N" id="L-GAMMA-GLUTAMYLCYSTEINE-atom10" x2="31206.0" y2="-5702.0" /><atom elementType="O" id="L-GAMMA-GLUTAMYLCYSTEINE-atom11" x2="16916.0" y2="-5702.0" /><atom elementType="O" id="L-GAMMA-GLUTAMYLCYSTEINE-atom12" x2="24060.0" y2="31422.0" /><atom elementType="O" formalCharge="-1" id="L-GAMMA-GLUTAMYLCYSTEINE-atom13" x2="31206.0" y2="19047.0" /><atom elementType="O" formalCharge="-1" id="L-GAMMA-GLUTAMYLCYSTEINE-atom14" x2="52640.0" y2="-1578.0" /><atom elementType="O" id="L-GAMMA-GLUTAMYLCYSTEINE-atom15" x2="45495.0" y2="-13953.0" /><atom elementType="S" id="L-GAMMA-GLUTAMYLCYSTEINE-atom16" x2="45496.0" y2="10799.0" /></atomArray>
+<bondArray><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom10 L-GAMMA-GLUTAMYLCYSTEINE-atom6" id="L-GAMMA-GLUTAMYLCYSTEINE-bond1" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom6 L-GAMMA-GLUTAMYLCYSTEINE-atom2" id="L-GAMMA-GLUTAMYLCYSTEINE-bond2" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom2 L-GAMMA-GLUTAMYLCYSTEINE-atom1" id="L-GAMMA-GLUTAMYLCYSTEINE-bond3" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom1 L-GAMMA-GLUTAMYLCYSTEINE-atom4" id="L-GAMMA-GLUTAMYLCYSTEINE-bond4" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom4 L-GAMMA-GLUTAMYLCYSTEINE-atom7" id="L-GAMMA-GLUTAMYLCYSTEINE-bond5" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom7 L-GAMMA-GLUTAMYLCYSTEINE-atom12" id="L-GAMMA-GLUTAMYLCYSTEINE-bond6" order="2" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom7 L-GAMMA-GLUTAMYLCYSTEINE-atom13" id="L-GAMMA-GLUTAMYLCYSTEINE-bond7" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom4 L-GAMMA-GLUTAMYLCYSTEINE-atom9" id="L-GAMMA-GLUTAMYLCYSTEINE-bond8" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom6 L-GAMMA-GLUTAMYLCYSTEINE-atom11" id="L-GAMMA-GLUTAMYLCYSTEINE-bond9" order="2" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom5 L-GAMMA-GLUTAMYLCYSTEINE-atom10" id="L-GAMMA-GLUTAMYLCYSTEINE-bond10" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom5 L-GAMMA-GLUTAMYLCYSTEINE-atom8" id="L-GAMMA-GLUTAMYLCYSTEINE-bond11" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom5 L-GAMMA-GLUTAMYLCYSTEINE-atom3" id="L-GAMMA-GLUTAMYLCYSTEINE-bond12" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom8 L-GAMMA-GLUTAMYLCYSTEINE-atom15" id="L-GAMMA-GLUTAMYLCYSTEINE-bond13" order="2" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom8 L-GAMMA-GLUTAMYLCYSTEINE-atom14" id="L-GAMMA-GLUTAMYLCYSTEINE-bond14" order="1" /><bond atomRefs="L-GAMMA-GLUTAMYLCYSTEINE-atom3 L-GAMMA-GLUTAMYLCYSTEINE-atom16" id="L-GAMMA-GLUTAMYLCYSTEINE-bond15" order="1" /></bondArray>
+<formula concise="C 8 H 13 N 2 O 5 S 1" /><float title="molecularWeight" units="g/mol">249.261</float>
+<string title="smiles">C(S)[C@@H](C([O-])=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
+</molecule>
+</cml>
+<common-name datatype="string">&amp;gamma;-L-glutamyl-L-cysteine</common-name>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>174393</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=174393</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00506</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00506</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM412</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM412</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>gamma-Glutamyl cysteine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=gamma-Glutamyl cysteine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>glucys</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/glucys</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7059430</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7059430</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC58173</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC58173</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01049</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01049</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>58173</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58173</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00669</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00669</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>686-58-8</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=686-58-8</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-57.157494</gibbs-0>
+<inchi datatype="string">InChI=1S/C8H14N2O5S/c9-4(7(12)13)1-2-6(11)10-5(3-16)8(14)15/h4-5,16H,1-3,9H2,(H,10,11)(H,12,13)(H,14,15)/p-1/t4-,5-/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=RITKHVBHSGLULN-WHFBIAKZSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">249.261</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">250.06235</monoisotopic-mw>
+<synonym datatype="string">&amp;gamma;-glutamylcysteine</synonym>
+<synonym datatype="string">&amp;gamma;-L-glutamylcysteine</synonym>
+<synonym datatype="string">&amp;gamma;-Glu-Cys</synonym>
+<appears-in-left-side-of><Reaction frameid="RXNQT-4305" orgid="ARA" resource="getxml?ARA:RXNQT-4305" /><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-SYN-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="getxml?ARA:GLUTCYSLIG-RXN" /><Reaction frameid="RXNQT-4306" orgid="ARA" resource="getxml?ARA:RXNQT-4306" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

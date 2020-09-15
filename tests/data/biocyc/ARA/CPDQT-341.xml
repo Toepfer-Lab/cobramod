@@ -1,0 +1,60 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-341"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-341</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-341" detail="full" frameid="CPDQT-341" orgid="ARA"><parent><Compound class="true" frameid="CPD-19472" orgid="ARA" resource="getxml?ARA:CPD-19472" /></parent>
+<cml><molecule formalCharge="0" id="CPDQT-341" title="(E)-5-(methylsulfanyl)pentanal+oxime"><atomArray><atom elementType="C" id="CPDQT-341-atom1" x2="2504.0" y2="-2402.0" /><atom elementType="C" id="CPDQT-341-atom2" x2="-354.0" y2="-2402.0" /><atom elementType="C" id="CPDQT-341-atom3" x2="-1069.0" y2="-1990.0" /><atom elementType="C" id="CPDQT-341-atom4" x2="360.0" y2="-1990.0" /><atom elementType="C" id="CPDQT-341-atom5" x2="-1783.0" y2="-2402.0" /><atom elementType="C" id="CPDQT-341-atom6" x2="1075.0" y2="-2402.0" /><atom elementType="N" id="CPDQT-341-atom7" x2="-2498.0" y2="-1990.0" /><atom elementType="O" id="CPDQT-341-atom8" x2="-3212.0" y2="-2402.0" /><atom elementType="S" id="CPDQT-341-atom9" x2="1789.0" y2="-1990.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-341-atom3 CPDQT-341-atom5" id="CPDQT-341-bond1" order="1" /><bond atomRefs="CPDQT-341-atom4 CPDQT-341-atom2" id="CPDQT-341-bond2" order="1" /><bond atomRefs="CPDQT-341-atom6 CPDQT-341-atom9" id="CPDQT-341-bond3" order="1" /><bond atomRefs="CPDQT-341-atom6 CPDQT-341-atom4" id="CPDQT-341-bond4" order="1" /><bond atomRefs="CPDQT-341-atom2 CPDQT-341-atom3" id="CPDQT-341-bond5" order="1" /><bond atomRefs="CPDQT-341-atom7 CPDQT-341-atom8" id="CPDQT-341-bond6" order="1" /><bond atomRefs="CPDQT-341-atom7 CPDQT-341-atom5" id="CPDQT-341-bond7" order="2" /><bond atomRefs="CPDQT-341-atom9 CPDQT-341-atom1" id="CPDQT-341-bond8" order="1" /></bondArray>
+<formula concise="C 6 H 13 N 1 O 1 S 1" /><float title="molecularWeight" units="g/mol">147.235</float>
+<string title="smiles">CSCCCC/C=N/O</string>
+</molecule>
+</cml>
+<comment datatype="string">This compound was entered into AraCyc based on its presence in the
+&lt;A href="http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007400"&gt;KNApSAcK database&lt;/A&gt;
+which provides reference(s) concerning this compound in Arabidopsis.
+</comment>
+<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-5-(methylsulfanyl)pentanal oxime</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17435</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17435</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM3510</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM3510</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>134682</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:134682</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>25010757</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=25010757</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17245</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17245</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007400</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007400</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">116.42457</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H13NOS/c1-9-6-4-2-3-5-7-8/h5,8H,2-4,6H2,1H3/b7-5+</inchi>
+<inchi-key datatype="string">InChIKey=KNFFJJFEYQLINT-FNORWQNLSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">147.235</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">147.07178</monoisotopic-mw>
+<synonym datatype="string">(&lt;i&gt;E&lt;/i&gt;)-5-(methylthio)pentanal oxime</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-18165" orgid="ARA" resource="getxml?ARA:RXN-18165" /><Reaction frameid="RXN-11415" orgid="ARA" resource="getxml?ARA:RXN-11415" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXNQT-4309" orgid="ARA" resource="getxml?ARA:RXNQT-4309" /><Reaction frameid="RXN-13020" orgid="ARA" resource="getxml?ARA:RXN-13020" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

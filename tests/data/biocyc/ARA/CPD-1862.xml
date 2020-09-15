@@ -1,0 +1,50 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-1862"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-1862</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-1862" detail="full" frameid="CPD-1862" orgid="ARA"><parent><Compound class="true" frameid="Aldoxime" orgid="ARA" resource="getxml?ARA:Aldoxime" /></parent>
+<cml><molecule formalCharge="0" id="CPD-1862" title="desulfoglucobrassicin"><atomArray><atom elementType="C" id="CPD-1862-atom1" x2="51024.0" y2="-50818.0" /><atom elementType="C" id="CPD-1862-atom2" x2="56545.0" y2="-44687.0" /><atom elementType="C" id="CPD-1862-atom3" x2="42954.0" y2="-49102.0" /><atom elementType="C" id="CPD-1862-atom4" x2="53996.0" y2="-36841.0" /><atom elementType="C" id="CPD-1862-atom5" x2="25724.0" y2="-42023.0" /><atom elementType="C" id="CPD-1862-atom6" x2="33732.0" y2="-29694.0" /><atom elementType="C" id="CPD-1862-atom7" x2="-9997.0" y2="-29648.0" /><atom elementType="C" id="CPD-1862-atom8" x2="32869.0" y2="-37899.0" /><atom elementType="C" id="CPD-1862-atom9" x2="40406.0" y2="-41255.0" /><atom elementType="C" id="CPD-1862-atom10" x2="45926.0" y2="-35125.0" /><atom elementType="C" id="CPD-1862-atom11" x2="-2852.0" y2="-25523.0" /><atom elementType="C" id="CPD-1862-atom12" x2="18581.0" y2="-37898.0" /><atom elementType="C" id="CPD-1862-atom13" x2="-2852.0" y2="-17273.0" /><atom elementType="C" id="CPD-1862-atom14" x2="4293.0" y2="-13149.0" /><atom elementType="C" id="CPD-1862-atom15" x2="11438.0" y2="-17273.0" /><atom elementType="C" id="CPD-1862-atom16" x2="11438.0" y2="-25523.0" /><atom elementType="N" id="CPD-1862-atom17" x2="41802.0" y2="-27980.0" /><atom elementType="N" id="CPD-1862-atom18" x2="11436.0" y2="-42023.0" /><atom elementType="O" id="CPD-1862-atom19" x2="-17140.0" y2="-25523.0" /><atom elementType="O" id="CPD-1862-atom20" x2="-9997.0" y2="-13149.0" /><atom elementType="O" id="CPD-1862-atom21" x2="4293.0" y2="-4899.0" /><atom elementType="O" id="CPD-1862-atom22" x2="18581.0" y2="-13149.0" /><atom elementType="O" id="CPD-1862-atom23" x2="11436.0" y2="-50273.0" /><atom elementType="O" id="CPD-1862-atom24" x2="4293.0" y2="-29648.0" /><atom elementType="S" id="CPD-1862-atom25" x2="18581.0" y2="-29648.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-1862-atom24 CPD-1862-atom11" id="CPD-1862-bond1" order="1" /><bond atomRefs="CPD-1862-atom11 CPD-1862-atom13" id="CPD-1862-bond2" order="1" /><bond atomRefs="CPD-1862-atom13 CPD-1862-atom14" id="CPD-1862-bond3" order="1" /><bond atomRefs="CPD-1862-atom14 CPD-1862-atom15" id="CPD-1862-bond4" order="1" /><bond atomRefs="CPD-1862-atom15 CPD-1862-atom16" id="CPD-1862-bond5" order="1" /><bond atomRefs="CPD-1862-atom24 CPD-1862-atom16" id="CPD-1862-bond6" order="1" /><bond atomRefs="CPD-1862-atom16 CPD-1862-atom25" id="CPD-1862-bond7" order="1" /><bond atomRefs="CPD-1862-atom15 CPD-1862-atom22" id="CPD-1862-bond8" order="1" /><bond atomRefs="CPD-1862-atom14 CPD-1862-atom21" id="CPD-1862-bond9" order="1" /><bond atomRefs="CPD-1862-atom13 CPD-1862-atom20" id="CPD-1862-bond10" order="1" /><bond atomRefs="CPD-1862-atom11 CPD-1862-atom7" id="CPD-1862-bond11" order="1" /><bond atomRefs="CPD-1862-atom7 CPD-1862-atom19" id="CPD-1862-bond12" order="1" /><bond atomRefs="CPD-1862-atom25 CPD-1862-atom12" id="CPD-1862-bond13" order="1" /><bond atomRefs="CPD-1862-atom12 CPD-1862-atom18" id="CPD-1862-bond14" order="2" /><bond atomRefs="CPD-1862-atom18 CPD-1862-atom23" id="CPD-1862-bond15" order="1" /><bond atomRefs="CPD-1862-atom12 CPD-1862-atom5" id="CPD-1862-bond16" order="1" /><bond atomRefs="CPD-1862-atom5 CPD-1862-atom8" id="CPD-1862-bond17" order="1" /><bond atomRefs="CPD-1862-atom6 CPD-1862-atom17" id="CPD-1862-bond18" order="1" /><bond atomRefs="CPD-1862-atom17 CPD-1862-atom10" id="CPD-1862-bond19" order="1" /><bond atomRefs="CPD-1862-atom9 CPD-1862-atom10" id="CPD-1862-bond20" order="2" /><bond atomRefs="CPD-1862-atom9 CPD-1862-atom8" id="CPD-1862-bond21" order="1" /><bond atomRefs="CPD-1862-atom8 CPD-1862-atom6" id="CPD-1862-bond22" order="2" /><bond atomRefs="CPD-1862-atom10 CPD-1862-atom4" id="CPD-1862-bond23" order="1" /><bond atomRefs="CPD-1862-atom9 CPD-1862-atom3" id="CPD-1862-bond24" order="1" /><bond atomRefs="CPD-1862-atom3 CPD-1862-atom1" id="CPD-1862-bond25" order="2" /><bond atomRefs="CPD-1862-atom4 CPD-1862-atom2" id="CPD-1862-bond26" order="2" /><bond atomRefs="CPD-1862-atom2 CPD-1862-atom1" id="CPD-1862-bond27" order="1" /></bondArray>
+<formula concise="C 16 H 20 N 2 O 6 S 1" /><float title="molecularWeight" units="g/mol">368.404</float>
+<string title="smiles">C2(\NC3(/C=C\C=C/C(/C(\CC(/S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\O)=2)=3))</string>
+</molecule>
+</cml>
+<common-name datatype="string">desulfoglucobrassicin</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd16333</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd16333</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM5184</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM5184</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>80545</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:80545</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>14122903</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=14122903</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C16517</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C16517</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">49.013412</gibbs-0>
+<inchi datatype="string">InChI=1S/C16H20N2O6S/c19-7-11-13(20)14(21)15(22)16(24-11)25-12(18-23)5-8-6-17-10-4-2-1-3-9(8)10/h1-4,6,11,13-17,19-23H,5,7H2/b18-12+/t11-,13-,14+,15-,16+/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=CWNIQCOMWQROPA-NMIPTCLMSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">368.404</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">368.10422</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-1443" orgid="ARA" resource="getxml?ARA:RXN-1443" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-1442" orgid="ARA" resource="getxml?ARA:RXN-1442" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

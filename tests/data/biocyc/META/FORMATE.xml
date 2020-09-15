@@ -1,0 +1,117 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:FORMATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:FORMATE</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:FORMATE" detail="full" frameid="FORMATE" orgid="META"><parent><Compound class="true" frameid="Short-Chain-Carboxylates" orgid="META" resource="getxml?META:Short-Chain-Carboxylates" /></parent>
+<cml><molecule formalCharge="-1" id="FORMATE" title="formate"><atomArray><atom elementType="C" id="FORMATE-atom1" x2="-856.0" y2="-1611.0" /><atom elementType="O" id="FORMATE-atom2" x2="-856.0" y2="-9861.0" /><atom elementType="O" formalCharge="-1" id="FORMATE-atom3" x2="-8000.0" y2="2514.0" /><atom elementType="H" id="FORMATE-atom4" x2="6289.0" y2="2514.0" /></atomArray>
+<bondArray><bond atomRefs="FORMATE-atom2 FORMATE-atom1" id="FORMATE-bond1" order="2" /><bond atomRefs="FORMATE-atom3 FORMATE-atom1" id="FORMATE-bond2" order="1" /><bond atomRefs="FORMATE-atom1 FORMATE-atom4" id="FORMATE-bond3" order="1" /></bondArray>
+<formula concise="C 1 H 1 O 2" /><float title="molecularWeight" units="g/mol">45.018</float>
+<string title="smiles">C([O-])=O</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">45.018</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">46.005478</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-7828" detail="low" frameid="REG0-7828" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:CYANLY-ENZRXN" detail="low" frameid="CYANLY-ENZRXN" orgid="META"><reaction><Reaction frameid="R524-RXN" orgid="META" resource="getxml?META:R524-RXN" /></reaction>
+<synonym datatype="string">cyanate hydrolase</synonym>
+<synonym datatype="string">cyanate C-N-lyase</synonym>
+<synonym datatype="string">cyanate aminohydrolase</synonym>
+<synonym datatype="string">cyanate lyase</synonym>
+<synonym datatype="string">cyanate hydratase</synonym>
+<common-name datatype="string">cyanase</common-name>
+<enzyme><Protein frameid="CYANLY-CPLX" orgid="META" resource="getxml?META:CYANLY-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FORMATE" orgid="META" resource="#META:FORMATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11830" detail="low" frameid="REG0-11830" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-7782" detail="low" frameid="ENZRXN0-7782" orgid="META"><reaction><Reaction frameid="TRANS-RXN0-571" orgid="META" resource="getxml?META:TRANS-RXN0-571" /></reaction>
+<common-name datatype="string">acetate:H&lt;sup&gt;+&lt;/sup&gt; symporter</common-name>
+<enzyme><Protein frameid="EG11512-MONOMER" orgid="META" resource="getxml?META:EG11512-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FORMATE" orgid="META" resource="#META:FORMATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6186" detail="low" frameid="REG-6186" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13818" detail="low" frameid="ENZRXN-13818" orgid="META"><reaction><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /></reaction>
+<common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7307" orgid="META" resource="getxml?META:CPLX-7307" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FORMATE" orgid="META" resource="#META:FORMATE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">formic acid</synonym>
+<appears-in-left-side-of><Reaction frameid="FORMATE-KINASE-RXN" orgid="META" resource="getxml?META:FORMATE-KINASE-RXN" /><Reaction frameid="GARTRANSFORMYL2-RXN" orgid="META" resource="getxml?META:GARTRANSFORMYL2-RXN" /><Reaction frameid="FHLMULTI-RXN" orgid="META" resource="getxml?META:FHLMULTI-RXN" /><Reaction frameid="RXN-12274" orgid="META" resource="getxml?META:RXN-12274" /><Reaction frameid="RXN0-3281" orgid="META" resource="getxml?META:RXN0-3281" /><Reaction frameid="1.2.2.3-RXN" orgid="META" resource="getxml?META:1.2.2.3-RXN" /><Reaction frameid="RXN-16835" orgid="META" resource="getxml?META:RXN-16835" /><Reaction frameid="FORMATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:FORMATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="1.2.1.2-RXN" orgid="META" resource="getxml?META:1.2.1.2-RXN" /><Reaction frameid="RXN-11237" orgid="META" resource="getxml?META:RXN-11237" /><Reaction frameid="FORMATEDEHYDROG-RXN" orgid="META" resource="getxml?META:FORMATEDEHYDROG-RXN" /><Reaction frameid="RXN-15617" orgid="META" resource="getxml?META:RXN-15617" /><Reaction frameid="FORMATETHFLIG-RXN" orgid="META" resource="getxml?META:FORMATETHFLIG-RXN" /><Reaction frameid="RIBONUCLEOSIDE-TRIP-REDUCT-RXN" orgid="META" resource="getxml?META:RIBONUCLEOSIDE-TRIP-REDUCT-RXN" /><Reaction frameid="RXN0-746" orgid="META" resource="getxml?META:RXN0-746" /><Reaction frameid="RXN0-724" orgid="META" resource="getxml?META:RXN0-724" /><Reaction frameid="RXN0-723" orgid="META" resource="getxml?META:RXN0-723" /><Reaction frameid="RXN0-745" orgid="META" resource="getxml?META:RXN0-745" /><Reaction frameid="FORMATE--DIHYDROFOLATE-LIGASE-RXN" orgid="META" resource="getxml?META:FORMATE--DIHYDROFOLATE-LIGASE-RXN" /><Reaction frameid="TRANS-RXN-1" orgid="META" resource="getxml?META:TRANS-RXN-1" /><Reaction frameid="RXN-10066" orgid="META" resource="getxml?META:RXN-10066" /><Reaction frameid="FORMATE-DEHYDROGENASE-CYTOCHROME-RXN" orgid="META" resource="getxml?META:FORMATE-DEHYDROGENASE-CYTOCHROME-RXN" /><Reaction frameid="TRANS-RXN-213" orgid="META" resource="getxml?META:TRANS-RXN-213" /><Reaction frameid="PYRUVFORMLY-RXN" orgid="META" resource="getxml?META:PYRUVFORMLY-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-21796" orgid="META" resource="getxml?META:RXN-21796" /><Reaction frameid="RXN-21602" orgid="META" resource="getxml?META:RXN-21602" /><Reaction frameid="RXN-21418" orgid="META" resource="getxml?META:RXN-21418" /><Reaction frameid="3.5.1.91-RXN" orgid="META" resource="getxml?META:3.5.1.91-RXN" /><Reaction frameid="FORMAMIDASE-RXN" orgid="META" resource="getxml?META:FORMAMIDASE-RXN" /><Reaction frameid="RXN-13262" orgid="META" resource="getxml?META:RXN-13262" /><Reaction frameid="R147-RXN" orgid="META" resource="getxml?META:R147-RXN" /><Reaction frameid="LACTATE-ALDOLASE-RXN" orgid="META" resource="getxml?META:LACTATE-ALDOLASE-RXN" /><Reaction frameid="RXN-21248" orgid="META" resource="getxml?META:RXN-21248" /><Reaction frameid="RXN-11453" orgid="META" resource="getxml?META:RXN-11453" /><Reaction frameid="RXN-20438" orgid="META" resource="getxml?META:RXN-20438" /><Reaction frameid="RXN-21170" orgid="META" resource="getxml?META:RXN-21170" /><Reaction frameid="RXN-11881" orgid="META" resource="getxml?META:RXN-11881" /><Reaction frameid="RXN-21167" orgid="META" resource="getxml?META:RXN-21167" /><Reaction frameid="RXN-20763" orgid="META" resource="getxml?META:RXN-20763" /><Reaction frameid="RXN-20741" orgid="META" resource="getxml?META:RXN-20741" /><Reaction frameid="N-FORMYLGLUTAMATE-DEFORMYLASE-RXN" orgid="META" resource="getxml?META:N-FORMYLGLUTAMATE-DEFORMYLASE-RXN" /><Reaction frameid="RXN-20445" orgid="META" resource="getxml?META:RXN-20445" /><Reaction frameid="RXN-20130" orgid="META" resource="getxml?META:RXN-20130" /><Reaction frameid="RXN-20136" orgid="META" resource="getxml?META:RXN-20136" /><Reaction frameid="RXN-20135" orgid="META" resource="getxml?META:RXN-20135" /><Reaction frameid="RXN-20129" orgid="META" resource="getxml?META:RXN-20129" /><Reaction frameid="RXN-19980" orgid="META" resource="getxml?META:RXN-19980" /><Reaction frameid="1.14.13.70-RXN" orgid="META" resource="getxml?META:1.14.13.70-RXN" /><Reaction frameid="RXN-19833" orgid="META" resource="getxml?META:RXN-19833" /><Reaction frameid="RXN-13961" orgid="META" resource="getxml?META:RXN-13961" /><Reaction frameid="RXN-19830" orgid="META" resource="getxml?META:RXN-19830" /><Reaction frameid="RXN3O-130" orgid="META" resource="getxml?META:RXN3O-130" /><Reaction frameid="RXN-13707" orgid="META" resource="getxml?META:RXN-13707" /><Reaction frameid="RXN-15499" orgid="META" resource="getxml?META:RXN-15499" /><Reaction frameid="RXN-15957" orgid="META" resource="getxml?META:RXN-15957" /><Reaction frameid="RXN-19725" orgid="META" resource="getxml?META:RXN-19725" /><Reaction frameid="RXN66-13" orgid="META" resource="getxml?META:RXN66-13" /><Reaction frameid="RXN66-305" orgid="META" resource="getxml?META:RXN66-305" /><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="META" resource="getxml?META:GTP-CYCLOHYDRO-II-RXN" /><Reaction frameid="3.7.1.9-RXN" orgid="META" resource="getxml?META:3.7.1.9-RXN" /><Reaction frameid="RXN-19490" orgid="META" resource="getxml?META:RXN-19490" /><Reaction frameid="RXN-17561" orgid="META" resource="getxml?META:RXN-17561" /><Reaction frameid="1.14.99.21-RXN" orgid="META" resource="getxml?META:1.14.99.21-RXN" /><Reaction frameid="RXN1G-129" orgid="META" resource="getxml?META:RXN1G-129" /><Reaction frameid="RXN-18815" orgid="META" resource="getxml?META:RXN-18815" /><Reaction frameid="RXN-18529" orgid="META" resource="getxml?META:RXN-18529" /><Reaction frameid="RXN0-1382" orgid="META" resource="getxml?META:RXN0-1382" /><Reaction frameid="RXN-17615" orgid="META" resource="getxml?META:RXN-17615" /><Reaction frameid="RXN66-346" orgid="META" resource="getxml?META:RXN66-346" /><Reaction frameid="RXN-14746" orgid="META" resource="getxml?META:RXN-14746" /><Reaction frameid="RXN-14744" orgid="META" resource="getxml?META:RXN-14744" /><Reaction frameid="RXN66-349" orgid="META" resource="getxml?META:RXN66-349" /><Reaction frameid="RXN-17150" orgid="META" resource="getxml?META:RXN-17150" /><Reaction frameid="RXN-16480" orgid="META" resource="getxml?META:RXN-16480" /><Reaction frameid="RXN-17122" orgid="META" resource="getxml?META:RXN-17122" /><Reaction frameid="RXN-11054" orgid="META" resource="getxml?META:RXN-11054" /><Reaction frameid="RXN-13868" orgid="META" resource="getxml?META:RXN-13868" /><Reaction frameid="RXN-16191" orgid="META" resource="getxml?META:RXN-16191" /><Reaction frameid="RXN-7593" orgid="META" resource="getxml?META:RXN-7593" /><Reaction frameid="3.5.1.27-RXN" orgid="META" resource="getxml?META:3.5.1.27-RXN" /><Reaction frameid="FORMYLTHFDEFORMYL-RXN" orgid="META" resource="getxml?META:FORMYLTHFDEFORMYL-RXN" /><Reaction frameid="ARYLFORMAMIDASE-RXN" orgid="META" resource="getxml?META:ARYLFORMAMIDASE-RXN" /><Reaction frameid="FORMYLMETHIONINE-DEFORMYLASE-RXN" orgid="META" resource="getxml?META:FORMYLMETHIONINE-DEFORMYLASE-RXN" /><Reaction frameid="TRANS-RXN-1" orgid="META" resource="getxml?META:TRANS-RXN-1" /><Reaction frameid="3.5.1.88-RXN" orgid="META" resource="getxml?META:3.5.1.88-RXN" /><Reaction frameid="RXN-15187" orgid="META" resource="getxml?META:RXN-15187" /><Reaction frameid="RXN-10063" orgid="META" resource="getxml?META:RXN-10063" /><Reaction frameid="RXN-14028" orgid="META" resource="getxml?META:RXN-14028" /><Reaction frameid="OCTADECANAL-DECARBONYLASE-RXN" orgid="META" resource="getxml?META:OCTADECANAL-DECARBONYLASE-RXN" /><Reaction frameid="RXN-10824" orgid="META" resource="getxml?META:RXN-10824" /><Reaction frameid="RXN-13557" orgid="META" resource="getxml?META:RXN-13557" /><Reaction frameid="RXN-13286" orgid="META" resource="getxml?META:RXN-13286" /><Reaction frameid="RXN-12612" orgid="META" resource="getxml?META:RXN-12612" /><Reaction frameid="PYRIMSYN1-RXN" orgid="META" resource="getxml?META:PYRIMSYN1-RXN" /><Reaction frameid="TRANS-RXN-213" orgid="META" resource="getxml?META:TRANS-RXN-213" /><Reaction frameid="RXN-12087" orgid="META" resource="getxml?META:RXN-12087" /><Reaction frameid="RXN-11318" orgid="META" resource="getxml?META:RXN-11318" /><Reaction frameid="GTP-CYCLOHYDRO-I-RXN" orgid="META" resource="getxml?META:GTP-CYCLOHYDRO-I-RXN" /><Reaction frameid="RXN-11073" orgid="META" resource="getxml?META:RXN-11073" /><Reaction frameid="RXN-8408" orgid="META" resource="getxml?META:RXN-8408" /><Reaction frameid="RXN-10056" orgid="META" resource="getxml?META:RXN-10056" /><Reaction frameid="FORMALDEHYDE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:FORMALDEHYDE-DEHYDROGENASE-RXN" /><Reaction frameid="RXN0-5409" orgid="META" resource="getxml?META:RXN0-5409" /><Reaction frameid="DIOHBUTANONEPSYN-RXN" orgid="META" resource="getxml?META:DIOHBUTANONEPSYN-RXN" /><Reaction frameid="RXN0-5253" orgid="META" resource="getxml?META:RXN0-5253" /><Reaction frameid="RXN-7592" orgid="META" resource="getxml?META:RXN-7592" /><Reaction frameid="RXN-7586" orgid="META" resource="getxml?META:RXN-7586" /><Reaction frameid="S-FORMYLGLUTATHIONE-HYDROLASE-RXN" orgid="META" resource="getxml?META:S-FORMYLGLUTATHIONE-HYDROLASE-RXN" /><Reaction frameid="RXN-2884" orgid="META" resource="getxml?META:RXN-2884" /><Reaction frameid="R146-RXN" orgid="META" resource="getxml?META:R146-RXN" /><Reaction frameid="KETOBUTFORMLY-RXN" orgid="META" resource="getxml?META:KETOBUTFORMLY-RXN" /><Reaction frameid="1.13.11.41-RXN" orgid="META" resource="getxml?META:1.13.11.41-RXN" /><Reaction frameid="FORMYL-COA-HYDROLASE-RXN" orgid="META" resource="getxml?META:FORMYL-COA-HYDROLASE-RXN" /><Reaction frameid="NN-DIMETHYLFORMAMIDASE-RXN" orgid="META" resource="getxml?META:NN-DIMETHYLFORMAMIDASE-RXN" /><Reaction frameid="FORMYLASPARTATE-DEFORMYLASE-RXN" orgid="META" resource="getxml?META:FORMYLASPARTATE-DEFORMYLASE-RXN" /><Reaction frameid="OXALATE-DECARBOXYLASE-RXN" orgid="META" resource="getxml?META:OXALATE-DECARBOXYLASE-RXN" /></appears-in-right-side-of>
+<common-name datatype="string">formate</common-name>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Formic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Formic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>for</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/for</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15740</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15740</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00142</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00142</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>277</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/277</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15740</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15740</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>283</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=283</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00058</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00058</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>64-18-6</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=64-18-6</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-73.93095<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
+</Compound>
+</ptools-xml>

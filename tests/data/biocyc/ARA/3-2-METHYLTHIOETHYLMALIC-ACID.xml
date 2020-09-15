@@ -1,0 +1,51 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:3-2-METHYLTHIOETHYLMALIC-ACID"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:3-2-METHYLTHIOETHYLMALIC-ACID</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:3-2-METHYLTHIOETHYLMALIC-ACID" detail="full" frameid="3-2-METHYLTHIOETHYLMALIC-ACID" orgid="ARA"><parent><Compound class="true" frameid="CPD-19483" orgid="ARA" resource="getxml?ARA:CPD-19483" /></parent>
+<cml><molecule formalCharge="-2" id="3-2-METHYLTHIOETHYLMALIC-ACID" title="3-%5b(2%27-methylsulfanyl)ethyl%5dmalate"><atomArray><atom elementType="C" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom1" x2="33702.0" y2="-15358.0" /><atom elementType="C" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom2" x2="12267.0" y2="-11233.0" /><atom elementType="C" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom3" x2="19412.0" y2="-15358.0" /><atom elementType="C" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom4" x2="5123.0" y2="-15358.0" /><atom elementType="C" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom5" x2="-2022.0" y2="-11233.0" /><atom elementType="C" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom6" x2="5123.0" y2="-23608.0" /><atom elementType="C" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom7" x2="-9167.0" y2="-15358.0" /><atom elementType="O" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom8" x2="-2022.0" y2="-2983.0" /><atom elementType="O" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom9" x2="-2022.0" y2="-27733.0" /><atom elementType="O" formalCharge="-1" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom10" x2="12267.0" y2="-27733.0" /><atom elementType="O" formalCharge="-1" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom11" x2="-16311.0" y2="-11233.0" /><atom elementType="O" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom12" x2="-9167.0" y2="-23608.0" /><atom elementType="S" id="3-2-METHYLTHIOETHYLMALIC-ACID-atom13" x2="26557.0" y2="-11233.0" /></atomArray>
+<bondArray><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom7 3-2-METHYLTHIOETHYLMALIC-ACID-atom12" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond1" order="2" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom5 3-2-METHYLTHIOETHYLMALIC-ACID-atom7" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond2" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom5 3-2-METHYLTHIOETHYLMALIC-ACID-atom8" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond3" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom13 3-2-METHYLTHIOETHYLMALIC-ACID-atom1" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond4" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom6 3-2-METHYLTHIOETHYLMALIC-ACID-atom10" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond5" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom6 3-2-METHYLTHIOETHYLMALIC-ACID-atom9" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond6" order="2" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom4 3-2-METHYLTHIOETHYLMALIC-ACID-atom5" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond7" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom4 3-2-METHYLTHIOETHYLMALIC-ACID-atom6" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond8" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom2 3-2-METHYLTHIOETHYLMALIC-ACID-atom4" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond9" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom3 3-2-METHYLTHIOETHYLMALIC-ACID-atom2" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond10" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom3 3-2-METHYLTHIOETHYLMALIC-ACID-atom13" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond11" order="1" /><bond atomRefs="3-2-METHYLTHIOETHYLMALIC-ACID-atom11 3-2-METHYLTHIOETHYLMALIC-ACID-atom7" id="3-2-METHYLTHIOETHYLMALIC-ACID-bond12" order="1" /></bondArray>
+<formula concise="C 7 H 10 O 5 S 1" /><float title="molecularWeight" units="g/mol">206.213</float>
+<string title="smiles">CSCCC(C(=O)[O-])C(O)C([O-])=O</string>
+</molecule>
+</cml>
+<common-name datatype="string">3-[(2'-methylsulfanyl)ethyl]malate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17402</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17402</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM5502</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM5502</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>133497</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:133497</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>25203496</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=25203496</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17212</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17212</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-87.71703</gibbs-0>
+<inchi datatype="string">InChI=1S/C7H12O5S/c1-13-3-2-4(6(9)10)5(8)7(11)12/h4-5,8H,2-3H2,1H3,(H,9,10)(H,11,12)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=UZRMQJKPFRLIDG-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">206.213</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">208.04054</monoisotopic-mw>
+<synonym datatype="string">3-[(2'-methylsulfanyl)ethyl]malic acid</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-2204" orgid="ARA" resource="getxml?ARA:RXN-2204" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-18183" orgid="ARA" resource="getxml?ARA:RXN-18183" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

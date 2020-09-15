@@ -1,0 +1,73 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-14076"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:CPD-14076</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:CPD-14076" detail="full" frameid="CPD-14076" orgid="META"><parent><Compound class="true" frameid="ALKALOID" orgid="META" resource="getxml?META:ALKALOID" /></parent>
+<cml><molecule formalCharge="1" id="CPD-14076" title="3,6-dihydronicotine"><atomArray><atom elementType="C" id="CPD-14076-atom1" x2="29014.0" y2="-24137.0" /><atom elementType="C" id="CPD-14076-atom2" x2="893.0" y2="-15509.0" /><atom elementType="C" id="CPD-14076-atom3" x2="32820.0" y2="-3093.0" /><atom elementType="C" id="CPD-14076-atom4" x2="8037.0" y2="-11384.0" /><atom elementType="C" id="CPD-14076-atom5" x2="24573.0" y2="-3299.0" /><atom elementType="C" id="CPD-14076-atom6" x2="893.0" y2="-23759.0" /><atom elementType="C" id="CPD-14076-atom7" x2="35565.0" y2="-10874.0" /><atom elementType="C" id="CPD-14076-atom8" x2="15182.0" y2="-23759.0" /><atom elementType="C" id="CPD-14076-atom9" x2="15182.0" y2="-15509.0" /><atom elementType="C" id="CPD-14076-atom10" x2="22221.0" y2="-11207.0" /><atom elementType="N" id="CPD-14076-atom11" x2="8037.0" y2="-27884.0" /><atom elementType="N" formalCharge="1" id="CPD-14076-atom12" x2="29014.0" y2="-15887.0" /><atom elementType="H" id="CPD-14076-atom13" x2="16242.0" y2="-5520.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-14076-atom7 CPD-14076-atom12" id="CPD-14076-bond1" order="1" /><bond atomRefs="CPD-14076-atom3 CPD-14076-atom5" id="CPD-14076-bond2" order="1" /><bond atomRefs="CPD-14076-atom3 CPD-14076-atom7" id="CPD-14076-bond3" order="1" /><bond atomRefs="CPD-14076-atom9 CPD-14076-atom10" id="CPD-14076-bond4" order="1" /><bond atomRefs="CPD-14076-atom10 CPD-14076-atom12" id="CPD-14076-bond5" order="1" /><bond atomRefs="CPD-14076-atom5 CPD-14076-atom10" id="CPD-14076-bond6" order="1" /><bond atomRefs="CPD-14076-atom10 CPD-14076-atom13" id="CPD-14076-bond7" order="1" /><bond atomRefs="CPD-14076-atom12 CPD-14076-atom1" id="CPD-14076-bond8" order="1" /><bond atomRefs="CPD-14076-atom11 CPD-14076-atom6" id="CPD-14076-bond9" order="1" /><bond atomRefs="CPD-14076-atom6 CPD-14076-atom2" id="CPD-14076-bond10" order="1" /><bond atomRefs="CPD-14076-atom2 CPD-14076-atom4" id="CPD-14076-bond11" order="2" /><bond atomRefs="CPD-14076-atom11 CPD-14076-atom8" id="CPD-14076-bond12" order="2" /><bond atomRefs="CPD-14076-atom4 CPD-14076-atom9" id="CPD-14076-bond13" order="1" /><bond atomRefs="CPD-14076-atom9 CPD-14076-atom8" id="CPD-14076-bond14" order="1" /></bondArray>
+<formula concise="C 10 H 17 N 2" /><float title="molecularWeight" units="g/mol">165.258</float>
+<string title="smiles">C[NH+]1([C@@H](CCC1)C2(\C=N/C\C=C/2))</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">165.258</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">164.13135</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-13060" orgid="META" resource="getxml?META:RXN-13060" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-13059" orgid="META" resource="getxml?META:RXN-13059" /></appears-in-right-side-of>
+<citation><Publication ID="META:PUB-FRIESEN90" detail="full" frameid="PUB-FRIESEN90" orgid="META"><source datatype="string">Tetrahedron Letters, 31(44):6295-6298</source>
+<title datatype="string">Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
+<year datatype="integer">1990</year>
+<author datatype="string">Friesen, Brent</author>
+<author datatype="string">Leete, Edward</author>
+</Publication>
+</citation>
+<common-name datatype="string">3,6-dihydronicotine</common-name>
+<credits><created><date datatype="date">2012-02-07</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
+</credits>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd24161</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd24161</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM97391</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM97391</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>90658036</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=90658036</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">222.597<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H16N2/c1-12-7-3-5-10(12)9-4-2-6-11-8-9/h2,4,8-10H,3,5-7H2,1H3/p+1/t9?,10-/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=FHQCTCOXKBQXGN-AXDSSHIGSA-O</inchi-key>
+</Compound>
+</ptools-xml>

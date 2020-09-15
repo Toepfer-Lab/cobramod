@@ -1,0 +1,126 @@
+# id_rxn, name |{id_meta:value,id_meta2:value}
+################### FOR BIO_OPT
+# GLUCOSE
+GLC_cb, GLC_cb|GLC_c:-1, GLC_b:1
+MALTOSE_cb,MALTOSE_cb|MALTOSE_c:-1,MALTOSE_b:1
+FRU_cb,FRU_cb|FRU_c:-1,FRU_b:1
+# TREHALOSE BIOSYNTHESIS
+TREHALOSE6PSYN_RXN_c, alpha-alpha-trehalose-phosphate synthase[c]|UDP_GLUCOSE_c:-1,GLC_6_P_c:-1,UDP_c:1,TREHALOSE_6P_c:1,PROTON_c:1
+TREHALOSEPHOSPHA_RXN_c, trehalose-phosphatase[c]|TREHALOSE_6P_c:-1,WATER_c:-1,TREHALOSE_c:1,Pi_c:1
+TREHALOSE_cb,TREHALOSE_cb|TREHALOSE_c:-1,TREHALOSE_b:1
+# Nitrogen
+sORN_cb,sORN_cb|L_ORNITHINE_c:-1,sORN_b:1
+UREA_cb,UREA_mb|UREA_c:-1,UREA_b:1
+# Other
+SHIKIMATE_cb,SHIKIMATE_cb|SHIKIMATE_c:-1,SHIKIMATE_b:1
+SHIKIMATE_pc,SHIKIMATE_pc|SHIKIMATE_p:-1,SHIKIMATE_c:1
+# Succinate
+sSUC_cb,sSUC_cb|SUC_c:-1,sSUC_b:1
+sFUM_mb,sFUM_cb|FUM_m:-1,sFUM_b:1
+MAL_cb,MAL_cb|MAL_c:-1,MAL_b:1
+# RNA
+CTP_pb,CTP_pb|CTP_p:-1,CTP_b:1
+GTP_pb,GTP_pb|GTP_p:-1,GTP_b:1
+UTP_pb,UTP_pb|UTP_p:-1,UTP_b:1
+ATP_pb,ATP_pb|ATP_p:-1,ATP_b:1
+# DNA
+DTTP_cb,DTTP_cb|DTTP_c:-1,DTTP_b:1
+DGTP_pb,DGTP_pb|DGTP_p:-1,DGTP_b:1
+DCTP_pb,DCTP_pb|DCTP_p:-1,DCTP_b:1
+DATP_pb,DATP_pb|DATP_p:-1,DATP_b:1
+#################### Extra Reaction for GLS synthesis ####################
+325-BISPHOSPHATE-NUCLEOTIDASE-RXN, c,
+GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN,c
+# seryl-glycine-Dipeptidase
+SERYL_GLY_DIPEPTIDASE_c, SERYL_GLY_DIPEPTIDASE_c | CPD_12607_c:-1 , WATER_c:-1 , SER_c:1, GLY_c:1
+
+# GLS synthesis, multiple reactions ########
+# Reductase in ER for hemoprotein
+NADPH_FERRIHEMOPROTEIN_REDUCTASE_RXN_r, NADPH—hemoprotein reductase[r]| Oxidized_hemoproteins_r:-1, NADPH_c:-1,PROTON_c:-1,Reduced_hemoproteins_r:1, NADP_c:1
+# Transamination from methionione. First part of the methionine elongation chain
+RXN-15650,c
+# 4-methylthio-2-oxopentane transport (product from prior transmination)
+CPD_479_cp,CPD_479_cp|CPD_479_c:-1,CPD_479_p:1 
+# GLUTATHIONE transport for Glutathione-S-conjugate synthasis
+GLUTATHIONE_pc, GLUTATHIONE_pc|GLUTATHIONE_p:-1, GLUTATHIONE_c:1
+GLUTATHIONE_cm, GLUTATHIONE_cm|GLUTATHIONE_c:-1, GLUTATHIONE_m:1
+# PAPS transport for sulfortransferase
+PAPS_pc,PAPS_pc | PAPS_p:-1,PAPS_c:1
+# Synthesis of homophenylalanine
+# Aminotransferase BCAT
+2.6.1.58-RXN, c
+# Transport into chloroplast BAT
+PHENYL_PYRUVATE_cp,PHENYL_PYRUVATE_cp| PHENYL_PYRUVATE_c:-1,PHENYL_PYRUVATE_p:1
+# Methylthioalkalymalate synthase (MAM)
+RXN-14462,p
+# isomerase IMPI
+IPMI_ISOPROPYLMALATE_ISO_p, IPMI_ISOPROPYLMALATE_ISO[p]|CPD_15323_p:-1, 2_BENZYL_1_HYDROXYSUCCINIC_ACID_p:1
+# DEHYDROGENASE (+ oxidative decarboxylation)
+IPMDH_ISOPROPYLMALATE_DEHYDRO_p,IPMDH_ISOPROPYLMALATE_DEHYDRO[p]| 2_BENZYL_1_HYDROXYSUCCINIC_ACID_p:-1, NAD_c:-1,NADH_c:1, CPD_15326_p:1 , CARBON_DIOXIDE_c:1
+# AMINOTRANSFERASE BCAT
+BCAT_PHENYLALANINE_TRANSAMINASE_p,BCAT_PHENYLALANINE_TRANSAMINASE_p|CPD_15326_p:-1,GLT_p:-1,CPD_15322_p:1,2_KETOGLUTARATE_p:1
+# HOMOPHENYLALANINE TRANSPORT
+CPD_15322_pc,CPD_15322_pc| CPD_15322_p:-1, CPD_15322_c:1
+
+###### GLS from Homomethionine ######
+# HOMOMETHIONINE transport
+HOMOMETHIONINE_pc, HOMOMETHIONINE_pc|HOMOMETHIONINE_p:-1, HOMOMETHIONINE_c:1
+# First reactions located in ER (membrane)
+RXN_2206_r, RXN_2206_r| HOMOMETHIONINE_c:-1, OXYGEN_MOLECULE_c:-2, Reduced_hemoproteins_r:-2, 3_METHYLTHIOPROPANALDOXIME_c:1, CARBON_DIOXIDE_c:1, Oxidized_hemoproteins_r:2, WATER_c:3
+RXN_11414_r, RXN_11414_r| 3_METHYLTHIOPROPANALDOXIME_c:-1, OXYGEN_MOLECULE_c:-1, Reduced_hemoproteins_r:-1, CPD_12389_c:1, Oxidized_hemoproteins_r:1, WATER_c:1
+
+###### GLS from dihomomethionine
+# DIHOMOMETHIONINE transport
+CPDQT_340_pc, CPDQT_340_pc | CPDQT_340_p:-1,CPDQT_340_c:1
+# First reactions located in ER (membrane)
+RXNQT_4309_r,RXNQT_4309_r|CPDQT_340_c:-1,OXYGEN_MOLECULE_c:-2, Reduced_hemoproteins_r:-2, CARBON_DIOXIDE_c:1 ,CPDQT_341_c:1, Oxidized_hemoproteins_r:2,WATER_c:3
+RXN_11415_r,RXN_11415_r|CPDQT_341_c:-1, OXYGEN_MOLECULE_c:-1, Reduced_hemoproteins_r:-1, CPD_12392_c:1, Oxidized_hemoproteins_r:1, WATER_c:1
+
+###### GLS from trihomomethionine
+# TRIHOMOMETHIONINE transport
+CPDQT_404_pc, CPDQT_404_pc| CPDQT_404_p:-1, CPDQT_404_c:1
+# First reactions located in ER (membrane)
+RXNQT_4310_r,RXNQT_4310_r|CPDQT_404_c:-1, OXYGEN_MOLECULE_c:-2,Reduced_hemoproteins_r:-2, CARBON_DIOXIDE_c:1,CPDQT_343_c:1, Oxidized_hemoproteins_r:2,WATER_c:3
+RXN_11416_r,RXNQT_4310_r|CPDQT_343_c:-1, OXYGEN_MOLECULE_c:-1, Reduced_hemoproteins_r:-1, CPD_12395_c:1,Oxidized_hemoproteins_r:1, WATER_c:1
+
+###### GLS from tetrahomomethionine
+# tetrahomomethionine transport
+CPDQT_349_pc, CPDQT_349_pc| CPDQT_349_p:-1, CPDQT_349_c:1
+# First reactions located in ER (membrane)
+RXNQT_4311_r,RXNQT_4311_r| CPDQT_349_c:-1,OXYGEN_MOLECULE_c:-2,Reduced_hemoproteins_r:-2, CARBON_DIOXIDE_c:1,CPDQT_405_c:1,Oxidized_hemoproteins_r:2,WATER_c:3
+RXN_11417_r,RXN_11417_r| CPDQT_405_c:-1,OXYGEN_MOLECULE_c:-1,Reduced_hemoproteins_r:-1 , CPD_12398_c:1,Oxidized_hemoproteins_r:1,WATER_c:1
+
+###### GLS from pentahomomethionine
+# pentahomomethionine transport
+CPDQT_256_pc, CPDQT_256_pc| CPDQT_256_p:-1, CPDQT_256_c:1
+# First reactions located in ER (membrane)
+RXNQT_4312_r,RXNQT_4312_r| CPDQT_256_c:-1,OXYGEN_MOLECULE_c:-2,Reduced_hemoproteins_r:-2, CARBON_DIOXIDE_c:1,CPDQT_350_c:1, Oxidized_hemoproteins_r:2,WATER_c:3
+RXN_11418_r,RXN_11418_r| CPDQT_350_c:-1,OXYGEN_MOLECULE_c:-1, Reduced_hemoproteins_r:-1, CPD_12401_c:1, Oxidized_hemoproteins_r:1, WATER_c:1
+
+###### GLS from hexahomomethionine
+# hexahomomethionine transport
+CPDQT_277_pc,CPDQT_277_pc| CPDQT_277_p:-1, CPDQT_277_c:1
+# First reactions located in ER (membrane)
+RXNQT_4313_r,RXNQT_4313_r| CPDQT_277_c:-1,OXYGEN_MOLECULE_c:-2, Reduced_hemoproteins_r:-2 , CARBON_DIOXIDE_c:1,CPDQT_262_c:1,Oxidized_hemoproteins_r:2, WATER_c:3
+RXN_11419_r,RXN_11419_r| CPDQT_262_c:-1,OXYGEN_MOLECULE_c:-1,Reduced_hemoproteins_r:-1 , CPD_12404_c:1,Oxidized_hemoproteins_r:1,WATER_c:1
+
+###### GLS from Tryptophan
+# First reactions located in plastid
+RXN-12061, p
+RXN-12062, p
+RXN-12063, p
+# Indole-3-oxime transport
+INDOLE_3_ACETALDOXIME_pc,INDOLE_3_ACETALDOXIME_pc| INDOLE_3_ACETALDOXIME_p:-1,INDOLE_3_ACETALDOXIME_c:1
+# oxydation in ER (proof from prediction in TAIR)
+RXN_11413_r,RXN_11413_r| INDOLE_3_ACETALDOXIME_c:-1, OXYGEN_MOLECULE_c:-1, Reduced_hemoproteins_r:-1, CPD_12386_c:1, Oxidized_hemoproteins_r:1, WATER_c:1
+####### Complete GLS from phenylalanine
+R090140_r, CYP79F-oxygenase| OXYGEN_MOLECULE_c:-2, Reduced_hemoproteins_r:-2,CPD_15322_c:-1,WATER_c:3,CARBON_DIOXIDE_c: 1,Oxidized_hemoproteins_r:2 ,3_PHENYLPROPANAL_OXIME_c:1
+R090141_r, CYP83-oxygenase| Reduced_hemoproteins_r:-1, OXYGEN_MOLECULE_c:-1, 3_PHENYLPROPANAL_OXIME_c:-1, WATER_c:1, Oxidized_hemoproteins_r:1,3_PHENYLPROPANENITRILE_OXIDE_c:1
+
+R090142_c, Glutathione-S-transferase|3_PHENYLPROPANENITRILE_OXIDE_c:-1, GLUTATHIONE_c:-1,  3_PHENYLPROPYLHYDROXIMOY_GLUTATHIONE_c:1, WATER_c:1
+R090143_c, Glutamyl-transpeptidase | WATER_c:-1, 3_PHENYLPROPYLHYDROXIMOY_GLUTATHIONE_c:-1, GLT_c:1, 3_PHENYLPROPYLHYDROXIMOY_CYS_GLY_c:1
+
+R090144_c, SUR1/ alkylthiohydroximate C-S lyase| WATER_c:-1, 3_PHENYLPROPYLHYDROXIMOY_CYS_GLY_c:-1, 3_PHENYLPROPANTHIOHYDROXIMATE_c:1, CPD_12607_c:1
+
+R090145_c,UGT74/glucosyltransferase|UDP_GLUCOSE_c:-1, 3_PHENYLPROPANTHIOHYDROXIMATE_c:-1, UDP_c:1, PROTON_c:1,2_PHENYLETHYL_DESULFOGLUCOSINOLATE_c:1
+R090146_c, SOT16/ desulfoglucosinolate sulfotransferase| PAPS_c:-1, 2_PHENYLETHYL_DESULFOGLUCOSINOLATE_c:-1, 3_5_ADP_c:1, PROTON_c:1, CPD_19507_c:1

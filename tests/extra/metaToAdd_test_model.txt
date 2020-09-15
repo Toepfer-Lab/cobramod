@@ -1,0 +1,21 @@
+# Metabolites for testModel
+WATER, e
+WATER, c
+WATER, p
+PROTON, e
+PROTON, c
+NITRATE,e
+NITRATE,c
+CARBON-DIOXIDE,c
+CARBON-DIOXIDE,e
+# Others
+NAD, c
+NADH, c
+Oxidized-ferredoxins, c
+Reduced-ferredoxins, c
+GLT, c
+MAL, c
+CO-A,c
+GAP, c
+SUCROSE, c
+CIT, c

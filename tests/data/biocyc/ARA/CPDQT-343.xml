@@ -1,0 +1,60 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-343"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-343</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-343" detail="full" frameid="CPDQT-343" orgid="ARA"><parent><Compound class="true" frameid="CPD-19472" orgid="ARA" resource="getxml?ARA:CPD-19472" /></parent>
+<cml><molecule formalCharge="0" id="CPDQT-343" title="(E)-6-(methylsulfanyl)hexanal+oxime"><atomArray><atom elementType="C" id="CPDQT-343-atom1" x2="2514.0" y2="-2327.0" /><atom elementType="C" id="CPDQT-343-atom2" x2="-1058.0" y2="-1914.0" /><atom elementType="C" id="CPDQT-343-atom3" x2="-344.0" y2="-2327.0" /><atom elementType="C" id="CPDQT-343-atom4" x2="-1773.0" y2="-2327.0" /><atom elementType="C" id="CPDQT-343-atom5" x2="370.0" y2="-1914.0" /><atom elementType="C" id="CPDQT-343-atom6" x2="-2488.0" y2="-1914.0" /><atom elementType="C" id="CPDQT-343-atom7" x2="1085.0" y2="-2327.0" /><atom elementType="N" id="CPDQT-343-atom8" x2="-3203.0" y2="-2327.0" /><atom elementType="O" id="CPDQT-343-atom9" x2="-3917.0" y2="-1915.0" /><atom elementType="S" id="CPDQT-343-atom10" x2="1800.0" y2="-1914.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-343-atom4 CPDQT-343-atom6" id="CPDQT-343-bond1" order="1" /><bond atomRefs="CPDQT-343-atom3 CPDQT-343-atom2" id="CPDQT-343-bond2" order="1" /><bond atomRefs="CPDQT-343-atom5 CPDQT-343-atom7" id="CPDQT-343-bond3" order="1" /><bond atomRefs="CPDQT-343-atom5 CPDQT-343-atom3" id="CPDQT-343-bond4" order="1" /><bond atomRefs="CPDQT-343-atom2 CPDQT-343-atom4" id="CPDQT-343-bond5" order="1" /><bond atomRefs="CPDQT-343-atom8 CPDQT-343-atom9" id="CPDQT-343-bond6" order="1" /><bond atomRefs="CPDQT-343-atom8 CPDQT-343-atom6" id="CPDQT-343-bond7" order="2" /><bond atomRefs="CPDQT-343-atom7 CPDQT-343-atom10" id="CPDQT-343-bond8" order="1" /><bond atomRefs="CPDQT-343-atom10 CPDQT-343-atom1" id="CPDQT-343-bond9" order="1" /></bondArray>
+<formula concise="C 7 H 15 N 1 O 1 S 1" /><float title="molecularWeight" units="g/mol">161.262</float>
+<string title="smiles">CSCCCCC/C=N/O</string>
+</molecule>
+</cml>
+<comment datatype="string">This compound was entered into AraCyc based on its presence in the
+&lt;A href="http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007399"&gt;KNApSAcK database&lt;/A&gt;
+which provides reference(s) concerning this compound in Arabidopsis.
+</comment>
+<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-6-(methylsulfanyl)hexanal oxime</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17436</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17436</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM3517</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM3517</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>134681</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:134681</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>25010756</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=25010756</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17246</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17246</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007399</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007399</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">138.5868</gibbs-0>
+<inchi datatype="string">InChI=1S/C7H15NOS/c1-10-7-5-3-2-4-6-8-9/h6,9H,2-5,7H2,1H3/b8-6+</inchi>
+<inchi-key datatype="string">InChIKey=OKKDZUZMZMLOGY-SOFGYWHQSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">161.262</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">161.08743</monoisotopic-mw>
+<synonym datatype="string">(&lt;i&gt;E&lt;/i&gt;)-6-(methylthio)hexanal oxime</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-18164" orgid="ARA" resource="getxml?ARA:RXN-18164" /><Reaction frameid="RXN-11416" orgid="ARA" resource="getxml?ARA:RXN-11416" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXNQT-4310" orgid="ARA" resource="getxml?ARA:RXNQT-4310" /><Reaction frameid="RXN-13023" orgid="ARA" resource="getxml?ARA:RXN-13023" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

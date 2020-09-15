@@ -1,0 +1,57 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-30"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-30</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-30" detail="full" frameid="CPDQT-30" orgid="ARA"><parent><Compound class="true" frameid="CPD-19485" orgid="ARA" resource="getxml?ARA:CPD-19485" /></parent>
+<cml><molecule formalCharge="-1" id="CPDQT-30" title="9-(methylsulfanyl)-2-oxononanoate"><atomArray><atom elementType="C" id="CPDQT-30-atom1" x2="-9321.0" y2="2125.0" /><atom elementType="C" id="CPDQT-30-atom2" x2="-45043.0" y2="6250.0" /><atom elementType="C" id="CPDQT-30-atom3" x2="-52187.0" y2="2125.0" /><atom elementType="C" id="CPDQT-30-atom4" x2="-37898.0" y2="2125.0" /><atom elementType="C" id="CPDQT-30-atom5" x2="-59331.0" y2="6250.0" /><atom elementType="C" id="CPDQT-30-atom6" x2="-30753.0" y2="6250.0" /><atom elementType="C" id="CPDQT-30-atom7" x2="-66475.0" y2="2125.0" /><atom elementType="C" id="CPDQT-30-atom8" x2="-23609.0" y2="2125.0" /><atom elementType="C" id="CPDQT-30-atom9" x2="-73620.0" y2="6250.0" /><atom elementType="C" id="CPDQT-30-atom10" x2="-80764.0" y2="2125.0" /><atom elementType="O" id="CPDQT-30-atom11" x2="-73620.0" y2="14500.0" /><atom elementType="O" formalCharge="-1" id="CPDQT-30-atom12" x2="-87909.0" y2="6250.0" /><atom elementType="O" id="CPDQT-30-atom13" x2="-80764.0" y2="-6125.0" /><atom elementType="S" id="CPDQT-30-atom14" x2="-16466.0" y2="6250.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-30-atom14 CPDQT-30-atom1" id="CPDQT-30-bond1" order="1" /><bond atomRefs="CPDQT-30-atom8 CPDQT-30-atom14" id="CPDQT-30-bond2" order="1" /><bond atomRefs="CPDQT-30-atom6 CPDQT-30-atom8" id="CPDQT-30-bond3" order="1" /><bond atomRefs="CPDQT-30-atom10 CPDQT-30-atom13" id="CPDQT-30-bond4" order="2" /><bond atomRefs="CPDQT-30-atom4 CPDQT-30-atom6" id="CPDQT-30-bond5" order="1" /><bond atomRefs="CPDQT-30-atom10 CPDQT-30-atom12" id="CPDQT-30-bond6" order="1" /><bond atomRefs="CPDQT-30-atom9 CPDQT-30-atom10" id="CPDQT-30-bond7" order="1" /><bond atomRefs="CPDQT-30-atom9 CPDQT-30-atom11" id="CPDQT-30-bond8" order="2" /><bond atomRefs="CPDQT-30-atom7 CPDQT-30-atom9" id="CPDQT-30-bond9" order="1" /><bond atomRefs="CPDQT-30-atom5 CPDQT-30-atom7" id="CPDQT-30-bond10" order="1" /><bond atomRefs="CPDQT-30-atom3 CPDQT-30-atom5" id="CPDQT-30-bond11" order="1" /><bond atomRefs="CPDQT-30-atom2 CPDQT-30-atom3" id="CPDQT-30-bond12" order="1" /><bond atomRefs="CPDQT-30-atom4 CPDQT-30-atom2" id="CPDQT-30-bond13" order="1" /></bondArray>
+<formula concise="C 10 H 17 O 3 S 1" /><float title="molecularWeight" units="g/mol">217.302</float>
+<string title="smiles">CSCCCCCCCC(=O)C([O-])=O</string>
+</molecule>
+</cml>
+<common-name datatype="string">9-(methylsulfanyl)-2-oxononanoate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17418</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17418</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>80974</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:80974</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM3822</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM3822</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17228</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17228</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>44237169</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=44237169</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007654</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007654</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">81.71699</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H18O3S/c1-14-8-6-4-2-3-5-7-9(11)10(12)13/h2-8H2,1H3,(H,12,13)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=MJGXIOUQXYXGLP-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">217.302</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">218.09767</monoisotopic-mw>
+<synonym datatype="string">9-(methylthio)-2-oxononanoic acid</synonym>
+<synonym datatype="string">9-(methylthio)-2-oxononanoate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXNQT-4348" orgid="ARA" resource="getxml?ARA:RXNQT-4348" /><Reaction frameid="RXNQT-4175" orgid="ARA" resource="getxml?ARA:RXNQT-4175" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-18203" orgid="ARA" resource="getxml?ARA:RXN-18203" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

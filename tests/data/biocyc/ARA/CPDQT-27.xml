@@ -1,0 +1,57 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPDQT-27"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPDQT-27</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPDQT-27" detail="full" frameid="CPDQT-27" orgid="ARA"><parent><Compound class="true" frameid="CPD-19485" orgid="ARA" resource="getxml?ARA:CPD-19485" /></parent>
+<cml><molecule formalCharge="-1" id="CPDQT-27" title="6-(methylsulfanyl)-2-oxohexanoate"><atomArray><atom elementType="C" id="CPDQT-27-atom1" x2="-10991.0" y2="5875.0" /><atom elementType="C" id="CPDQT-27-atom2" x2="-39569.0" y2="5875.0" /><atom elementType="C" id="CPDQT-27-atom3" x2="-32425.0" y2="1750.0" /><atom elementType="C" id="CPDQT-27-atom4" x2="-46714.0" y2="1750.0" /><atom elementType="C" id="CPDQT-27-atom5" x2="-25281.0" y2="5875.0" /><atom elementType="C" id="CPDQT-27-atom6" x2="-53859.0" y2="5875.0" /><atom elementType="C" id="CPDQT-27-atom7" x2="-61003.0" y2="1750.0" /><atom elementType="O" id="CPDQT-27-atom8" x2="-53859.0" y2="14125.0" /><atom elementType="O" formalCharge="-1" id="CPDQT-27-atom9" x2="-68148.0" y2="5875.0" /><atom elementType="O" id="CPDQT-27-atom10" x2="-61003.0" y2="-6500.0" /><atom elementType="S" id="CPDQT-27-atom11" x2="-18136.0" y2="1750.0" /></atomArray>
+<bondArray><bond atomRefs="CPDQT-27-atom7 CPDQT-27-atom10" id="CPDQT-27-bond1" order="2" /><bond atomRefs="CPDQT-27-atom11 CPDQT-27-atom1" id="CPDQT-27-bond2" order="1" /><bond atomRefs="CPDQT-27-atom7 CPDQT-27-atom9" id="CPDQT-27-bond3" order="1" /><bond atomRefs="CPDQT-27-atom6 CPDQT-27-atom7" id="CPDQT-27-bond4" order="1" /><bond atomRefs="CPDQT-27-atom6 CPDQT-27-atom8" id="CPDQT-27-bond5" order="2" /><bond atomRefs="CPDQT-27-atom4 CPDQT-27-atom6" id="CPDQT-27-bond6" order="1" /><bond atomRefs="CPDQT-27-atom2 CPDQT-27-atom4" id="CPDQT-27-bond7" order="1" /><bond atomRefs="CPDQT-27-atom3 CPDQT-27-atom2" id="CPDQT-27-bond8" order="1" /><bond atomRefs="CPDQT-27-atom5 CPDQT-27-atom3" id="CPDQT-27-bond9" order="1" /><bond atomRefs="CPDQT-27-atom11 CPDQT-27-atom5" id="CPDQT-27-bond10" order="1" /></bondArray>
+<formula concise="C 7 H 11 O 3 S 1" /><float title="molecularWeight" units="g/mol">175.222</float>
+<string title="smiles">CSCCCCC(=O)C([O-])=O</string>
+</molecule>
+</cml>
+<common-name datatype="string">6-(methylsulfanyl)-2-oxohexanoate</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17406</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17406</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>80965</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:80965</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM3819</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM3819</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17216</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17216</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>44237195</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=44237195</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007648</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007648</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">15.23026</gibbs-0>
+<inchi datatype="string">InChI=1S/C7H12O3S/c1-11-5-3-2-4-6(8)7(9)10/h2-5H2,1H3,(H,9,10)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=GRUGZHAOXOPASC-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">175.222</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">176.05072</monoisotopic-mw>
+<synonym datatype="string">6-(methylthio)-2-oxohexanoic acid</synonym>
+<synonym datatype="string">6-(methylthio)-2-oxohexanoate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXNQT-4345" orgid="ARA" resource="getxml?ARA:RXNQT-4345" /><Reaction frameid="RXNQT-4166" orgid="ARA" resource="getxml?ARA:RXNQT-4166" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-18209" orgid="ARA" resource="getxml?ARA:RXN-18209" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

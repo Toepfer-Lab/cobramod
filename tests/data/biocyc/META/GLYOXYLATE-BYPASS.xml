@@ -1,0 +1,241 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:GLYOXYLATE-BYPASS"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:GLYOXYLATE-BYPASS</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Pathway ID="META:GLYOXYLATE-BYPASS" detail="full" frameid="GLYOXYLATE-BYPASS" orgid="META"><parent><Pathway class="true" frameid="Energy-Metabolism" orgid="META" resource="getxml?META:Energy-Metabolism" /></parent>
+<pathway-link><Compound frameid="ACETYL-COA" orgid="META" resource="getxml?META:ACETYL-COA" /><incoming-link-target><Pathway frameid="PYRUVDEHYD-PWY" orgid="META" resource="getxml?META:PYRUVDEHYD-PWY" /></incoming-link-target>
+</pathway-link>
+<pathway-link><Compound frameid="SUC" orgid="META" resource="getxml?META:SUC" /><link-target><Pathway class="true" frameid="Biosynthesis" orgid="META" resource="getxml?META:Biosynthesis" /></link-target>
+</pathway-link>
+<reaction-ordering><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /><predecessor-reactions><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /><predecessor-reactions><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEHYDR-RXN" /><predecessor-reactions><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="META" resource="getxml?META:ISOCIT-CLEAV-RXN" /><predecessor-reactions><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEHYDR-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="MALSYN-RXN" orgid="META" resource="getxml?META:MALSYN-RXN" /><predecessor-reactions><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="META" resource="getxml?META:ISOCIT-CLEAV-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /><predecessor-reactions><Reaction frameid="MALSYN-RXN" orgid="META" resource="getxml?META:MALSYN-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="MAL" orgid="META" resource="getxml?META:MAL" /></left-primaries>
+<right-primaries><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CIT" orgid="META" resource="getxml?META:CIT" /></left-primaries>
+<right-primaries><Compound frameid="CIS-ACONITATE" orgid="META" resource="getxml?META:CIS-ACONITATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /><Compound frameid="ACETYL-COA" orgid="META" resource="getxml?META:ACETYL-COA" /></left-primaries>
+<right-primaries><Compound frameid="CIT" orgid="META" resource="getxml?META:CIT" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEHYDR-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CIS-ACONITATE" orgid="META" resource="getxml?META:CIS-ACONITATE" /></left-primaries>
+<right-primaries><Compound frameid="THREO-DS-ISO-CITRATE" orgid="META" resource="getxml?META:THREO-DS-ISO-CITRATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="META" resource="getxml?META:ISOCIT-CLEAV-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="THREO-DS-ISO-CITRATE" orgid="META" resource="getxml?META:THREO-DS-ISO-CITRATE" /></left-primaries>
+<right-primaries><Compound frameid="SUC" orgid="META" resource="getxml?META:SUC" /><Compound frameid="GLYOX" orgid="META" resource="getxml?META:GLYOX" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="MALSYN-RXN" orgid="META" resource="getxml?META:MALSYN-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="GLYOX" orgid="META" resource="getxml?META:GLYOX" /><Compound frameid="ACETYL-COA" orgid="META" resource="getxml?META:ACETYL-COA" /></left-primaries>
+<right-primaries><Compound frameid="MAL" orgid="META" resource="getxml?META:MAL" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEHYDR-RXN" /><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="META" resource="getxml?META:ISOCIT-CLEAV-RXN" /><Reaction frameid="MALSYN-RXN" orgid="META" resource="getxml?META:MALSYN-RXN" /></reaction-list>
+<species><Organism ID="META:TAX-511145" class="true" detail="full" frameid="TAX-511145" orgid="META"><parent><Organism class="true" frameid="TAX-83333" orgid="META" resource="getxml?META:TAX-83333" /></parent>
+<rank>strain</rank>
+<strain-name datatype="string">K-12 substr. MG1655</strain-name>
+<synonym datatype="string">Escherichia coli str. K-12 substr. MG1655</synonym>
+<synonym datatype="string">Escherichia coli str. MG1655</synonym>
+<synonym datatype="string">Escherichia coli str. K12 substr. MG1655</synonym>
+<synonym datatype="string">Escherichia coli strain MG1655</synonym>
+<synonym datatype="string">Escherichia coli MG1655</synonym>
+<citation><Publication ID="META:PUB-23143106" detail="full" frameid="PUB-23143106" orgid="META"><pubmed-id datatype="string">23143106</pubmed-id>
+<source datatype="string">Nucleic Acids Res 41(Database issue);D605-12</source>
+<title datatype="string">EcoCyc: fusing model organism databases with systems biology.</title>
+<year datatype="integer">2013</year>
+<author datatype="string">Keseler IM</author>
+<author datatype="string">Mackie A</author>
+<author datatype="string">Peralta-Gil M</author>
+<author datatype="string">Santos-Zavaleta A</author>
+<author datatype="string">Gama-Castro S</author>
+<author datatype="string">Bonavides-Martinez C</author>
+<author datatype="string">Fulcher C</author>
+<author datatype="string">Huerta AM</author>
+<author datatype="string">Kothari A</author>
+<author datatype="string">Krummenacker M</author>
+<author datatype="string">Latendresse M</author>
+<author datatype="string">Muniz-Rascado L</author>
+<author datatype="string">Ong Q</author>
+<author datatype="string">Paley S</author>
+<author datatype="string">Schroder I</author>
+<author datatype="string">Shearer AG</author>
+<author datatype="string">Subhraveti P</author>
+<author datatype="string">Travers M</author>
+<author datatype="string">Weerasinghe D</author>
+<author datatype="string">Weiss V</author>
+<author datatype="string">Collado-Vides J</author>
+<author datatype="string">Gunsalus RP</author>
+<author datatype="string">Paulsen I</author>
+<author datatype="string">Karp PD</author>
+</Publication>
+</citation>
+<comment datatype="string">EcoCyc is a model-organism database for &lt;i&gt;Escherichia coli&lt;/i&gt; K-12 MG1655.  For more information, see URL EcoCyc.org.
+&lt;p&gt;
+The &lt;i&gt;E. coli&lt;/i&gt; genome sequence used in EcoCyc is GenBank accession number U00096.2.  Despite the
+involvement of EcoCyc staff in ongoing updates to the U00096 record, some annotation differences may
+be found between U00096 and EcoCyc, such as due to recent updates to EcoCyc.
+</comment>
+<common-name datatype="string">Escherichia coli</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</Organism>
+</species>
+<species><Organism ID="META:TAX-2246" class="true" detail="full" frameid="TAX-2246" orgid="META"><parent><Organism class="true" frameid="TAX-2251" orgid="META" resource="getxml?META:TAX-2251" /></parent>
+<rank>species</rank>
+<synonym datatype="string">Haloferax sp. BRTH2</synonym>
+<synonym datatype="string">Halobacterium volcanii</synonym>
+<common-name datatype="string">Haloferax volcanii</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2246</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2246</dblink-URL>
+</dblink>
+</Organism>
+</species>
+<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
+<rank>strain</rank>
+<strain-name datatype="string">col</strain-name>
+<synonym datatype="string">Arabidopsis thaliana col</synonym>
+<common-name datatype="string">Arabidopsis thaliana</common-name>
+</Organism>
+</species>
+<super-pathways><Pathway frameid="TCA-GLYOX-BYPASS" orgid="META" resource="getxml?META:TCA-GLYOX-BYPASS" /><Pathway frameid="PWY-561" orgid="META" resource="getxml?META:PWY-561" /></super-pathways>
+<synonym datatype="string">glyoxylate bypass</synonym>
+<synonym datatype="string">glyoxylate shunt</synonym>
+<taxonomic-range><Organism ID="META:TAX-2157" class="true" detail="full" frameid="TAX-2157" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
+<rank>superkingdom</rank>
+<synonym datatype="string">Metabacteria</synonym>
+<synonym datatype="string">Mendosicutes</synonym>
+<synonym datatype="string">Archaebacteria</synonym>
+<common-name datatype="string">Archaea</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2157</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2157</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID="META:TAX-2759" class="true" detail="full" frameid="TAX-2759" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
+<rank>superkingdom</rank>
+<synonym datatype="string">eukaryotes &lt;common name&gt;</synonym>
+<synonym datatype="string">eukaryotes</synonym>
+<synonym datatype="string">Eukaryotae</synonym>
+<synonym datatype="string">Eukarya</synonym>
+<synonym datatype="string">eucaryotes</synonym>
+<synonym datatype="string">Eucaryotae</synonym>
+<synonym datatype="string">Eucarya</synonym>
+<common-name datatype="string">Eukaryota</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2759</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2759</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID="META:TAX-2" class="true" detail="full" frameid="TAX-2" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
+<rank>superkingdom</rank>
+<synonym datatype="string">eubacteria</synonym>
+<synonym datatype="string">Bacteria</synonym>
+<common-name datatype="string">Bacteria &lt;bacteria&gt;</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
+</dblink>
+</Organism>
+</taxonomic-range>
+<citation><Publication ID="META:PUB-11173291" detail="full" frameid="PUB-11173291" orgid="META"><pubmed-id datatype="string">11173291</pubmed-id>
+<source datatype="string">Trends Plant Sci 2001;6(2);72-8</source>
+<title datatype="string">Re-examining the role of the glyoxylate cycle in oilseeds.</title>
+<year datatype="integer">2001</year>
+<author datatype="string">Eastmond PJ</author>
+<author datatype="string">Graham IA</author>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-BROWNLEADER97" detail="full" frameid="PUB-BROWNLEADER97" orgid="META"><source datatype="string">Plant Biochemistry, Eds Dey &amp; Harborne, Academic Press,  Harcourt Brace &amp; Co, Publishers, London</source>
+<title datatype="string">Carbohydrate metabolism: primary metabolism of monosaccharides</title>
+<year datatype="integer">1997</year>
+<author datatype="string">Brownleader, M.D.</author>
+<author datatype="string">Harborne, J.B.</author>
+<author datatype="string">Dey, P.M.</author>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID="META:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="META"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+<common-name datatype="string">Inferred from experiment</common-name>
+</Evidence-Code>
+<Publication frameid="PUB-11173291" orgid="META" resource="#META:PUB-11173291" /></evidence>
+<evidence><Evidence-Code ID="META:EV-EXP-IDA" class="true" detail="full" frameid="EV-EXP-IDA" orgid="META"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="#META:EV-EXP" /></parent>
+<comment datatype="string">IDA inferred from direct assay.
+
+&lt;br&gt;
+The assertion was inferred from a direct experimental assay such as
+&lt;ul&gt;
+    &lt;li&gt; Enzyme assays
+    &lt;li&gt; In vitro reconstitution (e.g. transcription)
+    &lt;li&gt; Immunofluorescence
+    &lt;li&gt; Cell fractionation
+&lt;/ul&gt;</comment>
+<common-name datatype="string">Inferred from direct assay</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-13430766" detail="full" frameid="PUB-13430766" orgid="META"><pubmed-id datatype="string">13430766</pubmed-id>
+<source datatype="string">Nature 179(4568);988-91</source>
+<title datatype="string">Synthesis of cell constituents from C2-units by a modified tricarboxylic acid cycle.</title>
+<year datatype="integer">1957</year>
+<author datatype="string">Kornberg, HL</author>
+<author datatype="string">Krebs, HA</author>
+</Publication>
+</evidence>
+<comment datatype="string">The glyoxylate cycle is a sequence of anaplerotic reactions (reactions that form metabolic intermediates for biosynthesis) that enables an organism to use substrates that enter central carbon metabolism at the level of &lt;a href="/compound?orgid=META&amp;id=ACETYL-COA"&gt;acetyl-CoA&lt;/a&gt; as the sole carbon source. Such substrates include fatty acids, alcohols, and esters (often the products of fermentation),
+as well as waxes, alkenes, and methylated compounds. The pathway does not occur in vertebrates, but it is found in plants and certain bacteria, fungi, and invertebrates.
+&lt;p&gt;
+The pathway is essentially a modified version of the &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=TCA"&gt;TCA cycle I (prokaryotic)&lt;/a&gt; that bypasses those steps in the cycle that lead to a loss of &lt;a href="/compound?orgid=META&amp;id=CARBON-DIOXIDE"&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt;. Acetyl-CoA enters the cycle at two steps, but no carbon escapes it in the form of &lt;a href="/compound?orgid=META&amp;id=CARBON-DIOXIDE"&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt;.
+&lt;p&gt;
+The glyoxylate cycle uses a two-step bypass. One key enzyme, &lt;a href="/gene?orgid=META&amp;id=MONOMER-1601"&gt;isocitrate lyase&lt;/a&gt; (EC 4.1.3.1), converts &lt;a href="/compound?orgid=META&amp;id=THREO-DS-ISO-CITRATE"&gt;D-&lt;i&gt;threo&lt;/i&gt;-isocitrate&lt;/a&gt; to form &lt;a href="/compound?orgid=META&amp;id=SUC"&gt;succinate&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=GLYOX"&gt;glyoxylate&lt;/a&gt;. A second key enzyme, &lt;a href="/META/NEW-IMAGE?type=ENZYME&amp;object=CPLX-1403"&gt;malate synthase&lt;/a&gt; (EC 2.3.3.9), condenses glyoxylate and a second molecule of &lt;a href="/compound?orgid=META&amp;id=ACETYL-COA"&gt;acetyl-CoA&lt;/a&gt; to form &lt;a href="/compound?orgid=META&amp;id=MAL"&gt;(&lt;i&gt;S&lt;/i&gt;)-malate&lt;/a&gt;. The subsequent oxidation of malate regenerates the initial acetyl-CoA acceptor molecule of the TCA cycle, &lt;a href="/compound?orgid=META&amp;id=OXALACETIC_ACID"&gt;oxaloacetate&lt;/a&gt;. Thus, the &lt;a href="/compound?orgid=META&amp;id=SUC"&gt;succinate&lt;/a&gt; that was formed by &lt;a href="/gene?orgid=META&amp;id=MONOMER-1601"&gt;isocitrate lyase&lt;/a&gt; (EC 4.1.3.1) can be withdrawn from the cycle and used for cell carbon biosynthesis.
+&lt;p&gt;
+The pathway was originally discovered in bacteria [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/13430766"&gt;Kornberg57&lt;/a&gt;], but later was found to operate in some eukaryotic organisms as well. In plants the cycle is invovled in the metabolism of storage oils during germination of seeds [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bBrownleade97%5d"&gt;Brownleader97&lt;/a&gt;]. The cycle also operates in developing eggs of nematodes, where it converts triacylglycerols to carbohydrates [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/627278"&gt;Patel78&lt;/a&gt;].
+&lt;p&gt;
+In &lt;a href="/META/NEW-IMAGE?object=TAX-562"&gt;&lt;i&gt;Escherichia coli&lt;/i&gt;&lt;/a&gt; the pathway is active when growth on 2 carbon compounds requires conservation of 4 carbon TCA intermediates. Two acetyl-CoA are taken up per turn.  The glyoxylate cycle is repressed during growth on glucose and induced by growth on acetate [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/2512996"&gt;Cortay89&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/6378912"&gt;Walsh84&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/6389540"&gt;LaPorte84&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/6329757"&gt;Nimmo84&lt;/a&gt;].
+&lt;p&gt;
+It should be noted that some organisms possess alternative pathways that convert &lt;a href="/compound?orgid=META&amp;id=ACETYL-COA"&gt;acetyl-CoA&lt;/a&gt; to 4 carbon biosynthetic intermediates, such as the &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5741"&gt;ethylmalonyl-CoA pathway&lt;/a&gt; and the &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6728"&gt;methylaspartate cycle&lt;/a&gt;.</comment>
+<common-name datatype="string">glyoxylate cycle</common-name>
+<credits><revised><date datatype="date">2007-12-04</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>ECOCYC</dblink-db>
+<dblink-oid>GLYOXYLATE-BYPASS</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://biocyc.org/ECOLI/new-image?object=GLYOXYLATE-BYPASS</dblink-URL>
+</dblink>
+<enzymes-not-used><Protein frameid="CPLX0-251" orgid="META" resource="getxml?META:CPLX0-251" /><Protein frameid="MALSYNG-MONOMER" orgid="META" resource="getxml?META:MALSYNG-MONOMER" /><Protein frameid="YPR001W-MONOMER" orgid="META" resource="getxml?META:YPR001W-MONOMER" /></enzymes-not-used>
+<in-pathway><Pathway frameid="TCA-GLYOX-BYPASS" orgid="META" resource="getxml?META:TCA-GLYOX-BYPASS" /><Pathway frameid="PWY-561" orgid="META" resource="getxml?META:PWY-561" /></in-pathway>
+</Pathway>
+</ptools-xml>
