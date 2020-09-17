@@ -18,6 +18,7 @@ main_model2 = cb.io.read_sbml_model(
 
 if not dir_biocyc.exists():
     dir_biocyc.mkdir(parents=True)
+# TODO: add test with replacment_dicts
 
 
 class TestingShortModel(unittest.TestCase):

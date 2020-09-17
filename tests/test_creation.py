@@ -231,12 +231,14 @@ class ModulTesting(unittest.TestCase):
                 "GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN.xml").unlink()
         test_reaction = cr.build_reaction_from_xml(
             root="GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN",
-            directory=dir_biocyc, model=cb.Model(0), database="META"
+            directory=dir_biocyc, model=cb.Model(0), database="META",
+            compartment="c"
         )
         self.assertIsInstance(test_reaction, cb.Reaction)
         # CASE 2: Replacing name
         test_reaction = cr.build_reaction_from_xml(
             root="RXN-2205", directory=dir_biocyc, database="META",
+            compartment="c",
             model=cb.Model(0), replacement_dict={
                 "Amino-Acids-20": "GLT"})
         self.assertIn(
@@ -276,10 +278,12 @@ class ModulTesting(unittest.TestCase):
     def test_add_reaction_from_root(self):
         # CASE 0: Model invalid
         self.assertRaises(
-            TypeError, cr.add_reaction_from_root, "NotModel", int())
+            TypeError, cr.add_reaction_from_root, "NotModel", int(),
+            database="META", directory=dir_biocyc)
         # CASE 1: root invalid
         self.assertRaises(
-            TypeError, cr.add_reaction_from_root, cb.Model(0), int())
+            TypeError, cr.add_reaction_from_root, cb.Model(0), int(),
+            database="META", directory=dir_biocyc)
         # CASE 2a: proper root (ET.Element) a+b -> c+d
         # creating test root
         test_root = cr.get_xml_from_biocyc(
@@ -417,11 +421,11 @@ class ModulTesting(unittest.TestCase):
         # CASE 0: wrong format, no delimiter
         self.assertRaises(
             IndexError, cr.create_custom_reaction,
-            line_string="GLC_cb, GLC_cb GLC_c:-1, GLC_b:1")
+            line_string="GLC_cb, GLC_cb GLC_c:-1, GLC_b:1", model=cb.Model(0))
         # CASE 1: No ID detected
         self.assertRaises(
             Warning, cr.create_custom_reaction,
-            line_string="    |GLC_c:-1, GLC_b:1")
+            line_string=" |GLC_c:-1, GLC_b:1", model=cb.Model(0))
         # CASE 2: Normal, ID and name differ
         ReactionTest = cr.create_custom_reaction(
             line_string="GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",

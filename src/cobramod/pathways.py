@@ -168,8 +168,7 @@ def _return_missing_edges(
 
 
 def _replace_item(
-        iterable: Iterable, replacement_dict: dict = {},
-        **kwargs) -> Generator:
+        iterable: Iterable, replacement_dict: dict = {}) -> Generator:
     """
     For an item in Iterable, replaces it for its corresponding value in
     given dictionary
@@ -192,7 +191,7 @@ def _replace_item(
 
 
 def _remove_item(
-        iterable: Iterable, avoid_list: Iterable = [], **kwargs) -> Generator:
+        iterable: Iterable, avoid_list: Iterable = []) -> Generator:
     """
     Returns Generator of items that are not in the avoid list
     """
@@ -206,7 +205,8 @@ def _remove_item(
 
 
 def _return_verified_graph(
-        vertex_dict: dict, vertex_set: set, **kwargs) -> list:
+        vertex_dict: dict, vertex_set: set,
+        avoid_list: Iterable = [], replacement_dict: dict = {}) -> list:
     """
     Returns list with an ordered sequence for a dictionary of edges. If a
     vertex is missing in the sequence, they will be appended as a extra
@@ -215,6 +215,10 @@ def _return_verified_graph(
     Args:
         vertex_dict (dict): dictionary with edges
         vertex_set (set): set with all members
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+        avoid_list (Iterable, Optional): original identifiers to avoid in
+            graph. Defaults to [].
 
     Returns:
         list: verified list of sequences
@@ -228,29 +232,38 @@ def _return_verified_graph(
     graph.insert(0, missing_edges)
     # Fixing sequences from graph
     graph = [list(_replace_item(
-        iterable=sequence, **kwargs)) for sequence in graph]
+        iterable=sequence,
+        replacement_dict=replacement_dict)) for sequence in graph]
     graph = [list(_remove_item(
-        iterable=sequence, **kwargs)) for sequence in graph]
+        iterable=sequence, avoid_list=avoid_list)) for sequence in graph]
     # Filtering NONES from .append()
     return list(filter(None, graph))
 
 
-def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
+def return_graph_from_root(
+        root: Union[str, ET.Element], avoid_list: Iterable = [],
+        replacement_dict: dict = {}, **kwargs) -> list:
     """
     Returns graph from given XML root. All sequences are in order.
 
     Args:
         root (Union[ET.Element, str]): root of XML file or identifier for
-            specific database
-
-    Raises:
-        AttributeError: If given root is invalid
+            specific database.
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+        avoid_list (Iterable, Optional): original identifiers to avoid in
+            graph. Defaults to [].
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA".
-        replacement_dict (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers.
+
+
+    Raises:
+        AttributeError: If given root is invalid
+
     Returns:
         list: sequence with reaction identifiers in order
     """
@@ -261,24 +274,23 @@ def return_graph_from_root(root: Union[str, ET.Element], **kwargs) -> list:
         raise AttributeError('Given XML root is invalid.')
     vertex_dict, vertex_set = _create_vertex_dict(root=root, **kwargs)
     return _return_verified_graph(
-        vertex_dict=vertex_dict, vertex_set=vertex_set, **kwargs)
+        vertex_dict=vertex_dict, vertex_set=vertex_set, avoid_list=avoid_list,
+        replacement_dict=replacement_dict)
 
 
 def _create_reactions_for_iter(
-        sequence: Iterable, **kwargs) -> Generator:
+        sequence: Iterable, compartment: str = "c", **kwargs) -> Generator:
     """
     For each identifier in the sequence, a Reaction will be created. It returns
     a generator
 
     Args:
         sequence (Iterable): sequence with reaction identifiers for given
-        database
+            database
+        compartment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
 
     Keyword Arguments:
-        root (Union[ET.Element, str]): root of XML file or identifier for
-            specific database
-        comparment (str): location of the reactions to take place. Defaults to
-            cytosol "c"
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA".
         replacement_dict (dict, optional): original identifiers to be replaced.
@@ -291,13 +303,14 @@ def _create_reactions_for_iter(
     debug_log.debug(f'Obtaining root for {sequence}')
     # From given list (which includes None values), retrieve only Reaction
     # Objects.
-    return (build_reaction_from_xml(
-        root=reaction, **kwargs) for reaction in sequence)
+    return (
+        build_reaction_from_xml(
+            root=reaction, compartment=compartment, **kwargs)
+        for reaction in sequence)
 
 
 def _find_next_demand(
-        model: Model, reaction_id: str, ignore_list: list = [],
-        **kwargs) -> str:
+        model: Model, reaction_id: str, ignore_list: list = []) -> str:
     """
     Returns first metabolite found either in the product or reactant side
     of given reaction.
@@ -389,7 +402,7 @@ def _less_equal_than_x_rxns(
 
 
 def _fix_meta_for_boundaries(
-        model: Model, metabolite: str, ignore_list: Iterable = [], **kwargs):
+        model: Model, metabolite: str, ignore_list: Iterable = []):
     """
     Verifies that given metabolite has enough sink and demand reaction. It will
     create and remove them if necessary.
@@ -450,7 +463,7 @@ def _verify_side_sinks_for_rxn(
         rxn_id (str): reaction identifier for given model.
         side (str): Side to verify. Options: "right", "left"
         ignore_list (Iterable, optional): A sequence of formatted metabolites
-            to ignore when testing new reactions. Defaults to []
+            to ignore when testing new reactions. Defaults to []:
 
     Raises:
         TypeError: if model is invalid
@@ -476,15 +489,16 @@ def _verify_side_sinks_for_rxn(
 
 # TODO: check if kwargs are needed
 def verify_sinks_for_rxn(
-        model: Model, rxn_id: str, ignore_list: Iterable = [], **kwargs):
+        model: Model, rxn_id: str, ignore_list: Iterable = []):
     """
     Verifies, creates or removes sink reactions for metabolites found in given
     reaction if certain conditions are met.
 
-    If a metabolite has a demand reaction, it will create a sink reaction if
-    the total amount is equal or less than two. If no demand reaction is found
-    it will create a sink reaction if the total reactions is 1. Sink reactions
-    will be delete if total reaction is either more than equal 2, or 3.
+    .. hint:: If a metabolite has a demand reaction, it will create a sink\
+    reaction if the total amount is equal or less than two. If no demand\
+    reaction is found it will create a sink reaction if the total reactions is\
+    1. Sink reactions will be delete if total reaction is either more than\
+    equal 2, or 3.
 
     Args:
         model (Model): model to test
@@ -502,11 +516,11 @@ def verify_sinks_for_rxn(
 
 def _test_rxn_for_solution(
         model: Model, rxn_id: str, solution_range: tuple = (0.1, 1000),
-        times: int = 0, **kwargs):
+        times: int = 0, ignore_list: list = []):
     """
-    Checks if optimized objective function value of given model lies between
+    Checks if optimized objective function value for given model lies between
     a determinated range. Function is recursive and checks if sink reactions
-    are enough or exceded. It creates a demand reaction for reaction for the
+    are enough or exceeded. It creates a demand reaction for reaction for the
     test and removes it, if necesary.
 
     Args:
@@ -515,22 +529,22 @@ def _test_rxn_for_solution(
         solution_range (tuple, optional): range of solution to pass the test.
             Defaults to (0.1, 1000).
         times (int, optional): Track of recursions. Defaults to 0.
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions. Defaults to []
 
     Raises:
         ValueError: if solution is infeasible after many recursions. Depends
             from the amount of metabolites in the reaction
-
     """
-    # TODO: add errors for wrong MODEL or rxn_id
-    with suppress(KeyError):
-        if rxn_id in kwargs["ignore_list"]:
-            debug_log.warning(
-                f'Reaction "{rxn_id}" found in ignore list. Skipped')
-            return
+    if rxn_id in ignore_list:
+        debug_log.warning(
+            f'Reaction "{rxn_id}" found in ignore list. Skipped')
+        return
+    # TODO: add counter
     if times == 0:
         debug_log.info(f'Testing reaction "{rxn_id}"')
     # finding demand for testing
-    nextDemand = _find_next_demand(model=model, reaction_id=rxn_id, **kwargs)
+    nextDemand = _find_next_demand(model=model, reaction_id=rxn_id)
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(nextDemand), "demand")
         model.reactions.get_by_id(f'DM_{nextDemand}').lower_bound = 0.2
@@ -547,22 +561,23 @@ def _test_rxn_for_solution(
         # Append to log
         debug_log.debug(f'Reaction "{rxn_id}" not in range')
         verify_sinks_for_rxn(
-            model=model, rxn_id=rxn_id, **kwargs)
+            model=model, rxn_id=rxn_id, ignore_list=ignore_list)
         # Recursive with 'extra' argument
         _test_rxn_for_solution(
             model=model, rxn_id=rxn_id, solution_range=solution_range,
-            times=times + 1, **kwargs)
+            times=times + 1, ignore_list=ignore_list)
     else:
         # if works, pass and return old objective
         debug_log.debug(f'Reaction "{rxn_id}" showed a feasible answer.')
         _remove_boundary_if_not_model(
             model=model, metabolite=nextDemand, boundary="demand")
         verify_sinks_for_rxn(
-            model=model, rxn_id=rxn_id, **kwargs)
+            model=model, rxn_id=rxn_id, ignore_list=ignore_list)
 
 
 def _add_sequence(
-        model: Model, sequence: list, avoid_list: Iterable = [], **kwargs):
+        model: Model, sequence: list, avoid_list: Iterable = [],
+        ignore_list: list = [], **kwargs):
     """
     From a sequence of Reaction objects, add each Reaction into given model. It
     checks if new reaction does not break the metabolic system.
@@ -573,11 +588,28 @@ def _add_sequence(
         avoid_list (Iterable, optional): A sequence of formatted reactions to
             avoid adding to the model. This is usefull for long pathways,
             where X reactions need to be excluded. Defaults to [].
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions. Defaults to [].
+    
+    Keyword Arguments:
+        solution_range (tuple, optional): range of solution to pass the test.
+            Defaults to (0.1, 1000).
 
     Raises:
         TypeError: if model is invalid
         TypeError: if reactions are not valid Reaction objects
     """
+    # NOTE: temporal solution
+    try:
+        mass_kwargs = {
+            "show_wrong": kwargs["show_wrong"],
+            "stop_wrong": kwargs["stop_wrong"]}
+    except KeyError:
+        mass_kwargs = {}
+    try:
+        solution_range = kwargs["solution_range"]
+    except KeyError:
+        solution_range = (0.1, 1000)
     if not isinstance(model, Model):
         raise TypeError('Model is invalid')
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
@@ -591,8 +623,11 @@ def _add_sequence(
         if rxn.id not in model.reactions:
             model.add_reactions([rxn])
             debug_log.info(f'Reaction "{rxn.id}" added to model')
-            _test_rxn_for_solution(model=model, rxn_id=rxn.id, **kwargs)
-            check_mass_balance(model=model, rxn_id=rxn.id)
+            _test_rxn_for_solution(
+                model=model, rxn_id=rxn.id, ignore_list=ignore_list,
+                solution_range=solution_range)
+            # This should be checked when creating the iter with Reaction
+            check_mass_balance(model=model, rxn_id=rxn.id, **mass_kwargs)
         else:
             # FIXME: avoid creating reaction
             debug_log.warning(f'Reaction "{rxn.id}" was found in model')
@@ -600,7 +635,9 @@ def _add_sequence(
 
 
 def _add_graph_from_root(
-        model: Model, root: Union[ET.Element, str], **kwargs):
+        model: Model, root: Union[ET.Element, str],
+        avoid_list: Iterable = [], replacement_dict: dict = {},
+        ignore_list: list = [], **kwargs):
     """
     Adds root of a pathway into given model.
 
@@ -608,39 +645,90 @@ def _add_graph_from_root(
         model (Model): model to append root
         root (Union[ET.Element, str]): root of XML file or identifier for
             specific database
-        **kwargs: Same as 'add_graph_to_model'
+        avoid_list (Iterable, optional): A sequence of formatted reactions to
+            avoid adding to the model. This is usefull for long pathways,
+            where X reactions need to be excluded. Defaults to [].
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions. Defaults to [].
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        compartment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
+        solution_range (tuple, optional): range of solution to pass the test.
+            Defaults to (0.1, 1000).
+        show_wrong (bool): For each new reaction, if it is unbalance, it will
+            show the difference for the metabolites. Defaults to True
+        stop_wrong (bool): For each new reaction, if it is unbalance, it will
+            stop and raise an error. Defaults to False
     """
     # Retrieving and creating Pathway with Reactions
     # original_objective, original_direction = model.objective, \
     #     model.objective_direction
-    graph = return_graph_from_root(root=root, **kwargs)
+    # this uses replacment, avoid and xml
+    query_kwargs = {
+        "database": kwargs["database"],
+        "directory": kwargs["directory"]}
+    graph = return_graph_from_root(
+        root=root, avoid_list=avoid_list, replacement_dict=replacement_dict,
+        **query_kwargs)
+    # NOTE: temporal solution
+    add_kwargs = kwargs.copy()
     for pathway in graph:
         sequence = list(_create_reactions_for_iter(
-            sequence=pathway, model=model, **kwargs))
+            sequence=pathway, model=model, replacement_dict=replacement_dict,
+            **kwargs))
         _add_sequence(
-            model=model, sequence=sequence, **kwargs)
+            model=model, sequence=sequence, ignore_list=ignore_list,
+            avoid_list=avoid_list, **add_kwargs)
     # TODO: Fix sink for metabolites in last sequence
 
 
 def _add_graph_from_sequence(
-        model: Model, sequence: Iterable, **kwargs):
+        model: Model, sequence: Iterable, avoid_list: Iterable = [],
+        replacement_dict: dict = {}, ignore_list: list = [], **kwargs):
     """
     Adds a sequence of identifiers to given model
 
     Args:
         model (Model): model to append graph
         sequence (Iterable): Sequence with the idenfiers to add.
-        **kwargs: Same as 'add_graph_to_model'
+        avoid_list (Iterable, optional): A sequence of formatted reactions to
+            avoid adding to the model. This is usefull for long pathways,
+            where X reactions need to be excluded. Defaults to [].
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
+        ignore_list (Iterable, optional): A sequence of formatted metabolites
+            to ignore when testing new reactions. Defaults to [].
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        compartment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
+        solution_range (tuple, optional): range of solution to pass the test.
+            Defaults to (0.1, 1000).
+        show_wrong (bool): For each new reaction, if it is unbalance, it will
+            show the difference for the metabolites. Defaults to True
+        stop_wrong (bool): For each new reaction, if it is unbalance, it will
+            stop and raise an error. Defaults to False
     """
     # TODO: add tests, and docstrings
     sequence = list(_create_reactions_for_iter(
-        model=model, sequence=sequence, **kwargs))
+        model=model, sequence=sequence, replacement_dict=replacement_dict,
+        **kwargs))
     _add_sequence(
-            model=model, sequence=sequence, **kwargs)
+        model=model, sequence=sequence, ignore_list=ignore_list,
+        avoid_list=avoid_list, **kwargs)
 
 
 def add_graph_to_model(
-        model: Model, graph: Union[list, str, ET.Element, set], **kwargs):
+        model: Model, graph: Union[list, str, ET.Element, set],
+        avoid_list: Iterable = [], replacement_dict: dict = {},
+        ignore_list: list = [], **kwargs):
     """
     Adds given graph for a pathways or a sequence of reactions identifiers
     into given model. Data will be downloaded and structured according
@@ -650,12 +738,6 @@ def add_graph_to_model(
         model (Model): model to append graph
         graph (Union[list, str, ET.Element, set]): The identifier for the
             pathway or a iterator with the ids of the reactions
-
-    Keyword Arguments:
-        directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA".
-        comparment (str): location of the reactions to take place. Defaults to
-            cytosol "c"
         replacement_dict (dict, optional): original identifiers to be replaced.
             Values are the new identifiers.
         ignore_list (Iterable, optional): A sequence of formatted metabolites
@@ -663,6 +745,12 @@ def add_graph_to_model(
         avoid_list (Iterable, optional): A sequence of formatted reactions to
             avoid adding to the model. This is usefull for long pathways,
             where X reactions need to be excluded.
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA".
+        compartment (str): location of the reactions to take place. Defaults to
+            cytosol "c"
         show_wrong (bool): For each new reaction, if it is unbalance, it will
             show the difference for the metabolites. Defaults to True
         stop_wrong (bool): For each new reaction, if it is unbalance, it will
@@ -672,6 +760,12 @@ def add_graph_to_model(
     """
     # TODO: add tests, and docstrings
     if isinstance(graph, (ET.Element, str)):
-        _add_graph_from_root(model=model, root=graph, **kwargs)
+        _add_graph_from_root(
+            model=model, root=graph, avoid_list=avoid_list,
+            replacement_dict=replacement_dict,
+            ignore_list=ignore_list, **kwargs)
     elif isinstance(graph, (list, set)):
-        _add_graph_from_sequence(model=model, sequence=graph, **kwargs)
+        _add_graph_from_sequence(
+            model=model, sequence=graph, avoid_list=avoid_list,
+            replacement_dict=replacement_dict, ignore_list=ignore_list,
+            **kwargs)
