@@ -109,7 +109,6 @@ class GlucosinolateTest(unittest.TestCase):
             Rubisco_rate, NGAM])
 
     def test_B_precursors(self):
-
         # Glutathione synthesis
         pt.add_graph_to_model(
             model=test_model, graph="GLUTATHIONESYN-PWY", database="ARA",

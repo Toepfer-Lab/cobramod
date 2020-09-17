@@ -349,9 +349,10 @@ class ModulTesting(unittest.TestCase):
         ))
         # CASE 2: cycle (no repetitions)
         test_model = cb.Model(0)
-        test_graph = list(pt.return_graph_from_root(
-              # only 1 path
-            root="PWY-5690", directory=dir_biocyc, database="META"))
+        test_graph = list(
+            pt.return_graph_from_root(
+                # only 1 path
+                root="PWY-5690", directory=dir_biocyc, database="META"))
         # Objects
         for sequence in test_graph:
             test_sequence_objects = pt._create_reactions_for_iter(
@@ -591,7 +592,7 @@ class ModulTesting(unittest.TestCase):
         test_model.objective_direction = "min"
         pt._test_rxn_for_solution(
             model=test_model, rxn_id="1.8.4.9_RXN_c",
-            solutionRange=(0.01, 1000))
+            solution_range=(0.01, 1000))
         self.assertGreater(abs(test_model.slim_optimize()), 0)
         # CASE 3: single reaction with ignore_list. i.e two reactions, in which
         # one metabolite X is created separately, and will be ignore in the
@@ -620,7 +621,6 @@ class ModulTesting(unittest.TestCase):
             model=test_model, rxn_id="1.8.4.9_RXN_c",
             ignore_list=["PROTON_c"])
         self.assertGreater(abs(test_model.slim_optimize()), 0)
-        # CASE 5: Stacking reactions: belongs to test_addPathModel
 
     def test__add_sequence(self):
         # CASE 0a: wrong Model
