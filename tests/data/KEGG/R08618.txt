@@ -1,0 +1,13 @@
+ENTRY       R08618                      Reaction
+NAME        L-methionine:2-oxo-acid aminotransferase
+DEFINITION  L-Methionine + 2-Oxo acid <=> 4-Methylthio-2-oxobutanoic acid + L-Amino acid
+EQUATION    C00073 + C00161 <=> C01180 + C00151
+RCLASS      RC00006  C00073_C01180
+            RC00025  C00151_C00161
+ENZYME      2.6.1.88
+PATHWAY     rn00966  Glucosinolate biosynthesis
+            rn01110  Biosynthesis of secondary metabolites
+            rn01210  2-Oxocarboxylic acid metabolism
+ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
+            K21346  methionine transaminase [EC:2.6.1.88]
+///

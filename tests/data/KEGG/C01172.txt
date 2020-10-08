@@ -1,0 +1,62 @@
+ENTRY       C01172                      Compound
+NAME        beta-D-Glucose 6-phosphate
+FORMULA     C6H13O9P
+EXACT_MASS  260.0297
+MOL_WEIGHT  260.1358
+REACTION    R01600 R02187 R02728 R02736 R02739 R03321 R05133 R05134 
+            R09086 R10907
+PATHWAY     map00010  Glycolysis / Gluconeogenesis
+            map00030  Pentose phosphate pathway
+            map01100  Metabolic pathways
+            map01110  Biosynthesis of secondary metabolites
+            map01120  Microbial metabolism in diverse environments
+            map01200  Carbon metabolism
+            map04152  AMPK signaling pathway
+            map04922  Glucagon signaling pathway
+MODULE      M00004  Pentose phosphate pathway (Pentose phosphate cycle)
+            M00006  Pentose phosphate pathway, oxidative phase, glucose 6P => ribulose 5P
+            M00008  Entner-Doudoroff pathway, glucose-6P => glyceraldehyde-3P + pyruvate
+ENZYME      1.1.1.49        1.1.1.363       1.1.1.388       2.7.1.1         
+            2.7.1.2         2.7.1.63        2.7.1.147       3.2.1.86        
+            5.1.3.15        5.3.1.9         5.4.2.6
+DBLINKS     PubChem: 4399
+            ChEBI: 17719
+            ChEMBL: CHEMBL257975 CHEMBL4283156
+            PDB-CCD: BG6
+            3DMET: B01400
+            NIKKAJI: J396.144C
+ATOM        16
+            1   P1b P    25.8491  -15.8640
+            2   O2b O    27.2470  -15.8640
+            3   O1c O    24.4569  -15.8640
+            4   O1c O    25.8491  -14.4661
+            5   O1c O    25.8491  -17.2562
+            6   C1b C    28.4561  -15.1651
+            7   C1y C    29.6707  -15.8640
+            8   C1y C    29.6707  -17.2736
+            9   O2x O    30.8727  -15.1651
+            10  C1y C    30.8727  -17.9843
+            11  O1a O    28.4561  -17.9669
+            12  C1y C    32.0991  -15.8640
+            13  C1y C    32.0991  -17.2736
+            14  O1a O    30.8727  -19.3823
+            15  O1a O    33.3082  -15.1651
+            16  O1a O    33.3082  -17.9669
+BOND        16
+            1     1   2 1
+            2     1   3 1
+            3     1   4 1
+            4     1   5 2
+            5     2   6 1
+            6     7   6 1 #Up
+            7     7   8 1
+            8     7   9 1
+            9     8  10 1
+            10    8  11 1 #Down
+            11    9  12 1
+            12   10  13 1
+            13   10  14 1 #Up
+            14   12  15 1 #Up
+            15   13  16 1 #Down
+            16   12  13 1
+///

@@ -1,0 +1,114 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:RXN-12063"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RXN-12063</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:RXN-12063" detail="full" frameid="RXN-12063" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="INDOLE-3-ACETALDOXIME" orgid="META" resource="getxml?META:INDOLE-3-ACETALDOXIME" /></right>
+<right><Compound frameid="CARBON-DIOXIDE" orgid="META" resource="getxml?META:CARBON-DIOXIDE" /></right>
+<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
+<spontaneous datatype="boolean">true</spontaneous>
+<systematic-name datatype="string">&lt;small&gt;L&lt;/small&gt;-tryptophan,NADPH:oxygen oxidoreductase (&lt;em&gt;N&lt;/em&gt;-hydroxylating)</systematic-name>
+<citation><Publication ID="META:PUB-10922360" detail="full" frameid="PUB-10922360" orgid="META"><pubmed-id datatype="string">10922360</pubmed-id>
+<source datatype="string">J Biol Chem 275(43);33712-7</source>
+<title datatype="string">Cytochrome P450 CYP79B2 from Arabidopsis catalyzes the conversion of tryptophan to indole-3-acetaldoxime, a precursor of indole glucosinolates and indole-3-acetic acid.</title>
+<year datatype="integer">2000</year>
+<author datatype="string">Mikkelsen MD</author>
+<author datatype="string">Hansen CH</author>
+<author datatype="string">Wittstock U</author>
+<author datatype="string">Halkier BA</author>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-10681464" detail="full" frameid="PUB-10681464" orgid="META"><pubmed-id datatype="string">10681464</pubmed-id>
+<source datatype="string">Proc Natl Acad Sci U S A 2000;97(5);2379-84</source>
+<title datatype="string">Arabidopsis cytochrome P450s that catalyze the first step of tryptophan-dependent indole-3-acetic acid biosynthesis.</title>
+<year datatype="integer">2000</year>
+<author datatype="string">Hull AK</author>
+<author datatype="string">Vij R</author>
+<author datatype="string">Celenza JL</author>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-12464638" detail="full" frameid="PUB-12464638" orgid="META"><pubmed-id datatype="string">12464638</pubmed-id>
+<source datatype="string">Genes Dev 16(23);3100-12</source>
+<title datatype="string">Trp-dependent auxin biosynthesis in Arabidopsis: involvement of cytochrome P450s CYP79B2 and CYP79B3.</title>
+<year datatype="integer">2002</year>
+<author datatype="string">Zhao Y</author>
+<author datatype="string">Hull AK</author>
+<author datatype="string">Gupta NR</author>
+<author datatype="string">Goss KA</author>
+<author datatype="string">Alonso J</author>
+<author datatype="string">Ecker JR</author>
+<author datatype="string">Normanly J</author>
+<author datatype="string">Chory J</author>
+<author datatype="string">Celenza JL</author>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-12464264" detail="full" frameid="PUB-12464264" orgid="META"><pubmed-id datatype="string">12464264</pubmed-id>
+<source datatype="string">Arch Biochem Biophys 409(1);235-41</source>
+<title datatype="string">CYP79B1 from Sinapis alba converts tryptophan to indole-3-acetaldoxime.</title>
+<year datatype="integer">2003</year>
+<author datatype="string">Naur P</author>
+<author datatype="string">Hansen CH</author>
+<author datatype="string">Bak S</author>
+<author datatype="string">Hansen BG</author>
+<author datatype="string">Jensen NB</author>
+<author datatype="string">Nielsen HL</author>
+<author datatype="string">Halkier BA</author>
+</Publication>
+</citation>
+<comment datatype="string">A heme-thiolate protein (P-450). This enzyme catalyses two successive N-hydroxylations of L-tryptophan, the first steps in the biosynthesis of the both auxin and the indole alkaloid phytoalexin camalexin. The product of the two hydroxylations, N,N-dihydroxy-L-tryptophan, is extremely labile and dehydrates spontaneously.The dehydrated product is then subject to a decarboxylation that produces the oxime. It is still not known whether the decarboxylation is spontaneous or catalysed by the enzyme. The product, (E)-indol-3-ylacetaldoxime, undergoes a spontaneous isomerization to the (Z) form.</comment>
+<common-name datatype="string">&lt;i&gt;N,N&lt;/i&gt;-dihydroxy-L-tryptophan carboxy-lyase</common-name>
+<credits><created><date datatype="date">2011-01-17</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR113001</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR113001</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>25014</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=25014</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R09585</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R09585</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-6.4728565<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="CAMALEXIN-SYN" orgid="META" resource="getxml?META:CAMALEXIN-SYN" /><Pathway frameid="PWY-8024" orgid="META" resource="getxml?META:PWY-8024" /><Pathway frameid="PWY-581" orgid="META" resource="getxml?META:PWY-581" /><Pathway frameid="PWY-601" orgid="META" resource="getxml?META:PWY-601" /><Reaction frameid="RXN-1402" orgid="META" resource="getxml?META:RXN-1402" /></in-pathway>
+<left><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></left>
+<left><Compound frameid="CPD-13027" orgid="META" resource="getxml?META:CPD-13027" /></left>
+</Reaction>
+</ptools-xml>

@@ -7,7 +7,7 @@ from cobramod.creation import _add_reaction_line_to_model, \
     add_reactions_from_file
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_biocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
+dir_data = Path.cwd().joinpath("tests").joinpath("data")
 # Short model
 main_model1 = cb.io.read_sbml_model(
     str(dir_input.joinpath("test_model01.sbml")))
@@ -16,11 +16,11 @@ main_model2 = cb.io.read_sbml_model(
     str(dir_input.joinpath("test_model02.sbml")))
 
 
-if not dir_biocyc.exists():
-    dir_biocyc.mkdir(parents=True)
+if not dir_data.exists():
+    dir_data.mkdir(parents=True)
+
+
 # TODO: add test with replacment_dicts
-
-
 class TestingShortModel(unittest.TestCase):
 
     def test_appending_lineal_pathways(self):
@@ -35,8 +35,8 @@ class TestingShortModel(unittest.TestCase):
             "ATP_c"), "sink")
         # Adding Gluconeogenesis
         pt.add_graph_to_model(
-            model=test_model, graph="GLUCONEO-PWY", directory=dir_biocyc,
-            database="META",
+            model=test_model, graph="GLUCONEO-PWY", directory=dir_data,
+            database="META", compartment="c",
             ignore_list=["MAL_c", "PROTON_c", "Pi_c", "ATP_c"])
         test_model.remove_reactions([
             "SK_ATP_c"])
@@ -48,15 +48,15 @@ class TestingShortModel(unittest.TestCase):
                 "Redox_Hemoprotein_c, Redox_Hemoprotein_c | " +
                 "Ox-NADPH-Hemoprotein-Reductases_c:-1, " +
                 "Red-NADPH-Hemoprotein-Reductases_c: 1"),
-            directory=dir_biocyc, database="META")
+            directory=dir_data, database="META")
         # Adding Nicotine pathway
         pt.add_graph_to_model(
-            model=test_model, graph="PWY-5316", directory=dir_biocyc,
-            database="META", ignore_list=[])
+            model=test_model, graph="PWY-5316", directory=dir_data,
+            database="META", compartment="c", ignore_list=[])
         # Ading aspartate and asparagine biosynthesis
         pt.add_graph_to_model(
-            model=test_model, graph="ASPASN-PWY", directory=dir_biocyc,
-            database="META", ignore_list=[])
+            model=test_model, graph="ASPASN-PWY", directory=dir_data,
+            database="META", compartment="c", ignore_list=[])
         # Updating dummy biomass
         test_model.reactions.get_by_id("Biomass_c").add_metabolites({
             test_model.metabolites.get_by_id("NICOTINE_c"): -0.25,
@@ -69,12 +69,12 @@ class TestingShortModel(unittest.TestCase):
         test_model = main_model1.copy()
         # Adding Mannitol cycle
         pt.add_graph_to_model(
-            model=test_model, graph="PWY-6531", directory=dir_biocyc,
-            database="META", ignore_list=[])
+            model=test_model, graph="PWY-6531", directory=dir_data,
+            database="META", compartment="c", ignore_list=[])
         # Adding glyoxylate cycle
         pt.add_graph_to_model(
-            model=test_model, graph="GLYOXYLATE-BYPASS", directory=dir_biocyc,
-            database="META", ignore_list=[])
+            model=test_model, graph="GLYOXYLATE-BYPASS", directory=dir_data,
+            database="META", compartment="c", ignore_list=[])
         # Updating dummy biomass
         test_model.reactions.get_by_id("Biomass_c").add_metabolites({
             test_model.metabolites.get_by_id("BETA_D_FRUCTOSE_c"): -1,
@@ -90,13 +90,13 @@ class TestingShortModel(unittest.TestCase):
         add_reactions_from_file(
             model=test_model,
             filename=dir_input.joinpath("test_multi_reactions.txt"),
-            database="META", directory=dir_biocyc)
+            database="META", directory=dir_data)
         # ADDING COA as Exchange to omit its biosynthesis
         test_model.add_boundary(
             metabolite=test_model.metabolites.get_by_id("CO_A_e"),
             type="exchange")
         pt.add_graph_to_model(
-            model=test_model, graph="GLUTATHIONESYN-PWY", directory=dir_biocyc,
+            model=test_model, graph="GLUTATHIONESYN-PWY", directory=dir_data,
             database="META", ignore_list=[], compartment="p")
         test_model.reactions.get_by_id("Biomass_c").add_metabolites({
             test_model.metabolites.get_by_id("GLUTATHIONE_p"):
@@ -106,9 +106,9 @@ class TestingShortModel(unittest.TestCase):
         _add_reaction_line_to_model(
             model=test_model,
             line="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
-            directory=dir_biocyc, database="META")
+            directory=dir_data, database="META")
         pt.add_graph_to_model(
-            model=test_model, graph="PWY-1187", directory=dir_biocyc,
+            model=test_model, graph="PWY-1187", directory=dir_data,
             database="META",
             ignore_list=[
                 "PYRUVATE_c", "CO_A_c", "PROTON_c", "CPD_3746_c"],
@@ -122,7 +122,7 @@ class TestingShortModel(unittest.TestCase):
             abs(test_model.optimize().objective_value), 0)
         # Lipid initalization
         pt.add_graph_to_model(
-            model=test_model, graph="PWY-4381", directory=dir_biocyc,
+            model=test_model, graph="PWY-4381", directory=dir_data,
             database="META",
             ignore_list=["CO_A_p"], compartment="p")
         test_model.reactions.get_by_id("Biomass_c").add_metabolites({
@@ -156,7 +156,7 @@ class TestingLargeModel(unittest.TestCase):
         )
         # Adding methiin metabolism
         pt.add_graph_to_model(
-            model=test_model, graph="PWY-7614", directory=dir_biocyc,
+            model=test_model, graph="PWY-7614", directory=dir_data,
             database="META", compartment="p", ignore_list=["GLUTATHIONE_p"]
         )
         # Checking demand for Methiin
@@ -169,7 +169,7 @@ class TestingLargeModel(unittest.TestCase):
         self.assertGreater(test_model.optimize().fluxes["RXN_8908_p"], 0)
         # Adding stachyose biosynthesis
         pt.add_graph_to_model(
-            model=test_model, graph="PWY-5337", directory=dir_biocyc,
+            model=test_model, graph="PWY-5337", directory=dir_data,
             database="META", compartment="c",
             ignore_list=["PROTON_c", "MYO_INOSITOL_c"]
         )
@@ -187,7 +187,7 @@ class TestingLargeModel(unittest.TestCase):
             type="sink"
         )
         pt.add_graph_to_model(
-            model=test_model, graph="PWY-695", directory=dir_biocyc,
+            model=test_model, graph="PWY-695", directory=dir_data,
             database="META", compartment="p",
             ignore_list=["PROTON_p", "CPD1F_133_p"]
         )

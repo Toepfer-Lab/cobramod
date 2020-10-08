@@ -7,10 +7,10 @@ from cobramod.creation import add_meta_from_file, add_reactions_from_file, \
 
 test_dir = Path.cwd().joinpath("tests")
 extra_dir = test_dir.joinpath("extra")
-dir_biocyc = test_dir.joinpath("data").joinpath("biocyc")
+dir_data = test_dir.joinpath("data")
 
-if not dir_biocyc.exists():
-    dir_biocyc.mkdir(parents=True)
+if not dir_data.exists():
+    dir_data.mkdir(parents=True)
 
 # INFO:
 # Model should have enough reactions/ metabolites for 2 short pathways
@@ -28,11 +28,11 @@ test_model.compartments = {
     "p": "plastid"}
 add_meta_from_file(
     model=test_model, filename=extra_dir.joinpath("metaToAdd_test_model.txt"),
-    directory=dir_biocyc, database="META",)
+    directory=dir_data, database="META",)
 add_reactions_from_file(
     model=test_model, filename=extra_dir.joinpath(
         "reactionsToAdd_test_model.txt"),
-    directory=dir_biocyc, database="META")
+    directory=dir_data, database="META")
 # Creating inital Exchanges reactions
 for meta in test_model.metabolites:
     if meta.id[-1] == "e":
@@ -42,13 +42,13 @@ test_model.objective = "EX_WATER_e"
 # First pathway to create a proper dummy biomass reaction
 # Nitrate reduction
 add_graph_to_model(
-    model=test_model, graph="PWY-381", directory=dir_biocyc,
-    database="META",
+    model=test_model, graph="PWY-381", directory=dir_data,
+    database="META", compartment="c",
     ignore_list=[])
 # Creating new Dummy biomass reaction
 _add_reaction_line_to_model(
     line="Biomass_c, Biomass reaction | GLN_c: -0.5",
-    model=test_model, directory=dir_biocyc, database="META",)
+    model=test_model, directory=dir_data, database="META",)
 test_model.objective = "Biomass_c"
 test_model.objective_direction = "max"
 # There is only one reaction. Thus, the sink needs to be removed
@@ -62,22 +62,22 @@ for pathway in [
     "PYRUVDEHYD-PWY",
         ]:
     add_graph_to_model(
-        model=test_model, graph=pathway, directory=dir_biocyc,
-        database="META",
+        model=test_model, graph=pathway, directory=dir_data,
+        database="META", compartment="c",
         ignore_list=["ETR_Quinols_c", "CIT_c"])
 # Extending biomass
 test_model.reactions.get_by_id("Biomass_c").add_metabolites({
             test_model.metabolites.get_by_id("GLT_c"): -1})
 for pathway in ["CALVIN-PWY"]:
     add_graph_to_model(
-        model=test_model, graph=pathway, directory=dir_biocyc,
-        database="META",
+        model=test_model, graph=pathway, directory=dir_data,
+        database="META", compartment="c",
         ignore_list=["GAP_c"])
 
 for pathway in ["SUCSYN-PWY"]:
     add_graph_to_model(
-        model=test_model, graph=pathway, directory=dir_biocyc,
-        database="META",
+        model=test_model, graph=pathway, directory=dir_data,
+        database="META", compartment="c",
         ignore_list=[
             "DIHYDROXY_ACETONE_PHOSPHATE_c",
             "PROTON_c",
@@ -88,7 +88,7 @@ test_model.reactions.get_by_id("Biomass_c").add_metabolites({
 # For later tests
 _add_reaction_line_to_model(
     line="UDPKIN-RXN, c",
-    model=test_model, directory=dir_biocyc, database="META",)
+    model=test_model, directory=dir_data, database="META",)
 test_model.remove_reactions(
     ["SK_UDP_c", "SK_UTP_c"])
 test_model.reactions.get_by_id("Biomass_c").bounds = (0.1, 1000)

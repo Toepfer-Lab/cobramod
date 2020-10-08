@@ -20,6 +20,7 @@ test_docs:
   allow_failure: true
   only:
     - master
+    - merge_requests
 
 test_logical:
   stage: functions
@@ -29,6 +30,7 @@ test_logical:
     - python3 -m unittest tests/test_models.py -v
   only:
     - master
+    - merge_requests
 
 test_models:
   stage: functions
@@ -38,6 +40,7 @@ test_models:
     - python3 -m unittest tests/test_models.py -v
   only:
     - master
+    - merge_requests
 
 test_example:
   stage: example
@@ -45,3 +48,5 @@ test_example:
     - python3 -m unittest tests/test_glucosinolate.py -v
   only:
     - master
+    - merge_requests
+
