@@ -1,0 +1,91 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:FRU"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:FRU</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:FRU" class="true" detail="full" frameid="FRU" orgid="ARA"><parent><Compound class="true" frameid="D-Hexoses" orgid="ARA" resource="getxml?ARA:D-Hexoses" /></parent>
+<parent><Compound class="true" frameid="Fructose" orgid="ARA" resource="getxml?ARA:Fructose" /></parent>
+<subclass><Compound class="true" frameid="Fructofuranose" orgid="ARA" resource="getxml?ARA:Fructofuranose" /></subclass>
+<subclass><Compound class="true" frameid="D-Fructopyranose" orgid="ARA" resource="getxml?ARA:D-Fructopyranose" /></subclass>
+<instance><Compound frameid="CPD-15382" orgid="ARA" resource="getxml?ARA:CPD-15382" /></instance>
+<cml><molecule formalCharge="0" id="FRU" title="D-fructose"><atomArray><atom elementType="C" id="FRU-atom1" x2="83504.0" y2="-31847.0" /><atom elementType="C" id="FRU-atom2" x2="1512.0" y2="-22380.0" /><atom elementType="C" id="FRU-atom3" x2="67105.0" y2="-22380.0" /><atom elementType="C" id="FRU-atom4" x2="17913.0" y2="-31847.0" /><atom elementType="C" id="FRU-atom5" x2="50706.0" y2="-31847.0" /><atom elementType="C" id="FRU-atom6" x2="34310.0" y2="-22380.0" /><atom elementType="O" id="FRU-atom7" x2="99900.0" y2="-22380.0" /><atom elementType="O" id="FRU-atom8" x2="-14884.0" y2="-31847.0" /><atom elementType="O" id="FRU-atom9" x2="67105.0" y2="-3445.0" /><atom elementType="O" id="FRU-atom10" x2="17913.0" y2="-50782.0" /><atom elementType="O" id="FRU-atom11" x2="50706.0" y2="-50782.0" /><atom elementType="O" id="FRU-atom12" x2="34310.0" y2="-3445.0" /></atomArray>
+<bondArray><bond atomRefs="FRU-atom7 FRU-atom1" id="FRU-bond1" order="1" /><bond atomRefs="FRU-atom1 FRU-atom3" id="FRU-bond2" order="1" /><bond atomRefs="FRU-atom3 FRU-atom5" id="FRU-bond3" order="1" /><bond atomRefs="FRU-atom5 FRU-atom6" id="FRU-bond4" order="1" /><bond atomRefs="FRU-atom6 FRU-atom4" id="FRU-bond5" order="1" /><bond atomRefs="FRU-atom4 FRU-atom2" id="FRU-bond6" order="1" /><bond atomRefs="FRU-atom2 FRU-atom8" id="FRU-bond7" order="1" /><bond atomRefs="FRU-atom3 FRU-atom9" id="FRU-bond8" order="1" /><bond atomRefs="FRU-atom5 FRU-atom11" id="FRU-bond9" order="1" /><bond atomRefs="FRU-atom6 FRU-atom12" id="FRU-bond10" order="1" /><bond atomRefs="FRU-atom4 FRU-atom10" id="FRU-bond11" order="2" /></bondArray>
+<formula concise="C 6 H 12 O 6" /><float title="molecularWeight" units="g/mol">180.157</float>
+<string title="smiles">C(O)C(=O)[C@@H](O)[C@H](O)[C@H](O)CO</string>
+</molecule>
+</cml>
+<comment datatype="string">Fructose is a 6-carbon polyhydroxyketone. When dissolved in solution fructose forms one of two
+ring structures - the 5-member ring &lt;a href="/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Fructofuranose"&gt;D-fructofuranose&lt;/a&gt;and the 6-member ring &lt;a href="/ARA/NEW-IMAGE?type=COMPOUND&amp;object=D-Fructopyranose"&gt;D-fructopyranose&lt;/a&gt;.
+Mixtures at equilibrium contain 70% fructopyranose and 30% fructofuranose.
+&lt;p&gt;
+A homopolymeric form of fructose is called &lt;a href="/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Fructans" title="Fructans are a class of highly water-soluble polysaccharides consisting of linear or branched&amp;#10;&lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=FRU''&gt;D-fructose&lt;/a&gt; chains attached to &lt;a href=''/compound?orgid=ARA&amp;id=SUCROSE''&gt;sucrose&lt;/a&gt; by &amp;beta;-2,1or &amp;beta;-2,6-linkage.&amp;#10;There are 3 types of fructans:&amp;#10;&amp;#10;1. &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Inulin''&gt;an inulin&lt;/a&gt; - linear fructans generally linked by &amp;beta;(2-&gt;1) glycosidic bonds&amp;#10;&amp;#10;2. &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Levan''&gt;a levan&lt;/a&gt; - linear fructans generally linked by &amp;beta;(2-&gt;6) glycosidic bonds&amp;#10;&amp;#10;3. &lt;a href=''/ARA/NEW-IMAGE?type=COMPOUND&amp;object=Graminans''&gt;a graminan&lt;/a&gt; - branched fructans linked by both &amp;beta;(2-&gt;1) and &amp;beta;(2-&gt;6) glycosidic bonds.&amp;#10;&amp;#10;The fructosyl units may be linked to the sucrose base unit either to the fructose moiety, or to the glucose moiety by a &amp;beta; 2-&gt;6 bond. In the latter case, the resulting molecule name is marked by a 6&lt;sub&gt;G&lt;/sub&gt;, as in &lt;a href=''http://biocyc.org/META/new-image?object=NEOKESTOSE''&gt;6&lt;sub&gt;G&lt;/sub&gt;-kestotriose&lt;/a&gt;."&gt;a fructan&lt;/a&gt;, and can be formed by &amp;beta;(2-&gt;1)
+or &amp;beta;(2-&gt;6) glycosidic bonds between fructose molecules.
+&lt;p&gt;
+This compound class represents a reducing sugar that exists in solution in multiple configurations. The open-chain structure shown here is provided only as a schematic illustration of chirality. Consult the appropriate class instances for information on specific ring structures and their anomeric configuration.</comment>
+<common-name datatype="string">D-fructose</common-name>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/93/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/93/</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>30237-26-4</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=30237-26-4</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15824</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15824</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>57-48-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=57-48-7</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00095</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00095</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-94.166565</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H12O6/c7-1-3(9)5(11)6(12)4(10)2-8/h3,5-9,11-12H,1-2H2/t3-,5-,6-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=BJHIKXHVCXFQLS-UYFOZJQFSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
+<regulates><Regulation ID="ARA:REG-8049" detail="low" frameid="REG-8049" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound class="true" frameid="FRU" orgid="ARA" resource="#ARA:FRU" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-9341" detail="low" frameid="REG-9341" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound class="true" frameid="FRU" orgid="ARA" resource="#ARA:FRU" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8048" detail="low" frameid="REG-8048" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound class="true" frameid="FRU" orgid="ARA" resource="#ARA:FRU" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8042" detail="low" frameid="REG-8042" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound class="true" frameid="FRU" orgid="ARA" resource="#ARA:FRU" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-9921" detail="low" frameid="REG-9921" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound class="true" frameid="FRU" orgid="ARA" resource="#ARA:FRU" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">fructose</synonym>
+<synonym datatype="string">laevosan</synonym>
+<synonym datatype="string">levugen</synonym>
+<synonym datatype="string">laevoral</synonym>
+<synonym datatype="string">fructosteril</synonym>
+<synonym datatype="string">levulose</synonym>
+<synonym datatype="string">fru</synonym>
+<synonym datatype="string">fru-ring</synonym>
+<synonym datatype="string">D-fructose-ring</synonym>
+<synonym datatype="string">D-fructose</synonym>
+</Compound>
+</ptools-xml>

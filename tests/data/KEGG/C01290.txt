@@ -1,0 +1,124 @@
+ENTRY       C01290                      Compound
+NAME        Lactosylceramide;
+            beta-D-Galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide;
+            beta-D-Galactosyl-1,4-beta-D-glucosylceramide;
+            Gal-beta1->4Glc-beta1->1'Cer;
+            LacCer;
+            Lactosyl-N-acylsphingosine;
+            D-Galactosyl-1,4-beta-D-glucosylceramide
+FORMULA     C31H56NO13R
+REMARK      Same as: G00092
+COMMENT     Generic compound in reaction hierarchy
+REACTION    R03354 R03355 R03486 R03488 R03489 R03490 R03491 R03492 
+            R03618 R04493
+PATHWAY     map00600  Sphingolipid metabolism
+            map01100  Metabolic pathways
+MODULE      M00066  Lactosylceramide biosynthesis
+ENZYME      2.4.1.92        2.4.1.206       2.4.1.228       2.4.1.274       
+            2.4.99.1        2.4.99.9        3.2.1.18        3.2.1.22        
+            3.2.1.23        3.2.1.47        3.2.1.52
+BRITE       Compounds with biological roles [BR:br08001]
+             Lipids
+              Glycolipids
+               Glycosphingolipids
+                C01290  Lactosylceramide
+DBLINKS     PubChem: 4509
+            ChEBI: 17950
+            LIPIDMAPS: LMSP0501AB00
+            LipidBank: GSG1147
+ATOM        46
+            1   C1y C    15.9666  -18.9599
+            2   C1y C    15.9337  -17.5704
+            3   O2a O    14.6552  -19.6363
+            4   C1y C    17.0731  -19.6917
+            5   O2x O    17.1379  -16.9034
+            6   C1b C    14.7200  -16.8477
+            7   C1y C    13.4603  -20.3126
+            8   C1y C    18.3146  -19.0155
+            9   O1a O    17.0361  -21.0907
+            10  C1y C    18.3516  -17.6260
+            11  O1a O    13.5250  -17.5795
+            12  O2x O    12.2464  -19.5899
+            13  C1y C    13.4138  -21.7206
+            14  O1a O    19.5096  -19.7567
+            15  O2a O    19.5838  -16.9684
+            16  C1y C    11.0238  -20.2570
+            17  C1y C    12.1817  -22.3786
+            18  O1a O    14.4327  -22.2303
+            19  C1b C    20.8066  -17.6631
+            20  C1y C    10.9958  -21.6650
+            21  C1b C     9.8285  -19.5342
+            22  O1a O    12.1446  -23.7866
+            23  C1c C    22.0202  -16.9404
+            24  O1a O     9.7361  -22.3415
+            25  O1a O     8.6335  -20.2570
+            26  C1c C    23.2614  -17.6351
+            27  N1b N    22.0108  -15.5323
+            28  C2b C    24.4844  -16.9128
+            29  O1a O    23.2708  -19.0435
+            30  C5a C    23.2152  -14.8191
+            31  C2b C    25.7073  -17.6074
+            32  O5a O    23.2666  -13.4107
+            33  R   R    24.4473  -15.5044
+            34  C1b C    26.9207  -16.8942
+            35  C1b C    28.1529  -17.5889
+            36  C1b C    29.3758  -16.8663
+            37  C1b C    30.5987  -17.5610
+            38  C1b C    31.8216  -16.8386
+            39  C1b C    33.0537  -17.5242
+            40  C1b C    34.2672  -16.8107
+            41  C1b C    35.4993  -17.5056
+            42  C1b C    36.7128  -16.7921
+            43  C1b C    37.9543  -17.4777
+            44  C1b C    39.1678  -16.7736
+            45  C1b C    40.4001  -17.4591
+            46  C1a C    41.6137  -16.7459
+BOND        47
+            1     1   2 1
+            2     1   3 1 #Down
+            3     1   4 1
+            4     2   5 1
+            5     2   6 1 #Up
+            6     7   3 1 #Up
+            7     4   8 1
+            8     4   9 1 #Up
+            9     5  10 1
+            10    6  11 1
+            11    7  12 1
+            12    7  13 1
+            13    8  14 1 #Down
+            14   10  15 1 #Up
+            15   12  16 1
+            16   13  17 1
+            17   13  18 1 #Down
+            18   15  19 1
+            19   16  20 1
+            20   16  21 1 #Up
+            21   17  22 1 #Up
+            22   19  23 1
+            23   20  24 1 #Up
+            24   21  25 1
+            25   23  26 1
+            26   23  27 1 #Down
+            27   26  28 1
+            28   26  29 1 #Up
+            29   27  30 1
+            30   28  31 2
+            31   30  32 2
+            32   30  33 1
+            33   31  34 1
+            34   34  35 1
+            35   35  36 1
+            36   36  37 1
+            37   37  38 1
+            38   38  39 1
+            39   39  40 1
+            40   40  41 1
+            41   41  42 1
+            42   42  43 1
+            43   43  44 1
+            44   44  45 1
+            45   45  46 1
+            46    8  10 1
+            47   17  20 1
+///

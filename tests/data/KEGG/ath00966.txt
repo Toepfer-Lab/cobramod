@@ -1,0 +1,145 @@
+ENTRY       ath00966                    Pathway
+NAME        Glucosinolate biosynthesis - Arabidopsis thaliana (thale cress)
+DESCRIPTION Glucosinolates are biologically active secondary metabolites found in Brassicaceae (mustard family) and related families.These compounds are genetically variable within plant species and used as natural pesticides, such as against insect herbivores. All glucosinolates share a common structure consisting of a beta-thioglucose moiety, a sulfonated oxime moiety, and a variable aglycone side chain derived from an alpha-amino acid. Genes encoding glucosinolate biosynthetic enzymes have been identified in Arabidopsis thaliana by genetic polymorphisms and loss-of-function mutations. This map shows examples of side chain elongation in methionine-derived glucosinolates and the core pathway for biosynthesis of glucosinolates from amino acids.
+CLASS       Metabolism; Biosynthesis of other secondary metabolites
+PATHWAY_MAP ath00966  Glucosinolate biosynthesis
+MODULE      ath_M00370  Glucosinolate biosynthesis, tryptophan => glucobrassicin [PATH:ath00966]
+DBLINKS     GO: 0019761
+ORGANISM    Arabidopsis thaliana (thale cress) [GN:ath]
+GENE        AT3G19710  BCAT4; branched-chain aminotransferase4 [KO:K21346] [EC:2.6.1.88]
+            AT5G23010  MAM1; methylthioalkylmalate synthase 1 [KO:K15741] [EC:2.3.3.17]
+            AT5G23020  IMS2; 2-isopropylmalate synthase 2 [KO:K15742] [EC:2.3.3.17]
+            AT4G13430  IIL1; isopropyl malate isomerase large subunit 1 [KO:K01703] [EC:4.2.1.33 4.2.1.35]
+            AT2G43100  IPMI2; isopropylmalate isomerase 2 [KO:K21359] [EC:4.2.1.33 4.2.1.170]
+            AT3G58990  IPMI1; isopropylmalate isomerase 1 [KO:K21359] [EC:4.2.1.33 4.2.1.170]
+            AT5G14200  IMD1; isopropylmalate dehydrogenase 1 [KO:K21360] [EC:1.1.1.85 1.1.1.-]
+            AT1G50090  BCAT7; D-aminoacid aminotransferase-like PLP-dependent enzymes superfamily protein [KO:K00826] [EC:2.6.1.42]
+            AT1G50110  D-aminoacid aminotransferase-like PLP-dependent enzymes superfamily protein [KO:K00826] [EC:2.6.1.42]
+            AT1G10070  BCAT-2; branched-chain amino acid transaminase 2 [KO:K00826] [EC:2.6.1.42]
+            AT3G49680  BCAT3; branched-chain aminotransferase 3 [KO:K00826] [EC:2.6.1.42]
+            AT5G65780  ATBCAT-5; branched-chain amino acid aminotransferase 5 / branched-chain amino acid transaminase 5 (BCAT5) [KO:K00826] [EC:2.6.1.42]
+            AT1G10060  BCAT-1; branched-chain amino acid transaminase 1 [KO:K00826] [EC:2.6.1.42]
+            AT1G16410  CYP79F1; cytochrome p450 79f1 [KO:K12154] [EC:1.14.14.42]
+            AT4G13770  CYP83A1; cytochrome P450, family 83, subfamily A, polypeptide 1 [KO:K12156] [EC:1.14.14.43]
+            AT2G20610  SUR1; Tyrosine transaminase family protein [KO:K11819] [EC:4.4.1.-]
+            AT1G24100  UGT74B1; UDP-glucosyl transferase 74B1 [KO:K11820] [EC:2.4.1.195]
+            AT1G74100  SOT16; sulfotransferase 16 [KO:K11821] [EC:2.8.2.24]
+            AT1G18590  SOT17; sulfotransferase 17 [KO:K22321] [EC:2.8.2.38]
+            AT1G74090  SOT18; desulfo-glucosinolate sulfotransferase 18 [KO:K22321] [EC:2.8.2.38]
+            AT1G16400  CYP79F2; cytochrome P450, family 79, subfamily F, polypeptide 2 [KO:K12155] [EC:1.14.14.42]
+            AT5G05260  CYP79A2; phenylalanine N-monooxygenase-like protein [KO:K12153] [EC:1.14.14.40]
+            AT4G31500  CYP83B1; cytochrome P450, family 83, subfamily B, polypeptide 1 [KO:K11818] [EC:1.14.14.45]
+            AT4G39950  CYP79B2; cytochrome P450, family 79, subfamily B, polypeptide 2 [KO:K11812] [EC:1.14.14.156]
+            AT2G22330  CYP79B3; cytochrome P450, family 79, subfamily B, polypeptide 3 [KO:K11813] [EC:1.14.14.156]
+COMPOUND    C00073  L-Methionine
+            C00078  L-Tryptophan
+            C00079  L-Phenylalanine
+            C00082  L-Tyrosine
+            C00123  L-Leucine
+            C00141  3-Methyl-2-oxobutanoic acid
+            C00183  L-Valine
+            C00233  4-Methyl-2-oxopentanoate
+            C00407  L-Isoleucine
+            C00671  (S)-3-Methyl-2-oxopentanoic acid
+            C01069  Desulfoglucotropeolin
+            C01180  4-Methylthio-2-oxobutanoic acid
+            C02153  Glucotropaeolin
+            C02937  Indole-3-acetaldehyde oxime
+            C03219  (E)-2-Methylpropanal oxime
+            C03719  Phenylacetothiohydroximate
+            C04350  (E)-4-Hydroxyphenylacetaldehyde oxime
+            C05837  Glucobrassicin
+            C08401  Glucoberteroin
+            C08407  Glucocochlearin
+            C08409  Glucoerucin
+            C08412  Glucoiberverin
+            C08417  Gluconasturtiin
+            C08418  Glucoputranjivin
+            C08426  Sinalbin
+            C16516  Indolylmethylthiohydroximate
+            C16517  Indolylmethyl-desulfoglucosinolate
+            C16518  S-(Indolylmethylthiohydroximoyl)-L-cysteine
+            C17210  2-(2'-Methylthio)ethylmalic acid
+            C17211  2-Oxo-5-methylthiopentanoic acid
+            C17212  3-(2'-Methylthio)ethylmalic acid
+            C17213  Homomethionine
+            C17214  2-(3'-Methylthio)propylmalic acid
+            C17215  3-(3'-Methylthio)propylmalic acid
+            C17216  2-Oxo-6-methylthiohexanoic acid
+            C17217  Dihomomethionine
+            C17218  2-(4'-Methylthio)butylmalic acid
+            C17219  3-(4'-Methylthio)butylmalic acid
+            C17220  2-Oxo-7-methylthioheptanoic acid
+            C17221  Trihomomethionine
+            C17222  2-(5'-Methylthio)pentylmalic acid
+            C17223  3-(5'-Methylthio)pentylmalic acid
+            C17224  2-Oxo-8-methylthiooctanoic acid
+            C17225  Tetrahomomethionine
+            C17226  2-(6'-Methylthio)hexylmalic acid
+            C17227  3-(6'-Methylthio)hexylmalic acid
+            C17228  2-Oxo-9-methylthiononanoic acid
+            C17229  Pentahomomethionine
+            C17230  2-(7'-Methylthio)heptylmalic acid
+            C17231  3-(7'-Methylthio)heptylmalic acid
+            C17232  2-Oxo-10-methylthiodecanoic acid
+            C17233  Hexahomomethionine
+            C17235  L-Homophenylalanine
+            C17236  3-Phenylpropionaldoxim
+            C17237  S-(Phenylacetothiohydroximoyl)-L-cysteine
+            C17238  S-(Hydroxyphenylacetothiohydroximoyl)-L-cysteine
+            C17239  p-Hydroxyphenylacetothiohydroximate
+            C17240  p-Hydroxybenzyldesulphoglucosinolate
+            C17241  4-Methylthiobutanaldoxime
+            C17242  S-(4-Methylthiobutylthiohydroximoyl)-L-cysteine
+            C17243  4-Methylthiobutylthiohydroximate
+            C17244  3-Methylthiopropyl-desulfoglucosinolate
+            C17245  5-Methylthiopentanaldoxime
+            C17246  6-Methylthiohexanaldoxime
+            C17248  4-Methylthiobutyl-desulfoglucosinolate
+            C17249  7-Methylthioheptanaldoxime
+            C17250  Glucolesquerellin
+            C17251  8-Methylthiooctanaldoxime
+            C17252  7-Methylthioheptyl glucosinolate
+            C17253  9-Methylthiononanaldoxime
+            C17254  8-Methylthiooctyl glucosinolate
+            C17255  3-Methylbutyraldehyde oxime
+            C17256  2-Methylpropyl glucosinolate
+            C19491  (E)-2-Methylbutanal oxime
+            C19714  (E)-Phenylacetaldoxime
+            C21650  7-Methylthioheptyl-desulfoglucosinolate
+            C21746  8-Methylthiooctyl-desulfoglucosinolate
+REFERENCE   PMID:12049923
+  AUTHORS   Wittstock U, Halkier BA
+  TITLE     Glucosinolate research in the Arabidopsis era.
+  JOURNAL   Trends Plant Sci 7:263-70 (2002)
+            DOI:10.1016/S1360-1385(02)02273-2
+REFERENCE   PMID:15913672
+  AUTHORS   Windsor AJ, Reichelt M, Figuth A, Svatos A, Kroymann J, Kliebenstein DJ, Gershenzon J, Mitchell-Olds T
+  TITLE     Geographic and evolutionary diversification of glucosinolates among near relatives of Arabidopsis thaliana (Brassicaceae).
+  JOURNAL   Phytochemistry 66:1321-33 (2005)
+            DOI:10.1016/j.phytochem.2005.04.016
+REFERENCE   PMID:14740211
+  AUTHORS   Textor S, Bartram S, Kroymann J, Falk KL, Hick A, Pickett JA, Gershenzon J
+  TITLE     Biosynthesis of methionine-derived glucosinolates in Arabidopsis thaliana: recombinant expression and characterization of methylthioalkylmalate synthase, the condensing enzyme of the chain-elongation cycle.
+  JOURNAL   Planta 218:1026-35 (2004)
+            DOI:10.1007/s00425-003-1184-3
+REFERENCE   PMID:15358770
+  AUTHORS   Piotrowski M, Schemenewitz A, Lopukhina A, Muller A, Janowitz T, Weiler EW, Oecking C
+  TITLE     Desulfoglucosinolate sulfotransferases from Arabidopsis thaliana catalyze the final step in the biosynthesis of the glucosinolate core structure.
+  JOURNAL   J Biol Chem 279:50717-25 (2004)
+            DOI:10.1074/jbc.M407681200
+REFERENCE   PMID:12586901
+  AUTHORS   Mikkelsen MD, Halkier BA
+  TITLE     Metabolic engineering of valine- and isoleucine-derived glucosinolates in Arabidopsis expressing CYP79D2 from Cassava.
+  JOURNAL   Plant Physiol 131:773-9 (2003)
+            DOI:10.1104/pp.013425
+REFERENCE   
+  AUTHORS   Chen S, Andreasson E.
+  TITLE     Update on glucosinolate metabolism and transport.
+  JOURNAL   Plant Physiol Biochem 39:743-758 (2001)
+            DOI:10.1016/S0981-9428(01)01301-8
+REL_PATHWAY ath00270  Cysteine and methionine metabolism
+            ath00290  Valine, leucine and isoleucine biosynthesis
+            ath00400  Phenylalanine, tyrosine and tryptophan biosynthesis
+KO_PATHWAY  ko00966
+///

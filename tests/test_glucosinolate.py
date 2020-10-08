@@ -6,14 +6,14 @@ from pathlib import Path
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 path_model = dir_input.joinpath("test_model02.sbml")
-dir_biocyc = Path.cwd().joinpath("tests").joinpath("data").joinpath("biocyc")
+dir_data = Path.cwd().joinpath("tests").joinpath("data")
 dir_test_case = dir_input.joinpath("case_glucosinolate")
 # Core Model
 main_model = cb.io.read_sbml_model(filename=str(path_model))
 test_model = main_model.copy()  # copy
 
-if not dir_biocyc.exists():
-    dir_biocyc.mkdir(parents=True)
+if not dir_data.exists():
+    dir_data.mkdir(parents=True)
 
 # TODO: add option to stop at unbalanced reactions
 
@@ -72,7 +72,7 @@ class GlucosinolateTest(unittest.TestCase):
         cr.add_meta_from_file(
             model=test_model,
             filename=dir_test_case.joinpath("new_metabolites.txt"),
-            directory=dir_biocyc,
+            directory=dir_data,
             database="ARA")
         self.assertEqual(len(test_model.metabolites), 927)
         # Checking for Reactions
@@ -82,7 +82,7 @@ class GlucosinolateTest(unittest.TestCase):
             model=test_model,
             filename=dir_test_case.joinpath("new_reactions.txt"),
             database="ARA",
-            directory=dir_biocyc,
+            directory=dir_data,
             replacement_dict=self.replacement)
         self.assertEqual(len(test_model.reactions), 959)
         # 3:1 rubisco rate
@@ -112,12 +112,12 @@ class GlucosinolateTest(unittest.TestCase):
         # Glutathione synthesis
         pt.add_graph_to_model(
             model=test_model, graph="GLUTATHIONESYN-PWY", database="ARA",
-            directory=dir_biocyc, compartment="p", avoid_list=self.avoid_list)
+            directory=dir_data, compartment="p", avoid_list=self.avoid_list)
         # Original has an extra demand (total 962)
         self.assertEqual(len(test_model.reactions), 961)
         pt.add_graph_to_model(
             model=test_model, graph="PWY-5340", database="ARA",
-            directory=dir_biocyc, compartment="p",
+            directory=dir_data, compartment="p",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         # One reaction was already in model
@@ -125,7 +125,7 @@ class GlucosinolateTest(unittest.TestCase):
         # Homomethionine synthesis
         pt.add_graph_to_model(
             model=test_model, graph="PWY-1186", database="ARA",
-            directory=dir_biocyc, compartment="p",
+            directory=dir_data, compartment="p",
             replacement_dict=self.replacement,
             avoid_list=["R15-RXN"], ignore_list=self.ignore_list)
         # Its counterpart in cytosol was added from the file
@@ -135,7 +135,7 @@ class GlucosinolateTest(unittest.TestCase):
         # Methionine Elogation chain
         pt.add_graph_to_model(
             model=test_model, graph="PWYQT-4450", database="ARA",
-            directory=dir_biocyc, compartment="p",
+            directory=dir_data, compartment="p",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertEqual(len(test_model.sinks), 0)
@@ -147,7 +147,7 @@ class GlucosinolateTest(unittest.TestCase):
                 'RXN-11422', 'RXN-11430', 'RXN-11438', 'RXN-2208',
                 'RXN-2209', 'RXN-2221'],
             database="ARA",
-            directory=dir_biocyc, compartment="c",
+            directory=dir_data, compartment="c",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertGreater(test_model.slim_optimize(), 0)
@@ -157,7 +157,7 @@ class GlucosinolateTest(unittest.TestCase):
                 'RXN-11423', 'RXN-11431',
                 'RXN-11439', 'RXNQT-4324', 'RXNQT-4329', 'RXNQT-4334'],
             database="ARA",
-            directory=dir_biocyc, compartment="c",
+            directory=dir_data, compartment="c",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertGreater(test_model.slim_optimize(), 0)
@@ -167,7 +167,7 @@ class GlucosinolateTest(unittest.TestCase):
                 'RXN-11424', 'RXN-11432', 'RXN-11440',
                 'RXNQT-4325', 'RXNQT-4330', 'RXNQT-4335'],
             database="ARA",
-            directory=dir_biocyc, compartment="c",
+            directory=dir_data, compartment="c",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertGreater(test_model.slim_optimize(), 0)
@@ -175,7 +175,7 @@ class GlucosinolateTest(unittest.TestCase):
         pt.add_graph_to_model(
             model=test_model, graph="PWYQT-4473",
             database="ARA",
-            directory=dir_biocyc, compartment="c",
+            directory=dir_data, compartment="c",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertGreater(test_model.slim_optimize(), 0)
@@ -183,7 +183,7 @@ class GlucosinolateTest(unittest.TestCase):
         pt.add_graph_to_model(
             model=test_model, graph="PWYQT-4474",
             database="ARA",
-            directory=dir_biocyc, compartment="c",
+            directory=dir_data, compartment="c",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertGreater(test_model.slim_optimize(), 0)
@@ -191,7 +191,7 @@ class GlucosinolateTest(unittest.TestCase):
         pt.add_graph_to_model(
             model=test_model, graph="PWYQT-4475",
             database="ARA",
-            directory=dir_biocyc, compartment="c",
+            directory=dir_data, compartment="c",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertGreater(test_model.slim_optimize(), 0)
@@ -205,7 +205,7 @@ class GlucosinolateTest(unittest.TestCase):
         pt.add_graph_to_model(
             model=test_model, graph="PWY-601",
             database="ARA",
-            directory=dir_biocyc, compartment="c",
+            directory=dir_data, compartment="c",
             replacement_dict=self.replacement, ignore_list=self.ignore_list,
             avoid_list=self.avoid_list)
         self.assertGreater(test_model.slim_optimize(), 0)
