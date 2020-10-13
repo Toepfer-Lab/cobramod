@@ -1,25 +1,18 @@
-Requirements
-============
+Cobramod
+========
 
-In order to run cobramod *Python 3.7.4 or higher* is needed with the following packages:
+Cobramod is a extension package based on `COBRApy <https://github.com/opencobra/
+cobrapy>`_. This package facilitates the retrieval of metabolic data from multiple
+databases such as `Biocyc <https://biocyc.org/>`_ or `KEGG <https://www.kegg.jp/>`_. 
 
-    - cobra >= 0.18.1
-    - request >= 2.24.0
+Cobramod is capable of transforming data from these resources into proper COBRApy objects,
+such as Reactions and Metabolites and append them to proper metabolic models.
 
-Installation
-============
+..
+    comment Insert here a graph
 
-In order to install cobramod, clone the development branch and install with using pip with the command ::
+This package takes into consideration the reversibility of the reactions, coefficient
+of metabolites, mass balance, among others.
 
-    pip install .
-
-In order to use it in development mode, add the argument :code:`-e` while installing with
-pip. This will make the original *src* directory
-
-By default, required packages will be install when installing cobramod.
-As mentioned by the original cobra developers, while cobramod is better while using a *conda*
-environment, it is not necesary.
-
-----
-
-*This is a temporal README*
+The API of cobramod was created in order to facilitate users extend and tests metabolic
+pathways, while also maintaining the idea of manual curation.
