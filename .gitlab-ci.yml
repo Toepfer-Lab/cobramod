@@ -10,6 +10,7 @@ before_script:
 
 stages:
   - build
+  - linter
   - functions
   - example
 
@@ -18,6 +19,15 @@ test_docs:
   script:
     sphinx-build -b html docs/source/ docs/build/
   allow_failure: true
+  only:
+    - master
+    - merge_requests
+
+test_linters:
+  stage: linter
+  script:
+    - flake8 src/cobramod/ tests/
+    - mypy src/cobramod/ tests/ --ignore-missing-imports --follow-imports=silent --show-column-number
   only:
     - master
     - merge_requests

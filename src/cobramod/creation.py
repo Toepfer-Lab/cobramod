@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 from cobra import Metabolite, Model, Reaction
-from typing import TextIO, Iterator, Generator
+from typing import TextIO, Iterator
 from cobramod.debug import debug_log
 import cobramod.mod_parser as par
 from contextlib import suppress
@@ -46,8 +46,8 @@ def _create_meta_from_string(line_string: str) -> Metabolite:
 
 def _fix_name(name: str) -> str:
     """
-    Replaces hyphens in given name and replaces them for underscores.
-    Double hyphens are transformed into single underscores
+    Replaces hyphens in given name to underscores. Double hyphens are
+    transformed into single underscores
     """
     name = name.replace("--", "-")
     return name.replace("-", "_")
@@ -55,11 +55,11 @@ def _fix_name(name: str) -> str:
 
 def build_metabolite(metabolite_dict: dict, compartment: str) -> Metabolite:
     """
-    Builds and return a metabolite based on a data storaged in a dictionary.
+    Builds and return a metabolite based on data saved as a dictionary.
 
     Args:
-        metabolite_dict:
-        compartment:
+        metabolite_dict: dictionary with data of metabolite
+        compartment: location of the metabolite
 
     Returns:
         Metabolite: New object based on a dictionary
@@ -93,15 +93,6 @@ def _read_lines(f: TextIO) -> Iterator:
         yield line
 
 
-def _has_root_name(line: str) -> bool:
-    """
-    Returns whether given line includes a unformatted identifier.
-    """
-    # TODO test some names
-    line_separated = [part.strip().rstrip() for part in line.split(",")]
-    return "_" not in line_separated[0][-3:]
-
-
 def _check_if_meta_in_model(metabolite: str, model: Model) -> bool:
     """
     Returns if metabolite identifier is found in given model.
@@ -124,21 +115,6 @@ def _add_if_not_found_model(model: Model, metabolite: Metabolite):
     else:
         model.add_metabolites([metabolite])
         debug_log.info(f'Metabolite "{metabolite.id}" was added to model')
-
-
-def _has_comma_separator(line: str) -> bool:
-    """
-    Returns True if given line has a comma
-    """
-    return "," in line
-
-
-def _get_name_compartment_string(line: str) -> Generator:
-    """
-    Returns list of words separated previously by a comma
-    """
-    parts = (part.strip().rstrip() for part in line.split(","))
-    return parts
 
 
 def meta_string_to_model(
@@ -273,6 +249,7 @@ def _build_reaction(
 def _check_if_reaction_in_model(reaction_id, model: Model) -> bool:
     """
     Returns whether given reaction is found in model
+    TODO: change to proper name
     """
     return reaction_id in [reaction.id for reaction in model.reactions]
 
@@ -313,7 +290,6 @@ def add_reaction(
 
     Deprecated form: add_reaction_from_root
     """
-    # TODO: add replacment_dict
     data_dict = par.get_data(
         directory=directory, identifier=identifier, database=database)
     reaction = _build_reaction(
@@ -410,10 +386,10 @@ def create_custom_reaction(
     Returns:
         Reaction: New custom Reaction
     """
-    line_string = [x.strip().rstrip() for x in line_string.split("|")]
-    rxn_id_name = [x.strip().rstrip() for x in line_string[0].split(",")]
+    segments = [x.strip().rstrip() for x in line_string.split("|")]
+    rxn_id_name = [x.strip().rstrip() for x in segments[0].split(",")]
     try:  # no blanks
-        string_list = [x.strip().rstrip() for x in line_string[1].split(",")]
+        string_list = [x.strip().rstrip() for x in segments[1].split(",")]
         meta_dict = _build_dict_for_metabolites(string_list=string_list)
     except IndexError:  # wrong format
         raise IndexError(
@@ -424,7 +400,7 @@ def create_custom_reaction(
         rxn_id = rxnName = rxn_id_name[0]
     else:  # blank space
         raise Warning(
-            f'Wrong format for {line_string}. ID not detected')
+            f'Wrong format for {segments}. ID not detected')
     new_reaction = Reaction(id=rxn_id, name=rxnName)
     for identifier, coef in meta_dict.items():
         try:

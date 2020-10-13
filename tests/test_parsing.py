@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import unittest
-from cobramod import mod_parser as pa
+import cobramod.parsing.kegg as kg
+import cobramod.parsing.biocyc as bc
 import xml.etree.ElementTree as ET
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -12,7 +13,7 @@ if not dir_data.exists():
     dir_data.mkdir(parents=True)
 
 
-class ParserTesting(unittest.TestCase):
+class ParsingTesting(unittest.TestCase):
 
     def setUp(self):
         self.raw = """
@@ -35,47 +36,49 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         # CASE 0: Colon (:) in identifier (not implemented yet)
         self.assertRaises(
             NotImplementedError,
-            pa._get_unformatted_kegg, directory=dir_data,
+            kg._get_unformatted_kegg, directory=dir_data,
             identifier="rn:R08618")
         # CASE 1: Regular reaction
-        test_data = pa._get_unformatted_kegg(
+        test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="R08618")
         self.assertIsInstance(
             obj=test_data, cls=str)
         # CASE 1: Regular compound
-        test_data = pa._get_unformatted_kegg(
+        test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290")
         self.assertIsInstance(
             obj=test_data, cls=str)
 
     def test__parse_kegg(self):
         # CASE 1: Reaction (same as setUP)
-        test_dict = pa._parse_kegg(raw=self.raw)
+        test_dict = kg.KeggParser._parse(raw=self.raw)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(
             obj=test_dict["NAME"], cls=str
         )
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         # CASE 2: Compound
-        self.raw = pa._get_unformatted_kegg(
+        self.raw = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290")
-        test_dict = pa._parse_kegg(raw=self.raw)
+        test_dict = kg.KeggParser._parse(raw=self.raw)
         self.assertEqual(first="C01290", second=test_dict["ENTRY"])
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         # CASE 2: EC number (not working for now)
-        self.raw = pa._get_unformatted_kegg(
+        self.raw = kg._get_unformatted_kegg(
             directory=dir_data, identifier="7.1.2.2")
-        self.assertRaises(NotImplementedError, pa._parse_kegg, raw=self.raw)
+        self.assertRaises(
+            NotImplementedError, kg.KeggParser._parse, raw=self.raw)
         # CASE 3: Pathway (Not implemented)
-        self.raw = pa._get_unformatted_kegg(
+        self.raw = kg._get_unformatted_kegg(
             directory=dir_data, identifier="ath00966")
-        self.assertRaises(NotImplementedError, pa._parse_kegg, raw=self.raw)
+        self.assertRaises(
+            NotImplementedError, kg.KeggParser._parse, raw=self.raw)
 
     def test__get_xml_from_biocyc(self):
         # CASE 1: Directory does not exist
         self.assertRaises(
             NotADirectoryError,
-            pa._get_xml_from_biocyc,
+            bc._get_xml_from_biocyc,
             # args
             directory=Path.cwd().joinpath("noDIr"),
             identifier="WATER",
@@ -84,7 +87,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         # CASE 2: ID not found
         self.assertRaises(
             Warning,
-            pa._get_xml_from_biocyc,
+            bc._get_xml_from_biocyc,
             directory=dir_data,
             identifier="WATE",
             database="META"
@@ -92,7 +95,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         # CASE 3: Proper usage with ET.Element
         dir_data.joinpath("META").joinpath("WATER.xml").unlink()
         self.assertIsInstance(
-            pa._get_xml_from_biocyc(
+            bc._get_xml_from_biocyc(
                 directory=dir_data,
                 identifier="WATER",
                 database="META"),
@@ -102,7 +105,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             dir_data.joinpath("CPD-15326.xml").unlink()
         self.assertRaises(
             Warning,
-            pa._get_xml_from_biocyc,
+            bc._get_xml_from_biocyc,
             directory=dir_data,
             identifier="CPD-15326",
             database="ARA"
@@ -110,32 +113,32 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
 
     def test__parse_biocyc(self):
         # CASE 1: Compound
-        test_root = pa._get_xml_from_biocyc(
+        test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="AMP", database="META")
-        test_dict = pa._parse_biocyc(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root)
         self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
         # CASE 2: Reaction
-        test_root = pa._get_xml_from_biocyc(
+        test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="GTP-CYCLOHYDRO-II-RXN",
             database="META")
-        test_dict = pa._parse_biocyc(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first=test_dict["EQUATION"]["WATER"], second=-3)
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
         # CASE 3: Protein
-        test_root = pa._get_xml_from_biocyc(
+        test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="Reduced-hemoproteins",
             database="ARA")
-        test_dict = pa._parse_biocyc(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root)
         self.assertEqual(first=test_dict["TYPE"], second="Protein")
         self.assertEqual(first=test_dict["FORMULA"], second="X")
         # CASE 4: Pathway
-        test_root = pa._get_xml_from_biocyc(
+        test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="PWY-1187",
             database="META")
-        test_dict = pa._parse_biocyc(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root)
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=13)
         self.assertEqual(first=len(test_dict["SET"]), second=14)
