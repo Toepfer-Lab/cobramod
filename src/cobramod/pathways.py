@@ -11,8 +11,8 @@ from pathlib import Path
 
 def _find_end_vertex(vertex_dict: dict) -> Generator:
     """
-    Yields for a dictionary of edges, the last vertex. i.e, a single value
-    that is not in a key. They can be seen as end-metabolites
+    Yields from a dictionary of edges, the last vertex. i.e, a single value
+    that is not in a key. They can be seen as end-metabolites.
     """
     for value in vertex_dict.values():
         if value not in vertex_dict.keys():
@@ -33,7 +33,7 @@ def _verify_return_end_vertex(vertex_dict: dict) -> Generator:
     """
     Verifies that at least one end-vertex and start-vertex are possible
     to obtained from dictionary of edges. If no start-vertex is found, the
-    graph is cyclical and a edge will be cut
+    graph is cyclical and a edge will be cut.
 
     Args:
         vertex_dict (dict): dictionary with edges
@@ -53,7 +53,7 @@ def _build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
     """
     Build sequence for given edge-dictionary, that starts with
     given start vertex. It will stop until no keys are available or a cyclical
-    graph is found
+    graph is found.
 
     Args:
         start_vertex (str): name of the first
@@ -78,7 +78,7 @@ def _build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
 def get_graph(vertex_dict: dict) -> Iterable:
     """
     Creates graph for given vertex dictionary. For each start vertex found,
-    a sequence will be created. Edges can be cut if a cyclic graph is found
+    a sequence will be created. Edges can be cut if a cyclic graph is found.
 
     Args:
         vertex_dict (dict): dictionary with edges
@@ -100,7 +100,7 @@ def get_graph(vertex_dict: dict) -> Iterable:
 def _return_missing_edges(
         complete_edges: Iterable, graph: Iterable) -> Generator:
     """
-    Yields missing vertex in graph.
+    Compares a iterable of edges with a graph and yields missing vertex.
     """
     for edge in complete_edges:
         if edge not in graph:
@@ -111,7 +111,7 @@ def _replace_item(
         iterable: Iterable, replacement_dict: dict = {}) -> Generator:
     """
     For an item in Iterable, replaces it for its corresponding value in
-    given dictionary
+    given dictionary.
 
     Args:
         iterable (Iterable): sequence to modify
@@ -133,9 +133,8 @@ def _replace_item(
 def _remove_item(
         iterable: Iterable, avoid_list: Iterable = []) -> Generator:
     """
-    Returns Generator of items that are not in the avoid list
+    Returns Generator of items that are not in the avoid list.
     """
-    # TODO: add docstring
     for item in iterable:
         if item in avoid_list:
             debug_log.warning(
@@ -150,7 +149,7 @@ def _return_verified_graph(
     """
     Returns list with an ordered sequence for a dictionary of edges. If a
     vertex is missing in the sequence, they will be appended as a extra
-    sequence
+    sequence.
 
     Args:
         vertex_dict (dict): dictionary with edges
@@ -209,8 +208,9 @@ def _create_reactions(
         database: str, replacement_dict: dict = {}, **kwargs) -> Generator:
     """
     For each identifier in the sequence, a Reaction will be created. It returns
-    a generator
-    DEPRECATED: _create_reactions_for_iter
+    a generator.
+
+    Deprecated form: _create_reactions_for_iter
     """
 
     debug_log.debug(f'Obtaining root for {sequence}')
@@ -246,14 +246,11 @@ def _find_next_demand(
             to ignore. Defaults to []
 
     Raises:
-        TypeError: if model is invalid
         Warning: if no metabolite was found
 
     Returns:
         str: metabolite identifier to create a demand reaction
     """
-    if not isinstance(model, Model):
-        raise TypeError('Model is invalid')
     tmp_rxn = model.reactions.get_by_id(reaction_id)
     # Checking reversibility
     # left --> right
@@ -284,7 +281,8 @@ def _find_next_demand(
 
 def _has_demand(model: Model, metabolite: str) -> bool:
     """
-    Returns True if model has a demand reaction for given metabolite identifier
+    Returns True if model has a demand reaction for given metabolite
+    identifier.
     """
     return any(
         ["DM_" in reaction.id for reaction in model.metabolites.get_by_id(
@@ -295,7 +293,7 @@ def _remove_boundary_if_not_model(
         model: Model, metabolite: str, boundary: str):
     """
     Removes given type of boundary reaction for a specified metabolite if found
-    in the model
+    in the model.
 
     Args:
         model (Model): model to test
@@ -313,7 +311,7 @@ def _remove_boundary_if_not_model(
 
 
 def _less_equal_than_x_rxns(
-        model: Model, metabolite: str, x: int = 2) -> bool:
+        model: Model, metabolite: str, x: int) -> bool:
     """
     Returns True if given metabolite participates in less or equal than
     X reactions for given model.
@@ -549,6 +547,48 @@ def _add_sequence(
     debug_log.debug('Pathway added to Model')
 
 
+def _from_data(
+        model: Model, data_dict: dict, compartment: str,
+        avoid_list: Iterable = [], replacement_dict: dict = {},
+        ignore_list: list = [], **kwargs):
+    """
+    Adds root of a pathway into given model. Arguments explained above in
+    `_add_sequence`.
+    """
+    # Retrieving and creating Pathway with Reactions
+    # this uses replacment, avoid and xml
+    graph = return_graph_from_dict(
+        data_dict=data_dict, avoid_list=avoid_list,
+        replacement_dict=replacement_dict)
+    for pathway in graph:
+        sequence = list(_create_reactions(
+            sequence=pathway, compartment=compartment,
+            replacement_dict=replacement_dict, **kwargs))
+        _add_sequence(
+            model=model, sequence=sequence, ignore_list=ignore_list,
+            avoid_list=avoid_list, **kwargs)
+        # TODO: Fix sink for metabolites in last sequence
+
+
+def _from_sequence(
+        model: Model, compartment: str, sequence: Iterable,
+        database: str, directory: Path,
+        avoid_list: Iterable = [], replacement_dict: dict = {},
+        ignore_list: list = [], **kwargs):
+    """
+    Adds a sequence of identifiers to given model. Arguments explained
+    above `_add_sequence`.
+    """
+    # TODO: add tests, and docstrings
+    sequence = list(_create_reactions(
+        sequence=sequence, compartment=compartment, database=database,
+        replacement_dict=replacement_dict, directory=directory,
+        **kwargs))
+    _add_sequence(
+        model=model, sequence=sequence, ignore_list=ignore_list,
+        avoid_list=avoid_list, **kwargs)
+
+
 def add_graph_to_model(
         model: Model,
         graph: Union[list, str, set],
@@ -569,7 +609,7 @@ def add_graph_to_model(
         graph (Union[list, str, set]): The identifier for the
             pathway or a iterator with the ids of the reactions.
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA".
+        database (str): Name of database. Options: "META", "ARA", "KEGG"
         compartment (str): location of the reactions to take place. Defaults to
             cytosol "c"
         avoid_list (Iterable, optional): A sequence of formatted reactions to
@@ -591,45 +631,6 @@ def add_graph_to_model(
     Raises:
         TypeError: if model is invalid
     """
-    def _from_data(
-            model: Model, data_dict: dict, compartment: str,
-            avoid_list: Iterable = [], replacement_dict: dict = {},
-            ignore_list: list = [], **kwargs):
-        """
-        Adds root of a pathway into given model. Arguments explained above
-        """
-        # Retrieving and creating Pathway with Reactions
-        # this uses replacment, avoid and xml
-        graph = return_graph_from_dict(
-            data_dict=data_dict, avoid_list=avoid_list,
-            replacement_dict=replacement_dict)
-        for pathway in graph:
-            sequence = list(_create_reactions(
-                sequence=pathway, compartment=compartment,
-                replacement_dict=replacement_dict, **kwargs))
-            _add_sequence(
-                model=model, sequence=sequence, ignore_list=ignore_list,
-                avoid_list=avoid_list, **kwargs)
-            # TODO: Fix sink for metabolites in last sequence
-
-    def _from_sequence(
-            model: Model, compartment: str, sequence: Iterable,
-            database: str, directory: Path,
-            avoid_list: Iterable = [], replacement_dict: dict = {},
-            ignore_list: list = [], **kwargs):
-        """
-        Adds a sequence of identifiers to given model. Arguments explained
-        above
-        """
-        # TODO: add tests, and docstrings
-        sequence = list(_create_reactions(
-            sequence=sequence, compartment=compartment, database=database,
-            replacement_dict=replacement_dict, directory=directory,
-            **kwargs))
-        _add_sequence(
-            model=model, sequence=sequence, ignore_list=ignore_list,
-            avoid_list=avoid_list, **kwargs)
-
     if not isinstance(model, Model):
         raise TypeError('Model is invalid')
 

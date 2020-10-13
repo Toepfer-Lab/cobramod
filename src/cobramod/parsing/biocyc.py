@@ -1,5 +1,10 @@
+#!/usr/bin/env python3
 from cobramod.debug import debug_log
+from cobramod.parsing.base import BaseParser
 from typing import Any, Dict
+import xml.etree.ElementTree as ET
+from pathlib import Path
+import requests
 
 
 def _p_compound(root: Any) -> dict:
@@ -152,3 +157,109 @@ def _p_pathway(root: Any) -> dict:
         "SET": reaction_set
         }
     return temp_dict
+
+
+class BiocycParser(BaseParser):
+
+    @staticmethod
+    def _parse(root: Any) -> dict:
+        """
+        Parses the root and returns a dictionary with the dictionary of the
+        root, with the most important information depending on its object type.
+        """
+        if root.find("Compound") or root.find("Protein"):
+            biocyc_dict = _p_compound(root=root)
+        elif root.find("Reaction"):
+            biocyc_dict = _p_reaction(root=root)
+        elif root.find("Pathway"):
+            biocyc_dict = _p_pathway(root=root)
+        else:
+            raise NotImplementedError(
+                'Could not parse given root. Please inform maintainers.')
+        biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib["orgid"]
+        return biocyc_dict
+
+    @staticmethod
+    def _retrieve_data(
+            directory: Path, identifier: str, database: str) -> dict:
+        """
+        Retrieves data from biocyc and parses the most important attributes
+        into a dictionary.
+
+        Args:
+            directory (Path): Directory to store and retrieve local data.
+            identifier (str): original identifier
+            database (str): Name of the database. Some options: "META", "ARA"
+
+        Returns:
+            dict: relevant data for given identifier
+        """
+        root = _get_xml_from_biocyc(
+            directory=directory, identifier=identifier, database=database)
+        return BiocycParser._parse(root=root)
+
+    @staticmethod
+    def _return_database(database: str) -> str:
+        """
+        Returns the name of the database. This method is used to compare with
+        given database name. It will raise a warning if both names are not
+        equal or belong to the list of proper names.
+        """
+        names = ["META", "ARA"]
+        if database in names:
+            return database
+        else:
+            raise Warning(f'Given database "{database}" does not exist')
+
+
+def _get_xml_from_biocyc(
+        directory: Path, identifier: str, database: str) -> ET.Element:
+    """
+    Searchs in given parent directory if data is located in their respective
+    database directory. If not, data will be retrievied from the corresponding
+    database. Returns root of given identifier.
+
+    Args:
+        directory (Path): Path to directory where data is located.
+        identifier (str): identifier for given database.
+        database (str): Name of database. Options: "META", "ARA".
+
+    Raes:
+        Warning: If object is not available in given database
+        NotADirectoryError: If parent directory is not found
+
+    Returns:
+        ET.Element: root of XML file
+    """
+    if directory.exists():
+        data_dir = BiocycParser._define_base_dir(
+            directory=directory, database=database)
+        filename = data_dir.joinpath(f'{identifier}.xml')
+        debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
+        try:
+            root = ET.parse(str(filename)).getroot()
+            debug_log.debug('Found')
+            return root
+        except FileNotFoundError:
+            debug_log.warning(
+                f'"{identifier}" not found in directory "{database}".')
+            # Retrieve from URL
+            url_text = (
+                f'https://websvc.biocyc.org/getxml?{database}:{identifier}')
+            debug_log.debug(f'Searching in {url_text}')
+            r = requests.get(url_text)
+            if r.status_code == 404:
+                msg = f'"{identifier}" not available in "{database}"'
+                debug_log.error(msg)
+                raise Warning(msg)
+            else:
+                root = ET.fromstring(r.text)  # defining root
+                tree = ET.ElementTree(root)
+                tree.write(str(filename))
+                debug_log.debug(
+                    f'Object found and saved in directory "{database}".')
+                return root
+    else:
+        msg = "Directory not found"
+        debug_log.error(msg)
+        raise NotADirectoryError(msg)
