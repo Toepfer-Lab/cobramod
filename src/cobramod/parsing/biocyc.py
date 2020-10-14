@@ -13,8 +13,9 @@ def _p_compound(root: Any) -> dict:
     """
     identifier = root.find("*[@frameid]").attrib["frameid"]
     try:
-        formula = root.find(
-            "./*/cml/*/formula").attrib["concise"].replace(" ", "")
+        formula = (
+            root.find("./*/cml/*/formula").attrib["concise"].replace(" ", "")
+        )
         charge = int(root.find("./*/cml/molecule").attrib["formalCharge"])
     # Must be Protein
     except AttributeError:
@@ -34,7 +35,7 @@ def _p_compound(root: Any) -> dict:
         "ENTRY": identifier,
         "NAME": name,
         "FORMULA": formula,
-        "CHARGE": charge
+        "CHARGE": charge,
     }
     return temp_dict
 
@@ -53,10 +54,11 @@ def _p_metabolites(root: Any) -> dict:
         except AttributeError:
             coef = -1  # default
         try:
-            meta_identifier = meta.find(
-                "*/[@frameid]").attrib["frameid"].strip().rstrip()
+            meta_identifier = (
+                meta.find("*/[@frameid]").attrib["frameid"].strip().rstrip()
+            )
         except AttributeError:
-            raise AttributeError('Reaction cannot find participants')
+            raise AttributeError("Reaction cannot find participants")
         meta_dict[meta_identifier] = coef
     for meta in right_metabolites:
         try:
@@ -64,10 +66,11 @@ def _p_metabolites(root: Any) -> dict:
         except AttributeError:
             coef = 1  # default
         try:
-            meta_identifier = meta.find(
-                "*/[@frameid]").attrib["frameid"].strip().rstrip()
+            meta_identifier = (
+                meta.find("*/[@frameid]").attrib["frameid"].strip().rstrip()
+            )
         except AttributeError:
-            raise AttributeError('Reaction cannot find participants')
+            raise AttributeError("Reaction cannot find participants")
         meta_dict[meta_identifier] = coef
     return meta_dict
 
@@ -87,9 +90,10 @@ def _check_direction(root: Any) -> tuple:
         bounds = (0, 1000)
     else:
         raise Warning(
-           f'Reversibility for '
-           f'"{root.find("*[@frameid]").attrib["frameid"]}" could not '
-           f'be found')
+            f"Reversibility for "
+            f'"{root.find("*[@frameid]").attrib["frameid"]}" could not '
+            f"be found"
+        )
     return bounds
 
 
@@ -99,8 +103,7 @@ def _p_reaction(root: Any) -> dict:
     """
     identifier = root.find("*[@frameid]").attrib["frameid"]
     try:
-        name = root.find(
-            "*[@ID]/enzymatic-reaction/*/common-name").text
+        name = root.find("*[@ID]/enzymatic-reaction/*/common-name").text
     except AttributeError:
         name = identifier
     temp_dict = {
@@ -108,7 +111,7 @@ def _p_reaction(root: Any) -> dict:
         "ENTRY": identifier,
         "NAME": name,
         "EQUATION": _p_metabolites(root=root),
-        "BOUNDS": _check_direction(root=root)
+        "BOUNDS": _check_direction(root=root),
     }
     return temp_dict
 
@@ -136,10 +139,8 @@ def _get_unsorted_pathway(root: Any) -> tuple:
     name = root.find("Pathway").attrib["frameid"]
     # If dictinary has only one element, raise an error.
     if len(reaction_dict) == 0:
-        raise NotImplementedError(
-            'Path has only a reaction. Add separately')
-    debug_log.debug(
-        f'Dictionary for pathway "{name}" succesfully created')
+        raise NotImplementedError("Path has only a reaction. Add separately")
+    debug_log.debug(f'Dictionary for pathway "{name}" succesfully created')
     return reaction_dict, reaction_set
 
 
@@ -154,13 +155,12 @@ def _p_pathway(root: Any) -> dict:
         "NAME": root.find("*[@frameid]").attrib["frameid"],
         "ENTRY": identifier,
         "PATHWAY": reaction_dict,
-        "SET": reaction_set
-        }
+        "SET": reaction_set,
+    }
     return temp_dict
 
 
 class BiocycParser(BaseParser):
-
     @staticmethod
     def _parse(root: Any) -> dict:
         """
@@ -175,13 +175,15 @@ class BiocycParser(BaseParser):
             biocyc_dict = _p_pathway(root=root)
         else:
             raise NotImplementedError(
-                'Could not parse given root. Please inform maintainers.')
+                "Could not parse given root. Please inform maintainers."
+            )
         biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib["orgid"]
         return biocyc_dict
 
     @staticmethod
     def _retrieve_data(
-            directory: Path, identifier: str, database: str) -> dict:
+        directory: Path, identifier: str, database: str
+    ) -> dict:
         """
         Retrieves data from biocyc and parses the most important attributes
         into a dictionary.
@@ -195,7 +197,8 @@ class BiocycParser(BaseParser):
             dict: relevant data for given identifier
         """
         root = _get_xml_from_biocyc(
-            directory=directory, identifier=identifier, database=database)
+            directory=directory, identifier=identifier, database=database
+        )
         return BiocycParser._parse(root=root)
 
     @staticmethod
@@ -213,7 +216,8 @@ class BiocycParser(BaseParser):
 
 
 def _get_xml_from_biocyc(
-        directory: Path, identifier: str, database: str) -> ET.Element:
+    directory: Path, identifier: str, database: str
+) -> ET.Element:
     """
     Searchs in given parent directory if data is located in their respective
     database directory. If not, data will be retrievied from the corresponding
@@ -233,20 +237,23 @@ def _get_xml_from_biocyc(
     """
     if directory.exists():
         data_dir = BiocycParser._define_base_dir(
-            directory=directory, database=database)
-        filename = data_dir.joinpath(f'{identifier}.xml')
+            directory=directory, database=database
+        )
+        filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
             root = ET.parse(str(filename)).getroot()
-            debug_log.debug('Found')
+            debug_log.debug("Found")
             return root
         except FileNotFoundError:
             debug_log.warning(
-                f'"{identifier}" not found in directory "{database}".')
+                f'"{identifier}" not found in directory "{database}".'
+            )
             # Retrieve from URL
             url_text = (
-                f'https://websvc.biocyc.org/getxml?{database}:{identifier}')
-            debug_log.debug(f'Searching in {url_text}')
+                f"https://websvc.biocyc.org/getxml?{database}:{identifier}"
+            )
+            debug_log.debug(f"Searching in {url_text}")
             r = requests.get(url_text)
             if r.status_code == 404:
                 msg = f'"{identifier}" not available in "{database}"'
@@ -257,7 +264,8 @@ def _get_xml_from_biocyc(
                 tree = ET.ElementTree(root)
                 tree.write(str(filename))
                 debug_log.debug(
-                    f'Object found and saved in directory "{database}".')
+                    f'Object found and saved in directory "{database}".'
+                )
                 return root
     else:
         msg = "Directory not found"

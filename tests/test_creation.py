@@ -27,15 +27,14 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: regular META
         test_dict = get_data(
             directory=dir_data, identifier="HOMOMETHIONINE", database="META"
-            )
+        )
         test_metabolite = cr.build_metabolite(
-            metabolite_dict=test_dict, compartment="c")
+            metabolite_dict=test_dict, compartment="c"
+        )
         self.assertIsInstance(obj=test_metabolite, cls=cb.Metabolite)
         self.assertEqual(first=test_metabolite.id, second="HOMOMETHIONINE_c")
-        self.assertEqual(
-            first=test_metabolite.name, second="L-homomethionine")
-        self.assertEqual(
-            first=test_metabolite.formula, second="C6H13N1O2S1")
+        self.assertEqual(first=test_metabolite.name, second="L-homomethionine")
+        self.assertEqual(first=test_metabolite.formula, second="C6H13N1O2S1")
         # TODO: add extra cases, ARA, KEGG
 
     def test_meta_string_to_model(self):
@@ -44,16 +43,13 @@ class ModulTesting(unittest.TestCase):
             line="HOMOMETHIONINE, c",
             model=cb.Model(0),
             directory=dir_data,
-            database="META"
-            )
+            database="META",
+        )
         self.assertIsInstance(obj=test_metabolite, cls=cb.Metabolite)
         self.assertEqual(first=test_metabolite.id, second="HOMOMETHIONINE_c")
-        self.assertEqual(
-            first=test_metabolite.name, second="L-homomethionine")
-        self.assertEqual(
-            first=test_metabolite.formula, second="C6H13N1O2S1")
-        self.assertEqual(
-            first=test_metabolite.compartment, second="c")
+        self.assertEqual(first=test_metabolite.name, second="L-homomethionine")
+        self.assertEqual(first=test_metabolite.formula, second="C6H13N1O2S1")
+        self.assertEqual(first=test_metabolite.compartment, second="c")
         # TODO: extra cases
         # CASE 2: custom metabolite
 
@@ -81,7 +77,8 @@ class ModulTesting(unittest.TestCase):
             model=test_model,
             filename=dir_input.joinpath("metaToAdd_02_misspelled.txt"),
             # Directory to save / check for xml files
-            directory=dir_data, database="META"
+            directory=dir_data,
+            database="META",
         )
         # CASE 2: Bad format (e. g. charge is missing).
         self.assertRaises(
@@ -90,7 +87,8 @@ class ModulTesting(unittest.TestCase):
             model=test_model,
             filename=dir_input.joinpath("metaToAdd_03_badFormat.txt"),
             # Directory to save / check for xml files
-            directory=dir_data, database="META"
+            directory=dir_data,
+            database="META",
         )
         # CASE 3: Normal input
         cr.add_meta_from_file(
@@ -98,123 +96,163 @@ class ModulTesting(unittest.TestCase):
             # File with Metabolites to add
             filename=dir_input.joinpath("metaToAdd_01_normal.txt"),
             # Directory to save / check for xml files
-            directory=dir_data, database="META"
+            directory=dir_data,
+            database="META",
         )
         # Length should increase
-        self.assertEqual(
-            len(test_model.metabolites), 2)
+        self.assertEqual(len(test_model.metabolites), 2)
         # Both Names in metabolites
         test_list = ["HOMOMETHIONINE_c", "MALTOSE_b"]
         self.assertTrue(
-            all([x in [meta.id for meta in test_model.metabolites]
-                for x in test_list]))
+            all(
+                [
+                    x in [meta.id for meta in test_model.metabolites]
+                    for x in test_list
+                ]
+            )
+        )
 
     def test__build_reaction(self):
         # CASE 1: Regular Biocyc reaction
         test_data = get_data(
-            directory=dir_data, identifier="OXALODECARB-RXN",
-            database="META")
+            directory=dir_data, identifier="OXALODECARB-RXN", database="META"
+        )
         test_reaction = cr._build_reaction(
-            data_dict=test_data, compartment="c", directory=dir_data,
-            database="META", replacement_dict={})
+            data_dict=test_data,
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            replacement_dict={},
+        )
         self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
-        self.assertTupleEqual(
-            tuple1=test_reaction.bounds,
-            tuple2=(0, 1000))
+        self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(0, 1000))
         test_list = [
-            "PYRUVATE_c", "CARBON_DIOXIDE_c", "OXALACETIC_ACID_c", "PROTON_c"]
+            "PYRUVATE_c",
+            "CARBON_DIOXIDE_c",
+            "OXALACETIC_ACID_c",
+            "PROTON_c",
+        ]
         self.assertListEqual(
             list1=sorted([meta.id for meta in test_reaction.metabolites]),
-            list2=sorted(test_list)
-            )
+            list2=sorted(test_list),
+        )
         # CASE 2: Regular KEGG reaction in compartement "p"
         test_data = get_data(
-            directory=dir_data, identifier="R02736",
-            database="KEGG")
+            directory=dir_data, identifier="R02736", database="KEGG"
+        )
         test_reaction = cr._build_reaction(
-            data_dict=test_data, compartment="p", directory=dir_data,
-            database="KEGG", replacement_dict={})
+            data_dict=test_data,
+            compartment="p",
+            directory=dir_data,
+            database="KEGG",
+            replacement_dict={},
+        )
         self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
         self.assertTupleEqual(
-            tuple1=test_reaction.bounds,
-            tuple2=(-1000, 1000))
+            tuple1=test_reaction.bounds, tuple2=(-1000, 1000)
+        )
         test_list = [
-            "C01172_p", "C00006_p", "C01236_p", "C00005_p", "C00080_p"]
+            "C01172_p",
+            "C00006_p",
+            "C01236_p",
+            "C00005_p",
+            "C00080_p",
+        ]
         self.assertListEqual(
             list1=sorted([meta.id for meta in test_reaction.metabolites]),
-            list2=sorted(test_list)
-            )
+            list2=sorted(test_list),
+        )
         # CASE 3: Reactions with different coefficients
         test_data = get_data(
-            directory=dir_data, identifier="R00114",
-            database="KEGG")
+            directory=dir_data, identifier="R00114", database="KEGG"
+        )
         test_reaction = cr._build_reaction(
-            data_dict=test_data, compartment="p", directory=dir_data,
-            database="KEGG", replacement_dict={})
+            data_dict=test_data,
+            compartment="p",
+            directory=dir_data,
+            database="KEGG",
+            replacement_dict={},
+        )
         self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
         self.assertTupleEqual(
-            tuple1=test_reaction.bounds,
-            tuple2=(-1000, 1000))
+            tuple1=test_reaction.bounds, tuple2=(-1000, 1000)
+        )
         test_list = [
-            "C00025_p", "C00006_p", "C00064_p", "C00026_p", "C00080_p",
-            "C00005_p"]
+            "C00025_p",
+            "C00006_p",
+            "C00064_p",
+            "C00026_p",
+            "C00080_p",
+            "C00005_p",
+        ]
         self.assertListEqual(
             list1=sorted([meta.id for meta in test_reaction.metabolites]),
-            list2=sorted(test_list)
-            )
+            list2=sorted(test_list),
+        )
         self.assertEqual(
-            first=test_reaction.get_coefficient("C00025_p"),
-            second=-2)
+            first=test_reaction.get_coefficient("C00025_p"), second=-2
+        )
 
     def test__add_reaction_line_to_model(self):
         # CASE 1: using delimiter, compartment is cytosol
         test_model = cb.Model(0)
         test_line = (
-            'RXN_17742_c, RXN_17742_c |'
-            'Oxidized-ferredoxins_c:-1, Reduced-ferredoxins_c: 1')
+            "RXN_17742_c, RXN_17742_c |"
+            "Oxidized-ferredoxins_c:-1, Reduced-ferredoxins_c: 1"
+        )
         cr._add_reaction_line_to_model(
-            line=test_line, model=test_model, directory=dir_data,
-            database="META")
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+        )
         self.assertTrue(
-            "RXN_17742_c" in [
-                reaction.id for reaction in test_model.reactions])
+            "RXN_17742_c" in [reaction.id for reaction in test_model.reactions]
+        )
         # CASE 2: No delimiter
         test_model = cb.Model(0)
-        test_line = 'RXN-14462, c'
+        test_line = "RXN-14462, c"
         cr._add_reaction_line_to_model(
-            line=test_line, model=test_model, directory=dir_data,
-            database="META")
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+        )
         self.assertTrue(
-            "RXN_14462_c" in [
-                reaction.id for reaction in test_model.reactions])
+            "RXN_14462_c" in [reaction.id for reaction in test_model.reactions]
+        )
         # CASE 2: No delimiter, compartment p
         test_model = cb.Model(0)
-        test_line = 'RXN-14462, p'
+        test_line = "RXN-14462, p"
         cr._add_reaction_line_to_model(
-            line=test_line, model=test_model, directory=dir_data,
-            database="META")
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+        )
         self.assertTrue(
-            "RXN_14462_p" in [
-                reaction.id for reaction in test_model.reactions])
+            "RXN_14462_p" in [reaction.id for reaction in test_model.reactions]
+        )
 
     def test_add_reaction(self):
         # CASE 1: Regular META reaction
         test_model = cb.Model(0)
-        test_model.compartments = {
-            "e": "extracellular",
-            "p": "plastid"}
+        test_model.compartments = {"e": "extracellular", "p": "plastid"}
         cr.add_reaction(
             model=test_model,
             directory=dir_data,
-            identifier="OXALODECARB-RXN", database="META", compartment="p",
-            replacement_dict={})
+            identifier="OXALODECARB-RXN",
+            database="META",
+            compartment="p",
+            replacement_dict={},
+        )
         self.assertTrue(
-            "OXALODECARB_RXN_p" in [rxn.id for rxn in test_model.reactions])
+            "OXALODECARB_RXN_p" in [rxn.id for rxn in test_model.reactions]
+        )
 
     def test__read_lines(self):
         # CASE 0: Comments and blank lines
-        with open(
-                file=dir_input.joinpath("test_reading_lines.txt")) as f:
+        with open(file=dir_input.joinpath("test_reading_lines.txt")) as f:
             line = list(cr._read_lines(f=f))
         self.assertEqual(len(line), 4)
 
@@ -223,44 +261,60 @@ class ModulTesting(unittest.TestCase):
         self.assertRaises(TypeError, cr._build_dict_for_metabolites, str())
         # CASE 0b: Coefficient missing
         self.assertRaises(
-            ValueError, cr._build_dict_for_metabolites,
-            string_list=[" GLC_c:"])
+            ValueError, cr._build_dict_for_metabolites, string_list=[" GLC_c:"]
+        )
         self.assertDictEqual(
-            {'GLC_b': 1.0, 'GLC_c': -1.0},
+            {"GLC_b": 1.0, "GLC_c": -1.0},
             cr._build_dict_for_metabolites(
-                string_list=[" GLC_c:-1", "GLC_b: 1"]))
+                string_list=[" GLC_c:-1", "GLC_b: 1"]
+            ),
+        )
 
     def test_create_custom_reaction(self):
         # CASE 0: wrong format, no delimiter
         self.assertRaises(
-            IndexError, cr.create_custom_reaction,
+            IndexError,
+            cr.create_custom_reaction,
             line_string="GLC_cb, GLC_cb GLC_c:-1, GLC_b:1",
-            directory=dir_data, database="META")
+            directory=dir_data,
+            database="META",
+        )
         # CASE 1: No ID detected
         self.assertRaises(
-            Warning, cr.create_custom_reaction,
+            Warning,
+            cr.create_custom_reaction,
             line_string=" |GLC_c:-1, GLC_b:1",
-            directory=dir_data, database="META")
+            directory=dir_data,
+            database="META",
+        )
         # CASE 2: Normal, ID and name differ
         ReactionTest = cr.create_custom_reaction(
             line_string="GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
-            directory=dir_data, database="META")
+            directory=dir_data,
+            database="META",
+        )
         # Checking if ID, name and instance are correct.
         self.assertTrue(
-            all([
-                ReactionTest.id == "GLC_cb",
-                ReactionTest.name == "Glucose Transport",
-                isinstance(ReactionTest, cb.Reaction)])
+            all(
+                [
+                    ReactionTest.id == "GLC_cb",
+                    ReactionTest.name == "Glucose Transport",
+                    isinstance(ReactionTest, cb.Reaction),
+                ]
+            )
         )
         test_list = ["GLC_c", "GLC_b"]
         # names should be there
         self.assertTrue(
-            all([x in [meta.id for meta in ReactionTest.metabolites]
-                for x in test_list]))
-        self.assertEqual(
-            -1, ReactionTest.get_coefficient("GLC_c"))
-        self.assertEqual(
-            1, ReactionTest.get_coefficient("GLC_b"))
+            all(
+                [
+                    x in [meta.id for meta in ReactionTest.metabolites]
+                    for x in test_list
+                ]
+            )
+        )
+        self.assertEqual(-1, ReactionTest.get_coefficient("GLC_c"))
+        self.assertEqual(1, ReactionTest.get_coefficient("GLC_b"))
 
     def test_check_mass_balance(self):
         # TODO: add cases
@@ -271,11 +325,14 @@ class ModulTesting(unittest.TestCase):
         cr.add_reactions_from_file(
             model=test_model,
             filename=dir_input.joinpath("rxnToAdd_01_normal.txt"),
-            directory=dir_data, database="META")
+            directory=dir_data,
+            database="META",
+        )
         test_reactions = ["GLC_cb", "RXN_14462_p"]
         for test in test_reactions:
             self.assertTrue(
-                test in [reaction.id for reaction in test_model.reactions])
+                test in [reaction.id for reaction in test_model.reactions]
+            )
 
 
 if __name__ == "__main__":

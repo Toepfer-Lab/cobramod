@@ -1,0 +1,16 @@
+repos:
+-   repo: https://github.com/psf/black
+    rev: 19.3b0
+    hooks:
+    -   id: black
+        args: [--line-length=79, --check]
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.7.8
+    hooks:
+    -   id: flake8
+        args: [--config=.toml]
+-   repo: https://github.com/pre-commit/mirrors-mypy.git
+    rev: v0.730
+    hooks:
+    -   id: mypy
+        args: [--config-file=.toml]

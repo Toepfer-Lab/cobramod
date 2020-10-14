@@ -27,7 +27,7 @@ def _create_meta_from_string(line_string: str) -> Metabolite:
         Metabolite: New Metabolite with given information.
     """
     if not isinstance(line_string, str):
-        raise TypeError('Argument must be a str')
+        raise TypeError("Argument must be a str")
     line = [part.strip().rstrip() for part in line_string.split(",")]
     try:
         meta_id = line[0]
@@ -37,11 +37,16 @@ def _create_meta_from_string(line_string: str) -> Metabolite:
         meta_charge = line[4]
     except IndexError:
         raise IndexError(
-            'Given line is invalid. Format is: id, name, compartment, '
-            'chemical_formula, molecular_charge')
+            "Given line is invalid. Format is: id, name, compartment, "
+            "chemical_formula, molecular_charge"
+        )
     return Metabolite(
-        id=meta_id, name=meta_name, compartment=meta_comp, charge=meta_charge,
-        formula=meta_formula)
+        id=meta_id,
+        name=meta_name,
+        compartment=meta_comp,
+        charge=meta_charge,
+        formula=meta_formula,
+    )
 
 
 def _fix_name(name: str) -> str:
@@ -69,14 +74,16 @@ def build_metabolite(metabolite_dict: dict, compartment: str) -> Metabolite:
     """
     if not metabolite_dict["FORMULA"]:
         raise TypeError(
-            "Given dictionary does not correspond to a Metabolite.")
+            "Given dictionary does not correspond to a Metabolite."
+        )
     else:
         return Metabolite(
             id=f'{_fix_name(name=metabolite_dict["ENTRY"])}_{compartment}',
             formula=metabolite_dict["FORMULA"],
             name=metabolite_dict["NAME"],
             charge=metabolite_dict["CHARGE"],
-            compartment=compartment)
+            compartment=compartment,
+        )
 
 
 def _read_lines(f: TextIO) -> Iterator:
@@ -111,14 +118,14 @@ def _add_if_not_found_model(model: Model, metabolite: Metabolite):
     """
     if _check_if_meta_in_model(model=model, metabolite=metabolite.id):
         debug_log.warning(
-            f'Metabolite "{metabolite.id}" was found in given model. Skipping')
+            f'Metabolite "{metabolite.id}" was found in given model. Skipping'
+        )
     else:
         model.add_metabolites([metabolite])
         debug_log.info(f'Metabolite "{metabolite.id}" was added to model')
 
 
-def meta_string_to_model(
-        line: str, model: Model, **kwargs):
+def meta_string_to_model(line: str, model: Model, **kwargs):
     """
     Transform a string into a Metabolite object and appends it into model.
     The Metabolite can be either custom or from a database. Returns new
@@ -157,8 +164,8 @@ def meta_string_to_model(
         # _identify_database()
         metabolite_dict = par.get_data(identifier=next(seqment), **kwargs)
         new_metabolite = build_metabolite(
-            metabolite_dict=metabolite_dict,
-            compartment=next(seqment))
+            metabolite_dict=metabolite_dict, compartment=next(seqment)
+        )
     _add_if_not_found_model(model=model, metabolite=new_metabolite)
     return new_metabolite
 
@@ -197,8 +204,8 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
 
 
 def _build_reaction(
-        data_dict: dict, compartment: str, replacement_dict: dict,
-        **kwargs) -> Reaction:
+    data_dict: dict, compartment: str, replacement_dict: dict, **kwargs
+) -> Reaction:
     """
     Creates Reactions object from given dictionary with data. Location of the
     reactions can be set with the argument 'compartment'.  Metabolites can be
@@ -226,8 +233,8 @@ def _build_reaction(
     """
     reaction = Reaction(
         id=f'{_fix_name(name=data_dict["ENTRY"])}_{compartment}',
-        name=data_dict["NAME"]
-        )
+        name=data_dict["NAME"],
+    )
     for identifier, coef in data_dict["EQUATION"].items():
         # TODO: add option to get metabolites from model
         # Only if found in replacemente
@@ -235,13 +242,13 @@ def _build_reaction(
             identifier = replacement_dict[identifier]
             debug_log.warning(
                 f'Metabolite "{identifier}" replaced by '
-                f'"{replacement_dict[identifier]}".')
+                f'"{replacement_dict[identifier]}".'
+            )
         metabolite = par.get_data(identifier=identifier, **kwargs)
         metabolite = build_metabolite(
-            metabolite_dict=metabolite,
-            compartment=compartment)
-        reaction.add_metabolites(
-            metabolites_to_add={metabolite: coef})
+            metabolite_dict=metabolite, compartment=compartment
+        )
+        reaction.add_metabolites(metabolites_to_add={metabolite: coef})
         reaction.bounds = data_dict["BOUNDS"]
     return reaction
 
@@ -260,19 +267,21 @@ def _add_if_no_reaction_model(model: Model, reaction: Reaction):
     """
     if _check_if_reaction_in_model(model=model, reaction_id=reaction.id):
         debug_log.warning(
-            f'Reaction "{reaction.id}" was found in given model. Skipping')
+            f'Reaction "{reaction.id}" was found in given model. Skipping'
+        )
     else:
         model.add_reactions([reaction])
         debug_log.info(f'Reaction "{reaction.id}" was added to model')
 
 
 def add_reaction(
-        model: Model,
-        identifier: str,
-        directory: Path,
-        database: str,
-        compartment: str,
-        replacement_dict: dict):
+    model: Model,
+    identifier: str,
+    directory: Path,
+    database: str,
+    compartment: str,
+    replacement_dict: dict,
+):
     """
     Creates and adds a Reaction object based on given identifier from given
     database. Metabolites can be replaced by using the dictionary
@@ -291,11 +300,15 @@ def add_reaction(
     Deprecated form: add_reaction_from_root
     """
     data_dict = par.get_data(
-        directory=directory, identifier=identifier, database=database)
+        directory=directory, identifier=identifier, database=database
+    )
     reaction = _build_reaction(
-        data_dict=data_dict, compartment=compartment, directory=directory,
-        database=database, replacement_dict=replacement_dict
-        )
+        data_dict=data_dict,
+        compartment=compartment,
+        directory=directory,
+        database=database,
+        replacement_dict=replacement_dict,
+    )
     _add_if_no_reaction_model(model=model, reaction=reaction)
 
 
@@ -333,7 +346,7 @@ def _build_dict_for_metabolites(string_list: list) -> dict:
         dict: Dictionary with identifiers and coefficients
     """
     if not isinstance(string_list, list):
-        raise TypeError('Line format is wrong')
+        raise TypeError("Line format is wrong")
     meta_dict = dict()
     for single in string_list:
         single = [x.strip().rstrip() for x in single.split(":")]
@@ -342,15 +355,13 @@ def _build_dict_for_metabolites(string_list: list) -> dict:
             meta_value = float(single[1])
             meta_dict[meta_name] = meta_value
         except ValueError:
-            raise ValueError(f'Coefficient might be missing for {meta_name}')
+            raise ValueError(f"Coefficient might be missing for {meta_name}")
     return meta_dict
 
 
 def create_custom_reaction(
-        line_string: str,
-        directory: Path,
-        database: str,
-        model: Model = Model(0)) -> Reaction:
+    line_string: str, directory: Path, database: str, model: Model = Model(0)
+) -> Reaction:
     """
     For given string, which includes the information of the Reaction and its
     metabolites. If metabolites are not in given model, it will be retrieved
@@ -393,14 +404,14 @@ def create_custom_reaction(
         meta_dict = _build_dict_for_metabolites(string_list=string_list)
     except IndexError:  # wrong format
         raise IndexError(
-            f'No delimiter "|" found for {rxn_id_name[0].split(",")[0]}.')
+            f'No delimiter "|" found for {rxn_id_name[0].split(",")[0]}.'
+        )
     if len(rxn_id_name) == 2:
         rxn_id, rxnName = rxn_id_name
     elif len(rxn_id_name) == 1 and rxn_id_name[0] != "":
         rxn_id = rxnName = rxn_id_name[0]
     else:  # blank space
-        raise Warning(
-            f'Wrong format for {segments}. ID not detected')
+        raise Warning(f"Wrong format for {segments}. ID not detected")
     new_reaction = Reaction(id=rxn_id, name=rxnName)
     for identifier, coef in meta_dict.items():
         try:
@@ -410,9 +421,11 @@ def create_custom_reaction(
             compartment = identifier[-1:]
             identifier = identifier[:-2]
             data_dict = par.get_data(
-                directory=directory, identifier=identifier, database=database)
+                directory=directory, identifier=identifier, database=database
+            )
             metabolite = build_metabolite(
-                metabolite_dict=data_dict, compartment=compartment)
+                metabolite_dict=data_dict, compartment=compartment
+            )
         new_reaction.add_metabolites({metabolite: coef})
     # FIXME: making all reversible
     new_reaction.bounds = (-1000, 1000)
@@ -420,11 +433,13 @@ def create_custom_reaction(
 
 
 def _add_reaction_line_to_model(
-        line: str,
-        model: Model,
-        directory: Path,
-        database: str,
-        replacement_dict: dict = {}, **kwargs):
+    line: str,
+    model: Model,
+    directory: Path,
+    database: str,
+    replacement_dict: dict = {},
+    **kwargs,
+):
     """
     From given string, it will identify if a custom Reaction or a Reaction
     from root can be created. It will build the reaction and adds it to
@@ -441,7 +456,8 @@ def _add_reaction_line_to_model(
             line_string=line,
             directory=directory,
             database=database,
-            model=model)
+            model=model,
+        )
         _add_if_no_reaction_model(model=model, reaction=new_reaction)
     else:
         # add reaction from root. Get only left part
@@ -451,13 +467,16 @@ def _add_reaction_line_to_model(
             identifier = replacement_dict[identifier]
         # TODO: identify database
         add_reaction(
-            model=model, identifier=identifier, directory=directory,
-            database=database,  compartment=next(seqment),
-            replacement_dict=replacement_dict,)
+            model=model,
+            identifier=identifier,
+            directory=directory,
+            database=database,
+            compartment=next(seqment),
+            replacement_dict=replacement_dict,
+        )
 
 
-def add_reactions_from_file(
-        model: Model, filename: Path, **kwargs):
+def add_reactions_from_file(model: Model, filename: Path, **kwargs):
     """
     Adds new reactions to given Model. All reactions can be either created
     manually or retrieved from a database. For each reactions, its always
@@ -493,8 +512,7 @@ def add_reactions_from_file(
     """
     # TODO: add mass balance check
     if not filename.exists():
-        raise FileNotFoundError(
-            f'Filename {filename.name} does not exist')
+        raise FileNotFoundError(f"Filename {filename.name} does not exist")
     with open(filename, "r") as f:
         for line in _read_lines(f=f):
             try:
@@ -506,8 +524,11 @@ def add_reactions_from_file(
 
 
 def check_mass_balance(
-        model: Model, rxn_id: str, show_wrong: bool = True,
-        stop_wrong: bool = False):
+    model: Model,
+    rxn_id: str,
+    show_wrong: bool = True,
+    stop_wrong: bool = False,
+):
     """
     Verifies if given reaction is unbalanced in given model.
 
@@ -526,10 +547,11 @@ def check_mass_balance(
     # Will stop if True
     if show_wrong is True and dict_balance != {}:
         msg = (
-            f'Reaction unbalanced found at {rxn_id}. '
-            f'Results to {dict_balance}. ')
-        print(f'\n{msg}')
+            f"Reaction unbalanced found at {rxn_id}. "
+            f"Results to {dict_balance}. "
+        )
+        print(f"\n{msg}")
         if stop_wrong is True:
-            msg += 'Stopping'
+            msg += "Stopping"
             raise Warning(msg)
         debug_log.warning(msg)
