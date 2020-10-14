@@ -14,5 +14,15 @@ such as Reactions and Metabolites and append them to proper metabolic models.
 This package takes into consideration the reversibility of the reactions, coefficient
 of metabolites, mass balance, among others.
 
-The API of cobramod was created in order to facilitate users extend and tests metabolic
-pathways, while also maintaining the idea of manual curation.
+The API of cobramod was created in order to facilitate users extend and tests 
+multiple metabolic pathways, while also maintaining the idea of manual curation.
+All changes all recorded in a log file so users can monitor the changes manually.
+
+.. code-block:: python
+   :emphasize-lines: 3,5
+
+   def some_function():
+       interesting = False
+       print 'This line is highlighted.'
+       print 'This one is not...'
+       print '...but this one is.
