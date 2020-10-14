@@ -5,7 +5,6 @@ from typing import Any, Union
 
 
 class BaseParser(ABC):
-
     @staticmethod
     def _define_base_dir(directory: Path, database: str) -> Path:
         """
@@ -28,7 +27,8 @@ class BaseParser(ABC):
     @staticmethod
     @abstractmethod
     def _retrieve_data(
-            directory: Path, identifier: str, database: str) -> dict:
+        directory: Path, identifier: str, database: str
+    ) -> dict:
         pass
 
     @staticmethod

@@ -50,7 +50,7 @@ def _create_dict(raw: str) -> dict:
             kegg_dict[actual_key].append(line.strip().rstrip())
         else:
             actual_key = key
-            line = line[line.find(key)+len(key):].strip().rstrip()
+            line = line[line.find(key) + len(key) :].strip().rstrip()
             kegg_dict[actual_key] = [line]
     del kegg_dict[""]
     return kegg_dict
@@ -72,7 +72,8 @@ def _get_coefficient(line: str, SIDE: int) -> MetaboliteTuple:
     line_list = line.strip().rstrip().split(" ")
     try:
         return MetaboliteTuple(
-            identifier=line_list[1], coefficient=float(line_list[0]) * SIDE)
+            identifier=line_list[1], coefficient=float(line_list[0]) * SIDE
+        )
     except IndexError:
         return MetaboliteTuple(identifier=line_list[0], coefficient=1.0 * SIDE)
 
@@ -84,8 +85,8 @@ def _give_metabolites(line: str) -> dict:
     """
     middle = line.find("=")
     temp_dict = dict()
-    reactants = line[:middle-1]
-    products = line[middle+2:]
+    reactants = line[: middle - 1]
+    products = line[middle + 2 :]
     for item in reactants.split(" + "):
         MetaTuple = _get_coefficient(line=item, SIDE=-1)
         temp_dict[MetaTuple.identifier] = MetaTuple.coefficient
@@ -101,7 +102,7 @@ def _get_reversibility(line: str) -> tuple:
     """
     # FIXME: Direction depends also from extra keys
     middle = line.find("=")
-    line = line[middle-1:middle+2]
+    line = line[middle - 1 : middle + 2]
     if line == "<=>":
         bounds = (-1000, 1000)
     elif line == "==>":
@@ -109,13 +110,11 @@ def _get_reversibility(line: str) -> tuple:
     elif line == "<==":
         bounds = (-1000, 0)
     else:
-        raise Warning(
-            f'"Reversibility for "{line}" could not be found')
+        raise Warning(f'"Reversibility for "{line}" could not be found')
     return bounds
 
 
 class KeggParser(BaseParser):
-
     @staticmethod
     def _parse(raw: str) -> dict:
         """
@@ -133,33 +132,38 @@ class KeggParser(BaseParser):
         # Will always have an ENTRY KEY
         # FIXME:  Molecular
         kegg_dict["TYPE"] = list(
-            chain.from_iterable(
-                item.split() for item in kegg_dict["ENTRY"]))[-1]
+            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+        )[-1]
         kegg_dict["ENTRY"] = list(
-            chain.from_iterable(
-                item.split() for item in kegg_dict["ENTRY"]))[-2]
+            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+        )[-2]
         # Only first name
         kegg_dict["NAME"] = kegg_dict["NAME"][0]
         kegg_dict["DATABASE"] = "KEGG"
         if kegg_dict["TYPE"] == "Compound":
-            kegg_dict["FORMULA"] = "".join(
-                kegg_dict["FORMULA"]).strip().rstrip()
+            kegg_dict["FORMULA"] = (
+                "".join(kegg_dict["FORMULA"]).strip().rstrip()
+            )
             # FIXME: search information about charges
             kegg_dict["CHARGE"] = 0
         # For reactions only
         elif kegg_dict["TYPE"] == "Reaction":
             kegg_dict["BOUNDS"] = _get_reversibility(
-                line=kegg_dict["EQUATION"][0])
+                line=kegg_dict["EQUATION"][0]
+            )
             kegg_dict["EQUATION"] = _give_metabolites(
-                line=kegg_dict["EQUATION"][0])
+                line=kegg_dict["EQUATION"][0]
+            )
         else:
             raise NotImplementedError(
-                'Could not parse given root. Please inform maintainers.')
+                "Could not parse given root. Please inform maintainers."
+            )
         return kegg_dict
 
     @staticmethod
     def _retrieve_data(
-            directory: Path, identifier: str, database: str) -> dict:
+        directory: Path, identifier: str, database: str
+    ) -> dict:
         # FIXME: temporal solution for database
         """
         Retrieves data from KEGG database and parses the most important
@@ -209,25 +213,26 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
     database = "KEGG"
     if ":" in identifier:
         raise NotImplementedError(
-               "Identifiers with semicolons cannot be parse yet"
-            )
+            "Identifiers with semicolons cannot be parse yet"
+        )
     if directory.exists():
         data_dir = KeggParser._define_base_dir(
-            directory=directory, database=database)
-        filename = data_dir.joinpath(f'{identifier}.txt')
+            directory=directory, database=database
+        )
+        filename = data_dir.joinpath(f"{identifier}.txt")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
             with open(file=filename, mode="r") as f:
                 unformatted_data = f.read()
-                debug_log.debug('Found')
+                debug_log.debug("Found")
             return unformatted_data
         except FileNotFoundError:
             debug_log.warning(
-                f'"{identifier}" not found in directory "{database}".')
+                f'"{identifier}" not found in directory "{database}".'
+            )
             # Retrieve from URL
-            url_text = (
-                f'http://rest.kegg.jp/get/{identifier}/')
-            debug_log.debug(f'Searching in {url_text}')
+            url_text = f"http://rest.kegg.jp/get/{identifier}/"
+            debug_log.debug(f"Searching in {url_text}")
             r = requests.get(url_text)
             if r.status_code == 404:
                 msg = f'"{identifier}" not available in "{database}"'
@@ -236,7 +241,8 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
             else:
                 unformatted_data = r.text
                 debug_log.debug(
-                    f'Object found and saved in directory "{database}".')
+                    f'Object found and saved in directory "{database}".'
+                )
                 with open(file=filename, mode="w+") as f:
                     f.write(unformatted_data)
                 return unformatted_data

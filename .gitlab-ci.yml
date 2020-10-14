@@ -26,8 +26,10 @@ test_docs:
 test_linters:
   stage: linter
   script:
-    - flake8 src/cobramod/ tests/
-    - mypy src/cobramod/ tests/ --ignore-missing-imports --follow-imports=silent --show-column-number
+    # Black is currently not recognizing .toml
+    - black src/cobramod/ tests/ --line-length=79 --check
+    - flake8 src/cobramod/ tests/ --config=.toml
+    - mypy src/cobramod/ tests/ --config-file=.toml
   only:
     - master
     - merge_requests

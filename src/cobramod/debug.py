@@ -3,7 +3,7 @@ import logging
 
 # Creating corresponding Logs
 # Format
-debug_formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+debug_formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
 # Handler
 debug_handler = logging.FileHandler("debug.log", mode="a+")
 debug_handler.setFormatter(debug_formatter)
