@@ -9,10 +9,7 @@ BiocycParser
 KeggParser
 
 
-def get_data(
-        directory: Path,
-        identifier: str,
-        database: str) -> dict:
+def get_data(directory: Path, identifier: str, database: str) -> dict:
     """
     Retrieves and tranform the data into a dictionary for given identifier
     in a specific database.
@@ -33,4 +30,5 @@ def get_data(
             parser._return_database(database=database)
             real_parser = parser
     return real_parser._retrieve_data(
-        directory=directory, identifier=identifier, database=database)
+        directory=directory, identifier=identifier, database=database
+    )

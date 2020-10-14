@@ -1,10 +1,13 @@
 name: cobramod
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - python=3.7.4
   - pip=20.2.2
   - wheel=0.34.2=py37_0
+  - virtualenv=20.0.34=py37_0
+  - pre_commit=2.7.1=1
   - pip:
     - appdirs==1.4.4
     - attrs==19.3.0
@@ -42,4 +45,3 @@ dependencies:
     - Sphinx==3.2.1
     - sphinx-rtd-theme==0.5.0
     - sphinxcontrib-napoleon==0.7
-
