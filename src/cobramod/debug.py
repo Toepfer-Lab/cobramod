@@ -12,3 +12,4 @@ debug_log = logging.getLogger("debug_log")
 debug_log.setLevel(logging.DEBUG)
 # GenLog.ad
 debug_log.addHandler(debug_handler)
+DEBUG = logging.DEBUG

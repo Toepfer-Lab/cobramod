@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 from cobra import Metabolite, Model, Reaction
-from typing import TextIO, Iterator
+from typing import TextIO, Iterator, Union
 from cobramod.debug import debug_log
 import cobramod.mod_parser as par
 from contextlib import suppress
@@ -217,14 +217,12 @@ def _build_reaction(
     Args:
         data_dict (dict): dictionary with data of a Reaction.
         compartment (str): locations of the reactions
-        replacement_dict (dict):
         replacement_dict (dict): original identifiers to be replaced.
             Values are the new identifiers.
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA".
-        compartment (str): location of metabolites. Defaults to cytosol "c"
 
     Returns:
         Reaction: New reaction based on dictionary
@@ -535,8 +533,8 @@ def check_mass_balance(
     Args:
         model (Model): model to test
         rxn_id (str): reaction identifier
-        show_wrong (bool, optional): If unbalance is found, it will show the
-            output. Defaults to True.
+        show_wrong (bool, optional): If unbalance is found, it wil/_buil show
+            the output. Defaults to True.
         stop_wrong (bool, optional): If unbalanace is found, raise a Warning.
             Defaults to False.
 
@@ -555,3 +553,52 @@ def check_mass_balance(
             msg += "Stopping"
             raise Warning(msg)
         debug_log.warning(msg)
+
+
+def create_object(
+    identifier: str,
+    directory: Path,
+    database: str,
+    compartment: str,
+    replacement_dict: dict = {},
+) -> Union[Reaction, Metabolite]:
+    """
+    Creates and returns COBRApy object based on given identifier and database.
+    Identifier names will be formatted.
+
+    ..hint:: Hyphens will become underscores. Double hyphens become single\
+    underscores.
+
+    Args:
+        identifier (str): original identifier for database
+        directory (Path): Path to directory where data is located.
+        database (str): Name of the database. Options are: "META", "ARA",
+            "KEGG"
+        compartment (str): Location of the object. In case of reaction, all
+            metabolites will be included in the same location
+        replacement_dict (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+
+
+    Returns:
+        Union[Reaction, Metabolite]: Either Reaction on Metabolite object
+    """
+    data_dict = par.get_data(
+        directory=directory, identifier=identifier, database=database
+    )
+    # build_metabolite
+    # FIX: Temporal solution. Pathways are missing
+    try:
+        debug_log.debug("Data for metabolite found")
+        return build_metabolite(
+            metabolite_dict=data_dict, compartment=compartment
+        )
+    except KeyError:
+        return _build_reaction(
+            data_dict=data_dict,
+            directory=directory,
+            replacement_dict=replacement_dict,
+            database=database,
+            compartment=compartment,
+        )
+        data_dict["TYPE"]
