@@ -14,3 +14,8 @@ repos:
     hooks:
     -   id: mypy
         args: [--config-file=.toml]
+-   repo: https://github.com/PyCQA/doc8
+    rev: 0.9.0a1
+    hooks:
+    -   id: doc8
+        arg: [--config=.toml]

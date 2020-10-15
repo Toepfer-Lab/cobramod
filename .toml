@@ -9,3 +9,6 @@ python_version = 3.7
 show_column_numbers = True
 ignore_missing_imports = True
 follow_imports = silent
+
+[doc8]
+ignore=D004
