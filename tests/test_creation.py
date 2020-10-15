@@ -2,9 +2,12 @@
 from pathlib import Path
 from cobramod import creation as cr
 from cobramod.mod_parser import get_data
+from cobramod.debug import debug_log, DEBUG
 import unittest
 import cobra as cb
 
+# configuration
+debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
@@ -333,6 +336,44 @@ class ModulTesting(unittest.TestCase):
             self.assertTrue(
                 test in [reaction.id for reaction in test_model.reactions]
             )
+
+    def test_create_object(self):
+        # CASE 1: metabolite from metacyc
+        test_object = cr.create_object(
+            identifier="GLC",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+        )
+        self.assertIsInstance(obj=test_object, cls=cb.Metabolite)
+        self.assertEqual(first=test_object.compartment, second="c")
+        # CASE 2: metabolite from kegg
+        test_object = cr.create_object(
+            identifier="C00026",
+            directory=dir_data,
+            compartment="p",
+            database="KEGG",
+        )
+        self.assertIsInstance(obj=test_object, cls=cb.Metabolite)
+        self.assertEqual(first=test_object.compartment, second="p")
+        # CASE 3: reaction from metacyc
+        test_object = cr.create_object(
+            identifier="2.6.1.58-RXN",
+            directory=dir_data,
+            compartment="p",
+            database="META",
+        )
+        self.assertIsInstance(obj=test_object, cls=cb.Reaction)
+        self.assertIn(member="p", container=test_object.compartments)
+        # CASE 4: reaction from KEGG
+        test_object = cr.create_object(
+            identifier="R02736",
+            directory=dir_data,
+            compartment="c",
+            database="KEGG",
+        )
+        self.assertIsInstance(obj=test_object, cls=cb.Reaction)
+        self.assertIn(member="c", container=test_object.compartments)
 
 
 if __name__ == "__main__":
