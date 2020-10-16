@@ -175,7 +175,7 @@ def meta_string_to_model(line: str, model: Model, **kwargs):
 def add_meta_from_file(model: Model, filename: Path, **kwargs):
     """
     Creates new Metabolites specified in given file. Syntax is mentioned in
-    function **`add_meta_from_string`**
+    function :func:`cobramod.creation.meta_string_to_model`
 
     Args:
         model (Model): model to test
@@ -184,7 +184,6 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA".
-        compartment (str): location of metabolites. Defaults to cytosol "c"
 
     Raises:
         TypeError: if model is invalid
@@ -576,7 +575,7 @@ def create_object(
     Creates and returns COBRApy object based on given identifier and database.
     Identifier names will be formatted.
 
-    ..hint:: Hyphens will become underscores. Double hyphens become single\
+    .. hint:: Hyphens will become underscores. Double hyphens become single\
     underscores.
 
     Args:
