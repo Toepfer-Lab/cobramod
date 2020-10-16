@@ -5,11 +5,14 @@ from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
 from cobramod.parsing.kegg import KeggParser
 
+# FIXME: find a workaround to avoid linter problems
 BiocycParser
 KeggParser
 
 
-def get_data(directory: Path, identifier: str, database: str) -> dict:
+def get_data(
+    directory: Path, identifier: str, database: str, debug_level: int = 20
+) -> dict:
     """
     Retrieves and tranform the data into a dictionary for given identifier
     in a specific database.
@@ -18,6 +21,8 @@ def get_data(directory: Path, identifier: str, database: str) -> dict:
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
         database (str): Name of database. Options: "META", "ARA", "KEGG"
+        debug_level (int, optional): Level of debugging. Read package logging
+            for more info. Defaults to 20
 
     Returns:
         dict: relevant data for given identifier
@@ -30,5 +35,8 @@ def get_data(directory: Path, identifier: str, database: str) -> dict:
             parser._return_database(database=database)
             real_parser = parser
     return real_parser._retrieve_data(
-        directory=directory, identifier=identifier, database=database
+        directory=directory,
+        identifier=identifier,
+        database=database,
+        debug_level=debug_level,
     )

@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 import unittest
 from cobramod.mod_parser import get_data
+from cobramod.debug import debug_log
+from logging import DEBUG
 from pathlib import Path
 
+debug_log.setLevel(DEBUG)
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
 
@@ -19,7 +22,6 @@ class RetrievalTesting(unittest.TestCase):
         test_dict = get_data(
             directory=dir_data, database="KEGG", identifier="C00001"
         )
-        pass
 
 
 if __name__ == "__main__":

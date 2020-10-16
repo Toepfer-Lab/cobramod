@@ -162,7 +162,9 @@ def meta_string_to_model(line: str, model: Model, **kwargs):
         seqment = (part.strip().rstrip() for part in line.split(sep=","))
         # FIXME: include multiple databases
         # _identify_database()
-        metabolite_dict = par.get_data(identifier=next(seqment), **kwargs)
+        metabolite_dict = par.get_data(
+            identifier=next(seqment), debug_level=10, **kwargs
+        )
         new_metabolite = build_metabolite(
             metabolite_dict=metabolite_dict, compartment=next(seqment)
         )
@@ -242,7 +244,9 @@ def _build_reaction(
                 f'Metabolite "{identifier}" replaced by '
                 f'"{replacement_dict[identifier]}".'
             )
-        metabolite = par.get_data(identifier=identifier, **kwargs)
+        metabolite = par.get_data(
+            identifier=identifier, debug_level=10, **kwargs
+        )
         metabolite = build_metabolite(
             metabolite_dict=metabolite, compartment=compartment
         )
@@ -298,7 +302,10 @@ def add_reaction(
     Deprecated form: add_reaction_from_root
     """
     data_dict = par.get_data(
-        directory=directory, identifier=identifier, database=database
+        directory=directory,
+        identifier=identifier,
+        database=database,
+        debug_level=10,
     )
     reaction = _build_reaction(
         data_dict=data_dict,
@@ -419,7 +426,10 @@ def create_custom_reaction(
             compartment = identifier[-1:]
             identifier = identifier[:-2]
             data_dict = par.get_data(
-                directory=directory, identifier=identifier, database=database
+                directory=directory,
+                identifier=identifier,
+                database=database,
+                debug_level=10,
             )
             metabolite = build_metabolite(
                 metabolite_dict=data_dict, compartment=compartment
@@ -545,7 +555,7 @@ def check_mass_balance(
     # Will stop if True
     if show_wrong is True and dict_balance != {}:
         msg = (
-            f"Reaction unbalanced found at {rxn_id}. "
+            f"Reaction unbalanced found at '{rxn_id}'. "
             f"Results to {dict_balance}. "
         )
         print(f"\n{msg}")
@@ -584,16 +594,20 @@ def create_object(
         Union[Reaction, Metabolite]: Either Reaction on Metabolite object
     """
     data_dict = par.get_data(
-        directory=directory, identifier=identifier, database=database
+        directory=directory,
+        identifier=identifier,
+        database=database,
+        debug_level=10,
     )
     # build_metabolite
     # FIX: Temporal solution. Pathways are missing
     try:
-        debug_log.debug("Data for metabolite found")
+        debug_log.info(f"Metabolite for '{identifier}' created")
         return build_metabolite(
             metabolite_dict=data_dict, compartment=compartment
         )
     except KeyError:
+        debug_log.info(f"Reaction for '{identifier}' created")
         return _build_reaction(
             data_dict=data_dict,
             directory=directory,

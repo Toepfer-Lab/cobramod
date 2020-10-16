@@ -9,7 +9,6 @@ debug_handler = logging.FileHandler("debug.log", mode="a+")
 debug_handler.setFormatter(debug_formatter)
 # Log
 debug_log = logging.getLogger("debug_log")
-debug_log.setLevel(logging.DEBUG)
+debug_log.setLevel(logging.INFO)
 # GenLog.ad
 debug_log.addHandler(debug_handler)
-DEBUG = logging.DEBUG
