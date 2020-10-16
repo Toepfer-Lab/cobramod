@@ -110,7 +110,7 @@ def _get_reversibility(line: str) -> tuple:
     elif line == "<==":
         bounds = (-1000, 0)
     else:
-        raise Warning(f'"Reversibility for "{line}" could not be found')
+        raise Warning(f'"Reversibility for "{line}" could not be found.')
     return bounds
 
 
@@ -162,7 +162,7 @@ class KeggParser(BaseParser):
 
     @staticmethod
     def _retrieve_data(
-        directory: Path, identifier: str, database: str
+        directory: Path, identifier: str, database: str, debug_level: int
     ) -> dict:
         # FIXME: temporal solution for database
         """
@@ -170,13 +170,19 @@ class KeggParser(BaseParser):
         attributes into a dictionary
 
         Args:
-            directory (Path): Directory to store and retrieve local data
+            directory (Path): Directory to store and retrieve local data.
             identifier (str): original identifier
             database (str): name of database.
+        debug_level (int): Level of debugging. Read package logging
+            for more info.
+
         Returns:
             dict: relevant data for given identifier
         """
         raw = _get_unformatted_kegg(directory=directory, identifier=identifier)
+        debug_log.log(
+            level=debug_level, msg=f'Data for "{identifier}" retrieved.'
+        )
         return KeggParser._parse(raw=raw)
 
     @staticmethod
@@ -194,16 +200,16 @@ class KeggParser(BaseParser):
 
 def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
     """
-    Retrieves and stores the data of given identifier for the KEGG database
+    Retrieves and stores the data of given identifier for the KEGG database.
 
     Args:
         directory (Path): Path for data storage.
-        identifier (str): official name for given object in KEGGs
+        identifier (str): official name for given object in KEGGs.
 
     Raises:
         NotImplementedError: If identifier contains a semicolon (:)
-        Warning: If given identifier is not found in KEGGs
-        NotADirectoryError:  If parent directory is not found
+        Warning: If given identifier is not found in KEGGs.
+        NotADirectoryError:  If parent directory is not found.
 
     Returns:
         str: raw string from given KEGGs identifier
@@ -220,14 +226,14 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
             directory=directory, database=database
         )
         filename = data_dir.joinpath(f"{identifier}.txt")
-        debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
+        debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         try:
             with open(file=filename, mode="r") as f:
                 unformatted_data = f.read()
-                debug_log.debug("Found")
+                debug_log.debug(f"Identifier '{identifier}' found.")
             return unformatted_data
         except FileNotFoundError:
-            debug_log.warning(
+            debug_log.debug(
                 f'"{identifier}" not found in directory "{database}".'
             )
             # Retrieve from URL
@@ -235,18 +241,19 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
             debug_log.debug(f"Searching in {url_text}")
             r = requests.get(url_text)
             if r.status_code == 404:
-                msg = f'"{identifier}" not available in "{database}"'
+                msg = f'"{identifier}" not available in "{database}".'
                 debug_log.error(msg)
                 raise Warning(msg)
             else:
                 unformatted_data = r.text
-                debug_log.debug(
-                    f'Object found and saved in directory "{database}".'
+                debug_log.info(
+                    f'Object "{identifier}" found in database. Saving in '
+                    f'directory "{database}".'
                 )
                 with open(file=filename, mode="w+") as f:
                     f.write(unformatted_data)
                 return unformatted_data
     else:
         msg = "Directory not found"
-        debug_log.error(msg)
+        debug_log.critical(msg)
         raise NotADirectoryError(msg)

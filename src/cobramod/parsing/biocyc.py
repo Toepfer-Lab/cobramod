@@ -182,7 +182,7 @@ class BiocycParser(BaseParser):
 
     @staticmethod
     def _retrieve_data(
-        directory: Path, identifier: str, database: str
+        directory: Path, identifier: str, database: str, debug_level: int
     ) -> dict:
         """
         Retrieves data from biocyc and parses the most important attributes
@@ -192,12 +192,17 @@ class BiocycParser(BaseParser):
             directory (Path): Directory to store and retrieve local data.
             identifier (str): original identifier
             database (str): Name of the database. Some options: "META", "ARA"
+        debug_level (int): Level of debugging. Read package logging
+            for more info.
 
         Returns:
             dict: relevant data for given identifier
         """
         root = _get_xml_from_biocyc(
             directory=directory, identifier=identifier, database=database
+        )
+        debug_log.log(
+            level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
         return BiocycParser._parse(root=root)
 
@@ -243,10 +248,10 @@ def _get_xml_from_biocyc(
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
             root = ET.parse(str(filename)).getroot()
-            debug_log.debug("Found")
+            debug_log.debug(f"Identifier '{identifier}' found.")
             return root
         except FileNotFoundError:
-            debug_log.warning(
+            debug_log.debug(
                 f'"{identifier}" not found in directory "{database}".'
             )
             # Retrieve from URL
@@ -263,11 +268,12 @@ def _get_xml_from_biocyc(
                 root = ET.fromstring(r.text)  # defining root
                 tree = ET.ElementTree(root)
                 tree.write(str(filename))
-                debug_log.debug(
-                    f'Object found and saved in directory "{database}".'
+                debug_log.info(
+                    f'Object "{identifier}" found in database. Saving in '
+                    f'directory "{database}".'
                 )
                 return root
     else:
         msg = "Directory not found"
-        debug_log.error(msg)
+        debug_log.critical(msg)
         raise NotADirectoryError(msg)

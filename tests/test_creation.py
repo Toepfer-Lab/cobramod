@@ -2,7 +2,8 @@
 from pathlib import Path
 from cobramod import creation as cr
 from cobramod.mod_parser import get_data
-from cobramod.debug import debug_log, DEBUG
+from cobramod.debug import debug_log
+from logging import DEBUG
 import unittest
 import cobra as cb
 
@@ -29,7 +30,10 @@ class ModulTesting(unittest.TestCase):
     def test_build_metabolite(self):
         # CASE 1: regular META
         test_dict = get_data(
-            directory=dir_data, identifier="HOMOMETHIONINE", database="META"
+            directory=dir_data,
+            identifier="HOMOMETHIONINE",
+            database="META",
+            debug_level=10,
         )
         test_metabolite = cr.build_metabolite(
             metabolite_dict=test_dict, compartment="c"
@@ -57,7 +61,6 @@ class ModulTesting(unittest.TestCase):
         # CASE 2: custom metabolite
 
     def test_add_meta_from_file(self):
-        # FIXME: fix blank spaces
         test_model = cb.Model(0)
         # Testing if model is not cobra.Model
         self.assertRaises(
@@ -118,7 +121,10 @@ class ModulTesting(unittest.TestCase):
     def test__build_reaction(self):
         # CASE 1: Regular Biocyc reaction
         test_data = get_data(
-            directory=dir_data, identifier="OXALODECARB-RXN", database="META"
+            directory=dir_data,
+            identifier="OXALODECARB-RXN",
+            database="META",
+            debug_level=10,
         )
         test_reaction = cr._build_reaction(
             data_dict=test_data,
@@ -141,7 +147,10 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 2: Regular KEGG reaction in compartement "p"
         test_data = get_data(
-            directory=dir_data, identifier="R02736", database="KEGG"
+            directory=dir_data,
+            identifier="R02736",
+            database="KEGG",
+            debug_level=10,
         )
         test_reaction = cr._build_reaction(
             data_dict=test_data,
@@ -167,7 +176,10 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 3: Reactions with different coefficients
         test_data = get_data(
-            directory=dir_data, identifier="R00114", database="KEGG"
+            directory=dir_data,
+            identifier="R00114",
+            database="KEGG",
+            debug_level=10,
         )
         test_reaction = cr._build_reaction(
             data_dict=test_data,

@@ -612,7 +612,7 @@ def _add_sequence(
             check_mass_balance(model=model, rxn_id=rxn.id, **mass_kwargs)
         else:
             # FIXME: avoid creating reaction
-            debug_log.warning(f'Reaction "{rxn.id}" was found in model')
+            debug_log.info(f'Reaction "{rxn.id}" was found in model')
     debug_log.debug("Pathway added to Model")
 
 
