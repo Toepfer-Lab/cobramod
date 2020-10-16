@@ -27,10 +27,7 @@ systems. A single for loop manage to gather the data from Biocyc.
         "CPD-15326"]
 
     for single in identifiers:
-        get_data(
-            directory=dir_data,
-            identifier=single,
-            database="META")
+        get_data(directory=dir_data, identifier=single, database="META")
 
 The first argument of *get_data* represent the system path where the data will
 be stored. In this scenario, it symbolises
@@ -57,6 +54,31 @@ As expected, a new directory was created to store locally the data. The name
 *META* is derived from `Metacyc <https://metacyc.org/>`_, the accumulation of
 Biocyc' sub--databases. Some working examples for the argument `database`:
 
-* META
-* ARA
-* KEGG
+    * META
+    * ARA
+    * KEGG
+
+Converting data to objects
+==========================
+
+One of the goals of cobramod in to simplify the creation ob COBRApy objects.
+Single objects can transform immediately using the method *create_object*:
+
+.. code-block:: python
+
+    from cobramod import create_object
+    from pathlib import Path
+
+    dir_data = Path.cwd().joinpath("data")
+
+    new_object = create_object(
+        identifier="C00026", directory=dir_data,
+        database="KEGG", compartment="c")
+
+.. code-block:: python
+
+    >>> print(type(new_object))
+    <class 'cobra.core.metabolite.Metabolite'>
+
+It is not necessary to use *get_data* before. This method is able to obtain the
+data and convert it to a proper object individually.

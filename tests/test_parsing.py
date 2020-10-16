@@ -3,8 +3,11 @@ from pathlib import Path
 import unittest
 import cobramod.parsing.kegg as kg
 import cobramod.parsing.biocyc as bc
+from cobramod.debug import debug_log
+from logging import DEBUG
 import xml.etree.ElementTree as ET
 
+debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
@@ -96,7 +99,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             identifier="WATE",
             database="META",
         )
-        # CASE 3: Proper usage with ET.Element
+        # CASE 3: Proper retrieval.
         dir_data.joinpath("META").joinpath("WATER.xml").unlink()
         self.assertIsInstance(
             bc._get_xml_from_biocyc(

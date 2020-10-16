@@ -7,7 +7,10 @@ from cobramod.creation import (
     _add_reaction_line_to_model,
     add_reactions_from_file,
 )
+from cobramod.debug import debug_log
+from logging import DEBUG
 
+debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
 # Short model
