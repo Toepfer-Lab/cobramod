@@ -23,4 +23,4 @@ By default, required packages will be install when installing cobramod.
     environment YAML file is provided to use it with *conda*.
 
 As mentioned by the original COBRApy developers, while cobramod is better while
- using a *conda* environment, it is not necesary.
+using a *conda* environment, it is not necesary.
