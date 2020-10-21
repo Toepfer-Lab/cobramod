@@ -56,7 +56,7 @@ def _create_dict(raw: str) -> dict:
     return kegg_dict
 
 
-def _get_coefficient(line: str, SIDE: int) -> MetaboliteTuple:
+def _get_coefficient(line: str, SIDE: int, prefix: str) -> MetaboliteTuple:
     """
     Returns a NamedTuple with the metabolite identifier and coefficient
     that appears in given line.
@@ -64,6 +64,7 @@ def _get_coefficient(line: str, SIDE: int) -> MetaboliteTuple:
     Args:
         line (str): string with information
         SIDE (int): Constant to multiply depending on the side
+        prefix (str): prefix for the metabolite
 
     Returns:
         NamedTuple: tupple with identifier and coefficient
@@ -72,10 +73,13 @@ def _get_coefficient(line: str, SIDE: int) -> MetaboliteTuple:
     line_list = line.strip().rstrip().split(" ")
     try:
         return MetaboliteTuple(
-            identifier=line_list[1], coefficient=float(line_list[0]) * SIDE
+            identifier=prefix + line_list[1],
+            coefficient=float(line_list[0]) * SIDE,
         )
     except IndexError:
-        return MetaboliteTuple(identifier=line_list[0], coefficient=1.0 * SIDE)
+        return MetaboliteTuple(
+            identifier=prefix + line_list[0], coefficient=1.0 * SIDE
+        )
 
 
 def _give_metabolites(line: str) -> dict:
@@ -88,10 +92,10 @@ def _give_metabolites(line: str) -> dict:
     reactants = line[: middle - 1]
     products = line[middle + 2 :]
     for item in reactants.split(" + "):
-        MetaTuple = _get_coefficient(line=item, SIDE=-1)
+        MetaTuple = _get_coefficient(line=item, SIDE=-1, prefix="r_")
         temp_dict[MetaTuple.identifier] = MetaTuple.coefficient
     for item in products.split(" + "):
-        MetaTuple = _get_coefficient(line=item, SIDE=1)
+        MetaTuple = _get_coefficient(line=item, SIDE=1, prefix="l_")
         temp_dict[MetaTuple.identifier] = MetaTuple.coefficient
     return temp_dict
 

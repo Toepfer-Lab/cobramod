@@ -235,6 +235,8 @@ def _build_reaction(
         name=data_dict["NAME"],
     )
     for identifier, coef in data_dict["EQUATION"].items():
+        # Get rid of prefix r_ and l_
+        identifier = identifier[2:]
         # TODO: add option to get metabolites from model
         # Only if found in replacemente
         with suppress(KeyError):
@@ -600,13 +602,14 @@ def create_object(
     )
     # build_metabolite
     # FIX: Temporal solution. Pathways are missing
+    # FIXME: logs information expressed twice
     try:
-        debug_log.info(f"Metabolite for '{identifier}' created")
+        debug_log.info(f"Metabolite for '{identifier}' identified")
         return build_metabolite(
             metabolite_dict=data_dict, compartment=compartment
         )
     except KeyError:
-        debug_log.info(f"Reaction for '{identifier}' created")
+        debug_log.info(f"Reaction for '{identifier}' identified")
         return _build_reaction(
             data_dict=data_dict,
             directory=directory,
@@ -614,4 +617,3 @@ def create_object(
             database=database,
             compartment=compartment,
         )
-        data_dict["TYPE"]

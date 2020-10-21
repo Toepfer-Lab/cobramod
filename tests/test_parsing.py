@@ -134,7 +134,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         )
         test_dict = bc.BiocycParser._parse(root=test_root)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
-        self.assertEqual(first=test_dict["EQUATION"]["WATER"], second=-3)
+        self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
         # CASE 3: Protein

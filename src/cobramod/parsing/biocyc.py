@@ -59,7 +59,8 @@ def _p_metabolites(root: Any) -> dict:
             )
         except AttributeError:
             raise AttributeError("Reaction cannot find participants")
-        meta_dict[meta_identifier] = coef
+        meta_dict[f"l_{meta_identifier}"] = coef
+    # FIXME: check for same identifier
     for meta in right_metabolites:
         try:
             coef = float(meta.find("coefficient").text)
@@ -71,7 +72,7 @@ def _p_metabolites(root: Any) -> dict:
             )
         except AttributeError:
             raise AttributeError("Reaction cannot find participants")
-        meta_dict[meta_identifier] = coef
+        meta_dict[f"r_{meta_identifier}"] = coef
     return meta_dict
 
 
