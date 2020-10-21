@@ -25,6 +25,15 @@ class BaseParser(ABC):
             return directory.joinpath(database)
 
     @staticmethod
+    def _check_transport(data_dict: dict) -> bool:
+        """
+        check if data_dict includes repetitions, meaning that there is a
+        tranport reactions. Prefix is not taken into consideration.
+        """
+        sequence = [item[2:] for item in data_dict.keys()]
+        return len(sequence) != len(set(sequence))
+
+    @staticmethod
     @abstractmethod
     def _retrieve_data(
         directory: Path, identifier: str, database: str, debug_level: int

@@ -5,6 +5,7 @@ from typing import TextIO, Iterator, Union
 from cobramod.debug import debug_log
 import cobramod.mod_parser as par
 from contextlib import suppress
+from collections import Counter
 
 
 def _create_meta_from_string(line_string: str) -> Metabolite:
@@ -204,6 +205,14 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
                 meta_string_to_model(line=line, model=model, **kwargs)
 
 
+def _return_duplicate(data_dict: dict) -> bool:
+    """
+    Check for the duplicate in a dictionary with prefixes-
+    """
+    sequence = Counter([item[2:] for item in data_dict.keys()])
+    return sequence.most_common(1)[0][0]
+
+
 def _build_reaction(
     data_dict: dict, compartment: str, replacement_dict: dict, **kwargs
 ) -> Reaction:
@@ -248,9 +257,20 @@ def _build_reaction(
         metabolite = par.get_data(
             identifier=identifier, debug_level=10, **kwargs
         )
-        metabolite = build_metabolite(
-            metabolite_dict=metabolite, compartment=compartment
-        )
+        if (
+            data_dict["TRANSPORT"]
+            and coef < 0
+            and _return_duplicate(data_dict=data_dict["EQUATION"])
+            == identifier
+        ):
+            # FIX: temporary setting to extracellular
+            metabolite = build_metabolite(
+                metabolite_dict=metabolite, compartment="e"
+            )
+        else:
+            metabolite = build_metabolite(
+                metabolite_dict=metabolite, compartment=compartment
+            )
         reaction.add_metabolites(metabolites_to_add={metabolite: coef})
         reaction.bounds = data_dict["BOUNDS"]
     return reaction

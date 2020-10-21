@@ -158,6 +158,9 @@ class KeggParser(BaseParser):
             kegg_dict["EQUATION"] = _give_metabolites(
                 line=kegg_dict["EQUATION"][0]
             )
+            kegg_dict["TRANSPORT"] = BaseParser._check_transport(
+                data_dict=kegg_dict["EQUATION"]
+            )
         else:
             raise NotImplementedError(
                 "Could not parse given root. Please inform maintainers."
