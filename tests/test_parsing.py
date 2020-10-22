@@ -3,9 +3,11 @@ from pathlib import Path
 import unittest
 import cobramod.parsing.kegg as kg
 import cobramod.parsing.biocyc as bc
+import cobramod.parsing.bigg as bi
 from cobramod.debug import debug_log
 from logging import DEBUG
 import xml.etree.ElementTree as ET
+from contextlib import suppress
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -100,7 +102,8 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             database="META",
         )
         # CASE 3: Proper retrieval.
-        dir_data.joinpath("META").joinpath("WATER.xml").unlink()
+        with suppress(FileNotFoundError):
+            dir_data.joinpath("META").joinpath("WATER.xml").unlink()
         self.assertIsInstance(
             bc._get_xml_from_biocyc(
                 directory=dir_data, identifier="WATER", database="META"
@@ -108,7 +111,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             ET.Element,
         )
         # CASE 4: not found in database
-        if dir_data.joinpath("CPD-15326.xml").exists():
+        with suppress(FileNotFoundError):
             dir_data.joinpath("CPD-15326.xml").unlink()
         self.assertRaises(
             Warning,
@@ -154,6 +157,31 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=13)
         self.assertEqual(first=len(test_dict["SET"]), second=14)
+
+    def test__get_json_bigg(self):
+        # CASE 1: Regular reaction from ecoli
+        test_data = bi._get_json_bigg(
+            directory=dir_data,
+            identifier="ACALD",
+            model_id="e_coli_core",
+            object_type="reaction",
+        )
+        self.assertIsInstance(obj=test_data, cls=dict)
+        self.assertEqual(
+            first=test_data["results"][0]["lower_bound"], second=-1000
+        )
+        self.assertEqual(first=len(test_data["metabolites"]), second=6)
+        # CASE 2: Regular metabolite from universal
+        test_data = bi._get_json_bigg(
+            directory=dir_data,
+            identifier="accoa",
+            model_id="universal",
+            object_type="metabolite",
+        )
+        self.assertIsInstance(obj=test_data, cls=dict)
+        self.assertEqual(
+            first=test_data["formulae"][0], second="C23H34N7O17P3S"
+        )
 
 
 if __name__ == "__main__":
