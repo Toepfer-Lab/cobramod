@@ -27,9 +27,8 @@ def _get_json_bigg(
         ET.Element: root of XML file
     """
     if directory.exists():
-        data_dir = directory.joinpath("BIGG")
-        if not data_dir.exists():
-            data_dir.mkdir()
+        data_dir = directory.joinpath("BIGG").joinpath(model_id)
+        data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.json")
         debug_log.debug(
             f'Searching {object_type} "{identifier}" in directory "BIGG"'
@@ -42,7 +41,7 @@ def _get_json_bigg(
         except FileNotFoundError:
             debug_log.debug(
                 f'{object_type.capitalize()} "{identifier}" not found in '
-                f'directory "BIGG".'
+                f'directory "BIGG", subdirectory "{model_id}".'
             )
             # Retrieve from URL
             url_text = (
@@ -59,7 +58,7 @@ def _get_json_bigg(
                 unformatted_data = r.text
                 debug_log.info(
                     f'Object "{identifier}" found. Saving in '
-                    f'directory "BIGG".'
+                    f'directory "BIGG", subdirectory "{model_id}"'
                 )
                 with open(file=filename, mode="w+") as f:
                     f.write(unformatted_data)
@@ -68,3 +67,17 @@ def _get_json_bigg(
         msg = "Directory not found"
         debug_log.critical(msg)
         raise NotADirectoryError(msg)
+
+
+def _get_db_names(data_dict: dict, database: str) -> str:
+    replacement = {"KEGG": "KEGG Reaction", "META": "BioCyc"}
+    try:
+        container = data_dict["database_links"][replacement[database]][0]["id"]
+    except KeyError:
+        try:
+            container = data_dict["database_links"][database][0]["id"]
+        except KeyError:
+            msg = "Given database is not found in the crossref section"
+            debug_log.error(msg)
+            raise KeyError(msg)
+    return container
