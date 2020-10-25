@@ -51,7 +51,8 @@ def _p_metabolites(root: Any) -> dict:
     for meta in left_metabolites:
         try:
             coef = float(meta.find("coefficient").text) * -1
-        except AttributeError:
+        except (AttributeError, ValueError):
+            # Value errors are for the strings like 'n'
             coef = -1  # default
         try:
             meta_identifier = (
@@ -63,7 +64,7 @@ def _p_metabolites(root: Any) -> dict:
     for meta in right_metabolites:
         try:
             coef = float(meta.find("coefficient").text)
-        except AttributeError:
+        except (AttributeError, ValueError):
             coef = 1  # default
         try:
             meta_identifier = (
