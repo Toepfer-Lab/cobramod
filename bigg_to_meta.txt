@@ -1,7 +1,9 @@
 ACETALD-DEHYDROG-RXN, c
+# Item ACALDt not found in META
 ACETALD_ec, Acetaldehyde transport | ACETALD_e: -1, ACETALD_c:1
 ACETATEKIN-RXN,c
 ACONITATEDEHYDR-RXN,c
+# Item ACONTb not found in META
 ACONITATEHYDR-RXN,c
 TRANS-RXN0-571,c
 ADENYL-KIN-RXN,c
@@ -11,6 +13,7 @@ ALCOHOL-DEHYDROG-RXN, c
 ATPASE-RXN,c
 ATPSYN-RXN,c 
 # Item Biomass_Ecoli_core not found in BIGG
+
 TRANS-RXN0-545,c
 CITSYN-RXN,c
 # Item CYTBD not found in META
@@ -24,8 +27,10 @@ RXN0-1981,c
 EX_ACETALD_e, Exchange ACETALD | ACETALD_e:-1
 # Item EX_akg_e not found in META
 EX_2_KETOGLUTARATE_e, 2-oxoglutarate Exchange | 2-KETOGLUTARATE_e:-1
-TRANS-RXN0-545,c
+# THIS IS EX_CO2_e
+EX_CO2_e, CO2 exchange | CO2_e:-1
 TRANS-RXN0-546,c
+# THIS IS EX_FORMATE_e
 TRANS-RXN-1,c
 # Item EX_fru_e not found in META
 EX_FRU_e, Fructose Exchange | FRU_e:-1 
@@ -34,26 +39,33 @@ TRANS-RXN0-574,c
 TRANS-RXN-233,c
 TRANS-RXN-232,c
 RXN-14452,c
-TRANS-RXN0-547,c
+# THIS IS EX_H2O_e
+EX_WATER_e, Water Exchange | WATER_e:-1
 # Item EX_lac__D_e not found in META
 EX_D_LACTATE_e, D-LACTATE Exchange | D-LACTATE_e:-1
 TRANS-RXN-224,c
-RXN-9615,c
+# THIS IS EX_O2_e
+EX_O2_e , Exchange O2 | OXYGEN-MOLECULE_e:-1
+# THIS IS EX_pi_e
+EX_Pi_e, Exchange Phosphate | Pi_e:-1
 TRANS-RXN0-474,c
 TRANS-RXN0-470,c
 TRANS-RXN0-570,c
+# DOes not exist in META (SUC Exchange)
 EX_SUC_e, Exchange Succinate | SUC_e:-1
+#Item FBA not found in META
 F16ALDOLASE-RXN,c
+#Item FBP not found in META
 F16BDEPHOS-RXN,c
 # Item FORt2 not found in META
 FORMATE_ec, FORMATE transport with protons| FORMATE_e:-1, PROTON_e:-1, FORMATE_c:1, PROTON_c:1
+#Item FORti not found in BIGG
 TRANS-RXN-1,c
 # Item FRD7 not found in META
 SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN,c
 # Item FRUpts2 not found in META
 TRANS_FRU_ec, Fructose transport via PEP| FRUCTOSE-6P_c:1, PHOSPHO-ENOL-PYRUVATE_c:-1, PYRUVATE_c:1, FRU_e:-1
 FUMHYDR-RXN,c
-# THIS IS A SEPARATOR
 TRANS-RXN-121,c
 GLU6PDEHYDROG-RXN,c
 GAPOXNPHOSPHN-RXN,c
