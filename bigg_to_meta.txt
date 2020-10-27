@@ -13,7 +13,8 @@ ALCOHOL-DEHYDROG-RXN, c
 ATPASE-RXN,c
 ATPSYN-RXN,c 
 # Item Biomass_Ecoli_core not found in BIGG
-
+Biomass_c, Biomass_Ecoli_core| G3P_c:-1.496, ATP_c:-1
+# ACETYL-COA_c:-3.7478, ATP_c:-59.81,ERYTHROSE-4P_c:-0.361, FRUCTOSE-6P_c:-0.0709, GAP_c:-0.129, D-glucopyranose-6-phosphate_c:-0.205, GLN_c: -0.2557 , GLT_c:-4.9414 ,WATER_c: -59.81 , NAD_c:-3.547 ,NADPH_c: -13.0279 ,OXALACETIC_ACID_c: -1.7867  ,PHOSPHO-ENOL-PYRUVATE_c: -0.5191 , PYRUVATE_c:-2.8328 , RIBULOSE-5P_c:-0.8977, ADP_c: 59.81 , 2-KETOGLUTARATE_c:4.1182 ,CO-A_c: 3.7478 ,PROTON_c: 59.81 , NADH_c:3.547  ,NADP_c:13.0279 , Pi_c: 59.81
 TRANS-RXN0-545,c
 CITSYN-RXN,c
 # Item CYTBD not found in META
@@ -28,12 +29,13 @@ EX_ACETALD_e, Exchange ACETALD | ACETALD_e:-1
 # Item EX_akg_e not found in META
 EX_2_KETOGLUTARATE_e, 2-oxoglutarate Exchange | 2-KETOGLUTARATE_e:-1
 # THIS IS EX_CO2_e
-EX_CO2_e, CO2 exchange | CO2_e:-1
+EX_CO2_e, CO2 exchange | CARBON-DIOXIDE_e:-1
 TRANS-RXN0-546,c
 # THIS IS EX_FORMATE_e
-TRANS-RXN-1,c
+EX_FORMATE_e, Formate Exchange| FORMATE_e:-1
 # Item EX_fru_e not found in META
 EX_FRU_e, Fructose Exchange | FRU_e:-1 
+# EX_GLU
 TRANS-RXN0-553,c
 TRANS-RXN0-574,c
 TRANS-RXN-233,c
@@ -48,7 +50,6 @@ TRANS-RXN-224,c
 EX_O2_e , Exchange O2 | OXYGEN-MOLECULE_e:-1
 # THIS IS EX_pi_e
 EX_Pi_e, Exchange Phosphate | Pi_e:-1
-TRANS-RXN0-474,c
 TRANS-RXN0-470,c
 TRANS-RXN0-570,c
 # DOes not exist in META (SUC Exchange)
@@ -62,11 +63,11 @@ FORMATE_ec, FORMATE transport with protons| FORMATE_e:-1, PROTON_e:-1, FORMATE_c
 #Item FORti not found in BIGG
 TRANS-RXN-1,c
 # Item FRD7 not found in META
-SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN,c
+FUM_REDUCTASE_c, Fumarase Reductase | FUM_c:-1, CPD-9956_c:-1, UBIQUINONE-8_c:1, SUC_c:1 
 # Item FRUpts2 not found in META
 TRANS_FRU_ec, Fructose transport via PEP| FRUCTOSE-6P_c:1, PHOSPHO-ENOL-PYRUVATE_c:-1, PYRUVATE_c:1, FRU_e:-1
 FUMHYDR-RXN,c
-TRANS-RXN-121,c
+TRANS_FUM_ec, Transport Fumarate | FUM_e:-1, PROTON_e:-1, FUM_c:1, PROTON_c:1 
 GLU6PDEHYDROG-RXN,c
 GAPOXNPHOSPHN-RXN,c
 # Item GLCpts not found in META

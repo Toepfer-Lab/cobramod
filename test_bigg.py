@@ -12,6 +12,12 @@ add_reactions_from_file(
 )
 
 test = create_test_model("textbook")
-for rxn in test.reactions:
-    print(rxn.id)
 
+for meta in test_model.reactions.Biomass_c.metabolites:
+    if len(meta.reactions) == 1:
+        print(meta.id)
+        print(meta.reactions)
+test_model.objective = "Biomass_c"
+test_model.objective_direction = "max"
+print(test_model.optimize())
+print("test")
