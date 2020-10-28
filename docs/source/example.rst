@@ -6,7 +6,7 @@ Retrieving data
 ===============
 
 One basic example is to retrieve data for a list of Biocyc identifiers.
-Cobramiod utilizes `pathlib's <https://docs.python.org/3/library/
+Cobramod utilizes `pathlib's <https://docs.python.org/3/library/
 pathlib.html>`_ API to create system paths that can be used in multiple opering
 systems. A single for loop manage to gather the data from Biocyc.
 
@@ -173,3 +173,117 @@ information, check the documentation of
 Similar to *add_meta_from_file*, the only arguments needed are the metabolic
 model to modify, the file path of the reactions, the directory to store the
 data and the name of the database.
+
+Adding Pathways
+"""""""""""""""
+
+.. note::
+    Currently, only the pathway syntax of Metacyc is working.
+
+Cobramod can add complete pathways into the metabolic models. Using the method
+:func:`cobramod.add_graph_to_model`, either a sequence of reaction identifiers
+or the original pathway identifier for a database can be used to be added into
+the model.
+
+.. code::
+
+  from pathlib import Path
+  from cobramod import add_graph_to_model
+  from cobramod.test import mini_model
+
+  dir_data = Path.cwd().joinpath("data")
+
+  >>> print(mini_model.optimize().objective_value)
+  0.8739215069684307
+
+The original metabolic model `e_coli_core` from COBRApy shows an optimation
+value of 0.874. For this example, the identifier `ACETOACETATE-DEG-PWY
+<https://biocyc.org/ECOLI/new-image?object=ACETOACETATE-DEG-PWY>`_   will be
+used for the test model. This specific pathway has two reactions, in which six
+metabolites participates.::
+
+  test_model = mini_model.copy()
+  >>> add_graph_to_model(
+         model=test_model,
+         graph="ACETOACETATE-DEG-PWY",
+         directory=dir_data,
+         database="META",
+         compartment="c",
+      )
+  --------------------
+  Model: e_coli_core
+  Original attributes:
+  Reactions: 95
+  Metabolites: 72
+  Boundary reactions 20
+  --------------------
+  New attributes:
+  Reactions: 98
+  Metabolites: 74
+  Boundary reactions: 21
+  --------------------
+
+The output of the method is a short summary about the change of attributes for
+the model. The pathways included two metabolites, which were not in the model
+and thus, sink reactions are automatically built for them. However, only one
+sink reaction is created since the second metabolite can be created from
+another reaction. As expected. a total of three new reactions are added, from
+which one is a sink::
+
+  >>> print(test_model.sinks)
+  [<Reaction SK_3_KETOBUTYRATE_c at 0x7f8b1b7bc910>]
+  >>> print(test_model.optimize().objective_value)
+  20.349250465464955
+
+
+All the changes, are written into a a record file.
+
+.. code-block:: text
+
+
+  2020-10-28 15:18:30,164 INFO Data for "ACETOACETATE-DEG-PWY" retrieved
+  2020-10-28 15:18:30,168 INFO Data for "ACETOACETYL-COA-TRANSFER-RXN"\
+  retrieved.
+  2020-10-28 15:18:30,181 INFO Data for "ACETYL-COA-ACETYLTRANSFER-RXN"
+  retrieved.
+  2020-10-28 15:18:30,208 INFO Reaction "ACETOACETYL_COA_TRANSFER_RXN_c" added
+  to model
+  2020-10-28 15:18:30,208 INFO Testing reaction
+  "ACETOACETYL_COA_TRANSFER_RXN_c"
+  2020-10-28 15:18:30,214 WARNING Sink reaction created for "3_KETOBUTYRATE_c"
+  2020-10-28 15:18:30,216 WARNING Sink reaction created for "ACETOACETYL_COA_c"
+  2020-10-28 15:18:30,217 WARNING Demand reaction for "ACETOACETYL_COA_c"
+  removed
+  2020-10-28 15:18:30,219 WARNING Demand reaction for "ACETOACETYL_COA_c"
+  removed
+  2020-10-28 15:18:30,222 INFO Reaction "ACETYL_COA_ACETYLTRANSFER_RXN_c"
+  added to model
+  2020-10-28 15:18:30,222 INFO Testing reaction
+  "ACETYL_COA_ACETYLTRANSFER_RXN_c"
+  2020-10-28 15:18:30,225 WARNING Demand reaction for "ACETOACETYL_COA_c"
+  removed
+  2020-10-28 15:18:30,226 WARNING Sink reaction for "ACETOACETYL_COA_c" removed
+
+In this scenario, the objective value changed drastically due to insertion of
+the sink reaction. It can be seen that both reaction are being activated if
+their fluxes are checked::
+
+  >>> print(f.fluxes["ACETOACETYL_COA_TRANSFER_RXN_c"])
+  838.8592591516366
+  >>> print(f.fluxes["ACETYL_COA_ACETYLTRANSFER_RXN_c"])
+  -838.8592591516366
+
+If the sink reaction, in this case *SK_3_KETOBUTYRATE_c* gets removed, the
+fluxes for this new pathways are deactivated since there is no reaction to
+synthetize the start-metabolite::
+
+  test_model.remove_reactions(["SK_3_KETOBUTYRATE_c"])
+  f = test_model.optimize()
+  >>> print(f.fluxes["ACETOACETYL_COA_TRANSFER_RXN_c"])
+  0.0
+  >>> print(f.fluxes["ACETYL_COA_ACETYLTRANSFER_RXN_c"])
+  0.0
+  >>> print(f.objective_value)
+  0.873921506968428
+
+
