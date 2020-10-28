@@ -1,131 +1,72 @@
-ACETALD-DEHYDROG-RXN, c
-# Item ACALDt not found in META
-ACETALD_ec, Acetaldehyde transport | ACETALD_e: -1, ACETALD_c:1
-ACETATEKIN-RXN,c
-ACONITATEDEHYDR-RXN,c
-# Item ACONTb not found in META
-ACONITATEHYDR-RXN,c
-TRANS-RXN0-571,c
-ADENYL-KIN-RXN,c
-2OXOGLUTARATEDEH-RXN,c
-TRANS-RXN-23,c
-ALCOHOL-DEHYDROG-RXN, c
-ATPASE-RXN,c
-ATPSYN-RXN,c 
-# Item Biomass_Ecoli_core not found in BIGG
-Biomass_c, Biomass_Ecoli_core| G3P_c:-1.496, ATP_c:-1
-# ACETYL-COA_c:-3.7478, ATP_c:-59.81,ERYTHROSE-4P_c:-0.361, FRUCTOSE-6P_c:-0.0709, GAP_c:-0.129, D-glucopyranose-6-phosphate_c:-0.205, GLN_c: -0.2557 , GLT_c:-4.9414 ,WATER_c: -59.81 , NAD_c:-3.547 ,NADPH_c: -13.0279 ,OXALACETIC_ACID_c: -1.7867  ,PHOSPHO-ENOL-PYRUVATE_c: -0.5191 , PYRUVATE_c:-2.8328 , RIBULOSE-5P_c:-0.8977, ADP_c: 59.81 , 2-KETOGLUTARATE_c:4.1182 ,CO-A_c: 3.7478 ,PROTON_c: 59.81 , NADH_c:3.547  ,NADP_c:13.0279 , Pi_c: 59.81
-TRANS-RXN0-545,c
-CITSYN-RXN,c
-# Item CYTBD not found in META
-RXN0-5266,c
-TRANS-RXN0-515,c
-2PGADEHYDRAT-RXN,c
-# Item ETOHt2r not found in META
-ETOH_ec, Ethanol transport | ETOH_e: -1, PROTON_e: -1, ETOH_c: 1, PROTON_c:1
-RXN0-1981,c
-# Item EX_acald_e not found in META
-EX_ACETALD_e, Exchange ACETALD | ACETALD_e:-1
-# Item EX_akg_e not found in META
-EX_2_KETOGLUTARATE_e, 2-oxoglutarate Exchange | 2-KETOGLUTARATE_e:-1
-# THIS IS EX_CO2_e
-EX_CO2_e, CO2 exchange | CARBON-DIOXIDE_e:-1
-TRANS-RXN0-546,c
-# THIS IS EX_FORMATE_e
-EX_FORMATE_e, Formate Exchange| FORMATE_e:-1
-# Item EX_fru_e not found in META
-EX_FRU_e, Fructose Exchange | FRU_e:-1 
-# EX_GLU
-TRANS-RXN0-553,c
-TRANS-RXN0-574,c
-TRANS-RXN-233,c
-TRANS-RXN-232,c
-RXN-14452,c
-# THIS IS EX_H2O_e
-EX_WATER_e, Water Exchange | WATER_e:-1
-# Item EX_lac__D_e not found in META
-EX_D_LACTATE_e, D-LACTATE Exchange | D-LACTATE_e:-1
-TRANS-RXN-224,c
-# THIS IS EX_O2_e
-EX_O2_e , Exchange O2 | OXYGEN-MOLECULE_e:-1
-# THIS IS EX_pi_e
-EX_Pi_e, Exchange Phosphate | Pi_e:-1
-TRANS-RXN0-470,c
-TRANS-RXN0-570,c
-# DOes not exist in META (SUC Exchange)
-EX_SUC_e, Exchange Succinate | SUC_e:-1
-#Item FBA not found in META
-F16ALDOLASE-RXN,c
-#Item FBP not found in META
-F16BDEPHOS-RXN,c
-# Item FORt2 not found in META
-FORMATE_ec, FORMATE transport with protons| FORMATE_e:-1, PROTON_e:-1, FORMATE_c:1, PROTON_c:1
-#Item FORti not found in BIGG
-TRANS-RXN-1,c
-# Item FRD7 not found in META
-FUM_REDUCTASE_c, Fumarase Reductase | FUM_c:-1, CPD-9956_c:-1, UBIQUINONE-8_c:1, SUC_c:1 
-# Item FRUpts2 not found in META
-TRANS_FRU_ec, Fructose transport via PEP| FRUCTOSE-6P_c:1, PHOSPHO-ENOL-PYRUVATE_c:-1, PYRUVATE_c:1, FRU_e:-1
-FUMHYDR-RXN,c
-TRANS_FUM_ec, Transport Fumarate | FUM_e:-1, PROTON_e:-1, FUM_c:1, PROTON_c:1 
-GLU6PDEHYDROG-RXN,c
-GAPOXNPHOSPHN-RXN,c
-# Item GLCpts not found in META
-TRANS-GLC_ec ,D-glucose transport via PEP| D-glucopyranose-6-phosphate_c:1, PHOSPHO-ENOL-PYRUVATE_c:-1, PYRUVATE_c:1, Glucopyranose_e:-1
-GLUTAMINESYN-RXN,c
-ABC-12-RXN,c
-GLUTDEHYD-RXN,c
-GLUTAMIN-RXN,c
-GLUTAMATESYN-RXN,c
-# Item GLUt2r not found in META
-TRANS-GLT_ec, L glutamate transport| GLT_e:-1, PROTON_e:-1 , GLT_c:1, PROTON_c:1
-RXN-9952,c
-TRANS-RXN0-547,c
-# Item ICDHyr not found in META
-ISOCITDEH-RXN,c
-# Item ICL not found in META
-ISOCIT-CLEAV-RXN,c
-DLACTDEHYDROGNAD-RXN,c
-MALSYN-RXN,c
-TRANS-RXN-121A,c
-MALATE-DEH-RXN,c
-1.1.1.39-RXN,c
-MALIC-NADP-RXN,c
-# Item NADH16 not found in META
-RXN0-5330,c 
-PYRNUTRANSHYDROGEN-RXN,c
-RXN-9615,c
-TRANS-RXN0-474,c
-PYRUVDEH-RXN,c
-# Item PFK not found in META
-6PFRUCTPHOS-RXN,c
-PYRUVFORMLY-RXN,c
-PGLUCISOM-RXN,c
-PHOSGLYPHOS-RXN,c
-6PGLUCONOLACT-RXN,c
-3PGAREARR-RXN,c
-TRANS-RXN-114,c
-# Item PPC not found in META
-PEPCARBOX-RXN,c
-PEPCARBOXYKIN-RXN,c
-PEPSYNTH-RXN,c
-PHOSACETYLTRANS-RXN,c
-PEPDEPHOS-RXN,c
-# Item PYRt2 not found in META
-PYRUVATE_ec, Pyruvate transport | PYRUVATE_e:-1, PROTON_e:-1, PYRUVATE_c:1, PROTON_c:1
-RIBULP3EPIM-RXN, c
-# Item RPI not found in META
-RIB5PISOM-RXN, c
-TRANS-RXN-121,c
-# Item SUCCt3 not found in META
-TRANS_SUC_ec, Succinate transport | SUC_e:-1, PROTON_e:-1, SUC_c:1, PROTON_c:1
-# Item SUCDi not found in META
-SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN,c
-SUCCCOASYN-RXN,c
-TRANSALDOL-RXN,c
-# Item THD2 not found in META
-NADP_TRANSHYDROGENASE_ec ,NADP transhydrogenase | NADH_c:-1, NADP_c:-1, PROTON_e:-2, PROTON_c:2, NAD_c:1, NADPH_c:1
-# Item TKT1 not found in META,
-1TRANSKETO-RXN,c
-2TRANSKETO-RXN,c
-TRIOSEPISOMERIZATION-RXN,c
+13dpg_c: DPG_c
+2pg_c: 2_PG_c
+3pg_c: G3P_c
+6pgc_c: CPD_2961_c
+6pgl_c: D_6_P_GLUCONO_DELTA_LACTONE_c
+ac_c: ACET_c
+ac_e: ACET_e
+acald_c: ACETALD_c
+acald_e: ACETALD_e
+accoa_c: ACETYL_COA_c
+acon_C_c: CIS_ACONITATE_c
+actp_c: ACETYL_P_c
+adp_c: ADP_c
+akg_c: 2_KETOGLUTARATE_c
+akg_e: 2_KETOGLUTARATE_e
+amp_c: AMP_c
+atp_c: ATP_c
+cit_c: CIT_c
+co2_c: CARBON_DIOXIDE_c
+co2_e: CARBON_DIOXIDE_e
+coa_c: CO_A_c
+dhap_c: DIHYDROXY_ACETONE_PHOSPHATE_c
+e4p_c: ERYTHROSE_4P_c
+etoh_c: ETOH_c
+etoh_e: ETOH_e
+f6p_c: FRUCTOSE_6P_c
+fdp_c: FRUCTOSE_16_DIPHOSPHATE_c
+for_c: CARBOXYL_GROUP_c
+for_e: CARBOXYL_GROUP_e
+fru_e: CPD_15382_e
+fum_c: FUM_c
+fum_e: FUM_e
+g3p_c: GAP_c
+g6p_c: D_glucopyranose_6_phosphate_c
+glc__D_e: Glucopyranose_e
+gln__L_c: GLN_c
+gln__L_e: GLN_e
+glu__L_c: GLT_c
+glu__L_e: GLT_e
+glx_c: GLYOX_c
+h2o_c: CPD_15815_c
+h2o_e: CPD_15815_e
+h_c: PROTON_c
+h_e: PROTON_e
+icit_c: Isocitrate_c
+lac__D_c: D_LACTATE_c
+lac__D_e: D_LACTATE_e
+mal__L_c: MAL_c
+mal__L_e: MAL_e
+nad_c: NAD_c
+nadh_c: NADH_c
+nadp_c: NADP_c
+nadph_c: NADPH_c
+nh4_c: AMMONIA_c
+nh4_e: AMMONIA_e
+o2_c: OXYGEN_MOLECULE_c
+o2_e: OXYGEN_MOLECULE_e
+oaa_c: OXALACETIC_ACID_c
+pep_c: PHOSPHO_ENOL_PYRUVATE_c
+pi_c: CPD_16459_c
+pi_e: CPD_16459_e
+pyr_c: PYRUVATE_c
+pyr_e: PYRUVATE_e
+q8_c: UBIQUINONE_8_c
+q8h2_c: CPD_9956_c
+r5p_c: CPD_15318_c
+ru5p__D_c: RIBULOSE_5P_c
+s7p_c: D_SEDOHEPTULOSE_7_P_c
+succ_c: SUC_c
+succ_e: SUC_e
+succoa_c: SUC_COA_c
+xu5p__D_c: XYLULOSE_5_PHOSPHATE_c
