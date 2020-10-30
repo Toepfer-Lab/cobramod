@@ -560,6 +560,7 @@ class ModulTesting(unittest.TestCase):
         self.assertGreater(abs(test_model.slim_optimize()), 0)
 
     def test__add_sequence(self):
+        # NOTE: check if this test is necessary
         self.assertRaises(
             TypeError,
             pt._add_sequence,

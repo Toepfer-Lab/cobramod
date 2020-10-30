@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
-from typing import Union, Generator, Iterable
-from cobra import Model, Reaction
+from typing import Union, Generator, Iterable, NamedTuple
+from cobra import Model, Reaction, DictList
 from cobramod.creation import check_mass_balance, _build_reaction
 from cobramod.mod_parser import get_data
 from cobramod.debug import debug_log
 from itertools import chain
 from contextlib import suppress
 from pathlib import Path
+
+
+class DataModel(NamedTuple):
+    """
+    A class to store old values of metabolic models
+    """
+
+    reactions: DictList
+    metabolites: DictList
+    boundary: DictList
 
 
 def _find_end_vertex(vertex_dict: dict) -> Generator:
@@ -690,6 +700,24 @@ def _from_sequence(
     )
 
 
+def _summary(old_values: DataModel, model: Model):
+    print(
+        f'{"-"*20}\n'
+        f"Model: {model.id}\n"
+        f"Original attributes:\n"
+        f"Reactions: {len(old_values.reactions)}\n"
+        f"Metabolites: {len(old_values.metabolites)}\n"
+        f"Boundary reactions {len(old_values.boundary)}\n"
+        f'{"-"*20}\n'
+        f"New attributes:\n"
+        f"Reactions: {len(model.reactions)}\n"
+        f"Metabolites: {len(model.metabolites)}\n"
+        f"Boundary reactions: {len(model.boundary)}\n"
+        f'{"-"*20}\n'
+    )
+    # FIXME: ADD DIFF
+
+
 def add_graph_to_model(
     model: Model,
     graph: Union[list, str, set],
@@ -735,7 +763,11 @@ def add_graph_to_model(
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
-
+    old_values = DataModel(
+        reactions=model.reactions.copy(),
+        metabolites=model.metabolites.copy(),
+        boundary=model.boundary.copy(),
+    )
     if isinstance(graph, str):
         data_dict = get_data(
             directory=directory, identifier=graph, database=database
@@ -751,6 +783,8 @@ def add_graph_to_model(
             database=database,
             **kwargs,
         )
+        # FIXME: position
+        _summary(old_values=old_values, model=model)
     elif isinstance(graph, (list, set)):
         _from_sequence(
             model=model,
@@ -763,5 +797,7 @@ def add_graph_to_model(
             ignore_list=ignore_list,
             **kwargs,
         )
+        # FIXME: position
+        _summary(old_values=old_values, model=model)
     else:
-        raise TypeError("Argument graph must be iterable or a identifier.")
+        raise TypeError("Argument graph must be iterable or a identifier")

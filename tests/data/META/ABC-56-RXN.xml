@@ -1,0 +1,67 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:ABC-56-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ABC-56-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:ABC-56-RXN" detail="full" frameid="ABC-56-RXN" orgid="META"><parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<parent><Reaction class="true" frameid="TR-13" orgid="META" resource="getxml?META:TR-13" /></parent>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound class="true" frameid="Aliphatic-Sulfonates" orgid="META" resource="getxml?META:Aliphatic-Sulfonates" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</right>
+<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</right>
+<right><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</right>
+<credits><imported-from-ecoli><date datatype="date">2013-12-18</date>
+<Person ID="META:paley" detail="full" frameid="paley" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+<common-name datatype="string">Suzanne Paley</common-name>
+<email datatype="string">paley@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></imported-from-ecoli>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR115655</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR115655</dblink-URL>
+</dblink>
+<ec-number>EC-7.6.2.14<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-6365" detail="low" frameid="ENZRXN0-6365" orgid="META"><reaction><Reaction frameid="ABC-56-RXN" orgid="META" resource="#META:ABC-56-RXN" /></reaction>
+<common-name datatype="string">transport of an aliphatic sulfonate</common-name>
+<enzyme><Protein frameid="ABC-56-CPLX" orgid="META" resource="getxml?META:ABC-56-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-7.598877<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</left>
+<left><Compound class="true" frameid="Aliphatic-Sulfonates" orgid="META" resource="getxml?META:Aliphatic-Sulfonates" /><compartment><cco frameid="CCO-OUT" orgid="META" resource="getxml?META:CCO-OUT" /></compartment>
+</left>
+<left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</left>
+</Reaction>
+</ptools-xml>

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 from pathlib import Path
 from cobra import Metabolite, Model, Reaction
-from typing import TextIO, Iterator, Union
-from cobramod.debug import debug_log
+from typing import Union
 import cobramod.mod_parser as par
+from cobramod.utils import _read_lines
+from cobramod.debug import debug_log
 from contextlib import suppress
+from collections import Counter
 
 
 def _create_meta_from_string(line_string: str) -> Metabolite:
@@ -86,20 +88,6 @@ def build_metabolite(metabolite_dict: dict, compartment: str) -> Metabolite:
         )
 
 
-def _read_lines(f: TextIO) -> Iterator:
-    """
-    Reads Text I/O and returns iterator of line that are not comments nor
-    blanks spaces
-    """
-    for line in f:
-        line = line.strip()
-        if line.startswith("#"):
-            continue
-        if not line:  # blank
-            continue
-        yield line
-
-
 def _check_if_meta_in_model(metabolite: str, model: Model) -> bool:
     """
     Returns if metabolite identifier is found in given model.
@@ -175,7 +163,7 @@ def meta_string_to_model(line: str, model: Model, **kwargs):
 def add_meta_from_file(model: Model, filename: Path, **kwargs):
     """
     Creates new Metabolites specified in given file. Syntax is mentioned in
-    function **`add_meta_from_string`**
+    function :func:`cobramod.creation.meta_string_to_model`
 
     Args:
         model (Model): model to test
@@ -184,7 +172,6 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA".
-        compartment (str): location of metabolites. Defaults to cytosol "c"
 
     Raises:
         TypeError: if model is invalid
@@ -203,6 +190,14 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
                 # FIXME: add function to search for common missing databases
                 kwargs["database"] = "META"
                 meta_string_to_model(line=line, model=model, **kwargs)
+
+
+def _return_duplicate(data_dict: dict) -> bool:
+    """
+    Check for the duplicate in a dictionary with prefixes-
+    """
+    sequence = Counter([item[2:] for item in data_dict.keys()])
+    return sequence.most_common(1)[0][0]
 
 
 def _build_reaction(
@@ -236,6 +231,8 @@ def _build_reaction(
         name=data_dict["NAME"],
     )
     for identifier, coef in data_dict["EQUATION"].items():
+        # Get rid of prefix r_ and l_
+        identifier = identifier[2:]
         # TODO: add option to get metabolites from model
         # Only if found in replacemente
         with suppress(KeyError):
@@ -247,9 +244,20 @@ def _build_reaction(
         metabolite = par.get_data(
             identifier=identifier, debug_level=10, **kwargs
         )
-        metabolite = build_metabolite(
-            metabolite_dict=metabolite, compartment=compartment
-        )
+        if (
+            data_dict["TRANSPORT"]
+            and coef < 0
+            and _return_duplicate(data_dict=data_dict["EQUATION"])
+            == identifier
+        ):
+            # FIX: temporary setting to extracellular
+            metabolite = build_metabolite(
+                metabolite_dict=metabolite, compartment="e"
+            )
+        else:
+            metabolite = build_metabolite(
+                metabolite_dict=metabolite, compartment=compartment
+            )
         reaction.add_metabolites(metabolites_to_add={metabolite: coef})
         reaction.bounds = data_dict["BOUNDS"]
     return reaction
@@ -576,7 +584,7 @@ def create_object(
     Creates and returns COBRApy object based on given identifier and database.
     Identifier names will be formatted.
 
-    ..hint:: Hyphens will become underscores. Double hyphens become single\
+    .. hint:: Hyphens will become underscores. Double hyphens become single\
     underscores.
 
     Args:
@@ -601,13 +609,14 @@ def create_object(
     )
     # build_metabolite
     # FIX: Temporal solution. Pathways are missing
+    # FIXME: logs information expressed twice
     try:
-        debug_log.info(f"Metabolite for '{identifier}' created")
+        debug_log.info(f"Metabolite for '{identifier}' identified")
         return build_metabolite(
             metabolite_dict=data_dict, compartment=compartment
         )
     except KeyError:
-        debug_log.info(f"Reaction for '{identifier}' created")
+        debug_log.info(f"Reaction for '{identifier}' identified")
         return _build_reaction(
             data_dict=data_dict,
             directory=directory,
@@ -615,4 +624,3 @@ def create_object(
             database=database,
             compartment=compartment,
         )
-        data_dict["TYPE"]
