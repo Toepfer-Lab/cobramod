@@ -51,7 +51,8 @@ def _p_metabolites(root: Any) -> dict:
     for meta in left_metabolites:
         try:
             coef = float(meta.find("coefficient").text) * -1
-        except AttributeError:
+        except (AttributeError, ValueError):
+            # Value errors are for the strings like 'n'
             coef = -1  # default
         try:
             meta_identifier = (
@@ -59,11 +60,11 @@ def _p_metabolites(root: Any) -> dict:
             )
         except AttributeError:
             raise AttributeError("Reaction cannot find participants")
-        meta_dict[meta_identifier] = coef
+        meta_dict[f"l_{meta_identifier}"] = coef
     for meta in right_metabolites:
         try:
             coef = float(meta.find("coefficient").text)
-        except AttributeError:
+        except (AttributeError, ValueError):
             coef = 1  # default
         try:
             meta_identifier = (
@@ -71,7 +72,7 @@ def _p_metabolites(root: Any) -> dict:
             )
         except AttributeError:
             raise AttributeError("Reaction cannot find participants")
-        meta_dict[meta_identifier] = coef
+        meta_dict[f"r_{meta_identifier}"] = coef
     return meta_dict
 
 
@@ -112,6 +113,9 @@ def _p_reaction(root: Any) -> dict:
         "NAME": name,
         "EQUATION": _p_metabolites(root=root),
         "BOUNDS": _check_direction(root=root),
+        "TRANSPORT": BaseParser._check_transport(
+            data_dict=_p_metabolites(root=root)
+        ),
     }
     return temp_dict
 

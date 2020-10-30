@@ -1,0 +1,65 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:TRANS-RXN0-574"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:TRANS-RXN0-574</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:TRANS-RXN0-574" detail="full" frameid="TRANS-RXN0-574" orgid="META"><parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<parent><Reaction class="true" frameid="TR-19" orgid="META" resource="getxml?META:TR-19" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound class="true" frameid="Glucopyranose" orgid="META" resource="getxml?META:Glucopyranose" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</right>
+<credits><created><date datatype="date">2013-11-26</date>
+<Person ID="META:amackie" detail="full" frameid="amackie" orgid="META"><affiliations><Organization ID="META:O0-13" detail="full" frameid="O0-13" orgid="META"><common-name datatype="string">Macquarie University</common-name>
+</Organization>
+</affiliations>
+<comment datatype="string">Amanda Mackie is a research assistant at Macquarie University, and a curator of the EcoCyc database. Her main contributions are transporters and electron-transfer pathways.</comment>
+<common-name datatype="string">Amanda Mackie</common-name>
+<email datatype="string">amackie@science.mq.edu.au</email>
+</Person>
+<Organization frameid="O0-13" orgid="META" resource="#META:O0-13" /></created>
+<imported-from-ecoli><date datatype="date">2013-12-18</date>
+<Person ID="META:paley" detail="full" frameid="paley" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+<common-name datatype="string">Suzanne Paley</common-name>
+<email datatype="string">paley@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></imported-from-ecoli>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR100188</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR100188</dblink-URL>
+</dblink>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-7803" detail="low" frameid="ENZRXN0-7803" orgid="META"><reaction><Reaction frameid="TRANS-RXN0-574" orgid="META" resource="#META:TRANS-RXN0-574" /></reaction>
+<common-name datatype="string">transport of glucose</common-name>
+<enzyme><Protein frameid="MALX-MONOMER" orgid="META" resource="getxml?META:MALX-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">0.0<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<left><Compound class="true" frameid="Glucopyranose" orgid="META" resource="getxml?META:Glucopyranose" /><compartment><cco frameid="CCO-OUT" orgid="META" resource="getxml?META:CCO-OUT" /></compartment>
+</left>
+</Reaction>
+</ptools-xml>

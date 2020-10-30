@@ -207,6 +207,54 @@ class ModulTesting(unittest.TestCase):
         self.assertEqual(
             first=test_reaction.get_coefficient("C00025_p"), second=-2
         )
+        # CASE 4: transport reaction, simple
+        test_data = get_data(
+            directory=dir_data,
+            identifier="TRANS-RXN0-574",
+            database="META",
+            debug_level=10,
+        )
+        test_reaction = cr._build_reaction(
+            data_dict=test_data,
+            compartment="p",
+            directory=dir_data,
+            database="META",
+            replacement_dict={},
+        )
+        self.assertIn(
+            member="Glucopyranose_p",
+            container=[item.id for item in test_reaction.metabolites],
+        )
+        self.assertIn(
+            member="Glucopyranose_e",
+            container=[item.id for item in test_reaction.metabolites],
+        )
+        # CASE 5: transport reaction, complex
+        test_data = get_data(
+            directory=dir_data,
+            identifier="ABC-56-RXN",
+            database="META",
+            debug_level=10,
+        )
+        test_reaction = cr._build_reaction(
+            data_dict=test_data,
+            compartment="p",
+            directory=dir_data,
+            database="META",
+            replacement_dict={},
+        )
+        self.assertIn(
+            member="Aliphatic_Sulfonates_e",
+            container=[item.id for item in test_reaction.metabolites],
+        )
+        self.assertIn(
+            member="Aliphatic_Sulfonates_p",
+            container=[item.id for item in test_reaction.metabolites],
+        )
+        self.assertEqual(
+            first=test_reaction.get_coefficient("Aliphatic_Sulfonates_e"),
+            second=-1,
+        )
 
     def test__add_reaction_line_to_model(self):
         # CASE 1: using delimiter, compartment is cytosol
@@ -264,12 +312,6 @@ class ModulTesting(unittest.TestCase):
         self.assertTrue(
             "OXALODECARB_RXN_p" in [rxn.id for rxn in test_model.reactions]
         )
-
-    def test__read_lines(self):
-        # CASE 0: Comments and blank lines
-        with open(file=dir_input.joinpath("test_reading_lines.txt")) as f:
-            line = list(cr._read_lines(f=f))
-        self.assertEqual(len(line), 4)
 
     def test__build_dict_for_metabolites(self):
         # CASE 0a: TypeError

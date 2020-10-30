@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" sboTerm="SBO:0000624" level="3" version="1" fbc:required="false">
+  <model metaid="meta_mini_biocyc" id="mini_biocyc" name="COBRApy Mini converted to Biocyc" fbc:strict="true">
+    <listOfUnitDefinitions>
+      <unitDefinition id="mmol_per_gDW_per_hr">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-3" multiplier="1"/>
+          <unit kind="gram" exponent="-1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="c" name="cytosol" constant="true"/>
+      <compartment id="e" name="extracellular" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="M_ATP_c" name="ATP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C10H12N5O13P3"/>
+      <species id="M_WATER_c" name="H2O" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="H2O1"/>
+      <species id="M_ADP_c" name="ADP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C10H12N5O10P2"/>
+      <species id="M_Pi_c" name="phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="H1O4P1"/>
+      <species id="M_PROTON_c" name="H%2b" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="1" fbc:chemicalFormula="H1"/>
+      <species id="M_PROTON_e" name="H%2b" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="1" fbc:chemicalFormula="H1"/>
+      <species id="M_D_LACTATE_e" name="(R)-lactate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-1" fbc:chemicalFormula="C3H5O3"/>
+      <species id="M_D_LACTATE_c" name="(R)-lactate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-1" fbc:chemicalFormula="C3H5O3"/>
+      <species id="M_2_PG_c" name="2-phospho-D-glycerate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C3H4O7P1"/>
+      <species id="M_PHOSPHO_ENOL_PYRUVATE_c" name="phosphoenolpyruvate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C3H2O6P1"/>
+      <species id="M_GLC_e" name="beta-D-glucopyranose" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="C6H12O6"/>
+      <species id="M_FRUCTOSE_16_DIPHOSPHATE_c" name="beta-D-fructose+1,6-bisphosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C6H10O12P2"/>
+      <species id="M_DIHYDROXY_ACETONE_PHOSPHATE_c" name="glycerone+phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C3H5O6P1"/>
+      <species id="M_GAP_c" name="D-glyceraldehyde+3-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C3H5O6P1"/>
+      <species id="M_NAD_c" name="NAD%2b" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-1" fbc:chemicalFormula="C21H26N7O14P2"/>
+      <species id="M_DPG_c" name="3-phospho-D-glyceroyl+phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C3H4O10P2"/>
+      <species id="M_NADH_c" name="NADH" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C21H27N7O14P2"/>
+      <species id="M_D_glucopyranose_6_phosphate_c" name="D-glucopyranose+6-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
+      <species id="M_PYRUVATE_c" name="pyruvate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-1" fbc:chemicalFormula="C3H3O3"/>
+      <species id="M_WATER_e" name="H2O" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="0" fbc:chemicalFormula="H2O1"/>
+      <species id="M_FRUCTOSE_6P_c" name="beta-D-fructofuranose+6-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
+      <species id="M_G3P_c" name="3-phospho-D-glycerate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C3H4O7P1"/>
+      <species id="M_Pi_e" name="phosphate" compartment="e" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="H1O4P1"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter sboTerm="SBO:0000626" id="cobra_default_lb" value="-1000" constant="true"/>
+      <parameter sboTerm="SBO:0000626" id="cobra_default_ub" value="1000" constant="true"/>
+      <parameter sboTerm="SBO:0000626" id="cobra_0_bound" value="0" constant="true"/>
+      <parameter sboTerm="SBO:0000626" id="minus_inf" value="-INF" constant="true"/>
+      <parameter sboTerm="SBO:0000626" id="plus_inf" value="INF" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="R_ATPASE_RXN_c" name="RadD ATPase" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_ATP_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_WATER_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_ADP_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_Pi_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_TRANS__45__RXN0__45__515_ec" name="TRANS-RXN0-515_ec" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_PROTON_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_D_LACTATE_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_D_LACTATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_2PGADEHYDRAT_RXN_c" name="enolase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_2_PG_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_PHOSPHO_ENOL_PYRUVATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_WATER_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_EX_GLC_e" name="EX_GLC_e" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_GLC_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction id="R_EX_PROTON_e" name="EX_PROTON_e" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_PROTON_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction id="R_EX_LACTATE_e" name="EX_LACTATE_e" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_D_LACTATE_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+      </reaction>
+      <reaction id="R_F16ALDOLASE_RXN_c" name="fructose-bisphosphate aldolase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_FRUCTOSE_16_DIPHOSPHATE_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_DIHYDROXY_ACETONE_PHOSPHATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_GAP_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_GAPOXNPHOSPHN_RXN_c" name="glyceraldehyde-3-phosphate dehydrogenase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_NAD_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_GAP_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_Pi_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_DPG_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_NADH_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_D_GLC_transport_PEP_ec" name="GLC transport via PEP" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_PHOSPHO_ENOL_PYRUVATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_GLC_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_D_glucopyranose_6_phosphate_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PYRUVATE_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_WATER_ec" name="WATER_ec" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_WATER_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_WATER_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_DLACTDEHYDROGNAD_RXN_c" name="D-lactate dehydrogenase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_D_LACTATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_NAD_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_PYRUVATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_NADH_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_6PFRUCTPHOS_RXN_c" name="6-phosphofructokinase" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_FRUCTOSE_6P_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ATP_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ADP_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_FRUCTOSE_16_DIPHOSPHATE_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_PGLUCISOM_RXN_c" name="glucose-6-phosphate isomerase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_D_glucopyranose_6_phosphate_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_FRUCTOSE_6P_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_PHOSGLYPHOS_RXN_c" name="phosphoglycerate kinase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_G3P_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ATP_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_DPG_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ADP_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_3PGAREARR_RXN_c" name="2,3-bisphosphoglycerate-independent phosphoglycerate mutase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_2_PG_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_G3P_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_PI_PROTON_ec" name="Tranport Phosphate-PROTON" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_Pi_e" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PROTON_e" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_Pi_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_PEPDEPHOS_RXN_c" name="pyruvate kinase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_0_bound">
+        <listOfReactants>
+          <speciesReference species="M_PYRUVATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ATP_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PHOSPHO_ENOL_PYRUVATE_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_ADP_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="R_TRIOSEPISOMERIZATION_RXN_c" name="triose-phosphate isomerase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_GAP_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_DIHYDROXY_ACETONE_PHOSPHATE_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
+    </listOfReactions>
+    <fbc:listOfObjectives fbc:activeObjective="obj">
+      <fbc:objective fbc:id="obj" fbc:type="maximize"/>
+    </fbc:listOfObjectives>
+  </model>
+</sbml>

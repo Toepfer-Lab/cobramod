@@ -1,0 +1,352 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PEPDEPHOS-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:PEPDEPHOS-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:PEPDEPHOS-RXN" detail="full" frameid="PEPDEPHOS-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right>
+<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
+<credits><revised><date datatype="date">2016-12-18</date>
+<Person ID="META:gong" detail="full" frameid="gong" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Leyi Gong is a chemist at SRI International who has curated the directions for some MetaCyc reactions.</comment>
+<email datatype="string">leyi.gong@sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR103371</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR103371</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>18157</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=18157</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R00200</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00200</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M034</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M034</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P11979</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P11979</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P11980</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P11980</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q07637</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q07637</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P34038</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P34038</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P43924</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P43924</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q57572</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q57572</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P0AD61</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P0AD61</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19680</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19680</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PIB0</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PIB0</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P80885</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P80885</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9UYU6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9UYU6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JWX8</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JWX8</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P47458</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P47458</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q46078</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q46078</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P30614</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P30614</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P22200</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P22200</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q27788</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q27788</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P51182</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P51182</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P51181</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P51181</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P31865</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P31865</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00549</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00549</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00548</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00548</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P30613</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P30613</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O75758</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O75758</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P12928</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P12928</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O30853</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O30853</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P30615</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P30615</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P30616</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P30616</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q02499</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q02499</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P22360</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P22360</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P21599</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P21599</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P14618</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P14618</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42954</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42954</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q40545</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q40545</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P52480</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P52480</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P52489</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P52489</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P78031</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P78031</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q55863</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q55863</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P73534</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P73534</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O65595</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O65595</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q42806</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q42806</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q43117</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q43117</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q10208</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q10208</dblink-URL>
+</dblink>
+<ec-number>EC-2.7.1.40<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:PEPDEPHOSII-ENZRXN" detail="low" frameid="PEPDEPHOSII-ENZRXN" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="PKII-CPLX" orgid="META" resource="getxml?META:PKII-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:PEPDEPHOSI-ENZRXN" detail="low" frameid="PEPDEPHOSI-ENZRXN" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<synonym datatype="string">pyruvate kinase</synonym>
+<synonym datatype="string">phosphoenolpyruvate kinase</synonym>
+<synonym datatype="string">phosphoenol transphosphorylase</synonym>
+<synonym datatype="string">pyruvate 2-0-phosphotransferase</synonym>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="PKI-COMPLEX" orgid="META" resource="getxml?META:PKI-COMPLEX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN490-504" detail="low" frameid="ENZRXN490-504" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="SYNPCC7942_0098-MONOMER" orgid="META" resource="getxml?META:SYNPCC7942_0098-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-22181" detail="low" frameid="ENZRXN-22181" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="MONOMER-18252" orgid="META" resource="getxml?META:MONOMER-18252" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-2024" detail="low" frameid="ENZRXN66-2024" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="HS00906-MONOMER" orgid="META" resource="getxml?META:HS00906-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-463" detail="low" frameid="ENZRXN66-463" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="HS07088-MONOMER" orgid="META" resource="getxml?META:HS07088-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13944" detail="low" frameid="ENZRXN-13944" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-7358" orgid="META" resource="getxml?META:CPLX-7358" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13900" detail="low" frameid="ENZRXN-13900" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-7323" orgid="META" resource="getxml?META:CPLX-7323" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13436" detail="low" frameid="ENZRXN-13436" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-7222" orgid="META" resource="getxml?META:CPLX-7222" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13432" detail="low" frameid="ENZRXN-13432" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-7219" orgid="META" resource="getxml?META:CPLX-7219" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12264" detail="low" frameid="ENZRXN-12264" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="MONOMER-11819" orgid="META" resource="getxml?META:MONOMER-11819" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-9082" detail="low" frameid="ENZRXN-9082" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-5403" orgid="META" resource="getxml?META:CPLX-5403" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-9081" detail="low" frameid="ENZRXN-9081" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-5402" orgid="META" resource="getxml?META:CPLX-5402" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-5047" detail="low" frameid="ENZRXN-5047" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-3824" orgid="META" resource="getxml?META:CPLX-3824" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2742" detail="low" frameid="ENZRXN-2742" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="#META:PEPDEPHOS-RXN" /></reaction>
+<synonym datatype="string">phosphoenolpyruvate kinase</synonym>
+<synonym datatype="string">phosphoenol transphosphorylase</synonym>
+<synonym datatype="string">ATP:pyruvate 2-&lt;I&gt;O&lt;/I&gt;-phosphotransferase</synonym>
+<common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-3825" orgid="META" resource="getxml?META:CPLX-3825" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-2.234192<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="ANAGLYCOLYSIS-PWY" orgid="META" resource="getxml?META:ANAGLYCOLYSIS-PWY" /><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /><Pathway frameid="PWY-5484" orgid="META" resource="getxml?META:PWY-5484" /><Pathway frameid="P341-PWY" orgid="META" resource="getxml?META:P341-PWY" /><Pathway frameid="PWY-8004" orgid="META" resource="getxml?META:PWY-8004" /><Pathway frameid="PWY-2221" orgid="META" resource="getxml?META:PWY-2221" /><Pathway frameid="PWY-6142" orgid="META" resource="getxml?META:PWY-6142" /><Pathway frameid="PWY-7003" orgid="META" resource="getxml?META:PWY-7003" /><Pathway frameid="P124-PWY" orgid="META" resource="getxml?META:P124-PWY" /><Pathway frameid="P122-PWY" orgid="META" resource="getxml?META:P122-PWY" /><Pathway frameid="PWY-7383" orgid="META" resource="getxml?META:PWY-7383" /><Pathway frameid="PWY-6901" orgid="META" resource="getxml?META:PWY-6901" /><Pathway frameid="NPGLUCAT-PWY" orgid="META" resource="getxml?META:NPGLUCAT-PWY" /><Pathway frameid="PWY-7218" orgid="META" resource="getxml?META:PWY-7218" /><Pathway frameid="PWY-6886" orgid="META" resource="getxml?META:PWY-6886" /><Pathway frameid="PWY-5723" orgid="META" resource="getxml?META:PWY-5723" /><Pathway frameid="FERMENTATION-PWY" orgid="META" resource="getxml?META:FERMENTATION-PWY" /><Pathway frameid="PWY-1042" orgid="META" resource="getxml?META:PWY-1042" /></in-pathway>
+<left><Compound frameid="PYRUVATE" orgid="META" resource="getxml?META:PYRUVATE" /></left>
+<left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /></left>
+</Reaction>
+</ptools-xml>

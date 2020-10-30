@@ -1,0 +1,33 @@
+# this is a comment
+
+
+
+akg_e: 2_KETOGLUTARATE_e
+amp_c: AMP_c
+
+atp_c: ATP_c
+cit_c: CIT_c
+co2_c: CARBON_DIOXIDE_c
+co2_e: CARBON_DIOXIDE_e
+coa_c: CO_A_c
+dhap_c: DIHYDROXY_ACETONE_PHOSPHATE_c
+# Another comment
+e4p_c: ERYTHROSE_4P_c
+etoh_c: ETOH_c
+etoh_e: ETOH_e
+f6p_c: FRUCTOSE_6P_c
+fdp_c: FRUCTOSE_16_DIPHOSPHATE_c
+for_c: CARBOXYL_GROUP_c
+for_e: CARBOXYL_GROUP_e
+fru_e: CPD_15382_e
+fum_c: FUM_c
+####
+fum_e: FUM_e
+#####
+g3p_c: GAP_c
+g6p_c: D_glucopyranose_6_phosphate_c
+
+glc__D_e: Glucopyranose_e
+
+gln__L_c: GLN_c
+gln__L_e: GLN_e
