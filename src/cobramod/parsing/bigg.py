@@ -8,7 +8,11 @@ import requests
 
 
 def _get_json_bigg(
-    directory: Path, identifier: str, model_id: str, object_type: str
+    directory: Path,
+    database: str,
+    identifier: str,
+    model_id: str,
+    object_type: str,
 ) -> dict:
     """
     Searchs in given parent directory if data is located in their respective
@@ -22,7 +26,7 @@ def _get_json_bigg(
             *universal*
         object_type (str): Either 'reaction' or 'metabolite'.
 
-    Raes:
+    Raises:
         Warning: If object is not available in given database
         NotADirectoryError: If parent directory is not found
 
@@ -30,7 +34,7 @@ def _get_json_bigg(
         dict: directory transformed from a JSON.
     """
     if directory.exists():
-        data_dir = directory.joinpath("BIGG").joinpath(model_id)
+        data_dir = directory.joinpath(database).joinpath(model_id)
         data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.json")
         debug_log.debug(
@@ -149,7 +153,11 @@ def _get_db_names(data_dict: dict, database: str) -> str:
 class BiggParser(BaseParser):
     @staticmethod
     def _retrieve_data(
-        directory: Path, identifier: str, model_id: str, debug_level: int
+        directory: Path,
+        identifier: str,
+        database: str,
+        debug_level: int,
+        **kwargs,
     ) -> dict:
         """
         Retrieves data from given model in BiGG and parses the most important
@@ -158,10 +166,12 @@ class BiggParser(BaseParser):
         Args:
             directory (Path): Directory to store and retrieve local data.
             identifier (str): original identifier
-            model_id (str): Identifier of the model. Some examples:
             "e_coli_core", "universal"
             debug_level(int): Level of debugging. Read package logging
             for more info.
+
+        Keyword Arguments:
+            model_id (str): Identifier of the model. Some examples:
 
         Returns:
             dict: relevant data for given identifier
@@ -169,17 +179,19 @@ class BiggParser(BaseParser):
         try:
             json_data = _get_json_bigg(
                 directory=directory,
+                database=database,
                 identifier=identifier,
-                model_id=model_id,
                 object_type="metabolite",
+                **kwargs,
             )
             msg_extra = "Identified as a metabolite"
         except KeyError:
             json_data = _get_json_bigg(
                 directory=directory,
+                database=database,
                 identifier=identifier,
-                model_id=model_id,
                 object_type="reaction",
+                **kwargs,
             )
             msg_extra = "Identified as a reaction"
         debug_log.log(
