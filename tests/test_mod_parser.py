@@ -11,17 +11,44 @@ dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
 class RetrievalTesting(unittest.TestCase):
     def test_get_data(self):
-        # CASE 1: simple retrieval from biocyc
+        # CASE 1a: Simple retrieval from Biocyc (metabolite)
         test_dict = get_data(
             directory=dir_data, database="META", identifier="WATER"
         )
-        self.assertIsInstance(obj=test_dict, cls=dict)
+        self.assertEqual(first=test_dict["TYPE"], second="Compound")
+        # CASE 1b: simple retrieval from Biocyc (reaction)
+        test_dict = get_data(
+            directory=dir_data, database="META", identifier="GLYOXII-RXN"
+        )
+        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
         # CASE 2: simple retrieval from AraCyc
         # TODO: Case 2
-        # CASE 3: Simple retrieval from KEGG
+        # CASE 3a: Simple retrieval from KEGG (metabolite)
         test_dict = get_data(
             directory=dir_data, database="KEGG", identifier="C00001"
         )
+        self.assertEqual(first=test_dict["TYPE"], second="Compound")
+        # CASE 3a: Simple retrieval from KEGG (Reaction)
+        test_dict = get_data(
+            directory=dir_data, database="KEGG", identifier="R02736"
+        )
+        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
+        # CASE 4a: Simple retrieval from BIGG (metabolite)
+        test_dict = get_data(
+            directory=dir_data,
+            database="BIGG",
+            identifier="accoa_c",
+            model_id="e_coli_core",
+        )
+        # CASE 4b: Simple retrieval from BIGG (reaction)
+        self.assertEqual(first=test_dict["TYPE"], second="Compound")
+        test_dict = get_data(
+            directory=dir_data,
+            database="BIGG",
+            identifier="CS",
+            model_id="e_coli_core",
+        )
+        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
 
 
 if __name__ == "__main__":

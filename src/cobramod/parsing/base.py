@@ -36,7 +36,11 @@ class BaseParser(ABC):
     @staticmethod
     @abstractmethod
     def _retrieve_data(
-        directory: Path, identifier: str, database: str, debug_level: int
+        directory: Path,
+        identifier: str,
+        database: str,
+        debug_level: int,
+        **kwargs
     ) -> dict:
         pass
 

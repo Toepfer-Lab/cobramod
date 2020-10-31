@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 from pathlib import Path
 from cobra import Metabolite, Model, Reaction
-from typing import TextIO, Iterator, Union
-from cobramod.debug import debug_log
+from typing import Union
 import cobramod.mod_parser as par
+from cobramod.utils import _read_lines
+from cobramod.debug import debug_log
 from contextlib import suppress
 from collections import Counter
 
@@ -85,20 +86,6 @@ def build_metabolite(metabolite_dict: dict, compartment: str) -> Metabolite:
             charge=metabolite_dict["CHARGE"],
             compartment=compartment,
         )
-
-
-def _read_lines(f: TextIO) -> Iterator:
-    """
-    Reads Text I/O and returns iterator of line that are not comments nor
-    blanks spaces
-    """
-    for line in f:
-        line = line.strip()
-        if line.startswith("#"):
-            continue
-        if not line:  # blank
-            continue
-        yield line
 
 
 def _check_if_meta_in_model(metabolite: str, model: Model) -> bool:

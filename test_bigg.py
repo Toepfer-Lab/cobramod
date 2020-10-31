@@ -2,6 +2,7 @@
 # from cobramod.parsing.bigg import _get_json_bigg, _get_db_names
 from cobra.test import create_test_model
 from cobra.io import write_sbml_model
+from cobramod.utils import create_replacement
 from pathlib import Path
 
 dir_data = Path.cwd().joinpath("data")
@@ -26,20 +27,6 @@ test = create_test_model("textbook")
 #             replacement = "Not found"
 #         msg = f"{meta.id}: {replacement}\n"
 #         f.write(msg)
-
-
-def create_replacement(filename: Path) -> dict:
-    """
-    Creates a dictionary build from given file. Key are the first word until
-    a colon ':' is found. The rest represents the value
-    """
-    # FIXME: add read_lines and move the to cobramod.utils
-    replace_dict = dict()
-    with open(file=str(filename), mode="r") as f:
-        for line in f.readlines():
-            key, value = line.rsplit(sep=":")
-            replace_dict[key.strip().rstrip()] = value.strip().rstrip()
-    return replace_dict
 
 
 test_dict = create_replacement(filename=filename)

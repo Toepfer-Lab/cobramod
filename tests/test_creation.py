@@ -313,12 +313,6 @@ class ModulTesting(unittest.TestCase):
             "OXALODECARB_RXN_p" in [rxn.id for rxn in test_model.reactions]
         )
 
-    def test__read_lines(self):
-        # CASE 0: Comments and blank lines
-        with open(file=dir_input.joinpath("test_reading_lines.txt")) as f:
-            line = list(cr._read_lines(f=f))
-        self.assertEqual(len(line), 4)
-
     def test__build_dict_for_metabolites(self):
         # CASE 0a: TypeError
         self.assertRaises(TypeError, cr._build_dict_for_metabolites, str())
