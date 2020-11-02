@@ -1,40 +1,26 @@
 cobramod package
 ================
 
+Subpackages
+-----------
+
 .. toctree::
    :maxdepth: 4
- 
-cobramod.creation module
-------------------------
 
-.. automodule:: cobramod.creation
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   cobramod.parsing
 
-cobramod.debug module
----------------------
+Submodules
+----------
 
-.. automodule:: cobramod.debug
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. toctree::
+   :maxdepth: 4
 
-cobramod.mod\_parser module
----------------------------
-
-.. automodule:: cobramod.mod_parser
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-cobramod.pathways module
-------------------------
-
-.. automodule:: cobramod.pathways
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   cobramod.creation
+   cobramod.debug
+   cobramod.mod_parser
+   cobramod.pathways
+   cobramod.test
+   cobramod.utils
 
 Module contents
 ---------------

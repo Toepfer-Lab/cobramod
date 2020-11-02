@@ -4,29 +4,13 @@ cobramod.parsing package
 Submodules
 ----------
 
-cobramod.parsing.base module
-----------------------------
+.. toctree::
+   :maxdepth: 4
 
-.. automodule:: cobramod.parsing.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-cobramod.parsing.biocyc module
-------------------------------
-
-.. automodule:: cobramod.parsing.biocyc
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-cobramod.parsing.kegg module
-----------------------------
-
-.. automodule:: cobramod.parsing.kegg
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   cobramod.parsing.base
+   cobramod.parsing.bigg
+   cobramod.parsing.biocyc
+   cobramod.parsing.kegg
 
 Module contents
 ---------------
