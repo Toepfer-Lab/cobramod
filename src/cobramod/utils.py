@@ -22,7 +22,6 @@ def create_replacement(filename: Path) -> dict:
     Creates a dictionary build from given file. Key are the first word until
     a colon ':' is found. The rest represents the value
     """
-    # FIXME: add read_lines and move the to cobramod.utils
     replace_dict = dict()
     with open(file=str(filename), mode="r") as f:
         for line in _read_lines(f=f):
