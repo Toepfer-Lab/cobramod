@@ -169,9 +169,12 @@ class KeggParser(BaseParser):
 
     @staticmethod
     def _retrieve_data(
-        directory: Path, identifier: str, database: str, debug_level: int
+        directory: Path,
+        identifier: str,
+        database: str,
+        debug_level: int,
+        **kwargs,
     ) -> dict:
-        # FIXME: temporal solution for database
         """
         Retrieves data from KEGG database and parses the most important
         attributes into a dictionary

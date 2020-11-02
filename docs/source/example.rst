@@ -93,8 +93,8 @@ methods *add_meta_from_file* and *add_reactions_from_file*.
 Metabolites
 """""""""""
 
-It is possible to build metabolites either from a database or customized.
-For instance, given the following file *new_metabolites.txt*:
+Thee are two options to create metabolite objects. either from a database or
+built customized. For instance, given the following file *new_metabolites.txt*:
 
 .. code-block::
     :emphasize-lines: 3
@@ -286,4 +286,44 @@ synthetize the start-metabolite::
   >>> print(f.objective_value)
   0.873921506968428
 
+Similar results can be achieved using a sequence. For this example, three
+reactions from the `mixed acid fermentation
+<https://biocyc.org/META/NEW-IMAGE?type=PATHWAY&object=FERMENTATION-PWY>`_
+pathway from Metacyc will be added to the metabolic model::
 
+
+  from pathlib import Path
+  from cobramod import add_graph_to_model
+  from cobramod.test import mini_model
+
+  dir_data = Path.cwd().joinpath("data")
+  test_model = mini_model.copy()
+
+  sequence = ["PEPDEPHOS-RXN", "PYRUVFORMLY-RXN", "FHLMULTI-RXN"]
+  >>> add_graph_to_model(
+          model=test_model,
+          graph=sequence,
+          directory=dir_data,
+          database="META",
+          compartment="c",
+      )
+  Model: e_coli_core
+  Original attributes:
+  Reactions: 95
+  Metabolites: 72
+  Boundary reactions 20
+  --------------------
+  New attributes:
+  Reactions: 99
+  Metabolites: 74
+  Boundary reactions: 21
+  --------------------
+
+As expected as the prior example, a extra sink reaction was created since there
+is no hydrogen metabolite in the model::
+
+  >>> print(test_model.sinks)
+  [<Reaction SK_HYDROGEN_MOLECULE_c at 0x7fb1ff2897d0>]
+
+  >>> print(test_model.optimize().objective_value)
+  0.8739215069684305
