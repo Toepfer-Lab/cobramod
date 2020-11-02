@@ -8,11 +8,7 @@ import requests
 
 
 def _get_json_bigg(
-    directory: Path,
-    database: str,
-    identifier: str,
-    model_id: str,
-    object_type: str,
+    directory: Path, identifier: str, model_id: str, object_type: str, **kwargs
 ) -> dict:
     """
     Searchs in given parent directory if data is located in their respective
@@ -34,6 +30,7 @@ def _get_json_bigg(
         dict: directory transformed from a JSON.
     """
     if directory.exists():
+        database = "BIGG"
         data_dir = directory.joinpath(database).joinpath(model_id)
         data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.json")
