@@ -1,0 +1,19 @@
+ENTRY       R00114                      Reaction
+NAME        L-glutamate:NADP+ oxidoreductase (transaminating)
+DEFINITION  2 L-Glutamate + NADP+ <=> L-Glutamine + 2-Oxoglutarate + NADPH + H+
+EQUATION    2 C00025 + C00006 <=> C00064 + C00026 + C00005 + C00080
+COMMENT     two-step reaction (see R00256+R00248)
+RCLASS      RC00001  C00005_C00006
+            RC00006  C00025_C00026
+            RC00010  C00025_C00064
+ENZYME      1.4.1.13
+PATHWAY     rn00250  Alanine, aspartate and glutamate metabolism
+            rn00910  Nitrogen metabolism
+            rn01100  Metabolic pathways
+            rn01110  Biosynthesis of secondary metabolites
+            rn01120  Microbial metabolism in diverse environments
+            rn01230  Biosynthesis of amino acids
+ORTHOLOGY   K00265  glutamate synthase (NADPH) large chain [EC:1.4.1.13]
+            K00266  glutamate synthase (NADPH) small chain [EC:1.4.1.13]
+DBLINKS     RHEA: 15504
+///

@@ -1,0 +1,16 @@
+ENTRY       R07159                      Reaction
+NAME        D-glyceraldehyde-3-phosphate:ferredoxin oxidoreductase
+DEFINITION  D-Glyceraldehyde 3-phosphate + H2O + 2 Oxidized ferredoxin <=> 3-Phospho-D-glycerate + 2 H+ + 2 Reduced ferredoxin
+EQUATION    C00118 + C00001 + 2 C00139 <=> C00197 + 2 C00080 + 2 C00138
+RCLASS      RC00242  C00118_C00197
+ENZYME      1.2.7.6
+PATHWAY     rn00010  Glycolysis / Gluconeogenesis
+            rn01100  Metabolic pathways
+            rn01120  Microbial metabolism in diverse environments
+            rn01200  Carbon metabolism
+            rn01230  Biosynthesis of amino acids
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+            M00002  Glycolysis, core module involving three-carbon compounds
+ORTHOLOGY   K11389  glyceraldehyde-3-phosphate dehydrogenase (ferredoxin) [EC:1.2.7.6]
+DBLINKS     RHEA: 24151
+///

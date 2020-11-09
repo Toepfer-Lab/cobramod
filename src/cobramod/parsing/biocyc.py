@@ -21,7 +21,10 @@ def _p_compound(root: Any) -> dict:
     except AttributeError:
         formula = "X"
         charge = 0
-        debug_log.warning(f'Biocyc ID "{identifier}" treated as Protein')
+        debug_log.warning(
+            f'Biocyc ID "{identifier}" could not find a chemical formuala. '
+            f'Formula set to "X" and charge to 0'
+        )
     # For names only
     try:
         name = root.find("./*/cml/*").attrib["title"]
@@ -186,7 +189,11 @@ class BiocycParser(BaseParser):
 
     @staticmethod
     def _retrieve_data(
-        directory: Path, identifier: str, database: str, debug_level: int
+        directory: Path,
+        identifier: str,
+        database: str,
+        debug_level: int,
+        **kwargs,
     ) -> dict:
         """
         Retrieves data from biocyc and parses the most important attributes

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from cobramod.debug import debug_log
+from cobramod.utils import get_key_dict
 from cobramod.parsing.base import BaseParser
 from pathlib import Path
 from typing import Any
@@ -8,11 +9,7 @@ import requests
 
 
 def _get_json_bigg(
-    directory: Path,
-    database: str,
-    identifier: str,
-    model_id: str,
-    object_type: str,
+    directory: Path, identifier: str, model_id: str, object_type: str, **kwargs
 ) -> dict:
     """
     Searchs in given parent directory if data is located in their respective
@@ -34,6 +31,7 @@ def _get_json_bigg(
         dict: directory transformed from a JSON.
     """
     if directory.exists():
+        database = "BIGG"
         data_dir = directory.joinpath(database).joinpath(model_id)
         data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.json")
@@ -132,21 +130,21 @@ def _p_reaction(json_data: dict) -> dict:
     return temp_dict
 
 
-def _get_db_names(data_dict: dict, database: str) -> str:
+def _get_db_names(data_dict: dict, pattern: str) -> str:
     """
     From the original data of a BiGG JSON, retrieve the corresponding
     identifier for its crossref database.
     """
-    replacement = {"KEGG": "KEGG Reaction", "META": "BioCyc"}
+    database = get_key_dict(
+        dictionary=data_dict["database_links"], pattern=pattern
+    )
+
     try:
-        container = data_dict["database_links"][replacement[database]][0]["id"]
+        container = data_dict["database_links"][database][0]["id"]
     except KeyError:
-        try:
-            container = data_dict["database_links"][database][0]["id"]
-        except KeyError:
-            msg = "Given database is not found in the crossref section"
-            debug_log.error(msg)
-            raise KeyError(msg)
+        msg = "Given database is not found in the crossref section"
+        debug_log.error(msg)
+        raise KeyError(msg)
     return container
 
 
