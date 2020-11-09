@@ -1,229 +1,16 @@
 #!/usr/bin/env python3
-from typing import Union, Generator, Iterable, NamedTuple
-from cobra import Model, Reaction, DictList
-from cobramod.creation import check_mass_balance, _build_reaction
-from cobramod.mod_parser import get_data
-from cobramod.debug import debug_log
-from itertools import chain
 from contextlib import suppress
 from pathlib import Path
+from typing import Union, Generator, Iterable
 
+from cobra import Model, Reaction
 
-class DataModel(NamedTuple):
-    """
-    A class to store old values of metabolic models
-    """
+from cobramod.creation import check_mass_balance, _build_reaction
+from cobramod.debug import debug_log
+from cobramod.graph import return_graph_from_dict
+from cobramod.mod_parser import get_data
 
-    reactions: DictList
-    metabolites: DictList
-    boundary: DictList
-
-
-def _find_end_vertex(vertex_dict: dict) -> Generator:
-    """
-    Yields from a dictionary of edges, the last vertex. i.e, a single value
-    that is not in a key. They can be seen as end-metabolites.
-    """
-    for value in vertex_dict.values():
-        if value not in vertex_dict.keys():
-            yield value
-
-
-def _find_start_vertex(vertex_dict: dict) -> Generator:
-    """
-    Yields the start vertex for given dictionary, i.e. keys are do not
-    appear as values. They can be seen as start-metabolites.
-    """
-    for key in vertex_dict.keys():
-        if key not in vertex_dict.values():
-            yield key
-
-
-def _verify_return_end_vertex(vertex_dict: dict) -> Generator:
-    """
-    Verifies that at least one end-vertex and start-vertex are possible
-    to obtained from dictionary of edges. If no start-vertex is found, the
-    graph is cyclical and a edge will be cut.
-
-    Args:
-        vertex_dict (dict): dictionary with edges
-
-    Returns:
-        Generator: A generator that gives last vertex
-
-    """
-    end_vertex = list(_find_end_vertex(vertex_dict=vertex_dict))
-    while len(end_vertex) == 0:
-        vertex_dict.popitem()
-        end_vertex = list(_find_end_vertex(vertex_dict=vertex_dict))
-    return _find_end_vertex(vertex_dict=vertex_dict)
-
-
-def _build_graph(start_vertex: str, vertex_dict: dict) -> Generator:
-    """
-    Build sequence for given edge-dictionary, that starts with
-    given start vertex. It will stop until no keys are available or a cyclical
-    graph is found.
-
-    Args:
-        start_vertex (str): name of the first
-        vertex_dict (dict): dictionary with edges
-
-    Yields:
-        Generator: sequence that start with first edge
-    """
-    first_step = vertex_dict[start_vertex]
-    count = 0
-    while True:
-        try:
-            yield start_vertex
-            start_vertex = vertex_dict[start_vertex]
-            count += 1
-        except KeyError:
-            break
-        if start_vertex == first_step and count > 1:
-            break
-
-
-def get_graph(vertex_dict: dict) -> Iterable:
-    """
-    Creates graph for given vertex dictionary. For each start vertex found,
-    a sequence will be created. Edges can be cut if a cyclic graph is found.
-
-    Args:
-        vertex_dict (dict): dictionary with edges
-
-    Returns:
-        Iterable: List with sequences
-    """
-    # This step is necesary to reduce the lenght of dictionary
-    _ = _verify_return_end_vertex(vertex_dict=vertex_dict)
-    start_vertex = _find_start_vertex(vertex_dict=vertex_dict)
-    # a generator with list, otherwise items get lost.
-    # True order is opposite
-    return (
-        list(_build_graph(start_vertex=start, vertex_dict=vertex_dict))[::-1]
-        for start in start_vertex
-    )
-
-
-def _return_missing_edges(
-    complete_edges: Iterable, graph: Iterable
-) -> Generator:
-    """
-    Compares a iterable of edges with a graph and yields missing vertex.
-    """
-    for edge in complete_edges:
-        if edge not in graph:
-            yield edge
-
-
-def _replace_item(
-    iterable: Iterable, replacement_dict: dict = {}
-) -> Generator:
-    """
-    For an item in Iterable, replaces it for its corresponding value in
-    given dictionary.
-
-    Args:
-        iterable (Iterable): sequence to modify
-        replacement_dict (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers. Defaults to {}.
-
-    Yields:
-        Generator: Either original keys or the replacements
-    """
-    for item in iterable:
-        if item in set(chain.from_iterable(replacement_dict.keys())):
-            debug_log.warning(
-                f'Replacing "{item}" with "{replacement_dict[item]}"'
-            )
-            yield replacement_dict[item]
-        else:
-            yield item
-
-
-def _remove_item(iterable: Iterable, avoid_list: Iterable = []) -> Generator:
-    """
-    Returns Generator of items that are not in the avoid list.
-    """
-    for item in iterable:
-        if item in avoid_list:
-            debug_log.warning(f'Avoiding root for "{item}"')
-        else:
-            yield item
-
-
-def _return_verified_graph(
-    vertex_dict: dict,
-    vertex_set: set,
-    avoid_list: Iterable = [],
-    replacement_dict: dict = {},
-) -> list:
-    """
-    Returns list with an ordered sequence for a dictionary of edges. If a
-    vertex is missing in the sequence, they will be appended as a extra
-    sequence.
-
-    Args:
-        vertex_dict (dict): dictionary with edges
-        vertex_set (set): set with all members
-        replacement_dict (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers. Defaults to {}.
-        avoid_list (Iterable, Optional): original identifiers to avoid in
-            graph. Defaults to [].
-
-    Returns:
-        list: verified list of sequences
-    """
-    # TODO: check for single reaction
-    graph = list(get_graph(vertex_dict=vertex_dict))
-    missing_edges = list(
-        _return_missing_edges(
-            graph=set(chain.from_iterable(graph)), complete_edges=vertex_set
-        )
-    )
-    graph.insert(0, missing_edges)
-    # Fixing sequences from graph
-    graph = [
-        list(
-            _replace_item(iterable=sequence, replacement_dict=replacement_dict)
-        )
-        for sequence in graph
-    ]
-    graph = [
-        list(_remove_item(iterable=sequence, avoid_list=avoid_list))
-        for sequence in graph
-    ]
-    # Filtering NONES from .append()
-    return list(filter(None, graph))
-
-
-def return_graph_from_dict(
-    data_dict: dict, avoid_list: Iterable = [], replacement_dict: dict = {}
-) -> list:
-    """
-    Returns graph from given data. All sequences are in order.
-
-    Args:
-        data_dict (dict): pathway data saved in dictionary.
-        replacement_dict (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers. Defaults to {}.
-        avoid_list (Iterable, Optional): original identifiers to avoid in
-            graph. Defaults to [].
-        replacement_dict (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers. Defaults to {}.
-
-    Returns:
-        list: sequence with reaction identifiers in order
-    """
-
-    return _return_verified_graph(
-        vertex_dict=data_dict["PATHWAY"],
-        vertex_set=data_dict["SET"],
-        avoid_list=avoid_list,
-        replacement_dict=replacement_dict,
-    )
+# from cobramod.utils import get_DataList
 
 
 def _create_reactions(
@@ -700,24 +487,6 @@ def _from_sequence(
     )
 
 
-def _summary(old_values: DataModel, model: Model):
-    print(
-        f'{"-"*20}\n'
-        f"Model: {model.id}\n"
-        f"Original attributes:\n"
-        f"Reactions: {len(old_values.reactions)}\n"
-        f"Metabolites: {len(old_values.metabolites)}\n"
-        f"Boundary reactions {len(old_values.boundary)}\n"
-        f'{"-"*20}\n'
-        f"New attributes:\n"
-        f"Reactions: {len(model.reactions)}\n"
-        f"Metabolites: {len(model.metabolites)}\n"
-        f"Boundary reactions: {len(model.boundary)}\n"
-        f'{"-"*20}\n'
-    )
-    # FIXME: ADD DIFF
-
-
 def add_graph_to_model(
     model: Model,
     graph: Union[list, str, set],
@@ -763,11 +532,7 @@ def add_graph_to_model(
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
-    old_values = DataModel(
-        reactions=model.reactions.copy(),
-        metabolites=model.metabolites.copy(),
-        boundary=model.boundary.copy(),
-    )
+    # old_values = get_DataList(model=model)
     if isinstance(graph, str):
         data_dict = get_data(
             directory=directory, identifier=graph, database=database
@@ -784,7 +549,7 @@ def add_graph_to_model(
             **kwargs,
         )
         # FIXME: position
-        _summary(old_values=old_values, model=model)
+        # _summary(old_values=old_values, model=model)
     elif isinstance(graph, (list, set)):
         _from_sequence(
             model=model,
@@ -798,6 +563,6 @@ def add_graph_to_model(
             **kwargs,
         )
         # FIXME: position
-        _summary(old_values=old_values, model=model)
+        # _summary(old_values=old_values, model=model)
     else:
         raise TypeError("Argument graph must be iterable or a identifier")

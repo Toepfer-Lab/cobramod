@@ -1,0 +1,27 @@
+ENTRY       R01061                      Reaction
+NAME        D-glyceraldehyde-3-phosphate:NAD+ oxidoreductase (phosphorylating)
+DEFINITION  D-Glyceraldehyde 3-phosphate + Orthophosphate + NAD+ <=> 3-Phospho-D-glyceroyl phosphate + NADH + H+
+EQUATION    C00118 + C00009 + C00003 <=> C00236 + C00004 + C00080
+COMMENT     NADP+ (ec 1.2.1.59, see R01063)
+RCLASS      RC00001  C00003_C00004
+            RC00149  C00118_C00236
+ENZYME      1.2.1.12        1.2.1.59
+PATHWAY     rn00010  Glycolysis / Gluconeogenesis
+            rn00710  Carbon fixation in photosynthetic organisms
+            rn01100  Metabolic pathways
+            rn01110  Biosynthesis of secondary metabolites
+            rn01120  Microbial metabolism in diverse environments
+            rn01200  Carbon metabolism
+            rn01230  Biosynthesis of amino acids
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+            M00002  Glycolysis, core module involving three-carbon compounds
+            M00003  Gluconeogenesis, oxaloacetate => fructose-6P
+            M00165  Reductive pentose phosphate cycle (Calvin cycle)
+            M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
+            M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
+            M00552  D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P
+ORTHOLOGY   K00134  glyceraldehyde 3-phosphate dehydrogenase [EC:1.2.1.12]
+            K00150  glyceraldehyde-3-phosphate dehydrogenase (NAD(P)) [EC:1.2.1.59]
+            K10705  glyceraldehyde-3-phosphate dehydrogenase, spermatogenic [EC:1.2.1.12]
+DBLINKS     RHEA: 10303
+///
