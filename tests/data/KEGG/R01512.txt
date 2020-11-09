@@ -1,0 +1,24 @@
+ENTRY       R01512                      Reaction
+NAME        ATP:3-phospho-D-glycerate 1-phosphotransferase
+DEFINITION  ATP + 3-Phospho-D-glycerate <=> ADP + 3-Phospho-D-glyceroyl phosphate
+EQUATION    C00002 + C00197 <=> C00008 + C00236
+RCLASS      RC00002  C00002_C00008
+            RC00043  C00197_C00236
+ENZYME      2.7.2.3
+PATHWAY     rn00010  Glycolysis / Gluconeogenesis
+            rn00710  Carbon fixation in photosynthetic organisms
+            rn01100  Metabolic pathways
+            rn01110  Biosynthesis of secondary metabolites
+            rn01120  Microbial metabolism in diverse environments
+            rn01200  Carbon metabolism
+            rn01230  Biosynthesis of amino acids
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+            M00002  Glycolysis, core module involving three-carbon compounds
+            M00003  Gluconeogenesis, oxaloacetate => fructose-6P
+            M00165  Reductive pentose phosphate cycle (Calvin cycle)
+            M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
+            M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
+            M00552  D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P
+ORTHOLOGY   K00927  phosphoglycerate kinase [EC:2.7.2.3]
+DBLINKS     RHEA: 14804
+///

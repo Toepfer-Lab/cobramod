@@ -21,7 +21,10 @@ def _p_compound(root: Any) -> dict:
     except AttributeError:
         formula = "X"
         charge = 0
-        debug_log.warning(f'Biocyc ID "{identifier}" treated as Protein')
+        debug_log.warning(
+            f'Biocyc ID "{identifier}" could not find a chemical formuala. '
+            f'Formula set to "X" and charge to 0'
+        )
     # For names only
     try:
         name = root.find("./*/cml/*").attrib["title"]

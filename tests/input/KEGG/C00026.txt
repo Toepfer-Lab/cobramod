@@ -1,0 +1,173 @@
+ENTRY       C00026                      Compound
+NAME        2-Oxoglutarate;
+            Oxoglutaric acid;
+            2-Ketoglutaric acid;
+            alpha-Ketoglutaric acid
+FORMULA     C5H6O5
+EXACT_MASS  146.0215
+MOL_WEIGHT  146.0981
+REACTION    R00021 R00093 R00114 R00243 R00248 R00250 R00258 R00264 
+            R00265 R00267 R00268 R00269 R00270 R00271 R00272 R00279 
+            R00298 R00355 R00372 R00457 R00474 R00563 R00621 R00667 
+            R00668 R00684 R00694 R00709 R00715 R00716 R00734 R00895 
+            R00896 R00908 R01090 R01148 R01155 R01161 R01197 R01214 
+            R01252 R01339 R01412 R01580 R01582 R01587 R01648 R01684 
+            R01700 R01879 R01939 R01956 R02077 R02160 R02199 R02274 
+            R02283 R02397 R02433 R02444 R02445 R02486 R02619 R02700 
+            R02772 R02773 R03008 R03009 R03053 R03063 R03120 R03126 
+            R03207 R03218 R03219 R03225 R03243 R03248 R03266 R03376 
+            R03451 R03534 R03590 R03640 R03698 R03737 R03806 R03807 
+            R03809 R03812 R03859 R03952 R04028 R04029 R04051 R04073 
+            R04171 R04173 R04188 R04217 R04234 R04269 R04276 R04338 
+            R04438 R04467 R04475 R04529 R05036 R05037 R05039 R05052 
+            R05085 R05097 R05126 R05127 R05228 R05229 R05301 R05302 
+            R05320 R05419 R05466 R05468 R05469 R05493 R05507 R05722 
+            R05723 R05839 R05857 R06322 R06323 R06335 R06336 R06337 
+            R06338 R06423 R06426 R06539 R06540 R06551 R06586 R06631 
+            R06634 R06977 R07184 R07185 R07186 R07187 R07275 R07276 
+            R07277 R07329 R07366 R07367 R07368 R07396 R07613 R07659 
+            R07712 R07993 R07996 R07997 R08050 R08081 R08082 R08165 
+            R08198 R08201 R08213 R08254 R08549 R08610 R08611 R08897 
+            R08903 R08931 R08972 R09363 R09402 R09510 R09511 R09572 
+            R09778 R09784 R09785 R09824 R09825 R10056 R10064 R10081 
+            R10086 R10094 R10141 R10143 R10144 R10145 R10157 R10210 
+            R10312 R10413 R10415 R10445 R10446 R10460 R10487 R10522 
+            R10527 R10539 R10542 R10575 R10698 R10723 R10724 R10735 
+            R10740 R10741 R10742 R10845 R10920 R10932 R10991 R11030 
+            R11053 R11118 R11210 R11269 R11270 R11285 R11291 R11297 
+            R11298 R11299 R11337 R11340 R11345 R11395 R11409 R11475 
+            R11549 R11593 R11594 R11607 R11655 R11768 R11948 R11960 
+            R11963 R11991 R11993 R12024 R12076 R12081 R12082 R12083 
+            R12165 R12166 R12176 R12210 R12214 R12216 R12217 R12222 
+            R12306 R12312 R12315 R12407 R12411 R12452 R12459 R12460 
+            R12461 R12501 R12509 R12510 R12606 R12615 R12645 R12650 
+            R12651
+PATHWAY     map00020  Citrate cycle (TCA cycle)
+            map00040  Pentose and glucuronate interconversions
+            map00053  Ascorbate and aldarate metabolism
+            map00220  Arginine biosynthesis
+            map00250  Alanine, aspartate and glutamate metabolism
+            map00300  Lysine biosynthesis
+            map00310  Lysine degradation
+            map00340  Histidine metabolism
+            map00365  Furfural degradation
+            map00430  Taurine and hypotaurine metabolism
+            map00471  D-Glutamine and D-glutamate metabolism
+            map00630  Glyoxylate and dicarboxylate metabolism
+            map00650  Butanoate metabolism
+            map00660  C5-Branched dibasic acid metabolism
+            map00720  Carbon fixation pathways in prokaryotes
+            map00997  Biosynthesis of various secondary metabolites - part 3
+            map01060  Biosynthesis of plant secondary metabolites
+            map01061  Biosynthesis of phenylpropanoids
+            map01062  Biosynthesis of terpenoids and steroids
+            map01063  Biosynthesis of alkaloids derived from shikimate pathway
+            map01064  Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid
+            map01065  Biosynthesis of alkaloids derived from histidine and purine
+            map01066  Biosynthesis of alkaloids derived from terpenoid and polyketide
+            map01070  Biosynthesis of plant hormones
+            map01100  Metabolic pathways
+            map01110  Biosynthesis of secondary metabolites
+            map01120  Microbial metabolism in diverse environments
+            map01200  Carbon metabolism
+            map01210  2-Oxocarboxylic acid metabolism
+            map01230  Biosynthesis of amino acids
+            map04066  HIF-1 signaling pathway
+            map04727  GABAergic synapse
+            map04922  Glucagon signaling pathway
+            map04964  Proximal tubule bicarbonate reclamation
+            map04976  Bile secretion
+            map05230  Central carbon metabolism in cancer
+MODULE      M00009  Citrate cycle (TCA cycle, Krebs cycle)
+            M00010  Citrate cycle, first carbon oxidation, oxaloacetate => 2-oxoglutarate
+            M00011  Citrate cycle, second carbon oxidation, 2-oxoglutarate => oxaloacetate
+            M00030  Lysine biosynthesis, AAA pathway, 2-oxoglutarate => 2-aminoadipate => lysine
+            M00173  Reductive citrate cycle (Arnon-Buchanan cycle)
+            M00433  Lysine biosynthesis, 2-oxoglutarate => 2-oxoadipate
+            M00532  Photorespiration
+            M00608  2-Oxocarboxylic acid chain extension, 2-oxoglutarate => 2-oxoadipate => 2-oxopimelate => 2-oxosuberate
+            M00620  Incomplete reductive citrate cycle, acetyl-CoA => oxoglutarate
+            M00740  Methylaspartate cycle
+ENZYME      1.1.1.41        1.1.1.42        1.1.1.95        1.1.1.286       
+            1.1.1.399       1.1.5.13        1.1.99.2        1.1.99.24       
+            1.1.99.39       1.1.99.40       1.2.1.3         1.2.1.26        
+            1.2.1.52        1.2.1.-         1.2.4.2         1.2.7.3         
+            1.2.7.11        1.4.1.2         1.4.1.3         1.4.1.4         
+            1.4.1.13        1.4.1.14        1.4.3.7         1.4.3.11        
+            1.4.3.15        1.4.7.1         1.5.1.7         1.5.1.8         
+            1.5.1.19        1.5.1.51        1.8.1.4         1.13.12.19      
+            1.14.11.1       1.14.11.2       1.14.11.3       1.14.11.4       
+            1.14.11.6       1.14.11.7       1.14.11.8       1.14.11.9       
+            1.14.11.10      1.14.11.11      1.14.11.12      1.14.11.13      
+            1.14.11.15      1.14.11.16      1.14.11.17      1.14.11.18      
+            1.14.11.20      1.14.11.21      1.14.11.24      1.14.11.25      
+            1.14.11.26      1.14.11.27      1.14.11.28      1.14.11.31      
+            1.14.11.32      1.14.11.35      1.14.11.36      1.14.11.37      
+            1.14.11.38      1.14.11.39      1.14.11.40      1.14.11.41      
+            1.14.11.42      1.14.11.43      1.14.11.44      1.14.11.45      
+            1.14.11.46      1.14.11.48      1.14.11.49      1.14.11.51      
+            1.14.11.52      1.14.11.55      1.14.11.56      1.14.11.57      
+            1.14.11.58      1.14.11.59      1.14.11.60      1.14.11.61      
+            1.14.11.62      1.14.11.63      1.14.11.64      1.14.11.65      
+            1.14.11.66      1.14.11.67      1.14.11.68      1.14.11.69      
+            1.14.11.70      1.14.11.71      1.14.11.72      1.14.11.73      
+            1.14.11.74      1.14.11.75      1.14.11.-       1.14.20.1       
+            1.14.20.3       1.14.20.4       1.14.20.5       1.14.20.6       
+            1.14.20.7       1.14.20.8       1.14.20.9       1.14.20.10      
+            1.14.20.11      1.14.20.12      1.14.20.13      1.14.20.14      
+            1.14.20.15      1.14.20.-       2.2.1.5         2.2.1.9         
+            2.3.1.61        2.3.3.4         2.3.3.14        2.6.1.1         
+            2.6.1.2         2.6.1.3         2.6.1.4         2.6.1.5         
+            2.6.1.6         2.6.1.7         2.6.1.8         2.6.1.9         
+            2.6.1.11        2.6.1.13        2.6.1.17        2.6.1.19        
+            2.6.1.21        2.6.1.22        2.6.1.23        2.6.1.24        
+            2.6.1.26        2.6.1.27        2.6.1.29        2.6.1.33        
+            2.6.1.34        2.6.1.36        2.6.1.38        2.6.1.39        
+            2.6.1.40        2.6.1.42        2.6.1.44        2.6.1.48        
+            2.6.1.49        2.6.1.52        2.6.1.54        2.6.1.55        
+            2.6.1.57        2.6.1.59        2.6.1.65        2.6.1.67        
+            2.6.1.72        2.6.1.74        2.6.1.75        2.6.1.76        
+            2.6.1.79        2.6.1.80        2.6.1.81        2.6.1.82        
+            2.6.1.83        2.6.1.87        2.6.1.89        2.6.1.90        
+            2.6.1.92        2.6.1.93        2.6.1.94        2.6.1.95        
+            2.6.1.98        2.6.1.102       2.6.1.103       2.6.1.104       
+            2.6.1.106       2.6.1.107       2.6.1.109       2.6.1.110       
+            2.6.1.111       2.6.1.114       2.6.1.116       2.6.1.118       
+            2.6.1.-         3.5.1.3         3.5.1.36        3.5.1.111       
+            3.5.1.128       4.1.1.71        4.2.1.168       6.3.2.56        
+            6.4.1.7
+BRITE       Compounds with biological roles [BR:br08001]
+             Organic acids
+              Carboxylic acids
+               2-Oxocarboxylic acids
+                C00026  2-Oxoglutarate
+DBLINKS     CAS: 328-50-7
+            PubChem: 3328
+            ChEBI: 16810 30915
+            ChEMBL: CHEMBL1686
+            KNApSAcK: C00000769
+            PDB-CCD: AKG
+            3DMET: B00008
+            NIKKAJI: J11.847H
+ATOM        10
+            1   C5a C    27.7045  -20.9076
+            2   C1b C    26.4954  -20.2102
+            3   C6a C    28.9072  -20.2102
+            4   O5a O    27.7045  -22.3718
+            5   C1b C    25.2927  -20.9076
+            6   O6a O    30.1100  -20.9139
+            7   O6a O    28.9007  -18.8219
+            8   C6a C    24.0836  -20.2102
+            9   O6a O    24.0899  -18.8219
+            10  O6a O    22.8808  -20.9139
+BOND        9
+            1     1   2 1
+            2     1   3 1
+            3     1   4 2
+            4     2   5 1
+            5     3   6 1
+            6     3   7 2
+            7     5   8 1
+            8     8   9 2
+            9     8  10 1
+///

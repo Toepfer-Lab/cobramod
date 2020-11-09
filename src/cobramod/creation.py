@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
+from collections import Counter
 from pathlib import Path
-from cobra import Metabolite, Model, Reaction
 from typing import Union
+
+from cobra import Metabolite, Model, Reaction
+
 import cobramod.mod_parser as par
 from cobramod.utils import _read_lines
 from cobramod.debug import debug_log
 from contextlib import suppress
-from collections import Counter
 
 
 def _create_meta_from_string(line_string: str) -> Metabolite:
