@@ -1,0 +1,17 @@
+ENTRY       R00894                      Reaction
+NAME        L-glutamate:L-cysteine gamma-ligase (ADP-forming)
+DEFINITION  ATP + L-Glutamate + L-Cysteine <=> ADP + Orthophosphate + gamma-L-Glutamyl-L-cysteine
+EQUATION    C00002 + C00025 + C00097 <=> C00008 + C00009 + C00669
+RCLASS      RC00002  C00002_C00008
+            RC00064  C00097_C00669
+            RC00090  C00025_C00669
+ENZYME      6.3.2.2
+PATHWAY     rn00480  Glutathione metabolism
+            rn01100  Metabolic pathways
+MODULE      M00118  Glutathione biosynthesis, glutamate => glutathione
+ORTHOLOGY   K01919  glutamate--cysteine ligase [EC:6.3.2.2]
+            K06048  glutamate---cysteine ligase / carboxylate-amine ligase [EC:6.3.2.2 6.3.-.-]
+            K11204  glutamate--cysteine ligase catalytic subunit [EC:6.3.2.2]
+            K11205  glutamate--cysteine ligase regulatory subunit
+DBLINKS     RHEA: 13288
+///

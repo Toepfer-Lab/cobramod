@@ -1,0 +1,16 @@
+ENTRY       R09085                      Reaction
+NAME        ADP:D-glucose 6-phosphotransferase
+DEFINITION  alpha-D-Glucose + ADP <=> alpha-D-Glucose 6-phosphate + AMP
+EQUATION    C00267 + C00008 <=> C00668 + C00020
+RCLASS      RC00002  C00008_C00020
+            RC00017  C00267_C00668
+ENZYME      2.7.1.147
+PATHWAY     rn00010  Glycolysis / Gluconeogenesis
+            rn01100  Metabolic pathways
+            rn01110  Biosynthesis of secondary metabolites
+            rn01120  Microbial metabolism in diverse environments
+            rn01200  Carbon metabolism
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+ORTHOLOGY   K00918  ADP-dependent phosphofructokinase/glucokinase [EC:2.7.1.146 2.7.1.147]
+            K08074  ADP-dependent glucokinase [EC:2.7.1.147]
+///

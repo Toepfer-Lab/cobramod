@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from cobramod.debug import debug_log
+from cobramod.utils import get_key_dict
 from cobramod.parsing.base import BaseParser
 from pathlib import Path
 from typing import Any
@@ -129,21 +130,21 @@ def _p_reaction(json_data: dict) -> dict:
     return temp_dict
 
 
-def _get_db_names(data_dict: dict, database: str) -> str:
+def _get_db_names(data_dict: dict, pattern: str) -> str:
     """
     From the original data of a BiGG JSON, retrieve the corresponding
     identifier for its crossref database.
     """
-    replacement = {"KEGG": "KEGG Reaction", "META": "BioCyc"}
+    database = get_key_dict(
+        dictionary=data_dict["database_links"], pattern=pattern
+    )
+
     try:
-        container = data_dict["database_links"][replacement[database]][0]["id"]
+        container = data_dict["database_links"][database][0]["id"]
     except KeyError:
-        try:
-            container = data_dict["database_links"][database][0]["id"]
-        except KeyError:
-            msg = "Given database is not found in the crossref section"
-            debug_log.error(msg)
-            raise KeyError(msg)
+        msg = "Given database is not found in the crossref section"
+        debug_log.error(msg)
+        raise KeyError(msg)
     return container
 
 

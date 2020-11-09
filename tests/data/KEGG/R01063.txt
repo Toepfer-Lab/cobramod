@@ -1,0 +1,24 @@
+ENTRY       R01063                      Reaction
+NAME        D-glyceraldehyde-3-phosphate:NADP+ oxidoreductase (phosphorylating)
+DEFINITION  D-Glyceraldehyde 3-phosphate + Orthophosphate + NADP+ <=> 3-Phospho-D-glyceroyl phosphate + NADPH + H+
+EQUATION    C00118 + C00009 + C00006 <=> C00236 + C00005 + C00080
+COMMENT     NAD+ (ec 1.2.1.59, see R01061)
+RCLASS      RC00001  C00005_C00006
+            RC00149  C00118_C00236
+ENZYME      1.2.1.13        1.2.1.59
+PATHWAY     rn00010  Glycolysis / Gluconeogenesis
+            rn00710  Carbon fixation in photosynthetic organisms
+            rn01100  Metabolic pathways
+            rn01110  Biosynthesis of secondary metabolites
+            rn01120  Microbial metabolism in diverse environments
+            rn01200  Carbon metabolism
+            rn01230  Biosynthesis of amino acids
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+            M00002  Glycolysis, core module involving three-carbon compounds
+            M00003  Gluconeogenesis, oxaloacetate => fructose-6P
+            M00165  Reductive pentose phosphate cycle (Calvin cycle)
+            M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
+ORTHOLOGY   K00150  glyceraldehyde-3-phosphate dehydrogenase (NAD(P)) [EC:1.2.1.59]
+            K05298  glyceraldehyde-3-phosphate dehydrogenase (NADP+) (phosphorylating) [EC:1.2.1.13]
+DBLINKS     RHEA: 10299
+///

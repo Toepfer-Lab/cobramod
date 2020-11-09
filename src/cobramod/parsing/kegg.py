@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
-from typing import Generator, Union, Dict, NamedTuple
+from contextlib import suppress
 from itertools import chain
-from cobramod.debug import debug_log
 from pathlib import Path
-import requests
+from typing import Generator, Union, Dict, NamedTuple
+
+from requests import get
+
+from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
+from cobramod.utils import WrongParserError
 
 
 class MetaboliteTuple(NamedTuple):
+    """
+    Simple named tuple with information of the metabolite.
+    """
+
     identifier: str
     coefficient: float
 
@@ -82,20 +90,20 @@ def _get_coefficient(line: str, SIDE: int, prefix: str) -> MetaboliteTuple:
         )
 
 
-def _give_metabolites(line: str) -> dict:
+def _build_dict_meta(line: str) -> dict:
     """
-    Returns dictionary with metabolites identifiers and corresponding
-    coeffient
+    Builds dictionary with metabolites identifiers and corresponding
+    coeffients.
     """
     middle = line.find("=")
     temp_dict = dict()
     reactants = line[: middle - 1]
     products = line[middle + 2 :]
     for item in reactants.split(" + "):
-        MetaTuple = _get_coefficient(line=item, SIDE=-1, prefix="r_")
+        MetaTuple = _get_coefficient(line=item, SIDE=-1, prefix="l_")
         temp_dict[MetaTuple.identifier] = MetaTuple.coefficient
     for item in products.split(" + "):
-        MetaTuple = _get_coefficient(line=item, SIDE=1, prefix="l_")
+        MetaTuple = _get_coefficient(line=item, SIDE=1, prefix="r_")
         temp_dict[MetaTuple.identifier] = MetaTuple.coefficient
     return temp_dict
 
@@ -118,6 +126,130 @@ def _get_reversibility(line: str) -> tuple:
     return bounds
 
 
+def _p_reaction(kegg_dict: dict) -> dict:
+    """
+    Parses the KEGG dictionary and returns a dictionary with the most important
+    attributes about the compound.
+    """
+    object_type = list(
+        chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+    )[-1]
+    if object_type != "Reaction":
+        raise WrongParserError(
+            "Given dictionary does not belong to a reaction."
+        )
+    return {
+        "TYPE": object_type,
+        "ENTRY": list(
+            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+        )[-2],
+        "NAME": kegg_dict["NAME"][0],
+        "DATABASE": "KEGG",
+        "EQUATION": _build_dict_meta(line=kegg_dict["EQUATION"][0]),
+        "BOUNDS": _get_reversibility(line=kegg_dict["EQUATION"][0]),
+        "TRANSPORT": BaseParser._check_transport(
+            data_dict=_build_dict_meta(line=kegg_dict["EQUATION"][0])
+        ),
+    }
+
+
+def _p_compound(kegg_dict: dict) -> dict:
+    """
+    Parses the KEGG dictionary and returns a dictionary with the most important
+    attributes about the reaction.
+    """
+    object_type = list(
+        chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+    )[-1]
+    if object_type != "Compound":
+        raise WrongParserError(
+            "Given dictionary does not belong to a metabolite."
+        )
+    identifier = list(
+        chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+    )[-2]
+    try:
+        if "(" in kegg_dict["FORMULA"][0]:
+            formula = "X"
+            debug_log.warning(
+                f'KEGG ID "{identifier}" could not find a chemical formuala. '
+                f'Formula set to "X" and charge to 0'
+            )
+        else:
+            formula = "".join(kegg_dict["FORMULA"]).strip().rstrip()
+    except KeyError:
+        # Some general compounds do not come with formulas
+        formula = "X"
+        debug_log.warning(
+            f'KEGG ID "{identifier}" could not find a chemical formuala. '
+            f'Formula set to "X" and charge to 0'
+        )
+    return {
+        "TYPE": list(
+            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+        )[-1],
+        "ENTRY": identifier,
+        "NAME": kegg_dict["NAME"][0],
+        "DATABASE": "KEGG",
+        "FORMULA": formula,
+        # FIXME: search information about charges
+        "CHARGE": 0,
+    }
+
+
+def _build_pathway(kegg_dict: dict) -> tuple:
+    """
+    Returns dictionary with sequences for a graph, where the key the prior
+    reaction is and the value, its succesor; and a set with all participant
+    reaction (vertex)
+    """
+    sequences = [item.split(sep=" ")[0] for item in kegg_dict["REACTION"]]
+    whole_set = set(
+        chain.from_iterable(line.split(sep=",") for line in sequences)
+    )
+    sequences = [line.split(sep=",")[0] for line in sequences]
+    pathway = dict()
+    for index, reaction in enumerate(iterable=sequences):
+        with suppress(IndexError):
+            # If index not found, then ignore it
+            pathway[sequences[index + 1]] = reaction
+    return pathway, whole_set
+
+
+def _p_pathway(kegg_dict: dict) -> dict:
+    """
+    Parses the KEGG dictionary and returns a new dictionary with the
+    information of the pathway.
+    """
+    if "Pathway" not in kegg_dict["ENTRY"][0]:
+        raise WrongParserError(
+            "Given dictionary does not belong to a pathway."
+        )
+    pathway, whole_set = _build_pathway(kegg_dict=kegg_dict)
+    return {
+        "TYPE": "Pathway",
+        "ENTRY": list(
+            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+        )[0],
+        "NAME": kegg_dict["NAME"][0],
+        "DATABASE": "KEGG",
+        "PATHWAY": pathway,
+        "SET": whole_set,
+    }
+
+
+def _p_enzyme(kegg_dict: dict):
+    """
+    If enzyme information is found, raise NotImplementedError.
+    """
+    if "Enzyme" in kegg_dict["ENTRY"][0]:
+        raise NotImplementedError("Enzymes are currently not implemented")
+    else:
+        raise WrongParserError(
+            "Given dictionary does not belong to an Enzyme."
+        )
+
+
 class KeggParser(BaseParser):
     @staticmethod
     def _parse(raw: str) -> dict:
@@ -133,39 +265,13 @@ class KeggParser(BaseParser):
             dict: data from KEGG
         """
         kegg_dict = _create_dict(raw=raw)
-        # Will always have an ENTRY KEY
-        # FIXME:  Molecular
-        kegg_dict["TYPE"] = list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-1]
-        kegg_dict["ENTRY"] = list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-2]
-        # Only first name
-        kegg_dict["NAME"] = kegg_dict["NAME"][0]
-        kegg_dict["DATABASE"] = "KEGG"
-        if kegg_dict["TYPE"] == "Compound":
-            kegg_dict["FORMULA"] = (
-                "".join(kegg_dict["FORMULA"]).strip().rstrip()
-            )
-            # FIXME: search information about charges
-            kegg_dict["CHARGE"] = 0
-        # For reactions only
-        elif kegg_dict["TYPE"] == "Reaction":
-            kegg_dict["BOUNDS"] = _get_reversibility(
-                line=kegg_dict["EQUATION"][0]
-            )
-            kegg_dict["EQUATION"] = _give_metabolites(
-                line=kegg_dict["EQUATION"][0]
-            )
-            kegg_dict["TRANSPORT"] = BaseParser._check_transport(
-                data_dict=kegg_dict["EQUATION"]
-            )
-        else:
-            raise NotImplementedError(
-                "Could not parse given root. Please inform maintainers."
-            )
-        return kegg_dict
+        for parse_method in (_p_enzyme, _p_compound, _p_reaction, _p_pathway):
+            with suppress(WrongParserError):
+                return parse_method(kegg_dict=kegg_dict)
+        raise NotImplementedError(
+            "Given identifier could not be parsed properly. "
+            "Contact maintainers."
+        )
 
     @staticmethod
     def _retrieve_data(
@@ -249,7 +355,7 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
             # Retrieve from URL
             url_text = f"http://rest.kegg.jp/get/{identifier}/"
             debug_log.debug(f"Searching in {url_text}")
-            r = requests.get(url_text)
+            r = get(url_text)
             if r.status_code == 404:
                 msg = f'"{identifier}" not available in "{database}".'
                 debug_log.error(msg)

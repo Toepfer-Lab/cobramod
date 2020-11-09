@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
+from logging import DEBUG
 from pathlib import Path
 import unittest
+
+from cobramod.debug import debug_log
 import cobramod.parsing.kegg as kg
 import cobramod.parsing.biocyc as bc
 import cobramod.parsing.bigg as bi
-from cobramod.debug import debug_log
-from logging import DEBUG
-import xml.etree.ElementTree as ET
-from contextlib import suppress
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -66,7 +65,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             directory=dir_data, identifier="C01290"
         )
         test_dict = kg.KeggParser._parse(raw=self.raw)
-        self.assertEqual(first="C01290", second=test_dict["ENTRY"])
+
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         # CASE 2: EC number (not working for now)
         self.raw = kg._get_unformatted_kegg(
@@ -75,13 +74,14 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertRaises(
             NotImplementedError, kg.KeggParser._parse, raw=self.raw
         )
-        # CASE 3: Pathway (Not implemented)
-        self.raw = kg._get_unformatted_kegg(
-            directory=dir_data, identifier="ath00966"
+        # CASE 3: Pathway
+        test_raw = kg._get_unformatted_kegg(
+            directory=dir_data, identifier="M00001"
         )
-        self.assertRaises(
-            NotImplementedError, kg.KeggParser._parse, raw=self.raw
-        )
+        test_data = kg._create_dict(raw=test_raw)
+        test_dict = kg._p_pathway(kegg_dict=test_data)
+        self.assertEqual(first="Pathway", second=test_dict["TYPE"])
+        self.assertEqual(first="M00001", second=test_dict["ENTRY"])
 
     def test__get_xml_from_biocyc(self):
         # CASE 1: Directory does not exist
@@ -100,25 +100,6 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             directory=dir_data,
             identifier="WATE",
             database="META",
-        )
-        # CASE 3: Proper retrieval.
-        with suppress(FileNotFoundError):
-            dir_data.joinpath("META").joinpath("WATER.xml").unlink()
-        self.assertIsInstance(
-            bc._get_xml_from_biocyc(
-                directory=dir_data, identifier="WATER", database="META"
-            ),
-            ET.Element,
-        )
-        # CASE 4: not found in database
-        with suppress(FileNotFoundError):
-            dir_data.joinpath("CPD-15326.xml").unlink()
-        self.assertRaises(
-            Warning,
-            bc._get_xml_from_biocyc,
-            directory=dir_data,
-            identifier="CPD-15326",
-            database="ARA",
         )
 
     def test__parse_biocyc(self):
