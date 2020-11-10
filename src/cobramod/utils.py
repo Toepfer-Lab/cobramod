@@ -148,7 +148,7 @@ def compare_DictList(first: DictList, second: DictList) -> Generator:
 
 def _compare(model: Model, comparison: DataModel) -> dict:
     """
-    Compares given model with the data from a DataModel object  and returns
+    Compares given model with the data from a DataModel object and returns
     a dictionary with differences.
     """
     difference = dict()
@@ -187,6 +187,24 @@ def _save_diff(differences: dict) -> list:
     return output
 
 
+def get_diff(model: Model, comparison: DataModel) -> list:
+    """
+    Gets the difference between give model and a
+    :func:`cobramod.utils.DataModel` object and returns a list with
+    differences.
+
+    Args:
+        model (Model): Model to obtain information
+        comparison (DataModel): Object with data from a previous model. Check
+            :func:`cobramod.utils.get_DataList` for usage.
+
+    Returns:
+        list: Differences between model and DataModel.
+
+    """
+    return _save_diff(differences=_compare(model=model, comparison=comparison))
+
+
 def write_to_file(sequences: Iterable, filename: Path):
     """
     Writes to given file all items from the iterable in separate lines.
@@ -204,19 +222,39 @@ def get_basic_info(model: Model) -> list:
         "Summary:",
         f"Model identifier: {model.id}",
         "Model name:",
-        model.name,
+        str(model.name),
         "Reactions:",
-        [reaction.id for reaction in model.reactions],
+        str([reaction.id for reaction in model.reactions]),
         "Metabolites:",
-        [metabolite.id for metabolite in model.metabolites],
+        str([metabolite.id for metabolite in model.metabolites]),
         "Exchanges:",
-        [exchange.id for exchange in model.exchanges],
+        str([exchange.id for exchange in model.exchanges]),
         "Demands:",
-        [demand.id for demand in model.demands],
+        str([demand.id for demand in model.demands]),
         "Sinks:",
-        [sink.id for sink in model.sinks],
+        str([sink.id for sink in model.sinks]),
         "Genes:",
-        [gene.id for gene in model.genes],
+        str([gene.id for gene in model.genes]),
         "Groups:",
-        [group.id for group in model.groups],
+        str([group.id for group in model.groups]),
     ]
+
+
+def check_to_write(
+    model: Model,
+    summary: bool,
+    filename: Path,
+    old_values: DataModel,
+    basic_info: list,
+):
+    try:
+        if summary:
+            sequences = basic_info + get_diff(
+                model=model, comparison=old_values
+            )
+            write_to_file(sequences=sequences, filename=filename)
+        else:
+            pass
+    except TypeError:
+        # To avoid empty models
+        debug_log.error("Given Model appear to be empty. Summary skipped")

@@ -9,8 +9,7 @@ from cobramod.creation import check_mass_balance, _build_reaction
 from cobramod.debug import debug_log
 from cobramod.graph import return_graph_from_dict
 from cobramod.mod_parser import get_data
-
-# from cobramod.utils import get_DataList
+from cobramod.utils import get_DataList, get_basic_info, check_to_write
 
 
 def _create_reactions(
@@ -360,7 +359,7 @@ def _add_sequence(
     checks if new reaction does not break the metabolic system.
 
     Args:
-        model (Model): model to add reactions to.
+        model (Model): model to add reactions.
         sequence (list): List with Reaction objects
         avoid_list (Iterable, optional): A sequence of formatted reactions to
             avoid adding to the model. This is usefull for long pathways,
@@ -496,17 +495,19 @@ def add_graph_to_model(
     avoid_list: Iterable = [],
     replacement_dict: dict = {},
     ignore_list: list = [],
+    filename: Path = Path.cwd().joinpath("summary.txt"),
+    summary: bool = True,
     **kwargs,
 ):
     """
-    Adds given graph for a pathways or a sequence of reactions identifiers
-    into given model. Data will be downloaded and structured according
-    to the specified database.
+    Adds given graph for a pathway identifier or a sequence of reactions
+    identifiers into given model. Data will be downloaded and structured
+    according to the specified database.
 
     Args:
-        model (Model): model to append graph
+        model (Model): Model to add given graph
         graph (Union[list, str, set]): The identifier for the
-            pathway or a iterator with the ids of the reactions.
+            pathway or a iterator with the identifiers of the reactions.
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA", "KEGG"
         compartment (str): location of the reactions to take place. Defaults to
@@ -518,6 +519,10 @@ def add_graph_to_model(
             Values are the new identifiers.
         ignore_list (Iterable, optional): A sequence of formatted metabolites
             to ignore when testing new reactions.
+        summary (bool, optional): If a summary for new pathway should be
+            written in a filename. Defaults to True
+        filename (Path, optional): path for the summary in 'pathlib' format.
+            Defaults to 'Path.cwd().joinpath("summary.txt")'.
 
     Keyword Arguments:
         show_wrong (bool): For each new reaction, if it is unbalance, it will
@@ -529,13 +534,15 @@ def add_graph_to_model(
 
     Raises:
         TypeError: if model is invalid
+        Warning: if wrong argument is passed to graph
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
-    # old_values = get_DataList(model=model)
-    if isinstance(graph, str):
+    basic_info = get_basic_info(model=model)
+    old_values = get_DataList(model=model)
+    try:
         data_dict = get_data(
-            directory=directory, identifier=graph, database=database
+            directory=directory, identifier=str(graph), database=database
         )
         _from_data(
             model=model,
@@ -548,9 +555,7 @@ def add_graph_to_model(
             database=database,
             **kwargs,
         )
-        # FIXME: position
-        # _summary(old_values=old_values, model=model)
-    elif isinstance(graph, (list, set)):
+    except Warning:
         _from_sequence(
             model=model,
             sequence=graph,
@@ -562,7 +567,13 @@ def add_graph_to_model(
             ignore_list=ignore_list,
             **kwargs,
         )
-        # FIXME: position
-        # _summary(old_values=old_values, model=model)
-    else:
-        raise TypeError("Argument graph must be iterable or a identifier")
+    except TypeError:
+        raise Warning("Argument 'graph' must be iterable or a identifier")
+    finally:
+        check_to_write(
+            model=model,
+            summary=summary,
+            filename=filename,
+            basic_info=basic_info,
+            old_values=old_values,
+        )
