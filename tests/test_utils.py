@@ -97,18 +97,30 @@ class UtilsTesting(unittest.TestCase):
         self.assertEqual(first=len(test_dict["reactions"]), second=1)
 
     def test__print_differences(self):
-        test_model = textbook_kegg.copy()
-        test_data = ui.get_DataList(model=test_model)
-        add_reaction(
-            model=test_model,
-            compartment="c",
-            directory=dir_input,
-            database="KEGG",
-            identifier="R00114",
-            replacement_dict={},
-        )
-        test_dict = ui._compare(model=test_model, comparison=test_data)
-        ui._print_differences(differences=test_dict)
+        # CASE 1: regular dictionary
+        test_dict = {"reactions": ["A", "B"], "metabolites": [1, 2]}
+        test_diff = ui._save_diff(differences=test_dict)
+        self.assertIn(member="- A", container=test_diff)
+        # CASE 2: no differences
+        test_dict = {"reactions": [], "metabolites": []}
+        test_diff = ui._save_diff(differences=test_dict)
+        self.assertIn(member="No differences!", container=test_diff)
+
+    def test_save_to_file(self):
+        # CASE 1: regular lines
+        test_filename = dir_input.joinpath("summary.txt")
+        test_filename.unlink()
+        test_list = ["This should be first line", "This should second line"]
+        ui.write_to_file(sequences=test_list, filename=test_filename)
+        self.assertTrue(expr=test_filename.exists())
+        with open(file=str(test_filename), mode="r") as e:
+            self.assertEqual(first=2, second=sum(1 for line in e))
+
+    def test_get_basic_info(self):
+        # CASE 1: regular model
+        test_list = ui.get_basic_info(model=textbook_kegg)
+        self.assertEqual(first=18, second=len(test_list))
+        self.assertEqual(first=95, second=len(test_list[5]))
 
 
 if __name__ == "__main__":

@@ -170,15 +170,53 @@ def _compare(model: Model, comparison: DataModel) -> dict:
     return difference
 
 
-def _print_differences(differences: dict):
+def _save_diff(differences: dict) -> list:
     """
-    Prints only differences
+    Save differences in a list for later be used in a stdout or other kind of
+    outputs.
     """
-    if all([item == [] for item in differences]):
-        print("No differences!")
+    output = list()
+    if all([value == [] for value in differences.values()]):
+        output.append("No differences!")
     else:
-        print("Differences:")
+        output.append("Differences:")
         for key, value in differences.items():
             if value != []:
-                print(f"{key.capitalize()}:")
-                print(*[f"- {identifier}" for identifier in value], sep="\n")
+                output.append(f"{key.capitalize()}:")
+                output += [f"- {identifier}" for identifier in value]
+    return output
+
+
+def write_to_file(sequences: Iterable, filename: Path):
+    """
+    Writes to given file all items from the iterable in separate lines.
+    """
+    with open(file=str(filename), mode="w+") as f:
+        f.writelines(line + "\n" for line in sequences)
+
+
+def get_basic_info(model: Model) -> list:
+    """
+    Returns as a list the information of the model. The order of the items,
+    represents the order for printing.
+    """
+    return [
+        "Summary:",
+        f"Model identifier: {model.id}",
+        "Model name:",
+        model.name,
+        "Reactions:",
+        [reaction.id for reaction in model.reactions],
+        "Metabolites:",
+        [metabolite.id for metabolite in model.metabolites],
+        "Exchanges:",
+        [exchange.id for exchange in model.exchanges],
+        "Demands:",
+        [demand.id for demand in model.demands],
+        "Sinks:",
+        [sink.id for sink in model.sinks],
+        "Genes:",
+        [gene.id for gene in model.genes],
+        "Groups:",
+        [group.id for group in model.groups],
+    ]
