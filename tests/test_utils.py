@@ -7,7 +7,7 @@ from cobra import Metabolite, Reaction
 
 from cobramod import create_object
 from cobramod.debug import debug_log
-from cobramod.test import textbook_kegg, textbook_biocyc
+from cobramod.test import textbook_kegg
 from cobramod.creation import add_reaction
 import cobramod.utils as ui
 
@@ -27,26 +27,22 @@ class UtilsTesting(unittest.TestCase):
             identifier="RXN-11414",
             database="META",
             compartment="c",
+            # In order to catch warning
+            show_imbalance=False,
         )
         # CASE 1: Showing imbalance
-        test_model = textbook_biocyc.copy()
-        test_model.add_reactions([test_reaction])
         self.assertWarns(
             UserWarning,
             ui.check_imbalance,
-            model=test_model,
-            reaction=test_reaction.id,
+            reaction=test_reaction,
             show_imbalance=True,
             stop_imbalance=False,
         )
         # CASE 2: Stopping at imbalance
-        test_model = textbook_biocyc.copy()
-        test_model.add_reactions([test_reaction])
         self.assertRaises(
             ui.UnbalancedReaction,
             ui.check_imbalance,
-            model=test_model,
-            reaction=test_reaction.id,
+            reaction=test_reaction,
             show_imbalance=True,
             stop_imbalance=True,
         )

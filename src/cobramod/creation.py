@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 from collections import Counter
 from pathlib import Path
-from typing import Union
+from typing import Union, Generator
 
 from cobra import Metabolite, Model, Reaction
 
 import cobramod.mod_parser as par
-from cobramod.utils import _read_lines
+from cobramod.utils import _read_lines, check_imbalance, WrongDataError
 from cobramod.debug import debug_log
 from contextlib import suppress
 
@@ -542,13 +542,107 @@ def add_reactions_from_file(model: Model, filename: Path, **kwargs):
                 _add_reaction_line_to_model(line=line, model=model, **kwargs)
 
 
+def _ident_pathway(data_dict: dict) -> Generator:
+    """
+    Checks if given dictionary belongs to a pathway object. Returns its as
+    generator if True. Else, raises WrongDataError.
+    """
+    if data_dict["TYPE"] == "Pathway":
+        debug_log.info(
+            f"Object '{data_dict['ENTRY']}' identified as a pathway"
+        )
+        yield data_dict
+    else:
+        raise WrongDataError("Data does not belong to a pathway")
+
+
+def _ident_reaction(
+    data_dict: dict,
+    directory: Path,
+    replacement: dict,
+    database: str,
+    compartment: str,
+    show_imbalance: bool,
+    stop_imbalance: bool,
+) -> Generator:
+    """
+    Tries to identify given dictionary if it includes information of a
+    reaction. If True, it will return a Reaction.
+
+    Args:
+        data_dict (dict): dictionary to examine.
+        directory (Path): directory to retrived and store data.
+        replacement (dict): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+        database (str): name of the database to query retrive data.
+        compartment: location of the reaction.
+        stop_imbalance (bool): If unbalanced reaction is found, stop process.
+            Defaults to False.
+        show_imbalance (bool): If unbalanced reactionis found, show output.
+            Defaults to True.
+
+    Returns:
+       Generator: Reaction from dictionary.
+
+    Raises:
+        WrongDataError: If data does not include reaction information.
+    """
+    try:
+        reaction = _build_reaction(
+            data_dict=data_dict,
+            directory=directory,
+            replacement=replacement,
+            database=database,
+            compartment=compartment,
+        )
+        check_imbalance(
+            reaction=reaction,
+            show_imbalance=show_imbalance,
+            stop_imbalance=stop_imbalance,
+        )
+        debug_log.info(
+            f"Object '{data_dict['ENTRY']}' identified as a reaction"
+        )
+        yield reaction
+    except KeyError:
+        raise WrongDataError("Data does not belong to a reaction.")
+
+
+def _ident_metabolite(data_dict: dict, compartment: str) -> Generator:
+    """
+    Tries to identify given dictionary if its includes metabolite information,
+    and transforms it into a metabolite in a generator
+
+    Args:
+        data_dict: dictionary with data of a metabolite.
+        compartment: location of the metabolite.
+
+    Returns:
+        Generator: new Metabolite based on given dictionary.
+
+    Raises:
+        WrongDataError: If data does not include information of a metabolite.
+    """
+    try:
+        debug_log.info(
+            f"Object '{data_dict['ENTRY']}' identified as a metabolite"
+        )
+        yield build_metabolite(
+            metabolite_dict=data_dict, compartment=compartment
+        )
+    except KeyError:
+        raise WrongDataError("Data does not belong to a metabolite")
+
+
 def create_object(
     identifier: str,
     directory: Path,
     database: str,
     compartment: str,
     replacement: dict = {},
-) -> Union[Reaction, Metabolite]:
+    show_imbalance: bool = True,
+    stop_imbalance: bool = False,
+) -> Union[Reaction, Metabolite, dict]:
     """
     Creates and returns COBRApy object based on given identifier and database.
     Identifier names will be formatted.
@@ -560,15 +654,21 @@ def create_object(
         identifier (str): original identifier for database
         directory (Path): Path to directory where data is located.
         database (str): Name of the database. Options are: "META", "ARA",
-            "KEGG"
+            "KEGG", "BIGG"
         compartment (str): Location of the object. In case of reaction, all
-            metabolites will be included in the same location
+            metabolites will be included in the same location. Does not apply
+            to pathways
         replacement (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers. Defaults to {}.
-
+            Values are the new identifiers. Defaults to {}. Does not apply to
+            pathways.
+        stop_imbalance (bool): If unbalanced reaction is found, stop process.
+            Defaults to False.
+        show_imbalance (bool): If unbalanced reaction is found, show output.
+            Defaults to True.
 
     Returns:
-        Union[Reaction, Metabolite]: Either Reaction on Metabolite object
+        Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
+            information for a pathway.
     """
     data_dict = par.get_data(
         directory=directory,
@@ -576,19 +676,20 @@ def create_object(
         database=database,
         debug_level=10,
     )
-    # FIX: Temporal solution. Pathways are missing
-    # FIXME: logs information expressed twice
-    try:
-        debug_log.info(f"Metabolite for '{identifier}' identified")
-        return build_metabolite(
-            metabolite_dict=data_dict, compartment=compartment
-        )
-    except KeyError:
-        debug_log.info(f"Reaction for '{identifier}' identified")
-        return _build_reaction(
+    for method in (
+        _ident_pathway(data_dict=data_dict),
+        _ident_metabolite(data_dict=data_dict, compartment=compartment),
+        _ident_reaction(
             data_dict=data_dict,
             directory=directory,
             replacement=replacement,
             database=database,
             compartment=compartment,
-        )
+            show_imbalance=show_imbalance,
+            stop_imbalance=stop_imbalance,
+        ),
+    ):
+        with suppress(WrongDataError):
+            return next(method)
+    else:
+        raise Warning("Data cannot be identified. Examine with 'get_data'.")

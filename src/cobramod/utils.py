@@ -5,14 +5,23 @@ from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any
 from re import match
 from warnings import catch_warnings, simplefilter, warn
 
-from cobra import Model, DictList
+from cobra import Model, Reaction, DictList
 
 from cobramod.debug import debug_log
 
 
 class WrongParserError(Exception):
     """
-    Simple Error that should be raised if a method cannot handle the parsing
+    Simple Error that should be raised if a method cannot handle the parsing.
+    """
+
+    pass
+
+
+class WrongDataError(Exception):
+    """
+    Simple Error that should be raised if COBRApy object is not the correct
+    one.
     """
 
     pass
@@ -20,7 +29,7 @@ class WrongParserError(Exception):
 
 class UnbalancedReaction(Exception):
     """
-    Simple Error that should be raised if a reaction has wrong mass balance
+    Simple Error that should be raised if a reaction has wrong mass balance.
     """
 
     def __init__(self, reaction: str):
@@ -46,25 +55,24 @@ class DataModel(NamedTuple):
 
 
 def check_imbalance(
-    model: Model, reaction: str, stop_imbalance: bool, show_imbalance: bool
+    reaction: Reaction, stop_imbalance: bool, show_imbalance: bool
 ):
     """
     Verifies if given reaction is unbalanced in given model.
 
     Args:
-        model (Model): model to test for mass balance.
-        reaction (str): reaction identifier.
+        reaction (Reaction): Reaction object to examine.
         stop_imbalance (bool): If imbalance is found, stop process.
         show_imbalance (bool): If imbalance is found, show output.
 
     Raises:
         UnbalancedReaction: if given reaction is unbalanced.
     """
-    dict_balance = model.reactions.get_by_id(reaction).check_mass_balance()
+    dict_balance = reaction.check_mass_balance()
     # Will stop if True
     if dict_balance != {}:
         msg = (
-            f"Reaction unbalanced found at '{reaction}'. "
+            f"Reaction '{reaction.id}' unbalanced. "
             f"Results to {dict_balance}. "
         )
         if stop_imbalance:
