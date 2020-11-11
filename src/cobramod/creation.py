@@ -541,40 +541,6 @@ def add_reactions_from_file(model: Model, filename: Path, **kwargs):
                 _add_reaction_line_to_model(line=line, model=model, **kwargs)
 
 
-def check_mass_balance(
-    model: Model,
-    rxn_id: str,
-    show_wrong: bool = True,
-    stop_wrong: bool = False,
-):
-    """
-    Verifies if given reaction is unbalanced in given model.
-
-    Args:
-        model (Model): model to test
-        rxn_id (str): reaction identifier
-        show_wrong (bool, optional): If unbalance is found, it wil/_buil show
-            the output. Defaults to True.
-        stop_wrong (bool, optional): If unbalanace is found, raise a Warning.
-            Defaults to False.
-
-    Raises:
-        Warning: if given reaction is unbalanced.
-    """
-    dict_balance = model.reactions.get_by_id(rxn_id).check_mass_balance()
-    # Will stop if True
-    if show_wrong is True and dict_balance != {}:
-        msg = (
-            f"Reaction unbalanced found at '{rxn_id}'. "
-            f"Results to {dict_balance}. "
-        )
-        print(f"\n{msg}")
-        if stop_wrong is True:
-            msg += "Stopping"
-            raise Warning(msg)
-        debug_log.warning(msg)
-
-
 def create_object(
     identifier: str,
     directory: Path,

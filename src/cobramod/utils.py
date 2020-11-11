@@ -3,7 +3,7 @@ from itertools import chain
 from pathlib import Path
 from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any
 from re import match
-from warnings import catch_warnings, simplefilter
+from warnings import catch_warnings, simplefilter, warn
 
 from cobra import Model, DictList
 
@@ -18,6 +18,19 @@ class WrongParserError(Exception):
     pass
 
 
+class UnbalancedReaction(Exception):
+    """
+    Simple Error that should be raised if a reaction has wrong mass balance
+    """
+
+    def __init__(self, reaction: str):
+        """
+        Args:
+            reaction (str): identifier of the reaction.
+        """
+        debug_log.warning(f"Reaction {reaction} is not balanced.")
+
+
 class DataModel(NamedTuple):
     """
     A class to store old values of metabolic models
@@ -30,6 +43,35 @@ class DataModel(NamedTuple):
     genes: DictList
     groups: DictList
     sinks: DictList
+
+
+def check_imbalance(
+    model: Model, reaction: str, stop_imbalance: bool, show_imbalance: bool
+):
+    """
+    Verifies if given reaction is unbalanced in given model.
+
+    Args:
+        model (Model): model to test for mass balance.
+        reaction (str): reaction identifier.
+        stop_imbalance (bool): If imbalance is found, stop process.
+        show_imbalance (bool): If imbalance is found, show output.
+
+    Raises:
+        UnbalancedReaction: if given reaction is unbalanced.
+    """
+    dict_balance = model.reactions.get_by_id(reaction).check_mass_balance()
+    # Will stop if True
+    if dict_balance != {}:
+        msg = (
+            f"Reaction unbalanced found at '{reaction}'. "
+            f"Results to {dict_balance}. "
+        )
+        if stop_imbalance:
+            raise UnbalancedReaction(reaction=reaction)
+        if show_imbalance:
+            debug_log.warning(msg)
+            warn(message=msg, category=UserWarning)
 
 
 def get_DataList(model: Model) -> DataModel:

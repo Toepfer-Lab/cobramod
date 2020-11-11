@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+from logging import DEBUG
 from pathlib import Path
+import unittest
+
+import cobra as cb
+
 from cobramod import creation as cr
 from cobramod.mod_parser import get_data
 from cobramod.debug import debug_log
-from logging import DEBUG
-import unittest
-import cobra as cb
 
 # configuration
 debug_log.setLevel(DEBUG)
@@ -372,10 +374,6 @@ class ModulTesting(unittest.TestCase):
         )
         self.assertEqual(-1, ReactionTest.get_coefficient("GLC_c"))
         self.assertEqual(1, ReactionTest.get_coefficient("GLC_b"))
-
-    def test_check_mass_balance(self):
-        # TODO: add cases
-        pass
 
     def test_add_reactions_from_file(self):
         test_model = cb.Model(0)
