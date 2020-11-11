@@ -133,7 +133,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             directory=dir_data,
             database="META",
-            replacement_dict={},
+            replacement={},
         )
         self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
         self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(0, 1000))
@@ -159,7 +159,7 @@ class ModulTesting(unittest.TestCase):
             compartment="p",
             directory=dir_data,
             database="KEGG",
-            replacement_dict={},
+            replacement={},
         )
         self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
         self.assertTupleEqual(
@@ -188,7 +188,7 @@ class ModulTesting(unittest.TestCase):
             compartment="p",
             directory=dir_data,
             database="KEGG",
-            replacement_dict={},
+            replacement={},
         )
         self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
         self.assertTupleEqual(
@@ -221,7 +221,7 @@ class ModulTesting(unittest.TestCase):
             compartment="p",
             directory=dir_data,
             database="META",
-            replacement_dict={},
+            replacement={},
         )
         self.assertIn(
             member="Glucopyranose_p",
@@ -243,7 +243,7 @@ class ModulTesting(unittest.TestCase):
             compartment="p",
             directory=dir_data,
             database="META",
-            replacement_dict={},
+            replacement={},
         )
         self.assertIn(
             member="Aliphatic_Sulfonates_e",
@@ -309,7 +309,7 @@ class ModulTesting(unittest.TestCase):
             identifier="OXALODECARB-RXN",
             database="META",
             compartment="p",
-            replacement_dict={},
+            replacement={},
         )
         self.assertTrue(
             "OXALODECARB_RXN_p" in [rxn.id for rxn in test_model.reactions]

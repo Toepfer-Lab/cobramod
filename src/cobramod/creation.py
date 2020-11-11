@@ -203,12 +203,12 @@ def _return_duplicate(data_dict: dict) -> bool:
 
 
 def _build_reaction(
-    data_dict: dict, compartment: str, replacement_dict: dict, **kwargs
+    data_dict: dict, compartment: str, replacement: dict, **kwargs
 ) -> Reaction:
     """
     Creates Reactions object from given dictionary with data. Location of the
     reactions can be set with the argument 'compartment'.  Metabolites can be
-    replaced by using the dictionary 'replacement_dict' with the following
+    replaced by using the dictionary 'replacement' with the following
     syntax:
 
     :code:`old_identifier: replacement`
@@ -216,7 +216,7 @@ def _build_reaction(
     Args:
         data_dict (dict): dictionary with data of a Reaction.
         compartment (str): locations of the reactions
-        replacement_dict (dict): original identifiers to be replaced.
+        replacement (dict): original identifiers to be replaced.
             Values are the new identifiers.
 
     Keyword Arguments:
@@ -238,10 +238,10 @@ def _build_reaction(
         # TODO: add option to get metabolites from model
         # Only if found in replacemente
         with suppress(KeyError):
-            identifier = replacement_dict[identifier]
+            identifier = replacement[identifier]
             debug_log.warning(
                 f'Metabolite "{identifier}" replaced by '
-                f'"{replacement_dict[identifier]}".'
+                f'"{replacement[identifier]}".'
             )
         metabolite = par.get_data(
             identifier=identifier, debug_level=10, **kwargs
@@ -292,12 +292,12 @@ def add_reaction(
     directory: Path,
     database: str,
     compartment: str,
-    replacement_dict: dict,
+    replacement: dict,
 ):
     """
     Creates and adds a Reaction object based on given identifier from given
     database. Metabolites can be replaced by using the dictionary
-    replacement_dict with the following syntax:
+    replacement with the following syntax:
 
     :code:`old_identifier: replacement`
 
@@ -307,9 +307,8 @@ def add_reaction(
         directory (Path): directory
         database (str): database
         compartment (str): compartment
-        replacement_dict (dict): replacement_dict
+        replacement (dict): replacement
 
-    Deprecated form: add_reaction_from_root
     """
     data_dict = par.get_data(
         directory=directory,
@@ -322,7 +321,7 @@ def add_reaction(
         compartment=compartment,
         directory=directory,
         database=database,
-        replacement_dict=replacement_dict,
+        replacement=replacement,
     )
     _add_if_no_reaction_model(model=model, reaction=reaction)
 
@@ -397,20 +396,18 @@ def create_custom_reaction(
 
     Args:
         line_string (str): string with information
-
-    Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA".
-        replacement_dict (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers.
-        model (Model, Optional): A model to obtain metabolite Objects
+        database (str): Name of database. Options: "META", "ARA". "BIGG",
+            "KEGG"
+        model (Model, Optional): A model to obtain metabolite objects from.
+            Defaults to an empty Model.
 
     Raises:
-        IndexError: if not identfier '|' is not found
-        Warning: if identifier has a wrong format
+        IndexError: if not  '|' is not found.
+        Warning: if identifier has a wrong format.
 
     Returns:
-        Reaction: New custom Reaction
+        Reaction: New reaction object.
     """
     segments = [x.strip().rstrip() for x in line_string.split("|")]
     rxn_id_name = [x.strip().rstrip() for x in segments[0].split(",")]
@@ -455,7 +452,7 @@ def _add_reaction_line_to_model(
     model: Model,
     directory: Path,
     database: str,
-    replacement_dict: dict = {},
+    replacement: dict = {},
     **kwargs,
 ):
     """
@@ -466,7 +463,11 @@ def _add_reaction_line_to_model(
     Args:
         line (str): string with information
         model (Model): model to test
-        **kwargs: same as in 'create_custom_reaction'
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Options: "META", "ARA". "BIGG",
+            "KEGG"
+    Keyword Arguments:
+        **kwargs: same as in :func:`cobramod.creaation.create_custom_reaction`
     """
     if _has_delimiter(line_string=line):
         # create custom reaction
@@ -482,7 +483,7 @@ def _add_reaction_line_to_model(
         seqment = (part.strip().rstrip() for part in line.split(","))
         identifier = next(seqment)
         with suppress(KeyError):
-            identifier = replacement_dict[identifier]
+            identifier = replacement[identifier]
         # TODO: identify database
         add_reaction(
             model=model,
@@ -490,7 +491,7 @@ def _add_reaction_line_to_model(
             directory=directory,
             database=database,
             compartment=next(seqment),
-            replacement_dict=replacement_dict,
+            replacement=replacement,
         )
 
 
@@ -522,7 +523,7 @@ def add_reactions_from_file(model: Model, filename: Path, **kwargs):
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA".
-        replacement_dict (dict, optional): original identifiers to be replaced.
+        replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers.
 
     Raises:
@@ -546,7 +547,7 @@ def create_object(
     directory: Path,
     database: str,
     compartment: str,
-    replacement_dict: dict = {},
+    replacement: dict = {},
 ) -> Union[Reaction, Metabolite]:
     """
     Creates and returns COBRApy object based on given identifier and database.
@@ -562,7 +563,7 @@ def create_object(
             "KEGG"
         compartment (str): Location of the object. In case of reaction, all
             metabolites will be included in the same location
-        replacement_dict (dict, optional): original identifiers to be replaced.
+        replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
 
 
@@ -575,7 +576,6 @@ def create_object(
         database=database,
         debug_level=10,
     )
-    # build_metabolite
     # FIX: Temporal solution. Pathways are missing
     # FIXME: logs information expressed twice
     try:
@@ -588,7 +588,7 @@ def create_object(
         return _build_reaction(
             data_dict=data_dict,
             directory=directory,
-            replacement_dict=replacement_dict,
+            replacement=replacement,
             database=database,
             compartment=compartment,
         )
