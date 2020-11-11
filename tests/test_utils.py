@@ -20,7 +20,7 @@ if not dir_data.exists():
 
 
 class UtilsTesting(unittest.TestCase):
-    def test_check_mass_balance(self):
+    def test_check_imbalance(self):
         # Configuration
         test_reaction = create_object(
             directory=dir_data,
@@ -91,7 +91,7 @@ class UtilsTesting(unittest.TestCase):
             directory=dir_input,
             database="KEGG",
             identifier="R00114",
-            replacement_dict={},
+            replacement={},
         )
         # CASE 1: Different types
         test_generator = ui.compare_DictList(
@@ -122,7 +122,7 @@ class UtilsTesting(unittest.TestCase):
             directory=dir_input,
             database="KEGG",
             identifier="R00114",
-            replacement_dict={},
+            replacement={},
         )
         test_dict = ui._compare(model=test_model, comparison=test_data)
         self.assertEqual(first=len(test_dict["metabolites"]), second=6)

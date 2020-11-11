@@ -135,27 +135,23 @@ def create_replacement(filename: Path) -> dict:
     return replace_dict
 
 
-def _replace_item(
-    iterable: Iterable, replacement_dict: dict = {}
-) -> Generator:
+def _replace_item(iterable: Iterable, replacement: dict = {}) -> Generator:
     """
     For an item in Iterable, replaces it for its corresponding value in
     given dictionary.
 
     Args:
         iterable (Iterable): sequence to modify
-        replacement_dict (dict, optional): original identifiers to be replaced.
+        replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
 
     Yields:
         Generator: Either original keys or the replacements
     """
     for item in iterable:
-        if item in set(chain.from_iterable(replacement_dict.keys())):
-            debug_log.warning(
-                f'Replacing "{item}" with "{replacement_dict[item]}"'
-            )
-            yield replacement_dict[item]
+        if item in set(chain.from_iterable(replacement.keys())):
+            debug_log.warning(f'Replacing "{item}" with "{replacement[item]}"')
+            yield replacement[item]
         else:
             yield item
 
