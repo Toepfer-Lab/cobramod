@@ -33,14 +33,14 @@ def _p_compound(root: Any) -> dict:
     # Temporal fixup
     if formula == "":
         formula = "X"
-    temp_dict = {
+    return {
         "TYPE": root.find("*[@frameid]").tag,
         "ENTRY": identifier,
         "NAME": name,
         "FORMULA": formula,
         "CHARGE": charge,
+        "DATABASE": root.find("*[@frameid]").attrib["orgid"],
     }
-    return temp_dict
 
 
 def _p_metabolites(root: Any) -> dict:
@@ -110,7 +110,7 @@ def _p_reaction(root: Any) -> dict:
         name = root.find("*[@ID]/enzymatic-reaction/*/common-name").text
     except AttributeError:
         name = identifier
-    temp_dict = {
+    return {
         "TYPE": root.find("*[@frameid]").tag,
         "ENTRY": identifier,
         "NAME": name,
@@ -119,8 +119,8 @@ def _p_reaction(root: Any) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(root=root)
         ),
+        "DATABASE": root.find("*[@frameid]").attrib["orgid"],
     }
-    return temp_dict
 
 
 def _get_unsorted_pathway(root: Any) -> tuple:
@@ -163,6 +163,7 @@ def _p_pathway(root: Any) -> dict:
         "ENTRY": identifier,
         "PATHWAY": reaction_dict,
         "SET": reaction_set,
+        "DATABASE": root.find("*[@frameid]").attrib["orgid"],
     }
     return temp_dict
 

@@ -3,6 +3,7 @@ from itertools import chain
 from pathlib import Path
 from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any
 from re import match
+from warnings import catch_warnings, simplefilter
 
 from cobra import Model, DictList
 
@@ -40,11 +41,14 @@ def get_DataList(model: Model) -> DataModel:
     # have method copy()
     copy_model = model.copy()
     dict_arguments = dict()
-    dict_list_names = [
-        attribute
-        for attribute in dir(model)
-        if type(getattr(model, attribute)) == DictList
-    ]
+    with catch_warnings():
+        # This is avoid DeprecationWarning when using dir with Model
+        simplefilter(action="ignore")
+        dict_list_names = [
+            attribute
+            for attribute in dir(model)
+            if type(getattr(model, attribute)) == DictList
+        ]
     for attribute in dict_list_names:
         item = getattr(copy_model, attribute)
         dict_arguments[attribute] = item
@@ -152,11 +156,14 @@ def _compare(model: Model, comparison: DataModel) -> dict:
     a dictionary with differences.
     """
     difference = dict()
-    dict_list_names = [
-        attribute
-        for attribute in dir(model)
-        if type(getattr(model, attribute)) == DictList
-    ]
+    with catch_warnings():
+        # This is avoid DeprecationWarning when using dir with Model
+        simplefilter(action="ignore")
+        dict_list_names = [
+            attribute
+            for attribute in dir(model)
+            if type(getattr(model, attribute)) == DictList
+        ]
     for dict_list in dict_list_names:
         item = getattr(model, dict_list)
         for key, value in comparison._asdict().items():
@@ -247,6 +254,22 @@ def check_to_write(
     old_values: DataModel,
     basic_info: list,
 ):
+    """
+    Checks if summary should be saved in a filename.
+
+    Args:
+        model (Model): model with recent changes.
+        summary (bool): If True, summary will be saved in given filename.
+        filename (Path): Path with the location of the filename
+        old_values (DataModel): Object with data from previous model. Use
+            method :func:`cobramod.utils.get_DataList`.
+        basic_info (list): Basic information of model. Use method
+            :func:`cobramod.utils.get_basic_info`
+
+    Raises:
+        TypeError: if model is empty
+
+    """
     try:
         if summary:
             sequences = basic_info + get_diff(
@@ -257,4 +280,4 @@ def check_to_write(
             pass
     except TypeError:
         # To avoid empty models
-        debug_log.error("Given Model appear to be empty. Summary skipped")
+        debug_log.error("Given model appears to be empty. Summary skipped")

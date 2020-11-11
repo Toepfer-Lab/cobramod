@@ -120,7 +120,9 @@ class UtilsTesting(unittest.TestCase):
         # CASE 1: regular model
         test_list = ui.get_basic_info(model=textbook_kegg)
         self.assertEqual(first=18, second=len(test_list))
-        self.assertEqual(first=95, second=len(test_list[5]))
+        self.assertEqual(
+            first=95, second=len(test_list[5].strip("][]").split(","))
+        )
 
 
 if __name__ == "__main__":

@@ -91,6 +91,7 @@ def _p_compound(json_data: dict) -> dict:
         "NAME": json_data["name"],
         "FORMULA": formula,
         "CHARGE": charge,
+        "DATABASE": "BIGG",
     }
 
 
@@ -126,6 +127,7 @@ def _p_reaction(json_data: dict) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(json_data=json_data)
         ),
+        "DATABASE": "BIGG",
     }
     return temp_dict
 
