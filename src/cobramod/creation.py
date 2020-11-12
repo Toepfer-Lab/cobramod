@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 from collections import Counter
+from contextlib import suppress
 from pathlib import Path
 from typing import Union, Generator
 
 from cobra import Metabolite, Model, Reaction
 
-import cobramod.mod_parser as par
-from cobramod.utils import _read_lines, check_imbalance, WrongDataError
 from cobramod.debug import debug_log
-from contextlib import suppress
+from cobramod.error import WrongDataError
+from cobramod.mod_parser import get_data
+from cobramod.utils import _read_lines, check_imbalance
 
 
 def _create_meta_from_string(line_string: str) -> Metabolite:
@@ -152,7 +153,7 @@ def meta_string_to_model(line: str, model: Model, **kwargs):
         seqment = (part.strip().rstrip() for part in line.split(sep=","))
         # FIXME: include multiple databases
         # _identify_database()
-        metabolite_dict = par.get_data(
+        metabolite_dict = get_data(
             identifier=next(seqment), debug_level=10, **kwargs
         )
         new_metabolite = build_metabolite(
@@ -243,9 +244,7 @@ def _build_reaction(
                 f'Metabolite "{identifier}" replaced by '
                 f'"{replacement[identifier]}".'
             )
-        metabolite = par.get_data(
-            identifier=identifier, debug_level=10, **kwargs
-        )
+        metabolite = get_data(identifier=identifier, debug_level=10, **kwargs)
         if (
             data_dict["TRANSPORT"]
             and coef < 0
@@ -310,7 +309,7 @@ def add_reaction(
         replacement (dict): replacement
 
     """
-    data_dict = par.get_data(
+    data_dict = get_data(
         directory=directory,
         identifier=identifier,
         database=database,
@@ -432,7 +431,7 @@ def create_custom_reaction(
         except KeyError:
             compartment = identifier[-1:]
             identifier = identifier[:-2]
-            data_dict = par.get_data(
+            data_dict = get_data(
                 directory=directory,
                 identifier=identifier,
                 database=database,
@@ -670,7 +669,7 @@ def create_object(
         Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
             information for a pathway.
     """
-    data_dict = par.get_data(
+    data_dict = get_data(
         directory=directory,
         identifier=identifier,
         database=database,
