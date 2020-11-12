@@ -36,13 +36,21 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             ///"""
 
     def test__get_unformatted_kegg(self):
-        # CASE 0: Colon (:) in identifier (not implemented yet)
+        # CASE 0a: Colon (:) in identifier (not implemented yet)
         self.assertRaises(
             NotImplementedError,
             kg._get_unformatted_kegg,
             directory=dir_data,
             identifier="rn:R08618",
         )
+        # CASE 0b: Wrong identifier
+        self.assertRaises(
+            Warning,
+            kg._get_unformatted_kegg,
+            directory=dir_data,
+            identifier="R08618.",
+        )
+        #
         # CASE 1: Regular reaction
         test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="R08618"

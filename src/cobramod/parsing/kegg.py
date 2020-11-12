@@ -356,19 +356,24 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
             url_text = f"http://rest.kegg.jp/get/{identifier}/"
             debug_log.debug(f"Searching in {url_text}")
             r = get(url_text)
-            if r.status_code == 404:
+            if r.status_code >= 400:
                 msg = f'"{identifier}" not available in "{database}".'
                 debug_log.error(msg)
                 raise Warning(msg)
             else:
                 unformatted_data = r.text
-                debug_log.info(
-                    f'Object "{identifier}" found in database. Saving in '
-                    f'directory "{database}".'
-                )
-                with open(file=filename, mode="w+") as f:
-                    f.write(unformatted_data)
-                return unformatted_data
+                if len(unformatted_data) == 0:
+                    raise Warning(
+                        f'Object "{identifier}" returned empty string'
+                    )
+                else:
+                    debug_log.info(
+                        f'Object "{identifier}" found in database. Saving in '
+                        f'directory "{database}".'
+                    )
+                    with open(file=filename, mode="w+") as f:
+                        f.write(unformatted_data)
+                    return unformatted_data
     else:
         msg = "Directory not found"
         debug_log.critical(msg)
