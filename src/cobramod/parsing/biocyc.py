@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+from xml.etree.ElementTree import fromstring, Element, ElementTree, parse
+from pathlib import Path
+from typing import Any, Dict
+
+import requests
+
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
-from typing import Any, Dict
-import xml.etree.ElementTree as ET
-from pathlib import Path
-import requests
 
 
 def _p_compound(root: Any) -> dict:
@@ -234,7 +236,7 @@ class BiocycParser(BaseParser):
 
 def _get_xml_from_biocyc(
     directory: Path, identifier: str, database: str
-) -> ET.Element:
+) -> Element:
     """
     Searchs in given parent directory if data is located in their respective
     database directory. If not, data will be retrievied from the corresponding
@@ -259,7 +261,7 @@ def _get_xml_from_biocyc(
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
-            root = ET.parse(str(filename)).getroot()
+            root = parse(str(filename)).getroot()
             debug_log.debug(f"Identifier '{identifier}' found.")
             return root
         except FileNotFoundError:
@@ -277,8 +279,8 @@ def _get_xml_from_biocyc(
                 debug_log.error(msg)
                 raise Warning(msg)
             else:
-                root = ET.fromstring(r.text)  # defining root
-                tree = ET.ElementTree(root)
+                root = fromstring(r.text)  # defining root
+                tree = ElementTree(root)
                 tree.write(str(filename))
                 debug_log.info(
                     f'Object "{identifier}" found in database. Saving in '

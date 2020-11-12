@@ -8,7 +8,7 @@ from requests import get
 
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
-from cobramod.utils import WrongParserError
+from cobramod.error import WrongParserError
 
 
 class MetaboliteTuple(NamedTuple):

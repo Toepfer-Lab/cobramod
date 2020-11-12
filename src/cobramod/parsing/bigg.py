@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+import json
+from pathlib import Path
+from typing import Any
+
+import requests
+
 from cobramod.debug import debug_log
 from cobramod.utils import get_key_dict
 from cobramod.parsing.base import BaseParser
-from pathlib import Path
-from typing import Any
-import json
-import requests
 
 
 def _get_json_bigg(
