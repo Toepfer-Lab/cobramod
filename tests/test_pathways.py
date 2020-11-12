@@ -6,15 +6,10 @@ import unittest
 from cobra import Model, Reaction
 
 from cobramod import pathways as pt
-from cobramod import get_data
-from cobramod.creation import (
-    meta_string_to_model,
-    add_meta_from_file,
-    _add_reaction_line_to_model,
-    add_reaction,
-)
+from cobramod.creation import add_reaction, get_data
 from cobramod.debug import debug_log
-from cobramod.test import textbook_kegg
+from cobramod.test import textbook_biocyc, textbook_kegg
+from cobramod.error import NotInRangeError, UnbalancedReaction
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -25,35 +20,90 @@ if not dir_data.exists():
 
 
 class ModulTesting(unittest.TestCase):
-    def test__fix_meta_for_boundaries(self):
-        # CASE 0: ignore List
-        test_model = Model(0)
+    def test__create_reactions(self):
+        # CASE 1: Simple Case Biocyc
+        test_list = pt._create_reactions(
+            sequence=[
+                "OXALODECARB-RXN",
+                "AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
+            ],
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            replacement={},
+            show_imbalance=False,
+            stop_imbalance=False,
+        )
+        self.assertIsInstance(obj=next(test_list), cls=Reaction)
+        # CASE 2: Simple case Kegg
+        test_list = pt._create_reactions(
+            sequence=["R00200", "R00114"],
+            compartment="p",
+            directory=dir_data,
+            database="KEGG",
+            replacement={},
+            show_imbalance=False,
+            stop_imbalance=False,
+        )
+        self.assertIsInstance(obj=next(test_list), cls=Reaction)
+        # CASE 3a: Showing when unbalanced
+        test_list = pt._create_reactions(
+            sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            replacement={},
+            show_imbalance=True,
+            stop_imbalance=False,
+        )
+        self.assertWarns(UserWarning, next, test_list)
+        # CASE 3b: Stopping when unbalanced
+        test_list = pt._create_reactions(
+            sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            show_imbalance=False,
+            stop_imbalance=True,
+            replacement={},
+        )
+        self.assertRaises(UnbalancedReaction, next, test_list)
+
+    def test__find_next_demand(self):
+        # FIXME: add cases
+        pass
+
+    def test__verify_boundary(self):
+        # CASE 0: Testing ignore list.
+        test_model = textbook_biocyc.copy()
         add_reaction(
             model=test_model,
             identifier="OXALODECARB-RXN",
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
         self.assertRaises(
             Warning,
-            pt._fix_meta_for_boundaries,
+            pt._verify_boundary,
             model=test_model,
             metabolite="PROTON_c",
             ignore_list=["PROTON_c"],
         )
         # CASE 1: PROTON, two normal reactions, one after another
-        test_model = Model(0)
+        test_model = textbook_biocyc.copy()
         add_reaction(
             model=test_model,
             identifier="OXALODECARB-RXN",
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
-        pt._fix_meta_for_boundaries(model=test_model, metabolite="PROTON_c")
+        pt._verify_boundary(
+            model=test_model, metabolite="PROTON_c", ignore_list=[]
+        )
         # Second reactions.
         add_reaction(
             model=test_model,
@@ -61,12 +111,14 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
-        pt._fix_meta_for_boundaries(model=test_model, metabolite="PROTON_c")
+        pt._verify_boundary(
+            model=test_model, metabolite="PROTON_c", ignore_list=[]
+        )
         self.assertNotIn(
-            "SK_PROTON_c",
-            [
+            member="SK_PROTON_c",
+            container=[
                 reaction.id
                 for reaction in test_model.metabolites.get_by_id(
                     "PROTON_c"
@@ -74,22 +126,24 @@ class ModulTesting(unittest.TestCase):
             ],
         )
         # CASE 2: Normal reaction, plus demand, plus test for sink
-        test_model = Model(0)
+        test_model = textbook_biocyc.copy()
         add_reaction(
             model=test_model,
             identifier="OXALODECARB-RXN",
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
         test_model.add_boundary(
             test_model.metabolites.get_by_id("PROTON_c"), "demand"
         )
-        pt._fix_meta_for_boundaries(model=test_model, metabolite="PROTON_c")
+        pt._verify_boundary(
+            model=test_model, metabolite="PROTON_c", ignore_list=[]
+        )
         self.assertNotIn(
-            "DM_PROTON_c",
-            [
+            member="DM_PROTON_c",
+            container=[
                 reaction.id
                 for reaction in test_model.metabolites.get_by_id(
                     "PROTON_c"
@@ -104,12 +158,14 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
-        pt._fix_meta_for_boundaries(model=test_model, metabolite="PROTON_c")
+        pt._verify_boundary(
+            model=test_model, metabolite="PROTON_c", ignore_list=[]
+        )
         self.assertNotIn(
-            "SK_PROTON_c",
-            [
+            member="SK_PROTON_c",
+            container=[
                 reaction.id
                 for reaction in test_model.metabolites.get_by_id(
                     "PROTON_c"
@@ -117,8 +173,8 @@ class ModulTesting(unittest.TestCase):
             ],
         )
         self.assertNotIn(
-            "DM_PROTON_c",
-            [
+            member="DM_PROTON_c",
+            container=[
                 reaction.id
                 for reaction in test_model.metabolites.get_by_id(
                     "PROTON_c"
@@ -126,17 +182,23 @@ class ModulTesting(unittest.TestCase):
             ],
         )
 
-    def test__verify_side_sinks_for_rxn(self):
-        # CASE 0: invalid Model
+    def test__fix_side(self):
+        # CASE 0a: invalid Model
         self.assertRaises(
-            TypeError, pt._verify_side_sinks_for_rxn, model=str(), rxn_id=str()
+            TypeError,
+            pt._fix_side,
+            model=str(),
+            reaction=str(),
+            ignore_list=[],
         )
+        # CASE 0b: wrong side argument
         self.assertRaises(
             ValueError,
-            pt._verify_side_sinks_for_rxn,
+            pt._fix_side,
             model=Model(0),
-            rxn_id=str(),
+            reaction=str(),
             side="Not",
+            ignore_list=[],
         )
         # CASE 1: normal creation (left side)
         test_model = Model(0)
@@ -146,33 +208,36 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
-        pt._verify_side_sinks_for_rxn(
+        pt._fix_side(
             model=test_model,
-            rxn_id="OXALODECARB_RXN_c",
+            reaction="OXALODECARB_RXN_c",
             side="left",
             ignore_list=["OXALACETIC_ACID_c"],
         )
         self.assertTrue(
-            "SK_PROTON_c" in (sink.id for sink in test_model.sinks)
+            expr="SK_PROTON_c" in (sink.id for sink in test_model.sinks)
         )
         # # CASE 2: Already sink
-        pt._verify_side_sinks_for_rxn(
+        pt._fix_side(
             model=test_model,
-            rxn_id="OXALODECARB_RXN_c",
+            reaction="OXALODECARB_RXN_c",
             side="left",
             ignore_list=["OXALACETIC_ACID_c"],
         )
         # # CASE 3: normal creation (right side)
-        pt._verify_side_sinks_for_rxn(
-            model=test_model, rxn_id="OXALODECARB_RXN_c", side="right"
+        pt._fix_side(
+            model=test_model,
+            reaction="OXALODECARB_RXN_c",
+            side="right",
+            ignore_list=[],
         )
         self.assertTrue(
-            "SK_PYRUVATE_c" in (sink.id for sink in test_model.sinks)
+            expr="SK_PYRUVATE_c" in (sink.id for sink in test_model.sinks)
         )
 
-    def test_verify_sinks_for_rxn(self):
+    def test__verify_sinks(self):
         # CASE 1: Ignore list
         test_model = Model(0)
         add_reaction(
@@ -181,24 +246,20 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
-        pt.verify_sinks_for_rxn(
+        pt._verify_sinks(
             model=test_model,
-            rxn_id="OXALODECARB_RXN_c",
+            reaction="OXALODECARB_RXN_c",
             ignore_list=["PROTON_c", "PYRUVATE_c"],
         )
-        toCheck = ["CARBON_DIOXIDE_c", "OXALACETIC_ACID_c"]
-        self.assertTrue(
-            all(
-                [
-                    testSink in [sink.id for sink in test_model.sinks]
-                    for testSink in [f"SK_{testMeta}" for testMeta in toCheck]
-                ]
+        test_check = ["SK_CARBON_DIOXIDE_c", "SK_OXALACETIC_ACID_c"]
+        for sink in test_check:
+            self.assertIn(
+                member=sink, container=[sink.id for sink in test_model.sinks]
             )
-        )
         # CASE 2: no ignore_list
-        toCheck = ["PYRUVATE_c", "OXALACETIC_ACID_c"]
+        test_check = ["SK_PYRUVATE_c", "SK_OXALACETIC_ACID_c"]
         test_model = Model(0)
         add_reaction(
             model=test_model,
@@ -206,19 +267,36 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
-        pt.verify_sinks_for_rxn(model=test_model, rxn_id="OXALODECARB_RXN_c")
-        self.assertTrue(
-            all(
-                [
-                    testSink in [sink.id for sink in test_model.sinks]
-                    for testSink in [f"SK_{testMeta}" for testMeta in toCheck]
-                ]
+        pt._verify_sinks(
+            model=test_model, reaction="OXALODECARB_RXN_c", ignore_list=[]
+        )
+        for sink in test_check:
+            self.assertIn(
+                member=sink, container=[sink.id for sink in test_model.sinks]
             )
-        )
 
-    def test__test_rxn_for_solution(self):
+    def test_test_solution(self):
+        # CASE 0: minimun range not reached
+        test_model = Model(0)
+        add_reaction(
+            model=test_model,
+            identifier="1.8.4.9-RXN",
+            directory=dir_data,
+            database="META",
+            compartment="p",
+            replacement={},
+        )
+        test_model.objective = "1.8.4.9_RXN_p"
+        test_model.objective_direction = "min"
+        self.assertRaises(
+            NotInRangeError,
+            pt.test_solution,
+            model=test_model,
+            reaction="1.8.4.9_RXN_p",
+            minimum=550,
+        )
         # CASE 1: Single Regular reaction
         test_model = Model(0)
         add_reaction(
@@ -227,12 +305,12 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
         test_model.objective = "RXN_2206_c"
-        pt._test_rxn_for_solution(model=test_model, rxn_id="RXN_2206_c")
-        self.assertGreater(abs(test_model.slim_optimize()), 0)
-        # CASE 2: direction right to left, with ignore_list
+        pt.test_solution(model=test_model, reaction="RXN_2206_c")
+        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+        # CASE 2: direction right to left
         test_model = Model(0)
         add_reaction(
             model=test_model,
@@ -240,16 +318,15 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        pt._test_rxn_for_solution(
-            model=test_model,
-            rxn_id="1.8.4.9_RXN_c",
-            solution_range=(0.01, 1000),
+        pt.test_solution(
+            model=test_model, reaction="1.8.4.9_RXN_c", minimum=0.01
         )
-        self.assertGreater(abs(test_model.slim_optimize()), 0)
+        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+
         # CASE 3: single reaction with ignore_list. i.e two reactions, in which
         # one metabolite X is created separately, and will be ignore in the
         # new function
@@ -260,18 +337,18 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
         test_model.add_boundary(
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
         )
         test_model.objective = "RXN_2206_c"
-        pt._test_rxn_for_solution(
+        pt.test_solution(
             model=test_model,
-            rxn_id="RXN_2206_c",
+            reaction="RXN_2206_c",
             ignore_list=["OXYGEN_MOLECULE_c"],
         )
-        self.assertGreater(abs(test_model.slim_optimize()), 0)
+        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
         # CASE 4: single reverse reaction (as CASE 2) with a ignore_list
         test_model = Model(0)
         add_reaction(
@@ -280,259 +357,134 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
-            replacement_dict={},
+            replacement={},
         )
         test_model.add_boundary(
             test_model.metabolites.get_by_id("PROTON_c"), "sink"
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        pt._test_rxn_for_solution(
-            model=test_model, rxn_id="1.8.4.9_RXN_c", ignore_list=["PROTON_c"]
+        pt.test_solution(
+            model=test_model,
+            reaction="1.8.4.9_RXN_c",
+            ignore_list=["PROTON_c"],
         )
-        self.assertGreater(abs(test_model.slim_optimize()), 0)
+        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
 
     def test__add_sequence(self):
-        # NOTE: check if this test is necessary
-        self.assertRaises(
-            TypeError,
-            pt._add_sequence,
-            model=Model(0),
-            sequence=[str(), tuple(), Reaction(0)],
-        )
         # CASE 1: Normal usage (3 reactions)
-        test_model = Model(0)
-        meta_string_to_model(
-            line="WATER, c",
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        meta_string_to_model(
-            line="OXYGEN-MOLECULE, c",
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        for meta in ["WATER_c", "OXYGEN_MOLECULE_c"]:
-            test_model.add_boundary(
-                test_model.metabolites.get_by_id(meta), "sink"
-            )
-        _add_reaction_line_to_model(
-            line=(
-                "Redox_homoproteins_c, Redox_homoproteins_c |"
-                "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
-                "Red-NADPH-Hemoprotein-Reductases_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        # Dummy objective reaction
-        _add_reaction_line_to_model(
-            line=(
-                "Dummy_c, Dummy_c reaction |"
-                + "WATER_c: -1, OXYGEN-MOLECULE_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        test_model.objective = "Dummy_c"
+        test_model = textbook_biocyc.copy()
         test_list = list(
             pt._create_reactions(
                 sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
                 compartment="c",
                 directory=dir_data,
                 database="META",
+                replacement={},
+                show_imbalance=False,
+                stop_imbalance=False,
             )
         )
         pt._add_sequence(
             model=test_model,
+            identifier="test_group",
             sequence=test_list,
+            avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
+            minimum=0.1,
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)
-        # CASE 2: Stopping when unbalanced (by default, some of the reactions
-        # are unbalanced)
-        test_model = Model(0)
-        meta_string_to_model(
-            line="WATER, c",
-            model=test_model,
-            directory=dir_data,
-            database="META",
+        self.assertIn(
+            member="test_group",
+            container=[group.id for group in test_model.groups],
         )
-        meta_string_to_model(
-            line="OXYGEN-MOLECULE, c",
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        for meta in ["WATER_c", "OXYGEN_MOLECULE_c"]:
-            test_model.add_boundary(
-                test_model.metabolites.get_by_id(meta), "sink"
-            )
-        # Dummy objective reaction
-        _add_reaction_line_to_model(
-            line=(
-                "Dummy_c, Dummy_c reaction |"
-                + "CARBON-DIOXIDE_c: -1, WATER_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        test_model.objective = "Dummy_c"
-        _add_reaction_line_to_model(
-            line=(
-                "Redox_homoproteins_c, Redox_homoproteins_c |"
-                "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
-                "Red-NADPH-Hemoprotein-Reductases_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
+        # TODO: CASE 3: KEGG
+        test_model = textbook_kegg.copy()
         test_list = list(
             pt._create_reactions(
-                sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
+                sequence=["R00894", "R00497"],
                 compartment="c",
                 directory=dir_data,
-                database="META",
+                database="KEGG",
+                replacement={},
+                show_imbalance=False,
+                stop_imbalance=False,
             )
         )
-        # FIXME: reaction is not passing
-        # self.assertRaises(
-        #     Warning, pt._add_sequence, model=test_model,
-        #     sequence=test_list, ignore_list=["WATER_c"], stop_wrong=True)
-        # CASE 3: regular path
-        test_model = Model(0)
-        add_meta_from_file(
+        pt._add_sequence(
             model=test_model,
-            filename=dir_input.joinpath("metaToAdd_04_pathway_test.txt"),
-            directory=dir_data,
-            database="META",
+            identifier="test_group_kegg",
+            sequence=test_list,
+            avoid_list=[],
+            ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
+            minimum=0.1,
         )
-        # These metabolites would have normally other reactions to consume,
-        # but since this is is testing, these extra metabolites needs to be
-        # ignored !
-        new_sink_list = [
-            "PROTON_c",
-            "WATER_c",
-            "OXYGEN_MOLECULE_c",
-            "3_5_ADP_c",
-            "CO_A_c",
-        ]
-        for meta in new_sink_list:
-            test_model.add_boundary(
-                metabolite=test_model.metabolites.get_by_id(meta), type="sink"
-            )
+        self.assertGreater(abs(test_model.slim_optimize()), 0)
+        self.assertIn(
+            member="test_group_kegg",
+            container=[group.id for group in test_model.groups],
+        )
+
+    def test__from_data(self):
+        # CASE 1: regular test with KEGG
+        test_model = textbook_kegg.copy()
         test_dict = get_data(
-            directory=dir_data, identifier="PWY-1187", database="META"
-        )
-        test_list = pt.return_graph_from_dict(data_dict=test_dict)
-        test_reactions = list(
-            pt._create_reactions(
-                sequence=test_list[1],
-                directory=dir_data,
-                compartment="c",
-                database="META",
-            )
-        )
-        _add_reaction_line_to_model(
-            line=(
-                "Redox_homoproteins_c, Redox_homoproteins_c |"
-                "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
-                "Red-NADPH-Hemoprotein-Reductases_c: 1"
-            ),
-            model=test_model,
+            identifier="M00118",
             directory=dir_data,
-            database="META",
+            debug_level=10,
+            database="KEGG",
         )
-        # Dummy objective reaction
-        _add_reaction_line_to_model(
-            line=(
-                "Dummy_c, Dummy_c reaction |"
-                + "CARBON-DIOXIDE_c: -1, WATER_c: 1"
-            ),
+        pt._from_data(
             model=test_model,
+            data_dict=test_dict,
             directory=dir_data,
-            database="META",
+            database="KEGG",
+            compartment="c",
+            avoid_list=[],
+            replacement={},
+            ignore_list=[],
+            minimum=0.01,
+            show_imbalance=False,
+            stop_imbalance=False,
         )
-        test_model.objective = "Dummy_c"
-        pt._add_sequence(
+        self.assertIn(
+            member="M00118",
+            container=[group.id for group in test_model.groups],
+        )
+
+    def test__from_sequence(self):
+        # CASE 1: regular test
+        test_model = textbook_biocyc.copy()
+        pt._from_sequence(
             model=test_model,
-            sequence=test_reactions,
-            ignore_list=new_sink_list,
-            database="META",
+            identifier="test_group",
+            compartment="c",
+            sequence=[],
+            database="KEGG",
+            directory=dir_data,
+            avoid_list=[],
+            replacement={},
+            ignore_list=[],
+            minimum=0.01,
+            show_imbalance=False,
+            stop_imbalance=False,
         )
-        self.assertGreater(abs(test_model.slim_optimize()), 0)
-        # CASE 4: Stacking 2 reactions
-        test_reactions = list(
-            pt._create_reactions(
-                sequence=test_list[2],
-                directory=dir_data,
-                compartment="c",
-                database="META",
-            )
+        self.assertIn(
+            member="test_group",
+            container=[group.id for group in test_model.groups],
         )
-        pt._add_sequence(
-            model=test_model,
-            sequence=test_reactions,
-            ignore_list=new_sink_list,
-        )
-        self.assertGreater(abs(test_model.slim_optimize()), 0)
 
     def test__add_graph_to_model(self):
-        # CASE 1:
-        test_model = Model(0)
-        add_meta_from_file(
-            model=test_model,
-            filename=dir_input.joinpath("metaToAdd_04_pathway_test.txt"),
-            directory=dir_data,
-            database="META",
-        )
-        new_sink_list = [
-            "PROTON_c",
-            "WATER_c",
-            "OXYGEN_MOLECULE_c",
-            "3_5_ADP_c",
-            "CO_A_c",
-            "CARBON_DIOXIDE_c",
-            "CPD_3746_c",
-        ]
-        for meta in new_sink_list:
-            test_model.add_boundary(
-                metabolite=test_model.metabolites.get_by_id(meta), type="sink"
-            )
-        _add_reaction_line_to_model(
-            line=(
-                "Redox_homoproteins_c, Redox_homoproteins_c |"
-                "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
-                "Red-NADPH-Hemoprotein-Reductases_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        # Dummy objective reaction
-        _add_reaction_line_to_model(
-            line=(
-                "Dummy_c, Dummy reaction |"
-                + "CARBON-DIOXIDE_c: -1, OXYGEN-MOLECULE_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        test_model.objective = "Dummy_c"
+        # CASE 1: Regular Biocyc
+        test_model = textbook_biocyc.copy()
         pt.add_graph_to_model(
             model=test_model,
             graph="PWY-1187",
             compartment="c",
             directory=dir_data,
             database="META",
-            ignore_list=new_sink_list,
+            ignore_list=[],
+            show_imbalance=False,
         )
         self.assertIn(
             member="RXN_11438_c",
@@ -545,81 +497,30 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             directory=dir_data,
             database="META",
-            ignore_list=new_sink_list,
+            show_imbalance=False,
         )
-        self.assertGreater(abs(test_model.slim_optimize()), 0)
+        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
         sol = test_model.optimize()
         # Test for demands, all should have a flux
         for demand in test_model.demands:
-            self.assertGreater(abs(sol.fluxes[demand.id]), 0)
+            self.assertGreater(a=abs(sol.fluxes[demand.id]), b=0)
         # CASE 3: using a simple sequence
-        test_model = Model(0)
-        test_model.compartments = {
-            "e": "extracellular",
-            "c": "cytosol",
-            "p": "plastid",
-        }
-        add_meta_from_file(
-            model=test_model,
-            filename=dir_input.joinpath("metaToAdd_04_pathway_test.txt"),
-            directory=dir_data,
-            database="META",
-        )
-        new_sink_list = [
-            "PROTON_c",
-            "WATER_c",
-            "OXYGEN_MOLECULE_c",
-            "3_5_ADP_c",
-            "CO_A_c",
-            "CARBON_DIOXIDE_c",
-            "CPD_3746_c",
-        ]
-        for meta in new_sink_list:
-            test_model.add_boundary(
-                metabolite=test_model.metabolites.get_by_id(meta), type="sink"
-            )
-        _add_reaction_line_to_model(
-            line=(
-                "Redox_homoproteins_c, Redox_homoproteins_c |"
-                "Ox-NADPH-Hemoprotein-Reductases_c:-1,"
-                "Red-NADPH-Hemoprotein-Reductases_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        # Dummy objective reaction
-        _add_reaction_line_to_model(
-            line=(
-                "Dummy_c, Dummy reaction |"
-                + "CARBON-DIOXIDE_c: -1, OXYGEN-MOLECULE_c: 1"
-            ),
-            model=test_model,
-            directory=dir_data,
-            database="META",
-        )
-        test_model.objective = "Dummy_c"
-        self.assertGreater(a=test_model.slim_optimize(), b=0)
-        test_sequence = set(
-            ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
-        )
+        test_model = textbook_biocyc.copy()
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
         pt.add_graph_to_model(
             model=test_model,
             compartment="c",
             graph=test_sequence,
-            ignore_list=new_sink_list,
+            ignore_list=[],
             database="META",
             directory=dir_data,
-        )
-        test_model.reactions.get_by_id("Dummy_c").add_metabolites(
-            {test_model.metabolites.get_by_id("CPD_12390_c"): 1}
+            show_imbalance=False,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(
             member="RXN_11422_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
-        self.assertGreater(a=test_model.optimize().fluxes["RXN_11430_c"], b=0)
         # CASE 4a: KEGG simple pathway
         test_model = textbook_kegg.copy()
         pt.add_graph_to_model(
@@ -628,6 +529,7 @@ class ModulTesting(unittest.TestCase):
             database="KEGG",
             directory=dir_data,
             compartment="c",
+            show_imbalance=False,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(
@@ -645,6 +547,7 @@ class ModulTesting(unittest.TestCase):
             ignore_list=["C00008_c"],
             # This reaction has problem
             avoid_list=["R09084_c"],
+            show_imbalance=False,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(

@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
+from logging import DEBUG
 from pathlib import Path
 import unittest
+
 import cobra as cb
+
 from cobramod import pathways as pt
 from cobramod.creation import (
     _add_reaction_line_to_model,
     add_reactions_from_file,
 )
 from cobramod.debug import debug_log
-from logging import DEBUG
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")

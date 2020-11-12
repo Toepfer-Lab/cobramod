@@ -4,49 +4,65 @@ from pathlib import Path
 from typing import Union, Generator, Iterable
 
 from cobra import Model, Reaction
+from cobra.core.group import Group
 
-from cobramod.creation import check_mass_balance, _build_reaction
+from cobramod.creation import create_object
 from cobramod.debug import debug_log
+from cobramod.error import NotInRangeError
 from cobramod.graph import return_graph_from_dict
 from cobramod.mod_parser import get_data
 from cobramod.utils import get_DataList, get_basic_info, check_to_write
 
 
 def _create_reactions(
-    sequence: Iterable,
+    sequence: list,
     compartment: str,
     directory: Path,
     database: str,
-    replacement_dict: dict = {},
-    **kwargs,
+    show_imbalance: bool,
+    stop_imbalance: bool,
+    replacement: dict,
 ) -> Generator:
     """
     For each identifier in the sequence, a Reaction will be created. It returns
     a generator.
 
-    Deprecated form: _create_reactions_for_iter
+    .. hint:: Hyphens will become underscores. Double hyphens become single\
+    underscores.
+
+    Args:
+        sequence (list): Identifiers for the reactions.
+        directory (Path): Path to directory where data is located.
+        database (str): Name of the database. Options are: "META", "ARA",
+            "KEGG", "BIGG"
+        compartment (str): Location of the reaction.
+        replacement (dict): Original identifiers to be replaced.
+            Values are the new identifiers.
+        stop_imbalance (bool): If unbalanced reaction is found, stop process.
+        show_imbalance (bool): If unbalanced reaction is found, show output.
+
+    Returns:
+        Generator: A generator to that gives the reactions.
     """
 
-    debug_log.debug(f"Obtaining root for {sequence}")
+    debug_log.debug(f"Obtaining data for {sequence}")
     # From given list (which includes None values), retrieve only Reaction
     # Objects.
     for identifier in sequence:
         with suppress(KeyError):
-            identifier = replacement_dict[identifier]
+            identifier = replacement[identifier]
             debug_log.warning(
                 f'Reaction "{identifier}" replaced by '
-                f'"{replacement_dict[identifier]}".'
+                f'"{replacement[identifier]}".'
             )
-        data_dict = get_data(
-            identifier=identifier, database=database, directory=directory
-        )
-        yield _build_reaction(
-            data_dict=data_dict,
-            compartment=compartment,
+        yield create_object(
+            identifier=identifier,
             directory=directory,
             database=database,
-            replacement_dict=replacement_dict,
-            **kwargs,
+            compartment=compartment,
+            replacement=replacement,
+            show_imbalance=show_imbalance,
+            stop_imbalance=stop_imbalance,
         )
 
 
@@ -73,6 +89,7 @@ def _find_next_demand(
         str: metabolite identifier to create a demand reaction
     """
     tmp_rxn = model.reactions.get_by_id(reaction_id)
+    # FIXME: find a better approach
     # Checking reversibility
     # left --> right
     if model.reactions.get_by_id(reaction_id).upper_bound > abs(
@@ -120,16 +137,14 @@ def _has_demand(model: Model, metabolite: str) -> bool:
     )
 
 
-def _remove_boundary_if_not_model(
-    model: Model, metabolite: str, boundary: str
-):
+def _r_metabolite_boundary(model: Model, metabolite: str, boundary: str):
     """
-    Removes given type of boundary reaction for a specified metabolite if found
-    in the model.
+    Removes given type of boundary reaction for a specified metabolite if it
+    is found in the model.
 
     Args:
-        model (Model): model to test
-        metabolite (str): metabolite identifier in model
+        model (Model): model to examine
+        metabolite (str): metabolite identifier in model to examine.
         boundary (str): type of boundary. Options: "sink", "demand"
     """
     type_prefix = {"sink": "SK_", "demand": "DM_"}
@@ -152,9 +167,7 @@ def _less_equal_than_x_rxns(model: Model, metabolite: str, x: int) -> bool:
     return len(reactions) <= x
 
 
-def _fix_meta_for_boundaries(
-    model: Model, metabolite: str, ignore_list: Iterable = []
-):
+def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
     """
     Verifies that given metabolite has enough sink and demand reaction. It will
     create and remove them if necessary.
@@ -186,7 +199,7 @@ def _fix_meta_for_boundaries(
             )
             debug_log.warning(f'Sink reaction created for "{metabolite}"')
         else:
-            _remove_boundary_if_not_model(
+            _r_metabolite_boundary(
                 model=model, metabolite=metabolite, boundary="sink"
             )
     else:
@@ -198,17 +211,17 @@ def _fix_meta_for_boundaries(
         elif not _less_equal_than_x_rxns(
             model=model, metabolite=metabolite, x=2
         ):
-            _remove_boundary_if_not_model(
+            _r_metabolite_boundary(
                 model=model, metabolite=metabolite, boundary="sink"
             )
     # remove demand if needed
-    _remove_boundary_if_not_model(
+    _r_metabolite_boundary(
         model=model, metabolite=metabolite, boundary="demand"
     )
 
 
-def _verify_side_sinks_for_rxn(
-    model: Model, rxn_id: str, side: str, ignore_list: Iterable = []
+def _fix_side(
+    model: Model, reaction: str, side: str, ignore_list: Iterable = []
 ):
     """
     Checks for either the product or reactant side of a reactions, if
@@ -229,22 +242,20 @@ def _verify_side_sinks_for_rxn(
     if not isinstance(ignore_list, Iterable):
         raise TypeError("Ignore list is not iterable")
     if side == "right":
-        metabolites = model.reactions.get_by_id(rxn_id).products
+        metabolites = model.reactions.get_by_id(reaction).products
     elif side == "left":
-        metabolites = model.reactions.get_by_id(rxn_id).reactants
+        metabolites = model.reactions.get_by_id(reaction).reactants
     else:
         raise ValueError('Only valid options are "right" and "left"')
     for meta in metabolites:
         # create or remove
         with suppress(Warning):
-            _fix_meta_for_boundaries(
+            _verify_boundary(
                 model=model, metabolite=meta.id, ignore_list=ignore_list
             )
 
 
-def verify_sinks_for_rxn(
-    model: Model, rxn_id: str, ignore_list: Iterable = []
-):
+def _verify_sinks(model: Model, reaction: str, ignore_list: Iterable):
     """
     Verifies, creates or removes sink reactions for metabolites found in given
     reaction if certain conditions are met.
@@ -256,25 +267,25 @@ def verify_sinks_for_rxn(
     equal 2, or 3.
 
     Args:
-        model (Model): model to test
-        rxn_id (str): reaction identifier for given model.
-        ignore_list (Iterable, optional): A sequence of formatted metabolites
-            to ignore when testing new reactions. Defaults to []
+        model (Model): model to examine.
+        reaction (str): reaction identifier for given model.
+        ignore_list (Iterable): A sequence of formatted metabolites
+            to ignore when testing new reactions.
     """
     # reactant side
-    _verify_side_sinks_for_rxn(
-        model=model, rxn_id=rxn_id, ignore_list=ignore_list, side="left"
+    _fix_side(
+        model=model, reaction=reaction, ignore_list=ignore_list, side="left"
     )
     # product side
-    _verify_side_sinks_for_rxn(
-        model=model, rxn_id=rxn_id, ignore_list=ignore_list, side="right"
+    _fix_side(
+        model=model, reaction=reaction, ignore_list=ignore_list, side="right"
     )
 
 
-def _test_rxn_for_solution(
+def test_solution(
     model: Model,
-    rxn_id: str,
-    solution_range: tuple = (0.1, 1000),
+    reaction: str,
+    minimum: float = 0.1,
     times: int = 0,
     ignore_list: list = [],
 ):
@@ -285,287 +296,303 @@ def _test_rxn_for_solution(
     test and removes it, if necesary.
 
     Args:
-        model (Model): model to test reaction
-        rxn_id (str): reaction identifier in given model
-        solution_range (tuple, optional): range of solution to pass the test.
-            Defaults to (0.1, 1000).
+        model (Model): model, where reaction is located
+        reaction (str): reaction identifier in model to test.
+        minium (float, optional): Minium value for test to pass.
+            Defaults to 0.1 .
         times (int, optional): Track of recursions. Defaults to 0.
         ignore_list (Iterable, optional): A sequence of formatted metabolites
             to ignore when testing new reactions. Defaults to []
 
     Raises:
-        ValueError: if solution is infeasible after many recursions. Depends
-            from the amount of metabolites in the reaction
+        NotInRangeError: if solution is infeasible after many recursions.
+            Depends from the amount of metabolites in the reaction.
     """
-    if rxn_id in ignore_list:
-        debug_log.warning(f'Reaction "{rxn_id}" found in ignore list. Skipped')
+    if reaction in ignore_list:
+        debug_log.warning(
+            f'Reaction "{reaction}" found in ignore list. Skipped'
+        )
         return
     # TODO: add counter
     if times == 0:
-        debug_log.info(f'Testing reaction "{rxn_id}"')
+        debug_log.info(f'Testing reaction "{reaction}"')
     # finding demand for testing
-    nextDemand = _find_next_demand(
-        model=model, reaction_id=rxn_id, ignore_list=ignore_list
+    next_demand = _find_next_demand(
+        model=model, reaction_id=reaction, ignore_list=ignore_list
     )
     with suppress(ValueError):
-        model.add_boundary(model.metabolites.get_by_id(nextDemand), "demand")
-        model.reactions.get_by_id(f"DM_{nextDemand}").lower_bound = 0.2
-        debug_log.debug(f'Demand "DM_{nextDemand}" added')
+        model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
+        model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = 0.1
+        debug_log.debug(f'Demand "DM_{next_demand}" added')
     # Setting maximum times for recursion
-    if times == len(model.reactions.get_by_id(rxn_id).metabolites):
-        msg = f'Reaction "{rxn_id}" did not passed.'
-        debug_log.critical(msg)
-        raise ValueError(msg)
-    # answer must be reasonable and lie between given ranges
+    if times == len(model.reactions.get_by_id(reaction).metabolites):
+        raise NotInRangeError(reaction=reaction)
+    # answer must be reasonable
     # comparison must be using absolute values
-    if (
-        not solution_range[0]
-        <= abs(model.slim_optimize())
-        <= solution_range[1]
-    ):
+    if not minimum <= abs(model.slim_optimize()):
         # Append to log
-        debug_log.debug(f'Reaction "{rxn_id}" not in range')
-        verify_sinks_for_rxn(
-            model=model, rxn_id=rxn_id, ignore_list=ignore_list
-        )
+        debug_log.debug(f'Reaction "{reaction}" not in range')
+        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
         # Recursive with 'extra' argument
-        _test_rxn_for_solution(
+        test_solution(
             model=model,
-            rxn_id=rxn_id,
-            solution_range=solution_range,
+            reaction=reaction,
+            minimum=minimum,
             times=times + 1,
             ignore_list=ignore_list,
         )
     else:
         # if works, pass and return old objective
-        debug_log.debug(f'Reaction "{rxn_id}" showed a feasible answer.')
-        _remove_boundary_if_not_model(
-            model=model, metabolite=nextDemand, boundary="demand"
+        debug_log.debug(f'Reaction "{reaction}" showed a feasible answer.')
+        _r_metabolite_boundary(
+            model=model, metabolite=next_demand, boundary="demand"
         )
-        verify_sinks_for_rxn(
-            model=model, rxn_id=rxn_id, ignore_list=ignore_list
-        )
+        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
 
 
 def _add_sequence(
     model: Model,
+    identifier: str,
     sequence: list,
-    avoid_list: Iterable = [],
-    ignore_list: list = [],
-    **kwargs,
+    avoid_list: list,
+    ignore_list: list,
+    minimum: float,
 ):
     """
     From a sequence of Reaction objects, add each Reaction into given model. It
-    checks if new reaction does not break the metabolic system.
+    checks if new reactions do not break the optimized value. All reactions
+    will be added to a common COBRApy Group.
 
     Args:
-        model (Model): model to add reactions.
-        sequence (list): List with Reaction objects
-        avoid_list (Iterable, optional): A sequence of formatted reactions to
-            avoid adding to the model. This is usefull for long pathways,
-            where X reactions need to be excluded. Defaults to [].
-        ignore_list (Iterable, optional): A sequence of formatted metabolites
-            to ignore when testing new reactions. Defaults to [].
-
-    Keyword Arguments:
-        solution_range (tuple, optional): range of solution to pass the test.
-            Defaults to (0.1, 1000).
+        model (Model): Model to expand.
+        identifier (str): Common :func:`cobra.core.group.Group` identifier.
+        sequence (list): List with :func:`cobra.core.reaction.Reaction` objects
+        avoid_list (list): A sequence of formatted reactions to
+            avoid adding to the model. This is useful for long pathways,
+            where X reactions need to be excluded.
+        ignore_list (list): A sequence of formatted metabolite to ignore
+            when testing new reactions.
+        minimun (float): Minimum optimized value to pass in every single test.
 
     Raises:
         TypeError: if reactions are not valid Reaction objects
     """
-    # NOTE: temporal solution
-    try:
-        mass_kwargs = {
-            "show_wrong": kwargs["show_wrong"],
-            "stop_wrong": kwargs["stop_wrong"],
-        }
-    except KeyError:
-        mass_kwargs = {}
-    try:
-        solution_range = kwargs["solution_range"]
-    except KeyError:
-        solution_range = (0.1, 1000)
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
-    # only if not in model
+    # FIXME: find a better solution
+    if identifier in [group.id for group in model.groups]:
+        pathway = model.groups.get_by_id(identifier)
+    else:
+        pathway = Group(id=identifier)
     for rxn in sequence:
         if rxn.id in avoid_list:
             debug_log.warning(
                 f'Reaction "{rxn.id}" found in avoid list. Skipping.'
             )
             continue
+        # FIXME: avoid if statements for perfomance improvement
         if rxn.id not in model.reactions:
             model.add_reactions([rxn])
             debug_log.info(f'Reaction "{rxn.id}" added to model')
-            _test_rxn_for_solution(
-                model=model,
-                rxn_id=rxn.id,
-                ignore_list=ignore_list,
-                solution_range=solution_range,
+            debug_log.debug(
+                f'Reaction "{rxn.id}" added to group "{pathway.id}"'
             )
-            # This should be checked when creating the iter with Reaction
-            check_mass_balance(model=model, rxn_id=rxn.id, **mass_kwargs)
+            test_solution(
+                model=model,
+                reaction=rxn.id,
+                ignore_list=ignore_list,
+                minimum=minimum,
+            )
         else:
             # FIXME: avoid creating reaction
             debug_log.info(f'Reaction "{rxn.id}" was found in model')
-    debug_log.debug("Pathway added to Model")
+    pathway.add_members(new_members=sequence)
+    debug_log.debug(f'All reactions" added to group "{pathway.id}"')
+    if identifier not in [group.id for group in model.groups]:
+        model.add_groups(group_list=[pathway])
+        debug_log.debug("Pathway added to Model")
 
 
 def _from_data(
     model: Model,
     data_dict: dict,
+    directory: Path,
+    database: str,
     compartment: str,
-    avoid_list: Iterable = [],
-    replacement_dict: dict = {},
-    ignore_list: list = [],
-    **kwargs,
+    avoid_list: list,
+    replacement: dict,
+    ignore_list: list,
+    minimum: float,
+    stop_imbalance: bool,
+    show_imbalance: bool,
 ):
+    """"
+    Adds a pathway into given model from a dictinary with the information of
+    the pathway into given model from a dictinary with the information of
+    the model.
+
+    Args:
+        model (Model): Model to expand.
+        data_dict (dict): Dictinary with the information for the pathway.
+        directory (Path): Path for directory to stored and retrieve data.
+        database (str): Name of the database to search for reactions and
+            metabolites.
+        replacement (dict): Original identifiers to be replaced.
+            Values are the new identifiers.
+        compartment: Location of the reactions.
+        avoid_list (Iterable): A sequence of formatted reactions to
+            avoid adding to the model. This is useful for long pathways,
+            where X reactions need to be excluded.
+        ignore_list (Iterable): A sequence of formatted metabolite to ignore
+            when testing new reactions.
+        minimun (float): Minimum optimized value to pass in every single test.
+        stop_imbalance (bool): If unbalanced reaction is found, stop process.
+        show_imbalance (bool): If unbalanced reaction is found, show output.
     """
-    Adds root of a pathway into given model. Arguments explained above in
-    `_add_sequence`.
-    """
-    # Retrieving and creating Pathway with Reactions
-    # this uses replacment, avoid and xml
+    # A graph can have multple routes, depending on how many end-metabolites.
     graph = return_graph_from_dict(
-        data_dict=data_dict,
-        avoid_list=avoid_list,
-        replacement_dict=replacement_dict,
+        data_dict=data_dict, avoid_list=avoid_list, replacement=replacement
     )
-    for pathway in graph:
+    for sequence in graph:
         sequence = list(
             _create_reactions(
-                sequence=pathway,
+                sequence=sequence,
                 compartment=compartment,
-                replacement_dict=replacement_dict,
-                **kwargs,
+                directory=directory,
+                database=database,
+                replacement=replacement,
+                stop_imbalance=stop_imbalance,
+                show_imbalance=show_imbalance,
             )
         )
         _add_sequence(
             model=model,
+            identifier=data_dict["ENTRY"],
             sequence=sequence,
             ignore_list=ignore_list,
             avoid_list=avoid_list,
-            **kwargs,
+            minimum=minimum,
         )
         # TODO: Fix sink for metabolites in last sequence
 
 
 def _from_sequence(
     model: Model,
-    compartment: str,
-    sequence: Iterable,
+    identifier: str,
+    sequence: list,
     database: str,
+    compartment: str,
     directory: Path,
-    avoid_list: Iterable = [],
-    replacement_dict: dict = {},
-    ignore_list: list = [],
-    **kwargs,
+    avoid_list: list,
+    replacement: dict,
+    ignore_list: list,
+    stop_imbalance: bool,
+    show_imbalance: bool,
+    minimum: float,
 ):
     """
-    Adds a sequence of identifiers to given model. Arguments explained
-    above `_add_sequence`.
+    Adds a sequence of identifiers to given model. It will automatically test
+    for valid optimized values.
+
+    Args:
+        model (Model): Model to expand.
+        identifier (str): Common :func:`cobra.core.group.Group` identifier.
+        sequence (list): List reaction identifiers.
+        database (str): Name of the database.
+        compartment: Location of the reactions.
+        replacement (dict): Original identifiers to be replaced.
+            Values are the new identifiers.
+        directory (Path): Path for directory to stored and retrieve data.
+        avoid_list (list): A sequence of formatted reactions to
+            avoid adding to the model. This is useful for long pathways,
+            where X reactions need to be excluded.
+        ignore_list (list): A sequence of formatted metabolite to ignore
+            when testing new reactions.
+        stop_imbalance (bool): If unbalanced reaction is found, stop process.
+        show_imbalance (bool): If unbalanced reaction is found, show output.
+        minimun (float): Minimum optimized value to pass in every single test.
     """
-    # TODO: add tests, and docstrings
     sequence = list(
         _create_reactions(
             sequence=sequence,
             compartment=compartment,
             database=database,
-            replacement_dict=replacement_dict,
+            replacement=replacement,
             directory=directory,
-            **kwargs,
+            stop_imbalance=stop_imbalance,
+            show_imbalance=show_imbalance,
         )
     )
     _add_sequence(
         model=model,
         sequence=sequence,
+        identifier=identifier,
         ignore_list=ignore_list,
         avoid_list=avoid_list,
-        **kwargs,
+        minimum=minimum,
     )
 
 
 def add_graph_to_model(
     model: Model,
-    graph: Union[list, str, set],
+    graph: Union[list, str],
     directory: Path,
     database: str,
     compartment: str,
-    avoid_list: Iterable = [],
-    replacement_dict: dict = {},
+    group: str = "custom_group",
+    avoid_list: list = [],
+    replacement: dict = {},
     ignore_list: list = [],
     filename: Path = Path.cwd().joinpath("summary.txt"),
     summary: bool = True,
-    **kwargs,
+    minimum: float = 0.1,
+    stop_imbalance: bool = False,
+    show_imbalance: bool = True,
 ):
     """
-    Adds given graph for a pathway identifier or a sequence of reactions
-    identifiers into given model. Data will be downloaded and structured
+    Adds given graph from a pathway identifier or a sequence of reactions
+    identifiers into a model. Data will be downloaded and structured
     according to the specified database.
 
-    Args:
-        model (Model): Model to add given graph
-        graph (Union[list, str, set]): The identifier for the
-            pathway or a iterator with the identifiers of the reactions.
-        directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA", "KEGG"
-        compartment (str): location of the reactions to take place. Defaults to
-            cytosol "c"
-        avoid_list (Iterable, optional): A sequence of formatted reactions to
-            avoid adding to the model. This is usefull for long pathways,
-            where X reactions need to be excluded.
-        replacement_dict (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers.
-        ignore_list (Iterable, optional): A sequence of formatted metabolites
-            to ignore when testing new reactions.
-        summary (bool, optional): If a summary for new pathway should be
-            written in a filename. Defaults to True
-        filename (Path, optional): path for the summary in 'pathlib' format.
-            Defaults to 'Path.cwd().joinpath("summary.txt")'.
 
-    Keyword Arguments:
-        show_wrong (bool): For each new reaction, if it is unbalance, it will
-            show the difference for the metabolites. Defaults to True
-        stop_wrong (bool): For each new reaction, if it is unbalance, it will
-            stop and raise an error. Defaults to False
-        solution_range (tuple, optional): range of solution to pass the test
-            for each new reaction. Defaults to (0.1, 1000).
-
-    Raises:
-        TypeError: if model is invalid
-        Warning: if wrong argument is passed to graph
     """
     if not isinstance(model, Model):
-        raise TypeError("Model is invalid")
+        raise TypeError("Given model is not a valid COBRApy model.")
     basic_info = get_basic_info(model=model)
     old_values = get_DataList(model=model)
     try:
+        # From identifier
         data_dict = get_data(
             directory=directory, identifier=str(graph), database=database
         )
         _from_data(
             model=model,
             data_dict=data_dict,
-            compartment=compartment,
-            avoid_list=avoid_list,
-            replacement_dict=replacement_dict,
-            ignore_list=ignore_list,
             directory=directory,
             database=database,
-            **kwargs,
+            compartment=compartment,
+            avoid_list=avoid_list,
+            replacement=replacement,
+            ignore_list=ignore_list,
+            minimum=minimum,
+            show_imbalance=show_imbalance,
+            stop_imbalance=stop_imbalance,
         )
     except Warning:
+        # From Reaction
         _from_sequence(
             model=model,
-            sequence=graph,
+            identifier=group,
+            sequence=list(graph),
             compartment=compartment,
             avoid_list=avoid_list,
             directory=directory,
             database=database,
-            replacement_dict=replacement_dict,
+            replacement=replacement,
             ignore_list=ignore_list,
-            **kwargs,
+            minimum=minimum,
+            show_imbalance=show_imbalance,
+            stop_imbalance=stop_imbalance,
         )
     except TypeError:
         raise Warning("Argument 'graph' must be iterable or a identifier")

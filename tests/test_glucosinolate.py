@@ -1,8 +1,10 @@
+from pathlib import Path
+import unittest
+
 import cobra as cb
+
 from cobramod import pathways as pt
 from cobramod import creation as cr
-import unittest
-from pathlib import Path
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 path_model = dir_input.joinpath("test_model02.sbml")
@@ -94,7 +96,7 @@ class GlucosinolateTest(unittest.TestCase):
             filename=dir_test_case.joinpath("new_reactions.txt"),
             database="ARA",
             directory=dir_data,
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
         )
         self.assertEqual(len(test_model.reactions), 959)
         # 3:1 rubisco rate
@@ -148,7 +150,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="p",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -161,7 +163,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="p",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             avoid_list=["R15-RXN"],
             ignore_list=self.ignore_list,
         )
@@ -174,7 +176,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="p",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -195,7 +197,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -214,7 +216,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -233,7 +235,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -245,7 +247,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -257,7 +259,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -269,7 +271,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -287,7 +289,7 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )

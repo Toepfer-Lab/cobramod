@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from contextlib import suppress
 from logging import DEBUG
 from pathlib import Path
 import unittest
@@ -84,7 +85,7 @@ class UtilsTesting(unittest.TestCase):
         add_reaction(
             model=test_model,
             compartment="c",
-            directory=dir_input,
+            directory=dir_data,
             database="KEGG",
             identifier="R00114",
             replacement={},
@@ -115,7 +116,7 @@ class UtilsTesting(unittest.TestCase):
         add_reaction(
             model=test_model,
             compartment="c",
-            directory=dir_input,
+            directory=dir_data,
             database="KEGG",
             identifier="R00114",
             replacement={},
@@ -137,12 +138,14 @@ class UtilsTesting(unittest.TestCase):
     def test_save_to_file(self):
         # CASE 1: regular lines
         test_filename = dir_input.joinpath("summary.txt")
-        test_filename.unlink()
+        with suppress(FileNotFoundError):
+            test_filename.unlink()
         test_list = ["This should be first line", "This should second line"]
         ui.write_to_file(sequences=test_list, filename=test_filename)
         self.assertTrue(expr=test_filename.exists())
         with open(file=str(test_filename), mode="r") as e:
             self.assertEqual(first=2, second=sum(1 for line in e))
+        test_filename.unlink()
 
     def test_get_basic_info(self):
         # CASE 1: regular model
