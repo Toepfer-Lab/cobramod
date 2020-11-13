@@ -87,7 +87,7 @@ class UtilsTesting(unittest.TestCase):
             compartment="c",
             directory=dir_data,
             database="KEGG",
-            identifier="R00114",
+            identifier="R00894",
             replacement={},
         )
         # CASE 1: Different types
@@ -101,7 +101,7 @@ class UtilsTesting(unittest.TestCase):
                 first=test_model.metabolites, second=textbook_kegg.metabolites
             )
         )
-        self.assertEqual(first=len(test_list), second=6)
+        self.assertEqual(first=len(test_list), second=3)
         # CASE 3: Regular Reactions
         test_list = list(
             ui.compare_DictList(
@@ -118,11 +118,11 @@ class UtilsTesting(unittest.TestCase):
             compartment="c",
             directory=dir_data,
             database="KEGG",
-            identifier="R00114",
+            identifier="R00894",
             replacement={},
         )
         test_dict = ui._compare(model=test_model, comparison=test_data)
-        self.assertEqual(first=len(test_dict["metabolites"]), second=6)
+        self.assertEqual(first=len(test_dict["metabolites"]), second=3)
         self.assertEqual(first=len(test_dict["reactions"]), second=1)
 
     def test__print_differences(self):
