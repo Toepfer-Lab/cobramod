@@ -5,7 +5,7 @@ import unittest
 
 from cobra import Model, Reaction
 
-from cobramod import pathways as pt
+from cobramod import extension as ex
 from cobramod.creation import add_reaction, get_data
 from cobramod.debug import debug_log
 from cobramod.test import textbook_biocyc, textbook_kegg
@@ -22,7 +22,7 @@ if not dir_data.exists():
 class ModulTesting(unittest.TestCase):
     def test__create_reactions(self):
         # CASE 1: Simple Case Biocyc
-        test_list = pt._create_reactions(
+        test_list = ex._create_reactions(
             sequence=[
                 "OXALODECARB-RXN",
                 "AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
@@ -36,7 +36,7 @@ class ModulTesting(unittest.TestCase):
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 2: Simple case Kegg
-        test_list = pt._create_reactions(
+        test_list = ex._create_reactions(
             sequence=["R00200", "R00114"],
             compartment="p",
             directory=dir_data,
@@ -47,7 +47,7 @@ class ModulTesting(unittest.TestCase):
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 3a: Showing when unbalanced
-        test_list = pt._create_reactions(
+        test_list = ex._create_reactions(
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
             compartment="c",
             directory=dir_data,
@@ -58,7 +58,7 @@ class ModulTesting(unittest.TestCase):
         )
         self.assertWarns(UserWarning, next, test_list)
         # CASE 3b: Stopping when unbalanced
-        test_list = pt._create_reactions(
+        test_list = ex._create_reactions(
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
             compartment="c",
             directory=dir_data,
@@ -86,7 +86,7 @@ class ModulTesting(unittest.TestCase):
         )
         self.assertRaises(
             Warning,
-            pt._verify_boundary,
+            ex._verify_boundary,
             model=test_model,
             metabolite="PROTON_c",
             ignore_list=["PROTON_c"],
@@ -101,7 +101,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             replacement={},
         )
-        pt._verify_boundary(
+        ex._verify_boundary(
             model=test_model, metabolite="PROTON_c", ignore_list=[]
         )
         # Second reactions.
@@ -113,7 +113,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             replacement={},
         )
-        pt._verify_boundary(
+        ex._verify_boundary(
             model=test_model, metabolite="PROTON_c", ignore_list=[]
         )
         self.assertNotIn(
@@ -138,7 +138,7 @@ class ModulTesting(unittest.TestCase):
         test_model.add_boundary(
             test_model.metabolites.get_by_id("PROTON_c"), "demand"
         )
-        pt._verify_boundary(
+        ex._verify_boundary(
             model=test_model, metabolite="PROTON_c", ignore_list=[]
         )
         self.assertNotIn(
@@ -160,7 +160,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             replacement={},
         )
-        pt._verify_boundary(
+        ex._verify_boundary(
             model=test_model, metabolite="PROTON_c", ignore_list=[]
         )
         self.assertNotIn(
@@ -186,7 +186,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 0a: invalid Model
         self.assertRaises(
             TypeError,
-            pt._fix_side,
+            ex._fix_side,
             model=str(),
             reaction=str(),
             ignore_list=[],
@@ -194,7 +194,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 0b: wrong side argument
         self.assertRaises(
             ValueError,
-            pt._fix_side,
+            ex._fix_side,
             model=Model(0),
             reaction=str(),
             side="Not",
@@ -210,7 +210,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             replacement={},
         )
-        pt._fix_side(
+        ex._fix_side(
             model=test_model,
             reaction="OXALODECARB_RXN_c",
             side="left",
@@ -220,14 +220,14 @@ class ModulTesting(unittest.TestCase):
             expr="SK_PROTON_c" in (sink.id for sink in test_model.sinks)
         )
         # # CASE 2: Already sink
-        pt._fix_side(
+        ex._fix_side(
             model=test_model,
             reaction="OXALODECARB_RXN_c",
             side="left",
             ignore_list=["OXALACETIC_ACID_c"],
         )
         # # CASE 3: normal creation (right side)
-        pt._fix_side(
+        ex._fix_side(
             model=test_model,
             reaction="OXALODECARB_RXN_c",
             side="right",
@@ -248,7 +248,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             replacement={},
         )
-        pt._verify_sinks(
+        ex._verify_sinks(
             model=test_model,
             reaction="OXALODECARB_RXN_c",
             ignore_list=["PROTON_c", "PYRUVATE_c"],
@@ -269,7 +269,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             replacement={},
         )
-        pt._verify_sinks(
+        ex._verify_sinks(
             model=test_model, reaction="OXALODECARB_RXN_c", ignore_list=[]
         )
         for sink in test_check:
@@ -292,7 +292,7 @@ class ModulTesting(unittest.TestCase):
         test_model.objective_direction = "min"
         self.assertRaises(
             NotInRangeError,
-            pt.test_solution,
+            ex.test_solution,
             model=test_model,
             reaction="1.8.4.9_RXN_p",
             minimum=550,
@@ -308,7 +308,7 @@ class ModulTesting(unittest.TestCase):
             replacement={},
         )
         test_model.objective = "RXN_2206_c"
-        pt.test_solution(model=test_model, reaction="RXN_2206_c")
+        ex.test_solution(model=test_model, reaction="RXN_2206_c")
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
         # CASE 2: direction right to left
         test_model = Model(0)
@@ -322,7 +322,7 @@ class ModulTesting(unittest.TestCase):
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        pt.test_solution(
+        ex.test_solution(
             model=test_model, reaction="1.8.4.9_RXN_c", minimum=0.01
         )
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
@@ -343,7 +343,7 @@ class ModulTesting(unittest.TestCase):
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
         )
         test_model.objective = "RXN_2206_c"
-        pt.test_solution(
+        ex.test_solution(
             model=test_model,
             reaction="RXN_2206_c",
             ignore_list=["OXYGEN_MOLECULE_c"],
@@ -364,7 +364,7 @@ class ModulTesting(unittest.TestCase):
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        pt.test_solution(
+        ex.test_solution(
             model=test_model,
             reaction="1.8.4.9_RXN_c",
             ignore_list=["PROTON_c"],
@@ -375,7 +375,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: Normal usage (3 reactions)
         test_model = textbook_biocyc.copy()
         test_list = list(
-            pt._create_reactions(
+            ex._create_reactions(
                 sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
                 compartment="c",
                 directory=dir_data,
@@ -385,7 +385,7 @@ class ModulTesting(unittest.TestCase):
                 stop_imbalance=False,
             )
         )
-        pt._add_sequence(
+        ex._add_sequence(
             model=test_model,
             identifier="test_group",
             sequence=test_list,
@@ -401,7 +401,7 @@ class ModulTesting(unittest.TestCase):
         # TODO: CASE 3: KEGG
         test_model = textbook_kegg.copy()
         test_list = list(
-            pt._create_reactions(
+            ex._create_reactions(
                 sequence=["R00894", "R00497"],
                 compartment="c",
                 directory=dir_data,
@@ -411,7 +411,7 @@ class ModulTesting(unittest.TestCase):
                 stop_imbalance=False,
             )
         )
-        pt._add_sequence(
+        ex._add_sequence(
             model=test_model,
             identifier="test_group_kegg",
             sequence=test_list,
@@ -434,7 +434,7 @@ class ModulTesting(unittest.TestCase):
             debug_level=10,
             database="KEGG",
         )
-        pt._from_data(
+        ex._from_data(
             model=test_model,
             data_dict=test_dict,
             directory=dir_data,
@@ -455,7 +455,7 @@ class ModulTesting(unittest.TestCase):
     def test__from_sequence(self):
         # CASE 1: regular test
         test_model = textbook_biocyc.copy()
-        pt._from_sequence(
+        ex._from_sequence(
             model=test_model,
             identifier="test_group",
             compartment="c",
@@ -477,7 +477,7 @@ class ModulTesting(unittest.TestCase):
     def test__add_graph_to_model(self):
         # CASE 1: Regular Biocyc
         test_model = textbook_biocyc.copy()
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-1187",
             compartment="c",
@@ -491,7 +491,7 @@ class ModulTesting(unittest.TestCase):
             container=[reaction.id for reaction in test_model.reactions],
         )
         # CASE 2: stacking another pathways (independent from each other)
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="AMMOXID-PWY",
             compartment="c",
@@ -507,7 +507,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 3: using a simple sequence
         test_model = textbook_biocyc.copy()
         test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             compartment="c",
             graph=test_sequence,
@@ -523,7 +523,7 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 4a: KEGG simple pathway
         test_model = textbook_kegg.copy()
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="M00118",
             database="KEGG",
@@ -538,7 +538,7 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 4b: KEGG lineal coplex pathway
         test_model = textbook_kegg.copy()
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="M00001",
             database="KEGG",

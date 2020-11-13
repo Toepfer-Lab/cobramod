@@ -3,7 +3,7 @@ import unittest
 
 import cobra as cb
 
-from cobramod import pathways as pt
+from cobramod import extension as ex
 from cobramod import creation as cr
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -134,7 +134,7 @@ class GlucosinolateTest(unittest.TestCase):
 
     def test_B_precursors(self):
         # Glutathione synthesis
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="GLUTATHIONESYN-PWY",
             database="ARA",
@@ -144,7 +144,7 @@ class GlucosinolateTest(unittest.TestCase):
         )
         # Original has an extra demand (total 962)
         self.assertEqual(len(test_model.reactions), 961)
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-5340",
             database="ARA",
@@ -157,7 +157,7 @@ class GlucosinolateTest(unittest.TestCase):
         # One reaction was already in model
         self.assertEqual(len(test_model.reactions), 962)
         # Homomethionine synthesis
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-1186",
             database="ARA",
@@ -170,7 +170,7 @@ class GlucosinolateTest(unittest.TestCase):
         # Its counterpart in cytosol was added from the file
         self.assertNotIn("R15_RXN_p", [rxn.id for rxn in test_model.reactions])
         # Methionine Elogation chain
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4450",
             database="ARA",
@@ -184,7 +184,7 @@ class GlucosinolateTest(unittest.TestCase):
 
     def test_C_aliphatic(self):
         # From Homomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph=[
                 "RXN-11422",
@@ -203,7 +203,7 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Dihomemethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph=[
                 "RXN-11423",
@@ -222,7 +222,7 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Trihomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph=[
                 "RXN-11424",
@@ -241,7 +241,7 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Tetrahomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4473",
             database="ARA",
@@ -253,7 +253,7 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Pentahomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4474",
             database="ARA",
@@ -265,7 +265,7 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Hexahomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4475",
             database="ARA",
@@ -283,7 +283,7 @@ class GlucosinolateTest(unittest.TestCase):
         test_model.metabolites.get_by_id(meta).formula = "C15H23N6O5S"
         test_model.metabolites.get_by_id(meta).charge = 1
         # From Tryptophan
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-601",
             database="ARA",
