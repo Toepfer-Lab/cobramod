@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Union, Generator, Iterable
 
 from cobra import Model, Reaction
-from cobra.core.group import Group
 
 from cobramod.creation import create_object
 from cobramod.debug import debug_log
@@ -12,6 +11,7 @@ from cobramod.error import NotInRangeError
 from cobramod.graph import return_graph_from_dict
 from cobramod.mod_parser import get_data
 from cobramod.utils import get_DataList, get_basic_info, check_to_write
+from cobramod.pathway import Pathway
 
 
 def _create_reactions(
@@ -365,7 +365,7 @@ def _add_sequence(
 
     Args:
         model (Model): Model to expand.
-        identifier (str): Common :func:`cobra.core.group.Group` identifier.
+        identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
         sequence (list): List with :func:`cobra.core.reaction.Reaction` objects
         avoid_list (list): A sequence of formatted reactions to
             avoid adding to the model. This is useful for long pathways,
@@ -383,7 +383,7 @@ def _add_sequence(
     if identifier in [group.id for group in model.groups]:
         pathway = model.groups.get_by_id(identifier)
     else:
-        pathway = Group(id=identifier)
+        pathway = Pathway(id=identifier)
     for rxn in sequence:
         if rxn.id in avoid_list:
             debug_log.warning(
@@ -496,7 +496,7 @@ def _from_sequence(
 
     Args:
         model (Model): Model to expand.
-        identifier (str): Common :func:`cobra.core.group.Group` identifier.
+        identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
         sequence (list): List reaction identifiers.
         database (str): Name of the database.
         compartment: Location of the reactions.
@@ -554,7 +554,30 @@ def add_graph_to_model(
     identifiers into a model. Data will be downloaded and structured
     according to the specified database.
 
-
+    Args:
+        model (Model): Model to expand.
+        group (Union[list, str]): Sequence of reaction identifiers or
+            identifier for a pathway.
+        directory (Path): Path for directory to stored and retrieve data.
+        database (str): Name of the database.
+        compartment: Location of the reactions.
+        group (str): Common :func:`cobramod.pathway.Pathway` identifier.
+        avoid_list (list): A sequence of formatted reactions to
+            avoid adding to the model. This is useful for long pathways,
+            where X reactions need to be excluded.
+        replacement (dict): Original identifiers to be replaced.
+            Values are the new identifiers.
+        ignore_list (list): A sequence of formatted metabolite to ignore
+            when testing new reactions.
+        filename (Path): Location for the summary. Defaults to
+            Path.cwd().joinpath("summary.txt")
+        summary (bool): True to write summary in file. Defaults to True.
+        minimun (float): Minimum optimized value to pass in every single test.
+            Defaults to 0.1
+        stop_imbalance (bool): If unbalanced reaction is found, stop process.
+            Defaults to False.
+        show_imbalance (bool): If unbalanced reaction is found, show output.
+            Defaults to True.
     """
     if not isinstance(model, Model):
         raise TypeError("Given model is not a valid COBRApy model.")

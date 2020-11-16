@@ -465,8 +465,9 @@ def _add_reaction_line_to_model(
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Options: "META", "ARA". "BIGG",
             "KEGG"
+
     Keyword Arguments:
-        **kwargs: same as in :func:`cobramod.creaation.create_custom_reaction`
+        **kwargs: same as in :func:`cobramod.creation.create_custom_reaction`
     """
     if _has_delimiter(line_string=line):
         # create custom reaction
