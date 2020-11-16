@@ -5,7 +5,8 @@ from cobramod.creation import (
     add_reactions_from_file,
     meta_string_to_model,
 )
-from cobramod.pathways import add_graph_to_model
+from cobramod.extension import add_graph_to_model
+from cobramod.pathway import Pathway
 
 __all__ = [
     "get_data",
@@ -14,4 +15,5 @@ __all__ = [
     "add_reactions_from_file",
     "meta_string_to_model",
     "add_graph_to_model",
+    "Pathway",
 ]

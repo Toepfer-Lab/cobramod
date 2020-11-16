@@ -46,7 +46,7 @@ class GraphTesting(unittest.TestCase):
         )
 
     def test__find_start_vertex(self):
-        """" Start vertex are always keys """
+        # INFO:  Start vertex are always keys """
         # CASE 1: regular lineal
         test_dict = {"A": "B", "B": "C", "C": "D", "D": "E"}
         self.assertIn("A", gr._find_start_vertex(vertex_dict=test_dict))
@@ -257,7 +257,7 @@ class GraphTesting(unittest.TestCase):
             gr._return_verified_graph(
                 vertex_dict=test_dict,
                 vertex_set=set(chain.from_iterable(test_dict.items())),
-                replacement_dict=test_replacement,
+                replacement=test_replacement,
             )
         )
         self.assertIn("Z", set(chain.from_iterable(test_graph)))

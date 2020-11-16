@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+from contextlib import suppress
 from logging import DEBUG
 from pathlib import Path
 import unittest
 
 from cobra import Metabolite, Reaction
 
+from cobramod import create_object
 from cobramod.debug import debug_log
 from cobramod.test import textbook_kegg
 from cobramod.creation import add_reaction
@@ -19,6 +21,33 @@ if not dir_data.exists():
 
 
 class UtilsTesting(unittest.TestCase):
+    def test_check_imbalance(self):
+        # Configuration
+        test_reaction = create_object(
+            directory=dir_data,
+            identifier="RXN-11414",
+            database="META",
+            compartment="c",
+            # In order to catch warning
+            show_imbalance=False,
+        )
+        # CASE 1: Showing imbalance
+        self.assertWarns(
+            UserWarning,
+            ui.check_imbalance,
+            reaction=test_reaction,
+            show_imbalance=True,
+            stop_imbalance=False,
+        )
+        # CASE 2: Stopping at imbalance
+        self.assertRaises(
+            ui.UnbalancedReaction,
+            ui.check_imbalance,
+            reaction=test_reaction,
+            show_imbalance=True,
+            stop_imbalance=True,
+        )
+
     def test_get_DataList(self):
         # CASE 1: regular retrieval
         test_object = ui.get_DataList(model=textbook_kegg)
@@ -56,10 +85,10 @@ class UtilsTesting(unittest.TestCase):
         add_reaction(
             model=test_model,
             compartment="c",
-            directory=dir_input,
+            directory=dir_data,
             database="KEGG",
-            identifier="R00114",
-            replacement_dict={},
+            identifier="R00894",
+            replacement={},
         )
         # CASE 1: Different types
         test_generator = ui.compare_DictList(
@@ -72,7 +101,7 @@ class UtilsTesting(unittest.TestCase):
                 first=test_model.metabolites, second=textbook_kegg.metabolites
             )
         )
-        self.assertEqual(first=len(test_list), second=6)
+        self.assertEqual(first=len(test_list), second=3)
         # CASE 3: Regular Reactions
         test_list = list(
             ui.compare_DictList(
@@ -87,28 +116,44 @@ class UtilsTesting(unittest.TestCase):
         add_reaction(
             model=test_model,
             compartment="c",
-            directory=dir_input,
+            directory=dir_data,
             database="KEGG",
-            identifier="R00114",
-            replacement_dict={},
+            identifier="R00894",
+            replacement={},
         )
         test_dict = ui._compare(model=test_model, comparison=test_data)
-        self.assertEqual(first=len(test_dict["metabolites"]), second=6)
+        self.assertEqual(first=len(test_dict["metabolites"]), second=3)
         self.assertEqual(first=len(test_dict["reactions"]), second=1)
 
     def test__print_differences(self):
-        test_model = textbook_kegg.copy()
-        test_data = ui.get_DataList(model=test_model)
-        add_reaction(
-            model=test_model,
-            compartment="c",
-            directory=dir_input,
-            database="KEGG",
-            identifier="R00114",
-            replacement_dict={},
+        # CASE 1: regular dictionary
+        test_dict = {"reactions": ["A", "B"], "metabolites": [1, 2]}
+        test_diff = ui._save_diff(differences=test_dict)
+        self.assertIn(member="- A", container=test_diff)
+        # CASE 2: no differences
+        test_dict = {"reactions": [], "metabolites": []}
+        test_diff = ui._save_diff(differences=test_dict)
+        self.assertIn(member="No differences!", container=test_diff)
+
+    def test_save_to_file(self):
+        # CASE 1: regular lines
+        test_filename = dir_input.joinpath("summary.txt")
+        with suppress(FileNotFoundError):
+            test_filename.unlink()
+        test_list = ["This should be first line", "This should second line"]
+        ui.write_to_file(sequences=test_list, filename=test_filename)
+        self.assertTrue(expr=test_filename.exists())
+        with open(file=str(test_filename), mode="r") as e:
+            self.assertEqual(first=2, second=sum(1 for line in e))
+        test_filename.unlink()
+
+    def test_get_basic_info(self):
+        # CASE 1: regular model
+        test_list = ui.get_basic_info(model=textbook_kegg)
+        self.assertEqual(first=18, second=len(test_list))
+        self.assertEqual(
+            first=95, second=len(test_list[5].strip("][]").split(","))
         )
-        test_dict = ui._compare(model=test_model, comparison=test_data)
-        ui._print_differences(differences=test_dict)
 
 
 if __name__ == "__main__":
