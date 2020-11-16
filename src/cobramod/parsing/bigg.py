@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+import json
+from pathlib import Path
+from typing import Any
+
+import requests
+
 from cobramod.debug import debug_log
 from cobramod.utils import get_key_dict
 from cobramod.parsing.base import BaseParser
-from pathlib import Path
-from typing import Any
-import json
-import requests
 
 
 def _get_json_bigg(
@@ -91,6 +93,7 @@ def _p_compound(json_data: dict) -> dict:
         "NAME": json_data["name"],
         "FORMULA": formula,
         "CHARGE": charge,
+        "DATABASE": "BIGG",
     }
 
 
@@ -126,6 +129,7 @@ def _p_reaction(json_data: dict) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(json_data=json_data)
         ),
+        "DATABASE": "BIGG",
     }
     return temp_dict
 

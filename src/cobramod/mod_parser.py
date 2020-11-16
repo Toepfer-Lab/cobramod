@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-from pathlib import Path
 from contextlib import suppress
+from pathlib import Path
+
 from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
 from cobramod.parsing.kegg import KeggParser
