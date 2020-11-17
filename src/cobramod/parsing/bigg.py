@@ -76,6 +76,20 @@ def _get_json_bigg(
         raise NotADirectoryError(msg)
 
 
+def _build_reference(json_data: dict) -> dict:
+    """
+    From the json dictionary, return a dictionary with keys as cross-references
+    and values as their identifiers.
+    """
+    references = json_data["database_links"]
+    try:
+        return {item: references[item][0]["id"] for item in references}
+    except KeyError:
+        raise KeyError(
+            "Problem with given json dictionary. Inform maintainers"
+        )
+
+
 def _p_compound(json_data: dict) -> dict:
     """
     Parse the information of the JSON dictionary and returns a dictionary with
@@ -94,6 +108,7 @@ def _p_compound(json_data: dict) -> dict:
         "FORMULA": formula,
         "CHARGE": charge,
         "DATABASE": "BIGG",
+        "XREF": _build_reference(json_data=json_data),
     }
 
 
@@ -130,6 +145,7 @@ def _p_reaction(json_data: dict) -> dict:
             data_dict=_p_metabolites(json_data=json_data)
         ),
         "DATABASE": "BIGG",
+        "XREF": _build_reference(json_data=json_data),
     }
     return temp_dict
 
@@ -139,17 +155,15 @@ def _get_db_names(data_dict: dict, pattern: str) -> str:
     From the original data of a BiGG JSON, retrieve the corresponding
     identifier for its crossref database.
     """
-    database = get_key_dict(
-        dictionary=data_dict["database_links"], pattern=pattern
-    )
-
     try:
-        container = data_dict["database_links"][database][0]["id"]
-    except KeyError:
+        database = get_key_dict(
+            dictionary=data_dict["database_links"], pattern=pattern
+        )
+        return data_dict["database_links"][database][0]["id"]
+    except Warning:
         msg = "Given database is not found in the crossref section"
         debug_log.error(msg)
         raise KeyError(msg)
-    return container
 
 
 class BiggParser(BaseParser):

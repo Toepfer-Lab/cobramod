@@ -78,8 +78,8 @@ def get_DataList(model: Model) -> DataModel:
 
 def get_key_dict(dictionary: dict, pattern: str) -> str:
     """
-    From given pattern, return first key the dictionary that matches or is a
-    sub-string.
+    From given pattern, return the first key of the dictionary that matches it
+    or is a sub-string of it. It will raise a Warning if nothing found.
     """
     for key in dictionary.keys():
         if match(pattern=pattern, string=key):

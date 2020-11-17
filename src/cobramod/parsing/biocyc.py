@@ -9,6 +9,22 @@ from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
 
 
+def _build_reference(root: Any) -> dict:
+    """
+    From the original root object, returns a dictionary with the corresponding
+    crossref and its identifiers.
+    """
+    references = dict()
+    try:
+        for child in root.findall("*/dblink"):
+            references[child.find("dblink-db").text] = child.find(
+                "dblink-oid"
+            ).text
+        return references
+    except IndexError:
+        raise IndexError("Current root could not be find references.")
+
+
 def _p_compound(root: Any) -> dict:
     """
     Parses given xml root into a dictionary for metabolite from biocyc
@@ -42,6 +58,7 @@ def _p_compound(root: Any) -> dict:
         "FORMULA": formula,
         "CHARGE": charge,
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
+        "XREF": _build_reference(root=root),
     }
 
 
@@ -122,6 +139,7 @@ def _p_reaction(root: Any) -> dict:
             data_dict=_p_metabolites(root=root)
         ),
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
+        "XREF": _build_reference(root=root),
     }
 
 
@@ -166,6 +184,7 @@ def _p_pathway(root: Any) -> dict:
         "PATHWAY": reaction_dict,
         "SET": reaction_set,
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
+        "XREF": _build_reference(root=root),
     }
     return temp_dict
 

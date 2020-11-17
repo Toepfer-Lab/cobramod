@@ -9,6 +9,7 @@ from requests import get
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
 from cobramod.error import WrongParserError
+from cobramod.utils import get_key_dict
 
 
 class MetaboliteTuple(NamedTuple):
@@ -126,6 +127,21 @@ def _get_reversibility(line: str) -> tuple:
     return bounds
 
 
+def _build_reference(data_dict: dict) -> Union[dict, None]:
+    """
+    From the dictionary with KEGG raw information, return a dictionary with
+    where the keys are the names of cross-references and keys their
+    identifiers.
+    """
+    try:
+        return {
+            item[0].strip().rstrip(): item[1].strip().rstrip()
+            for item in [name.split(":") for name in data_dict["DBLINKS"]]
+        }
+    except KeyError:
+        return None
+
+
 def _p_reaction(kegg_dict: dict) -> dict:
     """
     Parses the KEGG dictionary and returns a dictionary with the most important
@@ -150,6 +166,7 @@ def _p_reaction(kegg_dict: dict) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_build_dict_meta(line=kegg_dict["EQUATION"][0])
         ),
+        "XREF": _build_reference(data_dict=kegg_dict),
     }
 
 
@@ -194,6 +211,7 @@ def _p_compound(kegg_dict: dict) -> dict:
         "FORMULA": formula,
         # FIXME: search information about charges
         "CHARGE": 0,
+        "XREF": _build_reference(data_dict=kegg_dict),
     }
 
 
@@ -235,6 +253,7 @@ def _p_pathway(kegg_dict: dict) -> dict:
         "DATABASE": "KEGG",
         "PATHWAY": pathway,
         "SET": whole_set,
+        "XREF": _build_reference(data_dict=kegg_dict),
     }
 
 
@@ -248,6 +267,21 @@ def _p_enzyme(kegg_dict: dict):
         raise WrongParserError(
             "Given dictionary does not belong to an Enzyme."
         )
+
+
+def _get_db_names(data_dict: dict, pattern: str) -> str:
+    reference = [item.split(":") for item in data_dict["DBLINKS"]]
+    database = {
+        item[0].strip().rstrip(): item[1].strip().rstrip()
+        for item in reference
+    }
+    try:
+        key = get_key_dict(dictionary=database, pattern=pattern)
+        return database[key]
+    except Warning:
+        msg = "Given database is not found in the crossref section"
+        debug_log.error(msg)
+        raise KeyError(msg)
 
 
 class KeggParser(BaseParser):
