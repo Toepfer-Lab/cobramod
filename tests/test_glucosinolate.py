@@ -1,8 +1,10 @@
-import cobra as cb
-from cobramod import pathways as pt
-from cobramod import creation as cr
-import unittest
 from pathlib import Path
+import unittest
+
+import cobra as cb
+
+from cobramod import extension as ex
+from cobramod import creation as cr
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 path_model = dir_input.joinpath("test_model02.sbml")
@@ -94,7 +96,7 @@ class GlucosinolateTest(unittest.TestCase):
             filename=dir_test_case.joinpath("new_reactions.txt"),
             database="ARA",
             directory=dir_data,
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
         )
         self.assertEqual(len(test_model.reactions), 959)
         # 3:1 rubisco rate
@@ -132,7 +134,7 @@ class GlucosinolateTest(unittest.TestCase):
 
     def test_B_precursors(self):
         # Glutathione synthesis
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="GLUTATHIONESYN-PWY",
             database="ARA",
@@ -142,39 +144,39 @@ class GlucosinolateTest(unittest.TestCase):
         )
         # Original has an extra demand (total 962)
         self.assertEqual(len(test_model.reactions), 961)
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-5340",
             database="ARA",
             directory=dir_data,
             compartment="p",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
         # One reaction was already in model
         self.assertEqual(len(test_model.reactions), 962)
         # Homomethionine synthesis
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-1186",
             database="ARA",
             directory=dir_data,
             compartment="p",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             avoid_list=["R15-RXN"],
             ignore_list=self.ignore_list,
         )
         # Its counterpart in cytosol was added from the file
         self.assertNotIn("R15_RXN_p", [rxn.id for rxn in test_model.reactions])
         # Methionine Elogation chain
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4450",
             database="ARA",
             directory=dir_data,
             compartment="p",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -182,7 +184,7 @@ class GlucosinolateTest(unittest.TestCase):
 
     def test_C_aliphatic(self):
         # From Homomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph=[
                 "RXN-11422",
@@ -195,13 +197,13 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Dihomemethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph=[
                 "RXN-11423",
@@ -214,13 +216,13 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Trihomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph=[
                 "RXN-11424",
@@ -233,43 +235,43 @@ class GlucosinolateTest(unittest.TestCase):
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Tetrahomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4473",
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Pentahomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4474",
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Hexahomomethionine
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWYQT-4475",
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )
@@ -281,13 +283,13 @@ class GlucosinolateTest(unittest.TestCase):
         test_model.metabolites.get_by_id(meta).formula = "C15H23N6O5S"
         test_model.metabolites.get_by_id(meta).charge = 1
         # From Tryptophan
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-601",
             database="ARA",
             directory=dir_data,
             compartment="c",
-            replacement_dict=self.replacement,
+            replacement=self.replacement,
             ignore_list=self.ignore_list,
             avoid_list=self.avoid_list,
         )

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
+from logging import DEBUG
 from pathlib import Path
 import unittest
+
 import cobra as cb
-from cobramod import pathways as pt
-from cobramod.creation import (
-    _add_reaction_line_to_model,
-    add_reactions_from_file,
-)
+
+from cobramod import extension as ex
+from cobramod.creation import create_custom_reaction, add_reactions_from_file
 from cobramod.debug import debug_log
-from logging import DEBUG
+from cobramod.test import textbook_biocyc
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -29,31 +29,30 @@ if not dir_data.exists():
 
 # TODO: add test with replacment_dicts
 class TestingShortModel(unittest.TestCase):
-    def test_appending_lineal_pathways(self):
-        """For this test, Gluconeogenesis; L-aspartate and L-asparagine
-        biosynthesis, and Nicotine biosynthesis added to test for feasible
-        results. Due to a small model,  ATP needs to enter as a sink reaction
-        but is later removed from model without interfering with the the new
-        pathways
-        """
-        test_model = main_model1.copy()
+    def test_lineal_pathways(self):
+        # For this test, Gluconeogenesis; L-aspartate and L-asparagine
+        # biosynthesis, and Nicotine biosynthesis added to test for feasible
+        # results.
+        test_model = textbook_biocyc.copy()
         test_model.add_boundary(
             test_model.metabolites.get_by_id("ATP_c"), "sink"
         )
         # Adding Gluconeogenesis
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="GLUCONEO-PWY",
             directory=dir_data,
             database="META",
             compartment="c",
-            ignore_list=["MAL_c", "PROTON_c", "Pi_c", "ATP_c"],
         )
-        test_model.remove_reactions(["SK_ATP_c"])
-        self.assertGreater(abs(test_model.optimize().objective_value), 0)
-        _add_reaction_line_to_model(
+        self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
+        self.assertIn(
+            member="GLUCONEO-PWY",
+            container=[group.id for group in test_model.groups],
+        )
+        create_custom_reaction(
             model=test_model,
-            line=(
+            line_string=(
                 "Redox_Hemoprotein_c, Redox_Hemoprotein_c | "
                 + "Ox-NADPH-Hemoprotein-Reductases_c:-1, "
                 + "Red-NADPH-Hemoprotein-Reductases_c: 1"
@@ -62,7 +61,7 @@ class TestingShortModel(unittest.TestCase):
             database="META",
         )
         # Adding Nicotine pathway
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-5316",
             directory=dir_data,
@@ -70,8 +69,12 @@ class TestingShortModel(unittest.TestCase):
             compartment="c",
             ignore_list=[],
         )
+        self.assertIn(
+            member="PWY-5316",
+            container=[group.id for group in test_model.groups],
+        )
         # Ading aspartate and asparagine biosynthesis
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="ASPASN-PWY",
             directory=dir_data,
@@ -79,20 +82,17 @@ class TestingShortModel(unittest.TestCase):
             compartment="c",
             ignore_list=[],
         )
-        # Updating dummy biomass
-        test_model.reactions.get_by_id("Biomass_c").add_metabolites(
-            {
-                test_model.metabolites.get_by_id("NICOTINE_c"): -0.25,
-                test_model.metabolites.get_by_id("ASN_c"): -1,
-            }
+        self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
+        self.assertIn(
+            member="ASPASN-PWY",
+            container=[group.id for group in test_model.groups],
         )
-        test_model.objective = "Biomass_c"
-        self.assertGreater(abs(test_model.optimize().objective_value), 0)
 
     def test_cyclical_pathwways(self):
-        test_model = main_model1.copy()
+        # test_model = main_model1.copy()
+        test_model = textbook_biocyc.copy()
         # Adding Mannitol cycle
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-6531",
             directory=dir_data,
@@ -100,8 +100,12 @@ class TestingShortModel(unittest.TestCase):
             compartment="c",
             ignore_list=[],
         )
+        self.assertIn(
+            member="PWY-6531",
+            container=[group.id for group in test_model.groups],
+        )
         # Adding glyoxylate cycle
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="GLYOXYLATE-BYPASS",
             directory=dir_data,
@@ -109,15 +113,11 @@ class TestingShortModel(unittest.TestCase):
             compartment="c",
             ignore_list=[],
         )
-        # Updating dummy biomass
-        test_model.reactions.get_by_id("Biomass_c").add_metabolites(
-            {
-                test_model.metabolites.get_by_id("BETA_D_FRUCTOSE_c"): -1,
-                test_model.metabolites.get_by_id("GLYOX_c"): -0.5,
-            }
+        self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
+        self.assertIn(
+            member="GLYOXYLATE-BYPASS",
+            container=[group.id for group in test_model.groups],
         )
-        test_model.objective = "Biomass_c"
-        self.assertGreater(abs(test_model.optimize().objective_value), 0)
 
     def test_multi_compartment(self):
         test_model = main_model1.copy()
@@ -133,7 +133,7 @@ class TestingShortModel(unittest.TestCase):
             metabolite=test_model.metabolites.get_by_id("CO_A_e"),
             type="exchange",
         )
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="GLUTATHIONESYN-PWY",
             directory=dir_data,
@@ -144,14 +144,18 @@ class TestingShortModel(unittest.TestCase):
         test_model.reactions.get_by_id("Biomass_c").add_metabolites(
             {test_model.metabolites.get_by_id("GLUTATHIONE_p"): -1}
         )
+        self.assertIn(
+            member="GLUTATHIONESYN-PWY",
+            container=[group.id for group in test_model.groups],
+        )
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
-        _add_reaction_line_to_model(
+        create_custom_reaction(
             model=test_model,
-            line="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
+            line_string="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
             directory=dir_data,
             database="META",
         )
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-1187",
             directory=dir_data,
@@ -169,7 +173,7 @@ class TestingShortModel(unittest.TestCase):
         )
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
         # Lipid initalization
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-4381",
             directory=dir_data,
@@ -205,7 +209,7 @@ class TestingLargeModel(unittest.TestCase):
             type="sink",
         )
         # Adding methiin metabolism
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-7614",
             directory=dir_data,
@@ -222,7 +226,7 @@ class TestingLargeModel(unittest.TestCase):
         self.assertGreater(test_model.optimize().fluxes["DM_CPD_9277_p"], 0)
         self.assertGreater(test_model.optimize().fluxes["RXN_8908_p"], 0)
         # Adding stachyose biosynthesis
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-5337",
             directory=dir_data,
@@ -243,7 +247,7 @@ class TestingLargeModel(unittest.TestCase):
             metabolite=test_model.metabolites.get_by_id("CPD1F_133_p"),
             type="sink",
         )
-        pt.add_graph_to_model(
+        ex.add_graph_to_model(
             model=test_model,
             graph="PWY-695",
             directory=dir_data,
