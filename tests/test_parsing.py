@@ -211,7 +211,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         test_dict = bi.BiggParser._parse(json_data=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        # CASE 2: Ecoli metabolite
+        # CASE 4: Ecoli metabolite
         test_json = bi._get_json_bigg(
             directory=dir_data,
             identifier="co2_c",
@@ -221,6 +221,15 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         test_dict = bi.BiggParser._parse(json_data=test_json)
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         self.assertEqual(first="CO2", second=test_dict["FORMULA"])
+
+    def test__get_db_names(self):
+        test_dict = kg._create_dict(
+            raw=kg._get_unformatted_kegg(
+                directory=dir_data, identifier="C00073"
+            )
+        )
+        test_string = kg._get_db_names(data_dict=test_dict, pattern="ChEBI")
+        self.assertEqual(first=test_string, second="16643")
 
 
 if __name__ == "__main__":
