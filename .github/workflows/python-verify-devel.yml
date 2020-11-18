@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
     name: Checkout
-    uses: actions/checkout@v2
-    name: test to check stages
     steps:
+      - uses: actions/checkout@v2
+      - name: test to check stages
       - name: create enviroment
         run: |
           pwd
