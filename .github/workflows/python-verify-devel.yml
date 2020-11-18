@@ -17,8 +17,8 @@ jobs:
     container: continuumio/miniconda3
     name: Checkout
     steps:
-      - uses: actions/checkout@v2
       - name: test to check stages
+        uses: actions/checkout@v2
       - name: create enviroment
         run: |
           pwd
