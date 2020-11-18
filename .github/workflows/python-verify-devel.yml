@@ -19,13 +19,12 @@ jobs:
     steps:
       - name: test to check stages
         uses: actions/checkout@v2
-      - name: create enviroment
+      - name: Conda build
+        uses: cobramod/conda-build@v1
+      - name: test
         run: |
           pwd
           ls -la
-          conda env create -f environment.yml
-          source activate cobramod
           conda info
-          pip install . -v
   
 
