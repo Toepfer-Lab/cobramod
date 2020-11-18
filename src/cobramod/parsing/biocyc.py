@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
-from xml.etree.ElementTree import fromstring, Element, ElementTree, parse
+from contextlib import suppress
+from xml.etree.ElementTree import (
+    fromstring,
+    Element,
+    ElementTree,
+    parse,
+    ParseError,
+)
 from pathlib import Path
 from typing import Any, Dict
 
 import requests
 
 from cobramod.debug import debug_log
+from cobramod.error import WrongParserError
 from cobramod.parsing.base import BaseParser
 
 
@@ -196,18 +204,16 @@ class BiocycParser(BaseParser):
         Parses the root and returns a dictionary with the dictionary of the
         root, with the most important information depending on its object type.
         """
-        if root.find("Compound") or root.find("Protein"):
-            biocyc_dict = _p_compound(root=root)
-        elif root.find("Reaction"):
-            biocyc_dict = _p_reaction(root=root)
-        elif root.find("Pathway"):
-            biocyc_dict = _p_pathway(root=root)
-        else:
-            raise NotImplementedError(
-                "Could not parse given root. Please inform maintainers."
-            )
-        biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib["orgid"]
-        return biocyc_dict
+        try:
+            for method in (_p_compound, _p_reaction, _p_pathway):
+                with suppress(AttributeError):
+                    biocyc_dict = method(root=root)
+                    biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
+                        "orgid"
+                    ]
+            return biocyc_dict
+        except UnboundLocalError:
+            raise WrongParserError
 
     @staticmethod
     def _retrieve_data(
@@ -237,6 +243,7 @@ class BiocycParser(BaseParser):
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
+
         return BiocycParser._parse(root=root)
 
     @staticmethod
@@ -250,7 +257,18 @@ class BiocycParser(BaseParser):
         if database in names:
             return database
         else:
-            raise Warning(f'Given database "{database}" does not exist')
+            raise WrongParserError
+
+    @staticmethod
+    def _read_file(filename: Path) -> Element:
+        """
+        Reads and return given filename as a Element. I will raise a error if
+        file is not an valid xml.
+        """
+        try:
+            return parse(source=str(filename)).getroot()
+        except ParseError:
+            raise WrongParserError("Wrong filetype")
 
 
 def _get_xml_from_biocyc(
@@ -280,9 +298,8 @@ def _get_xml_from_biocyc(
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
-            root = parse(str(filename)).getroot()
             debug_log.debug(f"Identifier '{identifier}' found.")
-            return root
+            return BiocycParser._read_file(filename=filename)
         except FileNotFoundError:
             debug_log.debug(
                 f'"{identifier}" not found in directory "{database}".'
