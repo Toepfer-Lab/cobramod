@@ -20,7 +20,7 @@ jobs:
       - name: test to check stages
         uses: actions/checkout@v2
       - name: Conda build
-        uses: ./
+        uses: ./.github/conda-build
       - name: test
         run: |
           pwd
