@@ -8,12 +8,12 @@ on:
     branches:
       - master
 defaults:
-  container: continuumio/miniconda3
   run:
     shell: bash
 jobs:
   test:
     name: test to check stages
+    container: continuumio/miniconda3
     steps:
       - name: create enviroment
         run: |
