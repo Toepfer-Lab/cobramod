@@ -52,15 +52,19 @@ def _create_dict(raw: str) -> dict:
     keys = set(_get_keys(raw=raw))
     actual_key = str()
     kegg_dict: Dict[str, list] = {"": []}
+    # TODO: find a proper way to parse it
     for line in lines:
-        key = _find_key(line=line, keys=keys)
-        if key is None:
-            # Append to older key.
-            kegg_dict[actual_key].append(line.strip().rstrip())
+        if "///" in line:
+            break
         else:
-            actual_key = key
-            line = line[line.find(key) + len(key) :].strip().rstrip()
-            kegg_dict[actual_key] = [line]
+            key = _find_key(line=line, keys=keys)
+            if key is None:
+                # Append to older key.
+                kegg_dict[actual_key].append(line.strip().rstrip())
+            else:
+                actual_key = key
+                line = line[line.find(key) + len(key) :].strip().rstrip()
+                kegg_dict[actual_key] = [line]
     del kegg_dict[""]
     return kegg_dict
 

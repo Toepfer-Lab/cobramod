@@ -155,6 +155,30 @@ class UtilsTesting(unittest.TestCase):
             first=95, second=len(test_list[5].strip("][]").split(","))
         )
 
+    def test__path_match(self):
+        # CASE 1a: regular match, KEGG compound
+        test_path = ui._path_match(directory=dir_data, pattern="C00001")
+        self.assertRegex(text=str(test_path), expected_regex="C00001.txt")
+        # CASE 1b: regular match, KEGG reaction
+        test_path = ui._path_match(directory=dir_data, pattern="R00114")
+        self.assertRegex(text=str(test_path), expected_regex="R00114.txt")
+        # CASE 2a: regular match, Biocyc compound
+        test_path = ui._path_match(directory=dir_data, pattern="AMP")
+        self.assertRegex(text=str(test_path), expected_regex="AMP.xml")
+        # CASE 2b: regular match, Biocyc reaction
+        test_path = ui._path_match(
+            directory=dir_data, pattern="GLUTAMINESYN-RXN"
+        )
+        self.assertRegex(
+            text=str(test_path), expected_regex="GLUTAMINESYN-RXN.xml"
+        )
+        # CASE 3a: regular match, BIGG compound
+        test_path = ui._path_match(directory=dir_data, pattern="accoa")
+        self.assertRegex(text=str(test_path), expected_regex="accoa.json")
+        # CASE 3b: regular match, BIGG compound in e_coli_core
+        test_path = ui._path_match(directory=dir_data, pattern="accoa_c")
+        self.assertRegex(text=str(test_path), expected_regex="accoa_c.json")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

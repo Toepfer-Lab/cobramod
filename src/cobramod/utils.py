@@ -298,3 +298,15 @@ def check_to_write(
     except TypeError:
         # To avoid empty models
         debug_log.error("Given model appears to be empty. Summary skipped")
+
+
+def _path_match(directory: Path, pattern: str) -> Path:
+    """
+    Returns first match as a Path object, given a pattern for a specific
+    directory.
+    """
+    match = directory.glob(pattern=f"**/{pattern}.*")
+    try:
+        return next(match)
+    except StopIteration:
+        raise StopIteration(f"No file found with pattern '{pattern}'")

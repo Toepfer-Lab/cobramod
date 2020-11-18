@@ -63,7 +63,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertIsInstance(obj=test_data, cls=str)
 
     def test__parse_kegg(self):
-        # CASE 1: Reaction (same as setUP)
+        # CASE 1a: Reaction (same as setUP)
         test_dict = kg.KeggParser._parse(raw=self.raw)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
