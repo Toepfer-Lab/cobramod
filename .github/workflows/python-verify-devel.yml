@@ -17,8 +17,6 @@ jobs:
     container: continuumio/miniconda3
     name: Checkout
     steps:
-      - name: test to check stages
-        uses: actions/checkout@v2
       - name: Conda build
         uses: ./.github/conda-build
       - name: test

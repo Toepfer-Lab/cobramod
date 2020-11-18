@@ -1,9 +1,9 @@
-name: "conda-build"
-description: "Actions to build conda"
+name: "enviroment-build"
+description: "Actions to build conda and install pip"
 runs:
   using: "composite"
-  # image: "docker://continuumio/miniconda3"
-  steps: 
+  steps:
+    - uses: actions/checkout@v2
     - run: |
         conda env create -f environment.yml
         source activate cobramod
