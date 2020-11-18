@@ -1,7 +1,5 @@
-# inputs:
-#   name: 
-#   description: 'Building conda'
-#     default: 'No name provided'
+name: "conda-build"
+description: "Actions to build conda"
 runs:
   using: "docker"
   image: "docker://continuumio/miniconda3"
