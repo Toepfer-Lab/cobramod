@@ -1,0 +1,25 @@
+name: Cobramod under a conda enviroment
+on:
+  push:
+    branches:
+      - master
+      - internal/transition-github
+  pull_request:
+    branches:
+      - master
+defaults:
+  container: continuumio/miniconda3
+  run:
+    shell: bash
+jobs:
+  test:
+    name: test to check stages
+    steps:
+      - name: create enviroment
+        run: |
+          conda env create -f enviroment.yml
+          conda activate cobramod
+          conda info
+          pip install . -v
+  
+
