@@ -24,7 +24,7 @@ jobs:
           pwd
           ls -la
           conda env create -f environment.yml
-          conda activate cobramod
+          source activate cobramod
           conda info
           pip install . -v
   
