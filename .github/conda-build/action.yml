@@ -1,8 +1,8 @@
 name: "conda-build"
 description: "Actions to build conda"
 runs:
-  using: "docker"
-  image: "docker://continuumio/miniconda3"
+  using: "composite"
+  # image: "docker://continuumio/miniconda3"
   steps: 
     - run: |
         conda env create -f environment.yml
