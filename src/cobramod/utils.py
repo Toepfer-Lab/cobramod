@@ -78,8 +78,8 @@ def get_DataList(model: Model) -> DataModel:
 
 def get_key_dict(dictionary: dict, pattern: str) -> str:
     """
-    From given pattern, return first key the dictionary that matches or is a
-    sub-string.
+    From given pattern, return the first key of the dictionary that matches it
+    or is a sub-string of it. It will raise a Warning if nothing found.
     """
     for key in dictionary.keys():
         if match(pattern=pattern, string=key):
@@ -298,3 +298,15 @@ def check_to_write(
     except TypeError:
         # To avoid empty models
         debug_log.error("Given model appears to be empty. Summary skipped")
+
+
+def _path_match(directory: Path, pattern: str) -> Path:
+    """
+    Returns first match as a Path object, given a pattern for a specific
+    directory.
+    """
+    match = directory.glob(pattern=f"**/{pattern}.*")
+    try:
+        return next(match)
+    except StopIteration:
+        raise StopIteration(f"No file found with pattern '{pattern}'")

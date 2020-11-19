@@ -10,13 +10,6 @@ class BaseParser(ABC):
         """
         Returns Path object for given database. If directory does not exist.
         It will be created.
-
-        Args:
-            directory (Path): Parent directory.
-            database (str): Name of database. Options: "META", "ARA". "KEGG"
-
-        Returns:
-            Path: Path object for database.
         """
         if directory.joinpath(database).exists():
             return directory.joinpath(database)
@@ -27,7 +20,7 @@ class BaseParser(ABC):
     @staticmethod
     def _check_transport(data_dict: dict) -> bool:
         """
-        check if data_dict includes repetitions, meaning that there is a
+        check if give directory  includes repetitions, meaning that there is a
         tranport reactions. Prefix is not taken into consideration.
         """
         sequence = [item[2:] for item in data_dict.keys()]
@@ -42,14 +35,31 @@ class BaseParser(ABC):
         debug_level: int,
         **kwargs
     ) -> dict:
+        """
+        Method to retrieve data from server or local directory.
+        """
         pass
 
     @staticmethod
     @abstractmethod
-    def _parse(root: Union[Any, str]) -> dict:
+    def _parse(root: Union[Any, dict]) -> dict:
+        """
+        Basic method to parse information.
+        """
         pass
 
     @staticmethod
     @abstractmethod
     def _return_database(database: str) -> str:
+        """
+        Basic check method.
+        """
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def _read_file(filename: Path) -> Any:
+        """
+        Basic method to read file.
+        """
         pass

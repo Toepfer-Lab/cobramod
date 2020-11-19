@@ -4,6 +4,7 @@ from pathlib import Path
 import unittest
 
 from cobramod.debug import debug_log
+from cobramod.error import WrongParserError
 import cobramod.parsing.kegg as kg
 import cobramod.parsing.biocyc as bc
 import cobramod.parsing.bigg as bi
@@ -55,16 +56,16 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="R08618"
         )
-        self.assertIsInstance(obj=test_data, cls=str)
+        self.assertIsInstance(obj=test_data, cls=dict)
         # CASE 1: Regular compound
         test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290"
         )
-        self.assertIsInstance(obj=test_data, cls=str)
+        self.assertIsInstance(obj=test_data, cls=dict)
 
     def test__parse_kegg(self):
-        # CASE 1: Reaction (same as setUP)
-        test_dict = kg.KeggParser._parse(raw=self.raw)
+        # CASE 1a: Reaction (same as setup)
+        test_dict = kg.KeggParser._parse(root=kg._create_dict(raw=self.raw))
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
@@ -72,7 +73,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.raw = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290"
         )
-        test_dict = kg.KeggParser._parse(raw=self.raw)
+        test_dict = kg.KeggParser._parse(root=self.raw)
 
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         # CASE 2: EC number (not working for now)
@@ -80,13 +81,12 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             directory=dir_data, identifier="7.1.2.2"
         )
         self.assertRaises(
-            NotImplementedError, kg.KeggParser._parse, raw=self.raw
+            NotImplementedError, kg.KeggParser._parse, root=self.raw
         )
         # CASE 3: Pathway
-        test_raw = kg._get_unformatted_kegg(
+        test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="M00001"
         )
-        test_data = kg._create_dict(raw=test_raw)
         test_dict = kg._p_pathway(kegg_dict=test_data)
         self.assertEqual(first="Pathway", second=test_dict["TYPE"])
         self.assertEqual(first="M00001", second=test_dict["ENTRY"])
@@ -111,6 +111,8 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         )
 
     def test__parse_biocyc(self):
+        # CASE 0: Wrong type
+        self.assertRaises(WrongParserError, bc.BiocycParser._parse, str())
         # CASE 1: Compound
         test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="AMP", database="META"
@@ -181,6 +183,8 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         )
 
     def test__parse_bigg(self):
+        # CASE 0: Wrong type
+        self.assertRaises(WrongParserError, bi.BiggParser._parse, str())
         # CASE 1: Regular universal reaction
         test_json = bi._get_json_bigg(
             directory=dir_data,
@@ -188,7 +192,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             model_id="universal",
             object_type="reaction",
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         # CASE 2: Regular universal metabolite
@@ -198,7 +202,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             model_id="universal",
             object_type="metabolite",
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         self.assertEqual(first="C21H32N7O16P3S", second=test_dict["FORMULA"])
         # CASE 3: Ecoli reaction
@@ -208,19 +212,28 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             model_id="e_coli_core",
             object_type="reaction",
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        # CASE 2: Ecoli metabolite
+        # CASE 4: Ecoli metabolite
         test_json = bi._get_json_bigg(
             directory=dir_data,
             identifier="co2_c",
             model_id="e_coli_core",
             object_type="metabolite",
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         self.assertEqual(first="CO2", second=test_dict["FORMULA"])
+
+    # def test__get_db_names(self):
+    #     test_dict = kg._create_dict(
+    #         raw=kg._get_unformatted_kegg(
+    #             directory=dir_data, identifier="C00073"
+    #         )
+    #     )
+    #     test_string = kg._get_db_names(data_dict=test_dict, pattern="ChEBI")
+    #     self.assertEqual(first=test_string, second="16643")
 
 
 if __name__ == "__main__":
