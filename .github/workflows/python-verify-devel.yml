@@ -22,7 +22,9 @@ jobs:
       - name: enviroment-build
         uses: ./.github/conda-build
       - name: linter
-        run: | 
+        run: |
+          which python3
+          which python
           python3 -m black src/cobramod/ tests/ --line-length=79 --check
           flake8 src/cobramod/ tests/ --config=.toml
           mypy src/cobramod/ tests/ --config-file=.toml
