@@ -17,12 +17,13 @@ jobs:
     container: continuumio/miniconda3
     name: Checkout
     steps:
-      - name: Conda build
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: enviroment-build
         uses: ./.github/conda-build
-      - name: test
-        run: |
-          pwd
-          ls -la
-          conda info
-  
+      - name: linter
+        run: | 
+          black src/cobramod/ tests/ --line-length=79 --check
+          flake8 src/cobramod/ tests/ --config=.toml
+          mypy src/cobramod/ tests/ --config-file=.toml
 
