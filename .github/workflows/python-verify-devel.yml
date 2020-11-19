@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - internal/transition-github
   pull_request:
     branches:
       - master
@@ -30,7 +29,7 @@ jobs:
   function:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
-    name: package-test-methods
+    name: test-methods
     needs: [linter]
     steps:
       - name: Checkout
@@ -50,7 +49,7 @@ jobs:
   models:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
-    name: package-test-methods
+    name: test-models
     needs: [linter]
     steps:
       - name: Checkout
@@ -72,7 +71,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Enviroment-build
         uses: ./.github/conda-build
-      - name: methods
+      - name: example-large-patways
         run: |
           source activate cobramod
           python3 -m unittest tests/test_glucosinolate.py -v
