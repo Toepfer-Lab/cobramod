@@ -23,10 +23,9 @@ jobs:
         uses: ./.github/conda-build
       - name: linter
         run: |
+          conda activate cobramod
           conda info
-          which python3
-          which python
-          python -m black src/cobramod/ tests/ --line-length=79 --check
+          black src/cobramod/ tests/ --line-length=79 --check
           flake8 src/cobramod/ tests/ --config=.toml
           mypy src/cobramod/ tests/ --config-file=.toml
   function:
@@ -41,6 +40,7 @@ jobs:
         uses: ./.github/conda-build
       - name: methods
         run: |
+          conda activate cobramod
           python3 -m unittest tests/test_creation.py -v
           python3 -m unittest tests/test_extension.py -v
           python3 -m unittest tests/test_graph.py -v
