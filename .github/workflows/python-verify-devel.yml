@@ -12,10 +12,10 @@ defaults:
     shell: bash
     working-directory: .
 jobs:
-  test:
+  linter:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
-    name: Checkout
+    name: package-linter
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,4 +26,22 @@ jobs:
           black src/cobramod/ tests/ --line-length=79 --check
           flake8 src/cobramod/ tests/ --config=.toml
           mypy src/cobramod/ tests/ --config-file=.toml
-
+  function:
+    runs-on: ubuntu-latest
+    container: continuumio/miniconda3
+    name: package-test-methods
+    needs: [linter]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: enviroment-build
+        uses: ./.github/conda-build
+      - name: methods
+        run: |
+          python3 -m unittest tests/test_creation.py -v
+          python3 -m unittest tests/test_extension.py -v
+          python3 -m unittest tests/test_graph.py -v
+          python3 -m unittest tests/test_mod_parser.py -v
+          python3 -m unittest tests/test_parsing.py -v
+          python3 -m unittest tests/test_pathway.py -v
+          python3 -m unittest tests/test_utils.py -v

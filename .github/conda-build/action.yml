@@ -6,6 +6,6 @@ runs:
     - run: |
         conda env create -f environment.yml
         source activate cobramod
-        conda indo
+        conda info
         pip install . -v
       shell: bash
