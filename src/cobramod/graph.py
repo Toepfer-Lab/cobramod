@@ -108,7 +108,7 @@ def _return_verified_graph(
     vertex_dict: dict,
     vertex_set: set,
     avoid_list: Iterable = [],
-    replacement_dict: dict = {},
+    replacement: dict = {},
 ) -> list:
     """
     Returns list with an ordered sequence for a dictionary of edges.
@@ -120,7 +120,7 @@ def _return_verified_graph(
     Args:
         vertex_dict (dict): dictionary with edges
         vertex_set (set): set with all members
-        replacement_dict (dict, optional): original identifiers to be replaced.
+        replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
         avoid_list (Iterable, Optional): original identifiers to avoid in
             graph. Defaults to [].
@@ -138,9 +138,7 @@ def _return_verified_graph(
     graph.append(missing_edges)
     # Fixing sequences from graph
     graph = [
-        list(
-            _replace_item(iterable=sequence, replacement_dict=replacement_dict)
-        )
+        list(_replace_item(iterable=sequence, replacement=replacement))
         for sequence in graph
     ]
     graph = [
@@ -152,18 +150,18 @@ def _return_verified_graph(
 
 
 def return_graph_from_dict(
-    data_dict: dict, avoid_list: Iterable = [], replacement_dict: dict = {}
+    data_dict: dict, avoid_list: Iterable = [], replacement: dict = {}
 ) -> list:
     """
     Returns graph from given data. All sequences are in order.
 
     Args:
         data_dict (dict): pathway data saved in dictionary.
-        replacement_dict (dict, optional): original identifiers to be replaced.
+        replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
         avoid_list (Iterable, Optional): original identifiers to avoid in
             graph. Defaults to [].
-        replacement_dict (dict, optional): original identifiers to be replaced.
+        replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
 
     Returns:
@@ -174,5 +172,5 @@ def return_graph_from_dict(
         vertex_dict=data_dict["PATHWAY"],
         vertex_set=data_dict["SET"],
         avoid_list=avoid_list,
-        replacement_dict=replacement_dict,
+        replacement=replacement,
     )

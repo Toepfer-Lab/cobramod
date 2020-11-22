@@ -1,0 +1,11 @@
+name: "enviroment-build"
+description: "Actions to build conda and install pip"
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        conda env create -f environment.yml
+        source activate cobramod
+        conda info
+        pip install . -v
+      shell: bash

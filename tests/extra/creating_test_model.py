@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import cobra as cb
 from pathlib import Path
-from cobramod.pathways import add_graph_to_model
+from cobramod.extension import add_graph_to_model
 from cobramod.creation import (
     add_meta_from_file,
     add_reactions_from_file,

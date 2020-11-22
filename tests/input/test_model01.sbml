@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" sboTerm="SBO:0000624" level="3" version="1" fbc:required="false">
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" xmlns:groups="http://www.sbml.org/sbml/level3/version1/groups/version1" sboTerm="SBO:0000624" level="3" version="1" fbc:required="false" groups:required="false">
   <model metaid="meta_test_model_v_1_0" id="test_model_v_1_0" name="Test model for cobraMod" fbc:strict="true">
     <listOfUnitDefinitions>
       <unitDefinition id="mmol_per_gDW_per_hr">
@@ -73,12 +73,12 @@
       <species id="M_D_SEDOHEPTULOSE_7_P_c" name="D-sedoheptulose+7-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C7H13O10P1"/>
       <species id="M_XYLULOSE_5_PHOSPHATE_c" name="D-xylulose+5-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C5H9O8P1"/>
       <species id="M_FRUCTOSE_6P_c" name="beta-D-fructofuranose+6-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
-      <species id="M_GLC_1_P_c" name="alpha-D-glucopyranose+1-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
-      <species id="M_UTP_c" name="UTP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C9H11N2O15P3"/>
-      <species id="M_CPD_12575_c" name="UDP-alpha-D-glucose" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C15H22N2O17P2"/>
       <species id="M_D_glucopyranose_6_phosphate_c" name="D-glucopyranose+6-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
+      <species id="M_GLC_1_P_c" name="alpha-D-glucopyranose+1-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C6H11O9P1"/>
+      <species id="M_CPD_12575_c" name="UDP-alpha-D-glucose" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C15H22N2O17P2"/>
       <species id="M_SUCROSE_6P_c" name="sucrose+6F-phosphate" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-2" fbc:chemicalFormula="C12H21O14P1"/>
       <species id="M_UDP_c" name="UDP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-3" fbc:chemicalFormula="C9H11N2O12P2"/>
+      <species id="M_UTP_c" name="UTP" compartment="c" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false" fbc:charge="-4" fbc:chemicalFormula="C9H11N2O15P3"/>
     </listOfSpecies>
     <listOfParameters>
       <parameter sboTerm="SBO:0000626" id="cobra_default_lb" value="-1000" constant="true"/>
@@ -536,17 +536,6 @@
           <speciesReference species="M_GAP_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
-      <reaction id="R_GLUC1PURIDYLTRANS_RXN_c" name="UTP&amp;mdash;glucose-1-phosphate uridylyltransferase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
-        <listOfReactants>
-          <speciesReference species="M_GLC_1_P_c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_UTP_c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="M_CPD_12575_c" stoichiometry="1" constant="true"/>
-          <speciesReference species="M_PPI_c" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-      </reaction>
       <reaction id="R_GAPOXNPHOSPHN_RXN_c" name="glyceraldehyde-3-phosphate dehydrogenase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_GAP_c" stoichiometry="1" constant="true"/>
@@ -601,6 +590,17 @@
           <speciesReference species="M_SUCROSE_c" stoichiometry="1" constant="true"/>
         </listOfReactants>
       </reaction>
+      <reaction id="R_GLUC1PURIDYLTRANS_RXN_c" name="UTP&amp;mdash;glucose-1-phosphate uridylyltransferase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_default_ub">
+        <listOfReactants>
+          <speciesReference species="M_UTP_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_GLC_1_P_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PROTON_c" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="M_CPD_12575_c" stoichiometry="1" constant="true"/>
+          <speciesReference species="M_PPI_c" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+      </reaction>
       <reaction id="R_UDPKIN_RXN_c" name="UDP kinase" reversible="false" fast="false" fbc:lowerFluxBound="cobra_0_bound" fbc:upperFluxBound="cobra_default_ub">
         <listOfReactants>
           <speciesReference species="M_UDP_c" stoichiometry="1" constant="true"/>
@@ -619,5 +619,70 @@
         </fbc:listOfFluxObjectives>
       </fbc:objective>
     </fbc:listOfObjectives>
+    <groups:listOfGroups>
+      <groups:group groups:id="G_PWY__45__381" groups:kind="collection">
+        <groups:listOfMembers>
+          <groups:member groups:name="nitrate reductase" groups:idRef="R_NITRATE_REDUCTASE_NADH_RXN_c"/>
+          <groups:member groups:name="ferredoxin--nitrite reductase" groups:idRef="R_FERREDOXIN_NITRITE_REDUCTASE_RXN_c"/>
+          <groups:member groups:name="glutamine synthetase" groups:idRef="R_GLUTAMINESYN_RXN_c"/>
+        </groups:listOfMembers>
+      </groups:group>
+      <groups:group groups:id="G_PWY__45__6964" groups:kind="collection">
+        <groups:listOfMembers>
+          <groups:member groups:name="glutamine synthetase" groups:idRef="R_GLUTAMINESYN_RXN_c"/>
+          <groups:member groups:name="glutamate synthase (ferredoxin)" groups:idRef="R_GLUTAMATE_SYNTHASE_FERREDOXIN_RXN_c"/>
+        </groups:listOfMembers>
+      </groups:group>
+      <groups:group groups:id="G_PWY__45__5690" groups:kind="collection">
+        <groups:listOfMembers>
+          <groups:member groups:name="citrate hydro-lyase (cis-aconitate-forming)" groups:idRef="R_ACONITATEDEHYDR_RXN_c"/>
+          <groups:member groups:name="D-threo-isocitrate hydro-lyase (cis-aconitate-forming)" groups:idRef="R_ACONITATEHYDR_RXN_c"/>
+          <groups:member groups:name="isocitrate dehydrogenase" groups:idRef="R_ISOCITRATE_DEHYDROGENASE_NAD__43___RXN_c"/>
+          <groups:member groups:name="2-oxoglutarate dehydrogenase" groups:idRef="R_2OXOGLUTARATEDEH_RXN_c"/>
+          <groups:member groups:name="succinyl-CoA synthetase" groups:idRef="R_SUCCCOASYN_RXN_c"/>
+          <groups:member groups:name="succinate dehydrogenase" groups:idRef="R_RXN_14971_c"/>
+          <groups:member groups:name="fumarase C" groups:idRef="R_FUMHYDR_RXN_c"/>
+          <groups:member groups:name="malate dehydrogenase" groups:idRef="R_MALATE_DEH_RXN_c"/>
+          <groups:member groups:name="citrate synthase" groups:idRef="R_CITSYN_RXN_c"/>
+        </groups:listOfMembers>
+      </groups:group>
+      <groups:group groups:id="G_PYRUVDEHYD__45__PWY" groups:kind="collection">
+        <groups:listOfMembers>
+          <groups:member groups:name="lipoate acetyltransferase &lt;i&gt;N&lt;sup&gt;6&lt;/sup&gt;&lt;/i&gt;-(dihydrolipoyl)lysine:NAD+ oxidoreductase" groups:idRef="R_RXN0_1132_c"/>
+          <groups:member groups:name="pyruvate:[dihydrolipoyllysine-residue acetyltransferase]-lipoyllysine 2-oxidoreductase" groups:idRef="R_RXN0_1134_c"/>
+          <groups:member groups:name="lipoate acetyltransferase" groups:idRef="R_RXN0_1133_c"/>
+        </groups:listOfMembers>
+      </groups:group>
+      <groups:group groups:id="G_CALVIN__45__PWY" groups:kind="collection">
+        <groups:listOfMembers>
+          <groups:member groups:name="ribose-5-phosphate isomerase" groups:idRef="R_RIB5PISOM_RXN_c"/>
+          <groups:member groups:name="phosphoribulokinase" groups:idRef="R_PHOSPHORIBULOKINASE_RXN_c"/>
+          <groups:member groups:name="ribulose bisphosphate carboxylase" groups:idRef="R_RIBULOSE_BISPHOSPHATE_CARBOXYLASE_RXN_c"/>
+          <groups:member groups:name="phosphoglycerate kinase" groups:idRef="R_PHOSGLYPHOS_RXN_c"/>
+          <groups:member groups:name="glyceraldehyde-3-phosphate dehydrogenase" groups:idRef="R_1__46__2__46__1__46__13_RXN_c"/>
+          <groups:member groups:name="triose-phosphate isomerase" groups:idRef="R_TRIOSEPISOMERIZATION_RXN_c"/>
+          <groups:member groups:name="sedoheptulose bisphosphate aldolase" groups:idRef="R_SEDOBISALDOL_RXN_c"/>
+          <groups:member groups:name="sedoheptulose bisphosphatase" groups:idRef="R_SEDOHEPTULOSE_BISPHOSPHATASE_RXN_c"/>
+          <groups:member groups:name="transketolase" groups:idRef="R_1TRANSKETO_RXN_c"/>
+          <groups:member groups:name="ribulose-phosphate 3-epimerase" groups:idRef="R_RIBULP3EPIM_RXN_c"/>
+          <groups:member groups:name="fructose-bisphosphate aldolase" groups:idRef="R_F16ALDOLASE_RXN_c"/>
+          <groups:member groups:name="fructose-1,6-bisphosphatase" groups:idRef="R_F16BDEPHOS_RXN_c"/>
+          <groups:member groups:name="transketolase" groups:idRef="R_2TRANSKETO_RXN_c"/>
+        </groups:listOfMembers>
+      </groups:group>
+      <groups:group groups:id="G_SUCSYN__45__PWY" groups:kind="collection">
+        <groups:listOfMembers>
+          <groups:member groups:name="phosphoglycerate kinase" groups:idRef="R_PHOSGLYPHOS_RXN_c"/>
+          <groups:member groups:name="glyceraldehyde-3-phosphate dehydrogenase" groups:idRef="R_GAPOXNPHOSPHN_RXN_c"/>
+          <groups:member groups:name="fructose-bisphosphate aldolase" groups:idRef="R_F16ALDOLASE_RXN_c"/>
+          <groups:member groups:name="fructose-1,6-bisphosphatase" groups:idRef="R_F16BDEPHOS_RXN_c"/>
+          <groups:member groups:name="glucose-6-phosphate isomerase" groups:idRef="R_PGLUCISOM_RXN_c"/>
+          <groups:member groups:name="phosphoglucomutase" groups:idRef="R_PHOSPHOGLUCMUT_RXN_c"/>
+          <groups:member groups:name="sucrose phosphate synthase" groups:idRef="R_SUCROSE_PHOSPHATE_SYNTHASE_RXN_c"/>
+          <groups:member groups:name="sucrose phosphate phosphatase" groups:idRef="R_SUCROSE_PHOSPHATASE_RXN_c"/>
+          <groups:member groups:name="UTP&amp;mdash;glucose-1-phosphate uridylyltransferase" groups:idRef="R_GLUC1PURIDYLTRANS_RXN_c"/>
+        </groups:listOfMembers>
+      </groups:group>
+    </groups:listOfGroups>
   </model>
 </sbml>

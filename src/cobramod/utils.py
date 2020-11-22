@@ -3,18 +3,12 @@ from itertools import chain
 from pathlib import Path
 from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any
 from re import match
+from warnings import catch_warnings, simplefilter, warn
 
-from cobra import Model, DictList
+from cobra import Model, Reaction, DictList
 
 from cobramod.debug import debug_log
-
-
-class WrongParserError(Exception):
-    """
-    Simple Error that should be raised if a method cannot handle the parsing
-    """
-
-    pass
+from cobramod.error import UnbalancedReaction
 
 
 class DataModel(NamedTuple):
@@ -31,6 +25,34 @@ class DataModel(NamedTuple):
     sinks: DictList
 
 
+def check_imbalance(
+    reaction: Reaction, stop_imbalance: bool, show_imbalance: bool
+):
+    """
+    Verifies if given reaction is unbalanced in given model.
+
+    Args:
+        reaction (Reaction): Reaction object to examine.
+        stop_imbalance (bool): If imbalance is found, stop process.
+        show_imbalance (bool): If imbalance is found, show output.
+
+    Raises:
+        UnbalancedReaction: if given reaction is unbalanced.
+    """
+    dict_balance = reaction.check_mass_balance()
+    # Will stop if True
+    if dict_balance != {}:
+        msg = (
+            f"Reaction '{reaction.id}' unbalanced. "
+            f"Results to {dict_balance}. "
+        )
+        if stop_imbalance:
+            raise UnbalancedReaction(reaction=reaction)
+        if show_imbalance:
+            debug_log.warning(msg)
+            warn(message=msg, category=UserWarning)
+
+
 def get_DataList(model: Model) -> DataModel:
     """
     Retrieve all DictList in given model and returns them as a
@@ -40,11 +62,14 @@ def get_DataList(model: Model) -> DataModel:
     # have method copy()
     copy_model = model.copy()
     dict_arguments = dict()
-    dict_list_names = [
-        attribute
-        for attribute in dir(model)
-        if type(getattr(model, attribute)) == DictList
-    ]
+    with catch_warnings():
+        # This is avoid DeprecationWarning when using dir with Model
+        simplefilter(action="ignore")
+        dict_list_names = [
+            attribute
+            for attribute in dir(model)
+            if type(getattr(model, attribute)) == DictList
+        ]
     for attribute in dict_list_names:
         item = getattr(copy_model, attribute)
         dict_arguments[attribute] = item
@@ -53,8 +78,8 @@ def get_DataList(model: Model) -> DataModel:
 
 def get_key_dict(dictionary: dict, pattern: str) -> str:
     """
-    From given pattern, return first key the dictionary that matches or is a
-    sub-string.
+    From given pattern, return the first key of the dictionary that matches it
+    or is a sub-string of it. It will raise a Warning if nothing found.
     """
     for key in dictionary.keys():
         if match(pattern=pattern, string=key):
@@ -89,27 +114,23 @@ def create_replacement(filename: Path) -> dict:
     return replace_dict
 
 
-def _replace_item(
-    iterable: Iterable, replacement_dict: dict = {}
-) -> Generator:
+def _replace_item(iterable: Iterable, replacement: dict = {}) -> Generator:
     """
     For an item in Iterable, replaces it for its corresponding value in
     given dictionary.
 
     Args:
         iterable (Iterable): sequence to modify
-        replacement_dict (dict, optional): original identifiers to be replaced.
+        replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
 
     Yields:
         Generator: Either original keys or the replacements
     """
     for item in iterable:
-        if item in set(chain.from_iterable(replacement_dict.keys())):
-            debug_log.warning(
-                f'Replacing "{item}" with "{replacement_dict[item]}"'
-            )
-            yield replacement_dict[item]
+        if item in set(chain.from_iterable(replacement.keys())):
+            debug_log.warning(f'Replacing "{item}" with "{replacement[item]}"')
+            yield replacement[item]
         else:
             yield item
 
@@ -152,11 +173,14 @@ def _compare(model: Model, comparison: DataModel) -> dict:
     a dictionary with differences.
     """
     difference = dict()
-    dict_list_names = [
-        attribute
-        for attribute in dir(model)
-        if type(getattr(model, attribute)) == DictList
-    ]
+    with catch_warnings():
+        # This is avoid DeprecationWarning when using dir with Model
+        simplefilter(action="ignore")
+        dict_list_names = [
+            attribute
+            for attribute in dir(model)
+            if type(getattr(model, attribute)) == DictList
+        ]
     for dict_list in dict_list_names:
         item = getattr(model, dict_list)
         for key, value in comparison._asdict().items():
@@ -247,6 +271,22 @@ def check_to_write(
     old_values: DataModel,
     basic_info: list,
 ):
+    """
+    Checks if summary should be saved in a filename.
+
+    Args:
+        model (Model): model with recent changes.
+        summary (bool): If True, summary will be saved in given filename.
+        filename (Path): Path with the location of the filename
+        old_values (DataModel): Object with data from previous model. Use
+            method :func:`cobramod.utils.get_DataList`.
+        basic_info (list): Basic information of model. Use method
+            :func:`cobramod.utils.get_basic_info`
+
+    Raises:
+        TypeError: if model is empty
+
+    """
     try:
         if summary:
             sequences = basic_info + get_diff(
@@ -257,4 +297,16 @@ def check_to_write(
             pass
     except TypeError:
         # To avoid empty models
-        debug_log.error("Given Model appear to be empty. Summary skipped")
+        debug_log.error("Given model appears to be empty. Summary skipped")
+
+
+def _path_match(directory: Path, pattern: str) -> Path:
+    """
+    Returns first match as a Path object, given a pattern for a specific
+    directory.
+    """
+    match = directory.glob(pattern=f"**/{pattern}.*")
+    try:
+        return next(match)
+    except StopIteration:
+        raise StopIteration(f"No file found with pattern '{pattern}'")

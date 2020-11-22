@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-from cobramod.debug import debug_log
-from cobramod.utils import get_key_dict
-from cobramod.parsing.base import BaseParser
+from contextlib import suppress
+from json import loads, JSONDecodeError
 from pathlib import Path
 from typing import Any
-import json
+
 import requests
+
+from cobramod.debug import debug_log
+from cobramod.error import WrongParserError
+from cobramod.utils import get_key_dict
+from cobramod.parsing.base import BaseParser
 
 
 def _get_json_bigg(
@@ -39,10 +43,8 @@ def _get_json_bigg(
             f'Searching {object_type} "{identifier}" in directory "BIGG"'
         )
         try:
-            with open(file=filename, mode="r") as f:
-                unformatted_data = f.read()
             debug_log.debug(f"Identifier '{identifier}' found.")
-            return json.loads(s=unformatted_data)
+            return BiggParser._read_file(filename=filename)
         except FileNotFoundError:
             debug_log.debug(
                 f'{object_type.capitalize()} "{identifier}" not found in '
@@ -67,11 +69,25 @@ def _get_json_bigg(
                 )
                 with open(file=filename, mode="w+") as f:
                     f.write(unformatted_data)
-                return json.loads(s=unformatted_data)
+                return loads(s=unformatted_data)
     else:
         msg = "Directory not found"
         debug_log.critical(msg)
         raise NotADirectoryError(msg)
+
+
+def _build_reference(json_data: dict) -> dict:
+    """
+    From the json dictionary, return a dictionary with keys as cross-references
+    and values as their identifiers.
+    """
+    references = json_data["database_links"]
+    try:
+        return {item: references[item][0]["id"] for item in references}
+    except KeyError:
+        raise KeyError(
+            "Problem with given json dictionary. Inform maintainers"
+        )
 
 
 def _p_compound(json_data: dict) -> dict:
@@ -91,6 +107,8 @@ def _p_compound(json_data: dict) -> dict:
         "NAME": json_data["name"],
         "FORMULA": formula,
         "CHARGE": charge,
+        "DATABASE": "BIGG",
+        "XREF": _build_reference(json_data=json_data),
     }
 
 
@@ -126,6 +144,8 @@ def _p_reaction(json_data: dict) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(json_data=json_data)
         ),
+        "DATABASE": "BIGG",
+        "XREF": _build_reference(json_data=json_data),
     }
     return temp_dict
 
@@ -135,17 +155,15 @@ def _get_db_names(data_dict: dict, pattern: str) -> str:
     From the original data of a BiGG JSON, retrieve the corresponding
     identifier for its crossref database.
     """
-    database = get_key_dict(
-        dictionary=data_dict["database_links"], pattern=pattern
-    )
-
     try:
-        container = data_dict["database_links"][database][0]["id"]
-    except KeyError:
+        database = get_key_dict(
+            dictionary=data_dict["database_links"], pattern=pattern
+        )
+        return data_dict["database_links"][database][0]["id"]
+    except Warning:
         msg = "Given database is not found in the crossref section"
         debug_log.error(msg)
         raise KeyError(msg)
-    return container
 
 
 class BiggParser(BaseParser):
@@ -196,27 +214,43 @@ class BiggParser(BaseParser):
             level=debug_level,
             msg=f'Data for "{identifier}" retrieved. ' + msg_extra,
         )
-        return BiggParser._parse(json_data=json_data)
+        return BiggParser._parse(root=json_data)
 
     @staticmethod
-    def _parse(json_data: Any) -> dict:
+    def _parse(root: Any) -> dict:
         """
         Parses the JSON dictionary and returns a dictionary with the most
         important attributes depending of the type of the identifier.
         """
         try:
-            bigg_dict = _p_reaction(json_data=json_data)
-        except KeyError:
-            bigg_dict = _p_compound(json_data=json_data)
-        return bigg_dict
+            for method in (_p_reaction, _p_compound):
+                with suppress(KeyError):
+                    bigg_dict = method(json_data=root)
+            return bigg_dict
+        except TypeError:
+            raise WrongParserError
 
     @staticmethod
     def _return_database(database: str) -> str:
         """
-        Returns name of the database. It will raise a Warning if the database
-        is incorrect.
+        Returns name of the database. It will raise a Error if name is
+        incorrect.
         """
         if database == "BIGG":
             return database
         else:
-            raise Warning(f'Given database "{database}" does not exist')
+            raise WrongParserError
+
+    @staticmethod
+    def _read_file(filename: Path) -> dict:
+        """
+        Reads the given file a returns a JSON dictionary with most important
+        information from it.
+        """
+        try:
+            with open(file=filename, mode="r") as f:
+                unformatted_data = f.read()
+            return loads(s=unformatted_data)
+        except JSONDecodeError:
+            # TODO find exception type
+            raise WrongParserError("Wrong filetype")
