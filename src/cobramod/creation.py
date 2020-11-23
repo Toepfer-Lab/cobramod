@@ -59,7 +59,6 @@ def _fix_name(name: str) -> str:
     Replaces hyphens in given name to underscores. Double hyphens are
     transformed into single underscores
     """
-    name = name.replace("--", "-")
     return name.replace("-", "_")
 
 

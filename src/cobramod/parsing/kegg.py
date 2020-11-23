@@ -362,7 +362,7 @@ class KeggParser(BaseParser):
             with open(file=filename, mode="r") as f:
                 unformatted_data = f.read()
             return _create_dict(raw=unformatted_data)
-        except Exception:
+        except TypeError:
             # TODO find exception type
             raise Warning("Wrong filetype")
 
