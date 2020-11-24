@@ -2,8 +2,11 @@
 from contextlib import suppress
 from pathlib import Path
 from typing import Type
+from re import search
 
-from cobramod.error import WrongParserError
+from cobra import Metabolite
+
+from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
 from cobramod.parsing.kegg import KeggParser
@@ -68,6 +71,37 @@ def get_data(
     )
 
 
+def _retrieve_dict(directory: Path, target: str) -> dict:
+    """
+    Search and return in given directory, specific target and return a
+    dictionary with the parsed infomation.
+    Args:
+        directory (Path): Path to search. This includes subdirectories
+        target (str): Pattern to search.
+
+    Raises:
+        FileNotFoundError: if target cannot be found
+    """
+
+    try:
+        filename = _path_match(directory=directory, pattern=target)
+    except StopIteration:
+        raise FileNotFoundError(
+            f"No file was found with the sub-string {target}"
+        )
+    for parser in BaseParser.__subclasses__():
+        with suppress(WrongParserError, NotImplementedError):
+            data_dict = parser._parse(
+                root=parser._read_file(filename=filename)
+            )["XREF"]
+    try:
+        return data_dict
+    except UnboundLocalError:
+        raise WrongParserError(
+            "No parser could be identified. Please contact maintainers"
+        )
+
+
 def translate(directory: Path, target: str, database: str) -> str:
     """
     Return the identifier of crossref for given target. It can be a metabolite
@@ -83,21 +117,27 @@ def translate(directory: Path, target: str, database: str) -> str:
         FileNotFoundError: If no target can be found
         WrongParserError: If target cannot be properly identified
     """
-    try:
-        filename = _path_match(directory=directory, pattern=target)
-    except StopIteration:
-        raise FileNotFoundError(
-            f"No file was found with the sub-string {target}"
-        )
-    for parser in BaseParser.__subclasses__():
-        with suppress(WrongParserError, NotImplementedError):
-            data_dict = parser._parse(
-                root=parser._read_file(filename=filename)
-            )["XREF"]
+    data_dict = _retrieve_dict(directory=directory, target=target)
     try:
         key = get_key_dict(dictionary=data_dict, pattern=database)
         return data_dict[key]
-    except UnboundLocalError:
-        raise WrongParserError(
+    except PatternNotFound:
+        raise PatternNotFound(
             "No parser could be identified. Please contact maintainers"
         )
+
+
+def _valid_translation(
+    metabolite: Metabolite, pattern: str, directory: Path
+) -> bool:
+    """
+    Check if metabolite identifier can be found as a pattern in given
+    directory.
+    """
+    # Get data from pattern
+    data_dict = _retrieve_dict(directory=directory, target=pattern)
+    # no prefixes, get old format
+    string = metabolite.id[:-2].replace("_", "-")
+    if search(pattern=string, string=str(data_dict.values())):
+        return True
+    return False

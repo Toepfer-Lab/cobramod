@@ -8,7 +8,7 @@ from warnings import catch_warnings, simplefilter, warn
 from cobra import Model, Reaction, DictList
 
 from cobramod.debug import debug_log
-from cobramod.error import UnbalancedReaction
+from cobramod.error import UnbalancedReaction, PatternNotFound
 
 
 class DataModel(NamedTuple):
@@ -63,7 +63,7 @@ def get_DataList(model: Model) -> DataModel:
     copy_model = model.copy()
     dict_arguments = dict()
     with catch_warnings():
-        # This is avoid DeprecationWarning when using dir with Model
+        # This is to avoid DeprecationWarning when using dir with Model
         simplefilter(action="ignore")
         dict_list_names = [
             attribute
@@ -84,7 +84,7 @@ def get_key_dict(dictionary: dict, pattern: str) -> str:
     for key in dictionary.keys():
         if match(pattern=pattern, string=key):
             return str(key)
-    raise Warning("No pattern was found for given dictionary.")
+    raise PatternNotFound("No pattern was found for given dictionary.")
 
 
 def _read_lines(f: TextIO) -> Iterator:

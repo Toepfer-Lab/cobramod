@@ -566,7 +566,7 @@ def _ident_reaction(
 ) -> Generator:
     """
     Tries to identify given dictionary if it includes information of a
-    reaction. If True, it will return a Reaction.
+    reaction. If True, it will yield a Reaction.
 
     Args:
         data_dict (dict): dictionary to examine.
@@ -675,6 +675,7 @@ def create_object(
         database=database,
         debug_level=10,
     )
+    # Since it is only a single item, next() can be used
     for method in (
         _ident_pathway(data_dict=data_dict),
         _ident_metabolite(data_dict=data_dict, compartment=compartment),
@@ -688,6 +689,7 @@ def create_object(
             stop_imbalance=stop_imbalance,
         ),
     ):
+        # Try to return object, unless it cannot be identified
         with suppress(WrongDataError):
             return next(method)
     else:

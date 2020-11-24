@@ -18,6 +18,15 @@ class WrongDataError(Exception):
     pass
 
 
+class PatternNotFound(Exception):
+    """
+    Simple error that should be raised when a pattern is not found in a item.
+    e.g. a substring.
+    """
+
+    pass
+
+
 class UnbalancedReaction(Exception):
     """
     Simple Error that should be raised if a reaction has wrong mass balance.
