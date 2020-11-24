@@ -4,8 +4,6 @@ from pathlib import Path
 from typing import Type
 from re import search
 
-from cobra import Metabolite
-
 from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
@@ -110,10 +108,12 @@ def translate(directory: Path, target: str, database: str) -> str:
     Args:
         directory (Path): Path of stored data.
         target (str): Identifier to search for.
-        database (str): pattern for name of the cross-reference, e.g CAS, BIGG
+        database (str): Pattern for name of the cross-reference, e.g CAS, BIGG.
+
     Returns
         str: corresponding identifier for cross-reference.
-    Raise:
+
+    Raises:
         FileNotFoundError: If no target can be found
         WrongParserError: If target cannot be properly identified
     """
@@ -127,17 +127,14 @@ def translate(directory: Path, target: str, database: str) -> str:
         )
 
 
-def _valid_translation(
-    metabolite: Metabolite, pattern: str, directory: Path
-) -> bool:
+def _valid_translation(identifier: str, pattern: str, directory: Path) -> bool:
     """
-    Check if metabolite identifier can be found as a pattern in given
-    directory.
+    Check if identifier can be found in the cross-reference values
+    for a file with given pattern as a filename in given directory.
     """
     # Get data from pattern
     data_dict = _retrieve_dict(directory=directory, target=pattern)
     # no prefixes, get old format
-    string = metabolite.id[:-2].replace("_", "-")
-    if search(pattern=string, string=str(data_dict.values())):
+    if search(pattern=identifier, string=str(data_dict.values())):
         return True
     return False
