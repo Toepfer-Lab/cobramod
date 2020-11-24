@@ -179,6 +179,29 @@ class UtilsTesting(unittest.TestCase):
         test_path = ui._path_match(directory=dir_data, pattern="accoa_c")
         self.assertRegex(text=str(test_path), expected_regex="accoa_c.json")
 
+    def test__first_item(self):
+        # CASE 1: Reactions Not found
+        test_dict = {"A": "No", "B": "NotFound"}
+        self.assertRaises(
+            KeyError,
+            ui._first_item,
+            first=textbook_kegg.reactions,
+            second=test_dict,
+            revert=True,
+        )
+        # CASE 1: Metabolites
+        test_dict = {"A": "C00058", "B": "NotFound"}
+        test_string = ui._first_item(
+            first=textbook_kegg.metabolites, second=test_dict, revert=True
+        )
+        self.assertEqual(first="C00058", second=test_string)
+        # CASE 2: Reactions
+        test_dict = {"A": "ACALD", "B": "NotFound"}
+        test_string = ui._first_item(
+            first=textbook_kegg.reactions, second=test_dict, revert=False
+        )
+        self.assertEqual(first="ACALD", second=test_string)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -2,7 +2,6 @@
 from contextlib import suppress
 from pathlib import Path
 from typing import Type
-from re import search
 
 from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
@@ -125,16 +124,3 @@ def translate(directory: Path, target: str, database: str) -> str:
         raise PatternNotFound(
             "No parser could be identified. Please contact maintainers"
         )
-
-
-def _valid_translation(identifier: str, pattern: str, directory: Path) -> bool:
-    """
-    Check if identifier can be found in the cross-reference values
-    for a file with given pattern as a filename in given directory.
-    """
-    # Get data from pattern
-    data_dict = _retrieve_dict(directory=directory, target=pattern)
-    # no prefixes, get old format
-    if search(pattern=identifier, string=str(data_dict.values())):
-        return True
-    return False

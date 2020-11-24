@@ -92,52 +92,6 @@ class RetrievalTesting(unittest.TestCase):
         )
         self.assertEqual(first=test_string, second="CHEBI:13712")
 
-    def test__valid_translation(self):
-        # CASE 1a: Checking water from Biocyc to KEGG
-        test_string = "C00001"
-        self.assertTrue(
-            expr=md._valid_translation(
-                identifier=test_string, pattern="WATER", directory=dir_data
-            )
-        )
-        # CASE 1b: Checking water from BIGG to KEGG
-        test_string = "C00001"
-        self.assertTrue(
-            expr=md._valid_translation(
-                identifier=test_string, pattern="h2o", directory=dir_data
-            )
-        )
-        # CASE 1c: Checking water from biocyc to unknown database
-        test_string = "7732-18-5"
-        self.assertTrue(
-            expr=md._valid_translation(
-                identifier=test_string, pattern="WATER", directory=dir_data
-            )
-        )
-        # CASE 2a: Checking Reaction from BIGG to KEGG
-        test_string = "R00228"
-        self.assertTrue(
-            expr=md._valid_translation(
-                identifier=test_string, pattern="ACALD", directory=dir_data
-            )
-        )
-        # CASE 2b: Checking Reaction from Biocyc to KEGG
-        test_string = "R00228"
-        self.assertTrue(
-            expr=md._valid_translation(
-                identifier=test_string,
-                pattern="ACETALD-DEHYDROG-RXN",
-                directory=dir_data,
-            )
-        )
-        # CASE 2c: Checking Reaction from  Unknown (RHEA) to BIGG
-        test_string = "23288"
-        self.assertTrue(
-            expr=md._valid_translation(
-                identifier=test_string, pattern="ACALD", directory=dir_data
-            )
-        )
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

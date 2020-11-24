@@ -310,3 +310,17 @@ def _path_match(directory: Path, pattern: str) -> Path:
         return next(match)
     except StopIteration:
         raise StopIteration(f"No file found with pattern '{pattern}'")
+
+
+def _first_item(first: DictList, second: dict, revert: bool) -> str:
+    """
+    Return the first item from the intersection of a DictList and the values of
+    a dictionary. The identifiers from the DictList can be reverted to their
+    original. Method will raise a KeyError is no intersection is found.
+    """
+    if revert:
+        dict_set = {item.id[:-2].replace("_", "-") for item in first}
+    else:
+        dict_set = {item.id for item in first}
+    common = dict_set.intersection(set(second.values()))
+    return common.pop()
