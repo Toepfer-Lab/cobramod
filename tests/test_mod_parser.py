@@ -3,7 +3,7 @@ from logging import DEBUG
 from pathlib import Path
 import unittest
 
-from cobra import Metabolite
+from cobra import Metabolite, Reaction
 
 import cobramod.mod_parser as md
 from cobramod.debug import debug_log
@@ -95,25 +95,48 @@ class RetrievalTesting(unittest.TestCase):
         self.assertEqual(first=test_string, second="CHEBI:13712")
 
     def test__valid_translation(self):
-        # CASE 1: Checking water from Biocyc to KEGG
+        # CASE 1a: Checking water from Biocyc to KEGG
         test_metabolite = Metabolite(id="C00001_c")
         self.assertTrue(
             expr=md._valid_translation(
                 metabolite=test_metabolite, pattern="WATER", directory=dir_data
             )
         )
-        # CASE 1: Checking water from BIGG to KEGG
+        # CASE 1b: Checking water from BIGG to KEGG
         test_metabolite = Metabolite(id="C00001_c")
         self.assertTrue(
             expr=md._valid_translation(
                 metabolite=test_metabolite, pattern="h2o", directory=dir_data
             )
         )
-        # CASE 2: Checking water from biocyc to unknown database
+        # CASE 1c: Checking water from biocyc to unknown database
         test_metabolite = Metabolite(id="7732_18_5_c")
         self.assertTrue(
             expr=md._valid_translation(
                 metabolite=test_metabolite, pattern="WATER", directory=dir_data
+            )
+        )
+        # CASE 2a: Checking Reaction from BIGG to KEGG
+        test_metabolite = Reaction(id="R00228_c")
+        self.assertTrue(
+            expr=md._valid_translation(
+                metabolite=test_metabolite, pattern="ACALD", directory=dir_data
+            )
+        )
+        # CASE 2b: Checking Reaction from Biocyc to KEGG
+        test_metabolite = Reaction(id="R00228_c")
+        self.assertTrue(
+            expr=md._valid_translation(
+                metabolite=test_metabolite,
+                pattern="ACETALD-DEHYDROG-RXN",
+                directory=dir_data,
+            )
+        )
+        # CASE 2c: Checking Reaction from  Unknown (RHEA) to BIGG
+        test_metabolite = Reaction(id="23288_c")
+        self.assertTrue(
+            expr=md._valid_translation(
+                metabolite=test_metabolite, pattern="ACALD", directory=dir_data
             )
         )
 
