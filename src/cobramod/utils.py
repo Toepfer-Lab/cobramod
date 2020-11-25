@@ -8,7 +8,11 @@ from warnings import catch_warnings, simplefilter, warn
 from cobra import Model, Reaction, DictList
 
 from cobramod.debug import debug_log
-from cobramod.error import UnbalancedReaction, PatternNotFound
+from cobramod.error import (
+    UnbalancedReaction,
+    PatternNotFound,
+    NoIntersectFound,
+)
 
 
 class DataModel(NamedTuple):
@@ -318,9 +322,15 @@ def _first_item(first: DictList, second: dict, revert: bool) -> str:
     a dictionary. The identifiers from the DictList can be reverted to their
     original. Method will raise a KeyError is no intersection is found.
     """
+    # Format
     if revert:
         dict_set = {item.id[:-2].replace("_", "-") for item in first}
+    # No format
     else:
         dict_set = {item.id for item in first}
     common = dict_set.intersection(set(second.values()))
-    return common.pop()
+    # Error if nothing to pop
+    try:
+        return common.pop()
+    except KeyError:
+        raise NoIntersectFound

@@ -22,7 +22,7 @@ class TestGroup(unittest.TestCase):
         members = DictList()
         members.union(
             iterable=[
-                test_model.reactions.ADK1,
+                test_model.reactions.R00127_c,
                 test_model.metabolites.C00084_c,
             ]
         )
@@ -32,19 +32,22 @@ class TestGroup(unittest.TestCase):
         test_serie = test_model.groups.get_by_id("test_group")._filter(
             solution=test_model.optimize(), attribute="fluxes"
         )
-        self.assertEqual(first=test_serie["ADK1"], second=0)
+        self.assertEqual(first=test_serie["R00127_c"], second=0)
         # CASE 2: Shadows prices
         test_serie = test_model.groups.get_by_id("test_group")._filter(
             solution=test_model.optimize(), attribute="shadow_prices"
         )
-        self.assertEqual(first=test_serie["ADK1"], second=0)
+        self.assertEqual(first=test_serie["R00127_c"], second=0)
 
     def test__solution(self):
         # Configuration
         test_model = textbook_kegg.copy()
         members = DictList()
         members.union(
-            iterable=[test_model.reactions.ADK1, test_model.reactions.ACKr]
+            iterable=[
+                test_model.reactions.R00127_c,
+                test_model.reactions.R00315_c,
+            ]
         )
         test_group = pt.Pathway(id="test_group", members=members)
         test_model.add_groups([test_group])
@@ -58,8 +61,8 @@ class TestGroup(unittest.TestCase):
             test_solution.reduced_costs,
             test_solution.shadow_prices,
         ):
-            self.assertTrue(expr="ADK1" in attribute)
-            self.assertTrue(expr="ACKr" in attribute)
+            self.assertTrue(expr="R00127_c" in attribute)
+            self.assertTrue(expr="R00315_c" in attribute)
 
 
 if __name__ == "__main__":

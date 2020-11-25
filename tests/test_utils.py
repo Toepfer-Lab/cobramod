@@ -8,6 +8,7 @@ from cobra import Metabolite, Reaction
 
 from cobramod import create_object
 from cobramod.debug import debug_log
+from cobramod.error import NoIntersectFound
 from cobramod.test import textbook_kegg
 from cobramod.creation import add_reaction
 import cobramod.utils as ui
@@ -183,7 +184,7 @@ class UtilsTesting(unittest.TestCase):
         # CASE 1: Reactions Not found
         test_dict = {"A": "No", "B": "NotFound"}
         self.assertRaises(
-            KeyError,
+            NoIntersectFound,
             ui._first_item,
             first=textbook_kegg.reactions,
             second=test_dict,
@@ -196,11 +197,11 @@ class UtilsTesting(unittest.TestCase):
         )
         self.assertEqual(first="C00058", second=test_string)
         # CASE 2: Reactions
-        test_dict = {"A": "ACALD", "B": "NotFound"}
+        test_dict = {"A": "R00228", "B": "NotFound"}
         test_string = ui._first_item(
-            first=textbook_kegg.reactions, second=test_dict, revert=False
+            first=textbook_kegg.reactions, second=test_dict, revert=True
         )
-        self.assertEqual(first="ACALD", second=test_string)
+        self.assertEqual(first="R00228", second=test_string)
 
 
 if __name__ == "__main__":

@@ -3,6 +3,8 @@ from logging import DEBUG
 from pathlib import Path
 import unittest
 
+from requests import HTTPError
+
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
 import cobramod.parsing.kegg as kg
@@ -46,10 +48,10 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         )
         # CASE 0b: Wrong identifier
         self.assertRaises(
-            Warning,
+            HTTPError,
             kg._get_unformatted_kegg,
             directory=dir_data,
-            identifier="R08618.",
+            identifier="R08618-wrong",
         )
         #
         # CASE 1: Regular reaction

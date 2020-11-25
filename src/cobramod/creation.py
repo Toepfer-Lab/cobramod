@@ -7,9 +7,9 @@ from typing import Union, Generator
 from cobra import Metabolite, Model, Reaction
 
 from cobramod.debug import debug_log
-from cobramod.error import WrongDataError
+from cobramod.error import WrongDataError, NoIntersectFound
 from cobramod.mod_parser import get_data
-from cobramod.utils import _read_lines, check_imbalance
+from cobramod.utils import _read_lines, check_imbalance, _first_item
 
 
 def _create_meta_from_string(line_string: str) -> Metabolite:
@@ -54,6 +54,7 @@ def _create_meta_from_string(line_string: str) -> Metabolite:
     )
 
 
+# TODO: change it to identify if name should be formatted or reverse-formatted
 def _fix_name(name: str) -> str:
     """
     Replaces hyphens in given name to underscores. Double hyphens are
@@ -62,32 +63,54 @@ def _fix_name(name: str) -> str:
     return name.replace("-", "_")
 
 
-def build_metabolite(metabolite_dict: dict, compartment: str) -> Metabolite:
+def build_metabolite(
+    metabolite_dict: dict, compartment: str, model: Model = Model(0)
+) -> Metabolite:
     """
-    Builds and return a metabolite based on data saved as a dictionary.
+    Builds and return a metabolite based on data saved as a dictionary. The
+    method will look in given model if compound is already in the model with
+    another translation.
 
     Args:
-        metabolite_dict: dictionary with data of metabolite
-        compartment: location of the metabolite
+        metabolite_dict (dict): dictionary with data of metabolite
+        compartment (str): location of the metabolite.
+        model (Model): Model to search for equivalents. Defaults to empty Model
 
     Returns:
-        Metabolite: New object based on a dictionary
+        Metabolite: New object based on a dictionary.
 
     Raises:
-        TypeError: If dictionary data does not have metabolite attributes
+        TypeError: If dictionary data does not represent a metabolite.
     """
     if not metabolite_dict["FORMULA"]:
         raise TypeError(
             "Given dictionary does not correspond to a Metabolite."
         )
-    else:
-        return Metabolite(
-            id=f'{_fix_name(name=metabolite_dict["ENTRY"])}_{compartment}',
-            formula=metabolite_dict["FORMULA"],
-            name=metabolite_dict["NAME"],
-            charge=metabolite_dict["CHARGE"],
-            compartment=compartment,
+    identifier = metabolite_dict["ENTRY"]
+    # Try to obtain available translation
+    with suppress(NoIntersectFound, AttributeError):
+        identifier = _first_item(
+            first=model.metabolites,
+            second=metabolite_dict["XREF"],
+            revert=True,
         )
+        # Only return from model if compartment is the same, otherwise
+        # AttributeError
+        identifier = f"{_fix_name(name=identifier)}_{compartment}"
+        debug_log.warning(
+            f"Metabolite '{metabolite_dict['ENTRY']}' found in given model "
+            f"under '{identifier}'"
+        )
+        return model.metabolites.get_by_id(identifier)
+    # Format if above fails
+    identifier = f"{_fix_name(name=identifier)}_{compartment}"
+    return Metabolite(
+        id=identifier,
+        formula=metabolite_dict["FORMULA"],
+        name=metabolite_dict["NAME"],
+        charge=metabolite_dict["CHARGE"],
+        compartment=compartment,
+    )
 
 
 def _check_if_meta_in_model(metabolite: str, model: Model) -> bool:
@@ -141,22 +164,21 @@ def meta_string_to_model(line: str, model: Model, **kwargs):
     Returns:
         Metabolite: New metabolite object
 
-    Deprecated form: add_meta_from_string
     """
-    # Kwargs belongs to query
     if line.count(",") > 1:
         # TODO: to gain perfomance, search for name and then create Metabolite
         new_metabolite = _create_meta_from_string(line_string=line)
     else:
-        # Retrived from databse
+        # Retrieve from databse
         seqment = (part.strip().rstrip() for part in line.split(sep=","))
-        # FIXME: include multiple databases
-        # _identify_database()
+        # FIXME: include multiple databases=_identify_database()
         metabolite_dict = get_data(
             identifier=next(seqment), debug_level=10, **kwargs
         )
         new_metabolite = build_metabolite(
-            metabolite_dict=metabolite_dict, compartment=next(seqment)
+            metabolite_dict=metabolite_dict,
+            compartment=next(seqment),
+            model=model,
         )
     _add_if_not_found_model(model=model, metabolite=new_metabolite)
     return new_metabolite
@@ -203,7 +225,11 @@ def _return_duplicate(data_dict: dict) -> bool:
 
 
 def _build_reaction(
-    data_dict: dict, compartment: str, replacement: dict, **kwargs
+    data_dict: dict,
+    compartment: str,
+    replacement: dict,
+    model: Model,
+    **kwargs,
 ) -> Reaction:
     """
     Creates Reactions object from given dictionary with data. Location of the
@@ -213,11 +239,14 @@ def _build_reaction(
 
     :code:`old_identifier: replacement`
 
+    The method will look in given model if the reaction and/or their
+    corresponding metabolite are already in the model with other identifiers.
     Args:
         data_dict (dict): dictionary with data of a Reaction.
         compartment (str): locations of the reactions
         replacement (dict): original identifiers to be replaced.
             Values are the new identifiers.
+        model (Model): Model to search for equivalents. Defaults to empty Model
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
@@ -225,9 +254,20 @@ def _build_reaction(
 
     Returns:
         Reaction: New reaction based on dictionary
-
-    Deprecated form: _create_base_reaction
     """
+    identifier = data_dict["ENTRY"]
+    # Try to obtain if information is available
+    with suppress(NoIntersectFound, AttributeError):
+        identifier = _first_item(
+            first=model.reactions, second=data_dict["XREF"], revert=True
+        )
+        identifier = f"{_fix_name(name=identifier)}_{compartment}"
+        debug_log.warning(
+            f"Reaction '{data_dict['ENTRY']}' found in given model "
+            f"under '{identifier}'"
+        )
+        return model.reactions.get_by_id(identifier)
+    # Otherwise create from scratch
     reaction = Reaction(
         id=f'{_fix_name(name=data_dict["ENTRY"])}_{compartment}',
         name=data_dict["NAME"],
@@ -320,6 +360,7 @@ def add_reaction(
         directory=directory,
         database=database,
         replacement=replacement,
+        model=model,
     )
     _add_if_no_reaction_model(model=model, reaction=reaction)
 
@@ -593,6 +634,9 @@ def _ident_reaction(
             replacement=replacement,
             database=database,
             compartment=compartment,
+            # Since this method is just to identify, extra arguments are not
+            # important
+            model=Model(0),
         )
         check_imbalance(
             reaction=reaction,
@@ -626,6 +670,8 @@ def _ident_metabolite(data_dict: dict, compartment: str) -> Generator:
         debug_log.info(
             f"Object '{data_dict['ENTRY']}' identified as a metabolite"
         )
+        # Model can be ignore since the idea is to keep it simple for
+        # create_object
         yield build_metabolite(
             metabolite_dict=data_dict, compartment=compartment
         )

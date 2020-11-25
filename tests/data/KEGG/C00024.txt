@@ -1,0 +1,271 @@
+ENTRY       C00024                      Compound
+NAME        Acetyl-CoA;
+            Acetyl coenzyme A
+FORMULA     C23H38N7O17P3S
+EXACT_MASS  809.1258
+MOL_WEIGHT  809.5708
+REACTION    R00209 R00210 R00211 R00212 R00227 R00228 R00229 R00230 
+            R00233 R00235 R00236 R00237 R00238 R00259 R00271 R00351 
+            R00352 R00353 R00354 R00371 R00391 R00393 R00399 R00454 
+            R00472 R00473 R00487 R00586 R00627 R00693 R00705 R00706 
+            R00742 R00743 R00829 R00927 R00928 R00998 R01023 R01089 
+            R01154 R01160 R01177 R01179 R01196 R01204 R01213 R01323 
+            R01359 R01360 R01556 R01624 R01776 R01806 R01807 R01808 
+            R01850 R01889 R01978 R02058 R02152 R02191 R02232 R02387 
+            R02396 R02481 R02569 R02616 R02772 R02837 R02911 R02955 
+            R03017 R03056 R03064 R03065 R03153 R03168 R03230 R03437 
+            R03455 R03552 R03621 R03668 R03760 R03767 R03778 R03858 
+            R03884 R03903 R03910 R03991 R04000 R04024 R04057 R04192 
+            R04316 R04348 R04364 R04386 R04466 R04484 R04723 R04742 
+            R04747 R04950 R05063 R05188 R05190 R05332 R05336 R05351 
+            R05506 R05508 R05509 R05537 R05586 R05672 R05773 R05870 
+            R05876 R06251 R06307 R06311 R06510 R06635 R06735 R06736 
+            R06978 R06997 R07249 R07252 R07253 R07399 R07815 R07832 
+            R07833 R07891 R07895 R07899 R07937 R07953 R08036 R08091 
+            R08095 R08213 R08248 R08250 R08331 R08332 R08386 R08433 
+            R08453 R08530 R08531 R08532 R08619 R08623 R08627 R08631 
+            R08640 R08644 R08680 R08767 R08870 R08871 R08938 R09096 
+            R09317 R09524 R09527 R09622 R09631 R09839 R09842 R09873 
+            R10099 R10100 R10142 R10174 R10200 R10219 R10243 R10253 
+            R10254 R10343 R10473 R10474 R10500 R10514 R10564 R10600 
+            R10614 R10674 R10707 R10745 R10746 R10866 R10893 R11124 
+            R11125 R11182 R11412 R11479 R11671 R11689 R11701 R11708 
+            R11898 R11900 R11902 R11957 R12085 R12242 R12328 R12549 
+            R12561 R12566
+PATHWAY     map00010  Glycolysis / Gluconeogenesis
+            map00020  Citrate cycle (TCA cycle)
+            map00061  Fatty acid biosynthesis
+            map00062  Fatty acid elongation
+            map00071  Fatty acid degradation
+            map00072  Synthesis and degradation of ketone bodies
+            map00254  Aflatoxin biosynthesis
+            map00280  Valine, leucine and isoleucine degradation
+            map00290  Valine, leucine and isoleucine biosynthesis
+            map00300  Lysine biosynthesis
+            map00310  Lysine degradation
+            map00360  Phenylalanine metabolism
+            map00362  Benzoate degradation
+            map00380  Tryptophan metabolism
+            map00410  beta-Alanine metabolism
+            map00430  Taurine and hypotaurine metabolism
+            map00480  Glutathione metabolism
+            map00562  Inositol phosphate metabolism
+            map00620  Pyruvate metabolism
+            map00621  Dioxin degradation
+            map00622  Xylene degradation
+            map00625  Chloroalkane and chloroalkene degradation
+            map00630  Glyoxylate and dicarboxylate metabolism
+            map00640  Propanoate metabolism
+            map00642  Ethylbenzene degradation
+            map00650  Butanoate metabolism
+            map00680  Methane metabolism
+            map00720  Carbon fixation pathways in prokaryotes
+            map00900  Terpenoid backbone biosynthesis
+            map00999  Biosynthesis of various secondary metabolites - part 1
+            map01056  Biosynthesis of type II polyketide backbone
+            map01060  Biosynthesis of plant secondary metabolites
+            map01061  Biosynthesis of phenylpropanoids
+            map01062  Biosynthesis of terpenoids and steroids
+            map01063  Biosynthesis of alkaloids derived from shikimate pathway
+            map01064  Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid
+            map01065  Biosynthesis of alkaloids derived from histidine and purine
+            map01066  Biosynthesis of alkaloids derived from terpenoid and polyketide
+            map01070  Biosynthesis of plant hormones
+            map01100  Metabolic pathways
+            map01110  Biosynthesis of secondary metabolites
+            map01120  Microbial metabolism in diverse environments
+            map01200  Carbon metabolism
+            map01212  Fatty acid metabolism
+            map01220  Degradation of aromatic compounds
+            map01240  Biosynthesis of cofactors
+            map04066  HIF-1 signaling pathway
+            map04152  AMPK signaling pathway
+            map04216  Ferroptosis
+            map04714  Thermogenesis
+            map04725  Cholinergic synapse
+            map04922  Glucagon signaling pathway
+            map04931  Insulin resistance
+            map04976  Bile secretion
+            map05230  Central carbon metabolism in cancer
+MODULE      M00009  Citrate cycle (TCA cycle, Krebs cycle)
+            M00010  Citrate cycle, first carbon oxidation, oxaloacetate => 2-oxoglutarate
+            M00012  Glyoxylate cycle
+            M00013  Malonate semialdehyde pathway, propanoyl-CoA => acetyl-CoA
+            M00030  Lysine biosynthesis, AAA pathway, 2-oxoglutarate => 2-aminoadipate => lysine
+            M00082  Fatty acid biosynthesis, initiation
+            M00085  Fatty acid elongation in mitochondria
+            M00087  beta-Oxidation
+            M00088  Ketone body biosynthesis, acetyl-CoA => acetoacetate/3-hydroxybutyrate/acetone
+            M00095  C5 isoprenoid biosynthesis, mevalonate pathway
+            M00173  Reductive citrate cycle (Arnon-Buchanan cycle)
+            M00307  Pyruvate oxidation, pyruvate => acetyl-CoA
+            M00357  Methanogenesis, acetate => methane
+            M00373  Ethylmalonyl pathway
+            M00374  Dicarboxylate-hydroxybutyrate cycle
+            M00375  Hydroxypropionate-hydroxybutylate cycle
+            M00376  3-Hydroxypropionate bi-cycle
+            M00377  Reductive acetyl-CoA pathway (Wood-Ljungdahl pathway)
+            M00422  Acetyl-CoA pathway, CO2 => acetyl-CoA
+            M00432  Leucine biosynthesis, 2-oxoisovalerate => 2-oxoisocaproate
+            M00433  Lysine biosynthesis, 2-oxoglutarate => 2-oxoadipate
+            M00545  Trans-cinnamate degradation, trans-cinnamate => acetyl-CoA
+            M00569  Catechol meta-cleavage, catechol => acetyl-CoA / 4-methylcatechol => propanoyl-CoA
+            M00579  Phosphate acetyltransferase-acetate kinase pathway, acetyl-CoA => acetate
+            M00608  2-Oxocarboxylic acid chain extension, 2-oxoglutarate => 2-oxoadipate => 2-oxopimelate => 2-oxosuberate
+            M00620  Incomplete reductive citrate cycle, acetyl-CoA => oxoglutarate
+            M00740  Methylaspartate cycle
+            M00849  C5 isoprenoid biosynthesis, mevalonate pathway, archaea
+            M00878  Phenylacetate degradation, phenylaxetate => acetyl-CoA/succinyl-CoA
+ENZYME      1.1.1.-         1.2.1.10        1.2.1.18        1.2.1.27        
+            1.2.1.51        1.2.3.6         1.2.4.1         1.2.7.1         
+            1.2.7.4         1.2.7.11        1.2.7.-         1.8.1.4         
+            2.1.1.258       2.1.3.1         2.1.3.15        2.3.1.1         
+            2.3.1.2         2.3.1.3         2.3.1.4         2.3.1.5         
+            2.3.1.6         2.3.1.7         2.3.1.8         2.3.1.9         
+            2.3.1.10        2.3.1.11        2.3.1.12        2.3.1.16        
+            2.3.1.17        2.3.1.18        2.3.1.27        2.3.1.28        
+            2.3.1.29        2.3.1.30        2.3.1.31        2.3.1.33        
+            2.3.1.34        2.3.1.36        2.3.1.38        2.3.1.44        
+            2.3.1.45        2.3.1.48        2.3.1.53        2.3.1.54        
+            2.3.1.57        2.3.1.59        2.3.1.60        2.3.1.66        
+            2.3.1.67        2.3.1.69        2.3.1.78        2.3.1.79        
+            2.3.1.80        2.3.1.81        2.3.1.82        2.3.1.84        
+            2.3.1.85        2.3.1.86        2.3.1.87        2.3.1.89        
+            2.3.1.102       2.3.1.105       2.3.1.107       2.3.1.108       
+            2.3.1.118       2.3.1.136       2.3.1.150       2.3.1.155       
+            2.3.1.157       2.3.1.160       2.3.1.162       2.3.1.163       
+            2.3.1.165       2.3.1.167       2.3.1.169       2.3.1.174       
+            2.3.1.175       2.3.1.176       2.3.1.178       2.3.1.180       
+            2.3.1.182       2.3.1.183       2.3.1.185       2.3.1.186       
+            2.3.1.189       2.3.1.190       2.3.1.194       2.3.1.195       
+            2.3.1.197       2.3.1.201       2.3.1.202       2.3.1.203       
+            2.3.1.205       2.3.1.209       2.3.1.210       2.3.1.223       
+            2.3.1.224       2.3.1.227       2.3.1.236       2.3.1.237       
+            2.3.1.245       2.3.1.247       2.3.1.263       2.3.1.264       
+            2.3.1.266       2.3.1.267       2.3.1.268       2.3.1.271       
+            2.3.1.276       2.3.1.280       2.3.1.285       2.3.1.-         
+            2.3.3.1         2.3.3.3         2.3.3.6         2.3.3.8         
+            2.3.3.9         2.3.3.10        2.3.3.13        2.3.3.14        
+            2.3.3.16        2.3.3.17        2.3.3.18        2.3.3.19        
+            2.3.3.-         2.3.-.-         2.6.1.33        2.8.3.1         
+            2.8.3.3         2.8.3.8         2.8.3.10        2.8.3.11        
+            2.8.3.12        2.8.3.14        2.8.3.18        2.8.3.19        
+            2.8.3.-         3.1.2.1         4.1.1.9         4.1.2.61        
+            4.1.3.4         4.1.3.24        4.1.3.25        4.1.3.34        
+            4.1.3.35        4.1.3.46        4.1.3.-         6.2.1.1         
+            6.2.1.13        6.4.1.2
+DBLINKS     CAS: 72-89-9
+            PubChem: 3326
+            ChEBI: 15351
+            LIPIDMAPS: LMFA07050281
+            KNApSAcK: C00007259
+            PDB-CCD: ACO
+            3DMET: B04621
+            NIKKAJI: J192.549K
+ATOM        51
+            1   C1a C     8.7724  -20.5800
+            2   C5a C     9.9849  -19.8800
+            3   S2a S    11.1973  -20.5800
+            4   C1b C    12.4097  -19.8800
+            5   C1b C    13.6222  -20.5800
+            6   N1b N    14.8346  -19.8800
+            7   C5a C    16.0470  -20.5800
+            8   C1b C    17.2595  -19.8800
+            9   C1b C    18.4719  -20.5800
+            10  N1b N    19.6844  -19.8800
+            11  C5a C    20.8968  -20.5800
+            12  C1c C    22.1092  -19.8800
+            13  C1d C    23.3217  -20.5800
+            14  C1b C    24.5341  -19.8800
+            15  O2b O    25.7465  -20.5800
+            16  O5a O     9.9849  -18.4802
+            17  O5a O    16.0470  -21.9799
+            18  O5a O    20.8968  -21.9796
+            19  O1a O    22.1092  -18.4800
+            20  C1a C    23.3217  -19.1800
+            21  C1a C    23.3217  -21.9800
+            22  P1b P    27.1465  -20.5800
+            23  O1c O    28.5465  -20.5800
+            24  O1c O    27.1465  -21.9800
+            25  C1y C    20.6500  -15.6100
+            26  C1y C    22.0500  -15.6100
+            27  C1y C    22.4826  -14.2785
+            28  O2x O    21.3500  -13.4556
+            29  C1y C    20.2174  -14.2785
+            30  C1b C    23.8022  -13.8497
+            31  O1a O    19.8271  -16.7426
+            32  O2b O    22.8729  -16.7426
+            33  P1b P    24.2729  -16.7426
+            34  O1c O    24.2729  -15.3426
+            35  O1c O    25.6729  -16.7426
+            36  O1c O    24.2729  -18.1426
+            37  C8y C    16.1000  -12.4600
+            38  C8y C    16.1000  -13.8600
+            39  N4y N    18.5249  -13.8600
+            40  C8x C    18.5249  -12.4600
+            41  N5x N    17.3124  -11.7600
+            42  C8y C    14.8876  -11.7600
+            43  N5x N    13.6751  -12.4600
+            44  C8x C    13.6751  -13.8600
+            45  N5x N    14.8876  -14.5600
+            46  N1a N    14.8876  -10.3602
+            47  O2b O    25.7845  -14.2820
+            48  P1b P    27.1845  -14.2820
+            49  O1c O    27.1845  -12.8820
+            50  O1c O    28.5845  -14.2820
+            51  O2c O    27.1845  -17.5020
+BOND        53
+            1     1   2 1
+            2     2   3 1
+            3     3   4 1
+            4     4   5 1
+            5     5   6 1
+            6     6   7 1
+            7     7   8 1
+            8     8   9 1
+            9     9  10 1
+            10   10  11 1
+            11   11  12 1
+            12   12  13 1
+            13   13  14 1
+            14   14  15 1
+            15    2  16 2
+            16    7  17 2
+            17   11  18 2
+            18   12  19 1 #Down
+            19   13  20 1
+            20   13  21 1
+            21   15  22 1
+            22   22  23 2
+            23   22  24 1
+            24   25  26 1
+            25   26  27 1
+            26   27  28 1
+            27   28  29 1
+            28   25  29 1
+            29   27  30 1 #Down
+            30   25  31 1 #Up
+            31   26  32 1 #Up
+            32   32  33 1
+            33   33  34 1
+            34   33  35 1
+            35   33  36 2
+            36   37  38 2
+            37   38  39 1
+            38   39  40 1
+            39   40  41 2
+            40   37  41 1
+            41   37  42 1
+            42   42  43 2
+            43   43  44 1
+            44   44  45 2
+            45   38  45 1
+            46   42  46 1
+            47   29  39 1 #Down
+            48   30  47 1
+            49   47  48 1
+            50   48  49 1
+            51   48  50 2
+            52   48  51 1
+            53   22  51 1
+///

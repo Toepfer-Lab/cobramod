@@ -46,7 +46,7 @@ def _create_reactions(
     """
 
     debug_log.debug(f"Obtaining data for {sequence}")
-    # From given list (which includes None values), retrieve only Reaction
+    # From given list (which could include None values), retrieve only Reaction
     # Objects.
     for identifier in sequence:
         with suppress(KeyError):
@@ -55,6 +55,7 @@ def _create_reactions(
                 f'Reaction "{identifier}" replaced by '
                 f'"{replacement[identifier]}".'
             )
+        # Check if translation is available
         yield create_object(
             identifier=identifier,
             directory=directory,
@@ -137,6 +138,7 @@ def _has_demand(model: Model, metabolite: str) -> bool:
     )
 
 
+# FIXME: replace and find better name
 def _r_metabolite_boundary(model: Model, metabolite: str, boundary: str):
     """
     Removes given type of boundary reaction for a specified metabolite if it
