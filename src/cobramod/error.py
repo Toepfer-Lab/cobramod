@@ -27,6 +27,15 @@ class PatternNotFound(Exception):
     pass
 
 
+class NoIntersectFound(Exception):
+    """
+    Simple error that should be raised when no intersect is found between two
+    sets.
+    """
+
+    pass
+
+
 class UnbalancedReaction(Exception):
     """
     Simple Error that should be raised if a reaction has wrong mass balance.

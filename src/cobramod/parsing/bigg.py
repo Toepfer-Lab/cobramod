@@ -4,7 +4,7 @@ from json import loads, JSONDecodeError
 from pathlib import Path
 from typing import Any
 
-import requests
+from requests import get, HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
@@ -56,11 +56,14 @@ def _get_json_bigg(
                 f"/{identifier}"
             )
             debug_log.debug(f"Searching in {url_text}")
-            r = requests.get(url_text)
-            if r.status_code == 404:
-                msg = f'"{identifier}" not found as {object_type}'
+            r = get(url_text)
+            if r.status_code >= 400:
+                msg = (
+                    f'"{identifier}" could not be retrieved. Status code: '
+                    f"{r.status_code}"
+                )
                 debug_log.error(msg)
-                raise Warning(msg)
+                raise HTTPError(msg)
             else:
                 unformatted_data = r.text
                 debug_log.info(

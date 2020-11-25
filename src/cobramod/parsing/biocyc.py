@@ -48,7 +48,7 @@ def _p_compound(root: Any) -> dict:
         formula = "X"
         charge = 0
         debug_log.warning(
-            f'Biocyc ID "{identifier}" could not find a chemical formuala. '
+            f'Biocyc ID "{identifier}" could not find a chemical formula. '
             f'Formula set to "X" and charge to 0'
         )
     # For names only

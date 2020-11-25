@@ -4,7 +4,7 @@ from itertools import chain
 from pathlib import Path
 from typing import Generator, Union, Dict, NamedTuple
 
-from requests import get
+from requests import get, HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
@@ -410,7 +410,7 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
             if r.status_code >= 400:
                 msg = f'"{identifier}" not available in "{database}".'
                 debug_log.error(msg)
-                raise Warning(msg)
+                raise HTTPError(msg)
             else:
                 unformatted_data = r.text
                 if len(unformatted_data) == 0:
