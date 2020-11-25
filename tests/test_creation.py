@@ -394,6 +394,32 @@ class ModulTesting(unittest.TestCase):
         self.assertTrue(
             "OXALODECARB_RXN_p" in [rxn.id for rxn in test_model.reactions]
         )
+        # CASE 2: check for equivalent. (Similar to CASE 6b in _build_reaction)
+        test_model = textbook_kegg.copy()
+        cr.add_reaction(
+            model=test_model,
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            replacement={},
+            identifier="ADENODEAMIN-RXN",
+        )
+        test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
+        # WATER
+        self.assertIn(
+            member="C00001_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # PROTON
+        self.assertIn(
+            member="C00080_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # TODO: test more databases
 
     def test__build_dict_for_metabolites(self):
         # CASE 0a: TypeError

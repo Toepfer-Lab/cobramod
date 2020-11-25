@@ -251,7 +251,8 @@ def _build_reaction(
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA".
+        database (str): Name of database.
+            Options: "META", "ARA", "BIGG", "KEGG"
 
     Returns:
         Reaction: New reaction based on dictionary
@@ -346,21 +347,26 @@ def add_reaction(
 
     :code:`old_identifier: replacement`
 
-    Args:
-        model (Model): model
-        identifier (str): identifier
-        directory (Path): directory
-        database (str): database
-        compartment (str): compartment
-        replacement (dict): replacement
+    The method will look in given model if the reaction and/or their
+    corresponding metabolite are already in the model with other identifiers.
 
+    Args:
+        model (Model): Model to add reactions and search for equivalents.
+        identifier (str): Original identifier of the reaction.
+        directory (Path): Directory to search data.
+        database (str): Name of database.
+            Options: "META", "ARA", "BIGG", "KEGG"
+        compartment (str): Location of the reaction.
+        replacement (dict): Original identifiers to be replaced.
     """
+    # Obtain data
     data_dict = get_data(
         directory=directory,
         identifier=identifier,
         database=database,
         debug_level=10,
     )
+    # Transform it
     reaction = _build_reaction(
         data_dict=data_dict,
         compartment=compartment,
@@ -369,6 +375,8 @@ def add_reaction(
         replacement=replacement,
         model=model,
     )
+    # Add to model
+    # TODO: check if this can be restructured
     _add_if_no_reaction_model(model=model, reaction=reaction)
 
 
@@ -722,6 +730,8 @@ def create_object(
         Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
             information for a pathway.
     """
+    # NOTE: since the identification of objects are just to create quick
+    # objects, do not use this method for the module extension.py
     data_dict = get_data(
         directory=directory,
         identifier=identifier,
