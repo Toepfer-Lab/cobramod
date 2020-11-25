@@ -286,7 +286,7 @@ class ModulTesting(unittest.TestCase):
             first=test_reaction.get_coefficient("Aliphatic_Sulfonates_e"),
             second=-1,
         )
-        # CASE 6: Retrieve reaction with translated equivalents
+        # CASE 6a: Retrieve reaction with translated equivalents
         test_data = get_data(
             directory=dir_data,
             identifier="ACALD",
@@ -305,6 +305,38 @@ class ModulTesting(unittest.TestCase):
             model_id="universal",
         )
         self.assertEqual(first=test_reaction.id, second="R00228_c")
+        # CASE 6b: Retrieve reaction with translated equivalents. Check for
+        # metabolites.
+        test_data = get_data(
+            directory=dir_data,
+            identifier="ADENODEAMIN-RXN",
+            database="META",
+            debug_level=10,
+        )
+        # FIXME: find a solution for unformatted identifiers
+        test_reaction = cr._build_reaction(
+            data_dict=test_data,
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            replacement={},
+            model=textbook_kegg,
+        )
+        self.assertEqual(first=test_reaction.id, second="ADENODEAMIN_RXN_c")
+        # WATER
+        self.assertIn(
+            member="C00001_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # PROTON
+        self.assertIn(
+            member="C00080_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
 
     def test__add_reaction_line_to_model(self):
         # CASE 1: using delimiter, compartment is cytosol

@@ -241,6 +241,7 @@ def _build_reaction(
 
     The method will look in given model if the reaction and/or their
     corresponding metabolite are already in the model with other identifiers.
+
     Args:
         data_dict (dict): dictionary with data of a Reaction.
         compartment (str): locations of the reactions
@@ -276,27 +277,33 @@ def _build_reaction(
         # Get rid of prefix r_ and l_
         identifier = identifier[2:]
         # TODO: add option to get metabolites from model
-        # Only if found in replacemente
+        # First, replacement, since the identifier can be already in model
         with suppress(KeyError):
             identifier = replacement[identifier]
             debug_log.warning(
                 f'Metabolite "{identifier}" replaced by '
                 f'"{replacement[identifier]}".'
             )
+        # TODO: check if this part is necesary
+        # Retrieve data for metabolite
         metabolite = get_data(identifier=identifier, debug_level=10, **kwargs)
+        # Checking if transport reaction
         if (
             data_dict["TRANSPORT"]
             and coef < 0
             and _return_duplicate(data_dict=data_dict["EQUATION"])
             == identifier
         ):
-            # FIX: temporary setting to extracellular
+            # FIXME: temporary setting to extracellular
             metabolite = build_metabolite(
-                metabolite_dict=metabolite, compartment="e"
+                metabolite_dict=metabolite, compartment="e", model=model
             )
         else:
+            # No transport
             metabolite = build_metabolite(
-                metabolite_dict=metabolite, compartment=compartment
+                metabolite_dict=metabolite,
+                compartment=compartment,
+                model=model,
             )
         reaction.add_metabolites(metabolites_to_add={metabolite: coef})
         reaction.bounds = data_dict["BOUNDS"]
