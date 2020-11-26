@@ -238,7 +238,7 @@
           <speciesReference species="M_NADH_c" stoichiometry="1" constant="true"/>
         </listOfProducts>
       </reaction>
-      <reaction id="R_FERREDOXIN_NITRITE_REDUCTASE_RXN_c" name="ferredoxin--nitrite reductase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_0_bound">
+      <reaction id="R_FERREDOXIN__NITRITE_REDUCTASE_RXN_c" name="ferredoxin--nitrite reductase" reversible="true" fast="false" fbc:lowerFluxBound="cobra_default_lb" fbc:upperFluxBound="cobra_0_bound">
         <listOfReactants>
           <speciesReference species="M_AMMONIUM_c" stoichiometry="1" constant="true"/>
           <speciesReference species="M_WATER_c" stoichiometry="2" constant="true"/>
@@ -623,7 +623,7 @@
       <groups:group groups:id="G_PWY__45__381" groups:kind="collection">
         <groups:listOfMembers>
           <groups:member groups:name="nitrate reductase" groups:idRef="R_NITRATE_REDUCTASE_NADH_RXN_c"/>
-          <groups:member groups:name="ferredoxin--nitrite reductase" groups:idRef="R_FERREDOXIN_NITRITE_REDUCTASE_RXN_c"/>
+          <groups:member groups:name="ferredoxin--nitrite reductase" groups:idRef="R_FERREDOXIN__NITRITE_REDUCTASE_RXN_c"/>
           <groups:member groups:name="glutamine synthetase" groups:idRef="R_GLUTAMINESYN_RXN_c"/>
         </groups:listOfMembers>
       </groups:group>

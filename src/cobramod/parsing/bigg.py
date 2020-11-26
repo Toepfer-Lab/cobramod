@@ -4,28 +4,66 @@ from json import loads, JSONDecodeError
 from pathlib import Path
 from typing import Any
 
-import requests
+from requests import get, HTTPError, Response
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
-from cobramod.utils import get_key_dict
 from cobramod.parsing.base import BaseParser
 
 
+def _find_url(model_id: str, identifier: str) -> Response:
+    """
+    Trys to find a valid URL for the API of BIGG. It will return a
+    :func:`requests.Response` if URL is valid.
+    object
+
+    Args:
+        model_id (str): Name for the specific BIGG model identifier.
+        identifier (str): Identifier for the item. Can be a reaction or
+            compound
+
+    Returns:
+        Response: a valid request Response.
+
+    Raises:
+        HTTPError: If identifier not found in BIGG.
+    """
+    for object_type in ("reactions", "metabolites"):
+        with suppress(HTTPError):
+            # Check that status is available
+            debug_log.debug(
+                f'{object_type.capitalize()[:-1]} "{identifier}" not found in '
+                f'directory "BIGG", subdirectory "{model_id}".'
+            )
+            # Retrieve from URL
+            url_text = (
+                f"http://bigg.ucsd.edu/api/v2/models/{model_id}/{object_type}"
+                f"/{identifier}"
+            )
+            debug_log.debug(f"Searching in {url_text}")
+            # Get and check for errors
+            r = get(url_text)
+            r.raise_for_status()
+            return r
+    # Otherwise
+    raise HTTPError(f"Identifier '{identifier}' not found in BIGG.")
+
+
 def _get_json_bigg(
-    directory: Path, identifier: str, model_id: str, object_type: str, **kwargs
+    directory: Path, identifier: str, model_id: str, database: str = "BIGG"
 ) -> dict:
     """
     Searchs in given parent directory if data is located in their respective
-    database directory. If not, data will be retrieved from the corresponding
-    database. Returns dictionary from JSON.
+    model_id directory. Else, data will be retrieved from the corresponding
+    model identifier. Returns dictionary from JSON.
 
     Args:
         directory (Path): Path to directory where data is located.
         identifier (str): Identifier for given database.
         model_id (str): Identifier of model for BiGG. Examples: *e_coli_core*,
             *universal*
-        object_type (str): Either 'reaction' or 'metabolite'.
+        database (str, optional): Name of the database and name of directory to
+            store data.
 
     Raises:
         Warning: If object is not available in given database
@@ -35,41 +73,27 @@ def _get_json_bigg(
         dict: directory transformed from a JSON.
     """
     if directory.exists():
-        database = "BIGG"
         data_dir = directory.joinpath(database).joinpath(model_id)
         data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.json")
         debug_log.debug(
-            f'Searching {object_type} "{identifier}" in directory "BIGG"'
+            f'Searching "{identifier}" in directory BIGG, '
+            f"sub-directory {model_id}"
         )
         try:
             debug_log.debug(f"Identifier '{identifier}' found.")
             return BiggParser._read_file(filename=filename)
         except FileNotFoundError:
-            debug_log.debug(
-                f'{object_type.capitalize()} "{identifier}" not found in '
-                f'directory "BIGG", subdirectory "{model_id}".'
+            # It will raise an error by itself if needed
+            r = _find_url(model_id=model_id, identifier=identifier)
+            debug_log.info(
+                f'Object "{identifier}" found. Saving in '
+                f'directory "BIGG", subdirectory "{model_id}"'
             )
-            # Retrieve from URL
-            url_text = (
-                f"http://bigg.ucsd.edu/api/v2/models/{model_id}/{object_type}s"
-                f"/{identifier}"
-            )
-            debug_log.debug(f"Searching in {url_text}")
-            r = requests.get(url_text)
-            if r.status_code == 404:
-                msg = f'"{identifier}" not found as {object_type}'
-                debug_log.error(msg)
-                raise Warning(msg)
-            else:
-                unformatted_data = r.text
-                debug_log.info(
-                    f'Object "{identifier}" found. Saving in '
-                    f'directory "BIGG", subdirectory "{model_id}"'
-                )
-                with open(file=filename, mode="w+") as f:
-                    f.write(unformatted_data)
-                return loads(s=unformatted_data)
+            # r.text is the raw text
+            with open(file=filename, mode="w+") as f:
+                f.write(r.text)
+            return loads(s=r.text)
     else:
         msg = "Directory not found"
         debug_log.critical(msg)
@@ -150,22 +174,6 @@ def _p_reaction(json_data: dict) -> dict:
     return temp_dict
 
 
-def _get_db_names(data_dict: dict, pattern: str) -> str:
-    """
-    From the original data of a BiGG JSON, retrieve the corresponding
-    identifier for its crossref database.
-    """
-    try:
-        database = get_key_dict(
-            dictionary=data_dict["database_links"], pattern=pattern
-        )
-        return data_dict["database_links"][database][0]["id"]
-    except Warning:
-        msg = "Given database is not found in the crossref section"
-        debug_log.error(msg)
-        raise KeyError(msg)
-
-
 class BiggParser(BaseParser):
     @staticmethod
     def _retrieve_data(
@@ -192,27 +200,15 @@ class BiggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
-        try:
-            json_data = _get_json_bigg(
-                directory=directory,
-                database=database,
-                identifier=identifier,
-                object_type="metabolite",
-                **kwargs,
-            )
-            msg_extra = "Identified as a metabolite"
-        except KeyError:
-            json_data = _get_json_bigg(
-                directory=directory,
-                database=database,
-                identifier=identifier,
-                object_type="reaction",
-                **kwargs,
-            )
-            msg_extra = "Identified as a reaction"
+        # It will raise an error for HTTPError
+        json_data = _get_json_bigg(
+            directory=directory,
+            database=database,
+            identifier=identifier,
+            **kwargs,
+        )
         debug_log.log(
-            level=debug_level,
-            msg=f'Data for "{identifier}" retrieved. ' + msg_extra,
+            level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
         return BiggParser._parse(root=json_data)
 

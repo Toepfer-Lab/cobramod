@@ -1,0 +1,127 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:INOSINE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:INOSINE</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:INOSINE" detail="full" frameid="INOSINE" orgid="META"><parent><Compound class="true" frameid="Purine-Ribonucleosides" orgid="META" resource="getxml?META:Purine-Ribonucleosides" /></parent>
+<cml><molecule formalCharge="0" id="INOSINE" title="inosine"><atomArray><atom elementType="C" id="INOSINE-atom1" x2="611.0" y2="2234.0" /><atom elementType="C" id="INOSINE-atom2" x2="3703.0" y2="0.0" /><atom elementType="C" id="INOSINE-atom3" x2="4115.0" y2="2699.0" /><atom elementType="C" id="INOSINE-atom4" x2="1325.0" y2="2647.0" /><atom elementType="C" id="INOSINE-atom5" x2="4528.0" y2="1430.0" /><atom elementType="C" id="INOSINE-atom6" x2="1585.0" y2="3430.0" /><atom elementType="C" id="INOSINE-atom7" x2="2418.0" y2="3430.0" /><atom elementType="C" id="INOSINE-atom8" x2="3703.0" y2="1430.0" /><atom elementType="C" id="INOSINE-atom9" x2="4940.0" y2="715.0" /><atom elementType="C" id="INOSINE-atom10" x2="2733.0" y2="2626.0" /><atom elementType="N" id="INOSINE-atom11" x2="3290.0" y2="715.0" /><atom elementType="N" id="INOSINE-atom12" x2="4528.0" y2="0.0" /><atom elementType="N" id="INOSINE-atom13" x2="4783.0" y2="2214.0" /><atom elementType="N" id="INOSINE-atom14" x2="3448.0" y2="2214.0" /><atom elementType="O" id="INOSINE-atom15" x2="0.0" y2="2596.0" /><atom elementType="O" id="INOSINE-atom16" x2="1172.0" y2="4144.0" /><atom elementType="O" id="INOSINE-atom17" x2="2830.0" y2="4144.0" /><atom elementType="O" id="INOSINE-atom18" x2="5765.0" y2="715.0" /><atom elementType="O" id="INOSINE-atom19" x2="1993.0" y2="2168.0" /></atomArray>
+<bondArray><bond atomRefs="INOSINE-atom7 INOSINE-atom10" id="INOSINE-bond1" order="1" /><bond atomRefs="INOSINE-atom6 INOSINE-atom4" id="INOSINE-bond2" order="1" /><bond atomRefs="INOSINE-atom6 INOSINE-atom7" id="INOSINE-bond3" order="1" /><bond atomRefs="INOSINE-atom19 INOSINE-atom10" id="INOSINE-bond4" order="1" /><bond atomRefs="INOSINE-atom19 INOSINE-atom4" id="INOSINE-bond5" order="1" /><bond atomRefs="INOSINE-atom4 INOSINE-atom1" id="INOSINE-bond6" order="1" /><bond atomRefs="INOSINE-atom10 INOSINE-atom14" id="INOSINE-bond7" order="1" /><bond atomRefs="INOSINE-atom1 INOSINE-atom15" id="INOSINE-bond8" order="1" /><bond atomRefs="INOSINE-atom12 INOSINE-atom2" id="INOSINE-bond9" order="1" /><bond atomRefs="INOSINE-atom2 INOSINE-atom11" id="INOSINE-bond10" order="2" /><bond atomRefs="INOSINE-atom11 INOSINE-atom8" id="INOSINE-bond11" order="1" /><bond atomRefs="INOSINE-atom8 INOSINE-atom5" id="INOSINE-bond12" order="2" /><bond atomRefs="INOSINE-atom5 INOSINE-atom9" id="INOSINE-bond13" order="1" /><bond atomRefs="INOSINE-atom12 INOSINE-atom9" id="INOSINE-bond14" order="1" /><bond atomRefs="INOSINE-atom3 INOSINE-atom13" id="INOSINE-bond15" order="2" /><bond atomRefs="INOSINE-atom5 INOSINE-atom13" id="INOSINE-bond16" order="1" /><bond atomRefs="INOSINE-atom9 INOSINE-atom18" id="INOSINE-bond17" order="2" /><bond atomRefs="INOSINE-atom3 INOSINE-atom14" id="INOSINE-bond18" order="1" /><bond atomRefs="INOSINE-atom14 INOSINE-atom8" id="INOSINE-bond19" order="1" /><bond atomRefs="INOSINE-atom7 INOSINE-atom17" id="INOSINE-bond20" order="1" /><bond atomRefs="INOSINE-atom6 INOSINE-atom16" id="INOSINE-bond21" order="1" /></bondArray>
+<formula concise="C 10 H 12 N 4 O 5" /><float title="molecularWeight" units="g/mol">268.229</float>
+<string title="smiles">C(O)[C@H]3(O[C@@H](N1(C2(\N=C/NC(=O)C(\N=C/1)=2)))[C@H](O)[C@H](O)3)</string>
+</molecule>
+</cml>
+<molecular-weight datatype="float" units="Daltons">268.229</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">268.08078</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-7188" detail="low" frameid="REG-7188" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12187" detail="low" frameid="ENZRXN-12187" orgid="META"><reaction><Reaction frameid="GUANOSINEKIN-RXN" orgid="META" resource="getxml?META:GUANOSINEKIN-RXN" /></reaction>
+<synonym datatype="string">inosine-guanosine kinase</synonym>
+<common-name datatype="string">guanosine kinase</common-name>
+<enzyme><Protein frameid="MONOMER-11773" orgid="META" resource="getxml?META:MONOMER-11773" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="INOSINE" orgid="META" resource="#META:INOSINE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7131" detail="low" frameid="REG-7131" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12143" detail="low" frameid="ENZRXN-12143" orgid="META"><reaction><Reaction frameid="ADENOSYLHOMOCYSTEINASE-RXN" orgid="META" resource="getxml?META:ADENOSYLHOMOCYSTEINASE-RXN" /></reaction>
+<synonym datatype="string">adenosylhomocysteinase</synonym>
+<common-name datatype="string">S-adenosylhomocysteine hydrolase</common-name>
+<enzyme><Protein frameid="CPLX-6976" orgid="META" resource="getxml?META:CPLX-6976" /></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="INOSINE" orgid="META" resource="#META:INOSINE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">hypoxanthine-ribose</synonym>
+<synonym datatype="string">iso-prinosine</synonym>
+<synonym datatype="string">riboxine</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN0-18" orgid="META" resource="getxml?META:RXN0-18" /><Reaction frameid="TRANS-RXN-108G" orgid="META" resource="getxml?META:TRANS-RXN-108G" /><Reaction frameid="INOSINE-NUCLEOSIDASE-RXN" orgid="META" resource="getxml?META:INOSINE-NUCLEOSIDASE-RXN" /><Reaction frameid="NUCLEOSIDE-OXIDASE-RXN" orgid="META" resource="getxml?META:NUCLEOSIDE-OXIDASE-RXN" /><Reaction frameid="INOSINEKIN-RXN" orgid="META" resource="getxml?META:INOSINEKIN-RXN" /><Reaction frameid="RXN-7802" orgid="META" resource="getxml?META:RXN-7802" /><Reaction frameid="INOPHOSPHOR-RXN" orgid="META" resource="getxml?META:INOPHOSPHOR-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-20698" orgid="META" resource="getxml?META:RXN-20698" /><Reaction frameid="RXN0-18" orgid="META" resource="getxml?META:RXN0-18" /><Reaction frameid="TRANS-RXN-108G" orgid="META" resource="getxml?META:TRANS-RXN-108G" /><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="getxml?META:ADENODEAMIN-RXN" /><Reaction frameid="RXN-7607" orgid="META" resource="getxml?META:RXN-7607" /></appears-in-right-side-of>
+<common-name datatype="string">inosine</common-name>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/281/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/281/</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00246</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00246</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM334</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM334</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>135398641</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=135398641</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Inosine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Inosine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>ins</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/ins</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB04335</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB04335</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17596</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17596</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00195</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00195</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>5799</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/5799</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17596</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17596</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00294</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00294</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>58-63-9</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-63-9</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-20.28556<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H12N4O5/c15-1-4-6(16)7(17)10(19-4)14-3-13-5-8(14)11-2-12-9(5)18/h2-4,6-7,10,15-17H,1H2,(H,11,12,18)/t4-,6-,7-,10-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=UGQMRVRMYYASKQ-KQYNXXCUSA-N</inchi-key>
+</Compound>
+</ptools-xml>

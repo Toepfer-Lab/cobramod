@@ -1,0 +1,77 @@
+<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:INOPHOSPHOR-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:INOPHOSPHOR-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:INOPHOSPHOR-RXN" detail="full" frameid="INOPHOSPHOR-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="HYPOXANTHINE" orgid="META" resource="getxml?META:HYPOXANTHINE" /></right>
+<right><Compound frameid="RIBOSE-1P" orgid="META" resource="getxml?META:RIBOSE-1P" /></right>
+<citation><Publication ID="META:PUB-11337031" detail="full" frameid="PUB-11337031" orgid="META"><pubmed-id datatype="string">11337031</pubmed-id>
+<source datatype="string">Pharmacol Ther 88(3);349-425</source>
+<title datatype="string">Purine nucleoside phosphorylases: properties, functions, and clinical aspects.</title>
+<year datatype="integer">2000</year>
+<author datatype="string">Bzowska A</author>
+<author datatype="string">Kulikowska E</author>
+<author datatype="string">Shugar D</author>
+</Publication>
+</citation>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR103347</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR103347</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>27649</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=27649</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01863</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01863</dblink-URL>
+</dblink>
+<ec-number>EC-2.4.2.1</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-8336" detail="low" frameid="ENZRXN0-8336" orgid="META"><reaction><Reaction frameid="INOPHOSPHOR-RXN" orgid="META" resource="#META:INOPHOSPHOR-RXN" /></reaction>
+<common-name datatype="string">inosine phosphorylase</common-name>
+<enzyme><Protein frameid="EG12159-MONOMER" orgid="META" resource="getxml?META:EG12159-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN0-7335" detail="low" frameid="ENZRXN0-7335" orgid="META"><reaction><Reaction frameid="INOPHOSPHOR-RXN" orgid="META" resource="#META:INOPHOSPHOR-RXN" /></reaction>
+<synonym datatype="string">purine nucleoside phosphorylase</synonym>
+<common-name datatype="string">inosine phosphorylase</common-name>
+<enzyme><Protein frameid="XANTHOSINEPHOSPHORY-CPLX" orgid="META" resource="getxml?META:XANTHOSINEPHOSPHORY-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:INOPHOSPHOR-ENZRXN" detail="low" frameid="INOPHOSPHOR-ENZRXN" orgid="META"><reaction><Reaction frameid="INOPHOSPHOR-RXN" orgid="META" resource="#META:INOPHOSPHOR-RXN" /></reaction>
+<common-name datatype="string">inosine phosphorylase</common-name>
+<enzyme><Protein frameid="DEOD-CPLX" orgid="META" resource="getxml?META:DEOD-CPLX" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-17020" detail="low" frameid="ENZRXN-17020" orgid="META"><reaction><Reaction frameid="INOPHOSPHOR-RXN" orgid="META" resource="#META:INOPHOSPHOR-RXN" /></reaction>
+<common-name datatype="string">inosine phosphorylase</common-name>
+<enzyme><Protein frameid="CPLX-6181" orgid="META" resource="getxml?META:CPLX-6181" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">41.468994<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY0-1296" orgid="META" resource="getxml?META:PWY0-1296" /><Pathway frameid="SALVADEHYPOX-PWY" orgid="META" resource="getxml?META:SALVADEHYPOX-PWY" /><Pathway frameid="PWY-6609" orgid="META" resource="getxml?META:PWY-6609" /></in-pathway>
+<left><Compound frameid="INOSINE" orgid="META" resource="getxml?META:INOSINE" /></left>
+<left><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></left>
+</Reaction>
+</ptools-xml>

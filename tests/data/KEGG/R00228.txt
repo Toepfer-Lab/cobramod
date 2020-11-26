@@ -1,0 +1,25 @@
+ENTRY       R00228                      Reaction
+NAME        acetaldehyde:NAD+ oxidoreductase (CoA-acetylating)
+DEFINITION  Acetaldehyde + CoA + NAD+ <=> Acetyl-CoA + NADH + H+
+EQUATION    C00084 + C00010 + C00003 <=> C00024 + C00004 + C00080
+RCLASS      RC00001  C00003_C00004
+            RC00004  C00010_C00024
+            RC01195  C00024_C00084
+ENZYME      1.2.1.10
+PATHWAY     rn00360  Phenylalanine metabolism
+            rn00362  Benzoate degradation
+            rn00620  Pyruvate metabolism
+            rn00621  Dioxin degradation
+            rn00622  Xylene degradation
+            rn01100  Metabolic pathways
+            rn01120  Microbial metabolism in diverse environments
+            rn01220  Degradation of aromatic compounds
+MODULE      M00545  Trans-cinnamate degradation, trans-cinnamate => acetyl-CoA
+            M00569  Catechol meta-cleavage, catechol => acetyl-CoA / 4-methylcatechol => propanoyl-CoA
+ORTHOLOGY   K00132  acetaldehyde dehydrogenase (acetylating) [EC:1.2.1.10]
+            K04021  aldehyde dehydrogenase
+            K04072  acetaldehyde dehydrogenase / alcohol dehydrogenase [EC:1.2.1.10 1.1.1.1]
+            K04073  acetaldehyde dehydrogenase [EC:1.2.1.10]
+            K18366  acetaldehyde/propanal dehydrogenase [EC:1.2.1.10 1.2.1.87]
+DBLINKS     RHEA: 23291
+///

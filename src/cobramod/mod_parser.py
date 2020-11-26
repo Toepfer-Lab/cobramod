@@ -3,7 +3,7 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Type
 
-from cobramod.error import WrongParserError
+from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
 from cobramod.parsing.kegg import KeggParser
@@ -68,21 +68,18 @@ def get_data(
     )
 
 
-def translate(directory: Path, target: str, database: str) -> str:
+def _retrieve_dict(directory: Path, target: str) -> dict:
     """
-    Return the identifier of crossref for given target. It can be a metabolite
-    or a Reaction.
-
+    Search and return in given directory, specific target and return a
+    dictionary with the parsed infomation.
     Args:
-        directory (Path): Path of stored data.
-        target (str): Identifier to search for.
-        database (str): pattern for name of the cross-reference, e.g CAS, BIGG
-    Returns
-        str: corresponding identifier for cross-reference.
-    Raise:
-        FileNotFoundError: If no target can be found
-        WrongParserError: If target cannot be properly identified
+        directory (Path): Path to search. This includes subdirectories
+        target (str): Pattern to search.
+
+    Raises:
+        FileNotFoundError: if target cannot be found
     """
+
     try:
         filename = _path_match(directory=directory, pattern=target)
     except StopIteration:
@@ -95,9 +92,35 @@ def translate(directory: Path, target: str, database: str) -> str:
                 root=parser._read_file(filename=filename)
             )["XREF"]
     try:
-        key = get_key_dict(dictionary=data_dict, pattern=database)
-        return data_dict[key]
+        return data_dict
     except UnboundLocalError:
         raise WrongParserError(
+            "No parser could be identified. Please contact maintainers"
+        )
+
+
+def translate(directory: Path, target: str, database: str) -> str:
+    """
+    Return the identifier of crossref for given target. It can be a metabolite
+    or a Reaction.
+
+    Args:
+        directory (Path): Path of stored data.
+        target (str): Identifier to search for.
+        database (str): Pattern for name of the cross-reference, e.g CAS, BIGG.
+
+    Returns
+        str: corresponding identifier for cross-reference.
+
+    Raises:
+        FileNotFoundError: If no target can be found
+        WrongParserError: If target cannot be properly identified
+    """
+    data_dict = _retrieve_dict(directory=directory, target=target)
+    try:
+        key = get_key_dict(dictionary=data_dict, pattern=database)
+        return data_dict[key]
+    except PatternNotFound:
+        raise PatternNotFound(
             "No parser could be identified. Please contact maintainers"
         )

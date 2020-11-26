@@ -8,7 +8,11 @@ from warnings import catch_warnings, simplefilter, warn
 from cobra import Model, Reaction, DictList
 
 from cobramod.debug import debug_log
-from cobramod.error import UnbalancedReaction
+from cobramod.error import (
+    UnbalancedReaction,
+    PatternNotFound,
+    NoIntersectFound,
+)
 
 
 class DataModel(NamedTuple):
@@ -63,7 +67,7 @@ def get_DataList(model: Model) -> DataModel:
     copy_model = model.copy()
     dict_arguments = dict()
     with catch_warnings():
-        # This is avoid DeprecationWarning when using dir with Model
+        # This is to avoid DeprecationWarning when using dir with Model
         simplefilter(action="ignore")
         dict_list_names = [
             attribute
@@ -84,7 +88,7 @@ def get_key_dict(dictionary: dict, pattern: str) -> str:
     for key in dictionary.keys():
         if match(pattern=pattern, string=key):
             return str(key)
-    raise Warning("No pattern was found for given dictionary.")
+    raise PatternNotFound("No pattern was found for given dictionary.")
 
 
 def _read_lines(f: TextIO) -> Iterator:
@@ -310,3 +314,23 @@ def _path_match(directory: Path, pattern: str) -> Path:
         return next(match)
     except StopIteration:
         raise StopIteration(f"No file found with pattern '{pattern}'")
+
+
+def _first_item(first: DictList, second: dict, revert: bool) -> str:
+    """
+    Return the first item from the intersection of a DictList and the values of
+    a dictionary. The identifiers from the DictList can be reverted to their
+    original. Method will raise a KeyError is no intersection is found.
+    """
+    # Format
+    if revert:
+        dict_set = {item.id[:-2].replace("_", "-") for item in first}
+    # No format
+    else:
+        dict_set = {item.id for item in first}
+    # Error if nothing to pop, or empty Model
+    try:
+        common = dict_set.intersection(set(second.values()))
+        return common.pop()
+    except (KeyError, AttributeError):
+        raise NoIntersectFound

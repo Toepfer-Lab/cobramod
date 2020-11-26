@@ -33,6 +33,8 @@ class ModulTesting(unittest.TestCase):
             replacement={},
             show_imbalance=False,
             stop_imbalance=False,
+            model=Model(0),
+            model_id=None,
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 2: Simple case Kegg
@@ -44,6 +46,8 @@ class ModulTesting(unittest.TestCase):
             replacement={},
             show_imbalance=False,
             stop_imbalance=False,
+            model=Model(0),
+            model_id=None,
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 3a: Showing when unbalanced
@@ -55,6 +59,8 @@ class ModulTesting(unittest.TestCase):
             replacement={},
             show_imbalance=True,
             stop_imbalance=False,
+            model=Model(0),
+            model_id=None,
         )
         self.assertWarns(UserWarning, next, test_list)
         # CASE 3b: Stopping when unbalanced
@@ -66,6 +72,8 @@ class ModulTesting(unittest.TestCase):
             show_imbalance=False,
             stop_imbalance=True,
             replacement={},
+            model=Model(0),
+            model_id=None,
         )
         self.assertRaises(UnbalancedReaction, next, test_list)
 
@@ -383,6 +391,8 @@ class ModulTesting(unittest.TestCase):
                 replacement={},
                 show_imbalance=False,
                 stop_imbalance=False,
+                model=test_model,
+                model_id=None,
             )
         )
         ex._add_sequence(
@@ -409,6 +419,8 @@ class ModulTesting(unittest.TestCase):
                 replacement={},
                 show_imbalance=False,
                 stop_imbalance=False,
+                model=test_model,
+                model_id=None,
             )
         )
         ex._add_sequence(
@@ -446,6 +458,7 @@ class ModulTesting(unittest.TestCase):
             minimum=0.01,
             show_imbalance=False,
             stop_imbalance=False,
+            model_id=None,
         )
         self.assertIn(
             member="M00118",
@@ -468,13 +481,14 @@ class ModulTesting(unittest.TestCase):
             minimum=0.01,
             show_imbalance=False,
             stop_imbalance=False,
+            model_id=None,
         )
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
         )
 
-    def test__add_graph_to_model(self):
+    def test_add_graph_to_model(self):
         # CASE 1: Regular Biocyc
         test_model = textbook_biocyc.copy()
         ex.add_graph_to_model(
@@ -553,6 +567,64 @@ class ModulTesting(unittest.TestCase):
         self.assertIn(
             member="R01063_c",
             container=[reaction.id for reaction in test_model.reactions],
+        )
+        # CASE 5a: Check for translations in pathways
+        test_model = textbook_kegg.copy()
+        ex.add_graph_to_model(
+            model=test_model,
+            graph="SALVADEHYPOX-PWY",
+            database="META",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+        )
+        self.assertGreater(a=test_model.slim_optimize(), b=0)
+        test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
+        self.assertIn(
+            member="C00080_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # CASE 5b: From sequence
+        test_model = textbook_kegg.copy()
+        ex.add_graph_to_model(
+            model=test_model,
+            graph=["ACALD", "MALS"],
+            database="BIGG",
+            model_id="e_coli_core",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+        )
+        ex.add_graph_to_model(
+            model=test_model,
+            graph=["ADENODEAMIN-RXN"],
+            database="META",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+        )
+        test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
+        self.assertGreater(a=test_model.slim_optimize(), b=0)
+        self.assertNotIn(
+            member="ACALD_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        self.assertNotIn(
+            member="MALS_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        # WATER
+        self.assertIn(
+            member="C00001_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # Total of three reactions
+        self.assertEqual(
+            first=len(test_model.groups.get_by_id("custom_group")), second=3
         )
 
 

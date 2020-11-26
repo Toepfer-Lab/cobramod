@@ -3,11 +3,12 @@ from logging import DEBUG
 from pathlib import Path
 import unittest
 
-import cobra as cb
+from cobra import Metabolite, Reaction, Model
 
 from cobramod import creation as cr
-from cobramod.mod_parser import get_data
 from cobramod.debug import debug_log
+from cobramod.mod_parser import get_data
+from cobramod.test import textbook_kegg
 
 # configuration
 debug_log.setLevel(DEBUG)
@@ -26,7 +27,7 @@ class ModulTesting(unittest.TestCase):
         testInput = "MALTOSE_b, MALTOSE[b], b, C12H22O11, 0"
         testMeta = cr._create_meta_from_string(line_string=testInput)
         # Checking that new meta is in Model
-        self.assertIsInstance(testMeta, cb.Metabolite)
+        self.assertIsInstance(testMeta, Metabolite)
         # TODO: verify attributes
 
     def test_build_metabolite(self):
@@ -40,21 +41,44 @@ class ModulTesting(unittest.TestCase):
         test_metabolite = cr.build_metabolite(
             metabolite_dict=test_dict, compartment="c"
         )
-        self.assertIsInstance(obj=test_metabolite, cls=cb.Metabolite)
+        self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
         self.assertEqual(first=test_metabolite.id, second="HOMOMETHIONINE_c")
         self.assertEqual(first=test_metabolite.name, second="L-homomethionine")
         self.assertEqual(first=test_metabolite.formula, second="C6H13N1O2S1")
+        # CASE 2a: Find translation
+        test_dict = get_data(
+            directory=dir_data,
+            identifier="WATER",
+            database="META",
+            debug_level=10,
+        )
+        test_metabolite = cr.build_metabolite(
+            metabolite_dict=test_dict, compartment="c", model=textbook_kegg
+        )
+        self.assertEqual(first=test_metabolite.id, second="C00001_c")
+        # CASE 2b: Find translation (BIGG)
+        test_dict = get_data(
+            directory=dir_data,
+            identifier="h2o",
+            database="BIGG",
+            debug_level=10,
+            model_id="universal",
+        )
+        test_metabolite = cr.build_metabolite(
+            metabolite_dict=test_dict, compartment="c", model=textbook_kegg
+        )
+        self.assertEqual(first=test_metabolite.id, second="C00001_c")
         # TODO: add extra cases, ARA, KEGG
 
     def test_meta_string_to_model(self):
         # CASE 1: retrieval from META
         test_metabolite = cr.meta_string_to_model(
             line="HOMOMETHIONINE, c",
-            model=cb.Model(0),
+            model=Model(0),
             directory=dir_data,
             database="META",
         )
-        self.assertIsInstance(obj=test_metabolite, cls=cb.Metabolite)
+        self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
         self.assertEqual(first=test_metabolite.id, second="HOMOMETHIONINE_c")
         self.assertEqual(first=test_metabolite.name, second="L-homomethionine")
         self.assertEqual(first=test_metabolite.formula, second="C6H13N1O2S1")
@@ -63,7 +87,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 2: custom metabolite
 
     def test_add_meta_from_file(self):
-        test_model = cb.Model(0)
+        test_model = Model(0)
         # Testing if model is not cobra.Model
         self.assertRaises(
             TypeError,
@@ -134,8 +158,9 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             replacement={},
+            model=Model(0),
         )
-        self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
+        self.assertIsInstance(obj=test_reaction, cls=Reaction)
         self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(0, 1000))
         test_list = [
             "PYRUVATE_c",
@@ -160,8 +185,9 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="KEGG",
             replacement={},
+            model=Model(0),
         )
-        self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
+        self.assertIsInstance(obj=test_reaction, cls=Reaction)
         self.assertTupleEqual(
             tuple1=test_reaction.bounds, tuple2=(-1000, 1000)
         )
@@ -189,8 +215,9 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="KEGG",
             replacement={},
+            model=Model(0),
         )
-        self.assertIsInstance(obj=test_reaction, cls=cb.Reaction)
+        self.assertIsInstance(obj=test_reaction, cls=Reaction)
         self.assertTupleEqual(
             tuple1=test_reaction.bounds, tuple2=(-1000, 1000)
         )
@@ -222,6 +249,7 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             replacement={},
+            model=Model(0),
         )
         self.assertIn(
             member="Glucopyranose_p",
@@ -244,6 +272,7 @@ class ModulTesting(unittest.TestCase):
             directory=dir_data,
             database="META",
             replacement={},
+            model=Model(0),
         )
         self.assertIn(
             member="Aliphatic_Sulfonates_e",
@@ -257,10 +286,61 @@ class ModulTesting(unittest.TestCase):
             first=test_reaction.get_coefficient("Aliphatic_Sulfonates_e"),
             second=-1,
         )
+        # CASE 6a: Retrieve reaction with translated equivalents
+        test_data = get_data(
+            directory=dir_data,
+            identifier="ACALD",
+            database="BIGG",
+            debug_level=10,
+            model_id="universal",
+        )
+        # FIXME: find a solution for unformatted identifiers
+        test_reaction = cr._build_reaction(
+            data_dict=test_data,
+            compartment="c",
+            directory=dir_data,
+            database="BIGG",
+            replacement={},
+            model=textbook_kegg,
+            model_id="universal",
+        )
+        self.assertEqual(first=test_reaction.id, second="R00228_c")
+        # CASE 6b: Retrieve reaction with translated equivalents. Check for
+        # metabolites.
+        test_data = get_data(
+            directory=dir_data,
+            identifier="ADENODEAMIN-RXN",
+            database="META",
+            debug_level=10,
+        )
+        # FIXME: find a solution for unformatted identifiers
+        test_reaction = cr._build_reaction(
+            data_dict=test_data,
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            replacement={},
+            model=textbook_kegg,
+        )
+        self.assertEqual(first=test_reaction.id, second="ADENODEAMIN_RXN_c")
+        # WATER
+        self.assertIn(
+            member="C00001_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # PROTON
+        self.assertIn(
+            member="C00080_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
 
     def test__add_reaction_line_to_model(self):
         # CASE 1: using delimiter, compartment is cytosol
-        test_model = cb.Model(0)
+        test_model = Model(0)
         test_line = (
             "RXN_17742_c, RXN_17742_c |"
             "Oxidized-ferredoxins_c:-1, Reduced-ferredoxins_c: 1"
@@ -275,7 +355,7 @@ class ModulTesting(unittest.TestCase):
             "RXN_17742_c" in [reaction.id for reaction in test_model.reactions]
         )
         # CASE 2: No delimiter
-        test_model = cb.Model(0)
+        test_model = Model(0)
         test_line = "RXN-14462, c"
         cr._add_reaction_line_to_model(
             line=test_line,
@@ -287,7 +367,7 @@ class ModulTesting(unittest.TestCase):
             "RXN_14462_c" in [reaction.id for reaction in test_model.reactions]
         )
         # CASE 2: No delimiter, compartment p
-        test_model = cb.Model(0)
+        test_model = Model(0)
         test_line = "RXN-14462, p"
         cr._add_reaction_line_to_model(
             line=test_line,
@@ -301,7 +381,7 @@ class ModulTesting(unittest.TestCase):
 
     def test_add_reaction(self):
         # CASE 1: Regular META reaction
-        test_model = cb.Model(0)
+        test_model = Model(0)
         test_model.compartments = {"e": "extracellular", "p": "plastid"}
         cr.add_reaction(
             model=test_model,
@@ -314,6 +394,32 @@ class ModulTesting(unittest.TestCase):
         self.assertTrue(
             "OXALODECARB_RXN_p" in [rxn.id for rxn in test_model.reactions]
         )
+        # CASE 2: check for equivalent. (Similar to CASE 6b in _build_reaction)
+        test_model = textbook_kegg.copy()
+        cr.add_reaction(
+            model=test_model,
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            replacement={},
+            identifier="ADENODEAMIN-RXN",
+        )
+        test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
+        # WATER
+        self.assertIn(
+            member="C00001_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # PROTON
+        self.assertIn(
+            member="C00080_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
+        )
+        # TODO: test more databases
 
     def test__build_dict_for_metabolites(self):
         # CASE 0a: TypeError
@@ -358,7 +464,7 @@ class ModulTesting(unittest.TestCase):
                 [
                     ReactionTest.id == "GLC_cb",
                     ReactionTest.name == "Glucose Transport",
-                    isinstance(ReactionTest, cb.Reaction),
+                    isinstance(ReactionTest, Reaction),
                 ]
             )
         )
@@ -376,7 +482,7 @@ class ModulTesting(unittest.TestCase):
         self.assertEqual(1, ReactionTest.get_coefficient("GLC_b"))
 
     def test_add_reactions_from_file(self):
-        test_model = cb.Model(0)
+        test_model = Model(0)
         cr.add_reactions_from_file(
             model=test_model,
             filename=dir_input.joinpath("rxnToAdd_01_normal.txt"),
@@ -397,7 +503,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             database="META",
         )
-        self.assertIsInstance(obj=test_object, cls=cb.Metabolite)
+        self.assertIsInstance(obj=test_object, cls=Metabolite)
         self.assertEqual(first=test_object.compartment, second="c")
         # CASE 1b: metabolite from kegg
         test_object = cr.create_object(
@@ -406,7 +512,7 @@ class ModulTesting(unittest.TestCase):
             compartment="p",
             database="KEGG",
         )
-        self.assertIsInstance(obj=test_object, cls=cb.Metabolite)
+        self.assertIsInstance(obj=test_object, cls=Metabolite)
         self.assertEqual(first=test_object.compartment, second="p")
         # CASE 2a: reaction from metacyc
         test_object = cr.create_object(
@@ -415,7 +521,7 @@ class ModulTesting(unittest.TestCase):
             compartment="p",
             database="META",
         )
-        self.assertIsInstance(obj=test_object, cls=cb.Reaction)
+        self.assertIsInstance(obj=test_object, cls=Reaction)
         self.assertIn(member="p", container=test_object.compartments)
         # CASE 2b: reaction from KEGG
         test_object = cr.create_object(
@@ -424,7 +530,7 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             database="KEGG",
         )
-        self.assertIsInstance(obj=test_object, cls=cb.Reaction)
+        self.assertIsInstance(obj=test_object, cls=Reaction)
         self.assertIn(member="c", container=test_object.compartments)
         # CASE 3a: pathway from metacyc
         test_object = cr.create_object(
