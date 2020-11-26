@@ -3,13 +3,13 @@ from logging import DEBUG
 from pathlib import Path
 import unittest
 
-from requests import HTTPError
+from requests import HTTPError, Response
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
-import cobramod.parsing.kegg as kg
-import cobramod.parsing.biocyc as bc
-import cobramod.parsing.bigg as bi
+from cobramod.parsing import kegg as kg
+from cobramod.parsing import biocyc as bc
+from cobramod.parsing import bigg as bi
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -151,20 +151,28 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=13)
         self.assertEqual(first=len(test_dict["SET"]), second=14)
 
+    def test__find_url(self):
+        # CASE 1: Positive request
+        test_response = bi._find_url(
+            model_id="e_coli_core", identifier="ACALD"
+        )
+        self.assertIsInstance(obj=test_response, cls=Response)
+        # CASE 2: Negative request
+        self.assertRaises(
+            HTTPError,
+            bi._find_url,
+            model_id="e_coli_core",
+            identifier="Invalid",
+        )
+
     def test__get_json_bigg(self):
         # CASE 0
         test_data = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="accoa_c",
-            model_id="e_coli_core",
-            object_type="metabolite",
+            directory=dir_data, identifier="accoa_c", model_id="e_coli_core"
         )
         # CASE 1: Regular reaction from ecoli
         test_data = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="ACALD",
-            model_id="e_coli_core",
-            object_type="reaction",
+            directory=dir_data, identifier="ACALD", model_id="e_coli_core"
         )
         bi._p_reaction(json_data=test_data)
         self.assertIsInstance(obj=test_data, cls=dict)
@@ -174,10 +182,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertEqual(first=len(test_data["metabolites"]), second=6)
         # CASE 2: Regular metabolite from universal
         test_data = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="accoa",
-            model_id="universal",
-            object_type="metabolite",
+            directory=dir_data, identifier="accoa", model_id="universal"
         )
         self.assertIsInstance(obj=test_data, cls=dict)
         self.assertEqual(
@@ -189,53 +194,32 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertRaises(WrongParserError, bi.BiggParser._parse, str())
         # CASE 1: Regular universal reaction
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="ACALD",
-            model_id="universal",
-            object_type="reaction",
+            directory=dir_data, identifier="ACALD", model_id="universal"
         )
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         # CASE 2: Regular universal metabolite
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="coa",
-            model_id="universal",
-            object_type="metabolite",
+            directory=dir_data, identifier="coa", model_id="universal"
         )
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         self.assertEqual(first="C21H32N7O16P3S", second=test_dict["FORMULA"])
         # CASE 3: Ecoli reaction
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="PDH",
-            model_id="e_coli_core",
-            object_type="reaction",
+            directory=dir_data, identifier="PDH", model_id="e_coli_core"
         )
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         # CASE 4: Ecoli metabolite
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="co2_c",
-            model_id="e_coli_core",
-            object_type="metabolite",
+            directory=dir_data, identifier="co2_c", model_id="e_coli_core"
         )
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         self.assertEqual(first="CO2", second=test_dict["FORMULA"])
-
-    # def test__get_db_names(self):
-    #     test_dict = kg._create_dict(
-    #         raw=kg._get_unformatted_kegg(
-    #             directory=dir_data, identifier="C00073"
-    #         )
-    #     )
-    #     test_string = kg._get_db_names(data_dict=test_dict, pattern="ChEBI")
-    #     self.assertEqual(first=test_string, second="16643")
 
 
 if __name__ == "__main__":
