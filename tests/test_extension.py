@@ -597,6 +597,15 @@ class ModulTesting(unittest.TestCase):
             compartment="c",
             show_imbalance=False,
         )
+        ex.add_graph_to_model(
+            model=test_model,
+            graph=["ADENODEAMIN-RXN"],
+            database="META",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+        )
+        test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertNotIn(
             member="ACALD_c",
@@ -605,6 +614,13 @@ class ModulTesting(unittest.TestCase):
         self.assertNotIn(
             member="MALS_c",
             container=[reaction.id for reaction in test_model.reactions],
+        )
+        # WATER
+        self.assertIn(
+            member="C00001_c",
+            container=[
+                metabolite.id for metabolite in test_reaction.metabolites
+            ],
         )
 
 
