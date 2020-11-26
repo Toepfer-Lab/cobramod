@@ -622,6 +622,10 @@ class ModulTesting(unittest.TestCase):
                 metabolite.id for metabolite in test_reaction.metabolites
             ],
         )
+        # Total of three reactions
+        self.assertEqual(
+            first=len(test_model.groups.get_by_id("custom_group")), second=3
+        )
 
 
 if __name__ == "__main__":
