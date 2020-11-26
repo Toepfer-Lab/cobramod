@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Union, Generator, Iterable
 
 from cobra import Model, Reaction
+from requests import HTTPError
 
 from cobramod.creation import create_object
 from cobramod.debug import debug_log
@@ -22,6 +23,8 @@ def _create_reactions(
     show_imbalance: bool,
     stop_imbalance: bool,
     replacement: dict,
+    model: Model,
+    model_id: str,
 ) -> Generator:
     """
     For each identifier in the sequence, a Reaction will be created. It returns
@@ -40,6 +43,8 @@ def _create_reactions(
             Values are the new identifiers.
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
+        model_id (str): Exclusive for BIGG. Retrieve object from specified
+            model.
 
     Returns:
         Generator: A generator to that gives the reactions.
@@ -64,6 +69,8 @@ def _create_reactions(
             replacement=replacement,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
+            model=model,
+            model_id=model_id,
         )
 
 
@@ -188,7 +195,7 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
     Raises:
         Warning: If a metabolite is found in given ignore list.
     """
-    debug_log.debug(f'Checking "{metabolite}" in for sinks and demands')
+    debug_log.debug(f'Checking "{metabolite}" for sinks and demands')
     if metabolite in ignore_list:
         msg = f'Metabolite "{metabolite}" ignored'
         debug_log.warning(msg)
@@ -292,8 +299,8 @@ def test_solution(
     ignore_list: list = [],
 ):
     """
-    Checks if optimized objective function value for given model lies between
-    a determinated range. Function is recursive and checks if sink reactions
+    Checks if optimized objective function value for given model has a minimum
+    value. Function is recursive and checks if sink reactions
     are enough or exceeded. It creates a demand reaction for reaction for the
     test and removes it, if necesary.
 
@@ -346,6 +353,7 @@ def test_solution(
     else:
         # if works, pass and return old objective
         debug_log.debug(f'Reaction "{reaction}" showed a feasible answer.')
+        # Remove old demand
         _r_metabolite_boundary(
             model=model, metabolite=next_demand, boundary="demand"
         )
@@ -386,6 +394,7 @@ def _add_sequence(
         pathway = model.groups.get_by_id(identifier)
     else:
         pathway = Pathway(id=identifier)
+    # Add sequence to model
     for rxn in sequence:
         if rxn.id in avoid_list:
             debug_log.warning(
@@ -393,7 +402,7 @@ def _add_sequence(
             )
             continue
         # FIXME: avoid if statements for perfomance improvement
-        if rxn.id not in model.reactions:
+        if rxn.id not in [reaction.id for reaction in model.reactions]:
             model.add_reactions([rxn])
             debug_log.info(f'Reaction "{rxn.id}" added to model')
             debug_log.debug(
@@ -409,7 +418,7 @@ def _add_sequence(
             # FIXME: avoid creating reaction
             debug_log.info(f'Reaction "{rxn.id}" was found in model')
     pathway.add_members(new_members=sequence)
-    debug_log.debug(f'All reactions" added to group "{pathway.id}"')
+    debug_log.debug(f'All reactions added to group "{pathway.id}"')
     if identifier not in [group.id for group in model.groups]:
         model.add_groups(group_list=[pathway])
         debug_log.debug("Pathway added to Model")
@@ -427,6 +436,7 @@ def _from_data(
     minimum: float,
     stop_imbalance: bool,
     show_imbalance: bool,
+    model_id: str,
 ):
     """"
     Adds a pathway into given model from a dictinary with the information of
@@ -450,12 +460,16 @@ def _from_data(
         minimun (float): Minimum optimized value to pass in every single test.
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model. Pathway are not available.
+            Defaults to: "universal"
     """
     # A graph can have multple routes, depending on how many end-metabolites.
     graph = return_graph_from_dict(
         data_dict=data_dict, avoid_list=avoid_list, replacement=replacement
     )
     for sequence in graph:
+        # Data storage is handled by method
         sequence = list(
             _create_reactions(
                 sequence=sequence,
@@ -465,8 +479,11 @@ def _from_data(
                 replacement=replacement,
                 stop_imbalance=stop_imbalance,
                 show_imbalance=show_imbalance,
+                model=model,
+                model_id=model_id,
             )
         )
+        # Add to model
         _add_sequence(
             model=model,
             identifier=data_dict["ENTRY"],
@@ -491,6 +508,7 @@ def _from_sequence(
     stop_imbalance: bool,
     show_imbalance: bool,
     minimum: float,
+    model_id: str,
 ):
     """
     Adds a sequence of identifiers to given model. It will automatically test
@@ -513,7 +531,10 @@ def _from_sequence(
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
         minimun (float): Minimum optimized value to pass in every single test.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model. Pathway are not available.
     """
+    # Data storage is managed by the function
     sequence = list(
         _create_reactions(
             sequence=sequence,
@@ -523,8 +544,11 @@ def _from_sequence(
             directory=directory,
             stop_imbalance=stop_imbalance,
             show_imbalance=show_imbalance,
+            model=model,
+            model_id=model_id,
         )
     )
+    # Append to model
     _add_sequence(
         model=model,
         sequence=sequence,
@@ -550,6 +574,7 @@ def add_graph_to_model(
     minimum: float = 0.1,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
+    model_id: str = "universal",
 ):
     """
     Adds given graph for a pathway identifier or a sequence of reactions
@@ -563,32 +588,41 @@ def add_graph_to_model(
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database.
         compartment: Location of the reactions.
-        group (str): Common :func:`cobramod.pathway.Pathway` identifier.
-        avoid_list (list): A sequence of formatted reactions to
-            avoid adding to the model. This is useful for long pathways,
-            where X reactions need to be excluded.
-        replacement (dict): Original identifiers to be replaced.
+        group (str, optional): Common :func:`cobramod.pathway.Pathway`
+            identifier.
+        avoid_list (list, optional): A sequence of formatted reactions to avoid
+            adding to the model. This is useful for long pathways, where X
+            reactions need to be excluded.
+        replacement (dict, optional): Original identifiers to be replaced.
             Values are the new identifiers.
-        ignore_list (list): A sequence of formatted metabolite to ignore
-            when testing new reactions.
+        ignore_list (list, optional): A sequence of formatted metabolite to
+            ignore when testing new reactions.
         filename (Path): Location for the summary. Defaults to
             Path.cwd().joinpath("summary.txt")
-        summary (bool): True to write summary in file. Defaults to True.
-        minimun (float): Minimum optimized value to pass in every single test.
-            Defaults to 0.1
-        stop_imbalance (bool): If unbalanced reaction is found, stop process.
-            Defaults to False.
-        show_imbalance (bool): If unbalanced reaction is found, show output.
-            Defaults to True.
+        summary (bool, optional): True to write summary in file. Defaults to
+            True.
+        minimum (float, optional): Minimum optimized value to pass in every
+            single test. Defaults to 0.1
+        stop_imbalance (bool, optional): If unbalanced reaction is found, stop
+            process. Defaults to False.
+        show_imbalance (bool, optional): If unbalanced reaction is found, show
+            output. Defaults to True.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model. Pathway are not available.
+            Defaults to: "universal"
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
+    # Retrieve information for summary methods
     basic_info = get_basic_info(model=model)
     old_values = get_DataList(model=model)
     try:
         # From identifier
         data_dict = get_data(
-            directory=directory, identifier=str(graph), database=database
+            directory=directory,
+            identifier=str(graph),
+            database=database,
+            model_id=model_id,
         )
         _from_data(
             model=model,
@@ -602,8 +636,10 @@ def add_graph_to_model(
             minimum=minimum,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
+            model_id=model_id,
         )
-    except Warning:
+    # TODO: replace Warning for specific error
+    except (HTTPError, Warning):
         # From Reaction
         _from_sequence(
             model=model,
@@ -618,10 +654,12 @@ def add_graph_to_model(
             minimum=minimum,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
+            model_id=model_id,
         )
     except TypeError:
         raise Warning("Argument 'graph' must be iterable or a identifier")
     finally:
+        # Print summary
         check_to_write(
             model=model,
             summary=summary,

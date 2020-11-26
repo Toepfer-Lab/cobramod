@@ -88,14 +88,14 @@ def build_metabolite(
         )
     identifier = metabolite_dict["ENTRY"]
     # Try to obtain available translation
-    with suppress(NoIntersectFound, AttributeError):
+    with suppress(NoIntersectFound, KeyError):
         identifier = _first_item(
             first=model.metabolites,
             second=metabolite_dict["XREF"],
             revert=True,
         )
         # Only return from model if compartment is the same, otherwise
-        # AttributeError
+        # KeyError
         identifier = f"{_fix_name(name=identifier)}_{compartment}"
         debug_log.warning(
             f"Metabolite '{metabolite_dict['ENTRY']}' found in given model "
@@ -259,7 +259,7 @@ def _build_reaction(
     """
     identifier = data_dict["ENTRY"]
     # Try to obtain if information is available
-    with suppress(NoIntersectFound, AttributeError):
+    with suppress(NoIntersectFound, KeyError):
         identifier = _first_item(
             first=model.reactions, second=data_dict["XREF"], revert=True
         )
@@ -433,7 +433,8 @@ def create_custom_reaction(
     """
     For given string, which includes the information of the Reaction and its
     metabolites. If metabolites are not in given model, it will be retrieved
-    from specified database.
+    from specified database. Method will also search for translated metabolites
+    in the model.
 
     Syntax:
 
@@ -493,7 +494,7 @@ def create_custom_reaction(
                 debug_level=10,
             )
             metabolite = build_metabolite(
-                metabolite_dict=data_dict, compartment=compartment
+                metabolite_dict=data_dict, compartment=compartment, model=model
             )
         new_reaction.add_metabolites({metabolite: coef})
     # FIXME: making all reversible
@@ -619,6 +620,7 @@ def _ident_reaction(
     compartment: str,
     show_imbalance: bool,
     stop_imbalance: bool,
+    model: Model,
 ) -> Generator:
     """
     Tries to identify given dictionary if it includes information of a
@@ -649,9 +651,7 @@ def _ident_reaction(
             replacement=replacement,
             database=database,
             compartment=compartment,
-            # Since this method is just to identify, extra arguments are not
-            # important
-            model=Model(0),
+            model=model,
         )
         check_imbalance(
             reaction=reaction,
@@ -666,7 +666,9 @@ def _ident_reaction(
         raise WrongDataError("Data does not belong to a reaction.")
 
 
-def _ident_metabolite(data_dict: dict, compartment: str) -> Generator:
+def _ident_metabolite(
+    data_dict: dict, compartment: str, model: Model
+) -> Generator:
     """
     Tries to identify given dictionary if its includes metabolite information,
     and transforms it into a metabolite in a generator
@@ -685,10 +687,8 @@ def _ident_metabolite(data_dict: dict, compartment: str) -> Generator:
         debug_log.info(
             f"Object '{data_dict['ENTRY']}' identified as a metabolite"
         )
-        # Model can be ignore since the idea is to keep it simple for
-        # create_object
         yield build_metabolite(
-            metabolite_dict=data_dict, compartment=compartment
+            metabolite_dict=data_dict, compartment=compartment, model=model
         )
     except KeyError:
         raise WrongDataError("Data does not belong to a metabolite")
@@ -702,6 +702,8 @@ def create_object(
     replacement: dict = {},
     show_imbalance: bool = True,
     stop_imbalance: bool = False,
+    model: Model = Model(0),
+    model_id="universal",
 ) -> Union[Reaction, Metabolite, dict]:
     """
     Creates and returns COBRApy object based on given identifier and database.
@@ -711,37 +713,42 @@ def create_object(
     underscores.
 
     Args:
-        identifier (str): original identifier for database
-        directory (Path): Path to directory where data is located.
+        identifier (str): Original identifier for database
+        directory (Path): Path to directory where data is stored.
         database (str): Name of the database. Options are: "META", "ARA",
             "KEGG", "BIGG"
         compartment (str): Location of the object. In case of reaction, all
-            metabolites will be included in the same location. Does not apply
-            to pathways
+            metabolites will be included in the same location.
         replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}. Does not apply to
             pathways.
-        stop_imbalance (bool): If unbalanced reaction is found, stop process.
-            Defaults to False.
-        show_imbalance (bool): If unbalanced reaction is found, show output.
-            Defaults to True.
+        stop_imbalance (bool, optional): If unbalanced reaction is found, stop
+            process. Defaults to False.
+        show_imbalance (bool, optional): If unbalanced reaction is found, show
+            output. Defaults to True.
+        model (Model, optional): Model to add search for translated metabolites
+            or reactions. Defaults to a empty model.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model. Pathway are not available.
+            Defaults to: "universal"
 
     Returns:
         Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
             information for a pathway.
     """
-    # NOTE: since the identification of objects are just to create quick
-    # objects, do not use this method for the module extension.py
     data_dict = get_data(
         directory=directory,
         identifier=identifier,
         database=database,
         debug_level=10,
+        model_id=model_id,
     )
     # Since it is only a single item, next() can be used
     for method in (
         _ident_pathway(data_dict=data_dict),
-        _ident_metabolite(data_dict=data_dict, compartment=compartment),
+        _ident_metabolite(
+            data_dict=data_dict, compartment=compartment, model=model
+        ),
         _ident_reaction(
             data_dict=data_dict,
             directory=directory,
@@ -750,10 +757,10 @@ def create_object(
             compartment=compartment,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
+            model=model,
         ),
     ):
         # Try to return object, unless it cannot be identified
         with suppress(WrongDataError):
             return next(method)
-    else:
-        raise Warning("Data cannot be identified. Examine with 'get_data'.")
+    raise Warning("Data cannot be identified. Examine with 'get_data'.")

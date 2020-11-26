@@ -328,9 +328,9 @@ def _first_item(first: DictList, second: dict, revert: bool) -> str:
     # No format
     else:
         dict_set = {item.id for item in first}
-    common = dict_set.intersection(set(second.values()))
-    # Error if nothing to pop
+    # Error if nothing to pop, or empty Model
     try:
+        common = dict_set.intersection(set(second.values()))
         return common.pop()
-    except KeyError:
+    except (KeyError, AttributeError):
         raise NoIntersectFound
