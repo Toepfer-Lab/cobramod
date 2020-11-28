@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from typing import Generator, Iterable
 from itertools import chain
+from typing import Generator, Iterable
 
 from cobramod.utils import _replace_item, _remove_item
 
@@ -141,6 +141,7 @@ def _return_verified_graph(
         list(_replace_item(iterable=sequence, replacement=replacement))
         for sequence in graph
     ]
+    # Get rid off item in avoid list
     graph = [
         list(_remove_item(iterable=sequence, avoid_list=avoid_list))
         for sequence in graph

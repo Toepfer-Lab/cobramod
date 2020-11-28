@@ -1,8 +1,8 @@
 import unittest
 
-from cobra.core.dictlist import DictList
+from cobra.core import DictList, Group
 
-import cobramod.pathway as pt
+from cobramod import pathway as pt
 from cobramod.test import textbook_kegg
 
 
@@ -51,7 +51,6 @@ class TestGroup(unittest.TestCase):
         )
         test_group = pt.Pathway(id="test_group", members=members)
         test_model.add_groups([test_group])
-
         test_solution = test_model.groups.get_by_id("test_group").solution(
             solution=test_model.optimize()
         )
@@ -63,6 +62,46 @@ class TestGroup(unittest.TestCase):
         ):
             self.assertTrue(expr="R00127_c" in attribute)
             self.assertTrue(expr="R00315_c" in attribute)
+
+    def test__transform(self):
+        # CASE 1: Outside the model
+        test_model = textbook_kegg.copy()
+        members = DictList()
+        members.union(
+            iterable=[
+                test_model.reactions.R00127_c,
+                test_model.reactions.R00315_c,
+            ]
+        )
+        test_group = Group(id="test_group", members=members)
+        test_group = pt.Pathway._transform(obj=test_group)
+        self.assertIsInstance(obj=test_group, cls=pt.Pathway)
+        # CASE 1a: Inside the model
+        test_model = textbook_kegg.copy()
+        members = DictList()
+        members.union(
+            iterable=[
+                test_model.reactions.R00127_c,
+                test_model.reactions.R00315_c,
+            ]
+        )
+        test_group = Group(id="test_group", members=members)
+        test_model.add_groups([test_group])
+        test_model.groups[0] = pt.Pathway._transform(
+            obj=test_model.groups.get_by_id("test_group")
+        )
+        self.assertIsInstance(
+            obj=test_model.groups.get_by_id("test_group"), cls=pt.Pathway
+        )
+        # CASE 1b: Inside the model, multiple
+        test_model = textbook_kegg.copy()
+        for reaction in test_model.reactions:
+            test_group = Group(id=reaction.id)
+            test_model.add_groups([test_group])
+        for index, item in enumerate(test_model.groups):
+            test_model.groups[index] = pt.Pathway._transform(item)
+        for group in test_model.groups:
+            self.assertIsInstance(obj=group, cls=pt.Pathway)
 
 
 if __name__ == "__main__":
