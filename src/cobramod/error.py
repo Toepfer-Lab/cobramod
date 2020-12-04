@@ -1,6 +1,15 @@
 from cobramod.debug import debug_log
 
 
+class FoundInPairError(Exception):
+    """
+    Simple Error that is raised when the pair of a PairDictionary has already
+    given key name.
+    """
+
+    pass
+
+
 class NodeAttributeError(Exception):
     """
     Simple Error that should be raised when a
