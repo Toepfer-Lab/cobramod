@@ -6,6 +6,7 @@ from cobramod.debug import debug_log
 from cobramod.error import FoundInPairError
 from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Node, Segment, Reaction
+from cobramod.visualization.converter import JsonDictionary
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -78,6 +79,26 @@ class TestVisualization(unittest.TestCase):
             segments={"0": Segment(from_node_id="0", to_node_id="1")},
         )
         self.assertIn(member="b1", container=test_dict["segments"]["0"].keys())
+
+    def test_JsonDictionary(self):
+        # CASE 1a: creation of dictionary without extra arguments.
+        test_dict = JsonDictionary()
+        self.assertEqual(first={}, second=test_dict["reactions"])
+        self.assertEqual(first="", second=test_dict["head"]["map_name"])
+        self.assertEqual(first=1500, second=test_dict["canvas"]["width"])
+        # CASE 2: get last number in JsonDictionary. Reactions are not included
+        # but their segments
+        test_dict["reactions"]["99"] = Reaction(
+            name="test_reaction",
+            bigg_id="test_identifier",
+            reversibility=True,
+            label_x=100,
+            label_y=200,
+            segments={"0": Segment(from_node_id="0", to_node_id="1")},
+        )
+        test_dict["nodes"]["1"] = Node(node_type="midmarker", x=1, y=2)
+        self.assertEqual(first=2, second=test_dict._get_last_number())
+        print(test_dict.json_dump(indent=4))
 
 
 if __name__ == "__main__":

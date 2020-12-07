@@ -94,7 +94,7 @@ class Node(UserDict):
             kwargs = {
                 key: value
                 for key, value in locals().copy().items()
-                if key != "self" and key != "kwargs"
+                if key not in ("kwargs", "__class__", "self")
             }
             super().__init__(self, **kwargs)
         else:
@@ -134,7 +134,7 @@ class Segment(UserDict):
         kwargs = {
             key: value
             for key, value in locals().copy().items()
-            if key != "self" and key != "kwargs"
+            if key not in ("kwargs", "__class__", "self")
         }
         super().__init__(self, **kwargs)
 
