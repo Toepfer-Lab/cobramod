@@ -3,6 +3,7 @@ from collections import UserDict
 from typing import Any, Dict, List
 
 from cobramod.error import NodeAttributeError
+from cobramod.visualization.pair import PairDictionary
 
 
 class Node(UserDict):
@@ -39,7 +40,7 @@ class Node(UserDict):
             x (float): Location in x-axis for the node.
             y (float): Location in y-axis for the node
             label_x (float): Location in x-axis for the label of the node.
-            label_y (float): Location in x-axis for the label of the node.
+            label_y (float): Location in y-axis for the label of the node.
             bigg_id (str, optional): Identifier for the metabolite. It does not
                 have to be a bigg identifier.
             name (str, optional): The name for the metabolite.
@@ -158,7 +159,7 @@ class Reaction(UserDict):
         gene_reaction_rule: str = "",
         genes: List[Dict[str, str]] = [],
         metabolites: List[Dict[str, str]] = [],
-        segments: Dict[str, Segment] = {},
+        segments: PairDictionary = PairDictionary(),
     ):
         """
         Creates an object with the information for the representation of a
@@ -177,15 +178,32 @@ class Reaction(UserDict):
                 identifier. Each item has to be a dictionary with the keys
                 'bigg_id' and 'name'
             metabolites (list, optional): A list with the metabolites involved.
-            Each iteam has to be an dictionary with the keys 'bigg_id' and
-            'coefficient'.
-            segments (dict, optional): dictionary with
-                :func:`cobramod.visualization.items.Segment`.
-
+                Each iteam has to be an dictionary with the keys 'bigg_id' and
+                'coefficient'.
+            segments (PairDictionary, optional): dictionary with
+                :func:`cobramod.visualization.items.Segment`. They represent
+                the conections between nodes.
         """
         kwargs = {
             key: value
             for key, value in locals().copy().items()
             if key not in ("kwargs", "__class__", "self")
         }
-        super().__init__(self, **kwargs)
+        super().__init__()
+        for key, value in kwargs.items():
+            self.data[key] = value
+
+    def add_metabolite(self, bigg_id: str, coefficient: float):
+        """
+        Add the identifier for a metabolite and its corresponding coefficient
+        into the 'metabolite' key.
+
+        Args:
+            bigg_id (str): identifier of the metabolite. It does not have to be
+                from BIGG.
+            coefficient (float): Coefficient of the metabolite for the
+                reaction.
+        """
+        self.data["metabolites"].append(
+            {"bigg_id": bigg_id, "coefficient": coefficient}
+        )

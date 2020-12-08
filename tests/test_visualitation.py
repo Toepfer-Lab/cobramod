@@ -33,6 +33,10 @@ class TestVisualization(unittest.TestCase):
         self.assertIs(expr1=test_dict_a.pair, expr2=test_dict_b)
 
     def test_Node(self):
+        # CASE 0: Check instance behaviour.
+        test_dict = Node(node_type="midmarker", x=1, y=2)
+        test_dict_2 = Node(node_type="midmarker", x=1, y=2)
+        self.assertIsNot(expr1=test_dict, expr2=test_dict_2)
         # CASE 1a: Regular marker
         test_dict = Node(node_type="midmarker", x=1, y=2)
         self.assertNotIn(member="x_label", container=test_dict.keys())
@@ -45,6 +49,10 @@ class TestVisualization(unittest.TestCase):
         self.assertEqual(first=test_dict["node_type"], second="metabolite")
 
     def test_Segment(self):
+        # CASE 0: Check instance behaviour.
+        test_dict = Segment(from_node_id="1", to_node_id="2")
+        test_dict_2 = Segment(from_node_id="1", to_node_id="2")
+        self.assertIsNot(expr1=test_dict, expr2=test_dict_2)
         # CASE 1a: Regular creation of Segment. b1 and b2 are not specified
         test_dict = Segment(from_node_id="1", to_node_id="2")
         self.assertIn(member="from_node_id", container=test_dict.keys())
@@ -60,6 +68,22 @@ class TestVisualization(unittest.TestCase):
         self.assertIn(member="y", container=test_dict["b2"].keys())
 
     def test_Reaction(self):
+        # CASE 0: Check instance behaviour.
+        test_dict = Reaction(
+            name="test_reaction",
+            bigg_id="test_identifier",
+            reversibility=True,
+            label_x=100,
+            label_y=200,
+        )
+        test_dict_2 = Reaction(
+            name="test_reaction",
+            bigg_id="test_identifier",
+            reversibility=False,
+            label_x=10,
+            label_y=20,
+        )
+        self.assertIsNot(expr1=test_dict, expr2=test_dict_2)
         # CASE 1a: Regular creation.
         test_dict = Reaction(
             name="test_reaction",
@@ -79,8 +103,20 @@ class TestVisualization(unittest.TestCase):
             segments={"0": Segment(from_node_id="0", to_node_id="1")},
         )
         self.assertIn(member="b1", container=test_dict["segments"]["0"].keys())
+        # CASE 2: method add_metabolite
+        test_dict.add_metabolite(bigg_id="test_metabolite", coefficient=1)
+        self.assertEqual(
+            first="test_metabolite",
+            second=test_dict["metabolites"][0]["bigg_id"],
+        )
 
     def test_JsonDictionary(self):
+        # CASE 0: Checking behaviour with two instances
+        test_dict = JsonDictionary()
+        test_dict_2 = JsonDictionary()
+        test_dict["reactions"]["0"] = "test_string"
+        self.assertIsNot(expr1=test_dict, expr2=test_dict_2)
+        self.assertRaises(KeyError, lambda: test_dict_2["reactions"]["0"])
         # CASE 1a: creation of dictionary without extra arguments.
         test_dict = JsonDictionary()
         self.assertEqual(first={}, second=test_dict["reactions"])
@@ -97,8 +133,24 @@ class TestVisualization(unittest.TestCase):
             segments={"0": Segment(from_node_id="0", to_node_id="1")},
         )
         test_dict["nodes"]["1"] = Node(node_type="midmarker", x=1, y=2)
-        self.assertEqual(first=2, second=test_dict._get_last_number())
-        print(test_dict.json_dump(indent=4))
+        self.assertEqual(
+            first=2, second=test_dict._get_last_number(reaction=False)
+        )
+        # CASE 3a: method add_reaction. Regular.
+        test_dict = JsonDictionary()
+        test_dict.add_reaction(
+            name="test_reaction", bigg_id="test_id", reversibility=True
+        )
+        self.assertEqual(
+            first="test_id", second=test_dict["reactions"]["0"]["bigg_id"]
+        )
+        # CASE 3b: checking index in dictionaries
+        test_dict.add_reaction(
+            name="test_reaction_2", bigg_id="test_id_2", reversibility=True
+        )
+        self.assertEqual(
+            first="test_id_2", second=test_dict["reactions"]["1"]["bigg_id"]
+        )
 
 
 if __name__ == "__main__":
