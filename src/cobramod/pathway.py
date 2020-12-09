@@ -56,4 +56,6 @@ class Pathway(Group):
         Transform given :func:`cobra.Group` into a proper cobramod Pathway
         object.
         """
-        return cls(id=obj.id, name=obj.name, members=obj.name, kind=obj.kind)
+        return cls(
+            id=obj.id, name=obj.name, members=obj.members, kind=obj.kind
+        )
