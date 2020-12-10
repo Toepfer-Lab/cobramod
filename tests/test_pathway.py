@@ -1,9 +1,19 @@
+from logging import DEBUG
+from pathlib import Path
 import unittest
 
 from cobra.core import DictList, Group
 
 from cobramod import pathway as pt
+from cobramod.debug import debug_log
 from cobramod.test import textbook_kegg
+
+debug_log.setLevel(DEBUG)
+dir_input = Path.cwd().joinpath("tests").joinpath("input")
+dir_data = Path.cwd().joinpath("tests").joinpath("data")
+
+if not dir_data.exists():
+    dir_data.mkdir(parents=True)
 
 
 class TestGroup(unittest.TestCase):
@@ -97,6 +107,7 @@ class TestGroup(unittest.TestCase):
         test_model = textbook_kegg.copy()
         for reaction in test_model.reactions:
             test_group = Group(id=reaction.id)
+            test_group.add_members([reaction])
             test_model.add_groups([test_group])
         for index, item in enumerate(test_model.groups):
             test_model.groups[index] = pt.Pathway._transform(item)

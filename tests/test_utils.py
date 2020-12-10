@@ -5,6 +5,7 @@ from pathlib import Path
 import unittest
 
 from cobra.core import Metabolite, Reaction, Group
+from cobra.io import read_sbml_model
 
 from cobramod.creation import create_object, add_reaction
 from cobramod.debug import debug_log
@@ -207,11 +208,18 @@ class UtilsTesting(unittest.TestCase):
         # CASE 1: regular conversion of Groups
         test_model = textbook.copy()
         for reaction in test_model.reactions:
-            test_model.add_groups(group_list=[Group(id=reaction.id)])
+            test_group = Group(id=reaction.id)
+            test_model.add_groups(group_list=[test_group])
             test_model.groups.get_by_id(reaction.id).add_members(
-                new_members=reaction
+                new_members=[reaction]
             )
         ui.model_convert(model=test_model)
+        for group in test_model.groups:
+            self.assertIsInstance(obj=group, cls=Pathway)
+        # CASE 2: Regular Model
+        filename = dir_input.joinpath("test_model02.sbml")
+        test_model = read_sbml_model(str(filename))
+        ui.model_convert(test_model)
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
 
