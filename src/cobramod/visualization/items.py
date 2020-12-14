@@ -1,6 +1,6 @@
 from contextlib import suppress
 from collections import UserDict
-from typing import Any, Dict, List
+from typing import Any
 
 from cobramod.error import NodeAttributeError
 from cobramod.visualization.pair import PairDictionary
@@ -110,88 +110,97 @@ class Segment(UserDict):
     later parsed into a proper JSON for Escher. A segment needs a starting
     position and and end-position. Additionally, the dots for the
     modification of the arrows (b1, b2) can be included.
+
+    Keyword Arguments:
+        from_node_id (str): Identifier for the starting node.
+        to_node_id (str): identifier for the end node.
+        b1 (dict, optional): dictionary with x and y for the blue dot that
+            shapes the arrow.
+        b2 (dict, optional): dictionary with x and y for the blue dot that
+        shapes the arrow.
     """
 
-    def __init__(
-        self,
-        from_node_id: str,
-        to_node_id: str,
-        b1: Dict[str, float] = None,
-        b2: Dict[str, float] = None,
-    ):
+    def __init__(self, *args, **kwargs):
         """
         Build a segment for the reactionn object that will be included in
         JsonCobramod. Check, documentation of the class for arguments of this
         method.
-
-        Args:
-            from_node_id (str): Identifier for the starting node.
-            to_node_id (str): identifier for the end node.
-            b1 (dict, optional): dictionary with x and y for the blue dot that
-                shapes the arrow.
-            b2 (dict, optional): dictionary with x and y for the blue dot that
-            shapes the arrow.
         """
-        kwargs = {
-            key: value
-            for key, value in locals().copy().items()
-            if key not in ("kwargs", "__class__", "self")
-        }
-        super().__init__(self, **kwargs)
+        super().__init__(self, *args, **kwargs)
+        for key in ("from_node_id", "to_node_id", "b1", "b2"):
+            try:
+                self.data[key]
+            except KeyError:
+                if key in ("from_node_id", "to_node_id"):
+                    raise ValueError(f"Argument '{key}' missing")
+                elif key in ("b1", "b2"):
+                    self.data[key] = None
 
 
 class Reaction(UserDict):
     """
     Simple class that represent a reaction for the JSON schema for Escher. A
     Reaction have the Segment that give the position of the reaction in the
-    canvas. Check the method
-    :func:`cobramod.visualization.items.Reaction.__init__' for the arguments
-    for the creation of this special dictionary.
+    canvas.
+
+    Keyword Arguments:
+        name (str): Name of the reaction.
+        bigg_id (str): Identifier of the reactions. It does not have to be
+            from the database BIGG.
+        reversibility (bool): If reaction is reversible
+        label_y (float): Position in y-axis for the label.
+        label_x (float): Position in x-axis for the label.
+        gene_reaction_rule (str, optional): Gene rules that specify
+            involved genes.
+        genes (list, optional): A list with the genes involved for that
+            identifier. Each item has to be a dictionary with the keys
+            'bigg_id' and 'name'
+        metabolites (list, optional): A list with the metabolites involved.
+            Each iteam has to be an dictionary with the keys 'bigg_id' and
+            'coefficient'.
+        segments (PairDictionary, optional): dictionary with
+            :func:`cobramod.visualization.items.Segment`. They represent
+            the conections between nodes.
     """
 
-    def __init__(
-        self,
-        name: str,
-        bigg_id: str,
-        reversibility: bool,
-        label_y: float,
-        label_x: float,
-        gene_reaction_rule: str = "",
-        genes: List[Dict[str, str]] = [],
-        metabolites: List[Dict[str, str]] = [],
-        segments: PairDictionary = PairDictionary(),
-    ):
+    def __init__(self, *args, **kwargs):
         """
         Creates an object with the information for the representation of a
-        reaction in Escher.
-
-        Args:
-            name (str): Name of the reaction.
-            bigg_id (str): Identifier of the reactions. It does not have to be
-                from the database BIGG.
-            reversibility (bool): If reaction is reversible
-            label_y (float): Position in y-axis for the label.
-            label_x (float): Position in x-axis for the label.
-            gene_reaction_rule (str, optional): Gene rules that specify
-                involved genes.
-            genes (list, optional): A list with the genes involved for that
-                identifier. Each item has to be a dictionary with the keys
-                'bigg_id' and 'name'
-            metabolites (list, optional): A list with the metabolites involved.
-                Each iteam has to be an dictionary with the keys 'bigg_id' and
-                'coefficient'.
-            segments (PairDictionary, optional): dictionary with
-                :func:`cobramod.visualization.items.Segment`. They represent
-                the conections between nodes.
+        reaction in Escher. All keyword arguments are located in the docstring
+        of the class
         """
-        kwargs = {
-            key: value
-            for key, value in locals().copy().items()
-            if key not in ("kwargs", "__class__", "self")
-        }
-        super().__init__()
-        for key, value in kwargs.items():
-            self.data[key] = value
+        super().__init__(self, *args, **kwargs)
+        for key in (
+            "name",
+            "bigg_id",
+            "reversibility",
+            "label_x",
+            "label_y",
+            "gene_reaction_rule",
+            "genes",
+            "metabolites",
+            "segments",
+        ):
+            try:
+                self.data[key]
+            except KeyError:
+                # Arguments must be passed this way, otherway UserDict loses
+                # its functionalities.
+                if key in (
+                    "name",
+                    "bigg_id",
+                    "reversibility",
+                    "label_x",
+                    "label_y",
+                ):
+                    # Obligatory arguments
+                    raise ValueError(f"Argument '{key}' missing")
+                elif key == "gene_reaction_rule":
+                    self.data[key] = ""
+                elif key in ("genes", "metabolites"):
+                    self.data[key] = list()
+                elif key == "segments":
+                    self.data[key] = PairDictionary()
 
     def add_metabolite(self, bigg_id: str, coefficient: float):
         """

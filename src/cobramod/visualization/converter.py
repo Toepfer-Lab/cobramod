@@ -78,8 +78,12 @@ class JsonDictionary(UserDict):
                 for key, value in self.data["reactions"].items()
             }.copy()
             for reaction in reactions:
-                for key, value in reactions[reaction]["segments"].items():
-                    reactions[reaction]["segments"][key] = dict(**value)
+                # if empty, must be changed to regular dictionary
+                if not reactions[reaction]["segments"]:
+                    reactions[reaction]["segments"] = dict()
+                else:
+                    for key, value in reactions[reaction]["segments"].items():
+                        reactions[reaction]["segments"][key] = dict(**value)
         except KeyError:
             reactions = {}
         return dumps(
@@ -124,7 +128,7 @@ class JsonDictionary(UserDict):
             return 0
         return max(numbers) + 1
 
-    def add_metabolite(
+    def create_metabolite(
         self,
         x: float,
         y: float,
@@ -161,7 +165,7 @@ class JsonDictionary(UserDict):
             node_is_primary=node_is_primary,
         )
 
-    def add_marker(self, x: float, y: float, node_type: str = "midmarker"):
+    def create_marker(self, x: float, y: float, node_type: str = "midmarker"):
         """
         Add a marker-type node into the JsonDictionary. Node can be a midmarker
         or a multimarker. These markes are located in the middle of the
@@ -176,7 +180,7 @@ class JsonDictionary(UserDict):
         number = str(self._get_last_number(reaction=False))
         self.data["nodes"][number] = Node(node_type=node_type, x=x, y=y)
 
-    def add_reaction(
+    def create_reaction(
         self,
         name: str,
         bigg_id: str,
@@ -224,6 +228,69 @@ class JsonDictionary(UserDict):
         )
         # Pairing and adding
         # In case of empty nodes
-        reaction["segments"].set_pair(pair=self.data["nodes"])
+        # reaction["segments"].set_pair(pair=self.data["nodes"])
         number = self._get_last_number(reaction=True)
         self.data["reactions"][str(number)] = reaction
+
+    def add_reaction(self):
+        # Extract information for new reaction, nr of metabolites (string
+        # representation)
+        # Check Canvas, e.g. size and number of reaction
+        CANVAS_WIDTH = self.data["canvas"]["width"]
+        CANVAS_HEIGHT = self.data["canvas"]["height"]
+        # reaction_count = len(self.data["reactions"])
+        R_WIDTH = 350
+        R_HEIGH = 210
+        # Modify prior reactions (position)
+        # Add new reaction with attributes
+        # (2) Edge-metabolites, (2) multimarkers, (1) midmarker
+        # For metabolites: the labels must be 40 px higher in th y-axis and the
+        # x-axis varies depending in the length (between 30-50)
+        self.create_metabolite(
+            x=(CANVAS_WIDTH - R_WIDTH) / 2,
+            y=(CANVAS_HEIGHT - R_HEIGH) / 2,
+            label_x=((CANVAS_WIDTH - R_WIDTH) / 2) - 30,
+            label_y=((CANVAS_HEIGHT - R_HEIGH) / 2) + 40,
+            bigg_id="test_metabolite_A",
+            name="test_A",
+            node_is_primary=False,
+        )
+        self.create_metabolite(
+            x=(CANVAS_WIDTH + R_WIDTH) / 2,
+            y=(CANVAS_HEIGHT - R_HEIGH) / 2,
+            label_x=((CANVAS_WIDTH + R_WIDTH) / 2) - 30,
+            label_y=((CANVAS_HEIGHT - R_HEIGH) / 2) + 40,
+            bigg_id="test_metabolite_B",
+            name="test_B",
+            node_is_primary=False,
+        )
+        # For markers: 20 px between each one. Sequence should follow:
+        # multimarker-midmarker-multimarker
+        self.create_marker(
+            x=CANVAS_WIDTH / 2 - 20,
+            y=(CANVAS_HEIGHT - R_HEIGH) / 2,
+            node_type="multimarker",
+        )
+        self.create_marker(
+            x=CANVAS_WIDTH / 2,
+            y=(CANVAS_HEIGHT - R_HEIGH) / 2,
+            node_type="midmarker",
+        )
+        self.create_marker(
+            x=CANVAS_WIDTH / 2 + 20,
+            y=(CANVAS_HEIGHT - R_HEIGH) / 2,
+            node_type="multimarker",
+        )
+        # Segments
+        # Reaction
+        reaction = Reaction(
+            name="test_reaction",
+            bigg_id="test_R",
+            reversibility=True,
+            label_x=CANVAS_WIDTH / 2,
+            label_y=(CANVAS_HEIGHT - R_HEIGH) / 2 - 40,
+        )
+        reaction.add_metabolite(bigg_id="test_metabolite_A", coefficient=1)
+        reaction.add_metabolite(bigg_id="test_metabolite_B", coefficient=-1)
+        reaction["segments"].update({})
+        self.data["reactions"].update({"0": reaction})

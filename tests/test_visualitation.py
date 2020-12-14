@@ -136,21 +136,29 @@ class TestVisualization(unittest.TestCase):
         self.assertEqual(
             first=2, second=test_dict._get_last_number(reaction=False)
         )
-        # CASE 3a: method add_reaction. Regular.
+        # CASE 3a: method create_reaction. Regular.
         test_dict = JsonDictionary()
-        test_dict.add_reaction(
+        test_dict.create_reaction(
             name="test_reaction", bigg_id="test_id", reversibility=True
         )
         self.assertEqual(
             first="test_id", second=test_dict["reactions"]["0"]["bigg_id"]
         )
         # CASE 3b: checking index in dictionaries
-        test_dict.add_reaction(
+        test_dict.create_reaction(
             name="test_reaction_2", bigg_id="test_id_2", reversibility=True
         )
         self.assertEqual(
             first="test_id_2", second=test_dict["reactions"]["1"]["bigg_id"]
         )
+
+    def test_automate(self):
+        test_dict = JsonDictionary()
+        test_dict.add_reaction()
+        with open(file="test.json", mode="w+") as f:
+            f.write(test_dict.json_dump(indent=4))
+        print(test_dict.json_dump(indent=4))
+        pass
 
 
 if __name__ == "__main__":
