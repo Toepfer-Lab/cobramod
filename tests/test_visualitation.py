@@ -157,35 +157,34 @@ class TestVisualization(unittest.TestCase):
         )
         # CASE 3a: method create_reaction. Regular.
         test_dict = JsonDictionary()
-        test_dict.create_reaction(
-            name="test_reaction", bigg_id="test_id", reversibility=True
+        test_reaction = test_dict.create_reaction(
+            name="test_reaction", identifier="test_id", reversibility=True
         )
-        self.assertEqual(
-            first="test_id", second=test_dict["reactions"]["0"]["bigg_id"]
-        )
-        # CASE 3b: checking index in dictionaries
-        test_dict.create_reaction(
-            name="test_reaction_2", bigg_id="test_id_2", reversibility=True
-        )
-        self.assertEqual(
-            first="test_id_2", second=test_dict["reactions"]["1"]["bigg_id"]
-        )
+        self.assertEqual(first="test_id", second=test_reaction["bigg_id"])
 
     def test_automate(self):
         test_dict = JsonDictionary()
         test_dict.add_reaction(
-            string="C00002_c --> C00227_c + C00033_c", reaction="A"
+            string="C00002_c --> C00227_c + C00033_c", identifier="A"
         )
-        test_dict.add_reaction(string="C00002_c --> C00228_c", reaction="B")
-        test_dict.add_reaction(string="C00009_c --> C00001_c", reaction="C")
-        test_dict.add_reaction(string="C00009_c --> C00001_c", reaction="D")
-        test_dict.add_reaction(string="C00009_c --> C00011_c", reaction="E")
-        test_dict.add_reaction(string="C00009_c --> C00011_c", reaction="F")
-        test_dict.add_reaction(string="C00009_c --> C00011_c", reaction="G")
+        test_dict.add_reaction(string="C00002_c --> C00228_c", identifier="B")
+        test_dict.add_reaction(
+            string="C00009_c + C00002_c--> C00001_c", identifier="C"
+        )
+        test_dict.add_reaction(
+            string="C00004_c + C00011_c --> C00001_c + C00227_c",
+            identifier="D",
+        )
+        test_dict.add_reaction(
+            string="2 C00009_c --> 4 C00011_c", identifier="E"
+        )
+        test_dict.add_reaction(
+            string="2 C00009_c + C00002_c--> C00011_c", identifier="F"
+        )
+        test_dict.add_reaction(string="C00009_c --> C00011_c", identifier="G")
         with open(file="test.json", mode="w+") as f:
             f.write(test_dict.json_dump(indent=4))
         print(test_dict.json_dump(indent=4))
-        pass
 
 
 if __name__ == "__main__":

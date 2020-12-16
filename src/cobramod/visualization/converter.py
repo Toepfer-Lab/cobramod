@@ -42,10 +42,17 @@ class JsonDictionary(UserDict):
     keyword arguments may be passed.
 
     Keyword Arguments:
-        head: dict[str, str] = none,
-        reactions: dict[str, reaction] = {},
-        nodes: pairdictionary = pairdictionary(),
-        text_labels: dict[str, str] = {},
+        head (dict, optional): General information of the JSOB. Keys
+            included: map_name, map_id, map_description, homepage, schema
+        reactions (dict, optional): Dictionary with multiple
+            :func:`cobramod.visualization.items.Reaction` where the key is the
+            number of the reaction and the value the object. Defaults to empty
+            dictionary
+        nodes (PairDictionary): Dictionary with multiple
+            :func:`cobramod.visualization.items.Node` where the key is the
+            number of the Node and the value the corresponding object. Defaults
+            to empty dictionary.
+        text_labels  (dict, optional): Dictionary with the custom text in the
         canvas: dict[str, float] = none,
     """
 
@@ -85,7 +92,7 @@ class JsonDictionary(UserDict):
                     self.data[key] = {
                         "x": 0,
                         "y": 0,
-                        "width": 2500,
+                        "width": 1500,
                         "height": 1500,
                     }
         # Defining variables for sizes
@@ -161,7 +168,7 @@ class JsonDictionary(UserDict):
             return 0
         return max(numbers) + 1
 
-    def create_metabolite(
+    def add_metabolite(
         self,
         x: float,
         y: float,
@@ -213,21 +220,69 @@ class JsonDictionary(UserDict):
         number = str(self._get_last_number(reaction=False))
         self.data["nodes"][number] = Node(node_type=node_type, x=x, y=y)
 
+    def _get_edges(self) -> tuple:
+        """
+        Return the top edge and the left edge for the Reaction-box. They define
+        the position of the Reaction-box and takes into consideration the
+        number of reactions in the JsonDictionary.
+        """
+        # Size of columns depends on number of reactions, or the relationship
+        # CANVAS_WIDTH:R_WIDTH
+        # The 50 and 80 px is a visual help (extra separation)
+        columns = min(
+            [
+                # len(self.data["reactions"]) + 2,
+                int(self.CANVAS_WIDTH / (self.R_WIDTH + 50))
+            ]
+        )
+        rows = min(
+            [
+                # ADD: minium value from columns,
+                int(self.CANVAS_HEIGHT / (self.R_HEIGHT + 80))
+            ]
+        )
+        # create Generators for the place number of the reaction-Box
+        sequence_x = cycle(range(0, columns))
+        repeated_rows = list(
+            chain.from_iterable(
+                (
+                    repeat(row_number, columns)
+                    for row_number in range(0, len(self.data["reactions"]))
+                )
+            )
+            # A 0 just in case of first item
+        ) or [0]
+        sequence_y = cycle(repeated_rows)
+        length = list(range(0, len(self.data["reactions"])))
+        # TODO: find more elegant way
+        if not length:
+            place_x = 0
+            place_y = 0
+        else:
+            # Skip once 0 for both cases because of if-statement
+            next(sequence_x)
+            next(sequence_y)
+            for repetition in length:
+                place_x = next(sequence_x)
+                place_y = next(sequence_y)
+        # External box
+        top_edge = (self.CANVAS_HEIGHT / rows) * place_y
+        left_edge = (self.CANVAS_WIDTH / columns) * place_x
+        return top_edge, left_edge
+
     def create_reaction(
         self,
         name: str,
-        bigg_id: str,
+        identifier: str,
         reversibility: bool,
-        label_y: float = 0,
-        label_x: float = 0,
         gene_reaction_rule: str = "",
         genes: List[Dict[str, str]] = [],
         segments: PairDictionary = PairDictionary(),
-    ):
+    ) -> Reaction:
         """
-        Adds a :func:`cobramod.visualization.items.Reaction` into the
-        JsonDictionary. The segments of the reaction will be paired to the
-        nodes of the JsonDictionary.
+        Returns a :func:`cobramod.visualization.items.Reaction`. It will take
+        into consideration the actual number of reactions in the JsonDictionary
+        and add proper x and y position for the labels.
 
         Args:
             name (str): The name for the reaction.
@@ -249,69 +304,26 @@ class JsonDictionary(UserDict):
         """
         if not isinstance(segments, PairDictionary):
             raise TypeError("Argument 'segments' must be a PairDictionary")
+        top_edge, left_edge = self._get_edges()
         reaction = Reaction(
             name=name,
-            bigg_id=bigg_id,
+            bigg_id=identifier,
             reversibility=reversibility,
-            label_y=label_y,
-            label_x=label_x,
+            label_y=top_edge + self.R_HEIGHT / 2 - 30,
+            label_x=left_edge + self.R_WIDTH / 2,
             gene_reaction_rule=gene_reaction_rule,
             genes=genes,
             segments=segments,
         )
-        # Pairing and adding
-        # In case of empty nodes
-        # reaction["segments"].set_pair(pair=self.data["nodes"])
-        number = self._get_last_number(reaction=True)
-        self.data["reactions"][str(number)] = reaction
+        return reaction
 
     def _add_metabolites(self, metabolite_dict: dict, reaction: Reaction):
         """
-        Adds the metabolites from the dicionary into a
+        Adds the metabolites from the dictionary into a
         :func:`cobramod.visualization.items.Reaction` and creates Nodes of the
         metabolites for the JsonDictionary class.
         """
-        # Size of columns depends on number of reactions, or the relationship
-        # CANVAS_WIDTH:R_WIDTH
-        columns = min(
-            [
-                # len(self.data["reactions"]) + 2,
-                int(self.CANVAS_WIDTH / (self.R_WIDTH + 50))
-            ]
-        )
-        rows = min(
-            [
-                # HERE: minium value from columns,
-                int(self.CANVAS_HEIGHT / (self.R_HEIGHT + 80))
-            ]
-        )
-        # create Generators for the place number of the reaction-Box
-        sequence_x = cycle(range(0, columns))
-        repeated_rows = list(
-            chain.from_iterable(
-                (
-                    repeat(row_number, columns)
-                    for row_number in range(0, len(self.data["reactions"]))
-                )
-            )
-        ) or [0]
-        sequence_y = cycle(repeated_rows)
-        length = list(range(0, len(self.data["reactions"])))
-        # TODO: find more elegant way
-        if not length:
-            place_x = 0
-            place_y = 0
-        else:
-            # Skip once 0 for both case because of if-statement
-            next(sequence_x)
-            next(sequence_y)
-            for repetition in length:
-                place_x = next(sequence_x)
-                place_y = next(sequence_y)
-
-        # External box
-        top_edge = (self.CANVAS_HEIGHT / rows) * place_y
-        left_edge = (self.CANVAS_WIDTH / columns) * place_x
+        top_edge, left_edge = self._get_edges()
         # Minimum number of identifiers. TODO: verify behaviour with 0
         side_dict = {"left": 1, "right": 1}
         # Internal box (Reaction-box)
@@ -335,7 +347,7 @@ class JsonDictionary(UserDict):
             dot_y = top_edge + counter * space_y
             # For metabolites: the labels must be 40 px higher in th y-axis
             # and the x-axis varies depending in the length (between 31-50)
-            self.create_metabolite(
+            self.add_metabolite(
                 x=dot_x,
                 y=dot_y,
                 label_x=dot_x - 30,
@@ -352,6 +364,21 @@ class JsonDictionary(UserDict):
                 side_dict["right"] = counter
             reaction.add_metabolite(bigg_id="test_" + key, coefficient=value)
 
+    def _add_markers(self):
+        # For markers: 20 px between each one. Sequence should follow:
+        # multimarker-midmarker-multimarker
+        top_edge, left_edge = self._get_edges()
+        for node_type, extra_x in (
+            ("multimarker", -20),
+            ("midmarker", 0),
+            ("multimarker", 20),
+        ):
+            self.create_marker(
+                x=left_edge + (self.R_WIDTH / 2) + extra_x + 30,
+                y=top_edge + (self.R_HEIGHT / 2),
+                node_type=node_type,
+            )
+
     def shift(self):
         row_size = int(self.CANVAS_WIDTH / (self.R_WIDTH + 50))
         # if row_size > actual_length, shift only reactions that surpassed it.
@@ -360,51 +387,30 @@ class JsonDictionary(UserDict):
                 reaction["label_x"] += -400
                 print(".")
 
-    def add_reaction(self, string, reaction):
+    def add_reaction(self, string: str, identifier: str):
         # Extract information for new reaction, nr of metabolites (string
         # representation)
         metabolite_dict = _convert_string(string=string)
-        # Check Canvas, e.g. size and number of reaction
-        # The 50 px is a visual help (extra separation)
         # if max_size is not surpassed, nothing changes
+        # shift if needed
         if len(self.data["reactions"]) >= 1:
             # self.shift()
+            # Modify prior reactions (position)
             pass
-        # shift if needed
-        # Modify prior reactions (position)
-        # Add new reaction with attributes
-        # (2) Edge-metabolites, (2) multimarkers, (1) midmarker
         # Base reaction
-        reaction = Reaction(
-            name="test_reaction" + reaction,
-            bigg_id="test_R" + reaction,
+        reaction = self.create_reaction(
+            name="test_reaction" + identifier,
+            identifier="test_R" + identifier,
             reversibility=True,
-            label_x=self.CANVAS_WIDTH / 2,
-            label_y=self.CANVAS_HEIGHT / 2 - 40,
         )
-        # Add new metaboltes
+        # Add nodes
         self._add_metabolites(
             metabolite_dict=metabolite_dict, reaction=reaction
         )
-        # For markers: 20 px between each one. Sequence should follow:
-        # multimarker-midmarker-multimarker
-        self.create_marker(
-            x=self.CANVAS_WIDTH / 2 - 20,
-            y=self.CANVAS_HEIGHT / 2,
-            node_type="multimarker",
-        )
-        self.create_marker(
-            x=self.CANVAS_WIDTH / 2,
-            y=self.CANVAS_HEIGHT / 2,
-            node_type="midmarker",
-        )
-        self.create_marker(
-            x=self.CANVAS_WIDTH / 2 + 20,
-            y=self.CANVAS_HEIGHT / 2,
-            node_type="multimarker",
-        )
+        self._add_markers()
         # Segments
-        # Reaction
+        # Verify the number of Segments. They cannot have the same key of other
+        # Segments from other reactions.
+        # Add to JsonDictionary
         number = self._get_last_number(reaction=True)
-        reaction["segments"].update({})
         self.data["reactions"].update({str(number): reaction})
