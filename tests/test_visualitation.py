@@ -6,7 +6,7 @@ from cobramod.debug import debug_log
 from cobramod.error import FoundInPairError
 from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Node, Segment, Reaction
-from cobramod.visualization.converter import JsonDictionary
+from cobramod.visualization.converter import JsonDictionary, _convert_string
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -14,6 +14,25 @@ dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
 
 class TestVisualization(unittest.TestCase):
+    def test__convert_string(self):
+        # CASE 1: Simple reaction, reversible
+        test_string = "C00002_c + C00033_c <=> C00227_c + G11113_c"
+        test_dict = _convert_string(string=test_string)
+        self.assertEqual(first=test_dict["C00002_c"], second=-1)
+        self.assertEqual(first=test_dict["C00227_c"], second=1)
+        # CASE 2: Simple reaction, irreversible
+        test_string = "C00002_c + C00033_c <-- C00227_c + G11113_c"
+        test_dict = _convert_string(string=test_string)
+        self.assertEqual(first=test_dict["C00002_c"], second=-1)
+        self.assertEqual(first=test_dict["C00227_c"], second=1)
+        # CASE 3: Reaction with multiple coefficients.
+        test_string = (
+            "C00001_c + 2 C00002_c --> C00009_c + C00080_c + G11113_c"
+        )
+        test_dict = _convert_string(string=test_string)
+        self.assertEqual(first=test_dict["C00002_c"], second=-2)
+        self.assertEqual(first=test_dict["C00080_c"], second=1)
+
     def test_PairDictionary(self):
         # CASE 1a: Raise FoundInPairError, if common key.
         test_dict_a = PairDictionary(one=1)
@@ -121,7 +140,7 @@ class TestVisualization(unittest.TestCase):
         test_dict = JsonDictionary()
         self.assertEqual(first={}, second=test_dict["reactions"])
         self.assertEqual(first="", second=test_dict["head"]["map_name"])
-        self.assertEqual(first=1500, second=test_dict["canvas"]["width"])
+        # self.assertEqual(first=1500, second=test_dict["canvas"]["width"])
         # CASE 2: get last number in JsonDictionary. Reactions are not included
         # but their segments
         test_dict["reactions"]["99"] = Reaction(
@@ -154,7 +173,15 @@ class TestVisualization(unittest.TestCase):
 
     def test_automate(self):
         test_dict = JsonDictionary()
-        test_dict.add_reaction()
+        test_dict.add_reaction(
+            string="C00002_c --> C00227_c + C00033_c", reaction="A"
+        )
+        test_dict.add_reaction(string="C00002_c --> C00228_c", reaction="B")
+        test_dict.add_reaction(string="C00009_c --> C00001_c", reaction="C")
+        test_dict.add_reaction(string="C00009_c --> C00001_c", reaction="D")
+        test_dict.add_reaction(string="C00009_c --> C00011_c", reaction="E")
+        test_dict.add_reaction(string="C00009_c --> C00011_c", reaction="F")
+        test_dict.add_reaction(string="C00009_c --> C00011_c", reaction="G")
         with open(file="test.json", mode="w+") as f:
             f.write(test_dict.json_dump(indent=4))
         print(test_dict.json_dump(indent=4))
