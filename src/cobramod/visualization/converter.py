@@ -102,15 +102,17 @@ class JsonDictionary(UserDict):
                     self.data[key] = {
                         "x": 0,
                         "y": 0,
-                        "width": 2000,
+                        "width": 1500,
                         "height": 1500,
                     }
         # Defining variables for sizes
         self.CANVAS_WIDTH = self.data["canvas"]["width"]
         self.CANVAS_HEIGHT = self.data["canvas"]["height"]
         self.R_WIDTH = 350
-        self.R_HEIGHT = 210
+        self.R_HEIGHT = 270  # 210
+        # Misc attributes
         self._reaction_data = dict()
+        # self._up_or_down = cycle([-1, 1])
 
     def json_dump(self, indent: int = None) -> str:
         """
@@ -250,18 +252,18 @@ class JsonDictionary(UserDict):
         """
         # Size of columns depends on number of reactions, or the relationship
         # CANVAS_WIDTH:R_WIDTH
-        # The 50 and 80 px is a visual help (extra separation)
+        # The 50 and 100 px is a visual help (extra separation)
         # TODO: verify visual help
         columns = min(
             [
                 # len(self.data["reactions"]) + 2,
-                int(self.CANVAS_WIDTH / (self.R_WIDTH + 50))
+                int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
             ]
         )
         rows = min(
             [
                 # ADD: minium value from columns,
-                int(self.CANVAS_HEIGHT / (self.R_HEIGHT + 80))
+                int(self.CANVAS_HEIGHT / (self.R_HEIGHT))
             ]
         )
         # create Generators for the place number of the reaction-Box
@@ -331,7 +333,7 @@ class JsonDictionary(UserDict):
             bigg_id=identifier,
             reversibility=reversibility,
             label_y=top_edge + self.R_HEIGHT / 2 - 30,
-            label_x=left_edge + self.R_WIDTH / 2,
+            label_x=left_edge + self.R_WIDTH / 2 + 20,
             gene_reaction_rule=gene_reaction_rule,
             genes=genes,
             segments=segments,
@@ -392,13 +394,16 @@ class JsonDictionary(UserDict):
             dot_y = top_edge + counter * space_y
             # For metabolites: the labels must be 40 px higher in th y-axis
             # and the x-axis varies depending in the length (between 31-50)
+            _up_or_down = cycle([-1, 1])
+            if number_metabolites > 2:
+                _up_or_down = cycle([-1])
             self.add_metabolite(
                 x=dot_x,
                 y=dot_y,
                 label_x=dot_x - 30,
-                label_y=dot_y + 40,
+                label_y=dot_y + 30 * next(_up_or_down) + 10,
                 bigg_id=key,
-                # Add proper name
+                # TODO: Add proper name
                 name=key,
                 node_is_primary=False,
             )

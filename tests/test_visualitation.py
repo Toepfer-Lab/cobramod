@@ -123,11 +123,11 @@ class TestVisualization(unittest.TestCase):
         )
         self.assertIn(member="b1", container=test_dict["segments"]["0"].keys())
         # CASE 2: method add_metabolite
-        # test_dict.add_metabolite(bigg_id="test_metabolite", coefficient=1)
-        # self.assertEqual(
-        #     first="test_metabolite",
-        #     second=test_dict["metabolites"][0]["bigg_id"],
-        # )
+        test_dict.add_metabolite(bigg_id="test_metabolite", coefficient=1)
+        self.assertEqual(
+            first="test_metabolite",
+            second=test_dict["metabolites"][0]["bigg_id"],
+        )
 
     def test_JsonDictionary(self):
         # CASE 0: Checking behaviour with two instances
@@ -185,7 +185,11 @@ class TestVisualization(unittest.TestCase):
         test_dict.add_reaction(
             string="2 C00009_c + C00002_c--> C00011_c", identifier="F"
         )
-        test_dict.add_reaction(string="C00009_c --> C00011_c", identifier="G")
+        test_dict.add_reaction(
+            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
+            + "2 C00034_c + C00004_c + C00226_c",
+            identifier="G",
+        )
         with open(file="test.json", mode="w+") as f:
             f.write(test_dict.json_dump(indent=4))
         print(test_dict.json_dump(indent=4))
