@@ -214,5 +214,5 @@ class Reaction(UserDict):
                 reaction.
         """
         self.data["metabolites"].append(
-            {"bigg_id": bigg_id, "coefficient": coefficient}
+            dict(bigg_id=bigg_id, coefficient=coefficient)
         )

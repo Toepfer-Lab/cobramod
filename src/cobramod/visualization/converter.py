@@ -5,13 +5,20 @@ from json import dumps
 from typing import Dict, List
 
 from cobramod.visualization.pair import PairDictionary
-from cobramod.visualization.items import Reaction, Node
+from cobramod.visualization.items import Reaction, Node, Segment
 
 
 def _convert_string(string: str) -> dict:
-    # C00001_c + 2 C00002_c --> C00009_c + C00080_c + G11113_c
-    # 'C00002_c + C00033_c <=> C00227_c + G11113_c'
-    # 'C00002_c + C00033_c <-- C00227_c + G11113_c'
+    """
+    Converts a :func:`cobra.Reaction` reaction-string into a dictionary, and
+    returns a dictionary with the corresponding participants and their
+    coefficients.
+
+    Examples:
+    'C00001_c + 2 C00002_c --> C00009_c + C00080_c + G11113_c'
+    'C00002_c + C00033_c <=> C00227_c + G11113_c'
+    'C00002_c + C00033_c <-- C00227_c + G11113_c'
+    """
     middle = max(string.find(">"), string.find("<"))
     # find exact middle
     if " " == string[middle - 1]:
@@ -26,6 +33,7 @@ def _convert_string(string: str) -> dict:
             item.split() if len(item.split()) == 2 else ["1", *item.split()]
             for item in side.split("+")
         ]
+        # FACTOR defines product or reactant
         FACTOR = 1
         if side is left:
             FACTOR = -1
@@ -52,8 +60,10 @@ class JsonDictionary(UserDict):
             :func:`cobramod.visualization.items.Node` where the key is the
             number of the Node and the value the corresponding object. Defaults
             to empty dictionary.
-        text_labels  (dict, optional): Dictionary with the custom text in the
-        canvas: dict[str, float] = none,
+        text_labels  (dict, optional): Dictionary with the custom text inside
+            the canvas.
+        canvas (dict, optional): x and y position, width and height of the
+            white area in Escher.
     """
 
     def __init__(self, *args, **kwargs):
@@ -92,7 +102,7 @@ class JsonDictionary(UserDict):
                     self.data[key] = {
                         "x": 0,
                         "y": 0,
-                        "width": 1500,
+                        "width": 2000,
                         "height": 1500,
                     }
         # Defining variables for sizes
@@ -100,6 +110,7 @@ class JsonDictionary(UserDict):
         self.CANVAS_HEIGHT = self.data["canvas"]["height"]
         self.R_WIDTH = 350
         self.R_HEIGHT = 210
+        self._reaction_data = dict()
 
     def json_dump(self, indent: int = None) -> str:
         """
@@ -117,13 +128,18 @@ class JsonDictionary(UserDict):
                 key: dict(**value)
                 for key, value in self.data["reactions"].items()
             }.copy()
+            # Each reaction must have its Segment changed to a native dict
             for reaction in reactions:
                 # if empty, must be changed to regular dictionary
                 if not reactions[reaction]["segments"]:
                     reactions[reaction]["segments"] = dict()
                 else:
+                    # Change each Segment
+                    temporal_dict = dict()
                     for key, value in reactions[reaction]["segments"].items():
-                        reactions[reaction]["segments"][key] = dict(**value)
+                        temporal_dict[key] = dict(**value)
+                    reactions[reaction]["segments"] = temporal_dict
+
         except KeyError:
             reactions = {}
         return dumps(
@@ -139,31 +155,36 @@ class JsonDictionary(UserDict):
             indent=indent,
         )
 
-    def _get_set(self, reaction: bool):
+    def _get_set(self, item: str) -> set:
         """
-        Returns set for either the keys of the reactions or, the keys from
-        nodes and the corresponding segements from the reactions. Argument
-        'reaction' will return the index of reactions if true.
+        Return a set for the keys of either the reactions, the nodes or
+        segments for all reactions. Options for item: "nodes", "segments",
+        "reactions"
         """
-        if not reaction:
-            numbers = {int(key) for key in self.data["nodes"]}
+        if item == "segments":
+            numbers = set()
             # Get the numbers from the segments
             with suppress(KeyError):
                 reactions = self.data["reactions"]
                 for key in reactions.keys():
                     segments = reactions[key]["segments"]
                     numbers.update([int(index) for index in segments])
+        elif item in ("reactions", "nodes"):
+            numbers = {int(key) for key in self.data[item]}
         else:
-            numbers = {int(key) for key in self.data["reactions"]}
+            raise ValueError(
+                "Argument 'item' not correct. Refer to docstring."
+            )
         return numbers
 
-    def _get_last_number(self, reaction: bool) -> int:
+    def _get_last_number(self, item: str) -> int:
         """
-        Returns the largest number of the keys from nodes, and segments from
-        each reaction.
+        Returns the largest number of the keys from either reactions, nodes, or
+        segments from each reaction. Options for item: "nodes", "segments",
+        "reactions"
         """
         # Return 0 for first item, otherwise the longest number + 1
-        numbers = self._get_set(reaction=reaction)
+        numbers = self._get_set(item=item)
         if not numbers:
             return 0
         return max(numbers) + 1
@@ -179,7 +200,8 @@ class JsonDictionary(UserDict):
         node_is_primary: bool,
     ):
         """
-        Add a metabolite-type node into the JsonDictionary.
+        Add a metabolite-type node into the JsonDictionary. The key will be
+        always the last node number.
 
         Args:
             x (float): Position in x-axis for the node.
@@ -193,7 +215,7 @@ class JsonDictionary(UserDict):
                 metabolite, i.e. Node is visually larger.
 
         """
-        number = str(self._get_last_number(reaction=False))
+        number = str(self._get_last_number(item="nodes"))
         self.data["nodes"][number] = Node(
             node_type="metabolite",
             x=x,
@@ -205,7 +227,7 @@ class JsonDictionary(UserDict):
             node_is_primary=node_is_primary,
         )
 
-    def create_marker(self, x: float, y: float, node_type: str = "midmarker"):
+    def add_marker(self, x: float, y: float, node_type: str = "midmarker"):
         """
         Add a marker-type node into the JsonDictionary. Node can be a midmarker
         or a multimarker. These markes are located in the middle of the
@@ -217,7 +239,7 @@ class JsonDictionary(UserDict):
             node_type (str): Type of marker. Options: 'midmarker' or
                 'multimarker'
         """
-        number = str(self._get_last_number(reaction=False))
+        number = str(self._get_last_number(item="nodes"))
         self.data["nodes"][number] = Node(node_type=node_type, x=x, y=y)
 
     def _get_edges(self) -> tuple:
@@ -229,6 +251,7 @@ class JsonDictionary(UserDict):
         # Size of columns depends on number of reactions, or the relationship
         # CANVAS_WIDTH:R_WIDTH
         # The 50 and 80 px is a visual help (extra separation)
+        # TODO: verify visual help
         columns = min(
             [
                 # len(self.data["reactions"]) + 2,
@@ -243,12 +266,10 @@ class JsonDictionary(UserDict):
         )
         # create Generators for the place number of the reaction-Box
         sequence_x = cycle(range(0, columns))
-        repeated_rows = list(
-            chain.from_iterable(
-                (
-                    repeat(row_number, columns)
-                    for row_number in range(0, len(self.data["reactions"]))
-                )
+        repeated_rows = chain.from_iterable(
+            (
+                repeat(row_number, columns)
+                for row_number in range(0, len(self.data["reactions"]))
             )
             # A 0 just in case of first item
         ) or [0]
@@ -275,9 +296,9 @@ class JsonDictionary(UserDict):
         name: str,
         identifier: str,
         reversibility: bool,
+        segments: dict,
         gene_reaction_rule: str = "",
         genes: List[Dict[str, str]] = [],
-        segments: PairDictionary = PairDictionary(),
     ) -> Reaction:
         """
         Returns a :func:`cobramod.visualization.items.Reaction`. It will take
@@ -302,8 +323,8 @@ class JsonDictionary(UserDict):
             segments (PairDictionary, optional): Dictionary with segments,
                 which represent the conections between nodes.
         """
-        if not isinstance(segments, PairDictionary):
-            raise TypeError("Argument 'segments' must be a PairDictionary")
+        # if not isinstance(segments, PairDictionary):
+        #     raise TypeError("Argument 'segments' must be a PairDictionary")
         top_edge, left_edge = self._get_edges()
         reaction = Reaction(
             name=name,
@@ -317,6 +338,28 @@ class JsonDictionary(UserDict):
         )
         return reaction
 
+    def _add_reaction_markers(self, identifier: str):
+        """
+        Add the corresponding midmarker and multimarkers into the
+        JsonDictionary. Nodes will be added to the corresponding reaction data.
+        Number for the nodes will not repeat themselves.
+        """
+        # For markers: 20 px between each one. Sequence should follow:
+        # multimarker-midmarker-multimarker
+        top_edge, left_edge = self._get_edges()
+        for node_type, extra_x, position in (
+            ("multimarker", -20, "first"),
+            ("midmarker", 0, "middle"),
+            ("multimarker", 20, "last"),
+        ):
+            last = self._get_last_number(item="nodes")
+            self._reaction_data[identifier][position] = last
+            self.add_marker(
+                x=left_edge + (self.R_WIDTH / 2) + extra_x + 30,
+                y=top_edge + (self.R_HEIGHT / 2),
+                node_type=node_type,
+            )
+
     def _add_metabolites(self, metabolite_dict: dict, reaction: Reaction):
         """
         Adds the metabolites from the dictionary into a
@@ -328,17 +371,19 @@ class JsonDictionary(UserDict):
         side_dict = {"left": 1, "right": 1}
         # Internal box (Reaction-box)
         for key, value in metabolite_dict.items():
-            # By default, right side
+            # By default, left side
+            item = "reactants"
             SIDE = 0
-            counter = side_dict["right"]
+            counter = side_dict["left"]
             number_metabolites = len(
-                [value for value in metabolite_dict.values() if value > 0]
+                [value for value in metabolite_dict.values() if value < 0]
             )
-            if value < 0:
+            if value > 0:
+                item = "products"
                 SIDE = 1
-                counter = side_dict["left"]
+                counter = side_dict["right"]
                 number_metabolites = len(
-                    [value for value in metabolite_dict.values() if value < 0]
+                    [value for value in metabolite_dict.values() if value > 0]
                 )
             # Defining positions for metabolites based on Reaction-box
             space_y = self.R_HEIGHT / (number_metabolites + 1)
@@ -353,64 +398,105 @@ class JsonDictionary(UserDict):
                 label_x=dot_x - 30,
                 label_y=dot_y + 40,
                 bigg_id=key,
-                name="test_" + key,
+                # Add proper name
+                name=key,
                 node_is_primary=False,
             )
+            # add to reaction data
+            self._reaction_data[reaction["bigg_id"]][item].update({key: value})
+            last = self._get_last_number(item="nodes")
             # Increase number. TODO: find a better way
             counter += 1
             if value < 0:
                 side_dict["left"] = counter
             else:
                 side_dict["right"] = counter
-            reaction.add_metabolite(bigg_id="test_" + key, coefficient=value)
-
-    def _add_markers(self):
-        # For markers: 20 px between each one. Sequence should follow:
-        # multimarker-midmarker-multimarker
-        top_edge, left_edge = self._get_edges()
-        for node_type, extra_x in (
-            ("multimarker", -20),
-            ("midmarker", 0),
-            ("multimarker", 20),
-        ):
-            self.create_marker(
-                x=left_edge + (self.R_WIDTH / 2) + extra_x + 30,
-                y=top_edge + (self.R_HEIGHT / 2),
-                node_type=node_type,
+            # Add coefficient to reaction object
+            reaction.add_metabolite(bigg_id=key, coefficient=value)
+            # Add to node dictionary. Last minus one, since the node was
+            # already added.
+            self._reaction_data[reaction["bigg_id"]]["nodes"].update(
+                {key: last - 1}
             )
 
-    def shift(self):
-        row_size = int(self.CANVAS_WIDTH / (self.R_WIDTH + 50))
-        # if row_size > actual_length, shift only reactions that surpassed it.
-        if row_size > len(self.data["reactions"]):
-            for reaction in self.data["reactions"].values():
-                reaction["label_x"] += -400
-                print(".")
+    def _add_segments(self, reaction: Reaction, metabolite_dict: dict):
+        # First 2 Segmenst joins the node-markers. The number of Segments is
+        # equal to: 2 + number_metabolites
+        identifier = reaction["bigg_id"]
+        last = self._get_last_number(item="segments")
+        marker = {
+            "first": self._reaction_data[identifier]["first"],
+            "last": self._reaction_data[identifier]["last"],
+            "middle": self._reaction_data[identifier]["middle"],
+        }
+        # From markers
+        # TODO: Refactor
+        reaction["segments"].update(
+            {
+                str(last): Segment(
+                    from_node_id=str(marker["first"]),
+                    to_node_id=str(marker["middle"]),
+                )
+            }
+        )
+        last += 1
+        reaction["segments"].update(
+            {
+                str(last): Segment(
+                    from_node_id=str(marker["last"]),
+                    to_node_id=str(marker["middle"]),
+                )
+            }
+        )
+        for key, value in metabolite_dict.items():
+            # Two due to the first two segments, and plus one as it represent
+            # the actual Segment
+            number = self._reaction_data[identifier]["nodes"][key]
+            last += 1
+            if value < 0:
+                reaction["segments"].update(
+                    {
+                        str(last): Segment(
+                            from_node_id=str(number),
+                            to_node_id=marker["first"],
+                        )
+                    }
+                )
+            elif value > 0:
+                reaction["segments"].update(
+                    {
+                        str(last): Segment(
+                            from_node_id=str(number), to_node_id=marker["last"]
+                        )
+                    }
+                )
+        # Verify the number of Segments. They cannot have the same key of other
+        # Segments from other reactions.
 
     def add_reaction(self, string: str, identifier: str):
+        # Add general data
+        self._reaction_data[identifier] = {
+            "reactants": {},
+            "products": {},
+            "nodes": {},
+        }
         # Extract information for new reaction, nr of metabolites (string
         # representation)
         metabolite_dict = _convert_string(string=string)
-        # if max_size is not surpassed, nothing changes
-        # shift if needed
-        if len(self.data["reactions"]) >= 1:
-            # self.shift()
-            # Modify prior reactions (position)
-            pass
         # Base reaction
         reaction = self.create_reaction(
             name="test_reaction" + identifier,
-            identifier="test_R" + identifier,
+            identifier=identifier,
             reversibility=True,
+            segments=dict(),
         )
         # Add nodes
+        self._add_reaction_markers(identifier=identifier)
         self._add_metabolites(
             metabolite_dict=metabolite_dict, reaction=reaction
         )
-        self._add_markers()
         # Segments
-        # Verify the number of Segments. They cannot have the same key of other
-        # Segments from other reactions.
+        self._add_segments(reaction=reaction, metabolite_dict=metabolite_dict)
         # Add to JsonDictionary
-        number = self._get_last_number(reaction=True)
+        number = self._get_last_number(item="reactions")
         self.data["reactions"].update({str(number): reaction})
