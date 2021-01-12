@@ -1,14 +1,11 @@
 from pathlib import Path
 import unittest
-from logging import DEBUG
 
-from cobramod.debug import debug_log
 from cobramod.error import FoundInPairError
 from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Node, Segment, Reaction
 from cobramod.visualization.converter import JsonDictionary, _convert_string
 
-debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
@@ -168,12 +165,12 @@ class TestVisualization(unittest.TestCase):
     def test_automate(self):
         test_dict = JsonDictionary()
         test_dict.add_reaction(
-            string="C00002_c + C00009_c --> C00227_c + C00033_c",
+            string="C00002_c + C00009_c --> C00227_c + C00003_c",
             identifier="A",
         )
-        test_dict.add_reaction(string="C00002_c --> C00228_c", identifier="B")
+        test_dict.add_reaction(string="C00003_c --> C00228_c", identifier="B")
         test_dict.add_reaction(
-            string="C00009_c + C00002_c--> C00001_c", identifier="C"
+            string="C00009_c + C00228_c--> C00001_c", identifier="C"
         )
         test_dict.add_reaction(
             string="C00004_c + C00011_c --> C00001_c + C00227_c",

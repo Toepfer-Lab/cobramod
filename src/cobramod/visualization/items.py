@@ -4,6 +4,7 @@ from typing import Any
 
 from cobramod.error import NodeAttributeError
 from cobramod.visualization.pair import PairDictionary
+from cobramod.visualization.debug import debug_log
 
 
 class Node(UserDict):
@@ -201,6 +202,7 @@ class Reaction(UserDict):
                     self.data[key] = list()
                 elif key == "segments":
                     self.data[key] = PairDictionary()
+        debug_log.debug(f'New Reaction "{self.data["bigg_id"]}" created.')
 
     def add_metabolite(self, bigg_id: str, coefficient: float):
         """
@@ -215,4 +217,33 @@ class Reaction(UserDict):
         """
         self.data["metabolites"].append(
             dict(bigg_id=bigg_id, coefficient=coefficient)
+        )
+        debug_log.debug(
+            f"Metabolite information added to Reaction "
+            f'"{self.data["bigg_id"]}"'
+            f' with id "{bigg_id}". Coefficient: {coefficient}.'
+        )
+
+    def add_segment(self, identifier: str, from_node_id: str, to_node_id: str):
+        """
+        Adds to the Reaction for given identifier a Segment. It will be
+        visualized in Escher.
+
+        Args:
+            identifier (str): Number-identifier for the Segment,
+            from_node_id (str): json data identifier, that represents the
+                initial node for the segment.
+            to_node_id (str): json data identifier, that represents the last
+                node for the segment.
+        """
+        self.data["segments"].update(
+            {
+                identifier: Segment(
+                    from_node_id=from_node_id, to_node_id=to_node_id
+                )
+            }
+        )
+        debug_log.debug(
+            f'New Segment added to Reaction "{self.data["bigg_id"]}" with id '
+            f'"{identifier}" From: {from_node_id}, to {to_node_id}'
         )
