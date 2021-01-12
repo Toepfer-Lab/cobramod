@@ -374,6 +374,46 @@ class JsonDictionary(UserDict):
                 node_type=node_type,
             )
 
+    def _first_column(self, x_position: float) -> bool:
+        """
+        Returns true if given x-position is located in the first column
+        """
+        columns = min(
+            [
+                # len(self.data["reactions"]) + 2,
+                int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
+            ]
+        )
+        x_range = self.CANVAS_WIDTH / columns
+        return x_position < x_range
+
+    def _last_column(self, x_position: float) -> bool:
+        """
+        Returns true if given x-position is located in the last column
+        """
+        columns = min(
+            [
+                # len(self.data["reactions"]) + 2,
+                int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
+            ]
+        )
+        x_range = self.CANVAS_WIDTH / columns
+        edge_range = self.CANVAS_WIDTH - x_range
+        return x_position >= edge_range
+
+    def _not_edges(self, x_position: float) -> bool:
+        """
+        Returns True if x_position is located in the last column and previous
+        metabolite from the JsonDictionary is located in the first column.
+        """
+        # First condition/ actual reaction
+        first = self._first_column(x_position=x_position)
+        # Second condition/ prior reaction. Grab last metabolite, which is 4
+        # identifiers behind
+        last = str(self._get_last_number(item="nodes") - 4)
+        second = self._last_column(x_position=self.data["nodes"][last]["x"])
+        return all([first, second])
+
     def _add_metabolites(self, metabolite_dict: dict, reaction: Reaction):
         """
         Adds the metabolites from the dictionary into a
@@ -392,10 +432,13 @@ class JsonDictionary(UserDict):
                 for reaction in self.data["reactions"][previous]["metabolites"]
                 if reaction["coefficient"] > 0
             ]
+            not_edges = self._not_edges(x_position=left_edge)
         except KeyError:
+            # Special case for first reaction
             previous = "0"
             old_name = ""
             old_metabolites = []
+            not_edges = False
         for key, value in metabolite_dict.items():
             # By default, left side
             item = "reactants"
@@ -422,14 +465,15 @@ class JsonDictionary(UserDict):
             if number_metabolites > 2:
                 _up_or_down = cycle([-1])
             # Check previous reaction (must be in product). Side must be left
-            # (reactants). Change last variable to node of the node.
-            if key in old_metabolites and SIDE == 0:
+            # (reactants) AND should not be in the last column. Change last
+            # variable to node of the node.
+            if key in old_metabolites and SIDE == 0 and not not_edges:
                 last = self._reaction_data[old_name]["nodes"][key]
                 debug_log.debug(
-                    f'Metabolite "{key}" in reaction "{old_name}" in node '
-                    f'"{last}"'
+                    f'Metabolite "{key}" in previous reaction "{old_name}" '
+                    f'located in node "{last}"'
                 )
-                # Move previous node
+                # TODO: Move previous node
             else:
                 # Add node metabolite-node to JsonDictionary. This has to be
                 # omitted if previous reaction has a shared metabolite. Also,
@@ -456,8 +500,6 @@ class JsonDictionary(UserDict):
             # Add to node dictionary. Last minus one, since the node was
             # already added.
             # add to reaction data
-            # TODO: Change node for proper one in case of repeating
-            # metabolites
             self._reaction_data[reaction["bigg_id"]][item].update({key: value})
             self._reaction_data[reaction["bigg_id"]]["nodes"].update(
                 {key: last}
@@ -474,15 +516,6 @@ class JsonDictionary(UserDict):
             "middle": self._reaction_data[identifier]["middle"],
         }
         # From markers. They will be always 2.
-        # TODO: Refactor
-        # reaction["segments"].update(
-        #     {
-        #         str(last): Segment(
-        #             from_node_id=str(marker["first"]),
-        #             to_node_id=str(marker["middle"]),
-        #         )
-        #     }
-        # )
         for node in ("first", "last"):
             last += 1
             reaction.add_segment(
@@ -490,14 +523,6 @@ class JsonDictionary(UserDict):
                 from_node_id=str(marker[node]),
                 to_node_id=str(marker["middle"]),
             )
-        # reaction["segments"].update(
-        #     {
-        #         str(last): Segment(
-        #             from_node_id=str(marker["last"]),
-        #             to_node_id=str(marker["middle"]),
-        #         )
-        #     }
-        # )
         for key, value in metabolite_dict.items():
             # Two due to the first two segments, and plus one as it represent
             # the actual Segment

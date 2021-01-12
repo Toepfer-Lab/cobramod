@@ -156,11 +156,13 @@ class TestVisualization(unittest.TestCase):
         test_dict = JsonDictionary()
         test_reaction = test_dict.create_reaction(
             name="test_reaction",
-            identifier="test_id",
+            identifier="test_identifier",
             reversibility=True,
             segments=dict(),
         )
-        self.assertEqual(first="test_id", second=test_reaction["bigg_id"])
+        self.assertEqual(
+            first="test_identifier", second=test_reaction["bigg_id"]
+        )
 
     def test_automate(self):
         test_dict = JsonDictionary()
@@ -170,17 +172,17 @@ class TestVisualization(unittest.TestCase):
         )
         test_dict.add_reaction(string="C00003_c --> C00228_c", identifier="B")
         test_dict.add_reaction(
-            string="C00009_c + C00228_c--> C00001_c", identifier="C"
+            string="C00009_c + C00228_c--> C00004_c", identifier="C"
         )
         test_dict.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00227_c",
+            string="C00004_c + C00011_c --> C00001_c + C00200_c",
             identifier="D",
         )
         test_dict.add_reaction(
-            string="2 C00009_c --> 4 C00011_c", identifier="E"
+            string="2 C00200_c --> 4 C00021_c", identifier="E"
         )
         test_dict.add_reaction(
-            string="2 C00009_c + C00002_c--> C00011_c", identifier="F"
+            string="2 C00021_c + C00002_c--> C00033_c", identifier="F"
         )
         test_dict.add_reaction(
             string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
