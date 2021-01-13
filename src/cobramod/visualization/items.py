@@ -1,3 +1,15 @@
+"""Escher JSON-schema objects
+
+This modules has all the JSON objects that can be seen in the original JSON
+schema for Escher.
+
+The classes retain their original JSON names and attributes.
+- Node: Represents the nodes. They can be a metabolite or markers. They give
+the position of all dots in the canvas.
+- Segment: Represents the connections between nodes.
+- Reaction: Represents a reaction. They contain the needed segments for the
+visualization of the pathway.
+"""
 from contextlib import suppress
 from collections import UserDict
 from typing import Any
@@ -161,7 +173,7 @@ class Reaction(UserDict):
             'coefficient'.
         segments (PairDictionary, optional): dictionary with
             :func:`cobramod.visualization.items.Segment`. They represent
-            the conections between nodes.
+            the connections between nodes.
     """
 
     def __init__(self, *args, **kwargs):

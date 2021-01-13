@@ -1,3 +1,13 @@
+"""JSON creator
+
+This module handles the convertion of strings into a proper object that can be
+used to create a JSON string, which can be later used in Escher.
+
+The main class of this module is
+:func:`cobramod.visualization.converter.JsonDictionary`. This class is able to
+parse and store data as JSON objects. Using the method 'json_dump', the data
+can be obtained as a JSON string.
+"""
 from collections import UserDict
 from contextlib import suppress
 from itertools import cycle, chain, repeat

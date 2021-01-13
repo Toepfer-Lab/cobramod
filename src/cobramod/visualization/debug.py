@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# Creating corresponding log for the visualization sub module
+"""Debugging configuration for sub-package visualization.
+
+Configures the debug logging tool. The format follows the syntax:
+`(asctime) (levelname) (message)`.
+
+The FileHandler is set to 'visualization.log' with the mode "+a".
+The default level is set to DEBUG.
+
+The name of logger variable is `debug_log`
+
+"""
 from logging import Formatter, FileHandler, getLogger, DEBUG
 
 # Format
