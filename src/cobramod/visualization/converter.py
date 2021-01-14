@@ -13,6 +13,7 @@ from contextlib import suppress
 from itertools import cycle, chain, repeat
 from json import dumps
 from typing import Dict, List
+from warnings import warn
 
 from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Reaction, Node
@@ -87,7 +88,7 @@ class JsonDictionary(UserDict):
         super().__init__(self, *args, **kwargs)
         # Check if no kwargs were specified
         for key in ("head", "reactions", "text_labels", "nodes", "canvas"):
-            # Check if key can be called individualley
+            # Check if key can be called individually
             try:
                 self.data[key]
             except KeyError:
@@ -121,9 +122,8 @@ class JsonDictionary(UserDict):
         self.CANVAS_HEIGHT = self.data["canvas"]["height"]
         self.R_WIDTH = 350
         self.R_HEIGHT = 270  # 210
-        # Misc attributes
+        # Data stored about reactions and participants.
         self._reaction_data = dict()
-        # self._up_or_down = cycle([-1, 1])
 
     def json_dump(self, indent: int = None) -> str:
         """
@@ -266,6 +266,14 @@ class JsonDictionary(UserDict):
             f"the JsonDictionary"
         )
 
+    def __get_col_row(self) -> tuple:
+        """
+        Returns the number of columns and rows, in that order
+        """
+        columns = int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
+        rows = int(self.CANVAS_HEIGHT / (self.R_HEIGHT))
+        return columns, rows
+
     def _get_edges(self) -> tuple:
         """
         Return the top edge and the left edge for the Reaction-box. They define
@@ -276,18 +284,7 @@ class JsonDictionary(UserDict):
         # CANVAS_WIDTH:R_WIDTH
         # The 50 and 100 px is a visual help (extra separation)
         # TODO: verify visual help
-        columns = min(
-            [
-                # len(self.data["reactions"]) + 2,
-                int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
-            ]
-        )
-        rows = min(
-            [
-                # ADD: minium value from columns,
-                int(self.CANVAS_HEIGHT / (self.R_HEIGHT))
-            ]
-        )
+        columns, rows = self.__get_col_row()
         # create Generators for the place number of the reaction-Box
         sequence_x = cycle(range(0, columns))
         repeated_rows = chain.from_iterable(
@@ -388,12 +385,7 @@ class JsonDictionary(UserDict):
         """
         Returns true if given x-position is located in the first column
         """
-        columns = min(
-            [
-                # len(self.data["reactions"]) + 2,
-                int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
-            ]
-        )
+        columns, _ = self.__get_col_row()
         x_range = self.CANVAS_WIDTH / columns
         return x_position < x_range
 
@@ -401,12 +393,7 @@ class JsonDictionary(UserDict):
         """
         Returns true if given x-position is located in the last column
         """
-        columns = min(
-            [
-                # len(self.data["reactions"]) + 2,
-                int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
-            ]
-        )
+        columns, _ = self.__get_col_row()
         x_range = self.CANVAS_WIDTH / columns
         edge_range = self.CANVAS_WIDTH - x_range
         return x_position >= edge_range
@@ -509,7 +496,6 @@ class JsonDictionary(UserDict):
             reaction.add_metabolite(bigg_id=key, coefficient=value)
             # Add to node dictionary. Last minus one, since the node was
             # already added.
-            # add to reaction data
             self._reaction_data[reaction["bigg_id"]][item].update({key: value})
             self._reaction_data[reaction["bigg_id"]]["nodes"].update(
                 {key: last}
@@ -553,7 +539,34 @@ class JsonDictionary(UserDict):
         # Verify the number of Segments. They cannot have the same key of other
         # Segments from other reactions.
 
+    def __check_out_canvas(self) -> bool:
+        """
+        Returns true if next reaction would be within range of the canvas
+        """
+        rows, columns = self.__get_col_row()
+        maximum = rows * columns
+        actual = len(self.data["reactions"]) + 1
+        return actual > maximum
+
     def add_reaction(self, string: str, identifier: str):
+        """
+        Parses and add given reaction string as a reaction for the
+        JsonDictionary. It will automatically create all the necessary nodes
+        and segments for the JSON.
+
+        Args:
+            string (str): Reaction string to be parsed.
+            identifier (str): Identifier for the reaction
+
+        Raises:
+            UserWarning: If reaction would be located outside the canvas. It
+                will not stop the method.
+        """
+        # Check for reaction inside canvas.
+        if self.__check_out_canvas():
+            msg = f'Reaction "{identifier}" will be located ouside the canvas.'
+            warn(message=msg, category=UserWarning)
+            debug_log.warning(msg=msg)
         # Add general data
         self._reaction_data[identifier] = {
             "reactants": {},
@@ -563,8 +576,6 @@ class JsonDictionary(UserDict):
         # Extract information for new reaction, nr of metabolites (string
         # representation)
         metabolite_dict = _convert_string(string=string)
-        # Add nodes
-        self._add_reaction_markers(identifier=identifier)
         # Base reaction
         reaction = self.create_reaction(
             name="test_reaction" + identifier,
@@ -572,9 +583,11 @@ class JsonDictionary(UserDict):
             reversibility=True,
             segments=dict(),
         )
+        # Add nodes (metabolites and markers)
         self._add_metabolites(
             metabolite_dict=metabolite_dict, reaction=reaction
         )
+        self._add_reaction_markers(identifier=identifier)
         # Segments
         self._add_segments(reaction=reaction, metabolite_dict=metabolite_dict)
         # Add to JsonDictionary

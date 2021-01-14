@@ -10,7 +10,7 @@ dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
 
-class TestVisualization(unittest.TestCase):
+class TestItems(unittest.TestCase):
     def test__convert_string(self):
         # CASE 1: Simple reaction, reversible
         test_string = "C00002_c + C00033_c <=> C00227_c + G11113_c"
@@ -126,20 +126,31 @@ class TestVisualization(unittest.TestCase):
             second=test_dict["metabolites"][0]["bigg_id"],
         )
 
-    def test_JsonDictionary(self):
+
+class TestJsonDictionary(unittest.TestCase):
+    def test___init__(self):
         # CASE 0: Checking behaviour with two instances
         test_dict = JsonDictionary()
         test_dict_2 = JsonDictionary()
         test_dict["reactions"]["0"] = "test_string"
         self.assertIsNot(expr1=test_dict, expr2=test_dict_2)
         self.assertRaises(KeyError, lambda: test_dict_2["reactions"]["0"])
-        # CASE 1a: creation of dictionary without extra arguments.
+        # CASE 1: creation of dictionary without extra arguments.
         test_dict = JsonDictionary()
         self.assertEqual(first={}, second=test_dict["reactions"])
         self.assertEqual(first="", second=test_dict["head"]["map_name"])
-        # self.assertEqual(first=1500, second=test_dict["canvas"]["width"])
-        # CASE 2: get last number in JsonDictionary. Reactions are not included
+        self.assertEqual(first=1500, second=test_dict["canvas"]["width"])
+        # CASE 2: creation of dictionary passing arguments
+        test_dict = JsonDictionary(
+            canvas={"x": 0, "y": 0, "width": 2000, "height": 2000}
+        )
+        self.assertEqual(first=2000, second=test_dict["canvas"]["width"])
+        self.assertEqual(first=2000, second=test_dict["canvas"]["height"])
+
+    def test__get_last_number(self):
+        # CASE 1: get last number in JsonDictionary. Reactions are not included
         # but their segments
+        test_dict = JsonDictionary()
         test_dict["reactions"]["99"] = Reaction(
             name="test_reaction",
             bigg_id="test_identifier",
@@ -152,7 +163,9 @@ class TestVisualization(unittest.TestCase):
         self.assertEqual(
             first=2, second=test_dict._get_last_number(item="nodes")
         )
-        # CASE 3a: method create_reaction. Regular.
+
+    def test_create_reaction(self):
+        # CASE 1a: method create_reaction. Regular.
         test_dict = JsonDictionary()
         test_reaction = test_dict.create_reaction(
             name="test_reaction",
@@ -164,8 +177,45 @@ class TestVisualization(unittest.TestCase):
             first="test_identifier", second=test_reaction["bigg_id"]
         )
 
-    def test_automate(self):
-        test_dict = JsonDictionary()
+    def test_add_reaction(self):
+        # CASE 1: test that edges are working properly
+        test_dict = JsonDictionary(
+            canvas={"x": 0, "y": 0, "width": 1000, "height": 600}
+        )
+        test_dict.add_reaction(
+            string="C00002_c + C00009_c --> C00227_c + C00003_c",
+            identifier="A",
+        )
+        test_dict.add_reaction(string="C00003_c --> C00228_c", identifier="B")
+        test_dict.add_reaction(
+            string="C00009_c + C00228_c--> C00004_c", identifier="C"
+        )
+        test_dict.add_reaction(
+            string="C00004_c + C00011_c --> C00001_c + C00200_c",
+            identifier="D",
+        )
+        # Reaction "1" after half of canvas, "2" before half of canvas
+        self.assertGreater(a=test_dict["reactions"]["1"]["label_x"], b=500)
+        self.assertLess(a=test_dict["reactions"]["2"]["label_x"], b=500)
+        # Node "11" starts the third reaction (labeled "2"), since there is a
+        # shared metabolite
+        for segment in test_dict["reactions"]["2"]["segments"].values():
+            self.assertGreater(a=int(segment["from_node_id"]), b=10)
+            self.assertGreater(a=int(segment["to_node_id"]), b=10)
+        # CASE 2: Catch Warning if next reaction will be out of canvas
+        test_dict.add_reaction(
+            string="2 C00200_c --> 4 C00021_c", identifier="E"
+        )
+        self.assertWarns(
+            UserWarning,
+            test_dict.add_reaction,
+            string="2 C00200_c --> 4 C00021_c",
+            identifier="E",
+        )
+        # CASE 3:
+        test_dict = JsonDictionary(
+            canvas={"x": 0, "y": 0, "width": 1500, "height": 1000}
+        )
         test_dict.add_reaction(
             string="C00002_c + C00009_c --> C00227_c + C00003_c",
             identifier="A",
@@ -191,7 +241,7 @@ class TestVisualization(unittest.TestCase):
         )
         with open(file="test.json", mode="w+") as f:
             f.write(test_dict.json_dump(indent=4))
-        print(test_dict.json_dump(indent=4))
+        # print(test_dict.json_dump(indent=4))
 
 
 if __name__ == "__main__":
