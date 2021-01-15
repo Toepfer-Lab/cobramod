@@ -285,7 +285,7 @@ class ModulTesting(unittest.TestCase):
                 member=sink, container=[sink.id for sink in test_model.sinks]
             )
 
-    def test_test_solution(self):
+    def test_test_result(self):
         # CASE 0: minimun range not reached
         test_model = Model(0)
         add_reaction(
@@ -300,7 +300,7 @@ class ModulTesting(unittest.TestCase):
         test_model.objective_direction = "min"
         self.assertRaises(
             NotInRangeError,
-            ex.test_solution,
+            ex.test_result,
             model=test_model,
             reaction="1.8.4.9_RXN_p",
             minimum=550,
@@ -316,7 +316,7 @@ class ModulTesting(unittest.TestCase):
             replacement={},
         )
         test_model.objective = "RXN_2206_c"
-        ex.test_solution(model=test_model, reaction="RXN_2206_c")
+        ex.test_result(model=test_model, reaction="RXN_2206_c")
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
         # CASE 2: direction right to left
         test_model = Model(0)
@@ -330,7 +330,7 @@ class ModulTesting(unittest.TestCase):
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        ex.test_solution(
+        ex.test_result(
             model=test_model, reaction="1.8.4.9_RXN_c", minimum=0.01
         )
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
@@ -351,7 +351,7 @@ class ModulTesting(unittest.TestCase):
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
         )
         test_model.objective = "RXN_2206_c"
-        ex.test_solution(
+        ex.test_result(
             model=test_model,
             reaction="RXN_2206_c",
             ignore_list=["OXYGEN_MOLECULE_c"],
@@ -372,7 +372,7 @@ class ModulTesting(unittest.TestCase):
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        ex.test_solution(
+        ex.test_result(
             model=test_model,
             reaction="1.8.4.9_RXN_c",
             ignore_list=["PROTON_c"],
@@ -488,12 +488,12 @@ class ModulTesting(unittest.TestCase):
             container=[group.id for group in test_model.groups],
         )
 
-    def test_add_graph_to_model(self):
+    def test_add_pathway(self):
         # CASE 1: Regular Biocyc
         test_model = textbook_biocyc.copy()
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-1187",
+            pathway="PWY-1187",
             compartment="c",
             directory=dir_data,
             database="META",
@@ -505,9 +505,9 @@ class ModulTesting(unittest.TestCase):
             container=[reaction.id for reaction in test_model.reactions],
         )
         # CASE 2: stacking another pathways (independent from each other)
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="AMMOXID-PWY",
+            pathway="AMMOXID-PWY",
             compartment="c",
             directory=dir_data,
             database="META",
@@ -518,13 +518,14 @@ class ModulTesting(unittest.TestCase):
         # Test for demands, all should have a flux
         for demand in test_model.demands:
             self.assertGreater(a=abs(sol.fluxes[demand.id]), b=0)
+        self.assertEqual(first=len(test_model.groups), second=2)
         # CASE 3: using a simple sequence
         test_model = textbook_biocyc.copy()
         test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
             compartment="c",
-            graph=test_sequence,
+            pathway=test_sequence,
             ignore_list=[],
             database="META",
             directory=dir_data,
@@ -537,9 +538,9 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 4a: KEGG simple pathway
         test_model = textbook_kegg.copy()
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="M00118",
+            pathway="M00118",
             database="KEGG",
             directory=dir_data,
             compartment="c",
@@ -552,15 +553,15 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 4b: KEGG lineal coplex pathway
         test_model = textbook_kegg.copy()
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="M00001",
+            pathway="M00001",
             database="KEGG",
             directory=dir_data,
             compartment="c",
-            ignore_list=["C00008_c"],
+            ignore_list=["C00008_c", "R09084_c"],
             # This reaction has problem
-            avoid_list=["R09084_c"],
+            avoid_list=[""],
             show_imbalance=False,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
@@ -568,11 +569,15 @@ class ModulTesting(unittest.TestCase):
             member="R01063_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        self.assertIn(
+            member="R09084_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
         # CASE 5a: Check for translations in pathways
         test_model = textbook_kegg.copy()
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="SALVADEHYPOX-PWY",
+            pathway="SALVADEHYPOX-PWY",
             database="META",
             directory=dir_data,
             compartment="c",
@@ -588,18 +593,18 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 5b: From sequence
         test_model = textbook_kegg.copy()
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph=["ACALD", "MALS"],
+            pathway=["ACALD", "MALS"],
             database="BIGG",
             model_id="e_coli_core",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
         )
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph=["ADENODEAMIN-RXN"],
+            pathway=["ADENODEAMIN-RXN"],
             database="META",
             directory=dir_data,
             compartment="c",

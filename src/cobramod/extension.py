@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+"""Pathway extension
+
+This module handles the addition and creation of reactions as a pathway in to
+a model.
+
+Most important functions:
+- add_pathway: Adds a pathway or multiple reactions into a model.
+- test_result: Checks that given reaction in a model is active and gives a
+flux.
+"""
 from contextlib import suppress
 from pathlib import Path
 from typing import Union, Generator, Iterable
@@ -145,8 +155,7 @@ def _has_demand(model: Model, metabolite: str) -> bool:
     )
 
 
-# FIXME: replace and find better name
-def _r_metabolite_boundary(model: Model, metabolite: str, boundary: str):
+def _remove_boundary(model: Model, metabolite: str, boundary: str):
     """
     Removes given type of boundary reaction for a specified metabolite if it
     is found in the model.
@@ -200,7 +209,8 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
         msg = f'Metabolite "{metabolite}" ignored'
         debug_log.warning(msg)
         raise Warning(msg)
-    # Check for to add sinks
+    # Check for to add sinks. If demand reaction is found and metabolite has
+    # less than two reactions, then create sink, otherwise remove any sink.
     if _has_demand(model=model, metabolite=metabolite):
         if _less_equal_than_x_rxns(model=model, metabolite=metabolite, x=2):
             model.add_boundary(
@@ -208,9 +218,12 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
             )
             debug_log.warning(f'Sink reaction created for "{metabolite}"')
         else:
-            _r_metabolite_boundary(
+            _remove_boundary(
                 model=model, metabolite=metabolite, boundary="sink"
             )
+    # Otherwise, if it has no demand, add the sink if it has only one reaction
+    # and remove sink if more than 2 reactions.
+    # TODO: check for else behaviour
     else:
         if _less_equal_than_x_rxns(model=model, metabolite=metabolite, x=1):
             model.add_boundary(
@@ -220,13 +233,12 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
         elif not _less_equal_than_x_rxns(
             model=model, metabolite=metabolite, x=2
         ):
-            _r_metabolite_boundary(
+            _remove_boundary(
                 model=model, metabolite=metabolite, boundary="sink"
             )
-    # remove demand if needed
-    _r_metabolite_boundary(
-        model=model, metabolite=metabolite, boundary="demand"
-    )
+    # Remove demand if needed. This part is always necessary since the extra
+    # demands would add extra flux into the system.
+    _remove_boundary(model=model, metabolite=metabolite, boundary="demand")
 
 
 def _fix_side(
@@ -291,7 +303,7 @@ def _verify_sinks(model: Model, reaction: str, ignore_list: Iterable):
     )
 
 
-def test_solution(
+def test_result(
     model: Model,
     reaction: str,
     minimum: float = 0.1,
@@ -329,6 +341,8 @@ def test_solution(
     next_demand = _find_next_demand(
         model=model, reaction_id=reaction, ignore_list=ignore_list
     )
+    # The first step is to add a demand for check that the reaction has an
+    # active flux.
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
         model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = 0.1
@@ -343,7 +357,7 @@ def test_solution(
         debug_log.debug(f'Reaction "{reaction}" not in range')
         _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
         # Recursive with 'extra' argument
-        test_solution(
+        test_result(
             model=model,
             reaction=reaction,
             minimum=minimum,
@@ -354,7 +368,7 @@ def test_solution(
         # if works, pass and return old objective
         debug_log.debug(f'Reaction "{reaction}" showed a feasible answer.')
         # Remove old demand
-        _r_metabolite_boundary(
+        _remove_boundary(
             model=model, metabolite=next_demand, boundary="demand"
         )
         _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
@@ -380,8 +394,9 @@ def _add_sequence(
         avoid_list (list): A sequence of formatted reactions to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
-        ignore_list (list): A sequence of formatted metabolite to ignore
-            when testing new reactions.
+        ignore_list (list): A sequence of formatted metabolites to skip when
+            testing, and/or reactions that should be added but not tested.
+            This is useful for long cyclical pathways.
         minimun (float): Minimum optimized value to pass in every single test.
 
     Raises:
@@ -389,13 +404,14 @@ def _add_sequence(
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
-    # FIXME: find a better solution
+    # Either create a Pathway or obtain the correct Pathway.
     if identifier in [group.id for group in model.groups]:
         pathway = model.groups.get_by_id(identifier)
     else:
         pathway = Pathway(id=identifier)
     # Add sequence to model
     for rxn in sequence:
+        # This reaction will not be added.
         if rxn.id in avoid_list:
             debug_log.warning(
                 f'Reaction "{rxn.id}" found in avoid list. Skipping.'
@@ -408,17 +424,22 @@ def _add_sequence(
             debug_log.debug(
                 f'Reaction "{rxn.id}" added to group "{pathway.id}"'
             )
-            test_solution(
-                model=model,
-                reaction=rxn.id,
-                ignore_list=ignore_list,
-                minimum=minimum,
-            )
+            if rxn.id not in ignore_list:
+                test_result(
+                    model=model,
+                    reaction=rxn.id,
+                    ignore_list=ignore_list,
+                    minimum=minimum,
+                )
+            else:
+                debug_log.warning(f'Test for reaction "{rxn.id}" skipped')
         else:
             # FIXME: avoid creating reaction
-            debug_log.info(f'Reaction "{rxn.id}" was found in model')
-    pathway.add_members(new_members=sequence)
-    debug_log.debug(f'All reactions added to group "{pathway.id}"')
+            debug_log.info(
+                f'Reaction "{rxn.id}" was found in model. Skipping.'
+            )
+        pathway.add_members(new_members=[rxn])
+    debug_log.debug(f'Reactions added to group "{pathway.id}"')
     if identifier not in [group.id for group in model.groups]:
         model.add_groups(group_list=[pathway])
         debug_log.debug("Pathway added to Model")
@@ -559,9 +580,9 @@ def _from_sequence(
     )
 
 
-def add_graph_to_model(
+def add_pathway(
     model: Model,
-    graph: Union[list, str],
+    pathway: Union[list, str],
     directory: Path,
     database: str,
     compartment: str,
@@ -569,7 +590,7 @@ def add_graph_to_model(
     avoid_list: list = [],
     replacement: dict = {},
     ignore_list: list = [],
-    filename: Path = Path.cwd().joinpath("summary.txt"),
+    filename: Path = None,
     summary: bool = True,
     minimum: float = 0.1,
     stop_imbalance: bool = False,
@@ -583,7 +604,7 @@ def add_graph_to_model(
 
     Args:
         model (Model): Model to expand.
-        group (Union[list, str]): Sequence of reaction identifiers or
+        pathway (Union[list, str]): Sequence of reaction identifiers or
             identifier for a pathway.
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database.
@@ -595,10 +616,10 @@ def add_graph_to_model(
             reactions need to be excluded.
         replacement (dict, optional): Original identifiers to be replaced.
             Values are the new identifiers.
-        ignore_list (list, optional): A sequence of formatted metabolite to
+        ignore_list (list, optional): A sequence of formatted metabolites to
             ignore when testing new reactions.
-        filename (Path): Location for the summary. Defaults to
-            Path.cwd().joinpath("summary.txt")
+        filename (Path): Location for the summary. Defaults to "summary.txt" in
+            the current working directory.
         summary (bool, optional): True to write summary in file. Defaults to
             True.
         minimum (float, optional): Minimum optimized value to pass in every
@@ -613,6 +634,8 @@ def add_graph_to_model(
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
+    if not filename:
+        filename = Path.cwd().joinpath("summary.txt")
     # Retrieve information for summary methods
     basic_info = get_basic_info(model=model)
     old_values = get_DataList(model=model)
@@ -620,7 +643,7 @@ def add_graph_to_model(
         # From identifier
         data_dict = get_data(
             directory=directory,
-            identifier=str(graph),
+            identifier=str(pathway),
             database=database,
             model_id=model_id,
         )
@@ -644,7 +667,7 @@ def add_graph_to_model(
         _from_sequence(
             model=model,
             identifier=group,
-            sequence=list(graph),
+            sequence=list(pathway),
             compartment=compartment,
             avoid_list=avoid_list,
             directory=directory,
@@ -657,7 +680,7 @@ def add_graph_to_model(
             model_id=model_id,
         )
     except TypeError:
-        raise Warning("Argument 'graph' must be iterable or a identifier")
+        raise Warning("Argument 'pathway' must be iterable or a identifier")
     finally:
         # Print summary
         check_to_write(

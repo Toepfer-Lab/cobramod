@@ -134,9 +134,9 @@ class GlucosinolateTest(unittest.TestCase):
 
     def test_B_precursors(self):
         # Glutathione synthesis
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="GLUTATHIONESYN-PWY",
+            pathway="GLUTATHIONESYN-PWY",
             database="ARA",
             directory=dir_data,
             compartment="p",
@@ -144,9 +144,9 @@ class GlucosinolateTest(unittest.TestCase):
         )
         # Original has an extra demand (total 962)
         self.assertEqual(len(test_model.reactions), 961)
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-5340",
+            pathway="PWY-5340",
             database="ARA",
             directory=dir_data,
             compartment="p",
@@ -157,9 +157,9 @@ class GlucosinolateTest(unittest.TestCase):
         # One reaction was already in model
         self.assertEqual(len(test_model.reactions), 962)
         # Homomethionine synthesis
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-1186",
+            pathway="PWY-1186",
             database="ARA",
             directory=dir_data,
             compartment="p",
@@ -170,9 +170,9 @@ class GlucosinolateTest(unittest.TestCase):
         # Its counterpart in cytosol was added from the file
         self.assertNotIn("R15_RXN_p", [rxn.id for rxn in test_model.reactions])
         # Methionine Elogation chain
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWYQT-4450",
+            pathway="PWYQT-4450",
             database="ARA",
             directory=dir_data,
             compartment="p",
@@ -184,9 +184,9 @@ class GlucosinolateTest(unittest.TestCase):
 
     def test_C_aliphatic(self):
         # From Homomethionine
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph=[
+            pathway=[
                 "RXN-11422",
                 "RXN-11430",
                 "RXN-11438",
@@ -203,9 +203,9 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Dihomemethionine
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph=[
+            pathway=[
                 "RXN-11423",
                 "RXN-11431",
                 "RXN-11439",
@@ -222,9 +222,9 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Trihomomethionine
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph=[
+            pathway=[
                 "RXN-11424",
                 "RXN-11432",
                 "RXN-11440",
@@ -241,9 +241,9 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Tetrahomomethionine
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWYQT-4473",
+            pathway="PWYQT-4473",
             database="ARA",
             directory=dir_data,
             compartment="c",
@@ -253,9 +253,9 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Pentahomomethionine
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWYQT-4474",
+            pathway="PWYQT-4474",
             database="ARA",
             directory=dir_data,
             compartment="c",
@@ -265,9 +265,9 @@ class GlucosinolateTest(unittest.TestCase):
         )
         self.assertGreater(test_model.slim_optimize(), 0)
         # From Hexahomomethionine
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWYQT-4475",
+            pathway="PWYQT-4475",
             database="ARA",
             directory=dir_data,
             compartment="c",
@@ -283,9 +283,9 @@ class GlucosinolateTest(unittest.TestCase):
         test_model.metabolites.get_by_id(meta).formula = "C15H23N6O5S"
         test_model.metabolites.get_by_id(meta).charge = 1
         # From Tryptophan
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-601",
+            pathway="PWY-601",
             database="ARA",
             directory=dir_data,
             compartment="c",
