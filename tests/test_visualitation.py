@@ -1,5 +1,8 @@
+from contextlib import suppress
 from pathlib import Path
 import unittest
+
+from escher import Builder
 
 from cobramod.error import FoundInPairError
 from cobramod.visualization.pair import PairDictionary
@@ -203,19 +206,14 @@ class TestJsonDictionary(unittest.TestCase):
             self.assertGreater(a=int(segment["from_node_id"]), b=10)
             self.assertGreater(a=int(segment["to_node_id"]), b=10)
         # CASE 2: Catch Warning if next reaction will be out of canvas
-        test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="E"
-        )
         self.assertWarns(
             UserWarning,
             test_dict.add_reaction,
             string="2 C00200_c --> 4 C00021_c",
             identifier="E",
         )
-        # CASE 3:
-        test_dict = JsonDictionary(
-            canvas={"x": 0, "y": 0, "width": 1500, "height": 1000}
-        )
+        # CASE 3: Test multiple reactions with different participants
+        test_dict = JsonDictionary()
         test_dict.add_reaction(
             string="C00002_c + C00009_c --> C00227_c + C00003_c",
             identifier="A",
@@ -239,9 +237,71 @@ class TestJsonDictionary(unittest.TestCase):
             + "2 C00034_c + C00004_c + C00226_c",
             identifier="G",
         )
-        with open(file="test.json", mode="w+") as f:
-            f.write(test_dict.json_dump(indent=4))
-        # print(test_dict.json_dump(indent=4))
+
+    def test_json_dump(self):
+        # CASE 1: Simple HTML and JSON with 4 reactions
+        test_dict = JsonDictionary()
+        # Escher builder
+        test_builder = Builder()
+        test_dict.add_reaction(
+            string="C00004_c + C00011_c --> C00001_c + C00200_c",
+            identifier="D",
+        )
+        test_dict.add_reaction(
+            string="2 C00200_c --> 4 C00021_c", identifier="E"
+        )
+        test_dict.add_reaction(
+            string="2 C00021_c + C00002_c--> C00033_c", identifier="F"
+        )
+        test_dict.add_reaction(
+            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
+            + "2 C00034_c + C00004_c + C00226_c",
+            identifier="G",
+        )
+        # Writing the JSON
+        test_string = test_dict.json_dump(indent=4)
+        # Load the JSON and save the builder. Remove previous files.
+        test_builder.map_json = test_string
+        test_path = Path.cwd().joinpath("test_map.html")
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_builder.save_html(str(test_path))
+        self.assertTrue(expr=test_path.exists())
+
+    def test_visualize(self):
+        test_path = Path.cwd().joinpath("test_map.html")
+        # CASE 1: regular visualization without data
+        test_dict = JsonDictionary()
+        # Escher builder
+        test_dict.add_reaction(
+            string="C00004_c + C00011_c --> C00001_c + C00200_c",
+            identifier="D",
+        )
+        test_dict.add_reaction(
+            string="2 C00200_c --> 4 C00021_c", identifier="E"
+        )
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_builder = test_dict.visualize(filepath=test_path)
+        self.assertEqual(first=test_builder.reaction_data, second=None)
+        self.assertTrue(expr=test_path.exists())
+        # CASE 2: visualization with Data
+        test_dict = JsonDictionary()
+        test_flux = {"D": 2, "E": -1}
+        # Escher builder
+        test_dict.add_reaction(
+            string="C00004_c + C00011_c --> C00001_c + C00200_c",
+            identifier="D",
+        )
+        test_dict.add_reaction(
+            string="2 C00200_c --> 4 C00021_c", identifier="E"
+        )
+        test_dict.reaction_data = test_flux
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_builder = test_dict.visualize(filepath=test_path)
+        self.assertEqual(first=test_builder.reaction_data["D"], second=2)
+        self.assertTrue(expr=test_path.exists())
 
 
 if __name__ == "__main__":

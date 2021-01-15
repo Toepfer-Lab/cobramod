@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """JSON creator
 
 This module handles the convertion of strings into a proper object that can be
@@ -5,19 +6,47 @@ used to create a JSON string, which can be later used in Escher.
 
 The main class of this module is
 :func:`cobramod.visualization.converter.JsonDictionary`. This class is able to
-parse and store data as JSON objects. Using the method 'json_dump', the data
-can be obtained as a JSON string.
+parse and store data as JSON objects. To check the attributes for each
+JSON object, please read the documentation of
+:func:`cobramod.visualization.items`
+
+Important methods:
+
+- json_dump: The data can be parsed into a JSON. (str)
+- add_metabolite: Add metabolite-node into the JsonDictionary.
+- add_marker: Add a marker-node into the JsonDictionary.
+- create_reaction: Returns a :func:`cobramod.visualization.items.Reaction`.
+- add_reaction: Parses a reaction string and add the information into the
+JsonDictionary.
+- visualize: Saves Escher visualization as a HTML and return the Escher
+Builder.
 """
+
 from collections import UserDict
 from contextlib import suppress
 from itertools import cycle, chain, repeat
 from json import dumps
 from typing import Dict, List
 from warnings import warn
+from webbrowser import open as web_open
+from pathlib import Path
+
+from escher import Builder
+from IPython.core.getipython import get_ipython
 
 from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Reaction, Node
 from cobramod.visualization.debug import debug_log
+
+
+def _in_notebook() -> bool:
+    """
+    Returns true if code is being executed through the IPython kernel ZMQ.
+    """
+    try:
+        return get_ipython().__class__.__name__ == "ZMQInteractiveShell"
+    except NameError:
+        return False
 
 
 def _convert_string(string: str) -> dict:
@@ -68,7 +97,7 @@ class JsonDictionary(UserDict):
             :func:`cobramod.visualization.items.Reaction` where the key is the
             number of the reaction and the value the object. Defaults to empty
             dictionary
-        nodes (PairDictionary): Dictionary with multiple
+            nodes (PairDictionary): Dictionary with multiple
             :func:`cobramod.visualization.items.Node` where the key is the
             number of the Node and the value the corresponding object. Defaults
             to empty dictionary.
@@ -76,6 +105,14 @@ class JsonDictionary(UserDict):
             the canvas.
         canvas (dict, optional): x and y position, width and height of the
             white area in Escher.
+
+    Attributes:
+        CANVAS_WIDTH (float): Width for the canvas. Defaults to 1500
+        CANVAS_HEIGHT (float): Height for the canvas. Defaults to 1500
+        R_WIDTH (float): Width of a reaction. Defaults to 350
+        R_HEIGHT (float): Height of a reaction. Defaults to 270
+        reaction_data (Dict[str, float]): Dictionary with the solution to be
+            visualized. Default to empty dictionary.
     """
 
     def __init__(self, *args, **kwargs):
@@ -118,12 +155,14 @@ class JsonDictionary(UserDict):
                         "height": 1500,
                     }
         # Defining variables for sizes
-        self.CANVAS_WIDTH = self.data["canvas"]["width"]
-        self.CANVAS_HEIGHT = self.data["canvas"]["height"]
-        self.R_WIDTH = 350
-        self.R_HEIGHT = 270  # 210
+        self.CANVAS_WIDTH: float = self.data["canvas"]["width"]
+        self.CANVAS_HEIGHT: float = self.data["canvas"]["height"]
+        self.R_WIDTH: float = 350
+        self.R_HEIGHT: float = 270  # 210
         # Data stored about reactions and participants.
-        self._reaction_data = dict()
+        self._overview = dict()
+        # Default solution
+        self.reaction_data: Dict[str, float] = dict()
 
     def json_dump(self, indent: int = None) -> str:
         """
@@ -374,7 +413,7 @@ class JsonDictionary(UserDict):
             ("multimarker", 20, "last"),
         ):
             last = self._get_last_number(item="nodes")
-            self._reaction_data[identifier][position] = last
+            self._overview[identifier][position] = last
             self.add_marker(
                 x=left_edge + (self.R_WIDTH / 2) + extra_x + 30,
                 y=top_edge + (self.R_HEIGHT / 2),
@@ -465,7 +504,7 @@ class JsonDictionary(UserDict):
             # (reactants) AND should not be in the last column. Change last
             # variable to node of the node.
             if key in old_metabolites and SIDE == 0 and not not_edges:
-                last = self._reaction_data[old_name]["nodes"][key]
+                last = self._overview[old_name]["nodes"][key]
                 debug_log.debug(
                     f'Metabolite "{key}" in previous reaction "{old_name}" '
                     f'located in node "{last}"'
@@ -496,10 +535,8 @@ class JsonDictionary(UserDict):
             reaction.add_metabolite(bigg_id=key, coefficient=value)
             # Add to node dictionary. Last minus one, since the node was
             # already added.
-            self._reaction_data[reaction["bigg_id"]][item].update({key: value})
-            self._reaction_data[reaction["bigg_id"]]["nodes"].update(
-                {key: last}
-            )
+            self._overview[reaction["bigg_id"]][item].update({key: value})
+            self._overview[reaction["bigg_id"]]["nodes"].update({key: last})
 
     def _add_segments(self, reaction: Reaction, metabolite_dict: dict):
         # First 2 Segmenst joins the node-markers. The number of Segments is
@@ -507,9 +544,9 @@ class JsonDictionary(UserDict):
         identifier = reaction["bigg_id"]
         last = self._get_last_number(item="segments") - 1
         marker = {
-            "first": self._reaction_data[identifier]["first"],
-            "last": self._reaction_data[identifier]["last"],
-            "middle": self._reaction_data[identifier]["middle"],
+            "first": self._overview[identifier]["first"],
+            "last": self._overview[identifier]["last"],
+            "middle": self._overview[identifier]["middle"],
         }
         # From markers. They will be always 2.
         for node in ("first", "last"):
@@ -522,7 +559,7 @@ class JsonDictionary(UserDict):
         for key, value in metabolite_dict.items():
             # Two due to the first two segments, and plus one as it represent
             # the actual Segment
-            number = self._reaction_data[identifier]["nodes"][key]
+            number = self._overview[identifier]["nodes"][key]
             last += 1
             if value < 0:
                 reaction.add_segment(
@@ -568,7 +605,7 @@ class JsonDictionary(UserDict):
             warn(message=msg, category=UserWarning)
             debug_log.warning(msg=msg)
         # Add general data
-        self._reaction_data[identifier] = {
+        self._overview[identifier] = {
             "reactants": {},
             "products": {},
             "nodes": {},
@@ -594,3 +631,33 @@ class JsonDictionary(UserDict):
         number = self._get_last_number(item="reactions")
         self.data["reactions"].update({str(number): reaction})
         debug_log.info(f'Reaction "{identifier}" added to the JsonDictionary.')
+
+    def visualize(self, filepath: Path = None) -> Builder:
+        """
+        Saves the visualization of the JsonDictionary in given path as a HTML.
+        Returns the builder for the JsonDictionary. If method is called in
+        Jupyter or Qtconsole, it will show the embedded builder of the escher
+        visualization. Else, it will open the default browser of the operating
+        system and will load the previously saved HTML.
+
+        Args:
+            filepath (Path): Path for the HTML. Defaults to "pathway.html" in
+                the current working directory
+        Returns:
+            Builder: Escher builder object for the visualization
+        """
+        if not filepath:
+            filepath = Path.cwd().joinpath("pathway.html")
+        builder = Builder()
+        builder.map_name = self.data["head"]["map_name"]
+        builder.map_json = self.json_dump()
+        # This statement is needed, otherwise, all reactions labels will
+        # appear with "(nd)".
+        if self.reaction_data:
+            builder.reaction_data = self.reaction_data
+        builder.save_html(filepath=filepath)
+        debug_log.info(f'Visualization located in "{filepath}"')
+        # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
+        if not _in_notebook():
+            web_open("file://" + str(Path.cwd().joinpath("pathway.html")))
+        return builder
