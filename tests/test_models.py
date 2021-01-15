@@ -38,9 +38,9 @@ class TestingShortModel(unittest.TestCase):
             test_model.metabolites.get_by_id("ATP_c"), "sink"
         )
         # Adding Gluconeogenesis
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="GLUCONEO-PWY",
+            pathway="GLUCONEO-PWY",
             directory=dir_data,
             database="META",
             compartment="c",
@@ -61,9 +61,9 @@ class TestingShortModel(unittest.TestCase):
             database="META",
         )
         # Adding Nicotine pathway
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-5316",
+            pathway="PWY-5316",
             directory=dir_data,
             database="META",
             compartment="c",
@@ -74,9 +74,9 @@ class TestingShortModel(unittest.TestCase):
             container=[group.id for group in test_model.groups],
         )
         # Ading aspartate and asparagine biosynthesis
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="ASPASN-PWY",
+            pathway="ASPASN-PWY",
             directory=dir_data,
             database="META",
             compartment="c",
@@ -92,9 +92,9 @@ class TestingShortModel(unittest.TestCase):
         # test_model = main_model1.copy()
         test_model = textbook_biocyc.copy()
         # Adding Mannitol cycle
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-6531",
+            pathway="PWY-6531",
             directory=dir_data,
             database="META",
             compartment="c",
@@ -105,9 +105,9 @@ class TestingShortModel(unittest.TestCase):
             container=[group.id for group in test_model.groups],
         )
         # Adding glyoxylate cycle
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="GLYOXYLATE-BYPASS",
+            pathway="GLYOXYLATE-BYPASS",
             directory=dir_data,
             database="META",
             compartment="c",
@@ -133,9 +133,9 @@ class TestingShortModel(unittest.TestCase):
             metabolite=test_model.metabolites.get_by_id("CO_A_e"),
             type="exchange",
         )
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="GLUTATHIONESYN-PWY",
+            pathway="GLUTATHIONESYN-PWY",
             directory=dir_data,
             database="META",
             ignore_list=[],
@@ -155,9 +155,9 @@ class TestingShortModel(unittest.TestCase):
             directory=dir_data,
             database="META",
         )
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-1187",
+            pathway="PWY-1187",
             directory=dir_data,
             database="META",
             ignore_list=["PYRUVATE_c", "CO_A_c", "PROTON_c", "CPD_3746_c"],
@@ -173,9 +173,9 @@ class TestingShortModel(unittest.TestCase):
         )
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
         # Lipid initalization
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-4381",
+            pathway="PWY-4381",
             directory=dir_data,
             database="META",
             ignore_list=["CO_A_p"],
@@ -209,9 +209,9 @@ class TestingLargeModel(unittest.TestCase):
             type="sink",
         )
         # Adding methiin metabolism
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-7614",
+            pathway="PWY-7614",
             directory=dir_data,
             database="META",
             compartment="p",
@@ -226,9 +226,9 @@ class TestingLargeModel(unittest.TestCase):
         self.assertGreater(test_model.optimize().fluxes["DM_CPD_9277_p"], 0)
         self.assertGreater(test_model.optimize().fluxes["RXN_8908_p"], 0)
         # Adding stachyose biosynthesis
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-5337",
+            pathway="PWY-5337",
             directory=dir_data,
             database="META",
             compartment="c",
@@ -247,9 +247,9 @@ class TestingLargeModel(unittest.TestCase):
             metabolite=test_model.metabolites.get_by_id("CPD1F_133_p"),
             type="sink",
         )
-        ex.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-695",
+            pathway="PWY-695",
             directory=dir_data,
             database="META",
             compartment="p",

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cobramod",
-    version="0.0.1a0",
+    version="0.1.1",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     package_data={"": ["data/*"]},

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import cobra as cb
 from pathlib import Path
-from cobramod.extension import add_graph_to_model
+from cobramod.extension import add_pathway
 from cobramod.creation import (
     add_meta_from_file,
     add_reactions_from_file,
@@ -51,9 +51,9 @@ for meta in test_model.metabolites:
 test_model.objective = "EX_WATER_e"
 # First pathway to create a proper dummy biomass reaction
 # Nitrate reduction
-add_graph_to_model(
+add_pathway(
     model=test_model,
-    graph="PWY-381",
+    pathway="PWY-381",
     directory=dir_data,
     database="META",
     compartment="c",
@@ -78,9 +78,9 @@ for pathway in [
     "PWY-5690",  # TCA cycle
     "PYRUVDEHYD-PWY",
 ]:
-    add_graph_to_model(
+    add_pathway(
         model=test_model,
-        graph=pathway,
+        pathway=pathway,
         directory=dir_data,
         database="META",
         compartment="c",
@@ -91,9 +91,9 @@ test_model.reactions.get_by_id("Biomass_c").add_metabolites(
     {test_model.metabolites.get_by_id("GLT_c"): -1}
 )
 for pathway in ["CALVIN-PWY"]:
-    add_graph_to_model(
+    add_pathway(
         model=test_model,
-        graph=pathway,
+        pathway=pathway,
         directory=dir_data,
         database="META",
         compartment="c",
@@ -101,9 +101,9 @@ for pathway in ["CALVIN-PWY"]:
     )
 
 for pathway in ["SUCSYN-PWY"]:
-    add_graph_to_model(
+    add_pathway(
         model=test_model,
-        graph=pathway,
+        pathway=pathway,
         directory=dir_data,
         database="META",
         compartment="c",
