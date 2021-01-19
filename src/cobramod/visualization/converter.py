@@ -78,9 +78,12 @@ def _convert_string(string: str) -> dict:
         FACTOR = 1
         if side is left:
             FACTOR = -1
-        metabolites.update(
-            {key: float(value) * FACTOR for value, key in sequence}
-        )
+        # Sometimes, there are no metabolites (sink reactions), the sigle "1"
+        # must be ignored
+        with suppress(ValueError):
+            metabolites.update(
+                {key: float(value) * FACTOR for value, key in sequence}
+            )
     return metabolites
 
 
@@ -162,7 +165,7 @@ class JsonDictionary(UserDict):
         # Data stored about reactions and participants.
         self._overview = dict()
         # Default solution
-        self.reaction_data: Dict[str, float] = dict()
+        self.reaction_data: Dict[str, float] = None
 
     def json_dump(self, indent: int = None) -> str:
         """

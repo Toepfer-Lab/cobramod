@@ -1,12 +1,18 @@
+"""Unittest for module pathway
+
+This module includes the TestCase TestGroup. This checks the behaviour of the
+new child of :func:`cobra.core.group.Group` "Pathway". This new class is able
+to use Escher for its visualizations.
+"""
 from logging import DEBUG
 from pathlib import Path
-import unittest
+from unittest import TestCase, main
 
 from cobra.core import DictList, Group
 
 from cobramod import pathway as pt
 from cobramod.debug import debug_log
-from cobramod.test import textbook_kegg
+from cobramod.test import textbook_kegg, textbook
 
 debug_log.setLevel(DEBUG)
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
@@ -16,7 +22,7 @@ if not dir_data.exists():
     dir_data.mkdir(parents=True)
 
 
-class TestGroup(unittest.TestCase):
+class TestGroup(TestCase):
     def test___init__(self):
         # CASE 1: regular __init__
         test_group = pt.Pathway(id="test_group")
@@ -25,6 +31,9 @@ class TestGroup(unittest.TestCase):
         self.assertIn(member="kind", container=dir(test_group))
         self.assertIn(member="id", container=dir(test_group))
         self.assertIn(member="KIND_TYPES", container=dir(test_group))
+        # CASE 2: two entities cannot be the same
+        test_group2 = pt.Pathway(id="test_group")
+        self.assertIsNot(expr1=test_group, expr2=test_group2)
 
     def test__filter(self):
         # Configuration
@@ -49,7 +58,7 @@ class TestGroup(unittest.TestCase):
         )
         self.assertEqual(first=test_serie["R00127_c"], second=0)
 
-    def test__solution(self):
+    def test_solution(self):
         # Configuration
         test_model = textbook_kegg.copy()
         members = DictList()
@@ -72,6 +81,20 @@ class TestGroup(unittest.TestCase):
         ):
             self.assertTrue(expr="R00127_c" in attribute)
             self.assertTrue(expr="R00315_c" in attribute)
+
+    def test_add_members(self):
+        test_model = textbook_kegg.copy()
+        # CASE 1: Regular reactions
+        test_group = pt.Pathway(id="test_group")
+        test_group.add_members(
+            new_members=[
+                test_model.reactions.R00127_c,
+                test_model.reactions.R00315_c,
+            ]
+        )
+        test_list = [reaction.id for reaction in test_group.members]
+        self.assertIn(member="R00127_c", container=test_list)
+        self.assertIn(member="R00315_c", container=test_list)
 
     def test__transform(self):
         # CASE 1: Outside the model
@@ -114,6 +137,22 @@ class TestGroup(unittest.TestCase):
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=pt.Pathway)
 
+    def test_visualize(self):
+        # CASE 1: regular pathway.
+        test_model = textbook.copy()
+        members = DictList()
+        members.union(
+            iterable=[
+                test_model.reactions.EX_glc__D_e,
+                test_model.reactions.GLCpts,
+                test_model.reactions.G6PDH2r,
+                test_model.reactions.PGL,
+                test_model.reactions.GND,
+            ]
+        )
+        test_group = pt.Pathway(id="test_group", members=members)
+        test_group.visualize(canvas_width=2000)
+
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)

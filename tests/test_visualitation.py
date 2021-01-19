@@ -1,6 +1,13 @@
+"""Unit test for sub-package visualization
+
+This module includes two TestCases:
+
+- TestItems: Creation and behaviour of JSON objects for the Escher-schema
+- TestJsonDictionary: Testing the methods inside the JsonDictionary
+"""
 from contextlib import suppress
 from pathlib import Path
-import unittest
+from unittest import TestCase, main
 
 from escher import Builder
 
@@ -13,7 +20,11 @@ dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
 
 
-class TestItems(unittest.TestCase):
+class TestItems(TestCase):
+    """
+    Behaviour of JSON objects
+    """
+
     def test__convert_string(self):
         # CASE 1: Simple reaction, reversible
         test_string = "C00002_c + C00033_c <=> C00227_c + G11113_c"
@@ -130,7 +141,11 @@ class TestItems(unittest.TestCase):
         )
 
 
-class TestJsonDictionary(unittest.TestCase):
+class TestJsonDictionary(TestCase):
+    """
+    Methods for the JsonDictionary.
+    """
+
     def test___init__(self):
         # CASE 0: Checking behaviour with two instances
         test_dict = JsonDictionary()
@@ -305,4 +320,4 @@ class TestJsonDictionary(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)
