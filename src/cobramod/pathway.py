@@ -1,7 +1,8 @@
-"""Group-child class
+#!/usr/bin/env python3
+"""COBRApy Group-child class extension
 
-The new class Pathway is child derived from :func:`cobra.core.group.Group`. It
-extends some functionalities such as:
+The new class :func:`cobramod.pathway.Pathway" is child derived from
+:func:`cobra.core.group.Group`. It extends some functionalities such as:
 
 - solution: Obtain the solution for the specific members.
 - visualize: get a :func:`escher.Builder` for that specific Pathway.
@@ -81,10 +82,10 @@ class Pathway(Group):
         Pathway.
 
         Args:
-            new_members:
+            new_members (list): List of Reactions to add to the class.
 
         Raises:
-            TypeError:
+            TypeError: If not all members are proper Reaction objects.
         """
         if not all([isinstance(member, Reaction) for member in new_members]):
             raise TypeError("Not all given members are Reactions.")

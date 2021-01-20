@@ -27,9 +27,9 @@ from contextlib import suppress
 from itertools import cycle, chain, repeat
 from json import dumps
 from typing import Dict, List
-from warnings import warn
-from webbrowser import open as web_open
 from pathlib import Path
+from warnings import warn, catch_warnings, simplefilter
+from webbrowser import open as web_open
 
 from escher import Builder
 from IPython.core.getipython import get_ipython
@@ -662,5 +662,7 @@ class JsonDictionary(UserDict):
         debug_log.info(f'Visualization located in "{filepath}"')
         # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
         if not _in_notebook():
-            web_open("file://" + str(Path.cwd().joinpath("pathway.html")))
+            with catch_warnings():
+                simplefilter(action="ignore", category=ResourceWarning)
+                web_open("file://" + str(Path.cwd().joinpath("pathway.html")))
         return builder
