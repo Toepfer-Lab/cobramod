@@ -1,4 +1,20 @@
 #!/usr/bin/env python3
+"""Data parsing for Biocyc
+
+This module handles the retrieval of data from BioCyc into a local directory.
+The posible type of data that can be download:
+
+- Metabolites: Normally have an abbreviation or short name.
+- Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
+be used instead.
+- Pathways
+
+Contact maintainers if other types should be added.
+
+Important class of the module:
+- BiocycParser: Child of the abstract class
+:func:`cobramod.parsing.base.BaseParser`.
+"""
 from contextlib import suppress
 from xml.etree.ElementTree import (
     fromstring,
@@ -10,7 +26,7 @@ from xml.etree.ElementTree import (
 from pathlib import Path
 from typing import Any, Dict
 
-import requests
+from requests import get
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
@@ -38,6 +54,9 @@ def _p_compound(root: Any) -> dict:
     Parses given xml root into a dictionary for metabolite from biocyc
     """
     identifier = root.find("*[@frameid]").attrib["frameid"]
+    root_type = root.find("*[@frameid]").tag
+    if root_type in ("PATHWAY", "Pathway"):
+        raise AttributeError
     try:
         formula = (
             root.find("./*/cml/*/formula").attrib["concise"].replace(" ", "")
@@ -60,7 +79,7 @@ def _p_compound(root: Any) -> dict:
     if formula == "":
         formula = "X"
     return {
-        "TYPE": root.find("*[@frameid]").tag,
+        "TYPE": root_type,
         "ENTRY": identifier,
         "NAME": name,
         "FORMULA": formula,
@@ -205,12 +224,13 @@ class BiocycParser(BaseParser):
         root, with the most important information depending on its object type.
         """
         try:
-            for method in (_p_compound, _p_reaction, _p_pathway):
+            for method in (_p_pathway, _p_reaction, _p_compound):
                 with suppress(AttributeError):
                     biocyc_dict = method(root=root)
                     biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
                         "orgid"
                     ]
+                    break
             return biocyc_dict
         except UnboundLocalError:
             raise WrongParserError
@@ -298,7 +318,6 @@ def _get_xml_from_biocyc(
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
-            debug_log.debug(f"Identifier '{identifier}' found.")
             return BiocycParser._read_file(filename=filename)
         except FileNotFoundError:
             debug_log.debug(
@@ -309,7 +328,7 @@ def _get_xml_from_biocyc(
                 f"https://websvc.biocyc.org/getxml?{database}:{identifier}"
             )
             debug_log.debug(f"Searching in {url_text}")
-            r = requests.get(url_text)
+            r = get(url_text)
             if r.status_code == 404:
                 msg = f'"{identifier}" not available in "{database}"'
                 debug_log.error(msg)
