@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
+"""Unittest for module extension
+
+This module test the behaviour of multiple functions, which are responsible to
+add metabolites and reactions into a metabolic model.
+"""
 from logging import DEBUG
 from pathlib import Path
-import unittest
+from unittest import main, TestCase
 
 from cobra import Model, Reaction
 
@@ -19,7 +24,7 @@ if not dir_data.exists():
     dir_data.mkdir(parents=True)
 
 
-class ModulTesting(unittest.TestCase):
+class ModuleExtension(TestCase):
     def test__create_reactions(self):
         # CASE 1: Simple Case Biocyc
         test_list = ex._create_reactions(
@@ -632,6 +637,22 @@ class ModulTesting(unittest.TestCase):
             first=len(test_model.groups.get_by_id("custom_group")), second=3
         )
 
+    def test_visualization(self):
+        # CASE 1: Regular Biocyc
+        test_model = textbook_biocyc.copy()
+        ex.add_pathway(
+            model=test_model,
+            pathway="PWY-1187",
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            ignore_list=[],
+            show_imbalance=False,
+        )
+        test_model.groups.get_by_id("PWY-1187").visualize(
+            canvas_width=2500, canvas_height=2500
+        )
+
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)
