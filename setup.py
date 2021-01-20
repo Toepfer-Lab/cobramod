@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+"""Setup module
+
+This simple module sets up CobraMod for its installation through pip.
+"""
 from setuptools import setup, find_packages
 
 setup(
     name="cobramod",
-    version="0.1.1",
+    version="0.1.2",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     package_data={"": ["data/*"]},
