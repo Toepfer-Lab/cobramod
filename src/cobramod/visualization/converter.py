@@ -161,7 +161,7 @@ class JsonDictionary(UserDict):
         self.CANVAS_WIDTH: float = self.data["canvas"]["width"]
         self.CANVAS_HEIGHT: float = self.data["canvas"]["height"]
         self.R_WIDTH: float = 350
-        self.R_HEIGHT: float = 270  # 210
+        self.R_HEIGHT: float = 300  # 210
         # Data stored about reactions and participants.
         self._overview = dict()
         # Default solution
@@ -386,6 +386,7 @@ class JsonDictionary(UserDict):
             segments (PairDictionary, optional): Dictionary with segments,
                 which represent the conections between nodes.
         """
+        # TODO: Confirm behaviour of PairDictionaries
         # if not isinstance(segments, PairDictionary):
         #     raise TypeError("Argument 'segments' must be a PairDictionary")
         top_edge, left_edge = self._get_edges()
@@ -393,8 +394,10 @@ class JsonDictionary(UserDict):
             name=name,
             bigg_id=identifier,
             reversibility=reversibility,
-            label_y=top_edge + self.R_HEIGHT / 2 - 30,
-            label_x=left_edge + self.R_WIDTH / 2 + 20,
+            # label_y=top_edge + self.R_HEIGHT / 2 - 30,
+            label_y=top_edge + 30,
+            # label_x=left_edge + self.R_WIDTH / 2 + 20,
+            label_x=left_edge + len(identifier) * 10.5,
             gene_reaction_rule=gene_reaction_rule,
             genes=genes,
             segments=segments,
@@ -618,6 +621,7 @@ class JsonDictionary(UserDict):
         metabolite_dict = _convert_string(string=string)
         # Base reaction
         reaction = self.create_reaction(
+            # TODO: Change name
             name="test_reaction" + identifier,
             identifier=identifier,
             reversibility=True,
@@ -651,18 +655,24 @@ class JsonDictionary(UserDict):
         """
         if not filepath:
             filepath = Path.cwd().joinpath("pathway.html")
-        builder = Builder()
-        builder.map_name = self.data["head"]["map_name"]
-        builder.map_json = self.json_dump()
+        # Create the builder. Text will make reactions only show the values
+        builder = Builder(
+            reaction_styles=["text"],
+            map_name=self.data["head"]["map_name"],
+            map_json=self.json_dump(),
+        )
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
         if self.reaction_data:
+            # TODO: only dict
             builder.reaction_data = self.reaction_data
         builder.save_html(filepath=filepath)
+        # builder.reaction_styles = ["color"]
         debug_log.info(f'Visualization located in "{filepath}"')
         # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
         if not _in_notebook():
+            # The context manager removes the ResourceWarning
             with catch_warnings():
                 simplefilter(action="ignore", category=ResourceWarning)
-                web_open("file://" + str(Path.cwd().joinpath("pathway.html")))
+                web_open("file://" + str(filepath))
         return builder
