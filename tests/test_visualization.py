@@ -7,6 +7,7 @@ This module includes two TestCases:
 """
 from contextlib import suppress
 from pathlib import Path
+from time import sleep
 from unittest import TestCase, main
 
 from escher import Builder
@@ -195,6 +196,25 @@ class TestJsonDictionary(TestCase):
             first="test_identifier", second=test_reaction["bigg_id"]
         )
 
+    def test_add_blank(self):
+        # CASE 1: Regular initialization.
+        test_dict = JsonDictionary()
+        test_dict.add_blank()
+        self.assertEqual(first=len(test_dict["reactions"]), second=1)
+        self.assertEqual(
+            first=len(test_dict["reactions"]["0"]["metabolites"]), second=0
+        )
+        # Case 2: Stacking empty spaces.
+        test_dict.add_blank()
+        test_dict.add_blank()
+        self.assertEqual(first=len(test_dict["reactions"]), second=3)
+        self.assertEqual(
+            first=len(test_dict["reactions"]["1"]["metabolites"]), second=0
+        )
+        self.assertEqual(
+            first=len(test_dict["reactions"]["2"]["metabolites"]), second=0
+        )
+
     def test_add_reaction(self):
         # CASE 1: test that edges are working properly
         test_dict = JsonDictionary(
@@ -202,15 +222,17 @@ class TestJsonDictionary(TestCase):
         )
         test_dict.add_reaction(
             string="C00002_c + C00009_c --> C00227_c + C00003_c",
-            identifier="A",
+            identifier="Reaction-A",
         )
-        test_dict.add_reaction(string="C00003_c --> C00228_c", identifier="B")
         test_dict.add_reaction(
-            string="C00009_c + C00228_c--> C00004_c", identifier="C"
+            string="c00003_c --> C00228_c", identifier="Reaction-B"
+        )
+        test_dict.add_reaction(
+            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
         )
         test_dict.add_reaction(
             string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="D",
+            identifier="Reaction-D",
         )
         # Reaction "1" after half of canvas, "2" before half of canvas
         self.assertGreater(a=test_dict["reactions"]["1"]["label_x"], b=500)
@@ -225,33 +247,74 @@ class TestJsonDictionary(TestCase):
             UserWarning,
             test_dict.add_reaction,
             string="2 C00200_c --> 4 C00021_c",
-            identifier="E",
+            identifier="Reaction-E",
         )
         # CASE 3: Test multiple reactions with different participants
         test_dict = JsonDictionary()
         test_dict.add_reaction(
             string="C00002_c + C00009_c --> C00227_c + C00003_c",
-            identifier="A",
+            identifier="Reaction-A",
         )
-        test_dict.add_reaction(string="C00003_c --> C00228_c", identifier="B")
         test_dict.add_reaction(
-            string="C00009_c + C00228_c--> C00004_c", identifier="C"
+            string="C00003_c --> C00228_c", identifier="Reaction-B"
+        )
+        test_dict.add_reaction(
+            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
         )
         test_dict.add_reaction(
             string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="D",
+            identifier="Reaction-D",
         )
         test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="E"
+            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
         )
         test_dict.add_reaction(
-            string="2 C00021_c + C00002_c--> C00033_c", identifier="F"
+            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
         )
         test_dict.add_reaction(
             string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
             + "2 C00034_c + C00004_c + C00226_c",
-            identifier="G",
+            identifier="Reaction-G",
         )
+
+    def test_reaction_and_blank(self):
+        # CASE 1: Mixing both, one after one
+        test_dict = JsonDictionary()
+        test_dict.add_reaction(
+            string="C00002_c + C00009_c --> C00227_c + C00003_c",
+            identifier="Reaction-A",
+        )
+        test_dict.add_blank()
+        self.assertEqual(first=len(test_dict["reactions"]), second=2)
+        self.assertEqual(
+            first=len(test_dict["reactions"]["1"]["metabolites"]), second=0
+        )
+        # CASE 2: stacking reactions
+        test_dict.add_reaction(
+            string="c00003_c --> C00228_c", identifier="Reaction-B"
+        )
+        test_dict.add_reaction(
+            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
+        )
+        test_dict.add_reaction(
+            string="C00004_c + C00011_c --> C00001_c + C00200_c",
+            identifier="Reaction-D",
+        )
+        test_dict.add_blank()
+        self.assertEqual(first=len(test_dict["reactions"]), second=6)
+        test_dict.add_reaction(
+            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
+        )
+        test_dict.add_reaction(
+            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
+        )
+        test_dict.add_blank()
+        test_dict.add_reaction(
+            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
+            + "2 C00034_c + C00004_c + C00226_c",
+            identifier="Reaction-G",
+        )
+        self.assertEqual(first=len(test_dict["reactions"]), second=10)
 
     def test_json_dump(self):
         # CASE 1: Simple HTML and JSON with 4 reactions
@@ -260,18 +323,18 @@ class TestJsonDictionary(TestCase):
         test_builder = Builder()
         test_dict.add_reaction(
             string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="D",
+            identifier="Reaction-D",
         )
         test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="E"
+            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
         )
         test_dict.add_reaction(
-            string="2 C00021_c + C00002_c--> C00033_c", identifier="F"
+            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
         )
         test_dict.add_reaction(
             string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
             + "2 C00034_c + C00004_c + C00226_c",
-            identifier="G",
+            identifier="Reaction-G",
         )
         # Writing the JSON
         test_string = test_dict.json_dump(indent=4)
@@ -287,36 +350,81 @@ class TestJsonDictionary(TestCase):
         test_path = Path.cwd().joinpath("test_map.html")
         # CASE 1: regular visualization without data
         test_dict = JsonDictionary()
+        with suppress(FileNotFoundError):
+            test_path.unlink()
         # Escher builder
         test_dict.add_reaction(
             string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="D",
+            identifier="Reaction-D",
         )
         test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="E"
+            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
         )
-        with suppress(FileNotFoundError):
-            test_path.unlink()
         test_builder = test_dict.visualize(filepath=test_path)
+        sleep(1)
         self.assertEqual(first=test_builder.reaction_data, second=None)
         self.assertTrue(expr=test_path.exists())
         # CASE 2: visualization with Data
         test_dict = JsonDictionary()
-        test_flux = {"D": 2, "E": -1}
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_flux = {"Reaction-D": 2, "Reaction-E": -1}
         # Escher builder
         test_dict.add_reaction(
             string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="D",
+            identifier="Reaction-D",
         )
         test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="E"
+            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
         )
         test_dict.reaction_data = test_flux
+        test_builder = test_dict.visualize(filepath=test_path)
+        sleep(1)
+        self.assertEqual(
+            first=test_builder.reaction_data["Reaction-D"], second=2
+        )
+        self.assertTrue(expr=test_path.exists())
+        # CASE 3: Check if blanks appears in visualization.
+        test_dict = JsonDictionary()
         with suppress(FileNotFoundError):
             test_path.unlink()
+        # Escher builder
+        test_dict.add_reaction(
+            string="C00002_c + C00009_c --> C00227_c + C00003_c",
+            identifier="Reaction-A",
+        )
+        test_dict.add_blank()
+        test_dict.add_reaction(
+            string="c00003_c --> C00228_c", identifier="Reaction-B"
+        )
+        test_dict.add_reaction(
+            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
+        )
+        test_dict.add_reaction(
+            string="C00004_c + C00011_c --> C00001_c + C00200_c",
+            identifier="Reaction-D",
+        )
+        test_dict.add_blank()
+        test_dict.add_reaction(
+            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
+        )
+        test_dict.add_reaction(
+            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
+        )
+        test_dict.add_blank()
+        test_dict.add_reaction(
+            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
+            + "2 C00034_c + C00004_c + C00226_c",
+            identifier="Reaction-G",
+        )
         test_builder = test_dict.visualize(filepath=test_path)
-        self.assertEqual(first=test_builder.reaction_data["D"], second=2)
-        self.assertTrue(expr=test_path.exists())
+        sleep(1)
+        # Blanks are removed in visualization
+        self.assertEqual(first=len(test_dict["reactions"]), second=7)
+        # CASE 4: Blanks and information
+        test_flux = {"Reaction-A": 2, "Reaction-D": 2, "Reaction-E": -1}
+        test_dict.reaction_data = test_flux
+        test_builder = test_dict.visualize(filepath=test_path)
 
 
 if __name__ == "__main__":

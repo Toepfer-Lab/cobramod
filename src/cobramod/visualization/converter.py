@@ -591,6 +591,21 @@ class JsonDictionary(UserDict):
         actual = len(self.data["reactions"]) + 1
         return actual > maximum
 
+    def add_blank(self):
+        """
+        Creates and adds a blank space into the JsonDictionary. A blank space
+        is defined as a reactions with no name, identifier, metabolites and
+        segments. For the visualization, these reactions should get removed.
+        """
+        reaction = self.create_reaction(
+            name="", identifier="", reversibility=True, segments=dict()
+        )
+        number = self._get_last_number(item="reactions")
+        self.data["reactions"].update({str(number): reaction})
+        debug_log.info(
+            f'Empty space added to the JsonDictionary with number "{number}"'
+        )
+
     def add_reaction(self, string: str, identifier: str):
         """
         Parses and add given reaction string as a reaction for the
@@ -647,6 +662,9 @@ class JsonDictionary(UserDict):
         visualization. Else, it will open the default browser of the operating
         system and will load the previously saved HTML.
 
+        .. note::
+        Blank spaces are removed from the reactions.
+
         Args:
             filepath (Path): Path for the HTML. Defaults to "pathway.html" in
                 the current working directory
@@ -655,11 +673,19 @@ class JsonDictionary(UserDict):
         """
         if not filepath:
             filepath = Path.cwd().joinpath("pathway.html")
+        # Erase blank reactions.
+        for number in self.data["reactions"].copy():
+            if self.data["reactions"][number]["bigg_id"] == "":
+                self.data["reactions"].pop(number, None)
+                debug_log.debug(
+                    f'Empty space with reaction number "{number}" removed.'
+                )
         # Create the builder. Text will make reactions only show the values
         builder = Builder(
             reaction_styles=["text"],
             map_name=self.data["head"]["map_name"],
             map_json=self.json_dump(),
+            reaction_no_data_size=1,
         )
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
