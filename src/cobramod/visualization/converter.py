@@ -18,6 +18,8 @@ Important methods:
 - create_reaction: Returns a :func:`cobramod.visualization.items.Reaction`.
 - add_reaction: Parses a reaction string and add the information into the
 JsonDictionary.
+- add_blank: Adds a empty reaction. This is useful for the extra space in the
+visualizations.
 - visualize: Saves Escher visualization as a HTML and return the Escher
 Builder.
 """
