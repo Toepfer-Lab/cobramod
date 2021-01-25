@@ -1,21 +1,21 @@
+"""
+This Test checks that the directory data is located in a correct path.
+Not all installations will be located at in the directory of cobramod. This
+ensure that all installation can use the same data
+"""
 from pathlib import Path
-import unittest
+from unittest import TestCase, main
 
 from cobramod.test import data_dir
 
 
-class TestTest(unittest.TestCase):
+class ModuleTest(TestCase):
     def test_directory(self):
-        self.assertEqual(
-            first=str(data_dir),
-            second=str(
-                Path.cwd()
-                .joinpath("src")
-                .joinpath("cobramod")
-                .joinpath("data")
-            ),
+        self.assertIn(
+            member=str(Path().joinpath("cobramod").joinpath("data")),
+            container=str(data_dir),
         )
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)
