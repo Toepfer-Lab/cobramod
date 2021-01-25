@@ -397,7 +397,7 @@ class JsonDictionary(UserDict):
             # label_y=top_edge + self.R_HEIGHT / 2 - 30,
             label_y=top_edge + 30,
             # label_x=left_edge + self.R_WIDTH / 2 + 20,
-            label_x=left_edge + len(identifier) * 10.5,
+            label_x=(left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 17,
             gene_reaction_rule=gene_reaction_rule,
             genes=genes,
             segments=segments,

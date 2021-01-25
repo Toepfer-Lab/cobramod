@@ -444,12 +444,14 @@ def _add_sequence(
                 )
             else:
                 debug_log.warning(f'Test for reaction "{reaction.id}" skipped')
+            # Add to pathway only if reaction was not previously in the model.
+            pathway.add_members(new_members=[reaction])
         else:
             # FIXME: avoid creating reaction
             debug_log.info(
                 f'Reaction "{reaction.id}" was found in model. Skipping.'
             )
-        pathway.add_members(new_members=[reaction])
+    # TODO: Add space
     debug_log.debug(f'Reactions added to group "{pathway.id}"')
     if identifier not in [group.id for group in model.groups]:
         model.add_groups(group_list=[pathway])
@@ -481,15 +483,20 @@ def _from_data(
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database to search for reactions and
             metabolites.
+        compartment: Location of the reactions.
+
+    Arguments for complex pathways:
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        compartment: Location of the reactions.
         avoid_list (Iterable): A sequence of formatted reactions to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
-        ignore_list (Iterable): A sequence of formatted metabolite to ignore
-            when testing new reactions.
+        ignore_list (list): A sequence of formatted metabolites to skip when
+            testing, and/or reactions that should be added but not tested.
+            This is useful for long cyclical pathways.
         minimun (float): Minimum optimized value to pass in every single test.
+
+    Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
@@ -552,17 +559,22 @@ def _from_sequence(
         sequence (list): List reaction identifiers.
         database (str): Name of the database.
         compartment: Location of the reactions.
-        replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
         directory (Path): Path for directory to stored and retrieve data.
+
+    Arguments for complex pathways:
         avoid_list (list): A sequence of formatted reactions to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
-        ignore_list (list): A sequence of formatted metabolite to ignore
-            when testing new reactions.
+        ignore_list (list): A sequence of formatted metabolites to skip when
+            testing, and/or reactions that should be added but not tested.
+            This is useful for long cyclical pathways.
+        replacement (dict): Original identifiers to be replaced.
+            Values are the new identifiers.
+        minimun (float): Minimum optimized value to pass in every single test.
+
+    Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
-        minimun (float): Minimum optimized value to pass in every single test.
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
     """
@@ -615,26 +627,32 @@ def add_pathway(
 
     Args:
         model (Model): Model to expand.
-        pathway (Union[list, str]): Sequence of reaction identifiers or
-            identifier for a pathway.
+        pathway (list, str): Sequence of reaction identifiers or
+            identifier for a pathway. Examples: ["RXN-2206", "RXN-207"] or
+            "PWY-886"
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database.
         compartment: Location of the reactions.
         group (str, optional): Common :func:`cobramod.pathway.Pathway`
-            identifier.
+            identifier. Defaults to "custom_group"
+
+    Arguments for complex pathways:
         avoid_list (list, optional): A sequence of formatted reactions to avoid
             adding to the model. This is useful for long pathways, where X
             reactions need to be excluded.
         replacement (dict, optional): Original identifiers to be replaced.
             Values are the new identifiers.
-        ignore_list (list, optional): A sequence of formatted metabolites to
-            ignore when testing new reactions.
+        ignore_list (list): A sequence of formatted metabolites to skip when
+            testing, and/or reactions that should be added but not tested.
+            This is useful for long cyclical pathways.
+        minimum (float, optional): Minimum optimized value to pass in every
+            single test. Defaults to 0.1
+
+    Arguments for utilities:
         filename (Path): Location for the summary. Defaults to "summary.txt" in
             the current working directory.
         summary (bool, optional): True to write summary in file. Defaults to
             True.
-        minimum (float, optional): Minimum optimized value to pass in every
-            single test. Defaults to 0.1
         stop_imbalance (bool, optional): If unbalanced reaction is found, stop
             process. Defaults to False.
         show_imbalance (bool, optional): If unbalanced reaction is found, show

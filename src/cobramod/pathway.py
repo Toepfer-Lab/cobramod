@@ -53,19 +53,17 @@ class Pathway(Group):
                 specification to ensure you are using the proper value for
                 kind. (Text extracted from parent.)
         """
-        super().__init__(id=id, name=name, kind=kind, members=members)
+        super().__init__(id=id, name=name, kind=kind)
         self.order: List[str] = list()
-        # This loop has to be after __init__, otherwise, behaviour of members
-        # changes
-        for member in self.members:
+        # Loop has to be after __init__, otherwise, behaviour of class changes.
+        for member in members:
             # Remove no Reactions
             if not isinstance(member, Reaction):
-                self.remove_members(to_remove=[member])
                 debug_log.debug(
                     f'Member "{member.id}" is not a Reaction. Skipped'
                 )
-            else:
-                self.order.append(member.id)
+                continue
+            self.add_members(new_members=[member])
 
     def _filter(self, solution: Solution, attribute: str) -> Series:
         """
@@ -75,6 +73,20 @@ class Pathway(Group):
         return getattr(solution, "fluxes").filter(
             items=[member.id for member in self.members], axis="index"
         )
+
+    def __check_copy(self):
+        """
+        This method checks if the length of the members is zero and attribute
+        "order" is larger thatn zero. This check is made is to check if method
+        :func:`cobra.core.model.Model.copy` is called. For copies, order must
+        reset.
+        """
+        if len(self.members) == 0 and len(self.order) > 0:
+            self.order: List[str] = list()
+            debug_log.debug(
+                f'Attribute order from  pathway "{self.id}" reset. '
+                f"Check if a method copy() from cobra.Model was called."
+            )
 
     def add_members(self, new_members: List[Reaction]):
         """
@@ -89,12 +101,15 @@ class Pathway(Group):
         """
         if not all([isinstance(member, Reaction) for member in new_members]):
             raise TypeError("Not all given members are Reactions.")
+
+        self.__check_copy()
         super().add_members(new_members=new_members)
         # Extend order in order to use it later for the visualization.
-        self.order.extend((reaction.id for reaction in new_members))
+        self.order.extend((member.id for member in new_members))
 
     def solution(self, solution: Solution) -> Solution:
         """
+        Returns a :func:`cobra.Solution` with only the members of the pathway.
 
         Args:
             solution (Solution): Original COBRApy :func:`cobra.Solution` to
