@@ -1,4 +1,20 @@
 #!/usr/bin/env python3
+"""Data parsing for BiGG
+
+This module handles the retrieval of data from BiGG into a local directory.
+The posible type of data that can be download:
+
+- Metabolites: Normally, simple names.
+- Reactions: Mostly abbreviations.
+
+They change identifiers depending on the model given. BiGG have multiple
+models.
+Contact maintainers if other types should be added.
+
+Important class of the module:
+- BiggParser: Child of the abstract class
+:func:`cobramod.parsing.base.BaseParser`.
+"""
 from contextlib import suppress
 from json import loads, JSONDecodeError
 from pathlib import Path
@@ -81,7 +97,6 @@ def _get_json_bigg(
             f"sub-directory {model_id}"
         )
         try:
-            debug_log.debug(f"Identifier '{identifier}' found.")
             return BiggParser._read_file(filename=filename)
         except FileNotFoundError:
             # It will raise an error by itself if needed

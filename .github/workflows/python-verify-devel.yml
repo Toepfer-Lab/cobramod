@@ -29,7 +29,7 @@ jobs:
   function:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
-    name: test-methods
+    name: test-functions-and-classes
     needs: [linter]
     steps:
       - name: Checkout
@@ -46,10 +46,11 @@ jobs:
           python3 -m unittest tests/test_parsing.py -v
           python3 -m unittest tests/test_pathway.py -v
           python3 -m unittest tests/test_utils.py -v
+          python3 -m unittest tests/test_visualization.py -v
   models:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
-    name: test-models
+    name: test-small-model
     needs: [linter]
     steps:
       - name: Checkout
@@ -64,7 +65,7 @@ jobs:
   example:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
-    name: package-test-methods
+    name: test-large-model
     needs: [models]
     steps:
       - name: Checkout

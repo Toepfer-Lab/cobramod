@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Pathway extension
 
-This module handles the addition and creation of reactions as a pathway in to
-a model.
+This module handles the addition of reactions as a pathway in to
+a model and the corresponding test that come with it.
 
 Most important functions:
 - add_pathway: Adds a pathway or multiple reactions into a model.
@@ -46,8 +46,8 @@ def _create_reactions(
     Args:
         sequence (list): Identifiers for the reactions.
         directory (Path): Path to directory where data is located.
-        database (str): Name of the database. Options are: "META", "ARA",
-            "KEGG", "BIGG"
+        database (str): Name of the database. Check
+            :func:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
@@ -106,7 +106,7 @@ def _find_next_demand(
     Returns:
         str: metabolite identifier to create a demand reaction
     """
-    tmp_rxn = model.reactions.get_by_id(reaction_id)
+    tmp_reaction = model.reactions.get_by_id(reaction_id)
     # FIXME: find a better approach
     # Checking reversibility
     # left --> right
@@ -114,14 +114,18 @@ def _find_next_demand(
         model.reactions.get_by_id(reaction_id).lower_bound
     ):
         tmp_list = [
-            rxn.id for rxn in tmp_rxn.products if rxn.id not in ignore_list
+            reaction.id
+            for reaction in tmp_reaction.products
+            if reaction.id not in ignore_list
         ]
     # left <-- right
     elif model.reactions.get_by_id(reaction_id).upper_bound < abs(
         model.reactions.get_by_id(reaction_id).lower_bound
     ):
         tmp_list = [
-            rxn.id for rxn in tmp_rxn.reactants if rxn.id not in ignore_list
+            reaction.id
+            for reaction in tmp_reaction.reactants
+            if reaction.id not in ignore_list
         ]
     # left <--> right
     elif model.reactions.get_by_id(reaction_id).upper_bound == abs(
@@ -130,7 +134,9 @@ def _find_next_demand(
         # TODO: decide what to do (reversibility)
         # FIXME: isomers sometimes shows double demand
         tmp_list = [
-            rxn.id for rxn in tmp_rxn.products if rxn.id not in ignore_list
+            reaction.id
+            for reaction in tmp_reaction.products
+            if reaction.id not in ignore_list
         ]
     if len(tmp_list) == 0:
         # Nothing found
@@ -176,7 +182,9 @@ def _remove_boundary(model: Model, metabolite: str, boundary: str):
         )
 
 
-def _less_equal_than_x_rxns(model: Model, metabolite: str, x: int) -> bool:
+def _less_equal_than_x_reactions(
+    model: Model, metabolite: str, x: int
+) -> bool:
     """
     Returns True if given metabolite participates in less or equal than
     X reactions for given model.
@@ -212,7 +220,9 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
     # Check for to add sinks. If demand reaction is found and metabolite has
     # less than two reactions, then create sink, otherwise remove any sink.
     if _has_demand(model=model, metabolite=metabolite):
-        if _less_equal_than_x_rxns(model=model, metabolite=metabolite, x=2):
+        if _less_equal_than_x_reactions(
+            model=model, metabolite=metabolite, x=2
+        ):
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite), type="sink"
             )
@@ -225,12 +235,14 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
     # and remove sink if more than 2 reactions.
     # TODO: check for else behaviour
     else:
-        if _less_equal_than_x_rxns(model=model, metabolite=metabolite, x=1):
+        if _less_equal_than_x_reactions(
+            model=model, metabolite=metabolite, x=1
+        ):
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite), type="sink"
             )
             debug_log.warning(f'Sink reaction created for "{metabolite}"')
-        elif not _less_equal_than_x_rxns(
+        elif not _less_equal_than_x_reactions(
             model=model, metabolite=metabolite, x=2
         ):
             _remove_boundary(
@@ -251,7 +263,7 @@ def _fix_side(
 
     Args:
         model (Model): model to test.
-        rxn_id (str): reaction identifier for given model.
+        reaction_id (str): reaction identifier for given model.
         side (str): Side to verify. Options: "right", "left"
         ignore_list (Iterable, optional): A sequence of formatted metabolites
             to ignore when testing new reactions. Defaults to []:
@@ -405,42 +417,50 @@ def _add_sequence(
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
     # Either create a Pathway or obtain the correct Pathway.
+    pathway = Pathway(id=identifier)
     if identifier in [group.id for group in model.groups]:
         pathway = model.groups.get_by_id(identifier)
-    else:
-        pathway = Pathway(id=identifier)
     # Add sequence to model
-    for rxn in sequence:
+    for reaction in sequence:
         # This reaction will not be added.
-        if rxn.id in avoid_list:
+        if reaction.id in avoid_list:
             debug_log.warning(
-                f'Reaction "{rxn.id}" found in avoid list. Skipping.'
+                f'Reaction "{reaction.id}" found in avoid list. Skipping.'
             )
             continue
         # FIXME: avoid if statements for perfomance improvement
-        if rxn.id not in [reaction.id for reaction in model.reactions]:
-            model.add_reactions([rxn])
-            debug_log.info(f'Reaction "{rxn.id}" added to model')
+        if reaction.id not in [reaction.id for reaction in model.reactions]:
+            model.add_reactions([reaction])
+            debug_log.info(f'Reaction "{reaction.id}" added to model')
             debug_log.debug(
-                f'Reaction "{rxn.id}" added to group "{pathway.id}"'
+                f'Reaction "{reaction.id}" added to group "{pathway.id}"'
             )
-            if rxn.id not in ignore_list:
+            if reaction.id not in ignore_list:
                 test_result(
                     model=model,
-                    reaction=rxn.id,
+                    reaction=reaction.id,
                     ignore_list=ignore_list,
                     minimum=minimum,
                 )
             else:
-                debug_log.warning(f'Test for reaction "{rxn.id}" skipped')
+                debug_log.warning(f'Test for reaction "{reaction.id}" skipped')
+            # Add to pathway only if reaction was not previously in the model.
+            pathway.add_members(new_members=[reaction])
         else:
             # FIXME: avoid creating reaction
             debug_log.info(
-                f'Reaction "{rxn.id}" was found in model. Skipping.'
+                f'Reaction "{reaction.id}" was found in model. Skipping.'
             )
-        pathway.add_members(new_members=[rxn])
+    # TODO: Add space
     debug_log.debug(f'Reactions added to group "{pathway.id}"')
-    if identifier not in [group.id for group in model.groups]:
+    # Add blank space in order. This will be translated to a blank reaction in
+    # the JsonDictionary.
+    pathway.order.append("blank")
+    # Only add if there is at least 1 reaction in the group.
+    if (
+        pathway.id not in [group.id for group in model.groups]
+        and len(pathway.members) > 0
+    ):
         model.add_groups(group_list=[pathway])
         debug_log.debug("Pathway added to Model")
 
@@ -469,23 +489,29 @@ def _from_data(
         data_dict (dict): Dictinary with the information for the pathway.
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database to search for reactions and
-            metabolites.
+            metabolites. Check :func:`cobramod.available_databases` for a list
+            of names.
+        compartment: Location of the reactions.
+
+    Arguments for complex pathways:
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        compartment: Location of the reactions.
         avoid_list (Iterable): A sequence of formatted reactions to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
-        ignore_list (Iterable): A sequence of formatted metabolite to ignore
-            when testing new reactions.
+        ignore_list (list): A sequence of formatted metabolites to skip when
+            testing, and/or reactions that should be added but not tested.
+            This is useful for long cyclical pathways.
         minimun (float): Minimum optimized value to pass in every single test.
+
+    Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
     """
-    # A graph can have multple routes, depending on how many end-metabolites.
+    # A graph can have multiple routes, depending on how many end-metabolites.
     graph = return_graph_from_dict(
         data_dict=data_dict, avoid_list=avoid_list, replacement=replacement
     )
@@ -540,18 +566,24 @@ def _from_sequence(
         identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
         sequence (list): List reaction identifiers.
         database (str): Name of the database.
+            Check :func:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
-        replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
         directory (Path): Path for directory to stored and retrieve data.
+
+    Arguments for complex pathways:
         avoid_list (list): A sequence of formatted reactions to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
-        ignore_list (list): A sequence of formatted metabolite to ignore
-            when testing new reactions.
+        ignore_list (list): A sequence of formatted metabolites to skip when
+            testing, and/or reactions that should be added but not tested.
+            This is useful for long cyclical pathways.
+        replacement (dict): Original identifiers to be replaced.
+            Values are the new identifiers.
+        minimun (float): Minimum optimized value to pass in every single test.
+
+    Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
-        minimun (float): Minimum optimized value to pass in every single test.
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
     """
@@ -604,26 +636,33 @@ def add_pathway(
 
     Args:
         model (Model): Model to expand.
-        pathway (Union[list, str]): Sequence of reaction identifiers or
-            identifier for a pathway.
+        pathway (list, str): Sequence of reaction identifiers or
+            identifier for a pathway. Examples: ["RXN-2206", "RXN-207"] or
+            "PWY-886"
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database.
+            Check :func:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         group (str, optional): Common :func:`cobramod.pathway.Pathway`
-            identifier.
+            identifier. Defaults to "custom_group"
+
+    Arguments for complex pathways:
         avoid_list (list, optional): A sequence of formatted reactions to avoid
             adding to the model. This is useful for long pathways, where X
             reactions need to be excluded.
         replacement (dict, optional): Original identifiers to be replaced.
             Values are the new identifiers.
-        ignore_list (list, optional): A sequence of formatted metabolites to
-            ignore when testing new reactions.
+        ignore_list (list): A sequence of formatted metabolites to skip when
+            testing, and/or reactions that should be added but not tested.
+            This is useful for long cyclical pathways.
+        minimum (float, optional): Minimum optimized value to pass in every
+            single test. Defaults to 0.1
+
+    Arguments for utilities:
         filename (Path): Location for the summary. Defaults to "summary.txt" in
             the current working directory.
         summary (bool, optional): True to write summary in file. Defaults to
             True.
-        minimum (float, optional): Minimum optimized value to pass in every
-            single test. Defaults to 0.1
         stop_imbalance (bool, optional): If unbalanced reaction is found, stop
             process. Defaults to False.
         show_imbalance (bool, optional): If unbalanced reaction is found, show

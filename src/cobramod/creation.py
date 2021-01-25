@@ -1,4 +1,17 @@
 #!/usr/bin/env python3
+"""Object creation
+
+This module handles the creation of COBRApy's objects
+:func:`cobra.core.metabolite.Metabolite` and
+:func:`cobra.core.reaction.Reaction`. Dictionaries with the data from given
+database is used. Important functions are:
+
+- create_object: Creates and Returns a COBRApy object.
+- add_reactions_from_file: Add reactions in a file to a model.
+- create_custom_reaction: Return a custom reaction
+- add_reaction:
+- add_meta_from_file: Add metabolites in a file to a model.
+"""
 from collections import Counter
 from contextlib import suppress
 from pathlib import Path
@@ -101,9 +114,11 @@ def build_metabolite(
             f"Metabolite '{metabolite_dict['ENTRY']}' found in given model "
             f"under '{identifier}'"
         )
-        return model.metabolites.get_by_id(identifier)
+        metabolite = model.metabolites.get_by_id(identifier)
+        return metabolite
     # Format if above fails
     identifier = f"{_fix_name(name=identifier)}_{compartment}"
+    debug_log.debug(f'Metabolite "{identifier}" created.')
     return Metabolite(
         id=identifier,
         formula=metabolite_dict["FORMULA"],
@@ -332,6 +347,7 @@ def _add_if_no_reaction_model(model: Model, reaction: Reaction):
         debug_log.info(f'Reaction "{reaction.id}" was added to model')
 
 
+# TODO: change name and add new function
 def add_reaction(
     model: Model,
     identifier: str,
@@ -645,6 +661,8 @@ def _ident_reaction(
         WrongDataError: If data does not include reaction information.
     """
     try:
+        # First create object and then yield it. Otherwise, object will not be
+        # created correctly
         reaction = _build_reaction(
             data_dict=data_dict,
             directory=directory,
@@ -684,12 +702,13 @@ def _ident_metabolite(
         WrongDataError: If data does not include information of a metabolite.
     """
     try:
-        debug_log.info(
-            f"Object '{data_dict['ENTRY']}' identified as a metabolite"
-        )
-        yield build_metabolite(
+        # First create object and then yield it. Otherwise, object will not be
+        # created correctly
+        metabolite = build_metabolite(
             metabolite_dict=data_dict, compartment=compartment, model=model
         )
+        debug_log.info(f"Object '{metabolite.id}' identified as a metabolite")
+        yield metabolite
     except KeyError:
         raise WrongDataError("Data does not belong to a metabolite")
 

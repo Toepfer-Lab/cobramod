@@ -10,10 +10,8 @@ from cobramod.parsing.kegg import KeggParser
 from cobramod.parsing.bigg import BiggParser
 from cobramod.utils import _path_match, get_key_dict
 
-# FIXME: find a workaround to avoid linter problems
-BiocycParser
-KeggParser
-BiggParser
+parsers = [BiocycParser, KeggParser, BiggParser]
+available_databases = ["META", "ARA", "META", "BIGG"]
 
 
 def _get_parser(database: str) -> Type[BaseParser]:
@@ -27,6 +25,7 @@ def _get_parser(database: str) -> Type[BaseParser]:
             # return the the real parser
             parser._return_database(database=database)
             real_parser = parser
+            break
     try:
         return real_parser
     except UnboundLocalError:

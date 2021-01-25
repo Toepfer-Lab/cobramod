@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+"""Data parsing for KEGG
+
+This module handles the retrieval of data from KEGG into a local directory.
+The posible type of data that can be download:
+
+- Metabolite: Identifiers that start with the letter C, e.g C00001
+- Reactions: Identifiers that start with the letter R, e.g R00001
+- Module Pathways: Identifiers that start with the letter M, e.g M00001
+
+Contact maintainers if other types should be added.
+
+Important class of the module:
+- KeggParser: Child of the abstract class
+:func:`cobramod.parsing.base.BaseParser`.
+"""
 from contextlib import suppress
 from itertools import chain
 from pathlib import Path
@@ -397,7 +412,6 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
         filename = data_dir.joinpath(f"{identifier}.txt")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         try:
-            debug_log.debug(f"Identifier '{identifier}' found.")
             return KeggParser._read_file(filename=filename)
         except FileNotFoundError:
             debug_log.debug(

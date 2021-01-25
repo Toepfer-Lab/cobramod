@@ -1,4 +1,15 @@
 #!/usr/bin/env python3
+"""Abstract class Base
+
+This module contains an abstract class, which is used as a base for
+the retrieval of all the data from different dabases. The class
+:func:`cobramod.parsing.base.BaseParser` defines import methods such as:
+
+- _retrieve_data: Retrieve from database or locally.
+- _parse: Pase information and return it as a dictionary.
+- _return_database: Check method.
+- _read_file: Read file and return the information.
+"""
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Union
@@ -44,7 +55,7 @@ class BaseParser(ABC):
     @abstractmethod
     def _parse(root: Union[Any, dict]) -> dict:
         """
-        Basic method to parse information.
+        Basic method to parse information and return it as dictionary.
         """
         pass
 

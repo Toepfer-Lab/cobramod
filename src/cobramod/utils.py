@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""CobraMod's helpful function
+
+This module is intended to stored multiple functions, which cannot be grouped
+to any module. In other words, these functions are general functions. An
+example:
+
+ - check_imbalance: Check for unbalanced reactions.
+ - model_convert: Trasnform all Groups into proper Pathways.
+"""
 from itertools import chain
 from pathlib import Path
 from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any
@@ -64,7 +73,7 @@ def get_DataList(model: Model) -> DataModel:
     :func:`cobramod.utils.DataModel` object.
     """
     # FIXME: copying a model is counterproductive. Attribute Group does not
-    # have method copy()
+    # have method copy(). Check what can be done
     copy_model = model.copy()
     dict_arguments = dict()
     with catch_warnings():
