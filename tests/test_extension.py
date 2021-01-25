@@ -6,6 +6,7 @@ add metabolites and reactions into a metabolic model.
 """
 from logging import DEBUG
 from pathlib import Path
+from time import sleep
 from unittest import main, TestCase
 
 from cobra import Model, Reaction
@@ -232,14 +233,14 @@ class ModuleExtension(TestCase):
         self.assertTrue(
             expr="SK_PROTON_c" in (sink.id for sink in test_model.sinks)
         )
-        # # CASE 2: Already sink
+        # CASE 2: Already sink
         ex._fix_side(
             model=test_model,
             reaction="OXALODECARB_RXN_c",
             side="left",
             ignore_list=["OXALACETIC_ACID_c"],
         )
-        # # CASE 3: normal creation (right side)
+        # CASE 3: normal creation (right side)
         ex._fix_side(
             model=test_model,
             reaction="OXALODECARB_RXN_c",
@@ -413,6 +414,10 @@ class ModuleExtension(TestCase):
             member="test_group",
             container=[group.id for group in test_model.groups],
         )
+        self.assertIn(
+            member="blank",
+            container=test_model.groups.get_by_id("test_group").order,
+        )
         # TODO: CASE 3: KEGG
         test_model = textbook_kegg.copy()
         test_list = list(
@@ -440,6 +445,10 @@ class ModuleExtension(TestCase):
         self.assertIn(
             member="test_group_kegg",
             container=[group.id for group in test_model.groups],
+        )
+        self.assertIn(
+            member="blank",
+            container=test_model.groups.get_by_id("test_group_kegg").order,
         )
 
     def test__from_data(self):
@@ -477,7 +486,7 @@ class ModuleExtension(TestCase):
             model=test_model,
             identifier="test_group",
             compartment="c",
-            sequence=[],
+            sequence=["R01063", "R09084"],
             database="KEGG",
             directory=dir_data,
             avoid_list=[],
@@ -596,7 +605,7 @@ class ModuleExtension(TestCase):
                 metabolite.id for metabolite in test_reaction.metabolites
             ],
         )
-        # CASE 5b: From sequence
+        # CASE 5b: From sequence. Skipping already in Model. Stacking in one.
         test_model = textbook_kegg.copy()
         ex.add_pathway(
             model=test_model,
@@ -607,6 +616,10 @@ class ModuleExtension(TestCase):
             compartment="c",
             show_imbalance=False,
         )
+        # Reactions are already in model. No need for extra group.
+        self.assertRaises(
+            KeyError, test_model.groups.get_by_id, "custom_group"
+        )
         ex.add_pathway(
             model=test_model,
             pathway=["ADENODEAMIN-RXN"],
@@ -616,6 +629,15 @@ class ModuleExtension(TestCase):
             show_imbalance=False,
         )
         test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
+        # Total of one reactions + blank in list "order"
+        self.assertEqual(
+            first=len(test_model.groups.get_by_id("custom_group").members),
+            second=1,
+        )
+        self.assertEqual(
+            first=len(test_model.groups.get_by_id("custom_group").order),
+            second=2,
+        )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertNotIn(
             member="ACALD_c",
@@ -632,14 +654,31 @@ class ModuleExtension(TestCase):
                 metabolite.id for metabolite in test_reaction.metabolites
             ],
         )
-        # Total of three reactions
-        self.assertEqual(
-            first=len(test_model.groups.get_by_id("custom_group")), second=3
-        )
 
-    def test_visualization(self):
+    def test__visualization(self):
         # CASE 1: Regular Biocyc
         test_model = textbook_biocyc.copy()
+        ex.add_pathway(
+            model=test_model,
+            pathway="SALVADEHYPOX-PWY",
+            compartment="c",
+            directory=dir_data,
+            database="META",
+            ignore_list=[],
+            show_imbalance=False,
+        )
+        # Test fluxes
+        test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
+        self.assertEqual(first=len(test_pathway.members), second=5)
+        # Blank space adds always one.
+        self.assertEqual(first=len(test_pathway.order), second=6)
+        test_solution = test_pathway.solution(solution=test_model.optimize())
+        test_pathway.visualize(
+            solution_fluxes=test_solution,
+            canvas_width=1500,
+            canvas_height=1500,
+        )
+        sleep(1)
         ex.add_pathway(
             model=test_model,
             pathway="PWY-1187",
@@ -649,8 +688,16 @@ class ModuleExtension(TestCase):
             ignore_list=[],
             show_imbalance=False,
         )
-        test_model.groups.get_by_id("PWY-1187").visualize(
-            canvas_width=2500, canvas_height=2500
+        # Test fluxes
+        test_pathway = test_model.groups.get_by_id("PWY-1187")
+        self.assertEqual(first=len(test_pathway.members), second=14)
+        # Blank space adds always one.
+        self.assertEqual(first=len(test_pathway.order), second=18)
+        test_solution = test_pathway.solution(solution=test_model.optimize())
+        test_pathway.visualize(
+            solution_fluxes=test_solution,
+            canvas_width=2000,
+            canvas_height=1500,
         )
 
 

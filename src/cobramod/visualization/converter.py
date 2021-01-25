@@ -685,12 +685,10 @@ class JsonDictionary(UserDict):
             reaction_styles=["text"],
             map_name=self.data["head"]["map_name"],
             map_json=self.json_dump(),
-            reaction_no_data_size=1,
         )
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
         if self.reaction_data:
-            # TODO: only dict
             builder.reaction_data = self.reaction_data
         builder.save_html(filepath=filepath)
         # builder.reaction_styles = ["color"]

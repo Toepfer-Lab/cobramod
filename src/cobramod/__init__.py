@@ -27,8 +27,10 @@ By default, CobraMod creates the file "debug.log", which displays the changes
 occured when running a script. In order to modify the logging, import
 "debug_log" from "cobramod.debug". The default logging level is defined as
 INFO. Read the documentation of logging for more information.
+
+For a list of databases, load variable :func`cobramod.available_databases`
 """
-from cobramod.mod_parser import get_data, translate
+from cobramod.mod_parser import get_data, translate, available_databases
 from cobramod.creation import (
     create_object,
     add_meta_from_file,
@@ -50,6 +52,7 @@ __all__ = [
     "Pathway",
     "translate",
     "model_convert",
+    "available_databases",
 ]
 
 __version__ = "0.1.2"

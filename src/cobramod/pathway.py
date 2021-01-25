@@ -8,7 +8,7 @@ The new class :func:`cobramod.pathway.Pathway" is child derived from
 - visualize: get a :func:`escher.Builder` for that specific Pathway.
 """
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Union
 
 from escher import Builder
 from cobra.core.group import Group
@@ -141,7 +141,7 @@ class Pathway(Group):
 
     def visualize(
         self,
-        solution_fluxes: Dict[str, float] = None,
+        solution_fluxes: Union[Solution, Dict[str, float]] = None,
         filename: Path = None,
         canvas_height: float = 1500,
         canvas_width: float = 1500,
@@ -152,8 +152,9 @@ class Pathway(Group):
         representations of the pathway.
 
         Args:
-            solution_fluxes (dict): Dictionary with fluxes. The values will be
-                then showed in the Builder. Defaults to None.
+            solution_fluxes (Solution, dict): Series or Dictionary with fluxes.
+                The values will be then showed in the Builder.
+                Defaults to None.
             filename (Path): Path for the HTML. If None is passed, then
                 default to "pathway.html" in the current working directory.
             canvas_height (float): Height for the canvas. Defaults to 1500
@@ -173,11 +174,16 @@ class Pathway(Group):
         json_dict = JsonDictionary(canvas=canvas, **kwargs)
         member: str
         # This is to secure that the order of the members is respected, since
-        # the order is important
+        # the order is important. Blanks added separately.
         for member in self.order:
+            if member == "blank":
+                json_dict.add_blank()
+                continue
             reaction_string = self.members.get_by_id(member).reaction
             json_dict.add_reaction(string=reaction_string, identifier=member)
         # Define solution. If None, nothing will be added.
         if solution_fluxes is not None:
+            if isinstance(solution_fluxes, Solution):
+                solution_fluxes = solution_fluxes.fluxes.to_dict()
             json_dict.reaction_data = solution_fluxes
         return json_dict.visualize(filepath=filename)

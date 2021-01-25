@@ -46,8 +46,8 @@ def _create_reactions(
     Args:
         sequence (list): Identifiers for the reactions.
         directory (Path): Path to directory where data is located.
-        database (str): Name of the database. Options are: "META", "ARA",
-            "KEGG", "BIGG"
+        database (str): Name of the database. Check
+            :func:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
@@ -453,7 +453,14 @@ def _add_sequence(
             )
     # TODO: Add space
     debug_log.debug(f'Reactions added to group "{pathway.id}"')
-    if identifier not in [group.id for group in model.groups]:
+    # Add blank space in order. This will be translated to a blank reaction in
+    # the JsonDictionary.
+    pathway.order.append("blank")
+    # Only add if there is at least 1 reaction in the group.
+    if (
+        pathway.id not in [group.id for group in model.groups]
+        and len(pathway.members) > 0
+    ):
         model.add_groups(group_list=[pathway])
         debug_log.debug("Pathway added to Model")
 
@@ -482,7 +489,8 @@ def _from_data(
         data_dict (dict): Dictinary with the information for the pathway.
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database to search for reactions and
-            metabolites.
+            metabolites. Check :func:`cobramod.available_databases` for a list
+            of names.
         compartment: Location of the reactions.
 
     Arguments for complex pathways:
@@ -558,6 +566,7 @@ def _from_sequence(
         identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
         sequence (list): List reaction identifiers.
         database (str): Name of the database.
+            Check :func:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         directory (Path): Path for directory to stored and retrieve data.
 
@@ -632,6 +641,7 @@ def add_pathway(
             "PWY-886"
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database.
+            Check :func:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         group (str, optional): Common :func:`cobramod.pathway.Pathway`
             identifier. Defaults to "custom_group"
