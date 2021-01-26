@@ -22,15 +22,15 @@ if not dir_data.exists():
 class ModulTesting(unittest.TestCase):
     # TODO: use replacement dictionaries !!
 
-    def test__create_meta_from_string(self):
+    def test__metabolite_from_string(self):
         # CASE 1: Correct input
         testInput = "MALTOSE_b, MALTOSE[b], b, C12H22O11, 0"
-        testMeta = cr._create_meta_from_string(line_string=testInput)
+        testMeta = cr._metabolite_from_string(line_string=testInput)
         # Checking that new meta is in Model
         self.assertIsInstance(testMeta, Metabolite)
         # TODO: verify attributes
 
-    def test_build_metabolite(self):
+    def test__build_metabolite(self):
         # CASE 1: regular META
         test_dict = get_data(
             directory=dir_data,
@@ -38,7 +38,7 @@ class ModulTesting(unittest.TestCase):
             database="META",
             debug_level=10,
         )
-        test_metabolite = cr.build_metabolite(
+        test_metabolite = cr._build_metabolite(
             metabolite_dict=test_dict, compartment="c"
         )
         self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
@@ -52,7 +52,7 @@ class ModulTesting(unittest.TestCase):
             database="META",
             debug_level=10,
         )
-        test_metabolite = cr.build_metabolite(
+        test_metabolite = cr._build_metabolite(
             metabolite_dict=test_dict, compartment="c", model=textbook_kegg
         )
         self.assertEqual(first=test_metabolite.id, second="C00001_c")
@@ -64,15 +64,15 @@ class ModulTesting(unittest.TestCase):
             debug_level=10,
             model_id="universal",
         )
-        test_metabolite = cr.build_metabolite(
+        test_metabolite = cr._build_metabolite(
             metabolite_dict=test_dict, compartment="c", model=textbook_kegg
         )
         self.assertEqual(first=test_metabolite.id, second="C00001_c")
         # TODO: add extra cases, ARA, KEGG
 
-    def test_meta_string_to_model(self):
+    def test__include_string(self):
         # CASE 1: retrieval from META
-        test_metabolite = cr.meta_string_to_model(
+        test_metabolite = cr._include_string(
             line="HOMOMETHIONINE, c",
             model=Model(0),
             directory=dir_data,
@@ -86,26 +86,19 @@ class ModulTesting(unittest.TestCase):
         # TODO: extra cases
         # CASE 2: custom metabolite
 
-    def test_add_meta_from_file(self):
+    def test__include_file_metabolite(self):
         test_model = Model(0)
-        # Testing if model is not cobra.Model
-        self.assertRaises(
-            TypeError,
-            cr.add_meta_from_file,
-            "notModel",
-            Path.cwd().joinpath("nofile"),
-        )
         # Testing if file is not found
         self.assertRaises(
             FileNotFoundError,
-            cr.add_meta_from_file,
+            cr._include_file_metabolite,
             test_model,
             Path.cwd().joinpath("nofile"),
         )
         # CASE 1: Metabolite is not found (or misspelled)
         self.assertRaises(
             Warning,
-            cr.add_meta_from_file,
+            cr._include_file_metabolite,
             model=test_model,
             filename=dir_input.joinpath("metaToAdd_02_misspelled.txt"),
             # Directory to save / check for xml files
@@ -115,7 +108,7 @@ class ModulTesting(unittest.TestCase):
         # CASE 2: Bad format (e. g. charge is missing).
         self.assertRaises(
             IndexError,
-            cr.add_meta_from_file,
+            cr._include_file_metabolite,
             model=test_model,
             filename=dir_input.joinpath("metaToAdd_03_badFormat.txt"),
             # Directory to save / check for xml files
@@ -123,7 +116,7 @@ class ModulTesting(unittest.TestCase):
             database="META",
         )
         # CASE 3: Normal input
-        cr.add_meta_from_file(
+        cr._include_file_metabolite(
             model=test_model,
             # File with Metabolites to add
             filename=dir_input.joinpath("metaToAdd_01_normal.txt"),
@@ -379,11 +372,11 @@ class ModulTesting(unittest.TestCase):
             "RXN_14462_p" in [reaction.id for reaction in test_model.reactions]
         )
 
-    def test_add_reaction(self):
+    def test__include_reaction(self):
         # CASE 1: Regular META reaction
         test_model = Model(0)
         test_model.compartments = {"e": "extracellular", "p": "plastid"}
-        cr.add_reaction(
+        cr._include_reaction(
             model=test_model,
             directory=dir_data,
             identifier="OXALODECARB-RXN",
@@ -396,7 +389,7 @@ class ModulTesting(unittest.TestCase):
         )
         # CASE 2: check for equivalent. (Similar to CASE 6b in _build_reaction)
         test_model = textbook_kegg.copy()
-        cr.add_reaction(
+        cr._include_reaction(
             model=test_model,
             directory=dir_data,
             compartment="c",
@@ -421,25 +414,23 @@ class ModulTesting(unittest.TestCase):
         )
         # TODO: test more databases
 
-    def test__build_dict_for_metabolites(self):
+    def test__dict_from_string(self):
         # CASE 0a: TypeError
-        self.assertRaises(TypeError, cr._build_dict_for_metabolites, str())
+        self.assertRaises(TypeError, cr._dict_from_string, str())
         # CASE 0b: Coefficient missing
         self.assertRaises(
-            ValueError, cr._build_dict_for_metabolites, string_list=[" GLC_c:"]
+            ValueError, cr._dict_from_string, string_list=[" GLC_c:"]
         )
         self.assertDictEqual(
             {"GLC_b": 1.0, "GLC_c": -1.0},
-            cr._build_dict_for_metabolites(
-                string_list=[" GLC_c:-1", "GLC_b: 1"]
-            ),
+            cr._dict_from_string(string_list=[" GLC_c:-1", "GLC_b: 1"]),
         )
 
-    def test_create_custom_reaction(self):
+    def test__custom_reaction(self):
         # CASE 0: wrong format, no delimiter
         self.assertRaises(
             IndexError,
-            cr.create_custom_reaction,
+            cr._custom_reaction,
             line_string="GLC_cb, GLC_cb GLC_c:-1, GLC_b:1",
             directory=dir_data,
             database="META",
@@ -447,13 +438,13 @@ class ModulTesting(unittest.TestCase):
         # CASE 1: No ID detected
         self.assertRaises(
             Warning,
-            cr.create_custom_reaction,
+            cr._custom_reaction,
             line_string=" |GLC_c:-1, GLC_b:1",
             directory=dir_data,
             database="META",
         )
         # CASE 2: Normal, ID and name differ
-        ReactionTest = cr.create_custom_reaction(
+        ReactionTest = cr._custom_reaction(
             line_string="GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
             directory=dir_data,
             database="META",
