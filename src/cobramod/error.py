@@ -36,6 +36,15 @@ class WrongDataError(Exception):
     pass
 
 
+class WrongSyntax(Exception):
+    """
+    Simple Error that should be raised if a specific syntax is invalid. For
+    instance, when strings do not have a certain number of items when splitted.
+    """
+
+    pass
+
+
 class PatternNotFound(Exception):
     """
     Simple error that should be raised when a pattern is not found in a item.

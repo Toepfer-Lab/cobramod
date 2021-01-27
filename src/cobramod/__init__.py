@@ -31,7 +31,7 @@ INFO. Read the documentation of logging for more information.
 For a list of databases, load variable :func`cobramod.available_databases`
 """
 from cobramod.mod_parser import get_data, translate, available_databases
-from cobramod.creation import create_object, add_reactions_from_file
+from cobramod.creation import create_object
 from cobramod.extension import add_pathway, test_result
 from cobramod.pathway import Pathway
 from cobramod.utils import model_convert
@@ -39,7 +39,6 @@ from cobramod.utils import model_convert
 __all__ = [
     "get_data",
     "create_object",
-    "add_reactions_from_file",
     "add_pathway",
     "test_result",
     "Pathway",
