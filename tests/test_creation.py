@@ -545,7 +545,7 @@ class ComplexFunctions(TestCase):
     def test_add_metabolites(self):
         # CASE 0: Missing Arguments
         self.assertRaises(
-            Warning,
+            ValueError,
             cr.add_metabolites,
             model=Model(0),
             obj=dir_input.joinpath("metaToAdd_01_normal.txt"),
@@ -609,6 +609,77 @@ class ComplexFunctions(TestCase):
             self.assertIn(
                 member=item,
                 container=[member.id for member in test_model.metabolites],
+            )
+
+    def test_add_reactions(self):
+        # CASE 0: Missing arguments.
+        self.assertRaises(
+            ValueError,
+            cr.add_reactions,
+            model=Model(0),
+            obj=dir_input.joinpath("rxnToAdd_01_normal.txt"),
+        )
+        # CASE 1: From Path
+        test_model = Model(0)
+        cr.add_reactions(
+            model=test_model,
+            obj=dir_input.joinpath("rxnToAdd_01_normal.txt"),
+            directory=dir_data,
+            database="META",
+        )
+        for reaction in ("GLC_cb", "RXN_14462_p"):
+            self.assertIn(
+                member=reaction,
+                container=[reaction.id for reaction in test_model.reactions],
+            )
+        # CASE 2: From string
+        test_model = Model(0)
+        cr.add_reactions(
+            model=test_model,
+            obj="GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
+            directory=dir_data,
+            database="META",
+        )
+        self.assertIn(
+            member="GLC_cb",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        # CASE 3: From List of strings
+        test_model = Model(0)
+        test_list = [
+            "GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
+            "RXN-14462, c",
+        ]
+        cr.add_reactions(
+            model=test_model,
+            obj=test_list,
+            directory=dir_data,
+            database="META",
+        )
+        for reaction in ("GLC_cb", "RXN_14462_c"):
+            self.assertIn(
+                member=reaction,
+                container=[reaction.id for reaction in test_model.reactions],
+            )
+        # CASE 4: In case of single reaction
+        test_model = Model(0)
+        test_reaction = textbook_kegg.reactions.get_by_id("ACALDt")
+        cr.add_reactions(model=test_model, obj=test_reaction)
+        self.assertIn(
+            member="ACALDt",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        # CASE 5: In case of multiple reactions
+        test_model = Model(0)
+        test_list = [
+            textbook_kegg.reactions.get_by_id(reaction)
+            for reaction in ("ACALDt", "ATPS4r", "ACt2r")
+        ]
+        cr.add_reactions(model=test_model, obj=test_list)
+        for reaction in ("ACALDt", "ATPS4r", "ACt2r"):
+            self.assertIn(
+                member=reaction,
+                container=[reaction.id for reaction in test_model.reactions],
             )
 
 

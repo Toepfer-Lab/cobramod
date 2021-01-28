@@ -7,10 +7,14 @@ This module handles the creation of COBRApy's objects
 database is used. Important functions are:
 
 - create_object: Creates and Returns a COBRApy object.
-- _get_file_reactions: Add reactions in a file to a model.
-- _reaction_from_string: Return a custom reaction
-- add_reaction:
-- _get_file_metabolites: Add metabolites in a file to a model.
+- add_reactions: Add reactions from multiple sources.
+- add_metabolites: Add reactions from multiple sources
+
+These functions are a mix of multiple simpler functions:
+- _metabolite_from_string, _reaction_from_string: create objects from strings.
+- _get_metabolite, _get_reaction: create objects from dictionary.
+- _convert_string_reaction, _convert_string_metabolite: create objects from
+files.
 """
 from collections import Counter
 from contextlib import suppress
@@ -473,7 +477,6 @@ def _reaction_from_string(
             Defaults to an empty Model.
 
     Raises:
-        IndexError: if separator '|' is not found.
         WrongSyntax: if identifier has a wrong format.
 
     Returns:
@@ -623,7 +626,7 @@ def _get_file_reactions(
             Values are the new identifiers.
 
     Raises:
-        FileNotFoundError: is file does not exists
+        FileNotFoundError: if file does not exists
     """
     # TODO: add mass balance check
     if not filename.exists():
@@ -862,9 +865,9 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
      - List[str]: A list with multiple str with the mentioned syntax.
 
     Args:
-        model (Model): Model to expand and search for metabolites
+        model (Model): Model to expand and search for metabolites.
         obj: A Path; a list with either strings or Metabolite objects,
-            or a sigle string. See syntax above.
+            or a single string. See syntax above.
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
@@ -872,8 +875,10 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
             :func:`cobramod.available_databases` for a list of names.
 
     Raises:
-        IndexError (from str): If syntax is not followed correctly.
-        Warning: If Keyword Arguments are missing.
+        WrongSyntax (from str): If syntax is not followed correctly as
+            mentioned above.
+        ValueError: If Keyword Arguments are missing.
+        FileNotFoundError (from Path): if file does not exists
     """
     try:
         # In case of a Path
@@ -888,7 +893,6 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
                 directory=directory,
                 database=database,
             )
-        # supress with TypeError, In case of PosixPath
         # In case of a single Metabolite
         elif isinstance(obj, Metabolite):
             new_metabolites = [obj]
@@ -923,11 +927,30 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
         # Otherwise, it must be a list with Metabolites.
         __add_metabolites_check(model=model, metabolites=new_metabolites)
     except KeyError:
-        raise Warning("Keyword Arguments are missing for given object.")
+        raise ValueError("Keyword Arguments are missing for given object.")
 
 
-def add_reactions(model, reactions):
+def __add_reactions_check(model: Model, reactions: List[Reaction]):
+    """
+    Checks if given reactions are already in the model. If not, they will be
+    added into the model.
 
+    Args:
+        model (Model): Model to extend.
+        reactions (List[Metabolites]): List with Reactions.
+    """
+    # A Loop in necessary to log the skipped metabolites.
+    for member in reactions:
+        if member.id not in [reaction.id for reaction in model.reactions]:
+            model.add_reactions(reaction_list=[member])
+            debug_log.info(f'Reaction "{member.id}" was added to model.')
+            continue
+        debug_log.warning(
+            f'Reaction "{member.id}" was already in model. Skipping.'
+        )
+
+
+def add_reactions(model: Model, obj: Any, **kwargs):
     """Adds given object into the model. The options are:
 
      - Path: A file with components. E. g:
@@ -951,5 +974,73 @@ def add_reactions(model, reactions):
             E.g  **`OXYGEN-MOLECULE_c: -1`**
 
      - List[str]: A list with multiple str with the mentioned syntax.
+
+    Args:
+        model (Model): Model to expand and search for reactions.
+        obj: A Path; a list with either strings or Reaction objects,
+            or a single string. See syntax above.
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
+        replacement (dict): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+
+    Raises:
+        WrongSyntax (from str): If syntax is not followed correctly as
+            mentioned above.
+        ValueError: If Keyword Arguments are missing.
+        FileNotFoundError (from Path): if file does not exists
     """
-    pass
+    try:
+        # In case of a Path
+        if isinstance(obj, Path):
+            # These variable will raise KeyError if no kwargs are passed.
+            directory = kwargs["directory"]
+            database = kwargs["database"]
+            # Empty dictionary is nothing assigned
+            replacement = kwargs.pop("replacement", dict())
+            new_reactions = _get_file_reactions(
+                model=model,
+                filename=obj,
+                directory=directory,
+                database=database,
+                replacement=replacement,
+            )
+        # In case of single Reaction
+        elif isinstance(obj, Reaction):
+            new_reactions = [obj]
+        # Unless, iterable with Reactions.
+        elif all([isinstance(member, Reaction) for member in obj]):
+            new_reactions = obj
+        # or a list with str
+        elif all([isinstance(member, str) for member in obj]) or isinstance(
+            obj, str
+        ):
+            directory = kwargs["directory"]
+            database = kwargs["database"]
+            # Empty dictionary is nothing assigned
+            replacement = kwargs.pop("replacement", dict())
+            # Make a list
+            if isinstance(obj, str):
+                obj = [obj]
+            new_reactions = [
+                _convert_string_reaction(
+                    line=line,
+                    model=model,
+                    directory=directory,
+                    database=database,
+                    replacement=replacement,
+                )
+                for line in obj
+            ]
+        # Raise error if wrong
+        else:
+            raise WrongDataError(
+                "Given object is not the Type mentioned in the docstrings."
+            )
+        # Otherwise, it must be a list with Metabolites.
+        __add_reactions_check(model=model, reactions=new_reactions)
+    except KeyError:
+        raise ValueError("Keyword Arguments are missing for given object.")
