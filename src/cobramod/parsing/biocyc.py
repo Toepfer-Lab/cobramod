@@ -26,7 +26,7 @@ from xml.etree.ElementTree import (
 from pathlib import Path
 from typing import Any, Dict
 
-from requests import get
+from requests import get, HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
@@ -329,10 +329,19 @@ def _get_xml_from_biocyc(
             )
             debug_log.debug(f"Searching in {url_text}")
             r = get(url_text)
-            if r.status_code == 404:
-                msg = f'"{identifier}" not available in "{database}"'
+            if r.status_code >= 400:
+                msg = f'"{identifier}" is not available in "{database}"'
                 debug_log.error(msg)
-                raise Warning(msg)
+                # Try with META
+                if database != "META":
+                    # This will raise an error if not found in META
+                    root = _get_xml_from_biocyc(
+                        directory=directory,
+                        identifier=identifier,
+                        database="META",
+                    )
+                    return root
+                raise HTTPError(msg)
             else:
                 root = fromstring(r.text)  # defining root
                 tree = ElementTree(root)
