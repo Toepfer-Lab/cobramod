@@ -131,19 +131,19 @@ def _get_metabolite(
     identifier = metabolite_dict["ENTRY"]
     # Try to obtain available translation
     with suppress(NoIntersectFound, KeyError):
-        identifier = _first_item(
+        new_identifier = _first_item(
             first=model.metabolites,
             second=metabolite_dict["XREF"],
             revert=True,
         )
         # Only return from model if compartment is the same, otherwise
         # KeyError
-        identifier = f"{_fix_name(name=identifier)}_{compartment}"
+        new_identifier = f"{_fix_name(name=new_identifier)}_{compartment}"
+        metabolite = model.metabolites.get_by_id(new_identifier)
         debug_log.warning(
             f"Metabolite '{metabolite_dict['ENTRY']}' found in given model "
-            f"under '{identifier}'"
+            f"under '{new_identifier}'"
         )
-        metabolite = model.metabolites.get_by_id(identifier)
         return metabolite
     # Format if above fails
     identifier = f"{_fix_name(name=identifier)}_{compartment}"
@@ -240,21 +240,9 @@ def _get_file_metabolites(
     with open(filename, "r") as f:
         new_metabolites = list()
         for line in _read_lines(f=f):
-            try:
-                new_metabolites.append(
-                    _convert_string_metabolite(
-                        line=line, model=model, **kwargs
-                    )
-                )
-            # TODO: create new Error
-            except Warning:
-                # FIXME: add function to search for common missing databases
-                kwargs["database"] = "META"
-                new_metabolites.append(
-                    _convert_string_metabolite(
-                        line=line, model=model, **kwargs
-                    )
-                )
+            new_metabolites.append(
+                _convert_string_metabolite(line=line, model=model, **kwargs)
+            )
     return new_metabolites
 
 
@@ -297,15 +285,15 @@ def _get_reaction(
     identifier = data_dict["ENTRY"]
     # Try to obtain if information is available
     with suppress(NoIntersectFound, KeyError):
-        identifier = _first_item(
+        new_identifier = _first_item(
             first=model.reactions, second=data_dict["XREF"], revert=True
         )
-        identifier = f"{_fix_name(name=identifier)}_{compartment}"
+        new_identifier = f"{_fix_name(name=new_identifier)}_{compartment}"
+        reaction = model.reactions.get_by_id(new_identifier)
         debug_log.warning(
             f"Reaction '{data_dict['ENTRY']}' found in given model "
-            f"under '{identifier}'"
+            f"under '{new_identifier}'"
         )
-        reaction = model.reactions.get_by_id(identifier)
         return reaction
     # Otherwise create from scratch
     reaction = Reaction(
@@ -315,7 +303,6 @@ def _get_reaction(
     for identifier, coef in data_dict["EQUATION"].items():
         # Get rid of prefix r_ and l_
         identifier = identifier[2:]
-        # TODO: add option to get metabolites from model
         # First, replacement, since the identifier can be already in model
         with suppress(KeyError):
             identifier = replacement[identifier]
@@ -325,7 +312,13 @@ def _get_reaction(
             )
         # TODO: check if this part is necesary
         # Retrieve data for metabolite
-        metabolite = get_data(identifier=identifier, debug_level=10, **kwargs)
+        try:
+            # get metabolites from model if possible.
+            metabolite = model.metabolites.get_by_id(identifier)
+        except KeyError:
+            metabolite = get_data(
+                identifier=identifier, debug_level=10, **kwargs
+            )
         # Checking if transport reaction
         if (
             data_dict["TRANSPORT"]
@@ -501,21 +494,24 @@ def _reaction_from_string(
     # Create Base reaction and then fill it with its components.
     new_reaction = Reaction(id=rxn_id, name=rxnName)
     for identifier, coef in meta_dict.items():
-        # _get_metabolite will also search for the metabolite under a different
-        # name.
-        compartment = identifier[-1:]
-        identifier = identifier[:-2]
-        # It is necessary to build the metabolite.
-        # TODO: Verify if this is a good approach.
-        data_dict = get_data(
-            directory=directory,
-            identifier=identifier,
-            database=database,
-            debug_level=10,
-        )
-        metabolite = _get_metabolite(
-            metabolite_dict=data_dict, compartment=compartment, model=model
-        )
+        # Either get from model, or retrieve it.
+        try:
+            metabolite = model.metabolites.get_by_id(identifier)
+        except KeyError:
+            # _get_metabolite will also search for the metabolite under a
+            # different name.
+            compartment = identifier[-1:]
+            identifier = identifier[:-2]
+            # It is necessary to build the metabolite.
+            data_dict = get_data(
+                directory=directory,
+                identifier=identifier,
+                database=database,
+                debug_level=10,
+            )
+            metabolite = _get_metabolite(
+                metabolite_dict=data_dict, compartment=compartment, model=model
+            )
         new_reaction.add_metabolites({metabolite: coef})
         debug_log.debug(
             f'Metabolite "{metabolite.id}" added to Reaction '
@@ -572,7 +568,7 @@ def _convert_string_reaction(
             database=database,
             model=model,
         )
-    # If delimiter is not found
+    # If delimiter is not found, then it must be a reaction
     except WrongSyntax:
         # add reaction from root. Get only left part
         seqment = (part.strip().rstrip() for part in line.split(","))
@@ -634,16 +630,9 @@ def _get_file_reactions(
     with open(filename, "r") as f:
         new_reactions = list()
         for line in _read_lines(f=f):
-            try:
-                new_reactions.append(
-                    _convert_string_reaction(line=line, model=model, **kwargs)
-                )
-            except Warning:
-                # TODO: add test
-                kwargs["database"] = "META"
-                new_reactions.append(
-                    _convert_string_reaction(line=line, model=model, **kwargs)
-                )
+            new_reactions.append(
+                _convert_string_reaction(line=line, model=model, **kwargs)
+            )
     return new_reactions
 
 
@@ -767,8 +756,8 @@ def create_object(
     Args:
         identifier (str): Original identifier for database
         directory (Path): Path to directory where data is stored.
-        database (str): Name of the database. Options are: "META", "ARA",
-            "KEGG", "BIGG"
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the object. In case of reaction, all
             metabolites will be included in the same location.
         replacement (dict, optional): original identifiers to be replaced.

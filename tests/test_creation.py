@@ -6,14 +6,15 @@ metabolites are tested. Important is the independency of the functions, unless
 they are part of the API such as add_metabolites. Therefore the modules is
 separated in:
 
-- SimpleFunctions
-- ComplexFunctions
+- SimpleFunctions: Creation of objects
+- ComplexFunctions: Functions, that uses multiple simple functions.
 """
 from logging import DEBUG
 from pathlib import Path
 from unittest import main, TestCase
 
 from cobra import Metabolite, Reaction, Model
+from requests import HTTPError
 
 from cobramod import creation as cr
 from cobramod.debug import debug_log
@@ -21,25 +22,36 @@ from cobramod.error import WrongSyntax
 from cobramod.mod_parser import get_data
 from cobramod.test import textbook_kegg
 
-# configuration
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
-
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 
 class SimpleFunctions(TestCase):
+    """
+    Test for simple test such as creating metabolites from string or from
+    files.
+    """
+
     # TODO: use replacement dictionaries !!
 
     def test__metabolite_from_string(self):
         # CASE 1: Correct input
-        testInput = "MALTOSE_b, MALTOSE[b], b, C12H22O11, 0"
-        testMeta = cr._metabolite_from_string(line_string=testInput)
+        test_string = "MALTOSE_b, MALTOSE[b], b, C12H22O11, 0"
+        test_metabolite = cr._metabolite_from_string(line_string=test_string)
         # Checking that new meta is in Model
-        self.assertIsInstance(testMeta, Metabolite)
-        # TODO: verify attributes
+        self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
+        self.assertEqual(first=test_metabolite.id, second="MALTOSE_b")
+        self.assertEqual(first=test_metabolite.name, second="MALTOSE[b]")
+        self.assertEqual(first=test_metabolite.charge, second=0)
+        self.assertDictEqual(
+            d1=test_metabolite.elements, d2={"C": 12, "H": 22, "O": 11}
+        )
 
     def test__get_metabolite(self):
         # CASE 1: regular META
@@ -94,7 +106,19 @@ class SimpleFunctions(TestCase):
         self.assertEqual(first=test_metabolite.name, second="L-homomethionine")
         self.assertEqual(first=test_metabolite.formula, second="C6H13N1O2S1")
         self.assertEqual(first=test_metabolite.compartment, second="c")
-        # TODO: extra cases -> CASE 2: custom metabolite
+        # CASE 2: custom metabolite
+        test_metabolite = cr._convert_string_metabolite(
+            line="MALTOSE_b, MALTOSE[b], b, C12H22O11, 0",
+            model=Model(0),
+            directory=dir_data,
+            database="META",
+        )
+        self.assertEqual(first=test_metabolite.id, second="MALTOSE_b")
+        self.assertEqual(first=test_metabolite.name, second="MALTOSE[b]")
+        self.assertEqual(first=test_metabolite.charge, second=0)
+        self.assertDictEqual(
+            d1=test_metabolite.elements, d2={"C": 12, "H": 22, "O": 11}
+        )
 
     def test__get_file_metabolites(self):
         test_model = Model(0)
@@ -107,7 +131,7 @@ class SimpleFunctions(TestCase):
         )
         # CASE 1: Metabolite is not found (or misspelled)
         self.assertRaises(
-            Warning,
+            HTTPError,
             cr._get_file_metabolites,
             model=test_model,
             filename=dir_input.joinpath("metaToAdd_02_misspelled.txt"),
