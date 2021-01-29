@@ -21,13 +21,14 @@ from cobramod.parsing import kegg as kg
 from cobramod.parsing import biocyc as bc
 from cobramod.parsing import bigg as bi
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
-
-
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 
 class TestKegg(TestCase):
@@ -86,7 +87,7 @@ class TestKegg(TestCase):
     def test__parse_kegg(self):
         # CASE 1a: Reaction (same as setup)
         test_dict = kg.KeggParser._parse(
-            root=kg._create_dict(test_string=self.test_string)
+            root=kg._create_dict(raw=self.test_string)
         )
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
