@@ -396,7 +396,7 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
         NotADirectoryError:  If parent directory is not found.
 
     Returns:
-        dict: dictioanry from  KEGGs identifier with basic information
+        dict: dictionary from KEGGs identifier with basic information
     """
     # NOTE: As KEGG only support xml for pathways, Metabolites and Reactions
     # have to be parsed differently. Only specific keys are necesary

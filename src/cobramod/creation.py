@@ -7,25 +7,56 @@ This module handles the creation of COBRApy's objects
 database is used. Important functions are:
 
 - create_object: Creates and Returns a COBRApy object.
-- add_reactions_from_file: Add reactions in a file to a model.
-- create_custom_reaction: Return a custom reaction
-- add_reaction:
-- add_meta_from_file: Add metabolites in a file to a model.
+- add_reactions: Add reactions from multiple sources.
+- add_metabolites: Add reactions from multiple sources
+
+These functions are a mix of multiple simpler functions:
+- _metabolite_from_string, _reaction_from_string: create objects from strings.
+- _get_metabolite, _get_reaction: create objects from dictionary.
+- _convert_string_reaction, _convert_string_metabolite: create objects from
+files.
 """
 from collections import Counter
 from contextlib import suppress
 from pathlib import Path
-from typing import Union, Generator
+from typing import Union, Generator, List, Any
 
 from cobra import Metabolite, Model, Reaction
 
 from cobramod.debug import debug_log
-from cobramod.error import WrongDataError, NoIntersectFound
+from cobramod.error import WrongDataError, NoIntersectFound, WrongSyntax
 from cobramod.mod_parser import get_data
 from cobramod.utils import _read_lines, check_imbalance, _first_item
 
 
-def _create_meta_from_string(line_string: str) -> Metabolite:
+def _build_metabolite(
+    identifier: str, formula: str, name: str, charge: float, compartment: str
+):
+    """
+    Returns a basic :funf:`cobra.Metabolite`. It will log a with a DEBUG level.
+
+    Args:
+        identifier (str): Short name for Metabolite.
+        formula (str): Chemical formula
+        name (name): Long name for Metabolite
+        charge (float): Charge of the metabolite
+        compartment (str): Location
+
+    Returns:
+        Metabolite: new created metabolite
+    """
+    metabolite = Metabolite(
+        id=identifier,
+        formula=formula,
+        name=name,
+        charge=charge,
+        compartment=compartment,
+    )
+    debug_log.debug(f'Metabolite "{identifier}" created.')
+    return metabolite
+
+
+def _metabolite_from_string(line_string: str) -> Metabolite:
     """
     Creates a Metabolite object based on a string.
 
@@ -38,32 +69,29 @@ def _create_meta_from_string(line_string: str) -> Metabolite:
         line_string (str): string with information
 
     Raises:
-        TypeError: if no string is identifier
-        IndexError: if format is invalid
+        IndexError: if format is does not follow syntax.
 
     Returns:
         Metabolite: New Metabolite with given information.
     """
-    if not isinstance(line_string, str):
-        raise TypeError("Argument must be a str")
     line = [part.strip().rstrip() for part in line_string.split(",")]
     try:
-        meta_id = line[0]
-        meta_name = line[1]
-        meta_comp = line[2]
-        meta_formula = line[3]
-        meta_charge = line[4]
+        identifier = line[0]
+        name = line[1]
+        compartment = line[2]
+        formula = line[3]
+        charge = line[4]
     except IndexError:
-        raise IndexError(
+        raise WrongSyntax(
             "Given line is invalid. Format is: id, name, compartment, "
             "chemical_formula, molecular_charge"
         )
-    return Metabolite(
-        id=meta_id,
-        name=meta_name,
-        compartment=meta_comp,
-        charge=meta_charge,
-        formula=meta_formula,
+    return _build_metabolite(
+        identifier=identifier,
+        name=name,
+        compartment=compartment,
+        charge=float(charge),
+        formula=formula,
     )
 
 
@@ -76,13 +104,13 @@ def _fix_name(name: str) -> str:
     return name.replace("-", "_")
 
 
-def build_metabolite(
+def _get_metabolite(
     metabolite_dict: dict, compartment: str, model: Model = Model(0)
 ) -> Metabolite:
     """
-    Builds and return a metabolite based on data saved as a dictionary. The
-    method will look in given model if compound is already in the model with
-    another translation.
+    Return Metabolite based on data saved as a dictionary. The function
+    will look in given model if compound is already in the model under
+    another translation (name).
 
     Args:
         metabolite_dict (dict): dictionary with data of metabolite
@@ -96,31 +124,32 @@ def build_metabolite(
         TypeError: If dictionary data does not represent a metabolite.
     """
     if not metabolite_dict["FORMULA"]:
-        raise TypeError(
+        # TODO: change Error
+        raise WrongDataError(
             "Given dictionary does not correspond to a Metabolite."
         )
     identifier = metabolite_dict["ENTRY"]
     # Try to obtain available translation
     with suppress(NoIntersectFound, KeyError):
-        identifier = _first_item(
+        new_identifier = _first_item(
             first=model.metabolites,
             second=metabolite_dict["XREF"],
             revert=True,
         )
         # Only return from model if compartment is the same, otherwise
         # KeyError
-        identifier = f"{_fix_name(name=identifier)}_{compartment}"
+        new_identifier = f"{_fix_name(name=new_identifier)}_{compartment}"
+        metabolite = model.metabolites.get_by_id(new_identifier)
         debug_log.warning(
             f"Metabolite '{metabolite_dict['ENTRY']}' found in given model "
-            f"under '{identifier}'"
+            f"under '{new_identifier}'"
         )
-        metabolite = model.metabolites.get_by_id(identifier)
         return metabolite
     # Format if above fails
     identifier = f"{_fix_name(name=identifier)}_{compartment}"
-    debug_log.debug(f'Metabolite "{identifier}" created.')
-    return Metabolite(
-        id=identifier,
+    # Create object, add logging and then return it.
+    return _build_metabolite(
+        identifier=identifier,
         formula=metabolite_dict["FORMULA"],
         name=metabolite_dict["NAME"],
         charge=metabolite_dict["CHARGE"],
@@ -128,36 +157,11 @@ def build_metabolite(
     )
 
 
-def _check_if_meta_in_model(metabolite: str, model: Model) -> bool:
+def _convert_string_metabolite(line: str, model: Model, **kwargs):
     """
-    Returns if metabolite identifier is found in given model.
-    """
-    return metabolite in [meta.id for meta in model.metabolites]
-
-
-def _add_if_not_found_model(model: Model, metabolite: Metabolite):
-    """
-    Checks if given Metabolite object is found in given Model. If not, it will
-    be added
-
-    Args:
-        model (Model): model to test
-        metabolite (Metabolite): Metabolite object to test
-    """
-    if _check_if_meta_in_model(model=model, metabolite=metabolite.id):
-        debug_log.warning(
-            f'Metabolite "{metabolite.id}" was found in given model. Skipping'
-        )
-    else:
-        model.add_metabolites([metabolite])
-        debug_log.info(f'Metabolite "{metabolite.id}" was added to model')
-
-
-def meta_string_to_model(line: str, model: Model, **kwargs):
-    """
-    Transform a string into a Metabolite object and appends it into model.
-    The Metabolite can be either custom or from a database. Returns new
-    Metabolite object.
+    Transform a string into a Metabolite and returns it. This object can be
+    either custom or from a database. If the compound if found under a
+    different name, this will be returned instead.
 
     Custom metabolite syntax:
 
@@ -174,35 +178,45 @@ def meta_string_to_model(line: str, model: Model, **kwargs):
 
      Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA".
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
 
     Returns:
         Metabolite: New metabolite object
-
     """
     if line.count(",") > 1:
         # TODO: to gain perfomance, search for name and then create Metabolite
-        new_metabolite = _create_meta_from_string(line_string=line)
+        new_metabolite = _metabolite_from_string(line_string=line)
     else:
         # Retrieve from databse
-        seqment = (part.strip().rstrip() for part in line.split(sep=","))
+        segment = (part.strip().rstrip() for part in line.split(sep=","))
         # FIXME: include multiple databases=_identify_database()
         metabolite_dict = get_data(
-            identifier=next(seqment), debug_level=10, **kwargs
+            identifier=next(segment), debug_level=10, **kwargs
         )
-        new_metabolite = build_metabolite(
+        new_metabolite = _get_metabolite(
             metabolite_dict=metabolite_dict,
-            compartment=next(seqment),
+            compartment=next(segment),
             model=model,
         )
-    _add_if_not_found_model(model=model, metabolite=new_metabolite)
     return new_metabolite
 
 
-def add_meta_from_file(model: Model, filename: Path, **kwargs):
+def _get_file_metabolites(
+    model: Model, filename: Path, **kwargs
+) -> List[Metabolite]:
     """
-    Creates new Metabolites specified in given file. Syntax is mentioned in
-    function :func:`cobramod.creation.meta_string_to_model`
+    Return a list with Metabolites in file. If found in model under a different
+    name, it will be included in the list instead.
+
+    Custom metabolite syntax:
+
+    :code:`formatted_identifier, name, compartment, chemical_formula,
+    molecular_charge`
+
+    Metabolite from database:
+
+    :code:`metabolite_identifier, compartment`
 
     Args:
         model (Model): model to test
@@ -210,25 +224,26 @@ def add_meta_from_file(model: Model, filename: Path, **kwargs):
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA".
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
 
     Raises:
         TypeError: if model is invalid
         FileNotFoundError: if given file is not found
     """
-    # checking validity of objects
-    if not isinstance(model, Model):
-        raise TypeError("Model given is not a valid")
     if not filename.exists():
-        raise FileNotFoundError
+        raise FileNotFoundError(
+            f'Given file in "{str(filename)}" does not exists.'
+        )
+    # For each line, build and add metabolite. If a Metabolite is no properly
+    # created, either raise an Error or use a default.
     with open(filename, "r") as f:
+        new_metabolites = list()
         for line in _read_lines(f=f):
-            try:
-                meta_string_to_model(line=line, model=model, **kwargs)
-            except Warning:
-                # FIXME: add function to search for common missing databases
-                kwargs["database"] = "META"
-                meta_string_to_model(line=line, model=model, **kwargs)
+            new_metabolites.append(
+                _convert_string_metabolite(line=line, model=model, **kwargs)
+            )
+    return new_metabolites
 
 
 def _return_duplicate(data_dict: dict) -> bool:
@@ -239,7 +254,7 @@ def _return_duplicate(data_dict: dict) -> bool:
     return sequence.most_common(1)[0][0]
 
 
-def _build_reaction(
+def _get_reaction(
     data_dict: dict,
     compartment: str,
     replacement: dict,
@@ -247,27 +262,22 @@ def _build_reaction(
     **kwargs,
 ) -> Reaction:
     """
-    Creates Reactions object from given dictionary with data. Location of the
-    reactions can be set with the argument 'compartment'.  Metabolites can be
-    replaced by using the dictionary 'replacement' with the following
-    syntax:
-
-    :code:`old_identifier: replacement`
-
-    The method will look in given model if the reaction and/or their
-    corresponding metabolite are already in the model with other identifiers.
+    Creates a Reaction object from given dictionary with data. Location of the
+    reactions can be set with the argument 'compartment'. The method will look
+    in given model if the reaction and/or their corresponding metabolite are
+    already in the model with other identifiers.
 
     Args:
-        data_dict (dict): dictionary with data of a Reaction.
-        compartment (str): locations of the reactions
-        replacement (dict): original identifiers to be replaced.
+        data_dict (dict): Dictionary with data of a Reaction.
+        compartment (str): Locations of the reactions
+        replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        model (Model): Model to search for equivalents. Defaults to empty Model
+        model (Model): Model to search for equivalents.
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database.
-            Options: "META", "ARA", "BIGG", "KEGG"
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
 
     Returns:
         Reaction: New reaction based on dictionary
@@ -275,15 +285,16 @@ def _build_reaction(
     identifier = data_dict["ENTRY"]
     # Try to obtain if information is available
     with suppress(NoIntersectFound, KeyError):
-        identifier = _first_item(
+        new_identifier = _first_item(
             first=model.reactions, second=data_dict["XREF"], revert=True
         )
-        identifier = f"{_fix_name(name=identifier)}_{compartment}"
+        new_identifier = f"{_fix_name(name=new_identifier)}_{compartment}"
+        reaction = model.reactions.get_by_id(new_identifier)
         debug_log.warning(
             f"Reaction '{data_dict['ENTRY']}' found in given model "
-            f"under '{identifier}'"
+            f"under '{new_identifier}'"
         )
-        return model.reactions.get_by_id(identifier)
+        return reaction
     # Otherwise create from scratch
     reaction = Reaction(
         id=f'{_fix_name(name=data_dict["ENTRY"])}_{compartment}',
@@ -292,7 +303,6 @@ def _build_reaction(
     for identifier, coef in data_dict["EQUATION"].items():
         # Get rid of prefix r_ and l_
         identifier = identifier[2:]
-        # TODO: add option to get metabolites from model
         # First, replacement, since the identifier can be already in model
         with suppress(KeyError):
             identifier = replacement[identifier]
@@ -302,7 +312,13 @@ def _build_reaction(
             )
         # TODO: check if this part is necesary
         # Retrieve data for metabolite
-        metabolite = get_data(identifier=identifier, debug_level=10, **kwargs)
+        try:
+            # get metabolites from model if possible.
+            metabolite = model.metabolites.get_by_id(identifier)
+        except KeyError:
+            metabolite = get_data(
+                identifier=identifier, debug_level=10, **kwargs
+            )
         # Checking if transport reaction
         if (
             data_dict["TRANSPORT"]
@@ -311,12 +327,12 @@ def _build_reaction(
             == identifier
         ):
             # FIXME: temporary setting to extracellular
-            metabolite = build_metabolite(
+            metabolite = _get_metabolite(
                 metabolite_dict=metabolite, compartment="e", model=model
             )
         else:
             # No transport
-            metabolite = build_metabolite(
+            metabolite = _get_metabolite(
                 metabolite_dict=metabolite,
                 compartment=compartment,
                 model=model,
@@ -326,29 +342,22 @@ def _build_reaction(
     return reaction
 
 
-def _check_if_reaction_in_model(reaction_id, model: Model) -> bool:
+def _add_reactions_check(model: Model, reactions: List[Reaction]):
     """
-    Returns whether given reaction is found in model
-    TODO: change to proper name
+    Check function that adds given Reactions to given model if it does not
+    contain the reaction. It logs the skipped reactions.
     """
-    return reaction_id in [reaction.id for reaction in model.reactions]
+    for member in reactions:
+        if member.id in [reaction.id for reaction in model.reactions]:
+            debug_log.warning(
+                f'Reaction "{member.id}" was found in given model. Skipping'
+            )
+            continue
+        model.add_reactions([member])
+        debug_log.info(f'Reaction "{member.id}" was added to model')
 
 
-def _add_if_no_reaction_model(model: Model, reaction: Reaction):
-    """
-    Adds given Reaction objecto into model if this was not in the model,
-    """
-    if _check_if_reaction_in_model(model=model, reaction_id=reaction.id):
-        debug_log.warning(
-            f'Reaction "{reaction.id}" was found in given model. Skipping'
-        )
-    else:
-        model.add_reactions([reaction])
-        debug_log.info(f'Reaction "{reaction.id}" was added to model')
-
-
-# TODO: change name and add new function
-def add_reaction(
+def _obtain_reaction(
     model: Model,
     identifier: str,
     directory: Path,
@@ -357,23 +366,19 @@ def add_reaction(
     replacement: dict,
 ):
     """
-    Creates and adds a Reaction object based on given identifier from given
-    database. Metabolites can be replaced by using the dictionary
-    replacement with the following syntax:
-
-    :code:`old_identifier: replacement`
-
-    The method will look in given model if the reaction and/or their
-    corresponding metabolite are already in the model with other identifiers.
+    Return Reaction object from local directory or given database. The method
+    will look in given model if the reaction and/or their corresponding
+    metabolites are already in the model under other names.
 
     Args:
         model (Model): Model to add reactions and search for equivalents.
         identifier (str): Original identifier of the reaction.
         directory (Path): Directory to search data.
-        database (str): Name of database.
-            Options: "META", "ARA", "BIGG", "KEGG"
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
+            Values are the new identifiers.
     """
     # Obtain data
     data_dict = get_data(
@@ -383,7 +388,7 @@ def add_reaction(
         debug_level=10,
     )
     # Transform it
-    reaction = _build_reaction(
+    reaction = _get_reaction(
         data_dict=data_dict,
         compartment=compartment,
         directory=directory,
@@ -391,19 +396,10 @@ def add_reaction(
         replacement=replacement,
         model=model,
     )
-    # Add to model
-    # TODO: check if this can be restructured
-    _add_if_no_reaction_model(model=model, reaction=reaction)
+    return reaction
 
 
-def _has_delimiter(line_string: str) -> bool:
-    """
-    Returns true if given string has a vertical bar '|'
-    """
-    return "|" in line_string
-
-
-def _build_dict_for_metabolites(string_list: list) -> dict:
+def _dict_from_string(string_list: list) -> dict:
     """
     For given list of strings, creates a dictionary where keys are the
     identifiers of metabolites while values represent their corresponding
@@ -423,34 +419,33 @@ def _build_dict_for_metabolites(string_list: list) -> dict:
             metabolites
 
     Raises:
-        TypeError: if format is wrong
-        ValueError: if coefficient is missing
+        WrongSyntax: If coefficient might be missing.
 
     Returns:
         dict: Dictionary with identifiers and coefficients
     """
-    if not isinstance(string_list, list):
-        raise TypeError("Line format is wrong")
-    meta_dict = dict()
-    for single in string_list:
-        single = [x.strip().rstrip() for x in single.split(":")]
-        meta_name = single[0]
+    metabolites = dict()
+    # Each member should have a pair as "WATER: -1"
+    for member in string_list:
+        pair = [x.strip().rstrip() for x in member.split(":")]
+        name = pair[0]
+        # Must have a len of two, otherwise something is missing
         try:
-            meta_value = float(single[1])
-            meta_dict[meta_name] = meta_value
+            value = float(pair[1])
+            metabolites[name] = value
         except ValueError:
-            raise ValueError(f"Coefficient might be missing for {meta_name}")
-    return meta_dict
+            raise WrongSyntax(f"Coefficient might be missing for {name}")
+    return metabolites
 
 
-def create_custom_reaction(
+def _reaction_from_string(
     line_string: str, directory: Path, database: str, model: Model = Model(0)
 ) -> Reaction:
     """
-    For given string, which includes the information of the Reaction and its
-    metabolites. If metabolites are not in given model, it will be retrieved
-    from specified database. Method will also search for translated metabolites
-    in the model.
+    Returns a custom reaction from given string, which includes the information
+    of the Reaction and its metabolites. If metabolites are not in given model,
+    they will be retrieved from the specified database. Function  will also
+    search for translated-metabolites in the model.
 
     Syntax:
 
@@ -459,7 +454,8 @@ def create_custom_reaction(
     :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
     coefficient`
 
-    Identifier has to end with an underscore and a compartment:
+    Identifiers of metabolites have to end with an underscore and a
+    compartment:
 
     E.g **`OXYGEN-MOLECULE_c: -1`**
 
@@ -468,14 +464,13 @@ def create_custom_reaction(
     Args:
         line_string (str): string with information
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA". "BIGG",
-            "KEGG"
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
         model (Model, Optional): A model to obtain metabolite objects from.
             Defaults to an empty Model.
 
     Raises:
-        IndexError: if not  '|' is not found.
-        Warning: if identifier has a wrong format.
+        WrongSyntax: if identifier has a wrong format.
 
     Returns:
         Reaction: New reaction object.
@@ -484,80 +479,104 @@ def create_custom_reaction(
     rxn_id_name = [x.strip().rstrip() for x in segments[0].split(",")]
     try:  # no blanks
         string_list = [x.strip().rstrip() for x in segments[1].split(",")]
-        meta_dict = _build_dict_for_metabolites(string_list=string_list)
+        meta_dict = _dict_from_string(string_list=string_list)
     except IndexError:  # wrong format
-        raise IndexError(
+        raise WrongSyntax(
             f'No delimiter "|" found for {rxn_id_name[0].split(",")[0]}.'
         )
+    # In case of regular of regular syntax
     if len(rxn_id_name) == 2:
         rxn_id, rxnName = rxn_id_name
     elif len(rxn_id_name) == 1 and rxn_id_name[0] != "":
         rxn_id = rxnName = rxn_id_name[0]
     else:  # blank space
-        raise Warning(f"Wrong format for {segments}. ID not detected")
+        raise WrongSyntax(f"Wrong format for {segments}. ID not detected")
+    # Create Base reaction and then fill it with its components.
     new_reaction = Reaction(id=rxn_id, name=rxnName)
     for identifier, coef in meta_dict.items():
+        # Either get from model, or retrieve it.
         try:
-            # To avoid creation of metabolite if already in model
             metabolite = model.metabolites.get_by_id(identifier)
         except KeyError:
+            # _get_metabolite will also search for the metabolite under a
+            # different name.
             compartment = identifier[-1:]
             identifier = identifier[:-2]
+            # It is necessary to build the metabolite.
             data_dict = get_data(
                 directory=directory,
                 identifier=identifier,
                 database=database,
                 debug_level=10,
             )
-            metabolite = build_metabolite(
+            metabolite = _get_metabolite(
                 metabolite_dict=data_dict, compartment=compartment, model=model
             )
         new_reaction.add_metabolites({metabolite: coef})
+        debug_log.debug(
+            f'Metabolite "{metabolite.id}" added to Reaction '
+            f'"{new_reaction.id}".'
+        )
     # FIXME: making all reversible
     new_reaction.bounds = (-1000, 1000)
     return new_reaction
 
 
-def _add_reaction_line_to_model(
+def _convert_string_reaction(
     line: str,
     model: Model,
     directory: Path,
     database: str,
     replacement: dict = {},
-    **kwargs,
-):
+) -> Reaction:
     """
-    From given string, it will identify if a custom Reaction or a Reaction
-    from root can be created. It will build the reaction and adds it to
-    given model
+    Returns a Reaction from string. It can be either custom, or the identifier
+    for a reaction in a database. The function will search for the reactions
+    and its corresponding metabolites under other names inside the model and
+    return it, if necessary.
+
+    Syntax:
+
+    :code:`reaction_identifier, compartment`
+
+    Form custom reactions:
+
+    :code:`reaction_identifier, reaction_name | metabolite_identifier1:
+    coefficient,`
+    :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
+    coefficient`
+
+    Identifiers of metabolites have to end with an underscore and a
+    compartment:
+
+    E.g **`OXYGEN-MOLECULE_c: -1`**
 
     Args:
-        line (str): string with information
-        model (Model): model to test
-        directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA". "BIGG",
-            "KEGG"
-
-    Keyword Arguments:
-        **kwargs: same as in :func:`cobramod.creation.create_custom_reaction`
+        line (str): String with custom reaction or identifier of reaction
+        model (Model): Model to search for object if necessary.
+        directory (Path): Path to directory, where data is located.
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
+        replacement (dict, optional): original identifiers to be replaced.
+            Values are the new identifiers.
     """
-    if _has_delimiter(line_string=line):
-        # create custom reaction
-        new_reaction = create_custom_reaction(
+    try:
+        # Create custom reaction
+        new_reaction = _reaction_from_string(
             line_string=line,
             directory=directory,
             database=database,
             model=model,
         )
-        _add_if_no_reaction_model(model=model, reaction=new_reaction)
-    else:
+    # If delimiter is not found, then it must be a reaction
+    except WrongSyntax:
         # add reaction from root. Get only left part
         seqment = (part.strip().rstrip() for part in line.split(","))
         identifier = next(seqment)
         with suppress(KeyError):
             identifier = replacement[identifier]
         # TODO: identify database
-        add_reaction(
+        new_reaction = _obtain_reaction(
             model=model,
             identifier=identifier,
             directory=directory,
@@ -565,11 +584,14 @@ def _add_reaction_line_to_model(
             compartment=next(seqment),
             replacement=replacement,
         )
+    return new_reaction
 
 
-def add_reactions_from_file(model: Model, filename: Path, **kwargs):
+def _get_file_reactions(
+    model: Model, filename: Path, **kwargs
+) -> List[Reaction]:
     """
-    Adds new reactions to given Model. All reactions can be either created
+    Returns list with reactions from file. All reactions can be either created
     manually or retrieved from a database. For each reactions, its always
     checks for mass balance.
 
@@ -594,24 +616,24 @@ def add_reactions_from_file(model: Model, filename: Path, **kwargs):
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Options: "META", "ARA".
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
         replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers.
 
     Raises:
-        FileNotFoundError: is file does not exists
+        FileNotFoundError: if file does not exists
     """
     # TODO: add mass balance check
     if not filename.exists():
         raise FileNotFoundError(f"Filename {filename.name} does not exist")
     with open(filename, "r") as f:
+        new_reactions = list()
         for line in _read_lines(f=f):
-            try:
-                _add_reaction_line_to_model(line=line, model=model, **kwargs)
-            except Warning:
-                # TODO: add test
-                kwargs["database"] = "META"
-                _add_reaction_line_to_model(line=line, model=model, **kwargs)
+            new_reactions.append(
+                _convert_string_reaction(line=line, model=model, **kwargs)
+            )
+    return new_reactions
 
 
 def _ident_pathway(data_dict: dict) -> Generator:
@@ -663,7 +685,7 @@ def _ident_reaction(
     try:
         # First create object and then yield it. Otherwise, object will not be
         # created correctly
-        reaction = _build_reaction(
+        reaction = _get_reaction(
             data_dict=data_dict,
             directory=directory,
             replacement=replacement,
@@ -704,7 +726,7 @@ def _ident_metabolite(
     try:
         # First create object and then yield it. Otherwise, object will not be
         # created correctly
-        metabolite = build_metabolite(
+        metabolite = _get_metabolite(
             metabolite_dict=data_dict, compartment=compartment, model=model
         )
         debug_log.info(f"Object '{metabolite.id}' identified as a metabolite")
@@ -734,13 +756,15 @@ def create_object(
     Args:
         identifier (str): Original identifier for database
         directory (Path): Path to directory where data is stored.
-        database (str): Name of the database. Options are: "META", "ARA",
-            "KEGG", "BIGG"
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the object. In case of reaction, all
             metabolites will be included in the same location.
         replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}. Does not apply to
             pathways.
+
+    Arguments for reactions:
         stop_imbalance (bool, optional): If unbalanced reaction is found, stop
             process. Defaults to False.
         show_imbalance (bool, optional): If unbalanced reaction is found, show
@@ -783,3 +807,229 @@ def create_object(
         with suppress(WrongDataError):
             return next(method)
     raise Warning("Data cannot be identified. Examine with 'get_data'.")
+
+
+def __add_metabolites_check(model: Model, metabolites: List[Metabolite]):
+    """
+    Checks if given metabolites are already in the model. If not, they will be
+    added into the model.
+
+    Args:
+        model (Model): Model to extend.
+        metabolites (List[Metabolites]): List with Metabolites.
+    """
+    # A Loop in necessary to log the skipped metabolites.
+    for member in metabolites:
+        if member.id not in [
+            metabolite.id for metabolite in model.metabolites
+        ]:
+            model.add_metabolites(metabolite_list=member)
+            debug_log.info(f'Metabolite "{member.id}" was added to model.')
+            continue
+        debug_log.warning(
+            f'Metabolite "{member.id}" was already in model. Skipping.'
+        )
+
+
+def add_metabolites(model: Model, obj: Any, **kwargs):
+    """
+    Adds given object into the model. The options are:
+
+     - Path: A file with components. E. g:
+        Path.cwd().joinpath("file_with_names.txt")
+     - Metabolite: A single Metabolite.
+     - List[Metabolites]: A list with multiple Metabolite objects.
+     - str: Either the identifier with its corresponding compartment or a
+     string with the whole attributes. This applies for the Path option. E.g:
+
+        Custom metabolite syntax:
+
+        :code:`formatted_identifier, name, compartment, chemical_formula,
+        molecular_charge`
+
+        Metabolite from database:
+
+        :code:`metabolite_identifier, compartment`
+
+     - List[str]: A list with multiple str with the mentioned syntax.
+
+    Args:
+        model (Model): Model to expand and search for metabolites.
+        obj: A Path; a list with either strings or Metabolite objects,
+            or a single string. See syntax above.
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
+
+    Raises:
+        WrongSyntax (from str): If syntax is not followed correctly as
+            mentioned above.
+        ValueError: If Keyword Arguments are missing.
+        FileNotFoundError (from Path): if file does not exists
+    """
+    try:
+        # In case of a Path
+        if isinstance(obj, Path):
+            # These variable will raise KeyError if no kwargs are passed.
+            directory = kwargs["directory"]
+            database = kwargs["database"]
+            new_metabolites = _get_file_metabolites(
+                # as Path
+                filename=obj,
+                model=model,
+                directory=directory,
+                database=database,
+            )
+        # In case of a single Metabolite
+        elif isinstance(obj, Metabolite):
+            new_metabolites = [obj]
+        # Unless, iterable with Metabolites
+        elif all([isinstance(member, Metabolite) for member in obj]):
+            new_metabolites = obj
+        # or a list with str
+        elif all([isinstance(member, str) for member in obj]) or isinstance(
+            obj, str
+        ):
+            # These variable will raise KeyError if no kwargs are passed.
+            directory = kwargs["directory"]
+            database = kwargs["database"]
+            # Make a list
+            if isinstance(obj, str):
+                obj = [obj]
+            # Create new list
+            new_metabolites = [
+                _convert_string_metabolite(
+                    model=model,
+                    line=line,
+                    directory=directory,
+                    database=database,
+                )
+                for line in obj
+            ]
+        # Raise error if wrong
+        else:
+            raise WrongDataError(
+                "Given object is not the Type mentioned in the docstrings."
+            )
+        # Otherwise, it must be a list with Metabolites.
+        __add_metabolites_check(model=model, metabolites=new_metabolites)
+    except KeyError:
+        raise ValueError("Keyword Arguments are missing for given object.")
+
+
+def __add_reactions_check(model: Model, reactions: List[Reaction]):
+    """
+    Checks if given reactions are already in the model. If not, they will be
+    added into the model.
+
+    Args:
+        model (Model): Model to extend.
+        reactions (List[Metabolites]): List with Reactions.
+    """
+    # A Loop in necessary to log the skipped metabolites.
+    for member in reactions:
+        if member.id not in [reaction.id for reaction in model.reactions]:
+            model.add_reactions(reaction_list=[member])
+            debug_log.info(f'Reaction "{member.id}" was added to model.')
+            continue
+        debug_log.warning(
+            f'Reaction "{member.id}" was already in model. Skipping.'
+        )
+
+
+def add_reactions(model: Model, obj: Any, **kwargs):
+    """Adds given object into the model. The options are:
+
+     - Path: A file with components. E. g:
+        Path.cwd().joinpath("file_with_names.txt")
+     - List[Reactions]: A list with regular Reactions
+     - str: Either the identifier with its corresponding compartment or a
+     string with the whole components. This appplies for the Path option. E.g:
+
+        :code:`reaction_identifier, compartment`
+
+        For custom reactions
+
+        :code:`reaction_identifier, reaction_name | metabolite_identifier1:
+        coefficient,`
+        :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
+        coefficient`
+
+        Identifiers of metabolites have to end with an underscore and a
+        compartment:
+
+            E.g  **`OXYGEN-MOLECULE_c: -1`**
+
+     - List[str]: A list with multiple str with the mentioned syntax.
+
+    Args:
+        model (Model): Model to expand and search for reactions.
+        obj: A Path; a list with either strings or Reaction objects,
+            or a single string. See syntax above.
+
+    Keyword Arguments:
+        directory (Path): Path to directory where data is located.
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
+        replacement (dict): original identifiers to be replaced.
+            Values are the new identifiers. Defaults to {}.
+
+    Raises:
+        WrongSyntax (from str): If syntax is not followed correctly as
+            mentioned above.
+        ValueError: If Keyword Arguments are missing.
+        FileNotFoundError (from Path): if file does not exists
+    """
+    try:
+        # In case of a Path
+        if isinstance(obj, Path):
+            # These variable will raise KeyError if no kwargs are passed.
+            directory = kwargs["directory"]
+            database = kwargs["database"]
+            # Empty dictionary is nothing assigned
+            replacement = kwargs.pop("replacement", dict())
+            new_reactions = _get_file_reactions(
+                model=model,
+                filename=obj,
+                directory=directory,
+                database=database,
+                replacement=replacement,
+            )
+        # In case of single Reaction
+        elif isinstance(obj, Reaction):
+            new_reactions = [obj]
+        # Unless, iterable with Reactions.
+        elif all([isinstance(member, Reaction) for member in obj]):
+            new_reactions = obj
+        # or a list with str
+        elif all([isinstance(member, str) for member in obj]) or isinstance(
+            obj, str
+        ):
+            directory = kwargs["directory"]
+            database = kwargs["database"]
+            # Empty dictionary is nothing assigned
+            replacement = kwargs.pop("replacement", dict())
+            # Make a list
+            if isinstance(obj, str):
+                obj = [obj]
+            new_reactions = [
+                _convert_string_reaction(
+                    line=line,
+                    model=model,
+                    directory=directory,
+                    database=database,
+                    replacement=replacement,
+                )
+                for line in obj
+            ]
+        # Raise error if wrong
+        else:
+            raise WrongDataError(
+                "Given object is not the Type mentioned in the docstrings."
+            )
+        # Otherwise, it must be a list with Metabolites.
+        __add_reactions_check(model=model, reactions=new_reactions)
+    except KeyError:
+        raise ValueError("Keyword Arguments are missing for given object.")

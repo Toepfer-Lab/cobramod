@@ -2,11 +2,7 @@
 import cobra as cb
 from pathlib import Path
 from cobramod.extension import add_pathway
-from cobramod.creation import (
-    add_meta_from_file,
-    add_reactions_from_file,
-    _add_reaction_line_to_model,
-)
+from cobramod.creation import add_metabolites, add_reactions
 
 test_dir = Path.cwd().joinpath("tests")
 extra_dir = test_dir.joinpath("extra")
@@ -21,6 +17,7 @@ if not dir_data.exists():
 # side-metabolites should be recycable
 # Some metabolites such as ADP and ATP are being recycle by using redox
 # reactions.
+# TODO: this model should not exist for the test. Instead, use real GEM
 
 # New Model
 test_model = cb.Model(
@@ -31,15 +28,15 @@ test_model.compartments = {
     "c": "cytosol",
     "p": "plastid",
 }
-add_meta_from_file(
+add_metabolites(
     model=test_model,
-    filename=extra_dir.joinpath("metaToAdd_test_model.txt"),
+    obj=extra_dir.joinpath("metaToAdd_test_model.txt"),
     directory=dir_data,
     database="META",
 )
-add_reactions_from_file(
+add_reactions(
     model=test_model,
-    filename=extra_dir.joinpath("reactionsToAdd_test_model.txt"),
+    obj=extra_dir.joinpath("reactionsToAdd_test_model.txt"),
     directory=dir_data,
     database="META",
 )
@@ -60,8 +57,8 @@ add_pathway(
     ignore_list=[],
 )
 # Creating new Dummy biomass reaction
-_add_reaction_line_to_model(
-    line="Biomass_c, Biomass reaction | GLN_c: -0.5",
+add_reactions(
+    obj="Biomass_c, Biomass reaction | GLN_c: -0.5",
     model=test_model,
     directory=dir_data,
     database="META",
@@ -118,8 +115,8 @@ test_model.reactions.get_by_id("Biomass_c").add_metabolites(
     {test_model.metabolites.get_by_id("SUCROSE_c"): -1}
 )
 # For later tests
-_add_reaction_line_to_model(
-    line="UDPKIN-RXN, c", model=test_model, directory=dir_data, database="META"
+add_reactions(
+    obj="UDPKIN-RXN, c", model=test_model, directory=dir_data, database="META"
 )
 test_model.remove_reactions(["SK_UDP_c", "SK_UTP_c"])
 test_model.reactions.get_by_id("Biomass_c").bounds = (0.1, 1000)

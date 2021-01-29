@@ -81,9 +81,9 @@ class GlucosinolateTest(unittest.TestCase):
         test_model.reactions.NH4_tx.bounds = (0, 0)
         # Checking for Metabolites
         self.assertEqual(len(test_model.metabolites), 861)
-        cr.add_meta_from_file(
+        cr.add_metabolites(
             model=test_model,
-            filename=dir_test_case.joinpath("new_metabolites.txt"),
+            obj=dir_test_case.joinpath("new_metabolites.txt"),
             directory=dir_data,
             database="ARA",
         )
@@ -91,9 +91,9 @@ class GlucosinolateTest(unittest.TestCase):
         # Checking for Reactions
         self.assertEqual(len(test_model.reactions), 892)
         # This includes pathway from homophenylalanine
-        cr.add_reactions_from_file(
+        cr.add_reactions(
             model=test_model,
-            filename=dir_test_case.joinpath("new_reactions.txt"),
+            obj=dir_test_case.joinpath("new_reactions.txt"),
             database="ARA",
             directory=dir_data,
             replacement=self.replacement,

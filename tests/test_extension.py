@@ -2,7 +2,13 @@
 """Unittest for module extension
 
 This module test the behaviour of multiple functions, which are responsible to
-add metabolites and reactions into a metabolic model.
+add metabolites and reactions into a metabolic model. This module can be
+divided in to parts:
+
+- CreatingSequences: Functions, that create the corresponding reactions as
+sequences and their corresponding flux test.
+- AddingPathways: Functions, that manage the addition of Pathways into the
+metabolic models.
 """
 from logging import DEBUG
 from pathlib import Path
@@ -12,20 +18,27 @@ from unittest import main, TestCase
 from cobra import Model, Reaction
 
 from cobramod import extension as ex
-from cobramod.creation import add_reaction, get_data
+from cobramod.creation import add_reactions, get_data
+
 from cobramod.debug import debug_log
 from cobramod.test import textbook_biocyc, textbook_kegg
 from cobramod.error import NotInRangeError, UnbalancedReaction
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
-
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 
-class ModuleExtension(TestCase):
+class CreatingSequences(TestCase):
+    """
+    Test for simpler functions
+    """
+
     def test__create_reactions(self):
         # CASE 1: Simple Case Biocyc
         test_list = ex._create_reactions(
@@ -90,12 +103,11 @@ class ModuleExtension(TestCase):
     def test__verify_boundary(self):
         # CASE 0: Testing ignore list.
         test_model = textbook_biocyc.copy()
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="OXALODECARB-RXN",
+            obj="OXALODECARB-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         self.assertRaises(
@@ -107,24 +119,22 @@ class ModuleExtension(TestCase):
         )
         # CASE 1: PROTON, two normal reactions, one after another
         test_model = textbook_biocyc.copy()
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="OXALODECARB-RXN",
+            obj="OXALODECARB-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         ex._verify_boundary(
             model=test_model, metabolite="PROTON_c", ignore_list=[]
         )
         # Second reactions.
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
+            obj="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         ex._verify_boundary(
@@ -141,12 +151,11 @@ class ModuleExtension(TestCase):
         )
         # CASE 2: Normal reaction, plus demand, plus test for sink
         test_model = textbook_biocyc.copy()
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="OXALODECARB-RXN",
+            obj="OXALODECARB-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         test_model.add_boundary(
@@ -166,12 +175,11 @@ class ModuleExtension(TestCase):
         )
         # CASE 3: Adding an extra reaction, nothing should be left but
         # reactions
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN",
+            obj="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         ex._verify_boundary(
@@ -216,12 +224,11 @@ class ModuleExtension(TestCase):
         )
         # CASE 1: normal creation (left side)
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="OXALODECARB-RXN",
+            obj="OXALODECARB-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         ex._fix_side(
@@ -254,12 +261,11 @@ class ModuleExtension(TestCase):
     def test__verify_sinks(self):
         # CASE 1: Ignore list
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="OXALODECARB-RXN",
+            obj="OXALODECARB-RXN,c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         ex._verify_sinks(
@@ -275,12 +281,11 @@ class ModuleExtension(TestCase):
         # CASE 2: no ignore_list
         test_check = ["SK_PYRUVATE_c", "SK_OXALACETIC_ACID_c"]
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="OXALODECARB-RXN",
+            obj="OXALODECARB-RXN,c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         ex._verify_sinks(
@@ -294,12 +299,11 @@ class ModuleExtension(TestCase):
     def test_test_result(self):
         # CASE 0: minimun range not reached
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="1.8.4.9-RXN",
+            obj="1.8.4.9-RXN,p",
             directory=dir_data,
             database="META",
-            compartment="p",
             replacement={},
         )
         test_model.objective = "1.8.4.9_RXN_p"
@@ -313,12 +317,11 @@ class ModuleExtension(TestCase):
         )
         # CASE 1: Single Regular reaction
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="RXN-2206",
+            obj="RXN-2206,c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         test_model.objective = "RXN_2206_c"
@@ -326,12 +329,11 @@ class ModuleExtension(TestCase):
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
         # CASE 2: direction right to left
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="1.8.4.9-RXN",
+            obj="1.8.4.9-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         test_model.objective = "1.8.4.9_RXN_c"
@@ -345,12 +347,11 @@ class ModuleExtension(TestCase):
         # one metabolite X is created separately, and will be ignore in the
         # new function
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="RXN-2206",
+            obj="RXN-2206, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         test_model.add_boundary(
@@ -365,12 +366,11 @@ class ModuleExtension(TestCase):
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
         # CASE 4: single reverse reaction (as CASE 2) with a ignore_list
         test_model = Model(0)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            identifier="1.8.4.9-RXN",
+            obj="1.8.4.9-RXN, c",
             directory=dir_data,
             database="META",
-            compartment="c",
             replacement={},
         )
         test_model.add_boundary(
@@ -384,6 +384,13 @@ class ModuleExtension(TestCase):
             ignore_list=["PROTON_c"],
         )
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+
+
+class AddingPathways(TestCase):
+    """
+    Test for functions related to the addition of Pathways and their
+    visualizations.
+    """
 
     def test__add_sequence(self):
         # CASE 1: Normal usage (3 reactions)

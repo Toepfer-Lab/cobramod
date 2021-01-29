@@ -14,7 +14,6 @@ from pathlib import Path
 from typing import Union, Generator, Iterable
 
 from cobra import Model, Reaction
-from requests import HTTPError
 
 from cobramod.creation import create_object
 from cobramod.debug import debug_log
@@ -678,7 +677,8 @@ def add_pathway(
     # Retrieve information for summary methods
     basic_info = get_basic_info(model=model)
     old_values = get_DataList(model=model)
-    try:
+    # If statements to about polution of debug.
+    if isinstance(pathway, str):
         # From identifier
         data_dict = get_data(
             directory=directory,
@@ -700,8 +700,7 @@ def add_pathway(
             stop_imbalance=stop_imbalance,
             model_id=model_id,
         )
-    # TODO: replace Warning for specific error
-    except (HTTPError, Warning):
+    elif isinstance(pathway, list):
         # From Reaction
         _from_sequence(
             model=model,
@@ -718,14 +717,13 @@ def add_pathway(
             stop_imbalance=stop_imbalance,
             model_id=model_id,
         )
-    except TypeError:
-        raise Warning("Argument 'pathway' must be iterable or a identifier")
-    finally:
-        # Print summary
-        check_to_write(
-            model=model,
-            summary=summary,
-            filename=filename,
-            basic_info=basic_info,
-            old_values=old_values,
-        )
+    else:
+        raise ValueError("Argument 'pathway' must be iterable or a identifier")
+    # Print summary
+    check_to_write(
+        model=model,
+        summary=summary,
+        filename=filename,
+        basic_info=basic_info,
+        old_values=old_values,
+    )

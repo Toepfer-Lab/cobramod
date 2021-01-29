@@ -12,6 +12,8 @@ Important functions from CobraMod that can be imported directly:
 
 - get_data: Store and retrieve data from given database.
 - create_object: Create a corresponding COBRApy object from given identifier.
+- add_metabolites: Add metabolites from different objects
+- add_reactions: Add reactions from different objects
 - add_pathway: Extend given pathway into given model.
 - test_result: Test given reaction to check for a feasible solution.
 - translate: Check for cross-references.
@@ -31,12 +33,7 @@ INFO. Read the documentation of logging for more information.
 For a list of databases, load variable :func`cobramod.available_databases`
 """
 from cobramod.mod_parser import get_data, translate, available_databases
-from cobramod.creation import (
-    create_object,
-    add_meta_from_file,
-    add_reactions_from_file,
-    meta_string_to_model,
-)
+from cobramod.creation import create_object, add_metabolites, add_reactions
 from cobramod.extension import add_pathway, test_result
 from cobramod.pathway import Pathway
 from cobramod.utils import model_convert
@@ -44,9 +41,8 @@ from cobramod.utils import model_convert
 __all__ = [
     "get_data",
     "create_object",
-    "add_meta_from_file",
-    "add_reactions_from_file",
-    "meta_string_to_model",
+    "add_reactions",
+    "add_metabolites",
     "add_pathway",
     "test_result",
     "Pathway",
@@ -55,4 +51,4 @@ __all__ = [
     "available_databases",
 ]
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"

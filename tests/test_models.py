@@ -1,26 +1,35 @@
 #!/usr/bin/env python3
+"""Unit-test for model behaviour
+
+This module checks if a large and a small model behaves as intended. This
+examples should simulate real cases. There are two test:
+
+- ShortModel: This should utilize the textbook_biocyc model from cobramod.
+- LargeModel: Uses a real GEM
+"""
 from logging import DEBUG
 from pathlib import Path
-import unittest
+from unittest import main, TestCase
 
-import cobra as cb
+from cobra.io import read_sbml_model
 
 from cobramod import extension as ex
-from cobramod.creation import create_custom_reaction, add_reactions_from_file
+from cobramod.creation import add_reactions
 from cobramod.debug import debug_log
 from cobramod.test import textbook_biocyc
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
+if not dir_data.exists():
+    raise NotADirectoryError("Data for the test is missing")
 # Short model
-main_model1 = cb.io.read_sbml_model(
-    str(dir_input.joinpath("test_model01.sbml"))
-)
+main_model1 = read_sbml_model(str(dir_input.joinpath("test_model01.sbml")))
 # Large Model
-main_model2 = cb.io.read_sbml_model(
-    str(dir_input.joinpath("test_model02.sbml"))
-)
+main_model2 = read_sbml_model(str(dir_input.joinpath("test_model02.sbml")))
 
 
 if not dir_data.exists():
@@ -28,7 +37,7 @@ if not dir_data.exists():
 
 
 # TODO: add test with replacment_dicts
-class TestingShortModel(unittest.TestCase):
+class ShortModel(TestCase):
     def test_lineal_pathways(self):
         # For this test, Gluconeogenesis; L-aspartate and L-asparagine
         # biosynthesis, and Nicotine biosynthesis added to test for feasible
@@ -50,9 +59,9 @@ class TestingShortModel(unittest.TestCase):
             member="GLUCONEO-PWY",
             container=[group.id for group in test_model.groups],
         )
-        create_custom_reaction(
+        add_reactions(
             model=test_model,
-            line_string=(
+            obj=(
                 "Redox_Hemoprotein_c, Redox_Hemoprotein_c | "
                 + "Ox-NADPH-Hemoprotein-Reductases_c:-1, "
                 + "Red-NADPH-Hemoprotein-Reductases_c: 1"
@@ -120,11 +129,13 @@ class TestingShortModel(unittest.TestCase):
         )
 
     def test_multi_compartment(self):
+        # TODO: change model. With old Model, works. Check that newer Model
+        # works properly.
         test_model = main_model1.copy()
         # This files has transports between cytosol and plastids
-        add_reactions_from_file(
+        add_reactions(
             model=test_model,
-            filename=dir_input.joinpath("test_multi_reactions.txt"),
+            obj=dir_input.joinpath("test_multi_reactions.txt"),
             database="META",
             directory=dir_data,
         )
@@ -149,9 +160,9 @@ class TestingShortModel(unittest.TestCase):
             container=[group.id for group in test_model.groups],
         )
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
-        create_custom_reaction(
+        add_reactions(
             model=test_model,
-            line_string="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
+            obj="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
             directory=dir_data,
             database="META",
         )
@@ -189,7 +200,7 @@ class TestingShortModel(unittest.TestCase):
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
 
 
-class TestingLargeModel(unittest.TestCase):
+class LargeModel(TestCase):
     def test_lineal_pathways(self):
         """In this test, unrelated pathways are appended to the large model
         and tested
@@ -271,4 +282,4 @@ class TestingLargeModel(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)

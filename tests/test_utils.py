@@ -7,7 +7,7 @@ import unittest
 from cobra.core import Metabolite, Reaction, Group
 from cobra.io import read_sbml_model
 
-from cobramod.creation import create_object, add_reaction
+from cobramod.creation import create_object, add_reactions
 from cobramod.debug import debug_log
 from cobramod.error import NoIntersectFound
 from cobramod.test import textbook_kegg, textbook
@@ -84,12 +84,11 @@ class UtilsTesting(unittest.TestCase):
     def test_compare_DictList(self):
         # Preparation
         test_model = textbook_kegg.copy()
-        add_reaction(
+        add_reactions(
             model=test_model,
-            compartment="c",
             directory=dir_data,
             database="KEGG",
-            identifier="R00894",
+            obj="R00894,c",
             replacement={},
         )
         # CASE 1: Different types
@@ -115,12 +114,11 @@ class UtilsTesting(unittest.TestCase):
     def test__compare(self):
         test_model = textbook_kegg.copy()
         test_data = ui.get_DataList(model=test_model)
-        add_reaction(
+        add_reactions(
             model=test_model,
-            compartment="c",
             directory=dir_data,
             database="KEGG",
-            identifier="R00894",
+            obj="R00894, c",
             replacement={},
         )
         test_dict = ui._compare(model=test_model, comparison=test_data)
