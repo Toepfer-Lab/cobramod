@@ -629,7 +629,6 @@
       </groups:group>
       <groups:group groups:id="G_PWY__45__6964" groups:kind="collection">
         <groups:listOfMembers>
-          <groups:member groups:name="glutamine synthetase" groups:idRef="R_GLUTAMINESYN_RXN_c"/>
           <groups:member groups:name="glutamate synthase (ferredoxin)" groups:idRef="R_GLUTAMATE_SYNTHASE_FERREDOXIN_RXN_c"/>
         </groups:listOfMembers>
       </groups:group>
@@ -665,17 +664,13 @@
           <groups:member groups:name="sedoheptulose bisphosphatase" groups:idRef="R_SEDOHEPTULOSE_BISPHOSPHATASE_RXN_c"/>
           <groups:member groups:name="transketolase" groups:idRef="R_1TRANSKETO_RXN_c"/>
           <groups:member groups:name="ribulose-phosphate 3-epimerase" groups:idRef="R_RIBULP3EPIM_RXN_c"/>
-          <groups:member groups:name="fructose-bisphosphate aldolase" groups:idRef="R_F16ALDOLASE_RXN_c"/>
           <groups:member groups:name="fructose-1,6-bisphosphatase" groups:idRef="R_F16BDEPHOS_RXN_c"/>
           <groups:member groups:name="transketolase" groups:idRef="R_2TRANSKETO_RXN_c"/>
         </groups:listOfMembers>
       </groups:group>
       <groups:group groups:id="G_SUCSYN__45__PWY" groups:kind="collection">
         <groups:listOfMembers>
-          <groups:member groups:name="phosphoglycerate kinase" groups:idRef="R_PHOSGLYPHOS_RXN_c"/>
           <groups:member groups:name="glyceraldehyde-3-phosphate dehydrogenase" groups:idRef="R_GAPOXNPHOSPHN_RXN_c"/>
-          <groups:member groups:name="fructose-bisphosphate aldolase" groups:idRef="R_F16ALDOLASE_RXN_c"/>
-          <groups:member groups:name="fructose-1,6-bisphosphatase" groups:idRef="R_F16BDEPHOS_RXN_c"/>
           <groups:member groups:name="glucose-6-phosphate isomerase" groups:idRef="R_PGLUCISOM_RXN_c"/>
           <groups:member groups:name="phosphoglucomutase" groups:idRef="R_PHOSPHOGLUCMUT_RXN_c"/>
           <groups:member groups:name="sucrose phosphate synthase" groups:idRef="R_SUCROSE_PHOSPHATE_SYNTHASE_RXN_c"/>
