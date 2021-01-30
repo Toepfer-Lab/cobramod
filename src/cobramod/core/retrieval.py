@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Data retrieval
+
+This module creates the function :func:`cobramod.core.retrieval.get_data`,
+which gets the data from a local directory or from different databases.
+The available databases for data retrieval can be found in the variable
+:func:`cobramod.core.retrieval.available_databases`
+"""
 from contextlib import suppress
 from pathlib import Path
 from typing import Type
@@ -46,8 +53,8 @@ def get_data(
     Args:
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
-        database (str): Name of database. Options: "META", "ARA", "KEGG",
-            "BIGG".
+        database (str): Name of database. Check
+            :func:`cobramod.available_databases` for a list of names.
         debug_level (int, optional): Level of debugging. Read package logging
             for more info. Defaults to 20
 
@@ -67,6 +74,7 @@ def get_data(
     )
 
 
+# TODO: These functions below should be moved
 def _retrieve_dict(directory: Path, target: str) -> dict:
     """
     Search and return in given directory, specific target and return a

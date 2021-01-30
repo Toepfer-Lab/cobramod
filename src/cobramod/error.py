@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+"""Errors for CobraMod
+
+This module creates special errors for CobraMod. Read each error for their
+explaination.
+"""
 from cobramod.debug import debug_log
 
 
@@ -73,6 +79,7 @@ class UnbalancedReaction(Exception):
         Args:
             reaction (str): identifier of the reaction.
         """
+        # TODO: check behaviour with super().__init__
         debug_log.warning(f"Reaction {reaction} is not balanced.")
 
 
@@ -87,6 +94,7 @@ class NotInRangeError(Exception):
         Args:
             reaction (str): identifier of the reaction.
         """
+        # TODO: check behaviour with super().__init__
         debug_log.critical(
             f"Reaction '{reaction}' not in range. Check sinks manually."
         )

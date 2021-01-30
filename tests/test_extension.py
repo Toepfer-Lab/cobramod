@@ -17,9 +17,8 @@ from unittest import main, TestCase
 
 from cobra import Model, Reaction
 
-from cobramod import extension as ex
-from cobramod.creation import add_reactions, get_data
-
+from cobramod.core import extension as ex
+from cobramod.core.creation import add_reactions, get_data
 from cobramod.debug import debug_log
 from cobramod.test import textbook_biocyc, textbook_kegg
 from cobramod.error import NotInRangeError, UnbalancedReaction

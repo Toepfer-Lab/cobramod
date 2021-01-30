@@ -3,7 +3,7 @@ from logging import DEBUG
 from pathlib import Path
 import unittest
 
-import cobramod.mod_parser as md
+import cobramod.core.retrieval as md
 from cobramod.debug import debug_log
 
 debug_log.setLevel(DEBUG)

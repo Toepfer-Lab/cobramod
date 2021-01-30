@@ -16,10 +16,10 @@ from unittest import main, TestCase
 from cobra import Metabolite, Reaction, Model
 from requests import HTTPError
 
-from cobramod import creation as cr
+from cobramod.core import creation as cr
+from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
 from cobramod.error import WrongSyntax
-from cobramod.mod_parser import get_data
 from cobramod.test import textbook_kegg
 
 # Debug must be set in level DEBUG for the test

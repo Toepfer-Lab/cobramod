@@ -22,7 +22,7 @@ from cobramod.error import (
     PatternNotFound,
     NoIntersectFound,
 )
-from cobramod.pathway import Pathway
+from cobramod.core.pathway import Pathway
 
 
 class DataModel(NamedTuple):
