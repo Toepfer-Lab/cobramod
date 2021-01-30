@@ -1,14 +1,29 @@
 #!/usr/bin/env python3
+"""Data parsing for KEGG
+
+This module handles the retrieval of data from KEGG into a local directory.
+The posible type of data that can be download:
+
+- Metabolite: Identifiers that start with the letter C, e.g C00001
+- Reactions: Identifiers that start with the letter R, e.g R00001
+- Module Pathways: Identifiers that start with the letter M, e.g M00001
+
+Contact maintainers if other types should be added.
+
+Important class of the module:
+- KeggParser: Child of the abstract class
+:func:`cobramod.parsing.base.BaseParser`.
+"""
 from contextlib import suppress
 from itertools import chain
 from pathlib import Path
 from typing import Generator, Union, Dict, NamedTuple
 
-from requests import get
+from requests import get, HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
-from cobramod.utils import WrongParserError
+from cobramod.error import WrongParserError
 
 
 class MetaboliteTuple(NamedTuple):
@@ -45,21 +60,25 @@ def _find_key(line: str, keys: set) -> Union[str, None]:
 
 def _create_dict(raw: str) -> dict:
     """
-    Formats most of the keys for Keggs data.
+    Formats most of the keys for Keggs data and returns a dictionary.
     """
     lines = (line for line in raw.split("\n"))
     keys = set(_get_keys(raw=raw))
     actual_key = str()
     kegg_dict: Dict[str, list] = {"": []}
+    # TODO: find a proper way to parse it
     for line in lines:
-        key = _find_key(line=line, keys=keys)
-        if key is None:
-            # Append to older key.
-            kegg_dict[actual_key].append(line.strip().rstrip())
+        if "///" in line:
+            break
         else:
-            actual_key = key
-            line = line[line.find(key) + len(key) :].strip().rstrip()
-            kegg_dict[actual_key] = [line]
+            key = _find_key(line=line, keys=keys)
+            if key is None:
+                # Append to older key.
+                kegg_dict[actual_key].append(line.strip().rstrip())
+            else:
+                actual_key = key
+                line = line[line.find(key) + len(key) :].strip().rstrip()
+                kegg_dict[actual_key] = [line]
     del kegg_dict[""]
     return kegg_dict
 
@@ -126,31 +145,52 @@ def _get_reversibility(line: str) -> tuple:
     return bounds
 
 
+def _build_reference(data_dict: dict) -> Union[dict, None]:
+    """
+    From the dictionary with KEGG raw information, return a dictionary with
+    where the keys are the names of cross-references and keys their
+    identifiers.
+    """
+    try:
+        return {
+            item[0].strip().rstrip(): item[1].strip().rstrip()
+            for item in [name.split(":") for name in data_dict["DBLINKS"]]
+        }
+    except KeyError:
+        return None
+
+
 def _p_reaction(kegg_dict: dict) -> dict:
     """
     Parses the KEGG dictionary and returns a dictionary with the most important
     attributes about the compound.
     """
-    object_type = list(
-        chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-    )[-1]
-    if object_type != "Reaction":
-        raise WrongParserError(
-            "Given dictionary does not belong to a reaction."
-        )
-    return {
-        "TYPE": object_type,
-        "ENTRY": list(
+    try:
+        object_type = list(
             chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-2],
-        "NAME": kegg_dict["NAME"][0],
-        "DATABASE": "KEGG",
-        "EQUATION": _build_dict_meta(line=kegg_dict["EQUATION"][0]),
-        "BOUNDS": _get_reversibility(line=kegg_dict["EQUATION"][0]),
-        "TRANSPORT": BaseParser._check_transport(
-            data_dict=_build_dict_meta(line=kegg_dict["EQUATION"][0])
-        ),
-    }
+        )[-1]
+        if object_type != "Reaction":
+            raise WrongParserError(
+                "Given dictionary does not belong to a reaction."
+            )
+        return {
+            "TYPE": object_type,
+            "ENTRY": list(
+                chain.from_iterable(
+                    item.split() for item in kegg_dict["ENTRY"]
+                )
+            )[-2],
+            "NAME": kegg_dict["NAME"][0],
+            "DATABASE": "KEGG",
+            "EQUATION": _build_dict_meta(line=kegg_dict["EQUATION"][0]),
+            "BOUNDS": _get_reversibility(line=kegg_dict["EQUATION"][0]),
+            "TRANSPORT": BaseParser._check_transport(
+                data_dict=_build_dict_meta(line=kegg_dict["EQUATION"][0])
+            ),
+            "XREF": _build_reference(data_dict=kegg_dict),
+        }
+    except KeyError:
+        raise WrongParserError
 
 
 def _p_compound(kegg_dict: dict) -> dict:
@@ -158,43 +198,49 @@ def _p_compound(kegg_dict: dict) -> dict:
     Parses the KEGG dictionary and returns a dictionary with the most important
     attributes about the reaction.
     """
-    object_type = list(
-        chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-    )[-1]
-    if object_type != "Compound":
-        raise WrongParserError(
-            "Given dictionary does not belong to a metabolite."
-        )
-    identifier = list(
-        chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-    )[-2]
     try:
-        if "(" in kegg_dict["FORMULA"][0]:
+        object_type = list(
+            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+        )[-1]
+        if object_type != "Compound":
+            raise WrongParserError(
+                "Given dictionary does not belong to a metabolite."
+            )
+        identifier = list(
+            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+        )[-2]
+        try:
+            if "(" in kegg_dict["FORMULA"][0]:
+                formula = "X"
+                debug_log.warning(
+                    f'KEGG ID "{identifier}" could not find a chemical '
+                    f'formula. Formula set to "X" and charge to 0'
+                )
+            else:
+                formula = "".join(kegg_dict["FORMULA"]).strip().rstrip()
+        except KeyError:
+            # Some general compounds do not come with formulas
             formula = "X"
             debug_log.warning(
                 f'KEGG ID "{identifier}" could not find a chemical formuala. '
                 f'Formula set to "X" and charge to 0'
             )
-        else:
-            formula = "".join(kegg_dict["FORMULA"]).strip().rstrip()
+        return {
+            "TYPE": list(
+                chain.from_iterable(
+                    item.split() for item in kegg_dict["ENTRY"]
+                )
+            )[-1],
+            "ENTRY": identifier,
+            "NAME": kegg_dict["NAME"][0],
+            "DATABASE": "KEGG",
+            "FORMULA": formula,
+            # FIXME: search information about charges
+            "CHARGE": 0,
+            "XREF": _build_reference(data_dict=kegg_dict),
+        }
     except KeyError:
-        # Some general compounds do not come with formulas
-        formula = "X"
-        debug_log.warning(
-            f'KEGG ID "{identifier}" could not find a chemical formuala. '
-            f'Formula set to "X" and charge to 0'
-        )
-    return {
-        "TYPE": list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-1],
-        "ENTRY": identifier,
-        "NAME": kegg_dict["NAME"][0],
-        "DATABASE": "KEGG",
-        "FORMULA": formula,
-        # FIXME: search information about charges
-        "CHARGE": 0,
-    }
+        raise WrongParserError
 
 
 def _build_pathway(kegg_dict: dict) -> tuple:
@@ -221,53 +267,61 @@ def _p_pathway(kegg_dict: dict) -> dict:
     Parses the KEGG dictionary and returns a new dictionary with the
     information of the pathway.
     """
-    if "Pathway" not in kegg_dict["ENTRY"][0]:
-        raise WrongParserError(
-            "Given dictionary does not belong to a pathway."
-        )
-    pathway, whole_set = _build_pathway(kegg_dict=kegg_dict)
-    return {
-        "TYPE": "Pathway",
-        "ENTRY": list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[0],
-        "NAME": kegg_dict["NAME"][0],
-        "DATABASE": "KEGG",
-        "PATHWAY": pathway,
-        "SET": whole_set,
-    }
+    try:
+        if "Pathway" not in kegg_dict["ENTRY"][0]:
+            raise WrongParserError(
+                "Given dictionary does not belong to a pathway."
+            )
+        pathway, whole_set = _build_pathway(kegg_dict=kegg_dict)
+        return {
+            "TYPE": "Pathway",
+            "ENTRY": list(
+                chain.from_iterable(
+                    item.split() for item in kegg_dict["ENTRY"]
+                )
+            )[0],
+            "NAME": kegg_dict["NAME"][0],
+            "DATABASE": "KEGG",
+            "PATHWAY": pathway,
+            "SET": whole_set,
+            "XREF": _build_reference(data_dict=kegg_dict),
+        }
+    except KeyError:
+        raise WrongParserError
 
 
 def _p_enzyme(kegg_dict: dict):
     """
     If enzyme information is found, raise NotImplementedError.
     """
-    if "Enzyme" in kegg_dict["ENTRY"][0]:
-        raise NotImplementedError("Enzymes are currently not implemented")
-    else:
-        raise WrongParserError(
-            "Given dictionary does not belong to an Enzyme."
-        )
+    try:
+        if "Enzyme" in kegg_dict["ENTRY"][0]:
+            raise NotImplementedError("Enzymes are currently not implemented")
+        else:
+            raise WrongParserError(
+                "Given dictionary does not belong to an Enzyme."
+            )
+    except KeyError:
+        raise WrongParserError
 
 
 class KeggParser(BaseParser):
     @staticmethod
-    def _parse(raw: str) -> dict:
+    def _parse(root: dict) -> dict:
         """
         Parses raw text from KEGG database and transforms it in a dictionary
         that can be used later as commom data type for cobramod. It identifies
         the type of object depending of it information.
 
         Args:
-            raw (str): raw string of text from KEGGs
+            root (dict): dictionary with information for an object
 
         Returns:
             dict: data from KEGG
         """
-        kegg_dict = _create_dict(raw=raw)
         for parse_method in (_p_enzyme, _p_compound, _p_reaction, _p_pathway):
             with suppress(WrongParserError):
-                return parse_method(kegg_dict=kegg_dict)
+                return parse_method(kegg_dict=root)
         raise NotImplementedError(
             "Given identifier could not be parsed properly. "
             "Contact maintainers."
@@ -299,7 +353,7 @@ class KeggParser(BaseParser):
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
-        return KeggParser._parse(raw=raw)
+        return KeggParser._parse(root=raw)
 
     @staticmethod
     def _return_database(database: str) -> str:
@@ -311,10 +365,24 @@ class KeggParser(BaseParser):
         if database == "KEGG":
             return database
         else:
-            raise Warning(f'Given database "{database}" does not exist')
+            raise WrongParserError
+
+    @staticmethod
+    def _read_file(filename: Path) -> dict:
+        """
+        Reads the given file a returns a KEGG dictionary with most important
+        information from it.
+        """
+        try:
+            with open(file=filename, mode="r") as f:
+                unformatted_data = f.read()
+            return _create_dict(raw=unformatted_data)
+        except TypeError:
+            # TODO find exception type
+            raise Warning("Wrong filetype")
 
 
-def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
+def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
     """
     Retrieves and stores the data of given identifier for the KEGG database.
 
@@ -328,7 +396,7 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
         NotADirectoryError:  If parent directory is not found.
 
     Returns:
-        str: raw string from given KEGGs identifier
+        dict: dictionary from KEGGs identifier with basic information
     """
     # NOTE: As KEGG only support xml for pathways, Metabolites and Reactions
     # have to be parsed differently. Only specific keys are necesary
@@ -344,10 +412,7 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
         filename = data_dir.joinpath(f"{identifier}.txt")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         try:
-            with open(file=filename, mode="r") as f:
-                unformatted_data = f.read()
-                debug_log.debug(f"Identifier '{identifier}' found.")
-            return unformatted_data
+            return KeggParser._read_file(filename=filename)
         except FileNotFoundError:
             debug_log.debug(
                 f'"{identifier}" not found in directory "{database}".'
@@ -356,19 +421,24 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> str:
             url_text = f"http://rest.kegg.jp/get/{identifier}/"
             debug_log.debug(f"Searching in {url_text}")
             r = get(url_text)
-            if r.status_code == 404:
+            if r.status_code >= 400:
                 msg = f'"{identifier}" not available in "{database}".'
                 debug_log.error(msg)
-                raise Warning(msg)
+                raise HTTPError(msg)
             else:
                 unformatted_data = r.text
-                debug_log.info(
-                    f'Object "{identifier}" found in database. Saving in '
-                    f'directory "{database}".'
-                )
-                with open(file=filename, mode="w+") as f:
-                    f.write(unformatted_data)
-                return unformatted_data
+                if len(unformatted_data) == 0:
+                    raise Warning(
+                        f'Object "{identifier}" returned empty string'
+                    )
+                else:
+                    debug_log.info(
+                        f'Object "{identifier}" found in database. Saving in '
+                        f'directory "{database}".'
+                    )
+                    with open(file=filename, mode="w+") as f:
+                        f.write(unformatted_data)
+                    return _create_dict(raw=unformatted_data)
     else:
         msg = "Directory not found"
         debug_log.critical(msg)

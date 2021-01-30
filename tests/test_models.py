@@ -1,26 +1,35 @@
 #!/usr/bin/env python3
-from pathlib import Path
-import unittest
-import cobra as cb
-from cobramod import pathways as pt
-from cobramod.creation import (
-    _add_reaction_line_to_model,
-    add_reactions_from_file,
-)
-from cobramod.debug import debug_log
-from logging import DEBUG
+"""Unit-test for model behaviour
 
+This module checks if a large and a small model behaves as intended. This
+examples should simulate real cases. There are two test:
+
+- ShortModel: This should utilize the textbook_biocyc model from cobramod.
+- LargeModel: Uses a real GEM
+"""
+from logging import DEBUG
+from pathlib import Path
+from unittest import main, TestCase
+
+from cobra.io import read_sbml_model
+
+from cobramod import extension as ex
+from cobramod.creation import add_reactions
+from cobramod.debug import debug_log
+from cobramod.test import textbook_biocyc
+
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
+if not dir_data.exists():
+    raise NotADirectoryError("Data for the test is missing")
 # Short model
-main_model1 = cb.io.read_sbml_model(
-    str(dir_input.joinpath("test_model01.sbml"))
-)
+main_model1 = read_sbml_model(str(dir_input.joinpath("test_model01.sbml")))
 # Large Model
-main_model2 = cb.io.read_sbml_model(
-    str(dir_input.joinpath("test_model02.sbml"))
-)
+main_model2 = read_sbml_model(str(dir_input.joinpath("test_model02.sbml")))
 
 
 if not dir_data.exists():
@@ -28,32 +37,31 @@ if not dir_data.exists():
 
 
 # TODO: add test with replacment_dicts
-class TestingShortModel(unittest.TestCase):
-    def test_appending_lineal_pathways(self):
-        """For this test, Gluconeogenesis; L-aspartate and L-asparagine
-        biosynthesis, and Nicotine biosynthesis added to test for feasible
-        results. Due to a small model,  ATP needs to enter as a sink reaction
-        but is later removed from model without interfering with the the new
-        pathways
-        """
-        test_model = main_model1.copy()
+class ShortModel(TestCase):
+    def test_lineal_pathways(self):
+        # For this test, Gluconeogenesis; L-aspartate and L-asparagine
+        # biosynthesis, and Nicotine biosynthesis added to test for feasible
+        # results.
+        test_model = textbook_biocyc.copy()
         test_model.add_boundary(
             test_model.metabolites.get_by_id("ATP_c"), "sink"
         )
         # Adding Gluconeogenesis
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="GLUCONEO-PWY",
+            pathway="GLUCONEO-PWY",
             directory=dir_data,
             database="META",
             compartment="c",
-            ignore_list=["MAL_c", "PROTON_c", "Pi_c", "ATP_c"],
         )
-        test_model.remove_reactions(["SK_ATP_c"])
-        self.assertGreater(abs(test_model.optimize().objective_value), 0)
-        _add_reaction_line_to_model(
+        self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
+        self.assertIn(
+            member="GLUCONEO-PWY",
+            container=[group.id for group in test_model.groups],
+        )
+        add_reactions(
             model=test_model,
-            line=(
+            obj=(
                 "Redox_Hemoprotein_c, Redox_Hemoprotein_c | "
                 + "Ox-NADPH-Hemoprotein-Reductases_c:-1, "
                 + "Red-NADPH-Hemoprotein-Reductases_c: 1"
@@ -62,69 +70,72 @@ class TestingShortModel(unittest.TestCase):
             database="META",
         )
         # Adding Nicotine pathway
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-5316",
+            pathway="PWY-5316",
             directory=dir_data,
             database="META",
             compartment="c",
             ignore_list=[],
+        )
+        self.assertIn(
+            member="PWY-5316",
+            container=[group.id for group in test_model.groups],
         )
         # Ading aspartate and asparagine biosynthesis
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="ASPASN-PWY",
+            pathway="ASPASN-PWY",
             directory=dir_data,
             database="META",
             compartment="c",
             ignore_list=[],
         )
-        # Updating dummy biomass
-        test_model.reactions.get_by_id("Biomass_c").add_metabolites(
-            {
-                test_model.metabolites.get_by_id("NICOTINE_c"): -0.25,
-                test_model.metabolites.get_by_id("ASN_c"): -1,
-            }
+        self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
+        self.assertIn(
+            member="ASPASN-PWY",
+            container=[group.id for group in test_model.groups],
         )
-        test_model.objective = "Biomass_c"
-        self.assertGreater(abs(test_model.optimize().objective_value), 0)
 
     def test_cyclical_pathwways(self):
-        test_model = main_model1.copy()
+        # test_model = main_model1.copy()
+        test_model = textbook_biocyc.copy()
         # Adding Mannitol cycle
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-6531",
+            pathway="PWY-6531",
             directory=dir_data,
             database="META",
             compartment="c",
             ignore_list=[],
+        )
+        self.assertIn(
+            member="PWY-6531",
+            container=[group.id for group in test_model.groups],
         )
         # Adding glyoxylate cycle
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="GLYOXYLATE-BYPASS",
+            pathway="GLYOXYLATE-BYPASS",
             directory=dir_data,
             database="META",
             compartment="c",
             ignore_list=[],
         )
-        # Updating dummy biomass
-        test_model.reactions.get_by_id("Biomass_c").add_metabolites(
-            {
-                test_model.metabolites.get_by_id("BETA_D_FRUCTOSE_c"): -1,
-                test_model.metabolites.get_by_id("GLYOX_c"): -0.5,
-            }
+        self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
+        self.assertIn(
+            member="GLYOXYLATE-BYPASS",
+            container=[group.id for group in test_model.groups],
         )
-        test_model.objective = "Biomass_c"
-        self.assertGreater(abs(test_model.optimize().objective_value), 0)
 
     def test_multi_compartment(self):
+        # TODO: change model. With old Model, works. Check that newer Model
+        # works properly.
         test_model = main_model1.copy()
         # This files has transports between cytosol and plastids
-        add_reactions_from_file(
+        add_reactions(
             model=test_model,
-            filename=dir_input.joinpath("test_multi_reactions.txt"),
+            obj=dir_input.joinpath("test_multi_reactions.txt"),
             database="META",
             directory=dir_data,
         )
@@ -133,9 +144,9 @@ class TestingShortModel(unittest.TestCase):
             metabolite=test_model.metabolites.get_by_id("CO_A_e"),
             type="exchange",
         )
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="GLUTATHIONESYN-PWY",
+            pathway="GLUTATHIONESYN-PWY",
             directory=dir_data,
             database="META",
             ignore_list=[],
@@ -144,16 +155,20 @@ class TestingShortModel(unittest.TestCase):
         test_model.reactions.get_by_id("Biomass_c").add_metabolites(
             {test_model.metabolites.get_by_id("GLUTATHIONE_p"): -1}
         )
+        self.assertIn(
+            member="GLUTATHIONESYN-PWY",
+            container=[group.id for group in test_model.groups],
+        )
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
-        _add_reaction_line_to_model(
+        add_reactions(
             model=test_model,
-            line="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
+            obj="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
             directory=dir_data,
             database="META",
         )
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-1187",
+            pathway="PWY-1187",
             directory=dir_data,
             database="META",
             ignore_list=["PYRUVATE_c", "CO_A_c", "PROTON_c", "CPD_3746_c"],
@@ -169,9 +184,9 @@ class TestingShortModel(unittest.TestCase):
         )
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
         # Lipid initalization
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-4381",
+            pathway="PWY-4381",
             directory=dir_data,
             database="META",
             ignore_list=["CO_A_p"],
@@ -185,7 +200,7 @@ class TestingShortModel(unittest.TestCase):
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
 
 
-class TestingLargeModel(unittest.TestCase):
+class LargeModel(TestCase):
     def test_lineal_pathways(self):
         """In this test, unrelated pathways are appended to the large model
         and tested
@@ -205,9 +220,9 @@ class TestingLargeModel(unittest.TestCase):
             type="sink",
         )
         # Adding methiin metabolism
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-7614",
+            pathway="PWY-7614",
             directory=dir_data,
             database="META",
             compartment="p",
@@ -222,9 +237,9 @@ class TestingLargeModel(unittest.TestCase):
         self.assertGreater(test_model.optimize().fluxes["DM_CPD_9277_p"], 0)
         self.assertGreater(test_model.optimize().fluxes["RXN_8908_p"], 0)
         # Adding stachyose biosynthesis
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-5337",
+            pathway="PWY-5337",
             directory=dir_data,
             database="META",
             compartment="c",
@@ -243,9 +258,9 @@ class TestingLargeModel(unittest.TestCase):
             metabolite=test_model.metabolites.get_by_id("CPD1F_133_p"),
             type="sink",
         )
-        pt.add_graph_to_model(
+        ex.add_pathway(
             model=test_model,
-            graph="PWY-695",
+            pathway="PWY-695",
             directory=dir_data,
             database="META",
             compartment="p",
@@ -267,4 +282,4 @@ class TestingLargeModel(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)

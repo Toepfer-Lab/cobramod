@@ -1,10 +1,52 @@
 #!/usr/bin/env python3
-from cobramod.debug import debug_log
-from cobramod.parsing.base import BaseParser
-from typing import Any, Dict
-import xml.etree.ElementTree as ET
+"""Data parsing for Biocyc
+
+This module handles the retrieval of data from BioCyc into a local directory.
+The posible type of data that can be download:
+
+- Metabolites: Normally have an abbreviation or short name.
+- Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
+be used instead.
+- Pathways
+
+Contact maintainers if other types should be added.
+
+Important class of the module:
+- BiocycParser: Child of the abstract class
+:func:`cobramod.parsing.base.BaseParser`.
+"""
+from contextlib import suppress
+from xml.etree.ElementTree import (
+    fromstring,
+    Element,
+    ElementTree,
+    parse,
+    ParseError,
+)
 from pathlib import Path
-import requests
+from typing import Any, Dict
+
+from requests import get, HTTPError
+
+from cobramod.debug import debug_log
+from cobramod.error import WrongParserError
+from cobramod.parsing.base import BaseParser
+
+
+def _build_reference(root: Any) -> dict:
+    """
+    From the original root object, returns a dictionary with the corresponding
+    crossref and its identifiers.
+    """
+    references = dict()
+    try:
+        for child in root.findall("*/dblink"):
+            references[child.find("dblink-db").text] = child.find(
+                "dblink-oid"
+            ).text
+        return references
+    except IndexError:
+        raise IndexError("Current root could not be find references.")
 
 
 def _p_compound(root: Any) -> dict:
@@ -12,6 +54,9 @@ def _p_compound(root: Any) -> dict:
     Parses given xml root into a dictionary for metabolite from biocyc
     """
     identifier = root.find("*[@frameid]").attrib["frameid"]
+    root_type = root.find("*[@frameid]").tag
+    if root_type in ("PATHWAY", "Pathway"):
+        raise AttributeError
     try:
         formula = (
             root.find("./*/cml/*/formula").attrib["concise"].replace(" ", "")
@@ -22,7 +67,7 @@ def _p_compound(root: Any) -> dict:
         formula = "X"
         charge = 0
         debug_log.warning(
-            f'Biocyc ID "{identifier}" could not find a chemical formuala. '
+            f'Biocyc ID "{identifier}" could not find a chemical formula. '
             f'Formula set to "X" and charge to 0'
         )
     # For names only
@@ -33,14 +78,15 @@ def _p_compound(root: Any) -> dict:
     # Temporal fixup
     if formula == "":
         formula = "X"
-    temp_dict = {
-        "TYPE": root.find("*[@frameid]").tag,
+    return {
+        "TYPE": root_type,
         "ENTRY": identifier,
         "NAME": name,
         "FORMULA": formula,
         "CHARGE": charge,
+        "DATABASE": root.find("*[@frameid]").attrib["orgid"],
+        "XREF": _build_reference(root=root),
     }
-    return temp_dict
 
 
 def _p_metabolites(root: Any) -> dict:
@@ -110,7 +156,7 @@ def _p_reaction(root: Any) -> dict:
         name = root.find("*[@ID]/enzymatic-reaction/*/common-name").text
     except AttributeError:
         name = identifier
-    temp_dict = {
+    return {
         "TYPE": root.find("*[@frameid]").tag,
         "ENTRY": identifier,
         "NAME": name,
@@ -119,8 +165,9 @@ def _p_reaction(root: Any) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(root=root)
         ),
+        "DATABASE": root.find("*[@frameid]").attrib["orgid"],
+        "XREF": _build_reference(root=root),
     }
-    return temp_dict
 
 
 def _get_unsorted_pathway(root: Any) -> tuple:
@@ -163,6 +210,8 @@ def _p_pathway(root: Any) -> dict:
         "ENTRY": identifier,
         "PATHWAY": reaction_dict,
         "SET": reaction_set,
+        "DATABASE": root.find("*[@frameid]").attrib["orgid"],
+        "XREF": _build_reference(root=root),
     }
     return temp_dict
 
@@ -174,18 +223,17 @@ class BiocycParser(BaseParser):
         Parses the root and returns a dictionary with the dictionary of the
         root, with the most important information depending on its object type.
         """
-        if root.find("Compound") or root.find("Protein"):
-            biocyc_dict = _p_compound(root=root)
-        elif root.find("Reaction"):
-            biocyc_dict = _p_reaction(root=root)
-        elif root.find("Pathway"):
-            biocyc_dict = _p_pathway(root=root)
-        else:
-            raise NotImplementedError(
-                "Could not parse given root. Please inform maintainers."
-            )
-        biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib["orgid"]
-        return biocyc_dict
+        try:
+            for method in (_p_pathway, _p_reaction, _p_compound):
+                with suppress(AttributeError):
+                    biocyc_dict = method(root=root)
+                    biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
+                        "orgid"
+                    ]
+                    break
+            return biocyc_dict
+        except UnboundLocalError:
+            raise WrongParserError
 
     @staticmethod
     def _retrieve_data(
@@ -215,6 +263,7 @@ class BiocycParser(BaseParser):
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
+
         return BiocycParser._parse(root=root)
 
     @staticmethod
@@ -228,12 +277,23 @@ class BiocycParser(BaseParser):
         if database in names:
             return database
         else:
-            raise Warning(f'Given database "{database}" does not exist')
+            raise WrongParserError
+
+    @staticmethod
+    def _read_file(filename: Path) -> Element:
+        """
+        Reads and return given filename as a Element. I will raise a error if
+        file is not an valid xml.
+        """
+        try:
+            return parse(source=str(filename)).getroot()
+        except ParseError:
+            raise WrongParserError("Wrong filetype")
 
 
 def _get_xml_from_biocyc(
     directory: Path, identifier: str, database: str
-) -> ET.Element:
+) -> Element:
     """
     Searchs in given parent directory if data is located in their respective
     database directory. If not, data will be retrievied from the corresponding
@@ -258,9 +318,7 @@ def _get_xml_from_biocyc(
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         try:
-            root = ET.parse(str(filename)).getroot()
-            debug_log.debug(f"Identifier '{identifier}' found.")
-            return root
+            return BiocycParser._read_file(filename=filename)
         except FileNotFoundError:
             debug_log.debug(
                 f'"{identifier}" not found in directory "{database}".'
@@ -270,14 +328,23 @@ def _get_xml_from_biocyc(
                 f"https://websvc.biocyc.org/getxml?{database}:{identifier}"
             )
             debug_log.debug(f"Searching in {url_text}")
-            r = requests.get(url_text)
-            if r.status_code == 404:
-                msg = f'"{identifier}" not available in "{database}"'
+            r = get(url_text)
+            if r.status_code >= 400:
+                msg = f'"{identifier}" is not available in "{database}"'
                 debug_log.error(msg)
-                raise Warning(msg)
+                # Try with META
+                if database != "META":
+                    # This will raise an error if not found in META
+                    root = _get_xml_from_biocyc(
+                        directory=directory,
+                        identifier=identifier,
+                        database="META",
+                    )
+                    return root
+                raise HTTPError(msg)
             else:
-                root = ET.fromstring(r.text)  # defining root
-                tree = ET.ElementTree(root)
+                root = fromstring(r.text)  # defining root
+                tree = ElementTree(root)
                 tree.write(str(filename))
                 debug_log.info(
                     f'Object "{identifier}" found in database. Saving in '

@@ -40,7 +40,7 @@ NADPH_FERRIHEMOPROTEIN_REDUCTASE_RXN_r, NADPH—hemoprotein reductase[r]| Oxidiz
 # Transamination from methionione. First part of the methionine elongation chain
 RXN-15650,c
 # 4-methylthio-2-oxopentane transport (product from prior transmination)
-CPD_479_cp,CPD_479_cp|CPD_479_c:-1,CPD_479_p:1 
+CPD_479_cp,CPD_479_cp|CPD-479_c:-1,CPD-479_p:1 
 # GLUTATHIONE transport for Glutathione-S-conjugate synthasis
 GLUTATHIONE_pc, GLUTATHIONE_pc|GLUTATHIONE_p:-1, GLUTATHIONE_c:1
 GLUTATHIONE_cm, GLUTATHIONE_cm|GLUTATHIONE_c:-1, GLUTATHIONE_m:1
@@ -123,4 +123,4 @@ R090143_c, Glutamyl-transpeptidase | WATER_c:-1, 3_PHENYLPROPYLHYDROXIMOY_GLUTAT
 R090144_c, SUR1/ alkylthiohydroximate C-S lyase| WATER_c:-1, 3_PHENYLPROPYLHYDROXIMOY_CYS_GLY_c:-1, 3_PHENYLPROPANTHIOHYDROXIMATE_c:1, CPD_12607_c:1
 
 R090145_c,UGT74/glucosyltransferase|UDP_GLUCOSE_c:-1, 3_PHENYLPROPANTHIOHYDROXIMATE_c:-1, UDP_c:1, PROTON_c:1,2_PHENYLETHYL_DESULFOGLUCOSINOLATE_c:1
-R090146_c, SOT16/ desulfoglucosinolate sulfotransferase| PAPS_c:-1, 2_PHENYLETHYL_DESULFOGLUCOSINOLATE_c:-1, 3_5_ADP_c:1, PROTON_c:1, CPD_19507_c:1
+R090146_c, SOT16/ desulfoglucosinolate sulfotransferase| PAPS_c:-1, 2_PHENYLETHYL_DESULFOGLUCOSINOLATE_c:-1, 3-5-ADP_c:1, PROTON_c:1, CPD_19507_c:1

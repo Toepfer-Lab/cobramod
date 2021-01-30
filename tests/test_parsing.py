@@ -1,88 +1,121 @@
 #!/usr/bin/env python3
+"""Unit-test for package parsing
+
+This test handles the retrieval of data from a local directory or from
+the different databases. The module is separated according to the databases:
+
+- TestBiocyc: For Biocyc-related databases
+- TestBigg: For BiGG database
+- TestKegg: For Kegg
+"""
+from xml.etree.ElementTree import Element
 from logging import DEBUG
 from pathlib import Path
-import unittest
+from unittest import TestCase, main
+
+from requests import HTTPError, Response
 
 from cobramod.debug import debug_log
-import cobramod.parsing.kegg as kg
-import cobramod.parsing.biocyc as bc
-import cobramod.parsing.bigg as bi
+from cobramod.error import WrongParserError
+from cobramod.parsing import kegg as kg
+from cobramod.parsing import biocyc as bc
+from cobramod.parsing import bigg as bi
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
-
-
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 
-class ParsingTesting(unittest.TestCase):
+class TestKegg(TestCase):
+    """
+    Parsing and retrival for Kegg
+    """
+
     def setUp(self):
-        self.raw = """
-ENTRY       R08618                      Reaction
-NAME        L-methionine:2-oxo-acid aminotransferase
-DEFINITION  L-Methionine + 2-Oxo acid <=> 4-Methylthio-2-\
-oxobutanoic acid + L-Amino acid
-EQUATION    C00073 + C00161 <=> C01180 + C00151
-RCLASS      RC00006  C00073_C01180
-            RC00025  C00151_C00161
-ENZYME      2.6.1.88
-PATHWAY     rn00966  Glucosinolate biosynthesis
-            rn01110  Biosynthesis of secondary metabolites
-            rn01210  2-Oxocarboxylic acid metabolism
-ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
-            K21346  methionine transaminase [EC:2.6.1.88]
-            ///"""
+        """
+        This is the sample string to parse for KeggParser
+        """
+        self.test_string = (
+            "ENTRY       R08618                      Reaction\n"
+            "NAME        L-methionine:2-oxo-acid aminotransferase\n"
+            "DEFINITION  L-Methionine + 2-Oxo acid <=> 4-Methylthio-2-"
+            "oxobutanoic acid + L-Amino acid\n"
+            "EQUATION    C00073 + C00161 <=> C01180 + C00151\n"
+            "RCLASS      RC00006  C00073_C01180\n"
+            "            RC00025  C00151_C00161\n"
+            "ENZYME      2.6.1.88\n"
+            "PATHWAY     rn00966  Glucosinolate biosynthesis\n"
+            "            rn01110  Biosynthesis of secondary metabolites\n"
+            "            rn01210  2-Oxocarboxylic acid metabolism\n"
+            "ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]\n"
+            "            K21346  methionine transaminase [EC:2.6.1.88]\n"
+            "            ///"
+        )
 
     def test__get_unformatted_kegg(self):
-        # CASE 0: Colon (:) in identifier (not implemented yet)
+        # CASE 0a: Colon (:) in identifier (not implemented yet)
         self.assertRaises(
             NotImplementedError,
             kg._get_unformatted_kegg,
             directory=dir_data,
             identifier="rn:R08618",
         )
+        # CASE 0b: Wrong identifier
+        self.assertRaises(
+            HTTPError,
+            kg._get_unformatted_kegg,
+            directory=dir_data,
+            identifier="R08618-wrong",
+        )
+        #
         # CASE 1: Regular reaction
         test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="R08618"
         )
-        self.assertIsInstance(obj=test_data, cls=str)
+        self.assertIsInstance(obj=test_data, cls=dict)
         # CASE 1: Regular compound
         test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290"
         )
-        self.assertIsInstance(obj=test_data, cls=str)
+        self.assertIsInstance(obj=test_data, cls=dict)
 
     def test__parse_kegg(self):
-        # CASE 1: Reaction (same as setUP)
-        test_dict = kg.KeggParser._parse(raw=self.raw)
+        # CASE 1a: Reaction (same as setup)
+        test_dict = kg.KeggParser._parse(
+            root=kg._create_dict(raw=self.test_string)
+        )
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         # CASE 2: Compound
-        self.raw = kg._get_unformatted_kegg(
+        self.test_string = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290"
         )
-        test_dict = kg.KeggParser._parse(raw=self.raw)
+        test_dict = kg.KeggParser._parse(root=self.test_string)
 
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         # CASE 2: EC number (not working for now)
-        self.raw = kg._get_unformatted_kegg(
+        self.test_string = kg._get_unformatted_kegg(
             directory=dir_data, identifier="7.1.2.2"
         )
         self.assertRaises(
-            NotImplementedError, kg.KeggParser._parse, raw=self.raw
+            NotImplementedError, kg.KeggParser._parse, root=self.test_string
         )
         # CASE 3: Pathway
-        test_raw = kg._get_unformatted_kegg(
+        test_data = kg._get_unformatted_kegg(
             directory=dir_data, identifier="M00001"
         )
-        test_data = kg._create_dict(raw=test_raw)
         test_dict = kg._p_pathway(kegg_dict=test_data)
         self.assertEqual(first="Pathway", second=test_dict["TYPE"])
         self.assertEqual(first="M00001", second=test_dict["ENTRY"])
 
+
+class TestBiocyc(TestCase):
     def test__get_xml_from_biocyc(self):
         # CASE 1: Directory does not exist
         self.assertRaises(
@@ -95,14 +128,26 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         )
         # CASE 2: ID not found
         self.assertRaises(
-            Warning,
+            HTTPError,
             bc._get_xml_from_biocyc,
             directory=dir_data,
             identifier="WATE",
             database="META",
         )
+        # CASE 3: Regular META
+        test_element = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="WATER", database="META"
+        )
+        self.assertIsInstance(obj=test_element, cls=Element)
+        # CASE 4: META from ARA if not available
+        test_element = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="CPD-15323", database="ARA"
+        )
+        self.assertIsInstance(obj=test_element, cls=Element)
 
     def test__parse_biocyc(self):
+        # CASE 0: Wrong type
+        self.assertRaises(WrongParserError, bc.BiocycParser._parse, str())
         # CASE 1: Compound
         test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="AMP", database="META"
@@ -139,20 +184,30 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=13)
         self.assertEqual(first=len(test_dict["SET"]), second=14)
 
+
+class TestBigg(TestCase):
+    def test__find_url(self):
+        # CASE 1: Positive request
+        test_response = bi._find_url(
+            model_id="e_coli_core", identifier="ACALD"
+        )
+        self.assertIsInstance(obj=test_response, cls=Response)
+        # CASE 2: Negative request
+        self.assertRaises(
+            HTTPError,
+            bi._find_url,
+            model_id="e_coli_core",
+            identifier="Invalid",
+        )
+
     def test__get_json_bigg(self):
         # CASE 0
         test_data = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="accoa_c",
-            model_id="e_coli_core",
-            object_type="metabolite",
+            directory=dir_data, identifier="accoa_c", model_id="e_coli_core"
         )
         # CASE 1: Regular reaction from ecoli
         test_data = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="ACALD",
-            model_id="e_coli_core",
-            object_type="reaction",
+            directory=dir_data, identifier="ACALD", model_id="e_coli_core"
         )
         bi._p_reaction(json_data=test_data)
         self.assertIsInstance(obj=test_data, cls=dict)
@@ -162,10 +217,7 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         self.assertEqual(first=len(test_data["metabolites"]), second=6)
         # CASE 2: Regular metabolite from universal
         test_data = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="accoa",
-            model_id="universal",
-            object_type="metabolite",
+            directory=dir_data, identifier="accoa", model_id="universal"
         )
         self.assertIsInstance(obj=test_data, cls=dict)
         self.assertEqual(
@@ -173,47 +225,37 @@ ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
         )
 
     def test__parse_bigg(self):
+        # CASE 0: Wrong type
+        self.assertRaises(WrongParserError, bi.BiggParser._parse, str())
         # CASE 1: Regular universal reaction
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="ACALD",
-            model_id="universal",
-            object_type="reaction",
+            directory=dir_data, identifier="ACALD", model_id="universal"
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         # CASE 2: Regular universal metabolite
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="coa",
-            model_id="universal",
-            object_type="metabolite",
+            directory=dir_data, identifier="coa", model_id="universal"
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         self.assertEqual(first="C21H32N7O16P3S", second=test_dict["FORMULA"])
         # CASE 3: Ecoli reaction
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="PDH",
-            model_id="e_coli_core",
-            object_type="reaction",
+            directory=dir_data, identifier="PDH", model_id="e_coli_core"
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        # CASE 2: Ecoli metabolite
+        # CASE 4: Ecoli metabolite
         test_json = bi._get_json_bigg(
-            directory=dir_data,
-            identifier="co2_c",
-            model_id="e_coli_core",
-            object_type="metabolite",
+            directory=dir_data, identifier="co2_c", model_id="e_coli_core"
         )
-        test_dict = bi.BiggParser._parse(json_data=test_json)
+        test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         self.assertEqual(first="CO2", second=test_dict["FORMULA"])
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)

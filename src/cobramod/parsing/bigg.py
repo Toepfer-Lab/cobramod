@@ -1,27 +1,85 @@
 #!/usr/bin/env python3
-from cobramod.debug import debug_log
-from cobramod.utils import get_key_dict
-from cobramod.parsing.base import BaseParser
+"""Data parsing for BiGG
+
+This module handles the retrieval of data from BiGG into a local directory.
+The posible type of data that can be download:
+
+- Metabolites: Normally, simple names.
+- Reactions: Mostly abbreviations.
+
+They change identifiers depending on the model given. BiGG have multiple
+models.
+Contact maintainers if other types should be added.
+
+Important class of the module:
+- BiggParser: Child of the abstract class
+:func:`cobramod.parsing.base.BaseParser`.
+"""
+from contextlib import suppress
+from json import loads, JSONDecodeError
 from pathlib import Path
 from typing import Any
-import json
-import requests
+
+from requests import get, HTTPError, Response
+
+from cobramod.debug import debug_log
+from cobramod.error import WrongParserError
+from cobramod.parsing.base import BaseParser
+
+
+def _find_url(model_id: str, identifier: str) -> Response:
+    """
+    Trys to find a valid URL for the API of BIGG. It will return a
+    :func:`requests.Response` if URL is valid.
+    object
+
+    Args:
+        model_id (str): Name for the specific BIGG model identifier.
+        identifier (str): Identifier for the item. Can be a reaction or
+            compound
+
+    Returns:
+        Response: a valid request Response.
+
+    Raises:
+        HTTPError: If identifier not found in BIGG.
+    """
+    for object_type in ("reactions", "metabolites"):
+        with suppress(HTTPError):
+            # Check that status is available
+            debug_log.debug(
+                f'{object_type.capitalize()[:-1]} "{identifier}" not found in '
+                f'directory "BIGG", subdirectory "{model_id}".'
+            )
+            # Retrieve from URL
+            url_text = (
+                f"http://bigg.ucsd.edu/api/v2/models/{model_id}/{object_type}"
+                f"/{identifier}"
+            )
+            debug_log.debug(f"Searching in {url_text}")
+            # Get and check for errors
+            r = get(url_text)
+            r.raise_for_status()
+            return r
+    # Otherwise
+    raise HTTPError(f"Identifier '{identifier}' not found in BIGG.")
 
 
 def _get_json_bigg(
-    directory: Path, identifier: str, model_id: str, object_type: str, **kwargs
+    directory: Path, identifier: str, model_id: str, database: str = "BIGG"
 ) -> dict:
     """
     Searchs in given parent directory if data is located in their respective
-    database directory. If not, data will be retrieved from the corresponding
-    database. Returns dictionary from JSON.
+    model_id directory. Else, data will be retrieved from the corresponding
+    model identifier. Returns dictionary from JSON.
 
     Args:
         directory (Path): Path to directory where data is located.
         identifier (str): Identifier for given database.
         model_id (str): Identifier of model for BiGG. Examples: *e_coli_core*,
             *universal*
-        object_type (str): Either 'reaction' or 'metabolite'.
+        database (str, optional): Name of the database and name of directory to
+            store data.
 
     Raises:
         Warning: If object is not available in given database
@@ -31,47 +89,44 @@ def _get_json_bigg(
         dict: directory transformed from a JSON.
     """
     if directory.exists():
-        database = "BIGG"
         data_dir = directory.joinpath(database).joinpath(model_id)
         data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.json")
         debug_log.debug(
-            f'Searching {object_type} "{identifier}" in directory "BIGG"'
+            f'Searching "{identifier}" in directory BIGG, '
+            f"sub-directory {model_id}"
         )
         try:
-            with open(file=filename, mode="r") as f:
-                unformatted_data = f.read()
-            debug_log.debug(f"Identifier '{identifier}' found.")
-            return json.loads(s=unformatted_data)
+            return BiggParser._read_file(filename=filename)
         except FileNotFoundError:
-            debug_log.debug(
-                f'{object_type.capitalize()} "{identifier}" not found in '
-                f'directory "BIGG", subdirectory "{model_id}".'
+            # It will raise an error by itself if needed
+            r = _find_url(model_id=model_id, identifier=identifier)
+            debug_log.info(
+                f'Object "{identifier}" found. Saving in '
+                f'directory "BIGG", subdirectory "{model_id}"'
             )
-            # Retrieve from URL
-            url_text = (
-                f"http://bigg.ucsd.edu/api/v2/models/{model_id}/{object_type}s"
-                f"/{identifier}"
-            )
-            debug_log.debug(f"Searching in {url_text}")
-            r = requests.get(url_text)
-            if r.status_code == 404:
-                msg = f'"{identifier}" not found as {object_type}'
-                debug_log.error(msg)
-                raise Warning(msg)
-            else:
-                unformatted_data = r.text
-                debug_log.info(
-                    f'Object "{identifier}" found. Saving in '
-                    f'directory "BIGG", subdirectory "{model_id}"'
-                )
-                with open(file=filename, mode="w+") as f:
-                    f.write(unformatted_data)
-                return json.loads(s=unformatted_data)
+            # r.text is the raw text
+            with open(file=filename, mode="w+") as f:
+                f.write(r.text)
+            return loads(s=r.text)
     else:
         msg = "Directory not found"
         debug_log.critical(msg)
         raise NotADirectoryError(msg)
+
+
+def _build_reference(json_data: dict) -> dict:
+    """
+    From the json dictionary, return a dictionary with keys as cross-references
+    and values as their identifiers.
+    """
+    references = json_data["database_links"]
+    try:
+        return {item: references[item][0]["id"] for item in references}
+    except KeyError:
+        raise KeyError(
+            "Problem with given json dictionary. Inform maintainers"
+        )
 
 
 def _p_compound(json_data: dict) -> dict:
@@ -91,6 +146,8 @@ def _p_compound(json_data: dict) -> dict:
         "NAME": json_data["name"],
         "FORMULA": formula,
         "CHARGE": charge,
+        "DATABASE": "BIGG",
+        "XREF": _build_reference(json_data=json_data),
     }
 
 
@@ -126,26 +183,10 @@ def _p_reaction(json_data: dict) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(json_data=json_data)
         ),
+        "DATABASE": "BIGG",
+        "XREF": _build_reference(json_data=json_data),
     }
     return temp_dict
-
-
-def _get_db_names(data_dict: dict, pattern: str) -> str:
-    """
-    From the original data of a BiGG JSON, retrieve the corresponding
-    identifier for its crossref database.
-    """
-    database = get_key_dict(
-        dictionary=data_dict["database_links"], pattern=pattern
-    )
-
-    try:
-        container = data_dict["database_links"][database][0]["id"]
-    except KeyError:
-        msg = "Given database is not found in the crossref section"
-        debug_log.error(msg)
-        raise KeyError(msg)
-    return container
 
 
 class BiggParser(BaseParser):
@@ -174,49 +215,53 @@ class BiggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
-        try:
-            json_data = _get_json_bigg(
-                directory=directory,
-                database=database,
-                identifier=identifier,
-                object_type="metabolite",
-                **kwargs,
-            )
-            msg_extra = "Identified as a metabolite"
-        except KeyError:
-            json_data = _get_json_bigg(
-                directory=directory,
-                database=database,
-                identifier=identifier,
-                object_type="reaction",
-                **kwargs,
-            )
-            msg_extra = "Identified as a reaction"
-        debug_log.log(
-            level=debug_level,
-            msg=f'Data for "{identifier}" retrieved. ' + msg_extra,
+        # It will raise an error for HTTPError
+        json_data = _get_json_bigg(
+            directory=directory,
+            database=database,
+            identifier=identifier,
+            **kwargs,
         )
-        return BiggParser._parse(json_data=json_data)
+        debug_log.log(
+            level=debug_level, msg=f'Data for "{identifier}" retrieved.'
+        )
+        return BiggParser._parse(root=json_data)
 
     @staticmethod
-    def _parse(json_data: Any) -> dict:
+    def _parse(root: Any) -> dict:
         """
         Parses the JSON dictionary and returns a dictionary with the most
         important attributes depending of the type of the identifier.
         """
         try:
-            bigg_dict = _p_reaction(json_data=json_data)
-        except KeyError:
-            bigg_dict = _p_compound(json_data=json_data)
-        return bigg_dict
+            for method in (_p_reaction, _p_compound):
+                with suppress(KeyError):
+                    bigg_dict = method(json_data=root)
+            return bigg_dict
+        except TypeError:
+            raise WrongParserError
 
     @staticmethod
     def _return_database(database: str) -> str:
         """
-        Returns name of the database. It will raise a Warning if the database
-        is incorrect.
+        Returns name of the database. It will raise a Error if name is
+        incorrect.
         """
         if database == "BIGG":
             return database
         else:
-            raise Warning(f'Given database "{database}" does not exist')
+            raise WrongParserError
+
+    @staticmethod
+    def _read_file(filename: Path) -> dict:
+        """
+        Reads the given file a returns a JSON dictionary with most important
+        information from it.
+        """
+        try:
+            with open(file=filename, mode="r") as f:
+                unformatted_data = f.read()
+            return loads(s=unformatted_data)
+        except JSONDecodeError:
+            # TODO find exception type
+            raise WrongParserError("Wrong filetype")
