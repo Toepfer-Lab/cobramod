@@ -3,8 +3,8 @@ import unittest
 
 import cobra as cb
 
-from cobramod import extension as ex
-from cobramod import creation as cr
+from cobramod.core import extension as ex
+from cobramod.core import creation as cr
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 path_model = dir_input.joinpath("test_model02.sbml")

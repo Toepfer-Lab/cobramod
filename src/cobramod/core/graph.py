@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""Module for graph algorithm
+
+This module creates the needed functions to find out the reaction order from
+a pathway. The vertex represent the reactions and the edges symbolize the order
+of the reactions. i.e the relationship between reactions. The main function
+of this module:
+
+- return_graph_from_dict: Obtain a list from the data of a pathway.
+"""
 from itertools import chain
 from typing import Generator, Iterable
 

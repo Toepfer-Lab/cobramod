@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 import cobra as cb
 from pathlib import Path
-from cobramod.extension import add_pathway
-from cobramod.creation import add_metabolites, add_reactions
+from cobramod import add_metabolites, add_reactions, add_pathway
 
 test_dir = Path.cwd().joinpath("tests")
 extra_dir = test_dir.joinpath("extra")
