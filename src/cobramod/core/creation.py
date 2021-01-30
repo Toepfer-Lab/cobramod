@@ -25,7 +25,7 @@ from cobra import Metabolite, Model, Reaction
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongDataError, NoIntersectFound, WrongSyntax
-from cobramod.mod_parser import get_data
+from cobramod.core.retrieval import get_data
 from cobramod.utils import _read_lines, check_imbalance, _first_item
 
 

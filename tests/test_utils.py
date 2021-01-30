@@ -7,11 +7,11 @@ import unittest
 from cobra.core import Metabolite, Reaction, Group
 from cobra.io import read_sbml_model
 
-from cobramod.creation import create_object, add_reactions
+from cobramod.core.creation import create_object, add_reactions
+from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
 from cobramod.error import NoIntersectFound
 from cobramod.test import textbook_kegg, textbook
-from cobramod.pathway import Pathway
 import cobramod.utils as ui
 
 debug_log.setLevel(DEBUG)

@@ -11,7 +11,7 @@ from unittest import TestCase, main
 
 from cobra.core import DictList, Group
 
-from cobramod import pathway as pt
+from cobramod.core import pathway as pt
 from cobramod.debug import debug_log
 from cobramod.test import textbook_kegg, textbook
 

@@ -15,13 +15,13 @@ from typing import Union, Generator, Iterable
 
 from cobra import Model, Reaction
 
-from cobramod.creation import create_object
+from cobramod.core.creation import create_object
+from cobramod.core.graph import return_graph_from_dict
+from cobramod.core.pathway import Pathway
+from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
 from cobramod.error import NotInRangeError
-from cobramod.graph import return_graph_from_dict
-from cobramod.mod_parser import get_data
 from cobramod.utils import get_DataList, get_basic_info, check_to_write
-from cobramod.pathway import Pathway
 
 
 def _create_reactions(

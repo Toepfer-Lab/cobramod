@@ -13,8 +13,8 @@ from unittest import main, TestCase
 
 from cobra.io import read_sbml_model
 
-from cobramod import extension as ex
-from cobramod.creation import add_reactions
+from cobramod.core import extension as ex
+from cobramod.core.creation import add_reactions
 from cobramod.debug import debug_log
 from cobramod.test import textbook_biocyc
 

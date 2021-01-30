@@ -5,8 +5,8 @@ from pathlib import Path
 import unittest
 
 from cobramod.debug import debug_log
-from cobramod import get_data
-import cobramod.graph as gr
+from cobramod.core.retrieval import get_data
+import cobramod.core.graph as gr
 
 
 debug_log.setLevel(DEBUG)
