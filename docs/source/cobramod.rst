@@ -7,7 +7,9 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   cobramod.core
    cobramod.parsing
+   cobramod.visualization
 
 Submodules
 ----------
@@ -15,10 +17,8 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   cobramod.creation
    cobramod.debug
-   cobramod.mod_parser
-   cobramod.pathways
+   cobramod.error
    cobramod.test
    cobramod.utils
 

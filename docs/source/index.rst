@@ -7,7 +7,7 @@ Welcome to Cobramod's documentation!
    :caption: Contents:
 
    installation.rst
-   example.rst
+   guide.rst
    cobramod.rst
 
 Indices and tables
