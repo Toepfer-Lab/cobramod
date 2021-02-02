@@ -184,3 +184,47 @@ def return_graph_from_dict(
         avoid_list=avoid_list,
         replacement=replacement,
     )
+
+
+# NOTE: These new functions are meant to replace the previous algorithm.
+# The first step is to built the relationship between nodes. To do this,
+# a directed graph can be achieved through a dictionary. A value comes from a
+# key. KEY -> VALUE.
+
+
+def find_cycle(graph: dict, key, visited: list):
+    """
+    Returns a list with the cycle in the graph or False is graph is lineal.
+    This function is recursive.
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+        key (str): Key in dictionary to start to find the cycle.
+        visited (list): List with keys already visited.
+
+    Returns:
+        List: Members of the graph that are in a cycle:
+        False: If the graph is lineal
+
+    Raises:
+        KeyError: If a key is missing its relationship. When this happens, it
+            is probably a value missing.
+    """
+    try:
+        # Get the value and check if is already in visited. If so, then it
+        # is not lineal. Otherwise, finish until return Lineal
+        value = graph[key]
+        if value in visited:
+            return visited
+        elif value is None:
+            return False
+        visited.append(value)
+        return find_cycle(graph=graph, key=value, visited=visited)
+    except KeyError:
+        # If not a tuple then, the graph is missing an edge
+        if not isinstance(key, tuple):
+            raise KeyError(f'Value for "{key}" is missing.')
+        for single in key:
+            # In case of a set, all values must be tested as well
+            return find_cycle(graph=graph, key=single, visited=visited)
