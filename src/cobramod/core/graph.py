@@ -219,7 +219,9 @@ def find_cycle(graph: dict, key, visited: list):
             return visited
         elif value is None:
             return False
-        visited.append(value)
+        # For tuples, the value will be added in the exception
+        if not isinstance(value, tuple):
+            visited.append(value)
         return find_cycle(graph=graph, key=value, visited=visited)
     except KeyError:
         # If not a tuple then, the graph is missing an edge
@@ -227,4 +229,18 @@ def find_cycle(graph: dict, key, visited: list):
             raise KeyError(f'Value for "{key}" is missing.')
         for single in key:
             # In case of a set, all values must be tested as well
+            visited.append(single)
             return find_cycle(graph=graph, key=single, visited=visited)
+
+
+def cut_cycle(graph: dict, key: str):
+    """
+    Changes value of key to None in given dictionary. It will raise an error if
+    value is a tuple
+    """
+    if not isinstance(key, str):
+        raise AttributeError(
+            f'Given key "{key}" cannot be cut. Probably because it is a tuple'
+        )
+    graph[key] = None
+    # TODO: add debug

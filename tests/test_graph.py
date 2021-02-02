@@ -2,22 +2,23 @@
 from itertools import chain
 from logging import DEBUG
 from pathlib import Path
-import unittest
+from unittest import TestCase, main
 
 from cobramod.debug import debug_log
 from cobramod.core.retrieval import get_data
 import cobramod.core.graph as gr
 
-
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
-
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 
-class GraphTesting(unittest.TestCase):
+class GraphTesting(TestCase):
     def test__find_end_vertex(self):
         # CASE 1: regular lineal / 2 child edges
         test_dict = {"A": "B", "B": "C", "C": "D", "D": "E"}
@@ -309,5 +310,65 @@ class GraphTesting(unittest.TestCase):
         self.assertGreater(a=len(test_list[0]), b=4)
 
 
+class NewAlgorithm(TestCase):
+    """
+    This new TestCase Checks that the behaviour of the new algorithm works as
+    intended.
+    """
+
+    def test_find_cycle(self):
+        # CASE 1: Lineal
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_answer = gr.find_cycle(graph=test_dict, key="R1", visited=[])
+        self.assertIs(expr1=False, expr2=test_answer)
+        # CASE 2: cyclic
+        test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
+        test_answer = gr.find_cycle(graph=test_dict, key="R1", visited=[])
+        self.assertCountEqual(first=["R1", "R2", "R3"], second=test_answer)
+        # CASE 2a: Complex Lineal / Missing Key
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R5"),
+            "R2": "R3",
+            "R3": "R4",
+            "R5": None,
+        }
+        self.assertRaises(
+            KeyError, gr.find_cycle, graph=test_dict, key="R0", visited=[]
+        )
+        # CASE 2a: Complex Lineal
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R5"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": None,
+            "R5": None,
+        }
+        test_answer = gr.find_cycle(graph=test_dict, key="R0", visited=[])
+        self.assertIs(expr1=False, expr2=test_answer)
+        # CASE 3: Complex Cyclic
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R5"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R0",
+            "R5": None,
+        }
+        test_answer = gr.find_cycle(graph=test_dict, key="R0", visited=[])
+        self.assertCountEqual(
+            first=["R0", "R1", "R2", "R3", "R4"], second=test_answer
+        )
+
+    def test_cut_cycle(self):
+        # CASE 1: Simple cut
+        test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
+        gr.cut_cycle(graph=test_dict, key="R1")
+        self.assertDictEqual(
+            d1=test_dict, d2={"R1": None, "R2": "R3", "R3": "R1"}
+        )
+
+
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    main(verbosity=2)
