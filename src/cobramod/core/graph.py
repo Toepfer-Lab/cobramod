@@ -8,6 +8,7 @@ of this module:
 
 - return_graph_from_dict: Obtain a list from the data of a pathway.
 """
+from contextlib import suppress
 from itertools import chain
 from typing import Generator, Iterable
 
@@ -243,4 +244,87 @@ def cut_cycle(graph: dict, key: str):
             f'Given key "{key}" cannot be cut. Probably because it is a tuple'
         )
     graph[key] = None
-    # TODO: add debug
+    # TODO: add debug. Is it necesary?
+
+
+def back(graph: dict, value: str, path: list) -> list:
+    """
+    Return a list with the the path that ends with given value until it reaches
+    in a node without a value as a key. The function is recursive and will only
+    work with lineal directed graphs.
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+        value (str): The value to search.
+        path (list): The already-visited path.
+
+    Returns:
+        List: a list with the path that end up with value.
+
+    Raises:
+        RecursionError: If the path is not lineal
+    """
+    # Check for each key if the value matches the argument value. Extend path
+    # and call recursive
+    for key, val in graph.items():
+        if isinstance(val, tuple):
+            # In case of tuples, test each single case
+            for single in val:
+                if single == value:
+                    path.insert(0, key)
+                    return back(graph=graph, value=key, path=path)
+        # If val from dictionary is the same as value, then run recursive.
+        if val == value:
+            path.insert(0, key)
+            return back(graph=graph, value=key, path=path)
+    return path
+
+
+def items(graph: dict) -> set:
+    """
+    Returns all the nodes in a graph as a set. Nones will not be included
+    """
+    items = set()
+    for key, value in graph.items():
+        items.add(key)
+        if isinstance(value, tuple):
+            # It will never have None
+            items.update(value)
+            continue
+        if value is not None:
+            items.add(value)
+    return items
+
+
+def longest_path(graph: dict) -> list:
+    """
+    Returns a list with the longest path in a graph. This only works with
+    lineal directed paths.
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+
+    Returns:
+        List: Longest path
+
+    Raises:
+        RecursionError: if path is not lineal
+    """
+    max_length = len(items(graph=graph))
+    end_nodes = [key for key, value in graph.items() if value is None]
+    # Function back will raise RecursionError if not lineal
+    path_generator = (
+        back(graph=graph, value=node, path=[node]) for node in end_nodes
+    )
+    paths = list()
+    for node in end_nodes:
+        with suppress(StopIteration):
+            single = next(path_generator)
+            # If its the same length, return it. It is 100% Lineal
+            if len(single) == max_length:
+                return single
+            paths.append(single)
+    # Return longest
+    return max(paths, key=len)
