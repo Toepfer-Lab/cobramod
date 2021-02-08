@@ -4,7 +4,7 @@
 This module creates the function :func:`cobramod.core.retrieval.get_data`,
 which gets the data from a local directory or from different databases.
 The available databases for data retrieval can be found in the variable
-:func:`cobramod.core.retrieval.available_databases`
+:obj:`cobramod.core.retrieval.available_databases`
 """
 from contextlib import suppress
 from pathlib import Path
@@ -18,7 +18,7 @@ from cobramod.parsing.bigg import BiggParser
 from cobramod.utils import _path_match, get_key_dict
 
 parsers = [BiocycParser, KeggParser, BiggParser]
-available_databases = ["META", "ARA", "META", "BIGG"]
+available_databases = ["META", "ARA", "KEGG", "BIGG"]
 
 
 def _get_parser(database: str) -> Type[BaseParser]:
@@ -54,7 +54,7 @@ def get_data(
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         debug_level (int, optional): Level of debugging. Read package logging
             for more info. Defaults to 20
 

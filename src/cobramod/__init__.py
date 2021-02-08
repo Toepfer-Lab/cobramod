@@ -19,7 +19,7 @@ Important functions from CobraMod that can be imported directly:
 - translate: Check for cross-references.
 
 The exclusive class :func:`cobramod.pathway.Pathway` is an extension of
-:func:`cobra.core.group.Group`. CobraMod uses :func:`Escher` to visualize
+:class:`cobra.core.group.Group`. CobraMod uses :mod:`Escher` to visualize
 the pathway and fluxes of that specific class. Some new methods added:
 
 - visualize: Return an Builder for the representation of the pathway.
@@ -30,7 +30,7 @@ occured when running a script. In order to modify the logging, import
 "debug_log" from "cobramod.debug". The default logging level is defined as
 INFO. Read the documentation of logging for more information.
 
-For a list of databases, load variable :func`cobramod.available_databases`
+For a list of databases, load variable :obj:`cobramod.available_databases`
 """
 from cobramod.core.creation import (
     create_object,
