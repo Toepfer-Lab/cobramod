@@ -389,31 +389,37 @@ class NewAlgorithm(TestCase):
         # For R4
         test_answer = gr.back(graph=test_dict, value="R4", path=[])
         self.assertListEqual(list1=test_answer, list2=["R0", "R1", "R2", "R3"])
-
-    def test_items(self):
-        # CASE 1: Lineal
-        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
-        test_set = gr.items(graph=test_dict)
-        self.assertCountEqual(first={"R1", "R2", "R3"}, second=test_set)
-        # CASE 2: Complex Lineal
+        # CASE 3a: Rest with stop list
         test_dict = {
-            "R0": "R1",
-            "R1": ("R2", "R5"),
-            "R2": "R3",
-            "R3": "R4",
-            "R4": None,
-            "R5": None,
+            "R7": ("R8", "R11"),
+            "R8": "R10",
+            "R9": None,
+            "R10": None,
+            "R11": None,
         }
-        test_set = gr.items(graph=test_dict)
-        self.assertCountEqual(
-            first={"R0", "R1", "R2", "R3", "R4", "R5"}, second=test_set
+        test_answer = gr.back(
+            graph=test_dict,
+            value="R10",
+            path=[],
+            stop_list=["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],
         )
+        self.assertListEqual(list1=test_answer, list2=["R7", "R8"])
+        # CASE 3b: Rest with stop list. Single element
+        test_answer = gr.back(
+            graph=test_dict,
+            value="R9",
+            path=[],
+            stop_list=["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],
+        )
+        self.assertListEqual(list1=test_answer, list2=[])
 
-    def test_longest_path(self):
+    def test_get_paths(self):
         # CASE 1: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
-        test_list = gr.longest_path(graph=test_dict)
-        self.assertListEqual(list1=["R1", "R2", "R3"], list2=test_list)
+        test_list = gr.get_paths(graph=test_dict, stop_list=[])
+        self.assertListEqual(
+            list1=["R1", "R2", "R3"], list2=max(test_list, key=len)
+        )
         # CASE 2a: Complex Lineal
         test_dict = {
             "R0": "R1",
@@ -423,9 +429,9 @@ class NewAlgorithm(TestCase):
             "R4": None,
             "R5": None,
         }
-        test_list = gr.longest_path(graph=test_dict)
+        test_list = gr.get_paths(graph=test_dict, stop_list=[])
         self.assertListEqual(
-            list1=["R0", "R1", "R2", "R3", "R4"], list2=test_list
+            list1=["R0", "R1", "R2", "R3", "R4"], list2=max(test_list, key=len)
         )
         # CASE 2b: Complex Lineal
         test_dict = {
@@ -443,11 +449,142 @@ class NewAlgorithm(TestCase):
             "R11": None,
             "R12": None,
         }
-        test_list = gr.longest_path(graph=test_dict)
+        test_list = gr.get_paths(graph=test_dict, stop_list=[])
+        self.assertEqual(first=len(test_list), second=4)
         self.assertListEqual(
             list1=["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],
-            list2=test_list,
+            list2=max(test_list, key=len),
         )
+        # CASE 3: Using Rest
+        test_dict = {
+            "R7": ("R8", "R11"),
+            "R8": "R10",
+            "R9": None,
+            "R10": None,
+            "R11": None,
+        }
+        stop_list = (["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],)
+        test_list = gr.get_paths(graph=test_dict, stop_list=stop_list)
+        self.assertEqual(first=len(test_list), second=3)
+        self.assertListEqual(
+            list1=["R7", "R8", "R10"], list2=max(test_list, key=len)
+        )
+
+    def test_get_mapping(self):
+        # CASE 1: Simple Lineal
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
+        self.assertListEqual(list1=test_list, list2=[["R1", "R2", "R3"]])
+        # CASE 2: Complex Lineal
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R5"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": None,
+            "R5": None,
+        }
+        test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
+        self.assertListEqual(
+            list1=test_list[0], list2=["R0", "R1", "R2", "R3", "R4"]
+        )
+        self.assertListEqual(list1=test_list[1], list2=["R5"])
+        # CASE 2b: Complex Lineal
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R7"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R5",
+            "R5": ("R6", "R9"),
+            "R6": "R12",
+            "R7": ("R8", "R11"),
+            "R8": "R10",
+            "R9": None,
+            "R10": None,
+            "R11": None,
+            "R12": None,
+        }
+        test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
+        # Test the two longest maps
+        self.assertListEqual(
+            list1=test_list[0],
+            list2=["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],
+        )
+        self.assertListEqual(list1=test_list[1], list2=["R7", "R8", "R10"])
+
+    def test_get_pop_key(self):
+        # CASE 1: Simple Lineal
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_key = gr.get_pop_key(dictionary=test_dict)
+        self.assertIsInstance(test_key, str)
+        # CASE 2: Simple Cyclic
+        test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
+        test_key = gr.get_pop_key(dictionary=test_dict)
+        self.assertIsInstance(test_key, str)
+        # CASE 3: Complex Lineal
+        test_dict = {"R1": ("R2", "R7"), "R2": ("R3", "R4")}
+        test_key = gr.get_pop_key(dictionary=test_dict)
+        self.assertIsInstance(test_key, str)
+
+    def test_get_all_values(self):
+        # CASE 1: Simple dictionary
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_set = gr.get_all_values(dictionary=test_dict, keys=["R1"])
+        self.assertCountEqual(first=test_set, second={"R2"})
+        # CASE 2: Simple dictionary, multiple keys
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R7"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R5",
+            "R5": None,
+        }
+        test_set = gr.get_all_values(
+            dictionary=test_dict, keys=["R1", "R5", "R3"]
+        )
+        self.assertCountEqual(first=test_set, second={"R2", "R7", "R4"})
+
+    def test_build_graph(self):
+        # CASE 1: Simple Lineal
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=1)
+        # CASE 2: Simple Cyclic
+        test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=1)
+        # CASE 3: Complex Lineal
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R7"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R5",
+            "R5": ("R6", "R9"),
+            "R6": "R12",
+            "R7": "R8",
+            "R8": ("R10", "R11"),
+            "R9": None,
+            "R10": None,
+            "R11": None,
+            "R12": None,
+        }
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=4)
+        self.assertIn(member=["R8", "R11"], container=test_list)
+        # CASE 3: Complex Cyclic
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R5"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R0",
+            "R5": None,
+        }
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=2)
 
 
 if __name__ == "__main__":

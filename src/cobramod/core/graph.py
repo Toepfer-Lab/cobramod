@@ -193,7 +193,7 @@ def return_graph_from_dict(
 # key. KEY -> VALUE.
 
 
-def find_cycle(graph: dict, key, visited: list):
+def find_cycle(graph: dict, key: str, visited: list):
     """
     Returns a list with the cycle in the graph or False is graph is lineal.
     This function is recursive.
@@ -247,17 +247,19 @@ def cut_cycle(graph: dict, key: str):
     # TODO: add debug. Is it necesary?
 
 
-def back(graph: dict, value: str, path: list) -> list:
+def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
     """
-    Return a list with the the path that ends with given value until it reaches
-    in a node without a value as a key. The function is recursive and will only
-    work with lineal directed graphs.
+    Return a list with the path that ends with given value until it reaches
+    a node without a value as a key or the value can be found in the stop_list.
+    The function is recursive and will only work with lineal directed graphs.
 
     Args:
         graph (dict): Dictionary with relationship between nodes. A node can
             have multiple edges, which should be presented as values.
         value (str): The value to search.
         path (list): The already-visited path.
+        stop_list (list): Elements that which trigger the function to stop,
+            if found.
 
     Returns:
         List: a list with the path that end up with value.
@@ -271,33 +273,25 @@ def back(graph: dict, value: str, path: list) -> list:
         if isinstance(val, tuple):
             # In case of tuples, test each single case
             for single in val:
+                if single in stop_list:
+                    path.insert(0, key)
+                    return path
                 if single == value:
                     path.insert(0, key)
-                    return back(graph=graph, value=key, path=path)
+                    return back(
+                        graph=graph, value=key, path=path, stop_list=stop_list
+                    )
+        if val in stop_list:
+            path.insert(0, key)
+            return path
         # If val from dictionary is the same as value, then run recursive.
         if val == value:
             path.insert(0, key)
-            return back(graph=graph, value=key, path=path)
+            return back(graph=graph, value=key, path=path, stop_list=stop_list)
     return path
 
 
-def items(graph: dict) -> set:
-    """
-    Returns all the nodes in a graph as a set. Nones will not be included
-    """
-    items = set()
-    for key, value in graph.items():
-        items.add(key)
-        if isinstance(value, tuple):
-            # It will never have None
-            items.update(value)
-            continue
-        if value is not None:
-            items.add(value)
-    return items
-
-
-def longest_path(graph: dict) -> list:
+def get_paths(graph: dict, stop_list: list) -> list:
     """
     Returns a list with the longest path in a graph. This only works with
     lineal directed paths.
@@ -312,19 +306,193 @@ def longest_path(graph: dict) -> list:
     Raises:
         RecursionError: if path is not lineal
     """
-    max_length = len(items(graph=graph))
     end_nodes = [key for key, value in graph.items() if value is None]
     # Function back will raise RecursionError if not lineal
     path_generator = (
-        back(graph=graph, value=node, path=[node]) for node in end_nodes
+        back(graph=graph, value=node, path=[node], stop_list=stop_list)
+        for node in end_nodes
     )
     paths = list()
     for node in end_nodes:
         with suppress(StopIteration):
             single = next(path_generator)
-            # If its the same length, return it. It is 100% Lineal
-            if len(single) == max_length:
-                return single
             paths.append(single)
-    # Return longest
-    return max(paths, key=len)
+    return paths
+
+
+def get_mapping(graph: dict, stop_list: list, new: list):
+    """
+    Gets the mapping for given graph. The mapping defines the longest paths
+    for the graph without including the previous longest path. The function
+    modifies given graph.
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values. This will
+            be modified
+        stop_list (list): Elements that which trigger the function to stop,
+            if found.
+        new (list): List with new mapping. Should be empty when call for the
+            first time.
+
+    Returns:
+        List: A list with the new mapping. Longest path for each recursion and
+            rest.
+    """
+    paths = get_paths(graph=graph, stop_list=stop_list)
+    # Get longest and reduce graph
+    try:
+        longest = max(paths, key=len)
+    except ValueError:
+        return
+    new.append(longest)
+    for item in longest:
+        graph.pop(item)
+    get_mapping(graph=graph, stop_list=longest, new=new)
+    return new
+
+
+def get_pop_key(dictionary: dict) -> str:
+    """
+    Get key from dictionary that is not None nor a tuple.
+    """
+    # Copy to avoid modifications
+    new = dictionary.copy()
+    true_value = None
+    while true_value is None:
+        key, value = new.popitem()
+        if isinstance(value, tuple):
+            for item in value:
+                true_value = item
+        # key, value
+        else:
+            true_value = value
+    return key
+
+
+def get_all_values(dictionary: dict, keys: list) -> set:
+    """
+    Return a set with the all the values for a given list of keys. Elements of
+    tuples will be added separately.
+
+    Args:
+        dictionary (dict): dictionary with keys and values
+        keys (list): List of keys to get values
+
+    Returns:
+        Set: Values from given keys
+    """
+    set_values = set()
+    for item in keys:
+        value = dictionary[item]
+        # In case of tuples
+        if isinstance(value, tuple):
+            for item in value:
+                if item is not None:
+                    set_values.add(item)
+        else:
+            if value is not None:
+                set_values.add(value)
+    return set_values
+
+
+def get_key(dictionary: dict, value):
+    """
+    Returns key for given value. Tuples analyze separately.
+
+    Args:
+        dictionary (dict): Dictionary with keys and values
+        value (Any): Value to find in dictionary
+
+    Returns:
+        key: Key for specific value
+
+    Raises:
+        Warning: If value is not found
+    """
+    for key, test_value in dictionary.items():
+        # In case of tuples
+        if isinstance(test_value, tuple):
+            for item in test_value:
+                if item == value:
+                    return key
+        if test_value == value:
+            return key
+    raise Warning(f'Key for "{value}" not found in dictionary.')
+
+
+def check_values(item: str, longest: list, mapping: list, graph: dict):
+    """
+    Check that given item is located in a branch. Returns the key of the item
+    if found in branch that is not the longest. If nothing is found, an error
+    will be raised.
+
+    Args:
+        item (str): Value to search
+        longest (list): List of longest path.
+        mapping (list): List with paths
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+
+    Returns:
+        Str: Key from value if found in a branch.
+
+    Raises:
+        Warning: If value is not found
+    """
+    found = False
+    path: list
+    for path in mapping:
+        # Skip core and singles
+        if longest == path or len(path) == 1:
+            continue
+        values = get_all_values(dictionary=graph, keys=path)
+        if item in values:
+            found = True
+            key = get_key(dictionary=graph, value=item)
+            return key
+    if not found:
+        # TODO: add new Error
+        raise Warning(f'Value "{item}" not found in branches of mapping.')
+
+
+def build_graph(graph: dict) -> list:
+    """
+    Returns the mapping for given graph. The mapping is the defined as a list
+    with a "core" path and its branches. Cyclic graphs will be cut in order
+    to create a lineal direct graph
+
+    .. note::
+        If the first item of a branch is not in the "core", the it is in one
+        of the branches.
+
+    Returns:
+        List: Mapping from graph.
+    """
+    # its value cannot be None
+    key = get_pop_key(dictionary=graph)
+    # Fix cycles if found
+    cycle = find_cycle(graph=graph, key=key, visited=[])
+    if cycle is not False:
+        # This is modify graph
+        cut_cycle(graph=graph, key=cycle[0])
+    # This would modify the graph. Use copy
+    mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])
+    longest = max(mapping, key=len)
+    # Search for rest values, which are not included in core "longest"
+    path: list
+    for path in mapping:
+        # Skip core
+        if longest == path:
+            continue
+        # Check whether in this set
+        values = get_all_values(dictionary=graph, keys=longest)
+        if path[0] not in values:
+            key = check_values(
+                item=path[0], longest=longest, mapping=mapping, graph=graph
+            )
+            # Get key and insert it
+            path.insert(0, key)
+    # Return a sorted list
+    mapping.sort(key=len, reverse=True)
+    return mapping
