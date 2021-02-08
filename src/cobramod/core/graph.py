@@ -370,6 +370,7 @@ def get_pop_key(dictionary: dict) -> str:
     return key
 
 
+# TODO: remove if necesary
 def get_all_values(dictionary: dict, keys: list) -> set:
     """
     Return a set with the all the values for a given list of keys. Elements of
@@ -421,6 +422,7 @@ def get_key(dictionary: dict, value):
     raise Warning(f'Key for "{value}" not found in dictionary.')
 
 
+# TODO: remove if necesary
 def check_values(item: str, longest: list, mapping: list, graph: dict):
     """
     Check that given item is located in a branch. Returns the key of the item
@@ -478,21 +480,22 @@ def build_graph(graph: dict) -> list:
         cut_cycle(graph=graph, key=cycle[0])
     # This would modify the graph. Use copy
     mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])
-    longest = max(mapping, key=len)
+    # TODO: check if this is necesary
+    # longest = max(mapping, key=len)
     # Search for rest values, which are not included in core "longest"
-    path: list
-    for path in mapping:
-        # Skip core
-        if longest == path:
-            continue
-        # Check whether in this set
-        values = get_all_values(dictionary=graph, keys=longest)
-        if path[0] not in values:
-            key = check_values(
-                item=path[0], longest=longest, mapping=mapping, graph=graph
-            )
-            # Get key and insert it
-            path.insert(0, key)
+    # path: list
+    # for path in mapping:
+    #     # Skip core
+    #     if longest == path or len(path) == 1:
+    #         continue
+    #     # Check whether in this set
+    #     values = get_all_values(dictionary=graph, keys=longest)
+    #     if path[0] not in values:
+    #         key = check_values(
+    #             item=path[0], longest=longest, mapping=mapping, graph=graph
+    #         )
+    #         # Get key and insert it
+    #         path.insert(0, key)
     # Return a sorted list
     mapping.sort(key=len, reverse=True)
     return mapping

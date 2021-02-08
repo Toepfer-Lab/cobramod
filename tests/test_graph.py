@@ -573,7 +573,7 @@ class NewAlgorithm(TestCase):
         }
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=4)
-        self.assertIn(member=["R8", "R11"], container=test_list)
+        self.assertIn(member=["R11"], container=test_list)
         # CASE 3: Complex Cyclic
         test_dict = {
             "R0": "R1",
@@ -585,6 +585,25 @@ class NewAlgorithm(TestCase):
         }
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=2)
+        # CAS4: Complex Lineal
+        test_dict = {
+            "R1": "R2",
+            "R2": ("R3", "R5", "R4"),
+            "R3": ("R6", "R8"),
+            "R4": None,
+            "R5": None,
+            "R6": "R7",
+            "R7": "R10",
+            "R8": ("R9", "R11"),
+            "R9": None,
+            "R10": "R14",
+            "R11": ("R12", "R13"),
+            "R12": None,
+            "R13": None,
+            "R14": None,
+        }
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=6)
 
 
 if __name__ == "__main__":
