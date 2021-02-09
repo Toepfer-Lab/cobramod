@@ -69,6 +69,9 @@ def unformatted_matrix(graph: dict) -> List[list]:
             have multiple edges, which should be presented as values.
     Returns
         List[list]: Representation of matrix
+
+    Raises:
+        KeyError: If keys in graph are missing
     """
     # If graph cyclic, it will be modified
     mapping = build_graph(graph=graph)

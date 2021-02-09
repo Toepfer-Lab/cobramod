@@ -316,11 +316,22 @@ class NewAlgorithm(TestCase):
     intended.
     """
 
+    def test_find_missing(self):
+        # CASE 1: Lineal
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        gr.find_missing(graph=test_dict)
+        # CASE 1b: Simple Lineal, Error
+        test_dict = {"R1": ("R2", "R4"), "R2": "R3", "R3": None}
+        self.assertRaises(KeyError, gr.find_missing, graph=test_dict)
+
     def test_find_cycle(self):
         # CASE 1: Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_answer = gr.find_cycle(graph=test_dict, key="R1", visited=[])
         self.assertIs(expr1=False, expr2=test_answer)
+        # CASE 1b: Simple Lineal, Error
+        test_dict = {"R1": ("R2", "R4"), "R2": "R3", "R3": None}
+        test_answer = gr.find_cycle(graph=test_dict, key="R1", visited=[])
         # CASE 2: cyclic
         test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
         test_answer = gr.find_cycle(graph=test_dict, key="R1", visited=[])
@@ -551,6 +562,9 @@ class NewAlgorithm(TestCase):
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=1)
+        # CASE 1b: Simple Lineal, Error
+        test_dict = {"R1": ("R2", "R4"), "R2": "R3", "R3": None}
+        self.assertRaises(KeyError, gr.build_graph, graph=test_dict)
         # CASE 2: Simple Cyclic
         test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
         test_list = gr.build_graph(graph=test_dict)
