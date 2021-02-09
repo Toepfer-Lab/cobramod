@@ -460,10 +460,15 @@ class TestJsonDictionary(TestCase):
         self.assertCountEqual(first=test_answer["0"], second=["2", "3", "1"])
 
     def test_unformatted_matrix(self):
-        # CASE 1: Simple Lineal
+        # CASE 1a: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_matrix = mp.unformatted_matrix(graph=test_dict)
         self.assertIn(member=["R1", "R2", "R3"], container=test_matrix)
+        # CASE 1b: Simple Lineal
+        test_dict = {"R1": ("R2", "R4"), "R2": "R3", "R3": None, "R4": None}
+        test_matrix = mp.unformatted_matrix(graph=test_dict)
+        self.assertIn(member=["R1", "R2", "R3"], container=test_matrix)
+        self.assertIn(member=[0, "R4"], container=test_matrix)
         # CASE 2: Simple Cyclic
         test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
         test_matrix = mp.unformatted_matrix(graph=test_dict)
@@ -510,6 +515,100 @@ class TestJsonDictionary(TestCase):
         test_matrix = mp.unformatted_matrix(graph=test_dict)
         self.assertIn(member=[0, 0, 0, 0, 0, 0, "R9"], container=test_matrix)
         self.assertIn(member=[0, 0, 0, 0, "R11"], container=test_matrix)
+
+    def test_fill_matrix(self):
+        # CASE 1: Normal use
+        test_matrix = [["R1", "R2", "R3", "R4", "R5"], [0, 0, "R6"], [0, "R7"]]
+        mp.fill_matrix(test_matrix, length=5)
+        self.assertListEqual(list1=test_matrix[1], list2=[0, 0, "R6", 0, 0])
+        self.assertListEqual(list1=test_matrix[2], list2=[0, "R7", 0, 0, 0])
+
+    def test_format_matrix(self):
+        # CASE 0: only filling
+        test_matrix = [["R1", "R2", "R3", "R4", "R5"], [0, 0, "R6"]]
+        test_answer = mp.format_matrix(matrix=test_matrix.copy(), max_length=5)
+        test_values = set()
+        for row in test_answer:
+            for i in row:
+                if i != 0:
+                    test_values.add(i)
+        self.assertCountEqual(
+            first=["R1", "R2", "R3", "R4", "R5", "R6"], second=test_values
+        )
+        self.assertEqual(first=len(test_answer), second=2)
+        self.assertListEqual(list1=test_answer[1], list2=[0, 0, "R6", 0, 0])
+        # CASE 1: Simple modification
+        test_matrix = [
+            ["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],
+            [0, 0, "R7", "R8", "R10"],
+            [0, 0, 0, 0, 0, 0, "R9"],
+            [0, 0, 0, 0, "R11"],
+        ]
+        test_answer = mp.format_matrix(matrix=test_matrix.copy(), max_length=8)
+        test_values = set()
+        for row in test_answer:
+            for i in row:
+                if i != 0:
+                    test_values.add(i)
+        self.assertCountEqual(
+            first=[
+                "R0",
+                "R1",
+                "R2",
+                "R3",
+                "R4",
+                "R5",
+                "R6",
+                "R7",
+                "R8",
+                "R9",
+                "R10",
+                "R11",
+                "R12",
+            ],
+            second=test_values,
+        )
+        self.assertEqual(first=len(test_answer), second=3)
+        self.assertListEqual(
+            list1=test_answer[1], list2=[0, 0, "R7", "R8", "R10", 0, "R9", 0]
+        )
+        # CASE 2: Complex modification
+        test_matrix = [
+            ["R1", "R2", "R3", "R6", "R7", "R10", "R14"],
+            [0, 0, 0, "R8", "R11", "R12"],
+            [0, 0, "R4"],
+            [0, 0, "R5"],
+            [0, 0, 0, 0, "R9"],
+            [0, 0, 0, 0, 0, "R13"],
+        ]
+        test_answer = mp.format_matrix(matrix=test_matrix.copy(), max_length=7)
+        test_values = set()
+        for row in test_answer:
+            for i in row:
+                if i != 0:
+                    test_values.add(i)
+        self.assertCountEqual(
+            first=[
+                "R1",
+                "R2",
+                "R3",
+                "R4",
+                "R5",
+                "R6",
+                "R7",
+                "R8",
+                "R9",
+                "R10",
+                "R11",
+                "R12",
+                "R13",
+                "R14",
+            ],
+            second=test_values,
+        )
+        self.assertIn(
+            member=[0, 0, 0, 0, "R9", "R13", 0], container=test_answer
+        )
 
 
 if __name__ == "__main__":

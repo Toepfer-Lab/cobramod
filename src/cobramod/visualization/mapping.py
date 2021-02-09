@@ -108,5 +108,59 @@ def unformatted_matrix(graph: dict) -> List[list]:
     return matrix
 
 
-def format_matrix(matrix: List[list]) -> List[list]:
+def fill_matrix(matrix: List[list], length: int):
+    """
+    Fills each row of the matrix with 0 until it reaches given length
+
+    Args:
+        matrix (List[list]): Matrix to fill
+        length (int): Desired length.
+    """
+    for row in matrix:
+        while len(row) < length:
+            row.append(0)
+
+
+def format_matrix(matrix: List[list], max_length: int) -> List[list]:
+    """
+    Formats given matrix and returns, if possible, a reduced matrix. Matrix
+    will be filled with 0's if needed.
+
+    Args:
+        matrix (List[list]): Matrix to fill
+        max_length (int): Desired length.
+
+    """
+    # TODO: check if sorting is necesary
+    # Sort and fill missing 0
+    matrix.sort(key=len, reverse=True)
+    fill_matrix(matrix=matrix, length=max_length)
+    # Squeeze rows with 0s if possible
+    # new_matrix: List[list] = matrix.copy()
+    for index_j, row in enumerate(matrix):
+        # Find row with 0s
+        if 0 not in row:
+            # new_matrix.append(row)
+            continue
+        # Check if non-zero values can be appended above
+        previous = {
+            index_i
+            for index_i, item, in enumerate(matrix[index_j - 1])
+            if item != 0
+        }
+        # check if all positions above are non-zero
+        positions = {index_i for index_i, item, in enumerate(row) if item != 0}
+        # if position is in previous then there is no space
+        if positions.issubset(previous):
+            # new_matrix.append(row)
+            continue
+        previous_row: list = matrix[index_j - 1].copy()
+        for index_i, item in enumerate(row):
+            # Non-zero positions
+            if index_i not in positions:
+                continue
+            previous_row[index_i] = row[index_i]
+        # Remove previous and replace with new row
+        matrix[index_j] = previous_row
+        del matrix[index_j - 1]
     return matrix
