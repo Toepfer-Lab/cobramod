@@ -193,6 +193,31 @@ def return_graph_from_dict(
 # key. KEY -> VALUE.
 
 
+def find_missing(graph: dict):
+    """
+    Raise KeyError is graph is missing an Key
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+
+    Raises:
+        KeyError: If keys are missing
+    """
+    values = set()
+    for value in graph.values():
+        if isinstance(value, tuple):
+            for item in value:
+                values.add(item)
+            continue
+        values.add(value)
+    keys = {key for key in graph.keys()}
+    intersection = set.difference(values, keys)
+    intersection = set(filter(None, intersection))
+    if len(intersection) > 0:
+        raise KeyError(f"The graph is missing following keys: {intersection}")
+
+
 def find_cycle(graph: dict, key: str, visited: list):
     """
     Returns a list with the cycle in the graph or False is graph is lineal.
@@ -470,7 +495,12 @@ def build_graph(graph: dict) -> list:
 
     Returns:
         List: Mapping from graph.
+
+    Raises:
+        KeyError: If graph is missing a value.
     """
+    # Check that all values are represented
+    find_missing(graph=graph)
     # its value cannot be None
     key = get_pop_key(dictionary=graph)
     # Fix cycles if found
@@ -480,6 +510,7 @@ def build_graph(graph: dict) -> list:
         cut_cycle(graph=graph, key=cycle[0])
     # This would modify the graph. Use copy
     mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])
+
     # TODO: check if this is necesary
     # longest = max(mapping, key=len)
     # Search for rest values, which are not included in core "longest"
