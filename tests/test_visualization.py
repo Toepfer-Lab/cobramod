@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Unit test for sub-package visualization
 
 This module includes two TestCases:
@@ -8,7 +9,7 @@ This module includes two TestCases:
 from contextlib import suppress
 from pathlib import Path
 from time import sleep
-from unittest import TestCase, main
+from unittest import TestCase, main, skip
 
 from escher import Builder
 
@@ -16,6 +17,8 @@ from cobramod.error import FoundInPairError
 from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Node, Segment, Reaction
 from cobramod.visualization.converter import JsonDictionary, _convert_string
+import cobramod.visualization.mapping as mp
+
 
 dir_input = Path.cwd().joinpath("tests").joinpath("input")
 dir_data = Path.cwd().joinpath("tests").joinpath("data")
@@ -346,6 +349,7 @@ class TestJsonDictionary(TestCase):
         test_builder.save_html(str(test_path))
         self.assertTrue(expr=test_path.exists())
 
+    @skip("")
     def test_visualize(self):
         test_path = Path.cwd().joinpath("test_map.html")
         # CASE 1: regular visualization without data
@@ -425,6 +429,87 @@ class TestJsonDictionary(TestCase):
         test_flux = {"Reaction-A": 2, "Reaction-D": 2, "Reaction-E": -1}
         test_dict.reaction_data = test_flux
         test_builder = test_dict.visualize(filepath=test_path)
+
+    def test_child_map(self):
+        test_dict = {
+            "R1": "R2",
+            "R2": ("R3", "R5", "R4"),
+            "R3": ("R6", "R8"),
+            "R4": None,
+            "R5": None,
+            "R6": "R7",
+            "R7": "R10",
+            "R8": ("R9", "R11"),
+            "R9": None,
+            "R10": "R14",
+            "R11": ("R12", "R13"),
+            "R12": None,
+            "R13": None,
+            "R14": None,
+        }
+        test_list = [
+            ["R1", "R2", "R3", "R6", "R7", "R10", "R14"],
+            ["R8", "R11", "R12"],
+            ["R4"],
+            ["R5"],
+            ["R9"],
+            ["R13"],
+        ]
+        test_answer = mp.child_map(mapping=test_list, dictionary=test_dict)
+        self.assertCountEqual(first=test_answer["1"], second=["4", "5"])
+        self.assertCountEqual(first=test_answer["0"], second=["2", "3", "1"])
+
+    def test_unformatted_matrix(self):
+        # CASE 1: Simple Lineal
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_matrix = mp.unformatted_matrix(graph=test_dict)
+        self.assertIn(member=["R1", "R2", "R3"], container=test_matrix)
+        # CASE 2: Simple Cyclic
+        test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
+        test_matrix = mp.unformatted_matrix(graph=test_dict)
+        self.assertCountEqual(first=["R1", "R2", "R3"], second=test_matrix[0])
+        # CASE 3a: Complex Lineal
+        test_dict = {
+            "R1": "R2",
+            "R2": ("R3", "R5", "R4"),
+            "R3": ("R6", "R8"),
+            "R4": None,
+            "R5": None,
+            "R6": "R7",
+            "R7": "R10",
+            "R8": ("R9", "R11"),
+            "R9": None,
+            "R10": "R14",
+            "R11": ("R12", "R13"),
+            "R12": None,
+            "R13": None,
+            "R14": None,
+        }
+        test_matrix = mp.unformatted_matrix(graph=test_dict)
+        self.assertIn(member=[0, 0, "R5"], container=test_matrix)
+        self.assertIn(member=[0, 0, "R4"], container=test_matrix)
+        self.assertIn(
+            member=[0, 0, 0, "R8", "R11", "R12"], container=test_matrix
+        )
+        # CASE 3b: Complex Lineal
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R7"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R5",
+            "R5": ("R6", "R9"),
+            "R6": "R12",
+            "R7": "R8",
+            "R8": ("R10", "R11"),
+            "R9": None,
+            "R10": None,
+            "R11": None,
+            "R12": None,
+        }
+        test_matrix = mp.unformatted_matrix(graph=test_dict)
+        self.assertIn(member=[0, 0, 0, 0, 0, 0, "R9"], container=test_matrix)
+        self.assertIn(member=[0, 0, 0, 0, "R11"], container=test_matrix)
 
 
 if __name__ == "__main__":
