@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""Mapping of graph
+
+This modules handles the mapping of a directed graph into a matrix that can be
+used in Escher. The main function is
+:func:`cobramod.visualization.mapping.get_mapping`, which checks if the graph
+is lineal and creates the representation in a matrix. In case of cyclic path,
+it will cut it.
+"""
 from typing import Dict, List
 
 from cobramod.core.graph import build_graph, get_all_values
@@ -129,7 +137,6 @@ def format_matrix(matrix: List[list], max_length: int) -> List[list]:
     Args:
         matrix (List[list]): Matrix to fill
         max_length (int): Desired length.
-
     """
     # TODO: check if sorting is necesary
     # Sort and fill missing 0
@@ -163,4 +170,25 @@ def format_matrix(matrix: List[list], max_length: int) -> List[list]:
         # Remove previous and replace with new row
         matrix[index_j] = previous_row
         del matrix[index_j - 1]
+    return matrix
+
+
+def get_mapping(graph: dict) -> List[list]:
+    """
+    Returns a matrix for the representation of given graph.
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+    Returns
+        List[list]: Representation of matrix
+
+    Raises:
+        KeyError: If keys in graph are missing
+    """
+    # If graph is cyclic, it will be modified. Work with copy
+    matrix = unformatted_matrix(graph=graph.copy())
+    # Fill with 0 and merge rows if needed
+    longest = len(matrix[0])
+    matrix = format_matrix(matrix=matrix, max_length=longest)
     return matrix
