@@ -5,17 +5,17 @@ This module handles the convertion of strings into a proper object that can be
 used to create a JSON string, which can be later used in Escher.
 
 The main class of this module is
-:func:`cobramod.visualization.converter.JsonDictionary`. This class is able to
+:class:`cobramod.visualization.converter.JsonDictionary`. This class is able to
 parse and store data as JSON objects. To check the attributes for each
 JSON object, please read the documentation of
-:func:`cobramod.visualization.items`
+:mod:`cobramod.visualization.items`
 
 Important methods:
 
 - json_dump: The data can be parsed into a JSON. (str)
 - add_metabolite: Add metabolite-node into the JsonDictionary.
 - add_marker: Add a marker-node into the JsonDictionary.
-- create_reaction: Returns a :func:`cobramod.visualization.items.Reaction`.
+- create_reaction: Returns a :class:`cobramod.visualization.items.Reaction`.
 - add_reaction: Parses a reaction string and add the information into the
 JsonDictionary.
 - add_blank: Adds a empty reaction. This is useful for the extra space in the
@@ -36,9 +36,10 @@ from webbrowser import open as web_open
 from escher import Builder
 from IPython.core.getipython import get_ipython
 
-from cobramod.visualization.pair import PairDictionary
+# from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Reaction, Node
 from cobramod.visualization.debug import debug_log
+from cobramod.visualization.mapping import get_mapping
 
 
 def _in_notebook() -> bool:
@@ -53,7 +54,7 @@ def _in_notebook() -> bool:
 
 def _convert_string(string: str) -> dict:
     """
-    Converts a :func:`cobra.Reaction` reaction-string into a dictionary, and
+    Converts a :class:`cobra.Reaction` reaction-string into a dictionary, and
     returns a dictionary with the corresponding participants and their
     coefficients.
 
@@ -99,11 +100,11 @@ class JsonDictionary(UserDict):
         head (dict, optional): General information of the JSOB. Keys
             included: map_name, map_id, map_description, homepage, schema
         reactions (dict, optional): Dictionary with multiple
-            :func:`cobramod.visualization.items.Reaction` where the key is the
+            :class:`cobramod.visualization.items.Reaction` where the key is the
             number of the reaction and the value the object. Defaults to empty
             dictionary
             nodes (PairDictionary): Dictionary with multiple
-            :func:`cobramod.visualization.items.Node` where the key is the
+            :class:`cobramod.visualization.items.Node` where the key is the
             number of the Node and the value the corresponding object. Defaults
             to empty dictionary.
         text_labels  (dict, optional): Dictionary with the custom text inside
@@ -149,25 +150,42 @@ class JsonDictionary(UserDict):
                 elif key == "reactions":
                     self.data[key] = {}
                 elif key == "nodes":
-                    self.data[key] = PairDictionary()
+                    # TODO: add PairDictionary. Check if even needed
+                    self.data[key] = {}
                 elif key == "text_labels":
                     self.data[key] = {}
                 elif key == "canvas":
+                    # TODO: remove this.
                     self.data[key] = {
                         "x": 0,
                         "y": 0,
                         "width": 1500,
                         "height": 1500,
                     }
-        # Defining variables for sizes
+        # Canvas variables
         self.CANVAS_WIDTH: float = self.data["canvas"]["width"]
         self.CANVAS_HEIGHT: float = self.data["canvas"]["height"]
+        # TODO: fix variables
+        self.X = 0
+        self.Y = 0
+        # Reaction size
         self.R_WIDTH: float = 350
         self.R_HEIGHT: float = 300  # 210
         # Data stored about reactions and participants.
         self._overview = dict()
         # Default solution
         self.reaction_data: Dict[str, float] = None
+        # Dictionary with relationship of reactions
+        self.graph = None
+        self.reaction_strings = dict()
+
+    def get_canvas(self) -> dict:
+        return {
+            "x": self.X,
+            "y": self.Y,
+            "width": self.CANVAS_WIDTH,
+            "height": self.CANVAS_HEIGHT,
+        }
 
     def json_dump(self, indent: int = None) -> str:
         """
@@ -209,7 +227,7 @@ class JsonDictionary(UserDict):
                     "reactions": reactions,
                     "nodes": nodes,
                     "text_labels": self.data["text_labels"],
-                    "canvas": self.data["canvas"],
+                    "canvas": self.get_canvas(),
                 },
             ],
             indent=indent,
@@ -366,7 +384,7 @@ class JsonDictionary(UserDict):
         genes: List[Dict[str, str]] = [],
     ) -> Reaction:
         """
-        Returns a :func:`cobramod.visualization.items.Reaction`. It will take
+        Returns a :class:`cobramod.visualization.items.Reaction`. It will take
         into consideration the actual number of reactions in the JsonDictionary
         and add proper x and y position for the labels.
 
@@ -461,7 +479,7 @@ class JsonDictionary(UserDict):
     def _add_metabolites(self, metabolite_dict: dict, reaction: Reaction):
         """
         Adds the metabolites from the dictionary into a
-        :func:`cobramod.visualization.items.Reaction` and creates Nodes of the
+        :class:`cobramod.visualization.items.Reaction` and creates Nodes of the
         metabolites for the JsonDictionary class.
         """
         top_edge, left_edge = self._get_edges()
@@ -694,6 +712,38 @@ class JsonDictionary(UserDict):
             builder.reaction_data = self.reaction_data
         builder.save_html(filepath=filepath)
         # builder.reaction_styles = ["color"]
+        debug_log.info(f'Visualization located in "{filepath}"')
+        # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
+        if not _in_notebook():
+            # The context manager removes the ResourceWarning
+            with catch_warnings():
+                simplefilter(action="ignore", category=ResourceWarning)
+                web_open("file://" + str(filepath))
+        return builder
+
+    def new_visualize(self, filepath: Path = None):
+        if not filepath:
+            filepath = Path.cwd().joinpath("pathway.html")
+        # Use relationship
+        mapping = get_mapping(graph=self.graph)
+        # Modify canvas
+        self.CANVAS_HEIGHT = self.R_HEIGHT * len(mapping)
+        self.CANVAS_WIDTH = (self.R_WIDTH + 100) * len(mapping[0])
+        # Use reaction information
+        for row in mapping:
+            for reaction in row:
+                if reaction == 0:
+                    self.add_blank()
+                    continue
+                self.add_reaction(
+                    string=self.reaction_strings[reaction], identifier=reaction
+                )
+        builder = Builder(
+            reaction_styles=["text"],
+            map_name=self.data["head"]["map_name"],
+            map_json=self.json_dump(),
+        )
+        builder.save_html(filepath=filepath)
         debug_log.info(f'Visualization located in "{filepath}"')
         # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
         if not _in_notebook():

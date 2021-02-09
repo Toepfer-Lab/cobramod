@@ -399,7 +399,7 @@ class TestJsonDictionary(TestCase):
         )
         test_dict.add_blank()
         test_dict.add_reaction(
-            string="c00003_c --> C00228_c", identifier="Reaction-B"
+            string="C00003_c --> C00228_c", identifier="Reaction-B"
         )
         test_dict.add_reaction(
             string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
@@ -429,6 +429,86 @@ class TestJsonDictionary(TestCase):
         test_flux = {"Reaction-A": 2, "Reaction-D": 2, "Reaction-E": -1}
         test_dict.reaction_data = test_flux
         test_builder = test_dict.visualize(filepath=test_path)
+
+    def test_new_visualize(self):
+        test_path = Path.cwd().joinpath("test_map.html")
+        # CASE 1: regular visualization without data
+        test_dict = JsonDictionary()
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_dict.graph = {"R1": "R2", "R2": "R3", "R3": None}
+        test_dict.reaction_strings = {
+            "R1": "C00002_c + C00009_c --> C00227_c + C00003_c",
+            "R2": "C00003_c --> C00228_c",
+            "R3": "C00009_c + C00228_c--> C00004_c",
+        }
+        test_builder = test_dict.new_visualize(filepath=test_path)
+        sleep(1)
+        # CASE 2: Simple Branch
+        test_dict = JsonDictionary()
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_dict.graph = {
+            "R1": "R2",
+            "R2": ("R3", "R5"),
+            "R3": "R4",
+            "R4": None,
+            "R5": None,
+        }
+        test_dict.reaction_strings = {
+            "R1": "C00002_c + C00009_c --> C00227_c + C00003_c",
+            "R2": "C00003_c --> C00228_c",
+            "R3": "C00009_c + C00228_c--> C00004_c",
+            "R4": "C00004_c + C00011_c --> C00001_c + C00200_c",
+            "R5": "2 C00228_c --> 4 C00021_c",
+        }
+        test_builder = test_dict.new_visualize(filepath=test_path)
+        sleep(1)
+        # CASE 3a: Complex Lineal
+        test_dict = JsonDictionary()
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_dict.graph = {
+            "R1": "R2",
+            "R2": ("R3", "R5", "R4"),
+            "R3": ("R6", "R8"),
+            "R4": None,
+            "R5": None,
+            "R6": "R7",
+            "R7": "R10",
+            "R8": ("R9", "R11"),
+            "R9": None,
+            "R10": "R14",
+            "R11": ("R12", "R13"),
+            "R12": None,
+            "R13": None,
+            "R14": None,
+        }
+        test_dict.reaction_strings = {
+            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
+            "R2": "C01003_c --> C02001_c",
+            "R3": "C02001_c + C03001_c--> C03002_c",
+            "R4": "C02001_c+ C04001_c --> C04002_c + C04003_c",
+            "R5": "2 C02001_c --> 4 C05001_c",
+            "R6": "C03002_c --> C06001_c",
+            "R7": "3 C06001_c --> 6 C07001_c",
+            "R8": "C03002_c --> 4 C08001_c",
+            "R9": "2 C08001_c --> C09001_c",
+            "R10": "2 C07001_c --> 3 C10001_c",
+            "R11": "2 C08001_c --> 4 C11001_c",
+            "R12": "2 C11001_c --> C12001_c",
+            "R13": "C11001_c --> C13001_c",
+            "R14": "C10001_c --> C14001_c",
+        }
+        test_builder = test_dict.new_visualize(filepath=test_path)
+        test_builder
+
+
+class TestMapping(TestCase):
+    """
+    This TestCase checks if the mapping for the visualization has a normal
+    behaviour
+    """
 
     def test_child_map(self):
         test_dict = {
