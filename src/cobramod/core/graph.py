@@ -7,11 +7,14 @@ of the reactions. i.e the relationship between reactions. The main function
 of this module:
 
 - return_graph_from_dict: Obtain a list from the data of a pathway.
+
+TODO: add new algorithm to docstrings
 """
 from contextlib import suppress
 from itertools import chain
 from typing import Generator, Iterable
 
+from cobramod.error import GraphKeyError
 from cobramod.utils import _replace_item, _remove_item
 
 
@@ -215,7 +218,9 @@ def find_missing(graph: dict):
     intersection = set.difference(values, keys)
     intersection = set(filter(None, intersection))
     if len(intersection) > 0:
-        raise KeyError(f"The graph is missing following keys: {intersection}")
+        raise GraphKeyError(
+            f"The graph is missing following keys: {intersection}"
+        )
 
 
 def find_cycle(graph: dict, key: str, visited: list):
@@ -234,8 +239,8 @@ def find_cycle(graph: dict, key: str, visited: list):
         False: If the graph is lineal
 
     Raises:
-        KeyError: If a key is missing its relationship. When this happens, it
-            is probably a value missing.
+        GraphKeyError: If a key is missing its relationship. When this happens,
+            it is probably a value missing.
     """
     try:
         # Get the value and check if is already in visited. If so, then it
@@ -252,7 +257,7 @@ def find_cycle(graph: dict, key: str, visited: list):
     except KeyError:
         # If not a tuple then, the graph is missing an edge
         if not isinstance(key, tuple):
-            raise KeyError(f'Value for "{key}" is missing.')
+            raise GraphKeyError(f'Value for "{key}" is missing.')
         for single in key:
             # In case of a set, all values must be tested as well
             visited.append(single)
@@ -497,17 +502,18 @@ def build_graph(graph: dict) -> list:
         List: Mapping from graph.
 
     Raises:
-        KeyError: If graph is missing a value.
+        GraphKeyError: If graph is missing a value.
     """
     # Check that all values are represented
     find_missing(graph=graph)
-    # its value cannot be None
-    key = get_pop_key(dictionary=graph)
-    # Fix cycles if found
-    cycle = find_cycle(graph=graph, key=key, visited=[])
-    if cycle is not False:
-        # This is modify graph
-        cut_cycle(graph=graph, key=cycle[0])
+    # its value cannot be None. If single element then go direcly to mapping
+    with suppress(KeyError):
+        key = get_pop_key(dictionary=graph)
+        # Fix cycles if found
+        cycle = find_cycle(graph=graph, key=key, visited=[])
+        if cycle is not False:
+            # This is modify graph
+            cut_cycle(graph=graph, key=cycle[0])
     # This would modify the graph. Use copy
     mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])
 

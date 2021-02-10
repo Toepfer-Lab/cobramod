@@ -7,6 +7,15 @@ explaination.
 from cobramod.debug import debug_log
 
 
+class GraphKeyError(Exception):
+    """
+    Simple Error that should be raised when a value is missing as key in a
+    graph
+    """
+
+    pass
+
+
 class FoundInPairError(Exception):
     """
     Simple Error that is raised when the pair of a PairDictionary has already

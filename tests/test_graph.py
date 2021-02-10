@@ -5,6 +5,7 @@ from pathlib import Path
 from unittest import TestCase, main
 
 from cobramod.debug import debug_log
+from cobramod.error import GraphKeyError
 from cobramod.core.retrieval import get_data
 import cobramod.core.graph as gr
 
@@ -322,7 +323,7 @@ class NewAlgorithm(TestCase):
         gr.find_missing(graph=test_dict)
         # CASE 1b: Simple Lineal, Error
         test_dict = {"R1": ("R2", "R4"), "R2": "R3", "R3": None}
-        self.assertRaises(KeyError, gr.find_missing, graph=test_dict)
+        self.assertRaises(GraphKeyError, gr.find_missing, graph=test_dict)
 
     def test_find_cycle(self):
         # CASE 1: Lineal
@@ -345,7 +346,7 @@ class NewAlgorithm(TestCase):
             "R5": None,
         }
         self.assertRaises(
-            KeyError, gr.find_cycle, graph=test_dict, key="R0", visited=[]
+            GraphKeyError, gr.find_cycle, graph=test_dict, key="R0", visited=[]
         )
         # CASE 2a: Complex Lineal
         test_dict = {
@@ -482,6 +483,10 @@ class NewAlgorithm(TestCase):
         )
 
     def test_get_mapping(self):
+        # CASE 0: Single element
+        test_dict = {"R1": None}
+        test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
+        self.assertListEqual(list1=test_list, list2=[["R1"]])
         # CASE 1: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
@@ -558,13 +563,18 @@ class NewAlgorithm(TestCase):
         self.assertCountEqual(first=test_set, second={"R2", "R7", "R4"})
 
     def test_build_graph(self):
+        # CASE 0: Single Element
+        test_dict = {"R1": None}
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=1)
+        self.assertListEqual(list1=test_list[0], list2=["R1"])
         # CASE 1: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=1)
         # CASE 1b: Simple Lineal, Error
         test_dict = {"R1": ("R2", "R4"), "R2": "R3", "R3": None}
-        self.assertRaises(KeyError, gr.build_graph, graph=test_dict)
+        self.assertRaises(GraphKeyError, gr.build_graph, graph=test_dict)
         # CASE 2: Simple Cyclic
         test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
         test_list = gr.build_graph(graph=test_dict)
