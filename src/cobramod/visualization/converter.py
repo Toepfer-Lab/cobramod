@@ -12,6 +12,8 @@ JSON object, please read the documentation of
 
 Important methods:
 
+TODO: update docstring!!!
+
 - json_dump: The data can be parsed into a JSON. (str)
 - add_metabolite: Add metabolite-node into the JsonDictionary.
 - add_marker: Add a marker-node into the JsonDictionary.
@@ -26,11 +28,11 @@ Builder.
 
 from collections import UserDict
 from contextlib import suppress
-from itertools import cycle, chain, repeat
+from itertools import cycle
 from json import dumps
-from typing import Dict, List
+from typing import Dict
 from pathlib import Path
-from warnings import warn, catch_warnings, simplefilter
+from warnings import catch_warnings, simplefilter
 from webbrowser import open as web_open
 
 from escher import Builder
@@ -63,6 +65,7 @@ def _convert_string(string: str) -> dict:
     'C00002_c + C00033_c <=> C00227_c + G11113_c'
     'C00002_c + C00033_c <-- C00227_c + G11113_c'
     """
+    # TODO: return reversibility
     middle = max(string.find(">"), string.find("<"))
     # find exact middle
     if " " == string[middle - 1]:
@@ -121,62 +124,41 @@ class JsonDictionary(UserDict):
             visualized. Default to empty dictionary.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         """
         Initiates the creation of the JsonDictionary. It uses the same
         arguments and keyword arguments as a regular dictionary. However, some
         important keys can be imported, shown in the docstring for the class.
         """
         # Init dictionary
-        super().__init__(self, *args, **kwargs)
-        # Check if no kwargs were specified
-        for key in ("head", "reactions", "text_labels", "nodes", "canvas"):
-            # Check if key can be called individually
-            try:
-                self.data[key]
-            except KeyError:
-                # If arguments are expected in the method, initialization of
-                # objects gets bugged. e.g. modifying attribute in class A,
-                # would change the same attribute in Class B
-                if key == "head":
-                    self.data[key] = {
-                        "map_name": "",
-                        "map_id": "",
-                        "map_description": "",
-                        "homepage": "",
-                        "schema": "https://escher.github.io/escher/"
-                        + "jsonschema/1-0-0#",
-                    }
-                elif key == "reactions":
-                    self.data[key] = {}
-                elif key == "nodes":
-                    # TODO: add PairDictionary. Check if even needed
-                    self.data[key] = {}
-                elif key == "text_labels":
-                    self.data[key] = {}
-                elif key == "canvas":
-                    # TODO: remove this.
-                    self.data[key] = {
-                        "x": 0,
-                        "y": 0,
-                        "width": 1500,
-                        "height": 1500,
-                    }
+        super().__init__()
+        # Initiate basic information
+        self.data["head"] = {
+            "map_name": "",
+            "map_id": "",
+            "map_description": "",
+            "homepage": "",
+            "schema": "https://escher.github.io/escher/jsonschema/1-0-0#",
+        }
+        self.data["reactions"] = {}
+        # TODO: add PairDictionary. Check if even needed
+        self.data["nodes"] = {}
+        self.data["text_labels"] = {}
         # Canvas variables
-        self.CANVAS_WIDTH: float = self.data["canvas"]["width"]
-        self.CANVAS_HEIGHT: float = self.data["canvas"]["height"]
+        self.CANVAS_WIDTH: float = 0
+        self.CANVAS_HEIGHT: float = 0
         # TODO: fix variables
         self.X = 0
         self.Y = 0
         # Reaction size
-        self.R_WIDTH: float = 350
+        self.R_WIDTH: float = 450
         self.R_HEIGHT: float = 300  # 210
         # Data stored about reactions and participants.
         self._overview = dict()
         # Default solution
         self.reaction_data: Dict[str, float] = None
         # Dictionary with relationship of reactions
-        self.graph = None
+        self.graph: dict = None
         self.reaction_strings = dict()
 
     def get_canvas(self) -> dict:
@@ -309,7 +291,7 @@ class JsonDictionary(UserDict):
             f" to the JsonDictionary."
         )
 
-    def add_marker(self, x: float, y: float, node_type: str = "midmarker"):
+    def add_marker(self, x: float, y: float, node_type: str):
         """
         Add a marker-type node into the JsonDictionary. Node can be a midmarker
         or a multimarker. These markes are located in the middle of the
@@ -328,103 +310,105 @@ class JsonDictionary(UserDict):
             f"the JsonDictionary"
         )
 
-    def __get_col_row(self) -> tuple:
-        """
-        Returns the number of columns and rows, in that order
-        """
-        columns = int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
-        rows = int(self.CANVAS_HEIGHT / (self.R_HEIGHT))
-        return columns, rows
+    # def __get_col_row(self) -> tuple:
+    #     """
+    #     Returns the number of columns and rows, in that order
+    #     """
+    #     columns = int(self.CANVAS_WIDTH / (self.R_WIDTH + 100))
+    #     rows = int(self.CANVAS_HEIGHT / (self.R_HEIGHT))
+    #     return columns, rows
 
-    def _get_edges(self) -> tuple:
-        """
-        Return the top edge and the left edge for the Reaction-box. They define
-        the position of the Reaction-box and takes into consideration the
-        number of reactions in the JsonDictionary.
-        """
-        # Size of columns depends on number of reactions, or the relationship
-        # CANVAS_WIDTH:R_WIDTH
-        # The 50 and 100 px is a visual help (extra separation)
-        # TODO: verify visual help
-        columns, rows = self.__get_col_row()
-        # create Generators for the place number of the reaction-Box
-        sequence_x = cycle(range(0, columns))
-        repeated_rows = chain.from_iterable(
-            (
-                repeat(row_number, columns)
-                for row_number in range(0, len(self.data["reactions"]))
-            )
-            # A 0 just in case of first item
-        ) or [0]
-        sequence_y = cycle(repeated_rows)
-        length = list(range(0, len(self.data["reactions"])))
-        # TODO: find more elegant way
-        if not length:
-            place_x = 0
-            place_y = 0
-        else:
-            # Skip once 0 for both cases because of if-statement
-            next(sequence_x)
-            next(sequence_y)
-            for repetition in length:
-                place_x = next(sequence_x)
-                place_y = next(sequence_y)
-        # External box
-        top_edge = (self.CANVAS_HEIGHT / rows) * place_y
-        left_edge = (self.CANVAS_WIDTH / columns) * place_x
-        return top_edge, left_edge
+    # def _get_edges(self) -> tuple:
+    #     """
+    # Return the top edge and the left edge for the Reaction-box. They define
+    # the position of the Reaction-box and takes into consideration the
+    # number of reactions in the JsonDictionary.
+    #     """
+    #     # Size of columns depends on number of reactions, or the relationship
+    #     # CANVAS_WIDTH:R_WIDTH
+    #     # The 50 and 100 px is a visual help (extra separation)
+    #     # TODO: verify visual help
+    #     columns, rows = self.__get_col_row()
+    #     # create Generators for the place number of the reaction-Box
+    #     sequence_x = cycle(range(0, columns))
+    #     repeated_rows = chain.from_iterable(
+    #         (
+    #             repeat(row_number, columns)
+    #             for row_number in range(0, len(self.data["reactions"]))
+    #         )
+    #         # A 0 just in case of first item
+    #     ) or [0]
+    #     sequence_y = cycle(repeated_rows)
+    #     length = list(range(0, len(self.data["reactions"])))
+    #     # TODO: find more elegant way
+    #     if not length:
+    #         place_x = 0
+    #         place_y = 0
+    #     else:
+    #         # Skip once 0 for both cases because of if-statement
+    #         next(sequence_x)
+    #         next(sequence_y)
+    #         for repetition in length:
+    #             place_x = next(sequence_x)
+    #             place_y = next(sequence_y)
+    #     # External box
+    #     top_edge = (self.CANVAS_HEIGHT / rows) * place_y
+    #     left_edge = (self.CANVAS_WIDTH / columns) * place_x
+    #     return top_edge, left_edge
 
-    def create_reaction(
-        self,
-        name: str,
-        identifier: str,
-        reversibility: bool,
-        segments: dict,
-        gene_reaction_rule: str = "",
-        genes: List[Dict[str, str]] = [],
-    ) -> Reaction:
-        """
-        Returns a :class:`cobramod.visualization.items.Reaction`. It will take
-        into consideration the actual number of reactions in the JsonDictionary
-        and add proper x and y position for the labels.
+    # def create_reaction(
+    #     self,
+    #     name: str,
+    #     identifier: str,
+    #     reversibility: bool,
+    #     segments: dict,
+    #     gene_reaction_rule: str = "",
+    #     genes: List[Dict[str, str]] = [],
+    # ) -> Reaction:
+    #     """
+    # Returns a :class:`cobramod.visualization.items.Reaction`. It will take
+    # into consideration the actual number of reactions in the JsonDictionary
+    # and add proper x and y position for the labels.
 
-        Args:
-            name (str): The name for the reaction.
-            bigg_id (str): Identifier for the reaction. It does not have to be
-                from BIGG.
-            reversibility (bool): True if the reaction should be represented as
-                reversible.
-            label_y (float, optional): Location in x-axis for the label of the
-                reaction. Defaults to 0.
-            label_x (float, optional): Location in y-axis for the label of the
-                reaction. Defaults to 0.
-            gene_reaction_rule (str, optional): Gene rules that specify
-                involved genes. Defaults to an empty string.
-            genes (list, optional): A list with the genes involved for that
-                identifier. Each item has to be a dictionary with the keys
-                'bigg_id' and 'name'
-            segments (PairDictionary, optional): Dictionary with segments,
-                which represent the conections between nodes.
-        """
-        # TODO: Confirm behaviour of PairDictionaries
-        # if not isinstance(segments, PairDictionary):
-        #     raise TypeError("Argument 'segments' must be a PairDictionary")
-        top_edge, left_edge = self._get_edges()
-        reaction = Reaction(
-            name=name,
-            bigg_id=identifier,
-            reversibility=reversibility,
-            # label_y=top_edge + self.R_HEIGHT / 2 - 30,
-            label_y=top_edge + 30,
-            # label_x=left_edge + self.R_WIDTH / 2 + 20,
-            label_x=(left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 17,
-            gene_reaction_rule=gene_reaction_rule,
-            genes=genes,
-            segments=segments,
-        )
-        return reaction
+    # Args:
+    #     name (str): The name for the reaction.
+    #     bigg_id (str): Identifier for the reaction. It does not have to be
+    #         from BIGG.
+    #     reversibility (bool): True if the reaction should be represented as
+    #         reversible.
+    #     label_y (float, optional): Location in x-axis for the label of the
+    #         reaction. Defaults to 0.
+    #     label_x (float, optional): Location in y-axis for the label of the
+    #         reaction. Defaults to 0.
+    #     gene_reaction_rule (str, optional): Gene rules that specify
+    #         involved genes. Defaults to an empty string.
+    #     genes (list, optional): A list with the genes involved for that
+    #         identifier. Each item has to be a dictionary with the keys
+    #         'bigg_id' and 'name'
+    #     segments (PairDictionary, optional): Dictionary with segments,
+    #         which represent the conections between nodes.
+    #     """
+    #     # TODO: Confirm behaviour of PairDictionaries
+    #     # if not isinstance(segments, PairDictionary):
+    #     #     raise TypeError("Argument 'segments' must be a PairDictionary")
+    #     top_edge, left_edge = self._get_edges()
+    #     reaction = Reaction(
+    #         name=name,
+    #         bigg_id=identifier,
+    #         reversibility=reversibility,
+    #         # label_y=top_edge + self.R_HEIGHT / 2 - 30,
+    #         label_y=top_edge + 30,
+    #         # label_x=left_edge + self.R_WIDTH / 2 + 20,
+    #        label_x=(left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 17,
+    #         gene_reaction_rule=gene_reaction_rule,
+    #         genes=genes,
+    #         segments=segments,
+    #     )
+    #     return reaction
 
-    def _add_reaction_markers(self, identifier: str):
+    def _add_reaction_markers(
+        self, identifier: str, top_edge: float, left_edge: float
+    ):
         """
         Add the corresponding midmarker and multimarkers into the
         JsonDictionary. Nodes will be added to the corresponding reaction data.
@@ -432,7 +416,8 @@ class JsonDictionary(UserDict):
         """
         # For markers: 20 px between each one. Sequence should follow:
         # multimarker-midmarker-multimarker
-        top_edge, left_edge = self._get_edges()
+        # if top_edge is None and left_edge is None:
+        #     top_edge, left_edge = self._get_edges()
         for node_type, extra_x, position in (
             ("multimarker", -20, "first"),
             ("midmarker", 0, "middle"),
@@ -446,47 +431,64 @@ class JsonDictionary(UserDict):
                 node_type=node_type,
             )
 
-    def _first_column(self, x_position: float) -> bool:
-        """
-        Returns true if given x-position is located in the first column
-        """
-        columns, _ = self.__get_col_row()
-        x_range = self.CANVAS_WIDTH / columns
-        return x_position < x_range
+    # def _first_column(self, x_position: float) -> bool:
+    #     """
+    #     Returns true if given x-position is located in the first column
+    #     """
+    #     columns, _ = self.__get_col_row()
+    #     x_range = self.CANVAS_WIDTH / columns
+    #     return x_position < x_range
 
-    def _last_column(self, x_position: float) -> bool:
-        """
-        Returns true if given x-position is located in the last column
-        """
-        columns, _ = self.__get_col_row()
-        x_range = self.CANVAS_WIDTH / columns
-        edge_range = self.CANVAS_WIDTH - x_range
-        return x_position >= edge_range
+    # def _last_column(self, x_position: float) -> bool:
+    #     """
+    #     Returns true if given x-position is located in the last column
+    #     """
+    #     columns, _ = self.__get_col_row()
+    #     x_range = self.CANVAS_WIDTH / columns
+    #     edge_range = self.CANVAS_WIDTH - x_range
+    #     return x_position >= edge_range
 
-    def _not_edges(self, x_position: float) -> bool:
-        """
-        Returns True if x_position is located in the last column and previous
-        metabolite from the JsonDictionary is located in the first column.
-        """
-        # First condition/ actual reaction
-        first = self._first_column(x_position=x_position)
-        # Second condition/ prior reaction. Grab last metabolite, which is 4
-        # identifiers behind
-        last = str(self._get_last_number(item="nodes") - 4)
-        second = self._last_column(x_position=self.data["nodes"][last]["x"])
-        return all([first, second])
+    # def _not_edges(self, x_position: float) -> bool:
+    #     """
+    #     Returns True if x_position is located in the last column and previous
+    #     metabolite from the JsonDictionary is located in the first column.
+    #     """
+    #     # First condition/ actual reaction
+    #     first = self._first_column(x_position=x_position)
+    #     # Second condition/ prior reaction. Grab last metabolite, which is 4
+    #     # identifiers behind
+    #     last = str(self._get_last_number(item="nodes") - 4)
+    #     second = self._last_column(x_position=self.data["nodes"][last]["x"])
+    #     return all([first, second])
 
-    def _add_metabolites(self, metabolite_dict: dict, reaction: Reaction):
+    def map_metabolites(
+        self,
+        metabolite_dict: dict,
+        reaction: Reaction,
+        top_edge: float,
+        left_edge: float,
+    ):
         """
-        Adds the metabolites from the dictionary into a
-        :class:`cobramod.visualization.items.Reaction` and creates Nodes of the
-        metabolites for the JsonDictionary class.
+        Creates the metabolites from given dictionary and complements the
+        :class:`cobramod.visualization.items.Reaction`. Moreover, it creates
+        the corresponding metabolites-nodes for the JsonDictionary class.
+
+        Args:
+            metabolite_dict (dict): Dictionary with metabolites and their
+                coefficients
+            reaction (Reaction): Reaction that will include the metabolite.
+            top_edge (float): Position for the top edge of the reaction-box
+            left_edge (float): Position for the left edge of the reaction-box
         """
-        top_edge, left_edge = self._get_edges()
+        # if top_edge is None and left_edge is None:
+        #     top_edge, left_edge = self._get_edges()
         # Minimum number of identifiers. TODO: verify behaviour with 0
         side_dict = {"left": 1, "right": 1}
-        # Define previous reaction
+        # Define previous reaction. This is intented to check for shared
+        # metabolites
         try:
+            # TODO: Use mapping and change to use it instead of previous
+            # metabolite
             previous = str(len(self.data["reactions"]) - 1)
             old_name = self.data["reactions"][previous]["bigg_id"]
             old_metabolites = [
@@ -494,13 +496,13 @@ class JsonDictionary(UserDict):
                 for reaction in self.data["reactions"][previous]["metabolites"]
                 if reaction["coefficient"] > 0
             ]
-            not_edges = self._not_edges(x_position=left_edge)
+            # not_edges = self._not_edges(x_position=left_edge)
         except KeyError:
             # Special case for first reaction
-            previous = "0"
+            # previous = "0"
             old_name = ""
             old_metabolites = []
-            not_edges = False
+            # not_edges = False
         for key, value in metabolite_dict.items():
             # By default, left side
             item = "reactants"
@@ -529,7 +531,8 @@ class JsonDictionary(UserDict):
             # Check previous reaction (must be in product). Side must be left
             # (reactants) AND should not be in the last column. Change last
             # variable to node of the node.
-            if key in old_metabolites and SIDE == 0 and not not_edges:
+            # if key in old_metabolites and SIDE == 0 and not not_edges:
+            if key in old_metabolites and SIDE == 0:
                 last = self._overview[old_name]["nodes"][key]
                 debug_log.debug(
                     f'Metabolite "{key}" in previous reaction "{old_name}" '
@@ -564,7 +567,17 @@ class JsonDictionary(UserDict):
             self._overview[reaction["bigg_id"]][item].update({key: value})
             self._overview[reaction["bigg_id"]]["nodes"].update({key: last})
 
-    def _add_segments(self, reaction: Reaction, metabolite_dict: dict):
+    def add_segment(self, reaction: Reaction, metabolite_dict: dict):
+        """
+        Add the segment to given Reaction. This will make the visuals in
+        Escher. The information about the nodes of metabolites in located in
+        the JsonDictionary.
+
+        Args:
+            metabolite_dict (dict): Dictionary with metabolites and their
+                coefficients
+            reaction (Reaction): Reaction to extend
+        """
         # First 2 Segmenst joins the node-markers. The number of Segments is
         # equal to: 2 + number_metabolites
         identifier = reaction["bigg_id"]
@@ -602,31 +615,33 @@ class JsonDictionary(UserDict):
         # Verify the number of Segments. They cannot have the same key of other
         # Segments from other reactions.
 
-    def __check_out_canvas(self) -> bool:
-        """
-        Returns true if next reaction would be within range of the canvas
-        """
-        rows, columns = self.__get_col_row()
-        maximum = rows * columns
-        actual = len(self.data["reactions"]) + 1
-        return actual > maximum
+    # def __check_out_canvas(self) -> bool:
+    #     """
+    #     Returns true if next reaction would be within range of the canvas
+    #     """
+    #     rows, columns = self.__get_col_row()
+    #     maximum = rows * columns
+    #     actual = len(self.data["reactions"]) + 1
+    #     return actual > maximum
 
-    def add_blank(self):
-        """
-        Creates and adds a blank space into the JsonDictionary. A blank space
-        is defined as a reactions with no name, identifier, metabolites and
-        segments. For the visualization, these reactions should get removed.
-        """
-        reaction = self.create_reaction(
-            name="", identifier="", reversibility=True, segments=dict()
-        )
-        number = self._get_last_number(item="reactions")
-        self.data["reactions"].update({str(number): reaction})
-        debug_log.info(
-            f'Empty space added to the JsonDictionary with number "{number}"'
-        )
+    # def add_blank(self):
+    #     """
+    #     Creates and adds a blank space into the JsonDictionary. A blank space
+    #     is defined as a reactions with no name, identifier, metabolites and
+    #     segments. For the visualization, these reactions should get removed.
+    #     """
+    #     reaction = self.create_reaction(
+    #         name="", identifier="", reversibility=True, segments=dict()
+    #     )
+    #     number = self._get_last_number(item="reactions")
+    #     self.data["reactions"].update({str(number): reaction})
+    #     debug_log.info(
+    #         f'Empty space added to the JsonDictionary with number "{number}"'
+    #     )
 
-    def add_reaction(self, string: str, identifier: str):
+    def add_reaction(
+        self, row: int, column: int, string: str, name: str, identifier: str
+    ):
         """
         Parses and add given reaction string as a reaction for the
         JsonDictionary. It will automatically create all the necessary nodes
@@ -635,16 +650,10 @@ class JsonDictionary(UserDict):
         Args:
             string (str): Reaction string to be parsed.
             identifier (str): Identifier for the reaction
-
-        Raises:
-            UserWarning: If reaction would be located outside the canvas. It
-                will not stop the method.
+            row (int): Row number from the visualization matrix.
+            column (int): Column number of the visualization matrix.
+            name (str): The name of the reaction
         """
-        # Check for reaction inside canvas.
-        if self.__check_out_canvas():
-            msg = f'Reaction "{identifier}" will be located ouside the canvas.'
-            warn(message=msg, category=UserWarning)
-            debug_log.warning(msg=msg)
         # Add general data
         self._overview[identifier] = {
             "reactants": {},
@@ -654,27 +663,69 @@ class JsonDictionary(UserDict):
         # Extract information for new reaction, nr of metabolites (string
         # representation)
         metabolite_dict = _convert_string(string=string)
-        # Base reaction
-        reaction = self.create_reaction(
-            # TODO: Change name
-            name="test_reaction" + identifier,
-            identifier=identifier,
-            reversibility=True,
+        left_edge = self.R_WIDTH * column
+        top_edge = self.R_HEIGHT * row
+        # TODO: change this part
+        reversibility = True
+        reaction = Reaction(
+            name=name,
+            bigg_id=identifier,
+            reversibility=reversibility,
+            # label_x=(left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 17
+            label_x=left_edge + (self.R_WIDTH / 2),
+            label_y=top_edge + (self.R_HEIGHT) / 4,
+            gene_reaction_rule="",
+            genes=[],
             segments=dict(),
         )
         # Add nodes (metabolites and markers)
-        self._add_metabolites(
-            metabolite_dict=metabolite_dict, reaction=reaction
+        self.map_metabolites(
+            metabolite_dict=metabolite_dict,
+            reaction=reaction,
+            top_edge=top_edge,
+            left_edge=left_edge,
         )
-        self._add_reaction_markers(identifier=identifier)
-        # Segments
-        self._add_segments(reaction=reaction, metabolite_dict=metabolite_dict)
-        # Add to JsonDictionary
+        self._add_reaction_markers(
+            identifier=identifier, left_edge=left_edge, top_edge=top_edge
+        )
+        # Add visual segments to reaction
+        self.add_segment(reaction=reaction, metabolite_dict=metabolite_dict)
         number = self._get_last_number(item="reactions")
         self.data["reactions"].update({str(number): reaction})
         debug_log.info(f'Reaction "{identifier}" added to the JsonDictionary.')
 
-    def visualize(self, filepath: Path = None) -> Builder:
+    # def visualize(self, filepath: Path = None) -> Builder:
+    #     if not filepath:
+    #         filepath = Path.cwd().joinpath("pathway.html")
+    #     # Erase blank reactions.
+    #     for number in self.data["reactions"].copy():
+    #         if self.data["reactions"][number]["bigg_id"] == "":
+    #             self.data["reactions"].pop(number, None)
+    #             debug_log.debug(
+    #                 f'Empty space with reaction number "{number}" removed.'
+    #             )
+    #     # Create the builder. Text will make reactions only show the values
+    #     builder = Builder(
+    #         reaction_styles=["text"],
+    #         map_name=self.data["head"]["map_name"],
+    #         map_json=self.json_dump(),
+    #     )
+    #     # This statement is needed, otherwise, all reactions labels will
+    #     # appear with "(nd)".
+    #     if self.reaction_data:
+    #         builder.reaction_data = self.reaction_data
+    #     builder.save_html(filepath=filepath)
+    #     # builder.reaction_styles = ["color"]
+    #     debug_log.info(f'Visualization located in "{filepath}"')
+    #     # If in Jupyter, launch embedded widget. Otherwise, launch webbrowser
+    #     if not _in_notebook():
+    #         # The context manager removes the ResourceWarning
+    #         with catch_warnings():
+    #             simplefilter(action="ignore", category=ResourceWarning)
+    #             web_open("file://" + str(filepath))
+    #     return builder
+
+    def visualize(self, filepath: Path = None):
         """
         Saves the visualization of the JsonDictionary in given path as a HTML.
         Returns the builder for the JsonDictionary. If method is called in
@@ -691,16 +742,27 @@ class JsonDictionary(UserDict):
         Returns:
             Builder: Escher builder object for the visualization
         """
+        # Define path
         if not filepath:
             filepath = Path.cwd().joinpath("pathway.html")
-        # Erase blank reactions.
-        for number in self.data["reactions"].copy():
-            if self.data["reactions"][number]["bigg_id"] == "":
-                self.data["reactions"].pop(number, None)
-                debug_log.debug(
-                    f'Empty space with reaction number "{number}" removed.'
+        # Use relationship
+        mapping = get_mapping(graph=self.graph)
+        # Modify canvas
+        self.CANVAS_HEIGHT = self.R_HEIGHT * len(mapping)
+        self.CANVAS_WIDTH = self.R_WIDTH * len(mapping[0])
+        # Use reaction information
+        for index_j, row in enumerate(mapping):
+            for index_i, reaction in enumerate(row):
+                # Add reactions only not 0
+                if reaction == 0:
+                    continue
+                self.add_reaction(
+                    row=index_j,
+                    column=index_i,
+                    name=reaction,
+                    string=self.reaction_strings[reaction],
+                    identifier=reaction,
                 )
-        # Create the builder. Text will make reactions only show the values
         builder = Builder(
             reaction_styles=["text"],
             map_name=self.data["head"]["map_name"],
@@ -712,38 +774,6 @@ class JsonDictionary(UserDict):
             builder.reaction_data = self.reaction_data
         builder.save_html(filepath=filepath)
         # builder.reaction_styles = ["color"]
-        debug_log.info(f'Visualization located in "{filepath}"')
-        # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
-        if not _in_notebook():
-            # The context manager removes the ResourceWarning
-            with catch_warnings():
-                simplefilter(action="ignore", category=ResourceWarning)
-                web_open("file://" + str(filepath))
-        return builder
-
-    def new_visualize(self, filepath: Path = None):
-        if not filepath:
-            filepath = Path.cwd().joinpath("pathway.html")
-        # Use relationship
-        mapping = get_mapping(graph=self.graph)
-        # Modify canvas
-        self.CANVAS_HEIGHT = self.R_HEIGHT * len(mapping)
-        self.CANVAS_WIDTH = (self.R_WIDTH + 100) * len(mapping[0])
-        # Use reaction information
-        for row in mapping:
-            for reaction in row:
-                if reaction == 0:
-                    self.add_blank()
-                    continue
-                self.add_reaction(
-                    string=self.reaction_strings[reaction], identifier=reaction
-                )
-        builder = Builder(
-            reaction_styles=["text"],
-            map_name=self.data["head"]["map_name"],
-            map_json=self.json_dump(),
-        )
-        builder.save_html(filepath=filepath)
         debug_log.info(f'Visualization located in "{filepath}"')
         # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
         if not _in_notebook():

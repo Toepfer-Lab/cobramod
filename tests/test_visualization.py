@@ -161,13 +161,6 @@ class TestJsonDictionary(TestCase):
         test_dict = JsonDictionary()
         self.assertEqual(first={}, second=test_dict["reactions"])
         self.assertEqual(first="", second=test_dict["head"]["map_name"])
-        self.assertEqual(first=1500, second=test_dict["canvas"]["width"])
-        # CASE 2: creation of dictionary passing arguments
-        test_dict = JsonDictionary(
-            canvas={"x": 0, "y": 0, "width": 2000, "height": 2000}
-        )
-        self.assertEqual(first=2000, second=test_dict["canvas"]["width"])
-        self.assertEqual(first=2000, second=test_dict["canvas"]["height"])
 
     def test__get_last_number(self):
         # CASE 1: get last number in JsonDictionary. Reactions are not included
@@ -186,158 +179,187 @@ class TestJsonDictionary(TestCase):
             first=2, second=test_dict._get_last_number(item="nodes")
         )
 
-    def test_create_reaction(self):
-        # CASE 1a: method create_reaction. Regular.
-        test_dict = JsonDictionary()
-        test_reaction = test_dict.create_reaction(
-            name="test_reaction",
-            identifier="test_identifier",
-            reversibility=True,
-            segments=dict(),
-        )
-        self.assertEqual(
-            first="test_identifier", second=test_reaction["bigg_id"]
-        )
+    # def test_create_reaction(self):
+    #     # CASE 1a: method create_reaction. Regular.
+    #     test_dict = JsonDictionary()
+    #     test_reaction = test_dict.create_reaction(
+    #         name="test_reaction",
+    #         identifier="test_identifier",
+    #         reversibility=True,
+    #         segments=dict(),
+    #     )
+    #     self.assertEqual(
+    #         first="test_identifier", second=test_reaction["bigg_id"]
+    #     )
 
-    def test_add_blank(self):
-        # CASE 1: Regular initialization.
-        test_dict = JsonDictionary()
-        test_dict.add_blank()
-        self.assertEqual(first=len(test_dict["reactions"]), second=1)
-        self.assertEqual(
-            first=len(test_dict["reactions"]["0"]["metabolites"]), second=0
-        )
-        # Case 2: Stacking empty spaces.
-        test_dict.add_blank()
-        test_dict.add_blank()
-        self.assertEqual(first=len(test_dict["reactions"]), second=3)
-        self.assertEqual(
-            first=len(test_dict["reactions"]["1"]["metabolites"]), second=0
-        )
-        self.assertEqual(
-            first=len(test_dict["reactions"]["2"]["metabolites"]), second=0
-        )
+    # def test_add_blank(self):
+    #     # CASE 1: Regular initialization.
+    #     test_dict = JsonDictionary()
+    #     test_dict.add_blank()
+    #     self.assertEqual(first=len(test_dict["reactions"]), second=1)
+    #     self.assertEqual(
+    #         first=len(test_dict["reactions"]["0"]["metabolites"]), second=0
+    #     )
+    #     # Case 2: Stacking empty spaces.
+    #     test_dict.add_blank()
+    #     test_dict.add_blank()
+    #     self.assertEqual(first=len(test_dict["reactions"]), second=3)
+    #     self.assertEqual(
+    #         first=len(test_dict["reactions"]["1"]["metabolites"]), second=0
+    #     )
+    #     self.assertEqual(
+    #         first=len(test_dict["reactions"]["2"]["metabolites"]), second=0
+    #     )
 
     def test_add_reaction(self):
-        # CASE 1: test that edges are working properly
-        test_dict = JsonDictionary(
-            canvas={"x": 0, "y": 0, "width": 1000, "height": 600}
-        )
-        test_dict.add_reaction(
-            string="C00002_c + C00009_c --> C00227_c + C00003_c",
-            identifier="Reaction-A",
-        )
-        test_dict.add_reaction(
-            string="c00003_c --> C00228_c", identifier="Reaction-B"
-        )
-        test_dict.add_reaction(
-            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
-        )
-        test_dict.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="Reaction-D",
-        )
-        # Reaction "1" after half of canvas, "2" before half of canvas
-        self.assertGreater(a=test_dict["reactions"]["1"]["label_x"], b=500)
-        self.assertLess(a=test_dict["reactions"]["2"]["label_x"], b=500)
-        # Node "11" starts the third reaction (labeled "2"), since there is a
-        # shared metabolite
-        for segment in test_dict["reactions"]["2"]["segments"].values():
-            self.assertGreater(a=int(segment["from_node_id"]), b=10)
-            self.assertGreater(a=int(segment["to_node_id"]), b=10)
-        # CASE 2: Catch Warning if next reaction will be out of canvas
-        self.assertWarns(
-            UserWarning,
-            test_dict.add_reaction,
-            string="2 C00200_c --> 4 C00021_c",
-            identifier="Reaction-E",
-        )
-        # CASE 3: Test multiple reactions with different participants
+        # CASE 1: Matrix 2x2, Unrelated
         test_dict = JsonDictionary()
         test_dict.add_reaction(
-            string="C00002_c + C00009_c --> C00227_c + C00003_c",
-            identifier="Reaction-A",
+            string="C01001_c + C01002_c --> C01003_c + C01004_c",
+            identifier="R1",
+            name="Reaction-1",
+            row=0,
+            column=0,
         )
         test_dict.add_reaction(
-            string="C00003_c --> C00228_c", identifier="Reaction-B"
+            string="C02001_c --> C02002_c",
+            identifier="R2",
+            name="Reaction-2",
+            row=0,
+            column=1,
         )
         test_dict.add_reaction(
-            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
+            string="C03001_c + C03002_c_c--> C03003_c",
+            identifier="R3",
+            name="Reaction-3",
+            row=1,
+            column=0,
         )
         test_dict.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="Reaction-D",
+            string="C04001_c + C04002_c --> C04003_c + C04004_c",
+            identifier="R4",
+            name="Reaction-4",
+            row=1,
+            column=1,
+        )
+        # Reaction "R2" before two reactions boxes in x (900)
+        # Reaction "R3" before one reaction box in x (450)
+        self.assertLess(a=test_dict["reactions"]["1"]["label_x"], b=450 * 2)
+        self.assertLess(a=test_dict["reactions"]["2"]["label_x"], b=450)
+        # CASE 3: Different positions. Matrix 1x4
+        test_dict = JsonDictionary()
+        test_dict.add_reaction(
+            string="C01001_c + C01002_c --> C01003_c + C01004_c",
+            identifier="R1",
+            name="Reaction-1",
+            row=0,
+            column=0,
         )
         test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
+            string="C01003_c --> C02001_c",
+            identifier="R2",
+            name="Reaction-2",
+            row=0,
+            column=1,
         )
         test_dict.add_reaction(
-            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
+            string="C02001_c + C03001_c_c--> C03002_c",
+            identifier="R3",
+            name="Reaction-3",
+            row=0,
+            column=2,
         )
         test_dict.add_reaction(
-            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
-            + "2 C00034_c + C00004_c + C00226_c",
-            identifier="Reaction-G",
+            string="C03002_c + C04001_c --> C04002_c + C04003_c",
+            identifier="R4",
+            name="Reaction-4",
+            row=0,
+            column=3,
         )
+        # Reaction "R2" before two reactions boxes in x (900)
+        # Reaction "R3" before three reaction boxes in x ()
+        self.assertLess(a=test_dict["reactions"]["1"]["label_x"], b=450 * 2)
+        self.assertLess(a=test_dict["reactions"]["2"]["label_x"], b=450 * 3)
+        # Shared metabolite is node "2" in R1 and R2
+        for segment in test_dict["reactions"]["1"]["segments"].values():
+            self.assertGreaterEqual(a=int(segment["from_node_id"]), b=2)
+            self.assertGreaterEqual(a=int(segment["to_node_id"]), b=2)
+            self.assertLessEqual(a=int(segment["to_node_id"]), b=11)
+            self.assertLessEqual(a=int(segment["to_node_id"]), b=11)
+        # TODO: CASE 2 connecting rows
 
-    def test_reaction_and_blank(self):
-        # CASE 1: Mixing both, one after one
-        test_dict = JsonDictionary()
-        test_dict.add_reaction(
-            string="C00002_c + C00009_c --> C00227_c + C00003_c",
-            identifier="Reaction-A",
-        )
-        test_dict.add_blank()
-        self.assertEqual(first=len(test_dict["reactions"]), second=2)
-        self.assertEqual(
-            first=len(test_dict["reactions"]["1"]["metabolites"]), second=0
-        )
-        # CASE 2: stacking reactions
-        test_dict.add_reaction(
-            string="c00003_c --> C00228_c", identifier="Reaction-B"
-        )
-        test_dict.add_reaction(
-            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
-        )
-        test_dict.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="Reaction-D",
-        )
-        test_dict.add_blank()
-        self.assertEqual(first=len(test_dict["reactions"]), second=6)
-        test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
-        )
-        test_dict.add_reaction(
-            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
-        )
-        test_dict.add_blank()
-        test_dict.add_reaction(
-            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
-            + "2 C00034_c + C00004_c + C00226_c",
-            identifier="Reaction-G",
-        )
-        self.assertEqual(first=len(test_dict["reactions"]), second=10)
+    # def test_reaction_and_blank(self):
+    #     # CASE 1: Mixing both, one after one
+    #     test_dict = JsonDictionary()
+    #     test_dict.add_reaction(
+    #         string="C00002_c + C00009_c --> C00227_c + C00003_c",
+    #         identifier="Reaction-A",
+    #     )
+    #     test_dict.add_blank()
+    #     self.assertEqual(first=len(test_dict["reactions"]), second=2)
+    #     self.assertEqual(
+    #         first=len(test_dict["reactions"]["1"]["metabolites"]), second=0
+    #     )
+    #     # CASE 2: stacking reactions
+    #     test_dict.add_reaction(
+    #         string="c00003_c --> C00228_c", identifier="Reaction-B"
+    #     )
+    #     test_dict.add_reaction(
+    #         string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
+    #     )
+    #     test_dict.add_reaction(
+    #         string="C00004_c + C00011_c --> C00001_c + C00200_c",
+    #         identifier="Reaction-D",
+    #     )
+    #     test_dict.add_blank()
+    #     self.assertEqual(first=len(test_dict["reactions"]), second=6)
+    #     test_dict.add_reaction(
+    #         string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
+    #     )
+    #     test_dict.add_reaction(
+    #         string="C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
+    #     )
+    #     test_dict.add_blank()
+    #     test_dict.add_reaction(
+    #         string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
+    #         + "2 C00034_c + C00004_c + C00226_c",
+    #         identifier="Reaction-G",
+    #     )
+    #     self.assertEqual(first=len(test_dict["reactions"]), second=10)
 
     def test_json_dump(self):
         # CASE 1: Simple HTML and JSON with 4 reactions
         test_dict = JsonDictionary()
         # Escher builder
         test_builder = Builder()
+        # Matrix 1x4
         test_dict.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="Reaction-D",
+            string="C01001_c + C01002_c --> C01003_c + C01004_c",
+            identifier="R1",
+            name="Reaction-1",
+            row=0,
+            column=0,
         )
         test_dict.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
+            string="C01003_c --> C02001_c",
+            identifier="R2",
+            name="Reaction-2",
+            row=0,
+            column=1,
         )
         test_dict.add_reaction(
-            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
+            string="C02001_c + C03001_c_c--> C03002_c",
+            identifier="R3",
+            name="Reaction-3",
+            row=0,
+            column=2,
         )
         test_dict.add_reaction(
-            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
-            + "2 C00034_c + C00004_c + C00226_c",
-            identifier="Reaction-G",
+            string="C03002_c + C04001_c --> C04002_c + C04003_c",
+            identifier="R4",
+            name="Reaction-4",
+            row=0,
+            column=3,
         )
         # Writing the JSON
         test_string = test_dict.json_dump(indent=4)
@@ -442,7 +464,7 @@ class TestJsonDictionary(TestCase):
             "R2": "C00003_c --> C00228_c",
             "R3": "C00009_c + C00228_c--> C00004_c",
         }
-        test_builder = test_dict.new_visualize(filepath=test_path)
+        test_builder = test_dict.visualize(filepath=test_path)
         sleep(1)
         # CASE 2: Simple Branch
         test_dict = JsonDictionary()
@@ -462,7 +484,7 @@ class TestJsonDictionary(TestCase):
             "R4": "C00004_c + C00011_c --> C00001_c + C00200_c",
             "R5": "2 C00228_c --> 4 C00021_c",
         }
-        test_builder = test_dict.new_visualize(filepath=test_path)
+        test_builder = test_dict.visualize(filepath=test_path)
         sleep(1)
         # CASE 3a: Complex Lineal
         test_dict = JsonDictionary()
@@ -500,7 +522,7 @@ class TestJsonDictionary(TestCase):
             "R13": "C11001_c --> C13001_c",
             "R14": "C10001_c --> C14001_c",
         }
-        test_builder = test_dict.new_visualize(filepath=test_path)
+        test_builder = test_dict.visualize(filepath=test_path)
         test_builder
 
 
