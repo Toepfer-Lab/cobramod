@@ -426,6 +426,13 @@ class NewAlgorithm(TestCase):
         self.assertListEqual(list1=test_answer, list2=[])
 
     def test_get_paths(self):
+        # CASE 0: Unrelated
+        test_dict = {"R1": None, "R2": None, "R3": None}
+        test_list = gr.get_paths(graph=test_dict, stop_list=[])
+        self.assertEqual(first=len(test_list), second=3)
+        self.assertIn(member=["R1"], container=test_list)
+        self.assertIn(member=["R2"], container=test_list)
+        self.assertIn(member=["R3"], container=test_list)
         # CASE 1: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_list = gr.get_paths(graph=test_dict, stop_list=[])
@@ -483,10 +490,16 @@ class NewAlgorithm(TestCase):
         )
 
     def test_get_mapping(self):
-        # CASE 0: Single element
+        # CASE 0a: Single element
         test_dict = {"R1": None}
         test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
         self.assertListEqual(list1=test_list, list2=[["R1"]])
+        # CASE 0b: Unrelated
+        test_dict = {"R1": None, "R2": None, "R3": None}
+        test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
+        self.assertIn(member=["R1"], container=test_list)
+        self.assertIn(member=["R2"], container=test_list)
+        self.assertIn(member=["R3"], container=test_list)
         # CASE 1: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_list = gr.get_mapping(graph=test_dict, stop_list=[], new=[])
@@ -568,6 +581,12 @@ class NewAlgorithm(TestCase):
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=1)
         self.assertListEqual(list1=test_list[0], list2=["R1"])
+        # CASE 0b: Unrelated
+        test_dict = {"R1": None, "R2": None, "R3": None}
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertIn(member=["R1"], container=test_list)
+        self.assertIn(member=["R2"], container=test_list)
+        self.assertIn(member=["R3"], container=test_list)
         # CASE 1: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_list = gr.build_graph(graph=test_dict)

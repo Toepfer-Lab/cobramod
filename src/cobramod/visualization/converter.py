@@ -160,7 +160,7 @@ class JsonDictionary(UserDict):
         # Default solution
         self.flux_solution: Dict[str, float] = None
         # Dictionary with relationship of reactions
-        self.graph: dict = None
+        self.graph: dict = dict()
         self.reaction_strings = dict()
 
     def get_canvas(self) -> dict:

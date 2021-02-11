@@ -9,7 +9,7 @@ This module includes two TestCases:
 from contextlib import suppress
 from pathlib import Path
 from time import sleep
-from unittest import TestCase, main, skip
+from unittest import TestCase, main
 
 from escher import Builder
 
@@ -402,91 +402,53 @@ class TestJsonDictionary(TestCase):
         test_builder.save_html(str(test_path))
         self.assertTrue(expr=test_path.exists())
 
-    @skip("")
     def test_visualize(self):
+        # NOTE: visual tests
+        # Settings
         test_path = Path.cwd().joinpath("test_map.html")
-        # CASE 1: regular visualization without data
+        test_reactions = {
+            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
+            "R2": "C01003_c --> C02001_c",
+            "R3": "C02001_c + C03001_c--> C03002_c",
+            "R4": "C03002_c + C04001_c --> C04002_c + C04003_c",
+        }
+        # CASE 1: Simple single reaction
         test_class = JsonDictionary()
+        test_class.graph = {"R1": None}
+        test_class.reaction_strings = test_reactions
         with suppress(FileNotFoundError):
             test_path.unlink()
-        # Escher builder
-        test_class.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="Reaction-D",
-        )
-        test_class.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
-        )
         test_builder = test_class.visualize(filepath=test_path)
         sleep(1)
         self.assertEqual(first=test_builder.reaction_data, second=None)
         self.assertTrue(expr=test_path.exists())
         # CASE 2: visualization with Data
         test_class = JsonDictionary()
+        test_class.graph = {"R1": None}
+        test_class.reaction_strings = test_reactions
         with suppress(FileNotFoundError):
             test_path.unlink()
-        test_flux = {"Reaction-D": 2, "Reaction-E": -1}
-        # Escher builder
-        test_class.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="Reaction-D",
-        )
-        test_class.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
-        )
-        test_class.reaction_data = test_flux
+        # Setting flux
+        test_flux = {"R1": 2, "R2": -1}
+        test_class.flux_solution = test_flux
         test_builder = test_class.visualize(filepath=test_path)
         sleep(1)
-        self.assertEqual(
-            first=test_builder.reaction_data["Reaction-D"], second=2
-        )
+        self.assertEqual(first=test_builder.reaction_data["R1"], second=2)
         self.assertTrue(expr=test_path.exists())
-        # CASE 3: Check if blanks appears in visualization.
+        # CASE 3: Unrelated reactions without data
         test_class = JsonDictionary()
+        test_class.graph = {"R1": None, "R2": None, "R3": None}
+        # Metabolites need to be unrelated
+        test_class.reaction_strings = {
+            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
+            "R2": "C02003_c --> C02001_c",
+            "R3": "C03001_c + C03003_c--> C03002_c",
+        }
         with suppress(FileNotFoundError):
             test_path.unlink()
-        # Escher builder
-        test_class.add_reaction(
-            string="C00002_c + C00009_c --> C00227_c + C00003_c",
-            identifier="Reaction-A",
-        )
-        test_class.add_blank()
-        test_class.add_reaction(
-            string="C00003_c --> C00228_c", identifier="Reaction-B"
-        )
-        test_class.add_reaction(
-            string="C00009_c + C00228_c--> C00004_c", identifier="Reaction-C"
-        )
-        test_class.add_reaction(
-            string="C00004_c + C00011_c --> C00001_c + C00200_c",
-            identifier="Reaction-D",
-        )
-        test_class.add_blank()
-        test_class.add_reaction(
-            string="2 C00200_c --> 4 C00021_c", identifier="Reaction-E"
-        )
-        test_class.add_reaction(
-            string="2 C00021_c + C00002_c--> C00033_c", identifier="Reaction-F"
-        )
-        test_class.add_blank()
-        test_class.add_reaction(
-            string="4 C00228_c + C00033_c + C00009_c --> C00011_c + "
-            + "2 C00034_c + C00004_c + C00226_c",
-            identifier="Reaction-G",
-        )
         test_builder = test_class.visualize(filepath=test_path)
         sleep(1)
-        # Blanks are removed in visualization
-        self.assertEqual(first=len(test_class["reactions"]), second=7)
-        # CASE 4: Blanks and information
-        test_flux = {"Reaction-A": 2, "Reaction-D": 2, "Reaction-E": -1}
-        test_class.reaction_data = test_flux
-        test_builder = test_class.visualize(filepath=test_path)
-
-    @skip("")
-    def test_new_visualize(self):
-        test_path = Path.cwd().joinpath("test_map.html")
-        # CASE 1: regular visualization without data
+        # CASE 4: regular lineal visualization without data
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
             test_path.unlink()
@@ -498,7 +460,7 @@ class TestJsonDictionary(TestCase):
         }
         test_builder = test_class.visualize(filepath=test_path)
         sleep(1)
-        # CASE 2: Simple Branch
+        # CASE 5: Simple Branch
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
             test_path.unlink()
@@ -555,7 +517,6 @@ class TestJsonDictionary(TestCase):
             "R14": "C10001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        test_builder
 
 
 class TestMapping(TestCase):
@@ -594,6 +555,17 @@ class TestMapping(TestCase):
         self.assertCountEqual(first=test_answer["0"], second=["2", "3", "1"])
 
     def test_unformatted_matrix(self):
+        # CASE 0a: Unrelated items
+        test_dict = {"R1": None, "R2": None, "R3": None}
+        test_matrix = mp.unformatted_matrix(graph=test_dict)
+        self.assertIn(member=["R1"], container=test_matrix)
+        self.assertIn(member=["R2"], container=test_matrix)
+        self.assertIn(member=["R3"], container=test_matrix)
+        # CASE 0b: Single unrelated item
+        test_dict = {"R1": "R2", "R2": None, "R3": None}
+        test_matrix = mp.unformatted_matrix(graph=test_dict)
+        self.assertIn(member=["R1", "R2"], container=test_matrix)
+        self.assertIn(member=["R3"], container=test_matrix)
         # CASE 1a: Simple Lineal
         test_dict = {"R1": "R2", "R2": "R3", "R3": None}
         test_matrix = mp.unformatted_matrix(graph=test_dict)
@@ -658,7 +630,7 @@ class TestMapping(TestCase):
         self.assertListEqual(list1=test_matrix[2], list2=[0, "R7", 0, 0, 0])
 
     def test_format_matrix(self):
-        # CASE 0: only filling
+        # CASE 0a: only filling
         test_matrix = [["R1", "R2", "R3", "R4", "R5"], [0, 0, "R6"]]
         test_answer = mp.format_matrix(matrix=test_matrix.copy(), max_length=5)
         test_values = set()
@@ -671,6 +643,10 @@ class TestMapping(TestCase):
         )
         self.assertEqual(first=len(test_answer), second=2)
         self.assertListEqual(list1=test_answer[1], list2=[0, 0, "R6", 0, 0])
+        # CASE 0b: Unrelated
+        test_matrix = [["R1"], ["R2"], ["R3"]]
+        test_answer = mp.format_matrix(matrix=test_matrix.copy(), max_length=1)
+        self.assertEqual(first=test_matrix, second=test_answer)
         # CASE 1: Simple modification
         test_matrix = [
             ["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],

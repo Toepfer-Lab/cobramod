@@ -87,6 +87,8 @@ def unformatted_matrix(graph: dict) -> List[list]:
     longest = mapping[0]
     # TODO: change defaults of height
     relation = child_map(mapping=mapping, dictionary=graph)
+    if not relation:
+        return mapping
     matrix = [[0] * len(longest)]
     matrix[0] = longest
     # dictionary for start positions
