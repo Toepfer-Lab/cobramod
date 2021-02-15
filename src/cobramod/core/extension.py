@@ -16,7 +16,7 @@ from typing import Union, Generator, Iterable
 from cobra import Model, Reaction
 
 from cobramod.core.creation import create_object
-from cobramod.core.graph import return_graph_from_dict
+from cobramod.core.graph import build_graph
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
@@ -416,9 +416,10 @@ def _add_sequence(
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
     # Either create a Pathway or obtain the correct Pathway.
-    pathway = Pathway(id=identifier)
-    if identifier in [group.id for group in model.groups]:
+    try:
         pathway = model.groups.get_by_id(identifier)
+    except KeyError:
+        pathway = Pathway(id=identifier)
     # Add sequence to model
     for reaction in sequence:
         # This reaction will not be added.
@@ -511,10 +512,11 @@ def _from_data(
             Defaults to: "universal"
     """
     # A graph can have multiple routes, depending on how many end-metabolites.
-    graph = return_graph_from_dict(
-        data_dict=data_dict, avoid_list=avoid_list, replacement=replacement
-    )
-    for sequence in graph:
+    # graph = return_graph_from_dict(
+    #     data_dict=data_dict, avoid_list=avoid_list, replacement=replacement
+    # )
+    mapping = build_graph(graph=data_dict["PATHWAY"])
+    for sequence in mapping:
         # Data storage is handled by method
         sequence = list(
             _create_reactions(
