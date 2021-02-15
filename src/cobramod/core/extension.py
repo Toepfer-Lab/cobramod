@@ -21,7 +21,8 @@ from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
 from cobramod.error import NotInRangeError
-from cobramod.utils import get_DataList, get_basic_info, check_to_write
+
+# from cobramod.utils import get_DataList, get_basic_info, check_to_write
 
 
 def _create_reactions(
@@ -46,7 +47,7 @@ def _create_reactions(
         sequence (list): Identifiers for the reactions.
         directory (Path): Path to directory where data is located.
         database (str): Name of the database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
@@ -387,7 +388,7 @@ def test_result(
 
 def _add_sequence(
     model: Model,
-    identifier: str,
+    pathway: Pathway,
     sequence: list,
     avoid_list: list,
     ignore_list: list,
@@ -400,8 +401,9 @@ def _add_sequence(
 
     Args:
         model (Model): Model to expand.
-        identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
-        sequence (list): List with :func:`cobra.core.reaction.Reaction` objects
+        pathway (Pathway): Common Pathway to add the reaction.
+        sequence (list): List with :class:`cobra.core.reaction.Reaction`
+            objects
         avoid_list (list): A sequence of formatted reactions to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
@@ -415,11 +417,6 @@ def _add_sequence(
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
-    # Either create a Pathway or obtain the correct Pathway.
-    try:
-        pathway = model.groups.get_by_id(identifier)
-    except KeyError:
-        pathway = Pathway(id=identifier)
     # Add sequence to model
     for reaction in sequence:
         # This reaction will not be added.
@@ -428,7 +425,6 @@ def _add_sequence(
                 f'Reaction "{reaction.id}" found in avoid list. Skipping.'
             )
             continue
-        # FIXME: avoid if statements for perfomance improvement
         if reaction.id not in [reaction.id for reaction in model.reactions]:
             model.add_reactions([reaction])
             debug_log.info(f'Reaction "{reaction.id}" added to model')
@@ -453,9 +449,6 @@ def _add_sequence(
             )
     # TODO: Add space
     debug_log.debug(f'Reactions added to group "{pathway.id}"')
-    # Add blank space in order. This will be translated to a blank reaction in
-    # the JsonDictionary.
-    pathway.order.append("blank")
     # Only add if there is at least 1 reaction in the group.
     if (
         pathway.id not in [group.id for group in model.groups]
@@ -489,7 +482,7 @@ def _from_data(
         data_dict (dict): Dictinary with the information for the pathway.
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database to search for reactions and
-            metabolites. Check :func:`cobramod.available_databases` for a list
+            metabolites. Check :obj:`cobramod.available_databases` for a list
             of names.
         compartment: Location of the reactions.
 
@@ -511,13 +504,16 @@ def _from_data(
             specified model. Pathway are not available.
             Defaults to: "universal"
     """
-    # A graph can have multiple routes, depending on how many end-metabolites.
-    # graph = return_graph_from_dict(
-    #     data_dict=data_dict, avoid_list=avoid_list, replacement=replacement
-    # )
+    # Create mapping from dictionary
     mapping = build_graph(graph=data_dict["PATHWAY"])
+    # Either create a Pathway or obtain the correct Pathway.
+    identifier = data_dict["ENTRY"]
+    try:
+        pathway = model.groups.get_by_id(identifier)
+    except KeyError:
+        pathway = Pathway(id=identifier)
     for sequence in mapping:
-        # Data storage is handled by method
+        # Data storage is handled by method. Reactions objects builder:
         sequence = list(
             _create_reactions(
                 sequence=sequence,
@@ -534,13 +530,31 @@ def _from_data(
         # Add to model
         _add_sequence(
             model=model,
-            identifier=data_dict["ENTRY"],
+            pathway=pathway,
             sequence=sequence,
             ignore_list=ignore_list,
             avoid_list=avoid_list,
             minimum=minimum,
         )
         # TODO: Fix sink for metabolites in last sequence
+    # Add graph to Pathway
+    pathway.graph = mapping
+
+
+def _create_quick_graph(sequence: list) -> dict:
+    """
+    Creates a returns a simple lineal directed graph from given sequence.
+    """
+    graph = dict()
+    for index, reaction in enumerate(sequence):
+        try:
+            parent = reaction
+            child = sequence[index + 1]
+            graph[parent] = child
+        except IndexError:
+            graph[reaction] = None
+            # It must be the first one:
+    return graph
 
 
 def _from_sequence(
@@ -564,10 +578,10 @@ def _from_sequence(
 
     Args:
         model (Model): Model to expand.
-        identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
+        identifier (str): Common :class:`cobramod.pathway.Pathway` identifier.
         sequence (list): List reaction identifiers.
         database (str): Name of the database.
-            Check :func:`cobramod.available_databases` for a list of names.
+            Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         directory (Path): Path for directory to stored and retrieve data.
 
@@ -588,6 +602,13 @@ def _from_sequence(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
     """
+    # Either create a Pathway or obtain the correct Pathway.
+    try:
+        pathway = model.groups.get_by_id(identifier)
+    except KeyError:
+        pathway = Pathway(id=identifier)
+    # Create graph. It will be always simple lineal
+    graph = _create_quick_graph(sequence=sequence)
     # Data storage is managed by the function
     sequence = list(
         _create_reactions(
@@ -606,11 +627,13 @@ def _from_sequence(
     _add_sequence(
         model=model,
         sequence=sequence,
-        identifier=identifier,
+        pathway=pathway,
         ignore_list=ignore_list,
         avoid_list=avoid_list,
         minimum=minimum,
     )
+    # Add graph to Pathway
+    pathway.graph = graph
 
 
 def add_pathway(
@@ -642,9 +665,9 @@ def add_pathway(
             "PWY-886"
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database.
-            Check :func:`cobramod.available_databases` for a list of names.
+            Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
-        group (str, optional): Common :func:`cobramod.pathway.Pathway`
+        group (str, optional): Common :class:`cobramod.pathway.Pathway`
             identifier. Defaults to "custom_group"
 
     Arguments for complex pathways:
@@ -677,17 +700,19 @@ def add_pathway(
     if not filename:
         filename = Path.cwd().joinpath("summary.txt")
     # Retrieve information for summary methods
-    basic_info = get_basic_info(model=model)
-    old_values = get_DataList(model=model)
+    # basic_info = get_basic_info(model=model)
+    # old_values = get_DataList(model=model)
     # If statements to about polution of debug.
     if isinstance(pathway, str):
-        # From identifier
+        # Get data and transform to a pathway
         data_dict = get_data(
             directory=directory,
             identifier=str(pathway),
             database=database,
             model_id=model_id,
         )
+        # Run the function to convert the reaction, create the graph and add
+        # to Pathway
         _from_data(
             model=model,
             data_dict=data_dict,
@@ -722,10 +747,10 @@ def add_pathway(
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
     # Print summary
-    check_to_write(
-        model=model,
-        summary=summary,
-        filename=filename,
-        basic_info=basic_info,
-        old_values=old_values,
-    )
+    # check_to_write(
+    #     model=model,
+    #     summary=summary,
+    #     filename=filename,
+    #     basic_info=basic_info,
+    #     old_values=old_values,
+    # )

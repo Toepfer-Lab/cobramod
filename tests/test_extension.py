@@ -13,15 +13,17 @@ metabolic models.
 from logging import DEBUG
 from pathlib import Path
 from time import sleep
-from unittest import main, TestCase
+from unittest import main, TestCase, skip
 
 from cobra import Model, Reaction
 
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions, get_data
+from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
-from cobramod.test import textbook_biocyc, textbook_kegg
 from cobramod.error import NotInRangeError, UnbalancedReaction
+from cobramod.test import textbook_biocyc, textbook_kegg
+
 
 # Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
@@ -409,7 +411,7 @@ class AddingPathways(TestCase):
         )
         ex._add_sequence(
             model=test_model,
-            identifier="test_group",
+            pathway=Pathway("test_group"),
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
@@ -419,10 +421,6 @@ class AddingPathways(TestCase):
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
-        )
-        self.assertIn(
-            member="blank",
-            container=test_model.groups.get_by_id("test_group").order,
         )
         # TODO: CASE 3: KEGG
         test_model = textbook_kegg.copy()
@@ -441,7 +439,7 @@ class AddingPathways(TestCase):
         )
         ex._add_sequence(
             model=test_model,
-            identifier="test_group_kegg",
+            pathway=Pathway("test_group_kegg"),
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
@@ -451,10 +449,6 @@ class AddingPathways(TestCase):
         self.assertIn(
             member="test_group_kegg",
             container=[group.id for group in test_model.groups],
-        )
-        self.assertIn(
-            member="blank",
-            container=test_model.groups.get_by_id("test_group_kegg").order,
         )
 
     def test__from_data(self):
@@ -635,14 +629,10 @@ class AddingPathways(TestCase):
             show_imbalance=False,
         )
         test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
-        # Total of one reactions + blank in list "order"
+        # Total of one reactions
         self.assertEqual(
             first=len(test_model.groups.get_by_id("custom_group").members),
             second=1,
-        )
-        self.assertEqual(
-            first=len(test_model.groups.get_by_id("custom_group").order),
-            second=2,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertNotIn(
@@ -661,6 +651,7 @@ class AddingPathways(TestCase):
             ],
         )
 
+    @skip("")
     def test__visualization(self):
         # CASE 1: Regular Biocyc
         test_model = textbook_biocyc.copy()
@@ -676,14 +667,8 @@ class AddingPathways(TestCase):
         # Test fluxes
         test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
         self.assertEqual(first=len(test_pathway.members), second=5)
-        # Blank space adds always one.
-        self.assertEqual(first=len(test_pathway.order), second=6)
         test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(
-            solution_fluxes=test_solution,
-            canvas_width=1500,
-            canvas_height=1500,
-        )
+        test_pathway.visualize(solution_fluxes=test_solution)
         sleep(1)
         ex.add_pathway(
             model=test_model,
@@ -697,14 +682,8 @@ class AddingPathways(TestCase):
         # Test fluxes
         test_pathway = test_model.groups.get_by_id("PWY-1187")
         self.assertEqual(first=len(test_pathway.members), second=14)
-        # Blank space adds always one.
-        self.assertEqual(first=len(test_pathway.order), second=18)
         test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(
-            solution_fluxes=test_solution,
-            canvas_width=2000,
-            canvas_height=1500,
-        )
+        test_pathway.visualize(solution_fluxes=test_solution)
 
 
 if __name__ == "__main__":
