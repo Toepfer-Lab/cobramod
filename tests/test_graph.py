@@ -2,7 +2,7 @@
 from itertools import chain
 from logging import DEBUG
 from pathlib import Path
-from unittest import TestCase, main
+from unittest import TestCase, main, skip
 
 from cobramod.debug import debug_log
 from cobramod.error import GraphKeyError
@@ -265,6 +265,7 @@ class GraphTesting(TestCase):
         self.assertIn("Z", set(chain.from_iterable(test_graph)))
         self.assertIn("F", set(chain.from_iterable(test_graph)))
 
+    @skip("to deprecate")
     def test_return_from_dict(self):
         # CASE 1: regular biocyc
         test_dict = get_data(
@@ -555,25 +556,6 @@ class NewAlgorithm(TestCase):
         test_dict = {"R1": ("R2", "R7"), "R2": ("R3", "R4")}
         test_key = gr.get_pop_key(dictionary=test_dict)
         self.assertIsInstance(test_key, str)
-
-    def test_get_all_values(self):
-        # CASE 1: Simple dictionary
-        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
-        test_set = gr.get_all_values(dictionary=test_dict, keys=["R1"])
-        self.assertCountEqual(first=test_set, second={"R2"})
-        # CASE 2: Simple dictionary, multiple keys
-        test_dict = {
-            "R0": "R1",
-            "R1": ("R2", "R7"),
-            "R2": "R3",
-            "R3": "R4",
-            "R4": "R5",
-            "R5": None,
-        }
-        test_set = gr.get_all_values(
-            dictionary=test_dict, keys=["R1", "R5", "R3"]
-        )
-        self.assertCountEqual(first=test_set, second={"R2", "R7", "R4"})
 
     def test_build_graph(self):
         # CASE 0: Single Element

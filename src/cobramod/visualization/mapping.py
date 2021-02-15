@@ -9,7 +9,33 @@ it will cut it.
 """
 from typing import Dict, List
 
-from cobramod.core.graph import build_graph, get_all_values
+from cobramod.core.graph import build_graph
+
+
+def get_all_values(dictionary: dict, keys: list) -> set:
+    """
+    Return a set with the all the values for a given list of keys. Elements of
+    tuples will be added separately.
+
+    Args:
+        dictionary (dict): dictionary with keys and values
+        keys (list): List of keys to get values
+
+    Returns:
+        Set: Values from given keys
+    """
+    set_values = set()
+    for item in keys:
+        value = dictionary[item]
+        # In case of tuples
+        if isinstance(value, tuple):
+            for item in value:
+                if item is not None:
+                    set_values.add(item)
+        else:
+            if value is not None:
+                set_values.add(value)
+    return set_values
 
 
 def child_map(mapping: list, dictionary: dict) -> dict:

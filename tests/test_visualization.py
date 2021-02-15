@@ -720,6 +720,25 @@ class TestMapping(TestCase):
             member=[0, 0, 0, 0, "R9", "R13", 0], container=test_answer
         )
 
+    def test_get_all_values(self):
+        # CASE 1: Simple dictionary
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_set = mp.get_all_values(dictionary=test_dict, keys=["R1"])
+        self.assertCountEqual(first=test_set, second={"R2"})
+        # CASE 2: Simple dictionary, multiple keys
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R7"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R5",
+            "R5": None,
+        }
+        test_set = mp.get_all_values(
+            dictionary=test_dict, keys=["R1", "R5", "R3"]
+        )
+        self.assertCountEqual(first=test_set, second={"R2", "R7", "R4"})
+
 
 if __name__ == "__main__":
     main(verbosity=2)

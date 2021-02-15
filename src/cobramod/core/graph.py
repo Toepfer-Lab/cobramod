@@ -400,33 +400,6 @@ def get_pop_key(dictionary: dict) -> str:
     return key
 
 
-# TODO: remove if necesary
-def get_all_values(dictionary: dict, keys: list) -> set:
-    """
-    Return a set with the all the values for a given list of keys. Elements of
-    tuples will be added separately.
-
-    Args:
-        dictionary (dict): dictionary with keys and values
-        keys (list): List of keys to get values
-
-    Returns:
-        Set: Values from given keys
-    """
-    set_values = set()
-    for item in keys:
-        value = dictionary[item]
-        # In case of tuples
-        if isinstance(value, tuple):
-            for item in value:
-                if item is not None:
-                    set_values.add(item)
-        else:
-            if value is not None:
-                set_values.add(value)
-    return set_values
-
-
 def get_key(dictionary: dict, value):
     """
     Returns key for given value. Tuples analyze separately.
@@ -450,42 +423,6 @@ def get_key(dictionary: dict, value):
         if test_value == value:
             return key
     raise Warning(f'Key for "{value}" not found in dictionary.')
-
-
-# TODO: remove if necesary
-def check_values(item: str, longest: list, mapping: list, graph: dict):
-    """
-    Check that given item is located in a branch. Returns the key of the item
-    if found in branch that is not the longest. If nothing is found, an error
-    will be raised.
-
-    Args:
-        item (str): Value to search
-        longest (list): List of longest path.
-        mapping (list): List with paths
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
-
-    Returns:
-        Str: Key from value if found in a branch.
-
-    Raises:
-        Warning: If value is not found
-    """
-    found = False
-    path: list
-    for path in mapping:
-        # Skip core and singles
-        if longest == path or len(path) == 1:
-            continue
-        values = get_all_values(dictionary=graph, keys=path)
-        if item in values:
-            found = True
-            key = get_key(dictionary=graph, value=item)
-            return key
-    if not found:
-        # TODO: add new Error
-        raise Warning(f'Value "{item}" not found in branches of mapping.')
 
 
 def build_graph(graph: dict) -> list:
@@ -516,23 +453,5 @@ def build_graph(graph: dict) -> list:
             cut_cycle(graph=graph, key=cycle[0])
     # This would modify the graph. Use copy
     mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])
-
-    # TODO: check if this is necesary
-    # longest = max(mapping, key=len)
-    # Search for rest values, which are not included in core "longest"
-    # path: list
-    # for path in mapping:
-    #     # Skip core
-    #     if longest == path or len(path) == 1:
-    #         continue
-    #     # Check whether in this set
-    #     values = get_all_values(dictionary=graph, keys=longest)
-    #     if path[0] not in values:
-    #         key = check_values(
-    #             item=path[0], longest=longest, mapping=mapping, graph=graph
-    #         )
-    #         # Get key and insert it
-    #         path.insert(0, key)
-    # Return a sorted list
     mapping.sort(key=len, reverse=True)
     return mapping
