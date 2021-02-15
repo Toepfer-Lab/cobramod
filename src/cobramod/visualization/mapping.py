@@ -7,6 +7,7 @@ used in Escher. The main function is
 is lineal and creates the representation in a matrix. In case of cyclic path,
 it will cut it.
 """
+from itertools import chain
 from typing import Dict, List
 
 from cobramod.core.graph import build_graph
@@ -52,8 +53,9 @@ def child_map(mapping: list, dictionary: dict) -> dict:
     """
     relation: Dict[str, list] = dict()
     for index, path in enumerate(mapping):
-        if len(path) == 1:
-            continue
+        # TODO: check if this condition is necesary
+        # if len(path) == 1:
+        #     continue
         # Check for each path
         path_2: list
         for index_2, path_2 in enumerate(mapping):
@@ -96,7 +98,8 @@ def unformatted_matrix(graph: dict) -> List[list]:
     """
     Returns an unformatted matrix from a graph. The matrix represent the
     locations of the nodes and their relationships. Graph will be cut if
-    cyclic. The matrix have 0 in empty positions.
+    cyclic. Unrelated nodes will be appended separately at the end. The matrix
+    have 0 in empty positions.
 
     Args:
         graph (dict): Dictionary with relationship between nodes. A node can
@@ -113,6 +116,7 @@ def unformatted_matrix(graph: dict) -> List[list]:
     longest = mapping[0]
     # TODO: change defaults of height
     relation = child_map(mapping=mapping, dictionary=graph)
+    # If path is completely unrelated
     if not relation:
         return mapping
     matrix = [[0] * len(longest)]
@@ -141,6 +145,12 @@ def unformatted_matrix(graph: dict) -> List[list]:
             row = [0] * start_position[item]
             row.extend(mapping[int(item)])
             matrix.append(row)
+    # Add unrelated paths
+    for index, line in enumerate(mapping):
+        if str(index) not in relation.keys() and str(index) not in list(
+            chain.from_iterable(relation.values())
+        ):
+            matrix.append(line)
     return matrix
 
 

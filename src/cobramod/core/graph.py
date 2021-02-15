@@ -11,6 +11,7 @@ of this module:
 TODO: add new algorithm to docstrings
 """
 from contextlib import suppress
+from collections import Counter
 from itertools import chain
 from typing import Generator, Iterable
 
@@ -274,7 +275,35 @@ def cut_cycle(graph: dict, key: str):
             f'Given key "{key}" cannot be cut. Probably because it is a tuple'
         )
     graph[key] = None
-    # TODO: add debug. Is it necesary?
+
+
+def cut_parents(graph: dict):
+    """
+    Checks if multiple parens shared a common child. If so, the graph will
+    replace the values of these parents to a None and leave one of the parent
+    normal.
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+    """
+    counter = Counter(graph.values())
+    # Get the keys that are not one
+    values = [key for key, value in counter.items() if value != 1]
+    # Get candidates
+    candidates = dict()  # type: ignore
+    for key, value in graph.items():
+        if value in values:
+            try:
+                candidates[value].append(key)
+            except KeyError:
+                candidates[value] = [key]
+    # Cut all candidates but the first item
+    for values in candidates.values():
+        for index, key in enumerate(values):
+            if index == 0:
+                continue
+            graph[key] = None
 
 
 def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
@@ -445,6 +474,8 @@ def build_graph(graph: dict) -> list:
     find_missing(graph=graph)
     # its value cannot be None. If single element then go direcly to mapping
     with suppress(KeyError):
+        # Cut parents if needed
+        cut_parents(graph=graph)
         key = get_pop_key(dictionary=graph)
         # Fix cycles if found
         cycle = find_cycle(graph=graph, key=key, visited=[])

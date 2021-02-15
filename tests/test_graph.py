@@ -610,7 +610,7 @@ class NewAlgorithm(TestCase):
         }
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=2)
-        # CAS4: Complex Lineal
+        # CASE 4: Complex Lineal
         test_dict = {
             "R1": "R2",
             "R2": ("R3", "R5", "R4"),
@@ -629,6 +629,26 @@ class NewAlgorithm(TestCase):
         }
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=6)
+        # CASE 5: Module from KEGG
+        test_dict = {
+            "R0": "R3",
+            "R1": "R3",
+            "R2": "R3",
+            "R3": ("R4", "R5"),
+            "R4": "R6",
+            "R5": "R6",
+            "R6": "R7",
+            "R7": ("R8", "R9"),
+            "R8": "R10",
+            "R9": "R10",
+            "R10": "R11",
+            "R11": "R12",
+            "R12": "R13",
+            "R13": "R14",
+            "R14": None,
+        }
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=5)
 
 
 if __name__ == "__main__":

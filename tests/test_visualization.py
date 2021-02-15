@@ -517,6 +517,47 @@ class TestJsonDictionary(TestCase):
             "R14": "C10001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
+        sleep(1)
+        # CASE 4: Module from KEGG
+        test_path = Path.cwd().joinpath("test_map.html")
+        test_class = JsonDictionary()
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_class.graph = {
+            "R0": "R3",
+            "R1": None,
+            "R2": None,
+            "R3": ("R4", "R5"),
+            "R4": "R6",
+            "R5": None,
+            "R6": "R7",
+            "R7": ("R8", "R9"),
+            "R8": "R10",
+            "R9": None,
+            "R10": "R11",
+            "R11": "R12",
+            "R12": "R13",
+            "R13": "R14",
+            "R14": None,
+        }
+        test_class.reaction_strings = {
+            "R0": "C00001_c --> C00002_c",
+            "R1": "C01001_c + C01002_c --> C00002_c + C01004_c",
+            "R2": "C02001_c --> C00002_c",
+            "R3": "C00002_c + C03001_c--> C03002_c",
+            "R4": "C03002_c+ C04001_c --> C04002_c + C04003_c",
+            "R5": "2 C03002_c --> 4 C05001_c",
+            "R6": "C04002_c --> C06001_c",
+            "R7": "3 C06001_c --> 6 C07001_c",
+            "R8": "C07001_c --> 4 C08001_c",
+            "R9": "2 C07001_c --> C09001_c",
+            "R10": "2 C08001_c --> 3 C10001_c",
+            "R11": "2 C10001_c --> 4 C11001_c",
+            "R12": "2 C11001_c --> C12001_c",
+            "R13": "C12001_c --> C13001_c",
+            "R14": "C13001_c --> C14001_c",
+        }
+        test_builder = test_class.visualize(filepath=test_path)
 
 
 class TestMapping(TestCase):
