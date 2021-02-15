@@ -84,6 +84,23 @@ class TestKegg(TestCase):
         )
         self.assertIsInstance(obj=test_data, cls=dict)
 
+    def test_get_graph(self):
+        # CASE 0: Normal Module
+        test_dict = kg._get_unformatted_kegg(
+            directory=dir_data, identifier="M00001"
+        )
+        test_graph = kg.get_graph(kegg_dict=test_dict)
+        self.assertEqual(first=test_graph["R00200"], second=None)
+        self.assertEqual(first=len(test_graph), second=15)
+        # CASE 1: Simple branch
+        test_dict = kg._get_unformatted_kegg(
+            directory=dir_data, identifier="M00040"
+        )
+        test_graph = kg.get_graph(kegg_dict=test_dict)
+        self.assertEqual(first=test_graph["R00732"], second=None)
+        self.assertEqual(first=test_graph["R00733"], second=None)
+        self.assertEqual(first=len(test_graph), second=4)
+
     def test__parse_kegg(self):
         # CASE 1a: Reaction (same as setup)
         test_dict = kg.KeggParser._parse(
@@ -145,9 +162,17 @@ class TestBiocyc(TestCase):
         )
         self.assertIsInstance(obj=test_element, cls=Element)
 
+    def test_get_graph(self):
+        test_root = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="PWY-1187", database="META"
+        )
+        test_dict = bc.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=14)
+        self.assertCountEqual(
+            first=test_dict["RXN-2221"], second=("RXN-2222", "RXN-2223")
+        )
+
     def test__parse_biocyc(self):
-        # CASE 0: Wrong type
-        self.assertRaises(WrongParserError, bc.BiocycParser._parse, str())
         # CASE 1: Compound
         test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="AMP", database="META"
@@ -181,8 +206,8 @@ class TestBiocyc(TestCase):
         )
         test_dict = bc.BiocycParser._parse(root=test_root)
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
-        self.assertEqual(first=len(test_dict["PATHWAY"]), second=13)
-        self.assertEqual(first=len(test_dict["SET"]), second=14)
+        self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
+        # self.assertEqual(first=len(test_dict["SET"]), second=14)
 
 
 class TestBigg(TestCase):

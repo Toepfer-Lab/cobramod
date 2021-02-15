@@ -243,6 +243,7 @@ def _p_compound(kegg_dict: dict) -> dict:
         raise WrongParserError
 
 
+# TODO: deprecate
 def _build_pathway(kegg_dict: dict) -> tuple:
     """
     Returns dictionary with sequences for a graph, where the key the prior
@@ -262,6 +263,56 @@ def _build_pathway(kegg_dict: dict) -> tuple:
     return pathway, whole_set
 
 
+def get_graph(kegg_dict: dict) -> dict:
+    """
+    Returns dictionary with sequences for a graph, where the key the prior
+    reaction is and the value, its succesor; and a set with all participant
+    reaction (vertex)
+    """
+    # Obtain sequences as a set and regular reactions
+    sequences = [item.split(sep=" ")[0] for item in kegg_dict["REACTION"]]
+    whole_set = set(
+        chain.from_iterable(line.split(sep=",") for line in sequences)
+    )
+    reactions = [line.split(sep=",") for line in sequences]
+    graph = dict()  # type: ignore
+    line: list
+    for index_j, line in enumerate(iterable=reactions):
+        reaction: str
+        for index_i, reaction in enumerate(iterable=line):
+            # If index not found, then ignore it
+            with suppress(IndexError):
+                # In KEGG the order of the reactions is defined by its order in
+                # the sequence.
+                parent = reaction
+                children = reactions[index_j + 1]
+                if len(children) == 1:
+                    # Take as a string
+                    children = children[0]
+                else:
+                    # All elements as a tuple
+                    children = tuple(children)
+                # Expand keys
+                try:
+                    # If at least 2
+                    if isinstance(graph[parent], tuple):
+                        graph[parent] += children
+                        continue
+                    # Else transform single string to tuple
+                    graph[parent] = (graph[parent], children)
+                except KeyError:
+                    # Create new one
+                    graph[parent] = children
+    for reaction in whole_set:
+        try:
+            graph[reaction]
+        except KeyError:
+            graph[reaction] = None
+    if not graph:
+        raise WrongParserError("Given root does not belong to a Pathway")
+    return graph
+
+
 def _p_pathway(kegg_dict: dict) -> dict:
     """
     Parses the KEGG dictionary and returns a new dictionary with the
@@ -272,7 +323,7 @@ def _p_pathway(kegg_dict: dict) -> dict:
             raise WrongParserError(
                 "Given dictionary does not belong to a pathway."
             )
-        pathway, whole_set = _build_pathway(kegg_dict=kegg_dict)
+        graph = get_graph(kegg_dict=kegg_dict)
         return {
             "TYPE": "Pathway",
             "ENTRY": list(
@@ -282,8 +333,8 @@ def _p_pathway(kegg_dict: dict) -> dict:
             )[0],
             "NAME": kegg_dict["NAME"][0],
             "DATABASE": "KEGG",
-            "PATHWAY": pathway,
-            "SET": whole_set,
+            "PATHWAY": graph,
+            # "SET": whole_set,
             "XREF": _build_reference(data_dict=kegg_dict),
         }
     except KeyError:
@@ -321,7 +372,8 @@ class KeggParser(BaseParser):
         """
         for parse_method in (_p_enzyme, _p_compound, _p_reaction, _p_pathway):
             with suppress(WrongParserError):
-                return parse_method(kegg_dict=root)
+                kegg_dict = parse_method(kegg_dict=root)
+                return kegg_dict
         raise NotImplementedError(
             "Given identifier could not be parsed properly. "
             "Contact maintainers."
