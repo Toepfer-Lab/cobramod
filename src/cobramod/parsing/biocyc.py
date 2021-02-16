@@ -13,7 +13,7 @@ Contact maintainers if other types should be added.
 
 Important class of the module:
 - BiocycParser: Child of the abstract class
-:func:`cobramod.parsing.base.BaseParser`.
+:class:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
 from xml.etree.ElementTree import (
@@ -272,7 +272,7 @@ class BiocycParser(BaseParser):
         root, with the most important information depending on its object type.
         """
         # try to define dictionary
-        for method in (_p_pathway, _p_reaction, _p_compound):
+        for method in (_p_reaction, _p_pathway, _p_compound):
             with suppress(WrongParserError, AttributeError):
                 biocyc_dict = method(root=root)
                 biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[

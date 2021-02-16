@@ -458,6 +458,38 @@ def _add_sequence(
         debug_log.debug("Pathway added to Model")
 
 
+def _format_graph(graph: dict, model: Model):
+    """
+    Returns a new graph, where all items are formatted. Hyphens become
+    underscores.
+    """
+    new_graph = dict()
+    value: str
+    # Format tuples, single strings and kes
+    for key, value in graph.items():
+        if isinstance(value, tuple):
+            value = tuple(single.replace("-", "_") for single in value)
+        else:
+            # In case of None, leave it as none
+            with suppress(AttributeError):
+                value = value.replace("-", "_")
+        new_graph[key.replace("-", "_")] = value
+    # TODO: Find an alternative.
+    # Query in the model
+    graph = dict()
+    for key, value in new_graph.items():
+        if isinstance(value, tuple):
+            value = tuple(model.reactions.query(item)[0].id for item in value)
+        else:
+            # In case of None, leave it as none
+            with suppress(TypeError, IndexError):
+                value = model.reactions.query(value)[0].id
+        with suppress(IndexError):
+            key = model.reactions.query(key)[0].id
+        graph[key] = value
+    return graph
+
+
 def _from_data(
     model: Model,
     data_dict: dict,
@@ -538,7 +570,7 @@ def _from_data(
         )
         # TODO: Fix sink for metabolites in last sequence
     # Add graph to Pathway
-    pathway.graph = mapping
+    pathway.graph = _format_graph(graph=data_dict["PATHWAY"], model=model)
 
 
 def _create_quick_graph(sequence: list) -> dict:
@@ -552,8 +584,8 @@ def _create_quick_graph(sequence: list) -> dict:
             child = sequence[index + 1]
             graph[parent] = child
         except IndexError:
+            # It must be the first one
             graph[reaction] = None
-            # It must be the first one:
     return graph
 
 
@@ -633,7 +665,7 @@ def _from_sequence(
         minimum=minimum,
     )
     # Add graph to Pathway
-    pathway.graph = graph
+    pathway.graph = _format_graph(graph=graph, model=model)
 
 
 def add_pathway(

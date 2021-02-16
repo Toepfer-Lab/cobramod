@@ -12,8 +12,7 @@ metabolic models.
 """
 from logging import DEBUG
 from pathlib import Path
-from time import sleep
-from unittest import main, TestCase, skip
+from unittest import main, TestCase
 
 from cobra import Model, Reaction
 
@@ -422,7 +421,7 @@ class AddingPathways(TestCase):
             member="test_group",
             container=[group.id for group in test_model.groups],
         )
-        # TODO: CASE 3: KEGG
+        # CASE 3: KEGG
         test_model = textbook_kegg.copy()
         test_list = list(
             ex._create_reactions(
@@ -650,40 +649,6 @@ class AddingPathways(TestCase):
                 metabolite.id for metabolite in test_reaction.metabolites
             ],
         )
-
-    @skip("")
-    def test__visualization(self):
-        # CASE 1: Regular Biocyc
-        test_model = textbook_biocyc.copy()
-        ex.add_pathway(
-            model=test_model,
-            pathway="SALVADEHYPOX-PWY",
-            compartment="c",
-            directory=dir_data,
-            database="META",
-            ignore_list=[],
-            show_imbalance=False,
-        )
-        # Test fluxes
-        test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
-        self.assertEqual(first=len(test_pathway.members), second=5)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(solution_fluxes=test_solution)
-        sleep(1)
-        ex.add_pathway(
-            model=test_model,
-            pathway="PWY-1187",
-            compartment="c",
-            directory=dir_data,
-            database="META",
-            ignore_list=[],
-            show_imbalance=False,
-        )
-        # Test fluxes
-        test_pathway = test_model.groups.get_by_id("PWY-1187")
-        self.assertEqual(first=len(test_pathway.members), second=14)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(solution_fluxes=test_solution)
 
 
 if __name__ == "__main__":
