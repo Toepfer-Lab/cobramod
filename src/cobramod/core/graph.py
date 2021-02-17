@@ -83,6 +83,26 @@ def find_cycle(graph: dict, key: str, visited: list):
             return find_cycle(graph=graph, key=single, visited=visited)
 
 
+def return_cycles(graph: dict):
+    """
+    Returns a nested list of cyclic paths. These paths might repeat. If path
+    is lineal then an empty list is returned.
+
+    Args:
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+
+    Returns:
+        List: Nested list with cyclic paths or empty list if lineal
+    """
+    cycles = list()
+    for node in graph.keys():
+        cycle = find_cycle(graph=graph, key=node, visited=[])
+        if cycle:
+            cycles.append(cycle)
+    return cycles
+
+
 def cut_cycle(graph: dict, key: str):
     """
     Changes value of key to None in given dictionary. It will raise an error if
@@ -294,12 +314,14 @@ def build_graph(graph: dict) -> list:
     with suppress(KeyError):
         # Cut parents if needed
         cut_parents(graph=graph)
-        key = get_pop_key(dictionary=graph)
         # Fix cycles if found
-        cycle = find_cycle(graph=graph, key=key, visited=[])
-        if cycle is not False:
+        cycles = return_cycles(graph=graph)
+        # Check until no cycles are found.
+        while cycles:
             # This is modify graph
-            cut_cycle(graph=graph, key=cycle[0])
+            # TODO: check wheter tupples are affected
+            cut_cycle(graph=graph, key=cycles[0][0])
+            cycles = return_cycles(graph=graph)
     # This would modify the graph. Use copy
     mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])
     mapping.sort(key=len, reverse=True)

@@ -79,6 +79,43 @@ class GraphTesting(TestCase):
             first=["R0", "R1", "R2", "R3", "R4"], second=test_answer
         )
 
+    def test_return_cycles(self):
+        # CASE 1: Lineal
+        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
+        test_list = gr.return_cycles(graph=test_dict)
+        self.assertFalse(expr=test_list)
+        # CASE 1: Complex Cyclic
+        test_dict = {
+            "R0": "R1",
+            "R1": ("R2", "R5"),
+            "R2": "R3",
+            "R3": "R4",
+            "R4": "R0",
+            "R5": None,
+        }
+        test_list = gr.return_cycles(graph=test_dict)
+        self.assertIn(
+            member=["R0", "R1", "R2", "R3", "R4"], container=test_list
+        )
+        # CASE 2: Graph with cycle, from Biocyc (GLUCONEO-PWY)
+        test_dict = {
+            "R1": "R13",
+            "R2": "R3",
+            "R3": ("R2", "R1"),
+            "R4": None,
+            "R5": "R4",
+            "R6": "R5",
+            "R7": "R6",
+            "R8": "R7",
+            "R9": "R8",
+            "R10": None,
+            "R11": "R10",
+            "R12": None,
+            "R13": None,
+        }
+        test_list = gr.return_cycles(graph=test_dict)
+        self.assertIn(member=["R3", "R2"], container=test_list)
+
     def test_cut_cycle(self):
         # CASE 1: Simple cut
         test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
@@ -354,7 +391,7 @@ class GraphTesting(TestCase):
         }
         test_list = gr.build_graph(graph=test_dict)
         self.assertEqual(first=len(test_list), second=5)
-        # CASE 6: Cyclic
+        # CASE 6: Cyclic with inside cycle
         test_dict = {
             "R1": "R13",
             "R2": "R3",
@@ -370,7 +407,8 @@ class GraphTesting(TestCase):
             "R12": None,
             "R13": None,
         }
-        # test_list = gr.build_graph(graph=test_dict)
+        test_list = gr.build_graph(graph=test_dict)
+        self.assertEqual(first=len(test_list), second=5)
 
 
 if __name__ == "__main__":

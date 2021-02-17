@@ -38,9 +38,8 @@ from cobramod.core.creation import (
     add_reactions,
 )
 from cobramod.core.extension import add_pathway, test_result
-from cobramod.core.pathway import Pathway
+from cobramod.core.pathway import Pathway, model_convert
 from cobramod.core.retrieval import get_data, translate, available_databases
-from cobramod.utils import model_convert
 
 __all__ = [
     "get_data",
