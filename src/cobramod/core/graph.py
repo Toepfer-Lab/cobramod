@@ -249,49 +249,6 @@ def get_mapping(graph: dict, stop_list: list, new: list):
     return new
 
 
-def get_pop_key(dictionary: dict) -> str:
-    """
-    Get key from dictionary that is not None nor a tuple.
-    """
-    # Copy to avoid modifications
-    new = dictionary.copy()
-    true_value = None
-    while true_value is None:
-        key, value = new.popitem()
-        if isinstance(value, tuple):
-            for item in value:
-                true_value = item
-        # key, value
-        else:
-            true_value = value
-    return key
-
-
-def get_key(dictionary: dict, value):
-    """
-    Returns key for given value. Tuples analyze separately.
-
-    Args:
-        dictionary (dict): Dictionary with keys and values
-        value (Any): Value to find in dictionary
-
-    Returns:
-        key: Key for specific value
-
-    Raises:
-        Warning: If value is not found
-    """
-    for key, test_value in dictionary.items():
-        # In case of tuples
-        if isinstance(test_value, tuple):
-            for item in test_value:
-                if item == value:
-                    return key
-        if test_value == value:
-            return key
-    raise Warning(f'Key for "{value}" not found in dictionary.')
-
-
 def build_graph(graph: dict) -> list:
     """
     Returns the mapping for given graph. The mapping is the defined as a list

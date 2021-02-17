@@ -11,9 +11,11 @@ from unittest import TestCase, main
 from time import sleep
 
 from cobra.core import DictList, Group
+from cobra.io import read_sbml_model
 
 from cobramod.core import pathway as pt
 from cobramod.core.extension import add_pathway
+from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
 from cobramod.test import textbook_kegg, textbook, textbook_biocyc
 
@@ -225,6 +227,25 @@ class TestGroup(TestCase):
         self.assertEqual(first=len(test_pathway.members), second=14)
         test_solution = test_pathway.solution(solution=test_model.optimize())
         test_pathway.visualize(solution_fluxes=test_solution)
+
+    def test_model_convert(self):
+        # CASE 1: regular conversion of Groups
+        test_model = textbook.copy()
+        for reaction in test_model.reactions:
+            test_group = Group(id=reaction.id)
+            test_model.add_groups(group_list=[test_group])
+            test_model.groups.get_by_id(reaction.id).add_members(
+                new_members=[reaction]
+            )
+        pt.model_convert(model=test_model)
+        for group in test_model.groups:
+            self.assertIsInstance(obj=group, cls=Pathway)
+        # CASE 2: Regular Model
+        filename = dir_input.joinpath("test_model02.sbml")
+        test_model = read_sbml_model(str(filename))
+        pt.model_convert(test_model)
+        for group in test_model.groups:
+            self.assertIsInstance(obj=group, cls=Pathway)
 
 
 if __name__ == "__main__":

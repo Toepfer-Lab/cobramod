@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""Unittest for module graph
+
+In this modules, the new algorithm is tested. The TestCase GraphTesting checks
+that the behaviour of all important functions works as intended
+"""
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
@@ -284,20 +289,6 @@ class GraphTesting(TestCase):
             list2=["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],
         )
         self.assertListEqual(list1=test_list[1], list2=["R7", "R8", "R10"])
-
-    def test_get_pop_key(self):
-        # CASE 1: Simple Lineal
-        test_dict = {"R1": "R2", "R2": "R3", "R3": None}
-        test_key = gr.get_pop_key(dictionary=test_dict)
-        self.assertIsInstance(test_key, str)
-        # CASE 2: Simple Cyclic
-        test_dict = {"R1": "R2", "R2": "R3", "R3": "R1"}
-        test_key = gr.get_pop_key(dictionary=test_dict)
-        self.assertIsInstance(test_key, str)
-        # CASE 3: Complex Lineal
-        test_dict = {"R1": ("R2", "R7"), "R2": ("R3", "R4")}
-        test_key = gr.get_pop_key(dictionary=test_dict)
-        self.assertIsInstance(test_key, str)
 
     def test_build_graph(self):
         # CASE 0: Single Element
