@@ -15,12 +15,13 @@ from typing import Union, Generator, Iterable
 
 from cobra import Model, Reaction
 
-from cobramod.core.creation import create_object
+from cobramod.core.creation import create_object, _fix_name
 from cobramod.core.graph import build_graph
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
-from cobramod.error import NotInRangeError
+from cobramod.error import NotInRangeError, NoIntersectFound
+from cobramod.utils import _first_item
 
 # from cobramod.utils import get_DataList, get_basic_info, check_to_write
 
@@ -404,7 +405,7 @@ def _add_sequence(
         pathway (Pathway): Common Pathway to add the reaction.
         sequence (list): List with :class:`cobra.core.reaction.Reaction`
             objects
-        avoid_list (list): A sequence of formatted reactions to
+        avoid_list (list): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -417,6 +418,11 @@ def _add_sequence(
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
+    # TODO: Fix format in previous functions
+    compartment = sequence[0].id[-1]
+    avoid_list = [
+        f'{reaction.replace("-","_")}_{compartment}' for reaction in avoid_list
+    ]
     # Add sequence to model
     for reaction in sequence:
         # This reaction will not be added.
@@ -458,36 +464,110 @@ def _add_sequence(
         debug_log.debug("Pathway added to Model")
 
 
-def _format_graph(graph: dict, model: Model):
+def _remove_reactions(
+    graph: dict, avoid_list: list, replacement: dict
+) -> dict:
     """
-    Returns a new graph, where all items are formatted. Hyphens become
-    underscores.
+    Returns a new graph, where items are replaced if found in given
+    dictionary or removed in found in given avoid list.
     """
-    new_graph = dict()
-    value: str
+    new_graph = graph.copy()
+    # Remove necessary keys in copy
+    for key in graph.keys():
+        if key in avoid_list:
+            del new_graph[key]
+    # use new copy and modify
+    graph = new_graph.copy()
+    # Use replacements
+    for key in graph.keys():
+        if key not in replacement.keys():
+            continue
+        new_key = replacement[key]
+        for key2, value in graph.items():
+            if not value:
+                # In case of None
+                continue
+            # If tuple and found
+            elif isinstance(value, tuple) and key in value:
+                new_value = tuple(item.replace(key, new_key) for item in value)
+            # If string and found
+            elif key in value:
+                new_value = value.replace(key, new_key)
+            # Skip and/or update if necessary
+            else:
+                continue
+            new_graph[key2] = new_value
+        # Update key and remove old
+        new_graph[new_key] = new_graph[key]
+        del new_graph[key]
+    return new_graph
+
+
+def _format_graph(
+    graph: dict,
+    model: Model,
+    compartment: str,
+    directory: Path,
+    database: str,
+    model_id: str,
+    avoid_list: list,
+    replacement: dict,
+) -> dict:
+    """
+    Returns new formatted graph. If an item if found in given replacement dict,
+    the value will be replaced; if found in avoid list, the graph will not
+    contain that value. Function :func`cobramod.get_data` will use passed
+    arguments to format the items. An KeyError will be raised if the format
+    was not correct.
+    """
+    graph = _remove_reactions(
+        graph=graph, avoid_list=avoid_list, replacement=replacement
+    )
+    new_graph = graph.copy()
     # Format tuples, single strings and kes
-    for key, value in graph.items():
-        if isinstance(value, tuple):
-            value = tuple(single.replace("-", "_") for single in value)
-        else:
-            # In case of None, leave it as none
-            with suppress(AttributeError):
-                value = value.replace("-", "_")
-        new_graph[key.replace("-", "_")] = value
-    # TODO: Find an alternative.
-    # Query in the model
-    graph = dict()
-    for key, value in new_graph.items():
-        if isinstance(value, tuple):
-            value = tuple(model.reactions.query(item)[0].id for item in value)
-        else:
-            # In case of None, leave it as none
-            with suppress(TypeError, IndexError):
-                value = model.reactions.query(value)[0].id
-        with suppress(IndexError):
-            key = model.reactions.query(key)[0].id
-        graph[key] = value
-    return graph
+    for key in graph.keys():
+        # Get synonym/ Format key
+        # Get data from files
+        key_dict = get_data(
+            directory=directory,
+            database=database,
+            identifier=key,
+            model_id=model_id,
+        )
+        try:
+            # Find synonym
+            new_identifier = _first_item(
+                first=model.reactions, second=key_dict["XREF"], revert=True
+            )
+            new_key = f"{_fix_name(name=new_identifier)}_{compartment}"
+        except (NoIntersectFound, KeyError):
+            # Regular transformation
+            new_key = f'{key.replace("-", "_")}_{compartment}'
+        # Change in new graph the values where key is found
+        for key2, value in new_graph.items():
+            if not value:
+                # In case of None
+                continue
+            # If tuple and found
+            elif isinstance(value, tuple) and key in value:
+                new_value = tuple(item.replace(key, new_key) for item in value)
+            # If string and found
+            elif key in value:
+                new_value = value.replace(key, new_key)
+            # Skip and/or update if necessary
+            else:
+                continue
+            new_graph[key2] = new_value
+        # Change the key and remove old one
+        try:
+            new_graph[new_key] = new_graph[key]
+        except KeyError:
+            pass
+        del new_graph[key]
+    # Test all names
+    for key in new_graph.keys():
+        model.reactions.get_by_id(key)
+    return new_graph
 
 
 def _from_data(
@@ -521,7 +601,7 @@ def _from_data(
     Arguments for complex pathways:
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        avoid_list (Iterable): A sequence of formatted reactions to
+        avoid_list (Iterable): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -570,7 +650,20 @@ def _from_data(
         )
         # TODO: Fix sink for metabolites in last sequence
     # Add graph to Pathway
-    pathway.graph = _format_graph(graph=data_dict["PATHWAY"], model=model)
+    graph = _format_graph(
+        graph=data_dict["PATHWAY"],
+        model=model,
+        compartment=compartment,
+        database=database,
+        model_id=model_id,
+        directory=directory,
+        avoid_list=avoid_list,
+        replacement=replacement,
+    )
+    if not pathway.graph:
+        pathway.graph = graph
+    else:
+        pathway.graph.update(graph)
 
 
 def _create_quick_graph(sequence: list) -> dict:
@@ -618,7 +711,7 @@ def _from_sequence(
         directory (Path): Path for directory to stored and retrieve data.
 
     Arguments for complex pathways:
-        avoid_list (list): A sequence of formatted reactions to
+        avoid_list (list): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -665,7 +758,20 @@ def _from_sequence(
         minimum=minimum,
     )
     # Add graph to Pathway
-    pathway.graph = _format_graph(graph=graph, model=model)
+    graph = _format_graph(
+        graph=graph,
+        model=model,
+        compartment=compartment,
+        database=database,
+        model_id=model_id,
+        directory=directory,
+        avoid_list=avoid_list,
+        replacement=replacement,
+    )
+    if not pathway.graph:
+        pathway.graph = graph
+    else:
+        pathway.graph.update(graph)
 
 
 def add_pathway(
@@ -703,9 +809,9 @@ def add_pathway(
             identifier. Defaults to "custom_group"
 
     Arguments for complex pathways:
-        avoid_list (list, optional): A sequence of formatted reactions to avoid
-            adding to the model. This is useful for long pathways, where X
-            reactions need to be excluded.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model. This is useful for long pathways, where
+            X reactions need to be excluded.
         replacement (dict, optional): Original identifiers to be replaced.
             Values are the new identifiers.
         ignore_list (list): A sequence of formatted metabolites to skip when

@@ -385,6 +385,57 @@ class CreatingSequences(TestCase):
         )
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
 
+    def test__format_graph(self):
+        # CASE 1: Under other name
+        test_model = textbook_kegg.copy()
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = ex._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=[],
+            replacement={},
+        )
+        self.assertEqual(first=test_graph["R00228_c"], second="R00472_c")
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=2)
+        # CASE 2: Avoid list
+        test_model = textbook_kegg.copy()
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = ex._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=["ACALD"],
+            replacement={},
+        )
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=1)
+        # CASE 3: Replacement
+        test_model = textbook_kegg.copy()
+        # ACALDt have to be changed to ACALDt_c
+        test_model.reactions.get_by_id("ACALDt").id = "ACALDt_c"
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = ex._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=[],
+            replacement={"ACALD": "ACALDt"},
+        )
+        self.assertEqual(first=test_graph["ACALDt_c"], second="R00472_c")
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=2)
+
 
 class AddingPathways(TestCase):
     """
@@ -420,6 +471,29 @@ class AddingPathways(TestCase):
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
+        )
+        # CASE 2: Avoid list (3 reactions)
+        test_model = textbook_biocyc.copy()
+        test_list = list(
+            ex._create_reactions(
+                sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
+                compartment="c",
+                directory=dir_data,
+                database="META",
+                replacement={},
+                show_imbalance=False,
+                stop_imbalance=False,
+                model=test_model,
+                model_id=None,
+            )
+        )
+        ex._add_sequence(
+            model=test_model,
+            pathway=Pathway("test_group"),
+            sequence=test_list,
+            avoid_list=["RXN-2206"],
+            ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
+            minimum=0.1,
         )
         # CASE 3: KEGG
         test_model = textbook_kegg.copy()
@@ -649,6 +723,34 @@ class AddingPathways(TestCase):
                 metabolite.id for metabolite in test_reaction.metabolites
             ],
         )
+        # CASE 5b: Testing avoid list
+        test_model = textbook_kegg.copy()
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
+        ex.add_pathway(
+            model=test_model,
+            pathway=test_sequence,
+            database="META",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+            avoid_list=["RXN-2206"],
+        )
+        test_group = test_model.groups.get_by_id("custom_group")
+        self.assertEqual(first=len(test_group.members), second=3)
+        self.assertEqual(first=len(test_group.graph), second=3)
+        # CASE 6: Stacking pathways in one pathways
+        test_sequence = ["RXN-11438", "RXN-2208", "RXN-2209", "RXN-2221"]
+        ex.add_pathway(
+            model=test_model,
+            pathway=test_sequence,
+            database="META",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+        )
+        test_group = test_model.groups.get_by_id("custom_group")
+        self.assertEqual(first=len(test_group.members), second=7)
+        self.assertEqual(first=len(test_group.graph), second=7)
 
 
 if __name__ == "__main__":

@@ -57,7 +57,8 @@ class Pathway(Group):
         super().__init__(id=id, name=name, kind=kind)
         # Loop has to be after __init__, otherwise, behaviour of class changes.
         # TODO: Is order necessary?
-        self.order: list = []
+        self.order: List[str] = list()
+        self.graph: dict = dict()
         for member in members:
             # Remove no Reactions
             if not isinstance(member, Reaction):
@@ -85,6 +86,7 @@ class Pathway(Group):
         """
         if len(self.members) == 0 and len(self.order) > 0:
             self.order: List[str] = list()
+            self.graph: dict = dict()
             debug_log.debug(
                 f'Attribute order from  pathway "{self.id}" reset. '
                 f"Check if a method copy() from cobra.Model was called."
