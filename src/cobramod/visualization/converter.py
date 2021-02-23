@@ -153,8 +153,8 @@ class JsonDictionary(UserDict):
         self.X = 0
         self.Y = 0
         # Reaction size
-        self.R_WIDTH: float = 450
-        self.R_HEIGHT: float = 300  # 210
+        self.R_WIDTH: float = 550
+        self.R_HEIGHT: float = 350  # 210
         # Data stored about reactions and participants.
         self._overview = dict()
         # Default solution
@@ -455,7 +455,7 @@ class JsonDictionary(UserDict):
             # Defining positions for metabolites based on Reaction-box
             space_y = self.R_HEIGHT / (number_metabolites + 1)
             # For Reaction-Box
-            dot_x = left_edge + self.R_WIDTH * SIDE + 30
+            dot_x = left_edge + (self.R_WIDTH * 0.8 * SIDE) + 30
             dot_y = top_edge + counter * space_y
             # For metabolites: the labels must be 40 px higher in th y-axis
             # and the x-axis varies depending in the length (between 31-50)
@@ -597,9 +597,8 @@ class JsonDictionary(UserDict):
             name=name,
             bigg_id=identifier,
             reversibility=reversibility,
-            # label_x=(left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 17
-            label_x=left_edge + (self.R_WIDTH / 2),
-            label_y=top_edge + (self.R_HEIGHT) / 4,
+            label_x=(left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 18,
+            label_y=top_edge + (self.R_HEIGHT) / 10,
             gene_reaction_rule="",
             genes=[],
             segments=dict(),
