@@ -450,8 +450,10 @@ def _add_sequence(
             pathway.add_members(new_members=[reaction])
         else:
             # FIXME: avoid creating reaction
+            pathway.add_members(new_members=[reaction])
             debug_log.info(
-                f'Reaction "{reaction.id}" was found in model. Skipping.'
+                f'Reaction "{reaction.id}" was found in model. '
+                f"Skipping non-zero flux test."
             )
     # TODO: Add space
     debug_log.debug(f'Reactions added to group "{pathway.id}"')

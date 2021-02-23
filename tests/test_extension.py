@@ -623,6 +623,37 @@ class AddingPathways(TestCase):
             member="RXN_11422_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        # CASE 3a: Behaviour if reaction was already in model
+        test_model = textbook_biocyc.copy()
+        # Adding reactions
+        test_sequence = ["RXN-2206", "RXN-11414"]
+        ex.add_pathway(
+            model=test_model,
+            group="old_reactions",
+            compartment="c",
+            pathway=test_sequence,
+            ignore_list=[],
+            database="META",
+            directory=dir_data,
+            show_imbalance=False,
+        )
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
+        ex.add_pathway(
+            model=test_model,
+            compartment="c",
+            pathway=test_sequence,
+            ignore_list=[],
+            database="META",
+            directory=dir_data,
+            show_imbalance=False,
+        )
+        self.assertGreater(a=test_model.slim_optimize(), b=0)
+        test_group = test_model.groups.get_by_id("custom_group")
+        for identifier in ["RXN_2206_c", "RXN_11414_c", "RXN_11422_c"]:
+            self.assertIn(
+                member=identifier,
+                container=[reaction.id for reaction in test_group.members],
+            )
         # CASE 4a: KEGG simple pathway
         test_model = textbook_kegg.copy()
         ex.add_pathway(
@@ -689,10 +720,6 @@ class AddingPathways(TestCase):
             compartment="c",
             show_imbalance=False,
         )
-        # Reactions are already in model. No need for extra group.
-        self.assertRaises(
-            KeyError, test_model.groups.get_by_id, "custom_group"
-        )
         ex.add_pathway(
             model=test_model,
             pathway=["ADENODEAMIN-RXN"],
@@ -705,7 +732,7 @@ class AddingPathways(TestCase):
         # Total of one reactions
         self.assertEqual(
             first=len(test_model.groups.get_by_id("custom_group").members),
-            second=1,
+            second=3,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertNotIn(

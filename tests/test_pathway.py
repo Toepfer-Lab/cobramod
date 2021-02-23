@@ -196,7 +196,7 @@ class TestGroup(TestCase):
         self.assertEqual(
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
-        # CASE 4: Regular Biocyc
+        # CASE 4a: Regular Biocyc
         test_model = textbook_biocyc.copy()
         add_pathway(
             model=test_model,
@@ -213,6 +213,7 @@ class TestGroup(TestCase):
         test_solution = test_pathway.solution(solution=test_model.optimize())
         test_pathway.visualize(solution_fluxes=test_solution)
         sleep(1)
+        # CASE 4b: Regular Biocyc
         add_pathway(
             model=test_model,
             pathway="PWY-1187",
