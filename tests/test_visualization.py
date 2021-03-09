@@ -9,7 +9,7 @@ This module includes two TestCases:
 from contextlib import suppress
 from pathlib import Path
 from time import sleep
-from unittest import TestCase, main
+from unittest import TestCase, main, skip
 
 from escher import Builder
 
@@ -193,9 +193,14 @@ class TestJsonDictionary(TestCase):
         test_class._overview["R3"] = {"position": Position(row=3, column=0)}
         test_class._overview["R4"] = {"position": Position(row=4, column=1)}
         test_class._overview["R5"] = {"position": Position(row=5, column=0)}
-        # CASE 1: Regular usage
-        test_list = test_class.get_column_reactions(column=1)
+        test_class._overview["R6"] = {"position": Position(row=2, column=0)}
+        test_class._overview["R7"] = {"position": Position(row=2, column=3)}
+        # CASE 1: Retrieving columns
+        test_list = test_class.get_matrix_reactions(vertical=False, position=1)
         self.assertCountEqual(first=["R1", "R2", "R4"], second=test_list)
+        # CASE 2: Retrieving Row
+        test_list = test_class.get_matrix_reactions(vertical=True, position=2)
+        self.assertCountEqual(first=["R2", "R6", "R7"], second=test_list)
 
     def test_get_products(self):
         # Preparing tests
@@ -290,6 +295,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-1",
             row=0,
             column=0,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C02001_c --> C02002_c",
@@ -297,6 +303,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-2",
             row=0,
             column=1,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C03001_c + C03002_c_c--> C03003_c",
@@ -304,6 +311,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-3",
             row=1,
             column=0,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C04001_c + C04002_c --> C04003_c + C04004_c",
@@ -311,6 +319,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-4",
             row=1,
             column=1,
+            vertical=False,
         )
         # Reaction "R2" before two reactions boxes in x (900)
         # Reaction "R3" before one reaction box in x (450)
@@ -324,6 +333,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-1",
             row=0,
             column=0,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C01003_c --> C02001_c",
@@ -331,6 +341,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-2",
             row=0,
             column=1,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C02001_c + C03001_c_c--> C03002_c",
@@ -338,6 +349,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-3",
             row=0,
             column=2,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C03002_c + C04001_c --> C04002_c + C04003_c",
@@ -345,11 +357,12 @@ class TestJsonDictionary(TestCase):
             name="Reaction-4",
             row=0,
             column=3,
+            vertical=False,
         )
-        # Reaction "R2" before two reactions boxes in x (900)
+        # Reaction "R2" before two reactions boxes in x (550*2)
         # Reaction "R3" before three reaction boxes in x ()
-        self.assertLess(a=test_class["reactions"]["1"]["label_x"], b=450 * 2)
-        self.assertLess(a=test_class["reactions"]["2"]["label_x"], b=450 * 3)
+        self.assertLess(a=test_class["reactions"]["1"]["label_x"], b=550 * 2)
+        self.assertLess(a=test_class["reactions"]["2"]["label_x"], b=551 * 3)
         # Shared metabolite is node "2" in R1 and R2
         for segment in test_class["reactions"]["1"]["segments"].values():
             self.assertGreaterEqual(a=int(segment["from_node_id"]), b=2)
@@ -370,6 +383,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-1",
             row=0,
             column=0,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C01003_c --> C02001_c",
@@ -377,6 +391,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-2",
             row=0,
             column=1,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C02001_c + C03001_c_c--> C03002_c",
@@ -384,6 +399,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-3",
             row=0,
             column=2,
+            vertical=False,
         )
         test_class.add_reaction(
             string="C03002_c + C04001_c --> C04002_c + C04003_c",
@@ -391,6 +407,7 @@ class TestJsonDictionary(TestCase):
             name="Reaction-4",
             row=0,
             column=3,
+            vertical=False,
         )
         # Writing the JSON
         test_string = test_class.json_dump(indent=4)
@@ -402,6 +419,7 @@ class TestJsonDictionary(TestCase):
         test_builder.save_html(str(test_path))
         self.assertTrue(expr=test_path.exists())
 
+    @skip("")
     def test_visualize(self):
         # NOTE: visual tests
         # Settings
@@ -558,6 +576,49 @@ class TestJsonDictionary(TestCase):
             "R14": "C13001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
+
+    def test_visualize2(self):
+        test_path = Path.cwd().joinpath("test_map.html")
+        # CASE 3a: Complex Lineal
+        test_class = JsonDictionary()
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_class.graph = {
+            "R1": "R2",
+            "R2": ("R3", "R5", "R4"),
+            "R3": ("R6", "R8"),
+            "R4": None,
+            "R5": None,
+            "R6": "R7",
+            "R7": "R10",
+            "R8": ("R9", "R11"),
+            "R9": None,
+            "R10": "R14",
+            "R11": ("R12", "R13"),
+            "R12": None,
+            "R13": None,
+            "R14": None,
+        }
+        test_class.reaction_strings = {
+            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
+            "R2": "C01003_c --> C02001_c",
+            "R3": "C02001_c + C03001_c--> C03002_c",
+            "R4": "C02001_c+ C04001_c --> C04002_c + C04003_c",
+            "R5": "2 C02001_c --> 4 C05001_c",
+            "R6": "C03002_c --> C06001_c",
+            "R7": "3 C06001_c --> 6 C07001_c",
+            "R8": "C03002_c --> 4 C08001_c",
+            "R9": "2 C08001_c --> C09001_c",
+            "R10": "2 C07001_c --> 3 C10001_c",
+            "R11": "2 C08001_c --> 4 C11001_c",
+            "R12": "2 C11001_c --> C12001_c",
+            "R13": "C11001_c --> C13001_c",
+            "R14": "C10001_c --> C14001_c",
+        }
+        test_builder = test_class.visualize(filepath=test_path)
+        sleep(1)
+        test_builder = test_class.visualize2(filepath=test_path)
+        test_builder
 
 
 class TestMapping(TestCase):
@@ -779,6 +840,41 @@ class TestMapping(TestCase):
             dictionary=test_dict, keys=["R1", "R5", "R3"]
         )
         self.assertCountEqual(first=test_set, second={"R2", "R7", "R4"})
+
+    def test_transpose(self):
+        # CASE 0: Simple Matrix m*m
+        test_matrix = [["R1", "R2"], ["R3", "R4"]]
+        test_answer = mp.transpose(matrix=test_matrix)
+        self.assertEqual(
+            first=[["R1", "R3"], ["R2", "R4"]], second=test_answer
+        )
+        # CASE 1: Different dimensions m*n
+        test_matrix = [["R1", "R2", "R3", "R4"], [0, 0, "R5", 0]]
+        test_answer = mp.transpose(matrix=test_matrix)
+        self.assertEqual(
+            first=[["R1", 0], ["R2", 0], ["R3", "R5"], ["R4", 0]],
+            second=test_answer,
+        )
+        # CASE 2: Matrix with multiple reactions
+        test_matrix = [
+            ["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R12"],
+            [0, 0, "R7", "R8", "R10", 0, "R9", 0],
+            [0, 0, 0, 0, "R11", 0, 0, 0],
+        ]
+        test_answer = mp.transpose(matrix=test_matrix)
+        self.assertEqual(
+            first=[
+                ["R0", 0, 0],
+                ["R1", 0, 0],
+                ["R2", "R7", 0],
+                ["R3", "R8", 0],
+                ["R4", "R10", "R11"],
+                ["R5", 0, 0],
+                ["R6", "R9", 0],
+                ["R12", 0, 0],
+            ],
+            second=test_answer,
+        )
 
 
 if __name__ == "__main__":

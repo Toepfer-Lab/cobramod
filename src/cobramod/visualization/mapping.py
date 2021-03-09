@@ -230,3 +230,10 @@ def get_mapping(graph: dict) -> List[list]:
     longest = len(matrix[0])
     matrix = format_matrix(matrix=matrix, max_length=longest)
     return matrix
+
+
+def transpose(matrix: List[list]) -> List[list]:
+    """
+    Returns a transpose matrix for given matrix.
+    """
+    return list(map(list, zip(*matrix)))

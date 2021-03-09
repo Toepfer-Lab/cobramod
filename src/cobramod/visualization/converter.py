@@ -41,7 +41,7 @@ from IPython.core.getipython import get_ipython
 # from cobramod.visualization.pair import PairDictionary
 from cobramod.visualization.items import Reaction, Node
 from cobramod.visualization.debug import debug_log
-from cobramod.visualization.mapping import get_mapping
+from cobramod.visualization.mapping import get_mapping, transpose
 
 Position = namedtuple("Position", ["row", "column"])
 
@@ -313,7 +313,11 @@ class JsonDictionary(UserDict):
         )
 
     def _add_reaction_markers(
-        self, identifier: str, top_edge: float, left_edge: float
+        self,
+        identifier: str,
+        top_edge: float,
+        left_edge: float,
+        vertical: bool,
     ):
         """
         Add the corresponding midmarker and multimarkers into the
@@ -331,27 +335,43 @@ class JsonDictionary(UserDict):
         ):
             last = self._get_last_number(item="nodes")
             self._overview[identifier]["nodes"][node_position] = last
-            self.add_marker(
-                x=left_edge + (self.R_WIDTH / 2) + extra_x + 30,
-                y=top_edge + (self.R_HEIGHT / 2),
-                node_type=node_type,
-            )
+            if not vertical:
+                self.add_marker(
+                    x=left_edge + (self.R_WIDTH / 2) + extra_x + 30,
+                    y=top_edge + (self.R_HEIGHT / 2),
+                    node_type=node_type,
+                )
+            else:
+                self.add_marker(
+                    x=left_edge + (self.R_WIDTH / 2),
+                    y=top_edge + (self.R_HEIGHT / 2) + extra_x + 30,
+                    node_type=node_type,
+                )
 
-    def get_column_reactions(self, column: int) -> list:
+    def get_matrix_reactions(self, vertical: bool, position: int) -> list:
         """
         Return a List with the names of the reactions, which are located in
-        given column.
+        given position. The position can be from a column or a row
         """
-        return [
-            reaction
-            for reaction in self._overview.keys()
-            if self._overview[reaction]["position"].column == column
-        ]
+        if not vertical:
+            data = [
+                reaction
+                for reaction in self._overview.keys()
+                if self._overview[reaction]["position"].column == position
+            ]
+        else:
+            data = [
+                reaction
+                for reaction in self._overview.keys()
+                if self._overview[reaction]["position"].row == position
+            ]
+        return data
 
     def get_products(self, reactions: list) -> Dict[str, list]:
         """
-        Returns a dictionary where keys are the reaction in given list and the
-        keys the products of the reaction
+        Returns a dictionary where keys are the reactions of given list and the
+        values the products of the reactions.
+
         Args:
             reactions (list): List with reaction identifiers.
 
@@ -407,6 +427,7 @@ class JsonDictionary(UserDict):
         reaction: Reaction,
         top_edge: float,
         left_edge: float,
+        vertical: bool,
     ):
         """
         Creates the metabolites from given dictionary and complements the
@@ -428,10 +449,13 @@ class JsonDictionary(UserDict):
         # Obtain products from reactions in the prior column.
         # The column must be actual - 1, or 0. This is to check for shared
         # metabolites.
-        column_reactions = self.get_column_reactions(
-            column=max(position.column - 1, 0)
+        position_value = position.column
+        if vertical:
+            position_value = position.row
+        column_reactions = self.get_matrix_reactions(
+            vertical=vertical, position=max(position_value - 1, 0)
         )
-        # Removed identifier
+        # Remove actual identifier
         filtered = [
             reaction for reaction in column_reactions if reaction != identifier
         ]
@@ -455,8 +479,12 @@ class JsonDictionary(UserDict):
             # Defining positions for metabolites based on Reaction-box
             space_y = self.R_HEIGHT / (number_metabolites + 1)
             # For Reaction-Box
-            dot_x = left_edge + (self.R_WIDTH * 0.8 * SIDE) + 30
-            dot_y = top_edge + counter * space_y
+            if not vertical:
+                dot_x = left_edge + (self.R_WIDTH * 0.8 * SIDE) + 30
+                dot_y = top_edge + counter * space_y
+            else:
+                dot_x = left_edge + counter * space_y
+                dot_y = top_edge + (self.R_HEIGHT * 0.8 * SIDE) + 30
             # For metabolites: the labels must be 40 px higher in th y-axis
             # and the x-axis varies depending in the length (between 31-50)
             _up_or_down = cycle([-1, 1])
@@ -564,7 +592,13 @@ class JsonDictionary(UserDict):
         # Segments from other reactions.
 
     def add_reaction(
-        self, row: int, column: int, string: str, name: str, identifier: str
+        self,
+        row: int,
+        column: int,
+        string: str,
+        name: str,
+        identifier: str,
+        vertical: bool,
     ):
         """
         Parses and add given reaction string as a reaction for the
@@ -577,6 +611,7 @@ class JsonDictionary(UserDict):
             row (int): Row number from the visualization matrix.
             column (int): Column number of the visualization matrix.
             name (str): The name of the reaction
+            vertical (bool): If reaction should be displayed vertically
         """
         # Add general data
         self._overview[identifier] = {
@@ -591,14 +626,21 @@ class JsonDictionary(UserDict):
         metabolite_dict = _convert_string(string=string)
         left_edge = self.R_WIDTH * column
         top_edge = self.R_HEIGHT * row
+        # Labels
+        if not vertical:
+            label_x = (left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 18
+            label_y = top_edge + (self.R_HEIGHT) / 10
+        else:
+            label_x = left_edge + 10
+            label_y = top_edge + (self.R_HEIGHT / 2)
         # TODO: change this part
         reversibility = True
         reaction = Reaction(
             name=name,
             bigg_id=identifier,
             reversibility=reversibility,
-            label_x=(left_edge + self.R_WIDTH / 2) - len(identifier) / 2 * 18,
-            label_y=top_edge + (self.R_HEIGHT) / 10,
+            label_x=label_x,
+            label_y=label_y,
             gene_reaction_rule="",
             genes=[],
             segments=dict(),
@@ -609,9 +651,13 @@ class JsonDictionary(UserDict):
             reaction=reaction,
             top_edge=top_edge,
             left_edge=left_edge,
+            vertical=vertical,
         )
         self._add_reaction_markers(
-            identifier=identifier, left_edge=left_edge, top_edge=top_edge
+            identifier=identifier,
+            left_edge=left_edge,
+            top_edge=top_edge,
+            vertical=vertical,
         )
         # Add visual segments to reaction
         self.add_segments(reaction=reaction, metabolite_dict=metabolite_dict)
@@ -620,6 +666,15 @@ class JsonDictionary(UserDict):
         self.data["reactions"].update({str(number): reaction})
         self._overview[identifier]["index"] = str(number)
         debug_log.info(f'Reaction "{identifier}" added to the JsonDictionary.')
+
+    def _reset(self):
+        """
+        Resets the data of JsonDictionary to its initial state. This helps
+        when calling the function multiple times.
+        """
+        self._overview = {}
+        self.data["reactions"] = {}
+        self.data["nodes"] = {}
 
     def visualize(self, filepath: Path = None):
         """
@@ -658,6 +713,7 @@ class JsonDictionary(UserDict):
                     name=reaction,
                     string=self.reaction_strings[reaction],
                     identifier=reaction,
+                    vertical=False,
                 )
         builder = Builder(
             reaction_styles=["text"],
@@ -677,4 +733,69 @@ class JsonDictionary(UserDict):
             with catch_warnings():
                 simplefilter(action="ignore", category=ResourceWarning)
                 web_open("file://" + str(filepath))
+        # Cleaning Up
+        self._reset()
+
+    def visualize2(self, filepath: Path = None):
+        """
+        Saves the visualization of the JsonDictionary in given path as a HTML.
+        Returns the builder for the JsonDictionary. If method is called in
+        Jupyter or Qtconsole, it will show the embedded builder of the escher
+        visualization. Else, it will open the default browser of the operating
+        system and will load the previously saved HTML.
+
+        .. note::
+        Blank spaces are removed from the reactions.
+
+        Args:
+            filepath (Path): Path for the HTML. Defaults to "pathway.html" in
+                the current working directory
+        Returns:
+            Builder: Escher builder object for the visualization
+        """
+        # Define path
+        if not filepath:
+            filepath = Path.cwd().joinpath("pathway.html")
+        # Use relationship
+        mapping = get_mapping(graph=self.graph)
+        mapping = transpose(matrix=mapping)
+        # Modify Reaction-Box
+        self.R_HEIGHT, self.R_WIDTH = self.R_WIDTH, self.R_HEIGHT
+        # Modify canvas
+        self.CANVAS_HEIGHT = self.R_HEIGHT * len(mapping)
+        self.CANVAS_WIDTH = self.R_WIDTH * len(mapping[0])
+        # Use reaction information
+        for index_j, row in enumerate(mapping):
+            for index_i, reaction in enumerate(row):
+                # Add reactions only not 0
+                if reaction == 0:
+                    continue
+                self.add_reaction(
+                    row=index_j,
+                    column=index_i,
+                    name=reaction,
+                    string=self.reaction_strings[reaction],
+                    identifier=reaction,
+                    vertical=True,
+                )
+        builder = Builder(
+            reaction_styles=["text"],
+            map_name=self.data["head"]["map_name"],
+            map_json=self.json_dump(),
+        )
+        # This statement is needed, otherwise, all reactions labels will
+        # appear with "(nd)".
+        if self.flux_solution:
+            builder.reaction_data = self.flux_solution
+        builder.save_html(filepath=filepath)
+        # builder.reaction_styles = ["color"]
+        debug_log.info(f'Visualization located in "{filepath}"')
+        # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
+        if not _in_notebook():
+            # The context manager removes the ResourceWarning
+            with catch_warnings():
+                simplefilter(action="ignore", category=ResourceWarning)
+                web_open("file://" + str(filepath))
+        # Cleaning Up
+        self._reset()
         return builder
