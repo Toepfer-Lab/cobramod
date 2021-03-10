@@ -147,6 +147,7 @@ class Pathway(Group):
         self,
         solution_fluxes: Union[Solution, Dict[str, float]] = None,
         filename: Path = None,
+        vertical: bool = False,
     ) -> Builder:
         """
         Returns a :class:`escher.Builder`, which can be use to create visual
@@ -172,7 +173,7 @@ class Pathway(Group):
             reaction: self.members.get_by_id(reaction).reaction
             for reaction in json_dict.graph.keys()
         }
-        return json_dict.visualize(filepath=filename)
+        return json_dict.visualize(filepath=filename, vertical=vertical)
 
 
 def model_convert(model: Model):

@@ -176,6 +176,8 @@ class TestGroup(TestCase):
             "GND": None,
         }
         test_builder = test_group.visualize()
+        sleep(1)
+        test_builder = test_group.visualize(vertical=True)
         self.assertEqual(
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
@@ -213,6 +215,8 @@ class TestGroup(TestCase):
         test_solution = test_pathway.solution(solution=test_model.optimize())
         test_pathway.visualize(solution_fluxes=test_solution)
         sleep(1)
+        test_pathway.visualize(solution_fluxes=test_solution, vertical=True)
+        sleep(1)
         # CASE 4b: Regular Biocyc
         add_pathway(
             model=test_model,
@@ -228,6 +232,8 @@ class TestGroup(TestCase):
         self.assertEqual(first=len(test_pathway.members), second=14)
         test_solution = test_pathway.solution(solution=test_model.optimize())
         test_pathway.visualize(solution_fluxes=test_solution)
+        sleep(1)
+        test_pathway.visualize(solution_fluxes=test_solution, vertical=True)
 
     def test_model_convert(self):
         # CASE 1: regular conversion of Groups

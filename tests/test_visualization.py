@@ -9,7 +9,7 @@ This module includes two TestCases:
 from contextlib import suppress
 from pathlib import Path
 from time import sleep
-from unittest import TestCase, main, skip
+from unittest import TestCase, main
 
 from escher import Builder
 
@@ -196,13 +196,15 @@ class TestJsonDictionary(TestCase):
         test_class._overview["R6"] = {"position": Position(row=2, column=0)}
         test_class._overview["R7"] = {"position": Position(row=2, column=3)}
         # CASE 1: Retrieving columns
-        test_list = test_class.get_matrix_reactions(vertical=False, position=1)
+        test_list = test_class._get_matrix_reactions(
+            vertical=False, position=1
+        )
         self.assertCountEqual(first=["R1", "R2", "R4"], second=test_list)
         # CASE 2: Retrieving Row
-        test_list = test_class.get_matrix_reactions(vertical=True, position=2)
+        test_list = test_class._get_matrix_reactions(vertical=True, position=2)
         self.assertCountEqual(first=["R2", "R6", "R7"], second=test_list)
 
-    def test_get_products(self):
+    def test__get_products(self):
         # Preparing tests
         test_class = JsonDictionary()
         test_class._overview["R1"] = {"index": "0"}
@@ -242,13 +244,13 @@ class TestJsonDictionary(TestCase):
             },
         }
         # CASE 1: Empty list
-        test_dict = test_class.get_products(reactions=[])
+        test_dict = test_class._get_products(reactions=[])
         self.assertFalse(test_dict)
         # CASE 1: Simple reactions
-        test_dict = test_class.get_products(reactions=["R1"])
+        test_dict = test_class._get_products(reactions=["R1"])
         self.assertDictEqual(d1={"R1": ["C01002_c"]}, d2=test_dict)
         # CASE 1: Mix with complex reactions
-        test_dict = test_class.get_products(reactions=["R1", "R2", "R4"])
+        test_dict = test_class._get_products(reactions=["R1", "R2", "R4"])
         self.assertDictEqual(
             d1={
                 "R1": ["C01002_c"],
@@ -258,7 +260,7 @@ class TestJsonDictionary(TestCase):
             d2=test_dict,
         )
 
-    def test_find_shared(self):
+    def test__find_shared(self):
         # Preparing tests
         test_class = JsonDictionary()
         test_class._overview["R1"] = {
@@ -273,14 +275,14 @@ class TestJsonDictionary(TestCase):
         test_dict = {"R1": ["C01002_c"], "R2": ["C02001_c"]}
         # CASE 1: Nothing is found
         # node_number, old_reaction
-        test_tuple = test_class.find_shared(
+        test_tuple = test_class._find_shared(
             metabolite="C01003_c", products=test_dict
         )
         self.assertFalse(test_tuple[0])
         self.assertFalse(test_tuple[1])
         # CASE 2: regular finding
         # node_number, old_reaction
-        test_tuple = test_class.find_shared(
+        test_tuple = test_class._find_shared(
             metabolite="C01002_c", products=test_dict
         )
         self.assertEqual(first=test_tuple[0], second="11")
@@ -321,10 +323,10 @@ class TestJsonDictionary(TestCase):
             column=1,
             vertical=False,
         )
-        # Reaction "R2" before two reactions boxes in x (900)
-        # Reaction "R3" before one reaction box in x (450)
-        self.assertLess(a=test_class["reactions"]["1"]["label_x"], b=450 * 2)
-        self.assertLess(a=test_class["reactions"]["2"]["label_x"], b=450)
+        # Reaction "R2" before two reactions boxes in x (650 * 2)
+        # Reaction "R3" before one reaction box in x (650)
+        self.assertLess(a=test_class["reactions"]["1"]["label_x"], b=650 * 2)
+        self.assertLess(a=test_class["reactions"]["2"]["label_x"], b=650)
         # CASE 3: Different positions. Matrix 1x4
         test_class = JsonDictionary()
         test_class.add_reaction(
@@ -419,7 +421,6 @@ class TestJsonDictionary(TestCase):
         test_builder.save_html(str(test_path))
         self.assertTrue(expr=test_path.exists())
 
-    @skip("")
     def test_visualize(self):
         # NOTE: visual tests
         # Settings
@@ -576,10 +577,24 @@ class TestJsonDictionary(TestCase):
             "R14": "C13001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
+        sleep(1)
 
-    def test_visualize2(self):
+    def test_visualize_vertical(self):
         test_path = Path.cwd().joinpath("test_map.html")
-        # CASE 3a: Complex Lineal
+        # CASE 1: Unrelated reactions without data
+        test_class = JsonDictionary()
+        test_class.graph = {"R1": None, "R2": None, "R3": None}
+        # Metabolites need to be unrelated
+        test_class.reaction_strings = {
+            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
+            "R2": "C02003_c --> C02001_c",
+            "R3": "C03001_c + C03003_c--> C03002_c",
+        }
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_builder = test_class.visualize(filepath=test_path, vertical=True)
+        sleep(1)
+        # CASE 2: Complex Lineal
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
             test_path.unlink()
@@ -615,9 +630,7 @@ class TestJsonDictionary(TestCase):
             "R13": "C11001_c --> C13001_c",
             "R14": "C10001_c --> C14001_c",
         }
-        test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
-        test_builder = test_class.visualize2(filepath=test_path)
+        test_builder = test_class.visualize(filepath=test_path, vertical=True)
         test_builder
 
 
