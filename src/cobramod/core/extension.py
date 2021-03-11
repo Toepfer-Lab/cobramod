@@ -21,7 +21,7 @@ from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
 from cobramod.error import NotInRangeError
-from cobramod.utils import get_DataList, get_basic_info, check_to_write
+from cobramod.utils import get_DataList, get_basic_info, check_to_write, DataModel
 
 
 def _create_reactions(
@@ -675,8 +675,8 @@ def add_pathway(
     if not filename:
         filename = Path.cwd().joinpath("summary.txt")
     # Retrieve information for summary methods
-    basic_info = get_basic_info(model=model)
-    old_values = get_DataList(model=model)
+    #basic_info = get_basic_info(model=model)
+    old_values = DataModel.from_model(model)
     # If statements to about polution of debug.
     if isinstance(pathway, str):
         # From identifier
@@ -724,6 +724,5 @@ def add_pathway(
         model=model,
         summary=summary,
         filename=filename,
-        basic_info=basic_info,
         old_values=old_values,
     )

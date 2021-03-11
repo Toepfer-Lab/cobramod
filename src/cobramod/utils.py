@@ -10,7 +10,7 @@ example:
 """
 from itertools import chain
 from pathlib import Path
-from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any
+from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any, Dict
 from re import match
 from warnings import catch_warnings, simplefilter, warn
 
@@ -25,18 +25,59 @@ from cobramod.error import (
 from cobramod.core.pathway import Pathway
 
 
-class DataModel(NamedTuple):
+class DataModel:
     """
     A class to store old values of metabolic models
     """
 
-    reactions: DictList
-    metabolites: DictList
-    demands: DictList
-    exchanges: DictList
-    genes: DictList
-    groups: DictList
-    sinks: DictList
+    def __init__(self, lists: Dict[str, list]):
+        self.reactions = lists.get("reactions")
+        self.metabolites = lists.get("metabolites")
+        self.demands = lists.get("demands")
+        self.exchanges = lists.get("exchanges")
+        self.genes = lists.get("genes")
+        self.groups = lists.get("groups")
+        self.sinks = lists.get("sinks")
+
+    @classmethod
+    def from_model(cls, model: Model):
+        data = {'reactions': model.reactions.list_attr("id"),
+                'metabolites': model.metabolites.list_attr("id"),
+                'demands': model.demands.list_attr("id"),
+                'exchanges': model.exchanges.list_attr("id"),
+                'genes': model.genes.list_attr("id"),
+                'groups': model.groups.list_attr("id"),
+                'sinks': model.sinks.list_attr("id")}
+        return cls(data)
+
+    def __sub__(self, other):
+        data = {'reactions': [x for x in self.reactions if x not in set(other.reactions)],
+                'metabolites': [x for x in self.metabolites if x not in set(other.metabolites)],
+                'demands': [x for x in self.demands if x not in set(other.demands)],
+                'exchanges': [x for x in self.exchanges if x not in set(other.exchanges)],
+                'genes': [x for x in self.genes if x not in set(other.genes)],
+                'groups': [x for x in self.groups if x not in set(other.groups)],
+                'sinks': [x for x in self.sinks if x not in set(other.sinks)]}
+
+        return DataModel(lists=data)
+
+    def __str__(self):
+        output = ['Reactions:\n',
+                  str(self.reactions), "\n",
+                  "Metabolites:\n",
+                  str(self.metabolites), "\n",
+                  "Exchange:\n",
+                  str(self.exchanges), "\n",
+                  "Demand:\n",
+                  str(self.demands), "\n",
+                  "Sinks:\n",
+                  str(self.sinks), "\n",
+                  "Genes:\n",
+                  str(self.genes), "\n",
+                  "Groups:\n",
+                  str(self.groups), "\n"]
+
+        return ''.join(output)
 
 
 def check_imbalance(
@@ -279,11 +320,10 @@ def get_basic_info(model: Model) -> list:
 
 
 def check_to_write(
-    model: Model,
-    summary: bool,
-    filename: Path,
-    old_values: DataModel,
-    basic_info: list,
+        model: Model,
+        summary: bool,
+        filename: Path,
+        old_values: DataModel,
 ):
     """
     Checks if summary should be saved in a filename.
@@ -303,10 +343,22 @@ def check_to_write(
     """
     try:
         if summary:
-            sequences = basic_info + get_diff(
-                model=model, comparison=old_values
-            )
-            write_to_file(sequences=sequences, filename=filename)
+
+            new_values = DataModel.from_model(model)
+
+            output = [
+                "Summary:",
+                f"Model identifier: {model.id}",
+                "Model name:",
+                str(model.name),
+                str(new_values),
+                "Added:",
+                str(new_values - old_values),
+                "Removed:",
+                str(old_values - new_values)
+            ]
+
+            write_to_file(sequences=output, filename=filename)
         else:
             pass
     except TypeError:
