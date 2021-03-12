@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """COBRApy Group-child class extension
 
-The new class :func:`cobramod.pathway.Pathway" is child derived from
-:func:`cobra.core.group.Group`. It extends some functionalities such as:
+The new class :class:`cobramod.pathway.Pathway" is child derived from
+:class:`cobra.core.group.Group`. It extends some functionalities such as:
 
 - solution: Obtain the solution for the specific members.
-- visualize: get a :func:`escher.Builder` for that specific Pathway.
+- visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
 from pathlib import Path
 from typing import Dict, List, Union
 
 from escher import Builder
 from cobra.core.group import Group
+from cobra.core.model import Model
 from cobra.core.solution import Solution
 from cobra.core.reaction import Reaction
 from cobra.core.dictlist import DictList
@@ -23,7 +24,7 @@ from cobramod.visualization.converter import JsonDictionary
 
 class Pathway(Group):
     """
-    A Sub-class from the original COBRApy :func:`cobra.Group`, which inherits
+    A Sub-class from the original COBRApy :class:`cobra.Group`, which inherits
     all its attributes and adds the method solution, to get a Solution for the
     members of this Class.
     """
@@ -37,14 +38,14 @@ class Pathway(Group):
     ):
         """
         Regular __init__ of the class. It maintains the same attributes as its
-        parent :func:`cobra.core.group.Group`. Included is the order of the
+        parent :class:`cobra.core.group.Group`. Included is the order of the
         reactions.
 
         Args:
             id (str): Identifier of the pathway.
             name (str): Name for the patway.
             members (DictList): Includes the members for the pathway. It should
-                include only :func`cobra.core.reaction.Reaction`. Defaults to
+                include only :class:`cobra.core.reaction.Reaction`. Defaults to
                 None.
             kind (str): The kind of group, as specified for the Groups feature
                 in the SBML level 3 package specification. Can be any of
@@ -54,8 +55,10 @@ class Pathway(Group):
                 kind. (Text extracted from parent.)
         """
         super().__init__(id=id, name=name, kind=kind)
-        self.order: List[str] = list()
         # Loop has to be after __init__, otherwise, behaviour of class changes.
+        # TODO: Is order necessary?
+        self.order: List[str] = list()
+        self.graph: dict = dict()
         for member in members:
             # Remove no Reactions
             if not isinstance(member, Reaction):
@@ -83,6 +86,7 @@ class Pathway(Group):
         """
         if len(self.members) == 0 and len(self.order) > 0:
             self.order: List[str] = list()
+            self.graph: dict = dict()
             debug_log.debug(
                 f'Attribute order from  pathway "{self.id}" reset. '
                 f"Check if a method copy() from cobra.Model was called."
@@ -90,7 +94,7 @@ class Pathway(Group):
 
     def add_members(self, new_members: List[Reaction]):
         """
-        Add given list of :func:`cobra.core.reaction.Reaction` into the
+        Add given list of :class:`cobra.core.reaction.Reaction` into the
         Pathway.
 
         Args:
@@ -109,10 +113,10 @@ class Pathway(Group):
 
     def solution(self, solution: Solution) -> Solution:
         """
-        Returns a :func:`cobra.Solution` with only the members of the pathway.
+        Returns a :class:`cobra.Solution` with only the members of the pathway.
 
         Args:
-            solution (Solution): Original COBRApy :func:`cobra.Solution` to
+            solution (Solution): Original COBRApy :class:`cobra.Solution` to
                 filter.
         Returns:
             Solution: Filtered solution with only members of the Pathway class.
@@ -132,7 +136,7 @@ class Pathway(Group):
     @classmethod
     def _transform(cls, obj: Group) -> "Pathway":
         """
-        Transform given :func:`cobra.Group` into a proper cobramod Pathway
+        Transform given :class:`cobra.Group` into a proper cobramod Pathway
         object.
         """
         return cls(
@@ -143,12 +147,10 @@ class Pathway(Group):
         self,
         solution_fluxes: Union[Solution, Dict[str, float]] = None,
         filename: Path = None,
-        canvas_height: float = 1500,
-        canvas_width: float = 1500,
-        **kwargs,
+        vertical: bool = False,
     ) -> Builder:
         """
-        Returns a :func:`escher.Builder`, which can be use to create visual
+        Returns a :class:`escher.Builder`, which can be use to create visual
         representations of the pathway.
 
         Args:
@@ -157,33 +159,27 @@ class Pathway(Group):
                 Defaults to None.
             filename (Path): Path for the HTML. If None is passed, then
                 default to "pathway.html" in the current working directory.
-            canvas_height (float): Height for the canvas. Defaults to 1500
-            canvas_width (float): Width for the canvas. Defaults to 1500
-
-        Keyword Argumengs:
-            Read
-            :func:`cobramod.visualization.converter.JsonDictionary.__init__`
         """
-        # Set the canvas
-        canvas = {
-            "x": 0,
-            "y": 0,
-            "width": canvas_width,
-            "height": canvas_height,
-        }
-        json_dict = JsonDictionary(canvas=canvas, **kwargs)
-        member: str
-        # This is to secure that the order of the members is respected, since
-        # the order is important. Blanks added separately.
-        for member in self.order:
-            if member == "blank":
-                json_dict.add_blank()
-                continue
-            reaction_string = self.members.get_by_id(member).reaction
-            json_dict.add_reaction(string=reaction_string, identifier=member)
-        # Define solution. If None, nothing will be added.
+        json_dict = JsonDictionary()
+        # Define solution. If None, nothing will be added. Either dict or
+        # regular solution
         if solution_fluxes is not None:
             if isinstance(solution_fluxes, Solution):
                 solution_fluxes = solution_fluxes.fluxes.to_dict()
-            json_dict.reaction_data = solution_fluxes
-        return json_dict.visualize(filepath=filename)
+            json_dict.flux_solution = solution_fluxes
+        # Get graph and add to json_dict
+        json_dict.graph = self.graph.copy()
+        json_dict.reaction_strings = {
+            reaction: self.members.get_by_id(reaction).reaction
+            for reaction in json_dict.graph.keys()
+        }
+        return json_dict.visualize(filepath=filename, vertical=vertical)
+
+
+def model_convert(model: Model):
+    """
+    Converts the all Group objects in given model to proper cobramod
+    :class:`cobramod.pathway.Pathway`
+    """
+    for index, group in enumerate(iterable=model.groups):
+        model.groups[index] = Pathway._transform(obj=group)

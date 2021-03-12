@@ -2,8 +2,8 @@
 """Object creation
 
 This module handles the creation of COBRApy's objects
-:func:`cobra.core.metabolite.Metabolite` and
-:func:`cobra.core.reaction.Reaction`. Dictionaries with the data from given
+:class:`cobra.core.metabolite.Metabolite` and
+:class:`cobra.core.reaction.Reaction`. Dictionaries with the data from given
 database is used. Important functions are:
 
 - create_object: Creates and Returns a COBRApy object.
@@ -98,8 +98,7 @@ def _metabolite_from_string(line_string: str) -> Metabolite:
 # TODO: change it to identify if name should be formatted or reverse-formatted
 def _fix_name(name: str) -> str:
     """
-    Replaces hyphens in given name to underscores. Double hyphens are
-    transformed into single underscores
+    Returns new string, where hyphens are replaced to underscores
     """
     return name.replace("-", "_")
 
@@ -179,7 +178,7 @@ def _convert_string_metabolite(line: str, model: Model, **kwargs):
      Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
 
     Returns:
         Metabolite: New metabolite object
@@ -225,7 +224,7 @@ def _get_file_metabolites(
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
 
     Raises:
         TypeError: if model is invalid
@@ -277,7 +276,7 @@ def _get_reaction(
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
 
     Returns:
         Reaction: New reaction based on dictionary
@@ -375,7 +374,7 @@ def _obtain_reaction(
         identifier (str): Original identifier of the reaction.
         directory (Path): Directory to search data.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
@@ -465,7 +464,7 @@ def _reaction_from_string(
         line_string (str): string with information
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         model (Model, Optional): A model to obtain metabolite objects from.
             Defaults to an empty Model.
 
@@ -556,7 +555,7 @@ def _convert_string_reaction(
         model (Model): Model to search for object if necessary.
         directory (Path): Path to directory, where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers.
     """
@@ -617,7 +616,7 @@ def _get_file_reactions(
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers.
 
@@ -757,7 +756,7 @@ def create_object(
         identifier (str): Original identifier for database
         directory (Path): Path to directory where data is stored.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the object. In case of reaction, all
             metabolites will be included in the same location.
         replacement (dict, optional): original identifiers to be replaced.
@@ -861,7 +860,7 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
 
     Raises:
         WrongSyntax (from str): If syntax is not followed correctly as
@@ -972,7 +971,7 @@ def add_reactions(model: Model, obj: Any, **kwargs):
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         replacement (dict): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
 

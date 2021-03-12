@@ -7,6 +7,15 @@ explaination.
 from cobramod.debug import debug_log
 
 
+class GraphKeyError(Exception):
+    """
+    Simple Error that should be raised when a value is missing as key in a
+    graph
+    """
+
+    pass
+
+
 class FoundInPairError(Exception):
     """
     Simple Error that is raised when the pair of a PairDictionary has already
@@ -95,6 +104,6 @@ class NotInRangeError(Exception):
             reaction (str): identifier of the reaction.
         """
         # TODO: check behaviour with super().__init__
-        debug_log.critical(
-            f"Reaction '{reaction}' not in range. Check sinks manually."
-        )
+        msg = f"Reaction '{reaction}' not in range. Check sinks manually."
+        debug_log.critical(msg)
+        super().__init__(msg)

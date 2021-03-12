@@ -256,6 +256,6 @@ class Reaction(UserDict):
             }
         )
         debug_log.debug(
-            f'New Segment added to Reaction "{self.data["bigg_id"]}" with id '
+            f'New Segment "{self.data["bigg_id"]}" in Reaction '
             f'"{identifier}" From: {from_node_id}, to {to_node_id}'
         )

@@ -13,7 +13,7 @@ Contact maintainers if other types should be added.
 
 Important class of the module:
 - BiocycParser: Child of the abstract class
-:func:`cobramod.parsing.base.BaseParser`.
+:class:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
 from xml.etree.ElementTree import (
@@ -55,8 +55,6 @@ def _p_compound(root: Any) -> dict:
     """
     identifier = root.find("*[@frameid]").attrib["frameid"]
     root_type = root.find("*[@frameid]").tag
-    if root_type in ("PATHWAY", "Pathway"):
-        raise AttributeError
     try:
         formula = (
             root.find("./*/cml/*/formula").attrib["concise"].replace(" ", "")
@@ -170,6 +168,55 @@ def _p_reaction(root: Any) -> dict:
     }
 
 
+def get_graph(root: Any) -> dict:
+    """
+    Return a directed graph from given XML Element. A key represent the
+    parent reaction and the value is the child. A parent can have multiple
+    childs as tuples. End-reactions have a NoneType as child.
+
+    Args:
+        root (Element): An XML element, which represent a XML file with the
+            information of a pathway.
+
+    Returns:
+        Dict: Directed graph from root.
+
+    Raises:
+        WrongParserError: If given root does not represent a pathway.
+    """
+    # Parent: child
+    graph = dict()  # type: ignore
+    reactions = set()
+    # line: Element
+    for line in root.findall("*/reaction-ordering"):
+        # Get reactions and add them to set
+        child = line.find("*/[@frameid]").attrib["frameid"]
+        parent = line.find("predecessor-reactions/").attrib["frameid"]
+        reactions.add(parent)
+        reactions.add(child)
+        # Expand keys
+        try:
+            # If at least 2
+            if isinstance(graph[parent], tuple):
+                graph[parent] += child
+                continue
+            # Else transform single to tuple
+            graph[parent] = (graph[parent], child)
+        except KeyError:
+            # Create new one
+            graph[parent] = child
+    # Find missing elements and insert a None
+    for reaction in reactions:
+        try:
+            graph[reaction]
+        except KeyError:
+            graph[reaction] = None
+    if not graph:
+        raise WrongParserError("Given root does not belong to a Pathway")
+    return graph
+
+
+# TODO: Deprecated
 def _get_unsorted_pathway(root: Any) -> tuple:
     """
     Returns a dictionary with sequences (edges) for a graph; and a set
@@ -203,13 +250,14 @@ def _p_pathway(root: Any) -> dict:
     Return dictionary with data for given xml root.
     """
     identifier = root.find("*[@frameid]").attrib["frameid"]
-    reaction_dict, reaction_set = _get_unsorted_pathway(root=root)
+    reaction_dict = get_graph(root=root)
     temp_dict = {
         "TYPE": root.find("*[@frameid]").tag,
         "NAME": root.find("*[@frameid]").attrib["frameid"],
         "ENTRY": identifier,
         "PATHWAY": reaction_dict,
-        "SET": reaction_set,
+        # FIXME: Is set necesary?
+        # "SET": reaction_set,
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
         "XREF": _build_reference(root=root),
     }
@@ -223,17 +271,17 @@ class BiocycParser(BaseParser):
         Parses the root and returns a dictionary with the dictionary of the
         root, with the most important information depending on its object type.
         """
-        try:
-            for method in (_p_pathway, _p_reaction, _p_compound):
-                with suppress(AttributeError):
-                    biocyc_dict = method(root=root)
-                    biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
-                        "orgid"
-                    ]
-                    break
-            return biocyc_dict
-        except UnboundLocalError:
-            raise WrongParserError
+        # try to define dictionary
+        for method in (_p_reaction, _p_pathway, _p_compound):
+            with suppress(WrongParserError, AttributeError):
+                biocyc_dict = method(root=root)
+                biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
+                    "orgid"
+                ]
+                return biocyc_dict
+        raise NotImplementedError(
+            "Given root could not be parsed properly. Contact maintainers"
+        )
 
     @staticmethod
     def _retrieve_data(

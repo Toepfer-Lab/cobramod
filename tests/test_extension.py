@@ -12,16 +12,17 @@ metabolic models.
 """
 from logging import DEBUG
 from pathlib import Path
-from time import sleep
 from unittest import main, TestCase
 
 from cobra import Model, Reaction
 
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions, get_data
+from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
-from cobramod.test import textbook_biocyc, textbook_kegg
 from cobramod.error import NotInRangeError, UnbalancedReaction
+from cobramod.test import textbook_biocyc, textbook_kegg
+
 
 # Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
@@ -384,6 +385,57 @@ class CreatingSequences(TestCase):
         )
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
 
+    def test__format_graph(self):
+        # CASE 1: Under other name
+        test_model = textbook_kegg.copy()
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = ex._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=[],
+            replacement={},
+        )
+        self.assertEqual(first=test_graph["R00228_c"], second="R00472_c")
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=2)
+        # CASE 2: Avoid list
+        test_model = textbook_kegg.copy()
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = ex._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=["ACALD"],
+            replacement={},
+        )
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=1)
+        # CASE 3: Replacement
+        test_model = textbook_kegg.copy()
+        # ACALDt have to be changed to ACALDt_c
+        test_model.reactions.get_by_id("ACALDt").id = "ACALDt_c"
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = ex._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=[],
+            replacement={"ACALD": "ACALDt"},
+        )
+        self.assertEqual(first=test_graph["ACALDt_c"], second="R00472_c")
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=2)
+
 
 class AddingPathways(TestCase):
     """
@@ -409,7 +461,7 @@ class AddingPathways(TestCase):
         )
         ex._add_sequence(
             model=test_model,
-            identifier="test_group",
+            pathway=Pathway("test_group"),
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
@@ -420,11 +472,30 @@ class AddingPathways(TestCase):
             member="test_group",
             container=[group.id for group in test_model.groups],
         )
-        self.assertIn(
-            member="blank",
-            container=test_model.groups.get_by_id("test_group").order,
+        # CASE 2: Avoid list (3 reactions)
+        test_model = textbook_biocyc.copy()
+        test_list = list(
+            ex._create_reactions(
+                sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
+                compartment="c",
+                directory=dir_data,
+                database="META",
+                replacement={},
+                show_imbalance=False,
+                stop_imbalance=False,
+                model=test_model,
+                model_id=None,
+            )
         )
-        # TODO: CASE 3: KEGG
+        ex._add_sequence(
+            model=test_model,
+            pathway=Pathway("test_group"),
+            sequence=test_list,
+            avoid_list=["RXN-2206"],
+            ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
+            minimum=0.1,
+        )
+        # CASE 3: KEGG
         test_model = textbook_kegg.copy()
         test_list = list(
             ex._create_reactions(
@@ -441,7 +512,7 @@ class AddingPathways(TestCase):
         )
         ex._add_sequence(
             model=test_model,
-            identifier="test_group_kegg",
+            pathway=Pathway("test_group_kegg"),
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
@@ -451,10 +522,6 @@ class AddingPathways(TestCase):
         self.assertIn(
             member="test_group_kegg",
             container=[group.id for group in test_model.groups],
-        )
-        self.assertIn(
-            member="blank",
-            container=test_model.groups.get_by_id("test_group_kegg").order,
         )
 
     def test__from_data(self):
@@ -556,6 +623,37 @@ class AddingPathways(TestCase):
             member="RXN_11422_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        # CASE 3a: Behaviour if reaction was already in model
+        test_model = textbook_biocyc.copy()
+        # Adding reactions
+        test_sequence = ["RXN-2206", "RXN-11414"]
+        ex.add_pathway(
+            model=test_model,
+            group="old_reactions",
+            compartment="c",
+            pathway=test_sequence,
+            ignore_list=[],
+            database="META",
+            directory=dir_data,
+            show_imbalance=False,
+        )
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
+        ex.add_pathway(
+            model=test_model,
+            compartment="c",
+            pathway=test_sequence,
+            ignore_list=[],
+            database="META",
+            directory=dir_data,
+            show_imbalance=False,
+        )
+        self.assertGreater(a=test_model.slim_optimize(), b=0)
+        test_group = test_model.groups.get_by_id("custom_group")
+        for identifier in ["RXN_2206_c", "RXN_11414_c", "RXN_11422_c"]:
+            self.assertIn(
+                member=identifier,
+                container=[reaction.id for reaction in test_group.members],
+            )
         # CASE 4a: KEGG simple pathway
         test_model = textbook_kegg.copy()
         ex.add_pathway(
@@ -622,10 +720,6 @@ class AddingPathways(TestCase):
             compartment="c",
             show_imbalance=False,
         )
-        # Reactions are already in model. No need for extra group.
-        self.assertRaises(
-            KeyError, test_model.groups.get_by_id, "custom_group"
-        )
         ex.add_pathway(
             model=test_model,
             pathway=["ADENODEAMIN-RXN"],
@@ -635,14 +729,10 @@ class AddingPathways(TestCase):
             show_imbalance=False,
         )
         test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
-        # Total of one reactions + blank in list "order"
+        # Total of one reactions
         self.assertEqual(
             first=len(test_model.groups.get_by_id("custom_group").members),
-            second=1,
-        )
-        self.assertEqual(
-            first=len(test_model.groups.get_by_id("custom_group").order),
-            second=2,
+            second=3,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertNotIn(
@@ -660,51 +750,34 @@ class AddingPathways(TestCase):
                 metabolite.id for metabolite in test_reaction.metabolites
             ],
         )
-
-    def test__visualization(self):
-        # CASE 1: Regular Biocyc
-        test_model = textbook_biocyc.copy()
+        # CASE 5b: Testing avoid list
+        test_model = textbook_kegg.copy()
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
         ex.add_pathway(
             model=test_model,
-            pathway="SALVADEHYPOX-PWY",
-            compartment="c",
-            directory=dir_data,
+            pathway=test_sequence,
             database="META",
-            ignore_list=[],
+            directory=dir_data,
+            compartment="c",
             show_imbalance=False,
+            avoid_list=["RXN-2206"],
         )
-        # Test fluxes
-        test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
-        self.assertEqual(first=len(test_pathway.members), second=5)
-        # Blank space adds always one.
-        self.assertEqual(first=len(test_pathway.order), second=6)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(
-            solution_fluxes=test_solution,
-            canvas_width=1500,
-            canvas_height=1500,
-        )
-        sleep(1)
+        test_group = test_model.groups.get_by_id("custom_group")
+        self.assertEqual(first=len(test_group.members), second=3)
+        self.assertEqual(first=len(test_group.graph), second=3)
+        # CASE 6: Stacking pathways in one pathways
+        test_sequence = ["RXN-11438", "RXN-2208", "RXN-2209", "RXN-2221"]
         ex.add_pathway(
             model=test_model,
-            pathway="PWY-1187",
-            compartment="c",
-            directory=dir_data,
+            pathway=test_sequence,
             database="META",
-            ignore_list=[],
+            directory=dir_data,
+            compartment="c",
             show_imbalance=False,
         )
-        # Test fluxes
-        test_pathway = test_model.groups.get_by_id("PWY-1187")
-        self.assertEqual(first=len(test_pathway.members), second=14)
-        # Blank space adds always one.
-        self.assertEqual(first=len(test_pathway.order), second=18)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(
-            solution_fluxes=test_solution,
-            canvas_width=2000,
-            canvas_height=1500,
-        )
+        test_group = test_model.groups.get_by_id("custom_group")
+        self.assertEqual(first=len(test_group.members), second=7)
+        self.assertEqual(first=len(test_group.graph), second=7)
 
 
 if __name__ == "__main__":

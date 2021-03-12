@@ -547,6 +547,15 @@ class ComplexFunctions(TestCase):
         )
         self.assertIsInstance(obj=test_object, cls=Reaction)
         self.assertIn(member="c", container=test_object.compartments)
+        # CASE 2c: Reaction of Biocyc which could be a pathway as well
+        test_object = cr.create_object(
+            identifier="AMONITRO-RXN",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            show_imbalance=False,
+        )
+        self.assertIsInstance(obj=test_object, cls=Reaction)
         # CASE 3a: pathway from metacyc
         test_object = cr.create_object(
             identifier="PWY-1187",
