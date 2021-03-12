@@ -24,8 +24,12 @@ from cobramod.visualization.converter import (
 import cobramod.visualization.mapping as mp
 
 
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
+if not dir_data.exists():
+    raise NotADirectoryError("Data for the test is missing")
 
 
 class TestItems(TestCase):

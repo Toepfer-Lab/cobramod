@@ -11,6 +11,7 @@ return the corresponding non-cyclic directed graph.
 """
 from contextlib import suppress
 from collections import Counter
+from itertools import chain
 
 from cobramod.error import GraphKeyError
 
@@ -77,10 +78,26 @@ def find_cycle(graph: dict, key: str, visited: list):
         # If not a tuple then, the graph is missing an edge
         if not isinstance(key, tuple):
             raise GraphKeyError(f'Value for "{key}" is missing.')
+        from_tuple = list()
         for single in key:
             # In case of a set, all values must be tested as well
-            visited.append(single)
-            return find_cycle(graph=graph, key=single, visited=visited)
+            old_visited = visited.copy()
+            old_visited.append(single)
+            branch = find_cycle(graph=graph, key=single, visited=old_visited)
+            # Only append if not False
+            if branch:
+                if isinstance(branch[0], list):
+                    from_tuple.extend(branch)
+                    continue
+                # In case of a list
+                from_tuple.append(branch)
+        # Return False for an empty list
+        if not from_tuple:
+            return False
+        # Return first object
+        elif len(from_tuple) == 1:
+            return from_tuple[0]
+        return from_tuple
 
 
 def return_cycles(graph: dict):
@@ -95,10 +112,13 @@ def return_cycles(graph: dict):
     Returns:
         List: Nested list with cyclic paths or empty list if lineal
     """
-    cycles = list()
+    cycles = list()  # type: ignore
     for node in graph.keys():
         cycle = find_cycle(graph=graph, key=node, visited=[])
         if cycle:
+            if isinstance(cycle[0], list):
+                cycles.extend(cycle)
+                continue
             cycles.append(cycle)
     return cycles
 
@@ -188,6 +208,22 @@ def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
     return path
 
 
+def verify_paths(paths: list, graph: dict) -> set:
+    """
+    Returns the missing keys that are not present in given paths list.
+
+    Args:
+        paths (list): Paths from given graph
+        graph (dict): Dictionary with relationship between nodes. A node can
+            have multiple edges, which should be presented as values.
+
+    Returns:
+        set: Either the missing nodes or an empty set
+    """
+    reactions = set(chain.from_iterable(paths))
+    return set(graph.keys()).difference(reactions)
+
+
 def get_paths(graph: dict, stop_list: list) -> list:
     """
     Returns a list with the longest path in a graph. This only works with
@@ -198,7 +234,7 @@ def get_paths(graph: dict, stop_list: list) -> list:
             have multiple edges, which should be presented as values.
 
     Returns:
-        List: Longest path
+        List: Paths from given graph
 
     Raises:
         RecursionError: if path is not lineal
@@ -214,6 +250,14 @@ def get_paths(graph: dict, stop_list: list) -> list:
         with suppress(StopIteration):
             single = next(path_generator)
             paths.append(single)
+    # FIXME: this is a temporal solution. When multiple tuples are located in
+    # the graph, back would not be able to find all member
+    difference = verify_paths(paths=paths, graph=graph)
+    if difference:
+        # Must be independent of each other, otherwise, the order might change
+        # the behaviour of the visualization
+        for item in difference:
+            paths.append([item])
     return paths
 
 

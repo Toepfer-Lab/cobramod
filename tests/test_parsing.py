@@ -163,6 +163,7 @@ class TestBiocyc(TestCase):
         self.assertIsInstance(obj=test_element, cls=Element)
 
     def test_get_graph(self):
+        # CASE 1: Regular complex lineal pathway
         test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="PWY-1187", database="META"
         )
@@ -170,6 +171,16 @@ class TestBiocyc(TestCase):
         self.assertEqual(first=len(test_dict), second=14)
         self.assertCountEqual(
             first=test_dict["RXN-2221"], second=("RXN-2222", "RXN-2223")
+        )
+        # CASE 2: Complex cyclic pathway
+        test_root = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="CALVIN-PWY", database="META"
+        )
+        test_dict = bc.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=13)
+        self.assertCountEqual(
+            first=test_dict["TRIOSEPISOMERIZATION-RXN"],
+            second=("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
         )
 
     def test__parse_biocyc(self):
