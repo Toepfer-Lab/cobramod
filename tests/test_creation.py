@@ -394,6 +394,21 @@ class SimpleFunctions(TestCase):
             database="META",
         )
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
+        # CASE 3: 100% Custom metabolite
+        test_model = Model(0)
+        test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p:-1, Meta_B_p:1"
+        test_reaction = cr._convert_string_reaction(
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+        )
+        self.assertEqual(first="CUSTOM_rxn1_p", second=test_reaction.id)
+        for metabolite in ["Meta_A_p", "Meta_B_p"]:
+            self.assertIn(
+                member=metabolite,
+                container=[meta.id for meta in test_reaction.metabolites],
+            )
 
     def test__obtain_reaction(self):
         # CASE 1: Regular META reaction
@@ -490,6 +505,7 @@ class SimpleFunctions(TestCase):
         )
         self.assertEqual(-1, test_reaction.get_coefficient("GLC_c"))
         self.assertEqual(1, test_reaction.get_coefficient("GLC_b"))
+        # CASE 3: Custom reaction
 
     def test__get_file_reactions(self):
         test_model = Model(0)
@@ -643,6 +659,7 @@ class ComplexFunctions(TestCase):
                 member=item,
                 container=[member.id for member in test_model.metabolites],
             )
+        # CASE 6:
 
     def test_add_reactions(self):
         # CASE 0: Missing arguments.

@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Union, Generator, List, Any
 
 from cobra import Metabolite, Model, Reaction
+from requests import HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongDataError, NoIntersectFound, WrongSyntax
@@ -500,17 +501,25 @@ def _reaction_from_string(
             # _get_metabolite will also search for the metabolite under a
             # different name.
             compartment = identifier[-1:]
-            identifier = identifier[:-2]
+            new_identifier = identifier[:-2]
+            try:
+                data_dict = get_data(
+                    directory=directory,
+                    identifier=new_identifier,
+                    database=database,
+                    debug_level=10,
+                )
+                metabolite = _get_metabolite(
+                    metabolite_dict=data_dict,
+                    compartment=compartment,
+                    model=model,
+                )
             # It is necessary to build the metabolite.
-            data_dict = get_data(
-                directory=directory,
-                identifier=identifier,
-                database=database,
-                debug_level=10,
-            )
-            metabolite = _get_metabolite(
-                metabolite_dict=data_dict, compartment=compartment, model=model
-            )
+            except HTTPError:
+                metabolite = Metabolite(
+                    id=identifier, name=identifier, compartment=compartment
+                )
+                debug_log.info(f'Custom metabolite "{metabolite.id}" built')
         new_reaction.add_metabolites({metabolite: coef})
         debug_log.debug(
             f'Metabolite "{metabolite.id}" added to Reaction '
