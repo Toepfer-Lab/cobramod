@@ -182,6 +182,13 @@ class TestBiocyc(TestCase):
             first=test_dict["TRIOSEPISOMERIZATION-RXN"],
             second=("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
         )
+        # CASE 3: Single-reaction pathway
+        test_root = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="PWY-7344", database="META"
+        )
+        test_dict = bc.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=1)
+        self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
 
     def test__parse_biocyc(self):
         # CASE 1: Compound

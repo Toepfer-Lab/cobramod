@@ -394,6 +394,21 @@ class SimpleFunctions(TestCase):
             database="META",
         )
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
+        # CASE 3: 100% Custom metabolite
+        test_model = Model(0)
+        test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p:-1, Meta_B_p:1"
+        test_reaction = cr._convert_string_reaction(
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+        )
+        self.assertEqual(first="CUSTOM_rxn1_p", second=test_reaction.id)
+        for metabolite in ["Meta_A_p", "Meta_B_p"]:
+            self.assertIn(
+                member=metabolite,
+                container=[meta.id for meta in test_reaction.metabolites],
+            )
 
     def test__obtain_reaction(self):
         # CASE 1: Regular META reaction
@@ -490,6 +505,7 @@ class SimpleFunctions(TestCase):
         )
         self.assertEqual(-1, test_reaction.get_coefficient("GLC_c"))
         self.assertEqual(1, test_reaction.get_coefficient("GLC_b"))
+        # CASE 3: Custom reaction
 
     def test__get_file_reactions(self):
         test_model = Model(0)
@@ -609,6 +625,19 @@ class ComplexFunctions(TestCase):
             member="HOMOMETHIONINE_c",
             container=[member.id for member in test_model.metabolites],
         )
+        # CASE 2: From string, Custom
+        test_model = Model(0)
+        test_string = "Custom_c, Custom metabolites, c, H20, 0 "
+        cr.add_metabolites(
+            model=test_model,
+            obj=test_string,
+            directory=dir_data,
+            database=None,
+        )
+        self.assertIn(
+            member="Custom_c",
+            container=[member.id for member in test_model.metabolites],
+        )
         # CASE 3: From List of strings
         test_model = Model(0)
         test_list = ["HOMOMETHIONINE, c", "MALTOSE, c"]
@@ -665,7 +694,7 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
-        # CASE 2: From string
+        # CASE 2a: From string
         test_model = Model(0)
         cr.add_reactions(
             model=test_model,
@@ -677,6 +706,23 @@ class ComplexFunctions(TestCase):
             member="GLC_cb",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        # CASE 2b: From string, custom metabolites
+        test_model = Model(0)
+        cr.add_reactions(
+            model=test_model,
+            obj="Custom_cb, Custom reaction|Custom_c:-1, Custom_b:1",
+            directory=dir_data,
+            database=None,
+        )
+        self.assertIn(
+            member="Custom_cb",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        for metabolite in ["Custom_c", "Custom_b"]:
+            self.assertIn(
+                member=metabolite,
+                container=[meta.id for meta in test_model.metabolites],
+            )
         # CASE 3: From List of strings
         test_model = Model(0)
         test_list = [

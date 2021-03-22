@@ -10,6 +10,8 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Type
 
+from requests import HTTPError
+
 from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
@@ -64,6 +66,8 @@ def get_data(
     Returns:
         dict: relevant data for given identifier
     """
+    if database is None:
+        raise HTTPError
     real_parser = _get_parser(database=database)
     return real_parser._retrieve_data(
         directory=directory,
