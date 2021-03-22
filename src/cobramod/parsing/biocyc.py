@@ -212,37 +212,14 @@ def get_graph(root: Any) -> dict:
         except KeyError:
             graph[reaction] = None
     if not graph:
-        raise WrongParserError("Given root does not belong to a Pathway")
+        # It could be a single-reaction pathway. Give a None since it is just
+        # one
+        try:
+            name = root.find("*/reaction-layout/Reaction").attrib["frameid"]
+            graph[name] = None
+        except AttributeError:
+            raise WrongParserError("Given root does not belong to a Pathway")
     return graph
-
-
-# TODO: Deprecated
-def _get_unsorted_pathway(root: Any) -> tuple:
-    """
-    Returns a dictionary with sequences (edges) for a graph; and a set
-    with all participants (vertex).
-    """
-    reaction_dict = dict()
-    reaction_set = set()
-    for rxn_line in root.findall("*/reaction-ordering"):
-        current = rxn_line.find("*/[@frameid]").attrib["frameid"]
-        prior = rxn_line.find("predecessor-reactions/").attrib["frameid"]
-        # If the direction of keys and values changes, then
-        # many reactions would get lost. This way, even with
-        # multiple compounds, pathways remain
-        # NOTE: check for behaviour
-        # Replacing values produces cuts with are needed to avoid cyclic
-        # No reactions are missed
-        reaction_dict[current] = prior
-        # TODO: add information
-        reaction_set.add(current)
-        reaction_set.add(prior)
-    name = root.find("Pathway").attrib["frameid"]
-    # If dictinary has only one element, raise an error.
-    if len(reaction_dict) == 0:
-        raise NotImplementedError("Path has only a reaction. Add separately")
-    debug_log.debug(f'Dictionary for pathway "{name}" succesfully created')
-    return reaction_dict, reaction_set
 
 
 def _p_pathway(root: Any) -> dict:
@@ -256,8 +233,6 @@ def _p_pathway(root: Any) -> dict:
         "NAME": root.find("*[@frameid]").attrib["frameid"],
         "ENTRY": identifier,
         "PATHWAY": reaction_dict,
-        # FIXME: Is set necesary?
-        # "SET": reaction_set,
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
         "XREF": _build_reference(root=root),
     }

@@ -839,7 +839,7 @@ def __add_metabolites_check(model: Model, metabolites: List[Metabolite]):
         )
 
 
-def add_metabolites(model: Model, obj: Any, **kwargs):
+def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
     """
     Adds given object into the model. The options are:
 
@@ -865,11 +865,12 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
         model (Model): Model to expand and search for metabolites.
         obj: A Path; a list with either strings or Metabolite objects,
             or a single string. See syntax above.
+        database (str): Name of database. Check
+            :obj:`cobramod.available_databases` for a list of names. Defaults
+            to None (This is useful for custom metabolites).
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
 
     Raises:
         WrongSyntax (from str): If syntax is not followed correctly as
@@ -882,7 +883,6 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
         if isinstance(obj, Path):
             # These variable will raise KeyError if no kwargs are passed.
             directory = kwargs["directory"]
-            database = kwargs["database"]
             new_metabolites = _get_file_metabolites(
                 # as Path
                 filename=obj,
@@ -902,7 +902,6 @@ def add_metabolites(model: Model, obj: Any, **kwargs):
         ):
             # These variable will raise KeyError if no kwargs are passed.
             directory = kwargs["directory"]
-            database = kwargs["database"]
             # Make a list
             if isinstance(obj, str):
                 obj = [obj]
@@ -947,7 +946,7 @@ def __add_reactions_check(model: Model, reactions: List[Reaction]):
         )
 
 
-def add_reactions(model: Model, obj: Any, **kwargs):
+def add_reactions(model: Model, obj: Any, database=None, **kwargs):
     """Adds given object into the model. The options are:
 
      - Path: A file with components. E. g:
@@ -976,11 +975,12 @@ def add_reactions(model: Model, obj: Any, **kwargs):
         model (Model): Model to expand and search for reactions.
         obj: A Path; a list with either strings or Reaction objects,
             or a single string. See syntax above.
+        database (str): Name of database. Check
+            :obj:`cobramod.available_databases` for a list of names. Defaults
+            to None (Useful for custom reactions).
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
         replacement (dict): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
 
@@ -995,7 +995,6 @@ def add_reactions(model: Model, obj: Any, **kwargs):
         if isinstance(obj, Path):
             # These variable will raise KeyError if no kwargs are passed.
             directory = kwargs["directory"]
-            database = kwargs["database"]
             # Empty dictionary is nothing assigned
             replacement = kwargs.pop("replacement", dict())
             new_reactions = _get_file_reactions(
@@ -1016,7 +1015,6 @@ def add_reactions(model: Model, obj: Any, **kwargs):
             obj, str
         ):
             directory = kwargs["directory"]
-            database = kwargs["database"]
             # Empty dictionary is nothing assigned
             replacement = kwargs.pop("replacement", dict())
             # Make a list
