@@ -277,6 +277,9 @@ class TestBigg(TestCase):
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
+        self.assertEqual(
+            first={"genes": None, "rule": None}, second=test_dict["GENES"]
+        )
         # CASE 2: Regular universal metabolite
         test_json = bi._get_json_bigg(
             directory=dir_data, identifier="coa", model_id="universal"
@@ -291,6 +294,11 @@ class TestBigg(TestCase):
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
+        self.assertEqual(
+            first="b0114 and b0115 and b0116",
+            second=test_dict["GENES"]["rule"],
+        )
+        self.assertEqual(first=3, second=len(test_dict["GENES"]["genes"]))
         # CASE 4: Ecoli metabolite
         test_json = bi._get_json_bigg(
             directory=dir_data, identifier="co2_c", model_id="e_coli_core"

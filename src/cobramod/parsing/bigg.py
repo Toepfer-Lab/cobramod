@@ -6,6 +6,7 @@ The posible type of data that can be download:
 
 - Metabolites: Normally, simple names.
 - Reactions: Mostly abbreviations.
+- Genes: Is included in the Reactions. Includes names and gene-reaction-rule
 
 They change identifiers depending on the model given. BiGG have multiple
 models.
@@ -168,6 +169,24 @@ def _p_metabolites(json_data: dict) -> dict:
     return meta_dict
 
 
+def _p_genes(json_data: dict) -> dict:
+    """
+    From given json_data return a dictionary that includes the genes and
+    gene-reaction-rule for given reaction. In case nothing is found, the values
+    will be None
+    """
+    # results comes in a single list
+    try:
+        genes = json_data["results"][0]["genes"]
+    except KeyError:
+        genes = None
+    try:
+        rule = json_data["results"][0]["gene_reaction_rule"]
+    except KeyError:
+        rule = None
+    return {"genes": genes, "rule": rule}
+
+
 def _p_reaction(json_data: dict) -> dict:
     """
     Parses the data of the JSON dictionary a returns a dictionary with the most
@@ -185,6 +204,7 @@ def _p_reaction(json_data: dict) -> dict:
         ),
         "DATABASE": "BIGG",
         "XREF": _build_reference(json_data=json_data),
+        "GENES": _p_genes(json_data=json_data),
     }
     return temp_dict
 
@@ -256,7 +276,7 @@ class BiggParser(BaseParser):
     def _read_file(filename: Path) -> dict:
         """
         Reads the given file a returns a JSON dictionary with most important
-        information from it.
+        ienformation from it.
         """
         try:
             with open(file=filename, mode="r") as f:
