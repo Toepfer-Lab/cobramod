@@ -1,0 +1,35 @@
+Summary:
+Model identifier: e_coli_core
+Model name:
+
+Reactions:
+['ACALD', 'ACONTa']
+Metabolites:
+['13dpg_c', 'acald_c']
+Exchange:
+['EX_glc__D_e', 'EX_lac__D_e']
+Demand:
+['h2o_e', 'lac__D_e']
+Sinks:
+['SK_GLUTATHIONE_c', 'SK_GLY_c']
+Genes:
+['b1241', 'b0474']
+Groups:
+['PWY-1187']
+
+Changes:
+Reactions:
+[]
+Metabolites:
+[]
+Exchange:
+[]
+Demand:
+[]
+Sinks:
+[]
+Genes:
+[]
+Groups:
+[]
+
