@@ -145,6 +145,31 @@ def _check_direction(root: Any) -> tuple:
     return bounds
 
 
+def _p_genes(root: Any, identifier: str):
+    database = "META"
+    url_text = (
+        f"https://websvc.biocyc.org/apixml?fn=genes-of-reaction&id={database}:"
+        f"{identifier}&detail=full"
+    )
+    r = get(url_text)
+    if r.status_code >= 400:
+        rule = None
+        genes = None
+    else:
+        root = fromstring(r.text)  # defining root
+        tree: Any = ElementTree(root)
+        genes = []
+        for gene in tree.findall("Gene"):
+            try:
+                name = gene.find("common-name").text
+            except AttributeError:
+                name = identifier
+            genes.append({"identifier": gene.attrib["frameid"], "name": name})
+        # FIXME: Temporal OR rule
+        rule = " or ".join([test["identifier"] for test in genes])
+    return {"genes": genes, "rule": rule}
+
+
 def _p_reaction(root: Any) -> dict:
     """
     Parses the root file and return the data in a dictionary
@@ -165,6 +190,7 @@ def _p_reaction(root: Any) -> dict:
         ),
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
         "XREF": _build_reference(root=root),
+        "GENES": _p_genes(root=root, identifier=identifier),
     }
 
 
