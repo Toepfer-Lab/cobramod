@@ -160,6 +160,23 @@ def _build_reference(data_dict: dict) -> Union[dict, None]:
         return None
 
 
+def _p_entry_genes(kegg_dict: dict) -> dict:
+    """
+    Returns a dictionary with the identifier/names of the genes that
+    participate in specific reaction. If no gene is included the dictionary
+    includes None
+    """
+    # TODO: Obtain specific identifier
+    strings = [line.split() for line in kegg_dict["ORTHOLOGY"]]
+    strings = [[line.pop(0), " ".join(line)] for line in strings]
+    genes = [{"identifier": gene[0], "name": gene[1]} for gene in strings]
+    # FIXME: Temporal OR rule
+    rule = " or ".join([test["identifier"] for test in genes])
+    if not genes:
+        return {"genes": None, "rule": None}
+    return {"genes": genes, "rule": rule}
+
+
 def _p_reaction(kegg_dict: dict) -> dict:
     """
     Parses the KEGG dictionary and returns a dictionary with the most important
@@ -188,6 +205,7 @@ def _p_reaction(kegg_dict: dict) -> dict:
                 data_dict=_build_dict_meta(line=kegg_dict["EQUATION"][0])
             ),
             "XREF": _build_reference(data_dict=kegg_dict),
+            "GENES": _p_entry_genes(kegg_dict=kegg_dict),
         }
     except KeyError:
         raise WrongParserError
@@ -241,26 +259,6 @@ def _p_compound(kegg_dict: dict) -> dict:
         }
     except KeyError:
         raise WrongParserError
-
-
-# TODO: deprecate
-def _build_pathway(kegg_dict: dict) -> tuple:
-    """
-    Returns dictionary with sequences for a graph, where the key the prior
-    reaction is and the value, its succesor; and a set with all participant
-    reaction (vertex)
-    """
-    sequences = [item.split(sep=" ")[0] for item in kegg_dict["REACTION"]]
-    whole_set = set(
-        chain.from_iterable(line.split(sep=",") for line in sequences)
-    )
-    sequences = [line.split(sep=",")[0] for line in sequences]
-    pathway = dict()
-    for index, reaction in enumerate(iterable=sequences):
-        with suppress(IndexError):
-            # If index not found, then ignore it
-            pathway[sequences[index + 1]] = reaction
-    return pathway, whole_set
 
 
 def get_graph(kegg_dict: dict) -> dict:

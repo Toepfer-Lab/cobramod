@@ -178,6 +178,9 @@ def _p_genes(json_data: dict) -> dict:
     # results comes in a single list
     try:
         genes = json_data["results"][0]["genes"]
+        gene: dict
+        for gene in genes:
+            gene["identifier"] = gene.pop("bigg_id")
     except KeyError:
         genes = None
     try:

@@ -109,6 +109,10 @@ class TestKegg(TestCase):
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
+        self.assertEqual(first=len(test_dict["GENES"]["genes"]), second=2)
+        self.assertEqual(
+            first=test_dict["GENES"]["rule"], second="K14287 or K21346"
+        )
         # CASE 2: Compound
         self.test_string = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290"
