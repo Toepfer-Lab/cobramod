@@ -109,7 +109,10 @@ class TestKegg(TestCase):
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        self.assertEqual(first=len(test_dict["GENES"]["genes"]), second=2)
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(),
+            second=["K14287", "K21346"],
+        )
         self.assertEqual(
             first=test_dict["GENES"]["rule"], second="K14287 or K21346"
         )
@@ -212,6 +215,9 @@ class TestBiocyc(TestCase):
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
+        self.assertEqual(
+            first=len(test_dict["GENES"]["genes"].keys()), second=5
+        )
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
         # CASE 3: Protein
         test_root = bc._get_xml_from_biocyc(
@@ -282,7 +288,7 @@ class TestBigg(TestCase):
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         self.assertEqual(
-            first={"genes": None, "rule": None}, second=test_dict["GENES"]
+            first={"genes": {}, "rule": ""}, second=test_dict["GENES"]
         )
         # CASE 2: Regular universal metabolite
         test_json = bi._get_json_bigg(

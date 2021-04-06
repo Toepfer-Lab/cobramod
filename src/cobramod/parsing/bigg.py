@@ -172,21 +172,22 @@ def _p_metabolites(json_data: dict) -> dict:
 def _p_genes(json_data: dict) -> dict:
     """
     From given json_data return a dictionary that includes the genes and
-    gene-reaction-rule for given reaction. In case nothing is found, the values
-    will be None
+    gene-reaction-rule for given reaction. Returns a dictionary with the key
+    "genes" which include a dictionary with the identifier and name of the
+    gene; and the key "rule" for the COBRApy representation of the
+    gene-reaction rule
     """
     # results comes in a single list
-    try:
-        genes = json_data["results"][0]["genes"]
-        gene: dict
-        for gene in genes:
-            gene["identifier"] = gene.pop("bigg_id")
-    except KeyError:
-        genes = None
-    try:
+    genes = dict()
+    rule = str()
+    # Try to obtain and create a dictionary with the gene identifier and their
+    # corresponding names
+    with suppress(KeyError):
+        json_genes = json_data["results"][0]["genes"]
+        for single in json_genes:
+            genes[single["bigg_id"]] = single["name"]
+    with suppress(KeyError):
         rule = json_data["results"][0]["gene_reaction_rule"]
-    except KeyError:
-        rule = None
     return {"genes": genes, "rule": rule}
 
 

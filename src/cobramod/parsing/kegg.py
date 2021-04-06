@@ -162,18 +162,21 @@ def _build_reference(data_dict: dict) -> Union[dict, None]:
 
 def _p_entry_genes(kegg_dict: dict) -> dict:
     """
-    Returns a dictionary with the identifier/names of the genes that
-    participate in specific reaction. If no gene is included the dictionary
-    includes None
+    From given KEGG dictionary returns a dictionary with the key
+    "genes" which include a dictionary with the identifier and name of the
+    gene; and the key "rule" for the COBRApy representation of the
+    gene-reaction rule
     """
+    genes: Dict[str, str] = dict()
+    rule = str()
     # TODO: Obtain specific identifier
-    strings = [line.split() for line in kegg_dict["ORTHOLOGY"]]
-    strings = [[line.pop(0), " ".join(line)] for line in strings]
-    genes = [{"identifier": gene[0], "name": gene[1]} for gene in strings]
+    with suppress(KeyError, IndexError):
+        strings = [line.split() for line in kegg_dict["ORTHOLOGY"]]
+        strings = [[line.pop(0), " ".join(line)] for line in strings]
+        genes = {gene[0]: gene[1] for gene in strings}
     # FIXME: Temporal OR rule
-    rule = " or ".join([test["identifier"] for test in genes])
-    if not genes:
-        return {"genes": None, "rule": None}
+    if genes:
+        rule = " or ".join(genes.keys())
     return {"genes": genes, "rule": rule}
 
 

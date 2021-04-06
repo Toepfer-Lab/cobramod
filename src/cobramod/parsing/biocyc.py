@@ -146,27 +146,27 @@ def _check_direction(root: Any) -> tuple:
 
 
 def _p_genes(root: Any, identifier: str):
+    # FIXME: temporal solution
     database = "META"
     url_text = (
         f"https://websvc.biocyc.org/apixml?fn=genes-of-reaction&id={database}:"
         f"{identifier}&detail=full"
     )
+    # Get the information and check if Genes can be found to be parsed
     r = get(url_text)
-    if r.status_code >= 400:
-        rule = None
-        genes = None
-    else:
+    rule = str()
+    genes = dict()
+    if r.status_code < 400:
         root = fromstring(r.text)  # defining root
         tree: Any = ElementTree(root)
-        genes = []
         for gene in tree.findall("Gene"):
             try:
                 name = gene.find("common-name").text
             except AttributeError:
                 name = identifier
-            genes.append({"identifier": gene.attrib["frameid"], "name": name})
+            genes[gene.attrib["frameid"]] = name
         # FIXME: Temporal OR rule
-        rule = " or ".join([test["identifier"] for test in genes])
+        rule = " or ".join(genes.keys())
     return {"genes": genes, "rule": rule}
 
 
