@@ -8,8 +8,14 @@ from cobra import Reaction
 
 
 def _genes_to_reaction(reaction: Reaction, data_dict: dict):
-    rule = data_dict["GENES"]["rule"] or ""
+    """
+    Adds the corresponding gene-reaction rule to the Reaction and correct
+    its name according to the passed dictionary
+    """
+    rule = data_dict["GENES"]["rule"]
+    # This line will create the corresponding genes of the reaction
     reaction.gene_reaction_rule = rule
+    # Update name
     for gene in reaction.genes:
-        gene.name = data_dict["GENES"][gene.id]
-        pass
+        gene.name = data_dict["GENES"]["genes"][gene.id]
+    # TODO: add logs?

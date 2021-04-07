@@ -78,6 +78,15 @@ class NoIntersectFound(Exception):
     pass
 
 
+class NoGeneInformation(Exception):
+    """
+    Simple error that should be raised when given object has no gene
+    information in the database.
+    """
+
+    pass
+
+
 class UnbalancedReaction(Exception):
     """
     Simple Error that should be raised if a reaction has wrong mass balance.
