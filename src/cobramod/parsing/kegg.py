@@ -335,7 +335,6 @@ def _p_pathway(kegg_dict: dict) -> dict:
             "NAME": kegg_dict["NAME"][0],
             "DATABASE": "KEGG",
             "PATHWAY": graph,
-            # "SET": whole_set,
             "XREF": _build_reference(data_dict=kegg_dict),
         }
     except KeyError:
@@ -359,7 +358,7 @@ def _p_enzyme(kegg_dict: dict):
 
 class KeggParser(BaseParser):
     @staticmethod
-    def _parse(root: dict) -> dict:
+    def _parse(root: dict, directory: Path) -> dict:
         """
         Parses raw text from KEGG database and transforms it in a dictionary
         that can be used later as commom data type for cobramod. It identifies
@@ -406,7 +405,7 @@ class KeggParser(BaseParser):
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
-        return KeggParser._parse(root=raw)
+        return KeggParser._parse(root=raw, directory=directory)
 
     @staticmethod
     def _return_database(database: str) -> str:

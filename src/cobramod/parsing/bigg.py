@@ -252,7 +252,7 @@ class BiggParser(BaseParser):
         return BiggParser._parse(root=json_data)
 
     @staticmethod
-    def _parse(root: Any) -> dict:
+    def _parse(root: Any) -> dict:  # type: ignore
         """
         Parses the JSON dictionary and returns a dictionary with the most
         important attributes depending of the type of the identifier.

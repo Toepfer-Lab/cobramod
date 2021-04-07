@@ -53,7 +53,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def _parse(root: Union[Any, dict]) -> dict:
+    def _parse(root: Union[Any, dict], directory: Path) -> dict:
         """
         Basic method to parse information and return it as dictionary.
         """
