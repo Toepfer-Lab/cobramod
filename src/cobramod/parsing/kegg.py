@@ -463,6 +463,7 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
         )
         filename = data_dir.joinpath(f"{identifier}.txt")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
+        # Try to obtain the data locally or get it from KEGG and store it
         try:
             return KeggParser._read_file(filename=filename)
         except FileNotFoundError:
@@ -473,11 +474,8 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
             url_text = f"http://rest.kegg.jp/get/{identifier}/"
             debug_log.debug(f"Searching in {url_text}")
             r = get(url_text)
-            if r.status_code >= 400:
-                msg = f'"{identifier}" not available in "{database}".'
-                debug_log.error(msg)
-                raise HTTPError(msg)
-            else:
+            try:
+                r.raise_for_status()
                 unformatted_data = r.text
                 if len(unformatted_data) == 0:
                     raise Warning(
@@ -491,7 +489,11 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
                     with open(file=filename, mode="w+") as f:
                         f.write(unformatted_data)
                     return _create_dict(raw=unformatted_data)
+            except HTTPError:
+                msg = f'"{identifier}" not available in "{database}".'
+                debug_log.error(msg)
+                raise HTTPError(msg)
     else:
-        msg = "Directory not found"
+        msg = "Directory not found. Please create the given directory."
         debug_log.critical(msg)
         raise NotADirectoryError(msg)

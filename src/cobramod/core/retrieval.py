@@ -99,9 +99,15 @@ def _retrieve_dict(directory: Path, target: str) -> dict:
         )
     for parser in BaseParser.__subclasses__():
         with suppress(WrongParserError, NotImplementedError):
-            data_dict = parser._parse(
-                root=parser._read_file(filename=filename)
-            )["XREF"]
+            try:
+                data_dict = parser._parse(
+                    root=parser._read_file(filename=filename),
+                    directory=directory,
+                )["XREF"]
+            except TypeError:
+                data_dict = parser._parse(  # type: ignore
+                    root=parser._read_file(filename=filename)
+                )["XREF"]
     try:
         return data_dict
     except UnboundLocalError:
