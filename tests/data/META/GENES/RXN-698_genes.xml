@@ -1,0 +1,149 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:RXN-698%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:RXN-698&amp;detail=FULL</query>
+    <num_results>4</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:AT3G14440" detail="full" frameid="AT3G14440" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT3G14440-MONOMER" orgid="META" resource="getxml?META:AT3G14440-MONOMER" />
+    </product>
+    <centisome-position datatype="float" units="CENTISOMES">20.592144</centisome-position>
+    <citation>
+      <Publication ID="META:PUB-11532178" detail="full" frameid="PUB-11532178" orgid="META">
+        <author datatype="string">Iuchi S</author>
+        <author datatype="string">Kobayashi M</author>
+        <author datatype="string">Taji T</author>
+        <author datatype="string">Naramoto M</author>
+        <author datatype="string">Seki M</author>
+        <author datatype="string">Kato T</author>
+        <author datatype="string">Tabata S</author>
+        <author datatype="string">Kakubari Y</author>
+        <author datatype="string">Yamaguchi-Shinozaki K</author>
+        <author datatype="string">Shinozaki K</author>
+        <pubmed-id datatype="string">11532178</pubmed-id>
+        <source datatype="string">Plant J 27(4);325-33</source>
+        <title datatype="string">Regulation of drought tolerance by gene manipulation of 9-cis-epoxycarotenoid dioxygenase, a key enzyme in abscisic acid biosynthesis in Arabidopsis.</title>
+        <year datatype="integer">2001</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">NCED3</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT3G14440.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT3G14440.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>NCED3</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=NCED3</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>NM_112304</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/NM_112304</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT3G14440</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G14440</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">4832114</left-end-position>
+    <right-end-position datatype="integer">4833913</right-end-position>
+  </Gene>
+  <Gene ID="META:AT4G18350" detail="full" frameid="AT4G18350" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT4G18350-MONOMER" orgid="META" resource="getxml?META:AT4G18350-MONOMER" />
+    </product>
+    <citation>
+      <Publication frameid="PUB-11532178" orgid="META" resource="#META:PUB-11532178" />
+    </citation>
+    <common-name datatype="string">NCED2</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT4G18350.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT4G18350.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>NM_117945</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/NM_117945</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>NCED2</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=NCED2</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G18350</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G18350</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:AT3G24220" detail="full" frameid="AT3G24220" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT3G24220-MONOMER" orgid="META" resource="getxml?META:AT3G24220-MONOMER" />
+    </product>
+    <citation>
+      <Publication frameid="PUB-11532178" orgid="META" resource="#META:PUB-11532178" />
+    </citation>
+    <common-name datatype="string">NCED6</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT3G24220.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT3G24220.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT3G24220</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G24220</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:AT1G78390" detail="full" frameid="AT1G78390" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT1G78390-MONOMER" orgid="META" resource="getxml?META:AT1G78390-MONOMER" />
+    </product>
+    <citation>
+      <Publication frameid="PUB-11532178" orgid="META" resource="#META:PUB-11532178" />
+    </citation>
+    <common-name datatype="string">NCED9</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT1G78390.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT1G78390.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT1G78390</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G78390</dblink-URL>
+    </dblink>
+  </Gene>
+</ptools-xml>

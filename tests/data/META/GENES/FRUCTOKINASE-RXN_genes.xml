@@ -1,0 +1,248 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:FRUCTOKINASE-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:FRUCTOKINASE-RXN&amp;detail=FULL</query>
+    <num_results>7</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-9681" detail="full" frameid="G-9681" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12612" orgid="META" resource="getxml?META:MONOMER-12612" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-10411273" detail="full" frameid="PUB-10411273" orgid="META">
+        <author datatype="string">Reid SJ</author>
+        <author datatype="string">Rafudeen MS</author>
+        <author datatype="string">Leat NG</author>
+        <pubmed-id datatype="string">10411273</pubmed-id>
+        <source datatype="string">Microbiology 145 ( Pt 6);1461-72</source>
+        <title datatype="string">The genes controlling sucrose utilization in Clostridium beijerinckii NCIMB 8052 constitute an operon.</title>
+        <year datatype="integer">1999</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">scrK</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AF059741</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AF059741</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-9695" detail="full" frameid="G-9695" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12630" orgid="META" resource="getxml?META:MONOMER-12630" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-1809835" detail="full" frameid="PUB-1809835" orgid="META">
+        <author datatype="string">Aulkemeyer P</author>
+        <author datatype="string">Ebner R</author>
+        <author datatype="string">Heilenmann G</author>
+        <author datatype="string">Jahreis K</author>
+        <author datatype="string">Schmid K</author>
+        <author datatype="string">Wrieden S</author>
+        <author datatype="string">Lengeler JW</author>
+        <pubmed-id datatype="string">1809835</pubmed-id>
+        <source datatype="string">Mol Microbiol 5(12);2913-22</source>
+        <title datatype="string">Molecular analysis of two fructokinases involved in sucrose metabolism of enteric bacteria.</title>
+        <year datatype="integer">1991</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">scrK</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>X61004</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/X61004</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-9704" detail="full" frameid="G-9704" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12642" orgid="META" resource="getxml?META:MONOMER-12642" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-15375133" detail="full" frameid="PUB-15375133" orgid="META">
+        <author datatype="string">Caescu CI</author>
+        <author datatype="string">Vidal O</author>
+        <author datatype="string">Krzewinski F</author>
+        <author datatype="string">Artenie V</author>
+        <author datatype="string">Bouquelet S</author>
+        <pubmed-id datatype="string">15375133</pubmed-id>
+        <source datatype="string">J Bacteriol 186(19);6515-25</source>
+        <title datatype="string">Bifidobacterium longum requires a fructokinase (Frk; ATP:D-fructose 6-phosphotransferase, EC 2.7.1.4) for fructose catabolism.</title>
+        <year datatype="integer">2004</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">frk</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>NC_004307</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/NC_004307</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:AT4G29130" detail="full" frameid="AT4G29130" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT4G29130-MONOMER" orgid="META" resource="getxml?META:AT4G29130-MONOMER" />
+    </product>
+    <common-name datatype="string">HXK1</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT4G29130.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT4G29130.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>Q42525</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=Q42525</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>U28214</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U28214</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>ATHXK1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=ATHXK1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G29130</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G29130</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-9868" detail="full" frameid="G-9868" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12872" orgid="META" resource="getxml?META:MONOMER-12872" />
+    </product>
+    <common-name datatype="string">Hxk2</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AY553215</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AY553215</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-9932" detail="full" frameid="G-9932" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-13042" orgid="META" resource="getxml?META:MONOMER-13042" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-16741753" detail="full" frameid="PUB-16741753" orgid="META">
+        <author datatype="string">Helanto M</author>
+        <author datatype="string">Aarnikunnas J</author>
+        <author datatype="string">Palva A</author>
+        <author datatype="string">Leisola M</author>
+        <author datatype="string">Nyyssola A</author>
+        <pubmed-id datatype="string">16741753</pubmed-id>
+        <source datatype="string">Arch Microbiol 186(1);51-9</source>
+        <title datatype="string">Characterization of genes involved in fructose utilization by Lactobacillus fermentum.</title>
+        <year datatype="integer">2006</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">fruK</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AJ431693</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AJ431693</dblink-URL>
+    </dblink>
+    <synonym datatype="string">scrK</synonym>
+  </Gene>
+  <Gene ID="META:EG11288" detail="full" frameid="EG11288" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.1.1" orgid="META" resource="getxml?META:BC-1.1.1" />
+    </parent>
+    <product>
+      <Protein frameid="EG11288-MONOMER" orgid="META" resource="getxml?META:EG11288-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <common-name datatype="string">mak</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b0394</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b0394&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b0394</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b0394</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>mak</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=mak</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0001372</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0001372</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB1265</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB1265</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b0394</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0394</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">410144</left-end-position>
+    <right-end-position datatype="integer">411052</right-end-position>
+    <synonym datatype="string">yajF</synonym>
+    <accession-1 datatype="string">b0394</accession-1>
+    <accession-2 datatype="string">ECK0389</accession-2>
+  </Gene>
+</ptools-xml>

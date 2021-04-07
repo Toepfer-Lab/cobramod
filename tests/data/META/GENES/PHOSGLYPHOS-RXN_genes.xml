@@ -1,0 +1,405 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:PHOSGLYPHOS-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:PHOSGLYPHOS-RXN&amp;detail=FULL</query>
+    <num_results>9</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-399" detail="full" frameid="G-399" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="PGKSYN-MONOMER" orgid="META" resource="getxml?META:PGKSYN-MONOMER" />
+    </product>
+    <common-name datatype="string">pgk</common-name>
+  </Gene>
+  <Gene ID="META:G-221" detail="full" frameid="G-221" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-382" orgid="META" resource="getxml?META:MONOMER-382" />
+    </product>
+    <common-name datatype="string">pgk</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>243274.THEMA_01220</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/243274.THEMA_01220</dblink-URL>
+    </dblink>
+    <synonym datatype="string">tpi</synonym>
+  </Gene>
+  <Gene ID="META:G-201" detail="full" frameid="G-201" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-549" orgid="META" resource="getxml?META:MONOMER-549" />
+    </product>
+    <common-name datatype="string">pgk</common-name>
+  </Gene>
+  <Gene ID="META:G-17677" detail="full" frameid="G-17677" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12711" orgid="META" resource="getxml?META:MONOMER-12711" />
+    </product>
+    <common-name datatype="string">PGK1</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>X68430</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/X68430</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-126" detail="full" frameid="G-126" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-13053" orgid="META" resource="getxml?META:MONOMER-13053" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-9579064" detail="full" frameid="PUB-9579064" orgid="META">
+        <author datatype="string">Branny P</author>
+        <author datatype="string">de la Torre F</author>
+        <author datatype="string">Garel JR</author>
+        <pubmed-id datatype="string">9579064</pubmed-id>
+        <source datatype="string">Microbiology 144 ( Pt 4);905-14</source>
+        <title datatype="string">An operon encoding three glycolytic enzymes in Lactobacillus delbrueckii subsp. bulgaricus: glyceraldehyde-3-phosphate dehydrogenase, phosphoglycerate kinase and triosephosphate isomerase.</title>
+        <year datatype="integer">1998</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">pgk</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AJ000339</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AJ000339</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-10015" detail="full" frameid="G-10015" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-13169" orgid="META" resource="getxml?META:MONOMER-13169" />
+    </product>
+    <common-name datatype="string">PGK</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AB111102</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AB111102</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:HS10215" detail="full" frameid="HS10215" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="HS10215-MONOMER" orgid="META" resource="getxml?META:HS10215-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <common-name datatype="string">PGK2</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2013-02-12</date>
+        <Person ID="META:brito" detail="full" frameid="brito" orgid="META">
+          <comment datatype="string">Deepika Weerasighe (Brito) was a curator of the MetaCyc database at SRI International.</comment>
+          <email datatype="string">brito@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000305995</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000305995</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>5232</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=5232</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_138733</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_138733</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>172270</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/172270</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC038843</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC038843</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>X05246</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/X05246</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>K03019</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/K03019</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AL121974</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AL121974</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_620061</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_620061</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_138733</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_138733</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000170950</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000170950</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>PGK2</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=PGK2</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">49750042</left-end-position>
+    <right-end-position datatype="integer">49751295</right-end-position>
+    <synonym datatype="string">PGKB</synonym>
+  </Gene>
+  <Gene ID="META:HS02359" detail="full" frameid="HS02359" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="HS02359-MONOMER" orgid="META" resource="getxml?META:HS02359-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <common-name datatype="string">PGK1</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2013-02-12</date>
+        <Person frameid="brito" orgid="META" resource="#META:brito" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000362413</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000362413</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P00558</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P00558</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>5230</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=5230</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_000291</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_000291</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>311800</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/311800</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>V00572</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/V00572</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>D28371</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/D28371</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AB062432</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AB062432</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>M11968</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/M11968</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>L00160</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/L00160</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>L00159</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/L00159</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_000282</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_000282</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_000291</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_000291</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000102144</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000102144</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>PGK1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=PGK1</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">74321413</left-end-position>
+    <right-end-position datatype="integer">74343972</right-end-position>
+    <synonym datatype="string">MIG10</synonym>
+    <synonym datatype="string">OK/SW-cl.110</synonym>
+    <synonym datatype="string">PGKA</synonym>
+  </Gene>
+  <Gene ID="META:EG10703" detail="full" frameid="EG10703" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.1" orgid="META" resource="getxml?META:BC-1.3.1" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-1.7" orgid="META" resource="getxml?META:BC-1.7" />
+    </parent>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="PGK" orgid="META" resource="getxml?META:PGK" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-2546007" detail="full" frameid="PUB-2546007" orgid="META">
+        <author datatype="string">Alefounder PR</author>
+        <author datatype="string">Perham RN</author>
+        <pubmed-id datatype="string">2546007</pubmed-id>
+        <source datatype="string">Mol Microbiol 3(6);723-32</source>
+        <title datatype="string">Identification, molecular cloning and sequence analysis of a gene cluster encoding the class II fructose 1,6-bisphosphate aldolase, 3-phosphoglycerate kinase and a putative second glyceraldehyde 3-phosphate dehydrogenase of Escherichia coli.</title>
+        <year datatype="integer">1989</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">pgk</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>300653</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/300653</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2926</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2926&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2926</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2926</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>pgk</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=pgk</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0009605</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0009605</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0697</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0697</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2926</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2926</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>408</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=408</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">3071459</left-end-position>
+    <right-end-position datatype="integer">3072622</right-end-position>
+    <accession-1 datatype="string">b2926</accession-1>
+    <accession-2 datatype="string">ECK2922</accession-2>
+  </Gene>
+</ptools-xml>
