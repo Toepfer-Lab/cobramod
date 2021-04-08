@@ -423,6 +423,10 @@ class SimpleFunctions(TestCase):
             replacement={},
         )
         self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
+        self.assertCountEqual(
+            first=[gene.id for gene in test_reaction.genes],
+            second=["EG10256", "G-2548", "G-2549"],
+        )
         # CASE 2: check for equivalent. (Similar to CASE 6b in _get_reaction)
         test_model = textbook_kegg.copy()
         test_reaction = cr._obtain_reaction(
@@ -740,6 +744,9 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
+        self.assertIn(
+            member="G-16016", container=[gene.id for gene in test_model.genes]
+        )
         # CASE 4: In case of single reaction
         test_model = Model(0)
         test_reaction = textbook_kegg.reactions.get_by_id("ACALDt")

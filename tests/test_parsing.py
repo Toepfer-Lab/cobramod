@@ -109,6 +109,7 @@ class TestKegg(TestCase):
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
+        # FIXME: change to original identifiers
         self.assertCountEqual(
             first=test_dict["GENES"]["genes"].keys(),
             second=["K14287", "K21346"],
@@ -220,8 +221,9 @@ class TestBiocyc(TestCase):
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
-        self.assertEqual(
-            first=len(test_dict["GENES"]["genes"].keys()), second=5
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(),
+            second=["YBL033C", "AT5G64300", "G-34500", "G-58286", "EG11331"],
         )
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
         # CASE 3: Protein
@@ -240,7 +242,6 @@ class TestBiocyc(TestCase):
         test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
-        # self.assertEqual(first=len(test_dict["SET"]), second=14)
 
 
 class TestBigg(TestCase):
