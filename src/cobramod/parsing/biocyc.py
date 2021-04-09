@@ -6,7 +6,7 @@ The posible type of data that can be download:
 
 - Metabolites: Normally have an abbreviation or short name.
 - Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
-be used instead.
+be used instead. The gene information for the reactions is include if found.
 - Pathways
 
 Contact maintainers if other types should be added.
@@ -146,6 +146,11 @@ def _check_direction(root: Any) -> tuple:
 
 
 def _p_genes(root: Any, identifier: str, directory: Path):
+    """
+    Parses given root and returns a dictionary with the corresponding genes and
+    gene-reaction rules. This function will try to read a file for given
+    identifier. If nothing is found, the dictionary will have empty entries.
+    """
     rule = str()
     genes = dict()
     # Get the information and check if Genes can be found to be parsed
@@ -157,6 +162,7 @@ def _p_genes(root: Any, identifier: str, directory: Path):
         )
         for gene in tree.findall("Gene"):
             try:
+                # Sometimes the genes have a name
                 name = gene.find("common-name").text
             except AttributeError:
                 name = identifier

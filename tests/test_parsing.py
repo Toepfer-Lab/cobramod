@@ -104,19 +104,17 @@ class TestKegg(TestCase):
     def test__parse_kegg(self):
         # CASE 1a: Reaction (same as setup)
         test_dict = kg.KeggParser._parse(
-            root=kg._create_dict(raw=self.test_string), directory=dir_data
+            root=kg._create_dict(raw=self.test_string),
+            directory=dir_data,
+            genome="ath",
         )
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        # FIXME: change to original identifiers
         self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(),
-            second=["K14287", "K21346"],
+            first=test_dict["GENES"]["genes"].keys(), second=["AT3G19710"]
         )
-        self.assertEqual(
-            first=test_dict["GENES"]["rule"], second="K14287 or K21346"
-        )
+        self.assertEqual(first=test_dict["GENES"]["rule"], second="AT3G19710")
         # CASE 2: Compound
         self.test_string = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290"
