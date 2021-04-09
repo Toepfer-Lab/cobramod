@@ -755,7 +755,8 @@ def create_object(
     show_imbalance: bool = True,
     stop_imbalance: bool = False,
     model: Model = Model(0),
-    model_id="universal",
+    model_id: str = "universal",
+    genome: str = None,
 ) -> Union[Reaction, Metabolite, dict]:
     """
     Creates and returns COBRApy object based on given identifier and database.
@@ -785,6 +786,8 @@ def create_object(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
 
     Returns:
         Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
@@ -796,6 +799,7 @@ def create_object(
         database=database,
         debug_level=10,
         model_id=model_id,
+        genome=genome,
     )
     # Since it is only a single item, next() can be used
     for method in (

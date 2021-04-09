@@ -200,6 +200,7 @@ class SimpleFunctions(TestCase):
             identifier="R02736",
             database="KEGG",
             debug_level=10,
+            genome="hsa",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,
@@ -230,6 +231,7 @@ class SimpleFunctions(TestCase):
             identifier="R00114",
             database="KEGG",
             debug_level=10,
+            genome="eco",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,
@@ -564,9 +566,14 @@ class ComplexFunctions(TestCase):
             directory=dir_data,
             compartment="c",
             database="KEGG",
+            genome="hsa",
         )
         self.assertIsInstance(obj=test_object, cls=Reaction)
         self.assertIn(member="c", container=test_object.compartments)
+        self.assertCountEqual(
+            first=[gene.id for gene in test_object.genes],
+            second=["9563", "2539"],
+        )
         # CASE 2c: Reaction of Biocyc which could be a pathway as well
         test_object = cr.create_object(
             identifier="AMONITRO-RXN",

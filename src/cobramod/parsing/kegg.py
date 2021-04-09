@@ -472,7 +472,13 @@ class KeggParser(BaseParser):
                         kegg_dict=root, directory=directory, genome=genome
                     )
                 except TypeError:
-                    kegg_dict = method(kegg_dict=root)  # type: ignore
+                    # TODO: Find better solution
+                    try:
+                        kegg_dict = method(  # type: ignore
+                            kegg_dict=root, directory=directory
+                        )
+                    except TypeError:
+                        kegg_dict = method(kegg_dict=root)  # type: ignore
                 return kegg_dict
         raise NotImplementedError(
             "Given identifier could not be parsed properly. "
@@ -505,7 +511,11 @@ class KeggParser(BaseParser):
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
-        return KeggParser._parse(root=raw, directory=directory)
+        try:
+            genome = kwargs["genome"]
+        except KeyError:
+            genome = None
+        return KeggParser._parse(root=raw, directory=directory, genome=genome)
 
     @staticmethod
     def _return_database(database: str) -> str:

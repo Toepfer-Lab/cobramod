@@ -63,11 +63,13 @@ def get_data(
     Keyword Arguments:
         model_id: Exclusive for BIGG. Original identifier of model to search.
             Some examples: "e_coli_core", "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     Returns:
         dict: relevant data for given identifier
     """
     if database is None:
-        raise HTTPError
+        raise HTTPError("No database was specified")
     real_parser = _get_parser(database=database)
     return real_parser._retrieve_data(
         directory=directory,
