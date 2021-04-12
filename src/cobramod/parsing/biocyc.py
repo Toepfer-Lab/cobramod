@@ -167,8 +167,10 @@ def _p_genes(root: Any, identifier: str, directory: Path):
             except AttributeError:
                 name = identifier
             genes[gene.attrib["frameid"]] = name
-        # FIXME: Temporal OR rule
         rule = " or ".join(genes.keys())
+        debug_log.warning(
+            f'Gene-reaction rule for reaction {identifier} assumed to be "OR"'
+        )
     return {"genes": genes, "rule": rule}
 
 

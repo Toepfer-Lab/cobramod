@@ -201,7 +201,6 @@ def _p_reaction(json_data: dict) -> dict:
         "ENTRY": json_data["bigg_id"],
         "NAME": json_data["name"],
         "EQUATION": _p_metabolites(json_data=json_data),
-        # FIXME: assuming bounds. Create proper method
         "BOUNDS": (-1000, 1000),
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(json_data=json_data)
@@ -210,6 +209,9 @@ def _p_reaction(json_data: dict) -> dict:
         "XREF": _build_reference(json_data=json_data),
         "GENES": _p_genes(json_data=json_data),
     }
+    debug_log.warning(
+        f'Reversibility for reaction "{json_data["bigg_id"]}" assumed'
+    )
     return temp_dict
 
 
@@ -293,5 +295,4 @@ class BiggParser(BaseParser):
                 unformatted_data = f.read()
             return loads(s=unformatted_data)
         except JSONDecodeError:
-            # TODO find exception type
             raise WrongParserError("Wrong filetype")

@@ -185,7 +185,6 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
     for given genome or if no genome is specified, the genes for the first 5
     genes. Argument reaction is just for logging information.
     """
-    # TODO: add logging?
     # Retrive the KO-identifiers
     text = string.replace("\t", " ").splitlines()
     genes: Dict[str, list] = dict()
@@ -265,9 +264,11 @@ def _p_entry_genes(
             for gene in genes_list:
                 genes[gene] = ""
             rule = " or ".join(genes.keys())
-    # FIXME: Temporal OR rule
     if genes:
         rule = " or ".join(genes.keys())
+        debug_log.warning(
+            f'Gene-reaction rule for reaction {identifier} assumed to be "OR"'
+        )
     return {"genes": genes, "rule": rule}
 
 
