@@ -54,6 +54,7 @@ class CreatingSequences(TestCase):
             stop_imbalance=False,
             model=Model(0),
             model_id=None,
+            genome=None,
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 2: Simple case Kegg
@@ -67,6 +68,7 @@ class CreatingSequences(TestCase):
             stop_imbalance=False,
             model=Model(0),
             model_id=None,
+            genome="eco",
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 3a: Showing when unbalanced
@@ -80,6 +82,7 @@ class CreatingSequences(TestCase):
             stop_imbalance=False,
             model=Model(0),
             model_id=None,
+            genome=None,
         )
         self.assertWarns(UserWarning, next, test_list)
         # CASE 3b: Stopping when unbalanced
@@ -93,6 +96,7 @@ class CreatingSequences(TestCase):
             replacement={},
             model=Model(0),
             model_id=None,
+            genome=None,
         )
         self.assertRaises(UnbalancedReaction, next, test_list)
 
@@ -398,6 +402,7 @@ class CreatingSequences(TestCase):
             database="BIGG",
             avoid_list=[],
             replacement={},
+            genome=None,
         )
         self.assertEqual(first=test_graph["R00228_c"], second="R00472_c")
         self.assertEqual(first=test_graph["R00472_c"], second=None)
@@ -414,6 +419,7 @@ class CreatingSequences(TestCase):
             database="BIGG",
             avoid_list=["ACALD"],
             replacement={},
+            genome=None,
         )
         self.assertEqual(first=test_graph["R00472_c"], second=None)
         self.assertEqual(first=len(test_graph), second=1)
@@ -431,6 +437,7 @@ class CreatingSequences(TestCase):
             database="BIGG",
             avoid_list=[],
             replacement={"ACALD": "ACALDt"},
+            genome=None,
         )
         self.assertEqual(first=test_graph["ACALDt_c"], second="R00472_c")
         self.assertEqual(first=test_graph["R00472_c"], second=None)
@@ -457,6 +464,7 @@ class AddingPathways(TestCase):
                 stop_imbalance=False,
                 model=test_model,
                 model_id=None,
+                genome=None,
             )
         )
         ex._add_sequence(
@@ -485,6 +493,7 @@ class AddingPathways(TestCase):
                 stop_imbalance=False,
                 model=test_model,
                 model_id=None,
+                genome=None,
             )
         )
         ex._add_sequence(
@@ -508,6 +517,7 @@ class AddingPathways(TestCase):
                 stop_imbalance=False,
                 model=test_model,
                 model_id=None,
+                genome="ath",
             )
         )
         ex._add_sequence(
@@ -546,11 +556,16 @@ class AddingPathways(TestCase):
             show_imbalance=False,
             stop_imbalance=False,
             model_id=None,
+            genome="hsa",
         )
         self.assertIn(
             member="M00118",
             container=[group.id for group in test_model.groups],
         )
+        for item in ["2729", "2937"]:
+            self.assertIn(
+                member=item, container=[gene.id for gene in test_model.genes]
+            )
 
     def test__from_sequence(self):
         # CASE 1: regular test
@@ -569,11 +584,16 @@ class AddingPathways(TestCase):
             show_imbalance=False,
             stop_imbalance=False,
             model_id=None,
+            genome="mba",
         )
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
         )
+        for item in ["Mbar_A2189", "Mbar_A3564"]:
+            self.assertIn(
+                member=item, container=[gene.id for gene in test_model.genes]
+            )
 
     def test_add_pathway(self):
         # CASE 1: Regular Biocyc
@@ -591,6 +611,10 @@ class AddingPathways(TestCase):
             member="RXN_11438_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        for item in ["AT1G18590", "AT1G74090"]:
+            self.assertIn(
+                member=item, container=[gene.id for gene in test_model.genes]
+            )
         # CASE 2: stacking another pathways (independent from each other)
         ex.add_pathway(
             model=test_model,
@@ -663,6 +687,7 @@ class AddingPathways(TestCase):
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
+            genome="hsa",
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(
@@ -677,10 +702,11 @@ class AddingPathways(TestCase):
             database="KEGG",
             directory=dir_data,
             compartment="c",
-            ignore_list=["C00008_c", "R09084_c"],
             # This reaction has problem
+            ignore_list=["C00008_c", "R09084_c"],
             avoid_list=[""],
             show_imbalance=False,
+            genome=None,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(

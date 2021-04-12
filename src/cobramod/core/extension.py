@@ -11,7 +11,7 @@ flux.
 """
 from contextlib import suppress
 from pathlib import Path
-from typing import Union, Generator, Iterable
+from typing import Union, Generator, Iterable, Optional
 
 from cobra import Model, Reaction
 
@@ -36,6 +36,7 @@ def _create_reactions(
     replacement: dict,
     model: Model,
     model_id: str,
+    genome: Optional[str],
 ) -> Generator:
     """
     For each identifier in the sequence, a Reaction will be created. It returns
@@ -56,6 +57,8 @@ def _create_reactions(
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str): Exclusive for BIGG. Retrieve object from specified
             model.
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained for this specie.
 
     Returns:
         Generator: A generator to that gives the reactions.
@@ -82,6 +85,7 @@ def _create_reactions(
             stop_imbalance=stop_imbalance,
             model=model,
             model_id=model_id,
+            genome=genome,
         )
 
 
@@ -514,6 +518,7 @@ def _format_graph(
     model_id: str,
     avoid_list: list,
     replacement: dict,
+    genome: Optional[str],
 ) -> dict:
     """
     Returns new formatted graph. If an item if found in given replacement dict,
@@ -535,6 +540,7 @@ def _format_graph(
             database=database,
             identifier=key,
             model_id=model_id,
+            genome=genome,
         )
         try:
             # Find synonym
@@ -585,6 +591,7 @@ def _from_data(
     stop_imbalance: bool,
     show_imbalance: bool,
     model_id: str,
+    genome: Optional[str],
 ):
     """"
     Adds a pathway into given model from a dictinary with the information of
@@ -617,6 +624,8 @@ def _from_data(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
     # Create mapping from dictionary
     mapping = build_graph(graph=data_dict["PATHWAY"])
@@ -639,6 +648,7 @@ def _from_data(
                 show_imbalance=show_imbalance,
                 model=model,
                 model_id=model_id,
+                genome=genome,
             )
         )
         # Add to model
@@ -661,6 +671,7 @@ def _from_data(
         directory=directory,
         avoid_list=avoid_list,
         replacement=replacement,
+        genome=genome,
     )
     if not pathway.graph:
         pathway.graph = graph
@@ -698,6 +709,7 @@ def _from_sequence(
     show_imbalance: bool,
     minimum: float,
     model_id: str,
+    genome: Optional[str],
 ):
     """
     Adds a sequence of identifiers to given model. It will automatically test
@@ -728,6 +740,8 @@ def _from_sequence(
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
+        genome (str): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
     # Either create a Pathway or obtain the correct Pathway.
     try:
@@ -748,6 +762,7 @@ def _from_sequence(
             show_imbalance=show_imbalance,
             model=model,
             model_id=model_id,
+            genome=genome,
         )
     )
     # Append to model
@@ -769,6 +784,7 @@ def _from_sequence(
         directory=directory,
         avoid_list=avoid_list,
         replacement=replacement,
+        genome=genome,
     )
     if not pathway.graph:
         pathway.graph = graph
@@ -792,6 +808,7 @@ def add_pathway(
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
     model_id: str = "universal",
+    genome: Optional[str] = None,
 ):
     """
     Adds given graph for a pathway identifier or a sequence of reactions
@@ -834,6 +851,8 @@ def add_pathway(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
@@ -850,6 +869,7 @@ def add_pathway(
             identifier=str(pathway),
             database=database,
             model_id=model_id,
+            genome=genome,
         )
         # Run the function to convert the reaction, create the graph and add
         # to Pathway
@@ -866,6 +886,7 @@ def add_pathway(
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,
+            genome=genome,
         )
     elif isinstance(pathway, list):
         # From Reaction
@@ -883,6 +904,7 @@ def add_pathway(
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,
+            genome=genome,
         )
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")

@@ -787,7 +787,7 @@ def create_object(
             specified model. Pathway are not available.
             Defaults to: "universal"
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
-            specie involved. Genes will be obtained from this specie.
+            specie involved. Genes will be obtained for this specie.
 
     Returns:
         Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
