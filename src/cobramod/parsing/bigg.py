@@ -286,7 +286,7 @@ class BiggParser(BaseParser):
     def _read_file(filename: Path) -> dict:
         """
         Reads the given file a returns a JSON dictionary with most important
-        ienformation from it.
+        information from it.
         """
         try:
             with open(file=filename, mode="r") as f:
