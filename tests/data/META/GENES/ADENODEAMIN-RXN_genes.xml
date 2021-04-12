@@ -1,0 +1,269 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:ADENODEAMIN-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:ADENODEAMIN-RXN&amp;detail=FULL</query>
+    <num_results>2</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:HS02191" detail="full" frameid="HS02191" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="HS02191-MONOMER" orgid="META" resource="getxml?META:HS02191-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <citation>
+      <Publication ID="META:PUB-6526272" detail="full" frameid="PUB-6526272" orgid="META">
+        <author datatype="string">Valerio D</author>
+        <author datatype="string">McIvor RS</author>
+        <author datatype="string">Williams SR</author>
+        <author datatype="string">Duyvesteyn MG</author>
+        <author datatype="string">van Ormondt H</author>
+        <author datatype="string">van der Eb AJ</author>
+        <author datatype="string">Martin DW</author>
+        <pubmed-id datatype="string">6526272</pubmed-id>
+        <source datatype="string">Gene 31(1-3);147-53</source>
+        <title datatype="string">Cloning of human adenosine deaminase cDNA and expression in mouse cells.</title>
+        <year datatype="integer">1984</year>
+      </Publication>
+    </citation>
+    <citation>
+      <Publication ID="META:PUB-6090454" detail="full" frameid="PUB-6090454" orgid="META">
+        <author datatype="string">Daddona PE</author>
+        <author datatype="string">Shewach DS</author>
+        <author datatype="string">Kelley WN</author>
+        <author datatype="string">Argos P</author>
+        <author datatype="string">Markham AF</author>
+        <author datatype="string">Orkin SH</author>
+        <pubmed-id datatype="string">6090454</pubmed-id>
+        <source datatype="string">J Biol Chem 259(19);12101-6</source>
+        <title datatype="string">Human adenosine deaminase. cDNA and complete primary amino acid sequence.</title>
+        <year datatype="integer">1984</year>
+      </Publication>
+    </citation>
+    <citation>
+      <Publication ID="META:PUB-3839456" detail="full" frameid="PUB-3839456" orgid="META">
+        <author datatype="string">Valerio D</author>
+        <author datatype="string">Duyvesteyn MG</author>
+        <author datatype="string">Dekker BM</author>
+        <author datatype="string">Weeda G</author>
+        <author datatype="string">Berkvens TM</author>
+        <author datatype="string">van der Voorn L</author>
+        <author datatype="string">van Ormondt H</author>
+        <author datatype="string">van der Eb AJ</author>
+        <pubmed-id datatype="string">3839456</pubmed-id>
+        <source datatype="string">EMBO J 4(2);437-43</source>
+        <title datatype="string">Adenosine deaminase: characterization and expression of a gene with a remarkable promoter.</title>
+        <year datatype="integer">1985</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">ADA</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2014-06-05</date>
+        <Person ID="META:brito" detail="full" frameid="brito" orgid="META">
+          <comment datatype="string">Deepika Weerasighe (Brito) was a curator of the MetaCyc database at SRI International.</comment>
+          <email datatype="string">brito@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000361965</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000361965</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>100</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=100</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_000022</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_000022</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>102700</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/102700</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>X02994</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/X02994</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>K02567</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/K02567</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>K00509</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/K00509</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC040226</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC040226</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC007678</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC007678</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>Z97053</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/Z97053</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>M13792</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/M13792</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_000013</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_000013</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_000022</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_000022</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>ADA</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=ADA</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">42936591</left-end-position>
+    <right-end-position datatype="integer">42968795</right-end-position>
+  </Gene>
+  <Gene ID="META:EG10030" detail="full" frameid="EG10030" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.7.33" orgid="META" resource="getxml?META:BC-1.7.33" />
+    </parent>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="ADENODEAMIN-MONOMER" orgid="META" resource="getxml?META:ADENODEAMIN-MONOMER" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-1998686" detail="full" frameid="PUB-1998686" orgid="META">
+        <author datatype="string">Chang ZY</author>
+        <author datatype="string">Nygaard P</author>
+        <author datatype="string">Chinault AC</author>
+        <author datatype="string">Kellems RE</author>
+        <pubmed-id datatype="string">1998686</pubmed-id>
+        <source datatype="string">Biochemistry 30(8);2273-80</source>
+        <title datatype="string">Deduced amino acid sequence of Escherichia coli adenosine deaminase reveals evolutionarily conserved amino acid residues: implications for catalytic function.</title>
+        <year datatype="integer">1991</year>
+      </Publication>
+    </citation>
+    <citation>
+      <Publication ID="META:PUB-765747" detail="full" frameid="PUB-765747" orgid="META">
+        <author datatype="string">Jochimsen B</author>
+        <author datatype="string">Nygaard P</author>
+        <author datatype="string">Vestergaard T</author>
+        <pubmed-id datatype="string">765747</pubmed-id>
+        <source datatype="string">Mol Gen Genet 143(1);85-91</source>
+        <title datatype="string">Location on the chromosome of Escherichia coli of genes governing purine metabolism. Adenosine deaminase (add), guanosine kinase (gsk) and hypoxanthine phosphoribosyltransferase (hpt).</title>
+        <year datatype="integer">1975</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">add</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>102700</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/102700</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b1623</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b1623&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b1623</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b1623</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>add</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=add</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0005435</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0005435</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0029</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0029</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b1623</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b1623</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>1042</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=1042</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">1702233</left-end-position>
+    <right-end-position datatype="integer">1703234</right-end-position>
+    <accession-1 datatype="string">b1623</accession-1>
+    <accession-2 datatype="string">ECK1618</accession-2>
+  </Gene>
+</ptools-xml>

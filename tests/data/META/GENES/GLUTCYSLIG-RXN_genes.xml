@@ -1,0 +1,432 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:GLUTCYSLIG-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:GLUTCYSLIG-RXN&amp;detail=FULL</query>
+    <num_results>9</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-7664" detail="full" frameid="G-7664" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.5.3.10" orgid="META" resource="getxml?META:BC-1.5.3.10" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-10025" orgid="META" resource="getxml?META:MONOMER-10025" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-8104188" detail="full" frameid="PUB-8104188" orgid="META">
+        <author datatype="string">Huang CS</author>
+        <author datatype="string">Anderson ME</author>
+        <author datatype="string">Meister A</author>
+        <pubmed-id datatype="string">8104188</pubmed-id>
+        <source datatype="string">J Biol Chem 268(27);20578-83</source>
+        <title datatype="string">Amino acid sequence and function of the light subunit of rat kidney gamma-glutamylcysteine synthetase.</title>
+        <year datatype="integer">1993</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">Gclm</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>10116.ENSRNOP00000018343</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/10116.ENSRNOP00000018343</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P48508</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P48508</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>S65555</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/S65555</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-7663" detail="full" frameid="G-7663" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.5.3.10" orgid="META" resource="getxml?META:BC-1.5.3.10" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-10024" orgid="META" resource="getxml?META:MONOMER-10024" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-1967255" detail="full" frameid="PUB-1967255" orgid="META">
+        <author datatype="string">Yan N</author>
+        <author datatype="string">Meister A</author>
+        <pubmed-id datatype="string">1967255</pubmed-id>
+        <source datatype="string">J Biol Chem 265(3);1588-93</source>
+        <title datatype="string">Amino acid sequence of rat kidney gamma-glutamylcysteine synthetase.</title>
+        <year datatype="integer">1990</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">Gclc</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>10116.ENSRNOP00000035540</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/10116.ENSRNOP00000035540</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>J05181</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/J05181</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:HS00434" detail="full" frameid="HS00434" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="ENSG00000023909-MONOMER" orgid="META" resource="getxml?META:ENSG00000023909-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <citation>
+      <Publication ID="META:PUB-7826375" detail="full" frameid="PUB-7826375" orgid="META">
+        <author datatype="string">Gipp JJ</author>
+        <author datatype="string">Bailey HH</author>
+        <author datatype="string">Mulcahy RT</author>
+        <pubmed-id datatype="string">7826375</pubmed-id>
+        <source datatype="string">Biochem Biophys Res Commun 206(2);584-9</source>
+        <title datatype="string">Cloning and sequencing of the cDNA for the light subunit of human liver gamma-glutamylcysteine synthetase and relative mRNA levels for heavy and light subunits in human normal tissues.</title>
+        <year datatype="integer">1995</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">GCLM</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2011-11-02</date>
+        <Person ID="META:caspi" detail="full" frameid="caspi" orgid="META">
+          <comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+          <common-name datatype="string">Ron Caspi</common-name>
+          <email datatype="string">caspi@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000359258</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000359258</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>601176</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/601176</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>2730</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=2730</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_002061</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_002061</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>L35546</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/L35546</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_002052</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_002052</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_002061</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_002061</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000023909</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000023909</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>GCLM</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=GCLM</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">93560541</left-end-position>
+    <right-end-position datatype="integer">93580711</right-end-position>
+    <synonym datatype="string">GLCLR</synonym>
+  </Gene>
+  <Gene ID="META:HS00071" detail="full" frameid="HS00071" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="ENSG00000001084-MONOMER" orgid="META" resource="getxml?META:ENSG00000001084-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <citation>
+      <Publication ID="META:PUB-1350904" detail="full" frameid="PUB-1350904" orgid="META">
+        <author datatype="string">Gipp JJ</author>
+        <author datatype="string">Chang C</author>
+        <author datatype="string">Mulcahy RT</author>
+        <pubmed-id datatype="string">1350904</pubmed-id>
+        <source datatype="string">Biochem Biophys Res Commun 185(1);29-35</source>
+        <title datatype="string">Cloning and nucleotide sequence of a full-length cDNA for human liver gamma-glutamylcysteine synthetase.</title>
+        <year datatype="integer">1992</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">GCLC</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2011-11-02</date>
+        <Person frameid="caspi" orgid="META" resource="#META:caspi" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000229416</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000229416</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>606857</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/606857</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>230450</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/230450</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>2729</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=2729</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_001498</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_001498</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>M90656</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/M90656</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC022487</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC022487</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AF118846</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AF118846</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_001489</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_001489</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_001498</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_001498</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000001084</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000001084</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>GCLC</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=GCLC</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">53358534</left-end-position>
+    <right-end-position datatype="integer">53406226</right-end-position>
+    <synonym datatype="string">GLCL</synonym>
+    <synonym datatype="string">GLCLC</synonym>
+  </Gene>
+  <Gene ID="META:AT4G23100" detail="full" frameid="AT4G23100" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="META" resource="getxml?META:Unclassified-Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT4G23100-MONOMER" orgid="META" resource="getxml?META:AT4G23100-MONOMER" />
+    </product>
+    <common-name datatype="string">GSH1</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT4G23100.3</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT4G23100.3</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P46309</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P46309</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>Z29490</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/Z29490</dblink-URL>
+    </dblink>
+    <synonym datatype="string">PAD2</synonym>
+    <synonym datatype="string">CAD2</synonym>
+    <synonym datatype="string">GCL</synonym>
+    <synonym datatype="string">RML1</synonym>
+    <accession-1 datatype="string">At4g23100</accession-1>
+  </Gene>
+  <Gene ID="META:G-14594" detail="full" frameid="G-14594" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-16746" orgid="META" resource="getxml?META:MONOMER-16746" />
+    </product>
+    <common-name datatype="string">ECS</common-name>
+  </Gene>
+  <Gene ID="META:G-15982" detail="full" frameid="G-15982" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-17988" orgid="META" resource="getxml?META:MONOMER-17988" />
+    </product>
+    <common-name datatype="string">egtA</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>246196.MSMEI_6089</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/246196.MSMEI_6089</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>13427418</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=13427418</dblink-URL>
+    </dblink>
+    <synonym datatype="string">gshA</synonym>
+    <accession-1 datatype="string">MSMEG_6250</accession-1>
+  </Gene>
+  <Gene ID="META:G-63034" detail="full" frameid="G-63034" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-20775" orgid="META" resource="getxml?META:MONOMER-20775" />
+    </product>
+    <common-name datatype="string">gshA</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>1148.1653707</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/1148.1653707</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">slr0990</accession-1>
+  </Gene>
+  <Gene ID="META:EG10418" detail="full" frameid="EG10418" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.5.3.10" orgid="META" resource="getxml?META:BC-1.5.3.10" />
+    </parent>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="GLUTCYSLIG-MONOMER" orgid="META" resource="getxml?META:GLUTCYSLIG-MONOMER" />
+    </product>
+    <common-name datatype="string">gshA</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2688</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2688&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2688</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2688</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>gshA</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=gshA</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008845</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008845</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0413</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0413</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2688</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2688</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>659</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=659</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">2814883</left-end-position>
+    <right-end-position datatype="integer">2816439</right-end-position>
+    <synonym datatype="string">gsh-I</synonym>
+    <accession-1 datatype="string">b2688</accession-1>
+    <accession-2 datatype="string">ECK2683</accession-2>
+  </Gene>
+</ptools-xml>

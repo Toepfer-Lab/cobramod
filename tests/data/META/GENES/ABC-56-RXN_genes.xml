@@ -1,0 +1,209 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:ABC-56-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:ABC-56-RXN&amp;detail=FULL</query>
+    <num_results>3</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:EG12358" detail="full" frameid="EG12358" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.2" orgid="META" resource="getxml?META:BC-1.8.2" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-4.3.A.1.a" orgid="META" resource="getxml?META:BC-4.3.A.1.a" />
+    </parent>
+    <product>
+      <Protein frameid="YCBE-MONOMER" orgid="META" resource="getxml?META:YCBE-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <common-name datatype="string">ssuB</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b0933</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b0933&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b0933</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b0933</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>ssuB</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=ssuB</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0003173</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0003173</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB2261</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB2261</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b0933</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0933</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">993277</left-end-position>
+    <right-end-position datatype="integer">994044</right-end-position>
+    <synonym datatype="string">ycbE</synonym>
+    <accession-1 datatype="string">b0933</accession-1>
+    <accession-2 datatype="string">ECK0924</accession-2>
+  </Gene>
+  <Gene ID="META:G6476" detail="full" frameid="G6476" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.1" orgid="META" resource="getxml?META:BC-1.8.1" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-4.3.A.1.m" orgid="META" resource="getxml?META:BC-4.3.A.1.m" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-6.1" orgid="META" resource="getxml?META:BC-6.1" />
+    </parent>
+    <product>
+      <Protein frameid="YCBM-MONOMER" orgid="META" resource="getxml?META:YCBM-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <common-name datatype="string">ssuC</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person frameid="paley" orgid="META" resource="#META:paley" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b0934</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b0934&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b0934</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b0934</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>ssuC</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=ssuC</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0003175</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0003175</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB3469</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB3469</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b0934</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0934</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">994041</left-end-position>
+    <right-end-position datatype="integer">994832</right-end-position>
+    <synonym datatype="string">ycbM</synonym>
+    <accession-1 datatype="string">b0934</accession-1>
+    <accession-2 datatype="string">ECK0925</accession-2>
+  </Gene>
+  <Gene ID="META:G6478" detail="full" frameid="G6478" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.1" orgid="META" resource="getxml?META:BC-1.8.1" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-4.3.A.1.p" orgid="META" resource="getxml?META:BC-4.3.A.1.p" />
+    </parent>
+    <product>
+      <Protein frameid="G6478-MONOMER" orgid="META" resource="getxml?META:G6478-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <common-name datatype="string">ssuA</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person frameid="paley" orgid="META" resource="#META:paley" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b0936</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b0936&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b0936</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b0936</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>ssuA</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=ssuA</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0003180</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0003180</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB3471</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB3471</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b0936</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0936</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">995985</left-end-position>
+    <right-end-position datatype="integer">996944</right-end-position>
+    <synonym datatype="string">ycbO</synonym>
+    <accession-1 datatype="string">b0936</accession-1>
+    <accession-2 datatype="string">ECK0927</accession-2>
+  </Gene>
+</ptools-xml>

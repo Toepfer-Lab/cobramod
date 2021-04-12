@@ -6,7 +6,7 @@ The posible type of data that can be download:
 
 - Metabolites: Normally have an abbreviation or short name.
 - Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
-be used instead.
+be used instead. The gene information for the reactions is include if found.
 - Pathways
 
 Contact maintainers if other types should be added.
@@ -29,7 +29,7 @@ from typing import Any, Dict
 from requests import get, HTTPError
 
 from cobramod.debug import debug_log
-from cobramod.error import WrongParserError
+from cobramod.error import WrongParserError, NoGeneInformation
 from cobramod.parsing.base import BaseParser
 
 
@@ -145,7 +145,36 @@ def _check_direction(root: Any) -> tuple:
     return bounds
 
 
-def _p_reaction(root: Any) -> dict:
+def _p_genes(root: Any, identifier: str, directory: Path):
+    """
+    Parses given root and returns a dictionary with the corresponding genes and
+    gene-reaction rules. This function will try to read a file for given
+    identifier. If nothing is found, the dictionary will have empty entries.
+    """
+    rule = str()
+    genes = dict()
+    # Get the information and check if Genes can be found to be parsed
+    with suppress(FileNotFoundError):
+        tree: Any = BiocycParser._read_file(
+            filename=directory.joinpath("GENES").joinpath(
+                f"{identifier}_genes.xml"
+            )
+        )
+        for gene in tree.findall("Gene"):
+            try:
+                # Sometimes the genes have a name
+                name = gene.find("common-name").text
+            except AttributeError:
+                name = identifier
+            genes[gene.attrib["frameid"]] = name
+        rule = " or ".join(genes.keys())
+        debug_log.warning(
+            f'Gene-reaction rule for reaction {identifier} assumed to be "OR"'
+        )
+    return {"genes": genes, "rule": rule}
+
+
+def _p_reaction(root: Any, directory: Path) -> dict:
     """
     Parses the root file and return the data in a dictionary
     """
@@ -154,6 +183,7 @@ def _p_reaction(root: Any) -> dict:
         name = root.find("*[@ID]/enzymatic-reaction/*/common-name").text
     except AttributeError:
         name = identifier
+    database = root.find("*[@frameid]").attrib["orgid"]
     return {
         "TYPE": root.find("*[@frameid]").tag,
         "ENTRY": identifier,
@@ -163,8 +193,13 @@ def _p_reaction(root: Any) -> dict:
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(root=root)
         ),
-        "DATABASE": root.find("*[@frameid]").attrib["orgid"],
+        "DATABASE": database,
         "XREF": _build_reference(root=root),
+        "GENES": _p_genes(
+            root=root,
+            identifier=identifier,
+            directory=directory.joinpath(database),
+        ),
     }
 
 
@@ -241,7 +276,7 @@ def _p_pathway(root: Any) -> dict:
 
 class BiocycParser(BaseParser):
     @staticmethod
-    def _parse(root: Any) -> dict:
+    def _parse(root: Any, directory: Path) -> dict:
         """
         Parses the root and returns a dictionary with the dictionary of the
         root, with the most important information depending on its object type.
@@ -249,7 +284,12 @@ class BiocycParser(BaseParser):
         # try to define dictionary
         for method in (_p_reaction, _p_pathway, _p_compound):
             with suppress(WrongParserError, AttributeError):
-                biocyc_dict = method(root=root)
+                try:
+                    biocyc_dict = method(  # type: ignore
+                        root=root, directory=directory
+                    )
+                except TypeError:
+                    biocyc_dict = method(root=root)  # type: ignore
                 biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
                     "orgid"
                 ]
@@ -286,8 +326,7 @@ class BiocycParser(BaseParser):
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
         )
-
-        return BiocycParser._parse(root=root)
+        return BiocycParser._parse(root=root, directory=directory)
 
     @staticmethod
     def _return_database(database: str) -> str:
@@ -312,6 +351,39 @@ class BiocycParser(BaseParser):
             return parse(source=str(filename)).getroot()
         except ParseError:
             raise WrongParserError("Wrong filetype")
+
+
+def _get_gene_xml(directory: Path, identifier: str, database: str):
+    # GENES directory will depend from the subdatabase
+    directory = directory.joinpath("GENES")
+    if not directory.exists():
+        directory.mkdir()
+    # Retrieval of the Gene information
+    filename = directory.joinpath(f"{identifier}_genes.xml")
+    if not filename.exists():
+        # This URL will not necessarily raise exceptio
+        url_text = (
+            f"https://websvc.biocyc.org/apixml?fn=genes-of-reaction&id="
+            f"{database}:{identifier}&detail=full"
+        )
+        r = get(url_text)
+        try:
+            r.raise_for_status()
+            root = fromstring(r.text)
+            # Check for results in root
+            tree: Any = ElementTree(root)
+            if int(tree.find("*/num_results").text) == 0:
+                raise HTTPError
+            tree.write(str(filename))
+            debug_log.info(
+                f'Object "{identifier}_gene.xml" saved in '
+                f'directory "{database}/GENES".'
+            )
+        except HTTPError:
+            # Warning
+            NoGeneInformation(
+                f"Object {identifier} does not have gene information"
+            )
 
 
 def _get_xml_from_biocyc(
@@ -340,6 +412,7 @@ def _get_xml_from_biocyc(
         )
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
+        # Search for the file on directory. Otherwise retrive from database
         try:
             return BiocycParser._read_file(filename=filename)
         except FileNotFoundError:
@@ -352,29 +425,43 @@ def _get_xml_from_biocyc(
             )
             debug_log.debug(f"Searching in {url_text}")
             r = get(url_text)
-            if r.status_code >= 400:
-                msg = f'"{identifier}" is not available in "{database}"'
-                debug_log.error(msg)
-                # Try with META
-                if database != "META":
-                    # This will raise an error if not found in META
-                    root = _get_xml_from_biocyc(
-                        directory=directory,
-                        identifier=identifier,
-                        database="META",
-                    )
-                    return root
-                raise HTTPError(msg)
-            else:
-                root = fromstring(r.text)  # defining root
+            try:
+                r.raise_for_status()
+                # defining root
+                root = fromstring(r.text)
                 tree = ElementTree(root)
                 tree.write(str(filename))
                 debug_log.info(
                     f'Object "{identifier}" found in database. Saving in '
                     f'directory "{database}".'
                 )
+                # Obtain genes if possible. This should be only call one time
+                # If information is already available, the genes should be
+                # available if found
+                with suppress(HTTPError):
+                    # This will include Paths
+                    _get_gene_xml(
+                        directory=data_dir,
+                        identifier=identifier,
+                        database=database,
+                    )
                 return root
+            except HTTPError:
+                msg = f'"{identifier}" is not available in "{database}"'
+                debug_log.error(msg)
+                # Try with META
+                if database != "META":
+                    # This will raise an error if not found in META
+                    with suppress(HTTPError):
+                        root = _get_xml_from_biocyc(
+                            directory=directory,
+                            identifier=identifier,
+                            database="META",
+                        )
+                        return root
+                # In case there is nothing in META
+                raise HTTPError(msg)
     else:
-        msg = "Directory not found"
+        msg = "Directory not found. Please create the given directory."
         debug_log.critical(msg)
         raise NotADirectoryError(msg)

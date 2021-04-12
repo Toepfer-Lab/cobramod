@@ -81,12 +81,12 @@ class RetrievalTesting(unittest.TestCase):
             directory=dir_data, target="C00002", database="CAS"
         )
         self.assertEqual(first=test_string, second="56-65-5")
-        # CASE 1: Regular compound Biocyc
+        # CASE 2: Regular compound Biocyc
         test_string = md.translate(
             directory=dir_data, target="AMP", database="PUBCHEM"
         )
         self.assertEqual(first=test_string, second="15938965")
-        # CASE 1: Regular compound BIGG
+        # CASE 3: Regular compound BIGG
         test_string = md.translate(
             directory=dir_data, target="accoa_c", database="CHEBI"
         )

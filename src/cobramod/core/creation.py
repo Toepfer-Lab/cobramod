@@ -28,6 +28,7 @@ from cobramod.debug import debug_log
 from cobramod.error import WrongDataError, NoIntersectFound, WrongSyntax
 from cobramod.core.retrieval import get_data
 from cobramod.utils import _read_lines, check_imbalance, _first_item
+from cobramod.core.genes import _genes_to_reaction
 
 
 def _build_metabolite(
@@ -265,7 +266,8 @@ def _get_reaction(
     Creates a Reaction object from given dictionary with data. Location of the
     reactions can be set with the argument 'compartment'. The method will look
     in given model if the reaction and/or their corresponding metabolite are
-    already in the model with other identifiers.
+    already in the model with other identifiers. This method will create the
+    corresponding genes and add the to the reaction.
 
     Args:
         data_dict (dict): Dictionary with data of a Reaction.
@@ -339,6 +341,7 @@ def _get_reaction(
             )
         reaction.add_metabolites(metabolites_to_add={metabolite: coef})
         reaction.bounds = data_dict["BOUNDS"]
+    _genes_to_reaction(reaction=reaction, data_dict=data_dict)
     return reaction
 
 
@@ -752,7 +755,8 @@ def create_object(
     show_imbalance: bool = True,
     stop_imbalance: bool = False,
     model: Model = Model(0),
-    model_id="universal",
+    model_id: str = "universal",
+    genome: str = None,
 ) -> Union[Reaction, Metabolite, dict]:
     """
     Creates and returns COBRApy object based on given identifier and database.
@@ -782,6 +786,8 @@ def create_object(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained for this specie.
 
     Returns:
         Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
@@ -793,6 +799,7 @@ def create_object(
         database=database,
         debug_level=10,
         model_id=model_id,
+        genome=genome,
     )
     # Since it is only a single item, next() can be used
     for method in (

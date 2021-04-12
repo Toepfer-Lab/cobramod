@@ -1,0 +1,234 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:AMP-DEPHOSPHORYLATION-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:AMP-DEPHOSPHORYLATION-RXN&amp;detail=FULL</query>
+    <num_results>3</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:HS04074" detail="full" frameid="HS04074" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HS04074-MONOMER" orgid="META" resource="getxml?META:HS04074-MONOMER" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-11133996" detail="full" frameid="PUB-11133996" orgid="META">
+        <author datatype="string">Hunsucker SA</author>
+        <author datatype="string">Spychala J</author>
+        <author datatype="string">Mitchell BS</author>
+        <pubmed-id datatype="string">11133996</pubmed-id>
+        <source datatype="string">J Biol Chem 276(13);10498-504</source>
+        <title datatype="string">Human cytosolic 5'-nucleotidase I: characterization and role in nucleoside analog resistance.</title>
+        <year datatype="integer">2001</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">NT5C1A</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000235628</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000235628</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>84618</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=84618</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">40124793</left-end-position>
+    <right-end-position datatype="integer">40137710</right-end-position>
+  </Gene>
+  <Gene ID="META:HS05981" detail="full" frameid="HS05981" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="HS05981-MONOMER" orgid="META" resource="getxml?META:HS05981-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <common-name datatype="string">NT5E</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2013-01-07</date>
+        <Person ID="META:caspi" detail="full" frameid="caspi" orgid="META">
+          <comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+          <common-name datatype="string">Ron Caspi</common-name>
+          <email datatype="string">caspi@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000257770</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000257770</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P21589</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P21589</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>4907</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=4907</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_002526</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_002526</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>129190</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/129190</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>X55740</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/X55740</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC015940</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC015940</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AK075008</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AK075008</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_002517</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_002517</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_002526</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_002526</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000135318</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000135318</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>NT5E</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=NT5E</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">86126508</left-end-position>
+    <right-end-position datatype="integer">86172195</right-end-position>
+    <synonym datatype="string">NT5</synonym>
+    <synonym datatype="string">NTE</synonym>
+  </Gene>
+  <Gene ID="META:EG10727" detail="full" frameid="EG10727" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.1" orgid="META" resource="getxml?META:BC-1.8.1" />
+    </parent>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="ALKAPHOSPHA-MONOMER" orgid="META" resource="getxml?META:ALKAPHOSPHA-MONOMER" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-6273802" detail="full" frameid="PUB-6273802" orgid="META">
+        <author datatype="string">Kikuchi Y</author>
+        <author datatype="string">Yoda K</author>
+        <author datatype="string">Yamasaki M</author>
+        <author datatype="string">Tamura G</author>
+        <pubmed-id datatype="string">6273802</pubmed-id>
+        <source datatype="string">Nucleic Acids Res 9(21);5671-8</source>
+        <title datatype="string">The nucleotide sequence of the promoter and the amino-terminal region of alkaline phosphatase structural gene (phoA) of Escherichia coli.</title>
+        <year datatype="integer">1981</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">phoA</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b0383</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b0383&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b0383</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b0383</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>phoA</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=phoA</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0001328</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0001328</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0720</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0720</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b0383</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0383</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>398</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=398</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">401747</left-end-position>
+    <right-end-position datatype="integer">403162</right-end-position>
+    <synonym datatype="string">psiA</synonym>
+    <accession-1 datatype="string">b0383</accession-1>
+    <accession-2 datatype="string">ECK0378</accession-2>
+  </Gene>
+</ptools-xml>

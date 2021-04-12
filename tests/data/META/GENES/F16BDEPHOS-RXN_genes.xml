@@ -1,0 +1,721 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:F16BDEPHOS-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:F16BDEPHOS-RXN&amp;detail=FULL</query>
+    <num_results>12</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-405" detail="full" frameid="G-405" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="FBPSYN-MONOMER" orgid="META" resource="getxml?META:FBPSYN-MONOMER" />
+    </product>
+    <common-name datatype="string">fbp</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>1148.1653505</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/1148.1653505</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>952968</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=952968</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">slr0952</accession-1>
+  </Gene>
+  <Gene ID="META:G-11888" detail="full" frameid="G-11888" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="FBPSBP-MONOMER" orgid="META" resource="getxml?META:FBPSBP-MONOMER" />
+    </product>
+    <common-name datatype="string">slr2094</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>1148.1653071</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/1148.1653071</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>954653</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=954653</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:AT1G43670" detail="full" frameid="AT1G43670" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="META" resource="getxml?META:Unclassified-Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT1G43670-MONOMER" orgid="META" resource="getxml?META:AT1G43670-MONOMER" />
+    </product>
+    <common-name datatype="string">FINS1</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT1G43670.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT1G43670.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>Q9MA79</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=Q9MA79</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT1G43670</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G43670</dblink-URL>
+    </dblink>
+    <synonym datatype="string">AtcFBP</synonym>
+    <synonym datatype="string">FRUCTOSE INSENSITIVE 1</synonym>
+  </Gene>
+  <Gene ID="META:AT3G54050-WS" detail="full" frameid="AT3G54050-WS" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT3G54050-WS-MONOMER" orgid="META" resource="getxml?META:AT3G54050-WS-MONOMER" />
+    </product>
+    <common-name datatype="string">HCEF1</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT3G54050.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT3G54050.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT3G54050</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G54050</dblink-URL>
+    </dblink>
+    <synonym datatype="string">HIGH CYCLIC ELECTRON FLOW 1</synonym>
+  </Gene>
+  <Gene ID="META:HS09189" detail="full" frameid="HS09189" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="HS09189-MONOMER" orgid="META" resource="getxml?META:HS09189-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <citation>
+      <Publication ID="META:PUB-7558035" detail="full" frameid="PUB-7558035" orgid="META">
+        <author datatype="string">el-Maghrabi MR</author>
+        <author datatype="string">Lange AJ</author>
+        <author datatype="string">Jiang W</author>
+        <author datatype="string">Yamagata K</author>
+        <author datatype="string">Stoffel M</author>
+        <author datatype="string">Takeda J</author>
+        <author datatype="string">Fernald AA</author>
+        <author datatype="string">Le Beau MM</author>
+        <author datatype="string">Bell GI</author>
+        <author datatype="string">Baker L</author>
+        <pubmed-id datatype="string">7558035</pubmed-id>
+        <source datatype="string">Genomics 27(3);520-5</source>
+        <title datatype="string">Human fructose-1,6-bisphosphatase gene (FBP1): exon-intron organization, localization to chromosome bands 9q22.2-q22.3, and mutation screening in subjects with fructose-1,6-bisphosphatase deficiency.</title>
+        <year datatype="integer">1995</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">FBP1</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2013-03-18</date>
+        <Person ID="META:caspi" detail="full" frameid="caspi" orgid="META">
+          <comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+          <common-name datatype="string">Ron Caspi</common-name>
+          <email datatype="string">caspi@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000408025</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000408025</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P09467</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P09467</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>2203</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=2203</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_000507</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_000507</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>229700</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/229700</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>U47919</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U47919</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>U47918</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U47918</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>M19922</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/M19922</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>L10320</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/L10320</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>D26056</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/D26056</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>D26055</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/D26055</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>D26054</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/D26054</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC012927</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC012927</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AF073475</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AF073475</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>U21931</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U21931</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>U21925</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U21925</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_000498</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_000498</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_000507</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_000507</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000165140</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000165140</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>FBP1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=FBP1</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">89093272</left-end-position>
+    <right-end-position datatype="integer">89129666</right-end-position>
+    <synonym datatype="string">FBP</synonym>
+  </Gene>
+  <Gene ID="META:HS05462" detail="full" frameid="HS05462" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="HS05462-MONOMER" orgid="META" resource="getxml?META:HS05462-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <citation>
+      <Publication ID="META:PUB-10773464" detail="full" frameid="PUB-10773464" orgid="META">
+        <author datatype="string">Tillmann H</author>
+        <author datatype="string">Stein S</author>
+        <author datatype="string">Liehr T</author>
+        <author datatype="string">Eschrich K</author>
+        <pubmed-id datatype="string">10773464</pubmed-id>
+        <source datatype="string">Gene 247(1-2);241-53</source>
+        <title datatype="string">Structure and chromosomal localization of the human and mouse muscle fructose-1,6-bisphosphatase genes.</title>
+        <year datatype="integer">2000</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">FBP2</common-name>
+    <credits>
+      <imported-from-human>
+        <date datatype="date">2013-03-18</date>
+        <Person frameid="caspi" orgid="META" resource="#META:caspi" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-human>
+    </credits>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000364486</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000364486</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>8789</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=8789</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_003837</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_003837</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>603027</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/603027</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>Y10812</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/Y10812</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AJ238481</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AJ238481</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_003828</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_003828</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_003837</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_003837</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000130957</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000130957</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>FBP2</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=FBP2</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">89048859</left-end-position>
+    <right-end-position datatype="integer">89083932</right-end-position>
+  </Gene>
+  <Gene ID="META:G-3882" detail="full" frameid="G-3882" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-5062" orgid="META" resource="getxml?META:MONOMER-5062" />
+    </product>
+    <common-name datatype="string">MJ109</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>243232.MJ_0109</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/243232.MJ_0109</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:EG10727" detail="full" frameid="EG10727" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.1" orgid="META" resource="getxml?META:BC-1.8.1" />
+    </parent>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="ALKAPHOSPHA-MONOMER" orgid="META" resource="getxml?META:ALKAPHOSPHA-MONOMER" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-6273802" detail="full" frameid="PUB-6273802" orgid="META">
+        <author datatype="string">Kikuchi Y</author>
+        <author datatype="string">Yoda K</author>
+        <author datatype="string">Yamasaki M</author>
+        <author datatype="string">Tamura G</author>
+        <pubmed-id datatype="string">6273802</pubmed-id>
+        <source datatype="string">Nucleic Acids Res 9(21);5671-8</source>
+        <title datatype="string">The nucleotide sequence of the promoter and the amino-terminal region of alkaline phosphatase structural gene (phoA) of Escherichia coli.</title>
+        <year datatype="integer">1981</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">phoA</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b0383</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b0383&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b0383</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b0383</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>phoA</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=phoA</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0001328</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0001328</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0720</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0720</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b0383</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0383</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>398</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=398</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">401747</left-end-position>
+    <right-end-position datatype="integer">403162</right-end-position>
+    <synonym datatype="string">psiA</synonym>
+    <accession-1 datatype="string">b0383</accession-1>
+    <accession-2 datatype="string">ECK0378</accession-2>
+  </Gene>
+  <Gene ID="META:EG11239" detail="full" frameid="EG11239" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.7" orgid="META" resource="getxml?META:BC-1.7" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-1.7.27" orgid="META" resource="getxml?META:BC-1.7.27" />
+    </parent>
+    <product>
+      <Protein frameid="EG11239-MONOMER" orgid="META" resource="getxml?META:EG11239-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <common-name datatype="string">ybhA</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person frameid="paley" orgid="META" resource="#META:paley" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b0766</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b0766&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b0766</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b0766</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>ybhA</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=ybhA</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0002607</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0002607</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB1221</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB1221</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b0766</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0766</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>37794</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=37794</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">797613</left-end-position>
+    <right-end-position datatype="integer">798431</right-end-position>
+    <accession-1 datatype="string">b0766</accession-1>
+    <accession-2 datatype="string">ECK0755</accession-2>
+  </Gene>
+  <Gene ID="META:EG11245" detail="full" frameid="EG11245" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.7" orgid="META" resource="getxml?META:BC-1.7" />
+    </parent>
+    <product>
+      <Protein frameid="EG11245-MONOMER" orgid="META" resource="getxml?META:EG11245-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <common-name datatype="string">yggF</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person frameid="paley" orgid="META" resource="#META:paley" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2930</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2930&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2930</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2930</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>yggF</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=yggF</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0009615</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0009615</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB1226</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB1226</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2930</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2930</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">3075217</left-end-position>
+    <right-end-position datatype="integer">3076182</right-end-position>
+    <synonym datatype="string">yggK</synonym>
+    <accession-1 datatype="string">b2930</accession-1>
+    <accession-2 datatype="string">ECK2926</accession-2>
+  </Gene>
+  <Gene ID="META:EG11517" detail="full" frameid="EG11517" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.7" orgid="META" resource="getxml?META:BC-1.7" />
+    </parent>
+    <product>
+      <Protein frameid="EG11517-MONOMER" orgid="META" resource="getxml?META:EG11517-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <common-name datatype="string">glpX</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person frameid="paley" orgid="META" resource="#META:paley" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b3925</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b3925&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b3925</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b3925</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>glpX</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=glpX</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0012821</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0012821</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB1479</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB1479</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b3925</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b3925</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>30884</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=30884</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">4114569</left-end-position>
+    <right-end-position datatype="integer">4115579</right-end-position>
+    <accession-1 datatype="string">b3925</accession-1>
+    <accession-2 datatype="string">ECK3917</accession-2>
+  </Gene>
+  <Gene ID="META:EG10283" detail="full" frameid="EG10283" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.7" orgid="META" resource="getxml?META:BC-1.7" />
+    </parent>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="F16B-MONOMER" orgid="META" resource="getxml?META:F16B-MONOMER" />
+    </product>
+    <common-name datatype="string">fbp</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person frameid="paley" orgid="META" resource="#META:paley" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>229700</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/229700</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b4232</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b4232&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b4232</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b4232</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>fbp</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=fbp</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0013842</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0013842</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0279</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0279</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b4232</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b4232</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>784</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=784</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">4454611</left-end-position>
+    <right-end-position datatype="integer">4455609</right-end-position>
+    <synonym datatype="string">fdp</synonym>
+    <accession-1 datatype="string">b4232</accession-1>
+    <accession-2 datatype="string">ECK4227</accession-2>
+  </Gene>
+</ptools-xml>

@@ -63,11 +63,13 @@ def get_data(
     Keyword Arguments:
         model_id: Exclusive for BIGG. Original identifier of model to search.
             Some examples: "e_coli_core", "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     Returns:
         dict: relevant data for given identifier
     """
     if database is None:
-        raise HTTPError
+        raise HTTPError("No database was specified")
     real_parser = _get_parser(database=database)
     return real_parser._retrieve_data(
         directory=directory,
@@ -99,9 +101,15 @@ def _retrieve_dict(directory: Path, target: str) -> dict:
         )
     for parser in BaseParser.__subclasses__():
         with suppress(WrongParserError, NotImplementedError):
-            data_dict = parser._parse(
-                root=parser._read_file(filename=filename)
-            )["XREF"]
+            try:
+                data_dict = parser._parse(
+                    root=parser._read_file(filename=filename),
+                    directory=directory,
+                )["XREF"]
+            except TypeError:
+                data_dict = parser._parse(  # type: ignore
+                    root=parser._read_file(filename=filename)
+                )["XREF"]
     try:
         return data_dict
     except UnboundLocalError:

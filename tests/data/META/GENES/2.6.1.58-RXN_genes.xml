@@ -1,0 +1,44 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:2.6.1.58-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:2.6.1.58-RXN&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:YHR137W" detail="full" frameid="YHR137W" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="YHR137W-MONOMER" orgid="META" resource="getxml?META:YHR137W-MONOMER" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-9491083" detail="full" frameid="PUB-9491083" orgid="META">
+        <author datatype="string">Iraqui I</author>
+        <author datatype="string">Vissers S</author>
+        <author datatype="string">Cartiaux M</author>
+        <author datatype="string">Urrestarazu A</author>
+        <pubmed-id datatype="string">9491083</pubmed-id>
+        <source datatype="string">Mol Gen Genet 257(2);238-48</source>
+        <title datatype="string">Characterisation of Saccharomyces cerevisiae ARO8 and ARO9 genes encoding aromatic aminotransferases I and II reveals a new aminotransferase subfamily.</title>
+        <year datatype="integer">1998</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">ARO9</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>4932.YHR137W</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/4932.YHR137W</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>Y13625</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/Y13625</dblink-URL>
+    </dblink>
+  </Gene>
+</ptools-xml>

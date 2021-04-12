@@ -6,6 +6,7 @@ The posible type of data that can be download:
 
 - Metabolites: Normally, simple names.
 - Reactions: Mostly abbreviations.
+- Genes: Is included in the Reactions. Includes names and gene-reaction-rule
 
 They change identifiers depending on the model given. BiGG have multiple
 models.
@@ -168,6 +169,28 @@ def _p_metabolites(json_data: dict) -> dict:
     return meta_dict
 
 
+def _p_genes(json_data: dict) -> dict:
+    """
+    From given json_data return a dictionary that includes the genes and
+    gene-reaction-rule for given reaction. Returns a dictionary with the key
+    "genes" which include a dictionary with the identifier and name of the
+    gene; and the key "rule" for the COBRApy representation of the
+    gene-reaction rule
+    """
+    # results comes in a single list
+    genes = dict()
+    rule = str()
+    # Try to obtain and create a dictionary with the gene identifier and their
+    # corresponding names
+    with suppress(KeyError):
+        json_genes = json_data["results"][0]["genes"]
+        for single in json_genes:
+            genes[single["bigg_id"]] = single["name"]
+    with suppress(KeyError):
+        rule = json_data["results"][0]["gene_reaction_rule"]
+    return {"genes": genes, "rule": rule}
+
+
 def _p_reaction(json_data: dict) -> dict:
     """
     Parses the data of the JSON dictionary a returns a dictionary with the most
@@ -178,14 +201,17 @@ def _p_reaction(json_data: dict) -> dict:
         "ENTRY": json_data["bigg_id"],
         "NAME": json_data["name"],
         "EQUATION": _p_metabolites(json_data=json_data),
-        # FIXME: assuming bounds. Create proper method
         "BOUNDS": (-1000, 1000),
         "TRANSPORT": BaseParser._check_transport(
             data_dict=_p_metabolites(json_data=json_data)
         ),
         "DATABASE": "BIGG",
         "XREF": _build_reference(json_data=json_data),
+        "GENES": _p_genes(json_data=json_data),
     }
+    debug_log.warning(
+        f'Reversibility for reaction "{json_data["bigg_id"]}" assumed'
+    )
     return temp_dict
 
 
@@ -215,12 +241,18 @@ class BiggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
+        try:
+            model_id = kwargs["model_id"]
+        except KeyError:
+            raise KeyError(
+                'Argument "model_id" is missing. Please specify it.'
+            )
         # It will raise an error for HTTPError
         json_data = _get_json_bigg(
             directory=directory,
             database=database,
             identifier=identifier,
-            **kwargs,
+            model_id=model_id,
         )
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
@@ -228,7 +260,7 @@ class BiggParser(BaseParser):
         return BiggParser._parse(root=json_data)
 
     @staticmethod
-    def _parse(root: Any) -> dict:
+    def _parse(root: Any) -> dict:  # type: ignore
         """
         Parses the JSON dictionary and returns a dictionary with the most
         important attributes depending of the type of the identifier.
@@ -263,5 +295,4 @@ class BiggParser(BaseParser):
                 unformatted_data = f.read()
             return loads(s=unformatted_data)
         except JSONDecodeError:
-            # TODO find exception type
             raise WrongParserError("Wrong filetype")

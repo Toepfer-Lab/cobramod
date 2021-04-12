@@ -200,6 +200,7 @@ class SimpleFunctions(TestCase):
             identifier="R02736",
             database="KEGG",
             debug_level=10,
+            genome="hsa",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,
@@ -230,6 +231,7 @@ class SimpleFunctions(TestCase):
             identifier="R00114",
             database="KEGG",
             debug_level=10,
+            genome="eco",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,
@@ -423,6 +425,10 @@ class SimpleFunctions(TestCase):
             replacement={},
         )
         self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
+        self.assertCountEqual(
+            first=[gene.id for gene in test_reaction.genes],
+            second=["EG10256", "G-2548", "G-2549"],
+        )
         # CASE 2: check for equivalent. (Similar to CASE 6b in _get_reaction)
         test_model = textbook_kegg.copy()
         test_reaction = cr._obtain_reaction(
@@ -560,9 +566,14 @@ class ComplexFunctions(TestCase):
             directory=dir_data,
             compartment="c",
             database="KEGG",
+            genome="hsa",
         )
         self.assertIsInstance(obj=test_object, cls=Reaction)
         self.assertIn(member="c", container=test_object.compartments)
+        self.assertCountEqual(
+            first=[gene.id for gene in test_object.genes],
+            second=["9563", "2539"],
+        )
         # CASE 2c: Reaction of Biocyc which could be a pathway as well
         test_object = cr.create_object(
             identifier="AMONITRO-RXN",
@@ -740,6 +751,9 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
+        self.assertIn(
+            member="G-16016", container=[gene.id for gene in test_model.genes]
+        )
         # CASE 4: In case of single reaction
         test_model = Model(0)
         test_reaction = textbook_kegg.reactions.get_by_id("ACALDt")

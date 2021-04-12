@@ -1,0 +1,257 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:AMONITRO-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:AMONITRO-RXN&amp;detail=FULL</query>
+    <num_results>9</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-2945" detail="full" frameid="G-2945" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.1.1" orgid="META" resource="getxml?META:BC-1.1.1" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3883" orgid="META" resource="getxml?META:MONOMER-3883" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-10376840" detail="full" frameid="PUB-10376840" orgid="META">
+        <author datatype="string">Stolyar S</author>
+        <author datatype="string">Costello AM</author>
+        <author datatype="string">Peeples TL</author>
+        <author datatype="string">Lidstrom ME</author>
+        <pubmed-id datatype="string">10376840</pubmed-id>
+        <source datatype="string">Microbiology 145 ( Pt 5);1235-44</source>
+        <title datatype="string">Role of multiple gene copies in particulate methane monooxygenase activity in the methane-oxidizing bacterium Methylococcus capsulatus Bath.</title>
+        <year datatype="integer">1999</year>
+      </Publication>
+    </citation>
+    <comment datatype="string">&lt;i&gt;M. capsulatus&lt;/i&gt; has two copies of the &lt;i&gt;pmoCAB&lt;/i&gt;  operon, termed &lt;i&gt;pmoCAB1&lt;/i&gt; and &lt;i&gt;pmoCAB2&lt;/i&gt;. 
+The copies are almost identical, and encode virtually identical proteins. Knocking out the individual genes showed 
+that the &lt;i&gt;pmoCAB1&lt;/i&gt; operon contibutes about two thirds of the overall methane oxidation, while the 
+&lt;i&gt;pmoCAB2&lt;/i&gt; operon contibutes the additional third [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10376840"&gt;Stolyar99&lt;/a&gt;].
+A third copy of &lt;i&gt;pmoC&lt;/i&gt;, named &lt;i&gt;pmoC3&lt;/i&gt;, has also been found, which is more divergent [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10376840"&gt;Stolyar99&lt;/a&gt;].</comment>
+    <common-name datatype="string">pmoC</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>L40804</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/L40804</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-2943" detail="full" frameid="G-2943" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.1.1" orgid="META" resource="getxml?META:BC-1.1.1" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3882" orgid="META" resource="getxml?META:MONOMER-3882" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-7768803" detail="full" frameid="PUB-7768803" orgid="META">
+        <author datatype="string">Semrau JD</author>
+        <author datatype="string">Chistoserdov A</author>
+        <author datatype="string">Lebron J</author>
+        <author datatype="string">Costello A</author>
+        <author datatype="string">Davagnino J</author>
+        <author datatype="string">Kenna E</author>
+        <author datatype="string">Holmes AJ</author>
+        <author datatype="string">Finch R</author>
+        <author datatype="string">Murrell JC</author>
+        <author datatype="string">Lidstrom ME</author>
+        <pubmed-id datatype="string">7768803</pubmed-id>
+        <source datatype="string">J Bacteriol 177(11);3071-9</source>
+        <title datatype="string">Particulate methane monooxygenase genes in methanotrophs.</title>
+        <year datatype="integer">1995</year>
+      </Publication>
+    </citation>
+    <comment datatype="string">&lt;i&gt;M. capsulatus&lt;/i&gt; has two copies of the pmoCAB operon, termed &lt;i&gt;pmoCAB1&lt;/i&gt; and &lt;i&gt;pmoCAB2&lt;/i&gt;. 
+The copies are almost identical, and encode virtually identical proteins. Knocking out the individual genes showed 
+that the &lt;i&gt;pmoCAB1&lt;/i&gt; operon contibutes about two thirds of the overall methane oxidation, while the 
+&lt;i&gt;pmoCAB2&lt;/i&gt; operon contibutes the additional third [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10376840"&gt;Stolyar99&lt;/a&gt;].</comment>
+    <common-name datatype="string">pmoB</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>243233.MCA2853</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/243233.MCA2853</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>L40804</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/L40804</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-2941" detail="full" frameid="G-2941" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.1.1" orgid="META" resource="getxml?META:BC-1.1.1" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3881" orgid="META" resource="getxml?META:MONOMER-3881" />
+    </product>
+    <citation>
+      <Publication frameid="PUB-7768803" orgid="META" resource="#META:PUB-7768803" />
+    </citation>
+    <comment datatype="string">&lt;i&gt;M. capsulatus&lt;/i&gt; has two copies of the pmoCAB operon, termed &lt;i&gt;pmoCAB1&lt;/i&gt; and &lt;i&gt;pmoCAB2&lt;/i&gt;. 
+The copies are almost identical, and encode virtually identical proteins. Knocking out the individual genes showed 
+that the &lt;i&gt;pmoCAB1&lt;/i&gt; operon contibutes about two thirds of the overall methane oxidation, while the 
+&lt;i&gt;pmoCAB2&lt;/i&gt; operon contibutes the additional third [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10376840"&gt;Stolyar99&lt;/a&gt;].</comment>
+    <common-name datatype="string">pmoA</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>243233.MCA2854</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/243233.MCA2854</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>L40804</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/L40804</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-15275" detail="full" frameid="G-15275" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="META" resource="getxml?META:Unclassified-Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3762" orgid="META" resource="getxml?META:MONOMER-3762" />
+    </product>
+    <common-name datatype="string">amoC2</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>228410.NE2064</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/228410.NE2064</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>1083025</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=1083025</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">NE2064</accession-1>
+  </Gene>
+  <Gene ID="META:G-2863" detail="full" frameid="G-2863" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.3" orgid="META" resource="getxml?META:BC-1.8.3" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3762" orgid="META" resource="getxml?META:MONOMER-3762" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-9163908" detail="full" frameid="PUB-9163908" orgid="META">
+        <author datatype="string">Klotz MG</author>
+        <author datatype="string">Alzerreca J</author>
+        <author datatype="string">Norton JM</author>
+        <pubmed-id datatype="string">9163908</pubmed-id>
+        <source datatype="string">FEMS Microbiol Lett 150(1);65-73</source>
+        <title datatype="string">A gene encoding a membrane protein exists upstream of the amoA/amoB genes in ammonia oxidizing bacteria: a third member of the amo operon?</title>
+        <year datatype="integer">1997</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">amoC1</common-name>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>1081886</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=1081886</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">NE0945</accession-1>
+  </Gene>
+  <Gene ID="META:G-15274" detail="full" frameid="G-15274" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="META" resource="getxml?META:Unclassified-Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3761" orgid="META" resource="getxml?META:MONOMER-3761" />
+    </product>
+    <comment datatype="string">There are two copies of the &lt;i&gt;amoB&lt;/i&gt; gene on the &lt;i&gt;N. europaea&lt;/i&gt; chromosome, &lt;a href="/gene?orgid=META&amp;id=G-2862"&gt;amoB1&lt;/a&gt; and &lt;a href="/gene?orgid=META&amp;id=G-15274"&gt;amoB2&lt;/a&gt;. In both cases the gene is part of an &lt;i&gt;amoCAB&lt;/i&gt; operon [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9785456"&gt;SayavedraSoto98&lt;/a&gt;].</comment>
+    <common-name datatype="string">amoB2</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>228410.NE2062</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/228410.NE2062</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>1083023</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=1083023</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">NE2062</accession-1>
+  </Gene>
+  <Gene ID="META:G-2862" detail="full" frameid="G-2862" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.3" orgid="META" resource="getxml?META:BC-1.8.3" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3761" orgid="META" resource="getxml?META:MONOMER-3761" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-8468301" detail="full" frameid="PUB-8468301" orgid="META">
+        <author datatype="string">McTavish H</author>
+        <author datatype="string">Fuchs JA</author>
+        <author datatype="string">Hooper AB</author>
+        <pubmed-id datatype="string">8468301</pubmed-id>
+        <source datatype="string">J Bacteriol 175(8);2436-44</source>
+        <title datatype="string">Sequence of the gene coding for ammonia monooxygenase in Nitrosomonas europaea.</title>
+        <year datatype="integer">1993</year>
+      </Publication>
+    </citation>
+    <comment datatype="string">There are two copies of the &lt;i&gt;amoB&lt;/i&gt; gene on the &lt;i&gt;N. europaea&lt;/i&gt; chromosome, &lt;a href="/gene?orgid=META&amp;id=G-2862"&gt;amoB1&lt;/a&gt; and &lt;a href="/gene?orgid=META&amp;id=G-15274"&gt;amoB2&lt;/a&gt;. In both cases the gene is part of an &lt;i&gt;amoCAB&lt;/i&gt; operon [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9785456"&gt;SayavedraSoto98&lt;/a&gt;].</comment>
+    <common-name datatype="string">amoB1</common-name>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>1081884</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=1081884</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">NE0943</accession-1>
+  </Gene>
+  <Gene ID="META:G-15273" detail="full" frameid="G-15273" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="META" resource="getxml?META:Unclassified-Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3741" orgid="META" resource="getxml?META:MONOMER-3741" />
+    </product>
+    <comment datatype="string">There are two copies of the &lt;i&gt;amoA&lt;/i&gt; gene on the &lt;i&gt;N. europaea&lt;/i&gt; chromosome - &lt;a href="/gene?orgid=META&amp;id=G-2841"&gt;amoA1&lt;/a&gt; and &lt;a href="/gene?orgid=META&amp;id=G-15273"&gt;amoA2&lt;/a&gt;. In both cases the gene is part of an &lt;i&gt;amoCAB&lt;/i&gt; operon [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9785456"&gt;SayavedraSoto98&lt;/a&gt;].</comment>
+    <common-name datatype="string">amoA2</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>228410.NE2063</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/228410.NE2063</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>1083024</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=1083024</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">NE2063</accession-1>
+  </Gene>
+  <Gene ID="META:G-2841" detail="full" frameid="G-2841" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.8.3" orgid="META" resource="getxml?META:BC-1.8.3" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-3741" orgid="META" resource="getxml?META:MONOMER-3741" />
+    </product>
+    <citation>
+      <Publication frameid="PUB-8468301" orgid="META" resource="#META:PUB-8468301" />
+    </citation>
+    <comment datatype="string">There are two copies of the &lt;i&gt;amoA&lt;/i&gt; gene on the &lt;i&gt;N. europaea&lt;/i&gt; chromosome - &lt;a href="/gene?orgid=META&amp;id=G-2841"&gt;amoA1&lt;/a&gt; and &lt;a href="/gene?orgid=META&amp;id=G-15273"&gt;amoA2&lt;/a&gt;. In both cases the gene is part of an &lt;i&gt;amoCAB&lt;/i&gt; operon [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9785456"&gt;SayavedraSoto98&lt;/a&gt;].</comment>
+    <common-name datatype="string">amoA1</common-name>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>1081885</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=1081885</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">NE0944</accession-1>
+  </Gene>
+</ptools-xml>

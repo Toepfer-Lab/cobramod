@@ -1,0 +1,120 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:1.8.4.9-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:1.8.4.9-RXN&amp;detail=FULL</query>
+    <num_results>5</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:AT1G62180" detail="full" frameid="AT1G62180" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT1G62180-MONOMER" orgid="META" resource="getxml?META:AT1G62180-MONOMER" />
+    </product>
+    <common-name datatype="string">APR2</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT1G62180.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT1G62180.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P92981</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P92981</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT1G62180</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G62180</dblink-URL>
+    </dblink>
+    <synonym datatype="string">At1g62180</synonym>
+  </Gene>
+  <Gene ID="META:AT4G21990" detail="full" frameid="AT4G21990" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT4G21990-MONOMER" orgid="META" resource="getxml?META:AT4G21990-MONOMER" />
+    </product>
+    <common-name datatype="string">APR3</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT4G21990.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT4G21990.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P92980</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P92980</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G21990</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G21990</dblink-URL>
+    </dblink>
+    <synonym datatype="string">At4g21990</synonym>
+  </Gene>
+  <Gene ID="META:AT4G04610" detail="full" frameid="AT4G04610" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT4G04610-MONOMER" orgid="META" resource="getxml?META:AT4G04610-MONOMER" />
+    </product>
+    <common-name datatype="string">APR1</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT4G04610.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT4G04610.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G04610</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G04610</dblink-URL>
+    </dblink>
+    <synonym datatype="string">At4g04610</synonym>
+  </Gene>
+  <Gene ID="META:G-9594" detail="full" frameid="G-9594" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12494" orgid="META" resource="getxml?META:MONOMER-12494" />
+    </product>
+    <common-name datatype="string">lapr</common-name>
+  </Gene>
+  <Gene ID="META:G-18003" detail="full" frameid="G-18003" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-18530" orgid="META" resource="getxml?META:MONOMER-18530" />
+    </product>
+    <common-name datatype="string">cysH</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>572477.Alvin_2447</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/572477.Alvin_2447</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>8787829</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=8787829</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">Alvin_2447</accession-1>
+  </Gene>
+</ptools-xml>

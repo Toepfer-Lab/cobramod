@@ -1,0 +1,186 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:MANNITOL-1-PHOSPHATASE-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:MANNITOL-1-PHOSPHATASE-RXN&amp;detail=FULL</query>
+    <num_results>4</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-12081" detail="full" frameid="G-12081" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-15724" orgid="META" resource="getxml?META:MONOMER-15724" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-9461622" detail="full" frameid="PUB-9461622" orgid="META">
+        <author datatype="string">Liberator P</author>
+        <author datatype="string">Anderson J</author>
+        <author datatype="string">Feiglin M</author>
+        <author datatype="string">Sardana M</author>
+        <author datatype="string">Griffin P</author>
+        <author datatype="string">Schmatz D</author>
+        <author datatype="string">Myers RW</author>
+        <pubmed-id datatype="string">9461622</pubmed-id>
+        <source datatype="string">J Biol Chem 273(7);4237-44</source>
+        <title datatype="string">Molecular cloning and functional expression of mannitol-1-phosphatase from the apicomplexan parasite Eimeria tenella.</title>
+        <year datatype="integer">1998</year>
+      </Publication>
+    </citation>
+    <comment datatype="string">The gene encoding this enzyme has not been named and is therefore referred to here by its locus and accession designation.</comment>
+    <common-name datatype="string">AF032462</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AF032462</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AF032462</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-43940" detail="full" frameid="G-43940" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-19228" orgid="META" resource="getxml?META:MONOMER-19228" />
+    </product>
+    <common-name datatype="string">M1Pase2</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>FN647684</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/FN647684</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">Esi_0100_0020</accession-1>
+  </Gene>
+  <Gene ID="META:G6932" detail="full" frameid="G6932" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-5.6.2" orgid="META" resource="getxml?META:BC-5.6.2" />
+    </parent>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="G6932-MONOMER" orgid="META" resource="getxml?META:G6932-MONOMER" />
+    </product>
+    <common-name datatype="string">hxpB</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b1727</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b1727&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b1727</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b1727</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>yniC</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=yniC</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0005761</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0005761</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB3744</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB3744</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b1727</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b1727</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">1809380</left-end-position>
+    <right-end-position datatype="integer">1810048</right-end-position>
+    <synonym datatype="string">yniC</synonym>
+    <accession-1 datatype="string">b1727</accession-1>
+    <accession-2 datatype="string">ECK1725</accession-2>
+  </Gene>
+  <Gene ID="META:G7187" detail="full" frameid="G7187" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="META" resource="getxml?META:Unclassified-Genes" />
+    </parent>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="G7187-MONOMER" orgid="META" resource="getxml?META:G7187-MONOMER" />
+    </product>
+    <common-name datatype="string">hxpA</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person frameid="paley" orgid="META" resource="#META:paley" />
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2293</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2293&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2293</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2293</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>yfbT</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=yfbT</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0007567</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0007567</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB3857</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB3857</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2293</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2293</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">2411439</left-end-position>
+    <right-end-position datatype="integer">2412089</right-end-position>
+    <synonym datatype="string">yfbT</synonym>
+    <accession-1 datatype="string">b2293</accession-1>
+    <accession-2 datatype="string">ECK2287</accession-2>
+  </Gene>
+</ptools-xml>

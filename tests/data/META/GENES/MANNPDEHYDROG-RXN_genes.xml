@@ -1,0 +1,141 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:MANNPDEHYDROG-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:MANNPDEHYDROG-RXN&amp;detail=FULL</query>
+    <num_results>4</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-155" detail="full" frameid="G-155" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-622" orgid="META" resource="getxml?META:MONOMER-622" />
+    </product>
+    <common-name datatype="string">mtlD</common-name>
+  </Gene>
+  <Gene ID="META:G-9978" detail="full" frameid="G-9978" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-13098" orgid="META" resource="getxml?META:MONOMER-13098" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-1322373" detail="full" frameid="PUB-1322373" orgid="META">
+        <author datatype="string">Honeyman AL</author>
+        <author datatype="string">Curtiss R</author>
+        <pubmed-id datatype="string">1322373</pubmed-id>
+        <source datatype="string">Infect Immun 60(8);3369-75</source>
+        <title datatype="string">Isolation, characterization, and nucleotide sequence of the Streptococcus mutans mannitol-phosphate dehydrogenase gene and the mannitol-specific factor III gene of the phosphoenolpyruvate phosphotransferase system.</title>
+        <year datatype="integer">1992</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">mtlD</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>210007.SMU_1182</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/210007.SMU_1182</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AF210133</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AF210133</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-12075" detail="full" frameid="G-12075" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-15718" orgid="META" resource="getxml?META:MONOMER-15718" />
+    </product>
+    <common-name datatype="string">M1PDH</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AF055716</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AF055716</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:EG10616" detail="full" frameid="EG10616" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.1.1" orgid="META" resource="getxml?META:BC-1.1.1" />
+    </parent>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="MANNPDEHYDROG-MONOMER" orgid="META" resource="getxml?META:MANNPDEHYDROG-MONOMER" />
+    </product>
+    <common-name datatype="string">mtlD</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b3600</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b3600&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b3600</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b3600</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>mtlD</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=mtlD</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0011767</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0011767</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0611</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0611</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b3600</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b3600</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>479</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=479</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">3774424</left-end-position>
+    <right-end-position datatype="integer">3775572</right-end-position>
+    <accession-1 datatype="string">b3600</accession-1>
+    <accession-2 datatype="string">ECK3589</accession-2>
+  </Gene>
+</ptools-xml>

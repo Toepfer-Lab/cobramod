@@ -1,0 +1,247 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN&amp;detail=FULL</query>
+    <num_results>7</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:HS05635" detail="full" frameid="HS05635" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HS05635-MONOMER" orgid="META" resource="getxml?META:HS05635-MONOMER" />
+    </product>
+    <common-name datatype="string">DDC</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9606.ENSP00000403644</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9606.ENSP00000403644</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P20711</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P20711</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>GENECARDS</dblink-db>
+      <dblink-oid>DDC</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.genecards.org/cgi-bin/carddisp.pl?gene=DDC</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>ENSG00000132437</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000132437</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NM_000790</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NM_000790</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REFSEQ</dblink-db>
+      <dblink-oid>NP_000781</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?val=NP_000781</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AH001421</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AH001421</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC000485</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC000485</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>BC008366</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/BC008366</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>M76180</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/M76180</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>M88700</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/M88700</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>107930</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/107930</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>UCSC</dblink-db>
+      <dblink-oid>NM_000790</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://genome.ucsc.edu/cgi-bin/hgTracks?org=human&amp;position=NM_000790</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>NCBI-GENE</dblink-db>
+      <dblink-oid>1644</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=1644</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">49990029</left-end-position>
+    <right-end-position datatype="integer">50075706</right-end-position>
+    <synonym datatype="string">AADC</synonym>
+  </Gene>
+  <Gene ID="META:G-9022" detail="full" frameid="G-9022" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-11583" orgid="META" resource="getxml?META:MONOMER-11583" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-2704736" detail="full" frameid="PUB-2704736" orgid="META">
+        <author datatype="string">De Luca V</author>
+        <author datatype="string">Marineau C</author>
+        <author datatype="string">Brisson N</author>
+        <pubmed-id datatype="string">2704736</pubmed-id>
+        <source datatype="string">Proc Natl Acad Sci U S A 86(8);2582-6</source>
+        <title datatype="string">Molecular cloning and analysis of cDNA encoding a plant tryptophan decarboxylase: comparison with animal dopa decarboxylases.</title>
+        <year datatype="integer">1989</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">TDC</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>M25151</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/M25151</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-11439" detail="full" frameid="G-11439" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-14992" orgid="META" resource="getxml?META:MONOMER-14992" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-8670114" detail="full" frameid="PUB-8670114" orgid="META">
+        <author datatype="string">Moore PS</author>
+        <author datatype="string">Dominici P</author>
+        <author datatype="string">Borri Voltattorni C</author>
+        <pubmed-id datatype="string">8670114</pubmed-id>
+        <source datatype="string">Biochem J 315 ( Pt 1);249-56</source>
+        <title datatype="string">Cloning and expression of pig kidney dopa decarboxylase: comparison of the naturally occurring and recombinant enzymes.</title>
+        <year datatype="integer">1996</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">DDC</common-name>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>9823.ENSSSCP00000019955</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/9823.ENSSSCP00000019955</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>S82290</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/S82290</dblink-URL>
+    </dblink>
+    <synonym datatype="string">AADC</synonym>
+  </Gene>
+  <Gene ID="META:G-11528" detail="full" frameid="G-11528" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-15092" orgid="META" resource="getxml?META:MONOMER-15092" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-12721380" detail="full" frameid="PUB-12721380" orgid="META">
+        <author datatype="string">Yamazaki Y</author>
+        <author datatype="string">Sudo H</author>
+        <author datatype="string">Yamazaki M</author>
+        <author datatype="string">Aimi N</author>
+        <author datatype="string">Saito K</author>
+        <pubmed-id datatype="string">12721380</pubmed-id>
+        <source datatype="string">Plant Cell Physiol 44(4);395-403</source>
+        <title datatype="string">Camptothecin biosynthetic genes in hairy roots of Ophiorrhiza pumila: cloning, characterization and differential expression in tissues and by stress compounds.</title>
+        <year datatype="integer">2003</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">tdc</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AB086168</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AB086168</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-11529" detail="full" frameid="G-11529" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-15093" orgid="META" resource="getxml?META:MONOMER-15093" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-9225462" detail="full" frameid="PUB-9225462" orgid="META">
+        <author datatype="string">Lopez-Meyer M</author>
+        <author datatype="string">Nessler CL</author>
+        <pubmed-id datatype="string">9225462</pubmed-id>
+        <source datatype="string">Plant J 11(6);1167-75</source>
+        <title datatype="string">Tryptophan decarboxylase is encoded by two autonomously regulated genes in Camptotheca acuminata which are differentially expressed during development and stress.</title>
+        <year datatype="integer">1997</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">tdc1</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>U73656</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U73656</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-11530" detail="full" frameid="G-11530" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-15094" orgid="META" resource="getxml?META:MONOMER-15094" />
+    </product>
+    <citation>
+      <Publication frameid="PUB-9225462" orgid="META" resource="#META:PUB-9225462" />
+    </citation>
+    <common-name datatype="string">tdc2</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>U73657</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U73657</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-58122" detail="full" frameid="G-58122" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-20333" orgid="META" resource="getxml?META:MONOMER-20333" />
+    </product>
+    <common-name datatype="string">psiD</common-name>
+  </Gene>
+</ptools-xml>
