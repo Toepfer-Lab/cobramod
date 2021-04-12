@@ -25,7 +25,7 @@ from requests import get, HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
-from cobramod.error import WrongParserError
+from cobramod.error import WrongParserError, FalseAbbreviation
 
 
 class MetaboliteTuple(NamedTuple):
@@ -203,7 +203,7 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
         try:
             return genes[genome]
         except KeyError:
-            raise KeyError(f"There is no genome abbreviation for {genome}")
+            raise FalseAbbreviation(string=genome, reaction=reaction)
     if len(genes) > 5:
         warn(
             message=(

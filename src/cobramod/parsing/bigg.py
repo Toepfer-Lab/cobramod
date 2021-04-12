@@ -239,12 +239,18 @@ class BiggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
+        try:
+            model_id = kwargs["model_id"]
+        except KeyError:
+            raise KeyError(
+                'Argument "model_id" is missing. Please specify it.'
+            )
         # It will raise an error for HTTPError
         json_data = _get_json_bigg(
             directory=directory,
             database=database,
             identifier=identifier,
-            **kwargs,
+            model_id=model_id,
         )
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'

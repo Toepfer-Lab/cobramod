@@ -87,6 +87,23 @@ class NoGeneInformation(Exception):
     pass
 
 
+class FalseAbbreviation(Exception):
+    """
+    Simple error that should be raised when given abbreviation does not exists.
+    """
+
+    def __init__(self, string: str, reaction: str):
+        """
+        Args:
+            string (str): False or broken string
+        """
+        msg = (
+            f'There is no genome abbreviation "{string}" in '
+            + f'reaction "{reaction}"'
+        )
+        super().__init__(msg)
+
+
 class UnbalancedReaction(Exception):
     """
     Simple Error that should be raised if a reaction has wrong mass balance.
