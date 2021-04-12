@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+"""Summary
+
+This module is responsible for the short summary in the command
+line and for other summaries in different formats.
+"""
+
 import os
 from pathlib import Path
 from typing import Dict
@@ -23,8 +30,9 @@ class DataModel:
 
         # reaction includes only values not already in exchanges or sinks
 
-        self.reactions = [reaction for reaction in lists.get("reactions") or [] if
-                          reaction not in set(self.sinks) and reaction not in set(self.exchanges)]
+        self.reactions = [reaction for reaction in lists.get("reactions") or []
+                          if reaction not in set(self.sinks)
+                          and reaction not in set(self.exchanges)]
 
     @classmethod
     def from_model(cls, model: Model):
@@ -32,7 +40,8 @@ class DataModel:
         Method to create a DataModel object based on a model object.
 
         Args:
-            model (Model): Model based on which a DataModel object is to be created.
+            model (Model): Model based on which a DataModel object
+                is to be created.
         """
         data = {'reactions': model.reactions.list_attr("id"),
                 'metabolites': model.metabolites.list_attr("id"),
@@ -45,8 +54,9 @@ class DataModel:
 
     def diff(self, other):
         """
-        Creates a new DataModel object consisting of the differences between the
-        original and the passed DataModel object.
+        Creates a new DataModel object consisting of
+        the differences between the original and the
+        passed DataModel object.
 
         Args:
             other (DataModel): DataModel to be compared with this one.
@@ -64,13 +74,31 @@ class DataModel:
         return DataModel(data)
 
     def __sub__(self, other):
-        data = {'reactions': [x for x in self.reactions if x not in set(other.reactions)],
-                'metabolites': [x for x in self.metabolites if x not in set(other.metabolites)],
-                'demands': [x for x in self.demands if x not in set(other.demands)],
-                'exchanges': [x for x in self.exchanges if x not in set(other.exchanges)],
-                'genes': [x for x in self.genes if x not in set(other.genes)],
-                'groups': [x for x in self.groups if x not in set(other.groups)],
-                'sinks': [x for x in self.sinks if x not in set(other.sinks)]}
+        reactions = set(other.reactions)
+        metabolites = set(other.metabolites)
+        demands = set(other.demands)
+        exchanges = set(other.exchanges)
+        genes = set(other.genes)
+        groups = set(other.groups)
+        sinks = set(other.sinks)
+
+        reactions = [x for x in self.reactions if x not in reactions]
+        metabolites = [x for x in self.metabolites if x not in metabolites]
+        demands = [x for x in self.demands if x not in demands]
+        exchanges = [x for x in self.exchanges if x not in exchanges]
+        genes = [x for x in self.genes if x not in genes]
+        groups = [x for x in self.groups if x not in groups]
+        sinks = [x for x in self.sinks if x not in sinks]
+
+        data = {
+            'reactions': reactions,
+            'metabolites': metabolites,
+            'demands': demands,
+            'exchanges': exchanges,
+            'genes': genes,
+            'groups': groups,
+            'sinks': sinks
+        }
 
         return DataModel(lists=data)
 
@@ -94,8 +122,9 @@ class DataModel:
 
     def _to_dataframe(self, model: Model = None, original=None):
         """
-        Creates a pandas DataFrame based on a DataModel object. You can pass another DataModel
-        object to include it in the DataFrame to have both DataModels in one DataFrame.
+        Creates a pandas DataFrame based on a DataModel object.
+        You can pass another DataModel object to include it in
+        the DataFrame to have both DataModels in one DataFrame.
         Intended for internal use only.
 
         Args:
@@ -127,7 +156,8 @@ class DataModel:
                 "Groups": pandas.Series(original.groups),
             }
 
-            # Preserving the order so that the original model comes first and then the modifications
+            # Preserving the order so that the original model
+            # comes first and then the modifications
             original.update(dictionary)
             dictionary = original
 
@@ -135,10 +165,11 @@ class DataModel:
 
     def to_excl(self, path, model: Model = None, original=None):
         """
-        Method to save a DataModel as an Excel file. Can also be used to save the
-        changes between two points in time, in an Excel file format.
-        For other formats see :func:`cobramod.summary.DataModel.to_csv` or
-        :func:`cobramod.summary.DataModel.to_txt`.
+        Method to save a DataModel as an Excel file.
+        Can also be used to save the changes between
+        two points in time, in an Excel file format.
+        For other formats see :func:`cobramod.summary.DataModel.to_csv`
+        or :func:`cobramod.summary.DataModel.to_txt`.
 
         Args:
             path (Path): Location where the file is to be saved.
@@ -193,8 +224,8 @@ class DataModel:
 
         output.append(str(self.diff(original)))
 
-        with open(file=str(path), mode="w+") as f:
-            f.writelines(line + "\n" for line in output)
+        with open(file=str(path), mode="w+") as file:
+            file.writelines(line + "\n" for line in output)
 
 
 def summary(model: Model,
@@ -209,8 +240,9 @@ def summary(model: Model,
             model (Model): model with recent changes.
             original (DataModel): Object with data from previous model. Use
                 method :func:`cobramod.summary.DataModel`.
-            file_format (str): The format in which the further summary should be generated.
-                If no additional summary is desired, this should be None.
+            file_format (str): The format in which the further summary
+                should be generated. If no additional summary is desired,
+                this should be None.
             filename (Path): Location where the summary should be stored.
     """
     if filename is None:
@@ -229,12 +261,12 @@ def summary(model: Model,
           "Groups\t\t" + str(len(diff.groups)) + "\n")
 
     if file_format is None:
-        return
-    elif file_format is "excel":
+        pass
+    elif file_format == "excel":
         diff.to_excl(filename.with_suffix(".xlsx"), model, new_values)
-    elif file_format is "csv":
+    elif file_format == "csv":
         diff.to_csv(filename.with_suffix(".csv"), model, new_values)
-    elif file_format is "txt":
+    elif file_format == "txt":
         diff.to_txt(filename.with_suffix(".txt"), model, new_values)
     else:
         print("No known format. Use 'excel', 'csv' or 'txt'")

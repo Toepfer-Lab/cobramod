@@ -501,7 +501,8 @@ def _from_data(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimun (float): Minimum optimized value to pass incheck_to_write every single test.
+        minimun (float): Minimum optimized value to pass incheck_to_write
+            every single test.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -658,10 +659,10 @@ def add_pathway(
             single test. Defaults to 0.1
 
     Arguments for utilities:
-        filename (Path, optional): Location for the summary. Defaults to "summary" in
-            the current working directory.
-        summary (str, optional): True to write summary in file. Can be None, excel, csv or txt.
-            Use None for no summary. Defaults to None.
+        filename (Path, optional): Location for the summary. Defaults to
+            "summary" in the current working directory.
+        summary (str, optional): True to write summary in file. Can be None,
+            excel, csv or txt. Use None for no summary. Defaults to None.
         stop_imbalance (bool, optional): If unbalanced reaction is found, stop
             process. Defaults to False.
         show_imbalance (bool, optional): If unbalanced reaction is found, show
