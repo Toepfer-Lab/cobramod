@@ -15,7 +15,6 @@ from warnings import warn
 
 from cobra import Model, Reaction, DictList
 
-from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
 from cobramod.error import (
     UnbalancedReaction,
