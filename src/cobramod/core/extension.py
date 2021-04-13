@@ -19,7 +19,7 @@ from cobramod.core.creation import create_object
 from cobramod.core.graph import return_graph_from_dict
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
-from cobramod.core.summary import DataModel, summary
+from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
 from cobramod.error import NotInRangeError
 
@@ -623,7 +623,7 @@ def add_pathway(
     replacement: dict = {},
     ignore_list: list = [],
     filename: Path = None,
-    summary_format: str = None,
+    summary: str = None,
     minimum: float = 0.1,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
@@ -658,11 +658,13 @@ def add_pathway(
         minimum (float, optional): Minimum optimized value to pass in every
             single test. Defaults to 0.1
 
-    Arguments for utilities:
+    Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to
             "summary" in the current working directory.
         summary (str, optional): True to write summary in file. Can be None,
             excel, csv or txt. Use None for no summary. Defaults to None.
+
+    Arguments for utilities:
         stop_imbalance (bool, optional): If unbalanced reaction is found, stop
             process. Defaults to False.
         show_imbalance (bool, optional): If unbalanced reaction is found, show
@@ -673,8 +675,6 @@ def add_pathway(
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
-    if not filename:
-        filename = Path.cwd().joinpath("summary.txt")
 
     # Save information for summary methods
     old_values = DataModel.from_model(model)
@@ -723,9 +723,4 @@ def add_pathway(
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
 
     # Print summary
-    summary(
-        model,
-        old_values,
-        file_format=summary_format,
-        filename=filename
-    )
+    summarize(model, old_values, file_format=summary, filename=filename)

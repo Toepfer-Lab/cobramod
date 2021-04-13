@@ -6,28 +6,27 @@ to any module. In other words, these functions are general functions. An
 example:
 
  - check_imbalance: Check for unbalanced reactions.
- - model_convert: Trasnform all Groups into proper Pathways.
+ - model_convert: Transform all Groups into proper Pathways.
 """
-import copy
 from itertools import chain
 from pathlib import Path
-from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any, Dict
 from re import match
-from warnings import catch_warnings, simplefilter, warn
+from typing import TextIO, Iterator, Generator, Iterable, Any
+from warnings import warn
 
 from cobra import Model, Reaction, DictList
 
+from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
 from cobramod.error import (
     UnbalancedReaction,
     PatternNotFound,
     NoIntersectFound,
 )
-from cobramod.core.pathway import Pathway
 
 
 def check_imbalance(
-        reaction: Reaction, stop_imbalance: bool, show_imbalance: bool
+    reaction: Reaction, stop_imbalance: bool, show_imbalance: bool
 ):
     """
     Verifies if given reaction is unbalanced in given model.
@@ -195,6 +194,7 @@ def get_basic_info(model: Model) -> list:
         "Groups:",
         str([group.id for group in model.groups]),
     ]
+
 
 def _path_match(directory: Path, pattern: str) -> Path:
     """

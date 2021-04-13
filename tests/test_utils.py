@@ -50,7 +50,6 @@ class UtilsTesting(unittest.TestCase):
             stop_imbalance=True,
         )
 
-
     def test__read_lines(self):
         # CASE 0: Comments and blank lines
         with open(file=dir_input.joinpath("test_reading_lines.txt")) as f:
@@ -106,7 +105,6 @@ class UtilsTesting(unittest.TestCase):
             )
         )
         self.assertEqual(first=len(test_list), second=1)
-
 
     def test__print_differences(self):
         # CASE 1: regular dictionary

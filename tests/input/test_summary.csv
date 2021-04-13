@@ -1,3 +1,0 @@
-Model identifier,Model name,Reactions,Exchange,Demand,Sinks,Metabolites,Genes,Groups,Changed reactions,Changed exchange,Changed demand,Changed sinks,Changed metabolites,Changed genes,Changed groups
-e_coli_core,,ACALD,EX_glc__D_e,h2o_e,SK_GLUTATHIONE_c,13dpg_c,b1241,PWY-1187,ACALD,EX_glc__D_e,h2o_e,SK_GLUTATHIONE_c,13dpg_c,b1241,PWY-1187
-,,ACONTa,EX_lac__D_e,lac__D_e,SK_GLY_c,acald_c,b0474,,ACONTa,EX_lac__D_e,lac__D_e,SK_GLY_c,acald_c,b0474,

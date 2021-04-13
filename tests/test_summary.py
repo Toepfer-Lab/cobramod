@@ -1,5 +1,4 @@
 import tempfile
-from filecmp import cmp
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase
@@ -7,14 +6,14 @@ from unittest import TestCase
 import numpy
 import pandas
 
-from cobramod.core.summary import DataModel
+from cobramod.core.summary import DataModel, summary
 from cobramod.debug import debug_log
 from cobramod.test import textbook
 
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
 
-class TestDataModel(TestCase):
+
+class TestSummary(TestCase):
     def test_from_model(self):
         data_model = DataModel.from_model(textbook)
         self.assertIsInstance(obj=data_model, cls=DataModel)
@@ -22,44 +21,52 @@ class TestDataModel(TestCase):
     def test_diff(self):
         # Preparation
         data_model = DataModel.from_model(textbook)
-        data_model_empty = DataModel({
-            "reactions": [],
-            "metabolites": [],
-            "demands": [],
-            "exchanges": [],
-            "genes": [],
-            "groups": [],
-            "sinks": [],
-        })
-        tiny_base = DataModel({
-            "reactions": ['ACALD', 'ACONTa'],
-            "metabolites": ['13dpg_c', 'acald_c'],
-            "demands": ['h2o_e', 'lac__D_e'],
-            "exchanges": ['EX_glc__D_e', 'EX_lac__D_e'],
-            "genes": ['b1241', 'b0474'],
-            "groups": ["PWY-1187"],
-            "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-        })
+        data_model_empty = DataModel(
+            {
+                "reactions": [],
+                "metabolites": [],
+                "demands": [],
+                "exchanges": [],
+                "genes": [],
+                "groups": [],
+                "sinks": [],
+            }
+        )
+        tiny_base = DataModel(
+            {
+                "reactions": ["ACALD", "ACONTa"],
+                "metabolites": ["13dpg_c", "acald_c"],
+                "demands": ["h2o_e", "lac__D_e"],
+                "exchanges": ["EX_glc__D_e", "EX_lac__D_e"],
+                "genes": ["b1241", "b0474"],
+                "groups": ["PWY-1187"],
+                "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+            }
+        )
 
-        tiny_changed = DataModel({
-            "reactions": ['ACALD', 'ACKr'],
-            "metabolites": ['acald_c', '2pg_c'],
-            "demands": ['h2o_e', 'h_e'],
-            "exchanges": ['EX_lac__D_e', 'EX_h2o_e'],
-            "genes": ['b1241', 's0001'],
-            "groups": ["PWY-1187-b"],
-            "sinks": ["SK_GLUTATHIONE_c", "SK_AMMONIUM_c"],
-        })
+        tiny_changed = DataModel(
+            {
+                "reactions": ["ACALD", "ACKr"],
+                "metabolites": ["acald_c", "2pg_c"],
+                "demands": ["h2o_e", "h_e"],
+                "exchanges": ["EX_lac__D_e", "EX_h2o_e"],
+                "genes": ["b1241", "s0001"],
+                "groups": ["PWY-1187-b"],
+                "sinks": ["SK_GLUTATHIONE_c", "SK_AMMONIUM_c"],
+            }
+        )
 
-        tiny_changes = DataModel({
-            "reactions": ['ACONTa', 'ACKr'],
-            "metabolites": ['13dpg_c', '2pg_c'],
-            "demands": ['lac__D_e', 'h_e'],
-            "exchanges": ['EX_glc__D_e', 'EX_h2o_e'],
-            "genes": ['b0474', 's0001'],
-            "groups": ["PWY-1187", "PWY-1187-b"],
-            "sinks": ["SK_GLY_c", "SK_AMMONIUM_c"],
-        })
+        tiny_changes = DataModel(
+            {
+                "reactions": ["ACONTa", "ACKr"],
+                "metabolites": ["13dpg_c", "2pg_c"],
+                "demands": ["lac__D_e", "h_e"],
+                "exchanges": ["EX_glc__D_e", "EX_h2o_e"],
+                "genes": ["b0474", "s0001"],
+                "groups": ["PWY-1187", "PWY-1187-b"],
+                "sinks": ["SK_GLY_c", "SK_AMMONIUM_c"],
+            }
+        )
 
         # CASE 1: no differences
         diff = data_model.diff(data_model)
@@ -100,33 +107,39 @@ class TestDataModel(TestCase):
 
     def test_to_dataframe(self):
         # Preparation
-        tiny_base = DataModel({
-            "reactions": ['ACALD', 'ACONTa'],
-            "metabolites": ['13dpg_c', 'acald_c'],
-            "demands": ['h2o_e', 'lac__D_e'],
-            "exchanges": ['EX_glc__D_e', 'EX_lac__D_e'],
-            "genes": ['b1241', 'b0474'],
-            "groups": ["PWY-1187"],
-            "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-        })
+        tiny_base = DataModel(
+            {
+                "reactions": ["ACALD", "ACONTa"],
+                "metabolites": ["13dpg_c", "acald_c"],
+                "demands": ["h2o_e", "lac__D_e"],
+                "exchanges": ["EX_glc__D_e", "EX_lac__D_e"],
+                "genes": ["b1241", "b0474"],
+                "groups": ["PWY-1187"],
+                "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+            }
+        )
 
         expected_dataframe = pandas.DataFrame(
-            {"Model identifier": ["e_coli_core", numpy.nan],
-             "Model name": ["", numpy.nan],
-             "Reactions": ['ACALD', 'ACONTa'],
-             "Exchange": ['EX_glc__D_e', 'EX_lac__D_e'],
-             "Demand": ['h2o_e', 'lac__D_e'],
-             "Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-             "Metabolites": ['13dpg_c', 'acald_c'],
-             "Genes": ['b1241', 'b0474'],
-             "Groups": ["PWY-1187", numpy.nan],
-             "Changed reactions": ['ACALD', 'ACONTa'],
-             "Changed exchange": ['EX_glc__D_e', 'EX_lac__D_e'],
-             "Changed demand": ['h2o_e', 'lac__D_e'],
-             "Changed sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-             "Changed metabolites": ['13dpg_c', 'acald_c'],
-             "Changed genes": ['b1241', 'b0474'],
-             "Changed groups": ["PWY-1187", numpy.nan]})
+            {
+                "Model identifier": ["e_coli_core", numpy.nan],
+                "Model name": ["", numpy.nan],
+                "Reactions": ["ACALD", "ACONTa"],
+                "Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "Demand": ["h2o_e", "lac__D_e"],
+                "Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "Metabolites": ["13dpg_c", "acald_c"],
+                "Genes": ["b1241", "b0474"],
+                "Groups": ["PWY-1187", numpy.nan],
+                "Changed reactions": ["ACALD", "ACONTa"],
+                "Changed exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "Changed demand": ["h2o_e", "lac__D_e"],
+                "Changed sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "Changed metabolites": ["13dpg_c", "acald_c"],
+                "Changed genes": ["b1241", "b0474"],
+                "Changed groups": ["PWY-1187", numpy.nan],
+            },
+            dtype=pandas.StringDtype(),
+        )
 
         dataframe = tiny_base._to_dataframe(textbook, tiny_base)
 
@@ -135,53 +148,119 @@ class TestDataModel(TestCase):
         pandas.testing.assert_frame_equal(expected_dataframe, dataframe)
 
     def test_to_excl(self):
-        tiny_base = DataModel({
-            "reactions": ['ACALD', 'ACONTa'],
-            "metabolites": ['13dpg_c', 'acald_c'],
-            "demands": ['h2o_e', 'lac__D_e'],
-            "exchanges": ['EX_glc__D_e', 'EX_lac__D_e'],
-            "genes": ['b1241', 'b0474'],
-            "groups": ["PWY-1187"],
-            "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-        })
+        tiny_base = DataModel(
+            {
+                "reactions": ["ACALD", "ACONTa"],
+                "metabolites": ["13dpg_c", "acald_c"],
+                "demands": ["h2o_e", "lac__D_e"],
+                "exchanges": ["EX_glc__D_e", "EX_lac__D_e"],
+                "genes": ["b1241", "b0474"],
+                "groups": ["PWY-1187"],
+                "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+            }
+        )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary.xlsx"
+            filename = Path(directory) / "summary"
             tiny_base.to_excl(filename, textbook, tiny_base)
-            self.assertTrue(expr=filename.exists())
+
+            self.assertTrue(expr=filename.with_suffix(".xlsx").exists())
 
     def test_to_csv(self):
-        tiny_base = DataModel({
-            "reactions": ['ACALD', 'ACONTa'],
-            "metabolites": ['13dpg_c', 'acald_c'],
-            "demands": ['h2o_e', 'lac__D_e'],
-            "exchanges": ['EX_glc__D_e', 'EX_lac__D_e'],
-            "genes": ['b1241', 'b0474'],
-            "groups": ["PWY-1187"],
-            "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-        })
+        tiny_base = DataModel(
+            {
+                "reactions": ["ACALD", "ACONTa"],
+                "metabolites": ["13dpg_c", "acald_c"],
+                "demands": ["h2o_e", "lac__D_e"],
+                "exchanges": ["EX_glc__D_e", "EX_lac__D_e"],
+                "genes": ["b1241", "b0474"],
+                "groups": ["PWY-1187"],
+                "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+            }
+        )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary.csv"
+            filename = Path(directory) / "summary"
             tiny_base.to_csv(filename, textbook, tiny_base)
 
-            expected_csv = pandas.read_csv(dir_input / "test_summary.csv")
-            written_csv = pandas.read_csv(filename)
-            pandas.testing.assert_frame_equal(expected_csv,written_csv)
+            self.assertTrue(expr=filename.with_suffix(".csv").exists())
 
     def test_to_txt(self):
-        tiny_base = DataModel({
-            "reactions": ['ACALD', 'ACONTa'],
-            "metabolites": ['13dpg_c', 'acald_c'],
-            "demands": ['h2o_e', 'lac__D_e'],
-            "exchanges": ['EX_glc__D_e', 'EX_lac__D_e'],
-            "genes": ['b1241', 'b0474'],
-            "groups": ["PWY-1187"],
-            "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-        })
+        tiny_base = DataModel(
+            {
+                "reactions": ["ACALD", "ACONTa"],
+                "metabolites": ["13dpg_c", "acald_c"],
+                "demands": ["h2o_e", "lac__D_e"],
+                "exchanges": ["EX_glc__D_e", "EX_lac__D_e"],
+                "genes": ["b1241", "b0474"],
+                "groups": ["PWY-1187"],
+                "sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+            }
+        )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary.txt"
+            filename = Path(directory) / "summary"
             tiny_base.to_txt(filename, textbook, tiny_base)
 
-            self.assertTrue(expr=cmp(filename, dir_input / "test_summary.txt", shallow=False))
+            self.assertTrue(expr=filename.with_suffix(".txt").exists())
+
+    def test_summary(self):
+        # Preparation
+        test_model = textbook.copy()
+        old_values = DataModel.from_model(textbook)
+
+        # Case 1: None as format
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            filename = directory / "summary"
+            summary(
+                test_model, old_values, file_format=None, filename=filename
+            )
+
+            for _ in directory.iterdir():
+                self.fail("Summary created a file although none was passed")
+
+        # Case 2: Excel as format
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            filename = directory / "summary"
+            summary(
+                test_model, old_values, file_format="excel", filename=filename
+            )
+
+            filename = filename.with_suffix(".xlsx")
+            self.assertTrue(expr=filename.exists())
+
+            for file in directory.iterdir():
+                if file != filename:
+                    self.fail("Summary created additional files")
+
+        # Case 3: csv as format
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            filename = directory / "summary"
+            summary(
+                test_model, old_values, file_format="csv", filename=filename
+            )
+
+            filename = filename.with_suffix(".csv")
+            self.assertTrue(expr=filename.exists())
+
+            for file in directory.iterdir():
+                if file != filename:
+                    self.fail("Summary created additional files")
+
+        # Case 4: txt as format
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            filename = directory / "summary"
+            summary(
+                test_model, old_values, file_format="txt", filename=filename
+            )
+
+            filename = filename.with_suffix(".txt")
+            self.assertTrue(expr=filename.exists())
+
+            for file in directory.iterdir():
+                if file != filename:
+                    self.fail("Summary created additional files")
