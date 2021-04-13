@@ -200,6 +200,7 @@ class SimpleFunctions(TestCase):
             identifier="R02736",
             database="KEGG",
             debug_level=10,
+            genome="hsa",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,
@@ -230,6 +231,7 @@ class SimpleFunctions(TestCase):
             identifier="R00114",
             database="KEGG",
             debug_level=10,
+            genome="eco",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,
@@ -394,6 +396,21 @@ class SimpleFunctions(TestCase):
             database="META",
         )
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
+        # CASE 3: 100% Custom metabolite
+        test_model = Model(0)
+        test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p:-1, Meta_B_p:1"
+        test_reaction = cr._convert_string_reaction(
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+        )
+        self.assertEqual(first="CUSTOM_rxn1_p", second=test_reaction.id)
+        for metabolite in ["Meta_A_p", "Meta_B_p"]:
+            self.assertIn(
+                member=metabolite,
+                container=[meta.id for meta in test_reaction.metabolites],
+            )
 
     def test__obtain_reaction(self):
         # CASE 1: Regular META reaction
@@ -408,6 +425,10 @@ class SimpleFunctions(TestCase):
             replacement={},
         )
         self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
+        self.assertCountEqual(
+            first=[gene.id for gene in test_reaction.genes],
+            second=["EG10256", "G-2548", "G-2549"],
+        )
         # CASE 2: check for equivalent. (Similar to CASE 6b in _get_reaction)
         test_model = textbook_kegg.copy()
         test_reaction = cr._obtain_reaction(
@@ -490,6 +511,7 @@ class SimpleFunctions(TestCase):
         )
         self.assertEqual(-1, test_reaction.get_coefficient("GLC_c"))
         self.assertEqual(1, test_reaction.get_coefficient("GLC_b"))
+        # CASE 3: Custom reaction
 
     def test__get_file_reactions(self):
         test_model = Model(0)
@@ -544,9 +566,23 @@ class ComplexFunctions(TestCase):
             directory=dir_data,
             compartment="c",
             database="KEGG",
+            genome="hsa",
         )
         self.assertIsInstance(obj=test_object, cls=Reaction)
         self.assertIn(member="c", container=test_object.compartments)
+        self.assertCountEqual(
+            first=[gene.id for gene in test_object.genes],
+            second=["9563", "2539"],
+        )
+        # CASE 2c: Reaction of Biocyc which could be a pathway as well
+        test_object = cr.create_object(
+            identifier="AMONITRO-RXN",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            show_imbalance=False,
+        )
+        self.assertIsInstance(obj=test_object, cls=Reaction)
         # CASE 3a: pathway from metacyc
         test_object = cr.create_object(
             identifier="PWY-1187",
@@ -598,6 +634,19 @@ class ComplexFunctions(TestCase):
         )
         self.assertIn(
             member="HOMOMETHIONINE_c",
+            container=[member.id for member in test_model.metabolites],
+        )
+        # CASE 2: From string, Custom
+        test_model = Model(0)
+        test_string = "Custom_c, Custom metabolites, c, H20, 0 "
+        cr.add_metabolites(
+            model=test_model,
+            obj=test_string,
+            directory=dir_data,
+            database=None,
+        )
+        self.assertIn(
+            member="Custom_c",
             container=[member.id for member in test_model.metabolites],
         )
         # CASE 3: From List of strings
@@ -656,7 +705,7 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
-        # CASE 2: From string
+        # CASE 2a: From string
         test_model = Model(0)
         cr.add_reactions(
             model=test_model,
@@ -668,6 +717,23 @@ class ComplexFunctions(TestCase):
             member="GLC_cb",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        # CASE 2b: From string, custom metabolites
+        test_model = Model(0)
+        cr.add_reactions(
+            model=test_model,
+            obj="Custom_cb, Custom reaction|Custom_c:-1, Custom_b:1",
+            directory=dir_data,
+            database=None,
+        )
+        self.assertIn(
+            member="Custom_cb",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        for metabolite in ["Custom_c", "Custom_b"]:
+            self.assertIn(
+                member=metabolite,
+                container=[meta.id for meta in test_model.metabolites],
+            )
         # CASE 3: From List of strings
         test_model = Model(0)
         test_list = [
@@ -685,6 +751,9 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
+        self.assertIn(
+            member="G-16016", container=[gene.id for gene in test_model.genes]
+        )
         # CASE 4: In case of single reaction
         test_model = Model(0)
         test_reaction = textbook_kegg.reactions.get_by_id("ACALDt")

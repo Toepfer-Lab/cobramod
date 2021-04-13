@@ -7,6 +7,15 @@ explaination.
 from cobramod.debug import debug_log
 
 
+class GraphKeyError(Exception):
+    """
+    Simple Error that should be raised when a value is missing as key in a
+    graph
+    """
+
+    pass
+
+
 class FoundInPairError(Exception):
     """
     Simple Error that is raised when the pair of a PairDictionary has already
@@ -69,6 +78,32 @@ class NoIntersectFound(Exception):
     pass
 
 
+class NoGeneInformation(Exception):
+    """
+    Simple error that should be raised when given object has no gene
+    information in the database.
+    """
+
+    pass
+
+
+class FalseAbbreviation(Exception):
+    """
+    Simple error that should be raised when given abbreviation does not exists.
+    """
+
+    def __init__(self, string: str, reaction: str):
+        """
+        Args:
+            string (str): False or broken string
+        """
+        msg = (
+            f'There is no genome abbreviation "{string}" in '
+            + f'reaction "{reaction}"'
+        )
+        super().__init__(msg)
+
+
 class UnbalancedReaction(Exception):
     """
     Simple Error that should be raised if a reaction has wrong mass balance.
@@ -95,6 +130,6 @@ class NotInRangeError(Exception):
             reaction (str): identifier of the reaction.
         """
         # TODO: check behaviour with super().__init__
-        debug_log.critical(
-            f"Reaction '{reaction}' not in range. Check sinks manually."
-        )
+        msg = f"Reaction '{reaction}' not in range. Check sinks manually."
+        debug_log.critical(msg)
+        super().__init__(msg)

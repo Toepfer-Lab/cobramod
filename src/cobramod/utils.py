@@ -6,7 +6,6 @@ to any module. In other words, these functions are general functions. An
 example:
 
  - check_imbalance: Check for unbalanced reactions.
- - model_convert: Transform all Groups into proper Pathways.
 """
 from itertools import chain
 from pathlib import Path
@@ -226,12 +225,3 @@ def _first_item(first: DictList, second: dict, revert: bool) -> str:
         return common.pop()
     except (KeyError, AttributeError):
         raise NoIntersectFound
-
-
-def model_convert(model: Model):
-    """
-    Converts the all Group objects in given model to proper cobramod
-    :func:`cobramod.pathway.Pathway`
-    """
-    for index, group in enumerate(iterable=model.groups):
-        model.groups[index] = Pathway._transform(obj=group)

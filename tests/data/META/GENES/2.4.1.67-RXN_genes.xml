@@ -1,0 +1,57 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:2.4.1.67-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:2.4.1.67-RXN&amp;detail=FULL</query>
+    <num_results>2</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-9586" detail="full" frameid="G-9586" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12482" orgid="META" resource="getxml?META:MONOMER-12482" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-10652123" detail="full" frameid="PUB-10652123" orgid="META">
+        <author datatype="string">Peterbauer T</author>
+        <author datatype="string">Mucha J</author>
+        <author datatype="string">Mayer U</author>
+        <author datatype="string">Popp M</author>
+        <author datatype="string">Glossl J</author>
+        <author datatype="string">Richter A</author>
+        <pubmed-id datatype="string">10652123</pubmed-id>
+        <source datatype="string">Plant J 20(5);509-18</source>
+        <title datatype="string">Stachyose synthesis in seeds of adzuki bean (Vigna angularis): molecular cloning and functional expression of stachyose synthase.</title>
+        <year datatype="integer">1999</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">STS1</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>Y19024</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/Y19024</dblink-URL>
+    </dblink>
+    <synonym datatype="string">stachyose synthase</synonym>
+  </Gene>
+  <Gene ID="META:G-9585" detail="full" frameid="G-9585" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12485" orgid="META" resource="getxml?META:MONOMER-12485" />
+    </product>
+    <common-name datatype="string">STS1</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AJ512932</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AJ512932</dblink-URL>
+    </dblink>
+    <synonym datatype="string">stachyose synthase 1</synonym>
+  </Gene>
+</ptools-xml>

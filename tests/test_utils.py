@@ -4,22 +4,22 @@ from logging import DEBUG
 from pathlib import Path
 import unittest
 
-from cobra.core import Metabolite, Reaction, Group
-from cobra.io import read_sbml_model
+from cobra.core import Metabolite, Reaction
 
 from cobramod.core.creation import create_object, add_reactions
-from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
 from cobramod.error import NoIntersectFound
-from cobramod.test import textbook_kegg, textbook
+from cobramod.test import textbook_kegg
 import cobramod.utils as ui
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
-
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 
 class UtilsTesting(unittest.TestCase):
@@ -182,25 +182,6 @@ class UtilsTesting(unittest.TestCase):
             first=textbook_kegg.reactions, second=test_dict, revert=True
         )
         self.assertEqual(first="R00228", second=test_string)
-
-    def test_model_convert(self):
-        # CASE 1: regular conversion of Groups
-        test_model = textbook.copy()
-        for reaction in test_model.reactions:
-            test_group = Group(id=reaction.id)
-            test_model.add_groups(group_list=[test_group])
-            test_model.groups.get_by_id(reaction.id).add_members(
-                new_members=[reaction]
-            )
-        ui.model_convert(model=test_model)
-        for group in test_model.groups:
-            self.assertIsInstance(obj=group, cls=Pathway)
-        # CASE 2: Regular Model
-        filename = dir_input.joinpath("test_model02.sbml")
-        test_model = read_sbml_model(str(filename))
-        ui.model_convert(test_model)
-        for group in test_model.groups:
-            self.assertIsInstance(obj=group, cls=Pathway)
 
 
 if __name__ == "__main__":

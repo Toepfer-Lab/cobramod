@@ -1,0 +1,71 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:2.4.1.123-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:2.4.1.123-RXN&amp;detail=FULL</query>
+    <num_results>4</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-9692" detail="full" frameid="G-9692" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12627" orgid="META" resource="getxml?META:MONOMER-12627" />
+    </product>
+    <common-name datatype="string">GolS</common-name>
+  </Gene>
+  <Gene ID="META:G-9727" detail="full" frameid="G-9727" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12673" orgid="META" resource="getxml?META:MONOMER-12673" />
+    </product>
+    <common-name datatype="string">GolS-1</common-name>
+  </Gene>
+  <Gene ID="META:G-9730" detail="full" frameid="G-9730" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12680" orgid="META" resource="getxml?META:MONOMER-12680" />
+    </product>
+    <common-name datatype="string">GolS-1</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AY126718</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AY126718</dblink-URL>
+    </dblink>
+  </Gene>
+  <Gene ID="META:G-9731" detail="full" frameid="G-9731" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12682" orgid="META" resource="getxml?META:MONOMER-12682" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-UEDA05" detail="full" frameid="PUB-UEDA05" orgid="META">
+        <author datatype="string">Ueda, T.</author>
+        <author datatype="string">Coseo, M.P.</author>
+        <author datatype="string">Harrell, T.J.</author>
+        <author datatype="string">Obendorf, R.L.</author>
+        <source datatype="string">Plant Science 168:681-690</source>
+        <title datatype="string">A multifunctional galactinol synthase catalyzes the synthesis of fagopyritol A1 and fagopyritol B1 in buckwheat seed.</title>
+        <year datatype="integer">2005</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">GolS-2</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AY126716</dblink-oid>
+      <dblink-relationship>PART-OF</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AY126716</dblink-URL>
+    </dblink>
+    <synonym datatype="string">fagopyritol synthase 2</synonym>
+  </Gene>
+</ptools-xml>

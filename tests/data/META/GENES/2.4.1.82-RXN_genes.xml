@@ -1,0 +1,20 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:2.4.1.82-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:2.4.1.82-RXN&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:G-9595" detail="full" frameid="G-9595" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="MONOMER-12496" orgid="META" resource="getxml?META:MONOMER-12496" />
+    </product>
+    <common-name datatype="string">RFS</common-name>
+  </Gene>
+</ptools-xml>

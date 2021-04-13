@@ -84,19 +84,44 @@ class TestKegg(TestCase):
         )
         self.assertIsInstance(obj=test_data, cls=dict)
 
+    def test_get_graph(self):
+        # CASE 0: Normal Module
+        test_dict = kg._get_unformatted_kegg(
+            directory=dir_data, identifier="M00001"
+        )
+        test_graph = kg.get_graph(kegg_dict=test_dict)
+        self.assertEqual(first=test_graph["R00200"], second=None)
+        self.assertEqual(first=len(test_graph), second=15)
+        # CASE 1: Simple branch
+        test_dict = kg._get_unformatted_kegg(
+            directory=dir_data, identifier="M00040"
+        )
+        test_graph = kg.get_graph(kegg_dict=test_dict)
+        self.assertEqual(first=test_graph["R00732"], second=None)
+        self.assertEqual(first=test_graph["R00733"], second=None)
+        self.assertEqual(first=len(test_graph), second=4)
+
     def test__parse_kegg(self):
         # CASE 1a: Reaction (same as setup)
         test_dict = kg.KeggParser._parse(
-            root=kg._create_dict(raw=self.test_string)
+            root=kg._create_dict(raw=self.test_string),
+            directory=dir_data,
+            genome="ath",
         )
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(), second=["AT3G19710"]
+        )
+        self.assertEqual(first=test_dict["GENES"]["rule"], second="AT3G19710")
         # CASE 2: Compound
         self.test_string = kg._get_unformatted_kegg(
             directory=dir_data, identifier="C01290"
         )
-        test_dict = kg.KeggParser._parse(root=self.test_string)
+        test_dict = kg.KeggParser._parse(
+            root=self.test_string, directory=dir_data
+        )
 
         self.assertEqual(first="Compound", second=test_dict["TYPE"])
         # CASE 2: EC number (not working for now)
@@ -104,7 +129,10 @@ class TestKegg(TestCase):
             directory=dir_data, identifier="7.1.2.2"
         )
         self.assertRaises(
-            NotImplementedError, kg.KeggParser._parse, root=self.test_string
+            NotImplementedError,
+            kg.KeggParser._parse,
+            root=self.test_string,
+            directory=dir_data,
         )
         # CASE 3: Pathway
         test_data = kg._get_unformatted_kegg(
@@ -145,14 +173,40 @@ class TestBiocyc(TestCase):
         )
         self.assertIsInstance(obj=test_element, cls=Element)
 
+    def test_get_graph(self):
+        # CASE 1: Regular complex lineal pathway
+        test_root = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="PWY-1187", database="META"
+        )
+        test_dict = bc.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=14)
+        self.assertCountEqual(
+            first=test_dict["RXN-2221"], second=("RXN-2222", "RXN-2223")
+        )
+        # CASE 2: Complex cyclic pathway
+        test_root = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="CALVIN-PWY", database="META"
+        )
+        test_dict = bc.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=13)
+        self.assertCountEqual(
+            first=test_dict["TRIOSEPISOMERIZATION-RXN"],
+            second=("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
+        )
+        # CASE 3: Single-reaction pathway
+        test_root = bc._get_xml_from_biocyc(
+            directory=dir_data, identifier="PWY-7344", database="META"
+        )
+        test_dict = bc.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=1)
+        self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
+
     def test__parse_biocyc(self):
-        # CASE 0: Wrong type
-        self.assertRaises(WrongParserError, bc.BiocycParser._parse, str())
         # CASE 1: Compound
         test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="AMP", database="META"
         )
-        test_dict = bc.BiocycParser._parse(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
         # CASE 2: Reaction
@@ -161,10 +215,14 @@ class TestBiocyc(TestCase):
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="META",
         )
-        test_dict = bc.BiocycParser._parse(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(),
+            second=["YBL033C", "AT5G64300", "G-34500", "G-58286", "EG11331"],
+        )
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
         # CASE 3: Protein
         test_root = bc._get_xml_from_biocyc(
@@ -172,17 +230,16 @@ class TestBiocyc(TestCase):
             identifier="Reduced-hemoproteins",
             database="ARA",
         )
-        test_dict = bc.BiocycParser._parse(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["TYPE"], second="Protein")
         self.assertEqual(first=test_dict["FORMULA"], second="X")
         # CASE 4: Pathway
         test_root = bc._get_xml_from_biocyc(
             directory=dir_data, identifier="PWY-1187", database="META"
         )
-        test_dict = bc.BiocycParser._parse(root=test_root)
+        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
-        self.assertEqual(first=len(test_dict["PATHWAY"]), second=13)
-        self.assertEqual(first=len(test_dict["SET"]), second=14)
+        self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
 
 
 class TestBigg(TestCase):
@@ -234,6 +291,9 @@ class TestBigg(TestCase):
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
+        self.assertEqual(
+            first={"genes": {}, "rule": ""}, second=test_dict["GENES"]
+        )
         # CASE 2: Regular universal metabolite
         test_json = bi._get_json_bigg(
             directory=dir_data, identifier="coa", model_id="universal"
@@ -248,6 +308,11 @@ class TestBigg(TestCase):
         test_dict = bi.BiggParser._parse(root=test_json)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
+        self.assertEqual(
+            first="b0114 and b0115 and b0116",
+            second=test_dict["GENES"]["rule"],
+        )
+        self.assertEqual(first=3, second=len(test_dict["GENES"]["genes"]))
         # CASE 4: Ecoli metabolite
         test_json = bi._get_json_bigg(
             directory=dir_data, identifier="co2_c", model_id="e_coli_core"

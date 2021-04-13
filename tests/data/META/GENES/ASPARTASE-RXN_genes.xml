@@ -1,0 +1,104 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:ASPARTASE-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:ASPARTASE-RXN&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:EG10095" detail="full" frameid="EG10095" orgid="META">
+    <parent>
+      <Gene class="true" frameid="BC-1.5.1.6" orgid="META" resource="getxml?META:BC-1.5.1.6" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-1.5.1.7" orgid="META" resource="getxml?META:BC-1.5.1.7" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-1.7.13" orgid="META" resource="getxml?META:BC-1.7.13" />
+    </parent>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="ASPARTASE-MONOMER" orgid="META" resource="getxml?META:ASPARTASE-MONOMER" />
+    </product>
+    <citation>
+      <Publication ID="META:PUB-9852003" detail="full" frameid="PUB-9852003" orgid="META">
+        <author datatype="string">Golby P</author>
+        <author datatype="string">Kelly DJ</author>
+        <author datatype="string">Guest JR</author>
+        <author datatype="string">Andrews SC</author>
+        <pubmed-id datatype="string">9852003</pubmed-id>
+        <source datatype="string">J Bacteriol 180(24);6586-96</source>
+        <title datatype="string">Transcriptional regulation and organization of the dcuA and dcuB genes, encoding homologous anaerobic C4-dicarboxylate transporters in Escherichia coli.</title>
+        <year datatype="integer">1998</year>
+      </Publication>
+    </citation>
+    <common-name datatype="string">aspA</common-name>
+    <credits>
+      <imported-from-ecoli>
+        <date datatype="date">2020-10-27</date>
+        <Person ID="META:paley" detail="full" frameid="paley" orgid="META">
+          <comment datatype="string">Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+          <common-name datatype="string">Suzanne Paley</common-name>
+          <email datatype="string">paley@ai.sri.com</email>
+          <affiliations>
+            <Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META">
+              <common-name datatype="string">SRI International</common-name>
+              <email datatype="string">ptools-support@ai.sri.com</email>
+              <url datatype="string">http://bioinformatics.ai.sri.com/</url>
+              <abbrev-name datatype="string">SRI International</abbrev-name>
+            </Organization>
+          </affiliations>
+        </Person>
+        <Organization frameid="SRI" orgid="META" resource="#META:SRI" />
+      </imported-from-ecoli>
+    </credits>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b4139</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b4139&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b4139</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b4139</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>aspA</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=aspA</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0013551</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0013551</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0093</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0093</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b4139</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b4139</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>991</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=991</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">4366891</left-end-position>
+    <right-end-position datatype="integer">4368327</right-end-position>
+    <accession-1 datatype="string">b4139</accession-1>
+    <accession-2 datatype="string">ECK4133</accession-2>
+  </Gene>
+</ptools-xml>

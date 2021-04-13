@@ -11,17 +11,20 @@ flux.
 """
 from contextlib import suppress
 from pathlib import Path
-from typing import Union, Generator, Iterable
+from typing import Union, Generator, Iterable, Optional
 
 from cobra import Model, Reaction
 
-from cobramod.core.creation import create_object
-from cobramod.core.graph import return_graph_from_dict
+from cobramod.core.creation import create_object, _fix_name
+from cobramod.core.graph import build_graph
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
-from cobramod.error import NotInRangeError
+from cobramod.error import NotInRangeError, NoIntersectFound
+from cobramod.utils import _first_item
+
+# from cobramod.utils import get_DataList, get_basic_info, check_to_write
 
 
 def _create_reactions(
@@ -34,6 +37,7 @@ def _create_reactions(
     replacement: dict,
     model: Model,
     model_id: str,
+    genome: Optional[str],
 ) -> Generator:
     """
     For each identifier in the sequence, a Reaction will be created. It returns
@@ -46,7 +50,7 @@ def _create_reactions(
         sequence (list): Identifiers for the reactions.
         directory (Path): Path to directory where data is located.
         database (str): Name of the database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
@@ -54,6 +58,8 @@ def _create_reactions(
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str): Exclusive for BIGG. Retrieve object from specified
             model.
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained for this specie.
 
     Returns:
         Generator: A generator to that gives the reactions.
@@ -80,6 +86,7 @@ def _create_reactions(
             stop_imbalance=stop_imbalance,
             model=model,
             model_id=model_id,
+            genome=genome,
         )
 
 
@@ -387,7 +394,7 @@ def test_result(
 
 def _add_sequence(
     model: Model,
-    identifier: str,
+    pathway: Pathway,
     sequence: list,
     avoid_list: list,
     ignore_list: list,
@@ -400,9 +407,10 @@ def _add_sequence(
 
     Args:
         model (Model): Model to expand.
-        identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
-        sequence (list): List with :func:`cobra.core.reaction.Reaction` objects
-        avoid_list (list): A sequence of formatted reactions to
+        pathway (Pathway): Common Pathway to add the reaction.
+        sequence (list): List with :class:`cobra.core.reaction.Reaction`
+            objects
+        avoid_list (list): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -415,10 +423,11 @@ def _add_sequence(
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
-    # Either create a Pathway or obtain the correct Pathway.
-    pathway = Pathway(id=identifier)
-    if identifier in [group.id for group in model.groups]:
-        pathway = model.groups.get_by_id(identifier)
+    # TODO: Fix format in previous functions
+    compartment = sequence[0].id[-1]
+    avoid_list = [
+        f'{reaction.replace("-","_")}_{compartment}' for reaction in avoid_list
+    ]
     # Add sequence to model
     for reaction in sequence:
         # This reaction will not be added.
@@ -427,7 +436,6 @@ def _add_sequence(
                 f'Reaction "{reaction.id}" found in avoid list. Skipping.'
             )
             continue
-        # FIXME: avoid if statements for perfomance improvement
         if reaction.id not in [reaction.id for reaction in model.reactions]:
             model.add_reactions([reaction])
             debug_log.info(f'Reaction "{reaction.id}" added to model')
@@ -447,14 +455,13 @@ def _add_sequence(
             pathway.add_members(new_members=[reaction])
         else:
             # FIXME: avoid creating reaction
+            pathway.add_members(new_members=[reaction])
             debug_log.info(
-                f'Reaction "{reaction.id}" was found in model. Skipping.'
+                f'Reaction "{reaction.id}" was found in model. '
+                f"Skipping non-zero flux test."
             )
     # TODO: Add space
     debug_log.debug(f'Reactions added to group "{pathway.id}"')
-    # Add blank space in order. This will be translated to a blank reaction in
-    # the JsonDictionary.
-    pathway.order.append("blank")
     # Only add if there is at least 1 reaction in the group.
     if (
         pathway.id not in [group.id for group in model.groups]
@@ -462,6 +469,114 @@ def _add_sequence(
     ):
         model.add_groups(group_list=[pathway])
         debug_log.debug("Pathway added to Model")
+
+
+def _remove_reactions(
+    graph: dict, avoid_list: list, replacement: dict
+) -> dict:
+    """
+    Returns a new graph, where items are replaced if found in given
+    dictionary or removed in found in given avoid list.
+    """
+    new_graph = graph.copy()
+    # Remove necessary keys in copy
+    for key in graph.keys():
+        if key in avoid_list:
+            del new_graph[key]
+    # use new copy and modify
+    graph = new_graph.copy()
+    # Use replacements
+    for key in graph.keys():
+        if key not in replacement.keys():
+            continue
+        new_key = replacement[key]
+        for key2, value in graph.items():
+            if not value:
+                # In case of None
+                continue
+            # If tuple and found
+            elif isinstance(value, tuple) and key in value:
+                new_value = tuple(item.replace(key, new_key) for item in value)
+            # If string and found
+            elif key in value:
+                new_value = value.replace(key, new_key)
+            # Skip and/or update if necessary
+            else:
+                continue
+            new_graph[key2] = new_value
+        # Update key and remove old
+        new_graph[new_key] = new_graph[key]
+        del new_graph[key]
+    return new_graph
+
+
+def _format_graph(
+    graph: dict,
+    model: Model,
+    compartment: str,
+    directory: Path,
+    database: str,
+    model_id: str,
+    avoid_list: list,
+    replacement: dict,
+    genome: Optional[str],
+) -> dict:
+    """
+    Returns new formatted graph. If an item if found in given replacement dict,
+    the value will be replaced; if found in avoid list, the graph will not
+    contain that value. Function :func`cobramod.get_data` will use passed
+    arguments to format the items. An KeyError will be raised if the format
+    was not correct.
+    """
+    graph = _remove_reactions(
+        graph=graph, avoid_list=avoid_list, replacement=replacement
+    )
+    new_graph = graph.copy()
+    # Format tuples, single strings and kes
+    for key in graph.keys():
+        # Get synonym/ Format key
+        # Get data from files
+        key_dict = get_data(
+            directory=directory,
+            database=database,
+            identifier=key,
+            model_id=model_id,
+            genome=genome,
+        )
+        try:
+            # Find synonym
+            new_identifier = _first_item(
+                first=model.reactions, second=key_dict["XREF"], revert=True
+            )
+            new_key = f"{_fix_name(name=new_identifier)}_{compartment}"
+        except (NoIntersectFound, KeyError):
+            # Regular transformation
+            new_key = f'{key.replace("-", "_")}_{compartment}'
+        # Change in new graph the values where key is found
+        for key2, value in new_graph.items():
+            if not value:
+                # In case of None
+                continue
+            # If tuple and found
+            elif isinstance(value, tuple) and key in value:
+                new_value = tuple(item.replace(key, new_key) for item in value)
+            # If string and found
+            elif key in value:
+                new_value = value.replace(key, new_key)
+            # Skip and/or update if necessary
+            else:
+                continue
+            new_graph[key2] = new_value
+        # Change the key and remove old one
+        try:
+            new_graph[new_key] = new_graph[key]
+        except KeyError:
+            pass
+        del new_graph[key]
+    # Test all names
+    for key in new_graph.keys():
+        model.reactions.get_by_id(key)
+    return new_graph
 
 
 def _from_data(
@@ -477,6 +592,7 @@ def _from_data(
     stop_imbalance: bool,
     show_imbalance: bool,
     model_id: str,
+    genome: Optional[str],
 ):
     """"
     Adds a pathway into given model from a dictinary with the information of
@@ -488,14 +604,14 @@ def _from_data(
         data_dict (dict): Dictinary with the information for the pathway.
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database to search for reactions and
-            metabolites. Check :func:`cobramod.available_databases` for a list
+            metabolites. Check :obj:`cobramod.available_databases` for a list
             of names.
         compartment: Location of the reactions.
 
     Arguments for complex pathways:
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        avoid_list (Iterable): A sequence of formatted reactions to
+        avoid_list (Iterable): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -510,13 +626,19 @@ def _from_data(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
-    # A graph can have multiple routes, depending on how many end-metabolites.
-    graph = return_graph_from_dict(
-        data_dict=data_dict, avoid_list=avoid_list, replacement=replacement
-    )
-    for sequence in graph:
-        # Data storage is handled by method
+    # Create mapping from dictionary
+    mapping = build_graph(graph=data_dict["PATHWAY"])
+    # Either create a Pathway or obtain the correct Pathway.
+    identifier = data_dict["ENTRY"]
+    try:
+        pathway = model.groups.get_by_id(identifier)
+    except KeyError:
+        pathway = Pathway(id=identifier)
+    for sequence in mapping:
+        # Data storage is handled by method. Reactions objects builder:
         sequence = list(
             _create_reactions(
                 sequence=sequence,
@@ -528,18 +650,51 @@ def _from_data(
                 show_imbalance=show_imbalance,
                 model=model,
                 model_id=model_id,
+                genome=genome,
             )
         )
         # Add to model
         _add_sequence(
             model=model,
-            identifier=data_dict["ENTRY"],
+            pathway=pathway,
             sequence=sequence,
             ignore_list=ignore_list,
             avoid_list=avoid_list,
             minimum=minimum,
         )
         # TODO: Fix sink for metabolites in last sequence
+    # Add graph to Pathway
+    graph = _format_graph(
+        graph=data_dict["PATHWAY"],
+        model=model,
+        compartment=compartment,
+        database=database,
+        model_id=model_id,
+        directory=directory,
+        avoid_list=avoid_list,
+        replacement=replacement,
+        genome=genome,
+    )
+    if not pathway.graph:
+        pathway.graph = graph
+    else:
+        pathway.graph.update(graph)
+
+
+def _create_quick_graph(sequence: list) -> dict:
+    """
+    Creates a returns a simple lineal directed graph from given sequence.
+    """
+    graph = dict()
+    for index, reaction in enumerate(sequence):
+        try:
+            parent = reaction
+            child = sequence[index + 1]
+            graph[parent] = child
+        except IndexError:
+            # It must be the first one
+            graph[reaction] = None
+    return graph
 
 
 def _from_sequence(
@@ -556,6 +711,7 @@ def _from_sequence(
     show_imbalance: bool,
     minimum: float,
     model_id: str,
+    genome: Optional[str],
 ):
     """
     Adds a sequence of identifiers to given model. It will automatically test
@@ -563,15 +719,15 @@ def _from_sequence(
 
     Args:
         model (Model): Model to expand.
-        identifier (str): Common :func:`cobramod.pathway.Pathway` identifier.
+        identifier (str): Common :class:`cobramod.pathway.Pathway` identifier.
         sequence (list): List reaction identifiers.
         database (str): Name of the database.
-            Check :func:`cobramod.available_databases` for a list of names.
+            Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         directory (Path): Path for directory to stored and retrieve data.
 
     Arguments for complex pathways:
-        avoid_list (list): A sequence of formatted reactions to
+        avoid_list (list): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -586,7 +742,16 @@ def _from_sequence(
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
+        genome (str): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
+    # Either create a Pathway or obtain the correct Pathway.
+    try:
+        pathway = model.groups.get_by_id(identifier)
+    except KeyError:
+        pathway = Pathway(id=identifier)
+    # Create graph. It will be always simple lineal
+    graph = _create_quick_graph(sequence=sequence)
     # Data storage is managed by the function
     sequence = list(
         _create_reactions(
@@ -599,17 +764,34 @@ def _from_sequence(
             show_imbalance=show_imbalance,
             model=model,
             model_id=model_id,
+            genome=genome,
         )
     )
     # Append to model
     _add_sequence(
         model=model,
         sequence=sequence,
-        identifier=identifier,
+        pathway=pathway,
         ignore_list=ignore_list,
         avoid_list=avoid_list,
         minimum=minimum,
     )
+    # Add graph to Pathway
+    graph = _format_graph(
+        graph=graph,
+        model=model,
+        compartment=compartment,
+        database=database,
+        model_id=model_id,
+        directory=directory,
+        avoid_list=avoid_list,
+        replacement=replacement,
+        genome=genome,
+    )
+    if not pathway.graph:
+        pathway.graph = graph
+    else:
+        pathway.graph.update(graph)
 
 
 def add_pathway(
@@ -628,6 +810,7 @@ def add_pathway(
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
     model_id: str = "universal",
+    genome: Optional[str] = None,
 ):
     """
     Adds given graph for a pathway identifier or a sequence of reactions
@@ -641,15 +824,15 @@ def add_pathway(
             "PWY-886"
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database.
-            Check :func:`cobramod.available_databases` for a list of names.
+            Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
-        group (str, optional): Common :func:`cobramod.pathway.Pathway`
+        group (str, optional): Common :class:`cobramod.pathway.Pathway`
             identifier. Defaults to "custom_group"
 
     Arguments for complex pathways:
-        avoid_list (list, optional): A sequence of formatted reactions to avoid
-            adding to the model. This is useful for long pathways, where X
-            reactions need to be excluded.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model. This is useful for long pathways, where
+            X reactions need to be excluded.
         replacement (dict, optional): Original identifiers to be replaced.
             Values are the new identifiers.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -672,6 +855,8 @@ def add_pathway(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
@@ -681,13 +866,16 @@ def add_pathway(
 
     # If statements to about polution of debug.
     if isinstance(pathway, str):
-        # From identifier
+        # Get data and transform to a pathway
         data_dict = get_data(
             directory=directory,
             identifier=str(pathway),
             database=database,
             model_id=model_id,
+            genome=genome,
         )
+        # Run the function to convert the reaction, create the graph and add
+        # to Pathway
         _from_data(
             model=model,
             data_dict=data_dict,
@@ -701,6 +889,7 @@ def add_pathway(
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,
+            genome=genome,
         )
     elif isinstance(pathway, list):
         # From Reaction
@@ -718,6 +907,7 @@ def add_pathway(
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,
+            genome=genome,
         )
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")

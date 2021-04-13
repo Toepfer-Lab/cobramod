@@ -1,0 +1,27 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=META:RXN-2222%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=META:RXN-2222&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="META" version="24.5">
+      <species datatype="string">MetaCyc</species>
+    </PGDB>
+  </metadata>
+  <Gene ID="META:AT4G03060" detail="full" frameid="AT4G03060" orgid="META">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="META" resource="getxml?META:Genes" />
+    </parent>
+    <product>
+      <Protein frameid="AT4G03060-MONOMER" orgid="META" resource="getxml?META:AT4G03060-MONOMER" />
+    </product>
+    <common-name datatype="string">AOP2</common-name>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>AF417858</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AF417858</dblink-URL>
+    </dblink>
+    <synonym datatype="string">GS-ALK</synonym>
+  </Gene>
+</ptools-xml>

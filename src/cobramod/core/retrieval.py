@@ -4,11 +4,13 @@
 This module creates the function :func:`cobramod.core.retrieval.get_data`,
 which gets the data from a local directory or from different databases.
 The available databases for data retrieval can be found in the variable
-:func:`cobramod.core.retrieval.available_databases`
+:obj:`cobramod.core.retrieval.available_databases`
 """
 from contextlib import suppress
 from pathlib import Path
 from typing import Type
+
+from requests import HTTPError
 
 from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
@@ -18,7 +20,7 @@ from cobramod.parsing.bigg import BiggParser
 from cobramod.utils import _path_match, get_key_dict
 
 parsers = [BiocycParser, KeggParser, BiggParser]
-available_databases = ["META", "ARA", "META", "BIGG"]
+available_databases = ["META", "ARA", "KEGG", "BIGG"]
 
 
 def _get_parser(database: str) -> Type[BaseParser]:
@@ -54,16 +56,20 @@ def get_data(
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         debug_level (int, optional): Level of debugging. Read package logging
             for more info. Defaults to 20
 
     Keyword Arguments:
         model_id: Exclusive for BIGG. Original identifier of model to search.
             Some examples: "e_coli_core", "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     Returns:
         dict: relevant data for given identifier
     """
+    if database is None:
+        raise HTTPError("No database was specified")
     real_parser = _get_parser(database=database)
     return real_parser._retrieve_data(
         directory=directory,
@@ -95,9 +101,15 @@ def _retrieve_dict(directory: Path, target: str) -> dict:
         )
     for parser in BaseParser.__subclasses__():
         with suppress(WrongParserError, NotImplementedError):
-            data_dict = parser._parse(
-                root=parser._read_file(filename=filename)
-            )["XREF"]
+            try:
+                data_dict = parser._parse(
+                    root=parser._read_file(filename=filename),
+                    directory=directory,
+                )["XREF"]
+            except TypeError:
+                data_dict = parser._parse(  # type: ignore
+                    root=parser._read_file(filename=filename)
+                )["XREF"]
     try:
         return data_dict
     except UnboundLocalError:
