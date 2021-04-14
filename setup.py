@@ -13,6 +13,6 @@ setup(
     package_data={"": ["data/*"]},
     test_suite="tests",
     python_requires=">=3.7.4",
-    install_requires=["cobra>=0.18.1", "requests>=2.24.0", "Escher>=1.7.3"],
+    install_requires=["cobra>=0.18.1", "requests>=2.24.0", "Escher>=1.7.3", "openpyxl>=3.0.7"],
     url="https://github.com/Toepfer-Lab/cobramod",
 )
