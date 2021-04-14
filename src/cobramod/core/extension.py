@@ -19,6 +19,7 @@ from cobramod.core.creation import create_object, _fix_name
 from cobramod.core.graph import build_graph
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
+from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
 from cobramod.error import NotInRangeError, NoIntersectFound
 from cobramod.utils import _first_item
@@ -616,7 +617,8 @@ def _from_data(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimun (float): Minimum optimized value to pass in every single test.
+        minimun (float): Minimum optimized value to pass incheck_to_write
+            every single test.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -803,7 +805,7 @@ def add_pathway(
     replacement: dict = {},
     ignore_list: list = [],
     filename: Path = None,
-    summary: bool = True,
+    summary: str = None,
     minimum: float = 0.1,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
@@ -839,11 +841,13 @@ def add_pathway(
         minimum (float, optional): Minimum optimized value to pass in every
             single test. Defaults to 0.1
 
+    Arguments for summary:
+        filename (Path, optional): Location for the summary. Defaults to
+            "summary" in the current working directory.
+        summary (str, optional): True to write summary in file. Can be None,
+            excel, csv or txt. Use None for no summary. Defaults to None.
+
     Arguments for utilities:
-        filename (Path): Location for the summary. Defaults to "summary.txt" in
-            the current working directory.
-        summary (bool, optional): True to write summary in file. Defaults to
-            True.
         stop_imbalance (bool, optional): If unbalanced reaction is found, stop
             process. Defaults to False.
         show_imbalance (bool, optional): If unbalanced reaction is found, show
@@ -856,11 +860,10 @@ def add_pathway(
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
-    if not filename:
-        filename = Path.cwd().joinpath("summary.txt")
-    # Retrieve information for summary methods
-    # basic_info = get_basic_info(model=model)
-    # old_values = get_DataList(model=model)
+
+    # Save information for summary methods
+    old_values = DataModel.from_model(model)
+
     # If statements to about polution of debug.
     if isinstance(pathway, str):
         # Get data and transform to a pathway
@@ -908,11 +911,6 @@ def add_pathway(
         )
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
+
     # Print summary
-    # check_to_write(
-    #     model=model,
-    #     summary=summary,
-    #     filename=filename,
-    #     basic_info=basic_info,
-    #     old_values=old_values,
-    # )
+    summarize(model, old_values, file_format=summary, filename=filename)

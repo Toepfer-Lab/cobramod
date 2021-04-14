@@ -47,6 +47,7 @@ jobs:
           python3 -m unittest tests/test_pathway.py -v
           python3 -m unittest tests/test_utils.py -v
           python3 -m unittest tests/test_visualization.py -v
+          python3 -m unittest tests/test_summary.py -v
   models:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3

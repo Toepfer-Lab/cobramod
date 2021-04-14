@@ -50,11 +50,6 @@ class UtilsTesting(unittest.TestCase):
             stop_imbalance=True,
         )
 
-    def test_get_DataList(self):
-        # CASE 1: regular retrieval
-        test_object = ui.get_DataList(model=textbook_kegg)
-        self.assertIsInstance(obj=test_object, cls=ui.DataModel)
-
     def test__read_lines(self):
         # CASE 0: Comments and blank lines
         with open(file=dir_input.joinpath("test_reading_lines.txt")) as f:
@@ -110,20 +105,6 @@ class UtilsTesting(unittest.TestCase):
             )
         )
         self.assertEqual(first=len(test_list), second=1)
-
-    def test__compare(self):
-        test_model = textbook_kegg.copy()
-        test_data = ui.get_DataList(model=test_model)
-        add_reactions(
-            model=test_model,
-            directory=dir_data,
-            database="KEGG",
-            obj="R00894, c",
-            replacement={},
-        )
-        test_dict = ui._compare(model=test_model, comparison=test_data)
-        self.assertEqual(first=len(test_dict["metabolites"]), second=3)
-        self.assertEqual(first=len(test_dict["reactions"]), second=1)
 
     def test__print_differences(self):
         # CASE 1: regular dictionary
