@@ -24,7 +24,7 @@ from cobramod.test import textbook_kegg
 
 # Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-# Setting directory for data
+# Setting directory for datA
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
@@ -194,7 +194,7 @@ class SimpleFunctions(TestCase):
             list1=sorted([meta.id for meta in test_reaction.metabolites]),
             list2=sorted(test_list),
         )
-        # CASE 2: Regular KEGG reaction in compartement "p"
+        # CASE 2: Regular KEGG reaction in compartment "p"
         test_data = get_data(
             directory=dir_data,
             identifier="R02736",

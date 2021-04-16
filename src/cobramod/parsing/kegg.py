@@ -2,7 +2,7 @@
 """Data parsing for KEGG
 
 This module handles the retrieval of data from KEGG into a local directory.
-The posible type of data that can be download:
+The possible type of data that can be download:
 
 - Metabolite: Identifiers that start with the letter C, e.g C00001
 - Reactions: Identifiers that start with the letter R, e.g R00001. The
@@ -16,7 +16,7 @@ Important class of the module:
 :func:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
-from itertools import chain, islice
+from itertools import chain
 from pathlib import Path
 from typing import Generator, Union, Dict, NamedTuple
 from warnings import warn
@@ -25,7 +25,7 @@ from requests import get, HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
-from cobramod.error import WrongParserError, FalseAbbreviation
+from cobramod.error import WrongParserError, AbbreviationWarning
 
 
 class MetaboliteTuple(NamedTuple):
@@ -39,7 +39,7 @@ class MetaboliteTuple(NamedTuple):
 
 def _get_keys(raw: str) -> Generator:
     """
-    Returns as Generator the keys for KEGGs data. Input is raw text
+    Returns as Generator the keys for KEGG data. Input is raw text
     """
     lines = (line for line in raw.split(sep="\n"))
     for line in lines:
@@ -62,7 +62,7 @@ def _find_key(line: str, keys: set) -> Union[str, None]:
 
 def _create_dict(raw: str) -> dict:
     """
-    Formats most of the keys for Keggs data and returns a dictionary.
+    Formats most of the keys for KEGG data and returns a dictionary.
     """
     lines = (line for line in raw.split("\n"))
     keys = set(_get_keys(raw=raw))
@@ -96,7 +96,7 @@ def _get_coefficient(line: str, SIDE: int, prefix: str) -> MetaboliteTuple:
         prefix (str): prefix for the metabolite
 
     Returns:
-        NamedTuple: tupple with identifier and coefficient
+        NamedTuple: tuple with identifier and coefficient
     """
     # " 4 H+ "
     line_list = line.strip().rstrip().split(" ")
@@ -114,7 +114,7 @@ def _get_coefficient(line: str, SIDE: int, prefix: str) -> MetaboliteTuple:
 def _build_dict_meta(line: str) -> dict:
     """
     Builds dictionary with metabolites identifiers and corresponding
-    coeffients.
+    coefficients.
     """
     middle = line.find("=")
     temp_dict = dict()
@@ -182,8 +182,8 @@ def _get_ko(identifier: str) -> list:
 def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
     """
     Parses given kegg text and returns with a list with the corresponding genes
-    for given genome or if no genome is specified, the genes for the first 5
-    genes. Argument reaction is just for logging information.
+    for given genome. If Abbreviation or no genome is present then, an empty
+    list is returned.
     """
     # Retrive the KO-identifiers
     text = string.replace("\t", " ").splitlines()
@@ -197,22 +197,25 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
             genes[specie].append(identifier)
         except KeyError:
             genes[specie] = [identifier]
-    # Return the corresponding gene or truncate to 5 genes
+    # Return the corresponding gene or empty list
     if genome:
         try:
             return genes[genome]
         except KeyError:
-            raise FalseAbbreviation(string=genome, reaction=reaction)
-    if len(genes) > 5:
-        warn(
-            message=(
-                f'High amount of genes for reaction "{reaction}". '
-                + "Species truncated to 5"
-            ),
-            category=UserWarning,
-        )
-        genes = dict(islice(genes.items(), 5))
-    return list(chain.from_iterable(genes.values()))
+            warn(
+                message=f'Reaction "{reaction}" does not have a "{genome}" '
+                + "abbreviation for a specie. No genes will be added.",
+                category=AbbreviationWarning,
+            )
+            return []
+    warn(
+        message=(
+            f'No genome was specified for reaction "{reaction}". '
+            + "No genes will be created."
+        ),
+        category=UserWarning,
+    )
+    return []
 
 
 def _get_genes(directory: Path, identifier: str):
@@ -339,7 +342,7 @@ def _p_compound(kegg_dict: dict) -> dict:
             # Some general compounds do not come with formulas
             formula = "X"
             debug_log.warning(
-                f'KEGG ID "{identifier}" could not find a chemical formuala. '
+                f'KEGG ID "{identifier}" could not find a chemical formula. '
                 f'Formula set to "X" and charge to 0'
             )
         return {
@@ -363,7 +366,7 @@ def _p_compound(kegg_dict: dict) -> dict:
 def get_graph(kegg_dict: dict) -> dict:
     """
     Returns dictionary with sequences for a graph, where the key the prior
-    reaction is and the value, its succesor; and a set with all participant
+    reaction is and the value, its successor; and a set with all participant
     reaction (vertex)
     """
     # Obtain sequences as a set and regular reactions
@@ -551,20 +554,21 @@ def _get_unformatted_kegg(directory: Path, identifier: str) -> dict:
 
     Args:
         directory (Path): Path for data storage.
-        identifier (str): official name for given object in KEGGs.
+        identifier (str): official name for given object in KEGG
 
     Raises:
         NotImplementedError: If identifier contains a semicolon (:)
-        Warning: If given identifier is not found in KEGGs.
+        HTTPError: If given identifier is not found in KEGG.
         NotADirectoryError:  If parent directory is not found.
 
     Returns:
-        dict: dictionary from KEGGs identifier with basic information
+        dict: dictionary from KEGG identifier with basic information
     """
     # NOTE: As KEGG only support xml for pathways, Metabolites and Reactions
-    # have to be parsed differently. Only specific keys are necesary
+    # have to be parsed differently. Only specific keys are necessary
     database = "KEGG"
     if ":" in identifier:
+        # TODO: is this true?
         raise NotImplementedError(
             "Identifiers with semicolons cannot be parse yet"
         )
