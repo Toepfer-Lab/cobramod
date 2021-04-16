@@ -204,7 +204,7 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
         except KeyError:
             msg = (
                 f'Reaction "{reaction}" does not have a "{genome}" '
-                + "abbreviation for a specie. No genes will be added."
+                + "abbreviation as a specie. No genes will be added."
             )
             warn(message=msg, category=AbbreviationWarning)
             debug_log.warning(msg=msg)

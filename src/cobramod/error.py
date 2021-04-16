@@ -7,6 +7,21 @@ explanation.
 from cobramod.debug import debug_log
 
 
+class NoDelimiter(Exception):
+    """
+    Simple Error that should be raised when a string does not include the
+    delimiter "|"
+    """
+
+    def __init__(self, string: str):
+        """
+        Args:
+            string (str): String with the format problem
+        """
+        msg = f'No delimiter "|" was found in \n{string}'
+        super().__init__(msg)
+
+
 class GraphKeyError(Exception):
     """
     Simple Error that should be raised when a value is missing as key in a
@@ -106,8 +121,10 @@ class UnbalancedReaction(Exception):
         Args:
             reaction (str): identifier of the reaction.
         """
-        # TODO: check behavior with super().__init__
-        debug_log.warning(f"Reaction {reaction} is not balanced.")
+        debug_log.warning(
+            f"Reaction {reaction} is not balanced. "
+            + "Check the equation and the mass of its components."
+        )
 
 
 class NotInRangeError(Exception):
@@ -121,7 +138,11 @@ class NotInRangeError(Exception):
         Args:
             reaction (str): identifier of the reaction.
         """
-        # TODO: check behavior with super().__init__
-        msg = f"Reaction '{reaction}' not in range. Check sinks manually."
+        msg = (
+            f'Adding reaction "{reaction}" makes the optimization value'
+            + " for the test of this reaction lower than the given minimum. "
+            + "Please readjust the 'minimum' argument or add the reaction to "
+            + "the argument 'ignore_list' to be skipped from testing."
+        )
         debug_log.critical(msg)
         super().__init__(msg)
