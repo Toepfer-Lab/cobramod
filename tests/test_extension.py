@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Unittest for module extension
 
-This module test the behaviour of multiple functions, which are responsible to
+This module test the behavior of multiple functions, which are responsible to
 add metabolites and reactions into a metabolic model. This module can be
 divided in to parts:
 
@@ -28,7 +28,6 @@ from cobramod.test import textbook_biocyc, textbook_kegg
 debug_log.setLevel(DEBUG)
 # Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
-dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
@@ -706,7 +705,7 @@ class AddingPathways(TestCase):
             ignore_list=["C00008_c", "R09084_c"],
             avoid_list=[""],
             show_imbalance=False,
-            genome=None,
+            genome="hsa",
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(

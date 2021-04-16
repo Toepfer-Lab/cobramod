@@ -2,7 +2,7 @@
 """Errors for CobraMod
 
 This module creates special errors for CobraMod. Read each error for their
-explaination.
+explanation.
 """
 from cobramod.debug import debug_log
 
@@ -87,21 +87,13 @@ class NoGeneInformation(Exception):
     pass
 
 
-class FalseAbbreviation(Exception):
+class AbbreviationWarning(Warning):
     """
-    Simple error that should be raised when given abbreviation does not exists.
+    Simple Warning that should be raised when given abbreviation does not
+    exists.
     """
 
-    def __init__(self, string: str, reaction: str):
-        """
-        Args:
-            string (str): False or broken string
-        """
-        msg = (
-            f'There is no genome abbreviation "{string}" in '
-            + f'reaction "{reaction}"'
-        )
-        super().__init__(msg)
+    pass
 
 
 class UnbalancedReaction(Exception):
@@ -114,7 +106,7 @@ class UnbalancedReaction(Exception):
         Args:
             reaction (str): identifier of the reaction.
         """
-        # TODO: check behaviour with super().__init__
+        # TODO: check behavior with super().__init__
         debug_log.warning(f"Reaction {reaction} is not balanced.")
 
 
@@ -129,7 +121,7 @@ class NotInRangeError(Exception):
         Args:
             reaction (str): identifier of the reaction.
         """
-        # TODO: check behaviour with super().__init__
+        # TODO: check behavior with super().__init__
         msg = f"Reaction '{reaction}' not in range. Check sinks manually."
         debug_log.critical(msg)
         super().__init__(msg)
