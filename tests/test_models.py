@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unit-test for model behaviour
+"""Unit-test for model behavior
 
 This module checks if a large and a small model behaves as intended. This
 examples should simulate real cases. There are two test:
@@ -36,7 +36,7 @@ if not dir_data.exists():
     dir_data.mkdir(parents=True)
 
 
-# TODO: add test with replacment_dicts
+# TODO: add test with replacement_dicts
 class ShortModel(TestCase):
     def test_lineal_pathways(self):
         # For this test, Gluconeogenesis; L-aspartate and L-asparagine
@@ -63,8 +63,8 @@ class ShortModel(TestCase):
             model=test_model,
             obj=(
                 "Redox_Hemoprotein_c, Redox_Hemoprotein_c | "
-                + "Ox-NADPH-Hemoprotein-Reductases_c:-1, "
-                + "Red-NADPH-Hemoprotein-Reductases_c: 1"
+                + "Ox-NADPH-Hemoprotein-Reductases_c <-> "
+                + "Red-NADPH-Hemoprotein-Reductases_c"
             ),
             directory=dir_data,
             database="META",
@@ -97,7 +97,7 @@ class ShortModel(TestCase):
             container=[group.id for group in test_model.groups],
         )
 
-    def test_cyclical_pathwways(self):
+    def test_cyclical_pathways(self):
         # test_model = main_model1.copy()
         test_model = textbook_biocyc.copy()
         # Adding Mannitol cycle
@@ -162,7 +162,7 @@ class ShortModel(TestCase):
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
         add_reactions(
             model=test_model,
-            obj="TRANS_GLY_cp, Transport GLY_cp | GLY_c:-1, GLY_p:1",
+            obj="TRANS_GLY_cp, Transport GLY_cp | GLY_c <-> GLY_p",
             directory=dir_data,
             database="META",
         )
@@ -206,7 +206,7 @@ class LargeModel(TestCase):
         and tested
         """
         test_model = main_model2.copy()
-        # Autotroph enviroment
+        # Autotroph environment
         test_model.reactions.Sucrose_tx.bounds = (0, 0)  # SUCROSE
         test_model.reactions.GLC_tx.bounds = (0, 0)  # GLUCOSE
         # # Photon uptake
@@ -219,7 +219,7 @@ class LargeModel(TestCase):
             metabolite=test_model.metabolites.get_by_id("GLUTATHIONE_p"),
             type="sink",
         )
-        # Adding methiin metabolism
+        # Adding methionine metabolism
         ex.add_pathway(
             model=test_model,
             pathway="PWY-7614",
@@ -228,7 +228,7 @@ class LargeModel(TestCase):
             compartment="p",
             ignore_list=["GLUTATHIONE_p"],
         )
-        # Checking demand for Methiin
+        # Checking demand for Methionine
         test_model.add_boundary(
             metabolite=test_model.metabolites.get_by_id("CPD_9277_p"),
             type="demand",

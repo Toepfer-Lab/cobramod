@@ -19,7 +19,7 @@ from requests import HTTPError
 from cobramod.core import creation as cr
 from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
-from cobramod.error import WrongSyntax
+from cobramod.error import WrongSyntax, NoDelimiter
 from cobramod.test import textbook_kegg
 
 # Debug must be set in level DEBUG for the test
@@ -127,14 +127,14 @@ class SimpleFunctions(TestCase):
             FileNotFoundError,
             cr._get_file_metabolites,
             test_model,
-            Path.cwd().joinpath("nofile"),
+            Path.cwd().joinpath("no_file"),
         )
         # CASE 1: Metabolite is not found (or misspelled)
         self.assertRaises(
             HTTPError,
             cr._get_file_metabolites,
             model=test_model,
-            filename=dir_input.joinpath("metaToAdd_02_misspelled.txt"),
+            filename=dir_input.joinpath("metabolites_02_misspelled.txt"),
             # Directory to save / check for xml files
             directory=dir_data,
             database="META",
@@ -144,7 +144,7 @@ class SimpleFunctions(TestCase):
             WrongSyntax,
             cr._get_file_metabolites,
             model=test_model,
-            filename=dir_input.joinpath("metaToAdd_03_badFormat.txt"),
+            filename=dir_input.joinpath("metabolites_03_badFormat.txt"),
             # Directory to save / check for xml files
             directory=dir_data,
             database="META",
@@ -153,7 +153,7 @@ class SimpleFunctions(TestCase):
         test_list = cr._get_file_metabolites(
             model=test_model,
             # File with Metabolites to add
-            filename=dir_input.joinpath("metaToAdd_01_normal.txt"),
+            filename=dir_input.joinpath("metabolites_01_normal.txt"),
             # Directory to save / check for xml files
             directory=dir_data,
             database="META",
@@ -367,7 +367,7 @@ class SimpleFunctions(TestCase):
         test_model = Model(0)
         test_line = (
             "RXN_17742_c, RXN_17742_c |"
-            "Oxidized-ferredoxins_c:-1, Reduced-ferredoxins_c: 1"
+            "-1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c "
         )
         test_reaction = cr._convert_string_reaction(
             line=test_line,
@@ -398,7 +398,7 @@ class SimpleFunctions(TestCase):
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
         # CASE 3: 100% Custom metabolite
         test_model = Model(0)
-        test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p:-1, Meta_B_p:1"
+        test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p --> Meta_B_p"
         test_reaction = cr._convert_string_reaction(
             line=test_line,
             model=test_model,
@@ -455,69 +455,69 @@ class SimpleFunctions(TestCase):
         )
         # TODO: test more databases
 
-    def test__dict_from_string(self):
-        # CASE 0: Coefficient missing
+    def test__reaction_information(self):
+        # CASE 0: Missing compartment
         self.assertRaises(
-            WrongSyntax, cr._dict_from_string, string_list=[" GLC_c:"]
+            WrongSyntax, cr._reaction_information, string=["2 GLC_c <=> GLC"]
         )
         # CASE 1: Regular usage
-        self.assertDictEqual(
-            {"GLC_b": 1.0, "GLC_c": -1.0},
-            cr._dict_from_string(string_list=[" GLC_c:-1", "GLC_b: 1"]),
+        test_tuple, test_dict = cr._reaction_information(
+            string="GLC_c --> GLC_b"
         )
+        self.assertEqual(first=test_tuple, second=(0, 1000))
+        self.assertDictEqual(d1=test_dict, d2={"GLC_c": -1.0, "GLC_b": 1.0})
 
     def test__reaction_from_string(self):
-        # CASE 0: wrong format, no delimiter
+        # CASE 1: wrong format, no delimiter
         self.assertRaises(
-            WrongSyntax,
+            NoDelimiter,
             cr._reaction_from_string,
-            line_string="GLC_cb, GLC_cb GLC_c:-1, GLC_b:1",
-            directory=dir_data,
-            database="META",
-        )
-        # CASE 1: No ID detected
-        self.assertRaises(
-            WrongSyntax,
-            cr._reaction_from_string,
-            line_string=" |GLC_c:-1, GLC_b:1",
+            line_string="GLC_cb, GLC_cb GLC_c <-> GLC_b",
             directory=dir_data,
             database="META",
         )
         # CASE 2: Normal, ID and name differ
         test_reaction = cr._reaction_from_string(
-            line_string="GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
+            line_string="GLC_cb, Glucose Transport| 2 GLC_c <=> GLC_b",
             directory=dir_data,
             database="META",
         )
         # Checking if ID, name and instance are correct.
-        self.assertTrue(
-            all(
-                [
-                    test_reaction.id == "GLC_cb",
-                    test_reaction.name == "Glucose Transport",
-                    isinstance(test_reaction, Reaction),
-                ]
-            )
-        )
+        self.assertEqual(first=test_reaction.id, second="GLC_cb")
+        self.assertEqual(first=test_reaction.name, second="Glucose Transport")
+        self.assertIsInstance(obj=test_reaction, cls=Reaction)
         test_list = ["GLC_c", "GLC_b"]
-        # names should be there
-        self.assertTrue(
-            all(
-                [
-                    x in [meta.id for meta in test_reaction.metabolites]
-                    for x in test_list
-                ]
+        # All metabolites should be there
+        for metabolite in test_list:
+            self.assertIn(
+                member=metabolite,
+                container=[meta.id for meta in test_reaction.metabolites],
             )
+        self.assertEqual(
+            first=-2, second=test_reaction.get_coefficient("GLC_c")
         )
-        self.assertEqual(-1, test_reaction.get_coefficient("GLC_c"))
-        self.assertEqual(1, test_reaction.get_coefficient("GLC_b"))
-        # CASE 3: Custom reaction
+        self.assertEqual(
+            first=1, second=test_reaction.get_coefficient("GLC_b")
+        )
+        # CASE 3: Larger reaction
+        test_reaction = cr._reaction_from_string(
+            line_string="GLC_cb, Glucose Transport|"
+            + "4 GLT_c + 2 GLC_c <=> GLC_b + 2 GLT_b",
+            directory=dir_data,
+            database="META",
+        )
+        self.assertEqual(
+            first=-4, second=test_reaction.get_coefficient("GLT_c")
+        )
+        self.assertEqual(
+            first=2, second=test_reaction.get_coefficient("GLT_b")
+        )
 
     def test__get_file_reactions(self):
         test_model = Model(0)
         test_list = cr._get_file_reactions(
             model=test_model,
-            filename=dir_input.joinpath("rxnToAdd_01_normal.txt"),
+            filename=dir_input.joinpath("reactions_normal.txt"),
             directory=dir_data,
             database="META",
         )
@@ -533,7 +533,7 @@ class ComplexFunctions(TestCase):
     """
 
     def test_create_object(self):
-        # CASE 1a: metabolite from metacyc
+        # CASE 1a: metabolite from MetaCyc
         test_object = cr.create_object(
             identifier="GLC",
             directory=dir_data,
@@ -542,7 +542,7 @@ class ComplexFunctions(TestCase):
         )
         self.assertIsInstance(obj=test_object, cls=Metabolite)
         self.assertEqual(first=test_object.compartment, second="c")
-        # CASE 1b: metabolite from kegg
+        # CASE 1b: metabolite from KEGG
         test_object = cr.create_object(
             identifier="C00026",
             directory=dir_data,
@@ -551,7 +551,7 @@ class ComplexFunctions(TestCase):
         )
         self.assertIsInstance(obj=test_object, cls=Metabolite)
         self.assertEqual(first=test_object.compartment, second="p")
-        # CASE 2a: reaction from metacyc
+        # CASE 2a: reaction from MetaCyc
         test_object = cr.create_object(
             identifier="2.6.1.58-RXN",
             directory=dir_data,
@@ -583,7 +583,7 @@ class ComplexFunctions(TestCase):
             show_imbalance=False,
         )
         self.assertIsInstance(obj=test_object, cls=Reaction)
-        # CASE 3a: pathway from metacyc
+        # CASE 3a: pathway from MetaCyc
         test_object = cr.create_object(
             identifier="PWY-1187",
             directory=dir_data,
@@ -592,7 +592,7 @@ class ComplexFunctions(TestCase):
         )
         self.assertIsInstance(obj=test_object, cls=dict)
         self.assertEqual(first=test_object["ENTRY"], second="PWY-1187")
-        # CASE 3a: pathway from metacyc
+        # CASE 3a: pathway from MetaCyc
         test_object = cr.create_object(
             identifier="M00001",
             directory=dir_data,
@@ -608,13 +608,13 @@ class ComplexFunctions(TestCase):
             ValueError,
             cr.add_metabolites,
             model=Model(0),
-            obj=dir_input.joinpath("metaToAdd_01_normal.txt"),
+            obj=dir_input.joinpath("metabolites_01_normal.txt"),
         )
         # CASE 1: From path
         test_model = Model(0)
         cr.add_metabolites(
             model=test_model,
-            obj=dir_input.joinpath("metaToAdd_01_normal.txt"),
+            obj=dir_input.joinpath("metabolites_01_normal.txt"),
             directory=dir_data,
             database="META",
         )
@@ -690,13 +690,13 @@ class ComplexFunctions(TestCase):
             ValueError,
             cr.add_reactions,
             model=Model(0),
-            obj=dir_input.joinpath("rxnToAdd_01_normal.txt"),
+            obj=dir_input.joinpath("reactions_normal.txt"),
         )
-        # CASE 1: From Path
+        # CAsE 1: From Path
         test_model = Model(0)
         cr.add_reactions(
             model=test_model,
-            obj=dir_input.joinpath("rxnToAdd_01_normal.txt"),
+            obj=dir_input.joinpath("reactions_normal.txt"),
             directory=dir_data,
             database="META",
         )
@@ -709,7 +709,7 @@ class ComplexFunctions(TestCase):
         test_model = Model(0)
         cr.add_reactions(
             model=test_model,
-            obj="GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
+            obj="GLC_cb, Glucose Transport|GLC_c <-> GLC_b",
             directory=dir_data,
             database="META",
         )
@@ -721,7 +721,7 @@ class ComplexFunctions(TestCase):
         test_model = Model(0)
         cr.add_reactions(
             model=test_model,
-            obj="Custom_cb, Custom reaction|Custom_c:-1, Custom_b:1",
+            obj="Custom_cb, Custom reaction|Custom_c <=> Custom_b",
             directory=dir_data,
             database=None,
         )
@@ -737,7 +737,7 @@ class ComplexFunctions(TestCase):
         # CASE 3: From List of strings
         test_model = Model(0)
         test_list = [
-            "GLC_cb, Glucose Transport|GLC_c:-1, GLC_b:1",
+            "GLC_cb, Glucose Transport|GLC_c <-> GLC_b",
             "RXN-14462, c",
         ]
         cr.add_reactions(
