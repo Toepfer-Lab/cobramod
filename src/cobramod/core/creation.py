@@ -35,7 +35,8 @@ def _build_metabolite(
     identifier: str, formula: str, name: str, charge: float, compartment: str
 ):
     """
-    Returns a basic :funf:`cobra.Metabolite`. It will log a with a DEBUG level.
+    Returns a basic :class:`cobra.Metabolite`. It will log a with a DEBUG
+    level.
 
     Args:
         identifier (str): Short name for Metabolite.
@@ -186,10 +187,10 @@ def _convert_string_metabolite(line: str, model: Model, **kwargs):
         Metabolite: New metabolite object
     """
     if line.count(",") > 1:
-        # TODO: to gain perfomance, search for name and then create Metabolite
+        # TODO: to gain performance, search for name and then create Metabolite
         new_metabolite = _metabolite_from_string(line_string=line)
     else:
-        # Retrieve from databse
+        # Retrieve from database
         segment = (part.strip().rstrip() for part in line.split(sep=","))
         # FIXME: include multiple databases=_identify_database()
         metabolite_dict = get_data(
@@ -302,7 +303,7 @@ def _get_reaction(
         id=f'{_fix_name(name=data_dict["ENTRY"])}_{compartment}',
         name=data_dict["NAME"],
     )
-    for identifier, coef in data_dict["EQUATION"].items():
+    for identifier, coefficient in data_dict["EQUATION"].items():
         # Get rid of prefix r_ and l_
         identifier = identifier[2:]
         # First, replacement, since the identifier can be already in model
@@ -312,7 +313,7 @@ def _get_reaction(
                 f'Metabolite "{identifier}" replaced by '
                 f'"{replacement[identifier]}".'
             )
-        # TODO: check if this part is necesary
+        # TODO: check if this part is necessary
         # Retrieve data for metabolite
         try:
             # get metabolites from model if possible.
@@ -324,7 +325,7 @@ def _get_reaction(
         # Checking if transport reaction
         if (
             data_dict["TRANSPORT"]
-            and coef < 0
+            and coefficient < 0
             and _return_duplicate(data_dict=data_dict["EQUATION"])
             == identifier
         ):
@@ -339,7 +340,7 @@ def _get_reaction(
                 compartment=compartment,
                 model=model,
             )
-        reaction.add_metabolites(metabolites_to_add={metabolite: coef})
+        reaction.add_metabolites(metabolites_to_add={metabolite: coefficient})
         reaction.bounds = data_dict["BOUNDS"]
     _genes_to_reaction(reaction=reaction, data_dict=data_dict)
     return reaction
@@ -496,7 +497,7 @@ def _reaction_from_string(
         raise WrongSyntax(f"Wrong format for {segments}. ID not detected")
     # Create Base reaction and then fill it with its components.
     new_reaction = Reaction(id=rxn_id, name=rxnName)
-    for identifier, coef in meta_dict.items():
+    for identifier, coefficient in meta_dict.items():
         # Either get from model, or retrieve it.
         try:
             metabolite = model.metabolites.get_by_id(identifier)
@@ -523,7 +524,7 @@ def _reaction_from_string(
                     id=identifier, name=identifier, compartment=compartment
                 )
                 debug_log.info(f'Custom metabolite "{metabolite.id}" built')
-        new_reaction.add_metabolites({metabolite: coef})
+        new_reaction.add_metabolites({metabolite: coefficient})
         debug_log.debug(
             f'Metabolite "{metabolite.id}" added to Reaction '
             f'"{new_reaction.id}".'
@@ -582,8 +583,8 @@ def _convert_string_reaction(
     # If delimiter is not found, then it must be a reaction
     except WrongSyntax:
         # add reaction from root. Get only left part
-        seqment = (part.strip().rstrip() for part in line.split(","))
-        identifier = next(seqment)
+        segment = (part.strip().rstrip() for part in line.split(","))
+        identifier = next(segment)
         with suppress(KeyError):
             identifier = replacement[identifier]
         # TODO: identify database
@@ -592,7 +593,7 @@ def _convert_string_reaction(
             identifier=identifier,
             directory=directory,
             database=database,
-            compartment=next(seqment),
+            compartment=next(segment),
             replacement=replacement,
         )
     return new_reaction
@@ -684,7 +685,7 @@ def _ident_reaction(
         compartment: location of the reaction.
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
             Defaults to False.
-        show_imbalance (bool): If unbalanced reactionis found, show output.
+        show_imbalance (bool): If unbalanced reaction is found, show output.
             Defaults to True.
 
     Returns:

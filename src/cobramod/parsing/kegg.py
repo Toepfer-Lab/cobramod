@@ -13,7 +13,7 @@ Contact maintainers if other types should be added.
 
 Important class of the module:
 - KeggParser: Child of the abstract class
-:func:`cobramod.parsing.base.BaseParser`.
+:class:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
 from itertools import chain
@@ -202,19 +202,19 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
         try:
             return genes[genome]
         except KeyError:
-            warn(
-                message=f'Reaction "{reaction}" does not have a "{genome}" '
-                + "abbreviation for a specie. No genes will be added.",
-                category=AbbreviationWarning,
+            msg = (
+                f'Reaction "{reaction}" does not have a "{genome}" '
+                + "abbreviation for a specie. No genes will be added."
             )
+            warn(message=msg, category=AbbreviationWarning)
+            debug_log.warning(msg=msg)
             return []
-    warn(
-        message=(
-            f'No genome was specified for reaction "{reaction}". '
-            + "No genes will be created."
-        ),
-        category=UserWarning,
+    msg = (
+        f'No genome was specified for reaction "{reaction}". '
+        + "No genes will be created."
     )
+    warn(message=msg, category=UserWarning)
+    debug_log.warning(msg=msg)
     return []
 
 
@@ -270,7 +270,7 @@ def _p_entry_genes(
     if genes:
         rule = " or ".join(genes.keys())
         debug_log.warning(
-            f'Gene-reaction rule for reaction {identifier} assumed to be "OR"'
+            f'Gene-reaction rule for reaction "{identifier}" assumed as "OR"'
         )
     return {"genes": genes, "rule": rule}
 

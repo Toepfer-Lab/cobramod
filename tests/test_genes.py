@@ -21,7 +21,7 @@ if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
 
 
-class TestComplex(TestCase):
+class TestComplexGenes(TestCase):
     def test_KEGG_genome(self):
         # CASE 1: catch FalseAbbreviation
         self.assertWarns(
@@ -57,6 +57,15 @@ class TestComplex(TestCase):
             database="KEGG",
         )
         self.assertEqual(first=len(test_reaction.genes), second=0)
+        # CASE 3: regular case
+        test_reaction = create_object(
+            identifier="R02736",
+            directory=dir_data,
+            compartment="c",
+            database="KEGG",
+            genome="hsa",
+        )
+        self.assertEqual(first=len(test_reaction.genes), second=2)
 
 
 if __name__ == "__main__":

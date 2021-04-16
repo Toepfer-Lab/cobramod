@@ -6,6 +6,8 @@ data of the specific parsers.
 """
 from cobra import Reaction
 
+from cobramod.debug import debug_log
+
 
 def _genes_to_reaction(reaction: Reaction, data_dict: dict):
     """
@@ -18,4 +20,7 @@ def _genes_to_reaction(reaction: Reaction, data_dict: dict):
     # Update name
     for gene in reaction.genes:
         gene.name = data_dict["GENES"]["genes"][gene.id]
-    # TODO: add logs?
+        debug_log.debug(
+            f'For reaction "{reaction.id}" gene "{gene.id}" created and name '
+            f'changed to "{gene.name}".'
+        )
