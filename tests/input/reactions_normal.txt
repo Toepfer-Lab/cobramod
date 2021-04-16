@@ -1,0 +1,3 @@
+# id_rxn, name |value id_meta <-> value id_meta2
+GLC_cb, GLC_cb|GLC_c <=> GLC_b
+RXN-14462, p
