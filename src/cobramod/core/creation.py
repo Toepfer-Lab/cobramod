@@ -25,7 +25,12 @@ from cobra import Metabolite, Model, Reaction
 from requests import HTTPError
 
 from cobramod.debug import debug_log
-from cobramod.error import WrongDataError, NoIntersectFound, WrongSyntax
+from cobramod.error import (
+    WrongDataError,
+    NoIntersectFound,
+    WrongSyntax,
+    NoDelimiter,
+)
 from cobramod.core.retrieval import get_data
 from cobramod.utils import _read_lines, check_imbalance, _first_item
 from cobramod.core.genes import _genes_to_reaction
@@ -403,43 +408,69 @@ def _obtain_reaction(
     return reaction
 
 
-def _dict_from_string(string_list: list) -> dict:
+def _reaction_information(string: str) -> tuple:
     """
-    For given list of strings, creates a dictionary where keys are the
-    identifiers of metabolites while values represent their corresponding
-    coefficients
+    Parses the string and transforms it to dictionary with the metabolite and
+    their corresponding coefficients. It will raise WrongSyntax if the format
+    is wrong. Returns the tuple with the bounds of the reactions and its
+    participants as a dictionary. Reversibility will depend on the type of
+    arrow that. Options are
 
-    Syntax:
-
-    :code:`id_metabolite1: coefficient, id_metabolite2:coefficient ...
-    id_metaboliteX: coefficient`
-
-    Identifier has to end with an underscore and a compartment:
-
-    E.g **`OXYGEN-MOLECULE_c: -1`**
-
-    Args:
-        string_list (list): List with strings with information about the
-            metabolites
-
-    Raises:
-        WrongSyntax: If coefficient might be missing.
-
-    Returns:
-        dict: Dictionary with identifiers and coefficients
+    **`<--, -->, <=>, <->`**
     """
-    metabolites = dict()
-    # Each member should have a pair as "WATER: -1"
-    for member in string_list:
-        pair = [x.strip().rstrip() for x in member.split(":")]
-        name = pair[0]
-        # Must have a len of two, otherwise something is missing
-        try:
-            value = float(pair[1])
-            metabolites[name] = value
-        except ValueError:
-            raise WrongSyntax(f"Coefficient might be missing for {name}")
-    return metabolites
+    # Define bounds
+    arrows = {
+        "-->": (0, 1000),
+        "<--": (-1000, 0),
+        "<=>": (-1000, 1000),
+        "<->": (-1000, 1000),
+    }
+    for separator in arrows.keys():
+        if separator in string:
+            bounds = arrows[separator]
+            break
+    # Verify bounds
+    try:
+        bounds
+    except UnboundLocalError:
+        raise WrongSyntax(
+            "Given string does not have a proper arrow. "
+            f'Please use one of this options:\n"{arrows.keys()}"'
+        )
+    # Separate parts
+    reactants, products = [
+        part.rstrip().strip() for part in string.split(separator)
+    ]
+    participants = dict()
+    # Check for each side and make a dictionary with the coefficients
+    for side in (reactants, products):
+        FACTOR = 1
+        if side is reactants:
+            FACTOR = -1
+        for metabolite in side.split("+"):
+            # Get rid off blanks in the sides
+            metabolite = metabolite.rstrip().strip()
+            # Obtain coefficient or give a 1 to the metabolite if nothing found
+            try:
+                coefficient, identifier = [
+                    string.strip().rstrip() for string in metabolite.split(" ")
+                ]
+                if "_" not in identifier[-2:]:
+                    raise WrongSyntax(
+                        f'Metabolite "{identifier}" is missing a compartment'
+                    )
+            except ValueError:
+                coefficient = "1"
+                identifier = metabolite
+            try:
+                # Make sure that no empty strings are added.
+                if identifier:
+                    participants[identifier] = float(coefficient) * FACTOR
+            except ValueError:
+                raise WrongSyntax(
+                    f"Check the syntax for the given line:\n{string}"
+                )
+    return bounds, participants
 
 
 def _reaction_from_string(
@@ -453,17 +484,19 @@ def _reaction_from_string(
 
     Syntax:
 
-    :code:`reaction_identifier, reaction_name | metabolite_identifier1:
-    coefficient,`
-    :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
-    coefficient`
+    :code:`reaction_identifier, reaction_name | coefficient metabolite <->
+    coefficient metabolite
 
     Identifiers of metabolites have to end with an underscore and a
     compartment:
 
-    E.g **`OXYGEN-MOLECULE_c: -1`**
+    E.g **`4 OXYGEN-MOLECULE_c`**
 
     Else, include a model to retrieve identifiers from it.
+
+    Reversibility will depend on the type of arrow that. Options are
+
+    **`<--, -->, <=>, <->`**
 
     Args:
         line_string (str): string with information
@@ -475,29 +508,27 @@ def _reaction_from_string(
 
     Raises:
         WrongSyntax: if identifier has a wrong format.
+        NoDelimiter: If no delimiter "|" is found.
 
     Returns:
         Reaction: New reaction object.
     """
-    segments = [x.strip().rstrip() for x in line_string.split("|")]
-    rxn_id_name = [x.strip().rstrip() for x in segments[0].split(",")]
-    try:  # no blanks
-        string_list = [x.strip().rstrip() for x in segments[1].split(",")]
-        meta_dict = _dict_from_string(string_list=string_list)
-    except IndexError:  # wrong format
-        raise WrongSyntax(
-            f'No delimiter "|" found for {rxn_id_name[0].split(",")[0]}.'
-        )
-    # In case of regular of regular syntax
-    if len(rxn_id_name) == 2:
-        rxn_id, rxnName = rxn_id_name
-    elif len(rxn_id_name) == 1 and rxn_id_name[0] != "":
-        rxn_id = rxnName = rxn_id_name[0]
-    else:  # blank space
-        raise WrongSyntax(f"Wrong format for {segments}. ID not detected")
+    if "|" not in line_string:
+        raise NoDelimiter(string=line_string)
+    # Remove blank and obtains information
+    info, reaction = [
+        string.strip().rstrip() for string in line_string.split("|")
+    ]
+    if "," in info:
+        reaction_id, reaction_name = [
+            string.strip().rstrip() for string in info.split(",")
+        ]
+    else:
+        reaction_id = reaction_name = info
+    bounds, metabolites = _reaction_information(string=reaction)
     # Create Base reaction and then fill it with its components.
-    new_reaction = Reaction(id=rxn_id, name=rxnName)
-    for identifier, coefficient in meta_dict.items():
+    new_reaction = Reaction(id=reaction_id, name=reaction_name)
+    for identifier, coefficient in metabolites.items():
         # Either get from model, or retrieve it.
         try:
             metabolite = model.metabolites.get_by_id(identifier)
@@ -523,14 +554,13 @@ def _reaction_from_string(
                 metabolite = Metabolite(
                     id=identifier, name=identifier, compartment=compartment
                 )
-                debug_log.info(f'Custom metabolite "{metabolite.id}" built')
+                debug_log.info(f'Custom metabolite "{metabolite.id}" built.')
         new_reaction.add_metabolites({metabolite: coefficient})
         debug_log.debug(
             f'Metabolite "{metabolite.id}" added to Reaction '
             f'"{new_reaction.id}".'
         )
-    # FIXME: making all reversible
-    new_reaction.bounds = (-1000, 1000)
+    new_reaction.bounds = bounds
     return new_reaction
 
 
@@ -551,17 +581,21 @@ def _convert_string_reaction(
 
     :code:`reaction_identifier, compartment`
 
-    Form custom reactions:
+    For custom reactions:
 
-    :code:`reaction_identifier, reaction_name | metabolite_identifier1:
-    coefficient,`
-    :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
-    coefficient`
+    :code:`reaction_identifier, reaction_name | coefficient metabolite <->
+    coefficient metabolite
 
     Identifiers of metabolites have to end with an underscore and a
     compartment:
 
-    E.g **`OXYGEN-MOLECULE_c: -1`**
+    E.g **`4 OXYGEN-MOLECULE_c`**
+
+    Else, include a model to retrieve identifiers from it.
+
+    Reversibility will depend on the type of arrow that. Options are
+
+    **`<--, -->, <=>, <->`**
 
     Args:
         line (str): String with custom reaction or identifier of reaction
@@ -581,7 +615,7 @@ def _convert_string_reaction(
             model=model,
         )
     # If delimiter is not found, then it must be a reaction
-    except WrongSyntax:
+    except NoDelimiter:
         # add reaction from root. Get only left part
         segment = (part.strip().rstrip() for part in line.split(","))
         identifier = next(segment)
@@ -609,10 +643,18 @@ def _get_file_reactions(
 
     Custom reactions:
 
-    :code:`reaction_identifier, reaction_name | metabolite_identifier1:
-    coefficient,`
-    :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
-    coefficient`
+    :code:`reaction_identifier, reaction_name | coefficient metabolite <->
+    coefficient metabolite
+
+    Identifiers of metabolites have to end with an underscore and a
+    compartment:
+
+    E.g **`4 OXYGEN-MOLECULE_c`**
+
+    Else, include a model to retrieve identifiers from it. Reversibility will
+    depend on the type of arrow that. Options are:
+
+    **`<--, -->, <=>, <->`**
 
     From database:
 
@@ -638,7 +680,10 @@ def _get_file_reactions(
     """
     # TODO: add mass balance check
     if not filename.exists():
-        raise FileNotFoundError(f"Filename {filename.name} does not exist")
+        raise FileNotFoundError(
+            f'File "{filename.name}" does not exist. '
+            + "Check if the given path is correct."
+        )
     with open(filename, "r") as f:
         new_reactions = list()
         for line in _read_lines(f=f):
@@ -784,6 +829,8 @@ def create_object(
             output. Defaults to True.
         model (Model, optional): Model to add search for translated metabolites
             or reactions. Defaults to a empty model.
+
+    Special arguments for databases:
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"

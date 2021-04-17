@@ -57,7 +57,7 @@ add_pathway(
 )
 # Creating new Dummy biomass reaction
 add_reactions(
-    obj="Biomass_c, Biomass reaction | GLN_c: -0.5",
+    obj="Biomass_c, Biomass reaction | 0.5 GLN_c -->",
     model=test_model,
     directory=dir_data,
     database="META",

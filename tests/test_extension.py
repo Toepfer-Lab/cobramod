@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Unittest for module extension
 
-This module test the behavior of multiple functions, which are responsible to
+this module test the behavior of multiple functions, which are responsible to
 add metabolites and reactions into a metabolic model. This module can be
 divided in to parts:
 
@@ -646,7 +646,7 @@ class AddingPathways(TestCase):
             member="RXN_11422_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
-        # CASE 3a: Behaviour if reaction was already in model
+        # CASE 3a: Behavior if reaction was already in model
         test_model = textbook_biocyc.copy()
         # Adding reactions
         test_sequence = ["RXN-2206", "RXN-11414"]
