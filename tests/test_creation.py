@@ -466,6 +466,10 @@ class SimpleFunctions(TestCase):
         )
         self.assertEqual(first=test_tuple, second=(0, 1000))
         self.assertDictEqual(d1=test_dict, d2={"GLC_c": -1.0, "GLC_b": 1.0})
+        # CASE 2: Regular usage. One-sided
+        test_tuple, test_dict = cr._reaction_information(string="GLC_c -->")
+        self.assertEqual(first=test_tuple, second=(0, 1000))
+        self.assertDictEqual(d1=test_dict, d2={"GLC_c": -1.0})
 
     def test__reaction_from_string(self):
         # CASE 1: wrong format, no delimiter

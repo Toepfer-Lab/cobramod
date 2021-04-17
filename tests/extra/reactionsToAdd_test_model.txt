@@ -1,18 +1,18 @@
 # id_rxn, name |{id_meta:value,id_meta2:value} 
 # REDOX (Intentionally unbalanced)
-Redox_NAD_NADH_c, Redox_NAD_NADH_c | NAD_c:-1, NADH_c:1
-Redox_NADP_NADPH_c, Redox_NAD_NADPH_c | NADP_c:-1, NADPH_c:1
-Redox_ADP_ATP_c, Redox_ADP_ATP_c | ADP_c:-1, ATP_c: 1
-Redox_ferrodoxins_c, Redox_ferrodoxins_c | Oxidized-ferredoxins_c:-1, Reduced-ferredoxins_c: 1
-Redox_Quinol_Quinone_c | ETR-Quinols_c:-1 , ETR-Quinones_c:1
+Redox_NAD_NADH_c, Redox_NAD_NADH_c | NAD_c <-> NADH_c
+Redox_NADP_NADPH_c, Redox_NAD_NADPH_c | NADP_c <-> NADPH_c
+Redox_ADP_ATP_c, Redox_ADP_ATP_c | ADP_c <-> ATP_c
+Redox_ferrodoxins_c, Redox_ferrodoxins_c | Oxidized-ferredoxins_c <-> Reduced-ferredoxins_c
+Redox_Quinol_Quinone_c | ETR-Quinols_c <-> ETR-Quinones_c
 
 # Transports
-TRANS_WATER_ec, Transport Water | WATER_e:-1, WATER_c:1
-TRANS_NITRATE_ec, Transport NITRATE | NITRATE_e:-1, NITRATE_c:1
-TRANS_CARBON_ec, Transport CARBON DIOXIDE | CARBON_DIOXIDE_e:-1, CARBON_DIOXIDE_c:1
-TRANS_PROTON_ec, Transport PROTON | PROTON_e:-1, PROTON_c:1
-TRANS_Pi_ec, Transport Phosphate | Pi_e:-1, Pi_c:1
-TRANS_OXYGEN_ec, Transport Oxygen | OXYGEN-MOLECULE_e:-1, OXYGEN-MOLECULE_c:1
+TRANS_WATER_ec, Transport Water | WATER_e <-> WATER_c
+TRANS_NITRATE_ec, Transport NITRATE | NITRATE_e <-> NITRATE_c
+TRANS_CARBON_ec, Transport CARBON DIOXIDE | CARBON_DIOXIDE_e <-> CARBON_DIOXIDE_c
+TRANS_PROTON_ec, Transport PROTON | PROTON_e <-> PROTON_c
+TRANS_Pi_ec, Transport Phosphate | Pi_e <-> Pi_c
+TRANS_OXYGEN_ec, Transport Oxygen | OXYGEN-MOLECULE_e <-> OXYGEN-MOLECULE_c
 
 # Others
 F16ALDOLASE-RXN,c

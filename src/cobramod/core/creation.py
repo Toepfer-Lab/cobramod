@@ -463,7 +463,9 @@ def _reaction_information(string: str) -> tuple:
                 coefficient = "1"
                 identifier = metabolite
             try:
-                participants[identifier] = float(coefficient) * FACTOR
+                # Make sure that no empty strings are added.
+                if identifier:
+                    participants[identifier] = float(coefficient) * FACTOR
             except ValueError:
                 raise WrongSyntax(
                     f"Check the syntax for the given line:\n{string}"
@@ -581,15 +583,19 @@ def _convert_string_reaction(
 
     For custom reactions:
 
-    :code:`reaction_identifier, reaction_name | metabolite_identifier1:
-    coefficient,`
-    :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
-    coefficient`
+    :code:`reaction_identifier, reaction_name | coefficient metabolite <->
+    coefficient metabolite
 
     Identifiers of metabolites have to end with an underscore and a
     compartment:
 
-    E.g **`OXYGEN-MOLECULE_c: -1`**
+    E.g **`4 OXYGEN-MOLECULE_c`**
+
+    Else, include a model to retrieve identifiers from it.
+
+    Reversibility will depend on the type of arrow that. Options are
+
+    **`<--, -->, <=>, <->`**
 
     Args:
         line (str): String with custom reaction or identifier of reaction
@@ -823,6 +829,8 @@ def create_object(
             output. Defaults to True.
         model (Model, optional): Model to add search for translated metabolites
             or reactions. Defaults to a empty model.
+
+    Special arguments for databases:
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model. Pathway are not available.
             Defaults to: "universal"
