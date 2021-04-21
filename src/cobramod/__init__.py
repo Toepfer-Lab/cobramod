@@ -22,11 +22,11 @@ The exclusive class :func:`cobramod.pathway.Pathway` is an extension of
 :class:`cobra.core.group.Group`. CobraMod uses :mod:`Escher` to visualize
 the pathway and fluxes of that specific class. Some new methods added:
 
-- visualize: Return an Builder for the representation of the pathway.
+- visualize: Return a Builder for the representation of the pathway.
 - solution: Filters solution and returns fluxes of only members of the class.
 
-By default, CobraMod creates the file "debug.log", which displays the changes
-occured when running a script. In order to modify the logging, import
+By default, CobraMod creates the file "debug.log", which displays the changes,
+which occurred when running a script. In order to modify the logging, import
 "debug_log" from "cobramod.debug". The default logging level is defined as
 INFO. Read the documentation of logging for more information.
 
@@ -54,4 +54,4 @@ __all__ = [
     "available_databases",
 ]
 
-__version__ = "0.3.2"
+__version__ = "0.3.3"
