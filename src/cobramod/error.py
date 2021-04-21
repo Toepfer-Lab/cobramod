@@ -116,15 +116,16 @@ class UnbalancedReaction(Exception):
     Simple Error that should be raised if a reaction has wrong mass balance.
     """
 
-    def __init__(self, reaction: str):
+    def __init__(self, identifier: str, dict_balance: str):
         """
         Args:
             reaction (str): identifier of the reaction.
         """
-        debug_log.warning(
-            f"Reaction {reaction} is not balanced. "
-            + "Check the equation and the mass of its components."
+        msg = (
+            f'Reaction "{identifier}" unbalanced. Following atoms are '
+            + f"affected. Please verify:\n{dict_balance}"
         )
+        debug_log.critical(msg)
 
 
 class NotInRangeError(Exception):
