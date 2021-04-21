@@ -20,7 +20,7 @@ def _genes_to_reaction(reaction: Reaction, data_dict: dict):
     # Update name
     for gene in reaction.genes:
         gene.name = data_dict["GENES"]["genes"][gene.id]
-        debug_log.debug(
-            f'For reaction "{reaction.id}" gene "{gene.id}" created and name '
-            f'changed to "{gene.name}".'
+        debug_log.info(
+            f'For reaction "{reaction.id}", gene "{gene.id}" was created and '
+            f'its name changed to "{gene.name}".'
         )
