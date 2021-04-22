@@ -6,8 +6,13 @@ import unittest
 import cobramod.core.retrieval as md
 from cobramod.debug import debug_log
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+# If data is missing, then do not test. Data should always be the same
+if not dir_data.exists():
+    raise NotADirectoryError("Data for the test is missing")
 
 
 class RetrievalTesting(unittest.TestCase):
@@ -31,7 +36,10 @@ class RetrievalTesting(unittest.TestCase):
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
         # CASE 3b: Simple retrieval from KEGG (Reaction)
         test_dict = md.get_data(
-            directory=dir_data, database="KEGG", identifier="R02736"
+            directory=dir_data,
+            database="KEGG",
+            identifier="R02736",
+            genome="eco",
         )
         # CASE 3c: Simple retrieval from KEGG (Pathway)
         test_dict = md.get_data(

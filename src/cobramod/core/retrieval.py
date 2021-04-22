@@ -10,8 +10,6 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Type
 
-from requests import HTTPError
-
 from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
@@ -38,7 +36,10 @@ def _get_parser(database: str) -> Type[BaseParser]:
     try:
         return real_parser
     except UnboundLocalError:
-        raise WrongParserError("No parser found for that database")
+        raise WrongParserError(
+            "No parser found for that database. Please check "
+            + "cobramod.retrieval.available_databases"
+        )
 
 
 def get_data(
@@ -68,8 +69,6 @@ def get_data(
     Returns:
         dict: relevant data for given identifier
     """
-    if database is None:
-        raise HTTPError("No database was specified")
     real_parser = _get_parser(database=database)
     return real_parser._retrieve_data(
         directory=directory,
@@ -80,11 +79,10 @@ def get_data(
     )
 
 
-# TODO: These functions below should be moved
 def _retrieve_dict(directory: Path, target: str) -> dict:
     """
     Search and return in given directory, specific target and return a
-    dictionary with the parsed infomation.
+    dictionary with the parsed information.
     Args:
         directory (Path): Path to search. This includes subdirectories
         target (str): Pattern to search.
@@ -132,14 +130,15 @@ def translate(directory: Path, target: str, database: str) -> str:
         str: corresponding identifier for cross-reference.
 
     Raises:
-        FileNotFoundError: If no target can be found
-        WrongParserError: If target cannot be properly identified
+        PatternNotFound: If target cannot be properly identified
     """
+    # Return parsed information
     data_dict = _retrieve_dict(directory=directory, target=target)
     try:
+        # Search for the name of the database as a pattern
         key = get_key_dict(dictionary=data_dict, pattern=database)
         return data_dict[key]
     except PatternNotFound:
         raise PatternNotFound(
-            "No parser could be identified. Please contact maintainers"
+            "No could be identified. Please contact maintainers"
         )
