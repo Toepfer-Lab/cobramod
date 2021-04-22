@@ -558,6 +558,7 @@ def retrieve_data(directory: Path, identifier: str) -> dict:
     if directory.exists():
         database = "KEGG"
         data_dir = directory.joinpath(database)
+        data_dir.mkdir(exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.txt")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         # Try to obtain the data locally or get it from KEGG and store it

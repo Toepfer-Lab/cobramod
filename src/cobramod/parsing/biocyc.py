@@ -428,6 +428,7 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
     """
     if directory.exists():
         data_dir = directory.joinpath(database)
+        data_dir.mkdir(exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
         # Search for the file on directory. Otherwise retrive from database

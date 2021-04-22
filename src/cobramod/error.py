@@ -126,6 +126,7 @@ class UnbalancedReaction(Exception):
             + f"affected. Please verify:\n{dict_balance}"
         )
         debug_log.critical(msg)
+        super().__init__(msg)
 
 
 class NotInRangeError(Exception):
