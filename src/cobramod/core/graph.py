@@ -12,8 +12,15 @@ return the corresponding non-cyclic directed graph.
 from contextlib import suppress
 from collections import Counter
 from itertools import chain
+from typing import Optional, Dict, Any
+from pathlib import Path
+
+from cobra import Model
 
 from cobramod.error import GraphKeyError
+from cobramod.core.creation import get_data, _fix_name
+from cobramod.utils import _first_item
+from cobramod.error import NoIntersectFound
 
 
 def find_missing(graph: dict):
@@ -149,7 +156,7 @@ def cut_parents(graph: dict):
     # Get the keys that are not one
     values = [key for key, value in counter.items() if value != 1]
     # Get candidates
-    candidates = dict()  # type: ignore
+    candidates: Dict[str, Any] = dict()
     for key, value in graph.items():
         if value in values:
             try:
@@ -255,7 +262,7 @@ def get_paths(graph: dict, stop_list: list) -> list:
     difference = verify_paths(paths=paths, graph=graph)
     if difference:
         # Must be independent of each other, otherwise, the order might change
-        # the behaviour of the visualization
+        # the behavior of the visualization
         for item in difference:
             paths.append([item])
     return paths
@@ -311,7 +318,7 @@ def build_graph(graph: dict) -> list:
     """
     # Check that all values are represented
     find_missing(graph=graph)
-    # its value cannot be None. If single element then go direcly to mapping
+    # its value cannot be None. If single element then go directly to mapping
     with suppress(KeyError):
         # Cut parents if needed
         cut_parents(graph=graph)
@@ -320,10 +327,133 @@ def build_graph(graph: dict) -> list:
         # Check until no cycles are found.
         while cycles:
             # This is modify graph
-            # TODO: check wheter tupples are affected
+            # TODO: check whether tuples are affected
             cut_cycle(graph=graph, key=cycles[0][0])
             cycles = return_cycles(graph=graph)
     # This would modify the graph. Use copy
     mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])
     mapping.sort(key=len, reverse=True)
     return mapping
+
+
+def _fix_graph(graph: dict, avoid_list: list, replacement: dict) -> dict:
+    """
+    Returns a new graph, where items are replaced if found in given
+    dictionary or removed if found in given avoid list.
+    """
+    new_graph = graph.copy()
+    # Remove necessary keys in copy
+    for key in graph.keys():
+        if key in avoid_list:
+            del new_graph[key]
+    # use new copy and modify
+    graph = new_graph.copy()
+    # Use replacements
+    for key in graph.keys():
+        if key not in replacement.keys():
+            continue
+        new_key = replacement[key]
+        for key2, value in graph.items():
+            if not value:
+                # In case of None
+                continue
+            # If tuple and found
+            elif isinstance(value, tuple) and key in value:
+                new_value = tuple(item.replace(key, new_key) for item in value)
+            # If string and found
+            elif key in value:
+                new_value = value.replace(key, new_key)
+            # Skip and/or update if necessary
+            else:
+                continue
+            new_graph[key2] = new_value
+        # Update key and remove old
+        new_graph[new_key] = new_graph[key]
+        del new_graph[key]
+    return new_graph
+
+
+def _format_graph(
+    graph: dict,
+    model: Model,
+    compartment: str,
+    directory: Path,
+    database: str,
+    model_id: str,
+    avoid_list: list,
+    replacement: dict,
+    genome: Optional[str],
+) -> dict:
+    """
+    Returns new formatted graph. If an item if found in given replacement dict,
+    the value will be replaced; if found in avoid list, the graph will not
+    contain that value. Function :func`cobramod.get_data` will use passed
+    arguments to format the items. An KeyError will be raised if the format
+    was not correct.
+    """
+    graph = _fix_graph(
+        graph=graph, avoid_list=avoid_list, replacement=replacement
+    )
+    new_graph = graph.copy()
+    # Format tuples, single strings and kes
+    for key in graph.keys():
+        # Get synonym/ Format key
+        # Get data from files
+        key_dict = get_data(
+            directory=directory,
+            database=database,
+            identifier=key,
+            model_id=model_id,
+            genome=genome,
+        )
+        try:
+            # Find synonym
+            new_identifier = _first_item(
+                first=model.reactions, second=key_dict["XREF"], revert=True
+            )
+            new_key = f"{_fix_name(name=new_identifier)}_{compartment}"
+        except (NoIntersectFound, KeyError):
+            # Regular transformation
+            new_key = f'{key.replace("-", "_")}_{compartment}'
+        # Change in new graph the values where key is found
+        for key2, value in new_graph.items():
+            if not value:
+                # In case of None
+                continue
+            # If tuple and found
+            elif isinstance(value, tuple) and key in value:
+                new_value = tuple(item.replace(key, new_key) for item in value)
+            # If string and found
+            elif key in value:
+                new_value = value.replace(key, new_key)
+            # Skip and/or update if necessary
+            else:
+                continue
+            new_graph[key2] = new_value
+        # Change the key and remove old one
+        try:
+            new_graph[new_key] = new_graph[key]
+        except KeyError:
+            pass
+        del new_graph[key]
+    # Test all names
+    for key in new_graph.keys():
+        model.reactions.get_by_id(key)
+    return new_graph
+
+
+def _create_quick_graph(sequence: list) -> dict:
+    """
+    Creates a returns a simple lineal directed graph from given sequence. This
+    function is used for adding pathways
+    """
+    graph = dict()
+    for index, reaction in enumerate(sequence):
+        try:
+            parent = reaction
+            child = sequence[index + 1]
+            graph[parent] = child
+        except IndexError:
+            # It must be the first one
+            graph[reaction] = None
+    return graph
