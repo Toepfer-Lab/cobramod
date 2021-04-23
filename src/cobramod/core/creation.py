@@ -29,6 +29,7 @@ from cobramod.error import (
     WrongDataError,
     NoIntersectFound,
     WrongSyntax,
+    WrongParserError,
     NoDelimiter,
 )
 from cobramod.core.retrieval import get_data
@@ -583,7 +584,7 @@ def _reaction_from_string(
                     model=model,
                 )
             # It is necessary to build the metabolite.
-            except HTTPError:
+            except (WrongParserError, HTTPError):
                 debug_log.debug(
                     f'Custom Metabolite "{identifier}" identified.'
                 )
