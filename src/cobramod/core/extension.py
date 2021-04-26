@@ -11,24 +11,21 @@ flux.
 """
 from contextlib import suppress
 from pathlib import Path
-from typing import Union, Generator, Iterable, Optional
+from typing import Union, Generator, Optional, List
 
 from cobra import Model, Reaction
 
-from cobramod.core.creation import create_object, _fix_name
-from cobramod.core.graph import build_graph
+from cobramod.core.creation import create_object
+from cobramod.core.graph import build_graph, _create_quick_graph, _format_graph
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
-from cobramod.error import NotInRangeError, NoIntersectFound
-from cobramod.utils import _first_item
-
-# from cobramod.utils import get_DataList, get_basic_info, check_to_write
+from cobramod.error import NotInRangeError
 
 
 def _create_reactions(
-    sequence: list,
+    sequence: List[str],
     compartment: str,
     directory: Path,
     database: str,
@@ -40,8 +37,7 @@ def _create_reactions(
     genome: Optional[str],
 ) -> Generator:
     """
-    For each identifier in the sequence, a Reaction will be created. It returns
-    a generator.
+    Yields a Reaction from given list of identifiers .
 
     .. hint:: Hyphens will become underscores. Double hyphens become single\
     underscores.
@@ -62,10 +58,10 @@ def _create_reactions(
             specie involved. Genes will be obtained for this specie.
 
     Returns:
-        Generator: A generator to that gives the reactions.
+        Generator: New Reactions objects
     """
 
-    debug_log.debug(f"Obtaining data for {sequence}")
+    debug_log.debug(f"Obtaining data for following reactions {sequence}")
     # From given list (which could include None values), retrieve only Reaction
     # Objects.
     for identifier in sequence:
@@ -76,7 +72,7 @@ def _create_reactions(
                 f'"{replacement[identifier]}".'
             )
         # Check if translation is available
-        yield create_object(
+        obj = create_object(
             identifier=identifier,
             directory=directory,
             database=database,
@@ -88,14 +84,15 @@ def _create_reactions(
             model_id=model_id,
             genome=genome,
         )
+        yield obj
 
 
 def _find_next_demand(
-    model: Model, reaction_id: str, ignore_list: list = []
+    model: Model, reaction_id: str, ignore_list: List[str] = []
 ) -> str:
     """
-    Returns first metabolite found either in the product or reactant side
-    of given reaction.
+    Returns an identifier of first metabolite found either in the product or
+    reactant side of given reaction.
 
     Reversibility of the reaction is taken into consideration. A list with
     metabolites identifiers can be passed to ignored them.
@@ -103,7 +100,7 @@ def _find_next_demand(
     Args:
         model (Model): model to test
         reaction_id (str): reaction identifier for model
-        ignore_list (Iterable, optional): A sequence of formatted metabolites
+        ignore_list (list, optional): A sequence of formatted metabolites
             to ignore. Defaults to []
 
     Raises:
@@ -112,59 +109,42 @@ def _find_next_demand(
     Returns:
         str: metabolite identifier to create a demand reaction
     """
-    tmp_reaction = model.reactions.get_by_id(reaction_id)
-    # FIXME: find a better approach
+    reaction: Reaction = model.reactions.get_by_id(reaction_id)
+    lb, up = reaction.bounds
     # Checking reversibility
+    metabolites = {
+        "products": (
+            metabolite.id
+            for metabolite in reaction.products
+            if metabolite.id not in ignore_list
+        ),
+        "reactants": (
+            metabolite.id
+            for metabolite in reaction.reactants
+            if metabolite.id not in ignore_list
+        ),
+    }
     # left --> right
-    if model.reactions.get_by_id(reaction_id).upper_bound > abs(
-        model.reactions.get_by_id(reaction_id).lower_bound
-    ):
-        tmp_list = [
-            reaction.id
-            for reaction in tmp_reaction.products
-            if reaction.id not in ignore_list
-        ]
+    if up > abs(lb):
+        candidates = metabolites["products"]
     # left <-- right
-    elif model.reactions.get_by_id(reaction_id).upper_bound < abs(
-        model.reactions.get_by_id(reaction_id).lower_bound
-    ):
-        tmp_list = [
-            reaction.id
-            for reaction in tmp_reaction.reactants
-            if reaction.id not in ignore_list
-        ]
+    elif up < abs(lb):
+        candidates = metabolites["reactants"]
     # left <--> right
-    elif model.reactions.get_by_id(reaction_id).upper_bound == abs(
-        model.reactions.get_by_id(reaction_id).lower_bound
-    ):
+    else:
         # TODO: decide what to do (reversibility)
         # FIXME: isomers sometimes shows double demand
-        tmp_list = [
-            reaction.id
-            for reaction in tmp_reaction.products
-            if reaction.id not in ignore_list
-        ]
-    if len(tmp_list) == 0:
-        # Nothing found
-        raise Warning("No metabolite found to become a demand")
-    else:
+        candidates = metabolites["products"]
+    try:
+        demand: str = next(candidates)
         debug_log.debug(
-            f'Next demand selected for "{reaction_id}": "{tmp_list[0]}"'
+            f'Next demand selected for "{reaction_id}": "{demand}"'
         )
-        return tmp_list[0]
-
-
-def _has_demand(model: Model, metabolite: str) -> bool:
-    """
-    Returns True if model has a demand reaction for given metabolite
-    identifier.
-    """
-    return any(
-        [
-            "DM_" in reaction.id
-            for reaction in model.metabolites.get_by_id(metabolite).reactions
-        ]
-    )
+        return demand
+    except StopIteration:
+        raise StopIteration(
+            "No metabolite found to become a demand for the non-zero flux test"
+        )
 
 
 def _remove_boundary(model: Model, metabolite: str, boundary: str):
@@ -178,28 +158,18 @@ def _remove_boundary(model: Model, metabolite: str, boundary: str):
         boundary (str): type of boundary. Options: "sink", "demand"
     """
     type_prefix = {"sink": "SK_", "demand": "DM_"}
-    if f"{type_prefix[boundary]}{metabolite}" in (
+    reaction = f"{type_prefix[boundary]}{metabolite}"
+    if reaction in (
         reaction.id
         for reaction in model.metabolites.get_by_id(metabolite).reactions
     ):
-        model.remove_reactions([f"{type_prefix[boundary]}{metabolite}"])
+        model.remove_reactions([reaction])
         debug_log.warning(
             f'{boundary.capitalize()} reaction for "{metabolite}" removed'
         )
 
 
-def _less_equal_than_x_reactions(
-    model: Model, metabolite: str, x: int
-) -> bool:
-    """
-    Returns True if given metabolite participates in less or equal than
-    X reactions for given model.
-    """
-    reactions = model.metabolites.get_by_id(metabolite).reactions
-    return len(reactions) <= x
-
-
-def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
+def _verify_boundary(model: Model, metabolite: str, ignore_list: List[str]):
     """
     Verifies that given metabolite has enough sink and demand reaction. It will
     create and remove them if necessary.
@@ -212,7 +182,7 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
     Args:
         model (Model): model to test
         metabolite (str): metabolite identifier for given metabolite.
-        ignore_list (Iterable, optional): A sequence of formatted metabolites
+        ignore_list (list): A sequence of formatted metabolites
             to ignore when testing new reactions. Defaults to []
 
     Raises:
@@ -220,15 +190,23 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
     """
     debug_log.debug(f'Checking "{metabolite}" for sinks and demands')
     if metabolite in ignore_list:
-        msg = f'Metabolite "{metabolite}" ignored'
+        msg = (
+            f'Metabolite "{metabolite}" ignored. No sink or demand reactions'
+            + " will created nor removed."
+        )
         debug_log.warning(msg)
         raise Warning(msg)
+    reactions = len(model.metabolites.get_by_id(metabolite).reactions)
+    demands = [
+        reaction
+        for reaction in model.metabolites.get_by_id(metabolite).reactions
+        if "DM_" in reaction.id
+    ]
     # Check for to add sinks. If demand reaction is found and metabolite has
     # less than two reactions, then create sink, otherwise remove any sink.
-    if _has_demand(model=model, metabolite=metabolite):
-        if _less_equal_than_x_reactions(
-            model=model, metabolite=metabolite, x=2
-        ):
+    if demands:
+        # if _has_demand(model=model, metabolite=metabolite):
+        if reactions <= 2:
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite), type="sink"
             )
@@ -239,18 +217,13 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
             )
     # Otherwise, if it has no demand, add the sink if it has only one reaction
     # and remove sink if more than 2 reactions.
-    # TODO: check for else behaviour
     else:
-        if _less_equal_than_x_reactions(
-            model=model, metabolite=metabolite, x=1
-        ):
+        if reactions <= 1:
             model.add_boundary(
                 metabolite=model.metabolites.get_by_id(metabolite), type="sink"
             )
             debug_log.warning(f'Sink reaction created for "{metabolite}"')
-        elif not _less_equal_than_x_reactions(
-            model=model, metabolite=metabolite, x=2
-        ):
+        elif not reactions <= 2:
             _remove_boundary(
                 model=model, metabolite=metabolite, boundary="sink"
             )
@@ -260,31 +233,30 @@ def _verify_boundary(model: Model, metabolite: str, ignore_list: Iterable):
 
 
 def _fix_side(
-    model: Model, reaction: str, side: str, ignore_list: Iterable = []
+    model: Model, reaction: str, side: str, ignore_list: List[str] = []
 ):
     """
     Checks for either the product or reactant side of a reactions, if
     participant-metabolites have enough sink reactions to produce a feasible
-    answer. If necesary, it will creates or remove them.
+    answer. If necessary, it will creates or remove them.
 
     Args:
         model (Model): model to test.
         reaction_id (str): reaction identifier for given model.
         side (str): Side to verify. Options: "right", "left"
-        ignore_list (Iterable, optional): A sequence of formatted metabolites
+        ignore_list (list, optional): A sequence of formatted metabolites
             to ignore when testing new reactions. Defaults to []:
 
     Raises:
-        TypeError: if ignore list is not iterable
         ValueError: if side is not in the options
     """
-    if not isinstance(ignore_list, Iterable):
-        raise TypeError("Ignore list is not iterable")
-    if side == "right":
-        metabolites = model.reactions.get_by_id(reaction).products
-    elif side == "left":
-        metabolites = model.reactions.get_by_id(reaction).reactants
-    else:
+    participants = {
+        "right": model.reactions.get_by_id(reaction).products,
+        "left": model.reactions.get_by_id(reaction).reactants,
+    }
+    try:
+        metabolites = participants[side]
+    except KeyError:
         raise ValueError('Only valid options are "right" and "left"')
     for meta in metabolites:
         # create or remove
@@ -294,7 +266,7 @@ def _fix_side(
             )
 
 
-def _verify_sinks(model: Model, reaction: str, ignore_list: Iterable):
+def _verify_sinks(model: Model, reaction: str, ignore_list: List[str]):
     """
     Verifies, creates or removes sink reactions for metabolites found in given
     reaction if certain conditions are met.
@@ -308,9 +280,14 @@ def _verify_sinks(model: Model, reaction: str, ignore_list: Iterable):
     Args:
         model (Model): model to examine.
         reaction (str): reaction identifier for given model.
-        ignore_list (Iterable): A sequence of formatted metabolites
+        ignore_list (list): A sequence of formatted metabolites
             to ignore when testing new reactions.
     """
+    debug_log.debug(
+        "Verifying sink and demand reactions related to reaction "
+        + f'"{reaction}". Metabolites of this reaction will be checked for '
+        + "sufficient reactions."
+    )
     # reactant side
     _fix_side(
         model=model, reaction=reaction, ignore_list=ignore_list, side="left"
@@ -326,21 +303,21 @@ def test_result(
     reaction: str,
     minimum: float = 0.1,
     times: int = 0,
-    ignore_list: list = [],
+    ignore_list: List[str] = [],
 ):
     """
     Checks if optimized objective function value for given model has a minimum
     value. Function is recursive and checks if sink reactions
     are enough or exceeded. It creates a demand reaction for reaction for the
-    test and removes it, if necesary.
+    test and removes it, if necessary.
 
     Args:
         model (Model): model, where reaction is located
         reaction (str): reaction identifier in model to test.
-        minium (float, optional): Minium value for test to pass.
-            Defaults to 0.1 .
+        minimum (float, optional): Minimum value to obtain to pass the test for
+            carrying non-zero fluxes. The test is based on a simple FBA.
         times (int, optional): Track of recursions. Defaults to 0.
-        ignore_list (Iterable, optional): A sequence of formatted metabolites
+        ignore_list (list, optional): A sequence of formatted metabolites
             to ignore when testing new reactions. Defaults to []
 
     Raises:
@@ -349,12 +326,14 @@ def test_result(
     """
     if reaction in ignore_list:
         debug_log.warning(
-            f'Reaction "{reaction}" found in ignore list. Skipped'
+            f'Reaction "{reaction}" found in ignore list. Test to carry '
+            + "non-zero fluxes skipped."
         )
         return
-    # TODO: add counter
     if times == 0:
-        debug_log.info(f'Testing reaction "{reaction}"')
+        debug_log.info(
+            f'Test to carry non-zero fluxes for "{reaction}" started'
+        )
     # finding demand for testing
     next_demand = _find_next_demand(
         model=model, reaction_id=reaction, ignore_list=ignore_list
@@ -363,16 +342,23 @@ def test_result(
     # active flux.
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
-        model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = 0.1
-        debug_log.debug(f'Demand "DM_{next_demand}" added')
+        model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = abs(
+            minimum
+        )
+        debug_log.debug(f'Demand "DM_{next_demand}" added to test flux.')
     # Setting maximum times for recursion
     if times == len(model.reactions.get_by_id(reaction).metabolites):
         raise NotInRangeError(reaction=reaction)
     # answer must be reasonable
     # comparison must be using absolute values
-    if not minimum <= abs(model.slim_optimize()):
+    value = model.slim_optimize()
+    if not minimum <= abs(value):
         # Append to log
-        debug_log.debug(f'Reaction "{reaction}" not in range')
+        debug_log.debug(
+            f'Test to carry non-zero fluxes failed. Reaction "{reaction}" '
+            + f"not in range. Minimun value to past test: {minimum}, the test"
+            + f"showed {abs(value)}. "
+        )
         _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
         # Recursive with 'extra' argument
         test_result(
@@ -384,7 +370,10 @@ def test_result(
         )
     else:
         # if works, pass and return old objective
-        debug_log.debug(f'Reaction "{reaction}" showed a feasible answer.')
+        debug_log.debug(
+            f'Reaction "{reaction}" showed a feasible answer. Proceeding'
+            + " removing unnecessary reactions."
+        )
         # Remove old demand
         _remove_boundary(
             model=model, metabolite=next_demand, boundary="demand"
@@ -433,7 +422,8 @@ def _add_sequence(
         # This reaction will not be added.
         if reaction.id in avoid_list:
             debug_log.warning(
-                f'Reaction "{reaction.id}" found in avoid list. Skipping.'
+                f'Reaction "{reaction.id}" found in avoid list. This reaction'
+                + "will not be added to the model"
             )
             continue
         if reaction.id not in [reaction.id for reaction in model.reactions]:
@@ -450,8 +440,13 @@ def _add_sequence(
                     minimum=minimum,
                 )
             else:
-                debug_log.warning(f'Test for reaction "{reaction.id}" skipped')
+                debug_log.warning(
+                    f'Skipping non-zero flux test for reaction "{reaction.id}"'
+                )
             # Add to pathway only if reaction was not previously in the model.
+            debug_log.debug(
+                f'Reaction "{reaction.id}" passed the non-zero test.'
+            )
             pathway.add_members(new_members=[reaction])
         else:
             # FIXME: avoid creating reaction
@@ -468,115 +463,7 @@ def _add_sequence(
         and len(pathway.members) > 0
     ):
         model.add_groups(group_list=[pathway])
-        debug_log.debug("Pathway added to Model")
-
-
-def _remove_reactions(
-    graph: dict, avoid_list: list, replacement: dict
-) -> dict:
-    """
-    Returns a new graph, where items are replaced if found in given
-    dictionary or removed in found in given avoid list.
-    """
-    new_graph = graph.copy()
-    # Remove necessary keys in copy
-    for key in graph.keys():
-        if key in avoid_list:
-            del new_graph[key]
-    # use new copy and modify
-    graph = new_graph.copy()
-    # Use replacements
-    for key in graph.keys():
-        if key not in replacement.keys():
-            continue
-        new_key = replacement[key]
-        for key2, value in graph.items():
-            if not value:
-                # In case of None
-                continue
-            # If tuple and found
-            elif isinstance(value, tuple) and key in value:
-                new_value = tuple(item.replace(key, new_key) for item in value)
-            # If string and found
-            elif key in value:
-                new_value = value.replace(key, new_key)
-            # Skip and/or update if necessary
-            else:
-                continue
-            new_graph[key2] = new_value
-        # Update key and remove old
-        new_graph[new_key] = new_graph[key]
-        del new_graph[key]
-    return new_graph
-
-
-def _format_graph(
-    graph: dict,
-    model: Model,
-    compartment: str,
-    directory: Path,
-    database: str,
-    model_id: str,
-    avoid_list: list,
-    replacement: dict,
-    genome: Optional[str],
-) -> dict:
-    """
-    Returns new formatted graph. If an item if found in given replacement dict,
-    the value will be replaced; if found in avoid list, the graph will not
-    contain that value. Function :func`cobramod.get_data` will use passed
-    arguments to format the items. An KeyError will be raised if the format
-    was not correct.
-    """
-    graph = _remove_reactions(
-        graph=graph, avoid_list=avoid_list, replacement=replacement
-    )
-    new_graph = graph.copy()
-    # Format tuples, single strings and kes
-    for key in graph.keys():
-        # Get synonym/ Format key
-        # Get data from files
-        key_dict = get_data(
-            directory=directory,
-            database=database,
-            identifier=key,
-            model_id=model_id,
-            genome=genome,
-        )
-        try:
-            # Find synonym
-            new_identifier = _first_item(
-                first=model.reactions, second=key_dict["XREF"], revert=True
-            )
-            new_key = f"{_fix_name(name=new_identifier)}_{compartment}"
-        except (NoIntersectFound, KeyError):
-            # Regular transformation
-            new_key = f'{key.replace("-", "_")}_{compartment}'
-        # Change in new graph the values where key is found
-        for key2, value in new_graph.items():
-            if not value:
-                # In case of None
-                continue
-            # If tuple and found
-            elif isinstance(value, tuple) and key in value:
-                new_value = tuple(item.replace(key, new_key) for item in value)
-            # If string and found
-            elif key in value:
-                new_value = value.replace(key, new_key)
-            # Skip and/or update if necessary
-            else:
-                continue
-            new_graph[key2] = new_value
-        # Change the key and remove old one
-        try:
-            new_graph[new_key] = new_graph[key]
-        except KeyError:
-            pass
-        del new_graph[key]
-    # Test all names
-    for key in new_graph.keys():
-        model.reactions.get_by_id(key)
-    return new_graph
+        debug_log.debug(f'Pathway "{pathway.id}" added to Model')
 
 
 def _from_data(
@@ -595,13 +482,13 @@ def _from_data(
     genome: Optional[str],
 ):
     """"
-    Adds a pathway into given model from a dictinary with the information of
-    the pathway into given model from a dictinary with the information of
+    Adds a pathway into given model from a dictionary with the information of
+    the pathway into given model from a dictionary with the information of
     the model.
 
     Args:
         model (Model): Model to expand.
-        data_dict (dict): Dictinary with the information for the pathway.
+        data_dict (dict): Dictionary with the information for the pathway.
         directory (Path): Path for directory to stored and retrieve data.
         database (str): Name of the database to search for reactions and
             metabolites. Check :obj:`cobramod.available_databases` for a list
@@ -617,8 +504,8 @@ def _from_data(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimun (float): Minimum optimized value to pass incheck_to_write
-            every single test.
+        minimum (float): Minimum value to obtain to pass the test for
+            carrying non-zero fluxes. The test is based on a simple FBA.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -681,32 +568,16 @@ def _from_data(
         pathway.graph.update(graph)
 
 
-def _create_quick_graph(sequence: list) -> dict:
-    """
-    Creates a returns a simple lineal directed graph from given sequence.
-    """
-    graph = dict()
-    for index, reaction in enumerate(sequence):
-        try:
-            parent = reaction
-            child = sequence[index + 1]
-            graph[parent] = child
-        except IndexError:
-            # It must be the first one
-            graph[reaction] = None
-    return graph
-
-
 def _from_sequence(
     model: Model,
     identifier: str,
-    sequence: list,
+    sequence: List[str],
     database: str,
     compartment: str,
     directory: Path,
-    avoid_list: list,
+    avoid_list: List[str],
     replacement: dict,
-    ignore_list: list,
+    ignore_list: List[str],
     stop_imbalance: bool,
     show_imbalance: bool,
     minimum: float,
@@ -735,7 +606,8 @@ def _from_sequence(
             This is useful for long cyclical pathways.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        minimun (float): Minimum optimized value to pass in every single test.
+        minimum (float): Minimum value to obtain to pass the test for
+            carrying non-zero fluxes. The test is based on a simple FBA.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -801,9 +673,9 @@ def add_pathway(
     database: str,
     compartment: str,
     group: str = "custom_group",
-    avoid_list: list = [],
+    avoid_list: List[str] = [],
     replacement: dict = {},
-    ignore_list: list = [],
+    ignore_list: List[str] = [],
     filename: Path = None,
     summary: str = None,
     minimum: float = 0.1,
@@ -813,9 +685,10 @@ def add_pathway(
     genome: Optional[str] = None,
 ):
     """
-    Adds given graph for a pathway identifier or a sequence of reactions
-    identifiers into given model. Data will be downloaded and structured
-    according to the specified database.
+    Adds a pathway from given database into a model. Argument pathway can be
+    a list of reactions identifiers or explicitly a pathway identifier. A group
+    of reactions will be included in a custom group. The data will be
+    downloaded and structured according to the database
 
     Args:
         model (Model): Model to expand.
@@ -827,7 +700,8 @@ def add_pathway(
             Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         group (str, optional): Common :class:`cobramod.pathway.Pathway`
-            identifier. Defaults to "custom_group"
+            identifier. Defaults to "custom_group". This only applies for
+            a list of reactions
 
     Arguments for complex pathways:
         avoid_list (list, optional): A sequence of reactions identifiers to
@@ -838,8 +712,9 @@ def add_pathway(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimum (float, optional): Minimum optimized value to pass in every
-            single test. Defaults to 0.1
+        minimum (float, optional): Minimum value to obtain to pass the test for
+            carrying non-zero fluxes. The test is based on a simple FBA.
+            Defaults to 0.1
 
     Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to
@@ -860,11 +735,8 @@ def add_pathway(
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
-
     # Save information for summary methods
     old_values = DataModel.from_model(model)
-
-    # If statements to about polution of debug.
     if isinstance(pathway, str):
         # Get data and transform to a pathway
         data_dict = get_data(
@@ -911,6 +783,5 @@ def add_pathway(
         )
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
-
     # Print summary
     summarize(model, old_values, file_format=summary, filename=filename)

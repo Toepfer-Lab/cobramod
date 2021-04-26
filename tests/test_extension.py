@@ -217,12 +217,20 @@ class CreatingSequences(TestCase):
             ignore_list=[],
         )
         # CASE 0b: wrong side argument
+        test_model = Model(0)
+        add_reactions(
+            model=test_model,
+            obj="OXALODECARB-RXN, c",
+            directory=dir_data,
+            database="META",
+            replacement={},
+        )
         self.assertRaises(
             ValueError,
             ex._fix_side,
-            model=Model(0),
-            reaction=str(),
-            side="Not",
+            model=test_model,
+            reaction="OXALODECARB_RXN_c",
+            side="wrong",
             ignore_list=[],
         )
         # CASE 1: normal creation (left side)
@@ -326,6 +334,7 @@ class CreatingSequences(TestCase):
             directory=dir_data,
             database="META",
             replacement={},
+            show_imbalance=False,
         )
         test_model.objective = "RXN_2206_c"
         ex.test_result(model=test_model, reaction="RXN_2206_c")
@@ -356,6 +365,7 @@ class CreatingSequences(TestCase):
             directory=dir_data,
             database="META",
             replacement={},
+            show_imbalance=False,
         )
         test_model.add_boundary(
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
@@ -387,60 +397,6 @@ class CreatingSequences(TestCase):
             ignore_list=["PROTON_c"],
         )
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
-
-    def test__format_graph(self):
-        # CASE 1: Under other name
-        test_model = textbook_kegg.copy()
-        test_dict = {"ACALD": "MALS", "MALS": None}
-        test_graph = ex._format_graph(
-            graph=test_dict,
-            model=test_model,
-            compartment="c",
-            directory=dir_data,
-            model_id="universal",
-            database="BIGG",
-            avoid_list=[],
-            replacement={},
-            genome=None,
-        )
-        self.assertEqual(first=test_graph["R00228_c"], second="R00472_c")
-        self.assertEqual(first=test_graph["R00472_c"], second=None)
-        self.assertEqual(first=len(test_graph), second=2)
-        # CASE 2: Avoid list
-        test_model = textbook_kegg.copy()
-        test_dict = {"ACALD": "MALS", "MALS": None}
-        test_graph = ex._format_graph(
-            graph=test_dict,
-            model=test_model,
-            compartment="c",
-            directory=dir_data,
-            model_id="universal",
-            database="BIGG",
-            avoid_list=["ACALD"],
-            replacement={},
-            genome=None,
-        )
-        self.assertEqual(first=test_graph["R00472_c"], second=None)
-        self.assertEqual(first=len(test_graph), second=1)
-        # CASE 3: Replacement
-        test_model = textbook_kegg.copy()
-        # ACALDt have to be changed to ACALDt_c
-        test_model.reactions.get_by_id("ACALDt").id = "ACALDt_c"
-        test_dict = {"ACALD": "MALS", "MALS": None}
-        test_graph = ex._format_graph(
-            graph=test_dict,
-            model=test_model,
-            compartment="c",
-            directory=dir_data,
-            model_id="universal",
-            database="BIGG",
-            avoid_list=[],
-            replacement={"ACALD": "ACALDt"},
-            genome=None,
-        )
-        self.assertEqual(first=test_graph["ACALDt_c"], second="R00472_c")
-        self.assertEqual(first=test_graph["R00472_c"], second=None)
-        self.assertEqual(first=len(test_graph), second=2)
 
 
 class AddingPathways(TestCase):
