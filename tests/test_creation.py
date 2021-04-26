@@ -181,6 +181,8 @@ class SimpleFunctions(TestCase):
             database="META",
             replacement={},
             model=Model(0),
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertIsInstance(obj=test_reaction, cls=Reaction)
         self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(0, 1000))
@@ -194,7 +196,7 @@ class SimpleFunctions(TestCase):
             list1=sorted([meta.id for meta in test_reaction.metabolites]),
             list2=sorted(test_list),
         )
-        # CASE 2: Regular KEGG reaction in compartment "p"
+        # CASE 2: Regular KEGG reaction in compartment "p". Irreversible
         test_data = get_data(
             directory=dir_data,
             identifier="R02736",
@@ -209,11 +211,11 @@ class SimpleFunctions(TestCase):
             database="KEGG",
             replacement={},
             model=Model(0),
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertIsInstance(obj=test_reaction, cls=Reaction)
-        self.assertTupleEqual(
-            tuple1=test_reaction.bounds, tuple2=(-1000, 1000)
-        )
+        self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(0, 1000))
         test_list = [
             "C01172_p",
             "C00006_p",
@@ -240,6 +242,8 @@ class SimpleFunctions(TestCase):
             database="KEGG",
             replacement={},
             model=Model(0),
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertIsInstance(obj=test_reaction, cls=Reaction)
         self.assertTupleEqual(
@@ -274,6 +278,8 @@ class SimpleFunctions(TestCase):
             database="META",
             replacement={},
             model=Model(0),
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertIn(
             member="Glucopyranose_p",
@@ -297,6 +303,8 @@ class SimpleFunctions(TestCase):
             database="META",
             replacement={},
             model=Model(0),
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertIn(
             member="Aliphatic_Sulfonates_e",
@@ -318,7 +326,6 @@ class SimpleFunctions(TestCase):
             debug_level=10,
             model_id="universal",
         )
-        # FIXME: find a solution for unformatted identifiers
         test_reaction = cr._get_reaction(
             data_dict=test_data,
             compartment="c",
@@ -327,6 +334,8 @@ class SimpleFunctions(TestCase):
             replacement={},
             model=textbook_kegg,
             model_id="universal",
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertEqual(first=test_reaction.id, second="R00228_c")
         # CASE 6b: Retrieve reaction with translated equivalents. Check for
@@ -345,6 +354,8 @@ class SimpleFunctions(TestCase):
             database="META",
             replacement={},
             model=textbook_kegg,
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertEqual(first=test_reaction.id, second="ADENODEAMIN_RXN_c")
         # WATER
@@ -367,13 +378,15 @@ class SimpleFunctions(TestCase):
         test_model = Model(0)
         test_line = (
             "RXN_17742_c, RXN_17742_c |"
-            "-1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c "
+            "1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c "
         )
         test_reaction = cr._convert_string_reaction(
             line=test_line,
             model=test_model,
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=True,
         )
         self.assertEqual(first="RXN_17742_c", second=test_reaction.id)
         # CASE 2: No delimiter
@@ -384,6 +397,8 @@ class SimpleFunctions(TestCase):
             model=test_model,
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=True,
         )
         self.assertEqual(first="RXN_14462_c", second=test_reaction.id)
         # CASE 2: No delimiter, compartment p
@@ -394,6 +409,8 @@ class SimpleFunctions(TestCase):
             model=test_model,
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=True,
         )
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
         # CASE 3: 100% Custom metabolite
@@ -404,6 +421,8 @@ class SimpleFunctions(TestCase):
             model=test_model,
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=True,
         )
         self.assertEqual(first="CUSTOM_rxn1_p", second=test_reaction.id)
         for metabolite in ["Meta_A_p", "Meta_B_p"]:
@@ -423,6 +442,8 @@ class SimpleFunctions(TestCase):
             database="META",
             compartment="p",
             replacement={},
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
         self.assertCountEqual(
@@ -438,6 +459,8 @@ class SimpleFunctions(TestCase):
             database="META",
             replacement={},
             identifier="ADENODEAMIN-RXN",
+            show_imbalance=True,
+            stop_imbalance=False,
         )
         # WATER
         self.assertIn(
@@ -479,12 +502,16 @@ class SimpleFunctions(TestCase):
             line_string="GLC_cb, GLC_cb GLC_c <-> GLC_b",
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=True,
         )
         # CASE 2: Normal, ID and name differ
         test_reaction = cr._reaction_from_string(
             line_string="GLC_cb, Glucose Transport| 2 GLC_c <=> GLC_b",
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=False,
         )
         # Checking if ID, name and instance are correct.
         self.assertEqual(first=test_reaction.id, second="GLC_cb")
@@ -509,6 +536,8 @@ class SimpleFunctions(TestCase):
             + "4 GLT_c + 2 GLC_c <=> GLC_b + 2 GLT_b",
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=False,
         )
         self.assertEqual(
             first=-4, second=test_reaction.get_coefficient("GLT_c")
@@ -524,6 +553,8 @@ class SimpleFunctions(TestCase):
             filename=dir_input.joinpath("reactions_normal.txt"),
             directory=dir_data,
             database="META",
+            stop_imbalance=False,
+            show_imbalance=True,
         )
         test_names = ["GLC_cb", "RXN_14462_p"]
         self.assertListEqual(

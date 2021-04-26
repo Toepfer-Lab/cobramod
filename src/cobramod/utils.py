@@ -13,7 +13,7 @@ from re import match
 from typing import TextIO, Iterator, Generator, Iterable, Any
 from warnings import warn
 
-from cobra import Model, Reaction, DictList
+from cobra import Reaction, DictList
 
 from cobramod.debug import debug_log
 from cobramod.error import (
@@ -41,11 +41,13 @@ def check_imbalance(
     # Will stop if True
     if dict_balance != {}:
         msg = (
-            f"Reaction '{reaction.id}' unbalanced. "
-            f"Results to {dict_balance}. "
+            f'Reaction "{reaction.id}" unbalanced. Following atoms are '
+            + f"affected. Please verify:\n{dict_balance}"
         )
         if stop_imbalance:
-            raise UnbalancedReaction(reaction=reaction)
+            raise UnbalancedReaction(
+                identifier=reaction.id, dict_balance=dict_balance
+            )
         if show_imbalance:
             debug_log.warning(msg)
             warn(message=msg, category=UserWarning)
@@ -165,33 +167,6 @@ def write_to_file(sequences: Iterable, filename: Path):
     """
     with open(file=str(filename), mode="w+") as f:
         f.writelines(line + "\n" for line in sequences)
-
-
-def get_basic_info(model: Model) -> list:
-    """
-    Returns as a list the information of the model. The order of the items,
-    represents the order for printing.
-    """
-    return [
-        "Summary:",
-        f"Model identifier: {model.id}",
-        "Model name:",
-        str(model.name),
-        "Reactions:",
-        str([reaction.id for reaction in model.reactions]),
-        "Metabolites:",
-        str([metabolite.id for metabolite in model.metabolites]),
-        "Exchanges:",
-        str([exchange.id for exchange in model.exchanges]),
-        "Demands:",
-        str([demand.id for demand in model.demands]),
-        "Sinks:",
-        str([sink.id for sink in model.sinks]),
-        "Genes:",
-        str([gene.id for gene in model.genes]),
-        "Groups:",
-        str([group.id for group in model.groups]),
-    ]
 
 
 def _path_match(directory: Path, pattern: str) -> Path:

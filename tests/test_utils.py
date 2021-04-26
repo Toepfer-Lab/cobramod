@@ -128,14 +128,6 @@ class UtilsTesting(unittest.TestCase):
             self.assertEqual(first=2, second=sum(1 for line in e))
         test_filename.unlink()
 
-    def test_get_basic_info(self):
-        # CASE 1: regular model
-        test_list = ui.get_basic_info(model=textbook_kegg)
-        self.assertEqual(first=18, second=len(test_list))
-        self.assertEqual(
-            first=95, second=len(test_list[5].strip("][]").split(","))
-        )
-
     def test__path_match(self):
         # CASE 1a: regular match, KEGG compound
         test_path = ui._path_match(directory=dir_data, pattern="C00001")

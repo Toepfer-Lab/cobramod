@@ -2,7 +2,7 @@
 """Unittest for module graph
 
 In this modules, the new algorithm is tested. The TestCase GraphTesting checks
-that the behaviour of all important functions works as intended
+that the behavior of all important functions works as intended
 """
 from itertools import chain
 from logging import DEBUG
@@ -11,13 +11,13 @@ from unittest import TestCase, main
 
 from cobramod.debug import debug_log
 from cobramod.error import GraphKeyError
+from cobramod.test import textbook_kegg
 import cobramod.core.graph as gr
 
 # Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
 # Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
-dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
@@ -25,7 +25,7 @@ if not dir_data.exists():
 
 class GraphTesting(TestCase):
     """
-    This new TestCase Checks that the behaviour of the new algorithm works as
+    This new TestCase Checks that the behavior of the new algorithm works as
     intended.
     """
 
@@ -95,9 +95,8 @@ class GraphTesting(TestCase):
             "R4": "R0",
             "R5": "R4",
         }
-        # Behaviour of tuples
+        # Behavior of tuples
         test_answer = gr.find_cycle(graph=test_dict, key="R1", visited=[])
-        # TODO: Refactor behaviour.
         self.assertEqual(first=len(test_answer), second=4)
 
     def test_return_cycles(self):
@@ -480,6 +479,60 @@ class GraphTesting(TestCase):
         self.assertEqual(
             first=len(set(chain.from_iterable(test_list))), second=13
         )
+
+    def test__format_graph(self):
+        # CASE 1: Under other name
+        test_model = textbook_kegg.copy()
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = gr._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=[],
+            replacement={},
+            genome=None,
+        )
+        self.assertEqual(first=test_graph["R00228_c"], second="R00472_c")
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=2)
+        # CASE 2: Avoid list
+        test_model = textbook_kegg.copy()
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = gr._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=["ACALD"],
+            replacement={},
+            genome=None,
+        )
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=1)
+        # CASE 3: Replacement
+        test_model = textbook_kegg.copy()
+        # ACALDt have to be changed to ACALDt_c
+        test_model.reactions.get_by_id("ACALDt").id = "ACALDt_c"
+        test_dict = {"ACALD": "MALS", "MALS": None}
+        test_graph = gr._format_graph(
+            graph=test_dict,
+            model=test_model,
+            compartment="c",
+            directory=dir_data,
+            model_id="universal",
+            database="BIGG",
+            avoid_list=[],
+            replacement={"ACALD": "ACALDt"},
+            genome=None,
+        )
+        self.assertEqual(first=test_graph["ACALDt_c"], second="R00472_c")
+        self.assertEqual(first=test_graph["R00472_c"], second=None)
+        self.assertEqual(first=len(test_graph), second=2)
 
 
 if __name__ == "__main__":
