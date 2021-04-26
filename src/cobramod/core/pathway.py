@@ -55,7 +55,7 @@ class Pathway(Group):
                 kind. (Text extracted from parent.)
         """
         super().__init__(id=id, name=name, kind=kind)
-        # Loop has to be after __init__, otherwise, behaviour of class changes.
+        # Loop has to be after __init__, otherwise, behavior of class changes.
         # TODO: Is order necessary?
         self.order: List[str] = list()
         self.graph: dict = dict()
@@ -80,7 +80,7 @@ class Pathway(Group):
     def __check_copy(self):
         """
         This method checks if the length of the members is zero and attribute
-        "order" is larger thatn zero. This check is made is to check if method
+        "order" is larger that zero. This check is made is to check if method
         :func:`cobra.core.model.Model.copy` is called. For copies, order must
         reset.
         """
@@ -88,7 +88,7 @@ class Pathway(Group):
             self.order: List[str] = list()
             self.graph: dict = dict()
             debug_log.debug(
-                f'Attribute order from  pathway "{self.id}" reset. '
+                f'Attribute order from pathway "{self.id}" reset. '
                 f"Check if a method copy() from cobra.Model was called."
             )
 

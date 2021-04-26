@@ -1,6 +1,6 @@
 """Unittest for module pathway
 
-This module includes the TestCase TestGroup. This checks the behaviour of the
+This module includes the TestCase TestGroup. This checks the behavior of the
 new child of :obj:`cobra.core.group.Group` "Pathway". This new class is able
 to use Escher for its visualizations.
 """
