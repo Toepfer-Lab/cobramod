@@ -148,6 +148,7 @@ class Pathway(Group):
         solution_fluxes: Union[Solution, Dict[str, float]] = None,
         filename: Path = None,
         vertical: bool = False,
+        color: str = None,
     ) -> Builder:
         """
         Returns a :class:`escher.Builder`, which can be use to create visual

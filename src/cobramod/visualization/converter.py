@@ -24,7 +24,9 @@ visualizations.
 - visualize: Saves Escher visualization as a HTML and return the Escher
 Builder.
 """
-
+import colorsys
+import logging
+import timeit
 from collections import UserDict, namedtuple
 from contextlib import suppress
 from itertools import cycle
@@ -34,6 +36,7 @@ from pathlib import Path
 from warnings import catch_warnings, simplefilter
 from webbrowser import open as web_open
 
+import numpy as np
 from escher import Builder
 from IPython.core.getipython import get_ipython
 
@@ -73,7 +76,7 @@ def _convert_string(string: str) -> dict:
         middle = middle + 1
     else:
         middle = middle - 1
-    left, right = string[: middle - 1], string[middle + 2 :]
+    left, right = string[: middle - 1], string[middle + 2:]
     metabolites = dict()
     for side in (left, right):
         # If split do not work, then add a "1"
@@ -161,6 +164,7 @@ class JsonDictionary(UserDict):
         # Dictionary with relationship of reactions
         self.graph: dict = dict()
         self.reaction_strings = dict()
+        self.reaction_scale = dict()
 
     def get_canvas(self) -> dict:
         return {
@@ -251,14 +255,14 @@ class JsonDictionary(UserDict):
         return max(numbers) + 1
 
     def add_metabolite(
-        self,
-        x: float,
-        y: float,
-        label_x: float,
-        label_y: float,
-        bigg_id: str,
-        name: str,
-        node_is_primary: bool,
+            self,
+            x: float,
+            y: float,
+            label_x: float,
+            label_y: float,
+            bigg_id: str,
+            name: str,
+            node_is_primary: bool,
     ):
         """
         Add a metabolite-type node into the JsonDictionary. The key will be
@@ -312,11 +316,11 @@ class JsonDictionary(UserDict):
         )
 
     def _add_reaction_markers(
-        self,
-        identifier: str,
-        top_edge: float,
-        left_edge: float,
-        vertical: bool,
+            self,
+            identifier: str,
+            top_edge: float,
+            left_edge: float,
+            vertical: bool,
     ):
         """
         Add the corresponding midmarker and multimarkers into the
@@ -330,9 +334,9 @@ class JsonDictionary(UserDict):
         # if top_edge is None and left_edge is None:
         #     top_edge, left_edge = self._get_edges()
         for node_type, extra_x, node_position in (
-            ("multimarker", -20, "_first"),
-            ("midmarker", 0, "_middle"),
-            ("multimarker", 20, "_last"),
+                ("multimarker", -20, "_first"),
+                ("midmarker", 0, "_middle"),
+                ("multimarker", 20, "_last"),
         ):
             last = self._get_last_number(item="nodes")
             self._overview[identifier]["nodes"][node_position] = last
@@ -400,7 +404,7 @@ class JsonDictionary(UserDict):
         return previous
 
     def _find_shared(
-        self, metabolite: str, products: Dict[str, list]
+            self, metabolite: str, products: Dict[str, list]
     ) -> tuple:
         """
         Returns the node number of the metabolite and the reaction involved if
@@ -427,12 +431,12 @@ class JsonDictionary(UserDict):
         return node_number, old_reaction
 
     def map_metabolites(
-        self,
-        metabolite_dict: dict,
-        reaction: Reaction,
-        top_edge: float,
-        left_edge: float,
-        vertical: bool,
+            self,
+            metabolite_dict: dict,
+            reaction: Reaction,
+            top_edge: float,
+            left_edge: float,
+            vertical: bool,
     ):
         """
         Creates the metabolites from given dictionary and complements the
@@ -605,13 +609,13 @@ class JsonDictionary(UserDict):
         # Segments from other reactions.
 
     def add_reaction(
-        self,
-        row: int,
-        column: int,
-        string: str,
-        name: str,
-        identifier: str,
-        vertical: bool,
+            self,
+            row: int,
+            column: int,
+            string: str,
+            name: str,
+            identifier: str,
+            vertical: bool,
     ):
         """
         Parses and add given reaction string as a reaction for the
@@ -688,8 +692,66 @@ class JsonDictionary(UserDict):
         self._overview = {}
         self.data["reactions"] = {}
         self.data["nodes"] = {}
+        self.reaction_scale = dict()
 
-    def visualize(self, filepath: Path = None, vertical: bool = False):
+    def color_grading(self, color: ([int, int, int], [int, int, int]), static: bool = False):
+        starttime = timeit.default_timer()
+        intermediate = [255, 255, 255]
+
+        if static:
+            self.reaction_scale = [
+                {'type': 'value', "value": -2500, 'color': 'rgb(210,210,210)'},
+                {'type': 'value', "value": -300, 'color': 'rgb(190,190,190)'},
+                {'type': 'value', "value": 0, 'color': 'rgb(170,170,170)'},
+                {'type': 'value', "value": 300, 'color': 'rgb(140,140,140)'},
+                {'type': 'value', "value": 2500, 'color': 'rgb(110,110,110)'}
+            ]
+
+            return
+
+        flux = list(self.flux_solution.values())
+        steps = min(100, len(flux))
+
+        positive = list()
+        negative = [i for i in flux if i < 0 or (i >= 0 and positive.append(i))]
+        devide = len(positive) / (len(flux))
+
+        min_flux = min(flux)
+        reaction_scale = []
+
+        color1 = np.array(color[0], dtype=np.float32)
+        color2 = np.array(color[1], dtype=np.float32)
+
+        step_color = (color2 - color1) / (steps)
+        step_value = (max(flux) - min_flux) / (steps)
+
+        for i in range(0, steps):
+            reaction_scale.append({"type": "value",
+                                   "value": min_flux,
+                                   "color": "rgb(%d,%d,%d)" % (color1[0], color1[1], color1[2])})
+
+            print("rgb(%d,%d,%d)" % (color1[0], color1[1], color1[2]))
+            color1 += step_color
+            min_flux += step_value
+
+        print("The time difference is :", timeit.default_timer() - starttime)
+
+        """
+        # creation of a scaling based on the ordered list of flux values (currently a maximum of 10 values)
+        for value, index in zip(flux, range(10, 1, -1)):
+            reaction_scale.append(
+                {"type": "value",
+                 "value": value,
+                 "color": "rgb(%d,%d,%d)" % (20 * index, 20 * index, 20 * index),
+                 "size": 20 - index})
+            print(value, index, "%d,%d,%d" % (index, index, index))
+
+        # scaling based on escher's built-in quantile method
+        
+        """
+        self.reaction_scale = reaction_scale
+
+    def visualize(self, filepath: Path = None, vertical: bool = False, color: str = None):
         """
         Saves the visualization of the JsonDictionary in given path as a HTML.
         Returns the builder for the JsonDictionary. If method is called in
@@ -705,6 +767,7 @@ class JsonDictionary(UserDict):
                 the current working directory
             vertical (bool): Defines if pathway should be illustrated
                 vertically. Defaults to False.
+            color (str): ... available 'blue-orange', .
         Returns:
             Builder: Escher builder object for the visualization
         """
@@ -734,10 +797,25 @@ class JsonDictionary(UserDict):
                     identifier=reaction,
                     vertical=vertical,
                 )
+
+        rgb = {
+            "blue-orange": ([0, 131, 184], [179, 94, 0]),
+            "turquoise-orange": ([179, 97, 17], [9, 171, 179]),
+            "green-purple": ([179, 1, 113], [17, 179, 0])
+        }
+
+        if color is not None:
+            try:
+                self.color_grading(rgb[color])
+            except KeyError:
+                logging.warn("Unknown color. Using default color.")
+
         builder = Builder(
-            reaction_styles=["text"],
+            # Check how reaction_styles behaves
+            reaction_styles=['color', 'text'],
             map_name=self.data["head"]["map_name"],
             map_json=self.json_dump(),
+            reaction_scale=self.reaction_scale,
         )
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
