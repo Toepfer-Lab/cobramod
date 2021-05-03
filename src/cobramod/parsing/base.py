@@ -50,7 +50,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def _return_database(database: str) -> str:
+    def _check_database(database: str):
         """
         Basic check method.
         """
