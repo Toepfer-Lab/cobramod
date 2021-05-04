@@ -1,0 +1,224 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:MALSYN-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:MALSYN-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:MALSYN-RXN" detail="full" frameid="MALSYN-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O32913</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O32913</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P45458</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P45458</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P49081</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P49081</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P13244</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P13244</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P08216</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P08216</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P21360</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P21360</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P08997</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P08997</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P17815</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P17815</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P17432</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P17432</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P37330</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P37330</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P21826</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P21826</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q43827</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q43827</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P30952</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P30952</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P28345</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P28345</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P28344</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P28344</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q02216</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q02216</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P42450</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P42450</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R00472</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00472</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>18182</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=18182</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T44752</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T44752</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T07690</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T07690</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T03412</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T03412</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>SYRPMA</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=SYRPMA</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>SYKVMA</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=SYKVMA</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>SYHQMA</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=SYHQMA</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>SYECMA</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=SYECMA</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>SYCSM2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=SYCSM2</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>SYCNMU</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=SYCNMU</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S51788</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S51788</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S48493</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S48493</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S44186</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S44186</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S26645</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S26645</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S17774</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S17774</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S17773</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S17773</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S15387</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S15387</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JX0196</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JX0196</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JX0195</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JX0195</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>I40715</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=I40715</dblink-URL>
+</dblink>
+<ec-number>EC-2.3.3.9<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-6306" detail="low" frameid="ENZRXNQT-6306" orgid="ARA"><enzyme><Protein frameid="AT5G03860-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G03860-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALSYN-RXN" orgid="ARA" resource="#ARA:MALSYN-RXN" /></reaction>
+<common-name datatype="string">malate synthase A</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<synonym datatype="string">glyoxylate-acetate condensation</synonym>
+<synonym datatype="string">glyoxylate transacetylation</synonym>
+<synonym datatype="string">Malate synthetase</synonym>
+<synonym datatype="string">Malate condensing enzyme</synonym>
+<synonym datatype="string">Glyoxylate transacetylase</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-9.251221</gibbs-0>
+<in-pathway><Pathway frameid="GLYOXYLATE-BYPASS" orgid="ARA" resource="getxml?ARA:GLYOXYLATE-BYPASS" /><Pathway frameid="GLYOXDEG-PWY" orgid="ARA" resource="getxml?ARA:GLYOXDEG-PWY" /></in-pathway>
+<left><Compound frameid="ACETYL-COA" orgid="ARA" resource="getxml?ARA:ACETYL-COA" /></left>
+<left><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></left>
+<left><Compound frameid="GLYOX" orgid="ARA" resource="getxml?ARA:GLYOX" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="MAL" orgid="ARA" resource="getxml?ARA:MAL" /></right>
+<right><Compound frameid="CO-A" orgid="ARA" resource="getxml?ARA:CO-A" /></right>
+</Reaction>
+</ptools-xml>

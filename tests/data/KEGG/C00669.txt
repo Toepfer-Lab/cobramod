@@ -9,6 +9,7 @@ MOL_WEIGHT  250.2722
 REACTION    R00497 R00894 R02741 R02742 R02743 R11013
 PATHWAY     map00480  Glutathione metabolism
             map01100  Metabolic pathways
+            map01240  Biosynthesis of cofactors
             map04216  Ferroptosis
 MODULE      M00118  Glutathione biosynthesis, glutamate => glutathione
 ENZYME      1.8.1.13        1.14.99.50      4.3.2.9         6.3.2.2         

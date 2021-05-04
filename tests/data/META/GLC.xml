@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:GLC"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:GLC"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:GLC</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:GLC" detail="full" frameid="GLC" orgid="META"><parent><Compound class="true" frameid="Glucopyranose" orgid="META" resource="getxml?META:Glucopyranose" /></parent>
@@ -12,47 +12,6 @@
 <string title="smiles">C(O)[C@H]1(O[C@@H](O)[C@H](O)[C@@H](O)[C@H](O)1)</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-8440" detail="low" frameid="REG0-8440" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GLYCOPHOSPHORYL-ENZRXN" detail="low" frameid="GLYCOPHOSPHORYL-ENZRXN" orgid="META"><reaction><Reaction frameid="GLYCOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-RXN" /></reaction>
-<synonym datatype="string">amylophosphorylase</synonym>
-<synonym datatype="string">polyphosphorylase</synonym>
-<synonym datatype="string">polyglucose phosphorylase</synonym>
-<synonym datatype="string">1,4-&amp;alpha;-D-glucan:orthophosphate &amp;alpha;-D-glucosyltransferase</synonym>
-<common-name datatype="string">glycogen phosphorylase</common-name>
-<enzyme><Protein frameid="GLYCOPHOSPHORYL-CPLX" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-13370" detail="low" frameid="REG-13370" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-19051" detail="low" frameid="ENZRXN-19051" orgid="META"><reaction><Reaction frameid="3.2.1.91-RXN" orgid="META" resource="getxml?META:3.2.1.91-RXN" /></reaction>
-<common-name datatype="string">cellulose 1,4-&amp;beta;-cellobiohydrolase</common-name>
-<enzyme><Protein frameid="MONOMER-16500" orgid="META" resource="getxml?META:MONOMER-16500" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10901" detail="low" frameid="REG-10901" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6091" detail="low" frameid="ENZRXN-6091" orgid="META"><reaction><Reaction frameid="TRE6PHYDRO-RXN" orgid="META" resource="getxml?META:TRE6PHYDRO-RXN" /></reaction>
-<synonym datatype="string">phospho-&amp;alpha;(1,1)glucosidase</synonym>
-<synonym datatype="string">7751281</synonym>
-<synonym datatype="string">phosphotrehalase</synonym>
-<common-name datatype="string">trehalose-6-phosphate hydrolase</common-name>
-<enzyme><Protein frameid="MONOMER-5946" orgid="META" resource="getxml?META:MONOMER-5946" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">&amp;beta;-D-glucose</synonym>
-<synonym datatype="string">&amp;beta;-glucose</synonym>
-<appears-in-left-side-of><Reaction frameid="GLUCOSE-OXIDASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-OXIDASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN18C3-14" orgid="META" resource="getxml?META:RXN18C3-14" /><Reaction frameid="RXN18C3-17" orgid="META" resource="getxml?META:RXN18C3-17" /><Reaction frameid="RXN18C3-18" orgid="META" resource="getxml?META:RXN18C3-18" /><Reaction frameid="3.2.1.106-RXN" orgid="META" resource="getxml?META:3.2.1.106-RXN" /><Reaction frameid="RXN-18147" orgid="META" resource="getxml?META:RXN-18147" /><Reaction frameid="RXN-10691" orgid="META" resource="getxml?META:RXN-10691" /><Reaction frameid="ALDOSE-1-EPIMERASE-RXN" orgid="META" resource="getxml?META:ALDOSE-1-EPIMERASE-RXN" /><Reaction frameid="TREHALA-RXN" orgid="META" resource="getxml?META:TREHALA-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">&amp;beta;-D-glucopyranose</common-name>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/217/</dblink-oid>
@@ -122,14 +81,55 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=WQZGKKKJIJFFOK-VFUOTHLCSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-8440" detail="low" frameid="REG0-8440" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLYCOPHOSPHORYL-ENZRXN" detail="low" frameid="GLYCOPHOSPHORYL-ENZRXN" orgid="META"><common-name datatype="string">glycogen phosphorylase</common-name>
+<enzyme><Protein frameid="GLYCOPHOSPHORYL-CPLX" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-CPLX" /></enzyme>
+<reaction><Reaction frameid="GLYCOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-RXN" /></reaction>
+<synonym datatype="string">amylophosphorylase</synonym>
+<synonym datatype="string">polyphosphorylase</synonym>
+<synonym datatype="string">polyglucose phosphorylase</synonym>
+<synonym datatype="string">1,4-&amp;alpha;-D-glucan:orthophosphate &amp;alpha;-D-glucosyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13370" detail="low" frameid="REG-13370" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-19051" detail="low" frameid="ENZRXN-19051" orgid="META"><common-name datatype="string">cellulose 1,4-&amp;beta;-cellobiohydrolase</common-name>
+<enzyme><Protein frameid="MONOMER-16500" orgid="META" resource="getxml?META:MONOMER-16500" /></enzyme>
+<reaction><Reaction frameid="3.2.1.91-RXN" orgid="META" resource="getxml?META:3.2.1.91-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10901" detail="low" frameid="REG-10901" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6091" detail="low" frameid="ENZRXN-6091" orgid="META"><common-name datatype="string">trehalose-6-phosphate hydrolase</common-name>
+<enzyme><Protein frameid="MONOMER-5946" orgid="META" resource="getxml?META:MONOMER-5946" /></enzyme>
+<reaction><Reaction frameid="TRE6PHYDRO-RXN" orgid="META" resource="getxml?META:TRE6PHYDRO-RXN" /></reaction>
+<synonym datatype="string">phospho-&amp;alpha;(1,1)glucosidase</synonym>
+<synonym datatype="string">7751281</synonym>
+<synonym datatype="string">phosphotrehalase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">&amp;beta;-D-glucose</synonym>
+<synonym datatype="string">&amp;beta;-glucose</synonym>
+<appears-in-left-side-of><Reaction frameid="GLUCOSE-OXIDASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-OXIDASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-21855" orgid="META" resource="getxml?META:RXN-21855" /><Reaction frameid="RXN18C3-14" orgid="META" resource="getxml?META:RXN18C3-14" /><Reaction frameid="RXN18C3-17" orgid="META" resource="getxml?META:RXN18C3-17" /><Reaction frameid="RXN18C3-18" orgid="META" resource="getxml?META:RXN18C3-18" /><Reaction frameid="3.2.1.106-RXN" orgid="META" resource="getxml?META:3.2.1.106-RXN" /><Reaction frameid="RXN-18147" orgid="META" resource="getxml?META:RXN-18147" /><Reaction frameid="RXN-10691" orgid="META" resource="getxml?META:RXN-10691" /><Reaction frameid="ALDOSE-1-EPIMERASE-RXN" orgid="META" resource="getxml?META:ALDOSE-1-EPIMERASE-RXN" /><Reaction frameid="TREHALA-RXN" orgid="META" resource="getxml?META:TREHALA-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

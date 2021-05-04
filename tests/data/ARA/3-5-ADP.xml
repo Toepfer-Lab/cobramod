@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:3-5-ADP"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:3-5-ADP"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:3-5-ADP</query>
 <num_results>1</num_results>
@@ -13,7 +13,6 @@
 <string title="smiles">C(OP(=O)([O-])[O-])[C@H]3(O[C@@H](N1(C2(\C(\N=C/1)=C(N)/N=C\N=2)))[C@H](O)[C@H](OP([O-])(=O)[O-])3)</string>
 </molecule>
 </cml>
-<common-name datatype="string">adenosine 3',5'-bisphosphate</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00045</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -64,16 +63,17 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00054</dblink-URL>
 </dblink>
+<synonym datatype="string">adenosine-3',5'-bisphosphate</synonym>
+<synonym datatype="string">phosphoadenosine phosphate</synonym>
+<synonym datatype="string">PAP</synonym>
 <gibbs-0 datatype="float" units="kcal/mol">-407.61966</gibbs-0>
 <inchi datatype="string">InChI=1S/C10H15N5O10P2/c11-8-5-9(13-2-12-8)15(3-14-5)10-6(16)7(25-27(20,21)22)4(24-10)1-23-26(17,18)19/h2-4,6-7,10,16H,1H2,(H2,11,12,13)(H2,17,18,19)(H2,20,21,22)/p-4/t4-,6-,7-,10-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=WHTCPDAXWFLDIH-KQYNXXCUSA-J</inchi-key>
 <molecular-weight datatype="float" units="Daltons">423.172</molecular-weight>
 <monoisotopic-mw datatype="float" units="Daltons">427.02942</monoisotopic-mw>
-<synonym datatype="string">adenosine-3',5'-bisphosphate</synonym>
-<synonym datatype="string">phosphoadenosine phosphate</synonym>
-<synonym datatype="string">PAP</synonym>
 <abbrev-name datatype="string">3',5'-ADP</abbrev-name>
 <appears-in-left-side-of><Reaction frameid="1.8.4.8-RXN" orgid="ARA" resource="getxml?ARA:1.8.4.8-RXN" /><Reaction frameid="325-BISPHOSPHATE-NUCLEOTIDASE-RXN" orgid="ARA" resource="getxml?ARA:325-BISPHOSPHATE-NUCLEOTIDASE-RXN" /></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction frameid="ALCOHOL-SULFOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ALCOHOL-SULFOTRANSFERASE-RXN" /><Reaction frameid="RXN-18762" orgid="ARA" resource="getxml?ARA:RXN-18762" /><Reaction frameid="RXN-18179" orgid="ARA" resource="getxml?ARA:RXN-18179" /><Reaction frameid="RXN-10879" orgid="ARA" resource="getxml?ARA:RXN-10879" /><Reaction frameid="HOLO-ACP-SYNTH-RXN" orgid="ARA" resource="getxml?ARA:HOLO-ACP-SYNTH-RXN" /><Reaction frameid="RXN-10451" orgid="ARA" resource="getxml?ARA:RXN-10451" /><Reaction frameid="RXN-10876" orgid="ARA" resource="getxml?ARA:RXN-10876" /><Reaction frameid="RXN-10875" orgid="ARA" resource="getxml?ARA:RXN-10875" /><Reaction frameid="ENTDB-RXN" orgid="ARA" resource="getxml?ARA:ENTDB-RXN" /><Reaction frameid="RXN-10453" orgid="ARA" resource="getxml?ARA:RXN-10453" /><Reaction frameid="FLAVONOL-3-SULFOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:FLAVONOL-3-SULFOTRANSFERASE-RXN" /><Reaction frameid="RXN-4606" orgid="ARA" resource="getxml?ARA:RXN-4606" /><Reaction frameid="RXN-10244" orgid="ARA" resource="getxml?ARA:RXN-10244" /><Reaction frameid="RXN-10869" orgid="ARA" resource="getxml?ARA:RXN-10869" /><Reaction frameid="RXN-10874" orgid="ARA" resource="getxml?ARA:RXN-10874" /><Reaction frameid="RXN-10880" orgid="ARA" resource="getxml?ARA:RXN-10880" /><Reaction frameid="RXN-1443" orgid="ARA" resource="getxml?ARA:RXN-1443" /><Reaction frameid="RXN-2209" orgid="ARA" resource="getxml?ARA:RXN-2209" /><Reaction frameid="RXNQT-4329" orgid="ARA" resource="getxml?ARA:RXNQT-4329" /><Reaction frameid="RXNQT-4330" orgid="ARA" resource="getxml?ARA:RXNQT-4330" /><Reaction frameid="RXNQT-4331" orgid="ARA" resource="getxml?ARA:RXNQT-4331" /><Reaction frameid="RXNQT-4332" orgid="ARA" resource="getxml?ARA:RXNQT-4332" /><Reaction frameid="RXNQT-4333" orgid="ARA" resource="getxml?ARA:RXNQT-4333" /><Reaction frameid="STEROID-SULFOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:STEROID-SULFOTRANSFERASE-RXN" /><Reaction frameid="2.8.2.26-RXN" orgid="ARA" resource="getxml?ARA:2.8.2.26-RXN" /><Reaction frameid="2.8.2.27-RXN" orgid="ARA" resource="getxml?ARA:2.8.2.27-RXN" /><Reaction frameid="2.8.2.28-RXN" orgid="ARA" resource="getxml?ARA:2.8.2.28-RXN" /><Reaction frameid="RXN-10130" orgid="ARA" resource="getxml?ARA:RXN-10130" /><Reaction frameid="RXN-10131" orgid="ARA" resource="getxml?ARA:RXN-10131" /><Reaction frameid="RXN-10132" orgid="ARA" resource="getxml?ARA:RXN-10132" /><Reaction frameid="RXN-10138" orgid="ARA" resource="getxml?ARA:RXN-10138" /><Reaction frameid="RXN-10878" orgid="ARA" resource="getxml?ARA:RXN-10878" /><Reaction frameid="RXN-10873" orgid="ARA" resource="getxml?ARA:RXN-10873" /><Reaction frameid="RXN-10868" orgid="ARA" resource="getxml?ARA:RXN-10868" /><Reaction frameid="RXN-10811" orgid="ARA" resource="getxml?ARA:RXN-10811" /></appears-in-right-side-of>
+<common-name datatype="string">adenosine 3',5'-bisphosphate</common-name>
 </Compound>
 </ptools-xml>

@@ -1,18 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:L-ASPARTATE-OXID-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:L-ASPARTATE-OXID-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:L-ASPARTATE-OXID-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:L-ASPARTATE-OXID-RXN" detail="full" frameid="L-ASPARTATE-OXID-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
-<right><Compound frameid="IMINOASPARTATE" orgid="META" resource="getxml?META:IMINOASPARTATE" /></right>
-<right><Compound frameid="HYDROGEN-PEROXIDE" orgid="META" resource="getxml?META:HYDROGEN-PEROXIDE" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR96094</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -30,21 +24,21 @@
 </dblink>
 <ec-number>EC-1.4.3.16<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:L-ASPARTATE-OXID-ENZRXN" detail="low" frameid="L-ASPARTATE-OXID-ENZRXN" orgid="META"><reaction><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="#META:L-ASPARTATE-OXID-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:L-ASPARTATE-OXID-ENZRXN" detail="low" frameid="L-ASPARTATE-OXID-ENZRXN" orgid="META"><common-name datatype="string">L-aspartate oxidase</common-name>
+<enzyme><Protein frameid="L-ASPARTATE-OXID-MONOMER" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-MONOMER" /></enzyme>
+<reaction><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="#META:L-ASPARTATE-OXID-RXN" /></reaction>
 <synonym datatype="string">quinolinate synthetase B</synonym>
 <synonym datatype="string">L-aspartate:oxygen oxidoreductase (deaminating)</synonym>
 <synonym datatype="string">L-aspartate:oxygen transhydrogenase</synonym>
 <synonym datatype="string">LASPO</synonym>
-<common-name datatype="string">L-aspartate oxidase</common-name>
-<enzyme><Protein frameid="L-ASPARTATE-OXID-MONOMER" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-MONOMER" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13364" detail="low" frameid="ENZRXN-13364" orgid="META"><reaction><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="#META:L-ASPARTATE-OXID-RXN" /></reaction>
-<common-name datatype="string">L-aspartate oxidase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13364" detail="low" frameid="ENZRXN-13364" orgid="META"><common-name datatype="string">L-aspartate oxidase</common-name>
 <enzyme><Protein frameid="AT5G14760-MONOMER" orgid="META" resource="getxml?META:AT5G14760-MONOMER" /></enzyme>
+<reaction><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="#META:L-ASPARTATE-OXID-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13362" detail="low" frameid="ENZRXN-13362" orgid="META"><reaction><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="#META:L-ASPARTATE-OXID-RXN" /></reaction>
-<common-name datatype="string">L-aspartate oxidase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13362" detail="low" frameid="ENZRXN-13362" orgid="META"><common-name datatype="string">L-aspartate oxidase</common-name>
 <enzyme><Protein frameid="MONOMER-12626" orgid="META" resource="getxml?META:MONOMER-12626" /></enzyme>
+<reaction><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="#META:L-ASPARTATE-OXID-RXN" /></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-53.19825<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -55,15 +49,21 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="PWY-5316" orgid="META" resource="getxml?META:PWY-5316" /><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /><Pathway frameid="PYRIDNUCSYN-PWY" orgid="META" resource="getxml?META:PYRIDNUCSYN-PWY" /></in-pathway>
 <left><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /></left>
 <left><Compound frameid="OXYGEN-MOLECULE" orgid="META" resource="getxml?META:OXYGEN-MOLECULE" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<right><Compound frameid="IMINOASPARTATE" orgid="META" resource="getxml?META:IMINOASPARTATE" /></right>
+<right><Compound frameid="HYDROGEN-PEROXIDE" orgid="META" resource="getxml?META:HYDROGEN-PEROXIDE" /></right>
 </Reaction>
 </ptools-xml>

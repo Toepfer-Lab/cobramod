@@ -18,6 +18,7 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map01120  Microbial metabolism in diverse environments
             map01200  Carbon metabolism
             map01230  Biosynthesis of amino acids
+            map05415  Diabetic cardiomyopathy
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P

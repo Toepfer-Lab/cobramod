@@ -9,7 +9,7 @@ REACTION    R00845 R01015 R01058 R01059 R01061 R01063 R01064 R01066
             R01067 R01068 R01069 R01070 R01440 R01621 R01641 R01827 
             R01830 R02340 R02721 R02722 R05465 R05605 R05636 R06861 
             R07159 R07456 R08575 R10049 R10088 R10089 R10349 R10860 
-            R10935
+            R10935 R12668
 PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00030  Pentose phosphate pathway
             map00051  Fructose and mannose metabolism
@@ -34,6 +34,8 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map01120  Microbial metabolism in diverse environments
             map01200  Carbon metabolism
             map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
+            map05415  Diabetic cardiomyopathy
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
@@ -51,13 +53,15 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00631  D-Galacturonate degradation (bacteria), D-galacturonate => pyruvate + D-glyceraldehyde 3P
             M00633  Semi-phosphorylative Entner-Doudoroff pathway, gluconate/galactonate => glycerate-3P
             M00674  Clavaminate biosynthesis, arginine + glyceraldehyde-3P => clavaminate
+            M00916  Pyridoxal-P biosynthesis, R5P + glyceraldehyde-3P + glutamine => pyridoxal-P
+            M00935  Methanofuran biosynthesis
 ENZYME      1.1.1.177       1.2.1.9         1.2.1.12        1.2.1.13        
             1.2.1.59        1.2.1.90        1.2.7.6         2.2.1.1         
             2.2.1.2         2.2.1.3         2.2.1.7         2.2.1.11        
-            2.5.1.66        2.7.1.28        4.1.2.4         4.1.2.8         
-            4.1.2.9         4.1.2.13        4.1.2.14        4.1.2.21        
-            4.1.2.40        4.1.2.55        4.2.1.20        4.2.3.153       
-            4.3.3.6         5.3.1.1
+            2.2.1.13        2.5.1.66        2.7.1.28        4.1.2.4         
+            4.1.2.8         4.1.2.9         4.1.2.13        4.1.2.14        
+            4.1.2.21        4.1.2.40        4.1.2.55        4.2.1.20        
+            4.2.3.153       4.3.3.6         5.3.1.1
 DBLINKS     CAS: 591-57-1
             PubChem: 3418
             ChEBI: 29052

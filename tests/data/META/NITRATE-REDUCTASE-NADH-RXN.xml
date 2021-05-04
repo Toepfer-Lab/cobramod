@@ -1,18 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:NITRATE-REDUCTASE-NADH-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:NITRATE-REDUCTASE-NADH-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:NITRATE-REDUCTASE-NADH-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:NITRATE-REDUCTASE-NADH-RXN" detail="full" frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>RIGHT-TO-LEFT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
-<right><Compound frameid="NITRATE" orgid="META" resource="getxml?META:NITRATE" /></right>
-<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR101964</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -140,13 +134,13 @@
 </dblink>
 <ec-number>EC-1.7.1.1<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-1303" detail="low" frameid="ENZRXN-1303" orgid="META"><reaction><Reaction frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META" resource="#META:NITRATE-REDUCTASE-NADH-RXN" /></reaction>
-<common-name datatype="string">nitrate reductase</common-name>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-1303" detail="low" frameid="ENZRXN-1303" orgid="META"><common-name datatype="string">nitrate reductase</common-name>
 <enzyme><Protein frameid="CPLX-7198" orgid="META" resource="getxml?META:CPLX-7198" /></enzyme>
+<reaction><Reaction frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META" resource="#META:NITRATE-REDUCTASE-NADH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-1302" detail="low" frameid="ENZRXN-1302" orgid="META"><reaction><Reaction frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META" resource="#META:NITRATE-REDUCTASE-NADH-RXN" /></reaction>
-<common-name datatype="string">nitrate reductase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-1302" detail="low" frameid="ENZRXN-1302" orgid="META"><common-name datatype="string">nitrate reductase</common-name>
 <enzyme><Protein frameid="CPLX-7197" orgid="META" resource="getxml?META:CPLX-7197" /></enzyme>
+<reaction><Reaction frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META" resource="#META:NITRATE-REDUCTASE-NADH-RXN" /></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">88.7388<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -157,10 +151,10 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
@@ -168,5 +162,11 @@ manual interpretation of the computation occurred.
 <left><Compound frameid="NITRITE" orgid="META" resource="getxml?META:NITRITE" /></left>
 <left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
 <left><Compound frameid="NAD" orgid="META" resource="getxml?META:NAD" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<right><Compound frameid="NITRATE" orgid="META" resource="getxml?META:NITRATE" /></right>
+<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
 </Reaction>
 </ptools-xml>

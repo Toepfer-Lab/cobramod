@@ -8,6 +8,7 @@ RCLASS      RC00002  C00002_C00008
 ENZYME      6.3.2.2
 PATHWAY     rn00480  Glutathione metabolism
             rn01100  Metabolic pathways
+            rn01240  Biosynthesis of cofactors
 MODULE      M00118  Glutathione biosynthesis, glutamate => glutathione
 ORTHOLOGY   K01919  glutamate--cysteine ligase [EC:6.3.2.2]
             K06048  glutamate---cysteine ligase / carboxylate-amine ligase [EC:6.3.2.2 6.3.-.-]

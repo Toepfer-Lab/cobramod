@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:Pyruvate-dehydrogenase-lipoate"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:Pyruvate-dehydrogenase-lipoate"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:Pyruvate-dehydrogenase-lipoate</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:Pyruvate-dehydrogenase-lipoate" class="true" detail="full" frameid="Pyruvate-dehydrogenase-lipoate" orgid="META"><parent><Compound class="true" frameid="Lipoyl-Protein-N6-lipoyllysine" orgid="META" resource="getxml?META:Lipoyl-Protein-N6-lipoyllysine" /></parent>
@@ -11,8 +11,6 @@
 <formula concise="" /><string title="smiles">C([an &lt;i&gt;apo&lt;/i&gt; pyruvate dehydrogenase E2 protein])C(=O)C(CCCCNC(CCCC[C@@H]1(SSCC1))=O)N[an &lt;i&gt;apo&lt;/i&gt; pyruvate dehydrogenase E2 protein]</string>
 </molecule>
 </cml>
-<appears-in-left-side-of><Reaction frameid="RXN0-1134" orgid="META" resource="getxml?META:RXN0-1134" /><Reaction frameid="RXN-12508" orgid="META" resource="getxml?META:RXN-12508" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN0-1132" orgid="META" resource="getxml?META:RXN0-1132" /><Reaction frameid="RXN-14957" orgid="META" resource="getxml?META:RXN-14957" /></appears-in-right-side-of>
 <common-name datatype="string">a [pyruvate dehydrogenase E2 protein] &lt;i&gt;N&lt;sup&gt;6&lt;/sup&gt;&lt;/i&gt;-lipoyl-L-lysine</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd28013</dblink-oid>
@@ -34,5 +32,7 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C15972</dblink-URL>
 </dblink>
+<appears-in-left-side-of><Reaction frameid="RXN0-1134" orgid="META" resource="getxml?META:RXN0-1134" /><Reaction frameid="RXN-12508" orgid="META" resource="getxml?META:RXN-12508" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN0-1132" orgid="META" resource="getxml?META:RXN0-1132" /><Reaction frameid="RXN-14957" orgid="META" resource="getxml?META:RXN-14957" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

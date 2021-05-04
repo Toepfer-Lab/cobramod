@@ -1,0 +1,70 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-458"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-458</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-458" detail="full" frameid="CPD-458" orgid="ARA"><parent><Compound class="true" frameid="GALACTINOL-TYPE-DISACCHARIDE-ALCOHOLS" orgid="ARA" resource="getxml?ARA:GALACTINOL-TYPE-DISACCHARIDE-ALCOHOLS" /></parent>
+<parent><Compound class="true" frameid="Galactosyl-Inositols" orgid="ARA" resource="getxml?ARA:Galactosyl-Inositols" /></parent>
+<cml><molecule formalCharge="0" id="CPD-458" title="galactinol"><atomArray><atom elementType="C" id="CPD-458-atom1" x2="-365.0" y2="-3990.0" /><atom elementType="C" id="CPD-458-atom2" x2="350.0" y2="-3577.0" /><atom elementType="C" id="CPD-458-atom3" x2="350.0" y2="-2752.0" /><atom elementType="C" id="CPD-458-atom4" x2="1064.0" y2="-2340.0" /><atom elementType="C" id="CPD-458-atom5" x2="2493.0" y2="-6465.0" /><atom elementType="C" id="CPD-458-atom6" x2="3207.0" y2="-6052.0" /><atom elementType="C" id="CPD-458-atom7" x2="1778.0" y2="-6052.0" /><atom elementType="C" id="CPD-458-atom8" x2="3207.0" y2="-5227.0" /><atom elementType="C" id="CPD-458-atom9" x2="1778.0" y2="-5227.0" /><atom elementType="C" id="CPD-458-atom10" x2="1778.0" y2="-2752.0" /><atom elementType="C" id="CPD-458-atom11" x2="2493.0" y2="-4815.0" /><atom elementType="C" id="CPD-458-atom12" x2="1778.0" y2="-3577.0" /><atom elementType="O" id="CPD-458-atom13" x2="-1079.0" y2="-3577.0" /><atom elementType="O" id="CPD-458-atom14" x2="-365.0" y2="-2340.0" /><atom elementType="O" id="CPD-458-atom15" x2="1064.0" y2="-1515.0" /><atom elementType="O" id="CPD-458-atom16" x2="2493.0" y2="-7290.0" /><atom elementType="O" id="CPD-458-atom17" x2="3922.0" y2="-6465.0" /><atom elementType="O" id="CPD-458-atom18" x2="1064.0" y2="-6465.0" /><atom elementType="O" id="CPD-458-atom19" x2="3922.0" y2="-4815.0" /><atom elementType="O" id="CPD-458-atom20" x2="1064.0" y2="-4815.0" /><atom elementType="O" id="CPD-458-atom21" x2="2493.0" y2="-2340.0" /><atom elementType="O" id="CPD-458-atom22" x2="1064.0" y2="-3990.0" /><atom elementType="O" id="CPD-458-atom23" x2="2493.0" y2="-3990.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-458-atom1 CPD-458-atom13" id="CPD-458-bond1" order="1" /><bond atomRefs="CPD-458-atom4 CPD-458-atom15" id="CPD-458-bond2" order="1" /><bond atomRefs="CPD-458-atom3 CPD-458-atom14" id="CPD-458-bond3" order="1" /><bond atomRefs="CPD-458-atom2 CPD-458-atom1" id="CPD-458-bond4" order="1" /><bond atomRefs="CPD-458-atom10 CPD-458-atom21" id="CPD-458-bond5" order="1" /><bond atomRefs="CPD-458-atom12 CPD-458-atom23" id="CPD-458-bond6" order="1" /><bond atomRefs="CPD-458-atom10 CPD-458-atom12" id="CPD-458-bond7" order="1" /><bond atomRefs="CPD-458-atom4 CPD-458-atom10" id="CPD-458-bond8" order="1" /><bond atomRefs="CPD-458-atom3 CPD-458-atom4" id="CPD-458-bond9" order="1" /><bond atomRefs="CPD-458-atom2 CPD-458-atom3" id="CPD-458-bond10" order="1" /><bond atomRefs="CPD-458-atom22 CPD-458-atom12" id="CPD-458-bond11" order="1" /><bond atomRefs="CPD-458-atom22 CPD-458-atom2" id="CPD-458-bond12" order="1" /><bond atomRefs="CPD-458-atom7 CPD-458-atom18" id="CPD-458-bond13" order="1" /><bond atomRefs="CPD-458-atom9 CPD-458-atom20" id="CPD-458-bond14" order="1" /><bond atomRefs="CPD-458-atom5 CPD-458-atom16" id="CPD-458-bond15" order="1" /><bond atomRefs="CPD-458-atom6 CPD-458-atom17" id="CPD-458-bond16" order="1" /><bond atomRefs="CPD-458-atom8 CPD-458-atom19" id="CPD-458-bond17" order="1" /><bond atomRefs="CPD-458-atom7 CPD-458-atom9" id="CPD-458-bond18" order="1" /><bond atomRefs="CPD-458-atom7 CPD-458-atom5" id="CPD-458-bond19" order="1" /><bond atomRefs="CPD-458-atom9 CPD-458-atom11" id="CPD-458-bond20" order="1" /><bond atomRefs="CPD-458-atom5 CPD-458-atom6" id="CPD-458-bond21" order="1" /><bond atomRefs="CPD-458-atom11 CPD-458-atom8" id="CPD-458-bond22" order="1" /><bond atomRefs="CPD-458-atom6 CPD-458-atom8" id="CPD-458-bond23" order="1" /><bond atomRefs="CPD-458-atom11 CPD-458-atom23" id="CPD-458-bond24" order="1" /></bondArray>
+<formula concise="C 12 H 22 O 11" /><float title="molecularWeight" units="g/mol">342.299</float>
+<string title="smiles">C([C@H]1(O[C@@H]([C@@H]([C@H]([C@H]1O)O)O)O[C@@H]2([C@H]([C@@H]([C@H]([C@H]([C@H]2O)O)O)O)O)))O</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00910</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00910</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM878</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM878</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17505</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17505</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB05826</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB05826</dblink-URL>
+</dblink>
+<dblink><dblink-db>KEGG-GLYCAN</dblink-db>
+<dblink-oid>G10488</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?gl:G10488</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17505</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17505</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>25202439</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=25202439</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C01235</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C01235</dblink-URL>
+</dblink>
+<synonym datatype="string">1-O-&amp;alpha;-D-galactosyl-D-&lt;i&gt;myo&lt;/i&gt;-inositol</synonym>
+<synonym datatype="string">1-&amp;alpha;-D-galactosyl-&lt;i&gt;myo&lt;/i&gt;-inositol</synonym>
+<synonym datatype="string">&amp;alpha;-D-galactosyl-(1-&gt;3)-1D-&lt;i&gt;myo&lt;/i&gt;-inositol</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-152.47537</gibbs-0>
+<inchi datatype="string">InChI=1S/C12H22O11/c13-1-2-3(14)4(15)10(21)12(22-2)23-11-8(19)6(17)5(16)7(18)9(11)20/h2-21H,1H2/t2-,3+,4+,5-,6-,7-,8+,9-,10-,11-,12-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=VCWMRQDBPZKXKG-XIDCDEPRSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">342.299</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">342.1162</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-8288" orgid="ARA" resource="getxml?ARA:RXN-8288" /><Reaction frameid="RXN-8284" orgid="ARA" resource="getxml?ARA:RXN-8284" /><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.82-RXN" /><Reaction frameid="2.4.1.67-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.67-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="2.4.1.123-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.123-RXN" /></appears-in-right-side-of>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/18269577"&gt;Fiehn08&lt;/a&gt;] &lt;A href=" http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download"&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href="http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp"&gt;SetupX&lt;/a&gt; (see &lt;A href="http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">galactinol</common-name>
+</Compound>
+</ptools-xml>

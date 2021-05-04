@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-9277"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-9277"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-9277</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CPD-9277" detail="full" frameid="CPD-9277" orgid="META"><parent><Compound class="true" frameid="S-Alkyl-L-Cysteine-S-Oxides" orgid="META" resource="getxml?META:S-Alkyl-L-Cysteine-S-Oxides" /></parent>
@@ -12,16 +12,6 @@
 <string title="smiles">C(=O)([O-])[C@@H]([NH3+])CS(=O)C</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">151.18</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">151.03032</monoisotopic-mw>
-<synonym datatype="string">S-methyl-L-cycteine sulfoxide</synonym>
-<synonym datatype="string">Kale anemia factor</synonym>
-<synonym datatype="string">S-methylcysteine sulfoxide</synonym>
-<synonym datatype="string">S-methyl-L-cysteine sulfoxide</synonym>
-<synonym datatype="string">3-methylsulfinyl-L-alanine</synonym>
-<synonym datatype="string">MCSO</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-16176" orgid="META" resource="getxml?META:RXN-16176" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-8908" orgid="META" resource="getxml?META:RXN-8908" /></appears-in-right-side-of>
 <common-name datatype="string">methiin</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd25622</dblink-oid>
@@ -46,14 +36,24 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C4H9NO3S/c1-9(8)2-3(5)4(6)7/h3H,2,5H2,1H3,(H,6,7)/t3-,9?/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=ZZLHPCSGGOGHFW-BUKSALPDSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">151.18</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">151.03032</monoisotopic-mw>
+<synonym datatype="string">S-methyl-L-cycteine sulfoxide</synonym>
+<synonym datatype="string">Kale anemia factor</synonym>
+<synonym datatype="string">S-methylcysteine sulfoxide</synonym>
+<synonym datatype="string">S-methyl-L-cysteine sulfoxide</synonym>
+<synonym datatype="string">3-methylsulfinyl-L-alanine</synonym>
+<synonym datatype="string">MCSO</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-16176" orgid="META" resource="getxml?META:RXN-16176" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-8908" orgid="META" resource="getxml?META:RXN-8908" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

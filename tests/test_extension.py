@@ -47,7 +47,7 @@ class CreatingSequences(TestCase):
             ],
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
             show_imbalance=False,
             stop_imbalance=False,
@@ -75,7 +75,7 @@ class CreatingSequences(TestCase):
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
             show_imbalance=True,
             stop_imbalance=False,
@@ -89,7 +89,7 @@ class CreatingSequences(TestCase):
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             show_imbalance=False,
             stop_imbalance=True,
             replacement={},
@@ -110,7 +110,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         self.assertRaises(
@@ -126,7 +126,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._verify_boundary(
@@ -137,7 +137,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         ex._verify_boundary(
@@ -158,7 +158,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         test_model.add_boundary(
@@ -182,7 +182,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         ex._verify_boundary(
@@ -222,7 +222,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         self.assertRaises(
@@ -239,7 +239,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._fix_side(
@@ -276,7 +276,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN,c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._verify_sinks(
@@ -296,7 +296,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN,c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._verify_sinks(
@@ -314,7 +314,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="1.8.4.9-RXN,p",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         test_model.objective = "1.8.4.9_RXN_p"
@@ -332,7 +332,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="RXN-2206,c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
             show_imbalance=False,
         )
@@ -345,7 +345,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="1.8.4.9-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         test_model.objective = "1.8.4.9_RXN_c"
@@ -363,7 +363,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="RXN-2206, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
             show_imbalance=False,
         )
@@ -383,7 +383,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="1.8.4.9-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         test_model.add_boundary(
@@ -413,7 +413,7 @@ class AddingPathways(TestCase):
                 sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
                 compartment="c",
                 directory=dir_data,
-                database="META",
+                database="ARA",
                 replacement={},
                 show_imbalance=False,
                 stop_imbalance=False,
@@ -442,7 +442,7 @@ class AddingPathways(TestCase):
                 sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
                 compartment="c",
                 directory=dir_data,
-                database="META",
+                database="ARA",
                 replacement={},
                 show_imbalance=False,
                 stop_imbalance=False,
@@ -558,7 +558,7 @@ class AddingPathways(TestCase):
             pathway="PWY-1187",
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             ignore_list=[],
             show_imbalance=False,
         )
@@ -593,7 +593,7 @@ class AddingPathways(TestCase):
             compartment="c",
             pathway=test_sequence,
             ignore_list=[],
-            database="META",
+            database="ARA",
             directory=dir_data,
             show_imbalance=False,
         )
@@ -622,7 +622,7 @@ class AddingPathways(TestCase):
             compartment="c",
             pathway=test_sequence,
             ignore_list=[],
-            database="META",
+            database="ARA",
             directory=dir_data,
             show_imbalance=False,
         )
@@ -677,7 +677,7 @@ class AddingPathways(TestCase):
         ex.add_pathway(
             model=test_model,
             pathway="SALVADEHYPOX-PWY",
-            database="META",
+            database="VCHO",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
@@ -704,7 +704,7 @@ class AddingPathways(TestCase):
         ex.add_pathway(
             model=test_model,
             pathway=["ADENODEAMIN-RXN"],
-            database="META",
+            database="VCHO",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
@@ -737,7 +737,7 @@ class AddingPathways(TestCase):
         ex.add_pathway(
             model=test_model,
             pathway=test_sequence,
-            database="META",
+            database="ARA",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
@@ -751,7 +751,7 @@ class AddingPathways(TestCase):
         ex.add_pathway(
             model=test_model,
             pathway=test_sequence,
-            database="META",
+            database="ARA",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,

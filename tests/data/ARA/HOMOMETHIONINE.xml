@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:HOMOMETHIONINE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:HOMOMETHIONINE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:HOMOMETHIONINE</query>
 <num_results>1</num_results>
@@ -13,7 +13,6 @@
 <string title="smiles">CSCCC[C@@H](C([O-])=O)[NH3+]</string>
 </molecule>
 </cml>
-<common-name datatype="string">L-homomethionine</common-name>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM59436</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -39,13 +38,14 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17213</dblink-URL>
 </dblink>
+<synonym datatype="string">(2S)-2-amino-5-(methylsulfanyl)pentanoate</synonym>
 <gibbs-0 datatype="float" units="kcal/mol">59.234562</gibbs-0>
 <inchi datatype="string">InChI=1S/C6H13NO2S/c1-10-4-2-3-5(7)6(8)9/h5H,2-4,7H2,1H3,(H,8,9)/t5-/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=SFSJZXMDTNDWIX-YFKPBYRVSA-N</inchi-key>
 <molecular-weight datatype="float" units="Daltons">163.234</molecular-weight>
 <monoisotopic-mw datatype="float" units="Daltons">163.0667</monoisotopic-mw>
-<synonym datatype="string">(2S)-2-amino-5-(methylsulfanyl)pentanoate</synonym>
 <appears-in-left-side-of><Reaction frameid="RXN-13014" orgid="ARA" resource="getxml?ARA:RXN-13014" /><Reaction frameid="RXN-2206" orgid="ARA" resource="getxml?ARA:RXN-2206" /></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction frameid="RXN-2205" orgid="ARA" resource="getxml?ARA:RXN-2205" /></appears-in-right-side-of>
+<common-name datatype="string">L-homomethionine</common-name>
 </Compound>
 </ptools-xml>

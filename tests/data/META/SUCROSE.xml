@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:SUCROSE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:SUCROSE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:SUCROSE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:SUCROSE" detail="full" frameid="SUCROSE" orgid="META"><parent><Compound class="true" frameid="Disaccharides" orgid="META" resource="getxml?META:Disaccharides" /></parent>
@@ -12,87 +12,6 @@
 <string title="smiles">C(O)[C@H]1(O[C@@H]([C@H](O)[C@@H](O)[C@H](O)1)O[C@]2(CO)(O[C@H](CO)[C@@H](O)[C@H](O)2))</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">342.299</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">342.1162</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-14495" detail="low" frameid="REG-14495" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22217" detail="low" frameid="ENZRXN-22217" orgid="META"><reaction><Reaction frameid="RXN1F-93" orgid="META" resource="getxml?META:RXN1F-93" /></reaction>
-<common-name datatype="string">kaempferol synthase</common-name>
-<enzyme><Protein frameid="MONOMER-18282" orgid="META" resource="getxml?META:MONOMER-18282" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-14491" detail="low" frameid="REG-14491" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22214" detail="low" frameid="ENZRXN-22214" orgid="META"><reaction><Reaction frameid="NARINGENIN-3-DIOXYGENASE-RXN" orgid="META" resource="getxml?META:NARINGENIN-3-DIOXYGENASE-RXN" /></reaction>
-<common-name datatype="string">naringenin 3-dioxygenase</common-name>
-<enzyme><Protein frameid="MONOMER-18282" orgid="META" resource="getxml?META:MONOMER-18282" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8536" detail="low" frameid="REG-8536" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-1842" detail="low" frameid="ENZRXN-1842" orgid="META"><reaction><Reaction frameid="SUCROSE-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHATASE-RXN" /></reaction>
-<synonym datatype="string">sucrose-6&lt;sup&gt;F&lt;/sup&gt;-phosphate phosphohydrolase</synonym>
-<common-name datatype="string">sucrose-phosphate phosphatase</common-name>
-<enzyme><Protein frameid="CPLX-1542" orgid="META" resource="getxml?META:CPLX-1542" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8512" detail="low" frameid="REG-8512" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2345" detail="low" frameid="ENZRXN-2345" orgid="META"><reaction><Reaction frameid="RXN-1841" orgid="META" resource="getxml?META:RXN-1841" /></reaction>
-<common-name datatype="string">fructan 1-exohydrolase</common-name>
-<enzyme><Protein frameid="CPLX-1984" orgid="META" resource="getxml?META:CPLX-1984" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8511" detail="low" frameid="REG-8511" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2346" detail="low" frameid="ENZRXN-2346" orgid="META"><reaction><Reaction frameid="RXN-1841" orgid="META" resource="getxml?META:RXN-1841" /></reaction>
-<common-name datatype="string">fructan 1-exohydrolase</common-name>
-<enzyme><Protein frameid="CPLX-1985" orgid="META" resource="getxml?META:CPLX-1985" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-7079" detail="low" frameid="REG-7079" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13149" detail="low" frameid="ENZRXN-13149" orgid="META"><reaction><Reaction frameid="RXN-8287" orgid="META" resource="getxml?META:RXN-8287" /></reaction>
-<common-name datatype="string">stachyose synthase</common-name>
-<enzyme><Protein frameid="MONOMER-12486" orgid="META" resource="getxml?META:MONOMER-12486" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6068" detail="low" frameid="REG-6068" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13150" detail="low" frameid="ENZRXN-13150" orgid="META"><reaction><Reaction frameid="RXN-8286" orgid="META" resource="getxml?META:RXN-8286" /></reaction>
-<common-name datatype="string">verbascose synthase</common-name>
-<enzyme><Protein frameid="MONOMER-12486" orgid="META" resource="getxml?META:MONOMER-12486" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6067" detail="low" frameid="REG-6067" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13151" detail="low" frameid="ENZRXN-13151" orgid="META"><reaction><Reaction frameid="RXN-8285" orgid="META" resource="getxml?META:RXN-8285" /></reaction>
-<common-name datatype="string">ajugose synthase</common-name>
-<enzyme><Protein frameid="MONOMER-12486" orgid="META" resource="getxml?META:MONOMER-12486" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">saccharose</synonym>
-<synonym datatype="string">Glc(&amp;alpha;1-&gt;2&amp;beta;)Fru</synonym>
-<synonym datatype="string">&amp;beta;-D-fructofuranosyl-(2&amp;harr;1)-&amp;alpha;-D-glucopyranoside</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-15518" orgid="META" resource="getxml?META:RXN-15518" /><Reaction frameid="RXN-21032" orgid="META" resource="getxml?META:RXN-21032" /><Reaction frameid="RXN-20085" orgid="META" resource="getxml?META:RXN-20085" /><Reaction frameid="RXN-20158" orgid="META" resource="getxml?META:RXN-20158" /><Reaction frameid="RXN18C3-24" orgid="META" resource="getxml?META:RXN18C3-24" /><Reaction frameid="RXN18C3-25" orgid="META" resource="getxml?META:RXN18C3-25" /><Reaction frameid="RXN18C3-26" orgid="META" resource="getxml?META:RXN18C3-26" /><Reaction frameid="RXN18C3-27" orgid="META" resource="getxml?META:RXN18C3-27" /><Reaction frameid="RXN18C3-28" orgid="META" resource="getxml?META:RXN18C3-28" /><Reaction frameid="RXN-1803" orgid="META" resource="getxml?META:RXN-1803" /><Reaction frameid="RXN-9068" orgid="META" resource="getxml?META:RXN-9068" /><Reaction frameid="LEVANSUCRASE-RXN" orgid="META" resource="getxml?META:LEVANSUCRASE-RXN" /><Reaction frameid="RXN-1804" orgid="META" resource="getxml?META:RXN-1804" /><Reaction frameid="SUCROSEPHOSPHO-RXN" orgid="META" resource="getxml?META:SUCROSEPHOSPHO-RXN" /><Reaction frameid="3.2.1.48-RXN" orgid="META" resource="getxml?META:3.2.1.48-RXN" /><Reaction frameid="RXN-1781" orgid="META" resource="getxml?META:RXN-1781" /><Reaction frameid="RXN-15343" orgid="META" resource="getxml?META:RXN-15343" /><Reaction frameid="TRANS-RXN-244" orgid="META" resource="getxml?META:TRANS-RXN-244" /><Reaction frameid="2.4.1.125-RXN" orgid="META" resource="getxml?META:2.4.1.125-RXN" /><Reaction frameid="AMYLOSUCRASE-RXN" orgid="META" resource="getxml?META:AMYLOSUCRASE-RXN" /><Reaction frameid="GLUCOSIDE-3-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:GLUCOSIDE-3-DEHYDROGENASE-RXN" /><Reaction frameid="2.4.1.167-RXN" orgid="META" resource="getxml?META:2.4.1.167-RXN" /><Reaction frameid="2.4.1.140-RXN" orgid="META" resource="getxml?META:2.4.1.140-RXN" /><Reaction frameid="RXN-9934" orgid="META" resource="getxml?META:RXN-9934" /><Reaction frameid="2.4.1.82-RXN" orgid="META" resource="getxml?META:2.4.1.82-RXN" /><Reaction frameid="RXN-1802" orgid="META" resource="getxml?META:RXN-1802" /><Reaction frameid="ISOMALTULOSE-SYNTHASE-RXN" orgid="META" resource="getxml?META:ISOMALTULOSE-SYNTHASE-RXN" /><Reaction frameid="SUCROSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHORYLASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-6222" orgid="META" resource="getxml?META:RXN-6222" /><Reaction frameid="RXN-12220" orgid="META" resource="getxml?META:RXN-12220" /><Reaction frameid="RXN-15258" orgid="META" resource="getxml?META:RXN-15258" /><Reaction frameid="RXN-11491" orgid="META" resource="getxml?META:RXN-11491" /><Reaction frameid="RXN-11492" orgid="META" resource="getxml?META:RXN-11492" /><Reaction frameid="RXN-15224" orgid="META" resource="getxml?META:RXN-15224" /><Reaction frameid="TRANS-RXN-244" orgid="META" resource="getxml?META:TRANS-RXN-244" /><Reaction frameid="RXN-1841" orgid="META" resource="getxml?META:RXN-1841" /><Reaction frameid="SUCROSE-SYNTHASE-RXN" orgid="META" resource="getxml?META:SUCROSE-SYNTHASE-RXN" /><Reaction frameid="RXN-8287" orgid="META" resource="getxml?META:RXN-8287" /><Reaction frameid="RXN-1801" orgid="META" resource="getxml?META:RXN-1801" /><Reaction frameid="RXN-11490" orgid="META" resource="getxml?META:RXN-11490" /><Reaction frameid="RXN-11502" orgid="META" resource="getxml?META:RXN-11502" /><Reaction frameid="RXN-1802" orgid="META" resource="getxml?META:RXN-1802" /><Reaction frameid="SUCROSE-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHATASE-RXN" /></appears-in-right-side-of>
 <comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=SUCROSE"&gt;Sucrose&lt;/a&gt; is the major product of photosynthesis in most plants and is known to be essential for their growth, development, carbon storage, signal transduction and stress protection [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11005202"&gt;Winter00&lt;/a&gt;].
 Sucrose is also found in cyanobacteria, and the ability to synthesize sucrose is a widespread feature of these organisms [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/21054739"&gt;Klahn11&lt;/a&gt;]. In addition, sucrose is produced by many nonphotosynthetic aerobic methanotrophic and methanol-utilizing bacteria [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/1055047"&gt;Lappe75&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12656177"&gt;Doronina03&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/14529181"&gt;Doronina03a&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/23808151"&gt;But13&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/23865613"&gt;But13a&lt;/a&gt;].
 &lt;p&gt;
@@ -101,15 +20,15 @@ In photosynthetic organisms, the product of photosynthetic carbon fixation (&lt;
 In marine and freshwater cyanobacteria sucrose fulfils a different role. It is often synthesized in response to salt or temperature stress and seems to maintain the osmotic balance and to stabilize protein and membrane structure and function [&lt;a href="http://doi.wiley.com/10.1111/j.1574-6968.1986.tb01842.x"&gt;Reed86&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/7854254"&gt;Potts94&lt;/a&gt;]. Methanotrophic and methanol-utilizing bacteria also synthesize sucrose as a secondary osmotic compound, along with the major compatible solute &lt;a href="/compound?orgid=META&amp;id=ECTOINE"&gt;ectoine&lt;/a&gt; [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/25577257"&gt;But15&lt;/a&gt;].</comment>
 <common-name datatype="string">sucrose</common-name>
 <credits><revised><date datatype="date">2013-08-19</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -201,14 +120,95 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C12H22O11/c13-1-4-6(16)8(18)9(19)11(21-4)23-12(3-15)10(20)7(17)5(2-14)22-12/h4-11,13-20H,1-3H2/t4-,5-,6-,7-,8+,9-,10+,11-,12+/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=CZMRCDWAGMRECN-UGDNZRGBSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">342.299</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">342.1162</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-14495" detail="low" frameid="REG-14495" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22217" detail="low" frameid="ENZRXN-22217" orgid="META"><common-name datatype="string">kaempferol synthase</common-name>
+<enzyme><Protein frameid="MONOMER-18282" orgid="META" resource="getxml?META:MONOMER-18282" /></enzyme>
+<reaction><Reaction frameid="RXN1F-93" orgid="META" resource="getxml?META:RXN1F-93" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-14491" detail="low" frameid="REG-14491" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22214" detail="low" frameid="ENZRXN-22214" orgid="META"><common-name datatype="string">naringenin 3-dioxygenase</common-name>
+<enzyme><Protein frameid="MONOMER-18282" orgid="META" resource="getxml?META:MONOMER-18282" /></enzyme>
+<reaction><Reaction frameid="NARINGENIN-3-DIOXYGENASE-RXN" orgid="META" resource="getxml?META:NARINGENIN-3-DIOXYGENASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8536" detail="low" frameid="REG-8536" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-1842" detail="low" frameid="ENZRXN-1842" orgid="META"><common-name datatype="string">sucrose-phosphate phosphatase</common-name>
+<enzyme><Protein frameid="CPLX-1542" orgid="META" resource="getxml?META:CPLX-1542" /></enzyme>
+<reaction><Reaction frameid="SUCROSE-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHATASE-RXN" /></reaction>
+<synonym datatype="string">sucrose-6&lt;sup&gt;F&lt;/sup&gt;-phosphate phosphohydrolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8512" detail="low" frameid="REG-8512" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2345" detail="low" frameid="ENZRXN-2345" orgid="META"><common-name datatype="string">fructan 1-exohydrolase</common-name>
+<enzyme><Protein frameid="CPLX-1984" orgid="META" resource="getxml?META:CPLX-1984" /></enzyme>
+<reaction><Reaction frameid="RXN-1841" orgid="META" resource="getxml?META:RXN-1841" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8511" detail="low" frameid="REG-8511" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2346" detail="low" frameid="ENZRXN-2346" orgid="META"><common-name datatype="string">fructan 1-exohydrolase</common-name>
+<enzyme><Protein frameid="CPLX-1985" orgid="META" resource="getxml?META:CPLX-1985" /></enzyme>
+<reaction><Reaction frameid="RXN-1841" orgid="META" resource="getxml?META:RXN-1841" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7079" detail="low" frameid="REG-7079" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13149" detail="low" frameid="ENZRXN-13149" orgid="META"><common-name datatype="string">stachyose synthase</common-name>
+<enzyme><Protein frameid="MONOMER-12486" orgid="META" resource="getxml?META:MONOMER-12486" /></enzyme>
+<reaction><Reaction frameid="RXN-8287" orgid="META" resource="getxml?META:RXN-8287" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6068" detail="low" frameid="REG-6068" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13150" detail="low" frameid="ENZRXN-13150" orgid="META"><common-name datatype="string">verbascose synthase</common-name>
+<enzyme><Protein frameid="MONOMER-12486" orgid="META" resource="getxml?META:MONOMER-12486" /></enzyme>
+<reaction><Reaction frameid="RXN-8286" orgid="META" resource="getxml?META:RXN-8286" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6067" detail="low" frameid="REG-6067" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13151" detail="low" frameid="ENZRXN-13151" orgid="META"><common-name datatype="string">ajugose synthase</common-name>
+<enzyme><Protein frameid="MONOMER-12486" orgid="META" resource="getxml?META:MONOMER-12486" /></enzyme>
+<reaction><Reaction frameid="RXN-8285" orgid="META" resource="getxml?META:RXN-8285" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUCROSE" orgid="META" resource="#META:SUCROSE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">saccharose</synonym>
+<synonym datatype="string">Glc(&amp;alpha;1-&gt;2&amp;beta;)Fru</synonym>
+<synonym datatype="string">&amp;beta;-D-fructofuranosyl-(2&amp;harr;1)-&amp;alpha;-D-glucopyranoside</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-15518" orgid="META" resource="getxml?META:RXN-15518" /><Reaction frameid="RXN-21032" orgid="META" resource="getxml?META:RXN-21032" /><Reaction frameid="RXN-20085" orgid="META" resource="getxml?META:RXN-20085" /><Reaction frameid="RXN-20158" orgid="META" resource="getxml?META:RXN-20158" /><Reaction frameid="RXN18C3-24" orgid="META" resource="getxml?META:RXN18C3-24" /><Reaction frameid="RXN18C3-25" orgid="META" resource="getxml?META:RXN18C3-25" /><Reaction frameid="RXN18C3-26" orgid="META" resource="getxml?META:RXN18C3-26" /><Reaction frameid="RXN18C3-27" orgid="META" resource="getxml?META:RXN18C3-27" /><Reaction frameid="RXN18C3-28" orgid="META" resource="getxml?META:RXN18C3-28" /><Reaction frameid="RXN-1803" orgid="META" resource="getxml?META:RXN-1803" /><Reaction frameid="RXN-9068" orgid="META" resource="getxml?META:RXN-9068" /><Reaction frameid="LEVANSUCRASE-RXN" orgid="META" resource="getxml?META:LEVANSUCRASE-RXN" /><Reaction frameid="RXN-1804" orgid="META" resource="getxml?META:RXN-1804" /><Reaction frameid="SUCROSEPHOSPHO-RXN" orgid="META" resource="getxml?META:SUCROSEPHOSPHO-RXN" /><Reaction frameid="3.2.1.48-RXN" orgid="META" resource="getxml?META:3.2.1.48-RXN" /><Reaction frameid="RXN-1781" orgid="META" resource="getxml?META:RXN-1781" /><Reaction frameid="RXN-15343" orgid="META" resource="getxml?META:RXN-15343" /><Reaction frameid="TRANS-RXN-244" orgid="META" resource="getxml?META:TRANS-RXN-244" /><Reaction frameid="2.4.1.125-RXN" orgid="META" resource="getxml?META:2.4.1.125-RXN" /><Reaction frameid="AMYLOSUCRASE-RXN" orgid="META" resource="getxml?META:AMYLOSUCRASE-RXN" /><Reaction frameid="GLUCOSIDE-3-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:GLUCOSIDE-3-DEHYDROGENASE-RXN" /><Reaction frameid="2.4.1.167-RXN" orgid="META" resource="getxml?META:2.4.1.167-RXN" /><Reaction frameid="2.4.1.140-RXN" orgid="META" resource="getxml?META:2.4.1.140-RXN" /><Reaction frameid="RXN-9934" orgid="META" resource="getxml?META:RXN-9934" /><Reaction frameid="2.4.1.82-RXN" orgid="META" resource="getxml?META:2.4.1.82-RXN" /><Reaction frameid="RXN-1802" orgid="META" resource="getxml?META:RXN-1802" /><Reaction frameid="ISOMALTULOSE-SYNTHASE-RXN" orgid="META" resource="getxml?META:ISOMALTULOSE-SYNTHASE-RXN" /><Reaction frameid="SUCROSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHORYLASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-6222" orgid="META" resource="getxml?META:RXN-6222" /><Reaction frameid="RXN-12220" orgid="META" resource="getxml?META:RXN-12220" /><Reaction frameid="RXN-15258" orgid="META" resource="getxml?META:RXN-15258" /><Reaction frameid="RXN-11491" orgid="META" resource="getxml?META:RXN-11491" /><Reaction frameid="RXN-11492" orgid="META" resource="getxml?META:RXN-11492" /><Reaction frameid="RXN-15224" orgid="META" resource="getxml?META:RXN-15224" /><Reaction frameid="TRANS-RXN-244" orgid="META" resource="getxml?META:TRANS-RXN-244" /><Reaction frameid="RXN-1841" orgid="META" resource="getxml?META:RXN-1841" /><Reaction frameid="SUCROSE-SYNTHASE-RXN" orgid="META" resource="getxml?META:SUCROSE-SYNTHASE-RXN" /><Reaction frameid="RXN-8287" orgid="META" resource="getxml?META:RXN-8287" /><Reaction frameid="RXN-1801" orgid="META" resource="getxml?META:RXN-1801" /><Reaction frameid="RXN-11490" orgid="META" resource="getxml?META:RXN-11490" /><Reaction frameid="RXN-11502" orgid="META" resource="getxml?META:RXN-11502" /><Reaction frameid="RXN-1802" orgid="META" resource="getxml?META:RXN-1802" /><Reaction frameid="SUCROSE-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHATASE-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

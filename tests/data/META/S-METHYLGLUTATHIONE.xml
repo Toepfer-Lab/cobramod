@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:S-METHYLGLUTATHIONE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:S-METHYLGLUTATHIONE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:S-METHYLGLUTATHIONE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:S-METHYLGLUTATHIONE" detail="full" frameid="S-METHYLGLUTATHIONE" orgid="META"><parent><Compound class="true" frameid="CPD-20939" orgid="META" resource="getxml?META:CPD-20939" /></parent>
@@ -12,21 +12,6 @@
 <string title="smiles">CSC[C@@H](C(NCC([O-])=O)=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">320.34</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">321.09946</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-6479" detail="low" frameid="REG-6479" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12574" detail="low" frameid="ENZRXN-12574" orgid="META"><reaction><Reaction frameid="MALEYLACETOACETATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN" /></reaction>
-<common-name datatype="string">maleylacetoacetate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-12046" orgid="META" resource="getxml?META:MONOMER-12046" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="S-METHYLGLUTATHIONE" orgid="META" resource="#META:S-METHYLGLUTATHIONE" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">&amp;gamma;-L-glutamyl-(&lt;i&gt;S&lt;/i&gt;-methyl)-L-cysteinyl-glycine</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-19608" orgid="META" resource="getxml?META:RXN-19608" /><Reaction frameid="RXN-16202" orgid="META" resource="getxml?META:RXN-16202" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-19922" orgid="META" resource="getxml?META:RXN-19922" /><Reaction frameid="RXN-16203" orgid="META" resource="getxml?META:RXN-16203" /></appears-in-right-side-of>
 <common-name datatype="string">&lt;i&gt;S&lt;/i&gt;-methylglutathione</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd08203</dblink-oid>
@@ -66,14 +51,29 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C11H19N3O6S/c1-21-5-7(10(18)13-4-9(16)17)14-8(15)3-2-6(12)11(19)20/h6-7H,2-5,12H2,1H3,(H,13,18)(H,14,15)(H,16,17)(H,19,20)/p-1/t6-,7-/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=QTQDDTSVRVWHMO-BQBZGAKWSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">320.34</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">321.09946</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-6479" detail="low" frameid="REG-6479" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12574" detail="low" frameid="ENZRXN-12574" orgid="META"><common-name datatype="string">maleylacetoacetate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-12046" orgid="META" resource="getxml?META:MONOMER-12046" /></enzyme>
+<reaction><Reaction frameid="MALEYLACETOACETATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="S-METHYLGLUTATHIONE" orgid="META" resource="#META:S-METHYLGLUTATHIONE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">&amp;gamma;-L-glutamyl-(&lt;i&gt;S&lt;/i&gt;-methyl)-L-cysteinyl-glycine</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-19608" orgid="META" resource="getxml?META:RXN-19608" /><Reaction frameid="RXN-16202" orgid="META" resource="getxml?META:RXN-16202" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-19922" orgid="META" resource="getxml?META:RXN-19922" /><Reaction frameid="RXN-16203" orgid="META" resource="getxml?META:RXN-16203" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

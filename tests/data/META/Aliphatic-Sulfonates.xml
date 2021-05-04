@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:Aliphatic-Sulfonates"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:Aliphatic-Sulfonates"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:Aliphatic-Sulfonates</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:Aliphatic-Sulfonates" class="true" detail="full" frameid="Aliphatic-Sulfonates" orgid="META"><parent><Compound class="true" frameid="SULFONATES" orgid="META" resource="getxml?META:SULFONATES" /></parent>
@@ -14,8 +14,6 @@
 <formula concise="" /><string title="smiles">C([R])S(=O)(=O)[O-]</string>
 </molecule>
 </cml>
-<appears-in-left-side-of><Reaction frameid="ABC-56-RXN" orgid="META" resource="getxml?META:ABC-56-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="ABC-56-RXN" orgid="META" resource="getxml?META:ABC-56-RXN" /></appears-in-right-side-of>
 <comment datatype="string">This compound class stands for generic and unspecified aliphatic sulfonate compounds.</comment>
 <common-name datatype="string">an aliphatic sulfonate</common-name>
 <dblink><dblink-db>SEED</dblink-db>
@@ -28,5 +26,7 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/chem_info/MNXM148895</dblink-URL>
 </dblink>
+<appears-in-left-side-of><Reaction frameid="ABC-56-RXN" orgid="META" resource="getxml?META:ABC-56-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="ABC-56-RXN" orgid="META" resource="getxml?META:ABC-56-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

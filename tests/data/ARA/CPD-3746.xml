@@ -1,0 +1,76 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-3746"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-3746</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-3746" detail="full" frameid="CPD-3746" orgid="ARA"><parent><Compound class="true" frameid="Alkanesulfonates" orgid="ARA" resource="getxml?ARA:Alkanesulfonates" /></parent>
+<cml><molecule formalCharge="-1" id="CPD-3746" title="methanesulfonate"><atomArray><atom elementType="C" id="CPD-3746-atom1" x2="825.0" y2="1650.0" /><atom elementType="O" id="CPD-3746-atom2" x2="824.0" y2="0.0" /><atom elementType="O" id="CPD-3746-atom3" x2="1650.0" y2="825.0" /><atom elementType="O" formalCharge="-1" id="CPD-3746-atom4" x2="0.0" y2="825.0" /><atom elementType="S" id="CPD-3746-atom5" x2="825.0" y2="825.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-3746-atom4 CPD-3746-atom5" id="CPD-3746-bond1" order="1" /><bond atomRefs="CPD-3746-atom3 CPD-3746-atom5" id="CPD-3746-bond2" order="2" /><bond atomRefs="CPD-3746-atom2 CPD-3746-atom5" id="CPD-3746-bond3" order="2" /><bond atomRefs="CPD-3746-atom1 CPD-3746-atom5" id="CPD-3746-bond4" order="1" /></bondArray>
+<formula concise="C 1 H 3 O 3 S 1" /><float title="molecularWeight" units="g/mol">95.093</float>
+<string title="smiles">CS(=O)(=O)[O-]</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd08023</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd08023</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM1485</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM1485</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>mso3</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/mso3</dblink-URL>
+</dblink>
+<dblink><dblink-db>UM-BBD-CPD</dblink-db>
+<dblink-oid>c0347</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0347</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>76888</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/76888</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>85257</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=85257</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>25224</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:25224</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>75-75-2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=75-75-2</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C11145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C11145</dblink-URL>
+</dblink>
+<synonym datatype="string">methylsulfonate</synonym>
+<synonym datatype="string">MSA</synonym>
+<synonym datatype="string">methanesulfonic acid</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-71.5487</gibbs-0>
+<inchi datatype="string">InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=AFVFQIVMOAPDHO-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">95.093</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">95.98811</monoisotopic-mw>
+<appears-in-right-side-of><Reaction frameid="RXN-18181" orgid="ARA" resource="getxml?ARA:RXN-18181" /><Reaction frameid="RXN-2223" orgid="ARA" resource="getxml?ARA:RXN-2223" /><Reaction frameid="RXNQT-4344" orgid="ARA" resource="getxml?ARA:RXNQT-4344" /><Reaction frameid="RXN-2222" orgid="ARA" resource="getxml?ARA:RXN-2222" /><Reaction frameid="RXNQT-4341" orgid="ARA" resource="getxml?ARA:RXNQT-4341" /></appears-in-right-side-of>
+<comment datatype="string">Methanesulfonate is a very stable strong acid and a key intermediate in the biogeochemical cycling
+of sulfur. It is formed in megatonne quantities in the atmosphere from the chemical oxidation of
+atmospheric &lt;a href="/compound?orgid=ARA&amp;id=CPD-7670"&gt;dimethyl sulfide&lt;/a&gt; and deposited on the Earth by rain and snow, and by dry deposition
+[&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10591843"&gt;Kelly99a&lt;/a&gt;].</comment>
+<common-name datatype="string">methanesulfonate</common-name>
+</Compound>
+</ptools-xml>

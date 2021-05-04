@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CIS-ACONITATE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CIS-ACONITATE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CIS-ACONITATE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CIS-ACONITATE" detail="full" frameid="CIS-ACONITATE" orgid="META"><parent><Compound class="true" frameid="Tricarboxylates" orgid="META" resource="getxml?META:Tricarboxylates" /></parent>
@@ -12,31 +12,6 @@
 <string title="smiles">C([O-])(=O)C(/CC(=O)[O-])=C/C(=O)[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">171.086</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">174.01643</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-8034" detail="low" frameid="REG0-8034" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:PREPHENATEDEHYDRAT-ENZRXN" detail="low" frameid="PREPHENATEDEHYDRAT-ENZRXN" orgid="META"><reaction><Reaction frameid="PREPHENATEDEHYDRAT-RXN" orgid="META" resource="getxml?META:PREPHENATEDEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">prephenate dehydratase</common-name>
-<enzyme><Protein frameid="CHORISMUTPREPHENDEHYDRAT-CPLX" orgid="META" resource="getxml?META:CHORISMUTPREPHENDEHYDRAT-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIS-ACONITATE" orgid="META" resource="#META:CIS-ACONITATE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-8289" detail="low" frameid="REG0-8289" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ISOCITLYASE-ENZRXN" detail="low" frameid="ISOCITLYASE-ENZRXN" orgid="META"><reaction><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="META" resource="getxml?META:ISOCIT-CLEAV-RXN" /></reaction>
-<common-name datatype="string">isocitrate lyase</common-name>
-<enzyme><Protein frameid="ISOCIT-LYASE" orgid="META" resource="getxml?META:ISOCIT-LYASE" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIS-ACONITATE" orgid="META" resource="#META:CIS-ACONITATE" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">(Z)-prop-1-ene-1,2,3-tricarboxylate</synonym>
-<synonym datatype="string">&lt;i&gt;cis&lt;/i&gt;-aconitic acid</synonym>
-<appears-in-left-side-of><Reaction frameid="TRANS-RXN-375" orgid="META" resource="getxml?META:TRANS-RXN-375" /><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEHYDR-RXN" /><Reaction frameid="ACONITATE-DECARBOXYLASE-RXN" orgid="META" resource="getxml?META:ACONITATE-DECARBOXYLASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-20071" orgid="META" resource="getxml?META:RXN-20071" /><Reaction frameid="TRANS-RXN-375" orgid="META" resource="getxml?META:TRANS-RXN-375" /><Reaction frameid="ACONITATE-DELTA-ISOMERASE-RXN" orgid="META" resource="getxml?META:ACONITATE-DELTA-ISOMERASE-RXN" /><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /></appears-in-right-side-of>
 <comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=CIS-ACONITATE"&gt;&lt;i&gt;cis&lt;/i&gt;-aconitate&lt;/a&gt; is named after the plant &lt;a href="/META/NEW-IMAGE?object=TAX-112591"&gt;&lt;i&gt;Aconitum napellus&lt;/i&gt;&lt;/a&gt;, from which it was first isolated
 in 1828 [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bPeschier28%5d"&gt;Peschier28&lt;/a&gt;].
 The plants of the genus Aconitum (family of the Ranunculaceae) are famous for the many alkaloids they
@@ -110,14 +85,39 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C6H6O6/c7-4(8)1-3(6(11)12)2-5(9)10/h1H,2H2,(H,7,8)(H,9,10)(H,11,12)/p-3/b3-1-</inchi>
 <inchi-key datatype="string">InChIKey=GTZCVFVGUGFEME-IWQZZHSRSA-K</inchi-key>
+<molecular-weight datatype="float" units="Daltons">171.086</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">174.01643</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-8034" detail="low" frameid="REG0-8034" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PREPHENATEDEHYDRAT-ENZRXN" detail="low" frameid="PREPHENATEDEHYDRAT-ENZRXN" orgid="META"><common-name datatype="string">prephenate dehydratase</common-name>
+<enzyme><Protein frameid="CHORISMUTPREPHENDEHYDRAT-CPLX" orgid="META" resource="getxml?META:CHORISMUTPREPHENDEHYDRAT-CPLX" /></enzyme>
+<reaction><Reaction frameid="PREPHENATEDEHYDRAT-RXN" orgid="META" resource="getxml?META:PREPHENATEDEHYDRAT-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIS-ACONITATE" orgid="META" resource="#META:CIS-ACONITATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8289" detail="low" frameid="REG0-8289" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ISOCITLYASE-ENZRXN" detail="low" frameid="ISOCITLYASE-ENZRXN" orgid="META"><common-name datatype="string">isocitrate lyase</common-name>
+<enzyme><Protein frameid="ISOCIT-LYASE" orgid="META" resource="getxml?META:ISOCIT-LYASE" /></enzyme>
+<reaction><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="META" resource="getxml?META:ISOCIT-CLEAV-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIS-ACONITATE" orgid="META" resource="#META:CIS-ACONITATE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">(Z)-prop-1-ene-1,2,3-tricarboxylate</synonym>
+<synonym datatype="string">&lt;i&gt;cis&lt;/i&gt;-aconitic acid</synonym>
+<appears-in-left-side-of><Reaction frameid="TRANS-RXN-375" orgid="META" resource="getxml?META:TRANS-RXN-375" /><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEHYDR-RXN" /><Reaction frameid="ACONITATE-DECARBOXYLASE-RXN" orgid="META" resource="getxml?META:ACONITATE-DECARBOXYLASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-20071" orgid="META" resource="getxml?META:RXN-20071" /><Reaction frameid="TRANS-RXN-375" orgid="META" resource="getxml?META:TRANS-RXN-375" /><Reaction frameid="ACONITATE-DELTA-ISOMERASE-RXN" orgid="META" resource="getxml?META:ACONITATE-DELTA-ISOMERASE-RXN" /><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

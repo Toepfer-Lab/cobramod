@@ -1,18 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:1.2.1.13-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:1.2.1.13-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:1.2.1.13-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:1.2.1.13-RXN" detail="full" frameid="1.2.1.13-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-RIGHT-TO-LEFT</reaction-direction>
-<right><Compound frameid="DPG" orgid="META" resource="getxml?META:DPG" /></right>
-<right><Compound frameid="NADPH" orgid="META" resource="getxml?META:NADPH" /></right>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR100041</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -115,9 +109,9 @@
 </dblink>
 <ec-number>EC-1.2.1.13<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-19349" detail="low" frameid="ENZRXN-19349" orgid="META"><reaction><Reaction frameid="1.2.1.13-RXN" orgid="META" resource="#META:1.2.1.13-RXN" /></reaction>
-<common-name datatype="string">glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-19349" detail="low" frameid="ENZRXN-19349" orgid="META"><common-name datatype="string">glyceraldehyde-3-phosphate dehydrogenase</common-name>
 <enzyme><Protein frameid="CPLX-7280" orgid="META" resource="getxml?META:CPLX-7280" /></enzyme>
+<reaction><Reaction frameid="1.2.1.13-RXN" orgid="META" resource="#META:1.2.1.13-RXN" /></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-16.442871<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -128,10 +122,10 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
@@ -139,5 +133,11 @@ manual interpretation of the computation occurred.
 <left><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /></left>
 <left><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></left>
 <left><Compound frameid="NADP" orgid="META" resource="getxml?META:NADP" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="DPG" orgid="META" resource="getxml?META:DPG" /></right>
+<right><Compound frameid="NADPH" orgid="META" resource="getxml?META:NADPH" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
 </Reaction>
 </ptools-xml>

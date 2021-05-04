@@ -1,18 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PEPCARBOXYKIN-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PEPCARBOXYKIN-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PEPCARBOXYKIN-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:PEPCARBOXYKIN-RXN" detail="full" frameid="PEPCARBOXYKIN-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CARBON-DIOXIDE" orgid="META" resource="getxml?META:CARBON-DIOXIDE" /></right>
-<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right>
-<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR103099</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -80,22 +74,22 @@
 </dblink>
 <ec-number>EC-4.1.1.49<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:PEPCARBOXYKIN-ENZRXN" detail="low" frameid="PEPCARBOXYKIN-ENZRXN" orgid="META"><reaction><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="#META:PEPCARBOXYKIN-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:PEPCARBOXYKIN-ENZRXN" detail="low" frameid="PEPCARBOXYKIN-ENZRXN" orgid="META"><common-name datatype="string">phospho&lt;i&gt;enol&lt;/i&gt;pyruvate carboxykinase (ATP)</common-name>
+<enzyme><Protein frameid="PEPCARBOXYKIN-MONOMER" orgid="META" resource="getxml?META:PEPCARBOXYKIN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="#META:PEPCARBOXYKIN-RXN" /></reaction>
 <synonym datatype="string">phosphopyruvate carboxylase (ATP)</synonym>
 <synonym datatype="string">phosphoenolpyruvate carboxylase</synonym>
 <synonym datatype="string">phosphoenolpyruvate carboxykinase</synonym>
 <synonym datatype="string">ATP:oxaloacetate carboxy-lyase (transphosphorylating)</synonym>
-<common-name datatype="string">phospho&lt;i&gt;enol&lt;/i&gt;pyruvate carboxykinase (ATP)</common-name>
-<enzyme><Protein frameid="PEPCARBOXYKIN-MONOMER" orgid="META" resource="getxml?META:PEPCARBOXYKIN-MONOMER" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20878" detail="low" frameid="ENZRXN-20878" orgid="META"><reaction><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="#META:PEPCARBOXYKIN-RXN" /></reaction>
-<common-name datatype="string">phospho&lt;em&gt;enol&lt;/em&gt;pyruvate carboxykinase (ATP)</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-20878" detail="low" frameid="ENZRXN-20878" orgid="META"><common-name datatype="string">phospho&lt;em&gt;enol&lt;/em&gt;pyruvate carboxykinase (ATP)</common-name>
 <enzyme><Protein frameid="MONOMER-17676" orgid="META" resource="getxml?META:MONOMER-17676" /></enzyme>
+<reaction><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="#META:PEPCARBOXYKIN-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-18931" detail="low" frameid="ENZRXN-18931" orgid="META"><reaction><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="#META:PEPCARBOXYKIN-RXN" /></reaction>
-<synonym datatype="string">PEP carboxykinase</synonym>
-<common-name datatype="string">phospho&lt;em&gt;enol&lt;/em&gt;pyruvate carboxykinase (ATP)</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-18931" detail="low" frameid="ENZRXN-18931" orgid="META"><common-name datatype="string">phospho&lt;em&gt;enol&lt;/em&gt;pyruvate carboxykinase (ATP)</common-name>
 <enzyme><Protein frameid="AT4G37870-MONOMER" orgid="META" resource="getxml?META:AT4G37870-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="#META:PEPCARBOXYKIN-RXN" /></reaction>
+<synonym datatype="string">PEP carboxykinase</synonym>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-7.015869<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -106,15 +100,21 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="PWY-7117" orgid="META" resource="getxml?META:PWY-7117" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY-561" orgid="META" resource="getxml?META:PWY-561" /></in-pathway>
 <left><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /></left>
 <left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CARBON-DIOXIDE" orgid="META" resource="getxml?META:CARBON-DIOXIDE" /></right>
+<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right>
+<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
 </Reaction>
 </ptools-xml>

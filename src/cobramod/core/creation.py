@@ -345,7 +345,7 @@ def _get_reaction(
                 metabolite_dict=metabolite, compartment="e", model=model
             )
             debug_log.warning(
-                f'Metabolite "{metabolite.id} of reaction "{reaction.id}" '
+                f'Metabolite "{metabolite.id}" of reaction "{reaction.id}" '
                 + "will be located in the extracellular compartment."
             )
         else:

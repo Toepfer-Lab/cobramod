@@ -1,0 +1,97 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:MYO-INOSITOL"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:MYO-INOSITOL</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:MYO-INOSITOL" detail="full" frameid="MYO-INOSITOL" orgid="ARA"><parent><Compound class="true" frameid="Inositols" orgid="ARA" resource="getxml?ARA:Inositols" /></parent>
+<cml><molecule formalCharge="0" id="MYO-INOSITOL" title="myo-inositol"><atomArray><atom elementType="C" id="MYO-INOSITOL-atom1" x2="-13010.0" y2="-14835.0" /><atom elementType="C" id="MYO-INOSITOL-atom2" x2="-20155.0" y2="-10710.0" /><atom elementType="C" id="MYO-INOSITOL-atom3" x2="-5865.0" y2="-10709.0" /><atom elementType="C" id="MYO-INOSITOL-atom4" x2="-20155.0" y2="-2460.0" /><atom elementType="C" id="MYO-INOSITOL-atom5" x2="-5866.0" y2="-2459.0" /><atom elementType="C" id="MYO-INOSITOL-atom6" x2="-13011.0" y2="1665.0" /><atom elementType="O" id="MYO-INOSITOL-atom7" x2="-13010.0" y2="-23084.0" /><atom elementType="O" id="MYO-INOSITOL-atom8" x2="-27299.0" y2="-14835.0" /><atom elementType="O" id="MYO-INOSITOL-atom9" x2="1279.0" y2="-14833.0" /><atom elementType="O" id="MYO-INOSITOL-atom10" x2="-27300.0" y2="1665.0" /><atom elementType="O" id="MYO-INOSITOL-atom11" x2="1278.0" y2="1666.0" /><atom elementType="O" id="MYO-INOSITOL-atom12" x2="-13011.0" y2="9915.0" /></atomArray>
+<bondArray><bond atomRefs="MYO-INOSITOL-atom5 MYO-INOSITOL-atom11" id="MYO-INOSITOL-bond1" order="1" /><bond atomRefs="MYO-INOSITOL-atom3 MYO-INOSITOL-atom9" id="MYO-INOSITOL-bond2" order="1" /><bond atomRefs="MYO-INOSITOL-atom6 MYO-INOSITOL-atom12" id="MYO-INOSITOL-bond3" order="1" /><bond atomRefs="MYO-INOSITOL-atom4 MYO-INOSITOL-atom10" id="MYO-INOSITOL-bond4" order="1" /><bond atomRefs="MYO-INOSITOL-atom2 MYO-INOSITOL-atom8" id="MYO-INOSITOL-bond5" order="1" /><bond atomRefs="MYO-INOSITOL-atom1 MYO-INOSITOL-atom7" id="MYO-INOSITOL-bond6" order="1" /><bond atomRefs="MYO-INOSITOL-atom3 MYO-INOSITOL-atom5" id="MYO-INOSITOL-bond7" order="1" /><bond atomRefs="MYO-INOSITOL-atom1 MYO-INOSITOL-atom3" id="MYO-INOSITOL-bond8" order="1" /><bond atomRefs="MYO-INOSITOL-atom2 MYO-INOSITOL-atom1" id="MYO-INOSITOL-bond9" order="1" /><bond atomRefs="MYO-INOSITOL-atom4 MYO-INOSITOL-atom2" id="MYO-INOSITOL-bond10" order="1" /><bond atomRefs="MYO-INOSITOL-atom6 MYO-INOSITOL-atom5" id="MYO-INOSITOL-bond11" order="1" /><bond atomRefs="MYO-INOSITOL-atom6 MYO-INOSITOL-atom4" id="MYO-INOSITOL-bond12" order="1" /></bondArray>
+<formula concise="C 6 H 12 O 6" /><float title="molecularWeight" units="g/mol">180.157</float>
+<string title="smiles">[C@H]1([C@@H]([C@H]([C@@H]([C@H]([C@H]1O)O)O)O)O)O</string>
+</molecule>
+</cml>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/134/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/134/</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Myo-inositol</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Myo-inositol</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>inost</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/inost</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17268</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17268</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00211</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00211</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB03106</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB03106</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>868</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/868</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00001164</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00001164</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>6917-35-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=6917-35-7</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17268</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17268</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00137</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00137</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>892</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=892</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>87-89-8</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=87-89-8</dblink-URL>
+</dblink>
+<synonym datatype="string">&lt;i&gt;cis&lt;/i&gt;-1,2,3,5-trans-4,6-cyclohexanehexol</synonym>
+<synonym datatype="string">dambose</synonym>
+<synonym datatype="string">mesoinositol</synonym>
+<synonym datatype="string">&lt;i&gt;meso&lt;/i&gt;-inositol</synonym>
+<synonym datatype="string">M-inositol</synonym>
+<synonym datatype="string">1,2,3,5/4,6 inositol</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-96.706566</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-</inchi>
+<inchi-key datatype="string">InChIKey=CDAISMWEOUEBRE-GPIVLXJGSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="2.3.1.72-RXN" orgid="ARA" resource="getxml?ARA:2.3.1.72-RXN" /><Reaction frameid="MYO-INOSITOL-2-DEHYDROGENASE-RXN" orgid="ARA" resource="getxml?ARA:MYO-INOSITOL-2-DEHYDROGENASE-RXN" /><Reaction frameid="2.4.1.123-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.123-RXN" /><Reaction frameid="MYO-INOSITOL-OXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:MYO-INOSITOL-OXYGENASE-RXN" /><Reaction frameid="MYO-INOSITOL-1-KINASE-RXN" orgid="ARA" resource="getxml?ARA:MYO-INOSITOL-1-KINASE-RXN" /><Reaction frameid="2.7.8.11-RXN" orgid="ARA" resource="getxml?ARA:2.7.8.11-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-8288" orgid="ARA" resource="getxml?ARA:RXN-8288" /><Reaction frameid="RXN-10952" orgid="ARA" resource="getxml?ARA:RXN-10952" /><Reaction frameid="RXN0-5408" orgid="ARA" resource="getxml?ARA:RXN0-5408" /><Reaction frameid="MYO-INOSITOL-1OR-4-MONOPHOSPHATASE-RXN" orgid="ARA" resource="getxml?ARA:MYO-INOSITOL-1OR-4-MONOPHOSPHATASE-RXN" /><Reaction frameid="RXN-8284" orgid="ARA" resource="getxml?ARA:RXN-8284" /><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.82-RXN" /><Reaction frameid="2.4.1.67-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.67-RXN" /><Reaction frameid="RXN-7253" orgid="ARA" resource="getxml?ARA:RXN-7253" /></appears-in-right-side-of>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Nikolau-CuticleWax,Fiehn,Shulaev-LCMS (see &lt;A href="http://plantmetabolomics.org/tutorials/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">&lt;I&gt;myo&lt;/I&gt;-inositol</common-name>
+</Compound>
+</ptools-xml>

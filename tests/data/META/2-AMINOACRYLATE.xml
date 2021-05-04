@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:2-AMINOACRYLATE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:2-AMINOACRYLATE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:2-AMINOACRYLATE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:2-AMINOACRYLATE" detail="full" frameid="2-AMINOACRYLATE" orgid="META"><parent><Compound class="true" frameid="Enamines" orgid="META" resource="getxml?META:Enamines" /></parent>
@@ -12,28 +12,17 @@
 <string title="smiles">C=C([NH3+])C(=O)[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">87.078</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">87.03203</monoisotopic-mw>
-<synonym datatype="string">2-aminoacrylate</synonym>
-<synonym datatype="string">&amp;alpha;-aminoacrylate</synonym>
-<synonym datatype="string">2-aminoacrylic acid</synonym>
-<synonym datatype="string">2,3-didehydroalanine</synonym>
-<synonym datatype="string">&amp;alpha;,&amp;beta;-dehydroalanine</synonym>
-<synonym datatype="string">anhydroserine 2-aminopropenoic acid</synonym>
-<synonym datatype="string">dehydroalanine</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-8899" orgid="META" resource="getxml?META:RXN-8899" /><Reaction frameid="RXN-15124" orgid="META" resource="getxml?META:RXN-15124" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-15137" orgid="META" resource="getxml?META:RXN-15137" /><Reaction frameid="RXN-15577" orgid="META" resource="getxml?META:RXN-15577" /><Reaction frameid="RXN-16174" orgid="META" resource="getxml?META:RXN-16174" /><Reaction frameid="ALLIIN-LYASE-RXN" orgid="META" resource="getxml?META:ALLIIN-LYASE-RXN" /><Reaction frameid="RXN-15579" orgid="META" resource="getxml?META:RXN-15579" /><Reaction frameid="RXN-19546" orgid="META" resource="getxml?META:RXN-19546" /><Reaction frameid="RXN-19584" orgid="META" resource="getxml?META:RXN-19584" /><Reaction frameid="RXN-19582" orgid="META" resource="getxml?META:RXN-19582" /><Reaction frameid="RXN-19561" orgid="META" resource="getxml?META:RXN-19561" /><Reaction frameid="RXN-19559" orgid="META" resource="getxml?META:RXN-19559" /><Reaction frameid="RXN-19557" orgid="META" resource="getxml?META:RXN-19557" /><Reaction frameid="RXN-19555" orgid="META" resource="getxml?META:RXN-19555" /><Reaction frameid="RXN-19553" orgid="META" resource="getxml?META:RXN-19553" /><Reaction frameid="RXN-19551" orgid="META" resource="getxml?META:RXN-19551" /><Reaction frameid="RXN-19548" orgid="META" resource="getxml?META:RXN-19548" /><Reaction frameid="RXN-19545" orgid="META" resource="getxml?META:RXN-19545" /><Reaction frameid="RXN-19381" orgid="META" resource="getxml?META:RXN-19381" /><Reaction frameid="RXN-15580" orgid="META" resource="getxml?META:RXN-15580" /><Reaction frameid="RXN-15578" orgid="META" resource="getxml?META:RXN-15578" /><Reaction frameid="RXN-15583" orgid="META" resource="getxml?META:RXN-15583" /><Reaction frameid="RXN-15584" orgid="META" resource="getxml?META:RXN-15584" /><Reaction frameid="RXN-15582" orgid="META" resource="getxml?META:RXN-15582" /><Reaction frameid="RXN-15128" orgid="META" resource="getxml?META:RXN-15128" /><Reaction frameid="RXN-8909" orgid="META" resource="getxml?META:RXN-8909" /><Reaction frameid="RXN-16176" orgid="META" resource="getxml?META:RXN-16176" /><Reaction frameid="RXN-15129" orgid="META" resource="getxml?META:RXN-15129" /><Reaction frameid="RXN-15131" orgid="META" resource="getxml?META:RXN-15131" /><Reaction frameid="RXN-15125" orgid="META" resource="getxml?META:RXN-15125" /><Reaction frameid="RXN-15581" orgid="META" resource="getxml?META:RXN-15581" /><Reaction frameid="RXN-8916" orgid="META" resource="getxml?META:RXN-8916" /><Reaction frameid="RXN-8898" orgid="META" resource="getxml?META:RXN-8898" /><Reaction frameid="RXN-11524" orgid="META" resource="getxml?META:RXN-11524" /><Reaction frameid="RXN-12632" orgid="META" resource="getxml?META:RXN-12632" /></appears-in-right-side-of>
 <common-name datatype="string">2-aminoprop-2-enoate</common-name>
 <credits><revised><date datatype="date">2013-12-03</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -85,14 +74,25 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C3H5NO2/c1-2(4)3(5)6/h1,4H2,(H,5,6)</inchi>
 <inchi-key datatype="string">InChIKey=UQBOJOOOTLPNST-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">87.078</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">87.03203</monoisotopic-mw>
+<synonym datatype="string">2-aminoacrylate</synonym>
+<synonym datatype="string">&amp;alpha;-aminoacrylate</synonym>
+<synonym datatype="string">2-aminoacrylic acid</synonym>
+<synonym datatype="string">2,3-didehydroalanine</synonym>
+<synonym datatype="string">&amp;alpha;,&amp;beta;-dehydroalanine</synonym>
+<synonym datatype="string">anhydroserine 2-aminopropenoic acid</synonym>
+<synonym datatype="string">dehydroalanine</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-8899" orgid="META" resource="getxml?META:RXN-8899" /><Reaction frameid="RXN-15124" orgid="META" resource="getxml?META:RXN-15124" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-15137" orgid="META" resource="getxml?META:RXN-15137" /><Reaction frameid="RXN-15577" orgid="META" resource="getxml?META:RXN-15577" /><Reaction frameid="RXN-16174" orgid="META" resource="getxml?META:RXN-16174" /><Reaction frameid="ALLIIN-LYASE-RXN" orgid="META" resource="getxml?META:ALLIIN-LYASE-RXN" /><Reaction frameid="RXN-15579" orgid="META" resource="getxml?META:RXN-15579" /><Reaction frameid="RXN-19546" orgid="META" resource="getxml?META:RXN-19546" /><Reaction frameid="RXN-19584" orgid="META" resource="getxml?META:RXN-19584" /><Reaction frameid="RXN-19582" orgid="META" resource="getxml?META:RXN-19582" /><Reaction frameid="RXN-19561" orgid="META" resource="getxml?META:RXN-19561" /><Reaction frameid="RXN-19559" orgid="META" resource="getxml?META:RXN-19559" /><Reaction frameid="RXN-19557" orgid="META" resource="getxml?META:RXN-19557" /><Reaction frameid="RXN-19555" orgid="META" resource="getxml?META:RXN-19555" /><Reaction frameid="RXN-19553" orgid="META" resource="getxml?META:RXN-19553" /><Reaction frameid="RXN-19551" orgid="META" resource="getxml?META:RXN-19551" /><Reaction frameid="RXN-19548" orgid="META" resource="getxml?META:RXN-19548" /><Reaction frameid="RXN-19545" orgid="META" resource="getxml?META:RXN-19545" /><Reaction frameid="RXN-19381" orgid="META" resource="getxml?META:RXN-19381" /><Reaction frameid="RXN-15580" orgid="META" resource="getxml?META:RXN-15580" /><Reaction frameid="RXN-15578" orgid="META" resource="getxml?META:RXN-15578" /><Reaction frameid="RXN-15583" orgid="META" resource="getxml?META:RXN-15583" /><Reaction frameid="RXN-15584" orgid="META" resource="getxml?META:RXN-15584" /><Reaction frameid="RXN-15582" orgid="META" resource="getxml?META:RXN-15582" /><Reaction frameid="RXN-15128" orgid="META" resource="getxml?META:RXN-15128" /><Reaction frameid="RXN-8909" orgid="META" resource="getxml?META:RXN-8909" /><Reaction frameid="RXN-16176" orgid="META" resource="getxml?META:RXN-16176" /><Reaction frameid="RXN-15129" orgid="META" resource="getxml?META:RXN-15129" /><Reaction frameid="RXN-15131" orgid="META" resource="getxml?META:RXN-15131" /><Reaction frameid="RXN-15125" orgid="META" resource="getxml?META:RXN-15125" /><Reaction frameid="RXN-15581" orgid="META" resource="getxml?META:RXN-15581" /><Reaction frameid="RXN-8916" orgid="META" resource="getxml?META:RXN-8916" /><Reaction frameid="RXN-8898" orgid="META" resource="getxml?META:RXN-8898" /><Reaction frameid="RXN-11524" orgid="META" resource="getxml?META:RXN-11524" /><Reaction frameid="RXN-12632" orgid="META" resource="getxml?META:RXN-12632" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

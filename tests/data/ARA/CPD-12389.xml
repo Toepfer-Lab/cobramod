@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-12389"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-12389"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-12389</query>
 <num_results>1</num_results>
@@ -13,20 +13,6 @@
 <string title="smiles">CSCCCC=[N+](O)[O-]</string>
 </molecule>
 </cml>
-<common-name datatype="string">1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
-<credits><created><date datatype="date">2010-04-26</date>
-<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><common-name datatype="string">Peifen Zhang</common-name>
-<affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><common-name datatype="string">Carnegie Institution for Science</common-name>
-<url datatype="string">http://plantcyc.org</url>
-<abbrev-name datatype="string">PMN</abbrev-name>
-</Organization>
-<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
-<abbrev-name datatype="string">TAIR</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
-</credits>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM10222</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -37,13 +23,27 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131522</dblink-URL>
 </dblink>
+<synonym datatype="string">4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
 <gibbs-0 datatype="float" units="kcal/mol">61.462326</gibbs-0>
 <inchi datatype="string">InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
 <inchi-key datatype="string">InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
 <molecular-weight datatype="float" units="Daltons">149.207</molecular-weight>
 <monoisotopic-mw datatype="float" units="Daltons">151.0667</monoisotopic-mw>
-<synonym datatype="string">4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
 <appears-in-left-side-of><Reaction frameid="RXN-11422" orgid="ARA" resource="getxml?ARA:RXN-11422" /></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction frameid="RXN-11414" orgid="ARA" resource="getxml?ARA:RXN-11414" /></appears-in-right-side-of>
+<common-name datatype="string">1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
+<credits><created><date datatype="date">2010-04-26</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+<common-name datatype="string">Carnegie Institution for Science</common-name>
+</Organization>
+<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
+<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+</Organization>
+</affiliations>
+<common-name datatype="string">Peifen Zhang</common-name>
+</Person>
+<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
+</credits>
 </Compound>
 </ptools-xml>

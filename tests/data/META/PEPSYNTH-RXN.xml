@@ -1,20 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PEPSYNTH-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PEPSYNTH-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PEPSYNTH-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:PEPSYNTH-RXN" detail="full" frameid="PEPSYNTH-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /><coefficient datatype="integer">2</coefficient>
-</right>
-<right><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></right>
-<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right>
-<right><Compound frameid="AMP" orgid="META" resource="getxml?META:AMP" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR103140</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -107,22 +99,22 @@
 </dblink>
 <ec-number>EC-2.7.9.2<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:PEPSYNTH-ENZRXN" detail="low" frameid="PEPSYNTH-ENZRXN" orgid="META"><reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="#META:PEPSYNTH-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:PEPSYNTH-ENZRXN" detail="low" frameid="PEPSYNTH-ENZRXN" orgid="META"><common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
+<enzyme><Protein frameid="PEPSYNTH-CPLX" orgid="META" resource="getxml?META:PEPSYNTH-CPLX" /></enzyme>
+<reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="#META:PEPSYNTH-RXN" /></reaction>
 <synonym datatype="string">pyruvate, water dikinase</synonym>
 <synonym datatype="string">phosphoenolpyruvate synthase</synonym>
 <synonym datatype="string">PEP synthase</synonym>
 <synonym datatype="string">ATP:pyruvate, water phosphotransferase</synonym>
-<common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
-<enzyme><Protein frameid="PEPSYNTH-CPLX" orgid="META" resource="getxml?META:PEPSYNTH-CPLX" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-26522" detail="low" frameid="ENZRXN-26522" orgid="META"><reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="#META:PEPSYNTH-RXN" /></reaction>
-<common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-26522" detail="low" frameid="ENZRXN-26522" orgid="META"><common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
 <enzyme><Protein frameid="CPLX-9306" orgid="META" resource="getxml?META:CPLX-9306" /></enzyme>
+<reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="#META:PEPSYNTH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12356" detail="low" frameid="ENZRXN-12356" orgid="META"><reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="#META:PEPSYNTH-RXN" /></reaction>
-<synonym datatype="string">phosphoenolpyruvate synthase</synonym>
-<common-name datatype="string">pyruvate, water dikinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-12356" detail="low" frameid="ENZRXN-12356" orgid="META"><common-name datatype="string">pyruvate, water dikinase</common-name>
 <enzyme><Protein frameid="CPLX-11857" orgid="META" resource="getxml?META:CPLX-11857" /></enzyme>
+<reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="#META:PEPSYNTH-RXN" /></reaction>
+<synonym datatype="string">phosphoenolpyruvate synthase</synonym>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-9.577148<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -133,10 +125,10 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
@@ -144,5 +136,13 @@ manual interpretation of the computation occurred.
 <left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
 <left><Compound frameid="PYRUVATE" orgid="META" resource="getxml?META:PYRUVATE" /></left>
 <left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /><coefficient datatype="integer">2</coefficient>
+</right>
+<right><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></right>
+<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right>
+<right><Compound frameid="AMP" orgid="META" resource="getxml?META:AMP" /></right>
 </Reaction>
 </ptools-xml>

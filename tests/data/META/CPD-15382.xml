@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-15382"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-15382"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-15382</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CPD-15382" detail="full" frameid="CPD-15382" orgid="META"><parent><Compound class="true" frameid="FRU" orgid="META" resource="getxml?META:FRU" /></parent>
@@ -13,21 +13,17 @@
 <string title="smiles">C(O)C(=O)[C@@H](O)[C@H](O)[C@H](O)CO</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="RXN-20900" orgid="META" resource="getxml?META:RXN-20900" /><Reaction frameid="RXN-15150" orgid="META" resource="getxml?META:RXN-15150" /><Reaction frameid="1.1.99.28-RXN" orgid="META" resource="getxml?META:1.1.99.28-RXN" /><Reaction frameid="FRUCTOSE-5-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:FRUCTOSE-5-DEHYDROGENASE-RXN" /><Reaction frameid="FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="RXN-14515" orgid="META" resource="getxml?META:RXN-14515" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /><Reaction frameid="GLUCISOM-RXN" orgid="META" resource="getxml?META:GLUCISOM-RXN" /><Reaction frameid="MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" orgid="META" resource="getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" /><Reaction frameid="RXN-14365" orgid="META" resource="getxml?META:RXN-14365" /><Reaction frameid="MANNITOL-2-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="MANNOSE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MANNOSE-ISOMERASE-RXN" /><Reaction frameid="RXN-7644" orgid="META" resource="getxml?META:RXN-7644" /></appears-in-right-side-of>
 <common-name datatype="string">&lt;i&gt;keto&lt;/i&gt;-D-fructose</common-name>
 <credits><created><date datatype="date">2013-05-29</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
 </credits>
@@ -64,14 +60,18 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C6H12O6/c7-1-3(9)5(11)6(12)4(10)2-8/h3,5-9,11-12H,1-2H2/t3-,5-,6-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=BJHIKXHVCXFQLS-UYFOZJQFSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-20900" orgid="META" resource="getxml?META:RXN-20900" /><Reaction frameid="RXN-15150" orgid="META" resource="getxml?META:RXN-15150" /><Reaction frameid="1.1.99.28-RXN" orgid="META" resource="getxml?META:1.1.99.28-RXN" /><Reaction frameid="FRUCTOSE-5-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:FRUCTOSE-5-DEHYDROGENASE-RXN" /><Reaction frameid="FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="RXN-14515" orgid="META" resource="getxml?META:RXN-14515" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /><Reaction frameid="GLUCISOM-RXN" orgid="META" resource="getxml?META:GLUCISOM-RXN" /><Reaction frameid="MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" orgid="META" resource="getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" /><Reaction frameid="RXN-14365" orgid="META" resource="getxml?META:RXN-14365" /><Reaction frameid="MANNITOL-2-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="MANNOSE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MANNOSE-ISOMERASE-RXN" /><Reaction frameid="RXN-7644" orgid="META" resource="getxml?META:RXN-7644" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:OXALACETIC_ACID"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:OXALACETIC_ACID"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:OXALACETIC_ACID</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:OXALACETIC_ACID" detail="full" frameid="OXALACETIC_ACID" orgid="META"><parent><Compound class="true" frameid="C4-dicarboxylates" orgid="META" resource="getxml?META:C4-dicarboxylates" /></parent>
@@ -12,258 +12,6 @@
 <string title="smiles">C(C([O-])=O)C(=O)C([O-])=O</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">130.057</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">132.00587</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-6654" detail="low" frameid="REG0-6654" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:FUMARATE-REDN-ENZRXN" detail="low" frameid="FUMARATE-REDN-ENZRXN" orgid="META"><reaction><Reaction frameid="R601-RXN" orgid="META" resource="getxml?META:R601-RXN" /></reaction>
-<synonym datatype="string">QFR</synonym>
-<synonym datatype="string">menaquinol-fumarate oxidoreductase</synonym>
-<synonym datatype="string">FrdABCD</synonym>
-<synonym datatype="string">fumarate reductase</synonym>
-<common-name datatype="string">fumarate reductase</common-name>
-<enzyme><Protein frameid="FUMARATE-REDUCTASE" orgid="META" resource="getxml?META:FUMARATE-REDUCTASE" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-6922" detail="low" frameid="REG0-6922" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ISOCITDEH-ENZRXN" detail="low" frameid="ISOCITDEH-ENZRXN" orgid="META"><reaction><Reaction frameid="ISOCITDEH-RXN" orgid="META" resource="getxml?META:ISOCITDEH-RXN" /></reaction>
-<synonym datatype="string">oxalosuccinate decarboxylase</synonym>
-<synonym datatype="string">isocitrate dehydrogenase (NADP+)</synonym>
-<common-name datatype="string">isocitrate dehydrogenase</common-name>
-<enzyme><Protein frameid="ISOCITHASE-CPLX" orgid="META" resource="getxml?META:ISOCITHASE-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-10567" detail="low" frameid="REG0-10567" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:PEPSYNTH-ENZRXN" detail="low" frameid="PEPSYNTH-ENZRXN" orgid="META"><reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /></reaction>
-<synonym datatype="string">pyruvate, water dikinase</synonym>
-<synonym datatype="string">phosphoenolpyruvate synthase</synonym>
-<synonym datatype="string">PEP synthase</synonym>
-<synonym datatype="string">ATP:pyruvate, water phosphotransferase</synonym>
-<common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
-<enzyme><Protein frameid="PEPSYNTH-CPLX" orgid="META" resource="getxml?META:PEPSYNTH-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-7675" detail="low" frameid="REG0-7675" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:MALIC-NAD-ENZRXN" detail="low" frameid="MALIC-NAD-ENZRXN" orgid="META"><reaction><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /></reaction>
-<synonym datatype="string">pyruvic-malic carboxylase</synonym>
-<synonym datatype="string">(S)-malate:NAD+ oxdireductase (oxaloacetate decarboxylating)</synonym>
-<synonym datatype="string">malic enzyme, NAD-linked</synonym>
-<common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
-<enzyme><Protein frameid="MALIC-NAD-CPLX" orgid="META" resource="getxml?META:MALIC-NAD-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-7611" detail="low" frameid="REG0-7611" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:MALIC-NADP-ENZRXN" detail="low" frameid="MALIC-NADP-ENZRXN" orgid="META"><reaction><Reaction frameid="MALIC-NADP-RXN" orgid="META" resource="getxml?META:MALIC-NADP-RXN" /></reaction>
-<synonym datatype="string">malic enzyme</synonym>
-<synonym datatype="string">malate dehydrogenase, NADP+-linked</synonym>
-<synonym datatype="string">pyruvic-malic carboxylase</synonym>
-<synonym datatype="string">(S)-malate:NADP+ oxidoreductase (oxaloacetate-decarboxylating)</synonym>
-<common-name datatype="string">malate dehydrogenase</common-name>
-<enzyme><Protein frameid="MALIC-NADP-CPLX" orgid="META" resource="getxml?META:MALIC-NADP-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-8068" detail="low" frameid="REG0-8068" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:CITLY-ENZRXN" detail="low" frameid="CITLY-ENZRXN" orgid="META"><reaction><Reaction frameid="CITLY-RXN" orgid="META" resource="getxml?META:CITLY-RXN" /></reaction>
-<synonym datatype="string">citrate (pro-3S)-lyase</synonym>
-<synonym datatype="string">citrase</synonym>
-<synonym datatype="string">citratase</synonym>
-<synonym datatype="string">citritase</synonym>
-<synonym datatype="string">citridesmolase</synonym>
-<synonym datatype="string">citrate aldolase</synonym>
-<synonym datatype="string">citrate oxaloacetate-lyase ((pro-3S)-CH2COO- acetate)</synonym>
-<common-name datatype="string">citrate lyase</common-name>
-<enzyme><Protein frameid="ACECITLY-CPLX" orgid="META" resource="getxml?META:ACECITLY-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-7605" detail="low" frameid="REG0-7605" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHDEPHOSPH-ENZRXN" detail="low" frameid="ICITDEHDEPHOSPH-ENZRXN" orgid="META"><reaction><Reaction frameid="DEPHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:DEPHOSICITDEHASE-RXN" /></reaction>
-<synonym datatype="string">ICDH phosphatase</synonym>
-<common-name datatype="string">isocitrate dehydrogenase phosphatase</common-name>
-<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-7697" detail="low" frameid="REG0-7697" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHKINASE-ENZRXN" detail="low" frameid="ICITDEHKINASE-ENZRXN" orgid="META"><reaction><Reaction frameid="PHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:PHOSICITDEHASE-RXN" /></reaction>
-<synonym datatype="string">ICDH kinase</synonym>
-<common-name datatype="string">isocitrate dehydrogenase kinase</common-name>
-<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-6904" detail="low" frameid="REG0-6904" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GSADENYLATION-ENZRXN" detail="low" frameid="GSADENYLATION-ENZRXN" orgid="META"><reaction><Reaction frameid="GSADENYLATION-RXN" orgid="META" resource="getxml?META:GSADENYLATION-RXN" /></reaction>
-<synonym datatype="string">glutamate-ammonia-ligase adenylyltransferase</synonym>
-<synonym datatype="string">ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
-<common-name datatype="string">glutamine synthetase adenylyltransferase</common-name>
-<enzyme><Protein frameid="GLNE-MONOMER" orgid="META" resource="getxml?META:GLNE-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15267" detail="low" frameid="REG-15267" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-24875" detail="low" frameid="ENZRXN-24875" orgid="META"><reaction><Reaction frameid="RXN-14971" orgid="META" resource="getxml?META:RXN-14971" /></reaction>
-<synonym datatype="string">succinate:ubiquinone oxidoreductase</synonym>
-<common-name datatype="string">succinate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-5301" orgid="META" resource="getxml?META:CPLX-5301" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-13658" detail="low" frameid="REG-13658" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-20104" detail="low" frameid="ENZRXN-20104" orgid="META"><reaction><Reaction frameid="RXN-8529" orgid="META" resource="getxml?META:RXN-8529" /></reaction>
-<common-name datatype="string">4-oxalocrotonate tautomerase</common-name>
-<enzyme><Protein frameid="CPLX-8450" orgid="META" resource="getxml?META:CPLX-8450" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10724" detail="low" frameid="REG-10724" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3641" detail="low" frameid="ENZRXN-3641" orgid="META"><reaction><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /></reaction>
-<common-name datatype="string">4-carboxy-4-hydroxy-2-oxoadipate aldolase</common-name>
-<enzyme><Protein frameid="CPLX-2881" orgid="META" resource="getxml?META:CPLX-2881" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10400" detail="low" frameid="REG-10400" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3627" detail="low" frameid="ENZRXN-3627" orgid="META"><reaction><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /></reaction>
-<synonym datatype="string">4-hydroxy-4-methyl-2-oxoglutarate aldolase</synonym>
-<synonym datatype="string">4-carboxy-4-hydroxy-2-oxoadipate aldolase</synonym>
-<common-name datatype="string">4-oxalocitramalate aldolase</common-name>
-<enzyme><Protein frameid="CPLX-2865" orgid="META" resource="getxml?META:CPLX-2865" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9812" detail="low" frameid="REG-9812" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-1647" detail="low" frameid="ENZRXN-1647" orgid="META"><reaction><Reaction frameid="ACETYLPYRUVATE-HYDROLASE-RXN" orgid="META" resource="getxml?META:ACETYLPYRUVATE-HYDROLASE-RXN" /></reaction>
-<common-name datatype="string">acetylpyruvate hydrolase</common-name>
-<enzyme><Protein frameid="MONOMER-1486" orgid="META" resource="getxml?META:MONOMER-1486" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9499" detail="low" frameid="REG-9499" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3041" detail="low" frameid="ENZRXN-3041" orgid="META"><reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-RXN" /></reaction>
-<synonym datatype="string">glutamic dehydrogenase</synonym>
-<synonym datatype="string">L-glutamate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (deaminating)</synonym>
-<common-name datatype="string">glutamate dehydrogenase (NAD-dependent)</common-name>
-<enzyme><Protein frameid="CPLX-2101" orgid="META" resource="getxml?META:CPLX-2101" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8648" detail="low" frameid="REG-8648" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11806" detail="low" frameid="ENZRXN-11806" orgid="META"><reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-NADP+-RXN" /></reaction>
-<common-name datatype="string">glutamate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-6821" orgid="META" resource="getxml?META:CPLX-6821" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8391" detail="low" frameid="REG-8391" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3365" detail="low" frameid="ENZRXN-3365" orgid="META"><reaction><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /></reaction>
-<common-name datatype="string">4-oxalocitramalate aldolase</common-name>
-<enzyme><Protein frameid="CPLX-2782" orgid="META" resource="getxml?META:CPLX-2782" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8143" detail="low" frameid="REG-8143" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-7642" detail="low" frameid="ENZRXN-7642" orgid="META"><reaction><Reaction frameid="GLUTAMATE-SYNTHASE-NADH-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-NADH-RXN" /></reaction>
-<common-name datatype="string">glutamate synthase (NADH-dependent)</common-name>
-<enzyme><Protein frameid="MONOMER-7421" orgid="META" resource="getxml?META:MONOMER-7421" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8063" detail="low" frameid="REG-8063" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8981" detail="low" frameid="ENZRXN-8981" orgid="META"><reaction><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /></reaction>
-<synonym datatype="string">succinate:ubiquinone oxidoreductase</synonym>
-<common-name datatype="string">succinate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-5301" orgid="META" resource="getxml?META:CPLX-5301" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-7244" detail="low" frameid="REG-7244" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12350" detail="low" frameid="ENZRXN-12350" orgid="META"><reaction><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /></reaction>
-<common-name datatype="string">ATP-citrate lyase</common-name>
-<enzyme><Protein frameid="CPLX-7013" orgid="META" resource="getxml?META:CPLX-7013" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-7242" detail="low" frameid="REG-7242" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12349" detail="low" frameid="ENZRXN-12349" orgid="META"><reaction><Reaction frameid="ISOCITDEH-RXN" orgid="META" resource="getxml?META:ISOCITDEH-RXN" /></reaction>
-<common-name datatype="string">isocitrate dehydrogenase</common-name>
-<enzyme><Protein frameid="MONOMER-11847" orgid="META" resource="getxml?META:MONOMER-11847" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6880" detail="low" frameid="REG-6880" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12689" detail="low" frameid="ENZRXN-12689" orgid="META"><reaction><Reaction frameid="4OH2OXOGLUTARALDOL-RXN" orgid="META" resource="getxml?META:4OH2OXOGLUTARALDOL-RXN" /></reaction>
-<synonym datatype="string">4-hydroxy-2-oxoglutarate aldolase</synonym>
-<synonym datatype="string">2-keto-4-hydroxyglutarate aldolase</synonym>
-<common-name datatype="string">4-hydroxy-2-ketoglutarate aldolase</common-name>
-<enzyme><Protein frameid="MONOMER-12109" orgid="META" resource="getxml?META:MONOMER-12109" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6189" detail="low" frameid="REG-6189" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13818" detail="low" frameid="ENZRXN-13818" orgid="META"><reaction><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /></reaction>
-<common-name datatype="string">succinate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-7307" orgid="META" resource="getxml?META:CPLX-7307" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">keto-oxaloacetate</synonym>
-<synonym datatype="string">oxaloacetic acid</synonym>
-<synonym datatype="string">oxalacetic acid</synonym>
-<synonym datatype="string">oxalacetate</synonym>
-<appears-in-left-side-of><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="getxml?META:PEPCARBOXYKIN-RXN" /><Reaction frameid="RXN-21228" orgid="META" resource="getxml?META:RXN-21228" /><Reaction frameid="RXN-14905" orgid="META" resource="getxml?META:RXN-14905" /><Reaction frameid="4.1.1.38-RXN" orgid="META" resource="getxml?META:4.1.1.38-RXN" /><Reaction frameid="OXALODECARB-RXN" orgid="META" resource="getxml?META:OXALODECARB-RXN" /><Reaction frameid="RXN-19736" orgid="META" resource="getxml?META:RXN-19736" /><Reaction frameid="RXN-18433" orgid="META" resource="getxml?META:RXN-18433" /><Reaction frameid="RXN-12481" orgid="META" resource="getxml?META:RXN-12481" /><Reaction frameid="4.1.1.32-RXN" orgid="META" resource="getxml?META:4.1.1.32-RXN" /><Reaction frameid="PEPCARBOX-RXN" orgid="META" resource="getxml?META:PEPCARBOX-RXN" /><Reaction frameid="OXALOACETATE-TAUTOMERASE-RXN" orgid="META" resource="getxml?META:OXALOACETATE-TAUTOMERASE-RXN" /><Reaction frameid="RXN-16718" orgid="META" resource="getxml?META:RXN-16718" /><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /><Reaction frameid="2-METHYLCITRATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:2-METHYLCITRATE-SYNTHASE-RXN" /><Reaction frameid="RXN-16329" orgid="META" resource="getxml?META:RXN-16329" /><Reaction frameid="RXN-15545" orgid="META" resource="getxml?META:RXN-15545" /><Reaction frameid="OXALOACETASE-RXN" orgid="META" resource="getxml?META:OXALOACETASE-RXN" /><Reaction frameid="LACTATE-MALATE-TRANSHYDROGENASE-RXN" orgid="META" resource="getxml?META:LACTATE-MALATE-TRANSHYDROGENASE-RXN" /><Reaction frameid="TRANS-RXN-226" orgid="META" resource="getxml?META:TRANS-RXN-226" /><Reaction frameid="RXN-13407" orgid="META" resource="getxml?META:RXN-13407" /><Reaction frameid="PREPHENATE-ASP-TRANSAMINE-RXN" orgid="META" resource="getxml?META:PREPHENATE-ASP-TRANSAMINE-RXN" /><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /><Reaction frameid="DECYLCITRATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:DECYLCITRATE-SYNTHASE-RXN" /><Reaction frameid="PYROXALTRANSAM-RXN" orgid="META" resource="getxml?META:PYROXALTRANSAM-RXN" /><Reaction frameid="2.6.1.35-RXN" orgid="META" resource="getxml?META:2.6.1.35-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-21557" orgid="META" resource="getxml?META:RXN-21557" /><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /><Reaction frameid="RXN-6562" orgid="META" resource="getxml?META:RXN-6562" /><Reaction frameid="MALATE-DEHYDROGENASE-ACCEPTOR-RXN" orgid="META" resource="getxml?META:MALATE-DEHYDROGENASE-ACCEPTOR-RXN" /><Reaction frameid="CITLY-RXN" orgid="META" resource="getxml?META:CITLY-RXN" /><Reaction frameid="RXN-13697" orgid="META" resource="getxml?META:RXN-13697" /><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /><Reaction frameid="OXALOMALATE-LYASE-RXN" orgid="META" resource="getxml?META:OXALOMALATE-LYASE-RXN" /><Reaction frameid="RXN-9771" orgid="META" resource="getxml?META:RXN-9771" /><Reaction frameid="MALATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:MALATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="getxml?META:ASPAMINOTRANS-RXN" /><Reaction frameid="LTARTDEHYDRA-RXN" orgid="META" resource="getxml?META:LTARTDEHYDRA-RXN" /><Reaction frameid="D--TARTRATE-DEHYDRATASE-RXN" orgid="META" resource="getxml?META:D--TARTRATE-DEHYDRATASE-RXN" /><Reaction frameid="CITRYLY-RXN" orgid="META" resource="getxml?META:CITRYLY-RXN" /><Reaction frameid="RXN-11457" orgid="META" resource="getxml?META:RXN-11457" /><Reaction frameid="RXN-10813" orgid="META" resource="getxml?META:RXN-10813" /><Reaction frameid="RXN-11767" orgid="META" resource="getxml?META:RXN-11767" /><Reaction frameid="1.4.1.21-RXN" orgid="META" resource="getxml?META:1.4.1.21-RXN" /><Reaction frameid="4.3.1.20-RXN" orgid="META" resource="getxml?META:4.3.1.20-RXN" /><Reaction frameid="4.3.1.16-RXN" orgid="META" resource="getxml?META:4.3.1.16-RXN" /><Reaction frameid="D-ASPARTATE-OXIDASE-RXN" orgid="META" resource="getxml?META:D-ASPARTATE-OXIDASE-RXN" /><Reaction frameid="TRANS-RXN-226" orgid="META" resource="getxml?META:TRANS-RXN-226" /><Reaction frameid="RXN-13407" orgid="META" resource="getxml?META:RXN-13407" /><Reaction frameid="2.1.3.1-RXN" orgid="META" resource="getxml?META:2.1.3.1-RXN" /><Reaction frameid="PYRUVATE-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:PYRUVATE-CARBOXYLASE-RXN" /><Reaction frameid="RXNI-3" orgid="META" resource="getxml?META:RXNI-3" /><Reaction frameid="RXN-7929" orgid="META" resource="getxml?META:RXN-7929" /><Reaction frameid="2.6.1.70-RXN" orgid="META" resource="getxml?META:2.6.1.70-RXN" /><Reaction frameid="4-METHYLOXALOACETATE-ESTERASE-RXN" orgid="META" resource="getxml?META:4-METHYLOXALOACETATE-ESTERASE-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">oxaloacetate</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00032</dblink-oid>
@@ -328,14 +76,266 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C4H4O5/c5-2(4(8)9)1-3(6)7/h1H2,(H,6,7)(H,8,9)/p-2</inchi>
 <inchi-key datatype="string">InChIKey=KHPXUQMNIQBQEV-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">130.057</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">132.00587</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-10567" detail="low" frameid="REG0-10567" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PEPSYNTH-ENZRXN" detail="low" frameid="PEPSYNTH-ENZRXN" orgid="META"><common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
+<enzyme><Protein frameid="PEPSYNTH-CPLX" orgid="META" resource="getxml?META:PEPSYNTH-CPLX" /></enzyme>
+<reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /></reaction>
+<synonym datatype="string">pyruvate, water dikinase</synonym>
+<synonym datatype="string">phosphoenolpyruvate synthase</synonym>
+<synonym datatype="string">PEP synthase</synonym>
+<synonym datatype="string">ATP:pyruvate, water phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6654" detail="low" frameid="REG0-6654" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:FUMARATE-REDN-ENZRXN" detail="low" frameid="FUMARATE-REDN-ENZRXN" orgid="META"><common-name datatype="string">fumarate reductase</common-name>
+<enzyme><Protein frameid="FUMARATE-REDUCTASE" orgid="META" resource="getxml?META:FUMARATE-REDUCTASE" /></enzyme>
+<reaction><Reaction frameid="R601-RXN" orgid="META" resource="getxml?META:R601-RXN" /></reaction>
+<synonym datatype="string">QFR</synonym>
+<synonym datatype="string">menaquinol-fumarate oxidoreductase</synonym>
+<synonym datatype="string">FrdABCD</synonym>
+<synonym datatype="string">fumarate reductase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6922" detail="low" frameid="REG0-6922" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ISOCITDEH-ENZRXN" detail="low" frameid="ISOCITDEH-ENZRXN" orgid="META"><common-name datatype="string">isocitrate dehydrogenase</common-name>
+<enzyme><Protein frameid="ISOCITHASE-CPLX" orgid="META" resource="getxml?META:ISOCITHASE-CPLX" /></enzyme>
+<reaction><Reaction frameid="ISOCITDEH-RXN" orgid="META" resource="getxml?META:ISOCITDEH-RXN" /></reaction>
+<synonym datatype="string">oxalosuccinate decarboxylase</synonym>
+<synonym datatype="string">isocitrate dehydrogenase (NADP+)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7675" detail="low" frameid="REG0-7675" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:MALIC-NAD-ENZRXN" detail="low" frameid="MALIC-NAD-ENZRXN" orgid="META"><common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+<enzyme><Protein frameid="MALIC-NAD-CPLX" orgid="META" resource="getxml?META:MALIC-NAD-CPLX" /></enzyme>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /></reaction>
+<synonym datatype="string">pyruvic-malic carboxylase</synonym>
+<synonym datatype="string">(S)-malate:NAD+ oxdireductase (oxaloacetate decarboxylating)</synonym>
+<synonym datatype="string">malic enzyme, NAD-linked</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7611" detail="low" frameid="REG0-7611" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:MALIC-NADP-ENZRXN" detail="low" frameid="MALIC-NADP-ENZRXN" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
+<enzyme><Protein frameid="MALIC-NADP-CPLX" orgid="META" resource="getxml?META:MALIC-NADP-CPLX" /></enzyme>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="META" resource="getxml?META:MALIC-NADP-RXN" /></reaction>
+<synonym datatype="string">malic enzyme</synonym>
+<synonym datatype="string">malate dehydrogenase, NADP+-linked</synonym>
+<synonym datatype="string">pyruvic-malic carboxylase</synonym>
+<synonym datatype="string">(S)-malate:NADP+ oxidoreductase (oxaloacetate-decarboxylating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8068" detail="low" frameid="REG0-8068" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:CITLY-ENZRXN" detail="low" frameid="CITLY-ENZRXN" orgid="META"><common-name datatype="string">citrate lyase</common-name>
+<enzyme><Protein frameid="ACECITLY-CPLX" orgid="META" resource="getxml?META:ACECITLY-CPLX" /></enzyme>
+<reaction><Reaction frameid="CITLY-RXN" orgid="META" resource="getxml?META:CITLY-RXN" /></reaction>
+<synonym datatype="string">citrate (pro-3S)-lyase</synonym>
+<synonym datatype="string">citrase</synonym>
+<synonym datatype="string">citratase</synonym>
+<synonym datatype="string">citritase</synonym>
+<synonym datatype="string">citridesmolase</synonym>
+<synonym datatype="string">citrate aldolase</synonym>
+<synonym datatype="string">citrate oxaloacetate-lyase ((pro-3S)-CH2COO- acetate)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7605" detail="low" frameid="REG0-7605" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHDEPHOSPH-ENZRXN" detail="low" frameid="ICITDEHDEPHOSPH-ENZRXN" orgid="META"><common-name datatype="string">isocitrate dehydrogenase phosphatase</common-name>
+<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
+<reaction><Reaction frameid="DEPHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:DEPHOSICITDEHASE-RXN" /></reaction>
+<synonym datatype="string">ICDH phosphatase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7697" detail="low" frameid="REG0-7697" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHKINASE-ENZRXN" detail="low" frameid="ICITDEHKINASE-ENZRXN" orgid="META"><common-name datatype="string">isocitrate dehydrogenase kinase</common-name>
+<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
+<reaction><Reaction frameid="PHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:PHOSICITDEHASE-RXN" /></reaction>
+<synonym datatype="string">ICDH kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6904" detail="low" frameid="REG0-6904" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GSADENYLATION-ENZRXN" detail="low" frameid="GSADENYLATION-ENZRXN" orgid="META"><common-name datatype="string">glutamine synthetase adenylyltransferase</common-name>
+<enzyme><Protein frameid="GLNE-MONOMER" orgid="META" resource="getxml?META:GLNE-MONOMER" /></enzyme>
+<reaction><Reaction frameid="GSADENYLATION-RXN" orgid="META" resource="getxml?META:GSADENYLATION-RXN" /></reaction>
+<synonym datatype="string">glutamate-ammonia-ligase adenylyltransferase</synonym>
+<synonym datatype="string">ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-15267" detail="low" frameid="REG-15267" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-24875" detail="low" frameid="ENZRXN-24875" orgid="META"><common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-5301" orgid="META" resource="getxml?META:CPLX-5301" /></enzyme>
+<reaction><Reaction frameid="RXN-14971" orgid="META" resource="getxml?META:RXN-14971" /></reaction>
+<synonym datatype="string">succinate:ubiquinone oxidoreductase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13658" detail="low" frameid="REG-13658" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-20104" detail="low" frameid="ENZRXN-20104" orgid="META"><common-name datatype="string">4-oxalocrotonate tautomerase</common-name>
+<enzyme><Protein frameid="CPLX-8450" orgid="META" resource="getxml?META:CPLX-8450" /></enzyme>
+<reaction><Reaction frameid="RXN-8529" orgid="META" resource="getxml?META:RXN-8529" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10724" detail="low" frameid="REG-10724" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3641" detail="low" frameid="ENZRXN-3641" orgid="META"><common-name datatype="string">4-carboxy-4-hydroxy-2-oxoadipate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-2881" orgid="META" resource="getxml?META:CPLX-2881" /></enzyme>
+<reaction><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10400" detail="low" frameid="REG-10400" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3627" detail="low" frameid="ENZRXN-3627" orgid="META"><common-name datatype="string">4-oxalocitramalate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-2865" orgid="META" resource="getxml?META:CPLX-2865" /></enzyme>
+<reaction><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /></reaction>
+<synonym datatype="string">4-hydroxy-4-methyl-2-oxoglutarate aldolase</synonym>
+<synonym datatype="string">4-carboxy-4-hydroxy-2-oxoadipate aldolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9812" detail="low" frameid="REG-9812" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-1647" detail="low" frameid="ENZRXN-1647" orgid="META"><common-name datatype="string">acetylpyruvate hydrolase</common-name>
+<enzyme><Protein frameid="MONOMER-1486" orgid="META" resource="getxml?META:MONOMER-1486" /></enzyme>
+<reaction><Reaction frameid="ACETYLPYRUVATE-HYDROLASE-RXN" orgid="META" resource="getxml?META:ACETYLPYRUVATE-HYDROLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9499" detail="low" frameid="REG-9499" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3041" detail="low" frameid="ENZRXN-3041" orgid="META"><common-name datatype="string">glutamate dehydrogenase (NAD-dependent)</common-name>
+<enzyme><Protein frameid="CPLX-2101" orgid="META" resource="getxml?META:CPLX-2101" /></enzyme>
+<reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-RXN" /></reaction>
+<synonym datatype="string">glutamic dehydrogenase</synonym>
+<synonym datatype="string">L-glutamate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (deaminating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8648" detail="low" frameid="REG-8648" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11806" detail="low" frameid="ENZRXN-11806" orgid="META"><common-name datatype="string">glutamate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-6821" orgid="META" resource="getxml?META:CPLX-6821" /></enzyme>
+<reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-NADP+-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8391" detail="low" frameid="REG-8391" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3365" detail="low" frameid="ENZRXN-3365" orgid="META"><common-name datatype="string">4-oxalocitramalate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-2782" orgid="META" resource="getxml?META:CPLX-2782" /></enzyme>
+<reaction><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8143" detail="low" frameid="REG-8143" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-7642" detail="low" frameid="ENZRXN-7642" orgid="META"><common-name datatype="string">glutamate synthase (NADH-dependent)</common-name>
+<enzyme><Protein frameid="MONOMER-7421" orgid="META" resource="getxml?META:MONOMER-7421" /></enzyme>
+<reaction><Reaction frameid="GLUTAMATE-SYNTHASE-NADH-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-NADH-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8063" detail="low" frameid="REG-8063" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8981" detail="low" frameid="ENZRXN-8981" orgid="META"><common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-5301" orgid="META" resource="getxml?META:CPLX-5301" /></enzyme>
+<reaction><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /></reaction>
+<synonym datatype="string">succinate:ubiquinone oxidoreductase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7244" detail="low" frameid="REG-7244" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12350" detail="low" frameid="ENZRXN-12350" orgid="META"><common-name datatype="string">ATP-citrate lyase</common-name>
+<enzyme><Protein frameid="CPLX-7013" orgid="META" resource="getxml?META:CPLX-7013" /></enzyme>
+<reaction><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7242" detail="low" frameid="REG-7242" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12349" detail="low" frameid="ENZRXN-12349" orgid="META"><common-name datatype="string">isocitrate dehydrogenase</common-name>
+<enzyme><Protein frameid="MONOMER-11847" orgid="META" resource="getxml?META:MONOMER-11847" /></enzyme>
+<reaction><Reaction frameid="ISOCITDEH-RXN" orgid="META" resource="getxml?META:ISOCITDEH-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6880" detail="low" frameid="REG-6880" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12689" detail="low" frameid="ENZRXN-12689" orgid="META"><common-name datatype="string">4-hydroxy-2-ketoglutarate aldolase</common-name>
+<enzyme><Protein frameid="MONOMER-12109" orgid="META" resource="getxml?META:MONOMER-12109" /></enzyme>
+<reaction><Reaction frameid="4OH2OXOGLUTARALDOL-RXN" orgid="META" resource="getxml?META:4OH2OXOGLUTARALDOL-RXN" /></reaction>
+<synonym datatype="string">4-hydroxy-2-oxoglutarate aldolase</synonym>
+<synonym datatype="string">2-keto-4-hydroxyglutarate aldolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6189" detail="low" frameid="REG-6189" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13818" detail="low" frameid="ENZRXN-13818" orgid="META"><common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7307" orgid="META" resource="getxml?META:CPLX-7307" /></enzyme>
+<reaction><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="META" resource="#META:OXALACETIC_ACID" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">keto-oxaloacetate</synonym>
+<synonym datatype="string">oxaloacetic acid</synonym>
+<synonym datatype="string">oxalacetic acid</synonym>
+<synonym datatype="string">oxalacetate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-18433" orgid="META" resource="getxml?META:RXN-18433" /><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="getxml?META:PEPCARBOXYKIN-RXN" /><Reaction frameid="RXN-21228" orgid="META" resource="getxml?META:RXN-21228" /><Reaction frameid="RXN-14905" orgid="META" resource="getxml?META:RXN-14905" /><Reaction frameid="4.1.1.38-RXN" orgid="META" resource="getxml?META:4.1.1.38-RXN" /><Reaction frameid="OXALODECARB-RXN" orgid="META" resource="getxml?META:OXALODECARB-RXN" /><Reaction frameid="RXN-19736" orgid="META" resource="getxml?META:RXN-19736" /><Reaction frameid="RXN-12481" orgid="META" resource="getxml?META:RXN-12481" /><Reaction frameid="4.1.1.32-RXN" orgid="META" resource="getxml?META:4.1.1.32-RXN" /><Reaction frameid="PEPCARBOX-RXN" orgid="META" resource="getxml?META:PEPCARBOX-RXN" /><Reaction frameid="OXALOACETATE-TAUTOMERASE-RXN" orgid="META" resource="getxml?META:OXALOACETATE-TAUTOMERASE-RXN" /><Reaction frameid="RXN-16718" orgid="META" resource="getxml?META:RXN-16718" /><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /><Reaction frameid="2-METHYLCITRATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:2-METHYLCITRATE-SYNTHASE-RXN" /><Reaction frameid="RXN-16329" orgid="META" resource="getxml?META:RXN-16329" /><Reaction frameid="RXN-15545" orgid="META" resource="getxml?META:RXN-15545" /><Reaction frameid="OXALOACETASE-RXN" orgid="META" resource="getxml?META:OXALOACETASE-RXN" /><Reaction frameid="LACTATE-MALATE-TRANSHYDROGENASE-RXN" orgid="META" resource="getxml?META:LACTATE-MALATE-TRANSHYDROGENASE-RXN" /><Reaction frameid="TRANS-RXN-226" orgid="META" resource="getxml?META:TRANS-RXN-226" /><Reaction frameid="RXN-13407" orgid="META" resource="getxml?META:RXN-13407" /><Reaction frameid="PREPHENATE-ASP-TRANSAMINE-RXN" orgid="META" resource="getxml?META:PREPHENATE-ASP-TRANSAMINE-RXN" /><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /><Reaction frameid="DECYLCITRATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:DECYLCITRATE-SYNTHASE-RXN" /><Reaction frameid="PYROXALTRANSAM-RXN" orgid="META" resource="getxml?META:PYROXALTRANSAM-RXN" /><Reaction frameid="2.6.1.35-RXN" orgid="META" resource="getxml?META:2.6.1.35-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-21557" orgid="META" resource="getxml?META:RXN-21557" /><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /><Reaction frameid="RXN-6562" orgid="META" resource="getxml?META:RXN-6562" /><Reaction frameid="MALATE-DEHYDROGENASE-ACCEPTOR-RXN" orgid="META" resource="getxml?META:MALATE-DEHYDROGENASE-ACCEPTOR-RXN" /><Reaction frameid="CITLY-RXN" orgid="META" resource="getxml?META:CITLY-RXN" /><Reaction frameid="RXN-13697" orgid="META" resource="getxml?META:RXN-13697" /><Reaction frameid="RXN-2464" orgid="META" resource="getxml?META:RXN-2464" /><Reaction frameid="OXALOMALATE-LYASE-RXN" orgid="META" resource="getxml?META:OXALOMALATE-LYASE-RXN" /><Reaction frameid="RXN-9771" orgid="META" resource="getxml?META:RXN-9771" /><Reaction frameid="MALATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:MALATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="getxml?META:ASPAMINOTRANS-RXN" /><Reaction frameid="LTARTDEHYDRA-RXN" orgid="META" resource="getxml?META:LTARTDEHYDRA-RXN" /><Reaction frameid="D--TARTRATE-DEHYDRATASE-RXN" orgid="META" resource="getxml?META:D--TARTRATE-DEHYDRATASE-RXN" /><Reaction frameid="CITRYLY-RXN" orgid="META" resource="getxml?META:CITRYLY-RXN" /><Reaction frameid="RXN-11457" orgid="META" resource="getxml?META:RXN-11457" /><Reaction frameid="RXN-10813" orgid="META" resource="getxml?META:RXN-10813" /><Reaction frameid="RXN-11767" orgid="META" resource="getxml?META:RXN-11767" /><Reaction frameid="1.4.1.21-RXN" orgid="META" resource="getxml?META:1.4.1.21-RXN" /><Reaction frameid="4.3.1.20-RXN" orgid="META" resource="getxml?META:4.3.1.20-RXN" /><Reaction frameid="4.3.1.16-RXN" orgid="META" resource="getxml?META:4.3.1.16-RXN" /><Reaction frameid="D-ASPARTATE-OXIDASE-RXN" orgid="META" resource="getxml?META:D-ASPARTATE-OXIDASE-RXN" /><Reaction frameid="TRANS-RXN-226" orgid="META" resource="getxml?META:TRANS-RXN-226" /><Reaction frameid="RXN-13407" orgid="META" resource="getxml?META:RXN-13407" /><Reaction frameid="2.1.3.1-RXN" orgid="META" resource="getxml?META:2.1.3.1-RXN" /><Reaction frameid="PYRUVATE-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:PYRUVATE-CARBOXYLASE-RXN" /><Reaction frameid="RXNI-3" orgid="META" resource="getxml?META:RXNI-3" /><Reaction frameid="RXN-7929" orgid="META" resource="getxml?META:RXN-7929" /><Reaction frameid="2.6.1.70-RXN" orgid="META" resource="getxml?META:2.6.1.70-RXN" /><Reaction frameid="4-METHYLOXALOACETATE-ESTERASE-RXN" orgid="META" resource="getxml?META:4-METHYLOXALOACETATE-ESTERASE-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

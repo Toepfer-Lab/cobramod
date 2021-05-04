@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE</query>
 <num_results>1</num_results>
@@ -13,22 +13,6 @@
 <string title="smiles">CS(=O)CCCC(/S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\OS(=O)(=O)[O-]</string>
 </molecule>
 </cml>
-<citation><Publication ID="ARA:PUB-11251105" detail="full" frameid="PUB-11251105" orgid="ARA"><pubmed-id datatype="string">11251105</pubmed-id>
-<source datatype="string">Plant Cell 13(3);681-93</source>
-<title datatype="string">Gene duplication in the diversification of secondary metabolism: tandem 2-oxoglutarate-dependent dioxygenases control glucosinolate biosynthesis in Arabidopsis.</title>
-<year datatype="integer">2001</year>
-<author datatype="string">Kliebenstein DJ</author>
-<author datatype="string">Lambrix VM</author>
-<author datatype="string">Reichelt M</author>
-<author datatype="string">Gershenzon J</author>
-<author datatype="string">Mitchell-Olds T</author>
-</Publication>
-</citation>
-<comment datatype="string">This compound was entered into AraCyc based on its presence in the
-&lt;A href="http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007343"&gt;KNApSAcK database&lt;/A&gt;
-which provides reference(s) concerning this compound in Arabidopsis.
-</comment>
-<common-name datatype="string">glucoiberin</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd05323</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -69,13 +53,29 @@ which provides reference(s) concerning this compound in Arabidopsis.
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007343</dblink-URL>
 </dblink>
+<synonym datatype="string">3-(methylsulfinyl)propyl-glucosinolate</synonym>
 <gibbs-0 datatype="float" units="kcal/mol">-100.38967</gibbs-0>
 <inchi datatype="string">InChI=1S/C11H21NO10S3/c1-24(17)4-2-3-7(12-22-25(18,19)20)23-11-10(16)9(15)8(14)6(5-13)21-11/h6,8-11,13-16H,2-5H2,1H3,(H,18,19,20)/p-1/b12-7+/t6-,8-,9+,10-,11+,24?/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=PHYYADMVYQURSX-WWFIZPDBSA-M</inchi-key>
 <molecular-weight datatype="float" units="Daltons">422.46</molecular-weight>
 <monoisotopic-mw datatype="float" units="Daltons">423.03275</monoisotopic-mw>
-<synonym datatype="string">3-(methylsulfinyl)propyl-glucosinolate</synonym>
 <appears-in-left-side-of><Reaction frameid="RXN-2223" orgid="ARA" resource="getxml?ARA:RXN-2223" /><Reaction frameid="RXN-2222" orgid="ARA" resource="getxml?ARA:RXN-2222" /></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction frameid="RXN-2221" orgid="ARA" resource="getxml?ARA:RXN-2221" /></appears-in-right-side-of>
+<citation><Publication ID="ARA:PUB-11251105" detail="full" frameid="PUB-11251105" orgid="ARA"><title datatype="string">Gene duplication in the diversification of secondary metabolism: tandem 2-oxoglutarate-dependent dioxygenases control glucosinolate biosynthesis in Arabidopsis.</title>
+<year datatype="integer">2001</year>
+<pubmed-id datatype="string">11251105</pubmed-id>
+<author datatype="string">Kliebenstein DJ</author>
+<author datatype="string">Lambrix VM</author>
+<author datatype="string">Reichelt M</author>
+<author datatype="string">Gershenzon J</author>
+<author datatype="string">Mitchell-Olds T</author>
+<source datatype="string">Plant Cell 13(3);681-93</source>
+</Publication>
+</citation>
+<comment datatype="string">This compound was entered into AraCyc based on its presence in the
+&lt;A href="http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007343"&gt;KNApSAcK database&lt;/A&gt;
+which provides reference(s) concerning this compound in Arabidopsis.
+</comment>
+<common-name datatype="string">glucoiberin</common-name>
 </Compound>
 </ptools-xml>

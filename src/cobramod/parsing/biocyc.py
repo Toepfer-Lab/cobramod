@@ -25,12 +25,45 @@ from xml.etree.ElementTree import (
 )
 from pathlib import Path
 from typing import Any, Dict
+from warnings import warn
 
 from requests import get, HTTPError
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError, NoGeneInformation
 from cobramod.parsing.base import BaseParser
+
+
+# Sub databases from Biocyc
+with open(
+    file=str(
+        Path(__file__)
+        .resolve()
+        .parent.parent.joinpath("data")
+        .joinpath("biocyc_db.xml")
+    )
+) as f:
+    databases = parse(source=f)
+# Check actual biocyc database version
+try:
+    response = get(url="https://websvc.biocyc.org/kb-version?orgid=META")
+    response.raise_for_status()
+    kb_version = response.json()["kb-version"]
+    cobramod_kb = databases.find(  # type: ignore
+        "metadata/*[@orgid='META']"
+    ).attrib["version"]
+    # Check that the database version is the one
+    assert kb_version == cobramod_kb
+except HTTPError:
+    warn(
+        message="Could not get the actual Biocyc version", category=UserWarning
+    )
+except AssertionError:
+    warn(
+        message="Biocyc version is not the same in CobraMod. Please inform "
+        + "maintainers",
+        category=UserWarning,
+    )
 
 
 def _build_reference(root: Any) -> dict:
@@ -331,6 +364,7 @@ class BiocycParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
+        BiocycParser._check_database(database=database)
         root = retrieve_data(
             directory=directory, identifier=identifier, database=database
         )
@@ -340,17 +374,16 @@ class BiocycParser(BaseParser):
         return BiocycParser._parse(root=root, directory=directory)
 
     @staticmethod
-    def _return_database(database: str) -> str:
+    def _check_database(database: str):
         """
         Returns the name of the database. This method is used to compare with
         given database name. It will raise a warning if both names are not
         equal or belong to the list of proper names.
         """
-        names = ["META", "ARA"]
-        if database in names:
-            return database
-        else:
-            raise WrongParserError
+        if not databases.find(f"metadata/*[@orgid='{database}']"):
+            raise WrongParserError(
+                f'Database "{database}" was not found in Biocyc'
+            )
 
     @staticmethod
     def _read_file(filename: Path) -> Element:
@@ -395,7 +428,14 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
             # Check for results in root
             tree: Any = ElementTree(root)
             if int(tree.find("*/num_results").text) == 0:
-                raise HTTPError
+                raise NoGeneInformation
+            if database == "META":
+                msg = (
+                    f'Object "{identifier}" comes from "META". Please use '
+                    "another sub-database from Biocyc to add proper genes."
+                )
+                debug_log.warning(msg)
+                raise NoGeneInformation(msg)
             tree.write(str(filename))
             debug_log.info(
                 f'Object "{identifier}_gene.xml" saved in '
@@ -403,7 +443,7 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
             )
         except HTTPError:
             # Warning
-            NoGeneInformation(
+            raise NoGeneInformation(
                 f"Object {identifier} does not have gene information"
             )
 
@@ -457,7 +497,7 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                 # Obtain genes if possible. This should be only call one time
                 # If information is already available, the genes should be
                 # available if found
-                with suppress(HTTPError):
+                with suppress(NoGeneInformation):
                     # This will include Paths
                     _get_gene_xml(
                         directory=data_dir,

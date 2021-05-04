@@ -1,0 +1,40 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=GCF_000010885:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=GCF_000010885:GTP-CYCLOHYDRO-II-RXN&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="GCF_000010885" version="24.5">
+      <species datatype="string">Acetobacter pasteurianus</species>
+      <subspecies datatype="string">pasteurianus</subspecies>
+      <strain datatype="string">IFO 3283</strain>
+      <dblink>
+        <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+        <dblink-oid>634455</dblink-oid>
+        <dblink-relationship>unification</dblink-relationship>
+        <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=634455</dblink-URL>
+      </dblink>
+    </PGDB>
+  </metadata>
+  <Gene ID="GCF_000010885:APA22_RS09400" detail="full" frameid="APA22_RS09400" orgid="GCF_000010885">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="GCF_000010885" resource="getxml?GCF_000010885:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="NC_017125" orgid="GCF_000010885" resource="getxml?GCF_000010885:NC_017125" />
+    </replicon>
+    <abbrev-name datatype="string">RS09400</abbrev-name>
+    <product>
+      <Protein frameid="APA22_RS09400-MONOMER" orgid="GCF_000010885" resource="getxml?GCF_000010885:APA22_RS09400-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <left-end-position datatype="integer">2016108</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">69.34719</centisome-position>
+    <component-of>
+      <Transcription-Unit frameid="TU1SO3-1096" orgid="GCF_000010885" resource="getxml?GCF_000010885:TU1SO3-1096" />
+    </component-of>
+    <accession-2 datatype="string">APA22_18560</accession-2>
+    <accession-1 datatype="string">APA22_RS09400</accession-1>
+    <right-end-position datatype="integer">2017421</right-end-position>
+  </Gene>
+</ptools-xml>

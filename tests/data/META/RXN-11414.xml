@@ -1,29 +1,23 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:RXN-11414"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-11414"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RXN-11414</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:RXN-11414" detail="full" frameid="RXN-11414" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CPD-12389" orgid="META" resource="getxml?META:CPD-12389" /></right>
-<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
-<right><Protein class="true" frameid="Ox-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Ox-NADPH-Hemoprotein-Reductases" /></right>
 <credits><created><date datatype="date">2010-04-27</date>
-<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><url datatype="string">http://plantcyc.org</url>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
 <abbrev-name datatype="string">PMN</abbrev-name>
-<common-name datatype="string">Carnegie Institution for Science</common-name>
 </Organization>
 </affiliations>
-<comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
-<common-name datatype="string">Peifen Zhang</common-name>
 </Person>
-<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><abbrev-name datatype="string">TAIR</abbrev-name>
-<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
 </Organization>
 </created>
 </credits>
@@ -40,10 +34,10 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
@@ -51,5 +45,11 @@ manual interpretation of the computation occurred.
 <left><Compound frameid="3-METHYLTHIOPROPANALDOXIME" orgid="META" resource="getxml?META:3-METHYLTHIOPROPANALDOXIME" /></left>
 <left><Compound frameid="OXYGEN-MOLECULE" orgid="META" resource="getxml?META:OXYGEN-MOLECULE" /></left>
 <left><Protein class="true" frameid="Red-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Red-NADPH-Hemoprotein-Reductases" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-12389" orgid="META" resource="getxml?META:CPD-12389" /></right>
+<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
+<right><Protein class="true" frameid="Ox-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Ox-NADPH-Hemoprotein-Reductases" /></right>
 </Reaction>
 </ptools-xml>
