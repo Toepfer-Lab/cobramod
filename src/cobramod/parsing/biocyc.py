@@ -410,10 +410,10 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
                 raise NoGeneInformation
             if database == "META":
                 msg = (
-                    f'Object {identifier} comes from "META". Please use'
+                    f'Object "{identifier}" comes from "META". Please use '
                     "another sub-database from Biocyc to add proper genes."
                 )
-                debug_log.error(msg)
+                debug_log.warning(msg)
                 raise NoGeneInformation(msg)
             tree.write(str(filename))
             debug_log.info(
