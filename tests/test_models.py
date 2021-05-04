@@ -53,6 +53,7 @@ class ShortModel(TestCase):
             directory=dir_data,
             database="META",
             compartment="c",
+            show_imbalance=False,
         )
         self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
         self.assertIn(
@@ -67,7 +68,7 @@ class ShortModel(TestCase):
                 + "Red-NADPH-Hemoprotein-Reductases_c"
             ),
             directory=dir_data,
-            database="META",
+            database="ARA",
         )
         # Adding Nicotine pathway
         ex.add_pathway(
@@ -77,6 +78,7 @@ class ShortModel(TestCase):
             database="META",
             compartment="c",
             ignore_list=[],
+            show_imbalance=False,
         )
         self.assertIn(
             member="PWY-5316",
@@ -90,6 +92,7 @@ class ShortModel(TestCase):
             database="META",
             compartment="c",
             ignore_list=[],
+            show_imbalance=False,
         )
         self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
         self.assertIn(
@@ -108,6 +111,7 @@ class ShortModel(TestCase):
             database="META",
             compartment="c",
             ignore_list=[],
+            show_imbalance=False,
         )
         self.assertIn(
             member="PWY-6531",
@@ -118,9 +122,10 @@ class ShortModel(TestCase):
             model=test_model,
             pathway="GLYOXYLATE-BYPASS",
             directory=dir_data,
-            database="META",
+            database="ARA",
             compartment="c",
             ignore_list=[],
+            show_imbalance=False,
         )
         self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
         self.assertIn(
@@ -136,7 +141,7 @@ class ShortModel(TestCase):
         add_reactions(
             model=test_model,
             obj=dir_input.joinpath("test_multi_reactions.txt"),
-            database="META",
+            database="ARA",
             directory=dir_data,
         )
         # ADDING COA as Exchange to omit its biosynthesis
@@ -148,9 +153,10 @@ class ShortModel(TestCase):
             model=test_model,
             pathway="GLUTATHIONESYN-PWY",
             directory=dir_data,
-            database="META",
+            database="ARA",
             ignore_list=[],
             compartment="p",
+            show_imbalance=False,
         )
         test_model.reactions.get_by_id("Biomass_c").add_metabolites(
             {test_model.metabolites.get_by_id("GLUTATHIONE_p"): -1}
@@ -164,15 +170,16 @@ class ShortModel(TestCase):
             model=test_model,
             obj="TRANS_GLY_cp, Transport GLY_cp | GLY_c <-> GLY_p",
             directory=dir_data,
-            database="META",
+            database="ARA",
         )
         ex.add_pathway(
             model=test_model,
             pathway="PWY-1187",
             directory=dir_data,
-            database="META",
+            database="ARA",
             ignore_list=["PYRUVATE_c", "CO_A_c", "PROTON_c", "CPD_3746_c"],
             compartment="c",
+            show_imbalance=False,
         )
         test_model.reactions.get_by_id("Biomass_c").add_metabolites(
             {
@@ -188,9 +195,10 @@ class ShortModel(TestCase):
             model=test_model,
             pathway="PWY-4381",
             directory=dir_data,
-            database="META",
+            database="ARA",
             ignore_list=["CO_A_p"],
             compartment="p",
+            show_imbalance=False,
         )
         test_model.reactions.get_by_id("Biomass_c").add_metabolites(
             {test_model.metabolites.get_by_id("Acetoacetyl_ACPs_p"): -1}
@@ -226,6 +234,7 @@ class LargeModel(TestCase):
             directory=dir_data,
             database="META",
             compartment="p",
+            show_imbalance=False,
             ignore_list=["GLUTATHIONE_p"],
         )
         # Checking demand for Methionine
@@ -241,8 +250,9 @@ class LargeModel(TestCase):
             model=test_model,
             pathway="PWY-5337",
             directory=dir_data,
-            database="META",
+            database="ARA",
             compartment="c",
+            show_imbalance=False,
             ignore_list=["PROTON_c", "MYO_INOSITOL_c"],
         )
         # Checking demand for Raffinose (created in the middle of pathway)
@@ -262,8 +272,9 @@ class LargeModel(TestCase):
             model=test_model,
             pathway="PWY-695",
             directory=dir_data,
-            database="META",
+            database="ARA",
             compartment="p",
+            show_imbalance=False,
             ignore_list=["PROTON_p", "CPD1F_133_p"],
         )
         # FIXME: remove unneeded sinks
