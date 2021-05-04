@@ -25,6 +25,7 @@ from xml.etree.ElementTree import (
 )
 from pathlib import Path
 from typing import Any, Dict
+from warnings import warn
 
 from requests import get, HTTPError
 
@@ -43,6 +44,26 @@ with open(
     )
 ) as f:
     databases = parse(source=f)
+# Check actual biocyc database version
+try:
+    response = get(url="https://websvc.biocyc.org/kb-version?orgid=META")
+    response.raise_for_status()
+    kb_version = response.json()["kb-version"]
+    cobramod_kb = databases.find(  # type: ignore
+        "metadata/*[@orgid='META']"
+    ).attrib["version"]
+    # Check that the database version is the one
+    assert kb_version == cobramod_kb
+except HTTPError:
+    warn(
+        message="Could not get the actual Biocyc version", category=UserWarning
+    )
+except AssertionError:
+    warn(
+        message="Biocyc version is not the same in CobraMod. Please inform "
+        + "maintainers",
+        category=UserWarning,
+    )
 
 
 def _build_reference(root: Any) -> dict:
