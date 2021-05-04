@@ -1,0 +1,58 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE" detail="full" frameid="3-METHYLTHIOPROPYL-GLUCOSINOLATE" orgid="ARA"><parent><Compound class="true" frameid="Omega-methylthio-alkyl-glucosinolates" orgid="ARA" resource="getxml?ARA:Omega-methylthio-alkyl-glucosinolates" /></parent>
+<cml><molecule formalCharge="-1" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE" title="glucoiberverin"><atomArray><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom1" x2="543030.0" y2="-420230.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom2" x2="328690.0" y2="-378980.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom3" x2="257240.0" y2="-420230.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom4" x2="400130.0" y2="-420230.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom5" x2="-99970.0" y2="-296480.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom6" x2="-28520.0" y2="-255230.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom7" x2="185810.0" y2="-378980.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom8" x2="-28520.0" y2="-172730.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom9" x2="42930.0" y2="-131490.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom10" x2="114380.0" y2="-172730.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom11" x2="114380.0" y2="-255230.0" /><atom elementType="N" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom12" x2="114360.0" y2="-420230.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom13" x2="-171400.0" y2="-255230.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom14" x2="-99970.0" y2="-131490.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom15" x2="42930.0" y2="-48990.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom16" x2="185810.0" y2="-131490.0" /><atom elementType="O" formalCharge="-1" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom17" x2="-28530.0" y2="-585230.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom18" x2="84170.0" y2="-615420.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom19" x2="1660.0" y2="-472530.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom20" x2="42930.0" y2="-296480.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom21" x2="114360.0" y2="-502730.0" /><atom elementType="S" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom22" x2="471580.0" y2="-378980.0" /><atom elementType="S" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom23" x2="185810.0" y2="-296480.0" /><atom elementType="S" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom24" x2="42920.0" y2="-543980.0" /></atomArray>
+<bondArray><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom20 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom6" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond1" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom6 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom8" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond2" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom8 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom9" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond3" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom9 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom10" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond4" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom10 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom11" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond5" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom20 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom11" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond6" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom11 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom23" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond7" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom10 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom16" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond8" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom9 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom15" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond9" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom8 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom14" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond10" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom6 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom5" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond11" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom5 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom13" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond12" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom23 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom7" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond13" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom7 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom12" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond14" order="2" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom12 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom21" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond15" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom21 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom24" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond16" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom24 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom17" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond17" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom24 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom18" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond18" order="2" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom24 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom19" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond19" order="2" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom7 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom3" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond20" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom3 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom2" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond21" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom2 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom4" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond22" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom4 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom22" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond23" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom22 3-METHYLTHIOPROPYL-GLUCOSINOLATE-atom1" id="3-METHYLTHIOPROPYL-GLUCOSINOLATE-bond24" order="1" /></bondArray>
+<formula concise="C 11 H 20 N 1 O 9 S 3" /><float title="molecularWeight" units="g/mol">406.46</float>
+<string title="smiles">CSCCCC(/S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\OS(=O)(=O)[O-]</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd05324</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd05324</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM55138</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM55138</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>9548637</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=9548637</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC5407</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC5407</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>5407</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:5407</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C08412</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C08412</dblink-URL>
+</dblink>
+<synonym datatype="string">3-(methylthio)propyl-glucosinolate</synonym>
+<synonym datatype="string">3-(methylsulfanyl)propyl-glucosinolate</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-58.819653</gibbs-0>
+<inchi datatype="string">InChI=1S/C11H21NO9S3/c1-22-4-2-3-7(12-21-24(17,18)19)23-11-10(16)9(15)8(14)6(5-13)20-11/h6,8-11,13-16H,2-5H2,1H3,(H,17,18,19)/p-1/b12-7+/t6-,8-,9+,10-,11+/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=ZCZCVJVUJGULMO-BZVDQRPCSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">406.46</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">407.03784</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-2221" orgid="ARA" resource="getxml?ARA:RXN-2221" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-2209" orgid="ARA" resource="getxml?ARA:RXN-2209" /></appears-in-right-side-of>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
+<common-name datatype="string">glucoiberverin</common-name>
+</Compound>
+</ptools-xml>

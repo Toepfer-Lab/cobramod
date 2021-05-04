@@ -1,0 +1,58 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-15317"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:CPD-15317</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:CPD-15317" class="true" detail="full" frameid="CPD-15317" orgid="META"><parent><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="getxml?META:RIBOSE-5P" /></parent>
+<instance><Compound frameid="CPD-15318" orgid="META" resource="getxml?META:CPD-15318" /></instance>
+<instance><Compound frameid="CPD-16551" orgid="META" resource="getxml?META:CPD-16551" /></instance>
+<cml><molecule formalCharge="-2" id="CPD-15317" title="D-ribofuranose+5-phosphate"><atomArray><atom elementType="C" id="CPD-15317-atom1" x2="2364.0" y2="413.0" /><atom elementType="C" id="CPD-15317-atom2" x2="3079.0" y2="825.0" /><atom elementType="C" id="CPD-15317-atom3" x2="3334.0" y2="1610.0" /><atom elementType="C" id="CPD-15317-atom4" x2="4159.0" y2="1610.0" /><atom elementType="C" id="CPD-15317-atom5" x2="4414.0" y2="825.0" /><atom elementType="O" id="CPD-15317-atom6" x2="2921.0" y2="2324.0" /><atom elementType="O" id="CPD-15317-atom7" x2="4571.0" y2="2324.0" /><atom elementType="O" id="CPD-15317-atom8" x2="5120.0" y2="430.0" /><atom elementType="O" formalCharge="-1" id="CPD-15317-atom9" x2="0.0" y2="825.0" /><atom elementType="O" id="CPD-15317-atom10" x2="825.0" y2="1650.0" /><atom elementType="O" formalCharge="-1" id="CPD-15317-atom11" x2="825.0" y2="0.0" /><atom elementType="O" id="CPD-15317-atom12" x2="1650.0" y2="825.0" /><atom elementType="O" id="CPD-15317-atom13" x2="3746.0" y2="340.0" /><atom elementType="P" id="CPD-15317-atom14" x2="825.0" y2="825.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-15317-atom13 CPD-15317-atom2" id="CPD-15317-bond1" order="1" /><bond atomRefs="CPD-15317-atom2 CPD-15317-atom3" id="CPD-15317-bond2" order="1" /><bond atomRefs="CPD-15317-atom3 CPD-15317-atom4" id="CPD-15317-bond3" order="1" /><bond atomRefs="CPD-15317-atom4 CPD-15317-atom5" id="CPD-15317-bond4" order="1" /><bond atomRefs="CPD-15317-atom13 CPD-15317-atom5" id="CPD-15317-bond5" order="1" /><bond atomRefs="CPD-15317-atom5 CPD-15317-atom8" id="CPD-15317-bond6" order="1" /><bond atomRefs="CPD-15317-atom4 CPD-15317-atom7" id="CPD-15317-bond7" order="1" /><bond atomRefs="CPD-15317-atom3 CPD-15317-atom6" id="CPD-15317-bond8" order="1" /><bond atomRefs="CPD-15317-atom2 CPD-15317-atom1" id="CPD-15317-bond9" order="1" /><bond atomRefs="CPD-15317-atom1 CPD-15317-atom12" id="CPD-15317-bond10" order="1" /><bond atomRefs="CPD-15317-atom12 CPD-15317-atom14" id="CPD-15317-bond11" order="1" /><bond atomRefs="CPD-15317-atom14 CPD-15317-atom9" id="CPD-15317-bond12" order="1" /><bond atomRefs="CPD-15317-atom14 CPD-15317-atom10" id="CPD-15317-bond13" order="2" /><bond atomRefs="CPD-15317-atom14 CPD-15317-atom11" id="CPD-15317-bond14" order="1" /></bondArray>
+<formula concise="C 5 H 9 O 8 P 1" /><float title="molecularWeight" units="g/mol">228.095</float>
+<string title="smiles">C(OP([O-])(=O)[O-])[C@@H]1([C@@H](O)[C@@H](O)C(O)O1)</string>
+</molecule>
+</cml>
+<common-name datatype="string">D-ribofuranose 5-phosphate</common-name>
+<credits><created><date datatype="date">2013-04-24</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
+</credits>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>78346</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:78346</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-302.92813<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C5H11O8P/c6-3-2(1-12-14(9,10)11)13-5(8)4(3)7/h2-8H,1H2,(H2,9,10,11)/p-2/t2-,3-,4-,5?/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=KTVPXOYAKDPRHY-SOOFDHNKSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">228.095</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">230.01915</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="PHOSPHORIBOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHORIBOKINASE-RXN" /><Reaction frameid="RIBOSE-5-PHOSPHATE--AMMONIA-LIGASE-RXN" orgid="META" resource="getxml?META:RIBOSE-5-PHOSPHATE--AMMONIA-LIGASE-RXN" /><Reaction frameid="RXN0-5398" orgid="META" resource="getxml?META:RXN0-5398" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-8444" orgid="META" resource="getxml?META:RXN-8444" /><Reaction frameid="RIBOKIN-RXN" orgid="META" resource="getxml?META:RIBOKIN-RXN" /><Reaction frameid="RXN-19407" orgid="META" resource="getxml?META:RXN-19407" /><Reaction frameid="RXN0-1441" orgid="META" resource="getxml?META:RXN0-1441" /><Reaction frameid="RXN-15912" orgid="META" resource="getxml?META:RXN-15912" /><Reaction frameid="RXN-14065" orgid="META" resource="getxml?META:RXN-14065" /><Reaction frameid="INOSINATE-NUCLEOSIDASE-RXN" orgid="META" resource="getxml?META:INOSINATE-NUCLEOSIDASE-RXN" /><Reaction frameid="RXN-4314" orgid="META" resource="getxml?META:RXN-4314" /><Reaction frameid="RXN-4313" orgid="META" resource="getxml?META:RXN-4313" /><Reaction frameid="NMNNUCLEOSID-RXN" orgid="META" resource="getxml?META:NMNNUCLEOSID-RXN" /><Reaction frameid="AMP-NUCLEOSID-RXN" orgid="META" resource="getxml?META:AMP-NUCLEOSID-RXN" /><Reaction frameid="RXN-14996" orgid="META" resource="getxml?META:RXN-14996" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

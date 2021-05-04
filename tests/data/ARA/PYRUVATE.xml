@@ -1,0 +1,138 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:PYRUVATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:PYRUVATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:PYRUVATE" detail="full" frameid="PYRUVATE" orgid="ARA"><parent><Compound class="true" frameid="2-Oxo-carboxylates" orgid="ARA" resource="getxml?ARA:2-Oxo-carboxylates" /></parent>
+<parent><Compound class="true" frameid="Short-Chain-Carboxylates" orgid="ARA" resource="getxml?ARA:Short-Chain-Carboxylates" /></parent>
+<cml><molecule formalCharge="-1" id="PYRUVATE" title="pyruvate"><atomArray><atom elementType="C" id="PYRUVATE-atom1" x2="10938.0" y2="-2997.0" /><atom elementType="C" id="PYRUVATE-atom2" x2="3835.0" y2="1184.0" /><atom elementType="C" id="PYRUVATE-atom3" x2="-3786.0" y2="-2553.0" /><atom elementType="O" id="PYRUVATE-atom4" x2="3835.0" y2="9434.0" /><atom elementType="O" id="PYRUVATE-atom5" x2="-3786.0" y2="-10803.0" /><atom elementType="O" formalCharge="-1" id="PYRUVATE-atom6" x2="-10631.0" y2="2035.0" /></atomArray>
+<bondArray><bond atomRefs="PYRUVATE-atom6 PYRUVATE-atom3" id="PYRUVATE-bond1" order="1" /><bond atomRefs="PYRUVATE-atom5 PYRUVATE-atom3" id="PYRUVATE-bond2" order="2" /><bond atomRefs="PYRUVATE-atom2 PYRUVATE-atom3" id="PYRUVATE-bond3" order="1" /><bond atomRefs="PYRUVATE-atom4 PYRUVATE-atom2" id="PYRUVATE-bond4" order="2" /><bond atomRefs="PYRUVATE-atom1 PYRUVATE-atom2" id="PYRUVATE-bond5" order="1" /></bondArray>
+<formula concise="C 3 H 3 O 3" /><float title="molecularWeight" units="g/mol">87.055</float>
+<string title="smiles">CC(=O)C(=O)[O-]</string>
+</molecule>
+</cml>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/22/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/22/</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00020</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00020</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM23</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM23</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Pyruvic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Pyruvic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>pyr</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/pyr</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15361</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15361</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00243</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00243</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>96901</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/96901</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>107735</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=107735</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00001200</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00001200</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15361</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15361</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00022</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00022</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>127-17-3</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=127-17-3</dblink-URL>
+</dblink>
+<dblink><dblink-db>UM-BBD-CPD</dblink-db>
+<dblink-oid>c0159</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0159</dblink-URL>
+</dblink>
+<synonym datatype="string">alpha-ketopropionic acid</synonym>
+<synonym datatype="string">BTS</synonym>
+<synonym datatype="string">&amp;alpha;-ketopropionic acid</synonym>
+<synonym datatype="string">acetylformic acid</synonym>
+<synonym datatype="string">pyroracemic acid</synonym>
+<synonym datatype="string">2-oxopropanoic acid</synonym>
+<synonym datatype="string">pyruvic acid</synonym>
+<synonym datatype="string">2-oxopropanoate</synonym>
+<synonym datatype="string">2-oxo-propionic acid</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-82.398705</gibbs-0>
+<inchi datatype="string">InChI=1S/C3H4O3/c1-2(4)3(5)6/h1H3,(H,5,6)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=LCTONWCANYUPML-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">87.055</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">88.016045</monoisotopic-mw>
+<abbrev-name datatype="string">pyruvate</abbrev-name>
+<appears-in-left-side-of><Reaction frameid="RXN-14516" orgid="ARA" resource="getxml?ARA:RXN-14516" /><Reaction frameid="PYRUVATE-CARBOXYLASE-RXN" orgid="ARA" resource="getxml?ARA:PYRUVATE-CARBOXYLASE-RXN" /><Reaction frameid="RXN0-1134" orgid="ARA" resource="getxml?ARA:RXN0-1134" /><Reaction frameid="RXN-12583" orgid="ARA" resource="getxml?ARA:RXN-12583" /><Reaction frameid="RXN3O-4157" orgid="ARA" resource="getxml?ARA:RXN3O-4157" /><Reaction frameid="ACETOLACTSYN-RXN" orgid="ARA" resource="getxml?ARA:ACETOLACTSYN-RXN" /><Reaction frameid="ACETOOHBUTSYN-RXN" orgid="ARA" resource="getxml?ARA:ACETOOHBUTSYN-RXN" /><Reaction frameid="DXS-RXN" orgid="ARA" resource="getxml?ARA:DXS-RXN" /><Reaction frameid="RXN-6161" orgid="ARA" resource="getxml?ARA:RXN-6161" /><Reaction frameid="PYRUVDEH-RXN" orgid="ARA" resource="getxml?ARA:PYRUVDEH-RXN" /><Reaction frameid="2.6.1.58-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.58-RXN" /><Reaction frameid="RXN-10139" orgid="ARA" resource="getxml?ARA:RXN-10139" /><Reaction frameid="RXN0-5261" orgid="ARA" resource="getxml?ARA:RXN0-5261" /><Reaction frameid="PEPSYNTH-RXN" orgid="ARA" resource="getxml?ARA:PEPSYNTH-RXN" /><Reaction frameid="SERINE--PYRUVATE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:SERINE--PYRUVATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="PYRUVATEORTHOPHOSPHATE-DIKINASE-RXN" orgid="ARA" resource="getxml?ARA:PYRUVATEORTHOPHOSPHATE-DIKINASE-RXN" /><Reaction frameid="RXN-6902" orgid="ARA" resource="getxml?ARA:RXN-6902" /><Reaction frameid="DIHYDRODIPICSYN-RXN" orgid="ARA" resource="getxml?ARA:DIHYDRODIPICSYN-RXN" /><Reaction frameid="PEPDEPHOS-RXN" orgid="ARA" resource="getxml?ARA:PEPDEPHOS-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-8899" orgid="ARA" resource="getxml?ARA:RXN-8899" /><Reaction frameid="RXN-1981" orgid="ARA" resource="getxml?ARA:RXN-1981" /><Reaction frameid="RXN-18212" orgid="ARA" resource="getxml?ARA:RXN-18212" /><Reaction frameid="RXN-19583" orgid="ARA" resource="getxml?ARA:RXN-19583" /><Reaction frameid="RXN-19596" orgid="ARA" resource="getxml?ARA:RXN-19596" /><Reaction frameid="RXN-19748" orgid="ARA" resource="getxml?ARA:RXN-19748" /><Reaction frameid="RXN-19586" orgid="ARA" resource="getxml?ARA:RXN-19586" /><Reaction frameid="RXN-8054" orgid="ARA" resource="getxml?ARA:RXN-8054" /><Reaction frameid="RXN-18702" orgid="ARA" resource="getxml?ARA:RXN-18702" /><Reaction frameid="MERCAPYSTRANS-RXN" orgid="ARA" resource="getxml?ARA:MERCAPYSTRANS-RXN" /><Reaction frameid="ACYLPYRUVATE-HYDROLASE-RXN" orgid="ARA" resource="getxml?ARA:ACYLPYRUVATE-HYDROLASE-RXN" /><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="getxml?ARA:OXALODECARB-RXN" /><Reaction frameid="RXN-15127" orgid="ARA" resource="getxml?ARA:RXN-15127" /><Reaction frameid="RXN-12729" orgid="ARA" resource="getxml?ARA:RXN-12729" /><Reaction frameid="DLACTDEHYDROGFAD-RXN" orgid="ARA" resource="getxml?ARA:DLACTDEHYDROGFAD-RXN" /><Reaction frameid="RXNQT-4321" orgid="ARA" resource="getxml?ARA:RXNQT-4321" /><Reaction frameid="RXN-6763" orgid="ARA" resource="getxml?ARA:RXN-6763" /><Reaction frameid="4.3.1.17-RXN" orgid="ARA" resource="getxml?ARA:4.3.1.17-RXN" /><Reaction frameid="RXNQT-4323" orgid="ARA" resource="getxml?ARA:RXNQT-4323" /><Reaction frameid="DSERDEAM-RXN" orgid="ARA" resource="getxml?ARA:DSERDEAM-RXN" /><Reaction frameid="RXN-8052" orgid="ARA" resource="getxml?ARA:RXN-8052" /><Reaction frameid="DCYSDESULF-RXN" orgid="ARA" resource="getxml?ARA:DCYSDESULF-RXN" /><Reaction frameid="RXNQT-4322" orgid="ARA" resource="getxml?ARA:RXNQT-4322" /><Reaction frameid="CYSTATHIONINE-BETA-LYASE-RXN" orgid="ARA" resource="getxml?ARA:CYSTATHIONINE-BETA-LYASE-RXN" /><Reaction frameid="RXNQT-4319" orgid="ARA" resource="getxml?ARA:RXNQT-4319" /><Reaction frameid="RXNQT-4320" orgid="ARA" resource="getxml?ARA:RXNQT-4320" /><Reaction frameid="RXN0-5433" orgid="ARA" resource="getxml?ARA:RXN0-5433" /><Reaction frameid="23-DIMETHYLMALATE-LYASE-RXN" orgid="ARA" resource="getxml?ARA:23-DIMETHYLMALATE-LYASE-RXN" /><Reaction frameid="D-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN" orgid="ARA" resource="getxml?ARA:D-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN" /><Reaction frameid="PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN" orgid="ARA" resource="getxml?ARA:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN" /><Reaction frameid="RXN-9310" orgid="ARA" resource="getxml?ARA:RXN-9310" /><Reaction frameid="DLACTDEHYDROGNAD-RXN" orgid="ARA" resource="getxml?ARA:DLACTDEHYDROGNAD-RXN" /><Reaction frameid="L-LACTATE-DEHYDROGENASE-RXN" orgid="ARA" resource="getxml?ARA:L-LACTATE-DEHYDROGENASE-RXN" /><Reaction frameid="ADCLY-RXN" orgid="ARA" resource="getxml?ARA:ADCLY-RXN" /><Reaction frameid="ANTHRANSYN-RXN" orgid="ARA" resource="getxml?ARA:ANTHRANSYN-RXN" /><Reaction frameid="ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="2.6.1.18-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.18-RXN" /><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /><Reaction frameid="ALANINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ALANINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /></appears-in-right-side-of>
+<regulates><Regulation ID="ARA:REG0-9094" detail="low" frameid="REG0-9094" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="PYRUVATE" orgid="ARA" resource="#ARA:PYRUVATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-12383" detail="low" frameid="REG0-12383" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="PYRUVATE" orgid="ARA" resource="#ARA:PYRUVATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-12560" detail="low" frameid="REG0-12560" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulator><Compound frameid="PYRUVATE" orgid="ARA" resource="#ARA:PYRUVATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-8057" detail="low" frameid="REG0-8057" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="PYRUVATE" orgid="ARA" resource="#ARA:PYRUVATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-539" detail="low" frameid="REGQT-539" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12854" detail="low" frameid="ENZRXNQT-12854" orgid="ARA"><enzyme><Protein frameid="CPLXQT-53" orgid="ARA" resource="getxml?ARA:CPLXQT-53" /></enzyme>
+<synonym datatype="string">NAD-dependent malic enzyme</synonym>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="PYRUVATE" orgid="ARA" resource="#ARA:PYRUVATE" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-9991" detail="low" frameid="REG-9991" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="PYRUVATE" orgid="ARA" resource="#ARA:PYRUVATE" /></regulator>
+</Regulation>
+</regulates>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Shulaev-LCMS,Fiehn (see &lt;A href="http://plantmetabolomics.org/tutorials/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">pyruvate</common-name>
+</Compound>
+</ptools-xml>

@@ -1,0 +1,62 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:QUINOLINATE-SYNTHA-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:QUINOLINATE-SYNTHA-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:QUINOLINATE-SYNTHA-RXN" detail="full" frameid="QUINOLINATE-SYNTHA-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR103400</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR103400</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>25889</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=25889</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R04292</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R04292</dblink-URL>
+</dblink>
+<ec-number>EC-2.5.1.72<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:QUINOLINATE-SYNTHA-ENZRXN" detail="low" frameid="QUINOLINATE-SYNTHA-ENZRXN" orgid="META"><common-name datatype="string">quinolinate synthase</common-name>
+<enzyme><Protein frameid="CPLX0-7719" orgid="META" resource="getxml?META:CPLX0-7719" /></enzyme>
+<reaction><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="#META:QUINOLINATE-SYNTHA-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13365" detail="low" frameid="ENZRXN-13365" orgid="META"><common-name datatype="string">quinolinate synthase</common-name>
+<enzyme><Protein frameid="AT5G50210-MONOMER" orgid="META" resource="getxml?META:AT5G50210-MONOMER" /></enzyme>
+<reaction><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="#META:QUINOLINATE-SYNTHA-RXN" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-24.013977<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY-5316" orgid="META" resource="getxml?META:PWY-5316" /><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /><Pathway frameid="PYRIDNUCSYN-PWY" orgid="META" resource="getxml?META:PYRIDNUCSYN-PWY" /></in-pathway>
+<left><Compound frameid="IMINOASPARTATE" orgid="META" resource="getxml?META:IMINOASPARTATE" /></left>
+<left><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="getxml?META:DIHYDROXY-ACETONE-PHOSPHATE" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="QUINOLINATE" orgid="META" resource="getxml?META:QUINOLINATE" /></right>
+<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /><coefficient datatype="integer">2</coefficient>
+</right>
+<right><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></right>
+</Reaction>
+</ptools-xml>

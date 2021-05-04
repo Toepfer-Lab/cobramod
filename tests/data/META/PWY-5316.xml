@@ -1,0 +1,157 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PWY-5316"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:PWY-5316</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Pathway ID="META:PWY-5316" detail="full" frameid="PWY-5316" orgid="META"><parent><Pathway class="true" frameid="PYRROLIDINE-ALKALOIDS" orgid="META" resource="getxml?META:PYRROLIDINE-ALKALOIDS" /></parent>
+<citation><Publication ID="META:PUB-15604745" detail="full" frameid="PUB-15604745" orgid="META"><author datatype="string">Heim WG</author>
+<author datatype="string">Jelesko JG</author>
+<pubmed-id datatype="string">15604745</pubmed-id>
+<source datatype="string">Plant Mol Biol 56(2);299-308</source>
+<title datatype="string">Association of diamine oxidase and S-adenosylhomocysteine hydrolase in Nicotiana tabacum extracts.</title>
+<year datatype="integer">2004</year>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-16192354" detail="full" frameid="PUB-16192354" orgid="META"><author datatype="string">Siminszky B</author>
+<author datatype="string">Gavilano L</author>
+<author datatype="string">Bowen SW</author>
+<author datatype="string">Dewey RE</author>
+<pubmed-id datatype="string">16192354</pubmed-id>
+<source datatype="string">Proc Natl Acad Sci U S A 102(41);14919-24</source>
+<title datatype="string">Conversion of nicotine to nornicotine in Nicotiana tabacum is mediated by CYP82E4, a cytochrome P450 monooxygenase.</title>
+<year datatype="integer">2005</year>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID="META:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="META"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+<common-name datatype="string">Inferred from experiment</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-FRIESEN90" detail="full" frameid="PUB-FRIESEN90" orgid="META"><author datatype="string">Friesen, Brent</author>
+<author datatype="string">Leete, Edward</author>
+<source datatype="string">Tetrahedron Letters, 31(44):6295-6298</source>
+<title datatype="string">Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
+<year datatype="integer">1990</year>
+</Publication>
+</evidence>
+<comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=NICOTINE"&gt;Nicotine&lt;/a&gt; is the principal alkaloid in the leaves of commercially used tobacco (&lt;a href="/META/NEW-IMAGE?object=TAX-4097"&gt;&lt;i&gt;Nicotiana tabacum&lt;/i&gt;&lt;/a&gt; and &lt;a href="/META/NEW-IMAGE?object=TAX-4093"&gt;&lt;i&gt;Nicotiana rustica&lt;/i&gt;&lt;/a&gt;) [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSchmeltz77%5d"&gt;Schmeltz77&lt;/a&gt;], where it functions as a defense compound. In the plant tissue nicotine is mostly present in the &lt;a href="/compound?orgid=META&amp;id=NICOTINE"&gt;(&lt;i&gt;S&lt;/i&gt;)-nicotine&lt;/a&gt; isomeric form [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bArmstrong98%5d"&gt;Armstrong98&lt;/a&gt;], although tobacco smoke contains up to 10% of &lt;a href="/compound?orgid=META&amp;id=R-NICOTINE"&gt;(&lt;i&gt;R&lt;/i&gt;)-nicotine&lt;/a&gt;, probably due to racemization during combustion (in [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15734728"&gt;Hukkanen05&lt;/a&gt;]).
+&lt;p&gt;
+Nicotine is composed of a pyridine ring joined with an &lt;i&gt;N&lt;/i&gt;-methylpyrrolidine ring. The pyridine ring is derived from an intermediate in NAD biosynthesis, most likely &lt;a href="/compound?orgid=META&amp;id=NIACINE"&gt;nicotinate&lt;/a&gt; [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bDawson56%5d"&gt;Dawson56&lt;/a&gt;]. The pyrrolidine ring is derived from &lt;a href="/compound?orgid=META&amp;id=CPD-7994"&gt;N-methyl-&amp;Delta;&lt;sup&gt;1&lt;/sup&gt;-pyrrolinium cation&lt;/a&gt;, a common intermediate for the tropane alkaloids that is derived from &lt;a href="/compound?orgid=META&amp;id=PUTRESCINE"&gt;putrescine&lt;/a&gt; [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bLeete67%5d"&gt;Leete67&lt;/a&gt;] (see &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5315"&gt;N-methyl-&amp;Delta;&lt;sup&gt;1&lt;/sup&gt;-pyrrolinium cation biosynthesis&lt;/a&gt;).
+Somewhat surprisingly, the condensation of the two rings to form nicotine is largely uncharacterized at this time. A pathway has been proposed based on several observations, for example, that a hydrogen is lost from C-6 of nicotinate when it is incorporated into nicotine, while all the other hydrogens remain intact [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bFriesen90%5d"&gt;Friesen90&lt;/a&gt;]. However, the individual steps in the pathway have not been characterized, and no enzymes have been purified. A generic "nicotine synthase" activity was detected in a crude enzyme preparation from &lt;a href="/META/NEW-IMAGE?object=TAX-4097"&gt;&lt;i&gt;Nicotiana tabacum&lt;/i&gt;&lt;/a&gt; supplemented with &lt;a href="/compound?orgid=META&amp;id=NIACINE"&gt;nicotinate&lt;/a&gt; and N-methyl-delta1-pyrrolinium chloride [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bFriesen90%5d"&gt;Friesen90&lt;/a&gt;].
+&lt;p&gt;
+Once formed, nicotine may be demethylated to &lt;a href="/compound?orgid=META&amp;id=CPD-2748"&gt;(S)-nornicotine&lt;/a&gt; by a cytochrome P450 monooxygenase. Nornicotine formation in tobacco is undesired because it serves as a precursor of the carcinogen N'-nitrosonornicotine during the curing and processing of tobacco [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16192354"&gt;Siminszky05&lt;/a&gt;].</comment>
+<common-name datatype="string">nicotine biosynthesis</common-name>
+<credits><created><date datatype="date">2006-09-07</date>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</created>
+<revised><date datatype="date">2012-02-07</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<in-pathway><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /></in-pathway>
+<pathway-link><Compound frameid="CPD-7994" orgid="META" resource="getxml?META:CPD-7994" /><link-target><Pathway frameid="PWY-5315" orgid="META" resource="getxml?META:PWY-5315" /></link-target>
+</pathway-link>
+<pathway-link><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /><link-target><Pathway frameid="ASPARTATESYN-PWY" orgid="META" resource="getxml?META:ASPARTATESYN-PWY" /></link-target>
+</pathway-link>
+<reaction-ordering><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /><predecessor-reactions><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /><predecessor-reactions><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-8444" orgid="META" resource="getxml?META:RXN-8444" /><predecessor-reactions><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-13057" orgid="META" resource="getxml?META:RXN-13057" /><predecessor-reactions><Reaction frameid="RXN-8444" orgid="META" resource="getxml?META:RXN-8444" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-8248" orgid="META" resource="getxml?META:RXN-8248" /><predecessor-reactions><Reaction frameid="RXN-13060" orgid="META" resource="getxml?META:RXN-13060" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-13060" orgid="META" resource="getxml?META:RXN-13060" /><predecessor-reactions><Reaction frameid="RXN-13059" orgid="META" resource="getxml?META:RXN-13059" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-13059" orgid="META" resource="getxml?META:RXN-13059" /><predecessor-reactions><Reaction frameid="RXN-13058" orgid="META" resource="getxml?META:RXN-13058" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-13058" orgid="META" resource="getxml?META:RXN-13058" /><predecessor-reactions><Reaction frameid="RXN-13057" orgid="META" resource="getxml?META:RXN-13057" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="RXN-8444" orgid="META" resource="getxml?META:RXN-8444" /><direction>L2R</direction>
+<left-primaries><Compound frameid="NICOTINATE_NUCLEOTIDE" orgid="META" resource="getxml?META:NICOTINATE_NUCLEOTIDE" /></left-primaries>
+<right-primaries><Compound frameid="NIACINE" orgid="META" resource="getxml?META:NIACINE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /></left-primaries>
+<right-primaries><Compound frameid="IMINOASPARTATE" orgid="META" resource="getxml?META:IMINOASPARTATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="IMINOASPARTATE" orgid="META" resource="getxml?META:IMINOASPARTATE" /></left-primaries>
+<right-primaries><Compound frameid="QUINOLINATE" orgid="META" resource="getxml?META:QUINOLINATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /><direction>R2L</direction>
+<left-primaries><Compound frameid="NICOTINATE_NUCLEOTIDE" orgid="META" resource="getxml?META:NICOTINATE_NUCLEOTIDE" /></left-primaries>
+<right-primaries><Compound frameid="QUINOLINATE" orgid="META" resource="getxml?META:QUINOLINATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-13060" orgid="META" resource="getxml?META:RXN-13060" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-14076" orgid="META" resource="getxml?META:CPD-14076" /></left-primaries>
+<right-primaries><Compound frameid="NICOTINE" orgid="META" resource="getxml?META:NICOTINE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-13059" orgid="META" resource="getxml?META:RXN-13059" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-7994" orgid="META" resource="getxml?META:CPD-7994" /><Compound frameid="CPD-14075" orgid="META" resource="getxml?META:CPD-14075" /></left-primaries>
+<right-primaries><Compound frameid="CPD-14076" orgid="META" resource="getxml?META:CPD-14076" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-13058" orgid="META" resource="getxml?META:RXN-13058" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-14074" orgid="META" resource="getxml?META:CPD-14074" /></left-primaries>
+<right-primaries><Compound frameid="CPD-14075" orgid="META" resource="getxml?META:CPD-14075" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-13057" orgid="META" resource="getxml?META:RXN-13057" /><direction>L2R</direction>
+<left-primaries><Compound frameid="NIACINE" orgid="META" resource="getxml?META:NIACINE" /></left-primaries>
+<right-primaries><Compound frameid="CPD-14074" orgid="META" resource="getxml?META:CPD-14074" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-8248" orgid="META" resource="getxml?META:RXN-8248" /><direction>L2R</direction>
+<left-primaries><Compound frameid="NICOTINE" orgid="META" resource="getxml?META:NICOTINE" /></left-primaries>
+<right-primaries><Compound frameid="CPD-2748" orgid="META" resource="getxml?META:CPD-2748" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="RXN-8444" orgid="META" resource="getxml?META:RXN-8444" /><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="META" resource="getxml?META:L-ASPARTATE-OXID-RXN" /><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /><Reaction frameid="RXN-13060" orgid="META" resource="getxml?META:RXN-13060" /><Reaction frameid="RXN-13059" orgid="META" resource="getxml?META:RXN-13059" /><Reaction frameid="RXN-13058" orgid="META" resource="getxml?META:RXN-13058" /><Reaction frameid="RXN-13057" orgid="META" resource="getxml?META:RXN-13057" /><Reaction frameid="RXN-8248" orgid="META" resource="getxml?META:RXN-8248" /></reaction-list>
+<species><Organism ID="META:TAX-4097" class="true" detail="full" frameid="TAX-4097" orgid="META"><parent><Organism class="true" frameid="TAX-4085" orgid="META" resource="getxml?META:TAX-4085" /></parent>
+<common-name datatype="string">Nicotiana tabacum</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4097</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4097</dblink-URL>
+</dblink>
+<rank>species</rank>
+<synonym datatype="string">tobacco</synonym>
+<synonym datatype="string">common tobacco</synonym>
+<synonym datatype="string">American tobacco</synonym>
+</Organism>
+</species>
+<super-pathways><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /></super-pathways>
+<taxonomic-range><Organism ID="META:TAX-4070" class="true" detail="full" frameid="TAX-4070" orgid="META"><parent><Organism class="true" frameid="TAX-4069" orgid="META" resource="getxml?META:TAX-4069" /></parent>
+<common-name datatype="string">Solanaceae</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4070</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4070</dblink-URL>
+</dblink>
+<rank>family</rank>
+<synonym datatype="string">Nolanaceae</synonym>
+<synonym datatype="string">nightshade family</synonym>
+</Organism>
+</taxonomic-range>
+</Pathway>
+</ptools-xml>

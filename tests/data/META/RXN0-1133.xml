@@ -1,0 +1,207 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN0-1133"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RXN0-1133</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:RXN0-1133" detail="full" frameid="RXN0-1133" orgid="META"><parent><Reaction class="true" frameid="Protein-Modification-Reactions" orgid="META" resource="getxml?META:Protein-Modification-Reactions" /></parent>
+<credits><revised><date datatype="date">2012-09-18</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR123104</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR123104</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R02569</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R02569</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q01991</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q01991</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P12695</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P12695</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M2M8</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M2M8</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P10515</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P10515</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q39082</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q39082</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9TRP7</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9TRP7</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M0X6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M0X6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q59098</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q59098</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PF09</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PF09</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35489</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35489</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P21883</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P21883</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q59658</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q59658</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JU07</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JU07</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q59298</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q59298</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P45118</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P45118</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q54102</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q54102</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P11961</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P11961</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q59821</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q59821</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P08461</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P08461</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q16791</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q16791</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q41737</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q41737</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O64968</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O64968</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P10802</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P10802</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P06959</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P06959</dblink-URL>
+</dblink>
+<ec-number>EC-2.3.1.12<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-1307" detail="low" frameid="ENZRXN0-1307" orgid="META"><common-name datatype="string">lipoate acetyltransferase</common-name>
+<enzyme><Protein frameid="E2P-MONOMER" orgid="META" resource="getxml?META:E2P-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN0-1133" orgid="META" resource="#META:RXN0-1133" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN490-76" detail="low" frameid="ENZRXN490-76" orgid="META"><common-name datatype="string">dihydrolipoamide acetyltransferase</common-name>
+<enzyme><Protein frameid="CPLX490-3566" orgid="META" resource="getxml?META:CPLX490-3566" /></enzyme>
+<reaction><Reaction frameid="RXN0-1133" orgid="META" resource="#META:RXN0-1133" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-22255" detail="low" frameid="ENZRXN-22255" orgid="META"><common-name datatype="string">dihydrolipoyllysine-residue acetyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-18301" orgid="META" resource="getxml?META:MONOMER-18301" /></enzyme>
+<reaction><Reaction frameid="RXN0-1133" orgid="META" resource="#META:RXN0-1133" /></reaction>
+<synonym datatype="string">dihydrolipoyl transacetylase</synonym>
+<synonym datatype="string">dihydrolipoyl acetyltransferase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-3907" detail="low" frameid="ENZRXN66-3907" orgid="META"><common-name datatype="string">dihydrolipoyllysine-residue acetyltransferase</common-name>
+<enzyme><Protein frameid="HS07688-MONOMER" orgid="META" resource="getxml?META:HS07688-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN0-1133" orgid="META" resource="#META:RXN0-1133" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2907" detail="low" frameid="ENZRXN-2907" orgid="META"><common-name datatype="string">dihydrolipoamide acetyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-584" orgid="META" resource="getxml?META:MONOMER-584" /></enzyme>
+<reaction><Reaction frameid="RXN0-1133" orgid="META" resource="#META:RXN0-1133" /></reaction>
+<synonym datatype="string">E2</synonym>
+<synonym datatype="string">pyruvate dehydrogenase complex E2 component</synonym>
+<synonym datatype="string">dihydrolipoamide &lt;I&gt;S&lt;/I&gt;-acetyltransferase</synonym>
+<synonym datatype="string">lipoate acetyltransferase</synonym>
+<synonym datatype="string">thioltransacetylase A</synonym>
+<synonym datatype="string">acetyl-CoA:dihyrolipoamide &lt;I&gt;S&lt;/I&gt;-acetyltransferase</synonym>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-20.542236<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PYRUVDEHYD-PWY" orgid="META" resource="getxml?META:PYRUVDEHYD-PWY" /><Reaction frameid="PYRUVDEH-RXN" orgid="META" resource="getxml?META:PYRUVDEH-RXN" /></in-pathway>
+<left><Compound frameid="ACETYL-COA" orgid="META" resource="getxml?META:ACETYL-COA" /></left>
+<left><Compound class="true" frameid="Pyruvate-dehydrogenase-dihydrolipoate" orgid="META" resource="getxml?META:Pyruvate-dehydrogenase-dihydrolipoate" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="CO-A" orgid="META" resource="getxml?META:CO-A" /></right>
+<right><Compound class="true" frameid="Pyruvate-dehydrogenase-acetylDHlipoyl" orgid="META" resource="getxml?META:Pyruvate-dehydrogenase-acetylDHlipoyl" /></right>
+</Reaction>
+</ptools-xml>

@@ -1,0 +1,107 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PWY-381"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:PWY-381</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Pathway ID="META:PWY-381" detail="full" frameid="PWY-381" orgid="META"><parent><Pathway class="true" frameid="Nitrate-Reduction" orgid="META" resource="getxml?META:Nitrate-Reduction" /></parent>
+<evidence><Evidence-Code ID="META:EV-EXP-TAS" class="true" detail="full" frameid="EV-EXP-TAS" orgid="META"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="getxml?META:EV-EXP" /></parent>
+<comment datatype="string">Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
+in another database -- that itself did not describe an experiment supporting the
+assertion.  However, the statement did reference another publication describing an experiment 
+that supports the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
+is that the former code is used when it is certain that experimental evidence supports the
+assertion, and the latter code is used when there is a possibility that an experiment was
+not done to support the assertion.
+In general, references to the primary literature are preferred,
+but this code can be used when the original article is difficult to locate.</comment>
+<common-name datatype="string">Traceable author statement to experimental support</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-PLANTBIOCHEMISTRY97" detail="full" frameid="PUB-PLANTBIOCHEMISTRY97" orgid="META"><author datatype="string">Dey, P. M.</author>
+<author datatype="string">Harborne, J. B.</author>
+<source datatype="string">Academic Press Inc.,  San Diego, USA</source>
+<title datatype="string">Plant Biochemistry</title>
+<year datatype="integer">1997</year>
+</Publication>
+</evidence>
+<comment datatype="string">In plants and algae nitrate is an important source of nitrogen. Nitrate assimilation begins with the uptake of nitrate from the soil by the root. Root epidermal and cortical cells are the first to actively transport nitrate into their cytosols. Nitrate then crosses the endodermis of the root and is released into the xylem. After long distance transport up the xylem, nitrate is again actively transported into the cells of the leaf. Once in the cell, nitrate can be stored in the vacuole (due to toxicity) or reduced to nitrite by the enzyme nitrate reductase (NR).
+&lt;p&gt;
+Four classes of nitrate reductases are known - a eukaryotic class, and three prokaryotic classes. The eukaryotic nitrate reductases are found in plants, algae and fungi, and are involved in assimilation of nitrate. They are composed of two identical subunits, and contain a &lt;a href="/compound?orgid=META&amp;id=CPD-8123"&gt;MoO&lt;sub&gt;2&lt;/sub&gt;-molybdopterin cofactor&lt;/a&gt; and an &lt;a href="/compound?orgid=META&amp;id=FAD"&gt;FAD&lt;/a&gt; prosthetic group. In general, plant enzymes prefer NADH as the electron donor (&lt;a href="/META/NEW-IMAGE?type=REACTION&amp;object=NITRATE-REDUCTASE-NADH-RXN"&gt;E.C. 1.7.1.1&lt;/a&gt;) and fungal enzymes prefer NADPH (&lt;a href="/META/NEW-IMAGE?type=REACTION&amp;object=NITRATE-REDUCTASE-NADPH-RXN"&gt;E.C. 1.7.1.3&lt;/a&gt;), although some enzymes were reported
+to accept either of these compounds (&lt;a href="/META/NEW-IMAGE?type=REACTION&amp;object=NITRATE-REDUCTASE-NADPORNOPH-RXN"&gt;E.C. 1.7.1.2&lt;/a&gt;) [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/14209328"&gt;Beevers64&lt;/a&gt;].
+Example for eukaryotic enzymes include the &lt;a href="/gene?orgid=META&amp;id=AT1G37130-MONOMER"&gt;assimilatory nitrate reductase (NADH)&lt;/a&gt; from &lt;a href="/META/NEW-IMAGE?object=TAX-3702"&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt; and the
+&lt;a href="/gene?orgid=META&amp;id=MONOMER-13438"&gt;assimilatory nitrate reductase (NADPH)&lt;/a&gt; from &lt;a href="/META/NEW-IMAGE?object=TAX-5141"&gt;&lt;i&gt;Neurospora crassa&lt;/i&gt;&lt;/a&gt;. 
+&lt;p&gt;
+Nitrite is transported into the chloroplast, where it is reduced to ammonia by nitrite reductase (NiR). The final step of the pathway is the incorporation of ammonia into glutamine by glutamine synthetase [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bARABIDOPSIS94%5d"&gt;Elliot94&lt;/a&gt;].</comment>
+<common-name datatype="string">nitrate reduction II (assimilatory)</common-name>
+<credits><created><date datatype="date">2002-06-11</date>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</created>
+</credits>
+<reaction-ordering><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /><predecessor-reactions><Reaction frameid="FERREDOXIN--NITRITE-REDUCTASE-RXN" orgid="META" resource="getxml?META:FERREDOXIN--NITRITE-REDUCTASE-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="FERREDOXIN--NITRITE-REDUCTASE-RXN" orgid="META" resource="getxml?META:FERREDOXIN--NITRITE-REDUCTASE-RXN" /><predecessor-reactions><Reaction frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META" resource="getxml?META:NITRATE-REDUCTASE-NADH-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="FERREDOXIN--NITRITE-REDUCTASE-RXN" orgid="META" resource="getxml?META:FERREDOXIN--NITRITE-REDUCTASE-RXN" /><direction>R2L</direction>
+<left-primaries><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></left-primaries>
+<right-primaries><Compound frameid="NITRITE" orgid="META" resource="getxml?META:NITRITE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></left-primaries>
+<right-primaries><Compound frameid="GLN" orgid="META" resource="getxml?META:GLN" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META" resource="getxml?META:NITRATE-REDUCTASE-NADH-RXN" /><direction>R2L</direction>
+<left-primaries><Compound frameid="NITRITE" orgid="META" resource="getxml?META:NITRITE" /></left-primaries>
+<right-primaries><Compound frameid="NITRATE" orgid="META" resource="getxml?META:NITRATE" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="FERREDOXIN--NITRITE-REDUCTASE-RXN" orgid="META" resource="getxml?META:FERREDOXIN--NITRITE-REDUCTASE-RXN" /><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /><Reaction frameid="NITRATE-REDUCTASE-NADH-RXN" orgid="META" resource="getxml?META:NITRATE-REDUCTASE-NADH-RXN" /></reaction-list>
+<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
+<common-name datatype="string">Arabidopsis thaliana</common-name>
+<rank>strain</rank>
+<strain-name datatype="string">col</strain-name>
+<synonym datatype="string">Arabidopsis thaliana col</synonym>
+</Organism>
+</species>
+<synonym datatype="string">nitrate assimilation</synonym>
+<taxonomic-range><Organism ID="META:TAX-33090" class="true" detail="full" frameid="TAX-33090" orgid="META"><parent><Organism class="true" frameid="TAX-2759" orgid="META" resource="getxml?META:TAX-2759" /></parent>
+<common-name datatype="string">Viridiplantae</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>33090</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33090</dblink-URL>
+</dblink>
+<rank>kingdom</rank>
+<synonym datatype="string">green plants &lt;common name&gt;</synonym>
+<synonym datatype="string">green plants</synonym>
+<synonym datatype="string">Chloroplastida</synonym>
+<synonym datatype="string">chlorophyte/embryophyte group</synonym>
+<synonym datatype="string">Chlorophyta/Embryophyta group</synonym>
+<synonym datatype="string">Chlorobionta</synonym>
+</Organism>
+<Organism ID="META:TAX-2763" class="true" detail="full" frameid="TAX-2763" orgid="META"><parent><Organism class="true" frameid="TAX-2759" orgid="META" resource="getxml?META:TAX-2759" /></parent>
+<common-name datatype="string">Rhodophyta</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2763</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2763</dblink-URL>
+</dblink>
+<rank>phylum</rank>
+<synonym datatype="string">rhodophytes</synonym>
+<synonym datatype="string">Rhodophycota</synonym>
+<synonym datatype="string">Rhodophyceae</synonym>
+<synonym datatype="string">red algae &lt;genbank common name&gt;</synonym>
+<synonym datatype="string">red algae</synonym>
+</Organism>
+</taxonomic-range>
+</Pathway>
+</ptools-xml>

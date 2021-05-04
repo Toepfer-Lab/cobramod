@@ -1,0 +1,125 @@
+ENTRY       C00051                      Compound
+NAME        Glutathione;
+            5-L-Glutamyl-L-cysteinylglycine;
+            N-(N-gamma-L-Glutamyl-L-cysteinyl)glycine;
+            gamma-L-Glutamyl-L-cysteinyl-glycine;
+            GSH;
+            Reduced glutathione
+FORMULA     C10H17N3O6S
+EXACT_MASS  307.0838
+MOL_WEIGHT  307.3235
+REMARK      Same as: D00014
+REACTION    R00094 R00115 R00120 R00274 R00494 R00497 R00499 R00527 
+            R00547 R00900 R01108 R01109 R01110 R01111 R01113 R01262 
+            R01292 R01736 R01875 R01917 R01918 R02530 R02824 R03059 
+            R03082 R03167 R03522 R03822 R03915 R03956 R03984 R04039 
+            R04090 R04860 R05267 R05269 R05402 R05403 R05714 R05717 
+            R05748 R06982 R07002 R07003 R07004 R07023 R07024 R07025 
+            R07026 R07034 R07035 R07069 R07070 R07083 R07084 R07091 
+            R07092 R07093 R07094 R07100 R07113 R07116 R07124 R08280 
+            R08350 R08351 R08352 R08353 R08354 R08355 R08511 R08512 
+            R08678 R09338 R09367 R09368 R09409 R11411 R11650 R11652 
+            R11659 R11734 R11736 R11737 R11739 R11861 R11905 R11929 
+            R11947 R12578
+PATHWAY     map00270  Cysteine and methionine metabolism
+            map00480  Glutathione metabolism
+            map01100  Metabolic pathways
+            map01240  Biosynthesis of cofactors
+            map02010  ABC transporters
+            map04216  Ferroptosis
+            map04918  Thyroid hormone synthesis
+            map04976  Bile secretion
+            map05415  Diabetic cardiomyopathy
+MODULE      M00118  Glutathione biosynthesis, glutamate => glutathione
+ENZYME      1.5.4.1         1.8.1.7         1.8.1.9         1.8.1.10        
+            1.8.3.3         1.8.4.1         1.8.4.2         1.8.4.3         
+            1.8.4.4         1.8.4.7         1.8.4.9         1.8.5.1         
+            1.8.5.7         1.8.5.8         1.11.1.9        1.11.1.12       
+            1.11.1.27       1.13.11.18      1.14.14.43      1.14.14.45      
+            1.20.4.2        1.21.4.5        2.3.2.2         2.3.2.15        
+            2.5.1.18        2.5.1.-         2.8.1.3         3.1.2.6         
+            3.1.2.7         3.1.2.12        3.1.2.13        3.4.19.13       
+            3.5.1.78        3.5.1.-         4.3.2.7         4.4.1.5         
+            4.4.1.20        4.4.1.22        4.4.1.34        6.3.1.8         
+            6.3.1.9         6.3.2.3
+BRITE       Compounds with biological roles [BR:br08001]
+             Vitamins and cofactors
+              Cofactors
+               Coenzymes
+                C00051  Glutathione
+            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303]
+             V VARIOUS
+              V03 ALL OTHER THERAPEUTIC PRODUCTS
+               V03A ALL OTHER THERAPEUTIC PRODUCTS
+                V03AB Antidotes
+                 V03AB32 Glutathione
+                  D00014  Glutathione (JP17) &lt;JP&gt;
+            Therapeutic category of drugs in Japan [BR:br08301]
+             1  Agents affecting nervous system and sensory organs
+              13  Agents affecting sensory organs
+               131  Ophthalmic agents
+                1319  Others
+                 D00014  Glutathione (JP17)
+             3  Agents affecting metabolism
+              39  Other agents affecting metabolism
+               392  Antidotes
+                3922  Glutathiones
+                 D00014  Glutathione (JP17)
+            Animal drugs in Japan [BR:br08331]
+             96  Agents affecting metabolism
+              967  Agents for liver disease and antidotes
+               9676  Other amino acid and preparations
+                C00051  Glutathione
+            Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
+             Chemicals
+              D00014  Glutathione
+DBLINKS     CAS: 70-18-8
+            PubChem: 3353
+            ChEBI: 16856
+            ChEMBL: CHEMBL1514919 CHEMBL1543
+            KNApSAcK: C00001518
+            PDB-CCD: GSH
+            3DMET: B01138
+            NIKKAJI: J10.686K
+ATOM        20
+            1   O6a O    24.0100  -16.3100
+            2   C6a C    25.2000  -15.6100
+            3   C1c C    26.4600  -16.3100
+            4   C1b C    27.6500  -15.6100
+            5   C1b C    28.8400  -16.3100
+            6   C5a C    30.1000  -15.6100
+            7   N1b N    31.2900  -16.3100
+            8   C1c C    32.4800  -15.6100
+            9   C5a C    33.7400  -16.3100
+            10  N1b N    34.9300  -15.6100
+            11  C1b C    36.1200  -16.3100
+            12  C6a C    37.3800  -15.6100
+            13  O6a O    38.5700  -16.3100
+            14  O6a O    25.2000  -14.2100
+            15  N1a N    26.4600  -17.7100
+            16  O5a O    30.1000  -14.2100
+            17  C1b C    32.4800  -14.2100
+            18  S1a S    33.6700  -13.5100
+            19  O5a O    33.7400  -17.7100
+            20  O6a O    37.3800  -14.2100
+BOND        19
+            1     1   2 1
+            2     2   3 1
+            3     3   4 1
+            4     4   5 1
+            5     5   6 1
+            6     6   7 1
+            7     7   8 1
+            8     8   9 1
+            9     9  10 1
+            10   10  11 1
+            11   11  12 1
+            12   12  13 1
+            13    2  14 2
+            14    3  15 1 #Down
+            15    6  16 2
+            16    8  17 1 #Up
+            17   17  18 1
+            18    9  19 2
+            19   12  20 2
+///

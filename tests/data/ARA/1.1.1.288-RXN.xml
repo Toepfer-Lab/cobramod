@@ -1,0 +1,46 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:1.1.1.288-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:1.1.1.288-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:1.1.1.288-RXN" detail="full" frameid="1.1.1.288-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-1.1.1.288<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-6975" detail="low" frameid="ENZRXNQT-6975" orgid="ARA"><enzyme><Protein frameid="AT3G26760-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G26760-MONOMER" /></enzyme>
+<reaction><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="#ARA:1.1.1.288-RXN" /></reaction>
+<common-name datatype="string">xanthoxin dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-6790" detail="low" frameid="ENZRXNQT-6790" orgid="ARA"><enzyme><Protein frameid="AT3G26770-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G26770-MONOMER" /></enzyme>
+<reaction><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="#ARA:1.1.1.288-RXN" /></reaction>
+<common-name datatype="string">xanthoxin dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-6371" detail="low" frameid="ENZRXNQT-6371" orgid="ARA"><enzyme><Protein frameid="AT3G51680-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G51680-MONOMER" /></enzyme>
+<reaction><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="#ARA:1.1.1.288-RXN" /></reaction>
+<common-name datatype="string">xanthoxin dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-5946" detail="low" frameid="ENZRXNQT-5946" orgid="ARA"><enzyme><Protein frameid="AT3G42960-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G42960-MONOMER" /></enzyme>
+<reaction><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="#ARA:1.1.1.288-RXN" /></reaction>
+<common-name datatype="string">xanthoxin dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-12830" detail="low" frameid="ENZRXN-12830" orgid="ARA"><enzyme><Protein frameid="AT1G52340-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G52340-MONOMER" /></enzyme>
+<reaction><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="#ARA:1.1.1.288-RXN" /></reaction>
+<common-name datatype="string">xanthoxin dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-8.71817</gibbs-0>
+<in-pathway><Pathway frameid="PWY-695" orgid="ARA" resource="getxml?ARA:PWY-695" /></in-pathway>
+<left><Compound frameid="CPD-7279" orgid="ARA" resource="getxml?ARA:CPD-7279" /></left>
+<left><Compound frameid="NAD" orgid="ARA" resource="getxml?ARA:NAD" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-692" orgid="ARA" resource="getxml?ARA:CPD-692" /></right>
+<right><Compound frameid="NADH" orgid="ARA" resource="getxml?ARA:NADH" /></right>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<comment datatype="string">NADP(+) cannot replace NAD(+) and short-chain alcohols such as ethanol, isopropanol, butanol and cyclohexanol cannot replace xanthoxin as substrate.  Involved in the abscisic-acid biosynthesis pathway in plants, along with EC 1.2.3.14, EC 1.13.11.51 and EC 1.14.13.93.</comment>
+</Reaction>
+</ptools-xml>

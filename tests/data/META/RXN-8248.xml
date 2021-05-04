@@ -1,0 +1,68 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-8248"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RXN-8248</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:RXN-8248" detail="full" frameid="RXN-8248" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<comment datatype="string">This is a hypothetical reaction. While it has been shown that the demethylatioin of &lt;a href="/compound?orgid=META&amp;id=NICOTINE"&gt;(&lt;i&gt;S&lt;/i&gt;)-nicotine&lt;/a&gt; is catalyzed by a P450 enzyme, the fate of the methyl group is not known. This reaction was drafted based on the only P450 methylase that has been characterized to date, &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-1.14.13.70"&gt;EC 1.14.13.70, sterol 14&amp;alpha;-demethylase&lt;/a&gt;.</comment>
+<credits><revised><date datatype="date">2020-02-01</date>
+<Person ID="META:hartmut" detail="full" frameid="hartmut" orgid="META"><comment datatype="string">Hartmut Foerster was a curator of the MetaCyc database first at the Plant Biology Department of the Carnegie Institution for Science and later at the Boyce Thompson Institute for Plant Research.</comment>
+<common-name datatype="string">Hartmut Foerster</common-name>
+<affiliations><Organization ID="META:O-28" detail="full" frameid="O-28" orgid="META"><common-name datatype="string">Boyce Thompson Institute for Plant Research</common-name>
+<url datatype="string">http://bti.cornell.edu/</url>
+<abbrev-name datatype="string">Boyce Thompson Institute</abbrev-name>
+</Organization>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="O-28" orgid="META" resource="#META:O-28" /></revised>
+</credits>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR110496</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR110496</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R06738</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R06738</dblink-URL>
+</dblink>
+<ec-number>EC-1.14.14</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-13105" detail="low" frameid="ENZRXN-13105" orgid="META"><common-name datatype="string">nicotine demethylase</common-name>
+<enzyme><Protein frameid="MONOMER-12449" orgid="META" resource="getxml?META:MONOMER-12449" /></enzyme>
+<reaction><Reaction frameid="RXN-8248" orgid="META" resource="#META:RXN-8248" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-181.50362<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY-5316" orgid="META" resource="getxml?META:PWY-5316" /><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /></in-pathway>
+<left><Compound frameid="NICOTINE" orgid="META" resource="getxml?META:NICOTINE" /></left>
+<left><Protein class="true" frameid="Red-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Red-NADPH-Hemoprotein-Reductases" /></left>
+<left><Compound frameid="OXYGEN-MOLECULE" orgid="META" resource="getxml?META:OXYGEN-MOLECULE" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-2748" orgid="META" resource="getxml?META:CPD-2748" /></right>
+<right><Protein class="true" frameid="Ox-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Ox-NADPH-Hemoprotein-Reductases" /></right>
+<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
+<right><Compound frameid="FORMALDEHYDE" orgid="META" resource="getxml?META:FORMALDEHYDE" /></right>
+</Reaction>
+</ptools-xml>

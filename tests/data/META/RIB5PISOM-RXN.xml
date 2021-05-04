@@ -1,0 +1,118 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RIB5PISOM-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RIB5PISOM-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:RIB5PISOM-RXN" detail="full" frameid="RIB5PISOM-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR141207</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR141207</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>14660</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=14660</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01056</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01056</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P0A7Z0</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P0A7Z0</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9CDI7</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9CDI7</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P44725</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P44725</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q58998</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q58998</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JTM5</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JTM5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PP08</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PP08</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P37351</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P37351</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P74234</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P74234</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q55766</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q55766</dblink-URL>
+</dblink>
+<ec-number>EC-5.3.1.6<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:RIB5PISOMB-ENZRXN" detail="low" frameid="RIB5PISOMB-ENZRXN" orgid="META"><common-name datatype="string">ribose-5-phosphate isomerase</common-name>
+<enzyme><Protein frameid="RIB5PISOMB-CPLX" orgid="META" resource="getxml?META:RIB5PISOMB-CPLX" /></enzyme>
+<reaction><Reaction frameid="RIB5PISOM-RXN" orgid="META" resource="#META:RIB5PISOM-RXN" /></reaction>
+<synonym datatype="string">phosphopentosisomerase</synonym>
+<synonym datatype="string">phosphoriboisomerase</synonym>
+<synonym datatype="string">ribose-P isomerase</synonym>
+<synonym datatype="string">D-ribose-5-phosphate ketol-isomerase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:RIB5PISOMA-ENZRXN" detail="low" frameid="RIB5PISOMA-ENZRXN" orgid="META"><common-name datatype="string">ribose-5-phosphate isomerase A</common-name>
+<enzyme><Protein frameid="RIB5PISOMA-CPLX" orgid="META" resource="getxml?META:RIB5PISOMA-CPLX" /></enzyme>
+<reaction><Reaction frameid="RIB5PISOM-RXN" orgid="META" resource="#META:RIB5PISOM-RXN" /></reaction>
+<synonym datatype="string">phosphopentosisomerase</synonym>
+<synonym datatype="string">phosphoriboisomerase</synonym>
+<synonym datatype="string">ribose-P isomerase A</synonym>
+<synonym datatype="string">D-ribose-5-phosphate ketol-isomerase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-185" detail="low" frameid="ENZRXN-185" orgid="META"><common-name datatype="string">ribose 5-phosphate isomerase</common-name>
+<enzyme><Protein frameid="RPIASYN-MONOMER" orgid="META" resource="getxml?META:RPIASYN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RIB5PISOM-RXN" orgid="META" resource="#META:RIB5PISOM-RXN" /></reaction>
+<synonym datatype="string">phosphopentoisomerase</synonym>
+<synonym datatype="string">phosphoriboisomerase</synonym>
+<synonym datatype="string">D-ribose-5-phosphate ketol-isomerase</synonym>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-6.130005<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="PWY-8178" orgid="META" resource="getxml?META:PWY-8178" /><Pathway frameid="P124-PWY" orgid="META" resource="getxml?META:P124-PWY" /><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /><Pathway frameid="PWY-5723" orgid="META" resource="getxml?META:PWY-5723" /><Pathway frameid="NONOXIPENT-PWY" orgid="META" resource="getxml?META:NONOXIPENT-PWY" /><Pathway frameid="P185-PWY" orgid="META" resource="getxml?META:P185-PWY" /><Pathway frameid="PWY-1861" orgid="META" resource="getxml?META:PWY-1861" /></in-pathway>
+<left><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="getxml?META:RIBOSE-5P" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="RIBULOSE-5P" orgid="META" resource="getxml?META:RIBULOSE-5P" /></right>
+</Reaction>
+</ptools-xml>

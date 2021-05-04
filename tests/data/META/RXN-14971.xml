@@ -1,0 +1,81 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-14971"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RXN-14971</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:RXN-14971" detail="full" frameid="RXN-14971" orgid="META"><parent><Reaction class="true" frameid="Electron-Transfer-Reactions" orgid="META" resource="getxml?META:Electron-Transfer-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<credits><created><date datatype="date">2013-10-07</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
+</credits>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>40524</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=40524</dblink-URL>
+</dblink>
+<ec-number>EC-1.3.5.1<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN1G01-563" detail="low" frameid="ENZRXN1G01-563" orgid="META"><common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX1G01-44" orgid="META" resource="getxml?META:CPLX1G01-44" /></enzyme>
+<reaction><Reaction frameid="RXN-14971" orgid="META" resource="#META:RXN-14971" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN8J2-902" detail="low" frameid="ENZRXN8J2-902" orgid="META"><common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX8J2-15" orgid="META" resource="getxml?META:CPLX8J2-15" /></enzyme>
+<reaction><Reaction frameid="RXN-14971" orgid="META" resource="#META:RXN-14971" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-24875" detail="low" frameid="ENZRXN-24875" orgid="META"><common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-5301" orgid="META" resource="getxml?META:CPLX-5301" /></enzyme>
+<reaction><Reaction frameid="RXN-14971" orgid="META" resource="#META:RXN-14971" /></reaction>
+<synonym datatype="string">succinate:ubiquinone oxidoreductase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-24874" detail="low" frameid="ENZRXN-24874" orgid="META"><common-name datatype="string">succinate dehydrogenase (quinone)</common-name>
+<enzyme><Protein frameid="CPLX3O-742" orgid="META" resource="getxml?META:CPLX3O-742" /></enzyme>
+<reaction><Reaction frameid="RXN-14971" orgid="META" resource="#META:RXN-14971" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12464" detail="low" frameid="ENZRXN-12464" orgid="META"><common-name datatype="string">succinate dehydrogenase</common-name>
+<enzyme><Protein frameid="G185E-7593-MONOMER" orgid="META" resource="getxml?META:G185E-7593-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-14971" orgid="META" resource="#META:RXN-14971" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-5.0422516<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="P105-PWY" orgid="META" resource="getxml?META:P105-PWY" /><Pathway frameid="PWY-6969" orgid="META" resource="getxml?META:PWY-6969" /><Pathway frameid="PWY-7254" orgid="META" resource="getxml?META:PWY-7254" /><Pathway frameid="PWY-5913" orgid="META" resource="getxml?META:PWY-5913" /><Pathway frameid="PWY-6728" orgid="META" resource="getxml?META:PWY-6728" /><Pathway frameid="PWY-561" orgid="META" resource="getxml?META:PWY-561" /><Pathway frameid="PWY-5690" orgid="META" resource="getxml?META:PWY-5690" /><Pathway frameid="TCA" orgid="META" resource="getxml?META:TCA" /></in-pathway>
+<left><Compound class="true" frameid="ETR-Quinones" orgid="META" resource="getxml?META:ETR-Quinones" /></left>
+<left><Compound frameid="SUC" orgid="META" resource="getxml?META:SUC" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-ordering><Reaction frameid="RXN0-5259" orgid="META" resource="getxml?META:RXN0-5259" /><predecessor-reactions><Reaction frameid="RXN0-5245" orgid="META" resource="getxml?META:RXN0-5245" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<reaction-list><Reaction frameid="RXN0-5259" orgid="META" resource="getxml?META:RXN0-5259" /><Reaction frameid="RXN0-5245" orgid="META" resource="getxml?META:RXN0-5245" /></reaction-list>
+<right><Compound class="true" frameid="ETR-Quinols" orgid="META" resource="getxml?META:ETR-Quinols" /></right>
+<right><Compound frameid="FUM" orgid="META" resource="getxml?META:FUM" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</right>
+</Reaction>
+</ptools-xml>

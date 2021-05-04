@@ -1,0 +1,140 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RIBOSE-5P"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:RIBOSE-5P</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:RIBOSE-5P" class="true" detail="full" frameid="RIBOSE-5P" orgid="META"><parent><Compound class="true" frameid="PENTOSE-5-PHOSPHATES" orgid="META" resource="getxml?META:PENTOSE-5-PHOSPHATES" /></parent>
+<subclass><Compound class="true" frameid="CPD-15317" orgid="META" resource="getxml?META:CPD-15317" /></subclass>
+<instance><Compound frameid="CPD-15895" orgid="META" resource="getxml?META:CPD-15895" /></instance>
+<cml><molecule formalCharge="-2" id="RIBOSE-5P" title="D-ribose+5-phosphate"><atomArray><atom elementType="C" id="RIBOSE-5P-atom1" x2="1198.0" y2="18499.0" /><atom elementType="C" id="RIBOSE-5P-atom2" x2="29776.0" y2="18499.0" /><atom elementType="C" id="RIBOSE-5P-atom3" x2="8341.0" y2="22624.0" /><atom elementType="C" id="RIBOSE-5P-atom4" x2="22632.0" y2="22624.0" /><atom elementType="C" id="RIBOSE-5P-atom5" x2="15486.0" y2="18499.0" /><atom elementType="O" id="RIBOSE-5P-atom6" x2="1197.0" y2="10248.0" /><atom elementType="O" id="RIBOSE-5P-atom7" x2="8341.0" y2="30874.0" /><atom elementType="O" id="RIBOSE-5P-atom8" x2="22632.0" y2="30874.0" /><atom elementType="O" id="RIBOSE-5P-atom9" x2="15486.0" y2="10249.0" /><atom elementType="O" id="RIBOSE-5P-atom10" x2="45170.0" y2="30874.0" /><atom elementType="O" formalCharge="-1" id="RIBOSE-5P-atom11" x2="53420.0" y2="22624.0" /><atom elementType="O" formalCharge="-1" id="RIBOSE-5P-atom12" x2="45170.0" y2="14374.0" /><atom elementType="O" id="RIBOSE-5P-atom13" x2="36920.0" y2="22624.0" /><atom elementType="P" id="RIBOSE-5P-atom14" x2="45170.0" y2="22624.0" /><atom elementType="H" id="RIBOSE-5P-atom15" x2="-5947.0" y2="22624.0" /></atomArray>
+<bondArray><bond atomRefs="RIBOSE-5P-atom3 RIBOSE-5P-atom5" id="RIBOSE-5P-bond1" order="1" /><bond atomRefs="RIBOSE-5P-atom5 RIBOSE-5P-atom4" id="RIBOSE-5P-bond2" order="1" /><bond atomRefs="RIBOSE-5P-atom3 RIBOSE-5P-atom1" id="RIBOSE-5P-bond3" order="1" /><bond atomRefs="RIBOSE-5P-atom1 RIBOSE-5P-atom6" id="RIBOSE-5P-bond4" order="2" /><bond atomRefs="RIBOSE-5P-atom5 RIBOSE-5P-atom9" id="RIBOSE-5P-bond5" order="1" /><bond atomRefs="RIBOSE-5P-atom3 RIBOSE-5P-atom7" id="RIBOSE-5P-bond6" order="1" /><bond atomRefs="RIBOSE-5P-atom4 RIBOSE-5P-atom8" id="RIBOSE-5P-bond7" order="1" /><bond atomRefs="RIBOSE-5P-atom4 RIBOSE-5P-atom2" id="RIBOSE-5P-bond8" order="1" /><bond atomRefs="RIBOSE-5P-atom2 RIBOSE-5P-atom13" id="RIBOSE-5P-bond9" order="1" /><bond atomRefs="RIBOSE-5P-atom13 RIBOSE-5P-atom14" id="RIBOSE-5P-bond10" order="1" /><bond atomRefs="RIBOSE-5P-atom14 RIBOSE-5P-atom10" id="RIBOSE-5P-bond11" order="2" /><bond atomRefs="RIBOSE-5P-atom14 RIBOSE-5P-atom11" id="RIBOSE-5P-bond12" order="1" /><bond atomRefs="RIBOSE-5P-atom14 RIBOSE-5P-atom12" id="RIBOSE-5P-bond13" order="1" /><bond atomRefs="RIBOSE-5P-atom1 RIBOSE-5P-atom15" id="RIBOSE-5P-bond14" order="1" /></bondArray>
+<formula concise="C 5 H 9 O 8 P 1" /><float title="molecularWeight" units="g/mol">228.095</float>
+<string title="smiles">C(=O)[C@H](O)[C@H](O)[C@@H](COP([O-])([O-])=O)O</string>
+</molecule>
+</cml>
+<comment datatype="string">Please note that the structure shown here is that of &lt;a href="/compound?orgid=META&amp;id=CPD-15895"&gt;&lt;i&gt;aldehydo&lt;/i&gt;-D-ribose 5-phosphate&lt;/a&gt;, and is not accurate for this generic class, which also contains the furanose forms of D-ribose 5-phosphate.</comment>
+<common-name datatype="string">D-ribose 5-phosphate</common-name>
+<credits><revised><date datatype="date">2013-04-24</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/114/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/114/</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01548</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01548</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00117</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00117</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>4300-28-1</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=4300-28-1</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-296.17816<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C5H11O8P/c6-1-3(7)5(9)4(8)2-13-14(10,11)12/h1,3-5,7-9H,2H2,(H2,10,11,12)/p-2/t3-,4+,5-/m0/s1</inchi>
+<molecular-weight datatype="float" units="Daltons">228.095</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">230.01915</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-8512" detail="low" frameid="REG0-8512" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:KDO-8PSYNTH-ENZRXN" detail="low" frameid="KDO-8PSYNTH-ENZRXN" orgid="META"><common-name datatype="string">3-deoxy-D-&lt;i&gt;manno&lt;/i&gt;-octulosonate 8-phosphate synthase</common-name>
+<enzyme><Protein frameid="KDO-8PSYNTH-CPLX" orgid="META" resource="getxml?META:KDO-8PSYNTH-CPLX" /></enzyme>
+<reaction><Reaction frameid="KDO-8PSYNTH-RXN" orgid="META" resource="getxml?META:KDO-8PSYNTH-RXN" /></reaction>
+<synonym datatype="string">2-dehydro-3-deoxyphosphooctonate aldolase</synonym>
+<synonym datatype="string">phospho-2-dehydro-3-deoxyoctonate aldolase</synonym>
+<synonym datatype="string">phospho-2-keto-3-deoxyoctonate aldolase</synonym>
+<synonym datatype="string">3-deoxy-D-&lt;i&gt;manno&lt;/i&gt;-octulosonic acid 8-phosphate synthetase</synonym>
+<synonym datatype="string">KDO  8-phosphate synthase</synonym>
+<synonym datatype="string">2-dehydro-3-deoxy-D-octonate-8-phosphate D-arabinose-5-phosphate-lyase (pyruvate-phosphorylating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="#META:RIBOSE-5P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11973" detail="low" frameid="REG0-11973" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PEPDEPHOSII-ENZRXN" detail="low" frameid="PEPDEPHOSII-ENZRXN" orgid="META"><common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="PKII-CPLX" orgid="META" resource="getxml?META:PKII-CPLX" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="#META:RIBOSE-5P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8304" detail="low" frameid="REG-8304" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5044" detail="low" frameid="ENZRXN-5044" orgid="META"><common-name datatype="string">NAD&lt;sup&gt;+&lt;/sup&gt;-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-3823" orgid="META" resource="getxml?META:CPLX-3823" /></enzyme>
+<reaction><Reaction frameid="RXN-3443" orgid="META" resource="getxml?META:RXN-3443" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="#META:RIBOSE-5P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8039" detail="low" frameid="REG-8039" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9261" detail="low" frameid="ENZRXN-9261" orgid="META"><common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-5521" orgid="META" resource="getxml?META:CPLX-5521" /></enzyme>
+<reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="#META:RIBOSE-5P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6553" detail="low" frameid="REG-6553" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13735" detail="low" frameid="ENZRXN-13735" orgid="META"><common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-7289" orgid="META" resource="getxml?META:CPLX-7289" /></enzyme>
+<reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="#META:RIBOSE-5P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6539" detail="low" frameid="REG-6539" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13755" detail="low" frameid="ENZRXN-13755" orgid="META"><common-name datatype="string">phosphohexose isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-12904" orgid="META" resource="getxml?META:MONOMER-12904" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="getxml?META:PGLUCISOM-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound class="true" frameid="RIBOSE-5P" orgid="META" resource="#META:RIBOSE-5P" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">D-ribose-5-phosphoric acid</synonym>
+<synonym datatype="string">ribose-5-phosphoric acid</synonym>
+<synonym datatype="string">ribose-5P</synonym>
+<synonym datatype="string">D-ribose-5-P</synonym>
+<synonym datatype="string">ribose-5-P</synonym>
+<synonym datatype="string">D-ribose 5'-phosphate</synonym>
+<appears-in-left-side-of><Reaction frameid="RIB5PISOM-RXN" orgid="META" resource="getxml?META:RIB5PISOM-RXN" /><Reaction frameid="2.7.7.35-RXN" orgid="META" resource="getxml?META:2.7.7.35-RXN" /><Reaction frameid="RXN-17997" orgid="META" resource="getxml?META:RXN-17997" /><Reaction frameid="RXN-15790" orgid="META" resource="getxml?META:RXN-15790" /><Reaction frameid="RXN-15789" orgid="META" resource="getxml?META:RXN-15789" /><Reaction frameid="RXN-12590" orgid="META" resource="getxml?META:RXN-12590" /><Reaction frameid="RXN-14509" orgid="META" resource="getxml?META:RXN-14509" /><Reaction frameid="2.2.1.4-RXN" orgid="META" resource="getxml?META:2.2.1.4-RXN" /><Reaction frameid="PRPPSYN-RXN" orgid="META" resource="getxml?META:PRPPSYN-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="1TRANSKETO-RXN" orgid="META" resource="getxml?META:1TRANSKETO-RXN" /><Reaction frameid="RXN0-7352" orgid="META" resource="getxml?META:RXN0-7352" /><Reaction frameid="RXN-19537" orgid="META" resource="getxml?META:RXN-19537" /><Reaction frameid="3.2.2.10-RXN" orgid="META" resource="getxml?META:3.2.2.10-RXN" /><Reaction frameid="PPENTOMUT-RXN" orgid="META" resource="getxml?META:PPENTOMUT-RXN" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

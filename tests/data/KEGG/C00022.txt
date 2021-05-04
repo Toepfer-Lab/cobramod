@@ -1,0 +1,181 @@
+ENTRY       C00022                      Compound
+NAME        Pyruvate;
+            Pyruvic acid;
+            2-Oxopropanoate;
+            2-Oxopropanoic acid;
+            Pyroracemic acid
+FORMULA     C3H4O3
+EXACT_MASS  88.016
+MOL_WEIGHT  88.0621
+REACTION    R00006 R00008 R00014 R00195 R00196 R00197 R00198 R00199 
+            R00200 R00203 R00205 R00206 R00207 R00208 R00209 R00210 
+            R00211 R00212 R00213 R00214 R00215 R00216 R00217 R00218 
+            R00219 R00220 R00221 R00223 R00224 R00226 R00237 R00258 
+            R00297 R00324 R00325 R00344 R00350 R00353 R00368 R00369 
+            R00396 R00398 R00400 R00409 R00430 R00452 R00453 R00470 
+            R00471 R00532 R00543 R00562 R00572 R00576 R00585 R00659 
+            R00666 R00673 R00692 R00703 R00704 R00724 R00728 R00750 
+            R00782 R00906 R00907 R00930 R00985 R00986 R01012 R01031 
+            R01032 R01064 R01085 R01138 R01147 R01148 R01196 R01215 
+            R01261 R01286 R01302 R01335 R01344 R01355 R01447 R01576 
+            R01584 R01645 R01647 R01683 R01699 R01712 R01782 R01784 
+            R01811 R01858 R01874 R02050 R02261 R02271 R02293 R02320 
+            R02408 R02628 R02721 R02754 R02953 R02970 R03001 R03037 
+            R03050 R03081 R03105 R03145 R03277 R03465 R03502 R03528 
+            R03732 R03796 R03854 R04152 R04187 R04672 R04861 R04941 
+            R05136 R05298 R05538 R05544 R05553 R05605 R05636 R05648 
+            R05652 R05861 R06602 R06603 R06913 R06923 R06934 R07399 
+            R07633 R07634 R07685 R07692 R07713 R08166 R08170 R08197 
+            R08200 R08253 R08570 R08648 R08654 R08660 R08667 R08686 
+            R08698 R08714 R09048 R09088 R09238 R09254 R09366 R10147 
+            R10178 R10180 R10283 R10487 R10527 R10539 R10542 R10550 
+            R10552 R10583 R10597 R10616 R10674 R10691 R10866 R10992 
+            R11023 R11038 R11099 R11141 R11213 R11257 R11352 R11463 
+            R11591 R11593 R11676 R11864 R11996 R12188 R12212 R12237 
+            R12343 R12622 R12689 R12707
+PATHWAY     map00010  Glycolysis / Gluconeogenesis
+            map00020  Citrate cycle (TCA cycle)
+            map00030  Pentose phosphate pathway
+            map00040  Pentose and glucuronate interconversions
+            map00053  Ascorbate and aldarate metabolism
+            map00250  Alanine, aspartate and glutamate metabolism
+            map00260  Glycine, serine and threonine metabolism
+            map00261  Monobactam biosynthesis
+            map00270  Cysteine and methionine metabolism
+            map00290  Valine, leucine and isoleucine biosynthesis
+            map00330  Arginine and proline metabolism
+            map00350  Tyrosine metabolism
+            map00360  Phenylalanine metabolism
+            map00362  Benzoate degradation
+            map00430  Taurine and hypotaurine metabolism
+            map00440  Phosphonate and phosphinate metabolism
+            map00473  D-Alanine metabolism
+            map00620  Pyruvate metabolism
+            map00621  Dioxin degradation
+            map00622  Xylene degradation
+            map00630  Glyoxylate and dicarboxylate metabolism
+            map00650  Butanoate metabolism
+            map00660  C5-Branched dibasic acid metabolism
+            map00680  Methane metabolism
+            map00710  Carbon fixation in photosynthetic organisms
+            map00720  Carbon fixation pathways in prokaryotes
+            map00730  Thiamine metabolism
+            map00760  Nicotinate and nicotinamide metabolism
+            map00770  Pantothenate and CoA biosynthesis
+            map00900  Terpenoid backbone biosynthesis
+            map00997  Biosynthesis of various secondary metabolites - part 3
+            map00999  Biosynthesis of various secondary metabolites - part 1
+            map01060  Biosynthesis of plant secondary metabolites
+            map01061  Biosynthesis of phenylpropanoids
+            map01062  Biosynthesis of terpenoids and steroids
+            map01063  Biosynthesis of alkaloids derived from shikimate pathway
+            map01064  Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid
+            map01065  Biosynthesis of alkaloids derived from histidine and purine
+            map01066  Biosynthesis of alkaloids derived from terpenoid and polyketide
+            map01070  Biosynthesis of plant hormones
+            map01100  Metabolic pathways
+            map01110  Biosynthesis of secondary metabolites
+            map01120  Microbial metabolism in diverse environments
+            map01200  Carbon metabolism
+            map01210  2-Oxocarboxylic acid metabolism
+            map01220  Degradation of aromatic compounds
+            map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
+            map01502  Vancomycin resistance
+            map02060  Phosphotransferase system (PTS)
+            map04066  HIF-1 signaling pathway
+            map04152  AMPK signaling pathway
+            map04911  Insulin secretion
+            map04922  Glucagon signaling pathway
+            map04930  Type II diabetes mellitus
+            map04931  Insulin resistance
+            map05230  Central carbon metabolism in cancer
+            map05415  Diabetic cardiomyopathy
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+            M00002  Glycolysis, core module involving three-carbon compounds
+            M00008  Entner-Doudoroff pathway, glucose-6P => glyceraldehyde-3P + pyruvate
+            M00019  Valine/isoleucine biosynthesis, pyruvate => valine / 2-oxobutanoate => isoleucine
+            M00061  D-Glucuronate degradation, D-glucuronate => pyruvate + D-glyceraldehyde 3P
+            M00096  C5 isoprenoid biosynthesis, non-mevalonate pathway
+            M00169  CAM (Crassulacean acid metabolism), light
+            M00171  C4-dicarboxylic acid cycle, NAD - malic enzyme type
+            M00172  C4-dicarboxylic acid cycle, NADP - malic enzyme type
+            M00173  Reductive citrate cycle (Arnon-Buchanan cycle)
+            M00307  Pyruvate oxidation, pyruvate => acetyl-CoA
+            M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
+            M00309  Non-phosphorylative Entner-Doudoroff pathway, gluconate/galactonate => glycerate
+            M00374  Dicarboxylate-hydroxybutyrate cycle
+            M00376  3-Hydroxypropionate bi-cycle
+            M00535  Isoleucine biosynthesis, pyruvate => 2-oxobutanoate
+            M00569  Catechol meta-cleavage, catechol => acetyl-CoA / 4-methylcatechol => propanoyl-CoA
+            M00620  Incomplete reductive citrate cycle, acetyl-CoA => oxoglutarate
+            M00631  D-Galacturonate degradation (bacteria), D-galacturonate => pyruvate + D-glyceraldehyde 3P
+            M00633  Semi-phosphorylative Entner-Doudoroff pathway, gluconate/galactonate => glycerate-3P
+ENZYME      1.1.1.27        1.1.1.28        1.1.1.38        1.1.1.39        
+            1.1.1.40        1.1.1.83        1.1.2.3         1.1.2.4         
+            1.1.2.5         1.1.3.2         1.1.5.12        1.1.99.6        
+            1.1.99.7        1.1.99.40       1.2.1.22        1.2.1.23        
+            1.2.1.49        1.2.1.51        1.2.1.104       1.2.3.3         
+            1.2.3.6         1.2.3.15        1.2.4.1         1.2.5.1         
+            1.2.7.1         1.2.7.11        1.2.7.-         1.3.1.110       
+            1.4.1.1         1.4.1.17        1.4.3.3         1.4.3.19        
+            1.5.1.11        1.5.1.16        1.5.1.17        1.5.1.22        
+            1.5.1.23        1.5.1.24        1.5.1.26        1.5.1.28        
+            1.5.1.52        1.14.11.43      1.14.11.44      2.1.3.1         
+            2.2.1.6         2.2.1.7         2.2.1.12        2.3.1.54        
+            2.3.1.182       2.6.1.2         2.6.1.12        2.6.1.15        
+            2.6.1.18        2.6.1.21        2.6.1.30        2.6.1.37        
+            2.6.1.40        2.6.1.41        2.6.1.43        2.6.1.44        
+            2.6.1.46        2.6.1.47        2.6.1.51        2.6.1.56        
+            2.6.1.58        2.6.1.66        2.6.1.71        2.6.1.77        
+            2.6.1.84        2.6.1.96        2.6.1.99        2.6.1.108       
+            2.6.1.113       2.6.1.115       2.6.1.119       2.6.3.1         
+            2.7.1.40        2.7.1.121       2.7.3.9         2.7.9.1         
+            2.7.9.2         2.8.1.2         3.1.3.60        3.3.2.1         
+            3.3.2.13        3.3.2.15        3.5.99.10       3.7.1.5         
+            3.7.1.6         3.7.1.20        3.7.1.23        3.7.1.26        
+            3.7.1.-         3.11.1.3        4.1.1.1         4.1.1.64        
+            4.1.1.78        4.1.1.112       4.1.1.-         4.1.2.14        
+            4.1.2.18        4.1.2.20        4.1.2.21        4.1.2.23        
+            4.1.2.28        4.1.2.34        4.1.2.45        4.1.2.51        
+            4.1.2.52        4.1.2.53        4.1.2.54        4.1.2.55        
+            4.1.2.58        4.1.2.-         4.1.3.3         4.1.3.16        
+            4.1.3.17        4.1.3.22        4.1.3.25        4.1.3.27        
+            4.1.3.30        4.1.3.32        4.1.3.38        4.1.3.39        
+            4.1.3.40        4.1.3.42        4.1.3.43        4.1.3.44        
+            4.1.3.45        4.1.3.46        4.1.99.1        4.1.99.2        
+            4.2.1.-         4.2.99.20       4.2.99.21       4.3.1.10        
+            4.3.1.13        4.3.1.15        4.3.1.17        4.3.1.18        
+            4.3.1.19        4.3.3.7         4.4.1.1         4.4.1.13        
+            4.4.1.15        4.4.1.24        4.4.1.25        4.4.1.28        
+            4.4.1.35        4.4.1.36        4.4.1.-         4.5.1.2         
+            6.4.1.1         7.2.4.2
+BRITE       Compounds with biological roles [BR:br08001]
+             Organic acids
+              Carboxylic acids
+               2-Oxocarboxylic acids
+                C00022  Pyruvate; 2-Oxopropanoate
+DBLINKS     CAS: 127-17-3
+            PubChem: 3324
+            ChEBI: 15361 32816
+            ChEMBL: CHEMBL1162144
+            LIPIDMAPS: LMFA01060077
+            LipidBank: DFA0385
+            KNApSAcK: C00001200
+            PDB-CCD: PYR
+            3DMET: B00006
+            NIKKAJI: J2.015J
+ATOM        6
+            1   C1a C    12.6924  -17.4300
+            2   C5a C    13.9049  -16.7300
+            3   C6a C    15.1173  -17.4300
+            4   O6a O    16.3318  -16.7288
+            5   O5a O    13.9049  -15.3302
+            6   O6a O    15.1173  -18.8300
+BOND        5
+            1     1   2 1
+            2     2   3 1
+            3     3   4 1
+            4     2   5 2
+            5     3   6 2
+///

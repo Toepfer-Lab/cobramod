@@ -1,0 +1,38 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-2206"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXN-2206</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXN-2206" detail="full" frameid="RXN-2206" orgid="ARA"><parent><Reaction class="true" frameid="Composite-Reactions" orgid="ARA" resource="getxml?ARA:Composite-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-1.14.14.42</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-2845" detail="low" frameid="ENZRXN-2845" orgid="ARA"><enzyme><Protein frameid="CPLX-2303" orgid="ARA" resource="getxml?ARA:CPLX-2303" /></enzyme>
+<reaction><Reaction frameid="RXN-2206" orgid="ARA" resource="#ARA:RXN-2206" /></reaction>
+<common-name datatype="string">CYP79F2 homomethionine monooxygenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-2844" detail="low" frameid="ENZRXN-2844" orgid="ARA"><enzyme><Protein frameid="CPLX-2302" orgid="ARA" resource="getxml?ARA:CPLX-2302" /></enzyme>
+<reaction><Reaction frameid="RXN-2206" orgid="ARA" resource="#ARA:RXN-2206" /></reaction>
+<common-name datatype="string">CYP79F2 homomethionine monooxygenase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-184.48651</gibbs-0>
+<in-pathway><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></in-pathway>
+<left><Compound frameid="HOMOMETHIONINE" orgid="ARA" resource="getxml?ARA:HOMOMETHIONINE" /></left>
+<left><Compound frameid="OXYGEN-MOLECULE" orgid="ARA" resource="getxml?ARA:OXYGEN-MOLECULE" /><coefficient datatype="integer">2</coefficient>
+</left>
+<left><Protein class="true" frameid="Red-NADPH-Hemoprotein-Reductases" orgid="ARA" resource="getxml?ARA:Red-NADPH-Hemoprotein-Reductases" /><coefficient datatype="integer">2</coefficient>
+</left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<reaction-list><Reaction frameid="RXN-13014" orgid="ARA" resource="getxml?ARA:RXN-13014" /><Reaction frameid="RXN-13015" orgid="ARA" resource="getxml?ARA:RXN-13015" /><Reaction frameid="RXN-13016" orgid="ARA" resource="getxml?ARA:RXN-13016" /></reaction-list>
+<right><Compound frameid="3-METHYLTHIOPROPANALDOXIME" orgid="ARA" resource="getxml?ARA:3-METHYLTHIOPROPANALDOXIME" /></right>
+<right><Compound frameid="CARBON-DIOXIDE" orgid="ARA" resource="getxml?ARA:CARBON-DIOXIDE" /></right>
+<right><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /><coefficient datatype="integer">3</coefficient>
+</right>
+<right><Protein class="true" frameid="Ox-NADPH-Hemoprotein-Reductases" orgid="ARA" resource="getxml?ARA:Ox-NADPH-Hemoprotein-Reductases" /><coefficient datatype="integer">2</coefficient>
+</right>
+</Reaction>
+</ptools-xml>

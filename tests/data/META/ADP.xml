@@ -1,0 +1,976 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ADP"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ADP</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:ADP" detail="full" frameid="ADP" orgid="META"><parent><Compound class="true" frameid="All-Nucleosides" orgid="META" resource="getxml?META:All-Nucleosides" /></parent>
+<cml><molecule formalCharge="-3" id="ADP" title="ADP"><atomArray><atom elementType="C" id="ADP-atom1" x2="3911.0" y2="2234.0" /><atom elementType="C" id="ADP-atom2" x2="7003.0" y2="0.0" /><atom elementType="C" id="ADP-atom3" x2="7415.0" y2="2699.0" /><atom elementType="C" id="ADP-atom4" x2="4625.0" y2="2647.0" /><atom elementType="C" id="ADP-atom5" x2="7828.0" y2="1430.0" /><atom elementType="C" id="ADP-atom6" x2="4885.0" y2="3430.0" /><atom elementType="C" id="ADP-atom7" x2="5718.0" y2="3430.0" /><atom elementType="C" id="ADP-atom8" x2="8240.0" y2="715.0" /><atom elementType="C" id="ADP-atom9" x2="7003.0" y2="1430.0" /><atom elementType="C" id="ADP-atom10" x2="6033.0" y2="2626.0" /><atom elementType="N" id="ADP-atom11" x2="9065.0" y2="715.0" /><atom elementType="N" id="ADP-atom12" x2="7828.0" y2="0.0" /><atom elementType="N" id="ADP-atom13" x2="6590.0" y2="715.0" /><atom elementType="N" id="ADP-atom14" x2="8083.0" y2="2214.0" /><atom elementType="N" id="ADP-atom15" x2="6748.0" y2="2214.0" /><atom elementType="O" id="ADP-atom16" x2="4415.0" y2="4101.0" /><atom elementType="O" id="ADP-atom17" x2="6301.0" y2="4013.0" /><atom elementType="O" id="ADP-atom18" x2="825.0" y2="3421.0" /><atom elementType="O" formalCharge="-1" id="ADP-atom19" x2="825.0" y2="1771.0" /><atom elementType="O" formalCharge="-1" id="ADP-atom20" x2="0.0" y2="2596.0" /><atom elementType="O" id="ADP-atom21" x2="2475.0" y2="3421.0" /><atom elementType="O" formalCharge="-1" id="ADP-atom22" x2="2475.0" y2="1771.0" /><atom elementType="O" id="ADP-atom23" x2="3300.0" y2="2596.0" /><atom elementType="O" id="ADP-atom24" x2="5293.0" y2="2168.0" /><atom elementType="O" id="ADP-atom25" x2="1650.0" y2="2596.0" /><atom elementType="P" id="ADP-atom26" x2="825.0" y2="2596.0" /><atom elementType="P" id="ADP-atom27" x2="2475.0" y2="2596.0" /></atomArray>
+<bondArray><bond atomRefs="ADP-atom7 ADP-atom10" id="ADP-bond1" order="1" /><bond atomRefs="ADP-atom6 ADP-atom4" id="ADP-bond2" order="1" /><bond atomRefs="ADP-atom6 ADP-atom7" id="ADP-bond3" order="1" /><bond atomRefs="ADP-atom24 ADP-atom10" id="ADP-bond4" order="1" /><bond atomRefs="ADP-atom24 ADP-atom4" id="ADP-bond5" order="1" /><bond atomRefs="ADP-atom6 ADP-atom16" id="ADP-bond6" order="1" /><bond atomRefs="ADP-atom4 ADP-atom1" id="ADP-bond7" order="1" /><bond atomRefs="ADP-atom10 ADP-atom15" id="ADP-bond8" order="1" /><bond atomRefs="ADP-atom1 ADP-atom23" id="ADP-bond9" order="1" /><bond atomRefs="ADP-atom12 ADP-atom2" id="ADP-bond10" order="2" /><bond atomRefs="ADP-atom2 ADP-atom13" id="ADP-bond11" order="1" /><bond atomRefs="ADP-atom13 ADP-atom9" id="ADP-bond12" order="2" /><bond atomRefs="ADP-atom9 ADP-atom5" id="ADP-bond13" order="1" /><bond atomRefs="ADP-atom5 ADP-atom8" id="ADP-bond14" order="2" /><bond atomRefs="ADP-atom12 ADP-atom8" id="ADP-bond15" order="1" /><bond atomRefs="ADP-atom3 ADP-atom14" id="ADP-bond16" order="2" /><bond atomRefs="ADP-atom5 ADP-atom14" id="ADP-bond17" order="1" /><bond atomRefs="ADP-atom8 ADP-atom11" id="ADP-bond18" order="1" /><bond atomRefs="ADP-atom3 ADP-atom15" id="ADP-bond19" order="1" /><bond atomRefs="ADP-atom15 ADP-atom9" id="ADP-bond20" order="1" /><bond atomRefs="ADP-atom7 ADP-atom17" id="ADP-bond21" order="1" /><bond atomRefs="ADP-atom25 ADP-atom27" id="ADP-bond22" order="1" /><bond atomRefs="ADP-atom22 ADP-atom27" id="ADP-bond23" order="1" /><bond atomRefs="ADP-atom21 ADP-atom27" id="ADP-bond24" order="2" /><bond atomRefs="ADP-atom23 ADP-atom27" id="ADP-bond25" order="1" /><bond atomRefs="ADP-atom20 ADP-atom26" id="ADP-bond26" order="1" /><bond atomRefs="ADP-atom19 ADP-atom26" id="ADP-bond27" order="1" /><bond atomRefs="ADP-atom18 ADP-atom26" id="ADP-bond28" order="2" /><bond atomRefs="ADP-atom25 ADP-atom26" id="ADP-bond29" order="1" /></bondArray>
+<formula concise="C 10 H 12 N 5 O 10 P 2" /><float title="molecularWeight" units="g/mol">424.18</float>
+<string title="smiles">C(OP(=O)([O-])OP(=O)([O-])[O-])[C@H]3(O[C@@H](N1(C2(\C(\N=C/1)=C(N)/N=C\N=2)))[C@H](O)[C@H](O)3)</string>
+</molecule>
+</cml>
+<common-name datatype="string">ADP</common-name>
+<component-of><Compound frameid="CPD0-1651" orgid="META" resource="getxml?META:CPD0-1651" /></component-of>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00008</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00008</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM7</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>ADP</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=ADP</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>adp</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/adp</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC456216</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC456216</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01341</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01341</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>5414423</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/5414423</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>456216</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:456216</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7058055</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7058055</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00008</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00008</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>58-64-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-64-0</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-344.92508<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C10H15N5O10P2/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(17)6(16)4(24-10)1-23-27(21,22)25-26(18,19)20/h2-4,6-7,10,16-17H,1H2,(H,21,22)(H2,11,12,13)(H2,18,19,20)/p-3/t4-,6-,7-,10-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=XTWYTFMLZFPYCI-KQYNXXCUSA-K</inchi-key>
+<molecular-weight datatype="float" units="Daltons">424.18</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">427.02942</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-8726" detail="low" frameid="REG0-8726" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GTP-CYCLOHYDRO-I-ENZRXN" detail="low" frameid="GTP-CYCLOHYDRO-I-ENZRXN" orgid="META"><common-name datatype="string">GTP cyclohydrolase I</common-name>
+<enzyme><Protein frameid="FOLE-CPLX" orgid="META" resource="getxml?META:FOLE-CPLX" /></enzyme>
+<reaction><Reaction frameid="GTP-CYCLOHYDRO-I-RXN" orgid="META" resource="getxml?META:GTP-CYCLOHYDRO-I-RXN" /></reaction>
+<synonym datatype="string">GTP 7,8-8,9-dihydrolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7119" detail="low" frameid="REG0-7119" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:1PFRUCTPHOSPHN-ENZRXN" detail="low" frameid="1PFRUCTPHOSPHN-ENZRXN" orgid="META"><common-name datatype="string">1-phosphofructokinase</common-name>
+<enzyme><Protein frameid="1-PFK" orgid="META" resource="getxml?META:1-PFK" /></enzyme>
+<reaction><Reaction frameid="1PFRUCTPHOSN-RXN" orgid="META" resource="getxml?META:1PFRUCTPHOSN-RXN" /></reaction>
+<synonym datatype="string">phosphofructokinase</synonym>
+<synonym datatype="string">fructose-1-phosphate kinase</synonym>
+<synonym datatype="string">Fru1PK</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7292" detail="low" frameid="REG0-7292" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-5901" detail="low" frameid="ENZRXN0-5901" orgid="META"><common-name datatype="string">anhydro-&lt;i&gt;N&lt;/i&gt;-acetylmuramic acid kinase</common-name>
+<enzyme><Protein frameid="G6880-MONOMER" orgid="META" resource="getxml?META:G6880-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN0-4621" orgid="META" resource="getxml?META:RXN0-4621" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-10568" detail="low" frameid="REG0-10568" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PEPSYNTH-ENZRXN" detail="low" frameid="PEPSYNTH-ENZRXN" orgid="META"><common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
+<enzyme><Protein frameid="PEPSYNTH-CPLX" orgid="META" resource="getxml?META:PEPSYNTH-CPLX" /></enzyme>
+<reaction><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /></reaction>
+<synonym datatype="string">pyruvate, water dikinase</synonym>
+<synonym datatype="string">phosphoenolpyruvate synthase</synonym>
+<synonym datatype="string">PEP synthase</synonym>
+<synonym datatype="string">ATP:pyruvate, water phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6846" detail="low" frameid="REG0-6846" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-402" detail="low" frameid="ENZRXN0-402" orgid="META"><common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="CPLX0-303" orgid="META" resource="getxml?META:CPLX0-303" /></enzyme>
+<reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="getxml?META:F16BDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6887" detail="low" frameid="REG0-6887" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLYCOGENSYN-ENZRXN" detail="low" frameid="GLYCOGENSYN-ENZRXN" orgid="META"><common-name datatype="string">glycogen synthase</common-name>
+<enzyme><Protein frameid="GLYCOGENSYN-MONOMER" orgid="META" resource="getxml?META:GLYCOGENSYN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="GLYCOGENSYN-RXN" orgid="META" resource="getxml?META:GLYCOGENSYN-RXN" /></reaction>
+<synonym datatype="string">ADP-glucose-starch glucosyltransferase</synonym>
+<synonym datatype="string">ADPglucose:1,4-&amp;alpha;-D-glucan 4-&amp;alpha;-D-glucosyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8154" detail="low" frameid="REG0-8154" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLUTKIN-ENZRXN" detail="low" frameid="GLUTKIN-ENZRXN" orgid="META"><common-name datatype="string">glutamate 5-kinase</common-name>
+<enzyme><Protein frameid="GLUTKIN-CPLX" orgid="META" resource="getxml?META:GLUTKIN-CPLX" /></enzyme>
+<reaction><Reaction frameid="GLUTKIN-RXN" orgid="META" resource="getxml?META:GLUTKIN-RXN" /></reaction>
+<synonym datatype="string">&amp;gamma;-glutamyl kinase</synonym>
+<synonym datatype="string">GK</synonym>
+<synonym datatype="string">ATP:L-glutamate 5-phosphotransferase</synonym>
+<synonym datatype="string">G5K</synonym>
+<synonym datatype="string">gamma-glutamate kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11849" detail="low" frameid="REG0-11849" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:SUCCCOASYN-ENZRXN" detail="low" frameid="SUCCCOASYN-ENZRXN" orgid="META"><common-name datatype="string">succinyl-CoA synthetase</common-name>
+<enzyme><Protein frameid="SUCCCOASYN" orgid="META" resource="getxml?META:SUCCCOASYN" /></enzyme>
+<reaction><Reaction frameid="SUCCCOASYN-RXN" orgid="META" resource="getxml?META:SUCCCOASYN-RXN" /></reaction>
+<synonym datatype="string">succinate thiokinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11969" detail="low" frameid="REG0-11969" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-282" detail="low" frameid="ENZRXN0-282" orgid="META"><common-name datatype="string">malate:quinone oxidoreductase</common-name>
+<enzyme><Protein frameid="EG12069-MONOMER" orgid="META" resource="getxml?META:EG12069-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEHYDROGENASE-ACCEPTOR-RXN" orgid="META" resource="getxml?META:MALATE-DEHYDROGENASE-ACCEPTOR-RXN" /></reaction>
+<synonym datatype="string">malate dehydrogenase (quinone)</synonym>
+<synonym datatype="string">(&lt;I&gt;S&lt;/I&gt;)-malate:(acceptor) oxidoreductase</synonym>
+<synonym datatype="string">malate dehydrogenase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8828" detail="low" frameid="REG0-8828" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GUANOSINEKIN-ENZRXN" detail="low" frameid="GUANOSINEKIN-ENZRXN" orgid="META"><common-name datatype="string">guanosine kinase</common-name>
+<enzyme><Protein frameid="CPLX0-322" orgid="META" resource="getxml?META:CPLX0-322" /></enzyme>
+<reaction><Reaction frameid="GUANOSINEKIN-RXN" orgid="META" resource="getxml?META:GUANOSINEKIN-RXN" /></reaction>
+<synonym datatype="string">inosine-guanosine kinase</synonym>
+<synonym datatype="string">guanosine-inosine kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11364" detail="low" frameid="REG0-11364" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PRPPAMIDOTRANS-ENZRXN" detail="low" frameid="PRPPAMIDOTRANS-ENZRXN" orgid="META"><common-name datatype="string">amidophosphoribosyltransferase</common-name>
+<enzyme><Protein frameid="PRPPAMIDOTRANS-CPLX" orgid="META" resource="getxml?META:PRPPAMIDOTRANS-CPLX" /></enzyme>
+<reaction><Reaction frameid="PRPPAMIDOTRANS-RXN" orgid="META" resource="getxml?META:PRPPAMIDOTRANS-RXN" /></reaction>
+<synonym datatype="string">P-ribosyl-pp amido transferase</synonym>
+<synonym datatype="string">PRPP amidotransferase</synonym>
+<synonym datatype="string">glutamine phosphoribosylpyrophosphate amidotransferase</synonym>
+<synonym datatype="string">glutamine 5-phosphoribosylamine:pyrophosphate phosphoribosyltransferase</synonym>
+<synonym datatype="string">phosphoribosyldiphosphate 5-amidotransferase</synonym>
+<synonym datatype="string">5-phosphoribosylamine:glutamine pyrophosphate phosphoribosyltransferase</synonym>
+<synonym datatype="string">glutamine PRPP amidotrnasferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7057" detail="low" frameid="REG0-7057" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:AIRS-ENZRXN" detail="low" frameid="AIRS-ENZRXN" orgid="META"><common-name datatype="string">phosphoribosylformylglycinamide cyclo-ligase</common-name>
+<enzyme><Protein frameid="AIRS-CPLX" orgid="META" resource="getxml?META:AIRS-CPLX" /></enzyme>
+<reaction><Reaction frameid="AIRS-RXN" orgid="META" resource="getxml?META:AIRS-RXN" /></reaction>
+<synonym datatype="string">AIR synthetase</synonym>
+<synonym datatype="string">AIRS</synonym>
+<synonym datatype="string">AIR synthase</synonym>
+<synonym datatype="string">phosphoribosyl-aminoimidazole synthetase</synonym>
+<synonym datatype="string">5'-Phosphoribosyl-5-aminoimidazole synthetase</synonym>
+<synonym datatype="string">aminoimidazole ribonucleotide synthetase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7058" detail="low" frameid="REG0-7058" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction frameid="AIRS-ENZRXN" orgid="META" resource="#META:AIRS-ENZRXN" /></regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7009" detail="low" frameid="REG0-7009" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:THI-P-KIN-ENZRXN" detail="low" frameid="THI-P-KIN-ENZRXN" orgid="META"><common-name datatype="string">thiamine monophosphate kinase</common-name>
+<enzyme><Protein frameid="THI-P-KIN-MONOMER" orgid="META" resource="getxml?META:THI-P-KIN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="THI-P-KIN-RXN" orgid="META" resource="getxml?META:THI-P-KIN-RXN" /></reaction>
+<synonym datatype="string">thiamine-phosphate kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8221" detail="low" frameid="REG0-8221" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:DETHIOBIOTIN-SYN-ENZRXN" detail="low" frameid="DETHIOBIOTIN-SYN-ENZRXN" orgid="META"><common-name datatype="string">dethiobiotin synthetase</common-name>
+<enzyme><Protein frameid="DETHIOBIOTIN-SYN-CPLX" orgid="META" resource="getxml?META:DETHIOBIOTIN-SYN-CPLX" /></enzyme>
+<reaction><Reaction frameid="DETHIOBIOTIN-SYN-RXN" orgid="META" resource="getxml?META:DETHIOBIOTIN-SYN-RXN" /></reaction>
+<synonym datatype="string">DTBS</synonym>
+<synonym datatype="string">DTB synthetase</synonym>
+<synonym datatype="string">7,8-diaminononanoate: carbon-dioxide cyclo-ligase (ADP-forming)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8211" detail="low" frameid="REG0-8211" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PHOSACETYLTRANS-ENZRXN" detail="low" frameid="PHOSACETYLTRANS-ENZRXN" orgid="META"><common-name datatype="string">phosphate acetyltransferase</common-name>
+<enzyme><Protein frameid="PHOSACETYLTRANS-CPLX" orgid="META" resource="getxml?META:PHOSACETYLTRANS-CPLX" /></enzyme>
+<reaction><Reaction frameid="PHOSACETYLTRANS-RXN" orgid="META" resource="getxml?META:PHOSACETYLTRANS-RXN" /></reaction>
+<synonym datatype="string">phosphotransacetylase</synonym>
+<synonym datatype="string">phosphoacylase</synonym>
+<synonym datatype="string">acetyl-CoA:orthophosphate acetyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-9106" detail="low" frameid="REG0-9106" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:THI-P-SYN-ENZRXN" detail="low" frameid="THI-P-SYN-ENZRXN" orgid="META"><common-name datatype="string">thiamine phosphate synthase</common-name>
+<enzyme><Protein frameid="THIE-MONOMER" orgid="META" resource="getxml?META:THIE-MONOMER" /></enzyme>
+<reaction><Reaction frameid="THI-P-SYN-RXN" orgid="META" resource="getxml?META:THI-P-SYN-RXN" /></reaction>
+<synonym datatype="string">thiamine phosphate pyrophosphorylase</synonym>
+<synonym datatype="string">2-methyl-4-amino-5-hydroxymethylpyrimidine-diphosphate: 4-methyl-5-(2-phosphoethyl)-thiazole 2-methyl-4-aminopyrimidine-5-methenyltransferase</synonym>
+<synonym datatype="string">thiamine monophosphate synthase</synonym>
+<synonym datatype="string">thiamin-phosphate pyrophosphorylase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7095" detail="low" frameid="REG0-7095" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLYCEROL-KIN-ENZRXN" detail="low" frameid="GLYCEROL-KIN-ENZRXN" orgid="META"><common-name datatype="string">glycerol kinase</common-name>
+<enzyme><Protein frameid="GLYCEROL-KIN-CPLX" orgid="META" resource="getxml?META:GLYCEROL-KIN-CPLX" /></enzyme>
+<reaction><Reaction frameid="GLYCEROL-KIN-RXN" orgid="META" resource="getxml?META:GLYCEROL-KIN-RXN" /></reaction>
+<synonym datatype="string">glycerokinase</synonym>
+<synonym datatype="string">ATP:glycerol 3-phosphotransferase</synonym>
+<synonym datatype="string">GK</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6854" detail="low" frameid="REG0-6854" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-5762" detail="low" frameid="ENZRXN0-5762" orgid="META"><common-name datatype="string">ADP-L-glycero-D-mannoheptose 6-epimerase</common-name>
+<enzyme><Protein frameid="CPLX0-3681" orgid="META" resource="getxml?META:CPLX0-3681" /></enzyme>
+<reaction><Reaction frameid="5.1.3.20-RXN" orgid="META" resource="getxml?META:5.1.3.20-RXN" /></reaction>
+<synonym datatype="string">AGME</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7474" detail="low" frameid="REG0-7474" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:6PFRUCTPHOS-ENZRXN" detail="low" frameid="6PFRUCTPHOS-ENZRXN" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="6PFK-1-CPX" orgid="META" resource="getxml?META:6PFK-1-CPX" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+<synonym datatype="string">fructose-6-p-1-kinase</synonym>
+<synonym datatype="string">fructose-6-phosphate-1-phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-9434" detail="low" frameid="REG0-9434" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-6517" detail="low" frameid="ENZRXN0-6517" orgid="META"><common-name datatype="string">mannose isomerase</common-name>
+<enzyme><Protein frameid="CPLX0-7683" orgid="META" resource="getxml?META:CPLX0-7683" /></enzyme>
+<reaction><Reaction frameid="MANNOSE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MANNOSE-ISOMERASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7838" detail="low" frameid="REG0-7838" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-1627" detail="low" frameid="ENZRXN0-1627" orgid="META"><common-name datatype="string">tRNA dimethylallyltransferase</common-name>
+<enzyme><Protein frameid="EG10595-MONOMER" orgid="META" resource="getxml?META:EG10595-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN0-6274" orgid="META" resource="getxml?META:RXN0-6274" /></reaction>
+<synonym datatype="string">tRNA isopentenyltransferase</synonym>
+<synonym datatype="string">isopentenyl-diphosphate:tRNA isopentenyltransferase</synonym>
+<synonym datatype="string">IPP transferase</synonym>
+<synonym datatype="string">transfer ribonucleate isopentenyltransferase</synonym>
+<synonym datatype="string">D2-isopentenyl pyrophosphate:tRNA-D2-isopentenyl transferase</synonym>
+<synonym datatype="string">D2-isopentenyl  pyrophosphate:transfer ribonucleic acid D2-isopentenyltransferase</synonym>
+<synonym datatype="string">&amp;Delta;&lt;sup&gt;2&lt;/sup&gt;-isopentenylpyrophosphate tRNA-adenosine transferase</synonym>
+<synonym datatype="string">dimethylallyl diphosphate:tRNA dimethylallyltransferase</synonym>
+<synonym datatype="string">tRNA(i&lt;sup&gt;6&lt;/sup&gt;A37) synthase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-12301" detail="low" frameid="REG0-12301" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-4263" detail="low" frameid="ENZRXN0-4263" orgid="META"><common-name datatype="string">serine protease</common-name>
+<enzyme><Protein frameid="CPLX0-2881" orgid="META" resource="getxml?META:CPLX0-2881" /></enzyme>
+<reaction><Reaction frameid="3.4.21.53-RXN" orgid="META" resource="getxml?META:3.4.21.53-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11832" detail="low" frameid="REG0-11832" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-5221" detail="low" frameid="ENZRXN0-5221" orgid="META"><common-name datatype="string">deoxyribonucleoside 5'-monophosphate phosphatase</common-name>
+<enzyme><Protein frameid="CPLX0-7625" orgid="META" resource="getxml?META:CPLX0-7625" /></enzyme>
+<reaction><Reaction frameid="RXN0-3741" orgid="META" resource="getxml?META:RXN0-3741" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8479" detail="low" frameid="REG0-8479" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:NUCLEOSIDE-DIP-KIN-ENZRXN" detail="low" frameid="NUCLEOSIDE-DIP-KIN-ENZRXN" orgid="META"><common-name datatype="string">nucleoside diphosphate kinase</common-name>
+<enzyme><Protein frameid="NUCLEOSIDE-DIP-KIN-CPLX" orgid="META" resource="getxml?META:NUCLEOSIDE-DIP-KIN-CPLX" /></enzyme>
+<reaction><Reaction frameid="NUCLEOSIDE-DIP-KIN-RXN" orgid="META" resource="getxml?META:NUCLEOSIDE-DIP-KIN-RXN" /></reaction>
+<synonym datatype="string">nucleoside 5'-diphosphate phosphotransferase</synonym>
+<synonym datatype="string">NDK</synonym>
+<synonym datatype="string">NDP kinase</synonym>
+<synonym datatype="string">ATP:nucleoside-diphosphate phosphotransferase</synonym>
+<synonym datatype="string">nudiki</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7549" detail="low" frameid="REG0-7549" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-5681" detail="low" frameid="ENZRXN0-5681" orgid="META"><common-name datatype="string">&lt;i&gt;N&lt;/i&gt;-acetyl-D-glucosamine kinase</common-name>
+<enzyme><Protein frameid="G6576-MONOMER" orgid="META" resource="getxml?META:G6576-MONOMER" /></enzyme>
+<reaction><Reaction frameid="N-ACETYLGLUCOSAMINE-KINASE-RXN" orgid="META" resource="getxml?META:N-ACETYLGLUCOSAMINE-KINASE-RXN" /></reaction>
+<synonym datatype="string">GlcNAc kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7280" detail="low" frameid="REG0-7280" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PPK-ENZRXN" detail="low" frameid="PPK-ENZRXN" orgid="META"><common-name datatype="string">polyphosphate kinase</common-name>
+<enzyme><Protein frameid="PPK-CPLX" orgid="META" resource="getxml?META:PPK-CPLX" /></enzyme>
+<reaction><Reaction frameid="POLYPHOSPHATE-KINASE-RXN" orgid="META" resource="getxml?META:POLYPHOSPHATE-KINASE-RXN" /></reaction>
+<synonym datatype="string">polyphosphate phosphotransferase</synonym>
+<synonym datatype="string">inorganic polyphosphate kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6676" detail="low" frameid="REG0-6676" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ADENYLATECYC-ENZRXN" detail="low" frameid="ADENYLATECYC-ENZRXN" orgid="META"><common-name datatype="string">adenylate cyclase</common-name>
+<enzyme><Protein frameid="ADENYLATECYC-MONOMER" orgid="META" resource="getxml?META:ADENYLATECYC-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ADENYLATECYC-RXN" orgid="META" resource="getxml?META:ADENYLATECYC-RXN" /></reaction>
+<synonym datatype="string">adenylyl cyclase</synonym>
+<synonym datatype="string">adenyl cyclase</synonym>
+<synonym datatype="string">ATP pyrophosphate-lyase (cyclizing)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7604" detail="low" frameid="REG0-7604" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHDEPHOSPH-ENZRXN" detail="low" frameid="ICITDEHDEPHOSPH-ENZRXN" orgid="META"><common-name datatype="string">isocitrate dehydrogenase phosphatase</common-name>
+<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
+<reaction><Reaction frameid="DEPHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:DEPHOSICITDEHASE-RXN" /></reaction>
+<synonym datatype="string">ICDH phosphatase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7699" detail="low" frameid="REG0-7699" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHKINASE-ENZRXN" detail="low" frameid="ICITDEHKINASE-ENZRXN" orgid="META"><common-name datatype="string">isocitrate dehydrogenase kinase</common-name>
+<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
+<reaction><Reaction frameid="PHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:PHOSICITDEHASE-RXN" /></reaction>
+<synonym datatype="string">ICDH kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8748" detail="low" frameid="REG0-8748" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLUTAMINB-ENZRXN" detail="low" frameid="GLUTAMINB-ENZRXN" orgid="META"><common-name datatype="string">glutaminase B</common-name>
+<enzyme><Protein frameid="GLUTAMINB-CPLX" orgid="META" resource="getxml?META:GLUTAMINB-CPLX" /></enzyme>
+<reaction><Reaction frameid="GLUTAMIN-RXN" orgid="META" resource="getxml?META:GLUTAMIN-RXN" /></reaction>
+<synonym datatype="string">glutaminase</synonym>
+<synonym datatype="string">L-glutamine amidohydrolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-15232" detail="low" frameid="REG-15232" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN3O-1186" detail="low" frameid="ENZRXN3O-1186" orgid="META"><common-name datatype="string">nicotinamidase</common-name>
+<enzyme><Protein frameid="CPLX-9064" orgid="META" resource="getxml?META:CPLX-9064" /></enzyme>
+<reaction><Reaction frameid="NICOTINAMID-RXN" orgid="META" resource="getxml?META:NICOTINAMID-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-15215" detail="low" frameid="REG-15215" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-24271" detail="low" frameid="ENZRXN-24271" orgid="META"><common-name datatype="string">glutamate-5-semialdehyde dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-4761" orgid="META" resource="getxml?META:CPLX-4761" /></enzyme>
+<reaction><Reaction frameid="GLUTSEMIALDEHYDROG-RXN" orgid="META" resource="getxml?META:GLUTSEMIALDEHYDROG-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-14900" detail="low" frameid="REG-14900" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22922" detail="low" frameid="ENZRXN-22922" orgid="META"><common-name datatype="string">isopentenyl phosphate kinase</common-name>
+<enzyme><Protein frameid="CPLX-8873" orgid="META" resource="getxml?META:CPLX-8873" /></enzyme>
+<reaction><Reaction frameid="RXN-10068" orgid="META" resource="getxml?META:RXN-10068" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-14470" detail="low" frameid="REG-14470" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22181" detail="low" frameid="ENZRXN-22181" orgid="META"><common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="MONOMER-18252" orgid="META" resource="getxml?META:MONOMER-18252" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-14458" detail="low" frameid="REG-14458" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN3O-1063" detail="low" frameid="ENZRXN3O-1063" orgid="META"><common-name datatype="string">glycerol 3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-8755" orgid="META" resource="getxml?META:CPLX-8755" /></enzyme>
+<reaction><Reaction frameid="1.1.1.8-RXN" orgid="META" resource="getxml?META:1.1.1.8-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-14332" detail="low" frameid="REG-14332" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN3O-1436" detail="low" frameid="ENZRXN3O-1436" orgid="META"><common-name datatype="string">phosphoribosylpyrophosphate amidotransferase</common-name>
+<enzyme><Protein frameid="YMR300C-MONOMER" orgid="META" resource="getxml?META:YMR300C-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PRPPAMIDOTRANS-RXN" orgid="META" resource="getxml?META:PRPPAMIDOTRANS-RXN" /></reaction>
+<synonym datatype="string">ATase</synonym>
+<synonym datatype="string">glutamine phosphoribosylpyrophosphate amidotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13539" detail="low" frameid="REG-13539" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-19947" detail="low" frameid="ENZRXN-19947" orgid="META"><common-name datatype="string">glycogen phosphorylase</common-name>
+<enzyme><Protein frameid="CPLX-8423" orgid="META" resource="getxml?META:CPLX-8423" /></enzyme>
+<reaction><Reaction frameid="GLYCOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13527" detail="low" frameid="REG-13527" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-19883" detail="low" frameid="ENZRXN-19883" orgid="META"><common-name datatype="string">glucokinase</common-name>
+<enzyme><Protein frameid="MONOMER-17038" orgid="META" resource="getxml?META:MONOMER-17038" /></enzyme>
+<reaction><Reaction frameid="GLUCOKIN-RXN" orgid="META" resource="getxml?META:GLUCOKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13410" detail="low" frameid="REG-13410" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14591" detail="low" frameid="ENZRXN-14591" orgid="META"><common-name datatype="string">choline kinase</common-name>
+<enzyme><Protein frameid="YLR133W-MONOMER" orgid="META" resource="getxml?META:YLR133W-MONOMER" /></enzyme>
+<reaction><Reaction frameid="CHOLINE-KINASE-RXN" orgid="META" resource="getxml?META:CHOLINE-KINASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13336" detail="low" frameid="REG-13336" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-18814" detail="low" frameid="ENZRXN-18814" orgid="META"><common-name datatype="string">CTP triphosphatase</common-name>
+<enzyme><Protein frameid="MONOMER-16298" orgid="META" resource="getxml?META:MONOMER-16298" /></enzyme>
+<reaction><Reaction frameid="RXN-12195" orgid="META" resource="getxml?META:RXN-12195" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13253" detail="low" frameid="REG-13253" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-18176" detail="low" frameid="ENZRXN-18176" orgid="META"><common-name datatype="string">FAD-AMP lyase (cyclizing)</common-name>
+<enzyme><Protein frameid="CPLX-8143" orgid="META" resource="getxml?META:CPLX-8143" /></enzyme>
+<reaction><Reaction frameid="RXN-11695" orgid="META" resource="getxml?META:RXN-11695" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-13083" detail="low" frameid="REG-13083" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-17753" detail="low" frameid="ENZRXN-17753" orgid="META"><common-name datatype="string">D-galacturonate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-8051" orgid="META" resource="getxml?META:CPLX-8051" /></enzyme>
+<reaction><Reaction frameid="URONATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:URONATE-DEHYDROGENASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12883" detail="low" frameid="REG-12883" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-17017" detail="low" frameid="ENZRXN-17017" orgid="META"><common-name datatype="string">AMP 5'-nucleotidase</common-name>
+<enzyme><Protein frameid="CPLX-7928" orgid="META" resource="getxml?META:CPLX-7928" /></enzyme>
+<reaction><Reaction frameid="AMP-DEPHOSPHORYLATION-RXN" orgid="META" resource="getxml?META:AMP-DEPHOSPHORYLATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12514" detail="low" frameid="REG-12514" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-16093" detail="low" frameid="ENZRXN-16093" orgid="META"><common-name datatype="string">5-formaminoimidazole-4-carboxamide-1-&amp;beta;-D-ribofuranosyl 5'-monophosphate synthetase</common-name>
+<enzyme><Protein frameid="CPLX-7784" orgid="META" resource="getxml?META:CPLX-7784" /></enzyme>
+<reaction><Reaction frameid="RXN-10066" orgid="META" resource="getxml?META:RXN-10066" /></reaction>
+<synonym datatype="string">FAICAR synthetase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12500" detail="low" frameid="REG-12500" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-15986" detail="low" frameid="ENZRXN-15986" orgid="META"><common-name datatype="string">pyruvate carboxylase</common-name>
+<enzyme><Protein frameid="CPLX-7747" orgid="META" resource="getxml?META:CPLX-7747" /></enzyme>
+<reaction><Reaction frameid="PYRUVATE-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:PYRUVATE-CARBOXYLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12492" detail="low" frameid="REG-12492" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-15979" detail="low" frameid="ENZRXN-15979" orgid="META"><common-name datatype="string">phosphoenolpyruvate carboxylase</common-name>
+<enzyme><Protein frameid="CPLX-7743" orgid="META" resource="getxml?META:CPLX-7743" /></enzyme>
+<reaction><Reaction frameid="PEPCARBOX-RXN" orgid="META" resource="getxml?META:PEPCARBOX-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12277" detail="low" frameid="REG-12277" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-15036" detail="low" frameid="ENZRXN-15036" orgid="META"><common-name datatype="string">streptomycin 6-kinase</common-name>
+<enzyme><Protein frameid="MONOMER-14016" orgid="META" resource="getxml?META:MONOMER-14016" /></enzyme>
+<reaction><Reaction frameid="STREPTOMYCIN-6-KINASE-RXN" orgid="META" resource="getxml?META:STREPTOMYCIN-6-KINASE-RXN" /></reaction>
+<synonym datatype="string">streptomycin-6-phosphotransferase</synonym>
+<synonym datatype="string">streptomycin 6-kinase (phosphorylating)</synonym>
+<synonym datatype="string">streptomycin 6-&lt;i&gt;O&lt;/i&gt;-phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12064" detail="low" frameid="REG-12064" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13921" detail="low" frameid="ENZRXN-13921" orgid="META"><common-name datatype="string">asparagine synthetase</common-name>
+<enzyme><Protein frameid="CPLX-7338" orgid="META" resource="getxml?META:CPLX-7338" /></enzyme>
+<reaction><Reaction frameid="ASNSYNB-RXN" orgid="META" resource="getxml?META:ASNSYNB-RXN" /></reaction>
+<synonym datatype="string">asparagine synthase (glutamine hydrolyzing)</synonym>
+<synonym datatype="string">asparagine synthetase, glutamine-hydrolyzing</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11696" detail="low" frameid="REG-11696" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14105" detail="low" frameid="ENZRXN-14105" orgid="META"><common-name datatype="string">D-xylulokinase</common-name>
+<enzyme><Protein frameid="MONOMER-13243" orgid="META" resource="getxml?META:MONOMER-13243" /></enzyme>
+<reaction><Reaction frameid="XYLULOKIN-RXN" orgid="META" resource="getxml?META:XYLULOKIN-RXN" /></reaction>
+<synonym datatype="string">xylulokinase</synonym>
+<synonym datatype="string">ATP:D-xylulose 5-phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11684" detail="low" frameid="REG-11684" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-429" detail="low" frameid="ENZRXN-429" orgid="META"><common-name datatype="string">cobaltochelatase</common-name>
+<enzyme><Protein frameid="CPLX-327" orgid="META" resource="getxml?META:CPLX-327" /></enzyme>
+<reaction><Reaction frameid="R342-RXN" orgid="META" resource="getxml?META:R342-RXN" /></reaction>
+<synonym datatype="string">cobalt chelatase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11598" detail="low" frameid="REG-11598" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13946" detail="low" frameid="ENZRXN-13946" orgid="META"><common-name datatype="string">NAD+-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7360" orgid="META" resource="getxml?META:CPLX-7360" /></enzyme>
+<reaction><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11339" detail="low" frameid="REG-11339" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9442" detail="low" frameid="ENZRXN-9442" orgid="META"><common-name datatype="string">ATP:D-mannose 6-phosphotransferase</common-name>
+<enzyme><Protein frameid="MONOMER-9282" orgid="META" resource="getxml?META:MONOMER-9282" /></enzyme>
+<reaction><Reaction frameid="MANNKIN-RXN" orgid="META" resource="getxml?META:MANNKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10984" detail="low" frameid="REG-10984" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2982" detail="low" frameid="ENZRXN-2982" orgid="META"><common-name datatype="string">ornithine carbamoyltransferase, catabolic</common-name>
+<enzyme><Protein frameid="CPLX-2042" orgid="META" resource="getxml?META:CPLX-2042" /></enzyme>
+<reaction><Reaction frameid="ORNCARBAMTRANSFER-RXN" orgid="META" resource="getxml?META:ORNCARBAMTRANSFER-RXN" /></reaction>
+<synonym datatype="string">OTCase</synonym>
+<synonym datatype="string">citrulline phosphorylase</synonym>
+<synonym datatype="string">ornithine transcarbamylase</synonym>
+<synonym datatype="string">carbamoyl-phosphate:L-ornithine carbamoyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10470" detail="low" frameid="REG-10470" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-807" detail="low" frameid="ENZRXN-807" orgid="META"><common-name datatype="string">adenylosuccinate synthetase</common-name>
+<enzyme><Protein frameid="CPLX-672" orgid="META" resource="getxml?META:CPLX-672" /></enzyme>
+<reaction><Reaction frameid="ADENYLOSUCCINATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:ADENYLOSUCCINATE-SYNTHASE-RXN" /></reaction>
+<synonym datatype="string">IMP-aspartate ligase</synonym>
+<synonym datatype="string">AS synthetase</synonym>
+<synonym datatype="string">ADSS</synonym>
+<synonym datatype="string">AMPSase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10207" detail="low" frameid="REG-10207" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8521" detail="low" frameid="ENZRXN-8521" orgid="META"><common-name datatype="string">NAD pyrophosphatase</common-name>
+<enzyme><Protein frameid="MONOMER-8341" orgid="META" resource="getxml?META:MONOMER-8341" /></enzyme>
+<reaction><Reaction frameid="NADPYROPHOSPHAT-RXN" orgid="META" resource="getxml?META:NADPYROPHOSPHAT-RXN" /></reaction>
+<synonym datatype="string">nucleotide pyrophosphatase</synonym>
+<synonym datatype="string">NAD&lt;sup&gt;+&lt;/sup&gt; diphosphatase</synonym>
+<synonym datatype="string">NAD-nucleotidase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10067" detail="low" frameid="REG-10067" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-61" detail="low" frameid="ENZRXN-61" orgid="META"><common-name datatype="string">phosphotransbutyrylase</common-name>
+<enzyme><Protein frameid="CPLX-61" orgid="META" resource="getxml?META:CPLX-61" /></enzyme>
+<reaction><Reaction frameid="PHOSPHATE-BUTYRYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:PHOSPHATE-BUTYRYLTRANSFERASE-RXN" /></reaction>
+<synonym datatype="string">PTB</synonym>
+<synonym datatype="string">phosphate butyryltransferase</synonym>
+<synonym datatype="string">butanoyl-CoA:orthophosphate butanoyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9856" detail="low" frameid="REG-9856" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2843" detail="low" frameid="ENZRXN-2843" orgid="META"><common-name datatype="string">2-(2'-methylthio)ethylmalate synthase</common-name>
+<enzyme><Protein frameid="CPLX-2301" orgid="META" resource="getxml?META:CPLX-2301" /></enzyme>
+<reaction><Reaction frameid="RXN-2202" orgid="META" resource="getxml?META:RXN-2202" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9764" detail="low" frameid="REG-9764" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-763" detail="low" frameid="ENZRXN-763" orgid="META"><common-name datatype="string">phosphoribosylpyrophosphate amidotransferase</common-name>
+<enzyme><Protein frameid="YMR300C-MONOMER" orgid="META" resource="getxml?META:YMR300C-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PRPPAMIDOTRANS-RXN" orgid="META" resource="getxml?META:PRPPAMIDOTRANS-RXN" /></reaction>
+<synonym datatype="string">ATase</synonym>
+<synonym datatype="string">glutamine phosphoribosylpyrophosphate amidotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9711" detail="low" frameid="REG-9711" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6084" detail="low" frameid="ENZRXN-6084" orgid="META"><common-name datatype="string">trehalose phosphorylase</common-name>
+<enzyme><Protein frameid="CPLX-4161" orgid="META" resource="getxml?META:CPLX-4161" /></enzyme>
+<reaction><Reaction frameid="RXN-4441" orgid="META" resource="getxml?META:RXN-4441" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9668" detail="low" frameid="REG-9668" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8901" detail="low" frameid="ENZRXN-8901" orgid="META"><common-name datatype="string">L-lactate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-5241" orgid="META" resource="getxml?META:CPLX-5241" /></enzyme>
+<reaction><Reaction frameid="L-LACTATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:L-LACTATE-DEHYDROGENASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9578" detail="low" frameid="REG-9578" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3302" detail="low" frameid="ENZRXN-3302" orgid="META"><common-name datatype="string">ATP synthase</common-name>
+<enzyme><Protein frameid="CPLX-9298" orgid="META" resource="getxml?META:CPLX-9298" /></enzyme>
+<reaction><Reaction frameid="ATPSYN-RXN" orgid="META" resource="getxml?META:ATPSYN-RXN" /></reaction>
+<synonym datatype="string">H&lt;SUP&gt;+&lt;/SUP&gt;-transporting ATP synthase</synonym>
+<synonym datatype="string">ATP phosphohydrolase (H&lt;SUP&gt;+&lt;/SUP&gt;-transporting)</synonym>
+<synonym datatype="string">membrane-bound ATP synthase</synonym>
+<synonym datatype="string">A-type ATP synthase</synonym>
+<synonym datatype="string">A1A0 archaeal ATP synthase</synonym>
+<synonym datatype="string">A(1)A(0)-type ATP synthase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9546" detail="low" frameid="REG-9546" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5907" detail="low" frameid="ENZRXN-5907" orgid="META"><common-name datatype="string">dimethylallyl-diphosphate:AMP dimethylallyltransferase</common-name>
+<enzyme><Protein frameid="AT1G68460-MONOMER" orgid="META" resource="getxml?META:AT1G68460-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-4307" orgid="META" resource="getxml?META:RXN-4307" /></reaction>
+<synonym datatype="string">DMAPP:AMP isopentenyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9477" detail="low" frameid="REG-9477" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11509" detail="low" frameid="ENZRXN-11509" orgid="META"><common-name datatype="string">glucuronokinase</common-name>
+<enzyme><Protein frameid="MONOMER-11167" orgid="META" resource="getxml?META:MONOMER-11167" /></enzyme>
+<reaction><Reaction frameid="GLUCURONOKINASE-RXN" orgid="META" resource="getxml?META:GLUCURONOKINASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8743" detail="low" frameid="REG-8743" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-10564" detail="low" frameid="ENZRXN-10564" orgid="META"><common-name datatype="string">succinate semialdehyde dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-6121" orgid="META" resource="getxml?META:CPLX-6121" /></enzyme>
+<reaction><Reaction frameid="SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8731" detail="low" frameid="REG-8731" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-10621" detail="low" frameid="ENZRXN-10621" orgid="META"><common-name datatype="string">MTR kinase</common-name>
+<enzyme><Protein frameid="MONOMER-10461" orgid="META" resource="getxml?META:MONOMER-10461" /></enzyme>
+<reaction><Reaction frameid="5-METHYLTHIORIBOSE-KINASE-RXN" orgid="META" resource="getxml?META:5-METHYLTHIORIBOSE-KINASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8584" detail="low" frameid="REG-8584" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-1444" detail="low" frameid="ENZRXN-1444" orgid="META"><common-name datatype="string">shikimate kinase</common-name>
+<enzyme><Protein frameid="AROIBACSU-MONOMER" orgid="META" resource="getxml?META:AROIBACSU-MONOMER" /></enzyme>
+<reaction><Reaction frameid="SHIKIMATE-KINASE-RXN" orgid="META" resource="getxml?META:SHIKIMATE-KINASE-RXN" /></reaction>
+<synonym datatype="string">ATP:shikimate 3-phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8528" detail="low" frameid="REG-8528" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-202" detail="low" frameid="ENZRXN-202" orgid="META"><common-name datatype="string">nitrogenase</common-name>
+<enzyme><Protein frameid="CPLX-186" orgid="META" resource="getxml?META:CPLX-186" /></enzyme>
+<reaction><Reaction frameid="NITROGENASE-RXN" orgid="META" resource="getxml?META:NITROGENASE-RXN" /></reaction>
+<synonym datatype="string">reduced ferredoxin:dinitrogen oxidoreductase (ATP-hydrolyzing)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8306" detail="low" frameid="REG-8306" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5044" detail="low" frameid="ENZRXN-5044" orgid="META"><common-name datatype="string">NAD&lt;sup&gt;+&lt;/sup&gt;-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-3823" orgid="META" resource="getxml?META:CPLX-3823" /></enzyme>
+<reaction><Reaction frameid="RXN-3443" orgid="META" resource="getxml?META:RXN-3443" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8233" detail="low" frameid="REG-8233" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6241" detail="low" frameid="ENZRXN-6241" orgid="META"><common-name datatype="string">glucokinase</common-name>
+<enzyme><Protein frameid="CPLX-4221" orgid="META" resource="getxml?META:CPLX-4221" /></enzyme>
+<reaction><Reaction frameid="GLUCOKIN-RXN" orgid="META" resource="getxml?META:GLUCOKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8119" detail="low" frameid="REG-8119" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-7941" detail="low" frameid="ENZRXN-7941" orgid="META"><common-name datatype="string">glutamate 5-kinase</common-name>
+<enzyme><Protein frameid="CPLX-4761" orgid="META" resource="getxml?META:CPLX-4761" /></enzyme>
+<reaction><Reaction frameid="GLUTKIN-RXN" orgid="META" resource="getxml?META:GLUTKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8051" detail="low" frameid="REG-8051" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9102" detail="low" frameid="ENZRXN-9102" orgid="META"><common-name datatype="string">galactokinase</common-name>
+<enzyme><Protein frameid="CPLX-5421" orgid="META" resource="getxml?META:CPLX-5421" /></enzyme>
+<reaction><Reaction frameid="GALACTOKIN-RXN" orgid="META" resource="getxml?META:GALACTOKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8041" detail="low" frameid="REG-8041" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9241" detail="low" frameid="ENZRXN-9241" orgid="META"><common-name datatype="string">fructokinase</common-name>
+<enzyme><Protein frameid="CPLX-5501" orgid="META" resource="getxml?META:CPLX-5501" /></enzyme>
+<reaction><Reaction frameid="FRUCTOKINASE-RXN" orgid="META" resource="getxml?META:FRUCTOKINASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8004" detail="low" frameid="REG-8004" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9384" detail="low" frameid="ENZRXN-9384" orgid="META"><common-name datatype="string">L-lactate dehydrogenase</common-name>
+<enzyme><Protein frameid="MONOMER-9224" orgid="META" resource="getxml?META:MONOMER-9224" /></enzyme>
+<reaction><Reaction frameid="L-LACTATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:L-LACTATE-DEHYDROGENASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7243" detail="low" frameid="REG-7243" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12350" detail="low" frameid="ENZRXN-12350" orgid="META"><common-name datatype="string">ATP-citrate lyase</common-name>
+<enzyme><Protein frameid="CPLX-7013" orgid="META" resource="getxml?META:CPLX-7013" /></enzyme>
+<reaction><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7113" detail="low" frameid="REG-7113" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12141" detail="low" frameid="ENZRXN-12141" orgid="META"><common-name datatype="string">methionine adenosyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-11743" orgid="META" resource="getxml?META:MONOMER-11743" /></enzyme>
+<reaction><Reaction frameid="S-ADENMETSYN-RXN" orgid="META" resource="getxml?META:S-ADENMETSYN-RXN" /></reaction>
+<synonym datatype="string">S-adenosylmethionine synthetase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7072" detail="low" frameid="REG-7072" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12078" detail="low" frameid="ENZRXN-12078" orgid="META"><common-name datatype="string">sorbitol-6-phosphate 1-dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-6946" orgid="META" resource="getxml?META:CPLX-6946" /></enzyme>
+<reaction><Reaction frameid="ALDOSE-6-PHOSPHATE-REDUCTASE-NADPH-RXN" orgid="META" resource="getxml?META:ALDOSE-6-PHOSPHATE-REDUCTASE-NADPH-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6922" detail="low" frameid="REG-6922" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12669" detail="low" frameid="ENZRXN-12669" orgid="META"><common-name datatype="string">acyl-CoA hydrolase (medium chain)</common-name>
+<enzyme><Protein frameid="CPLX-7075" orgid="META" resource="getxml?META:CPLX-7075" /></enzyme>
+<reaction><Reaction frameid="3.1.2.19-RXN" orgid="META" resource="getxml?META:3.1.2.19-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6902" detail="low" frameid="REG-6902" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12667" detail="low" frameid="ENZRXN-12667" orgid="META"><common-name datatype="string">acyl-CoA  hydrolase (short chain)</common-name>
+<enzyme><Protein frameid="CPLX-7074" orgid="META" resource="getxml?META:CPLX-7074" /></enzyme>
+<reaction><Reaction frameid="RXN-7938" orgid="META" resource="getxml?META:RXN-7938" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6691" detail="low" frameid="REG-6691" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13675" detail="low" frameid="ENZRXN-13675" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="CPLX-7267" orgid="META" resource="getxml?META:CPLX-7267" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6690" detail="low" frameid="REG-6690" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction frameid="ENZRXN-13675" orgid="META" resource="#META:ENZRXN-13675" /></regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6665" detail="low" frameid="REG-6665" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14040" detail="low" frameid="ENZRXN-14040" orgid="META"><common-name datatype="string">D-xylulose kinase</common-name>
+<enzyme><Protein frameid="CPLX-7407" orgid="META" resource="getxml?META:CPLX-7407" /></enzyme>
+<reaction><Reaction frameid="XYLULOKIN-RXN" orgid="META" resource="getxml?META:XYLULOKIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6637" detail="low" frameid="REG-6637" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13689" detail="low" frameid="ENZRXN-13689" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="MONOMER-12850" orgid="META" resource="getxml?META:MONOMER-12850" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6636" detail="low" frameid="REG-6636" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13694" detail="low" frameid="ENZRXN-13694" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="MONOMER-12855" orgid="META" resource="getxml?META:MONOMER-12855" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6552" detail="low" frameid="REG-6552" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13735" detail="low" frameid="ENZRXN-13735" orgid="META"><common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-7289" orgid="META" resource="getxml?META:CPLX-7289" /></enzyme>
+<reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-5959" detail="low" frameid="REG-5959" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13423" detail="low" frameid="ENZRXN-13423" orgid="META"><common-name datatype="string">glutathione synthetase</common-name>
+<enzyme><Protein frameid="CPLX-7214" orgid="META" resource="getxml?META:CPLX-7214" /></enzyme>
+<reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-SYN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ADP" orgid="META" resource="#META:ADP" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">adenosine pyrophosphate</synonym>
+<synonym datatype="string">adenosine 5'-pyrophosphate</synonym>
+<synonym datatype="string">adenosine-5'-diphosphate</synonym>
+<synonym datatype="string">adenosine-diphosphate</synonym>
+<synonym datatype="string">adenosine-5-diphosphate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-21083" orgid="META" resource="getxml?META:RXN-21083" /><Reaction frameid="1.3.99.15-RXN" orgid="META" resource="getxml?META:1.3.99.15-RXN" /><Reaction frameid="RXN-12545" orgid="META" resource="getxml?META:RXN-12545" /><Reaction frameid="RXN-17001" orgid="META" resource="getxml?META:RXN-17001" /><Reaction frameid="RXN-20671" orgid="META" resource="getxml?META:RXN-20671" /><Reaction frameid="RXN-10862" orgid="META" resource="getxml?META:RXN-10862" /><Reaction frameid="RXN-19824" orgid="META" resource="getxml?META:RXN-19824" /><Reaction frameid="RXN-13757" orgid="META" resource="getxml?META:RXN-13757" /><Reaction frameid="RXN-11902" orgid="META" resource="getxml?META:RXN-11902" /><Reaction frameid="2.7.7.35-RXN" orgid="META" resource="getxml?META:2.7.7.35-RXN" /><Reaction frameid="RXN-15712" orgid="META" resource="getxml?META:RXN-15712" /><Reaction frameid="RXN-17924" orgid="META" resource="getxml?META:RXN-17924" /><Reaction frameid="RXN-17477" orgid="META" resource="getxml?META:RXN-17477" /><Reaction frameid="RXN-17337" orgid="META" resource="getxml?META:RXN-17337" /><Reaction frameid="RXN-8786" orgid="META" resource="getxml?META:RXN-8786" /><Reaction frameid="RXN-8792" orgid="META" resource="getxml?META:RXN-8792" /><Reaction frameid="RXN-17425" orgid="META" resource="getxml?META:RXN-17425" /><Reaction frameid="ADP-DEAMINASE-RXN" orgid="META" resource="getxml?META:ADP-DEAMINASE-RXN" /><Reaction frameid="TRANS-RXN-243" orgid="META" resource="getxml?META:TRANS-RXN-243" /><Reaction frameid="RXN-4305" orgid="META" resource="getxml?META:RXN-4305" /><Reaction frameid="RXN-13141" orgid="META" resource="getxml?META:RXN-13141" /><Reaction frameid="RXN0-6727" orgid="META" resource="getxml?META:RXN0-6727" /><Reaction frameid="RXN-13758" orgid="META" resource="getxml?META:RXN-13758" /><Reaction frameid="2.7.7.36-RXN" orgid="META" resource="getxml?META:2.7.7.36-RXN" /><Reaction frameid="RXN0-5291" orgid="META" resource="getxml?META:RXN0-5291" /><Reaction frameid="RXN0-5209" orgid="META" resource="getxml?META:RXN0-5209" /><Reaction frameid="SULFATE-ADENYLYLTRANSFERASE-ADP-RXN" orgid="META" resource="getxml?META:SULFATE-ADENYLYLTRANSFERASE-ADP-RXN" /><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /><Reaction frameid="R302-RXN" orgid="META" resource="getxml?META:R302-RXN" /><Reaction frameid="ADP--THYMIDINE-KINASE-RXN" orgid="META" resource="getxml?META:ADP--THYMIDINE-KINASE-RXN" /><Reaction frameid="ATP-ADENYLYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:ATP-ADENYLYLTRANSFERASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN8J2-140" orgid="META" resource="getxml?META:RXN8J2-140" /><Reaction frameid="RXN-13080" orgid="META" resource="getxml?META:RXN-13080" /><Reaction frameid="RXN-13083" orgid="META" resource="getxml?META:RXN-13083" /><Reaction frameid="FORMATETHFLIG-RXN" orgid="META" resource="getxml?META:FORMATETHFLIG-RXN" /><Reaction frameid="RXN-14256" orgid="META" resource="getxml?META:RXN-14256" /><Reaction frameid="RXN-14257" orgid="META" resource="getxml?META:RXN-14257" /><Reaction frameid="TRANS-RXN-418" orgid="META" resource="getxml?META:TRANS-RXN-418" /><Reaction frameid="TRANS-RXN-417" orgid="META" resource="getxml?META:TRANS-RXN-417" /><Reaction frameid="2.7.1.139-RXN" orgid="META" resource="getxml?META:2.7.1.139-RXN" /><Reaction frameid="2.7.1.134-RXN" orgid="META" resource="getxml?META:2.7.1.134-RXN" /><Reaction frameid="ABC-11-RXN" orgid="META" resource="getxml?META:ABC-11-RXN" /><Reaction frameid="3.6.3.31-RXN" orgid="META" resource="getxml?META:3.6.3.31-RXN" /><Reaction frameid="RXN-21533" orgid="META" resource="getxml?META:RXN-21533" /><Reaction frameid="RXN-21549" orgid="META" resource="getxml?META:RXN-21549" /><Reaction frameid="RXN-19004" orgid="META" resource="getxml?META:RXN-19004" /><Reaction frameid="VIOMYCIN-KINASE-RXN" orgid="META" resource="getxml?META:VIOMYCIN-KINASE-RXN" /><Reaction frameid="PROPKIN-RXN" orgid="META" resource="getxml?META:PROPKIN-RXN" /><Reaction frameid="RXN-21792" orgid="META" resource="getxml?META:RXN-21792" /><Reaction frameid="RXN-21791" orgid="META" resource="getxml?META:RXN-21791" /><Reaction frameid="RXN-21790" orgid="META" resource="getxml?META:RXN-21790" /><Reaction frameid="BRANCHED-CHAIN-FATTY-ACID-KINASE-RXN" orgid="META" resource="getxml?META:BRANCHED-CHAIN-FATTY-ACID-KINASE-RXN" /><Reaction frameid="BUTYRATE-KINASE-RXN" orgid="META" resource="getxml?META:BUTYRATE-KINASE-RXN" /><Reaction frameid="RXN0-6541" orgid="META" resource="getxml?META:RXN0-6541" /><Reaction frameid="RXN1G-137" orgid="META" resource="getxml?META:RXN1G-137" /><Reaction frameid="RXN1G-472" orgid="META" resource="getxml?META:RXN1G-472" /><Reaction frameid="RXN1G-470" orgid="META" resource="getxml?META:RXN1G-470" /><Reaction frameid="RXN1G-474" orgid="META" resource="getxml?META:RXN1G-474" /><Reaction frameid="RXN1G-473" orgid="META" resource="getxml?META:RXN1G-473" /><Reaction frameid="ABC-19-RXN" orgid="META" resource="getxml?META:ABC-19-RXN" /><Reaction frameid="TRANS-RXN-242B" orgid="META" resource="getxml?META:TRANS-RXN-242B" /><Reaction frameid="RXN-15800" orgid="META" resource="getxml?META:RXN-15800" /><Reaction frameid="RXN-15787" orgid="META" resource="getxml?META:RXN-15787" /><Reaction frameid="RXN-10984" orgid="META" resource="getxml?META:RXN-10984" /><Reaction frameid="RXN-21450" orgid="META" resource="getxml?META:RXN-21450" /><Reaction frameid="RXN-21449" orgid="META" resource="getxml?META:RXN-21449" /><Reaction frameid="RXN-21448" orgid="META" resource="getxml?META:RXN-21448" /><Reaction frameid="RXN-21447" orgid="META" resource="getxml?META:RXN-21447" /><Reaction frameid="RXN-21446" orgid="META" resource="getxml?META:RXN-21446" /><Reaction frameid="RXN-21445" orgid="META" resource="getxml?META:RXN-21445" /><Reaction frameid="RXN-21443" orgid="META" resource="getxml?META:RXN-21443" /><Reaction frameid="RXN-16280" orgid="META" resource="getxml?META:RXN-16280" /><Reaction frameid="3.6.3.41-RXN" orgid="META" resource="getxml?META:3.6.3.41-RXN" /><Reaction frameid="TRANS-RXN0-162" orgid="META" resource="getxml?META:TRANS-RXN0-162" /><Reaction frameid="NAD-KIN-RXN" orgid="META" resource="getxml?META:NAD-KIN-RXN" /><Reaction frameid="RXN-21408" orgid="META" resource="getxml?META:RXN-21408" /><Reaction frameid="CYTIKIN-RXN" orgid="META" resource="getxml?META:CYTIKIN-RXN" /><Reaction frameid="URIDINEKIN-RXN" orgid="META" resource="getxml?META:URIDINEKIN-RXN" /><Reaction frameid="TRANS-RXN-398" orgid="META" resource="getxml?META:TRANS-RXN-398" /><Reaction frameid="TRANS-RXN-397" orgid="META" resource="getxml?META:TRANS-RXN-397" /><Reaction frameid="2.7.4.19-RXN" orgid="META" resource="getxml?META:2.7.4.19-RXN" /><Reaction frameid="RXN0-7115" orgid="META" resource="getxml?META:RXN0-7115" /><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="getxml?META:PEPCARBOXYKIN-RXN" /><Reaction frameid="RXN-21200" orgid="META" resource="getxml?META:RXN-21200" /><Reaction frameid="RXN-21317" orgid="META" resource="getxml?META:RXN-21317" /><Reaction frameid="DETHIOBIOTIN-SYN-RXN" orgid="META" resource="getxml?META:DETHIOBIOTIN-SYN-RXN" /><Reaction frameid="RXN1ZN3-10" orgid="META" resource="getxml?META:RXN1ZN3-10" /><Reaction frameid="RXN-21299" orgid="META" resource="getxml?META:RXN-21299" /><Reaction frameid="3.4.21.92-RXN" orgid="META" resource="getxml?META:3.4.21.92-RXN" /><Reaction frameid="RXN-21298" orgid="META" resource="getxml?META:RXN-21298" /><Reaction frameid="RXN-17485" orgid="META" resource="getxml?META:RXN-17485" /><Reaction frameid="RXN-15005" orgid="META" resource="getxml?META:RXN-15005" /><Reaction frameid="PHOSPHOGLUCOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCOKINASE-RXN" /><Reaction frameid="2.7.10.1-RXN" orgid="META" resource="getxml?META:2.7.10.1-RXN" /><Reaction frameid="2.7.1.152-RXN" orgid="META" resource="getxml?META:2.7.1.152-RXN" /><Reaction frameid="3.6.3.18-RXN" orgid="META" resource="getxml?META:3.6.3.18-RXN" /><Reaction frameid="RXN-21221" orgid="META" resource="getxml?META:RXN-21221" /><Reaction frameid="RXN1YI0-9" orgid="META" resource="getxml?META:RXN1YI0-9" /><Reaction frameid="RXN-21202" orgid="META" resource="getxml?META:RXN-21202" /><Reaction frameid="RXN-21195" orgid="META" resource="getxml?META:RXN-21195" /><Reaction frameid="RXN-21191" orgid="META" resource="getxml?META:RXN-21191" /><Reaction frameid="RXN-21181" orgid="META" resource="getxml?META:RXN-21181" /><Reaction frameid="RXN-21186" orgid="META" resource="getxml?META:RXN-21186" /><Reaction frameid="RXN-21185" orgid="META" resource="getxml?META:RXN-21185" /><Reaction frameid="ACETATEKIN-RXN" orgid="META" resource="getxml?META:ACETATEKIN-RXN" /><Reaction frameid="ATPASE-RXN" orgid="META" resource="getxml?META:ATPASE-RXN" /><Reaction frameid="RXN-7163" orgid="META" resource="getxml?META:RXN-7163" /><Reaction frameid="RXN-10979" orgid="META" resource="getxml?META:RXN-10979" /><Reaction frameid="RXN-10972" orgid="META" resource="getxml?META:RXN-10972" /><Reaction frameid="2.7.4.24-RXN" orgid="META" resource="getxml?META:2.7.4.24-RXN" /><Reaction frameid="RXN-10971" orgid="META" resource="getxml?META:RXN-10971" /><Reaction frameid="RXN-14906" orgid="META" resource="getxml?META:RXN-14906" /><Reaction frameid="2.7.12.1-RXN" orgid="META" resource="getxml?META:2.7.12.1-RXN" /><Reaction frameid="PROTEIN-KINASE-RXN" orgid="META" resource="getxml?META:PROTEIN-KINASE-RXN" /><Reaction frameid="RXN-21100" orgid="META" resource="getxml?META:RXN-21100" /><Reaction frameid="ABC-25-RXN" orgid="META" resource="getxml?META:ABC-25-RXN" /><Reaction frameid="RXN8J2-3" orgid="META" resource="getxml?META:RXN8J2-3" /><Reaction frameid="RXN-21064" orgid="META" resource="getxml?META:RXN-21064" /><Reaction frameid="RXN-21061" orgid="META" resource="getxml?META:RXN-21061" /><Reaction frameid="RXN-21060" orgid="META" resource="getxml?META:RXN-21060" /><Reaction frameid="RXN-12916" orgid="META" resource="getxml?META:RXN-12916" /><Reaction frameid="RXN-12917" orgid="META" resource="getxml?META:RXN-12917" /><Reaction frameid="RXN-12915" orgid="META" resource="getxml?META:RXN-12915" /><Reaction frameid="3.6.3.43-RXN" orgid="META" resource="getxml?META:3.6.3.43-RXN" /><Reaction frameid="FORMATE-KINASE-RXN" orgid="META" resource="getxml?META:FORMATE-KINASE-RXN" /><Reaction frameid="GARTRANSFORMYL2-RXN" orgid="META" resource="getxml?META:GARTRANSFORMYL2-RXN" /><Reaction frameid="TRANS-RXN-343" orgid="META" resource="getxml?META:TRANS-RXN-343" /><Reaction frameid="RXN-21036" orgid="META" resource="getxml?META:RXN-21036" /><Reaction frameid="TRANS-RXN-358" orgid="META" resource="getxml?META:TRANS-RXN-358" /><Reaction frameid="RXN-21035" orgid="META" resource="getxml?META:RXN-21035" /><Reaction frameid="3.6.3.3-RXN" orgid="META" resource="getxml?META:3.6.3.3-RXN" /><Reaction frameid="TRANS-RXN-178" orgid="META" resource="getxml?META:TRANS-RXN-178" /><Reaction frameid="ABC-20-RXN" orgid="META" resource="getxml?META:ABC-20-RXN" /><Reaction frameid="TRANS-RXN0-492" orgid="META" resource="getxml?META:TRANS-RXN0-492" /><Reaction frameid="TRANS-RXN0-491" orgid="META" resource="getxml?META:TRANS-RXN0-491" /><Reaction frameid="ATPSYN-RXN" orgid="META" resource="getxml?META:ATPSYN-RXN" /><Reaction frameid="RXN-20987" orgid="META" resource="getxml?META:RXN-20987" /><Reaction frameid="RXN-20986" orgid="META" resource="getxml?META:RXN-20986" /><Reaction frameid="RXN-20942" orgid="META" resource="getxml?META:RXN-20942" /><Reaction frameid="RXN-20941" orgid="META" resource="getxml?META:RXN-20941" /><Reaction frameid="RXN-20940" orgid="META" resource="getxml?META:RXN-20940" /><Reaction frameid="RXN-20934" orgid="META" resource="getxml?META:RXN-20934" /><Reaction frameid="RXN-20928" orgid="META" resource="getxml?META:RXN-20928" /><Reaction frameid="LOMBRICINE-KINASE-RXN" orgid="META" resource="getxml?META:LOMBRICINE-KINASE-RXN" /><Reaction frameid="TRANS-RXN-390" orgid="META" resource="getxml?META:TRANS-RXN-390" /><Reaction frameid="DEOXYADENOSINE-KINASE-RXN" orgid="META" resource="getxml?META:DEOXYADENOSINE-KINASE-RXN" /><Reaction frameid="RXN-20883" orgid="META" resource="getxml?META:RXN-20883" /><Reaction frameid="RXN-20882" orgid="META" resource="getxml?META:RXN-20882" /><Reaction frameid="RXN-20881" orgid="META" resource="getxml?META:RXN-20881" /><Reaction frameid="RXN-20880" orgid="META" resource="getxml?META:RXN-20880" /><Reaction frameid="RXN-20878" orgid="META" resource="getxml?META:RXN-20878" /><Reaction frameid="RXN-20877" orgid="META" resource="getxml?META:RXN-20877" /><Reaction frameid="RXN-20876" orgid="META" resource="getxml?META:RXN-20876" /><Reaction frameid="RXN-20879" orgid="META" resource="getxml?META:RXN-20879" /><Reaction frameid="6.3.2.25-RXN" orgid="META" resource="getxml?META:6.3.2.25-RXN" /><Reaction frameid="RXN-20868" orgid="META" resource="getxml?META:RXN-20868" /><Reaction frameid="RXN-20784" orgid="META" resource="getxml?META:RXN-20784" /><Reaction frameid="5.99.1.3-RXN" orgid="META" resource="getxml?META:5.99.1.3-RXN" /><Reaction frameid="TRANS-RXN-389" orgid="META" resource="getxml?META:TRANS-RXN-389" /><Reaction frameid="RXN-20761" orgid="META" resource="getxml?META:RXN-20761" /><Reaction frameid="RXN-13197" orgid="META" resource="getxml?META:RXN-13197" /><Reaction frameid="RXN-10948" orgid="META" resource="getxml?META:RXN-10948" /><Reaction frameid="RNA-POLYMERASE-SUBUNIT-KINASE-RXN" orgid="META" resource="getxml?META:RNA-POLYMERASE-SUBUNIT-KINASE-RXN" /><Reaction frameid="RXN-14074" orgid="META" resource="getxml?META:RXN-14074" /><Reaction frameid="2.7.11.25-RXN" orgid="META" resource="getxml?META:2.7.11.25-RXN" /><Reaction frameid="RXN-13782" orgid="META" resource="getxml?META:RXN-13782" /><Reaction frameid="DARABKIN-RXN" orgid="META" resource="getxml?META:DARABKIN-RXN" /><Reaction frameid="POLYPHOSPHATE-KINASE-RXN" orgid="META" resource="getxml?META:POLYPHOSPHATE-KINASE-RXN" /><Reaction frameid="RXN-14223" orgid="META" resource="getxml?META:RXN-14223" /><Reaction frameid="6.3.4.8-RXN" orgid="META" resource="getxml?META:6.3.4.8-RXN" /><Reaction frameid="RXN-20648" orgid="META" resource="getxml?META:RXN-20648" /><Reaction frameid="RXN3O-458" orgid="META" resource="getxml?META:RXN3O-458" /><Reaction frameid="ALKYLGLYCEROL-KINASE-RXN" orgid="META" resource="getxml?META:ALKYLGLYCEROL-KINASE-RXN" /><Reaction frameid="RXN-20527" orgid="META" resource="getxml?META:RXN-20527" /><Reaction frameid="RXN-20526" orgid="META" resource="getxml?META:RXN-20526" /><Reaction frameid="RXN-20088" orgid="META" resource="getxml?META:RXN-20088" /><Reaction frameid="RXN-9406" orgid="META" resource="getxml?META:RXN-9406" /><Reaction frameid="RXN-9423" orgid="META" resource="getxml?META:RXN-9423" /><Reaction frameid="RXN-20407" orgid="META" resource="getxml?META:RXN-20407" /><Reaction frameid="RXN-20406" orgid="META" resource="getxml?META:RXN-20406" /><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-SYN-RXN" /><Reaction frameid="RXN-20401" orgid="META" resource="getxml?META:RXN-20401" /><Reaction frameid="GLUTCYSLIG-RXN" orgid="META" resource="getxml?META:GLUTCYSLIG-RXN" /><Reaction frameid="RXN-20400" orgid="META" resource="getxml?META:RXN-20400" /><Reaction frameid="CERAMIDE-KINASE-RXN" orgid="META" resource="getxml?META:CERAMIDE-KINASE-RXN" /><Reaction frameid="ADENYLYLSULFKIN-RXN" orgid="META" resource="getxml?META:ADENYLYLSULFKIN-RXN" /><Reaction frameid="RXN-20318" orgid="META" resource="getxml?META:RXN-20318" /><Reaction frameid="SHIKIMATE-KINASE-RXN" orgid="META" resource="getxml?META:SHIKIMATE-KINASE-RXN" /><Reaction frameid="RXN-20190" orgid="META" resource="getxml?META:RXN-20190" /><Reaction frameid="RXN-20189" orgid="META" resource="getxml?META:RXN-20189" /><Reaction frameid="3.6.4.1-RXN" orgid="META" resource="getxml?META:3.6.4.1-RXN" /><Reaction frameid="RXN0-1061" orgid="META" resource="getxml?META:RXN0-1061" /><Reaction frameid="TRANS-RXN-383" orgid="META" resource="getxml?META:TRANS-RXN-383" /><Reaction frameid="3.6.3.49-RXN" orgid="META" resource="getxml?META:3.6.3.49-RXN" /><Reaction frameid="RXN-11339" orgid="META" resource="getxml?META:RXN-11339" /><Reaction frameid="ABC-2-RXN" orgid="META" resource="getxml?META:ABC-2-RXN" /><Reaction frameid="ABC-33-RXN" orgid="META" resource="getxml?META:ABC-33-RXN" /><Reaction frameid="6.3.5.7-RXN" orgid="META" resource="getxml?META:6.3.5.7-RXN" /><Reaction frameid="RXN-20082" orgid="META" resource="getxml?META:RXN-20082" /><Reaction frameid="6.3.5.6-RXN" orgid="META" resource="getxml?META:6.3.5.6-RXN" /><Reaction frameid="RXN-20080" orgid="META" resource="getxml?META:RXN-20080" /><Reaction frameid="PANTETHEINE-KINASE-RXN" orgid="META" resource="getxml?META:PANTETHEINE-KINASE-RXN" /><Reaction frameid="RXN-20029" orgid="META" resource="getxml?META:RXN-20029" /><Reaction frameid="3.6.3.15-RXN" orgid="META" resource="getxml?META:3.6.3.15-RXN" /><Reaction frameid="RXN-5182" orgid="META" resource="getxml?META:RXN-5182" /><Reaction frameid="3.6.4.3-RXN" orgid="META" resource="getxml?META:3.6.4.3-RXN" /><Reaction frameid="1.8.98.2-RXN" orgid="META" resource="getxml?META:1.8.98.2-RXN" /><Reaction frameid="RXN0-5127" orgid="META" resource="getxml?META:RXN0-5127" /><Reaction frameid="2.7.13.2-RXN" orgid="META" resource="getxml?META:2.7.13.2-RXN" /><Reaction frameid="2.7.1.109-RXN" orgid="META" resource="getxml?META:2.7.1.109-RXN" /><Reaction frameid="RXN0-7298" orgid="META" resource="getxml?META:RXN0-7298" /><Reaction frameid="3.6.4.8-RXN" orgid="META" resource="getxml?META:3.6.4.8-RXN" /><Reaction frameid="RXN-19779" orgid="META" resource="getxml?META:RXN-19779" /><Reaction frameid="RXN-19915" orgid="META" resource="getxml?META:RXN-19915" /><Reaction frameid="SEDOHEPTULOKINASE-RXN" orgid="META" resource="getxml?META:SEDOHEPTULOKINASE-RXN" /><Reaction frameid="TRANS-RXN-377" orgid="META" resource="getxml?META:TRANS-RXN-377" /><Reaction frameid="TRANS-RXN-378" orgid="META" resource="getxml?META:TRANS-RXN-378" /><Reaction frameid="RXN-19894" orgid="META" resource="getxml?META:RXN-19894" /><Reaction frameid="EICOMP-RXN" orgid="META" resource="getxml?META:EICOMP-RXN" /><Reaction frameid="RXN-19891" orgid="META" resource="getxml?META:RXN-19891" /><Reaction frameid="RXN-19892" orgid="META" resource="getxml?META:RXN-19892" /><Reaction frameid="RXN-19890" orgid="META" resource="getxml?META:RXN-19890" /><Reaction frameid="PHOSPHORIBOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHORIBOKINASE-RXN" /><Reaction frameid="RIBOKIN-RXN" orgid="META" resource="getxml?META:RIBOKIN-RXN" /><Reaction frameid="RIBOSE-5-PHOSPHATE--AMMONIA-LIGASE-RXN" orgid="META" resource="getxml?META:RIBOSE-5-PHOSPHATE--AMMONIA-LIGASE-RXN" /><Reaction frameid="RXN-19819" orgid="META" resource="getxml?META:RXN-19819" /><Reaction frameid="RXN-19813" orgid="META" resource="getxml?META:RXN-19813" /><Reaction frameid="RXN-19812" orgid="META" resource="getxml?META:RXN-19812" /><Reaction frameid="RXN-19811" orgid="META" resource="getxml?META:RXN-19811" /><Reaction frameid="RXN-19807" orgid="META" resource="getxml?META:RXN-19807" /><Reaction frameid="RXN-19809" orgid="META" resource="getxml?META:RXN-19809" /><Reaction frameid="3.6.3.37-RXN" orgid="META" resource="getxml?META:3.6.3.37-RXN" /><Reaction frameid="TRANS-RXN-331" orgid="META" resource="getxml?META:TRANS-RXN-331" /><Reaction frameid="TRANS-RXN-290" orgid="META" resource="getxml?META:TRANS-RXN-290" /><Reaction frameid="TRANS-RXN0-593" orgid="META" resource="getxml?META:TRANS-RXN0-593" /><Reaction frameid="RXN0-11" orgid="META" resource="getxml?META:RXN0-11" /><Reaction frameid="RXN-17739" orgid="META" resource="getxml?META:RXN-17739" /><Reaction frameid="3.6.3.17-RXN" orgid="META" resource="getxml?META:3.6.3.17-RXN" /><Reaction frameid="TRANS-RXN-320" orgid="META" resource="getxml?META:TRANS-RXN-320" /><Reaction frameid="TRANS-RXN-238" orgid="META" resource="getxml?META:TRANS-RXN-238" /><Reaction frameid="TRANS-RXN-220" orgid="META" resource="getxml?META:TRANS-RXN-220" /><Reaction frameid="TRANS-RXN-366" orgid="META" resource="getxml?META:TRANS-RXN-366" /><Reaction frameid="3.6.3.44-RXN" orgid="META" resource="getxml?META:3.6.3.44-RXN" /><Reaction frameid="TRANS-RXN0-573" orgid="META" resource="getxml?META:TRANS-RXN0-573" /><Reaction frameid="TRANS-RXN-328" orgid="META" resource="getxml?META:TRANS-RXN-328" /><Reaction frameid="RXN0-3" orgid="META" resource="getxml?META:RXN0-3" /><Reaction frameid="TRANS-RXN-291" orgid="META" resource="getxml?META:TRANS-RXN-291" /><Reaction frameid="TRANS-RXN0-508" orgid="META" resource="getxml?META:TRANS-RXN0-508" /><Reaction frameid="TRANS-RXN0-513" orgid="META" resource="getxml?META:TRANS-RXN0-513" /><Reaction frameid="TRANS-RXN0-617" orgid="META" resource="getxml?META:TRANS-RXN0-617" /><Reaction frameid="3.6.3.21-RXN" orgid="META" resource="getxml?META:3.6.3.21-RXN" /><Reaction frameid="TRANS-RXN0-222" orgid="META" resource="getxml?META:TRANS-RXN0-222" /><Reaction frameid="ABC-3-RXN" orgid="META" resource="getxml?META:ABC-3-RXN" /><Reaction frameid="TRANS-RXN-194" orgid="META" resource="getxml?META:TRANS-RXN-194" /><Reaction frameid="TRANS-RXN-372" orgid="META" resource="getxml?META:TRANS-RXN-372" /><Reaction frameid="TRANS-RXN-371" orgid="META" resource="getxml?META:TRANS-RXN-371" /><Reaction frameid="RXN-11109" orgid="META" resource="getxml?META:RXN-11109" /><Reaction frameid="RXN-11135" orgid="META" resource="getxml?META:RXN-11135" /><Reaction frameid="RXN0-4261" orgid="META" resource="getxml?META:RXN0-4261" /><Reaction frameid="ABC-26-RXN" orgid="META" resource="getxml?META:ABC-26-RXN" /><Reaction frameid="3.6.3.10-RXN" orgid="META" resource="getxml?META:3.6.3.10-RXN" /><Reaction frameid="RXN-19605" orgid="META" resource="getxml?META:RXN-19605" /><Reaction frameid="3.6.3.38-RXN" orgid="META" resource="getxml?META:3.6.3.38-RXN" /><Reaction frameid="3.6.4.5-RXN" orgid="META" resource="getxml?META:3.6.4.5-RXN" /><Reaction frameid="RXN-19750" orgid="META" resource="getxml?META:RXN-19750" /><Reaction frameid="3.6.3.9-RXN" orgid="META" resource="getxml?META:3.6.3.9-RXN" /><Reaction frameid="3.6.4.4-RXN" orgid="META" resource="getxml?META:3.6.4.4-RXN" /><Reaction frameid="3.6.4.2-RXN" orgid="META" resource="getxml?META:3.6.4.2-RXN" /><Reaction frameid="3.6.3.35-RXN" orgid="META" resource="getxml?META:3.6.3.35-RXN" /><Reaction frameid="TRANS-RXN-2" orgid="META" resource="getxml?META:TRANS-RXN-2" /><Reaction frameid="3.6.3.30-RXN" orgid="META" resource="getxml?META:3.6.3.30-RXN" /><Reaction frameid="RXN-14455" orgid="META" resource="getxml?META:RXN-14455" /><Reaction frameid="TRANS-RXN0-207" orgid="META" resource="getxml?META:TRANS-RXN0-207" /><Reaction frameid="RXN0-5205" orgid="META" resource="getxml?META:RXN0-5205" /><Reaction frameid="3.6.3.34-RXN" orgid="META" resource="getxml?META:3.6.3.34-RXN" /><Reaction frameid="TRANS-RXN-250" orgid="META" resource="getxml?META:TRANS-RXN-250" /><Reaction frameid="3.6.3.53-RXN" orgid="META" resource="getxml?META:3.6.3.53-RXN" /><Reaction frameid="3.6.3.16-RXN" orgid="META" resource="getxml?META:3.6.3.16-RXN" /><Reaction frameid="ABC-27-RXN" orgid="META" resource="getxml?META:ABC-27-RXN" /><Reaction frameid="3.6.3.28-RXN" orgid="META" resource="getxml?META:3.6.3.28-RXN" /><Reaction frameid="ABC-23-RXN" orgid="META" resource="getxml?META:ABC-23-RXN" /><Reaction frameid="ABC-70-RXN" orgid="META" resource="getxml?META:ABC-70-RXN" /><Reaction frameid="ABC-7-RXN" orgid="META" resource="getxml?META:ABC-7-RXN" /><Reaction frameid="3.6.3.26-RXN" orgid="META" resource="getxml?META:3.6.3.26-RXN" /><Reaction frameid="ABC-14-RXN" orgid="META" resource="getxml?META:ABC-14-RXN" /><Reaction frameid="ABC-13-RXN" orgid="META" resource="getxml?META:ABC-13-RXN" /><Reaction frameid="ABC-4-RXN" orgid="META" resource="getxml?META:ABC-4-RXN" /><Reaction frameid="ABC-12-RXN" orgid="META" resource="getxml?META:ABC-12-RXN" /><Reaction frameid="ABC-37-RXN" orgid="META" resource="getxml?META:ABC-37-RXN" /><Reaction frameid="3.6.3.22-RXN" orgid="META" resource="getxml?META:3.6.3.22-RXN" /><Reaction frameid="ABC-15-RXN" orgid="META" resource="getxml?META:ABC-15-RXN" /><Reaction frameid="ABC-36-RXN" orgid="META" resource="getxml?META:ABC-36-RXN" /><Reaction frameid="ABC-35-RXN" orgid="META" resource="getxml?META:ABC-35-RXN" /><Reaction frameid="TRANS-RXN-312" orgid="META" resource="getxml?META:TRANS-RXN-312" /><Reaction frameid="3.6.3.52-RXN" orgid="META" resource="getxml?META:3.6.3.52-RXN" /><Reaction frameid="3.6.3.23-RXN" orgid="META" resource="getxml?META:3.6.3.23-RXN" /><Reaction frameid="TRANS-RXN0-268" orgid="META" resource="getxml?META:TRANS-RXN0-268" /><Reaction frameid="3.6.3.48-RXN" orgid="META" resource="getxml?META:3.6.3.48-RXN" /><Reaction frameid="3.6.3.50-RXN" orgid="META" resource="getxml?META:3.6.3.50-RXN" /><Reaction frameid="ABC-16-RXN" orgid="META" resource="getxml?META:ABC-16-RXN" /><Reaction frameid="TRANS-RXN0-503" orgid="META" resource="getxml?META:TRANS-RXN0-503" /><Reaction frameid="TRANS-RXN0-504" orgid="META" resource="getxml?META:TRANS-RXN0-504" /><Reaction frameid="RXN-13035" orgid="META" resource="getxml?META:RXN-13035" /><Reaction frameid="3.6.3.40-RXN" orgid="META" resource="getxml?META:3.6.3.40-RXN" /><Reaction frameid="TRANS-RXN-314" orgid="META" resource="getxml?META:TRANS-RXN-314" /><Reaction frameid="RXN-18028" orgid="META" resource="getxml?META:RXN-18028" /><Reaction frameid="RXN-18029" orgid="META" resource="getxml?META:RXN-18029" /><Reaction frameid="TRANS-RXN-237" orgid="META" resource="getxml?META:TRANS-RXN-237" /><Reaction frameid="TRANS-RXN-236" orgid="META" resource="getxml?META:TRANS-RXN-236" /><Reaction frameid="3.6.3.47-RXN" orgid="META" resource="getxml?META:3.6.3.47-RXN" /><Reaction frameid="ABC-64-RXN" orgid="META" resource="getxml?META:ABC-64-RXN" /><Reaction frameid="TRANS-RXN-296" orgid="META" resource="getxml?META:TRANS-RXN-296" /><Reaction frameid="3.6.3.33-RXN" orgid="META" resource="getxml?META:3.6.3.33-RXN" /><Reaction frameid="ABC-5-RXN" orgid="META" resource="getxml?META:ABC-5-RXN" /><Reaction frameid="RXN-8638" orgid="META" resource="getxml?META:RXN-8638" /><Reaction frameid="TRANS-RXN-324" orgid="META" resource="getxml?META:TRANS-RXN-324" /><Reaction frameid="ABC-34-RXN" orgid="META" resource="getxml?META:ABC-34-RXN" /><Reaction frameid="ABC-24-RXN" orgid="META" resource="getxml?META:ABC-24-RXN" /><Reaction frameid="3.6.3.1-RXN" orgid="META" resource="getxml?META:3.6.3.1-RXN" /><Reaction frameid="3.6.3.42-RXN" orgid="META" resource="getxml?META:3.6.3.42-RXN" /><Reaction frameid="3.6.3.51-RXN" orgid="META" resource="getxml?META:3.6.3.51-RXN" /><Reaction frameid="3.6.3.11-RXN" orgid="META" resource="getxml?META:3.6.3.11-RXN" /><Reaction frameid="3.6.3.6-RXN" orgid="META" resource="getxml?META:3.6.3.6-RXN" /><Reaction frameid="CARBAMATE-KINASE-RXN" orgid="META" resource="getxml?META:CARBAMATE-KINASE-RXN" /><Reaction frameid="RXN-14196" orgid="META" resource="getxml?META:RXN-14196" /><Reaction frameid="RXN-19397" orgid="META" resource="getxml?META:RXN-19397" /><Reaction frameid="2.7.11.30-RXN" orgid="META" resource="getxml?META:2.7.11.30-RXN" /><Reaction frameid="RXN-19382" orgid="META" resource="getxml?META:RXN-19382" /><Reaction frameid="RXN-11832" orgid="META" resource="getxml?META:RXN-11832" /><Reaction frameid="GUANYL-KIN-RXN" orgid="META" resource="getxml?META:GUANYL-KIN-RXN" /><Reaction frameid="GMKALT-RXN" orgid="META" resource="getxml?META:GMKALT-RXN" /><Reaction frameid="ADENYL-KIN-RXN" orgid="META" resource="getxml?META:ADENYL-KIN-RXN" /><Reaction frameid="ASPARTATEKIN-RXN" orgid="META" resource="getxml?META:ASPARTATEKIN-RXN" /><Reaction frameid="RXN-19372" orgid="META" resource="getxml?META:RXN-19372" /><Reaction frameid="RXN-10966" orgid="META" resource="getxml?META:RXN-10966" /><Reaction frameid="RXN-19345" orgid="META" resource="getxml?META:RXN-19345" /><Reaction frameid="RXN-6261" orgid="META" resource="getxml?META:RXN-6261" /><Reaction frameid="UDP-NACMURALA-GLU-LIG-RXN" orgid="META" resource="getxml?META:UDP-NACMURALA-GLU-LIG-RXN" /><Reaction frameid="RXN-19251" orgid="META" resource="getxml?META:RXN-19251" /><Reaction frameid="RXN-17765" orgid="META" resource="getxml?META:RXN-17765" /><Reaction frameid="RXN-19187" orgid="META" resource="getxml?META:RXN-19187" /><Reaction frameid="RXN-19125" orgid="META" resource="getxml?META:RXN-19125" /><Reaction frameid="RXN-19090" orgid="META" resource="getxml?META:RXN-19090" /><Reaction frameid="2.7.11.18-RXN" orgid="META" resource="getxml?META:2.7.11.18-RXN" /><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /><Reaction frameid="TRANS-RXN-332" orgid="META" resource="getxml?META:TRANS-RXN-332" /><Reaction frameid="ABC-8-RXN" orgid="META" resource="getxml?META:ABC-8-RXN" /><Reaction frameid="ABC-42-RXN" orgid="META" resource="getxml?META:ABC-42-RXN" /><Reaction frameid="TRANS-RXN-333" orgid="META" resource="getxml?META:TRANS-RXN-333" /><Reaction frameid="TRANS-RXN-334" orgid="META" resource="getxml?META:TRANS-RXN-334" /><Reaction frameid="ABC-10-RXN" orgid="META" resource="getxml?META:ABC-10-RXN" /><Reaction frameid="ABC-9-RXN" orgid="META" resource="getxml?META:ABC-9-RXN" /><Reaction frameid="ABC-63-RXN" orgid="META" resource="getxml?META:ABC-63-RXN" /><Reaction frameid="ABC-32-RXN" orgid="META" resource="getxml?META:ABC-32-RXN" /><Reaction frameid="RXN0-21" orgid="META" resource="getxml?META:RXN0-21" /><Reaction frameid="TRANS-RXN0-511" orgid="META" resource="getxml?META:TRANS-RXN0-511" /><Reaction frameid="TRANS-RXN0-510" orgid="META" resource="getxml?META:TRANS-RXN0-510" /><Reaction frameid="TRANS-RXN0-478" orgid="META" resource="getxml?META:TRANS-RXN0-478" /><Reaction frameid="TRANS-RXN0-479" orgid="META" resource="getxml?META:TRANS-RXN0-479" /><Reaction frameid="TRANS-RXN-298" orgid="META" resource="getxml?META:TRANS-RXN-298" /><Reaction frameid="TRANS-RXN-297" orgid="META" resource="getxml?META:TRANS-RXN-297" /><Reaction frameid="TRANS-RXN0-541" orgid="META" resource="getxml?META:TRANS-RXN0-541" /><Reaction frameid="ABC-18-RXN" orgid="META" resource="getxml?META:ABC-18-RXN" /><Reaction frameid="ABC-28-RXN" orgid="META" resource="getxml?META:ABC-28-RXN" /><Reaction frameid="RXN-761" orgid="META" resource="getxml?META:RXN-761" /><Reaction frameid="TRANS-RXN0-454" orgid="META" resource="getxml?META:TRANS-RXN0-454" /><Reaction frameid="ABC-56-RXN" orgid="META" resource="getxml?META:ABC-56-RXN" /><Reaction frameid="TRANS-RXN0-202" orgid="META" resource="getxml?META:TRANS-RXN0-202" /><Reaction frameid="RXN0-4522" orgid="META" resource="getxml?META:RXN0-4522" /><Reaction frameid="RXN-14706" orgid="META" resource="getxml?META:RXN-14706" /><Reaction frameid="2.7.11.2-RXN" orgid="META" resource="getxml?META:2.7.11.2-RXN" /><Reaction frameid="RXN-16707" orgid="META" resource="getxml?META:RXN-16707" /><Reaction frameid="RXN-18663" orgid="META" resource="getxml?META:RXN-18663" /><Reaction frameid="RXN-9297" orgid="META" resource="getxml?META:RXN-9297" /><Reaction frameid="2.7.1.157-RXN" orgid="META" resource="getxml?META:2.7.1.157-RXN" /><Reaction frameid="RXN-18662" orgid="META" resource="getxml?META:RXN-18662" /><Reaction frameid="RXN-18660" orgid="META" resource="getxml?META:RXN-18660" /><Reaction frameid="RXN0-5061" orgid="META" resource="getxml?META:RXN0-5061" /><Reaction frameid="RXN-18597" orgid="META" resource="getxml?META:RXN-18597" /><Reaction frameid="RXN-18596" orgid="META" resource="getxml?META:RXN-18596" /><Reaction frameid="RXN-18595" orgid="META" resource="getxml?META:RXN-18595" /><Reaction frameid="RXN-18594" orgid="META" resource="getxml?META:RXN-18594" /><Reaction frameid="RIBOFLAVINKIN-RXN" orgid="META" resource="getxml?META:RIBOFLAVINKIN-RXN" /><Reaction frameid="RXN-18510" orgid="META" resource="getxml?META:RXN-18510" /><Reaction frameid="RXN-18478" orgid="META" resource="getxml?META:RXN-18478" /><Reaction frameid="ACETYL-COA-CARBOXYLTRANSFER-RXN" orgid="META" resource="getxml?META:ACETYL-COA-CARBOXYLTRANSFER-RXN" /><Reaction frameid="RXN-12325" orgid="META" resource="getxml?META:RXN-12325" /><Reaction frameid="RXN-12307" orgid="META" resource="getxml?META:RXN-12307" /><Reaction frameid="RXN-12304" orgid="META" resource="getxml?META:RXN-12304" /><Reaction frameid="PROPIONYL-COA-CARBOXY-RXN" orgid="META" resource="getxml?META:PROPIONYL-COA-CARBOXY-RXN" /><Reaction frameid="RXN0-962" orgid="META" resource="getxml?META:RXN0-962" /><Reaction frameid="RXN-8063" orgid="META" resource="getxml?META:RXN-8063" /><Reaction frameid="RXN-8061" orgid="META" resource="getxml?META:RXN-8061" /><Reaction frameid="RXN-8060" orgid="META" resource="getxml?META:RXN-8060" /><Reaction frameid="RXN-16502" orgid="META" resource="getxml?META:RXN-16502" /><Reaction frameid="TAGATOSE-KINASE-RXN" orgid="META" resource="getxml?META:TAGATOSE-KINASE-RXN" /><Reaction frameid="UNDECAPRENOL-KINASE-RXN" orgid="META" resource="getxml?META:UNDECAPRENOL-KINASE-RXN" /><Reaction frameid="RXN-12979" orgid="META" resource="getxml?META:RXN-12979" /><Reaction frameid="HEXOKINASE-RXN" orgid="META" resource="getxml?META:HEXOKINASE-RXN" /><Reaction frameid="KANAMYCIN-KINASE-RXN" orgid="META" resource="getxml?META:KANAMYCIN-KINASE-RXN" /><Reaction frameid="RXN-14093" orgid="META" resource="getxml?META:RXN-14093" /><Reaction frameid="RXN-12005" orgid="META" resource="getxml?META:RXN-12005" /><Reaction frameid="RXN-14120" orgid="META" resource="getxml?META:RXN-14120" /><Reaction frameid="RXN-14228" orgid="META" resource="getxml?META:RXN-14228" /><Reaction frameid="RXN-18387" orgid="META" resource="getxml?META:RXN-18387" /><Reaction frameid="COBINAMIDEKIN-RXN" orgid="META" resource="getxml?META:COBINAMIDEKIN-RXN" /><Reaction frameid="CDPKIN-RXN" orgid="META" resource="getxml?META:CDPKIN-RXN" /><Reaction frameid="RXN0-2921" orgid="META" resource="getxml?META:RXN0-2921" /><Reaction frameid="RXN-6341" orgid="META" resource="getxml?META:RXN-6341" /><Reaction frameid="FOLYLPOLYGLUTAMATESYNTH-RXN" orgid="META" resource="getxml?META:FOLYLPOLYGLUTAMATESYNTH-RXN" /><Reaction frameid="FORMYLTHFGLUSYNTH-RXN" orgid="META" resource="getxml?META:FORMYLTHFGLUSYNTH-RXN" /><Reaction frameid="RXN-15003" orgid="META" resource="getxml?META:RXN-15003" /><Reaction frameid="ADPREDUCT-RXN" orgid="META" resource="getxml?META:ADPREDUCT-RXN" /><Reaction frameid="RXN-18305" orgid="META" resource="getxml?META:RXN-18305" /><Reaction frameid="RXN-18324" orgid="META" resource="getxml?META:RXN-18324" /><Reaction frameid="RXN-18325" orgid="META" resource="getxml?META:RXN-18325" /><Reaction frameid="RXN-18326" orgid="META" resource="getxml?META:RXN-18326" /><Reaction frameid="RXN-18318" orgid="META" resource="getxml?META:RXN-18318" /><Reaction frameid="DIPHOSPHOMEVALONTE-DECARBOXYLASE-RXN" orgid="META" resource="getxml?META:DIPHOSPHOMEVALONTE-DECARBOXYLASE-RXN" /><Reaction frameid="RXN-17943" orgid="META" resource="getxml?META:RXN-17943" /><Reaction frameid="N-ACETYLGLUCOSAMINE-KINASE-RXN" orgid="META" resource="getxml?META:N-ACETYLGLUCOSAMINE-KINASE-RXN" /><Reaction frameid="RXN-12056" orgid="META" resource="getxml?META:RXN-12056" /><Reaction frameid="RXN-17940" orgid="META" resource="getxml?META:RXN-17940" /><Reaction frameid="POLYNUCLEOTIDE-5-HYDROXYL-KINASE-RXN" orgid="META" resource="getxml?META:POLYNUCLEOTIDE-5-HYDROXYL-KINASE-RXN" /><Reaction frameid="RXN-7913" orgid="META" resource="getxml?META:RXN-7913" /><Reaction frameid="RXN-17761" orgid="META" resource="getxml?META:RXN-17761" /><Reaction frameid="RXN-17770" orgid="META" resource="getxml?META:RXN-17770" /><Reaction frameid="RXN0-7186" orgid="META" resource="getxml?META:RXN0-7186" /><Reaction frameid="RXN0-7185" orgid="META" resource="getxml?META:RXN0-7185" /><Reaction frameid="RXN0-5057" orgid="META" resource="getxml?META:RXN0-5057" /><Reaction frameid="DIACYLGLYKIN-RXN" orgid="META" resource="getxml?META:DIACYLGLYKIN-RXN" /><Reaction frameid="GLY3KIN-RXN" orgid="META" resource="getxml?META:GLY3KIN-RXN" /><Reaction frameid="RXN-17595" orgid="META" resource="getxml?META:RXN-17595" /><Reaction frameid="RXN0-5223" orgid="META" resource="getxml?META:RXN0-5223" /><Reaction frameid="NITROGENASE-RXN" orgid="META" resource="getxml?META:NITROGENASE-RXN" /><Reaction frameid="RXN-9144" orgid="META" resource="getxml?META:RXN-9144" /><Reaction frameid="RXN-9145" orgid="META" resource="getxml?META:RXN-9145" /><Reaction frameid="RXN-17368" orgid="META" resource="getxml?META:RXN-17368" /><Reaction frameid="RXN0-1402" orgid="META" resource="getxml?META:RXN0-1402" /><Reaction frameid="RXN-17310" orgid="META" resource="getxml?META:RXN-17310" /><Reaction frameid="RXN-17205" orgid="META" resource="getxml?META:RXN-17205" /><Reaction frameid="GLUCOKIN-RXN" orgid="META" resource="getxml?META:GLUCOKIN-RXN" /><Reaction frameid="RXN-16909" orgid="META" resource="getxml?META:RXN-16909" /><Reaction frameid="RXN-10973" orgid="META" resource="getxml?META:RXN-10973" /><Reaction frameid="GSDEADENYLATION-RXN" orgid="META" resource="getxml?META:GSDEADENYLATION-RXN" /><Reaction frameid="TRANS-RXN-283" orgid="META" resource="getxml?META:TRANS-RXN-283" /><Reaction frameid="2.7.13.1-RXN" orgid="META" resource="getxml?META:2.7.13.1-RXN" /><Reaction frameid="RXN-15944" orgid="META" resource="getxml?META:RXN-15944" /><Reaction frameid="RXN-8212" orgid="META" resource="getxml?META:RXN-8212" /><Reaction frameid="SPHINGANINE-KINASE-RXN" orgid="META" resource="getxml?META:SPHINGANINE-KINASE-RXN" /><Reaction frameid="RXN-11376" orgid="META" resource="getxml?META:RXN-11376" /><Reaction frameid="RXN3DJ-11417" orgid="META" resource="getxml?META:RXN3DJ-11417" /><Reaction frameid="RXN-17073" orgid="META" resource="getxml?META:RXN-17073" /><Reaction frameid="RXN-17076" orgid="META" resource="getxml?META:RXN-17076" /><Reaction frameid="RXN-17059" orgid="META" resource="getxml?META:RXN-17059" /><Reaction frameid="RXN-16294" orgid="META" resource="getxml?META:RXN-16294" /><Reaction frameid="RXN-16991" orgid="META" resource="getxml?META:RXN-16991" /><Reaction frameid="RXN-16293" orgid="META" resource="getxml?META:RXN-16293" /><Reaction frameid="RXN-16292" orgid="META" resource="getxml?META:RXN-16292" /><Reaction frameid="RXN-16291" orgid="META" resource="getxml?META:RXN-16291" /><Reaction frameid="RXN-13202" orgid="META" resource="getxml?META:RXN-13202" /><Reaction frameid="RXN-16296" orgid="META" resource="getxml?META:RXN-16296" /><Reaction frameid="RXN-16505" orgid="META" resource="getxml?META:RXN-16505" /><Reaction frameid="RXN-16504" orgid="META" resource="getxml?META:RXN-16504" /><Reaction frameid="RXN-16503" orgid="META" resource="getxml?META:RXN-16503" /><Reaction frameid="RXN-16750" orgid="META" resource="getxml?META:RXN-16750" /><Reaction frameid="2.4.1.213-RXN" orgid="META" resource="getxml?META:2.4.1.213-RXN" /><Reaction frameid="2.7.11.19-RXN" orgid="META" resource="getxml?META:2.7.11.19-RXN" /><Reaction frameid="MANNKIN-RXN" orgid="META" resource="getxml?META:MANNKIN-RXN" /><Reaction frameid="RXN-16501" orgid="META" resource="getxml?META:RXN-16501" /><Reaction frameid="RXN-16500" orgid="META" resource="getxml?META:RXN-16500" /><Reaction frameid="3.6.4.7-RXN" orgid="META" resource="getxml?META:3.6.4.7-RXN" /><Reaction frameid="3.6.4.6-RXN" orgid="META" resource="getxml?META:3.6.4.6-RXN" /><Reaction frameid="RXN-14391" orgid="META" resource="getxml?META:RXN-14391" /><Reaction frameid="RXN-12004" orgid="META" resource="getxml?META:RXN-12004" /><Reaction frameid="RXN-11136" orgid="META" resource="getxml?META:RXN-11136" /><Reaction frameid="2.7.11.27-RXN" orgid="META" resource="getxml?META:2.7.11.27-RXN" /><Reaction frameid="RXN-12003" orgid="META" resource="getxml?META:RXN-12003" /><Reaction frameid="RXN-12006" orgid="META" resource="getxml?META:RXN-12006" /><Reaction frameid="2.4.1.113-RXN" orgid="META" resource="getxml?META:2.4.1.113-RXN" /><Reaction frameid="2.7.11.24-RXN" orgid="META" resource="getxml?META:2.7.11.24-RXN" /><Reaction frameid="RXN-16317" orgid="META" resource="getxml?META:RXN-16317" /><Reaction frameid="2.7.12.2-RXN" orgid="META" resource="getxml?META:2.7.12.2-RXN" /><Reaction frameid="RXN-16295" orgid="META" resource="getxml?META:RXN-16295" /><Reaction frameid="RXN-16279" orgid="META" resource="getxml?META:RXN-16279" /><Reaction frameid="RXN-10038" orgid="META" resource="getxml?META:RXN-10038" /><Reaction frameid="SUCCCOASYN-RXN" orgid="META" resource="getxml?META:SUCCCOASYN-RXN" /><Reaction frameid="RXN0-5461" orgid="META" resource="getxml?META:RXN0-5461" /><Reaction frameid="NITROGENASE-FLAVODOXIN-RXN" orgid="META" resource="getxml?META:NITROGENASE-FLAVODOXIN-RXN" /><Reaction frameid="RXN-12161" orgid="META" resource="getxml?META:RXN-12161" /><Reaction frameid="RXN-15947" orgid="META" resource="getxml?META:RXN-15947" /><Reaction frameid="RXN0-7022" orgid="META" resource="getxml?META:RXN0-7022" /><Reaction frameid="RXN0-2361" orgid="META" resource="getxml?META:RXN0-2361" /><Reaction frameid="RXN-15938" orgid="META" resource="getxml?META:RXN-15938" /><Reaction frameid="RXN-15937" orgid="META" resource="getxml?META:RXN-15937" /><Reaction frameid="RXN-15931" orgid="META" resource="getxml?META:RXN-15931" /><Reaction frameid="RXN-15934" orgid="META" resource="getxml?META:RXN-15934" /><Reaction frameid="FORMATE--DIHYDROFOLATE-LIGASE-RXN" orgid="META" resource="getxml?META:FORMATE--DIHYDROFOLATE-LIGASE-RXN" /><Reaction frameid="5-FORMYL-THF-CYCLO-LIGASE-RXN" orgid="META" resource="getxml?META:5-FORMYL-THF-CYCLO-LIGASE-RXN" /><Reaction frameid="RXN-15678" orgid="META" resource="getxml?META:RXN-15678" /><Reaction frameid="RXN-15793" orgid="META" resource="getxml?META:RXN-15793" /><Reaction frameid="RXN-15788" orgid="META" resource="getxml?META:RXN-15788" /><Reaction frameid="RXN-15648" orgid="META" resource="getxml?META:RXN-15648" /><Reaction frameid="RXN-15647" orgid="META" resource="getxml?META:RXN-15647" /><Reaction frameid="RXN-15741" orgid="META" resource="getxml?META:RXN-15741" /><Reaction frameid="RXN-12002" orgid="META" resource="getxml?META:RXN-12002" /><Reaction frameid="RXN-14175" orgid="META" resource="getxml?META:RXN-14175" /><Reaction frameid="NUCLEOSIDE-PHOSPHATE-KINASE-RXN" orgid="META" resource="getxml?META:NUCLEOSIDE-PHOSPHATE-KINASE-RXN" /><Reaction frameid="RXN-14122" orgid="META" resource="getxml?META:RXN-14122" /><Reaction frameid="DEOXYNUCLEOSIDE-PHOSPHATE-KINASE-RXN" orgid="META" resource="getxml?META:DEOXYNUCLEOSIDE-PHOSPHATE-KINASE-RXN" /><Reaction frameid="2.7.1.145-RXN" orgid="META" resource="getxml?META:2.7.1.145-RXN" /><Reaction frameid="RXN-14325" orgid="META" resource="getxml?META:RXN-14325" /><Reaction frameid="RXN-15667" orgid="META" resource="getxml?META:RXN-15667" /><Reaction frameid="RXN-15642" orgid="META" resource="getxml?META:RXN-15642" /><Reaction frameid="RXN-10067" orgid="META" resource="getxml?META:RXN-10067" /><Reaction frameid="RXN-15553" orgid="META" resource="getxml?META:RXN-15553" /><Reaction frameid="RXN-15552" orgid="META" resource="getxml?META:RXN-15552" /><Reaction frameid="RXN-15548" orgid="META" resource="getxml?META:RXN-15548" /><Reaction frameid="RXN-15549" orgid="META" resource="getxml?META:RXN-15549" /><Reaction frameid="RXN-15363" orgid="META" resource="getxml?META:RXN-15363" /><Reaction frameid="RHAMNULOKIN-RXN" orgid="META" resource="getxml?META:RHAMNULOKIN-RXN" /><Reaction frameid="MALATE--COA-LIGASE-RXN" orgid="META" resource="getxml?META:MALATE--COA-LIGASE-RXN" /><Reaction frameid="RXN-15002" orgid="META" resource="getxml?META:RXN-15002" /><Reaction frameid="RXN-15343" orgid="META" resource="getxml?META:RXN-15343" /><Reaction frameid="PROPANOATECOA-LIGASE-RXN" orgid="META" resource="getxml?META:PROPANOATECOA-LIGASE-RXN" /><Reaction frameid="ACETATE--COA-LIGASE-ADP-FORMING-RXN" orgid="META" resource="getxml?META:ACETATE--COA-LIGASE-ADP-FORMING-RXN" /><Reaction frameid="GSPSYN-RXN" orgid="META" resource="getxml?META:GSPSYN-RXN" /><Reaction frameid="2.7.13.3-RXN" orgid="META" resource="getxml?META:2.7.13.3-RXN" /><Reaction frameid="RXN-15266" orgid="META" resource="getxml?META:RXN-15266" /><Reaction frameid="RXN-15297" orgid="META" resource="getxml?META:RXN-15297" /><Reaction frameid="GUANOSINEKIN-RXN" orgid="META" resource="getxml?META:GUANOSINEKIN-RXN" /><Reaction frameid="3.1.21.3-RXN" orgid="META" resource="getxml?META:3.1.21.3-RXN" /><Reaction frameid="RXN1G-4355" orgid="META" resource="getxml?META:RXN1G-4355" /><Reaction frameid="RXN-8457" orgid="META" resource="getxml?META:RXN-8457" /><Reaction frameid="RXN-15267" orgid="META" resource="getxml?META:RXN-15267" /><Reaction frameid="RXN-15265" orgid="META" resource="getxml?META:RXN-15265" /><Reaction frameid="RXN-14637" orgid="META" resource="getxml?META:RXN-14637" /><Reaction frameid="ALKYLGLYCERONE-KINASE-RXN" orgid="META" resource="getxml?META:ALKYLGLYCERONE-KINASE-RXN" /><Reaction frameid="RXN0-5418" orgid="META" resource="getxml?META:RXN0-5418" /><Reaction frameid="RXN-7799" orgid="META" resource="getxml?META:RXN-7799" /><Reaction frameid="TETRAACYLDISACC4KIN-RXN" orgid="META" resource="getxml?META:TETRAACYLDISACC4KIN-RXN" /><Reaction frameid="OHMETPYRKIN-RXN" orgid="META" resource="getxml?META:OHMETPYRKIN-RXN" /><Reaction frameid="RXN-13094" orgid="META" resource="getxml?META:RXN-13094" /><Reaction frameid="TRANS-RXN-243" orgid="META" resource="getxml?META:TRANS-RXN-243" /><Reaction frameid="ALLOSE-KINASE-RXN" orgid="META" resource="getxml?META:ALLOSE-KINASE-RXN" /><Reaction frameid="RXN-14460" orgid="META" resource="getxml?META:RXN-14460" /><Reaction frameid="RXN-12093" orgid="META" resource="getxml?META:RXN-12093" /><Reaction frameid="6.3.1.4-RXN" orgid="META" resource="getxml?META:6.3.1.4-RXN" /><Reaction frameid="AMMONIA-KINASE-RXN" orgid="META" resource="getxml?META:AMMONIA-KINASE-RXN" /><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /><Reaction frameid="GLUTAMATE--METHYLAMINE-LIGASE-RXN" orgid="META" resource="getxml?META:GLUTAMATE--METHYLAMINE-LIGASE-RXN" /><Reaction frameid="D-ARABINOKINASE-RXN" orgid="META" resource="getxml?META:D-ARABINOKINASE-RXN" /><Reaction frameid="L-ARABINOKINASE-RXN" orgid="META" resource="getxml?META:L-ARABINOKINASE-RXN" /><Reaction frameid="RXN-11364" orgid="META" resource="getxml?META:RXN-11364" /><Reaction frameid="RXN-14755" orgid="META" resource="getxml?META:RXN-14755" /><Reaction frameid="GALACTURONOKINASE-RXN" orgid="META" resource="getxml?META:GALACTURONOKINASE-RXN" /><Reaction frameid="RXN-14733" orgid="META" resource="getxml?META:RXN-14733" /><Reaction frameid="RXN-11344" orgid="META" resource="getxml?META:RXN-11344" /><Reaction frameid="RXN-4941" orgid="META" resource="getxml?META:RXN-4941" /><Reaction frameid="RXN-10974" orgid="META" resource="getxml?META:RXN-10974" /><Reaction frameid="GLUCURONOKINASE-RXN" orgid="META" resource="getxml?META:GLUCURONOKINASE-RXN" /><Reaction frameid="RXN-11298" orgid="META" resource="getxml?META:RXN-11298" /><Reaction frameid="RXN-13439" orgid="META" resource="getxml?META:RXN-13439" /><Reaction frameid="RXN-8769" orgid="META" resource="getxml?META:RXN-8769" /><Reaction frameid="2.7.11.29-RXN" orgid="META" resource="getxml?META:2.7.11.29-RXN" /><Reaction frameid="RXN0-6726" orgid="META" resource="getxml?META:RXN0-6726" /><Reaction frameid="RXN0-5118" orgid="META" resource="getxml?META:RXN0-5118" /><Reaction frameid="NICOTINATEPRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:NICOTINATEPRIBOSYLTRANS-RXN" /><Reaction frameid="RXN-10066" orgid="META" resource="getxml?META:RXN-10066" /><Reaction frameid="GLYCOGENSYN-RXN" orgid="META" resource="getxml?META:GLYCOGENSYN-RXN" /><Reaction frameid="RXN-14378" orgid="META" resource="getxml?META:RXN-14378" /><Reaction frameid="RXN-9581" orgid="META" resource="getxml?META:RXN-9581" /><Reaction frameid="5-DEHYDRO-2-DEOXYGLUCONOKINASE-RXN" orgid="META" resource="getxml?META:5-DEHYDRO-2-DEOXYGLUCONOKINASE-RXN" /><Reaction frameid="RXN-14345" orgid="META" resource="getxml?META:RXN-14345" /><Reaction frameid="DEHYDDEOXGALACTKIN-RXN" orgid="META" resource="getxml?META:DEHYDDEOXGALACTKIN-RXN" /><Reaction frameid="DEOXYGLUCONOKIN-RXN" orgid="META" resource="getxml?META:DEOXYGLUCONOKIN-RXN" /><Reaction frameid="CTPSYN-RXN" orgid="META" resource="getxml?META:CTPSYN-RXN" /><Reaction frameid="CARBPSYN-RXN" orgid="META" resource="getxml?META:CARBPSYN-RXN" /><Reaction frameid="DTMPKI-RXN" orgid="META" resource="getxml?META:DTMPKI-RXN" /><Reaction frameid="RXN-12028" orgid="META" resource="getxml?META:RXN-12028" /><Reaction frameid="PYRIDOXKIN-RXN" orgid="META" resource="getxml?META:PYRIDOXKIN-RXN" /><Reaction frameid="PNKIN-RXN" orgid="META" resource="getxml?META:PNKIN-RXN" /><Reaction frameid="PYRAMKIN-RXN" orgid="META" resource="getxml?META:PYRAMKIN-RXN" /><Reaction frameid="DEOXYADENYLATE-KINASE-RXN" orgid="META" resource="getxml?META:DEOXYADENYLATE-KINASE-RXN" /><Reaction frameid="RXN-11103" orgid="META" resource="getxml?META:RXN-11103" /><Reaction frameid="RXN-12042" orgid="META" resource="getxml?META:RXN-12042" /><Reaction frameid="DEOXYGUANOSINE-KINASE-RXN" orgid="META" resource="getxml?META:DEOXYGUANOSINE-KINASE-RXN" /><Reaction frameid="DURIDKI-RXN" orgid="META" resource="getxml?META:DURIDKI-RXN" /><Reaction frameid="THYKI-RXN" orgid="META" resource="getxml?META:THYKI-RXN" /><Reaction frameid="RXN0-747" orgid="META" resource="getxml?META:RXN0-747" /><Reaction frameid="NUCLEOSIDE-DIP-KIN-RXN" orgid="META" resource="getxml?META:NUCLEOSIDE-DIP-KIN-RXN" /><Reaction frameid="RXN-13139" orgid="META" resource="getxml?META:RXN-13139" /><Reaction frameid="4.2.1.93-RXN" orgid="META" resource="getxml?META:4.2.1.93-RXN" /><Reaction frameid="RXN3O-347" orgid="META" resource="getxml?META:RXN3O-347" /><Reaction frameid="RIBULOKIN-RXN" orgid="META" resource="getxml?META:RIBULOKIN-RXN" /><Reaction frameid="N-ACYLMANNOSAMINE-KINASE-RXN" orgid="META" resource="getxml?META:N-ACYLMANNOSAMINE-KINASE-RXN" /><Reaction frameid="INOSINEKIN-RXN" orgid="META" resource="getxml?META:INOSINEKIN-RXN" /><Reaction frameid="RXN-10957" orgid="META" resource="getxml?META:RXN-10957" /><Reaction frameid="2.7.1.149-RXN" orgid="META" resource="getxml?META:2.7.1.149-RXN" /><Reaction frameid="2.7.1.140-RXN" orgid="META" resource="getxml?META:2.7.1.140-RXN" /><Reaction frameid="2.7.1.133-RXN" orgid="META" resource="getxml?META:2.7.1.133-RXN" /><Reaction frameid="RXN-8626" orgid="META" resource="getxml?META:RXN-8626" /><Reaction frameid="RXN-13215" orgid="META" resource="getxml?META:RXN-13215" /><Reaction frameid="RXN-13213" orgid="META" resource="getxml?META:RXN-13213" /><Reaction frameid="RXN-10068" orgid="META" resource="getxml?META:RXN-10068" /><Reaction frameid="NANK-RXN" orgid="META" resource="getxml?META:NANK-RXN" /><Reaction frameid="RXN-13547" orgid="META" resource="getxml?META:RXN-13547" /><Reaction frameid="RXN-13440" orgid="META" resource="getxml?META:RXN-13440" /><Reaction frameid="GLUCOSAMINE-KINASE-RXN" orgid="META" resource="getxml?META:GLUCOSAMINE-KINASE-RXN" /><Reaction frameid="RXN-13336" orgid="META" resource="getxml?META:RXN-13336" /><Reaction frameid="RXN-12960" orgid="META" resource="getxml?META:RXN-12960" /><Reaction frameid="RXN-8443" orgid="META" resource="getxml?META:RXN-8443" /><Reaction frameid="2.7.1.68-RXN" orgid="META" resource="getxml?META:2.7.1.68-RXN" /><Reaction frameid="2.7.1.153-RXN" orgid="META" resource="getxml?META:2.7.1.153-RXN" /><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="getxml?META:PHOSGLYPHOS-RXN" /><Reaction frameid="THIAZOLSYN3-RXN" orgid="META" resource="getxml?META:THIAZOLSYN3-RXN" /><Reaction frameid="THIKIN-RXN" orgid="META" resource="getxml?META:THIKIN-RXN" /><Reaction frameid="RXN0-6564" orgid="META" resource="getxml?META:RXN0-6564" /><Reaction frameid="MACROLIDE-2-KINASE-RXN" orgid="META" resource="getxml?META:MACROLIDE-2-KINASE-RXN" /><Reaction frameid="RXN-12905" orgid="META" resource="getxml?META:RXN-12905" /><Reaction frameid="BIOTIN-CARBOXYL-RXN" orgid="META" resource="getxml?META:BIOTIN-CARBOXYL-RXN" /><Reaction frameid="METHYLCROTONYL-COA-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:METHYLCROTONYL-COA-CARBOXYLASE-RXN" /><Reaction frameid="RXN-12798" orgid="META" resource="getxml?META:RXN-12798" /><Reaction frameid="RXN-12782" orgid="META" resource="getxml?META:RXN-12782" /><Reaction frameid="RXN0-4621" orgid="META" resource="getxml?META:RXN0-4621" /><Reaction frameid="1-PHOSPHATIDYLINOSITOL-KINASE-RXN" orgid="META" resource="getxml?META:1-PHOSPHATIDYLINOSITOL-KINASE-RXN" /><Reaction frameid="2.7.1.150-RXN" orgid="META" resource="getxml?META:2.7.1.150-RXN" /><Reaction frameid="2.7.1.154-RXN" orgid="META" resource="getxml?META:2.7.1.154-RXN" /><Reaction frameid="ACYLGLYCEROL-KINASE-RXN" orgid="META" resource="getxml?META:ACYLGLYCEROL-KINASE-RXN" /><Reaction frameid="FUCOKINASE-RXN" orgid="META" resource="getxml?META:FUCOKINASE-RXN" /><Reaction frameid="6.3.2.29-RXN" orgid="META" resource="getxml?META:6.3.2.29-RXN" /><Reaction frameid="6.3.2.30-RXN" orgid="META" resource="getxml?META:6.3.2.30-RXN" /><Reaction frameid="GERANOYL-COA-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:GERANOYL-COA-CARBOXYLASE-RXN" /><Reaction frameid="GKI-RXN" orgid="META" resource="getxml?META:GKI-RXN" /><Reaction frameid="1-PHOSPHATIDYLINOSITOL-3-KINASE-RXN" orgid="META" resource="getxml?META:1-PHOSPHATIDYLINOSITOL-3-KINASE-RXN" /><Reaction frameid="RXN-1303" orgid="META" resource="getxml?META:RXN-1303" /><Reaction frameid="RXN-12007" orgid="META" resource="getxml?META:RXN-12007" /><Reaction frameid="RXN0-4341" orgid="META" resource="getxml?META:RXN0-4341" /><Reaction frameid="RXN-11782" orgid="META" resource="getxml?META:RXN-11782" /><Reaction frameid="RXN0-1401" orgid="META" resource="getxml?META:RXN0-1401" /><Reaction frameid="RXN-11710" orgid="META" resource="getxml?META:RXN-11710" /><Reaction frameid="KETOHEXOKINASE-RXN" orgid="META" resource="getxml?META:KETOHEXOKINASE-RXN" /><Reaction frameid="TAUROCYAMINE-KINASE-RXN" orgid="META" resource="getxml?META:TAUROCYAMINE-KINASE-RXN" /><Reaction frameid="HYPOTAUROCYAMINE-KINASE-RXN" orgid="META" resource="getxml?META:HYPOTAUROCYAMINE-KINASE-RXN" /><Reaction frameid="PYRUVATE-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:PYRUVATE-CARBOXYLASE-RXN" /><Reaction frameid="6.3.2.10-RXN" orgid="META" resource="getxml?META:6.3.2.10-RXN" /><Reaction frameid="RXN-11342" orgid="META" resource="getxml?META:RXN-11342" /><Reaction frameid="RXN-11328" orgid="META" resource="getxml?META:RXN-11328" /><Reaction frameid="6.3.1.12-RXN" orgid="META" resource="getxml?META:6.3.1.12-RXN" /><Reaction frameid="RXN-11299" orgid="META" resource="getxml?META:RXN-11299" /><Reaction frameid="RXN-11222" orgid="META" resource="getxml?META:RXN-11222" /><Reaction frameid="CARNOSINE-SYNTHASE-RXN" orgid="META" resource="getxml?META:CARNOSINE-SYNTHASE-RXN" /><Reaction frameid="DADPKIN-RXN" orgid="META" resource="getxml?META:DADPKIN-RXN" /><Reaction frameid="RXN-11098" orgid="META" resource="getxml?META:RXN-11098" /><Reaction frameid="RXN-11000" orgid="META" resource="getxml?META:RXN-11000" /><Reaction frameid="RXN-10983" orgid="META" resource="getxml?META:RXN-10983" /><Reaction frameid="RXN-10982" orgid="META" resource="getxml?META:RXN-10982" /><Reaction frameid="RXN1F-20" orgid="META" resource="getxml?META:RXN1F-20" /><Reaction frameid="R345-RXN" orgid="META" resource="getxml?META:R345-RXN" /><Reaction frameid="RXN-10030" orgid="META" resource="getxml?META:RXN-10030" /><Reaction frameid="RXN0-3901" orgid="META" resource="getxml?META:RXN0-3901" /><Reaction frameid="RXN-7162" orgid="META" resource="getxml?META:RXN-7162" /><Reaction frameid="FRUCTOKINASE-RXN" orgid="META" resource="getxml?META:FRUCTOKINASE-RXN" /><Reaction frameid="2.7.11.7-RXN" orgid="META" resource="getxml?META:2.7.11.7-RXN" /><Reaction frameid="UDP-NACMURALGLDAPAALIG-RXN" orgid="META" resource="getxml?META:UDP-NACMURALGLDAPAALIG-RXN" /><Reaction frameid="RXN-8940" orgid="META" resource="getxml?META:RXN-8940" /><Reaction frameid="2.7.11.15-RXN" orgid="META" resource="getxml?META:2.7.11.15-RXN" /><Reaction frameid="2.7.11.4-RXN" orgid="META" resource="getxml?META:2.7.11.4-RXN" /><Reaction frameid="2.7.11.14-RXN" orgid="META" resource="getxml?META:2.7.11.14-RXN" /><Reaction frameid="2.7.11.6-RXN" orgid="META" resource="getxml?META:2.7.11.6-RXN" /><Reaction frameid="2.7.11.10-RXN" orgid="META" resource="getxml?META:2.7.11.10-RXN" /><Reaction frameid="2.7.11.16-RXN" orgid="META" resource="getxml?META:2.7.11.16-RXN" /><Reaction frameid="2.7.11.20-RXN" orgid="META" resource="getxml?META:2.7.11.20-RXN" /><Reaction frameid="2.7.11.8-RXN" orgid="META" resource="getxml?META:2.7.11.8-RXN" /><Reaction frameid="2.7.11.9-RXN" orgid="META" resource="getxml?META:2.7.11.9-RXN" /><Reaction frameid="6.3.1.10-RXN" orgid="META" resource="getxml?META:6.3.1.10-RXN" /><Reaction frameid="RXN-8627" orgid="META" resource="getxml?META:RXN-8627" /><Reaction frameid="CITRATE--COA-LIGASE-RXN" orgid="META" resource="getxml?META:CITRATE--COA-LIGASE-RXN" /><Reaction frameid="RXN0-5116" orgid="META" resource="getxml?META:RXN0-5116" /><Reaction frameid="RXN0-5121" orgid="META" resource="getxml?META:RXN0-5121" /><Reaction frameid="RXN0-5122" orgid="META" resource="getxml?META:RXN0-5122" /><Reaction frameid="RXN0-5123" orgid="META" resource="getxml?META:RXN0-5123" /><Reaction frameid="RXN-8087" orgid="META" resource="getxml?META:RXN-8087" /><Reaction frameid="UREA-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:UREA-CARBOXYLASE-RXN" /><Reaction frameid="RXN-7204" orgid="META" resource="getxml?META:RXN-7204" /><Reaction frameid="RXN-7203" orgid="META" resource="getxml?META:RXN-7203" /><Reaction frameid="RXN-7202" orgid="META" resource="getxml?META:RXN-7202" /><Reaction frameid="RXN-7186" orgid="META" resource="getxml?META:RXN-7186" /><Reaction frameid="RXN-7185" orgid="META" resource="getxml?META:RXN-7185" /><Reaction frameid="RXN-7184" orgid="META" resource="getxml?META:RXN-7184" /><Reaction frameid="RXN-7182" orgid="META" resource="getxml?META:RXN-7182" /><Reaction frameid="GLYCEROL-KIN-RXN" orgid="META" resource="getxml?META:GLYCEROL-KIN-RXN" /><Reaction frameid="2.7.1.88-RXN" orgid="META" resource="getxml?META:2.7.1.88-RXN" /><Reaction frameid="GLUCONOKIN-RXN" orgid="META" resource="getxml?META:GLUCONOKIN-RXN" /><Reaction frameid="TRIOKINASE-RXN" orgid="META" resource="getxml?META:TRIOKINASE-RXN" /><Reaction frameid="GAMMA-GLUTAMYLHISTAMINE-SYNTHASE-RXN" orgid="META" resource="getxml?META:GAMMA-GLUTAMYLHISTAMINE-SYNTHASE-RXN" /><Reaction frameid="BIS5-ADENOSYL-TRIPHOSPHATASE-RXN" orgid="META" resource="getxml?META:BIS5-ADENOSYL-TRIPHOSPHATASE-RXN" /><Reaction frameid="2.7.1.148-RXN" orgid="META" resource="getxml?META:2.7.1.148-RXN" /><Reaction frameid="2.7.1.151-RXN" orgid="META" resource="getxml?META:2.7.1.151-RXN" /><Reaction frameid="RXN0-704" orgid="META" resource="getxml?META:RXN0-704" /><Reaction frameid="RXN0-742" orgid="META" resource="getxml?META:RXN0-742" /><Reaction frameid="RXN0-382" orgid="META" resource="getxml?META:RXN0-382" /><Reaction frameid="DCDPKIN-RXN" orgid="META" resource="getxml?META:DCDPKIN-RXN" /><Reaction frameid="DGDPKIN-RXN" orgid="META" resource="getxml?META:DGDPKIN-RXN" /><Reaction frameid="R342-RXN" orgid="META" resource="getxml?META:R342-RXN" /><Reaction frameid="R341-RXN" orgid="META" resource="getxml?META:R341-RXN" /><Reaction frameid="R227-RXN" orgid="META" resource="getxml?META:R227-RXN" /><Reaction frameid="R226-RXN" orgid="META" resource="getxml?META:R226-RXN" /><Reaction frameid="6.3.1.9-RXN" orgid="META" resource="getxml?META:6.3.1.9-RXN" /><Reaction frameid="GLUTARATE--COA-LIGASE-RXN" orgid="META" resource="getxml?META:GLUTARATE--COA-LIGASE-RXN" /><Reaction frameid="6.3.2.7-RXN" orgid="META" resource="getxml?META:6.3.2.7-RXN" /><Reaction frameid="INDOLEACETATE--LYSINE-LIGASE-RXN" orgid="META" resource="getxml?META:INDOLEACETATE--LYSINE-LIGASE-RXN" /><Reaction frameid="HOMOGLUTATHIONE-SYNTHASE-RXN" orgid="META" resource="getxml?META:HOMOGLUTATHIONE-SYNTHASE-RXN" /><Reaction frameid="ASCORBATE-PHOSPHORYLATION-RXN" orgid="META" resource="getxml?META:ASCORBATE-PHOSPHORYLATION-RXN" /><Reaction frameid="2.7.1.127-RXN" orgid="META" resource="getxml?META:2.7.1.127-RXN" /><Reaction frameid="BETA-GLUCOSIDE-KINASE-RXN" orgid="META" resource="getxml?META:BETA-GLUCOSIDE-KINASE-RXN" /><Reaction frameid="ADENOSINE-KINASE-RXN" orgid="META" resource="getxml?META:ADENOSINE-KINASE-RXN" /><Reaction frameid="6-PHOSPHOFRUCTO-2-KINASE-RXN" orgid="META" resource="getxml?META:6-PHOSPHOFRUCTO-2-KINASE-RXN" /><Reaction frameid="5-METHYLTHIORIBOSE-KINASE-RXN" orgid="META" resource="getxml?META:5-METHYLTHIORIBOSE-KINASE-RXN" /><Reaction frameid="ETHANOLAMINE-KINASE-RXN" orgid="META" resource="getxml?META:ETHANOLAMINE-KINASE-RXN" /><Reaction frameid="ERYTHRITOL-KINASE-RXN" orgid="META" resource="getxml?META:ERYTHRITOL-KINASE-RXN" /><Reaction frameid="DEPHOSPHO-REDUCTASE-KINASE-KINASE-RXN" orgid="META" resource="getxml?META:DEPHOSPHO-REDUCTASE-KINASE-KINASE-RXN" /><Reaction frameid="DEHYDOGLUCONOKINASE-RXN" orgid="META" resource="getxml?META:DEHYDOGLUCONOKINASE-RXN" /><Reaction frameid="CHOLINE-KINASE-RXN" orgid="META" resource="getxml?META:CHOLINE-KINASE-RXN" /><Reaction frameid="HYGROMYCIN-B-KINASE-RXN" orgid="META" resource="getxml?META:HYGROMYCIN-B-KINASE-RXN" /><Reaction frameid="HAMAMELOSE-KINASE-RXN" orgid="META" resource="getxml?META:HAMAMELOSE-KINASE-RXN" /><Reaction frameid="GLYCERONE-KINASE-RXN" orgid="META" resource="getxml?META:GLYCERONE-KINASE-RXN" /><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHORIBULOKINASE-RXN" /><Reaction frameid="NADH-KINASE-RXN" orgid="META" resource="getxml?META:NADH-KINASE-RXN" /><Reaction frameid="MYO-INOSITOL-1-KINASE-RXN" orgid="META" resource="getxml?META:MYO-INOSITOL-1-KINASE-RXN" /><Reaction frameid="MEVALONATE-KINASE-RXN" orgid="META" resource="getxml?META:MEVALONATE-KINASE-RXN" /><Reaction frameid="STREPTOMYCIN-3-KINASE-RXN" orgid="META" resource="getxml?META:STREPTOMYCIN-3-KINASE-RXN" /><Reaction frameid="SCYLLO-INOSAMINE-KINASE-RXN" orgid="META" resource="getxml?META:SCYLLO-INOSAMINE-KINASE-RXN" /><Reaction frameid="RIBOSYLNICOTINAMIDE-KINASE-RXN" orgid="META" resource="getxml?META:RIBOSYLNICOTINAMIDE-KINASE-RXN" /><Reaction frameid="PSEUDOURIDINE-KINASE-RXN" orgid="META" resource="getxml?META:PSEUDOURIDINE-KINASE-RXN" /><Reaction frameid="XYLITOL-KINASE-RXN" orgid="META" resource="getxml?META:XYLITOL-KINASE-RXN" /><Reaction frameid="TROPOMYOSIN-KINASE-RXN" orgid="META" resource="getxml?META:TROPOMYOSIN-KINASE-RXN" /><Reaction frameid="TAU-PROTEIN-KINASE-RXN" orgid="META" resource="getxml?META:TAU-PROTEIN-KINASE-RXN" /><Reaction frameid="STREPTOMYCIN-6-KINASE-RXN" orgid="META" resource="getxml?META:STREPTOMYCIN-6-KINASE-RXN" /><Reaction frameid="AGMATINE-KINASE-RXN" orgid="META" resource="getxml?META:AGMATINE-KINASE-RXN" /><Reaction frameid="OPHELINE-KINASE-RXN" orgid="META" resource="getxml?META:OPHELINE-KINASE-RXN" /><Reaction frameid="CREATINE-KINASE-RXN" orgid="META" resource="getxml?META:CREATINE-KINASE-RXN" /><Reaction frameid="GUANIDOACETATE-KINASE-RXN" orgid="META" resource="getxml?META:GUANIDOACETATE-KINASE-RXN" /><Reaction frameid="ARGININE-KINASE-RXN" orgid="META" resource="getxml?META:ARGININE-KINASE-RXN" /><Reaction frameid="2.7.4.10-RXN" orgid="META" resource="getxml?META:2.7.4.10-RXN" /><Reaction frameid="FARNESYL-DIPHOSPHATE-KINASE-RXN" orgid="META" resource="getxml?META:FARNESYL-DIPHOSPHATE-KINASE-RXN" /><Reaction frameid="PHOSPHOMEVALONATE-KINASE-RXN" orgid="META" resource="getxml?META:PHOSPHOMEVALONATE-KINASE-RXN" /><Reaction frameid="THIAMIN-DIPHOSPHATE-KINASE-RXN" orgid="META" resource="getxml?META:THIAMIN-DIPHOSPHATE-KINASE-RXN" /><Reaction frameid="5-OXOPROLINASE-ATP-HYDROLYSING-RXN" orgid="META" resource="getxml?META:5-OXOPROLINASE-ATP-HYDROLYSING-RXN" /><Reaction frameid="3.5.2.14-RXN" orgid="META" resource="getxml?META:3.5.2.14-RXN" /><Reaction frameid="LYXK-RXN" orgid="META" resource="getxml?META:LYXK-RXN" /><Reaction frameid="TAGAKIN-RXN" orgid="META" resource="getxml?META:TAGAKIN-RXN" /><Reaction frameid="D-RIBULOKIN-RXN" orgid="META" resource="getxml?META:D-RIBULOKIN-RXN" /><Reaction frameid="DALADALALIG-RXN" orgid="META" resource="getxml?META:DALADALALIG-RXN" /><Reaction frameid="UDP-NACMURALGLDAPLIG-RXN" orgid="META" resource="getxml?META:UDP-NACMURALGLDAPLIG-RXN" /><Reaction frameid="UDP-NACMUR-ALA-LIG-RXN" orgid="META" resource="getxml?META:UDP-NACMUR-ALA-LIG-RXN" /><Reaction frameid="3.6.1.41-RXN" orgid="META" resource="getxml?META:3.6.1.41-RXN" /><Reaction frameid="PHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:PHOSICITDEHASE-RXN" /><Reaction frameid="GLUTKIN-RXN" orgid="META" resource="getxml?META:GLUTKIN-RXN" /><Reaction frameid="ACETYLGLUTKIN-RXN" orgid="META" resource="getxml?META:ACETYLGLUTKIN-RXN" /><Reaction frameid="GALACTOKIN-RXN" orgid="META" resource="getxml?META:GALACTOKIN-RXN" /><Reaction frameid="PANTOTHENATE-KIN-RXN" orgid="META" resource="getxml?META:PANTOTHENATE-KIN-RXN" /><Reaction frameid="DEPHOSPHOCOAKIN-RXN" orgid="META" resource="getxml?META:DEPHOSPHOCOAKIN-RXN" /><Reaction frameid="HOMOSERKIN-RXN" orgid="META" resource="getxml?META:HOMOSERKIN-RXN" /><Reaction frameid="FUCULOKIN-RXN" orgid="META" resource="getxml?META:FUCULOKIN-RXN" /><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /><Reaction frameid="XYLULOKIN-RXN" orgid="META" resource="getxml?META:XYLULOKIN-RXN" /><Reaction frameid="1PFRUCTPHOSN-RXN" orgid="META" resource="getxml?META:1PFRUCTPHOSN-RXN" /><Reaction frameid="THI-P-KIN-RXN" orgid="META" resource="getxml?META:THI-P-KIN-RXN" /><Reaction frameid="PYRIMSYN3-RXN" orgid="META" resource="getxml?META:PYRIMSYN3-RXN" /><Reaction frameid="UDPKIN-RXN" orgid="META" resource="getxml?META:UDPKIN-RXN" /><Reaction frameid="DUDPKIN-RXN" orgid="META" resource="getxml?META:DUDPKIN-RXN" /><Reaction frameid="DTDPKIN-RXN" orgid="META" resource="getxml?META:DTDPKIN-RXN" /><Reaction frameid="GDPKIN-RXN" orgid="META" resource="getxml?META:GDPKIN-RXN" /><Reaction frameid="SAICARSYN-RXN" orgid="META" resource="getxml?META:SAICARSYN-RXN" /><Reaction frameid="DIHYDROFOLATESYNTH-RXN" orgid="META" resource="getxml?META:DIHYDROFOLATESYNTH-RXN" /><Reaction frameid="GLYRIBONUCSYN-RXN" orgid="META" resource="getxml?META:GLYRIBONUCSYN-RXN" /><Reaction frameid="AIRS-RXN" orgid="META" resource="getxml?META:AIRS-RXN" /><Reaction frameid="FGAMSYN-RXN" orgid="META" resource="getxml?META:FGAMSYN-RXN" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

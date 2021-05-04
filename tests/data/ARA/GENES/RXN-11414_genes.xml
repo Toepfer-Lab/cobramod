@@ -1,0 +1,53 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:RXN-11414%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=ARA:RXN-11414&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="ARA" version="17.1">
+      <species datatype="string">Arabidopsis thaliana</species>
+      <strain datatype="string">col</strain>
+    </PGDB>
+  </metadata>
+  <Gene ID="ARA:AT4G13770" detail="full" frameid="AT4G13770" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-4" orgid="ARA" resource="getxml?ARA:CHROMOSOME-4" />
+    </replicon>
+    <product>
+      <Protein frameid="AT4G13770-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G13770-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT4G13770.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT4G13770.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ARRAYEXPRESS</dblink-db>
+      <dblink-oid>P48421</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ebi.ac.uk/gxa/query?geneQuery=P48421</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G13770</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G13770</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G13770</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G13770</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">7990481</left-end-position>
+    <accession-1 datatype="string">At4g13770</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">42.994152</centisome-position>
+    <right-end-position datatype="integer">7992305</right-end-position>
+    <common-name datatype="string">CYP83A1</common-name>
+    <component-of />
+  </Gene>
+</ptools-xml>

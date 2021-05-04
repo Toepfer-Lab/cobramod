@@ -1,0 +1,367 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:TRIOSEPISOMERIZATION-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:TRIOSEPISOMERIZATION-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:TRIOSEPISOMERIZATION-RXN" detail="full" frameid="TRIOSEPISOMERIZATION-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR104918</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR104918</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>18588</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=18588</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01015</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01015</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19118</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19118</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P21820</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P21820</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48501</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48501</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P62002</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P62002</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O27120</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O27120</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P27876</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P27876</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9PMQ6</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9PMQ6</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P19583</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P19583</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9UXX2</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9UXX2</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P47721</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P47721</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P47670</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P47670</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P50918</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P50918</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P43727</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P43727</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q58923</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q58923</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O28965</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O28965</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q59182</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q59182</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O59536</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O59536</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P36204</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P36204</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q9JW31</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q9JW31</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P04828</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P04828</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00943</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00943</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00942</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00942</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00940</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00940</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P60175</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P60175</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P0A858</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P0A858</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P60174</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P60174</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00941</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00941</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P15426</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P15426</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P17751</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P17751</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P00939</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P00939</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P12863</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P12863</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P07669</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P07669</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P35144</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P35144</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48494</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48494</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7M4X7</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7M4X7</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P29613</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P29613</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P30741</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P30741</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q01893</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q01893</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48499</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48499</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48496</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48496</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46226</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46226</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46225</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46225</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48492</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48492</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q56738</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q56738</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>Q7LZE5</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/Q7LZE5</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P46711</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P46711</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O32757</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O32757</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>O74067</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/O74067</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P48491</dblink-oid>
+<dblink-relationship>RELATED-TO</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P48491</dblink-URL>
+</dblink>
+<ec-number>EC-5.3.1.1<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:TRIOSEPISOMERIZATION-ENZRXN" detail="low" frameid="TRIOSEPISOMERIZATION-ENZRXN" orgid="META"><common-name datatype="string">triose-phosphate isomerase</common-name>
+<enzyme><Protein frameid="TPI" orgid="META" resource="getxml?META:TPI" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+<synonym datatype="string">triose phosphate isomerase</synonym>
+<synonym datatype="string">triosephosphate mutase</synonym>
+<synonym datatype="string">phosphotriose isomerase</synonym>
+<synonym datatype="string">TIM</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-1761" detail="low" frameid="ENZRXN66-1761" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX66-210" orgid="META" resource="getxml?META:CPLX66-210" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-16056" detail="low" frameid="ENZRXN-16056" orgid="META"><common-name datatype="string">D-glyceraldehyde-3-phosphate aldose-ketose-isomerase</common-name>
+<enzyme><Protein frameid="CPLX-7765" orgid="META" resource="getxml?META:CPLX-7765" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-15982" detail="low" frameid="ENZRXN-15982" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX-7745" orgid="META" resource="getxml?META:CPLX-7745" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13912" detail="low" frameid="ENZRXN-13912" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX-7333" orgid="META" resource="getxml?META:CPLX-7333" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13908" detail="low" frameid="ENZRXN-13908" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX-7329" orgid="META" resource="getxml?META:CPLX-7329" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13734" detail="low" frameid="ENZRXN-13734" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-12893" orgid="META" resource="getxml?META:MONOMER-12893" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13732" detail="low" frameid="ENZRXN-13732" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-12891" orgid="META" resource="getxml?META:MONOMER-12891" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-13729" detail="low" frameid="ENZRXN-13729" orgid="META"><common-name datatype="string">triose-phosphate isomerase</common-name>
+<enzyme><Protein frameid="AT3G55440-MONOMER" orgid="META" resource="getxml?META:AT3G55440-MONOMER" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12254" detail="low" frameid="ENZRXN-12254" orgid="META"><common-name datatype="string">triose phosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX-6993" orgid="META" resource="getxml?META:CPLX-6993" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-9341" detail="low" frameid="ENZRXN-9341" orgid="META"><common-name datatype="string">triose phosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-9181" orgid="META" resource="getxml?META:MONOMER-9181" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2866" detail="low" frameid="ENZRXN-2866" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-547" orgid="META" resource="getxml?META:MONOMER-547" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+<synonym datatype="string">TIM</synonym>
+<synonym datatype="string">phosphotriose isomerase</synonym>
+<synonym datatype="string">triosephosphate mutase</synonym>
+<synonym datatype="string">D-glyceraldehyde-3-phosphate ketol-isomerase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2702" detail="low" frameid="ENZRXN-2702" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX-1864" orgid="META" resource="getxml?META:CPLX-1864" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+<synonym datatype="string">TPI</synonym>
+<synonym datatype="string">phosphotriose isomerase</synonym>
+<synonym datatype="string">triosephosphate mutase</synonym>
+<synonym datatype="string">D-glyceraldehyde-3-phosphate ketol-isomerase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-162" detail="low" frameid="ENZRXN-162" orgid="META"><common-name datatype="string">triosephosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX-142" orgid="META" resource="getxml?META:CPLX-142" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="#META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+<synonym datatype="string">TIM</synonym>
+<synonym datatype="string">phosphotriose isomerase</synonym>
+<synonym datatype="string">triosephosphate mutase</synonym>
+<synonym datatype="string">D-glyceraldehyde-3-phosphate ketol-isomerase</synonym>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-1.8299866<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="ANAGLYCOLYSIS-PWY" orgid="META" resource="getxml?META:ANAGLYCOLYSIS-PWY" /><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /><Pathway frameid="PWY-5484" orgid="META" resource="getxml?META:PWY-5484" /><Pathway frameid="P341-PWY" orgid="META" resource="getxml?META:P341-PWY" /><Pathway frameid="PWY-6142" orgid="META" resource="getxml?META:PWY-6142" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY-7003" orgid="META" resource="getxml?META:PWY-7003" /><Pathway frameid="PWY66-373" orgid="META" resource="getxml?META:PWY66-373" /><Pathway frameid="PWY66-399" orgid="META" resource="getxml?META:PWY66-399" /><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /><Pathway frameid="P185-PWY" orgid="META" resource="getxml?META:P185-PWY" /><Pathway frameid="PWY-1042" orgid="META" resource="getxml?META:PWY-1042" /></in-pathway>
+<left><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="getxml?META:DIHYDROXY-ACETONE-PHOSPHATE" /></right>
+</Reaction>
+</ptools-xml>

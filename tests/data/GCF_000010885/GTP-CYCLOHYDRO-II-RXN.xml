@@ -14,11 +14,19 @@
 </metadata>
 <Reaction ID="GCF_000010885:GTP-CYCLOHYDRO-II-RXN" detail="full" frameid="GTP-CYCLOHYDRO-II-RXN" orgid="GCF_000010885"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="GCF_000010885" resource="getxml?GCF_000010885:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="GCF_000010885" resource="getxml?GCF_000010885:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-3.5.4.25<official>T</official>
+</ec-number>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="GCF_000010885" resource="getxml?GCF_000010885:PROTON" /><coefficient datatype="integer">2</coefficient>
+</right>
+<right><Compound frameid="PPI" orgid="GCF_000010885" resource="getxml?GCF_000010885:PPI" /></right>
+<right><Compound frameid="DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" orgid="GCF_000010885" resource="getxml?GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" /></right>
+<right><Compound frameid="FORMATE" orgid="GCF_000010885" resource="getxml?GCF_000010885:FORMATE" /></right>
 <credits><imported-from-meta><date datatype="date">2019-02-06</date>
-<Organization ID="GCF_000010885:SRI" detail="full" frameid="SRI" orgid="GCF_000010885"><common-name datatype="string">SRI International</common-name>
+<Organization ID="GCF_000010885:SRI" detail="full" frameid="SRI" orgid="GCF_000010885"><email datatype="string">ptools-support@ai.sri.com</email>
+<common-name datatype="string">SRI International</common-name>
 <abbrev-name datatype="string">SRI International</abbrev-name>
 <url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<email datatype="string">ptools-support@ai.sri.com</email>
 </Organization>
 </imported-from-meta>
 </credits>
@@ -34,13 +42,5 @@
 </enzymatic-reaction>
 <orphan>NO</orphan>
 <gibbs-0 datatype="float" units="kcal/mol">-96.9801</gibbs-0>
-<ec-number>EC-3.5.4.25<official>T</official>
-</ec-number>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="GCF_000010885" resource="getxml?GCF_000010885:PROTON" /><coefficient datatype="integer">2</coefficient>
-</right>
-<right><Compound frameid="PPI" orgid="GCF_000010885" resource="getxml?GCF_000010885:PPI" /></right>
-<right><Compound frameid="DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" orgid="GCF_000010885" resource="getxml?GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" /></right>
-<right><Compound frameid="FORMATE" orgid="GCF_000010885" resource="getxml?GCF_000010885:FORMATE" /></right>
 </Reaction>
 </ptools-xml>

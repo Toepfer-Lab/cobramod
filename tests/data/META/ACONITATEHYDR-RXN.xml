@@ -1,0 +1,88 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ACONITATEHYDR-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ACONITATEHYDR-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Reaction ID="META:ACONITATEHYDR-RXN" detail="full" frameid="ACONITATEHYDR-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<common-name datatype="string">cis-aconitate hydratase</common-name>
+<dblink><dblink-db>METANETX-RXN</dblink-db>
+<dblink-oid>MNXR115664</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/equa_info/MNXR115664</dblink-URL>
+</dblink>
+<dblink><dblink-db>RHEA</dblink-db>
+<dblink-oid>22147</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.rhea-db.org/reaction?id=22147</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01900</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01900</dblink-URL>
+</dblink>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ACONITATEHYDR-ENZRXN" detail="low" frameid="ACONITATEHYDR-ENZRXN" orgid="META"><common-name datatype="string">D-threo-isocitrate hydro-lyase (cis-aconitate-forming)</common-name>
+<enzyme><Protein frameid="CPLX0-7760" orgid="META" resource="getxml?META:CPLX0-7760" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ACONITATEHYDRB-ENZRXN" detail="low" frameid="ACONITATEHYDRB-ENZRXN" orgid="META"><common-name datatype="string">D-&lt;i&gt;threo&lt;/i&gt;-isocitrate hydro-lyase</common-name>
+<enzyme><Protein frameid="CPLX0-7761" orgid="META" resource="getxml?META:CPLX0-7761" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+<synonym datatype="string">aconitase B</synonym>
+<synonym datatype="string">isocitrate hydro-lyase</synonym>
+<synonym datatype="string">aconitate hydratase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN3O-3156" detail="low" frameid="ENZRXN3O-3156" orgid="META"><common-name datatype="string">aconitate hydratase</common-name>
+<enzyme><Protein frameid="YLR304C-MONOMER" orgid="META" resource="getxml?META:YLR304C-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+<synonym datatype="string">aconitase</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-3721" detail="low" frameid="ENZRXN66-3721" orgid="META"><common-name datatype="string">aconitate hydratase</common-name>
+<enzyme><Protein frameid="HS02077-MONOMER" orgid="META" resource="getxml?META:HS02077-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN66-3843" detail="low" frameid="ENZRXN66-3843" orgid="META"><common-name datatype="string">aconitate hydratase</common-name>
+<enzyme><Protein frameid="HS04597-MONOMER" orgid="META" resource="getxml?META:HS04597-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXNT9-2104" detail="low" frameid="ENZRXNT9-2104" orgid="META"><common-name datatype="string">aconitase</common-name>
+<enzyme><Protein frameid="AT4G35830-MONOMER" orgid="META" resource="getxml?META:AT4G35830-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+<synonym datatype="string">aconitate hydratase</synonym>
+<synonym datatype="string">isocitrate hydrolyase (cis-aconitate-forming)</synonym>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12462" detail="low" frameid="ENZRXN-12462" orgid="META"><common-name datatype="string">D-threo-isocitrate hydro-lyase (cis-aconitate-forming)</common-name>
+<enzyme><Protein frameid="G185E-5659-MONOMER" orgid="META" resource="getxml?META:G185E-5659-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-12353" detail="low" frameid="ENZRXN-12353" orgid="META"><common-name datatype="string">D-threo-isocitrate hydro-lyase (cis-aconitate-forming)</common-name>
+<enzyme><Protein frameid="MONOMER-11856" orgid="META" resource="getxml?META:MONOMER-11856" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="META" resource="#META:ACONITATEHYDR-RXN" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-3.1329956<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<in-pathway><Pathway frameid="P105-PWY" orgid="META" resource="getxml?META:P105-PWY" /><Pathway frameid="PWY-6969" orgid="META" resource="getxml?META:PWY-6969" /><Pathway frameid="PWY-7254" orgid="META" resource="getxml?META:PWY-7254" /><Pathway frameid="PWY-5913" orgid="META" resource="getxml?META:PWY-5913" /><Pathway frameid="PWY66-398" orgid="META" resource="getxml?META:PWY66-398" /><Pathway frameid="PWY-6728" orgid="META" resource="getxml?META:PWY-6728" /><Pathway frameid="PWY-5690" orgid="META" resource="getxml?META:PWY-5690" /><Pathway frameid="TCA" orgid="META" resource="getxml?META:TCA" /><Pathway frameid="PWY-5392" orgid="META" resource="getxml?META:PWY-5392" /><Pathway frameid="P23-PWY" orgid="META" resource="getxml?META:P23-PWY" /><Reaction frameid="RXN-14047" orgid="META" resource="getxml?META:RXN-14047" /><Pathway frameid="PWY-7124" orgid="META" resource="getxml?META:PWY-7124" /><Pathway frameid="GLYOXYLATE-BYPASS" orgid="META" resource="getxml?META:GLYOXYLATE-BYPASS" /><Pathway frameid="PWY-6549" orgid="META" resource="getxml?META:PWY-6549" /><Pathway frameid="FERMENTATION-PWY" orgid="META" resource="getxml?META:FERMENTATION-PWY" /><Pathway frameid="REDCITCYC" orgid="META" resource="getxml?META:REDCITCYC" /></in-pathway>
+<left><Compound frameid="CIS-ACONITATE" orgid="META" resource="getxml?META:CIS-ACONITATE" /></left>
+<left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="THREO-DS-ISO-CITRATE" orgid="META" resource="getxml?META:THREO-DS-ISO-CITRATE" /></right>
+</Reaction>
+</ptools-xml>

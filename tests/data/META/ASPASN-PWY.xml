@@ -1,0 +1,116 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ASPASN-PWY"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ASPASN-PWY</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Pathway ID="META:ASPASN-PWY" detail="full" frameid="ASPASN-PWY" orgid="META"><parent><Pathway class="true" frameid="Amino-Acid-Biosynthesis" orgid="META" resource="getxml?META:Amino-Acid-Biosynthesis" /></parent>
+<parent><Pathway class="true" frameid="Super-Pathways" orgid="META" resource="getxml?META:Super-Pathways" /></parent>
+<comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=L-ASPARTATE"&gt;L-aspartate&lt;/a&gt; undergoes a number of reactions that are not in any linear order.  &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-4.3.1.1"&gt;EC 4.3.1.1, aspartate ammonia-lyase&lt;/a&gt; (aspartase), converts the TCA intermediate &lt;a href="/compound?orgid=META&amp;id=FUM"&gt;fumarate&lt;/a&gt; to &lt;a href="/compound?orgid=META&amp;id=L-ASPARTATE"&gt;L-aspartate&lt;/a&gt;.  &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-6.3.1.1"&gt;EC 6.3.1.1, aspartate&amp;mdash;ammonia ligase&lt;/a&gt;, irreversibly converts &lt;a href="/compound?orgid=META&amp;id=L-ASPARTATE"&gt;L-aspartate&lt;/a&gt; to &lt;a href="/compound?orgid=META&amp;id=ASN"&gt;L-asparagine&lt;/a&gt;. &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.5.1.1"&gt;EC 3.5.1.1, asparaginase&lt;/a&gt;, facilitates reversible interconversion of &lt;a href="/compound?orgid=META&amp;id=L-ASPARTATE"&gt;L-aspartate&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=ASN"&gt;L-asparagine&lt;/a&gt;.
+&lt;p&gt;
+In &lt;a href="/META/NEW-IMAGE?object=TAX-562"&gt;&lt;i&gt;Escherichia coli&lt;/i&gt;&lt;/a&gt; &lt;a href="/compound?orgid=META&amp;id=L-ASPARTATE"&gt;L-aspartate&lt;/a&gt; participates in at least two metabolic processes: the regeneration of &lt;a href="/compound?orgid=META&amp;id=OXALACETIC_ACID"&gt;oxaloacetate&lt;/a&gt; as amino-acceptor for enabling growth on &lt;a href="/compound?orgid=META&amp;id=GLT"&gt;L-glutamate&lt;/a&gt;, and the formation of &lt;a href="/compound?orgid=META&amp;id=FUM"&gt;fumarate&lt;/a&gt; and succinate during anaerobic growth on glucose [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/6088667"&gt;Guest84&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/2853974"&gt;Falzone88&lt;/a&gt;].
+&lt;p&gt;
+In addition to its role in synthesis of &lt;a href="/compound?orgid=META&amp;id=ASN"&gt;L-asparagine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=L-ASPARTATE"&gt;L-aspartate&lt;/a&gt; serves as a precursor in synthesis of &lt;a href="/compound?orgid=META&amp;id=LYS"&gt;L-lysine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=MET"&gt;L-methionine&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=THR"&gt;L-threonine&lt;/a&gt;, as well as pyrimidines.</comment>
+<common-name datatype="string">superpathway of L-aspartate and L-asparagine biosynthesis</common-name>
+<credits><created><date datatype="date">1995-02-08</date>
+<Person ID="META:riley" detail="full" frameid="riley" orgid="META"><comment datatype="string">Monica Riley (1926-2013) was a pioneer in the fields of molecular biology and microbial genome analysis. She was a co-founder of the EcoCyc database and curated a significant amount of material in its early days.</comment>
+<common-name datatype="string">Monica Riley</common-name>
+<affiliations><Organization ID="META:O-18" detail="full" frameid="O-18" orgid="META"><common-name datatype="string">Marine Biological Laboratory</common-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="O-18" orgid="META" resource="#META:O-18" /></created>
+</credits>
+<dblink><dblink-db>ECOCYC</dblink-db>
+<dblink-oid>ASPASN-PWY</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://biocyc.org/ECOLI/new-image?object=ASPASN-PWY</dblink-URL>
+</dblink>
+<reaction-ordering><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="getxml?META:ASNSYNA-RXN" /><predecessor-reactions><Reaction frameid="ASPARTASE-RXN" orgid="META" resource="getxml?META:ASPARTASE-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="getxml?META:ASPARAGHYD-RXN" /><predecessor-reactions><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="getxml?META:ASNSYNA-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="getxml?META:ASNSYNA-RXN" /><predecessor-reactions><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="getxml?META:ASPAMINOTRANS-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="ASPARTASE-RXN" orgid="META" resource="getxml?META:ASPARTASE-RXN" /><direction>R2L</direction>
+<left-primaries><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /></left-primaries>
+<right-primaries><Compound frameid="FUM" orgid="META" resource="getxml?META:FUM" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="getxml?META:ASPARAGHYD-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="ASN" orgid="META" resource="getxml?META:ASN" /></left-primaries>
+<right-primaries><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Pathway frameid="ASPARAGINESYN-PWY" orgid="META" resource="getxml?META:ASPARAGINESYN-PWY" /><direction>L2R</direction>
+</reaction-layout>
+<reaction-layout><Pathway frameid="ASPARTATESYN-PWY" orgid="META" resource="getxml?META:ASPARTATESYN-PWY" /><direction>L2R</direction>
+</reaction-layout>
+<reaction-list><Reaction frameid="ASPARTASE-RXN" orgid="META" resource="getxml?META:ASPARTASE-RXN" /><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="getxml?META:ASPARAGHYD-RXN" /><Pathway frameid="ASPARAGINESYN-PWY" orgid="META" resource="getxml?META:ASPARAGINESYN-PWY" /><Pathway frameid="ASPARTATESYN-PWY" orgid="META" resource="getxml?META:ASPARTATESYN-PWY" /></reaction-list>
+<species><Organism ID="META:TAX-511145" class="true" detail="full" frameid="TAX-511145" orgid="META"><parent><Organism class="true" frameid="TAX-83333" orgid="META" resource="getxml?META:TAX-83333" /></parent>
+<citation><Publication ID="META:PUB-23143106" detail="full" frameid="PUB-23143106" orgid="META"><author datatype="string">Keseler IM</author>
+<author datatype="string">Mackie A</author>
+<author datatype="string">Peralta-Gil M</author>
+<author datatype="string">Santos-Zavaleta A</author>
+<author datatype="string">Gama-Castro S</author>
+<author datatype="string">Bonavides-Martinez C</author>
+<author datatype="string">Fulcher C</author>
+<author datatype="string">Huerta AM</author>
+<author datatype="string">Kothari A</author>
+<author datatype="string">Krummenacker M</author>
+<author datatype="string">Latendresse M</author>
+<author datatype="string">Muniz-Rascado L</author>
+<author datatype="string">Ong Q</author>
+<author datatype="string">Paley S</author>
+<author datatype="string">Schroder I</author>
+<author datatype="string">Shearer AG</author>
+<author datatype="string">Subhraveti P</author>
+<author datatype="string">Travers M</author>
+<author datatype="string">Weerasinghe D</author>
+<author datatype="string">Weiss V</author>
+<author datatype="string">Collado-Vides J</author>
+<author datatype="string">Gunsalus RP</author>
+<author datatype="string">Paulsen I</author>
+<author datatype="string">Karp PD</author>
+<pubmed-id datatype="string">23143106</pubmed-id>
+<source datatype="string">Nucleic Acids Res 41(Database issue);D605-12</source>
+<title datatype="string">EcoCyc: fusing model organism databases with systems biology.</title>
+<year datatype="integer">2013</year>
+</Publication>
+</citation>
+<comment datatype="string">EcoCyc is a model-organism database for &lt;i&gt;Escherichia coli&lt;/i&gt; K-12 MG1655.  For more information, see URL EcoCyc.org.
+&lt;p&gt;
+The &lt;i&gt;E. coli&lt;/i&gt; genome sequence used in EcoCyc is GenBank accession number U00096.2.  Despite the
+involvement of EcoCyc staff in ongoing updates to the U00096 record, some annotation differences may
+be found between U00096 and EcoCyc, such as due to recent updates to EcoCyc.
+</comment>
+<common-name datatype="string">Escherichia coli</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+<rank>strain</rank>
+<strain-name datatype="string">K-12 substr. MG1655</strain-name>
+<synonym datatype="string">Escherichia coli str. K-12 substr. MG1655</synonym>
+<synonym datatype="string">Escherichia coli str. MG1655</synonym>
+<synonym datatype="string">Escherichia coli str. K12 substr. MG1655</synonym>
+<synonym datatype="string">Escherichia coli strain MG1655</synonym>
+<synonym datatype="string">Escherichia coli MG1655</synonym>
+</Organism>
+</species>
+<sub-pathways><Pathway frameid="GLUTDEG-PWY" orgid="META" resource="getxml?META:GLUTDEG-PWY" /><Pathway frameid="ASPARAGINESYN-PWY" orgid="META" resource="getxml?META:ASPARAGINESYN-PWY" /><Pathway frameid="ASPARTATESYN-PWY" orgid="META" resource="getxml?META:ASPARTATESYN-PWY" /></sub-pathways>
+<synonym datatype="string">Interconversion of L-aspartate and L-asparagine</synonym>
+<taxonomic-range><Organism ID="META:TAX-2" class="true" detail="full" frameid="TAX-2" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
+<common-name datatype="string">Bacteria &lt;bacteria&gt;</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
+</dblink>
+<rank>superkingdom</rank>
+<synonym datatype="string">eubacteria</synonym>
+<synonym datatype="string">Bacteria</synonym>
+</Organism>
+</taxonomic-range>
+</Pathway>
+</ptools-xml>

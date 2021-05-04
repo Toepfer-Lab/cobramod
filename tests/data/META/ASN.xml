@@ -1,0 +1,176 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ASN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ASN</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:ASN" detail="full" frameid="ASN" orgid="META"><parent><Compound class="true" frameid="Amino-Acids-20" orgid="META" resource="getxml?META:Amino-Acids-20" /></parent>
+<parent><Compound class="true" frameid="L-Amino-Acids" orgid="META" resource="getxml?META:L-Amino-Acids" /></parent>
+<parent><Compound class="true" frameid="Uncharged-polar-amino-acids" orgid="META" resource="getxml?META:Uncharged-polar-amino-acids" /></parent>
+<cml><molecule formalCharge="0" id="ASN" title="L-asparagine"><atomArray><atom elementType="C" id="ASN-atom1" x2="714.0" y2="1238.0" /><atom elementType="C" id="ASN-atom2" x2="714.0" y2="2062.0" /><atom elementType="C" id="ASN-atom3" x2="1429.0" y2="825.0" /><atom elementType="C" id="ASN-atom4" x2="1429.0" y2="2475.0" /><atom elementType="N" formalCharge="1" id="ASN-atom5" x2="0.0" y2="2475.0" /><atom elementType="N" id="ASN-atom6" x2="2143.0" y2="1238.0" /><atom elementType="O" id="ASN-atom7" x2="1429.0" y2="0.0" /><atom elementType="O" id="ASN-atom8" x2="1429.0" y2="3300.0" /><atom elementType="O" formalCharge="-1" id="ASN-atom9" x2="2144.0" y2="2062.0" /></atomArray>
+<bondArray><bond atomRefs="ASN-atom3 ASN-atom7" id="ASN-bond1" order="2" /><bond atomRefs="ASN-atom3 ASN-atom6" id="ASN-bond2" order="1" /><bond atomRefs="ASN-atom4 ASN-atom9" id="ASN-bond3" order="1" /><bond atomRefs="ASN-atom4 ASN-atom8" id="ASN-bond4" order="2" /><bond atomRefs="ASN-atom1 ASN-atom3" id="ASN-bond5" order="1" /><bond atomRefs="ASN-atom2 ASN-atom5" id="ASN-bond6" order="1" /><bond atomRefs="ASN-atom2 ASN-atom4" id="ASN-bond7" order="1" /><bond atomRefs="ASN-atom2 ASN-atom1" id="ASN-bond8" order="1" /></bondArray>
+<formula concise="C 4 H 8 N 2 O 3" /><float title="molecularWeight" units="g/mol">132.119</float>
+<string title="smiles">C(C[C@@H](C(=O)[O-])[NH3+])(N)=O</string>
+</molecule>
+</cml>
+<common-name datatype="string">L-asparagine</common-name>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/14808/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/14808/</dblink-URL>
+</dblink>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/148/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/148/</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM147</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM147</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Asparagine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Asparagine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>asn__L</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/asn__L</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC58048</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC58048</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00168</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00168</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>58048</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58048</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>6992089</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=6992089</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00152</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00152</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>70-47-3</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=70-47-3</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">-43.53103<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C4H8N2O3/c5-2(4(8)9)1-3(6)7/h2H,1,5H2,(H2,6,7)(H,8,9)/t2-/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=DCXYFEDJOCDNAF-REOHCLBHSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">132.119</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">132.0535</monoisotopic-mw>
+<pka1 datatype="float">2.02</pka1>
+<regulates><Regulation ID="META:REG0-6726" detail="low" frameid="REG0-6726" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ASNSYNA-ENZRXN" detail="low" frameid="ASNSYNA-ENZRXN" orgid="META"><common-name datatype="string">asparagine synthetase</common-name>
+<enzyme><Protein frameid="ASNSYNA-CPLX" orgid="META" resource="getxml?META:ASNSYNA-CPLX" /></enzyme>
+<reaction><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="getxml?META:ASNSYNA-RXN" /></reaction>
+<synonym datatype="string">aspartate-ammonia ligase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ASN" orgid="META" resource="#META:ASN" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11262" detail="low" frameid="REG0-11262" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ASPARAGHYDA-ENZRXN" detail="low" frameid="ASPARAGHYDA-ENZRXN" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
+<enzyme><Protein frameid="ANSA-CPLX" orgid="META" resource="getxml?META:ANSA-CPLX" /></enzyme>
+<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="getxml?META:ASPARAGHYD-RXN" /></reaction>
+<synonym datatype="string">L-asparagine aminohydrolase</synonym>
+<synonym datatype="string">asparaginase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ASN" orgid="META" resource="#META:ASN" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12070" detail="low" frameid="REG-12070" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13921" detail="low" frameid="ENZRXN-13921" orgid="META"><common-name datatype="string">asparagine synthetase</common-name>
+<enzyme><Protein frameid="CPLX-7338" orgid="META" resource="getxml?META:CPLX-7338" /></enzyme>
+<reaction><Reaction frameid="ASNSYNB-RXN" orgid="META" resource="getxml?META:ASNSYNB-RXN" /></reaction>
+<synonym datatype="string">asparagine synthase (glutamine hydrolyzing)</synonym>
+<synonym datatype="string">asparagine synthetase, glutamine-hydrolyzing</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ASN" orgid="META" resource="#META:ASN" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11984" detail="low" frameid="REG-11984" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14398" detail="low" frameid="ENZRXN-14398" orgid="META"><common-name datatype="string">ureidoglycolate lyase</common-name>
+<enzyme><Protein frameid="CPLX-7523" orgid="META" resource="getxml?META:CPLX-7523" /></enzyme>
+<reaction><Reaction frameid="UREIDOGLYCOLATE-LYASE-RXN" orgid="META" resource="getxml?META:UREIDOGLYCOLATE-LYASE-RXN" /></reaction>
+<synonym datatype="string">ureidoglycolate urea-lyase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ASN" orgid="META" resource="#META:ASN" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9518" detail="low" frameid="REG-9518" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3041" detail="low" frameid="ENZRXN-3041" orgid="META"><common-name datatype="string">glutamate dehydrogenase (NAD-dependent)</common-name>
+<enzyme><Protein frameid="CPLX-2101" orgid="META" resource="getxml?META:CPLX-2101" /></enzyme>
+<reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-RXN" /></reaction>
+<synonym datatype="string">glutamic dehydrogenase</synonym>
+<synonym datatype="string">L-glutamate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (deaminating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ASN" orgid="META" resource="#META:ASN" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8141" detail="low" frameid="REG-8141" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-7642" detail="low" frameid="ENZRXN-7642" orgid="META"><common-name datatype="string">glutamate synthase (NADH-dependent)</common-name>
+<enzyme><Protein frameid="MONOMER-7421" orgid="META" resource="getxml?META:MONOMER-7421" /></enzyme>
+<reaction><Reaction frameid="GLUTAMATE-SYNTHASE-NADH-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-NADH-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ASN" orgid="META" resource="#META:ASN" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">asparagine</synonym>
+<synonym datatype="string">&amp;alpha;-aminosuccinamic acid</synonym>
+<synonym datatype="string">(-)-asparagine</synonym>
+<synonym datatype="string">(S)-2,4-diamino-4-oxobutanoic acid</synonym>
+<synonym datatype="string">(S)-asparagine</synonym>
+<synonym datatype="string">2,4-diamino-4-oxobutanoic acid, (S)-</synonym>
+<synonym datatype="string">2-aminosuccinamic acid, L-</synonym>
+<synonym datatype="string">agedoite</synonym>
+<synonym datatype="string">altheine</synonym>
+<synonym datatype="string">asparagine acid</synonym>
+<synonym datatype="string">aspartic acid &amp;beta;-amide</synonym>
+<synonym datatype="string">butanoic acid, 2,4-diamino-4-oxo-, (S)-</synonym>
+<synonym datatype="string">L-2,4-diamino-4-oxobutanoic acid</synonym>
+<synonym datatype="string">L-asparatamine</synonym>
+<synonym datatype="string">L-&amp;beta;-asparagine</synonym>
+<synonym datatype="string">N</synonym>
+<synonym datatype="string">L-asn</synonym>
+<abbrev-name datatype="string">asn</abbrev-name>
+<appears-in-left-side-of><Reaction frameid="RXN-21104" orgid="META" resource="getxml?META:RXN-21104" /><Reaction frameid="RXN-21146" orgid="META" resource="getxml?META:RXN-21146" /><Reaction frameid="RXN-20896" orgid="META" resource="getxml?META:RXN-20896" /><Reaction frameid="TRANS-RXN-262" orgid="META" resource="getxml?META:TRANS-RXN-262" /><Reaction frameid="ASPARAGINE--TRNA-LIGASE-RXN" orgid="META" resource="getxml?META:ASPARAGINE--TRNA-LIGASE-RXN" /><Reaction frameid="RXN-16919" orgid="META" resource="getxml?META:RXN-16919" /><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="getxml?META:ASPARAGHYD-RXN" /><Reaction frameid="ASPARTYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:ASPARTYLTRANSFERASE-RXN" /><Reaction frameid="3-CYANOALANINE-HYDRATASE-RXN" orgid="META" resource="getxml?META:3-CYANOALANINE-HYDRATASE-RXN" /><Reaction frameid="RXN-14123" orgid="META" resource="getxml?META:RXN-14123" /><Reaction frameid="2.6.1.14-RXN" orgid="META" resource="getxml?META:2.6.1.14-RXN" /><Reaction frameid="ASPAROXO-RXN" orgid="META" resource="getxml?META:ASPAROXO-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="getxml?META:ASNSYNA-RXN" /><Reaction frameid="ASNSYNB-RXN" orgid="META" resource="getxml?META:ASNSYNB-RXN" /><Reaction frameid="RXN-12460" orgid="META" resource="getxml?META:RXN-12460" /><Reaction frameid="TRANS-RXN-262" orgid="META" resource="getxml?META:TRANS-RXN-262" /><Reaction frameid="6.3.1.4-RXN" orgid="META" resource="getxml?META:6.3.1.4-RXN" /><Reaction frameid="RXN0-6982" orgid="META" resource="getxml?META:RXN0-6982" /><Reaction frameid="3.2.2.11-RXN" orgid="META" resource="getxml?META:3.2.2.11-RXN" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

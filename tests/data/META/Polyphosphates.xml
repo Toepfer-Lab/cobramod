@@ -1,0 +1,50 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:Polyphosphates"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:Polyphosphates</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:Polyphosphates" class="true" detail="full" frameid="Polyphosphates" orgid="META"><parent><Compound class="true" frameid="Phosphates" orgid="META" resource="getxml?META:Phosphates" /></parent>
+<subclass><Compound class="true" frameid="Long-Chain-Polyphosphate" orgid="META" resource="getxml?META:Long-Chain-Polyphosphate" /></subclass>
+<instance><Compound frameid="PPI" orgid="META" resource="getxml?META:PPI" /></instance>
+<instance><Compound frameid="P3I" orgid="META" resource="getxml?META:P3I" /></instance>
+<instance><Compound frameid="P4I" orgid="META" resource="getxml?META:P4I" /></instance>
+<cml><molecule formalCharge="0" id="Polyphosphates" title="a+polyphosphate"><atomArray><atom elementType="O" id="Polyphosphates-atom1" x2="-28286.0" y2="-22982.0" /><atom elementType="O" id="Polyphosphates-atom2" x2="-28286.0" y2="-6482.0" /><atom elementType="O" id="Polyphosphates-atom3" x2="13848.0" y2="-14732.0" /><atom elementType="O" id="Polyphosphates-atom4" x2="5598.0" y2="-22982.0" /><atom elementType="O" id="Polyphosphates-atom5" x2="5598.0" y2="-6482.0" /><atom elementType="O" id="Polyphosphates-atom6" x2="-10902.0" y2="-22982.0" /><atom elementType="O" id="Polyphosphates-atom7" x2="-10902.0" y2="-6482.0" /><atom elementType="O" id="Polyphosphates-atom8" x2="-20036.0" y2="-14732.0" /><atom elementType="O" id="Polyphosphates-atom9" x2="-2652.0" y2="-14732.0" /><atom elementType="P" id="Polyphosphates-atom10" x2="-28286.0" y2="-14732.0" /><atom elementType="P" id="Polyphosphates-atom11" x2="5598.0" y2="-14732.0" /><atom elementType="P" id="Polyphosphates-atom12" x2="-10902.0" y2="-14732.0" /><atom elementType="R" id="Polyphosphates-atom13" x2="-36536.0" y2="-14732.0" /></atomArray>
+<bondArray><bond atomRefs="Polyphosphates-atom10 Polyphosphates-atom8" id="Polyphosphates-bond1" order="1" /><bond atomRefs="Polyphosphates-atom12 Polyphosphates-atom8" id="Polyphosphates-bond2" order="1" /><bond atomRefs="Polyphosphates-atom10 Polyphosphates-atom1" id="Polyphosphates-bond3" order="1" /><bond atomRefs="Polyphosphates-atom10 Polyphosphates-atom2" id="Polyphosphates-bond4" order="2" /><bond atomRefs="Polyphosphates-atom12 Polyphosphates-atom6" id="Polyphosphates-bond5" order="1" /><bond atomRefs="Polyphosphates-atom12 Polyphosphates-atom7" id="Polyphosphates-bond6" order="2" /><bond atomRefs="Polyphosphates-atom12 Polyphosphates-atom9" id="Polyphosphates-bond7" order="1" /><bond atomRefs="Polyphosphates-atom10 Polyphosphates-atom13" id="Polyphosphates-bond8" order="1" /><bond atomRefs="Polyphosphates-atom9 Polyphosphates-atom11" id="Polyphosphates-bond9" order="1" /><bond atomRefs="Polyphosphates-atom11 Polyphosphates-atom3" id="Polyphosphates-bond10" order="1" /><bond atomRefs="Polyphosphates-atom11 Polyphosphates-atom4" id="Polyphosphates-bond11" order="1" /><bond atomRefs="Polyphosphates-atom11 Polyphosphates-atom5" id="Polyphosphates-bond12" order="2" /></bondArray>
+<formula concise="" /><string title="smiles">OP([R])(=O)OP(OP(=O)(O)O)(=O)O</string>
+</molecule>
+</cml>
+<common-name datatype="string">a polyphosphate</common-name>
+<credits><last-curated><date datatype="date">2012-06-12</date>
+<Person ID="META:kothari" detail="full" frameid="kothari" orgid="META"><comment datatype="string">Anamika Kothari is a software developer that works on the Pathway Tools software at SRI International. She has also curated of compounds and reactions in the MetaCyc database.</comment>
+<common-name datatype="string">Anamika Kothari</common-name>
+<email datatype="string">kothari@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></last-curated>
+</credits>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd11772</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd11772</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM77738</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM77738</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00890</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00890</dblink-URL>
+</dblink>
+<synonym datatype="string">linear polyphosphates</synonym>
+<appears-in-left-side-of><Reaction frameid="ENDOPOLYPHOSPHATASE-RXN" orgid="META" resource="getxml?META:ENDOPOLYPHOSPHATASE-RXN" /></appears-in-left-side-of>
+</Compound>
+</ptools-xml>

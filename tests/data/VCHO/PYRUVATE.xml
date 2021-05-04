@@ -1,0 +1,96 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?VCHO:PYRUVATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>VCHO:PYRUVATE</query>
+<num_results>1</num_results>
+<PGDB orgid="VCHO" version="24.5"><species datatype="string">Vibrio cholerae</species>
+<strain datatype="string">O1 biovar El Tor str. N16961</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>243277</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=243277</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID="VCHO:PYRUVATE" detail="full" frameid="PYRUVATE" orgid="VCHO"><parent><Compound class="true" frameid="2-Oxo-carboxylates" orgid="VCHO" resource="getxml?VCHO:2-Oxo-carboxylates" /></parent>
+<parent><Compound class="true" frameid="Short-Chain-Carboxylates" orgid="VCHO" resource="getxml?VCHO:Short-Chain-Carboxylates" /></parent>
+<cml><molecule formalCharge="-1" id="PYRUVATE" title="pyruvate"><atomArray><atom elementType="C" id="PYRUVATE-atom1" x2="10938.0" y2="-2997.0" /><atom elementType="C" id="PYRUVATE-atom2" x2="3835.0" y2="1184.0" /><atom elementType="C" id="PYRUVATE-atom3" x2="-3786.0" y2="-2553.0" /><atom elementType="O" id="PYRUVATE-atom4" x2="3835.0" y2="9434.0" /><atom elementType="O" id="PYRUVATE-atom5" x2="-3786.0" y2="-10803.0" /><atom elementType="O" formalCharge="-1" id="PYRUVATE-atom6" x2="-10631.0" y2="2035.0" /></atomArray>
+<bondArray><bond atomRefs="PYRUVATE-atom6 PYRUVATE-atom3" id="PYRUVATE-bond1" order="1" /><bond atomRefs="PYRUVATE-atom5 PYRUVATE-atom3" id="PYRUVATE-bond2" order="2" /><bond atomRefs="PYRUVATE-atom2 PYRUVATE-atom3" id="PYRUVATE-bond3" order="1" /><bond atomRefs="PYRUVATE-atom4 PYRUVATE-atom2" id="PYRUVATE-bond4" order="2" /><bond atomRefs="PYRUVATE-atom1 PYRUVATE-atom2" id="PYRUVATE-bond5" order="1" /></bondArray>
+<formula concise="C 3 H 3 O 3" /><float title="molecularWeight" units="g/mol">87.055</float>
+<string title="smiles">CC(=O)C(=O)[O-]</string>
+</molecule>
+</cml>
+<synonym datatype="string">alpha-ketopropionic acid</synonym>
+<synonym datatype="string">BTS</synonym>
+<synonym datatype="string">&amp;alpha;-ketopropionic acid</synonym>
+<synonym datatype="string">acetylformic acid</synonym>
+<synonym datatype="string">pyroracemic acid</synonym>
+<synonym datatype="string">2-oxopropanoic acid</synonym>
+<synonym datatype="string">pyruvic acid</synonym>
+<synonym datatype="string">2-oxopropanoate</synonym>
+<synonym datatype="string">2-oxo-propionic acid</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-82.398705</gibbs-0>
+<inchi datatype="string">InChI=1S/C3H4O3/c1-2(4)3(5)6/h1H3,(H,5,6)/p-1</inchi>
+<inchi-key datatype="string">InChIKey=LCTONWCANYUPML-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">87.055</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">88.016045</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="2.6.1.30-RXN" orgid="VCHO" resource="getxml?VCHO:2.6.1.30-RXN" /><Reaction frameid="RXN0-5269" orgid="VCHO" resource="getxml?VCHO:RXN0-5269" /><Reaction frameid="RXN-12583" orgid="VCHO" resource="getxml?VCHO:RXN-12583" /><Reaction frameid="RXN0-1134" orgid="VCHO" resource="getxml?VCHO:RXN0-1134" /><Reaction frameid="RXN0-6684" orgid="VCHO" resource="getxml?VCHO:RXN0-6684" /><Reaction frameid="DXS-RXN" orgid="VCHO" resource="getxml?VCHO:DXS-RXN" /><Reaction frameid="ACETOLACTSYN-RXN" orgid="VCHO" resource="getxml?VCHO:ACETOLACTSYN-RXN" /><Reaction frameid="ACETOOHBUTSYN-RXN" orgid="VCHO" resource="getxml?VCHO:ACETOOHBUTSYN-RXN" /><Reaction frameid="RXN0-5261" orgid="VCHO" resource="getxml?VCHO:RXN0-5261" /><Reaction frameid="PEPDEPHOS-RXN" orgid="VCHO" resource="getxml?VCHO:PEPDEPHOS-RXN" /><Reaction frameid="2.6.1.46-RXN" orgid="VCHO" resource="getxml?VCHO:2.6.1.46-RXN" /><Reaction frameid="SERINE--PYRUVATE-AMINOTRANSFERASE-RXN" orgid="VCHO" resource="getxml?VCHO:SERINE--PYRUVATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="PYRUVDEH-RXN" orgid="VCHO" resource="getxml?VCHO:PYRUVDEH-RXN" /><Reaction frameid="DIHYDRODIPICSYN-RXN" orgid="VCHO" resource="getxml?VCHO:DIHYDRODIPICSYN-RXN" /><Reaction frameid="VALINE-PYRUVATE-AMINOTRANSFER-RXN" orgid="VCHO" resource="getxml?VCHO:VALINE-PYRUVATE-AMINOTRANSFER-RXN" /><Reaction frameid="PEPSYNTH-RXN" orgid="VCHO" resource="getxml?VCHO:PEPSYNTH-RXN" /><Reaction frameid="2.6.1.37-RXN" orgid="VCHO" resource="getxml?VCHO:2.6.1.37-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-8899" orgid="VCHO" resource="getxml?VCHO:RXN-8899" /><Reaction frameid="RXN-13990" orgid="VCHO" resource="getxml?VCHO:RXN-13990" /><Reaction frameid="RXN-15313" orgid="VCHO" resource="getxml?VCHO:RXN-15313" /><Reaction frameid="RXN-12729" orgid="VCHO" resource="getxml?VCHO:RXN-12729" /><Reaction frameid="RXN-17354" orgid="VCHO" resource="getxml?VCHO:RXN-17354" /><Reaction frameid="RXN-15127" orgid="VCHO" resource="getxml?VCHO:RXN-15127" /><Reaction frameid="RXN-9310" orgid="VCHO" resource="getxml?VCHO:RXN-9310" /><Reaction frameid="L-LACTDEHYDROGFMN-RXN" orgid="VCHO" resource="getxml?VCHO:L-LACTDEHYDROGFMN-RXN" /><Reaction frameid="DSERDEAM-RXN" orgid="VCHO" resource="getxml?VCHO:DSERDEAM-RXN" /><Reaction frameid="CYSTATHIONINE-BETA-LYASE-RXN" orgid="VCHO" resource="getxml?VCHO:CYSTATHIONINE-BETA-LYASE-RXN" /><Reaction frameid="ALANINE-DEHYDROGENASE-RXN" orgid="VCHO" resource="getxml?VCHO:ALANINE-DEHYDROGENASE-RXN" /><Reaction frameid="ACNEULY-RXN" orgid="VCHO" resource="getxml?VCHO:ACNEULY-RXN" /><Reaction frameid="4.3.1.17-RXN" orgid="VCHO" resource="getxml?VCHO:4.3.1.17-RXN" /><Reaction frameid="2.7.3.9-RXN" orgid="VCHO" resource="getxml?VCHO:2.7.3.9-RXN" /><Reaction frameid="TRYPTOPHAN-RXN" orgid="VCHO" resource="getxml?VCHO:TRYPTOPHAN-RXN" /><Reaction frameid="DLACTDEHYDROGFAD-RXN" orgid="VCHO" resource="getxml?VCHO:DLACTDEHYDROGFAD-RXN" /><Reaction frameid="DALADEHYDROG-RXN" orgid="VCHO" resource="getxml?VCHO:DALADEHYDROG-RXN" /><Reaction frameid="D-2-HYDROXY-ACID-DEHYDROGENASE-RXN" orgid="VCHO" resource="getxml?VCHO:D-2-HYDROXY-ACID-DEHYDROGENASE-RXN" /><Reaction frameid="RXN0-5240" orgid="VCHO" resource="getxml?VCHO:RXN0-5240" /><Reaction frameid="DLACTDEHYDROGNAD-RXN" orgid="VCHO" resource="getxml?VCHO:DLACTDEHYDROGNAD-RXN" /><Reaction frameid="ANTHRANSYN-RXN" orgid="VCHO" resource="getxml?VCHO:ANTHRANSYN-RXN" /><Reaction frameid="ADCLY-RXN" orgid="VCHO" resource="getxml?VCHO:ADCLY-RXN" /><Reaction frameid="L-LACTATE-DEHYDROGENASE-RXN" orgid="VCHO" resource="getxml?VCHO:L-LACTATE-DEHYDROGENASE-RXN" /><Reaction frameid="4OH2OXOGLUTARALDOL-RXN" orgid="VCHO" resource="getxml?VCHO:4OH2OXOGLUTARALDOL-RXN" /><Reaction frameid="ISOCHORMAT-RXN" orgid="VCHO" resource="getxml?VCHO:ISOCHORMAT-RXN" /><Reaction frameid="METHYLISOCITRATE-LYASE-RXN" orgid="VCHO" resource="getxml?VCHO:METHYLISOCITRATE-LYASE-RXN" /><Reaction frameid="KDPGALDOL-RXN" orgid="VCHO" resource="getxml?VCHO:KDPGALDOL-RXN" /><Reaction frameid="1.1.1.39-RXN" orgid="VCHO" resource="getxml?VCHO:1.1.1.39-RXN" /><Reaction frameid="MALIC-NADP-RXN" orgid="VCHO" resource="getxml?VCHO:MALIC-NADP-RXN" /><Reaction frameid="PYRUVFORMLY-RXN" orgid="VCHO" resource="getxml?VCHO:PYRUVFORMLY-RXN" /><Reaction frameid="OXALODECARB-RXN" orgid="VCHO" resource="getxml?VCHO:OXALODECARB-RXN" /><Reaction frameid="CHORPYRLY-RXN" orgid="VCHO" resource="getxml?VCHO:CHORPYRLY-RXN" /></appears-in-right-side-of>
+<common-name datatype="string">pyruvate</common-name>
+<component-of><Compound frameid="CPD0-2431" orgid="VCHO" resource="getxml?VCHO:CPD0-2431" /></component-of>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Pyruvic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Pyruvic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>pyr</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/pyr</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15361</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15361</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00243</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00243</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>96901</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/96901</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>107735</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=107735</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00001200</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00001200</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15361</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15361</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00022</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00022</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>127-17-3</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=127-17-3</dblink-URL>
+</dblink>
+<dblink><dblink-db>UM-BBD-CPD</dblink-db>
+<dblink-oid>c0159</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0159</dblink-URL>
+</dblink>
+</Compound>
+</ptools-xml>

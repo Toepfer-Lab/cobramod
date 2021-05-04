@@ -1,0 +1,63 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-12389"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:CPD-12389</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID="META:CPD-12389" detail="full" frameid="CPD-12389" orgid="META"><parent><Compound class="true" frameid="CPD-19473" orgid="META" resource="getxml?META:CPD-19473" /></parent>
+<cml><molecule formalCharge="0" id="CPD-12389" title="1-(methylsulfanyl)-4-aci-nitrobutane"><atomArray><atom elementType="C" id="CPD-12389-atom1" x2="28444.0" y2="-25311.0" /><atom elementType="C" id="CPD-12389-atom2" x2="987.0" y2="-25180.0" /><atom elementType="C" id="CPD-12389-atom3" x2="7749.0" y2="-29292.0" /><atom elementType="C" id="CPD-12389-atom4" x2="-6385.0" y2="-29052.0" /><atom elementType="C" id="CPD-12389-atom5" x2="15001.0" y2="-25311.0" /><atom elementType="N" formalCharge="1" id="CPD-12389-atom6" x2="-13530.0" y2="-24927.0" /><atom elementType="O" id="CPD-12389-atom7" x2="-20674.0" y2="-29052.0" /><atom elementType="O" formalCharge="-1" id="CPD-12389-atom8" x2="-13530.0" y2="-16677.0" /><atom elementType="S" id="CPD-12389-atom9" x2="22132.0" y2="-29412.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-12389-atom2 CPD-12389-atom4" id="CPD-12389-bond1" order="1" /><bond atomRefs="CPD-12389-atom5 CPD-12389-atom3" id="CPD-12389-bond2" order="1" /><bond atomRefs="CPD-12389-atom9 CPD-12389-atom1" id="CPD-12389-bond3" order="1" /><bond atomRefs="CPD-12389-atom9 CPD-12389-atom5" id="CPD-12389-bond4" order="1" /><bond atomRefs="CPD-12389-atom3 CPD-12389-atom2" id="CPD-12389-bond5" order="1" /><bond atomRefs="CPD-12389-atom4 CPD-12389-atom6" id="CPD-12389-bond6" order="2" /><bond atomRefs="CPD-12389-atom6 CPD-12389-atom8" id="CPD-12389-bond7" order="1" /><bond atomRefs="CPD-12389-atom6 CPD-12389-atom7" id="CPD-12389-bond8" order="1" /></bondArray>
+<formula concise="C 5 H 11 N 1 O 2 S 1" /><float title="molecularWeight" units="g/mol">149.207</float>
+<string title="smiles">CSCCCC=[N+](O)[O-]</string>
+</molecule>
+</cml>
+<common-name datatype="string">1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
+<credits><created><date datatype="date">2010-04-26</date>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
+</Organization>
+</created>
+</credits>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM10222</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM10222</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>123131522</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131522</dblink-URL>
+</dblink>
+<gibbs-0 datatype="float" units="kcal/mol">61.462326<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype="integer">2013</year>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
+<inchi-key datatype="string">InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">149.207</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">151.0667</monoisotopic-mw>
+<synonym datatype="string">4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-11414" orgid="META" resource="getxml?META:RXN-11414" /></appears-in-right-side-of>
+</Compound>
+</ptools-xml>

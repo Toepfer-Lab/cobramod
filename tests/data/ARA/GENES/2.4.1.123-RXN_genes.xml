@@ -1,0 +1,196 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:2.4.1.123-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=ARA:2.4.1.123-RXN&amp;detail=FULL</query>
+    <num_results>8</num_results>
+    <PGDB orgid="ARA" version="17.1">
+      <species datatype="string">Arabidopsis thaliana</species>
+      <strain datatype="string">col</strain>
+    </PGDB>
+  </metadata>
+  <Gene ID="ARA:AT2G47180" detail="full" frameid="AT2G47180" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-2" orgid="ARA" resource="getxml?ARA:CHROMOSOME-2" />
+    </replicon>
+    <product>
+      <Protein frameid="AT2G47180-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G47180-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT2G47180</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT2G47180</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">19375868</left-end-position>
+    <accession-1 datatype="string">AT2G47180</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">98.3279</centisome-position>
+    <right-end-position datatype="integer">19377511</right-end-position>
+    <common-name datatype="string">GolS1</common-name>
+    <component-of />
+  </Gene>
+  <Gene ID="ARA:AT1G56600" detail="full" frameid="AT1G56600" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" />
+    </replicon>
+    <product>
+      <Protein frameid="AT1G56600-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G56600-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT1G56600</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G56600</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">21211202</left-end-position>
+    <accession-1 datatype="string">AT1G56600</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">69.69903</centisome-position>
+    <right-end-position datatype="integer">21213261</right-end-position>
+    <common-name datatype="string">GolS2</common-name>
+    <component-of />
+  </Gene>
+  <Gene ID="ARA:AT1G09350" detail="full" frameid="AT1G09350" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" />
+    </replicon>
+    <product>
+      <Protein frameid="AT1G09350-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G09350-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT1G09350</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G09350</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">3019821</left-end-position>
+    <accession-1 datatype="string">AT1G09350</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">9.922993</centisome-position>
+    <right-end-position datatype="integer">3021443</right-end-position>
+    <common-name datatype="string">GolS3</common-name>
+    <component-of />
+  </Gene>
+  <Gene ID="ARA:AT1G60470" detail="full" frameid="AT1G60470" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" />
+    </replicon>
+    <product>
+      <Protein frameid="AT1G60470-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G60470-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT1G60470</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G60470</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">22282642</left-end-position>
+    <accession-1 datatype="string">AT1G60470</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">73.219734</centisome-position>
+    <right-end-position datatype="integer">22284251</right-end-position>
+    <common-name datatype="string">GolS4</common-name>
+    <component-of />
+  </Gene>
+  <Gene ID="ARA:AT5G23790" detail="full" frameid="AT5G23790" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+    </replicon>
+    <product>
+      <Protein frameid="AT5G23790-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G23790-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT5G23790</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G23790</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">8020107</left-end-position>
+    <accession-1 datatype="string">AT5G23790</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">29.712101</centisome-position>
+    <right-end-position datatype="integer">8021600</right-end-position>
+    <common-name datatype="string">GolS5</common-name>
+    <component-of />
+  </Gene>
+  <Gene ID="ARA:AT1G60450" detail="full" frameid="AT1G60450" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" />
+    </replicon>
+    <product>
+      <Protein frameid="AT1G60450-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G60450-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT1G60450</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G60450</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">22274891</left-end-position>
+    <accession-1 datatype="string">AT1G60450</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">73.19427</centisome-position>
+    <right-end-position datatype="integer">22276879</right-end-position>
+    <common-name datatype="string">GolS7</common-name>
+    <component-of />
+  </Gene>
+  <Gene ID="ARA:AT4G26250" detail="full" frameid="AT4G26250" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-4" orgid="ARA" resource="getxml?ARA:CHROMOSOME-4" />
+    </replicon>
+    <product>
+      <Protein frameid="AT4G26250-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G26250-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G26250</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G26250</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">13289650</left-end-position>
+    <accession-1 datatype="string">AT4G26250</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">71.50724</centisome-position>
+    <right-end-position datatype="integer">13291093</right-end-position>
+    <common-name datatype="string">GolS6</common-name>
+    <component-of />
+  </Gene>
+  <Gene ID="ARA:AT5G30500" detail="full" frameid="AT5G30500" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+    </replicon>
+    <product>
+      <Protein frameid="AT5G30500-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G30500-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT5G30500</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G30500</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">11632575</left-end-position>
+    <accession-1 datatype="string">AT5G30500</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">43.09522</centisome-position>
+    <right-end-position datatype="integer">11634156</right-end-position>
+    <common-name datatype="string">GolS10</common-name>
+    <component-of />
+  </Gene>
+</ptools-xml>

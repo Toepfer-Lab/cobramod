@@ -1,0 +1,61 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLYOXII-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:GLYOXII-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:GLYOXII-RXN" detail="full" frameid="GLYOXII-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>JC5826</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=JC5826</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>F84958</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=F84958</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>F81961</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=F81961</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>F64745</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=F64745</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>B75083</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=B75083</dblink-URL>
+</dblink>
+<ec-number>EC-3.1.2.6</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-5560" detail="low" frameid="ENZRXNQT-5560" orgid="ARA"><enzyme><Protein frameid="AT3G10850-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G10850-MONOMER" /></enzyme>
+<reaction><Reaction frameid="GLYOXII-RXN" orgid="ARA" resource="#ARA:GLYOXII-RXN" /></reaction>
+<common-name datatype="string">hydroxyacylglutathione hydrolase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-5076" detail="low" frameid="ENZRXNQT-5076" orgid="ARA"><enzyme><Protein frameid="AT2G43430-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G43430-MONOMER" /></enzyme>
+<reaction><Reaction frameid="GLYOXII-RXN" orgid="ARA" resource="#ARA:GLYOXII-RXN" /></reaction>
+<common-name datatype="string">hydroxyacylglutathione hydrolase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-4951" detail="low" frameid="ENZRXNQT-4951" orgid="ARA"><enzyme><Protein frameid="AT2G31350-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G31350-MONOMER" /></enzyme>
+<reaction><Reaction frameid="GLYOXII-RXN" orgid="ARA" resource="#ARA:GLYOXII-RXN" /></reaction>
+<common-name datatype="string">hydroxyacylglutathione hydrolase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<synonym datatype="string">Glyoxalase II</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-6.3771057</gibbs-0>
+<in-pathway><Pathway frameid="PWY-5386" orgid="ARA" resource="getxml?ARA:PWY-5386" /></in-pathway>
+<left><Compound frameid="S-LACTOYL-GLUTATHIONE" orgid="ARA" resource="getxml?ARA:S-LACTOYL-GLUTATHIONE" /></left>
+<left><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="GLUTATHIONE" orgid="ARA" resource="getxml?ARA:GLUTATHIONE" /></right>
+<right><Compound frameid="D-LACTATE" orgid="ARA" resource="getxml?ARA:D-LACTATE" /></right>
+</Reaction>
+</ptools-xml>

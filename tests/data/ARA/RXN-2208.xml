@@ -1,0 +1,27 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-2208"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:RXN-2208</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:RXN-2208" detail="full" frameid="RXN-2208" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-2.4.1.195</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-12786" detail="low" frameid="ENZRXN-12786" orgid="ARA"><enzyme><Protein frameid="MONOMER-6102" orgid="ARA" resource="getxml?ARA:MONOMER-6102" /></enzyme>
+<reaction><Reaction frameid="RXN-2208" orgid="ARA" resource="#ARA:RXN-2208" /></reaction>
+<common-name datatype="string">UDP-glucose: 4-methylthiobutylhydroximate S-glucosyltransferase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-1.8923645</gibbs-0>
+<in-pathway><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></in-pathway>
+<left><Compound frameid="CPD-12575" orgid="ARA" resource="getxml?ARA:CPD-12575" /></left>
+<left><Compound frameid="3-METHYLTHIOPROPYLHYDROXAMIC-ACID" orgid="ARA" resource="getxml?ARA:3-METHYLTHIOPROPYLHYDROXAMIC-ACID" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" orgid="ARA" resource="getxml?ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" /></right>
+<right><Compound frameid="UDP" orgid="ARA" resource="getxml?ARA:UDP" /></right>
+</Reaction>
+</ptools-xml>

@@ -1,0 +1,202 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:OXALACETIC_ACID"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:OXALACETIC_ACID</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:OXALACETIC_ACID" detail="full" frameid="OXALACETIC_ACID" orgid="ARA"><parent><Compound class="true" frameid="C4-dicarboxylates" orgid="ARA" resource="getxml?ARA:C4-dicarboxylates" /></parent>
+<cml><molecule formalCharge="-2" id="OXALACETIC_ACID" title="oxaloacetate"><atomArray><atom elementType="C" id="OXALACETIC_ACID-atom1" x2="-2791.0" y2="-3044.0" /><atom elementType="C" id="OXALACETIC_ACID-atom2" x2="-10293.0" y2="1199.0" /><atom elementType="C" id="OXALACETIC_ACID-atom3" x2="4157.0" y2="1077.0" /><atom elementType="C" id="OXALACETIC_ACID-atom4" x2="-17672.0" y2="-2491.0" /><atom elementType="O" id="OXALACETIC_ACID-atom5" x2="-10293.0" y2="9437.0" /><atom elementType="O" formalCharge="-1" id="OXALACETIC_ACID-atom6" x2="11597.0" y2="-2491.0" /><atom elementType="O" id="OXALACETIC_ACID-atom7" x2="4157.0" y2="9315.0" /><atom elementType="O" formalCharge="-1" id="OXALACETIC_ACID-atom8" x2="-24802.0" y2="1629.0" /><atom elementType="O" id="OXALACETIC_ACID-atom9" x2="-17672.0" y2="-10730.0" /></atomArray>
+<bondArray><bond atomRefs="OXALACETIC_ACID-atom9 OXALACETIC_ACID-atom4" id="OXALACETIC_ACID-bond1" order="2" /><bond atomRefs="OXALACETIC_ACID-atom4 OXALACETIC_ACID-atom2" id="OXALACETIC_ACID-bond2" order="1" /><bond atomRefs="OXALACETIC_ACID-atom7 OXALACETIC_ACID-atom3" id="OXALACETIC_ACID-bond3" order="2" /><bond atomRefs="OXALACETIC_ACID-atom2 OXALACETIC_ACID-atom1" id="OXALACETIC_ACID-bond4" order="1" /><bond atomRefs="OXALACETIC_ACID-atom3 OXALACETIC_ACID-atom1" id="OXALACETIC_ACID-bond5" order="1" /><bond atomRefs="OXALACETIC_ACID-atom5 OXALACETIC_ACID-atom2" id="OXALACETIC_ACID-bond6" order="2" /><bond atomRefs="OXALACETIC_ACID-atom6 OXALACETIC_ACID-atom3" id="OXALACETIC_ACID-bond7" order="1" /><bond atomRefs="OXALACETIC_ACID-atom8 OXALACETIC_ACID-atom4" id="OXALACETIC_ACID-bond8" order="1" /></bondArray>
+<formula concise="C 4 H 2 O 5" /><float title="molecularWeight" units="g/mol">130.057</float>
+<string title="smiles">C(C([O-])=O)C(=O)C([O-])=O</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00032</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00032</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM46</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM46</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Oxaloacetic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Oxaloacetic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>oaa</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/oaa</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16452</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16452</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00223</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00223</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>144251</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/144251</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>164550</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=164550</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16452</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16452</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00036</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00036</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>328-42-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=328-42-7</dblink-URL>
+</dblink>
+<synonym datatype="string">keto-oxaloacetate</synonym>
+<synonym datatype="string">oxaloacetic acid</synonym>
+<synonym datatype="string">oxalacetic acid</synonym>
+<synonym datatype="string">oxalacetate</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-170.30602</gibbs-0>
+<inchi datatype="string">InChI=1S/C4H4O5/c5-2(4(8)9)1-3(6)7/h1H2,(H,6,7)(H,8,9)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=KHPXUQMNIQBQEV-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">130.057</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">132.00587</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-13407" orgid="ARA" resource="getxml?ARA:RXN-13407" /><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="getxml?ARA:OXALODECARB-RXN" /><Reaction frameid="4.1.1.32-RXN" orgid="ARA" resource="getxml?ARA:4.1.1.32-RXN" /><Reaction frameid="TRANS-RXN-226" orgid="ARA" resource="getxml?ARA:TRANS-RXN-226" /><Reaction frameid="PEPCARBOX-RXN" orgid="ARA" resource="getxml?ARA:PEPCARBOX-RXN" /><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="ARA" resource="getxml?ARA:ATP-CITRATE-PRO-S--LYASE-RXN" /><Reaction frameid="CITSYN-RXN" orgid="ARA" resource="getxml?ARA:CITSYN-RXN" /><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="ARA" resource="getxml?ARA:PEPCARBOXYKIN-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-13407" orgid="ARA" resource="getxml?ARA:RXN-13407" /><Reaction frameid="PYRUVATE-CARBOXYLASE-RXN" orgid="ARA" resource="getxml?ARA:PYRUVATE-CARBOXYLASE-RXN" /><Reaction frameid="TRANS-RXN-226" orgid="ARA" resource="getxml?ARA:TRANS-RXN-226" /><Reaction frameid="MALATE-DEH-RXN" orgid="ARA" resource="getxml?ARA:MALATE-DEH-RXN" /><Reaction frameid="MALATE-DEHYDROGENASE-NADP+-RXN" orgid="ARA" resource="getxml?ARA:MALATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="ASPAMINOTRANS-RXN" orgid="ARA" resource="getxml?ARA:ASPAMINOTRANS-RXN" /></appears-in-right-side-of>
+<regulates><Regulation ID="ARA:REG-8648" detail="low" frameid="REG-8648" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-15267" detail="low" frameid="REG-15267" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXN-24875" detail="low" frameid="ENZRXN-24875" orgid="ARA"><enzyme><Protein frameid="CPLX-5301" orgid="ARA" resource="getxml?ARA:CPLX-5301" /></enzyme>
+<synonym datatype="string">succinate:ubiquinone oxidoreductase</synonym>
+<reaction><Reaction frameid="RXN-14971" orgid="ARA" resource="getxml?ARA:RXN-14971" /></reaction>
+<common-name datatype="string">succinate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-6189" detail="low" frameid="REG-6189" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8063" detail="low" frameid="REG-8063" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXN-8981" detail="low" frameid="ENZRXN-8981" orgid="ARA"><enzyme><Protein frameid="CPLX-5301" orgid="ARA" resource="getxml?ARA:CPLX-5301" /></enzyme>
+<synonym datatype="string">succinate:ubiquinone oxidoreductase</synonym>
+<reaction><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="ARA" resource="getxml?ARA:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /></reaction>
+<common-name datatype="string">succinate:quinone oxidoreductase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-8143" detail="low" frameid="REG-8143" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-10567" detail="low" frameid="REG0-10567" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-7611" detail="low" frameid="REG0-7611" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-7675" detail="low" frameid="REG0-7675" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-6739" detail="low" frameid="REG0-6739" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-6922" detail="low" frameid="REG0-6922" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-557" detail="low" frameid="REGQT-557" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-7267" detail="low" frameid="ENZRXNQT-7267" orgid="ARA"><enzyme><Protein frameid="AT1G79750-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G79750-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-553" detail="low" frameid="REGQT-553" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNT9-2444" detail="low" frameid="ENZRXNT9-2444" orgid="ARA"><enzyme><Protein frameid="AT5G25880-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G25880-MONOMER" /></enzyme>
+<synonym datatype="string">malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)</synonym>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-550" detail="low" frameid="REGQT-550" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNT9-2365" detail="low" frameid="ENZRXNT9-2365" orgid="ARA"><enzyme><Protein frameid="AT5G11670-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G11670-MONOMER" /></enzyme>
+<synonym datatype="string">malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)</synonym>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-544" detail="low" frameid="REGQT-544" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNT9-1846" detail="low" frameid="ENZRXNT9-1846" orgid="ARA"><enzyme><Protein frameid="AT2G19900-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G19900-MONOMER" /></enzyme>
+<synonym datatype="string">malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)</synonym>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-528" detail="low" frameid="REGQT-528" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12853" detail="low" frameid="ENZRXNQT-12853" orgid="ARA"><enzyme><Protein frameid="CPLXQT-52" orgid="ARA" resource="getxml?ARA:CPLXQT-52" /></enzyme>
+<synonym datatype="string">NAD-dependent malic enzyme</synonym>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-522" detail="low" frameid="REGQT-522" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12855" detail="low" frameid="ENZRXNQT-12855" orgid="ARA"><enzyme><Protein frameid="CPLXQT-54" orgid="ARA" resource="getxml?ARA:CPLXQT-54" /></enzyme>
+<synonym datatype="string">NAD malic enzyme</synonym>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-386" detail="low" frameid="REGQT-386" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction frameid="ENZRXN-8981" orgid="ARA" resource="#ARA:ENZRXN-8981" /></regulated-entity>
+<regulator><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="#ARA:OXALACETIC_ACID" /></regulator>
+</Regulation>
+</regulates>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to LC-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href="http://plantmetabolomics.org/tutorials/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">oxaloacetate</common-name>
+</Compound>
+</ptools-xml>

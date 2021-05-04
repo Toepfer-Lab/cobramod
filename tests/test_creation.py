@@ -407,7 +407,7 @@ class SimpleFunctions(TestCase):
             line=test_line,
             model=test_model,
             directory=dir_data,
-            database="GCF_000010885",
+            database="GCF_000020025",
             stop_imbalance=False,
             show_imbalance=True,
         )

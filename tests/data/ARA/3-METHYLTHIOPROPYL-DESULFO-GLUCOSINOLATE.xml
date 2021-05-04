@@ -1,0 +1,46 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" detail="full" frameid="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" orgid="ARA"><parent><Compound class="true" frameid="Desulfoaliphaticglucosinolates" orgid="ARA" resource="getxml?ARA:Desulfoaliphaticglucosinolates" /></parent>
+<cml><molecule formalCharge="0" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" title="3-(methylsulfanyl)propyl-desulfoglucosinolate"><atomArray><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom1" x2="54303.0" y2="-42023.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom2" x2="32869.0" y2="-37898.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom3" x2="25724.0" y2="-42023.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom4" x2="40013.0" y2="-42023.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom5" x2="-9997.0" y2="-29648.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom6" x2="-2852.0" y2="-25523.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom7" x2="18581.0" y2="-37898.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom8" x2="-2852.0" y2="-17273.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom9" x2="4293.0" y2="-13149.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom10" x2="11438.0" y2="-17273.0" /><atom elementType="C" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom11" x2="11438.0" y2="-25523.0" /><atom elementType="N" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom12" x2="11436.0" y2="-42023.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom13" x2="-17140.0" y2="-25523.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom14" x2="-9997.0" y2="-13149.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom15" x2="4293.0" y2="-4899.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom16" x2="18581.0" y2="-13149.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom17" x2="11436.0" y2="-50273.0" /><atom elementType="O" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom18" x2="4293.0" y2="-29648.0" /><atom elementType="S" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom19" x2="47158.0" y2="-37898.0" /><atom elementType="S" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom20" x2="18581.0" y2="-29648.0" /></atomArray>
+<bondArray><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom18 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom6" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond1" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom6 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom8" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond2" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom8 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom9" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond3" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom9 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom10" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond4" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom10 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom11" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond5" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom18 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom11" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond6" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom11 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom20" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond7" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom10 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom16" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond8" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom9 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom15" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond9" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom8 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom14" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond10" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom6 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom5" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond11" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom5 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom13" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond12" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom20 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom7" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond13" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom7 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom12" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond14" order="2" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom12 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom17" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond15" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom7 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom3" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond16" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom3 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom2" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond17" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom2 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom4" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond18" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom4 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom19" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond19" order="1" /><bond atomRefs="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom19 3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-atom1" id="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE-bond20" order="1" /></bondArray>
+<formula concise="C 11 H 21 N 1 O 6 S 2" /><float title="molecularWeight" units="g/mol">327.41</float>
+<string title="smiles">CSCCCC(/S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\O</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd17434</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd17434</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM10067</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM10067</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>90659312</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=90659312</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C17244</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17244</dblink-URL>
+</dblink>
+<synonym datatype="string">3-(methylthio)propyl-desulfoglucosinolate</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">31.86354</gibbs-0>
+<inchi datatype="string">InChI=1S/C11H21NO6S2/c1-19-4-2-3-7(12-17)20-11-10(16)9(15)8(14)6(5-13)18-11/h6,8-11,13-17H,2-5H2,1H3/b12-7+/t6-,8-,9+,10-,11+/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=OYTRJEKRRFSKHF-BZVDQRPCSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">327.41</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">327.08102</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-2209" orgid="ARA" resource="getxml?ARA:RXN-2209" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-2208" orgid="ARA" resource="getxml?ARA:RXN-2208" /></appears-in-right-side-of>
+<common-name datatype="string">3-(methylsulfanyl)propyl-desulfoglucosinolate</common-name>
+</Compound>
+</ptools-xml>

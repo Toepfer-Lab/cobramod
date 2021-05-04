@@ -1,0 +1,46 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:MALONYL-ACP"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:MALONYL-ACP</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Protein ID="ARA:MALONYL-ACP" class="true" detail="full" frameid="MALONYL-ACP" orgid="ARA"><parent><Protein class="true" frameid="ACYL-ACP" orgid="ARA" resource="getxml?ARA:ACYL-ACP" /></parent>
+<parent><Protein class="true" frameid="Saturated-acyl-ACPs" orgid="ARA" resource="getxml?ARA:Saturated-acyl-ACPs" /></parent>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C01209</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C01209</dblink-URL>
+</dblink>
+<dblink><dblink-db>SWISSMODEL</dblink-db>
+<dblink-oid>P02901</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://swissmodel.expasy.org/repository/uniprot/P02901</dblink-URL>
+</dblink>
+<dblink><dblink-db>MODBASE</dblink-db>
+<dblink-oid>P02901</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modbase.compbio.ucsf.edu/modbase-cgi/model_search.cgi?searchkw=name&amp;kword=P02901</dblink-URL>
+</dblink>
+<dblink><dblink-db>UNIPROT</dblink-db>
+<dblink-oid>P02901</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.uniprot.org/uniprot/P02901</dblink-URL>
+</dblink>
+<synonym datatype="string">B1094</synonym>
+<synonym datatype="string">AcpP</synonym>
+<synonym datatype="string">malonyl-[acyl-carrier protein]</synonym>
+<synonym datatype="string">malonyl-S-ACP</synonym>
+<synonym datatype="string">malonyl-acyl-carrier-protein</synonym>
+<unmodified-form><Protein class="true" frameid="ACP" orgid="ARA" resource="getxml?ARA:ACP" /></unmodified-form>
+<appears-in-left-side-of><Reaction frameid="2.3.1.41-RXN" orgid="ARA" resource="getxml?ARA:2.3.1.41-RXN" /><Reaction frameid="RXN-9632" orgid="ARA" resource="getxml?ARA:RXN-9632" /><Reaction frameid="RXN-14972" orgid="ARA" resource="getxml?ARA:RXN-14972" /><Reaction frameid="2.3.1.179-RXN" orgid="ARA" resource="getxml?ARA:2.3.1.179-RXN" /><Reaction frameid="RXN-11475" orgid="ARA" resource="getxml?ARA:RXN-11475" /><Reaction frameid="RXN-9539" orgid="ARA" resource="getxml?ARA:RXN-9539" /><Reaction frameid="RXN-9527" orgid="ARA" resource="getxml?ARA:RXN-9527" /><Reaction frameid="RXN-9516" orgid="ARA" resource="getxml?ARA:RXN-9516" /><Reaction frameid="3-OXOACYL-ACP-SYNTH-BASE-RXN" orgid="ARA" resource="getxml?ARA:3-OXOACYL-ACP-SYNTH-BASE-RXN" /><Reaction frameid="RXN-9523" orgid="ARA" resource="getxml?ARA:RXN-9523" /><Reaction frameid="2.3.1.180-RXN" orgid="ARA" resource="getxml?ARA:2.3.1.180-RXN" /><Reaction frameid="3-OXOACYL-ACP-SYNTH-RXN" orgid="ARA" resource="getxml?ARA:3-OXOACYL-ACP-SYNTH-RXN" /><Reaction frameid="RXN-12361" orgid="ARA" resource="getxml?ARA:RXN-12361" /><Reaction frameid="RXN-9531" orgid="ARA" resource="getxml?ARA:RXN-9531" /><Reaction frameid="RXN-9535" orgid="ARA" resource="getxml?ARA:RXN-9535" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-12360" orgid="ARA" resource="getxml?ARA:RXN-12360" /><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="ARA" resource="getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN" /></appears-in-right-side-of>
+<regulates><Regulation ID="ARA:REG0-7084" detail="low" frameid="REG0-7084" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Protein class="true" frameid="MALONYL-ACP" orgid="ARA" resource="#ARA:MALONYL-ACP" /></regulator>
+</Regulation>
+</regulates>
+<common-name datatype="string">a malonyl-[acp]</common-name>
+</Protein>
+</ptools-xml>

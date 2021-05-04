@@ -1,0 +1,98 @@
+ENTRY       C00097                      Compound
+NAME        L-Cysteine;
+            L-2-Amino-3-mercaptopropionic acid
+FORMULA     C3H7NO2S
+EXACT_MASS  121.0197
+MOL_WEIGHT  121.1582
+REMARK      Same as: D00026
+REACTION    R00782 R00891 R00892 R00893 R00894 R00895 R00896 R00897 
+            R00899 R00900 R00901 R00903 R01001 R01113 R02409 R02508 
+            R02743 R03217 R03260 R03524 R03650 R03923 R04230 R04231 
+            R04859 R04870 R07274 R07360 R07460 R08168 R08608 R08632 
+            R08653 R08659 R08666 R08685 R08848 R09562 R09591 R10409 
+            R10670 R10672 R10736 R11014 R11015 R11524 R11528 R11583
+PATHWAY     map00260  Glycine, serine and threonine metabolism
+            map00270  Cysteine and methionine metabolism
+            map00311  Penicillin and cephalosporin biosynthesis
+            map00332  Carbapenem biosynthesis
+            map00430  Taurine and hypotaurine metabolism
+            map00460  Cyanoamino acid metabolism
+            map00480  Glutathione metabolism
+            map00730  Thiamine metabolism
+            map00770  Pantothenate and CoA biosynthesis
+            map00920  Sulfur metabolism
+            map00970  Aminoacyl-tRNA biosynthesis
+            map01060  Biosynthesis of plant secondary metabolites
+            map01100  Metabolic pathways
+            map01110  Biosynthesis of secondary metabolites
+            map01120  Microbial metabolism in diverse environments
+            map01200  Carbon metabolism
+            map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
+            map04122  Sulfur relay system
+            map04216  Ferroptosis
+            map04974  Protein digestion and absorption
+            map05230  Central carbon metabolism in cancer
+MODULE      M00021  Cysteine biosynthesis, serine => cysteine
+            M00338  Cysteine biosynthesis, homocysteine + serine => cysteine
+            M00609  Cysteine biosynthesis, methionine => cysteine
+            M00672  Penicillin biosynthesis, aminoadipate + cycteine + valine => penicillin
+            M00673  Cephamycin C biosynthesis, aminoadipate + cycteine + valine => cephamycin C
+ENZYME      1.8.1.6         1.8.1.9         1.8.1.10        1.8.3.5         
+            1.8.3.6         1.8.4.3         1.8.4.4         1.13.11.20      
+            1.14.14.43      1.14.14.45      1.14.99.51      1.14.99.52      
+            1.14.-.-        2.5.1.47        2.5.1.48        2.5.1.49        
+            2.5.1.65        2.6.1.1         2.6.1.3         2.8.1.4         
+            2.8.1.7         2.8.1.9         3.4.11.1        3.4.11.2        
+            3.4.11.23       3.4.13.-        3.13.1.6        4.2.1.22        
+            4.3.2.9         4.4.1.1         4.4.1.9         4.4.1.10        
+            4.4.1.13        4.4.1.28        5.1.1.10        6.1.1.16        
+            6.3.1.13        6.3.2.2         6.3.2.5         6.3.2.26        
+            6.3.2.51
+BRITE       Compounds with biological roles [BR:br08001]
+             Peptides
+              Amino acids
+               Common amino acids
+                C00097  Cysteine (Cys)
+            Therapeutic category of drugs in Japan [BR:br08301]
+             3  Agents affecting metabolism
+              39  Other agents affecting metabolism
+               399  Miscellaneous
+                3999  Others
+                 D00026  L-Cysteine (JP17)
+            Classification of Japanese OTC drugs [BR:br08313]
+             Nourishing tonics and health supplements
+              45 Protein and amino acid based drugs
+               D00026  L-Cysteine (JP17)
+            Risk category of Japanese OTC drugs [BR:br08312]
+             Third-class OTC drugs
+              Inorganic and organic chemicals
+               L-Cysteine
+                D00026  L-Cysteine (JP17)
+            Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
+             Chemicals
+              D00026  L-Cysteine
+DBLINKS     CAS: 52-90-4
+            PubChem: 3397
+            ChEBI: 17561
+            ChEMBL: CHEMBL863
+            KNApSAcK: C00001351
+            PDB-CCD: CYS
+            3DMET: B01159
+            NIKKAJI: J9.167G
+ATOM        7
+            1   C1c C    24.5141  -15.4370
+            2   C6a C    23.3459  -14.6895
+            3   C1b C    25.7289  -14.7361
+            4   N1a N    24.5609  -16.8388
+            5   O6a O    22.1311  -15.3436
+            6   O6a O    23.3459  -13.2877
+            7   S1a S    26.9438  -15.4838
+BOND        6
+            1     1   2 1
+            2     1   3 1
+            3     1   4 1 #Down
+            4     2   5 1
+            5     2   6 2
+            6     3   7 1
+///

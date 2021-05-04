@@ -1,0 +1,78 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=VCHO:OXALODECARB-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=VCHO:OXALODECARB-RXN&amp;detail=FULL</query>
+    <num_results>3</num_results>
+    <PGDB orgid="VCHO" version="24.5">
+      <species datatype="string">Vibrio cholerae</species>
+      <strain datatype="string">O1 biovar El Tor str. N16961</strain>
+      <dblink>
+        <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+        <dblink-oid>243277</dblink-oid>
+        <dblink-relationship>unification</dblink-relationship>
+        <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=243277</dblink-URL>
+      </dblink>
+    </PGDB>
+  </metadata>
+  <Gene ID="VCHO:VC0550" detail="full" frameid="VC0550" orgid="VCHO">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="VCHO" resource="getxml?VCHO:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROM-I" orgid="VCHO" resource="getxml?VCHO:CHROM-I" />
+    </replicon>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="VC0550-MONOMER" orgid="VCHO" resource="getxml?VCHO:VC0550-MONOMER" />
+    </product>
+    <left-end-position datatype="integer">582646</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">19.676348</centisome-position>
+    <right-end-position datatype="integer">584439</right-end-position>
+    <comment datatype="string">similar to GB:J03885 SP:P13187 PID:149289; identified by sequence similarity; putative</comment>
+    <common-name datatype="string">VC0550</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU4-10748" orgid="VCHO" resource="getxml?VCHO:TU4-10748" />
+    </component-of>
+  </Gene>
+  <Gene ID="VCHO:VC0551" detail="full" frameid="VC0551" orgid="VCHO">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="VCHO" resource="getxml?VCHO:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROM-I" orgid="VCHO" resource="getxml?VCHO:CHROM-I" />
+    </replicon>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="VC0551-MONOMER" orgid="VCHO" resource="getxml?VCHO:VC0551-MONOMER" />
+    </product>
+    <left-end-position datatype="integer">584449</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">19.737238</centisome-position>
+    <right-end-position datatype="integer">585579</right-end-position>
+    <comment datatype="string">similar to GB:M96434 SP:Q03031 PID:154198; identified by sequence similarity; putative</comment>
+    <common-name datatype="string">VC0551</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU4-10748" orgid="VCHO" resource="getxml?VCHO:TU4-10748" />
+    </component-of>
+  </Gene>
+  <Gene ID="VCHO:VC0792" detail="full" frameid="VC0792" orgid="VCHO">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="VCHO" resource="getxml?VCHO:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROM-I" orgid="VCHO" resource="getxml?VCHO:CHROM-I" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="VC0792-MONOMER" orgid="VCHO" resource="getxml?VCHO:VC0792-MONOMER" />
+    </product>
+    <left-end-position datatype="integer">848056</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">28.639423</centisome-position>
+    <right-end-position datatype="integer">849357</right-end-position>
+    <comment datatype="string">similar to GB:M96434 SP:Q03031 PID:154198; identified by sequence similarity; putative</comment>
+    <common-name datatype="string">VC0792</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU4-10879" orgid="VCHO" resource="getxml?VCHO:TU4-10879" />
+    </component-of>
+  </Gene>
+</ptools-xml>
