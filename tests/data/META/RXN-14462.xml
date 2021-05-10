@@ -1,37 +1,31 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:RXN-14462"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-14462"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RXN-14462</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:RXN-14462" detail="full" frameid="RXN-14462" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CPD-15323" orgid="META" resource="getxml?META:CPD-15323" /></right>
-<right><Compound frameid="CO-A" orgid="META" resource="getxml?META:CO-A" /></right>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
-<citation><Publication ID="META:PUB-23354699" detail="full" frameid="PUB-23354699" orgid="META"><pubmed-id datatype="string">23354699</pubmed-id>
+<citation><Publication ID="META:PUB-23354699" detail="full" frameid="PUB-23354699" orgid="META"><author datatype="string">Koketsu K</author>
+<author datatype="string">Mitsuhashi S</author>
+<author datatype="string">Tabata K</author>
+<pubmed-id datatype="string">23354699</pubmed-id>
 <source datatype="string">Appl Environ Microbiol 79(7);2201-8</source>
 <title datatype="string">Identification of homophenylalanine biosynthetic genes from the cyanobacterium Nostoc punctiforme PCC73102 and application to its microbial production by Escherichia coli.</title>
 <year datatype="integer">2013</year>
-<author datatype="string">Koketsu K</author>
-<author datatype="string">Mitsuhashi S</author>
-<author datatype="string">Tabata K</author>
 </Publication>
 </citation>
 <credits><created><date datatype="date">2013-04-26</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
 </credits>
@@ -41,9 +35,9 @@
 <dblink-URL>https://www.metanetx.org/equa_info/MNXR140419</dblink-URL>
 </dblink>
 <ec-number>EC-2.3.3</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-21726" detail="low" frameid="ENZRXN-21726" orgid="META"><reaction><Reaction frameid="RXN-14462" orgid="META" resource="#META:RXN-14462" /></reaction>
-<common-name datatype="string">2-benzylmalate synthase</common-name>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-21726" detail="low" frameid="ENZRXN-21726" orgid="META"><common-name datatype="string">2-benzylmalate synthase</common-name>
 <enzyme><Protein frameid="MONOMER-18023" orgid="META" resource="getxml?META:MONOMER-18023" /></enzyme>
+<reaction><Reaction frameid="RXN-14462" orgid="META" resource="#META:RXN-14462" /></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-10.171204<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -54,10 +48,10 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
@@ -65,5 +59,11 @@ manual interpretation of the computation occurred.
 <left><Compound frameid="PHENYL-PYRUVATE" orgid="META" resource="getxml?META:PHENYL-PYRUVATE" /></left>
 <left><Compound frameid="ACETYL-COA" orgid="META" resource="getxml?META:ACETYL-COA" /></left>
 <left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-15323" orgid="META" resource="getxml?META:CPD-15323" /></right>
+<right><Compound frameid="CO-A" orgid="META" resource="getxml?META:CO-A" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
 </Reaction>
 </ptools-xml>

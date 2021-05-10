@@ -1,0 +1,38 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=VCHO:AMP-DEPHOSPHORYLATION-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=VCHO:AMP-DEPHOSPHORYLATION-RXN&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="VCHO" version="24.5">
+      <species datatype="string">Vibrio cholerae</species>
+      <strain datatype="string">O1 biovar El Tor str. N16961</strain>
+      <dblink>
+        <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+        <dblink-oid>243277</dblink-oid>
+        <dblink-relationship>unification</dblink-relationship>
+        <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=243277</dblink-URL>
+      </dblink>
+    </PGDB>
+  </metadata>
+  <Gene ID="VCHO:VCA0545" detail="full" frameid="VCA0545" orgid="VCHO">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="VCHO" resource="getxml?VCHO:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROM-II" orgid="VCHO" resource="getxml?VCHO:CHROM-II" />
+    </replicon>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein frameid="VCA0545-MONOMER" orgid="VCHO" resource="getxml?VCHO:VCA0545-MONOMER" />
+    </product>
+    <left-end-position datatype="integer">481978</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">44.947426</centisome-position>
+    <right-end-position datatype="integer">483720</right-end-position>
+    <comment datatype="string">similar to GB:AE000520; identified by sequence similarity; putative</comment>
+    <common-name datatype="string">VCA0545</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU4-12240" orgid="VCHO" resource="getxml?VCHO:TU4-12240" />
+    </component-of>
+  </Gene>
+</ptools-xml>

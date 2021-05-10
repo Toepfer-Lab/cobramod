@@ -1,17 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:ADENODEAMIN-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ADENODEAMIN-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ADENODEAMIN-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:ADENODEAMIN-RXN" detail="full" frameid="ADENODEAMIN-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="INOSINE" orgid="META" resource="getxml?META:INOSINE" /></right>
-<right><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR95432</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -59,20 +54,20 @@
 </dblink>
 <ec-number>EC-3.5.4.4<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ADENODEAMIN-ENZRXN" detail="low" frameid="ADENODEAMIN-ENZRXN" orgid="META"><reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
-<synonym datatype="string">adenosine aminohydrolase</synonym>
-<common-name datatype="string">adenosine deaminase</common-name>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ADENODEAMIN-ENZRXN" detail="low" frameid="ADENODEAMIN-ENZRXN" orgid="META"><common-name datatype="string">adenosine deaminase</common-name>
 <enzyme><Protein frameid="ADENODEAMIN-MONOMER" orgid="META" resource="getxml?META:ADENODEAMIN-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-17063" detail="low" frameid="ENZRXN-17063" orgid="META"><reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
+<reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
 <synonym datatype="string">adenosine aminohydrolase</synonym>
-<common-name datatype="string">adenosine deaminase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-17063" detail="low" frameid="ENZRXN-17063" orgid="META"><common-name datatype="string">adenosine deaminase</common-name>
 <enzyme><Protein frameid="HS02191-MONOMER" orgid="META" resource="getxml?META:HS02191-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-3161" detail="low" frameid="ENZRXN-3161" orgid="META"><reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
+<reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
 <synonym datatype="string">adenosine aminohydrolase</synonym>
-<common-name datatype="string">adenosine deaminase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-3161" detail="low" frameid="ENZRXN-3161" orgid="META"><common-name datatype="string">adenosine deaminase</common-name>
 <enzyme><Protein frameid="MONOMER-841" orgid="META" resource="getxml?META:MONOMER-841" /></enzyme>
+<reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
+<synonym datatype="string">adenosine aminohydrolase</synonym>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-49.792007<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -83,10 +78,10 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
@@ -94,5 +89,10 @@ manual interpretation of the computation occurred.
 <left><Compound frameid="ADENOSINE" orgid="META" resource="getxml?META:ADENOSINE" /></left>
 <left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
 <left><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="INOSINE" orgid="META" resource="getxml?META:INOSINE" /></right>
+<right><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></right>
 </Reaction>
 </ptools-xml>

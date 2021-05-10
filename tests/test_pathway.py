@@ -1,26 +1,32 @@
 """Unittest for module pathway
 
-This module includes the TestCase TestGroup. This checks the behaviour of the
-new child of :func:`cobra.core.group.Group` "Pathway". This new class is able
+This module includes the TestCase TestGroup. This checks the behavior of the
+new child of :obj:`cobra.core.group.Group` "Pathway". This new class is able
 to use Escher for its visualizations.
 """
 from json import loads
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
+from time import sleep
 
 from cobra.core import DictList, Group
+from cobra.io import read_sbml_model
 
 from cobramod.core import pathway as pt
+from cobramod.core.extension import add_pathway
+from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
-from cobramod.test import textbook_kegg, textbook
+from cobramod.test import textbook_kegg, textbook, textbook_biocyc
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_input = Path.cwd().joinpath("tests").joinpath("input")
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
-
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+# If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 
 class TestGroup(TestCase):
@@ -162,8 +168,16 @@ class TestGroup(TestCase):
             ]
         )
         test_group = pt.Pathway(id="test_group", members=members)
-        self.assertEqual(first=len(test_group.order), second=5)
-        test_builder = test_group.visualize(canvas_width=2000)
+        test_group.graph = {
+            "EX_glc__D_e": "GLCpts",
+            "GLCpts": "G6PDH2r",
+            "G6PDH2r": "PGL",
+            "PGL": "GND",
+            "GND": None,
+        }
+        test_builder = test_group.visualize()
+        sleep(1)
+        test_builder = test_group.visualize(vertical=True)
         self.assertEqual(
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
@@ -174,7 +188,6 @@ class TestGroup(TestCase):
             test_group.add_members(
                 new_members=[test_model.reactions.get_by_id(reaction)]
             )
-        self.assertEqual(first=len(test_group.order), second=5)
         self.assertEqual(
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
@@ -182,10 +195,64 @@ class TestGroup(TestCase):
         test_model.add_groups(group_list=[test_group])
         test_model_copy = test_model.copy()
         test_group = test_model_copy.groups.get_by_id("test_group")
-        self.assertEqual(first=len(test_group.order), second=5)
         self.assertEqual(
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
+        # CASE 4a: Regular Biocyc
+        test_model = textbook_biocyc.copy()
+        add_pathway(
+            model=test_model,
+            pathway="SALVADEHYPOX-PWY",
+            compartment="c",
+            directory=dir_data,
+            database="VCHO",
+            ignore_list=[],
+            show_imbalance=False,
+        )
+        # Test fluxes
+        test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
+        self.assertEqual(first=len(test_pathway.members), second=5)
+        test_solution = test_pathway.solution(solution=test_model.optimize())
+        test_pathway.visualize(solution_fluxes=test_solution)
+        sleep(1)
+        test_pathway.visualize(solution_fluxes=test_solution, vertical=True)
+        sleep(1)
+        # CASE 4b: Regular Biocyc
+        add_pathway(
+            model=test_model,
+            pathway="PWY-1187",
+            compartment="c",
+            directory=dir_data,
+            database="ARA",
+            ignore_list=[],
+            show_imbalance=False,
+        )
+        # Test fluxes
+        test_pathway = test_model.groups.get_by_id("PWY-1187")
+        self.assertEqual(first=len(test_pathway.members), second=14)
+        test_solution = test_pathway.solution(solution=test_model.optimize())
+        test_pathway.visualize(solution_fluxes=test_solution)
+        sleep(1)
+        test_pathway.visualize(solution_fluxes=test_solution, vertical=True)
+
+    def test_model_convert(self):
+        # CASE 1: regular conversion of Groups
+        test_model = textbook.copy()
+        for reaction in test_model.reactions:
+            test_group = Group(id=reaction.id)
+            test_model.add_groups(group_list=[test_group])
+            test_model.groups.get_by_id(reaction.id).add_members(
+                new_members=[reaction]
+            )
+        pt.model_convert(model=test_model)
+        for group in test_model.groups:
+            self.assertIsInstance(obj=group, cls=Pathway)
+        # CASE 2: Regular Model
+        filename = dir_input.joinpath("test_model02.sbml")
+        test_model = read_sbml_model(str(filename))
+        pt.model_convert(test_model)
+        for group in test_model.groups:
+            self.assertIsInstance(obj=group, cls=Pathway)
 
 
 if __name__ == "__main__":

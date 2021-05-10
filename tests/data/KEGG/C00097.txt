@@ -28,6 +28,7 @@ PATHWAY     map00260  Glycine, serine and threonine metabolism
             map01120  Microbial metabolism in diverse environments
             map01200  Carbon metabolism
             map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
             map04122  Sulfur relay system
             map04216  Ferroptosis
             map04974  Protein digestion and absorption
@@ -68,9 +69,6 @@ BRITE       Compounds with biological roles [BR:br08001]
               Inorganic and organic chemicals
                L-Cysteine
                 D00026  L-Cysteine (JP17)
-            Pharmaceutical additives in Japan [BR:br08316]
-             Stabilizing agent
-              D00026  [003614] L-Cysteine
             Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
              Chemicals
               D00026  L-Cysteine

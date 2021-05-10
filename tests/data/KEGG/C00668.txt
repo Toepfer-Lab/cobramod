@@ -20,6 +20,7 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map01110  Biosynthesis of secondary metabolites
             map01120  Microbial metabolism in diverse environments
             map01200  Carbon metabolism
+            map01240  Biosynthesis of cofactors
             map04152  AMPK signaling pathway
             map04922  Glucagon signaling pathway
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate

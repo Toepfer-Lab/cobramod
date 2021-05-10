@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PRPP"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PRPP"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PRPP</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:PRPP" detail="full" frameid="PRPP" orgid="META"><parent><Compound class="true" frameid="Sugar-Phosphate" orgid="META" resource="getxml?META:Sugar-Phosphate" /></parent>
@@ -12,21 +12,6 @@
 <string title="smiles">C(OP(=O)([O-])[O-])[C@@H]1([C@@H](O)[C@@H](O)[C@H](O1)OP(OP([O-])(=O)[O-])([O-])=O)</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">385.031</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">389.9518</monoisotopic-mw>
-<synonym datatype="string">5-phosphoribosyl 1-pyrophosphate</synonym>
-<synonym datatype="string">5-phosphoribosyl diphosphate</synonym>
-<synonym datatype="string">5-phosphoribosyl-1-PP</synonym>
-<synonym datatype="string">5-phosphoribosyl-PP</synonym>
-<synonym datatype="string">5-phosphoribosyl-1-pyrophosphate</synonym>
-<synonym datatype="string">5-phosphoribosylpyrophosphate</synonym>
-<synonym datatype="string">phosphoribosylpyrophosphate</synonym>
-<synonym datatype="string">5-phospho-ribosyl-pyrophosphate</synonym>
-<synonym datatype="string">&amp;alpha;-D-5-phosphoribosylPP</synonym>
-<synonym datatype="string">&amp;alpha;-D-5-P-RibosylPP</synonym>
-<abbrev-name datatype="string">PRPP</abbrev-name>
-<appears-in-left-side-of><Reaction frameid="6.3.4.8-RXN" orgid="META" resource="getxml?META:6.3.4.8-RXN" /><Reaction frameid="RXN-19537" orgid="META" resource="getxml?META:RXN-19537" /><Reaction frameid="RXN-10969" orgid="META" resource="getxml?META:RXN-10969" /><Reaction frameid="RXN-8124" orgid="META" resource="getxml?META:RXN-8124" /><Reaction frameid="NICOTINATEPRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:NICOTINATEPRIBOSYLTRANS-RXN" /><Reaction frameid="RXN-13203" orgid="META" resource="getxml?META:RXN-13203" /><Reaction frameid="RXN-11078" orgid="META" resource="getxml?META:RXN-11078" /><Reaction frameid="RXN-13207" orgid="META" resource="getxml?META:RXN-13207" /><Reaction frameid="RXN-10012" orgid="META" resource="getxml?META:RXN-10012" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="ATPPHOSPHORIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:ATPPHOSPHORIBOSYLTRANS-RXN" /><Reaction frameid="ADENPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:ADENPRIBOSYLTRAN-RXN" /><Reaction frameid="RXN-14270" orgid="META" resource="getxml?META:RXN-14270" /><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /><Reaction frameid="XANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:XANPRIBOSYLTRAN-RXN" /><Reaction frameid="HYPOXANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:HYPOXANPRIBOSYLTRAN-RXN" /><Reaction frameid="RXN-12150" orgid="META" resource="getxml?META:RXN-12150" /><Reaction frameid="RXN0-1401" orgid="META" resource="getxml?META:RXN0-1401" /><Reaction frameid="GUANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:GUANPRIBOSYLTRAN-RXN" /><Reaction frameid="2.4.2.12-RXN" orgid="META" resource="getxml?META:2.4.2.12-RXN" /><Reaction frameid="PRTRANS-RXN" orgid="META" resource="getxml?META:PRTRANS-RXN" /><Reaction frameid="PRPPAMIDOTRANS-RXN" orgid="META" resource="getxml?META:PRPPAMIDOTRANS-RXN" /><Reaction frameid="2.4.2.20-RXN" orgid="META" resource="getxml?META:2.4.2.20-RXN" /><Reaction frameid="OROPRIBTRANS-RXN" orgid="META" resource="getxml?META:OROPRIBTRANS-RXN" /><Reaction frameid="PRPPSYN-RXN" orgid="META" resource="getxml?META:PRPPSYN-RXN" /><Reaction frameid="URACIL-PRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:URACIL-PRIBOSYLTRANS-RXN" /></appears-in-right-side-of>
 <comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=PRPP"&gt;5-Phospho-&amp;alpha;-D-ribose 1-diphosphate&lt;/a&gt; (PRPP) is an important metabolite required in the biosynthesis of purine and pyrimidine nucleotides, the amino acids &lt;a href="/compound?orgid=META&amp;id=HIS"&gt;L-histidine&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=TRP"&gt;L-tryptophan&lt;/a&gt;, and the cofactors NAD and NADP. It is utilized in the biosynthesis of &lt;a href="/compound?orgid=META&amp;id=THMPT"&gt;tetrahydromethanopterin&lt;/a&gt; in certain archaeal species and in the biosynthesis of &lt;a href="/META/NEW-IMAGE?type=COMPOUND&amp;object=CPD1G-1531"&gt;mycolyl-arabinogalactan-peptidoglycan complex&lt;/a&gt; in &lt;a href="/META/NEW-IMAGE?object=TAX-1773"&gt;&lt;i&gt;Mycobacterium tuberculosis&lt;/i&gt;&lt;/a&gt;.
 &lt;p&gt;
 PRPP was discovered in the mid-1950s while searching for an enzyme that converted &lt;a href="/compound?orgid=META&amp;id=OROTATE"&gt;orotate&lt;/a&gt; to &lt;a href="/compound?orgid=META&amp;id=UMP"&gt;UMP&lt;/a&gt; [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/14392173"&gt;Kornberg55&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/13525411"&gt;Khorana58&lt;/a&gt;].
@@ -34,15 +19,15 @@ PRPP was discovered in the mid-1950s while searching for an enzyme that converte
 The enzyme catalyzing the synthesis of PRPP, &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.7.6.1"&gt;EC 2.7.6.1, ribose-phosphate diphosphokinase&lt;/a&gt;, is ubiquitous among free-living organisms. So far, only certain obligate intracellular parasites such as some &lt;a href="/META/NEW-IMAGE?object=TAX-810"&gt;&lt;i&gt;Chlamydia&lt;/i&gt;&lt;/a&gt; and &lt;a href="/META/NEW-IMAGE?object=TAX-780"&gt;&lt;i&gt;Rickettsia&lt;/i&gt;&lt;/a&gt; species are known to lack the gene encoding it. Mammals contain three PRPP synthase-encoding genes, the yeast &lt;a href="/META/NEW-IMAGE?object=TAX-4932"&gt;&lt;i&gt;Saccharomyces cerevisiae&lt;/i&gt;&lt;/a&gt; contains five, and the plant &lt;a href="/META/NEW-IMAGE?object=TAX-3702"&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt; contains five genes as well [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/28031352"&gt;HoveJensen17&lt;/a&gt;].</comment>
 <common-name datatype="string">5-phospho-&amp;alpha;-D-ribose 1-diphosphate</common-name>
 <credits><revised><date datatype="date">2018-02-05</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -114,14 +99,29 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C5H13O14P3/c6-3-2(1-16-20(8,9)10)17-5(4(3)7)18-22(14,15)19-21(11,12)13/h2-7H,1H2,(H,14,15)(H2,8,9,10)(H2,11,12,13)/p-5/t2-,3-,4-,5-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=PQGCEDQWHSBAJP-TXICZTDVSA-I</inchi-key>
+<molecular-weight datatype="float" units="Daltons">385.031</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">389.9518</monoisotopic-mw>
+<synonym datatype="string">5-phosphoribosyl 1-pyrophosphate</synonym>
+<synonym datatype="string">5-phosphoribosyl diphosphate</synonym>
+<synonym datatype="string">5-phosphoribosyl-1-PP</synonym>
+<synonym datatype="string">5-phosphoribosyl-PP</synonym>
+<synonym datatype="string">5-phosphoribosyl-1-pyrophosphate</synonym>
+<synonym datatype="string">5-phosphoribosylpyrophosphate</synonym>
+<synonym datatype="string">phosphoribosylpyrophosphate</synonym>
+<synonym datatype="string">5-phospho-ribosyl-pyrophosphate</synonym>
+<synonym datatype="string">&amp;alpha;-D-5-phosphoribosylPP</synonym>
+<synonym datatype="string">&amp;alpha;-D-5-P-RibosylPP</synonym>
+<abbrev-name datatype="string">PRPP</abbrev-name>
+<appears-in-left-side-of><Reaction frameid="6.3.4.8-RXN" orgid="META" resource="getxml?META:6.3.4.8-RXN" /><Reaction frameid="RXN-19537" orgid="META" resource="getxml?META:RXN-19537" /><Reaction frameid="RXN-10969" orgid="META" resource="getxml?META:RXN-10969" /><Reaction frameid="RXN-8124" orgid="META" resource="getxml?META:RXN-8124" /><Reaction frameid="NICOTINATEPRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:NICOTINATEPRIBOSYLTRANS-RXN" /><Reaction frameid="RXN-13203" orgid="META" resource="getxml?META:RXN-13203" /><Reaction frameid="RXN-11078" orgid="META" resource="getxml?META:RXN-11078" /><Reaction frameid="RXN-13207" orgid="META" resource="getxml?META:RXN-13207" /><Reaction frameid="RXN-10012" orgid="META" resource="getxml?META:RXN-10012" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="ATPPHOSPHORIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:ATPPHOSPHORIBOSYLTRANS-RXN" /><Reaction frameid="ADENPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:ADENPRIBOSYLTRAN-RXN" /><Reaction frameid="RXN-14270" orgid="META" resource="getxml?META:RXN-14270" /><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /><Reaction frameid="XANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:XANPRIBOSYLTRAN-RXN" /><Reaction frameid="HYPOXANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:HYPOXANPRIBOSYLTRAN-RXN" /><Reaction frameid="RXN-12150" orgid="META" resource="getxml?META:RXN-12150" /><Reaction frameid="RXN0-1401" orgid="META" resource="getxml?META:RXN0-1401" /><Reaction frameid="GUANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:GUANPRIBOSYLTRAN-RXN" /><Reaction frameid="2.4.2.12-RXN" orgid="META" resource="getxml?META:2.4.2.12-RXN" /><Reaction frameid="PRTRANS-RXN" orgid="META" resource="getxml?META:PRTRANS-RXN" /><Reaction frameid="PRPPAMIDOTRANS-RXN" orgid="META" resource="getxml?META:PRPPAMIDOTRANS-RXN" /><Reaction frameid="2.4.2.20-RXN" orgid="META" resource="getxml?META:2.4.2.20-RXN" /><Reaction frameid="OROPRIBTRANS-RXN" orgid="META" resource="getxml?META:OROPRIBTRANS-RXN" /><Reaction frameid="PRPPSYN-RXN" orgid="META" resource="getxml?META:PRPPSYN-RXN" /><Reaction frameid="URACIL-PRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:URACIL-PRIBOSYLTRANS-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

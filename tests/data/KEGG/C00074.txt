@@ -29,6 +29,7 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map01120  Microbial metabolism in diverse environments
             map01200  Carbon metabolism
             map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
             map02060  Phosphotransferase system (PTS)
             map04922  Glucagon signaling pathway
             map04964  Proximal tubule bicarbonate reclamation

@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:MANNITOL"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:MANNITOL"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:MANNITOL</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:MANNITOL" detail="full" frameid="MANNITOL" orgid="META"><parent><Compound class="true" frameid="Hexitols" orgid="META" resource="getxml?META:Hexitols" /></parent>
@@ -12,38 +12,6 @@
 <string title="smiles">C([C@H]([C@H]([C@@H]([C@@H](CO)O)O)O)O)O</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">182.173</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">182.07904</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-7552" detail="low" frameid="REG0-7552" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:MANNONDEHYDRAT-ENZRXN" detail="low" frameid="MANNONDEHYDRAT-ENZRXN" orgid="META"><reaction><Reaction frameid="MANNONDEHYDRAT-RXN" orgid="META" resource="getxml?META:MANNONDEHYDRAT-RXN" /></reaction>
-<synonym datatype="string">D-mannonate hydro-lyase</synonym>
-<synonym datatype="string">mannonate hydrolase</synonym>
-<synonym datatype="string">mannonate hydratase</synonym>
-<synonym datatype="string">ManD</synonym>
-<common-name datatype="string">D-mannonate dehydratase</common-name>
-<enzyme><Protein frameid="MANNONDEHYDRAT-MONOMER" orgid="META" resource="getxml?META:MANNONDEHYDRAT-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="MANNITOL" orgid="META" resource="#META:MANNITOL" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10899" detail="low" frameid="REG-10899" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6091" detail="low" frameid="ENZRXN-6091" orgid="META"><reaction><Reaction frameid="TRE6PHYDRO-RXN" orgid="META" resource="getxml?META:TRE6PHYDRO-RXN" /></reaction>
-<synonym datatype="string">phospho-&amp;alpha;(1,1)glucosidase</synonym>
-<synonym datatype="string">7751281</synonym>
-<synonym datatype="string">phosphotrehalase</synonym>
-<common-name datatype="string">trehalose-6-phosphate hydrolase</common-name>
-<enzyme><Protein frameid="MONOMER-5946" orgid="META" resource="getxml?META:MONOMER-5946" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="MANNITOL" orgid="META" resource="#META:MANNITOL" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">D-mitobronitol</synonym>
-<synonym datatype="string">(2R,3R,4R,5R)-hexane-1,2,3,4,5,6-hexol</synonym>
-<appears-in-left-side-of><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /><Reaction frameid="TRANS-RXN-156" orgid="META" resource="getxml?META:TRANS-RXN-156" /><Reaction frameid="MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" orgid="META" resource="getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" /><Reaction frameid="1.1.3.40-RXN" orgid="META" resource="getxml?META:1.1.3.40-RXN" /><Reaction frameid="MANNITOL-2-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="1.1.1.255-RXN" orgid="META" resource="getxml?META:1.1.1.255-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:MANNITOL-1-PHOSPHATASE-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">D-mannitol</common-name>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/375/</dblink-oid>
@@ -118,14 +86,46 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C6H14O6/c7-1-3(9)5(11)6(12)4(10)2-8/h3-12H,1-2H2/t3-,4-,5-,6-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=FBPFZTCFMRRESA-KVTDHHQDSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">182.173</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">182.07904</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-7552" detail="low" frameid="REG0-7552" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:MANNONDEHYDRAT-ENZRXN" detail="low" frameid="MANNONDEHYDRAT-ENZRXN" orgid="META"><common-name datatype="string">D-mannonate dehydratase</common-name>
+<enzyme><Protein frameid="MANNONDEHYDRAT-MONOMER" orgid="META" resource="getxml?META:MANNONDEHYDRAT-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MANNONDEHYDRAT-RXN" orgid="META" resource="getxml?META:MANNONDEHYDRAT-RXN" /></reaction>
+<synonym datatype="string">D-mannonate hydro-lyase</synonym>
+<synonym datatype="string">mannonate hydrolase</synonym>
+<synonym datatype="string">mannonate hydratase</synonym>
+<synonym datatype="string">ManD</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="MANNITOL" orgid="META" resource="#META:MANNITOL" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10899" detail="low" frameid="REG-10899" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6091" detail="low" frameid="ENZRXN-6091" orgid="META"><common-name datatype="string">trehalose-6-phosphate hydrolase</common-name>
+<enzyme><Protein frameid="MONOMER-5946" orgid="META" resource="getxml?META:MONOMER-5946" /></enzyme>
+<reaction><Reaction frameid="TRE6PHYDRO-RXN" orgid="META" resource="getxml?META:TRE6PHYDRO-RXN" /></reaction>
+<synonym datatype="string">phospho-&amp;alpha;(1,1)glucosidase</synonym>
+<synonym datatype="string">7751281</synonym>
+<synonym datatype="string">phosphotrehalase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="MANNITOL" orgid="META" resource="#META:MANNITOL" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">D-mitobronitol</synonym>
+<synonym datatype="string">(2R,3R,4R,5R)-hexane-1,2,3,4,5,6-hexol</synonym>
+<appears-in-left-side-of><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /><Reaction frameid="TRANS-RXN-156" orgid="META" resource="getxml?META:TRANS-RXN-156" /><Reaction frameid="MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" orgid="META" resource="getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN" /><Reaction frameid="1.1.3.40-RXN" orgid="META" resource="getxml?META:1.1.3.40-RXN" /><Reaction frameid="MANNITOL-2-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="1.1.1.255-RXN" orgid="META" resource="getxml?META:1.1.1.255-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:MANNITOL-1-PHOSPHATASE-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

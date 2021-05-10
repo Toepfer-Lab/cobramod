@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-12389"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-12389"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-12389</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CPD-12389" detail="full" frameid="CPD-12389" orgid="META"><parent><Compound class="true" frameid="CPD-19473" orgid="META" resource="getxml?META:CPD-19473" /></parent>
@@ -12,23 +12,18 @@
 <string title="smiles">CSCCCC=[N+](O)[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">149.207</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">151.0667</monoisotopic-mw>
-<synonym datatype="string">4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-11414" orgid="META" resource="getxml?META:RXN-11414" /></appears-in-right-side-of>
 <common-name datatype="string">1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
 <credits><created><date datatype="date">2010-04-26</date>
-<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><url datatype="string">http://plantcyc.org</url>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
 <abbrev-name datatype="string">PMN</abbrev-name>
-<common-name datatype="string">Carnegie Institution for Science</common-name>
 </Organization>
 </affiliations>
-<comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
-<common-name datatype="string">Peifen Zhang</common-name>
 </Person>
-<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><abbrev-name datatype="string">TAIR</abbrev-name>
-<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype="string">TAIR</abbrev-name>
 </Organization>
 </created>
 </credits>
@@ -50,14 +45,19 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
 <inchi-key datatype="string">InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">149.207</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">151.0667</monoisotopic-mw>
+<synonym datatype="string">4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-11414" orgid="META" resource="getxml?META:RXN-11414" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

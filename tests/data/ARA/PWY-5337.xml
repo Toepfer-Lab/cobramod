@@ -1,0 +1,126 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:PWY-5337"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:PWY-5337</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Pathway ID="ARA:PWY-5337" detail="full" frameid="PWY-5337" orgid="ARA"><parent><Pathway class="true" frameid="Glycan-Pathways" orgid="ARA" resource="getxml?ARA:Glycan-Pathways" /></parent>
+<parent><Pathway class="true" frameid="Oligosaccharides-Biosynthesis" orgid="ARA" resource="getxml?ARA:Oligosaccharides-Biosynthesis" /></parent>
+<dblink><dblink-db>PLANTCYC</dblink-db>
+<dblink-oid>PWY-5337</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pmn.plantcyc.org/PLANT/new-image?object=PWY-5337</dblink-URL>
+</dblink>
+<dblink><dblink-db>METACYC</dblink-db>
+<dblink-oid>PWY-5337</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://biocyc.org/META/new-image?object=PWY-5337</dblink-URL>
+</dblink>
+<synonym datatype="string">raffinose biosynthesis</synonym>
+<reaction-ordering><Reaction frameid="2.4.1.67-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.67-RXN" /><predecessor-reactions><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.82-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.82-RXN" /><predecessor-reactions><Reaction frameid="2.4.1.123-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.123-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="2.4.1.67-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.67-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-1099" orgid="ARA" resource="getxml?ARA:CPD-1099" /><Compound frameid="CPD-458" orgid="ARA" resource="getxml?ARA:CPD-458" /></left-primaries>
+<right-primaries><Compound frameid="CPD-170" orgid="ARA" resource="getxml?ARA:CPD-170" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.82-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-458" orgid="ARA" resource="getxml?ARA:CPD-458" /></left-primaries>
+<right-primaries><Compound frameid="CPD-1099" orgid="ARA" resource="getxml?ARA:CPD-1099" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="2.4.1.123-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.123-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-14553" orgid="ARA" resource="getxml?ARA:CPD-14553" /></left-primaries>
+<right-primaries><Compound frameid="CPD-458" orgid="ARA" resource="getxml?ARA:CPD-458" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="2.4.1.67-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.67-RXN" /><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.82-RXN" /><Reaction frameid="2.4.1.123-RXN" orgid="ARA" resource="getxml?ARA:2.4.1.123-RXN" /></reaction-list>
+<evidence><Evidence-Code ID="ARA:EV-COMP-HINF" class="true" detail="full" frameid="EV-COMP-HINF" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-COMP" orgid="ARA" resource="getxml?ARA:EV-COMP" /></parent>
+<comment datatype="string">Human inference.  A curator or author inferred this assertion after review of one or more possible types 
+of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
+When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
+<common-name datatype="string">Inferred by a human based on computational evidence</common-name>
+</Evidence-Code>
+<Publication ID="ARA:PUB-PMNAIPP2019" detail="full" frameid="PUB-PMNAIPP2019" orgid="ARA"><title datatype="string">This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Accept If Predicted Pathways (AIPP version 6.0).</title>
+<url datatype="string">https://www.plantcyc.org/about/savi-pipeline</url>
+<year datatype="integer">2019</year>
+</Publication>
+</evidence>
+<citation><Publication ID="ARA:PUB-10334866" detail="full" frameid="PUB-10334866" orgid="ARA"><title datatype="string">Purification and characterization of stachyose synthase from lentil (Lens culinaris) seeds: galactopinitol and stachyose synthesis.</title>
+<year datatype="integer">1999</year>
+<pubmed-id datatype="string">10334866</pubmed-id>
+<author datatype="string">Hoch G</author>
+<author datatype="string">Peterbauer T</author>
+<author datatype="string">Richter A</author>
+<source datatype="string">Arch Biochem Biophys 366(1);75-81</source>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-11115877" detail="full" frameid="PUB-11115877" orgid="ARA"><title datatype="string">Genetic analysis of seed-soluble oligosaccharides in relation to seed storability of Arabidopsis.</title>
+<year datatype="integer">2000</year>
+<pubmed-id datatype="string">11115877</pubmed-id>
+<author datatype="string">Bentsink L</author>
+<author datatype="string">Alonso-Blanco C</author>
+<author datatype="string">Vreugdenhil D</author>
+<author datatype="string">Tesnier K</author>
+<author datatype="string">Groot SP</author>
+<author datatype="string">Koornneef M</author>
+<source datatype="string">Plant Physiol 124(4);1595-604</source>
+</Publication>
+</citation>
+<citation><Publication ID="ARA:PUB-11846875" detail="full" frameid="PUB-11846875" orgid="ARA"><title datatype="string">Important roles of drought- and cold-inducible genes for galactinol synthase in stress tolerance in Arabidopsis thaliana.</title>
+<year datatype="integer">2002</year>
+<pubmed-id datatype="string">11846875</pubmed-id>
+<author datatype="string">Taji T</author>
+<author datatype="string">Ohsumi C</author>
+<author datatype="string">Iuchi S</author>
+<author datatype="string">Seki M</author>
+<author datatype="string">Kasuga M</author>
+<author datatype="string">Kobayashi M</author>
+<author datatype="string">Yamaguchi-Shinozaki K</author>
+<author datatype="string">Shinozaki K</author>
+<source datatype="string">Plant J 29(4);417-26</source>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID="ARA:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="ARA"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+<common-name datatype="string">Inferred from experiment</common-name>
+</Evidence-Code>
+<Publication ID="ARA:PUB-15474032" detail="full" frameid="PUB-15474032" orgid="ARA"><title datatype="string">The role of raffinose in the cold acclimation response of Arabidopsis thaliana.</title>
+<year datatype="integer">2004</year>
+<pubmed-id datatype="string">15474032</pubmed-id>
+<author datatype="string">Zuther E</author>
+<author datatype="string">Buchel K</author>
+<author datatype="string">Hundertmark M</author>
+<author datatype="string">Stitt M</author>
+<author datatype="string">Hincha DK</author>
+<author datatype="string">Heyer AG</author>
+<source datatype="string">FEBS Lett 576(1-2);169-73</source>
+</Publication>
+</evidence>
+<evidence><Evidence-Code class="true" frameid="EV-EXP" orgid="ARA" resource="#ARA:EV-EXP" /><Publication frameid="PUB-11115877" orgid="ARA" resource="#ARA:PUB-11115877" /></evidence>
+<comment datatype="string">&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: This pathway is on the list of Accept-If-Predicted Pathways (AIPP) generated for the COMET project, which includes pathways that are present widely throughout the plant kingdom. The AIPP list contains pathways that are automatically accepted if they are predicted for any plant species database. However, AIPP pathways are not automatically imported into databases if they are not predicted by the Pathologic program. &lt;A href="https://www.plantcyc.org/about/savi-pipeline"&gt;[more info]&lt;/A&gt;
+&lt;p&gt;
+&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
+&lt;p&gt;
+&lt;b&gt;General Information:&lt;/b&gt;
+&lt;p&gt;
+Stachyose and raffinose are two members of the so-called 'raffinose series' of sucrosyl oligosaccharides (also known as raffinose family oligosaccharides, RFOs).  Sucrosyl oligosaccharides represent a large portion of primary oligosaccharides in plants (defined as oligosaccharides synthesized by the action of a glycosyl transferase that mediates the transfer of a glycopyranosyl residue to either the glucopyranosyl or fructofuranosyl moiety of sucrose.  They are differentiated from secondary oligosaccharides which are generated by the hydrolysis of higher oligosaccharides, polysaccharides or heterosides.  For review, see [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bKANDLER82%5d"&gt;Kandler82&lt;/a&gt;]).  Members of the raffinose series occur at least in traces in each plant family; it is one of the most widespread sucrosyl oligosaccharide series in flowering plants and might even be ubiquitous (see [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bKANDLER82%5d"&gt;Kandler82&lt;/a&gt;] for review).  This series comprises &lt;a href="/compound?orgid=ARA&amp;id=CPD-1099"&gt;raffinose&lt;/a&gt;, &lt;a href="/compound?orgid=ARA&amp;id=CPD-170"&gt;stachyose&lt;/a&gt;, &lt;a href="/compound?orgid=ARA&amp;id=CPD-8065"&gt;verbascose&lt;/a&gt;,&lt;a href="/compound?orgid=ARA&amp;id=CPD-8066"&gt;ajugose&lt;/a&gt; (see also &lt;a href="/ARA/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5342"&gt;ajugose biosynthesis I (galactinol-dependent)&lt;/a&gt;) as well as several other compounds with a higher degree of polymerization (DP; the highest is a nonasaccharide; none of these higher-DP oligosaccharides in the series have not yet been named).  The sugars of this series consist of &amp;alpha;1,6-linked chains of D-galactose attached to the 6-glucosyl position of sucrose.  They are synthesized in leaves, roots and tubers.  Raffinose is usually found in all parts of the plants including seeds, unless another sucrosyl oligosaccharide series prevails.  Stachyose is often the main oligosaccharide in storage organs although variations occur between species.  Functionally, these soluble carbohydrates are used for carbon transport and storage by the plant, although they have also been reported as possibly acting as protective agents during maturation of drying seeds [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bHORBOWICZ94%5d"&gt;Horbowicz94&lt;/a&gt;] and during cold stress [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12223781"&gt;Travert97&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11115899"&gt;Gilmour00&lt;/a&gt;].  Sugars of this series have long been considered as undesirable non-digestible factors that promote flatulence.  Recently, however, it has been suggested that they might have beneficial effects on the gut microflora [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bTORTUERO97%5d"&gt;Tortuero97&lt;/a&gt;].  Moreover, they have been suggested for non-food applications (organ preservation) [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11308150"&gt;Fischer01&lt;/a&gt;].
+
+&lt;b&gt;Enzymes of the pathway:&lt;/b&gt;
+&lt;p&gt;
+The first step of the biosynthesis starts with the formation of the unusual galactosyl donor &lt;a href="/compound?orgid=ARA&amp;id=CPD-458"&gt;galactinol&lt;/a&gt;.  The enzyme allowing the formation of this compound is galactinol synthase, which catalyzes the transfer of a galactosyl residue from UDP-galactose onto &lt;i&gt;myo&lt;/i&gt;-inositol [UDP-galactose:&lt;i&gt;myo&lt;/i&gt;-inositol (1-&amp;alpha;-D) galactosyltransferase].  Several enzymes with this activity have been characterized and purified.  The only known function of galactinol is in the biosynthesis of RFOs; it has therefore been postulated that galactinol synthase might be the committed and regulatory step for the synthesis of these compounds.  The following step consists in the transfer of galactosyl units from galactinol to sucrose to form raffinose, the first RFO of the series.  The enzyme catalyzing this reaction is known as raffinose synthase (galactinol:sucrose 6-galactosyltransferase).  Stachyose is formed by the additional incorporation of a galactosyl unit to raffinose by a stachyose synthase (galactinol:raffinose 6-galactosyltransferase).
+</comment>
+<common-name datatype="string">stachyose biosynthesis</common-name>
+<credits><created><date datatype="date">2006-09-18</date>
+<Person ID="ARA:tissier" detail="full" frameid="tissier" orgid="ARA"><email datatype="string">tissier@aztec.stanford.edu</email>
+<affiliations><Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
+<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
+</credits>
+</Pathway>
+</ptools-xml>

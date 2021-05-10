@@ -6,15 +6,14 @@ to any module. In other words, these functions are general functions. An
 example:
 
  - check_imbalance: Check for unbalanced reactions.
- - model_convert: Trasnform all Groups into proper Pathways.
 """
 from itertools import chain
 from pathlib import Path
-from typing import TextIO, Iterator, Generator, Iterable, NamedTuple, Any
 from re import match
-from warnings import catch_warnings, simplefilter, warn
+from typing import TextIO, Iterator, Generator, Iterable, Any
+from warnings import warn
 
-from cobra import Model, Reaction, DictList
+from cobra import Reaction, DictList
 
 from cobramod.debug import debug_log
 from cobramod.error import (
@@ -22,21 +21,6 @@ from cobramod.error import (
     PatternNotFound,
     NoIntersectFound,
 )
-from cobramod.core.pathway import Pathway
-
-
-class DataModel(NamedTuple):
-    """
-    A class to store old values of metabolic models
-    """
-
-    reactions: DictList
-    metabolites: DictList
-    demands: DictList
-    exchanges: DictList
-    genes: DictList
-    groups: DictList
-    sinks: DictList
 
 
 def check_imbalance(
@@ -57,37 +41,16 @@ def check_imbalance(
     # Will stop if True
     if dict_balance != {}:
         msg = (
-            f"Reaction '{reaction.id}' unbalanced. "
-            f"Results to {dict_balance}. "
+            f'Reaction "{reaction.id}" unbalanced. Following atoms are '
+            + f"affected. Please verify:\n{dict_balance}"
         )
         if stop_imbalance:
-            raise UnbalancedReaction(reaction=reaction)
+            raise UnbalancedReaction(
+                identifier=reaction.id, dict_balance=dict_balance
+            )
         if show_imbalance:
             debug_log.warning(msg)
             warn(message=msg, category=UserWarning)
-
-
-def get_DataList(model: Model) -> DataModel:
-    """
-    Retrieve all DictList in given model and returns them as a
-    :func:`cobramod.utils.DataModel` object.
-    """
-    # FIXME: copying a model is counterproductive. Attribute Group does not
-    # have method copy(). Check what can be done
-    copy_model = model.copy()
-    dict_arguments = dict()
-    with catch_warnings():
-        # This is to avoid DeprecationWarning when using dir with Model
-        simplefilter(action="ignore")
-        dict_list_names = [
-            attribute
-            for attribute in dir(model)
-            if type(getattr(model, attribute)) == DictList
-        ]
-    for attribute in dict_list_names:
-        item = getattr(copy_model, attribute)
-        dict_arguments[attribute] = item
-    return DataModel(**dict_arguments)
 
 
 def get_key_dict(dictionary: dict, pattern: str) -> str:
@@ -181,33 +144,6 @@ def compare_DictList(first: DictList, second: DictList) -> Generator:
             yield item.id
 
 
-def _compare(model: Model, comparison: DataModel) -> dict:
-    """
-    Compares given model with the data from a DataModel object and returns
-    a dictionary with differences.
-    """
-    difference = dict()
-    with catch_warnings():
-        # This is avoid DeprecationWarning when using dir with Model
-        simplefilter(action="ignore")
-        dict_list_names = [
-            attribute
-            for attribute in dir(model)
-            if type(getattr(model, attribute)) == DictList
-        ]
-    for dict_list in dict_list_names:
-        item = getattr(model, dict_list)
-        for key, value in comparison._asdict().items():
-            try:
-                if dict_list == key:
-                    difference[dict_list] = list(
-                        compare_DictList(first=item, second=value)
-                    )
-            except IndexError:
-                difference[dict_list] = []
-    return difference
-
-
 def _save_diff(differences: dict) -> list:
     """
     Save differences in a list for later be used in a stdout or other kind of
@@ -225,93 +161,12 @@ def _save_diff(differences: dict) -> list:
     return output
 
 
-def get_diff(model: Model, comparison: DataModel) -> list:
-    """
-    Gets the difference between give model and a
-    :func:`cobramod.utils.DataModel` object and returns a list with
-    differences.
-
-    Args:
-        model (Model): Model to obtain information
-        comparison (DataModel): Object with data from a previous model. Check
-            :func:`cobramod.utils.get_DataList` for usage.
-
-    Returns:
-        list: Differences between model and DataModel.
-
-    """
-    return _save_diff(differences=_compare(model=model, comparison=comparison))
-
-
 def write_to_file(sequences: Iterable, filename: Path):
     """
     Writes to given file all items from the iterable in separate lines.
     """
     with open(file=str(filename), mode="w+") as f:
         f.writelines(line + "\n" for line in sequences)
-
-
-def get_basic_info(model: Model) -> list:
-    """
-    Returns as a list the information of the model. The order of the items,
-    represents the order for printing.
-    """
-    return [
-        "Summary:",
-        f"Model identifier: {model.id}",
-        "Model name:",
-        str(model.name),
-        "Reactions:",
-        str([reaction.id for reaction in model.reactions]),
-        "Metabolites:",
-        str([metabolite.id for metabolite in model.metabolites]),
-        "Exchanges:",
-        str([exchange.id for exchange in model.exchanges]),
-        "Demands:",
-        str([demand.id for demand in model.demands]),
-        "Sinks:",
-        str([sink.id for sink in model.sinks]),
-        "Genes:",
-        str([gene.id for gene in model.genes]),
-        "Groups:",
-        str([group.id for group in model.groups]),
-    ]
-
-
-def check_to_write(
-    model: Model,
-    summary: bool,
-    filename: Path,
-    old_values: DataModel,
-    basic_info: list,
-):
-    """
-    Checks if summary should be saved in a filename.
-
-    Args:
-        model (Model): model with recent changes.
-        summary (bool): If True, summary will be saved in given filename.
-        filename (Path): Path with the location of the filename
-        old_values (DataModel): Object with data from previous model. Use
-            method :func:`cobramod.utils.get_DataList`.
-        basic_info (list): Basic information of model. Use method
-            :func:`cobramod.utils.get_basic_info`
-
-    Raises:
-        TypeError: if model is empty
-
-    """
-    try:
-        if summary:
-            sequences = basic_info + get_diff(
-                model=model, comparison=old_values
-            )
-            write_to_file(sequences=sequences, filename=filename)
-        else:
-            pass
-    except TypeError:
-        # To avoid empty models
-        debug_log.error("Given model appears to be empty. Summary skipped")
 
 
 def _path_match(directory: Path, pattern: str) -> Path:
@@ -344,12 +199,3 @@ def _first_item(first: DictList, second: dict, revert: bool) -> str:
         return common.pop()
     except (KeyError, AttributeError):
         raise NoIntersectFound
-
-
-def model_convert(model: Model):
-    """
-    Converts the all Group objects in given model to proper cobramod
-    :func:`cobramod.pathway.Pathway`
-    """
-    for index, group in enumerate(iterable=model.groups):
-        model.groups[index] = Pathway._transform(obj=group)

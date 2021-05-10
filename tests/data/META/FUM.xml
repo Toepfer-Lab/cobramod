@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:FUM"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:FUM"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:FUM</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:FUM" detail="full" frameid="FUM" orgid="META"><parent><Compound class="true" frameid="C4-dicarboxylates" orgid="META" resource="getxml?META:C4-dicarboxylates" /></parent>
@@ -12,91 +12,9 @@
 <string title="smiles">C(/C([O-])=O)=C\C(=O)[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">114.057</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">116.010956</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-7152" detail="low" frameid="REG0-7152" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GLUTDECARBOXA-ENZRXN" detail="low" frameid="GLUTDECARBOXA-ENZRXN" orgid="META"><reaction><Reaction frameid="GLUTDECARBOX-RXN" orgid="META" resource="getxml?META:GLUTDECARBOX-RXN" /></reaction>
-<synonym datatype="string">GAD &amp;alpha;</synonym>
-<synonym datatype="string">glutamate decarboxylase &amp;alpha;</synonym>
-<synonym datatype="string">L-glutamate 1-carboxy-lyase</synonym>
-<common-name datatype="string">glutamate decarboxylase A</common-name>
-<enzyme><Protein frameid="GLUTDECARBOXA-CPLX" orgid="META" resource="getxml?META:GLUTDECARBOXA-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-8569" detail="low" frameid="REG0-8569" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GLUTDECARBOXB-ENZRXN" detail="low" frameid="GLUTDECARBOXB-ENZRXN" orgid="META"><reaction><Reaction frameid="GLUTDECARBOX-RXN" orgid="META" resource="getxml?META:GLUTDECARBOX-RXN" /></reaction>
-<synonym datatype="string">GAD &amp;beta;</synonym>
-<synonym datatype="string">glutamate decarboxylase &amp;beta;</synonym>
-<synonym datatype="string">L-glutamate 1-carboxy-lyase</synonym>
-<common-name datatype="string">glutamate decarboxylase B</common-name>
-<enzyme><Protein frameid="GLUTDECARBOXB-CPLX" orgid="META" resource="getxml?META:GLUTDECARBOXB-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-11300" detail="low" frameid="REG0-11300" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:MALIC-NADP-ENZRXN" detail="low" frameid="MALIC-NADP-ENZRXN" orgid="META"><reaction><Reaction frameid="MALIC-NADP-RXN" orgid="META" resource="getxml?META:MALIC-NADP-RXN" /></reaction>
-<synonym datatype="string">malic enzyme</synonym>
-<synonym datatype="string">malate dehydrogenase, NADP+-linked</synonym>
-<synonym datatype="string">pyruvic-malic carboxylase</synonym>
-<synonym datatype="string">(S)-malate:NADP+ oxidoreductase (oxaloacetate-decarboxylating)</synonym>
-<common-name datatype="string">malate dehydrogenase</common-name>
-<enzyme><Protein frameid="MALIC-NADP-CPLX" orgid="META" resource="getxml?META:MALIC-NADP-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-14508" detail="low" frameid="REG-14508" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22250" detail="low" frameid="ENZRXN-22250" orgid="META"><reaction><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /></reaction>
-<common-name datatype="string">NAD&lt;sup&gt;+&lt;/sup&gt;-dependent malate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-8768" orgid="META" resource="getxml?META:CPLX-8768" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-11622" detail="low" frameid="REG-11622" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13436" detail="low" frameid="ENZRXN-13436" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
-<common-name datatype="string">pyruvate kinase</common-name>
-<enzyme><Protein frameid="CPLX-7222" orgid="META" resource="getxml?META:CPLX-7222" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9496" detail="low" frameid="REG-9496" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3041" detail="low" frameid="ENZRXN-3041" orgid="META"><reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-RXN" /></reaction>
-<synonym datatype="string">glutamic dehydrogenase</synonym>
-<synonym datatype="string">L-glutamate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (deaminating)</synonym>
-<common-name datatype="string">glutamate dehydrogenase (NAD-dependent)</common-name>
-<enzyme><Protein frameid="CPLX-2101" orgid="META" resource="getxml?META:CPLX-2101" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-7026" detail="low" frameid="REG-7026" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11939" detail="low" frameid="ENZRXN-11939" orgid="META"><reaction><Reaction frameid="UROCANATE-HYDRATASE-RXN" orgid="META" resource="getxml?META:UROCANATE-HYDRATASE-RXN" /></reaction>
-<common-name datatype="string">urocanase</common-name>
-<enzyme><Protein frameid="CPLX-6927" orgid="META" resource="getxml?META:CPLX-6927" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">fum</synonym>
-<synonym datatype="string">fumaric acid</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-21394" orgid="META" resource="getxml?META:RXN-21394" /><Reaction frameid="RXN-21393" orgid="META" resource="getxml?META:RXN-21393" /><Reaction frameid="RXN-21414" orgid="META" resource="getxml?META:RXN-21414" /><Reaction frameid="RXN1YI0-24" orgid="META" resource="getxml?META:RXN1YI0-24" /><Reaction frameid="RXN-15295" orgid="META" resource="getxml?META:RXN-15295" /><Reaction frameid="TRANS-RXN-379" orgid="META" resource="getxml?META:TRANS-RXN-379" /><Reaction frameid="TRANS-RXN-106" orgid="META" resource="getxml?META:TRANS-RXN-106" /><Reaction frameid="TRANS-RXN-299" orgid="META" resource="getxml?META:TRANS-RXN-299" /><Reaction frameid="TRANS-RXN0-553" orgid="META" resource="getxml?META:TRANS-RXN0-553" /><Reaction frameid="R601-RXN" orgid="META" resource="getxml?META:R601-RXN" /><Reaction frameid="RXN-9772" orgid="META" resource="getxml?META:RXN-9772" /><Reaction frameid="RXN-16290" orgid="META" resource="getxml?META:RXN-16290" /><Reaction frameid="RXN-14963" orgid="META" resource="getxml?META:RXN-14963" /><Reaction frameid="RXN-9929" orgid="META" resource="getxml?META:RXN-9929" /><Reaction frameid="RXN0-5245" orgid="META" resource="getxml?META:RXN0-5245" /><Reaction frameid="RXN-942" orgid="META" resource="getxml?META:RXN-942" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="FUMHYDR-RXN" orgid="META" resource="getxml?META:FUMHYDR-RXN" /><Reaction frameid="RXN-14971" orgid="META" resource="getxml?META:RXN-14971" /><Reaction frameid="RXN1YI0-14" orgid="META" resource="getxml?META:RXN1YI0-14" /><Reaction frameid="FUMARATE-REDUCTASE-NADH-RXN" orgid="META" resource="getxml?META:FUMARATE-REDUCTASE-NADH-RXN" /><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE6-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE6-RXN" /><Reaction frameid="TRANS-RXN-379" orgid="META" resource="getxml?META:TRANS-RXN-379" /><Reaction frameid="TRANS-RXN-106" orgid="META" resource="getxml?META:TRANS-RXN-106" /><Reaction frameid="TRANS-RXN-299" orgid="META" resource="getxml?META:TRANS-RXN-299" /><Reaction frameid="TRANS-RXN0-553" orgid="META" resource="getxml?META:TRANS-RXN0-553" /><Reaction frameid="ASPARTASE-RXN" orgid="META" resource="getxml?META:ASPARTASE-RXN" /><Reaction frameid="RXN-13372" orgid="META" resource="getxml?META:RXN-13372" /><Reaction frameid="RXN-863" orgid="META" resource="getxml?META:RXN-863" /><Reaction frameid="RXN-15378" orgid="META" resource="getxml?META:RXN-15378" /><Reaction frameid="RXN-15742" orgid="META" resource="getxml?META:RXN-15742" /><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /><Reaction frameid="RXN-14970" orgid="META" resource="getxml?META:RXN-14970" /><Reaction frameid="RXN-10445" orgid="META" resource="getxml?META:RXN-10445" /><Reaction frameid="RXN-12070" orgid="META" resource="getxml?META:RXN-12070" /><Reaction frameid="RXN-12153" orgid="META" resource="getxml?META:RXN-12153" /><Reaction frameid="RXN-22" orgid="META" resource="getxml?META:RXN-22" /><Reaction frameid="AICARSYN-RXN" orgid="META" resource="getxml?META:AICARSYN-RXN" /><Reaction frameid="MALEATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEATE-ISOMERASE-RXN" /><Reaction frameid="FUMARYLACETOACETASE-RXN" orgid="META" resource="getxml?META:FUMARYLACETOACETASE-RXN" /><Reaction frameid="CARBOXYMETHYLOXYSUCCINATE-LYASE-RXN" orgid="META" resource="getxml?META:CARBOXYMETHYLOXYSUCCINATE-LYASE-RXN" /><Reaction frameid="ARGSUCCINLYA-RXN" orgid="META" resource="getxml?META:ARGSUCCINLYA-RXN" /><Reaction frameid="AMPSYN-RXN" orgid="META" resource="getxml?META:AMPSYN-RXN" /></appears-in-right-side-of>
-<cofactors-of><Enzymatic-Reaction ID="META:ENZRXN66-1484" detail="low" frameid="ENZRXN66-1484" orgid="META"><reaction><Reaction frameid="DOPAMINE-BETA-MONOOXYGENASE-RXN" orgid="META" resource="getxml?META:DOPAMINE-BETA-MONOOXYGENASE-RXN" /></reaction>
-<common-name datatype="string">dopamine &amp;beta;-monooxygenase</common-name>
+<cofactors-of><Enzymatic-Reaction ID="META:ENZRXN66-1484" detail="low" frameid="ENZRXN66-1484" orgid="META"><common-name datatype="string">dopamine &amp;beta;-monooxygenase</common-name>
 <enzyme><Protein frameid="CPLX66-141" orgid="META" resource="getxml?META:CPLX66-141" /></enzyme>
+<reaction><Reaction frameid="DOPAMINE-BETA-MONOOXYGENASE-RXN" orgid="META" resource="getxml?META:DOPAMINE-BETA-MONOOXYGENASE-RXN" /></reaction>
 </Enzymatic-Reaction>
 </cofactors-of>
 <common-name datatype="string">fumarate</common-name>
@@ -179,14 +97,96 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C4H4O4/c5-3(6)1-2-4(7)8/h1-2H,(H,5,6)(H,7,8)/p-2/b2-1+</inchi>
 <inchi-key datatype="string">InChIKey=VZCYOOQTPOCHFL-OWOJBTEDSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">114.057</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">116.010956</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-7152" detail="low" frameid="REG0-7152" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLUTDECARBOXA-ENZRXN" detail="low" frameid="GLUTDECARBOXA-ENZRXN" orgid="META"><common-name datatype="string">glutamate decarboxylase A</common-name>
+<enzyme><Protein frameid="GLUTDECARBOXA-CPLX" orgid="META" resource="getxml?META:GLUTDECARBOXA-CPLX" /></enzyme>
+<reaction><Reaction frameid="GLUTDECARBOX-RXN" orgid="META" resource="getxml?META:GLUTDECARBOX-RXN" /></reaction>
+<synonym datatype="string">GAD &amp;alpha;</synonym>
+<synonym datatype="string">glutamate decarboxylase &amp;alpha;</synonym>
+<synonym datatype="string">L-glutamate 1-carboxy-lyase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8569" detail="low" frameid="REG0-8569" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLUTDECARBOXB-ENZRXN" detail="low" frameid="GLUTDECARBOXB-ENZRXN" orgid="META"><common-name datatype="string">glutamate decarboxylase B</common-name>
+<enzyme><Protein frameid="GLUTDECARBOXB-CPLX" orgid="META" resource="getxml?META:GLUTDECARBOXB-CPLX" /></enzyme>
+<reaction><Reaction frameid="GLUTDECARBOX-RXN" orgid="META" resource="getxml?META:GLUTDECARBOX-RXN" /></reaction>
+<synonym datatype="string">GAD &amp;beta;</synonym>
+<synonym datatype="string">glutamate decarboxylase &amp;beta;</synonym>
+<synonym datatype="string">L-glutamate 1-carboxy-lyase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11300" detail="low" frameid="REG0-11300" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:MALIC-NADP-ENZRXN" detail="low" frameid="MALIC-NADP-ENZRXN" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
+<enzyme><Protein frameid="MALIC-NADP-CPLX" orgid="META" resource="getxml?META:MALIC-NADP-CPLX" /></enzyme>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="META" resource="getxml?META:MALIC-NADP-RXN" /></reaction>
+<synonym datatype="string">malic enzyme</synonym>
+<synonym datatype="string">malate dehydrogenase, NADP+-linked</synonym>
+<synonym datatype="string">pyruvic-malic carboxylase</synonym>
+<synonym datatype="string">(S)-malate:NADP+ oxidoreductase (oxaloacetate-decarboxylating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-14508" detail="low" frameid="REG-14508" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22250" detail="low" frameid="ENZRXN-22250" orgid="META"><common-name datatype="string">NAD&lt;sup&gt;+&lt;/sup&gt;-dependent malate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-8768" orgid="META" resource="getxml?META:CPLX-8768" /></enzyme>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11622" detail="low" frameid="REG-11622" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13436" detail="low" frameid="ENZRXN-13436" orgid="META"><common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-7222" orgid="META" resource="getxml?META:CPLX-7222" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9496" detail="low" frameid="REG-9496" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-3041" detail="low" frameid="ENZRXN-3041" orgid="META"><common-name datatype="string">glutamate dehydrogenase (NAD-dependent)</common-name>
+<enzyme><Protein frameid="CPLX-2101" orgid="META" resource="getxml?META:CPLX-2101" /></enzyme>
+<reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-RXN" /></reaction>
+<synonym datatype="string">glutamic dehydrogenase</synonym>
+<synonym datatype="string">L-glutamate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (deaminating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7026" detail="low" frameid="REG-7026" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11939" detail="low" frameid="ENZRXN-11939" orgid="META"><common-name datatype="string">urocanase</common-name>
+<enzyme><Protein frameid="CPLX-6927" orgid="META" resource="getxml?META:CPLX-6927" /></enzyme>
+<reaction><Reaction frameid="UROCANATE-HYDRATASE-RXN" orgid="META" resource="getxml?META:UROCANATE-HYDRATASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="FUM" orgid="META" resource="#META:FUM" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">fum</synonym>
+<synonym datatype="string">fumaric acid</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-21394" orgid="META" resource="getxml?META:RXN-21394" /><Reaction frameid="RXN-21393" orgid="META" resource="getxml?META:RXN-21393" /><Reaction frameid="RXN-21414" orgid="META" resource="getxml?META:RXN-21414" /><Reaction frameid="RXN1YI0-24" orgid="META" resource="getxml?META:RXN1YI0-24" /><Reaction frameid="RXN-15295" orgid="META" resource="getxml?META:RXN-15295" /><Reaction frameid="TRANS-RXN-379" orgid="META" resource="getxml?META:TRANS-RXN-379" /><Reaction frameid="TRANS-RXN-106" orgid="META" resource="getxml?META:TRANS-RXN-106" /><Reaction frameid="TRANS-RXN-299" orgid="META" resource="getxml?META:TRANS-RXN-299" /><Reaction frameid="TRANS-RXN0-553" orgid="META" resource="getxml?META:TRANS-RXN0-553" /><Reaction frameid="R601-RXN" orgid="META" resource="getxml?META:R601-RXN" /><Reaction frameid="RXN-9772" orgid="META" resource="getxml?META:RXN-9772" /><Reaction frameid="RXN-16290" orgid="META" resource="getxml?META:RXN-16290" /><Reaction frameid="RXN-14963" orgid="META" resource="getxml?META:RXN-14963" /><Reaction frameid="RXN-9929" orgid="META" resource="getxml?META:RXN-9929" /><Reaction frameid="RXN0-5245" orgid="META" resource="getxml?META:RXN0-5245" /><Reaction frameid="RXN-942" orgid="META" resource="getxml?META:RXN-942" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="FUMARYLACETOACETASE-RXN" orgid="META" resource="getxml?META:FUMARYLACETOACETASE-RXN" /><Reaction frameid="FUMHYDR-RXN" orgid="META" resource="getxml?META:FUMHYDR-RXN" /><Reaction frameid="RXN-14971" orgid="META" resource="getxml?META:RXN-14971" /><Reaction frameid="RXN1YI0-14" orgid="META" resource="getxml?META:RXN1YI0-14" /><Reaction frameid="FUMARATE-REDUCTASE-NADH-RXN" orgid="META" resource="getxml?META:FUMARATE-REDUCTASE-NADH-RXN" /><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE6-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE6-RXN" /><Reaction frameid="TRANS-RXN-379" orgid="META" resource="getxml?META:TRANS-RXN-379" /><Reaction frameid="TRANS-RXN-106" orgid="META" resource="getxml?META:TRANS-RXN-106" /><Reaction frameid="TRANS-RXN-299" orgid="META" resource="getxml?META:TRANS-RXN-299" /><Reaction frameid="TRANS-RXN0-553" orgid="META" resource="getxml?META:TRANS-RXN0-553" /><Reaction frameid="ASPARTASE-RXN" orgid="META" resource="getxml?META:ASPARTASE-RXN" /><Reaction frameid="RXN-13372" orgid="META" resource="getxml?META:RXN-13372" /><Reaction frameid="RXN-863" orgid="META" resource="getxml?META:RXN-863" /><Reaction frameid="RXN-15378" orgid="META" resource="getxml?META:RXN-15378" /><Reaction frameid="RXN-15742" orgid="META" resource="getxml?META:RXN-15742" /><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="META" resource="getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /><Reaction frameid="RXN-14970" orgid="META" resource="getxml?META:RXN-14970" /><Reaction frameid="RXN-10445" orgid="META" resource="getxml?META:RXN-10445" /><Reaction frameid="RXN-12070" orgid="META" resource="getxml?META:RXN-12070" /><Reaction frameid="RXN-12153" orgid="META" resource="getxml?META:RXN-12153" /><Reaction frameid="RXN-22" orgid="META" resource="getxml?META:RXN-22" /><Reaction frameid="AICARSYN-RXN" orgid="META" resource="getxml?META:AICARSYN-RXN" /><Reaction frameid="MALEATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEATE-ISOMERASE-RXN" /><Reaction frameid="CARBOXYMETHYLOXYSUCCINATE-LYASE-RXN" orgid="META" resource="getxml?META:CARBOXYMETHYLOXYSUCCINATE-LYASE-RXN" /><Reaction frameid="ARGSUCCINLYA-RXN" orgid="META" resource="getxml?META:ARGSUCCINLYA-RXN" /><Reaction frameid="AMPSYN-RXN" orgid="META" resource="getxml?META:AMPSYN-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

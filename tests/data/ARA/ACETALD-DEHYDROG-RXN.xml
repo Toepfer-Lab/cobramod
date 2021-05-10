@@ -1,0 +1,64 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:ACETALD-DEHYDROG-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:ACETALD-DEHYDROG-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:ACETALD-DEHYDROG-RXN" detail="full" frameid="ACETALD-DEHYDROG-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>B55511</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=B55511</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>DEEC</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=DEEC</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>G64762</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=G64762</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>H70675</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=H70675</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S24419</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S24419</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S35222</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S35222</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>S53319</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=S53319</dblink-URL>
+</dblink>
+<dblink><dblink-db>PIR</dblink-db>
+<dblink-oid>T31270</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T31270</dblink-URL>
+</dblink>
+<ec-number>EC-1.2.1.10<official>T</official>
+</ec-number>
+<gibbs-0 datatype="float" units="kcal/mol">-7.378174</gibbs-0>
+<in-pathway><Pathway frameid="ETOH-ACETYLCOA-ANA-PWY" orgid="ARA" resource="getxml?ARA:ETOH-ACETYLCOA-ANA-PWY" /></in-pathway>
+<left><Compound frameid="NAD" orgid="ARA" resource="getxml?ARA:NAD" /></left>
+<left><Compound frameid="CO-A" orgid="ARA" resource="getxml?ARA:CO-A" /></left>
+<left><Compound frameid="ACETALD" orgid="ARA" resource="getxml?ARA:ACETALD" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
+<right><Compound frameid="NADH" orgid="ARA" resource="getxml?ARA:NADH" /></right>
+<right><Compound frameid="ACETYL-COA" orgid="ARA" resource="getxml?ARA:ACETYL-COA" /></right>
+</Reaction>
+</ptools-xml>

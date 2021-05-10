@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:RXN-2209"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-2209"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-2209</query>
 <num_results>1</num_results>
@@ -9,17 +9,17 @@
 <Reaction ID="ARA:RXN-2209" detail="full" frameid="RXN-2209" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
 <ec-number>EC-2.8.2.38</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-12494" detail="low" frameid="ENZRXNQT-12494" orgid="ARA"><common-name datatype="string">3-methylthiopropyl-desulfoglucosinolate sulfotransferase</common-name>
-<enzyme><Protein frameid="AT1G74100-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G74100-MONOMER" /></enzyme>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-12494" detail="low" frameid="ENZRXNQT-12494" orgid="ARA"><enzyme><Protein frameid="AT1G74100-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G74100-MONOMER" /></enzyme>
 <reaction><Reaction frameid="RXN-2209" orgid="ARA" resource="#ARA:RXN-2209" /></reaction>
+<common-name datatype="string">3-methylthiopropyl-desulfoglucosinolate sulfotransferase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN-6273" detail="low" frameid="ENZRXN-6273" orgid="ARA"><common-name datatype="string">3-methylthiopropyl-desulfoglucosinolate sulfotransferase</common-name>
-<enzyme><Protein frameid="AT1G18590-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G18590-MONOMER" /></enzyme>
+<Enzymatic-Reaction ID="ARA:ENZRXN-6273" detail="low" frameid="ENZRXN-6273" orgid="ARA"><enzyme><Protein frameid="AT1G18590-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G18590-MONOMER" /></enzyme>
 <reaction><Reaction frameid="RXN-2209" orgid="ARA" resource="#ARA:RXN-2209" /></reaction>
+<common-name datatype="string">3-methylthiopropyl-desulfoglucosinolate sulfotransferase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN-6272" detail="low" frameid="ENZRXN-6272" orgid="ARA"><common-name datatype="string">3-methylthiopropyl-desulfoglucosinolate sulfotransferase</common-name>
-<enzyme><Protein frameid="AT1G74090-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G74090-MONOMER" /></enzyme>
+<Enzymatic-Reaction ID="ARA:ENZRXN-6272" detail="low" frameid="ENZRXN-6272" orgid="ARA"><enzyme><Protein frameid="AT1G74090-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G74090-MONOMER" /></enzyme>
 <reaction><Reaction frameid="RXN-2209" orgid="ARA" resource="#ARA:RXN-2209" /></reaction>
+<common-name datatype="string">3-methylthiopropyl-desulfoglucosinolate sulfotransferase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">8.1458435</gibbs-0>

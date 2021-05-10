@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:HOMOMETHIONINE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:HOMOMETHIONINE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:HOMOMETHIONINE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:HOMOMETHIONINE" detail="full" frameid="HOMOMETHIONINE" orgid="META"><parent><Compound class="true" frameid="N-homo-methionine" orgid="META" resource="getxml?META:N-homo-methionine" /></parent>
@@ -12,11 +12,6 @@
 <string title="smiles">CSCCC[C@@H](C([O-])=O)[NH3+]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">163.234</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">163.0667</monoisotopic-mw>
-<synonym datatype="string">(2S)-2-amino-5-(methylsulfanyl)pentanoate</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-2206" orgid="META" resource="getxml?META:RXN-2206" /><Reaction frameid="RXN-13014" orgid="META" resource="getxml?META:RXN-13014" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-2205" orgid="META" resource="getxml?META:RXN-2205" /></appears-in-right-side-of>
 <common-name datatype="string">L-homomethionine</common-name>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM59436</dblink-oid>
@@ -51,14 +46,19 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C6H13NO2S/c1-10-4-2-3-5(7)6(8)9/h5H,2-4,7H2,1H3,(H,8,9)/t5-/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=SFSJZXMDTNDWIX-YFKPBYRVSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">163.234</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">163.0667</monoisotopic-mw>
+<synonym datatype="string">(2S)-2-amino-5-(methylsulfanyl)pentanoate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-2206" orgid="META" resource="getxml?META:RXN-2206" /><Reaction frameid="RXN-13014" orgid="META" resource="getxml?META:RXN-13014" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-2205" orgid="META" resource="getxml?META:RXN-2205" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

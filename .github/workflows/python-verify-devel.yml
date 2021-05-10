@@ -47,10 +47,11 @@ jobs:
           python3 -m unittest tests/test_pathway.py -v
           python3 -m unittest tests/test_utils.py -v
           python3 -m unittest tests/test_visualization.py -v
+          python3 -m unittest tests/test_summary.py -v
   models:
     runs-on: ubuntu-latest
     container: continuumio/miniconda3
-    name: test-small-model
+    name: test-models
     needs: [linter]
     steps:
       - name: Checkout
@@ -62,17 +63,3 @@ jobs:
           source activate cobramod
           python3 tests/extra/creating_test_model.py
           python3 -m unittest tests/test_models.py -v
-  example:
-    runs-on: ubuntu-latest
-    container: continuumio/miniconda3
-    name: test-large-model
-    needs: [models]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Enviroment-build
-        uses: ./.github/conda-build
-      - name: example-large-patways
-        run: |
-          source activate cobramod
-          python3 -m unittest tests/test_glucosinolate.py -v

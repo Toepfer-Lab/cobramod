@@ -1,0 +1,48 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:ACONITATEHYDR-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:ACONITATEHYDR-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:ACONITATEHYDR-RXN" detail="full" frameid="ACONITATEHYDR-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<dblink><dblink-db>LIGAND-RXN</dblink-db>
+<dblink-oid>R01900</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01900</dblink-URL>
+</dblink>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-10689" detail="low" frameid="ENZRXNQT-10689" orgid="ARA"><enzyme><Protein frameid="AT5G54950-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G54950-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="#ARA:ACONITATEHYDR-RXN" /></reaction>
+<common-name datatype="string">cis-aconitate hydratase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNT9-2104" detail="low" frameid="ENZRXNT9-2104" orgid="ARA"><enzyme><Protein frameid="AT4G35830-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G35830-MONOMER" /></enzyme>
+<synonym datatype="string">aconitate hydratase</synonym>
+<synonym datatype="string">isocitrate hydrolyase (cis-aconitate-forming)</synonym>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="#ARA:ACONITATEHYDR-RXN" /></reaction>
+<common-name datatype="string">cis-aconitate hydratase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNT9-491" detail="low" frameid="ENZRXNT9-491" orgid="ARA"><enzyme><Protein frameid="AT4G26970-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G26970-MONOMER" /></enzyme>
+<synonym datatype="string">aconitate hydratase</synonym>
+<synonym datatype="string">isocitrate hydrolyase (cis-aconitate-forming)</synonym>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="#ARA:ACONITATEHYDR-RXN" /></reaction>
+<common-name datatype="string">cis-aconitate hydratase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-10603" detail="low" frameid="ENZRXNQT-10603" orgid="ARA"><enzyme><Protein frameid="AT2G05710-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G05710-MONOMER" /></enzyme>
+<synonym datatype="string">aconitate hydratase</synonym>
+<synonym datatype="string">isocitrate hydrolyase (cis-aconitate-forming)</synonym>
+<reaction><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="#ARA:ACONITATEHYDR-RXN" /></reaction>
+<common-name datatype="string">cis-aconitate hydratase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-3.1329956</gibbs-0>
+<in-pathway><Pathway frameid="PWY-5690" orgid="ARA" resource="getxml?ARA:PWY-5690" /><Reaction frameid="RXN-14047" orgid="ARA" resource="getxml?ARA:RXN-14047" /><Pathway frameid="PWYQT-4481" orgid="ARA" resource="getxml?ARA:PWYQT-4481" /><Pathway frameid="PWY-6549" orgid="ARA" resource="getxml?ARA:PWY-6549" /><Pathway frameid="GLYOXYLATE-BYPASS" orgid="ARA" resource="getxml?ARA:GLYOXYLATE-BYPASS" /></in-pathway>
+<left><Compound frameid="CIS-ACONITATE" orgid="ARA" resource="getxml?ARA:CIS-ACONITATE" /></left>
+<left><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="THREO-DS-ISO-CITRATE" orgid="ARA" resource="getxml?ARA:THREO-DS-ISO-CITRATE" /></right>
+<common-name datatype="string">cis-aconitate hydratase</common-name>
+</Reaction>
+</ptools-xml>

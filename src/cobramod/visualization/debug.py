@@ -7,7 +7,7 @@ Configures the debug logging tool. The format follows the syntax:
 The FileHandler is set to 'visualization.log' with the mode "+a".
 The default level is set to DEBUG.
 
-The name of logger variable is `debug_log`
+The name of logger variable is `visualization`
 
 """
 from logging import Formatter, FileHandler, getLogger, DEBUG

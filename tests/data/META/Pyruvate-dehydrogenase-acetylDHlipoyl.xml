@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:Pyruvate-dehydrogenase-acetylDHlipoyl"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:Pyruvate-dehydrogenase-acetylDHlipoyl"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:Pyruvate-dehydrogenase-acetylDHlipoyl</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:Pyruvate-dehydrogenase-acetylDHlipoyl" class="true" detail="full" frameid="Pyruvate-dehydrogenase-acetylDHlipoyl" orgid="META"><parent><Compound class="true" frameid="Acylated-Dihydro-Lipoyl-Proteins-Lysine" orgid="META" resource="getxml?META:Acylated-Dihydro-Lipoyl-Proteins-Lysine" /></parent>
@@ -11,8 +11,6 @@
 <formula concise="" /><string title="smiles">C([an &lt;i&gt;apo&lt;/i&gt; pyruvate dehydrogenase E2 protein])C(=O)[C@H](CCCCNC(CCCCC(S)CCSC(C)=O)=O)N[an &lt;i&gt;apo&lt;/i&gt; pyruvate dehydrogenase E2 protein]</string>
 </molecule>
 </cml>
-<synonym datatype="string">an [enzyme] &lt;i&gt;N&lt;sup&gt;6&lt;/sup&gt;&lt;/i&gt;-(&lt;i&gt;S&lt;/i&gt;-acetyldihydrolipoyl)lysine</synonym>
-<appears-in-right-side-of><Reaction frameid="RXN0-1133" orgid="META" resource="getxml?META:RXN0-1133" /><Reaction frameid="RXN0-1134" orgid="META" resource="getxml?META:RXN0-1134" /><Reaction frameid="RXN-12508" orgid="META" resource="getxml?META:RXN-12508" /></appears-in-right-side-of>
 <common-name datatype="string">a [pyruvate dehydrogenase E2 protein] &lt;i&gt;N&lt;sup&gt;6&lt;/sup&gt;&lt;/i&gt;-&lt;i&gt;S&lt;/i&gt;-acetyldihydrolipoyl-L-lysine</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd28011</dblink-oid>
@@ -34,5 +32,7 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C16255</dblink-URL>
 </dblink>
+<synonym datatype="string">an [enzyme] &lt;i&gt;N&lt;sup&gt;6&lt;/sup&gt;&lt;/i&gt;-(&lt;i&gt;S&lt;/i&gt;-acetyldihydrolipoyl)lysine</synonym>
+<appears-in-right-side-of><Reaction frameid="RXN0-1133" orgid="META" resource="getxml?META:RXN0-1133" /><Reaction frameid="RXN0-1134" orgid="META" resource="getxml?META:RXN0-1134" /><Reaction frameid="RXN-12508" orgid="META" resource="getxml?META:RXN-12508" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

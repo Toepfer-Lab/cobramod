@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PHENYL-PYRUVATE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PHENYL-PYRUVATE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PHENYL-PYRUVATE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:PHENYL-PYRUVATE" detail="full" frameid="PHENYL-PYRUVATE" orgid="META"><parent><Compound class="true" frameid="2-Oxo-carboxylates" orgid="META" resource="getxml?META:2-Oxo-carboxylates" /></parent>
@@ -13,36 +13,6 @@
 <string title="smiles">C([O-])(=O)C(=O)CC1(\C=C/C=C\C=1)</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">163.152</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">164.04735</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-9989" detail="low" frameid="REG-9989" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-7921" detail="low" frameid="ENZRXN-7921" orgid="META"><reaction><Reaction frameid="4.1.1.74-RXN" orgid="META" resource="getxml?META:4.1.1.74-RXN" /></reaction>
-<synonym datatype="string">indole-3-pyruvare decarboxylase</synonym>
-<common-name datatype="string">indolepyruvate decarboxylase</common-name>
-<enzyme><Protein frameid="CPLX-4741" orgid="META" resource="getxml?META:CPLX-4741" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHENYL-PYRUVATE" orgid="META" resource="#META:PHENYL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6547" detail="low" frameid="REG-6547" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13768" detail="low" frameid="ENZRXN-13768" orgid="META"><reaction><Reaction frameid="L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN" orgid="META" resource="getxml?META:L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN" /></reaction>
-<common-name datatype="string">L-lactate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-7294" orgid="META" resource="getxml?META:CPLX-7294" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHENYL-PYRUVATE" orgid="META" resource="#META:PHENYL-PYRUVATE" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">&amp;alpha;-ketohydrocinnamic acid</synonym>
-<synonym datatype="string">&lt;i&gt;keto&lt;/i&gt;-phenylpyruvate</synonym>
-<synonym datatype="string">phenylpyruvate</synonym>
-<synonym datatype="string">3-phenylpyruvate</synonym>
-<synonym datatype="string">3-phenylpyruvic acid</synonym>
-<synonym datatype="string">2-oxo-3-phenylpropanoate</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-15200" orgid="META" resource="getxml?META:RXN-15200" /><Reaction frameid="PHENYLPYRUVATE-DECARBOXYLASE-RXN" orgid="META" resource="getxml?META:PHENYLPYRUVATE-DECARBOXYLASE-RXN" /><Reaction frameid="2.6.1.64-RXN" orgid="META" resource="getxml?META:2.6.1.64-RXN" /><Reaction frameid="PHENYLPYRUVATE-TAUTOMERASE-RXN" orgid="META" resource="getxml?META:PHENYLPYRUVATE-TAUTOMERASE-RXN" /><Reaction frameid="RXN-15813" orgid="META" resource="getxml?META:RXN-15813" /><Reaction frameid="RXN-14468" orgid="META" resource="getxml?META:RXN-14468" /><Reaction frameid="RXN-14462" orgid="META" resource="getxml?META:RXN-14462" /><Reaction frameid="2.6.1.28-RXN" orgid="META" resource="getxml?META:2.6.1.28-RXN" /><Reaction frameid="RXN-10815" orgid="META" resource="getxml?META:RXN-10815" /><Reaction frameid="RXN-7708" orgid="META" resource="getxml?META:RXN-7708" /><Reaction frameid="2.6.1.70-RXN" orgid="META" resource="getxml?META:2.6.1.70-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-10816" orgid="META" resource="getxml?META:RXN-10816" /><Reaction frameid="RXN-10814" orgid="META" resource="getxml?META:RXN-10814" /><Reaction frameid="PHENYLALANINE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:PHENYLALANINE-DEHYDROGENASE-RXN" /><Reaction frameid="RXN-17130" orgid="META" resource="getxml?META:RXN-17130" /><Reaction frameid="RXN-16297" orgid="META" resource="getxml?META:RXN-16297" /><Reaction frameid="RXN0-7066" orgid="META" resource="getxml?META:RXN0-7066" /><Reaction frameid="2.6.1.58-RXN" orgid="META" resource="getxml?META:2.6.1.58-RXN" /><Reaction frameid="PREPHENATEDEHYDRAT-RXN" orgid="META" resource="getxml?META:PREPHENATEDEHYDRAT-RXN" /></appears-in-right-side-of>
 <comment datatype="string">This is the ketol form tautomer of &lt;a href="/compound?orgid=META&amp;id=ENOL-PHENYLPYRUVATE"&gt;enol-phenylpyruvate&lt;/a&gt;.</comment>
 <common-name datatype="string">3-phenyl-2-oxopropanoate</common-name>
 <dblink><dblink-db>SEED</dblink-db>
@@ -108,14 +78,44 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C9H8O3/c10-8(9(11)12)6-7-4-2-1-3-5-7/h1-5H,6H2,(H,11,12)/p-1</inchi>
 <inchi-key datatype="string">InChIKey=BTNMPGBKDVTSJY-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">163.152</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">164.04735</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-9989" detail="low" frameid="REG-9989" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-7921" detail="low" frameid="ENZRXN-7921" orgid="META"><common-name datatype="string">indolepyruvate decarboxylase</common-name>
+<enzyme><Protein frameid="CPLX-4741" orgid="META" resource="getxml?META:CPLX-4741" /></enzyme>
+<reaction><Reaction frameid="4.1.1.74-RXN" orgid="META" resource="getxml?META:4.1.1.74-RXN" /></reaction>
+<synonym datatype="string">indole-3-pyruvare decarboxylase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="PHENYL-PYRUVATE" orgid="META" resource="#META:PHENYL-PYRUVATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6547" detail="low" frameid="REG-6547" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13768" detail="low" frameid="ENZRXN-13768" orgid="META"><common-name datatype="string">L-lactate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7294" orgid="META" resource="getxml?META:CPLX-7294" /></enzyme>
+<reaction><Reaction frameid="L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN" orgid="META" resource="getxml?META:L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="PHENYL-PYRUVATE" orgid="META" resource="#META:PHENYL-PYRUVATE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">&amp;alpha;-ketohydrocinnamic acid</synonym>
+<synonym datatype="string">&lt;i&gt;keto&lt;/i&gt;-phenylpyruvate</synonym>
+<synonym datatype="string">phenylpyruvate</synonym>
+<synonym datatype="string">3-phenylpyruvate</synonym>
+<synonym datatype="string">3-phenylpyruvic acid</synonym>
+<synonym datatype="string">2-oxo-3-phenylpropanoate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-15200" orgid="META" resource="getxml?META:RXN-15200" /><Reaction frameid="PHENYLPYRUVATE-DECARBOXYLASE-RXN" orgid="META" resource="getxml?META:PHENYLPYRUVATE-DECARBOXYLASE-RXN" /><Reaction frameid="2.6.1.64-RXN" orgid="META" resource="getxml?META:2.6.1.64-RXN" /><Reaction frameid="PHENYLPYRUVATE-TAUTOMERASE-RXN" orgid="META" resource="getxml?META:PHENYLPYRUVATE-TAUTOMERASE-RXN" /><Reaction frameid="RXN-15813" orgid="META" resource="getxml?META:RXN-15813" /><Reaction frameid="RXN-14468" orgid="META" resource="getxml?META:RXN-14468" /><Reaction frameid="RXN-14462" orgid="META" resource="getxml?META:RXN-14462" /><Reaction frameid="2.6.1.28-RXN" orgid="META" resource="getxml?META:2.6.1.28-RXN" /><Reaction frameid="RXN-10815" orgid="META" resource="getxml?META:RXN-10815" /><Reaction frameid="RXN-7708" orgid="META" resource="getxml?META:RXN-7708" /><Reaction frameid="2.6.1.70-RXN" orgid="META" resource="getxml?META:2.6.1.70-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-10816" orgid="META" resource="getxml?META:RXN-10816" /><Reaction frameid="RXN-10814" orgid="META" resource="getxml?META:RXN-10814" /><Reaction frameid="PHENYLALANINE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:PHENYLALANINE-DEHYDROGENASE-RXN" /><Reaction frameid="RXN-17130" orgid="META" resource="getxml?META:RXN-17130" /><Reaction frameid="RXN-16297" orgid="META" resource="getxml?META:RXN-16297" /><Reaction frameid="RXN0-7066" orgid="META" resource="getxml?META:RXN0-7066" /><Reaction frameid="2.6.1.58-RXN" orgid="META" resource="getxml?META:2.6.1.58-RXN" /><Reaction frameid="PREPHENATEDEHYDRAT-RXN" orgid="META" resource="getxml?META:PREPHENATEDEHYDRAT-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

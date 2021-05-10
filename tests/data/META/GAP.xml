@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:GAP"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:GAP"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:GAP</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:GAP" detail="full" frameid="GAP" orgid="META"><parent><Compound class="true" frameid="CPD0-2032" orgid="META" resource="getxml?META:CPD0-2032" /></parent>
@@ -12,81 +12,18 @@
 <string title="smiles">C(=O)[C@H](O)COP(=O)([O-])[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">168.043</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">169.99803</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-11446" detail="low" frameid="REG0-11446" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-6416" detail="low" frameid="ENZRXN0-6416" orgid="META"><reaction><Reaction frameid="RXN0-5260" orgid="META" resource="getxml?META:RXN0-5260" /></reaction>
-<synonym datatype="string">G3P dehydrogenase</synonym>
-<synonym datatype="string">sn-glycerol-3-phosphate:(acceptor) 2-oxidoreductase</synonym>
-<common-name datatype="string">aerobic glycerol 3-phosphate dehydrogenase</common-name>
-<enzyme><Protein frameid="AERGLYC3PDEHYDROG-CPLX" orgid="META" resource="getxml?META:AERGLYC3PDEHYDROG-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-6925" detail="low" frameid="REG0-6925" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:KDPGALDOL-ENZRXN" detail="low" frameid="KDPGALDOL-ENZRXN" orgid="META"><reaction><Reaction frameid="KDPGALDOL-RXN" orgid="META" resource="getxml?META:KDPGALDOL-RXN" /></reaction>
-<synonym datatype="string">2-dehydro-3-deoxy-D-gluconate-6-phosphate D-glyceraldehyde-3-phosphate-lyase</synonym>
-<synonym datatype="string">P-2-keto-3-deoxy-gluconate aldolase</synonym>
-<synonym datatype="string">2-dehydro-3-deoxyphosphogluconate aldolase</synonym>
-<synonym datatype="string">KDPG-aldolase</synonym>
-<synonym datatype="string">phospho-2-keto-3-deoxygluconate aldolase</synonym>
-<synonym datatype="string">phospho-2-dehydro-3-deoxygluconate aldolase</synonym>
-<synonym datatype="string">2-keto-3-deoxy-6-phosphogluconate aldolase</synonym>
-<common-name datatype="string">2-keto-3-deoxygluconate 6-phosphate aldolase</common-name>
-<enzyme><Protein frameid="KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" orgid="META" resource="getxml?META:KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8460" detail="low" frameid="REG-8460" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2721" detail="low" frameid="ENZRXN-2721" orgid="META"><reaction><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /></reaction>
-<synonym datatype="string">GAPDH</synonym>
-<synonym datatype="string">D-glyceraldehyde-3-phosphate dehydrogenase</synonym>
-<synonym datatype="string">triosephosphate dehydrogenase</synonym>
-<synonym datatype="string">D-glyceraldehyde-3-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (phosphorylating)</synonym>
-<common-name datatype="string">glyceraldehyde-3-phosphate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-1865" orgid="META" resource="getxml?META:CPLX-1865" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6312" detail="low" frameid="REG-6312" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13947" detail="low" frameid="ENZRXN-13947" orgid="META"><reaction><Reaction frameid="PYRUVFORMLY-RXN" orgid="META" resource="getxml?META:PYRUVFORMLY-RXN" /></reaction>
-<common-name datatype="string">pyruvate formate-lyase</common-name>
-<enzyme><Protein frameid="CPLX-7361" orgid="META" resource="getxml?META:CPLX-7361" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">3-phosphoglyceraldehyde</synonym>
-<synonym datatype="string">D-glyceraldehyde-3-P</synonym>
-<synonym datatype="string">glyceraldehyde 3-phosphate</synonym>
-<synonym datatype="string">GAP</synonym>
-<synonym datatype="string">glyceraldehyde-phosphate</synonym>
-<synonym datatype="string">glyceraldehyde-P</synonym>
-<synonym datatype="string">glyceraldehyde-3-P</synonym>
-<synonym datatype="string">(2&lt;i&gt;R&lt;/i&gt;)-2-hydroxy-3-(phosphooxy)-propanal</synonym>
-<synonym datatype="string">triose phosphate</synonym>
-<appears-in-left-side-of><Reaction frameid="1TRANSKETO-RXN" orgid="META" resource="getxml?META:1TRANSKETO-RXN" /><Reaction frameid="TRANSALDOL-RXN" orgid="META" resource="getxml?META:TRANSALDOL-RXN" /><Reaction frameid="RXN1YI0-11" orgid="META" resource="getxml?META:RXN1YI0-11" /><Reaction frameid="RXN-20930" orgid="META" resource="getxml?META:RXN-20930" /><Reaction frameid="RXN-3443" orgid="META" resource="getxml?META:RXN-3443" /><Reaction frameid="RXN0-7250" orgid="META" resource="getxml?META:RXN0-7250" /><Reaction frameid="RXN-15946" orgid="META" resource="getxml?META:RXN-15946" /><Reaction frameid="RXN-8075" orgid="META" resource="getxml?META:RXN-8075" /><Reaction frameid="2.5.1.66-RXN" orgid="META" resource="getxml?META:2.5.1.66-RXN" /><Reaction frameid="1.2.7.6-RXN" orgid="META" resource="getxml?META:1.2.7.6-RXN" /><Reaction frameid="RXN-15754" orgid="META" resource="getxml?META:RXN-15754" /><Reaction frameid="1.2.1.9-RXN" orgid="META" resource="getxml?META:1.2.1.9-RXN" /><Reaction frameid="RXN-11322" orgid="META" resource="getxml?META:RXN-11322" /><Reaction frameid="RXN-12590" orgid="META" resource="getxml?META:RXN-12590" /><Reaction frameid="GAPDHSYNEC-RXN" orgid="META" resource="getxml?META:GAPDHSYNEC-RXN" /><Reaction frameid="1.2.1.13-RXN" orgid="META" resource="getxml?META:1.2.1.13-RXN" /><Reaction frameid="TRANS-RXN-209" orgid="META" resource="getxml?META:TRANS-RXN-209" /><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /><Reaction frameid="RXN-2785" orgid="META" resource="getxml?META:RXN-2785" /><Reaction frameid="DXS-RXN" orgid="META" resource="getxml?META:DXS-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="getxml?META:2TRANSKETO-RXN" /><Reaction frameid="DEOXYRIBOSE-P-ALD-RXN" orgid="META" resource="getxml?META:DEOXYRIBOSE-P-ALD-RXN" /><Reaction frameid="TRYPSYN-RXN" orgid="META" resource="getxml?META:TRYPSYN-RXN" /><Reaction frameid="KDPGALDOL-RXN" orgid="META" resource="getxml?META:KDPGALDOL-RXN" /><Reaction frameid="RXN-20244" orgid="META" resource="getxml?META:RXN-20244" /><Reaction frameid="RXN-10053" orgid="META" resource="getxml?META:RXN-10053" /><Reaction frameid="RXN-15790" orgid="META" resource="getxml?META:RXN-15790" /><Reaction frameid="RXN-15494" orgid="META" resource="getxml?META:RXN-15494" /><Reaction frameid="DEHYDDEOXPHOSGALACT-ALDOL-RXN" orgid="META" resource="getxml?META:DEHYDDEOXPHOSGALACT-ALDOL-RXN" /><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><Reaction frameid="1.1.1.177-RXN" orgid="META" resource="getxml?META:1.1.1.177-RXN" /><Reaction frameid="RXN0-2381" orgid="META" resource="getxml?META:RXN0-2381" /><Reaction frameid="TRANS-RXN-209" orgid="META" resource="getxml?META:TRANS-RXN-209" /><Reaction frameid="TRIOKINASE-RXN" orgid="META" resource="getxml?META:TRIOKINASE-RXN" /><Reaction frameid="RXN0-313" orgid="META" resource="getxml?META:RXN0-313" /><Reaction frameid="PHOSPHOKETOLASE-RXN" orgid="META" resource="getxml?META:PHOSPHOKETOLASE-RXN" /><Reaction frameid="TAGAALDOL-RXN" orgid="META" resource="getxml?META:TAGAALDOL-RXN" /><Reaction frameid="FORMALDEHYDE-TRANSKETOLASE-RXN" orgid="META" resource="getxml?META:FORMALDEHYDE-TRANSKETOLASE-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">D-glyceraldehyde 3-phosphate</common-name>
 <credits><revised><date datatype="date">2010-09-28</date>
-<Person ID="META:fulcher" detail="full" frameid="fulcher" orgid="META"><middle-name datatype="string">A</middle-name>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Carol Fulcher was a curator of the MetaCyc database at SRI International. She has also curated many tier 2 databases for various bacteria.</comment>
+<Person ID="META:fulcher" detail="full" frameid="fulcher" orgid="META"><comment datatype="string">Carol Fulcher was a curator of the MetaCyc database at SRI International. She has also curated many tier 2 databases for various bacteria.</comment>
 <common-name datatype="string">Carol Fulcher</common-name>
 <email datatype="string">fulcher@ai.sri.com</email>
+<middle-name datatype="string">A</middle-name>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -143,14 +80,77 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C3H7O6P/c4-1-3(5)2-9-10(6,7)8/h1,3,5H,2H2,(H2,6,7,8)/p-2/t3-/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=LXJXRIRHZLFYRP-VKHMYHEASA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">168.043</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">169.99803</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-11446" detail="low" frameid="REG0-11446" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-6416" detail="low" frameid="ENZRXN0-6416" orgid="META"><common-name datatype="string">aerobic glycerol 3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="AERGLYC3PDEHYDROG-CPLX" orgid="META" resource="getxml?META:AERGLYC3PDEHYDROG-CPLX" /></enzyme>
+<reaction><Reaction frameid="RXN0-5260" orgid="META" resource="getxml?META:RXN0-5260" /></reaction>
+<synonym datatype="string">G3P dehydrogenase</synonym>
+<synonym datatype="string">sn-glycerol-3-phosphate:(acceptor) 2-oxidoreductase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6925" detail="low" frameid="REG0-6925" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:KDPGALDOL-ENZRXN" detail="low" frameid="KDPGALDOL-ENZRXN" orgid="META"><common-name datatype="string">2-keto-3-deoxygluconate 6-phosphate aldolase</common-name>
+<enzyme><Protein frameid="KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" orgid="META" resource="getxml?META:KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" /></enzyme>
+<reaction><Reaction frameid="KDPGALDOL-RXN" orgid="META" resource="getxml?META:KDPGALDOL-RXN" /></reaction>
+<synonym datatype="string">2-dehydro-3-deoxy-D-gluconate-6-phosphate D-glyceraldehyde-3-phosphate-lyase</synonym>
+<synonym datatype="string">P-2-keto-3-deoxy-gluconate aldolase</synonym>
+<synonym datatype="string">2-dehydro-3-deoxyphosphogluconate aldolase</synonym>
+<synonym datatype="string">KDPG-aldolase</synonym>
+<synonym datatype="string">phospho-2-keto-3-deoxygluconate aldolase</synonym>
+<synonym datatype="string">phospho-2-dehydro-3-deoxygluconate aldolase</synonym>
+<synonym datatype="string">2-keto-3-deoxy-6-phosphogluconate aldolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8460" detail="low" frameid="REG-8460" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-2721" detail="low" frameid="ENZRXN-2721" orgid="META"><common-name datatype="string">glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-1865" orgid="META" resource="getxml?META:CPLX-1865" /></enzyme>
+<reaction><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /></reaction>
+<synonym datatype="string">GAPDH</synonym>
+<synonym datatype="string">D-glyceraldehyde-3-phosphate dehydrogenase</synonym>
+<synonym datatype="string">triosephosphate dehydrogenase</synonym>
+<synonym datatype="string">D-glyceraldehyde-3-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (phosphorylating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6312" detail="low" frameid="REG-6312" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13947" detail="low" frameid="ENZRXN-13947" orgid="META"><common-name datatype="string">pyruvate formate-lyase</common-name>
+<enzyme><Protein frameid="CPLX-7361" orgid="META" resource="getxml?META:CPLX-7361" /></enzyme>
+<reaction><Reaction frameid="PYRUVFORMLY-RXN" orgid="META" resource="getxml?META:PYRUVFORMLY-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GAP" orgid="META" resource="#META:GAP" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">3-phosphoglyceraldehyde</synonym>
+<synonym datatype="string">D-glyceraldehyde-3-P</synonym>
+<synonym datatype="string">glyceraldehyde 3-phosphate</synonym>
+<synonym datatype="string">GAP</synonym>
+<synonym datatype="string">glyceraldehyde-phosphate</synonym>
+<synonym datatype="string">glyceraldehyde-P</synonym>
+<synonym datatype="string">glyceraldehyde-3-P</synonym>
+<synonym datatype="string">(2&lt;i&gt;R&lt;/i&gt;)-2-hydroxy-3-(phosphooxy)-propanal</synonym>
+<synonym datatype="string">triose phosphate</synonym>
+<appears-in-left-side-of><Reaction frameid="1TRANSKETO-RXN" orgid="META" resource="getxml?META:1TRANSKETO-RXN" /><Reaction frameid="TRANSALDOL-RXN" orgid="META" resource="getxml?META:TRANSALDOL-RXN" /><Reaction frameid="RXN1YI0-11" orgid="META" resource="getxml?META:RXN1YI0-11" /><Reaction frameid="RXN-20930" orgid="META" resource="getxml?META:RXN-20930" /><Reaction frameid="RXN-3443" orgid="META" resource="getxml?META:RXN-3443" /><Reaction frameid="RXN0-7250" orgid="META" resource="getxml?META:RXN0-7250" /><Reaction frameid="RXN-15946" orgid="META" resource="getxml?META:RXN-15946" /><Reaction frameid="RXN-8075" orgid="META" resource="getxml?META:RXN-8075" /><Reaction frameid="2.5.1.66-RXN" orgid="META" resource="getxml?META:2.5.1.66-RXN" /><Reaction frameid="1.2.7.6-RXN" orgid="META" resource="getxml?META:1.2.7.6-RXN" /><Reaction frameid="RXN-15754" orgid="META" resource="getxml?META:RXN-15754" /><Reaction frameid="1.2.1.9-RXN" orgid="META" resource="getxml?META:1.2.1.9-RXN" /><Reaction frameid="RXN-11322" orgid="META" resource="getxml?META:RXN-11322" /><Reaction frameid="RXN-12590" orgid="META" resource="getxml?META:RXN-12590" /><Reaction frameid="GAPDHSYNEC-RXN" orgid="META" resource="getxml?META:GAPDHSYNEC-RXN" /><Reaction frameid="1.2.1.13-RXN" orgid="META" resource="getxml?META:1.2.1.13-RXN" /><Reaction frameid="TRANS-RXN-209" orgid="META" resource="getxml?META:TRANS-RXN-209" /><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /><Reaction frameid="RXN-2785" orgid="META" resource="getxml?META:RXN-2785" /><Reaction frameid="DXS-RXN" orgid="META" resource="getxml?META:DXS-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="getxml?META:2TRANSKETO-RXN" /><Reaction frameid="DEOXYRIBOSE-P-ALD-RXN" orgid="META" resource="getxml?META:DEOXYRIBOSE-P-ALD-RXN" /><Reaction frameid="TRYPSYN-RXN" orgid="META" resource="getxml?META:TRYPSYN-RXN" /><Reaction frameid="KDPGALDOL-RXN" orgid="META" resource="getxml?META:KDPGALDOL-RXN" /><Reaction frameid="RXN-20244" orgid="META" resource="getxml?META:RXN-20244" /><Reaction frameid="RXN-10053" orgid="META" resource="getxml?META:RXN-10053" /><Reaction frameid="RXN-15790" orgid="META" resource="getxml?META:RXN-15790" /><Reaction frameid="RXN-15494" orgid="META" resource="getxml?META:RXN-15494" /><Reaction frameid="DEHYDDEOXPHOSGALACT-ALDOL-RXN" orgid="META" resource="getxml?META:DEHYDDEOXPHOSGALACT-ALDOL-RXN" /><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><Reaction frameid="1.1.1.177-RXN" orgid="META" resource="getxml?META:1.1.1.177-RXN" /><Reaction frameid="RXN0-2381" orgid="META" resource="getxml?META:RXN0-2381" /><Reaction frameid="TRANS-RXN-209" orgid="META" resource="getxml?META:TRANS-RXN-209" /><Reaction frameid="TRIOKINASE-RXN" orgid="META" resource="getxml?META:TRIOKINASE-RXN" /><Reaction frameid="RXN0-313" orgid="META" resource="getxml?META:RXN0-313" /><Reaction frameid="PHOSPHOKETOLASE-RXN" orgid="META" resource="getxml?META:PHOSPHOKETOLASE-RXN" /><Reaction frameid="TAGAALDOL-RXN" orgid="META" resource="getxml?META:TAGAALDOL-RXN" /><Reaction frameid="FORMALDEHYDE-TRANSKETOLASE-RXN" orgid="META" resource="getxml?META:FORMALDEHYDE-TRANSKETOLASE-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

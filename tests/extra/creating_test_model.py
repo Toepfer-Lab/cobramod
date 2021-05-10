@@ -8,7 +8,7 @@ extra_dir = test_dir.joinpath("extra")
 dir_data = test_dir.joinpath("data")
 
 if not dir_data.exists():
-    dir_data.mkdir(parents=True)
+    raise NotADirectoryError("Data for the test is missing")
 
 # INFO:
 # Model should have enough reactions/ metabolites for 2 short pathways
@@ -57,7 +57,7 @@ add_pathway(
 )
 # Creating new Dummy biomass reaction
 add_reactions(
-    obj="Biomass_c, Biomass reaction | GLN_c: -0.5",
+    obj="Biomass_c, Biomass reaction | 0.5 GLN_c -->",
     model=test_model,
     directory=dir_data,
     database="META",
@@ -104,9 +104,9 @@ for pathway in ["SUCSYN-PWY"]:
         database="META",
         compartment="c",
         ignore_list=[
-            "DIHYDROXY_ACETONE_PHOSPHATE_c",
-            "PROTON_c",
-            "GAPOXNPHOSPHN_RXN_c",
+            # "DIHYDROXY_ACETONE_PHOSPHATE_c",
+            # "PROTON_c",
+            # "GAPOXNPHOSPHN_RXN_c",
         ],
     )
 # Extending biomass

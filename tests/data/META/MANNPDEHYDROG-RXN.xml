@@ -1,36 +1,30 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:MANNPDEHYDROG-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:MANNPDEHYDROG-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:MANNPDEHYDROG-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:MANNPDEHYDROG-RXN" detail="full" frameid="MANNPDEHYDROG-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
-<right><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right>
-<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
-<citation><Publication ID="META:PUB-9309770" detail="full" frameid="PUB-9309770" orgid="META"><pubmed-id datatype="string">9309770</pubmed-id>
+<citation><Publication ID="META:PUB-9309770" detail="full" frameid="PUB-9309770" orgid="META"><author datatype="string">Schmatz DM</author>
+<pubmed-id datatype="string">9309770</pubmed-id>
 <source datatype="string">Parasitology 114 Suppl;S81-9</source>
 <title datatype="string">The mannitol cycle in Eimeria.</title>
 <year datatype="integer">1997</year>
-<author datatype="string">Schmatz DM</author>
 </Publication>
 </citation>
 <credits><created><date datatype="date">2010-06-18</date>
-<Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
+<Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
 <email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
 </Organization>
-<Person ID="META:fulcher" detail="full" frameid="fulcher" orgid="META"><middle-name datatype="string">A</middle-name>
-<affiliations><Organization frameid="SRI" orgid="META" resource="#META:SRI" /></affiliations>
-<comment datatype="string">Carol Fulcher was a curator of the MetaCyc database at SRI International. She has also curated many tier 2 databases for various bacteria.</comment>
+<Person ID="META:fulcher" detail="full" frameid="fulcher" orgid="META"><comment datatype="string">Carol Fulcher was a curator of the MetaCyc database at SRI International. She has also curated many tier 2 databases for various bacteria.</comment>
 <common-name datatype="string">Carol Fulcher</common-name>
 <email datatype="string">fulcher@ai.sri.com</email>
+<middle-name datatype="string">A</middle-name>
+<affiliations><Organization frameid="SRI" orgid="META" resource="#META:SRI" /></affiliations>
 </Person>
 </created>
 </credits>
@@ -76,24 +70,24 @@
 </dblink>
 <ec-number>EC-1.1.1.17<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:MANNPDEHYDROG-ENZRXN" detail="low" frameid="MANNPDEHYDROG-ENZRXN" orgid="META"><reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:MANNPDEHYDROG-ENZRXN" detail="low" frameid="MANNPDEHYDROG-ENZRXN" orgid="META"><common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
+<enzyme><Protein frameid="MANNPDEHYDROG-MONOMER" orgid="META" resource="getxml?META:MANNPDEHYDROG-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
 <synonym datatype="string">mannitol-1-phosphate dehydrogenase</synonym>
 <synonym datatype="string">D-mannitol-1-phosphate:NAD+ 5-oxidoreductase</synonym>
-<common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
-<enzyme><Protein frameid="MANNPDEHYDROG-MONOMER" orgid="META" resource="getxml?META:MANNPDEHYDROG-MONOMER" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-17917" detail="low" frameid="ENZRXN-17917" orgid="META"><reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
-<common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-17917" detail="low" frameid="ENZRXN-17917" orgid="META"><common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-15718" orgid="META" resource="getxml?META:MONOMER-15718" /></enzyme>
+<reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13951" detail="low" frameid="ENZRXN-13951" orgid="META"><reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
-<common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13951" detail="low" frameid="ENZRXN-13951" orgid="META"><common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-13098" orgid="META" resource="getxml?META:MONOMER-13098" /></enzyme>
+<reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2942" detail="low" frameid="ENZRXN-2942" orgid="META"><reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
-<synonym datatype="string">D-mannitol-1-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; 5-oxidoreductase</synonym>
-<common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-2942" detail="low" frameid="ENZRXN-2942" orgid="META"><common-name datatype="string">mannitol-1-phosphate 5-dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-622" orgid="META" resource="getxml?META:MONOMER-622" /></enzyme>
+<reaction><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="#META:MANNPDEHYDROG-RXN" /></reaction>
+<synonym datatype="string">D-mannitol-1-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; 5-oxidoreductase</synonym>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <enzymes-not-used><Protein frameid="MONOMER-15718" orgid="META" resource="getxml?META:MONOMER-15718" /></enzymes-not-used>
@@ -105,15 +99,21 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="PWY-6531" orgid="META" resource="getxml?META:PWY-6531" /><Pathway frameid="MANNIDEG-PWY" orgid="META" resource="getxml?META:MANNIDEG-PWY" /></in-pathway>
 <left><Compound frameid="MANNITOL-1P" orgid="META" resource="getxml?META:MANNITOL-1P" /></left>
 <left><Compound frameid="NAD" orgid="META" resource="getxml?META:NAD" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<right><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right>
+<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
 </Reaction>
 </ptools-xml>

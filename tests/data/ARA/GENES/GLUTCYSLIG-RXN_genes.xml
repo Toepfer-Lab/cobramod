@@ -1,0 +1,47 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GLUTCYSLIG-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=ARA:GLUTCYSLIG-RXN&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="ARA" version="17.1">
+      <species datatype="string">Arabidopsis thaliana</species>
+      <strain datatype="string">col</strain>
+    </PGDB>
+  </metadata>
+  <Gene ID="ARA:AT4G23100" detail="full" frameid="AT4G23100" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-4" orgid="ARA" resource="getxml?ARA:CHROMOSOME-4" />
+    </replicon>
+    <product>
+      <Protein frameid="AT4G23100-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G23100-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT4G23100</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G23100</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ENTREZ</dblink-db>
+      <dblink-oid>Z29490</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/Z29490</dblink-URL>
+    </dblink>
+    <synonym datatype="string">GSHA</synonym>
+    <synonym datatype="string">AT4G23100</synonym>
+    <synonym datatype="string">CAD2</synonym>
+    <synonym datatype="string">ECS1</synonym>
+    <synonym datatype="string">PAD2</synonym>
+    <synonym datatype="string">RML1</synonym>
+    <left-end-position datatype="integer">12103172</left-end-position>
+    <accession-1 datatype="string">AT4G23100</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">65.12319</centisome-position>
+    <right-end-position datatype="integer">12107310</right-end-position>
+    <common-name datatype="string">GSH1</common-name>
+    <component-of />
+  </Gene>
+</ptools-xml>

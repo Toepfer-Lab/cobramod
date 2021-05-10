@@ -1,27 +1,20 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:MALATE-DEH-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:MALATE-DEH-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:MALATE-DEH-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:MALATE-DEH-RXN" detail="full" frameid="MALATE-DEH-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /></right>
-<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
-<synonym datatype="string">malate dehydrogenation</synonym>
 <credits><created><date datatype="date">2012-05-04</date>
-<Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><url datatype="string">http://plantcyc.org</url>
+<Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><common-name datatype="string">Carnegie Institution for Science</common-name>
+<url datatype="string">http://plantcyc.org</url>
 <abbrev-name datatype="string">PMN</abbrev-name>
-<common-name datatype="string">Carnegie Institution for Science</common-name>
 </Organization>
-<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><affiliations><Organization frameid="PMN" orgid="META" resource="#META:PMN" /></affiliations>
-<comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
 <common-name datatype="string">Peifen Zhang</common-name>
+<affiliations><Organization frameid="PMN" orgid="META" resource="#META:PMN" /></affiliations>
 </Person>
 </created>
 </credits>
@@ -892,85 +885,85 @@
 </dblink>
 <ec-number>EC-1.1.1.37<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:MALATE-DEH-ENZRXN" detail="low" frameid="MALATE-DEH-ENZRXN" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:MALATE-DEH-ENZRXN" detail="low" frameid="MALATE-DEH-ENZRXN" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
+<enzyme><Protein frameid="MALATE-DEHASE" orgid="META" resource="getxml?META:MALATE-DEHASE" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 <synonym datatype="string">malate oxidoreductase</synonym>
 <synonym datatype="string">L-malate oxidoreductase</synonym>
 <synonym datatype="string">L-malate:NAD(+) oxidoreductase</synonym>
-<common-name datatype="string">malate dehydrogenase</common-name>
-<enzyme><Protein frameid="MALATE-DEHASE" orgid="META" resource="getxml?META:MALATE-DEHASE" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-22204" detail="low" frameid="ENZRXN-22204" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<synonym datatype="string">cytosolic malate dehydrogenase</synonym>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-22204" detail="low" frameid="ENZRXN-22204" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-18271" orgid="META" resource="getxml?META:MONOMER-18271" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
+<synonym datatype="string">cytosolic malate dehydrogenase</synonym>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-19644" detail="low" frameid="ENZRXN66-19644" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-19644" detail="low" frameid="ENZRXN66-19644" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="CPLX-7322" orgid="META" resource="getxml?META:CPLX-7322" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20872" detail="low" frameid="ENZRXN-20872" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase (NAD)</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-20872" detail="low" frameid="ENZRXN-20872" orgid="META"><common-name datatype="string">malate dehydrogenase (NAD)</common-name>
 <enzyme><Protein frameid="MONOMER-17671" orgid="META" resource="getxml?META:MONOMER-17671" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20416" detail="low" frameid="ENZRXN-20416" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-20416" detail="low" frameid="ENZRXN-20416" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-17400" orgid="META" resource="getxml?META:MONOMER-17400" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20427" detail="low" frameid="ENZRXN-20427" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase (NAD)</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-20427" detail="low" frameid="ENZRXN-20427" orgid="META"><common-name datatype="string">malate dehydrogenase (NAD)</common-name>
 <enzyme><Protein frameid="AT3G47520-MONOMER" orgid="META" resource="getxml?META:AT3G47520-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20428" detail="low" frameid="ENZRXN-20428" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase (NAD)</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-20428" detail="low" frameid="ENZRXN-20428" orgid="META"><common-name datatype="string">malate dehydrogenase (NAD)</common-name>
 <enzyme><Protein frameid="MONOMER-17411" orgid="META" resource="getxml?META:MONOMER-17411" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20429" detail="low" frameid="ENZRXN-20429" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase (NAD)</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-20429" detail="low" frameid="ENZRXN-20429" orgid="META"><common-name datatype="string">malate dehydrogenase (NAD)</common-name>
 <enzyme><Protein frameid="MONOMER-17412" orgid="META" resource="getxml?META:MONOMER-17412" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20411" detail="low" frameid="ENZRXN-20411" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-20411" detail="low" frameid="ENZRXN-20411" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-17398" orgid="META" resource="getxml?META:MONOMER-17398" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXNQT-9430" detail="low" frameid="ENZRXNQT-9430" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXNQT-9430" detail="low" frameid="ENZRXNQT-9430" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="AT2G22780-MONOMER" orgid="META" resource="getxml?META:AT2G22780-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXNQT-7084" detail="low" frameid="ENZRXNQT-7084" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXNQT-7084" detail="low" frameid="ENZRXNQT-7084" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="AT1G53240-MONOMER" orgid="META" resource="getxml?META:AT1G53240-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXNQT-7074" detail="low" frameid="ENZRXNQT-7074" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXNQT-7074" detail="low" frameid="ENZRXNQT-7074" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="AT5G09660-MONOMER" orgid="META" resource="getxml?META:AT5G09660-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-1241" detail="low" frameid="ENZRXN66-1241" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-1241" detail="low" frameid="ENZRXN66-1241" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="HS07366-MONOMER" orgid="META" resource="getxml?META:HS07366-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13938" detail="low" frameid="ENZRXN-13938" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13938" detail="low" frameid="ENZRXN-13938" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="CPLX-7353" orgid="META" resource="getxml?META:CPLX-7353" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13890" detail="low" frameid="ENZRXN-13890" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13890" detail="low" frameid="ENZRXN-13890" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="CPLX-7320" orgid="META" resource="getxml?META:CPLX-7320" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12466" detail="low" frameid="ENZRXN-12466" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-12466" detail="low" frameid="ENZRXN-12466" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="G185E-5411-MONOMER" orgid="META" resource="getxml?META:G185E-5411-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12429" detail="low" frameid="ENZRXN-12429" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-12429" detail="low" frameid="ENZRXN-12429" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-11922" orgid="META" resource="getxml?META:MONOMER-11922" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12360" detail="low" frameid="ENZRXN-12360" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-12360" detail="low" frameid="ENZRXN-12360" orgid="META"><common-name datatype="string">malate dehydrogenase</common-name>
 <enzyme><Protein frameid="MONOMER-11859" orgid="META" resource="getxml?META:MONOMER-11859" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-4305" detail="low" frameid="ENZRXN-4305" orgid="META"><reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
-<common-name datatype="string">malate dehydrogenase (NAD-linked)</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-4305" detail="low" frameid="ENZRXN-4305" orgid="META"><common-name datatype="string">malate dehydrogenase (NAD-linked)</common-name>
 <enzyme><Protein frameid="CPLX-3501" orgid="META" resource="getxml?META:CPLX-3501" /></enzyme>
+<reaction><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="#META:MALATE-DEH-RXN" /></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <enzymes-not-used><Protein frameid="MONOMER-14545" orgid="META" resource="getxml?META:MONOMER-14545" /></enzymes-not-used>
@@ -982,15 +975,22 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="P105-PWY" orgid="META" resource="getxml?META:P105-PWY" /><Pathway frameid="PWY-6969" orgid="META" resource="getxml?META:PWY-6969" /><Pathway frameid="PWY-7115" orgid="META" resource="getxml?META:PWY-7115" /><Pathway frameid="PWY-8086" orgid="META" resource="getxml?META:PWY-8086" /><Pathway frameid="P108-PWY" orgid="META" resource="getxml?META:P108-PWY" /><Pathway frameid="PWY66-398" orgid="META" resource="getxml?META:PWY66-398" /><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /><Pathway frameid="PWY-1622" orgid="META" resource="getxml?META:PWY-1622" /><Pathway frameid="PWY-6728" orgid="META" resource="getxml?META:PWY-6728" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY-561" orgid="META" resource="getxml?META:PWY-561" /><Pathway frameid="PWY-5690" orgid="META" resource="getxml?META:PWY-5690" /><Pathway frameid="TCA" orgid="META" resource="getxml?META:TCA" /><Pathway frameid="PWY-7383" orgid="META" resource="getxml?META:PWY-7383" /><Pathway frameid="PWY-5392" orgid="META" resource="getxml?META:PWY-5392" /><Pathway frameid="P42-PWY" orgid="META" resource="getxml?META:P42-PWY" /><Pathway frameid="P23-PWY" orgid="META" resource="getxml?META:P23-PWY" /><Pathway frameid="PWY66-399" orgid="META" resource="getxml?META:PWY66-399" /><Pathway frameid="GLYOXYLATE-BYPASS" orgid="META" resource="getxml?META:GLYOXYLATE-BYPASS" /><Pathway frameid="FERMENTATION-PWY" orgid="META" resource="getxml?META:FERMENTATION-PWY" /><Pathway frameid="MALATE-ASPARTATE-SHUTTLE-PWY" orgid="META" resource="getxml?META:MALATE-ASPARTATE-SHUTTLE-PWY" /></in-pathway>
 <left><Compound frameid="MAL" orgid="META" resource="getxml?META:MAL" /></left>
 <left><Compound frameid="NAD" orgid="META" resource="getxml?META:NAD" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /></right>
+<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<synonym datatype="string">malate dehydrogenation</synonym>
 </Reaction>
 </ptools-xml>

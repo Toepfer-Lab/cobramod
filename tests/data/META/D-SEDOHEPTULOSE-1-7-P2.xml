@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:D-SEDOHEPTULOSE-1-7-P2"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:D-SEDOHEPTULOSE-1-7-P2"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:D-SEDOHEPTULOSE-1-7-P2</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:D-SEDOHEPTULOSE-1-7-P2" detail="full" frameid="D-SEDOHEPTULOSE-1-7-P2" orgid="META"><parent><Compound class="true" frameid="Sugar-Phosphate" orgid="META" resource="getxml?META:Sugar-Phosphate" /></parent>
@@ -12,12 +12,6 @@
 <string title="smiles">C(OP(=O)([O-])[O-])[C@@H](O)[C@@H](O)[C@@H](O)[C@H](O)C(COP([O-])(=O)[O-])=O</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">366.112</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">370.00662</monoisotopic-mw>
-<synonym datatype="string">sedoheptulose 1,7-bisphosphate</synonym>
-<synonym datatype="string">SBP</synonym>
-<appears-in-left-side-of><Reaction frameid="SEDOBISALDOL-RXN" orgid="META" resource="getxml?META:SEDOBISALDOL-RXN" /><Reaction frameid="SEDOHEPTULOSE-BISPHOSPHATASE-RXN" orgid="META" resource="getxml?META:SEDOHEPTULOSE-BISPHOSPHATASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-21730" orgid="META" resource="getxml?META:RXN-21730" /><Reaction frameid="RXN0-6541" orgid="META" resource="getxml?META:RXN0-6541" /></appears-in-right-side-of>
 <common-name datatype="string">D-sedoheptulose 1,7-bisphosphate</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00349</dblink-oid>
@@ -67,14 +61,20 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C7H16O13P2/c8-3(1-19-21(13,14)15)5(10)7(12)6(11)4(9)2-20-22(16,17)18/h3,5-8,10-12H,1-2H2,(H2,13,14,15)(H2,16,17,18)/p-4/t3-,5-,6-,7-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=OKHXOUGRECCASI-SHUUEZRQSA-J</inchi-key>
+<molecular-weight datatype="float" units="Daltons">366.112</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">370.00662</monoisotopic-mw>
+<synonym datatype="string">sedoheptulose 1,7-bisphosphate</synonym>
+<synonym datatype="string">SBP</synonym>
+<appears-in-left-side-of><Reaction frameid="SEDOBISALDOL-RXN" orgid="META" resource="getxml?META:SEDOBISALDOL-RXN" /><Reaction frameid="SEDOHEPTULOSE-BISPHOSPHATASE-RXN" orgid="META" resource="getxml?META:SEDOHEPTULOSE-BISPHOSPHATASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-21730" orgid="META" resource="getxml?META:RXN-21730" /><Reaction frameid="RXN0-6541" orgid="META" resource="getxml?META:RXN0-6541" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

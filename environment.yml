@@ -47,3 +47,4 @@ dependencies:
     - sphinxcontrib-napoleon==0.7
     - doc8==0.8.1
     - Escher==1.7.3
+    - openpyxl==3.0.7

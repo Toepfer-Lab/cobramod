@@ -19,18 +19,18 @@ Important functions from CobraMod that can be imported directly:
 - translate: Check for cross-references.
 
 The exclusive class :func:`cobramod.pathway.Pathway` is an extension of
-:func:`cobra.core.group.Group`. CobraMod uses :func:`Escher` to visualize
+:class:`cobra.core.group.Group`. CobraMod uses :mod:`Escher` to visualize
 the pathway and fluxes of that specific class. Some new methods added:
 
-- visualize: Return an Builder for the representation of the pathway.
+- visualize: Return a Builder for the representation of the pathway.
 - solution: Filters solution and returns fluxes of only members of the class.
 
-By default, CobraMod creates the file "debug.log", which displays the changes
-occured when running a script. In order to modify the logging, import
+By default, CobraMod creates the file "debug.log", which displays the changes,
+which occurred when running a script. In order to modify the logging, import
 "debug_log" from "cobramod.debug". The default logging level is defined as
 INFO. Read the documentation of logging for more information.
 
-For a list of databases, load variable :func`cobramod.available_databases`
+For a list of databases, load variable :obj:`cobramod.available_databases`
 """
 from cobramod.core.creation import (
     create_object,
@@ -38,9 +38,8 @@ from cobramod.core.creation import (
     add_reactions,
 )
 from cobramod.core.extension import add_pathway, test_result
-from cobramod.core.pathway import Pathway
+from cobramod.core.pathway import Pathway, model_convert
 from cobramod.core.retrieval import get_data, translate, available_databases
-from cobramod.utils import model_convert
 
 __all__ = [
     "get_data",
@@ -55,4 +54,4 @@ __all__ = [
     "available_databases",
 ]
 
-__version__ = "0.1.4"
+__version__ = "0.4.1"

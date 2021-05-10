@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Unittest for module extension
 
-This module test the behaviour of multiple functions, which are responsible to
+this module test the behavior of multiple functions, which are responsible to
 add metabolites and reactions into a metabolic model. This module can be
 divided in to parts:
 
@@ -12,16 +12,17 @@ metabolic models.
 """
 from logging import DEBUG
 from pathlib import Path
-from time import sleep
 from unittest import main, TestCase
 
 from cobra import Model, Reaction
 
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions, get_data
+from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
+from cobramod.error import UnbalancedReaction, NotInRangeError
 from cobramod.test import textbook_biocyc, textbook_kegg
-from cobramod.error import NotInRangeError, UnbalancedReaction
+
 
 # Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
@@ -47,12 +48,13 @@ class CreatingSequences(TestCase):
             ],
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
             show_imbalance=False,
             stop_imbalance=False,
             model=Model(0),
             model_id=None,
+            genome=None,
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 2: Simple case Kegg
@@ -66,6 +68,7 @@ class CreatingSequences(TestCase):
             stop_imbalance=False,
             model=Model(0),
             model_id=None,
+            genome="eco",
         )
         self.assertIsInstance(obj=next(test_list), cls=Reaction)
         # CASE 3a: Showing when unbalanced
@@ -73,12 +76,13 @@ class CreatingSequences(TestCase):
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
             show_imbalance=True,
             stop_imbalance=False,
             model=Model(0),
             model_id=None,
+            genome=None,
         )
         self.assertWarns(UserWarning, next, test_list)
         # CASE 3b: Stopping when unbalanced
@@ -86,12 +90,13 @@ class CreatingSequences(TestCase):
             sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             show_imbalance=False,
             stop_imbalance=True,
             replacement={},
             model=Model(0),
             model_id=None,
+            genome=None,
         )
         self.assertRaises(UnbalancedReaction, next, test_list)
 
@@ -106,7 +111,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         self.assertRaises(
@@ -122,7 +127,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._verify_boundary(
@@ -133,7 +138,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         ex._verify_boundary(
@@ -154,7 +159,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         test_model.add_boundary(
@@ -178,7 +183,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="AROMATIC-L-AMINO-ACID-DECARBOXYLASE-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         ex._verify_boundary(
@@ -213,12 +218,20 @@ class CreatingSequences(TestCase):
             ignore_list=[],
         )
         # CASE 0b: wrong side argument
+        test_model = Model(0)
+        add_reactions(
+            model=test_model,
+            obj="OXALODECARB-RXN, c",
+            directory=dir_data,
+            database="VCHO",
+            replacement={},
+        )
         self.assertRaises(
             ValueError,
             ex._fix_side,
-            model=Model(0),
-            reaction=str(),
-            side="Not",
+            model=test_model,
+            reaction="OXALODECARB_RXN_c",
+            side="wrong",
             ignore_list=[],
         )
         # CASE 1: normal creation (left side)
@@ -227,7 +240,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN, c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._fix_side(
@@ -264,7 +277,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN,c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._verify_sinks(
@@ -284,7 +297,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="OXALODECARB-RXN,c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             replacement={},
         )
         ex._verify_sinks(
@@ -297,22 +310,32 @@ class CreatingSequences(TestCase):
 
     def test_test_result(self):
         # CASE 0: minimun range not reached
-        test_model = Model(0)
+        # INFO: this extra steps are needed in order to make it fail
+        test_model = textbook_biocyc.copy()
         add_reactions(
             model=test_model,
-            obj="1.8.4.9-RXN,p",
+            obj=dir_input.joinpath("test_multi_reactions.txt"),
+            database="ARA",
             directory=dir_data,
-            database="META",
+            show_imbalance=False,
+        )
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("CO_A_e"),
+            type="exchange",
+        )
+        add_reactions(
+            model=test_model,
+            obj="GLUTATHIONE-SYN-RXN, p",
+            directory=dir_data,
+            database="ARA",
             replacement={},
         )
-        test_model.objective = "1.8.4.9_RXN_p"
-        test_model.objective_direction = "min"
         self.assertRaises(
             NotInRangeError,
             ex.test_result,
             model=test_model,
-            reaction="1.8.4.9_RXN_p",
-            minimum=550,
+            reaction="GLUTATHIONE_SYN_RXN_p",
+            ignore_list=["PROTON_p"],
         )
         # CASE 1: Single Regular reaction
         test_model = Model(0)
@@ -320,8 +343,9 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="RXN-2206,c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
+            show_imbalance=False,
         )
         test_model.objective = "RXN_2206_c"
         ex.test_result(model=test_model, reaction="RXN_2206_c")
@@ -332,14 +356,12 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="1.8.4.9-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        ex.test_result(
-            model=test_model, reaction="1.8.4.9_RXN_c", minimum=0.01
-        )
+        ex.test_result(model=test_model, reaction="1.8.4.9_RXN_c")
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
 
         # CASE 3: single reaction with ignore_list. i.e two reactions, in which
@@ -350,8 +372,9 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="RXN-2206, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
+            show_imbalance=False,
         )
         test_model.add_boundary(
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
@@ -369,7 +392,7 @@ class CreatingSequences(TestCase):
             model=test_model,
             obj="1.8.4.9-RXN, c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             replacement={},
         )
         test_model.add_boundary(
@@ -399,32 +422,51 @@ class AddingPathways(TestCase):
                 sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
                 compartment="c",
                 directory=dir_data,
-                database="META",
+                database="ARA",
                 replacement={},
                 show_imbalance=False,
                 stop_imbalance=False,
                 model=test_model,
                 model_id=None,
+                genome=None,
             )
         )
         ex._add_sequence(
             model=test_model,
-            identifier="test_group",
+            pathway=Pathway("test_group"),
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
-            minimum=0.1,
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
         )
-        self.assertIn(
-            member="blank",
-            container=test_model.groups.get_by_id("test_group").order,
+        # CASE 2: Avoid list (3 reactions)
+        test_model = textbook_biocyc.copy()
+        test_list = list(
+            ex._create_reactions(
+                sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
+                compartment="c",
+                directory=dir_data,
+                database="ARA",
+                replacement={},
+                show_imbalance=False,
+                stop_imbalance=False,
+                model=test_model,
+                model_id=None,
+                genome=None,
+            )
         )
-        # TODO: CASE 3: KEGG
+        ex._add_sequence(
+            model=test_model,
+            pathway=Pathway("test_group"),
+            sequence=test_list,
+            avoid_list=["RXN-2206"],
+            ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
+        )
+        # CASE 3: KEGG
         test_model = textbook_kegg.copy()
         test_list = list(
             ex._create_reactions(
@@ -437,24 +479,20 @@ class AddingPathways(TestCase):
                 stop_imbalance=False,
                 model=test_model,
                 model_id=None,
+                genome="ath",
             )
         )
         ex._add_sequence(
             model=test_model,
-            identifier="test_group_kegg",
+            pathway=Pathway("test_group_kegg"),
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
-            minimum=0.1,
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)
         self.assertIn(
             member="test_group_kegg",
             container=[group.id for group in test_model.groups],
-        )
-        self.assertIn(
-            member="blank",
-            container=test_model.groups.get_by_id("test_group_kegg").order,
         )
 
     def test__from_data(self):
@@ -475,15 +513,19 @@ class AddingPathways(TestCase):
             avoid_list=[],
             replacement={},
             ignore_list=[],
-            minimum=0.01,
             show_imbalance=False,
             stop_imbalance=False,
             model_id=None,
+            genome="hsa",
         )
         self.assertIn(
             member="M00118",
             container=[group.id for group in test_model.groups],
         )
+        for item in ["2729", "2937"]:
+            self.assertIn(
+                member=item, container=[gene.id for gene in test_model.genes]
+            )
 
     def test__from_sequence(self):
         # CASE 1: regular test
@@ -498,15 +540,19 @@ class AddingPathways(TestCase):
             avoid_list=[],
             replacement={},
             ignore_list=[],
-            minimum=0.01,
             show_imbalance=False,
             stop_imbalance=False,
             model_id=None,
+            genome="mba",
         )
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
         )
+        for item in ["Mbar_A2189", "Mbar_A3564"]:
+            self.assertIn(
+                member=item, container=[gene.id for gene in test_model.genes]
+            )
 
     def test_add_pathway(self):
         # CASE 1: Regular Biocyc
@@ -516,7 +562,7 @@ class AddingPathways(TestCase):
             pathway="PWY-1187",
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             ignore_list=[],
             show_imbalance=False,
         )
@@ -524,6 +570,10 @@ class AddingPathways(TestCase):
             member="RXN_11438_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        for item in ["AT1G18590", "AT1G74090"]:
+            self.assertIn(
+                member=item, container=[gene.id for gene in test_model.genes]
+            )
         # CASE 2: stacking another pathways (independent from each other)
         ex.add_pathway(
             model=test_model,
@@ -547,7 +597,7 @@ class AddingPathways(TestCase):
             compartment="c",
             pathway=test_sequence,
             ignore_list=[],
-            database="META",
+            database="ARA",
             directory=dir_data,
             show_imbalance=False,
         )
@@ -556,6 +606,37 @@ class AddingPathways(TestCase):
             member="RXN_11422_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        # CASE 3a: Behavior if reaction was already in model
+        test_model = textbook_biocyc.copy()
+        # Adding reactions
+        test_sequence = ["RXN-2206", "RXN-11414"]
+        ex.add_pathway(
+            model=test_model,
+            group="old_reactions",
+            compartment="c",
+            pathway=test_sequence,
+            ignore_list=[],
+            database="META",
+            directory=dir_data,
+            show_imbalance=False,
+        )
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
+        ex.add_pathway(
+            model=test_model,
+            compartment="c",
+            pathway=test_sequence,
+            ignore_list=[],
+            database="ARA",
+            directory=dir_data,
+            show_imbalance=False,
+        )
+        self.assertGreater(a=test_model.slim_optimize(), b=0)
+        test_group = test_model.groups.get_by_id("custom_group")
+        for identifier in ["RXN_2206_c", "RXN_11414_c", "RXN_11422_c"]:
+            self.assertIn(
+                member=identifier,
+                container=[reaction.id for reaction in test_group.members],
+            )
         # CASE 4a: KEGG simple pathway
         test_model = textbook_kegg.copy()
         ex.add_pathway(
@@ -565,6 +646,7 @@ class AddingPathways(TestCase):
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
+            genome="hsa",
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(
@@ -579,10 +661,11 @@ class AddingPathways(TestCase):
             database="KEGG",
             directory=dir_data,
             compartment="c",
-            ignore_list=["C00008_c", "R09084_c"],
             # This reaction has problem
+            ignore_list=["C00008_c", "R09084_c"],
             avoid_list=[""],
             show_imbalance=False,
+            genome="hsa",
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertIn(
@@ -598,7 +681,7 @@ class AddingPathways(TestCase):
         ex.add_pathway(
             model=test_model,
             pathway="SALVADEHYPOX-PWY",
-            database="META",
+            database="VCHO",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
@@ -622,27 +705,19 @@ class AddingPathways(TestCase):
             compartment="c",
             show_imbalance=False,
         )
-        # Reactions are already in model. No need for extra group.
-        self.assertRaises(
-            KeyError, test_model.groups.get_by_id, "custom_group"
-        )
         ex.add_pathway(
             model=test_model,
             pathway=["ADENODEAMIN-RXN"],
-            database="META",
+            database="VCHO",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
         )
         test_reaction = test_model.reactions.get_by_id("ADENODEAMIN_RXN_c")
-        # Total of one reactions + blank in list "order"
+        # Total of one reactions
         self.assertEqual(
             first=len(test_model.groups.get_by_id("custom_group").members),
-            second=1,
-        )
-        self.assertEqual(
-            first=len(test_model.groups.get_by_id("custom_group").order),
-            second=2,
+            second=3,
         )
         self.assertGreater(a=test_model.slim_optimize(), b=0)
         self.assertNotIn(
@@ -660,51 +735,34 @@ class AddingPathways(TestCase):
                 metabolite.id for metabolite in test_reaction.metabolites
             ],
         )
-
-    def test__visualization(self):
-        # CASE 1: Regular Biocyc
-        test_model = textbook_biocyc.copy()
+        # CASE 5b: Testing avoid list
+        test_model = textbook_kegg.copy()
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
         ex.add_pathway(
             model=test_model,
-            pathway="SALVADEHYPOX-PWY",
-            compartment="c",
+            pathway=test_sequence,
+            database="ARA",
             directory=dir_data,
-            database="META",
-            ignore_list=[],
+            compartment="c",
             show_imbalance=False,
+            avoid_list=["RXN-2206"],
         )
-        # Test fluxes
-        test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
-        self.assertEqual(first=len(test_pathway.members), second=5)
-        # Blank space adds always one.
-        self.assertEqual(first=len(test_pathway.order), second=6)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(
-            solution_fluxes=test_solution,
-            canvas_width=1500,
-            canvas_height=1500,
-        )
-        sleep(1)
+        test_group = test_model.groups.get_by_id("custom_group")
+        self.assertEqual(first=len(test_group.members), second=3)
+        self.assertEqual(first=len(test_group.graph), second=3)
+        # CASE 6: Stacking pathways in one pathways
+        test_sequence = ["RXN-11438", "RXN-2208", "RXN-2209", "RXN-2221"]
         ex.add_pathway(
             model=test_model,
-            pathway="PWY-1187",
-            compartment="c",
+            pathway=test_sequence,
+            database="ARA",
             directory=dir_data,
-            database="META",
-            ignore_list=[],
+            compartment="c",
             show_imbalance=False,
         )
-        # Test fluxes
-        test_pathway = test_model.groups.get_by_id("PWY-1187")
-        self.assertEqual(first=len(test_pathway.members), second=14)
-        # Blank space adds always one.
-        self.assertEqual(first=len(test_pathway.order), second=18)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
-        test_pathway.visualize(
-            solution_fluxes=test_solution,
-            canvas_width=2000,
-            canvas_height=1500,
-        )
+        test_group = test_model.groups.get_by_id("custom_group")
+        self.assertEqual(first=len(test_group.members), second=7)
+        self.assertEqual(first=len(test_group.graph), second=7)
 
 
 if __name__ == "__main__":

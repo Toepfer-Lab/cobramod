@@ -6,8 +6,13 @@ import unittest
 import cobramod.core.retrieval as md
 from cobramod.debug import debug_log
 
+# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-dir_data = Path.cwd().joinpath("tests").joinpath("data")
+# Setting directory for data
+dir_data = Path(__file__).resolve().parent.joinpath("data")
+# If data is missing, then do not test. Data should always be the same
+if not dir_data.exists():
+    raise NotADirectoryError("Data for the test is missing")
 
 
 class RetrievalTesting(unittest.TestCase):
@@ -19,11 +24,9 @@ class RetrievalTesting(unittest.TestCase):
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
         # CASE 1b: simple retrieval from Biocyc (reaction)
         test_dict = md.get_data(
-            directory=dir_data, database="META", identifier="GLYOXII-RXN"
+            directory=dir_data, database="ARA", identifier="GLYOXII-RXN"
         )
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
-        # CASE 2: simple retrieval from AraCyc
-        # TODO: Case 2
         # CASE 3a: Simple retrieval from KEGG (metabolite)
         test_dict = md.get_data(
             directory=dir_data, database="KEGG", identifier="C00001"
@@ -31,7 +34,10 @@ class RetrievalTesting(unittest.TestCase):
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
         # CASE 3b: Simple retrieval from KEGG (Reaction)
         test_dict = md.get_data(
-            directory=dir_data, database="KEGG", identifier="R02736"
+            directory=dir_data,
+            database="KEGG",
+            identifier="R02736",
+            genome="eco",
         )
         # CASE 3c: Simple retrieval from KEGG (Pathway)
         test_dict = md.get_data(
@@ -77,16 +83,18 @@ class RetrievalTesting(unittest.TestCase):
 
     def test_translate(self):
         # CASE 1: Regular compound KEGG
+        md.get_data(directory=dir_data, database="KEGG", identifier="C00002")
         test_string = md.translate(
             directory=dir_data, target="C00002", database="CAS"
         )
         self.assertEqual(first=test_string, second="56-65-5")
-        # CASE 1: Regular compound Biocyc
+        # CASE 2: Regular compound Biocyc
+        md.get_data(directory=dir_data, database="ARA", identifier="AMP")
         test_string = md.translate(
             directory=dir_data, target="AMP", database="PUBCHEM"
         )
         self.assertEqual(first=test_string, second="15938965")
-        # CASE 1: Regular compound BIGG
+        # CASE 3: Regular compound BIGG
         test_string = md.translate(
             directory=dir_data, target="accoa_c", database="CHEBI"
         )

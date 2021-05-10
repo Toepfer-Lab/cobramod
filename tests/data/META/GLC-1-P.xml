@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:GLC-1-P"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:GLC-1-P"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:GLC-1-P</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:GLC-1-P" detail="full" frameid="GLC-1-P" orgid="META"><parent><Compound class="true" frameid="Alpha-D-aldose-1-phosphates" orgid="META" resource="getxml?META:Alpha-D-aldose-1-phosphates" /></parent>
@@ -14,49 +14,6 @@
 <string title="smiles">C(O)[C@H]1(O[C@H](OP(=O)([O-])[O-])[C@H](O)[C@@H](O)[C@H](O)1)</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">258.121</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">260.02972</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-7407" detail="low" frameid="REG0-7407" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:PHOSPHOGLUCMUT-ENZRXN" detail="low" frameid="PHOSPHOGLUCMUT-ENZRXN" orgid="META"><reaction><Reaction frameid="PHOSPHOGLUCMUT-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCMUT-RXN" /></reaction>
-<synonym datatype="string">glucose phosphomutase</synonym>
-<synonym datatype="string">&amp;alpha;-D-glucose 1,6-phosphomutase</synonym>
-<common-name datatype="string">phosphoglucomutase</common-name>
-<enzyme><Protein frameid="PHOSPHOGLUCMUT-MONOMER" orgid="META" resource="getxml?META:PHOSPHOGLUCMUT-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC-1-P" orgid="META" resource="#META:GLC-1-P" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8309" detail="low" frameid="REG-8309" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5044" detail="low" frameid="ENZRXN-5044" orgid="META"><reaction><Reaction frameid="RXN-3443" orgid="META" resource="getxml?META:RXN-3443" /></reaction>
-<common-name datatype="string">NAD&lt;sup&gt;+&lt;/sup&gt;-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-3823" orgid="META" resource="getxml?META:CPLX-3823" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC-1-P" orgid="META" resource="#META:GLC-1-P" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8027" detail="low" frameid="REG-8027" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9341" detail="low" frameid="ENZRXN-9341" orgid="META"><reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /></reaction>
-<common-name datatype="string">triose phosphate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-9181" orgid="META" resource="getxml?META:MONOMER-9181" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC-1-P" orgid="META" resource="#META:GLC-1-P" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">glucose 1-phosphate</synonym>
-<synonym datatype="string">cori ester</synonym>
-<synonym datatype="string">D-glucose 1-phosphate</synonym>
-<synonym datatype="string">glucose-1P</synonym>
-<synonym datatype="string">&amp;alpha;-glucose-1-phosphate</synonym>
-<synonym datatype="string">D-glucose-&amp;alpha;-1-phosphate</synonym>
-<synonym datatype="string">&amp;alpha;-D-glucose-1-P</synonym>
-<synonym datatype="string">D-glucose-1-phosphate</synonym>
-<synonym datatype="string">&amp;alpha;-D-glucose 1-phosphate</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN4FS-13" orgid="META" resource="getxml?META:RXN4FS-13" /><Reaction frameid="GLUC1PURIDYLTRANS-RXN" orgid="META" resource="getxml?META:GLUC1PURIDYLTRANS-RXN" /><Reaction frameid="PHOSPHOGLUCOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCOKINASE-RXN" /><Reaction frameid="RXN-16997" orgid="META" resource="getxml?META:RXN-16997" /><Reaction frameid="DTDPGLUCOSEPP-RXN" orgid="META" resource="getxml?META:DTDPGLUCOSEPP-RXN" /><Reaction frameid="RXN-18305" orgid="META" resource="getxml?META:RXN-18305" /><Reaction frameid="GLUCOSE-1-PHOSPHATE-PHOSPHODISMUTASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-1-PHOSPHATE-PHOSPHODISMUTASE-RXN" /><Reaction frameid="RIBOFLAVIN-PHOSPHOTRANSFERASE-RXN" orgid="META" resource="getxml?META:RIBOFLAVIN-PHOSPHOTRANSFERASE-RXN" /><Reaction frameid="GLUCOSE-1-PHOSPHAT-RXN" orgid="META" resource="getxml?META:GLUCOSE-1-PHOSPHAT-RXN" /><Reaction frameid="PHOSPHOGLUCMUT-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCMUT-RXN" /><Reaction frameid="RXN-16999" orgid="META" resource="getxml?META:RXN-16999" /><Reaction frameid="2.7.7.34-RXN" orgid="META" resource="getxml?META:2.7.7.34-RXN" /><Reaction frameid="MALTOSE-SYNTHASE-RXN" orgid="META" resource="getxml?META:MALTOSE-SYNTHASE-RXN" /><Reaction frameid="GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" /><Reaction frameid="2.7.7.33-RXN" orgid="META" resource="getxml?META:2.7.7.33-RXN" /><Reaction frameid="GLUC1PADENYLTRANS-RXN" orgid="META" resource="getxml?META:GLUC1PADENYLTRANS-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-21092" orgid="META" resource="getxml?META:RXN-21092" /><Reaction frameid="GLYCOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-RXN" /><Reaction frameid="RXN-19624" orgid="META" resource="getxml?META:RXN-19624" /><Reaction frameid="RXN-18999" orgid="META" resource="getxml?META:RXN-18999" /><Reaction frameid="RXN-15696" orgid="META" resource="getxml?META:RXN-15696" /><Reaction frameid="RXN-14353" orgid="META" resource="getxml?META:RXN-14353" /><Reaction frameid="RXN-1826" orgid="META" resource="getxml?META:RXN-1826" /><Reaction frameid="RXN-12392" orgid="META" resource="getxml?META:RXN-12392" /><Reaction frameid="RXN-12171" orgid="META" resource="getxml?META:RXN-12171" /><Reaction frameid="GLYMALTOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYMALTOPHOSPHORYL-RXN" /><Reaction frameid="13-BETA-GLUCAN-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:13-BETA-GLUCAN-PHOSPHORYLASE-RXN" /><Reaction frameid="CELLODEXTRIN-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:CELLODEXTRIN-PHOSPHORYLASE-RXN" /><Reaction frameid="RXN0-5184" orgid="META" resource="getxml?META:RXN0-5184" /><Reaction frameid="RXN-9025" orgid="META" resource="getxml?META:RXN-9025" /><Reaction frameid="RXN0-5182" orgid="META" resource="getxml?META:RXN0-5182" /><Reaction frameid="RXN-14284" orgid="META" resource="getxml?META:RXN-14284" /><Reaction frameid="RXN-14285" orgid="META" resource="getxml?META:RXN-14285" /><Reaction frameid="RXN-14286" orgid="META" resource="getxml?META:RXN-14286" /><Reaction frameid="CELLOBIOSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:CELLOBIOSE-PHOSPHORYLASE-RXN" /><Reaction frameid="LAMINARIBIOSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:LAMINARIBIOSE-PHOSPHORYLASE-RXN" /><Reaction frameid="RXN-15605" orgid="META" resource="getxml?META:RXN-15605" /><Reaction frameid="3.1.4.51-RXN" orgid="META" resource="getxml?META:3.1.4.51-RXN" /><Reaction frameid="RXN-15204" orgid="META" resource="getxml?META:RXN-15204" /><Reaction frameid="RXN-4441" orgid="META" resource="getxml?META:RXN-4441" /><Reaction frameid="GALACTURIDYLYLTRANS-RXN" orgid="META" resource="getxml?META:GALACTURIDYLYLTRANS-RXN" /><Reaction frameid="RXN-12486" orgid="META" resource="getxml?META:RXN-12486" /><Reaction frameid="13-BETA-OLIGOGLUCAN-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:13-BETA-OLIGOGLUCAN-PHOSPHORYLASE-RXN" /><Reaction frameid="SUCROSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHORYLASE-RXN" /><Reaction frameid="RXN-10770" orgid="META" resource="getxml?META:RXN-10770" /></appears-in-right-side-of>
 <common-name datatype="string">&amp;alpha;-D-glucopyranose 1-phosphate</common-name>
 <dblink><dblink-db>REFMET</dblink-db>
 <dblink-oid>Glucose-1-phosphate</dblink-oid>
@@ -106,14 +63,57 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C6H13O9P/c7-1-2-3(8)4(9)5(10)6(14-2)15-16(11,12)13/h2-10H,1H2,(H2,11,12,13)/p-2/t2-,3-,4+,5-,6-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=HXXFSFRBOHSIMQ-VFUOTHLCSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">258.121</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">260.02972</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-7407" detail="low" frameid="REG0-7407" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PHOSPHOGLUCMUT-ENZRXN" detail="low" frameid="PHOSPHOGLUCMUT-ENZRXN" orgid="META"><common-name datatype="string">phosphoglucomutase</common-name>
+<enzyme><Protein frameid="PHOSPHOGLUCMUT-MONOMER" orgid="META" resource="getxml?META:PHOSPHOGLUCMUT-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PHOSPHOGLUCMUT-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCMUT-RXN" /></reaction>
+<synonym datatype="string">glucose phosphomutase</synonym>
+<synonym datatype="string">&amp;alpha;-D-glucose 1,6-phosphomutase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GLC-1-P" orgid="META" resource="#META:GLC-1-P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8309" detail="low" frameid="REG-8309" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5044" detail="low" frameid="ENZRXN-5044" orgid="META"><common-name datatype="string">NAD&lt;sup&gt;+&lt;/sup&gt;-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-3823" orgid="META" resource="getxml?META:CPLX-3823" /></enzyme>
+<reaction><Reaction frameid="RXN-3443" orgid="META" resource="getxml?META:RXN-3443" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GLC-1-P" orgid="META" resource="#META:GLC-1-P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8027" detail="low" frameid="REG-8027" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9341" detail="low" frameid="ENZRXN-9341" orgid="META"><common-name datatype="string">triose phosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-9181" orgid="META" resource="getxml?META:MONOMER-9181" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="GLC-1-P" orgid="META" resource="#META:GLC-1-P" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">glucose 1-phosphate</synonym>
+<synonym datatype="string">cori ester</synonym>
+<synonym datatype="string">D-glucose 1-phosphate</synonym>
+<synonym datatype="string">glucose-1P</synonym>
+<synonym datatype="string">&amp;alpha;-glucose-1-phosphate</synonym>
+<synonym datatype="string">D-glucose-&amp;alpha;-1-phosphate</synonym>
+<synonym datatype="string">&amp;alpha;-D-glucose-1-P</synonym>
+<synonym datatype="string">D-glucose-1-phosphate</synonym>
+<synonym datatype="string">&amp;alpha;-D-glucose 1-phosphate</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN4FS-13" orgid="META" resource="getxml?META:RXN4FS-13" /><Reaction frameid="GLUC1PURIDYLTRANS-RXN" orgid="META" resource="getxml?META:GLUC1PURIDYLTRANS-RXN" /><Reaction frameid="PHOSPHOGLUCOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCOKINASE-RXN" /><Reaction frameid="RXN-16997" orgid="META" resource="getxml?META:RXN-16997" /><Reaction frameid="DTDPGLUCOSEPP-RXN" orgid="META" resource="getxml?META:DTDPGLUCOSEPP-RXN" /><Reaction frameid="RXN-18305" orgid="META" resource="getxml?META:RXN-18305" /><Reaction frameid="GLUCOSE-1-PHOSPHATE-PHOSPHODISMUTASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-1-PHOSPHATE-PHOSPHODISMUTASE-RXN" /><Reaction frameid="RIBOFLAVIN-PHOSPHOTRANSFERASE-RXN" orgid="META" resource="getxml?META:RIBOFLAVIN-PHOSPHOTRANSFERASE-RXN" /><Reaction frameid="GLUCOSE-1-PHOSPHAT-RXN" orgid="META" resource="getxml?META:GLUCOSE-1-PHOSPHAT-RXN" /><Reaction frameid="PHOSPHOGLUCMUT-RXN" orgid="META" resource="getxml?META:PHOSPHOGLUCMUT-RXN" /><Reaction frameid="RXN-16999" orgid="META" resource="getxml?META:RXN-16999" /><Reaction frameid="2.7.7.34-RXN" orgid="META" resource="getxml?META:2.7.7.34-RXN" /><Reaction frameid="MALTOSE-SYNTHASE-RXN" orgid="META" resource="getxml?META:MALTOSE-SYNTHASE-RXN" /><Reaction frameid="GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" /><Reaction frameid="2.7.7.33-RXN" orgid="META" resource="getxml?META:2.7.7.33-RXN" /><Reaction frameid="GLUC1PADENYLTRANS-RXN" orgid="META" resource="getxml?META:GLUC1PADENYLTRANS-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-21092" orgid="META" resource="getxml?META:RXN-21092" /><Reaction frameid="GLYCOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-RXN" /><Reaction frameid="RXN-19624" orgid="META" resource="getxml?META:RXN-19624" /><Reaction frameid="RXN-18999" orgid="META" resource="getxml?META:RXN-18999" /><Reaction frameid="RXN-15696" orgid="META" resource="getxml?META:RXN-15696" /><Reaction frameid="RXN-14353" orgid="META" resource="getxml?META:RXN-14353" /><Reaction frameid="RXN-1826" orgid="META" resource="getxml?META:RXN-1826" /><Reaction frameid="RXN-12392" orgid="META" resource="getxml?META:RXN-12392" /><Reaction frameid="RXN-12171" orgid="META" resource="getxml?META:RXN-12171" /><Reaction frameid="GLYMALTOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYMALTOPHOSPHORYL-RXN" /><Reaction frameid="13-BETA-GLUCAN-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:13-BETA-GLUCAN-PHOSPHORYLASE-RXN" /><Reaction frameid="CELLODEXTRIN-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:CELLODEXTRIN-PHOSPHORYLASE-RXN" /><Reaction frameid="RXN0-5184" orgid="META" resource="getxml?META:RXN0-5184" /><Reaction frameid="RXN-9025" orgid="META" resource="getxml?META:RXN-9025" /><Reaction frameid="RXN0-5182" orgid="META" resource="getxml?META:RXN0-5182" /><Reaction frameid="RXN-14284" orgid="META" resource="getxml?META:RXN-14284" /><Reaction frameid="RXN-14285" orgid="META" resource="getxml?META:RXN-14285" /><Reaction frameid="RXN-14286" orgid="META" resource="getxml?META:RXN-14286" /><Reaction frameid="CELLOBIOSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:CELLOBIOSE-PHOSPHORYLASE-RXN" /><Reaction frameid="LAMINARIBIOSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:LAMINARIBIOSE-PHOSPHORYLASE-RXN" /><Reaction frameid="RXN-15605" orgid="META" resource="getxml?META:RXN-15605" /><Reaction frameid="3.1.4.51-RXN" orgid="META" resource="getxml?META:3.1.4.51-RXN" /><Reaction frameid="RXN-15204" orgid="META" resource="getxml?META:RXN-15204" /><Reaction frameid="RXN-4441" orgid="META" resource="getxml?META:RXN-4441" /><Reaction frameid="GALACTURIDYLYLTRANS-RXN" orgid="META" resource="getxml?META:GALACTURIDYLYLTRANS-RXN" /><Reaction frameid="RXN-12486" orgid="META" resource="getxml?META:RXN-12486" /><Reaction frameid="13-BETA-OLIGOGLUCAN-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:13-BETA-OLIGOGLUCAN-PHOSPHORYLASE-RXN" /><Reaction frameid="SUCROSE-PHOSPHORYLASE-RXN" orgid="META" resource="getxml?META:SUCROSE-PHOSPHORYLASE-RXN" /><Reaction frameid="RXN-10770" orgid="META" resource="getxml?META:RXN-10770" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

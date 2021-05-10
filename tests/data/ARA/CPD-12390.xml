@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-12390"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-12390"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-12390</query>
 <num_results>1</num_results>
@@ -13,20 +13,6 @@
 <string title="smiles">CSCCCC(/SC[C@H](NC(=O)CC[C@H]([NH3+])C([O-])=O)C(=O)NCC([O-])=O)=N\O</string>
 </molecule>
 </cml>
-<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-1-(glutathion-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine</common-name>
-<credits><created><date datatype="date">2010-04-26</date>
-<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><common-name datatype="string">Peifen Zhang</common-name>
-<affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><common-name datatype="string">Carnegie Institution for Science</common-name>
-<url datatype="string">http://plantcyc.org</url>
-<abbrev-name datatype="string">PMN</abbrev-name>
-</Organization>
-<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><common-name datatype="string">The Arabidopsis Information Resource</common-name>
-<abbrev-name datatype="string">TAIR</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
-</credits>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM10224</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -44,5 +30,19 @@
 <monoisotopic-mw datatype="float" units="Daltons">438.1243</monoisotopic-mw>
 <appears-in-left-side-of><Reaction frameid="RXN-11430" orgid="ARA" resource="getxml?ARA:RXN-11430" /></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction frameid="RXN-18161" orgid="ARA" resource="getxml?ARA:RXN-18161" /><Reaction frameid="RXN-11422" orgid="ARA" resource="getxml?ARA:RXN-11422" /></appears-in-right-side-of>
+<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-1-(glutathion-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine</common-name>
+<credits><created><date datatype="date">2010-04-26</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+<common-name datatype="string">Carnegie Institution for Science</common-name>
+</Organization>
+<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
+<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+</Organization>
+</affiliations>
+<common-name datatype="string">Peifen Zhang</common-name>
+</Person>
+<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
+</credits>
 </Compound>
 </ptools-xml>

@@ -1,17 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PHOSGLYPHOS-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PHOSGLYPHOS-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PHOSGLYPHOS-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:PHOSGLYPHOS-RXN" detail="full" frameid="PHOSGLYPHOS-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="DPG" orgid="META" resource="getxml?META:DPG" /></right>
-<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR102538</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -369,52 +364,52 @@
 </dblink>
 <ec-number>EC-2.7.2.3<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:PHOSGLYCPHOS-ENZRXN" detail="low" frameid="PHOSGLYCPHOS-ENZRXN" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:PHOSGLYCPHOS-ENZRXN" detail="low" frameid="PHOSGLYCPHOS-ENZRXN" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
+<enzyme><Protein frameid="PGK" orgid="META" resource="getxml?META:PGK" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 <synonym datatype="string">3-phosphoglycerate kinase</synonym>
 <synonym datatype="string">Glycerate 3-P kinase</synonym>
 <synonym datatype="string">2,3-diphospho-D-glycerate</synonym>
 <synonym datatype="string">2-phospho-D-glycerate phosphotransferase</synonym>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
-<enzyme><Protein frameid="PGK" orgid="META" resource="getxml?META:PGK" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-2652" detail="low" frameid="ENZRXN66-2652" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-2652" detail="low" frameid="ENZRXN66-2652" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="HS02359-MONOMER" orgid="META" resource="getxml?META:HS02359-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-1138" detail="low" frameid="ENZRXN66-1138" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-1138" detail="low" frameid="ENZRXN66-1138" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="HS10215-MONOMER" orgid="META" resource="getxml?META:HS10215-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-14012" detail="low" frameid="ENZRXN-14012" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-14012" detail="low" frameid="ENZRXN-14012" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="MONOMER-13169" orgid="META" resource="getxml?META:MONOMER-13169" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13910" detail="low" frameid="ENZRXN-13910" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13910" detail="low" frameid="ENZRXN-13910" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="CPLX-7331" orgid="META" resource="getxml?META:CPLX-7331" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13440" detail="low" frameid="ENZRXN-13440" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
-<common-name datatype="string">3-phosphoglycerate kinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13440" detail="low" frameid="ENZRXN-13440" orgid="META"><common-name datatype="string">3-phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="MONOMER-12711" orgid="META" resource="getxml?META:MONOMER-12711" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13439" detail="low" frameid="ENZRXN-13439" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
-<common-name datatype="string">3-phosphoglycerate kinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13439" detail="low" frameid="ENZRXN-13439" orgid="META"><common-name datatype="string">3-phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="MONOMER-12710" orgid="META" resource="getxml?META:MONOMER-12710" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2868" detail="low" frameid="ENZRXN-2868" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
-<synonym datatype="string">ATP:3-phospho-D-glycerate 1-phosphotransferase</synonym>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-2868" detail="low" frameid="ENZRXN-2868" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="MONOMER-549" orgid="META" resource="getxml?META:MONOMER-549" /></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2703" detail="low" frameid="ENZRXN-2703" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 <synonym datatype="string">ATP:3-phospho-D-glycerate 1-phosphotransferase</synonym>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2703" detail="low" frameid="ENZRXN-2703" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="CPLX-1864" orgid="META" resource="getxml?META:CPLX-1864" /></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-123" detail="low" frameid="ENZRXN-123" orgid="META"><reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
 <synonym datatype="string">ATP:3-phospho-D-glycerate 1-phosphotransferase</synonym>
-<common-name datatype="string">phosphoglycerate kinase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-123" detail="low" frameid="ENZRXN-123" orgid="META"><common-name datatype="string">phosphoglycerate kinase</common-name>
 <enzyme><Protein frameid="PGKSYN-MONOMER" orgid="META" resource="getxml?META:PGKSYN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="#META:PHOSGLYPHOS-RXN" /></reaction>
+<synonym datatype="string">ATP:3-phospho-D-glycerate 1-phosphotransferase</synonym>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-7.51001<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -425,15 +420,20 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="SUCSYN-PWY" orgid="META" resource="getxml?META:SUCSYN-PWY" /><Pathway frameid="ANAGLYCOLYSIS-PWY" orgid="META" resource="getxml?META:ANAGLYCOLYSIS-PWY" /><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /><Pathway frameid="PWY-5484" orgid="META" resource="getxml?META:PWY-5484" /><Pathway frameid="PWY-8004" orgid="META" resource="getxml?META:PWY-8004" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY-7003" orgid="META" resource="getxml?META:PWY-7003" /><Pathway frameid="P124-PWY" orgid="META" resource="getxml?META:P124-PWY" /><Pathway frameid="P122-PWY" orgid="META" resource="getxml?META:P122-PWY" /><Pathway frameid="PWY-6901" orgid="META" resource="getxml?META:PWY-6901" /><Pathway frameid="PWY66-399" orgid="META" resource="getxml?META:PWY66-399" /><Pathway frameid="PWY-6886" orgid="META" resource="getxml?META:PWY-6886" /><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /><Pathway frameid="P185-PWY" orgid="META" resource="getxml?META:P185-PWY" /><Pathway frameid="PWY-1042" orgid="META" resource="getxml?META:PWY-1042" /></in-pathway>
 <left><Compound frameid="G3P" orgid="META" resource="getxml?META:G3P" /></left>
 <left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="DPG" orgid="META" resource="getxml?META:DPG" /></right>
+<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
 </Reaction>
 </ptools-xml>

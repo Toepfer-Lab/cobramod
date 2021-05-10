@@ -1,23 +1,18 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:2TRANSKETO-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:2TRANSKETO-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:2TRANSKETO-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:2TRANSKETO-RXN" detail="full" frameid="2TRANSKETO-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right>
-<right><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /></right>
-<citation><Publication ID="META:PUB-WIT98" detail="full" frameid="PUB-WIT98" orgid="META"><source datatype="string">1998 WWW URL http://www.cme.msu.edu/WIT/</source>
-<title datatype="string">The WIT Database</title>
-<author datatype="string">Overbeek, R</author>
+<citation><Publication ID="META:PUB-WIT98" detail="full" frameid="PUB-WIT98" orgid="META"><author datatype="string">Overbeek, R</author>
 <author datatype="string">Larsen, N</author>
 <author datatype="string">Selkov, EE</author>
 <author datatype="string">Maltsev, M</author>
+<source datatype="string">1998 WWW URL http://www.cme.msu.edu/WIT/</source>
+<title datatype="string">The WIT Database</title>
 </Publication>
 </citation>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
@@ -191,22 +186,22 @@
 <dblink-URL>https://www.uniprot.org/uniprot/P29277</dblink-URL>
 </dblink>
 <ec-number>EC-2.2.1.1</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-7468" detail="low" frameid="ENZRXN0-7468" orgid="META"><reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
-<common-name datatype="string">transketolase</common-name>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-7468" detail="low" frameid="ENZRXN0-7468" orgid="META"><common-name datatype="string">transketolase</common-name>
 <enzyme><Protein frameid="TRANSKETOI-CPLX" orgid="META" resource="getxml?META:TRANSKETOI-CPLX" /></enzyme>
+<reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN0-1881" detail="low" frameid="ENZRXN0-1881" orgid="META"><reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
-<synonym datatype="string">D-fructose 6-phosphate:D-glyceraldehyde-3-phosphate glycolaldehydetransferase</synonym>
-<common-name datatype="string">transketolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN0-1881" detail="low" frameid="ENZRXN0-1881" orgid="META"><common-name datatype="string">transketolase</common-name>
 <enzyme><Protein frameid="CPLX0-1261" orgid="META" resource="getxml?META:CPLX0-1261" /></enzyme>
+<reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
+<synonym datatype="string">D-fructose 6-phosphate:D-glyceraldehyde-3-phosphate glycolaldehydetransferase</synonym>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-27440" detail="low" frameid="ENZRXN-27440" orgid="META"><reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
-<common-name datatype="string">transketolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-27440" detail="low" frameid="ENZRXN-27440" orgid="META"><common-name datatype="string">transketolase</common-name>
 <enzyme><Protein frameid="MONOMER-583" orgid="META" resource="getxml?META:MONOMER-583" /></enzyme>
+<reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-167" detail="low" frameid="ENZRXN-167" orgid="META"><reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
-<common-name datatype="string">D-fructose 6-phosphate:D-glyceraldehyde-3-phosphate glycolaldehydetransferase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-167" detail="low" frameid="ENZRXN-167" orgid="META"><common-name datatype="string">D-fructose 6-phosphate:D-glyceraldehyde-3-phosphate glycolaldehydetransferase</common-name>
 <enzyme><Protein frameid="TKTASYN-MONOMER" orgid="META" resource="getxml?META:TKTASYN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="#META:2TRANSKETO-RXN" /></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">3.959961<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -217,15 +212,20 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="PWY-8178" orgid="META" resource="getxml?META:PWY-8178" /><Pathway frameid="PWY-6901" orgid="META" resource="getxml?META:PWY-6901" /><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /><Pathway frameid="PWY-5723" orgid="META" resource="getxml?META:PWY-5723" /><Pathway frameid="NONOXIPENT-PWY" orgid="META" resource="getxml?META:NONOXIPENT-PWY" /><Pathway frameid="P185-PWY" orgid="META" resource="getxml?META:P185-PWY" /><Pathway frameid="PWY-1861" orgid="META" resource="getxml?META:PWY-1861" /><Pathway frameid="P21-PWY" orgid="META" resource="getxml?META:P21-PWY" /></in-pathway>
 <left><Compound frameid="ERYTHROSE-4P" orgid="META" resource="getxml?META:ERYTHROSE-4P" /></left>
 <left><Compound frameid="XYLULOSE-5-PHOSPHATE" orgid="META" resource="getxml?META:XYLULOSE-5-PHOSPHATE" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right>
+<right><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /></right>
 </Reaction>
 </ptools-xml>

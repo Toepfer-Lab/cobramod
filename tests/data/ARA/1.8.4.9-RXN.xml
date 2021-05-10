@@ -1,0 +1,44 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:1.8.4.9-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:1.8.4.9-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:1.8.4.9-RXN" detail="full" frameid="1.8.4.9-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-1.8.4.9<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-12661" detail="low" frameid="ENZRXN-12661" orgid="ARA"><enzyme><Protein frameid="CPLX-1282" orgid="ARA" resource="getxml?ARA:CPLX-1282" /></enzyme>
+<reaction><Reaction frameid="1.8.4.9-RXN" orgid="ARA" resource="#ARA:1.8.4.9-RXN" /></reaction>
+<common-name datatype="string">adenylyl-sulfate reductase (glutathione)</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-12660" detail="low" frameid="ENZRXN-12660" orgid="ARA"><enzyme><Protein frameid="CPLX-1284" orgid="ARA" resource="getxml?ARA:CPLX-1284" /></enzyme>
+<reaction><Reaction frameid="1.8.4.9-RXN" orgid="ARA" resource="#ARA:1.8.4.9-RXN" /></reaction>
+<common-name datatype="string">adenylyl-sulfate reductase (glutathione)</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXN-12659" detail="low" frameid="ENZRXN-12659" orgid="ARA"><enzyme><Protein frameid="CPLX-1283" orgid="ARA" resource="getxml?ARA:CPLX-1283" /></enzyme>
+<reaction><Reaction frameid="1.8.4.9-RXN" orgid="ARA" resource="#ARA:1.8.4.9-RXN" /></reaction>
+<common-name datatype="string">adenylyl-sulfate reductase (glutathione)</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<synonym datatype="string">phosphosulfate-forming)</synonym>
+<synonym datatype="string">AMP,sulfite:oxidized-glutathione oxidoreductase (adenosine-5'-</synonym>
+<synonym datatype="string">5'-adenylylsulfate reductase</synonym>
+<synonym datatype="string">Plant-type 5'-adenylylsulfate reductase</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-3.0724792</gibbs-0>
+<in-pathway><Pathway frameid="SULFMETII-PWY" orgid="ARA" resource="getxml?ARA:SULFMETII-PWY" /></in-pathway>
+<left><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /><coefficient datatype="integer">2</coefficient>
+</left>
+<left><Compound frameid="SO3" orgid="ARA" resource="getxml?ARA:SO3" /></left>
+<left><Compound frameid="AMP" orgid="ARA" resource="getxml?ARA:AMP" /></left>
+<left><Compound frameid="OXIDIZED-GLUTATHIONE" orgid="ARA" resource="getxml?ARA:OXIDIZED-GLUTATHIONE" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="GLUTATHIONE" orgid="ARA" resource="getxml?ARA:GLUTATHIONE" /><coefficient datatype="integer">2</coefficient>
+</right>
+<right><Compound frameid="APS" orgid="ARA" resource="getxml?ARA:APS" /></right>
+</Reaction>
+</ptools-xml>

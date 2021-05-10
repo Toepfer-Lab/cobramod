@@ -24,6 +24,7 @@ PATHWAY     map00220  Arginine biosynthesis
             map01100  Metabolic pathways
             map01120  Microbial metabolism in diverse environments
             map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
             map02010  ABC transporters
             map02020  Two-component system
             map04724  Glutamatergic synapse
@@ -34,6 +35,7 @@ PATHWAY     map00220  Arginine biosynthesis
             map05230  Central carbon metabolism in cancer
 MODULE      M00048  Inosine monophosphate biosynthesis, PRPP + glutamine => IMP
             M00051  Uridine monophosphate biosynthesis, glutamine (+ PRPP) => UMP
+            M00916  Pyridoxal-P biosynthesis, R5P + glyceraldehyde-3P + glutamine => pyridoxal-P
 ENZYME      1.4.1.13        1.4.1.14        1.4.7.1         2.3.1.14        
             2.3.1.68        2.3.2.1         2.3.2.14        2.4.2.14        
             2.6.1.15        2.6.1.16        2.6.1.50        2.6.1.64        
@@ -77,9 +79,6 @@ BRITE       Compounds with biological roles [BR:br08001]
               Inorganic and organic chemicals
                L-Glutamine
                 D00015  Glutamine (USP)
-            Pharmaceutical additives in Japan [BR:br08316]
-             Diluting agent
-              D00015  [003612] L-Glutamine
             Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
              Chemicals
               D00015  L-Glutamine

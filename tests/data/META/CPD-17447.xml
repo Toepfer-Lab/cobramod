@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-17447"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-17447"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-17447</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CPD-17447" detail="full" frameid="CPD-17447" orgid="META"><parent><Compound class="true" frameid="S-Substituted-Glutamyl-Cysteine" orgid="META" resource="getxml?META:S-Substituted-Glutamyl-Cysteine" /></parent>
@@ -12,33 +12,29 @@
 <string title="smiles">CSC[C@@H](C([O-])=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">263.288</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">264.078</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="RXN-16201" orgid="META" resource="getxml?META:RXN-16201" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-16202" orgid="META" resource="getxml?META:RXN-16202" /></appears-in-right-side-of>
-<citation><Publication ID="META:PUB-15652575" detail="full" frameid="PUB-15652575" orgid="META"><pubmed-id datatype="string">15652575</pubmed-id>
-<source datatype="string">Phytochemistry 66(2);187-94</source>
-<title datatype="string">Synthesis of the flavour precursor, alliin, in garlic tissue cultures.</title>
-<year datatype="integer">2005</year>
-<author datatype="string">Hughes J</author>
+<citation><Publication ID="META:PUB-15652575" detail="full" frameid="PUB-15652575" orgid="META"><author datatype="string">Hughes J</author>
 <author datatype="string">Tregova A</author>
 <author datatype="string">Tomsett AB</author>
 <author datatype="string">Jones MG</author>
 <author datatype="string">Cosstick R</author>
 <author datatype="string">Collin HA</author>
+<pubmed-id datatype="string">15652575</pubmed-id>
+<source datatype="string">Phytochemistry 66(2);187-94</source>
+<title datatype="string">Synthesis of the flavour precursor, alliin, in garlic tissue cultures.</title>
+<year datatype="integer">2005</year>
 </Publication>
 </citation>
 <common-name datatype="string">&amp;gamma;-L-glutamyl-(&lt;i&gt;S&lt;/i&gt;)-methyl-L-cysteine</common-name>
 <credits><created><date datatype="date">2014-12-09</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
 </credits>
@@ -60,14 +56,18 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C9H16N2O5S/c1-17-4-6(9(15)16)11-7(12)3-2-5(10)8(13)14/h5-6H,2-4,10H2,1H3,(H,11,12)(H,13,14)(H,15,16)/p-1/t5-,6-/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=UPCDLBPYWXOCOK-WDSKDSINSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">263.288</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">264.078</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-16201" orgid="META" resource="getxml?META:RXN-16201" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-16202" orgid="META" resource="getxml?META:RXN-16202" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

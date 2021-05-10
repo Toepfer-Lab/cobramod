@@ -1,3 +1,0 @@
-# id_rxn, name |id_meta:value,id_meta2:value
-GLC_cb, GLC_cb|GLC_c:-1, GLC_b:1
-RXN-14462, p

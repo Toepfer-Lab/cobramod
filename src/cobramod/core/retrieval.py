@@ -4,9 +4,10 @@
 This module creates the function :func:`cobramod.core.retrieval.get_data`,
 which gets the data from a local directory or from different databases.
 The available databases for data retrieval can be found in the variable
-:func:`cobramod.core.retrieval.available_databases`
+:obj:`cobramod.core.retrieval.available_databases`
 """
 from contextlib import suppress
+from collections import UserList
 from pathlib import Path
 from typing import Type
 
@@ -18,7 +19,31 @@ from cobramod.parsing.bigg import BiggParser
 from cobramod.utils import _path_match, get_key_dict
 
 parsers = [BiocycParser, KeggParser, BiggParser]
-available_databases = ["META", "ARA", "META", "BIGG"]
+
+
+class ListCobramod(UserList):
+    """
+    Simple list that prints out a message about the enormous size of Biocyc.
+    """
+
+    def __init__(self, initlist=[]):
+        super().__init__(initlist=initlist)
+        self.msg = (
+            "Biocyc includes around 18.000 sub-databases. The complete list "
+            + "can be found in 'https://biocyc.org/biocyc-pgdb-list.shtml'. "
+            + "Please use the corresponding object identifier. e.g: 'ARA', "
+            + "'GCF_000963925'"
+        )
+
+    def __repr__(self):
+        print(self.msg)
+        return super().__repr__()
+
+    def __str__(self):
+        return self.msg + "\n" + super().__str__()
+
+
+available_databases = ListCobramod(["META", "KEGG", "BIGG"])
 
 
 def _get_parser(database: str) -> Type[BaseParser]:
@@ -30,13 +55,16 @@ def _get_parser(database: str) -> Type[BaseParser]:
         with suppress(WrongParserError):
             # This method will raise a WrongParserError. Skipping it will
             # return the the real parser
-            parser._return_database(database=database)
+            parser._check_database(database=database)
             real_parser = parser
             break
     try:
         return real_parser
     except UnboundLocalError:
-        raise WrongParserError("No parser found for that database")
+        raise WrongParserError(
+            "No parser found for that database. Please check "
+            + "cobramod.retrieval.available_databases"
+        )
 
 
 def get_data(
@@ -54,13 +82,15 @@ def get_data(
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
         database (str): Name of database. Check
-            :func:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.available_databases` for a list of names.
         debug_level (int, optional): Level of debugging. Read package logging
             for more info. Defaults to 20
 
     Keyword Arguments:
         model_id: Exclusive for BIGG. Original identifier of model to search.
             Some examples: "e_coli_core", "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     Returns:
         dict: relevant data for given identifier
     """
@@ -74,11 +104,10 @@ def get_data(
     )
 
 
-# TODO: These functions below should be moved
 def _retrieve_dict(directory: Path, target: str) -> dict:
     """
     Search and return in given directory, specific target and return a
-    dictionary with the parsed infomation.
+    dictionary with the parsed information.
     Args:
         directory (Path): Path to search. This includes subdirectories
         target (str): Pattern to search.
@@ -95,9 +124,15 @@ def _retrieve_dict(directory: Path, target: str) -> dict:
         )
     for parser in BaseParser.__subclasses__():
         with suppress(WrongParserError, NotImplementedError):
-            data_dict = parser._parse(
-                root=parser._read_file(filename=filename)
-            )["XREF"]
+            try:
+                data_dict = parser._parse(
+                    root=parser._read_file(filename=filename),
+                    directory=directory,
+                )["XREF"]
+            except TypeError:
+                data_dict = parser._parse(  # type: ignore
+                    root=parser._read_file(filename=filename)
+                )["XREF"]
     try:
         return data_dict
     except UnboundLocalError:
@@ -120,14 +155,16 @@ def translate(directory: Path, target: str, database: str) -> str:
         str: corresponding identifier for cross-reference.
 
     Raises:
-        FileNotFoundError: If no target can be found
-        WrongParserError: If target cannot be properly identified
+        PatternNotFound: If target cannot be properly identified
     """
+    # Return parsed information
     data_dict = _retrieve_dict(directory=directory, target=target)
     try:
+        # Search for the name of the database as a pattern
         key = get_key_dict(dictionary=data_dict, pattern=database)
         return data_dict[key]
     except PatternNotFound:
         raise PatternNotFound(
-            "No parser could be identified. Please contact maintainers"
+            "No could be identified. Probably the target does not include the "
+            + "given database"
         )

@@ -2,9 +2,33 @@
 """Errors for CobraMod
 
 This module creates special errors for CobraMod. Read each error for their
-explaination.
+explanation.
 """
 from cobramod.debug import debug_log
+
+
+class NoDelimiter(Exception):
+    """
+    Simple Error that should be raised when a string does not include the
+    delimiter "|"
+    """
+
+    def __init__(self, string: str):
+        """
+        Args:
+            string (str): String with the format problem
+        """
+        msg = f'No delimiter "|" was found in \n{string}'
+        super().__init__(msg)
+
+
+class GraphKeyError(Exception):
+    """
+    Simple Error that should be raised when a value is missing as key in a
+    graph
+    """
+
+    pass
 
 
 class FoundInPairError(Exception):
@@ -69,18 +93,40 @@ class NoIntersectFound(Exception):
     pass
 
 
+class NoGeneInformation(Exception):
+    """
+    Simple error that should be raised when given object has no gene
+    information in the database.
+    """
+
+    pass
+
+
+class AbbreviationWarning(Warning):
+    """
+    Simple Warning that should be raised when given abbreviation does not
+    exists.
+    """
+
+    pass
+
+
 class UnbalancedReaction(Exception):
     """
     Simple Error that should be raised if a reaction has wrong mass balance.
     """
 
-    def __init__(self, reaction: str):
+    def __init__(self, identifier: str, dict_balance: str):
         """
         Args:
             reaction (str): identifier of the reaction.
         """
-        # TODO: check behaviour with super().__init__
-        debug_log.warning(f"Reaction {reaction} is not balanced.")
+        msg = (
+            f'Reaction "{identifier}" unbalanced. Following atoms are '
+            + f"affected. Please verify:\n{dict_balance}"
+        )
+        debug_log.critical(msg)
+        super().__init__(msg)
 
 
 class NotInRangeError(Exception):
@@ -94,7 +140,11 @@ class NotInRangeError(Exception):
         Args:
             reaction (str): identifier of the reaction.
         """
-        # TODO: check behaviour with super().__init__
-        debug_log.critical(
-            f"Reaction '{reaction}' not in range. Check sinks manually."
+        msg = (
+            f'For the non-zero flux test of "{reaction}", adding the reaction '
+            + " results in a optimization value lower than the given minimum. "
+            + "Please readjust the 'minimum' argument or add the reaction to "
+            + "the argument 'ignore_list' to be skipped from the test."
         )
+        debug_log.critical(msg)
+        super().__init__(msg)

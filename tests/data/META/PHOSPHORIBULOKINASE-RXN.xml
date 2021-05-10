@@ -1,18 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PHOSPHORIBULOKINASE-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PHOSPHORIBULOKINASE-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PHOSPHORIBULOKINASE-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:PHOSPHORIBULOKINASE-RXN" detail="full" frameid="PHOSPHORIBULOKINASE-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
-<right><Compound frameid="D-RIBULOSE-15-P2" orgid="META" resource="getxml?META:D-RIBULOSE-15-P2" /></right>
-<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR103217</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -90,16 +84,16 @@
 </dblink>
 <ec-number>EC-2.7.1.19<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-13719" detail="low" frameid="ENZRXN-13719" orgid="META"><reaction><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="META" resource="#META:PHOSPHORIBULOKINASE-RXN" /></reaction>
-<common-name datatype="string">phosphoribulokinase</common-name>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-13719" detail="low" frameid="ENZRXN-13719" orgid="META"><common-name datatype="string">phosphoribulokinase</common-name>
 <enzyme><Protein frameid="CPLX-7281" orgid="META" resource="getxml?META:CPLX-7281" /></enzyme>
+<reaction><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="META" resource="#META:PHOSPHORIBULOKINASE-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-186" detail="low" frameid="ENZRXN-186" orgid="META"><reaction><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="META" resource="#META:PHOSPHORIBULOKINASE-RXN" /></reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-186" detail="low" frameid="ENZRXN-186" orgid="META"><common-name datatype="string">phosphoribulokinase</common-name>
+<enzyme><Protein frameid="PRKSYN-MONOMER" orgid="META" resource="getxml?META:PRKSYN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="META" resource="#META:PHOSPHORIBULOKINASE-RXN" /></reaction>
 <synonym datatype="string">phosphopentokinase</synonym>
 <synonym datatype="string">ribulose-5-phosphate kinase</synonym>
 <synonym datatype="string">ATP:D-ribulose-5-phosphate 1-phosphotransferase</synonym>
-<common-name datatype="string">phosphoribulokinase</common-name>
-<enzyme><Protein frameid="PRKSYN-MONOMER" orgid="META" resource="getxml?META:PRKSYN-MONOMER" /></enzyme>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-17.312378<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -110,15 +104,21 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /><Pathway frameid="PWY-5723" orgid="META" resource="getxml?META:PWY-5723" /></in-pathway>
 <left><Compound frameid="RIBULOSE-5P" orgid="META" resource="getxml?META:RIBULOSE-5P" /></left>
 <left><Compound frameid="ATP" orgid="META" resource="getxml?META:ATP" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<right><Compound frameid="D-RIBULOSE-15-P2" orgid="META" resource="getxml?META:D-RIBULOSE-15-P2" /></right>
+<right><Compound frameid="ADP" orgid="META" resource="getxml?META:ADP" /></right>
 </Reaction>
 </ptools-xml>

@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CIT"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CIT"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CIT</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CIT" detail="full" frameid="CIT" orgid="META"><cml><molecule formalCharge="-3" id="CIT" title="citrate"><atomArray><atom elementType="C" id="CIT-atom1" x2="-9846.0" y2="1647.0" /><atom elementType="C" id="CIT-atom2" x2="4443.0" y2="1647.0" /><atom elementType="C" id="CIT-atom3" x2="-16990.0" y2="-2478.0" /><atom elementType="C" id="CIT-atom4" x2="11588.0" y2="-2478.0" /><atom elementType="C" id="CIT-atom5" x2="-2702.0" y2="-10728.0" /><atom elementType="C" id="CIT-atom6" x2="-2702.0" y2="-2478.0" /><atom elementType="O" formalCharge="-1" id="CIT-atom7" x2="-24135.0" y2="1647.0" /><atom elementType="O" id="CIT-atom8" x2="-16990.0" y2="-10728.0" /><atom elementType="O" formalCharge="-1" id="CIT-atom9" x2="18731.0" y2="1647.0" /><atom elementType="O" id="CIT-atom10" x2="11588.0" y2="-10728.0" /><atom elementType="O" formalCharge="-1" id="CIT-atom11" x2="-9846.0" y2="-14854.0" /><atom elementType="O" id="CIT-atom12" x2="4443.0" y2="-14853.0" /><atom elementType="O" id="CIT-atom13" x2="-2702.0" y2="5772.0" /></atomArray>
@@ -11,283 +11,6 @@
 <string title="smiles">C(=O)([O-])CC(C(=O)[O-])(O)CC(=O)[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">189.101</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">192.02701</monoisotopic-mw>
-<pka1 datatype="float">3.13</pka1>
-<pka2 datatype="float">4.76</pka2>
-<pka3 datatype="float">6.39</pka3>
-<regulates><Regulation ID="META:REG0-7954" detail="low" frameid="REG0-7954" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:CHORISMATEMUT2-ENZRXN" detail="low" frameid="CHORISMATEMUT2-ENZRXN" orgid="META"><reaction><Reaction frameid="CHORISMATEMUT-RXN" orgid="META" resource="getxml?META:CHORISMATEMUT-RXN" /></reaction>
-<common-name datatype="string">chorismate mutase</common-name>
-<enzyme><Protein frameid="CHORISMUTPREPHENDEHYDRAT-CPLX" orgid="META" resource="getxml?META:CHORISMUTPREPHENDEHYDRAT-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-7459" detail="low" frameid="REG0-7459" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ASPARTASE-ENZRXN" detail="low" frameid="ASPARTASE-ENZRXN" orgid="META"><reaction><Reaction frameid="ASPARTASE-RXN" orgid="META" resource="getxml?META:ASPARTASE-RXN" /></reaction>
-<synonym datatype="string">aspartase</synonym>
-<synonym datatype="string">fumaric aminase</synonym>
-<common-name datatype="string">aspartate ammonia-lyase</common-name>
-<enzyme><Protein frameid="ASPARTASE-CPLX" orgid="META" resource="getxml?META:ASPARTASE-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-11410" detail="low" frameid="REG0-11410" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:FUMARC-ENZRXN" detail="low" frameid="FUMARC-ENZRXN" orgid="META"><reaction><Reaction frameid="FUMHYDR-RXN" orgid="META" resource="getxml?META:FUMHYDR-RXN" /></reaction>
-<synonym datatype="string">fumarate hydratase</synonym>
-<common-name datatype="string">fumarase C</common-name>
-<enzyme><Protein frameid="FUMARASE-C" orgid="META" resource="getxml?META:FUMARASE-C" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-6860" detail="low" frameid="REG0-6860" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:F16ALDOLASE-ENZRXN-CLASSI" detail="low" frameid="F16ALDOLASE-ENZRXN-CLASSI" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
-<common-name datatype="string">fructose-bisphosphate aldolase</common-name>
-<enzyme><Protein frameid="FRUCBISALD-CLASSI" orgid="META" resource="getxml?META:FRUCBISALD-CLASSI" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-12210" detail="low" frameid="REG0-12210" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:F16BDEPHOS-ENZRXN" detail="low" frameid="F16BDEPHOS-ENZRXN" orgid="META"><reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="getxml?META:F16BDEPHOS-RXN" /></reaction>
-<synonym datatype="string">fructose bisphosphatase</synonym>
-<synonym datatype="string">hexosediphosphatase</synonym>
-<synonym datatype="string">fructose-1,6-P2 1-phosphatase</synonym>
-<common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
-<enzyme><Protein frameid="F16B-CPLX" orgid="META" resource="getxml?META:F16B-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-7690" detail="low" frameid="REG0-7690" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHKINASE-ENZRXN" detail="low" frameid="ICITDEHKINASE-ENZRXN" orgid="META"><reaction><Reaction frameid="PHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:PHOSICITDEHASE-RXN" /></reaction>
-<synonym datatype="string">ICDH kinase</synonym>
-<common-name datatype="string">isocitrate dehydrogenase kinase</common-name>
-<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-6905" detail="low" frameid="REG0-6905" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GSADENYLATION-ENZRXN" detail="low" frameid="GSADENYLATION-ENZRXN" orgid="META"><reaction><Reaction frameid="GSADENYLATION-RXN" orgid="META" resource="getxml?META:GSADENYLATION-RXN" /></reaction>
-<synonym datatype="string">glutamate-ammonia-ligase adenylyltransferase</synonym>
-<synonym datatype="string">ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
-<common-name datatype="string">glutamine synthetase adenylyltransferase</common-name>
-<enzyme><Protein frameid="GLNE-MONOMER" orgid="META" resource="getxml?META:GLNE-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-8863" detail="low" frameid="REG0-8863" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:4OH2OXOGLUTARALDOL-ENZRXN" detail="low" frameid="4OH2OXOGLUTARALDOL-ENZRXN" orgid="META"><reaction><Reaction frameid="RXN-13990" orgid="META" resource="getxml?META:RXN-13990" /></reaction>
-<synonym datatype="string">4-hydroxy-2-oxoglutarate glyoxylate-lyase</synonym>
-<synonym datatype="string">KHG-aldolase</synonym>
-<synonym datatype="string">2-oxo-4-hydroxyglutarate aldolase</synonym>
-<synonym datatype="string">4-hydroxy-2-oxoglutarate aldolase</synonym>
-<synonym datatype="string">(4&lt;i&gt;S&lt;/i&gt;)-4-hydroxy-2-oxoglutarate aldolase</synonym>
-<common-name datatype="string">2-keto-4-hydroxyglutarate aldolase</common-name>
-<enzyme><Protein frameid="KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" orgid="META" resource="getxml?META:KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG66-93" detail="low" frameid="REG66-93" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN66-19879" detail="low" frameid="ENZRXN66-19879" orgid="META"><reaction><Reaction frameid="RXN66-591" orgid="META" resource="getxml?META:RXN66-591" /></reaction>
-<common-name datatype="string">testosterone 6&amp;beta;-hydroxylase</common-name>
-<enzyme><Protein frameid="HS08544-MONOMER" orgid="META" resource="getxml?META:HS08544-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15447" detail="low" frameid="REG-15447" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-981" detail="low" frameid="ENZRXN-981" orgid="META"><reaction><Reaction frameid="RXN0-4141" orgid="META" resource="getxml?META:RXN0-4141" /></reaction>
-<synonym datatype="string">uptake hydrogenase</synonym>
-<synonym datatype="string">membrane-bound hydrogenase</synonym>
-<synonym datatype="string">MBH</synonym>
-<synonym datatype="string">hydrogenlyase</synonym>
-<synonym datatype="string">ferredoxin:H&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase</synonym>
-<synonym datatype="string">hydrogenase</synonym>
-<common-name datatype="string">hydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-841" orgid="META" resource="getxml?META:CPLX-841" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15071" detail="low" frameid="REG-15071" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-23859" detail="low" frameid="ENZRXN-23859" orgid="META"><reaction><Reaction frameid="RXN-15709" orgid="META" resource="getxml?META:RXN-15709" /></reaction>
-<common-name datatype="string">lactose 2-epimerase</common-name>
-<enzyme><Protein frameid="MONOMER-18526" orgid="META" resource="getxml?META:MONOMER-18526" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-14692" detail="low" frameid="REG-14692" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22600" detail="low" frameid="ENZRXN-22600" orgid="META"><reaction><Reaction frameid="CELLOBIOSE-EPIMERASE-RXN" orgid="META" resource="getxml?META:CELLOBIOSE-EPIMERASE-RXN" /></reaction>
-<common-name datatype="string">cellobiose 2-epimerase</common-name>
-<enzyme><Protein frameid="MONOMER-18526" orgid="META" resource="getxml?META:MONOMER-18526" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-11621" detail="low" frameid="REG-11621" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13436" detail="low" frameid="ENZRXN-13436" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
-<common-name datatype="string">pyruvate kinase</common-name>
-<enzyme><Protein frameid="CPLX-7222" orgid="META" resource="getxml?META:CPLX-7222" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-11613" detail="low" frameid="REG-11613" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12261" detail="low" frameid="ENZRXN-12261" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="getxml?META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
-<enzyme><Protein frameid="CPLX-6997" orgid="META" resource="getxml?META:CPLX-6997" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10749" detail="low" frameid="REG-10749" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6420" detail="low" frameid="ENZRXN-6420" orgid="META"><reaction><Reaction frameid="RXN-4763" orgid="META" resource="getxml?META:RXN-4763" /></reaction>
-<common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonyltransferase</common-name>
-<enzyme><Protein frameid="MONOMER-6247" orgid="META" resource="getxml?META:MONOMER-6247" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10226" detail="low" frameid="REG-10226" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9081" detail="low" frameid="ENZRXN-9081" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
-<common-name datatype="string">pyruvate kinase</common-name>
-<enzyme><Protein frameid="CPLX-5402" orgid="META" resource="getxml?META:CPLX-5402" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10096" detail="low" frameid="REG-10096" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6583" detail="low" frameid="ENZRXN-6583" orgid="META"><reaction><Reaction frameid="RXN-4321" orgid="META" resource="getxml?META:RXN-4321" /></reaction>
-<common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
-<enzyme><Protein frameid="MONOMER-6323" orgid="META" resource="getxml?META:MONOMER-6323" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9995" detail="low" frameid="REG-9995" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6162" detail="low" frameid="ENZRXN-6162" orgid="META"><reaction><Reaction frameid="TREHALOSEPHOSPHA-RXN" orgid="META" resource="getxml?META:TREHALOSEPHOSPHA-RXN" /></reaction>
-<common-name datatype="string">trehalose-6-phosphate phosphatase</common-name>
-<enzyme><Protein frameid="MONOMER-6002" orgid="META" resource="getxml?META:MONOMER-6002" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9435" detail="low" frameid="REG-9435" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5443" detail="low" frameid="ENZRXN-5443" orgid="META"><reaction><Reaction frameid="RXN-3592" orgid="META" resource="getxml?META:RXN-3592" /></reaction>
-<common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
-<enzyme><Protein frameid="MONOMER-5303" orgid="META" resource="getxml?META:MONOMER-5303" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8647" detail="low" frameid="REG-8647" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11806" detail="low" frameid="ENZRXN-11806" orgid="META"><reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-NADP+-RXN" /></reaction>
-<common-name datatype="string">glutamate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-6821" orgid="META" resource="getxml?META:CPLX-6821" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8266" detail="low" frameid="REG-8266" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5444" detail="low" frameid="ENZRXN-5444" orgid="META"><reaction><Reaction frameid="RXN-3588" orgid="META" resource="getxml?META:RXN-3588" /></reaction>
-<common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
-<enzyme><Protein frameid="MONOMER-5304" orgid="META" resource="getxml?META:MONOMER-5304" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8216" detail="low" frameid="REG-8216" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6343" detail="low" frameid="ENZRXN-6343" orgid="META"><reaction><Reaction frameid="RXN-4704" orgid="META" resource="getxml?META:RXN-4704" /></reaction>
-<common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
-<enzyme><Protein frameid="MONOMER-6183" orgid="META" resource="getxml?META:MONOMER-6183" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8199" detail="low" frameid="REG-8199" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6588" detail="low" frameid="ENZRXN-6588" orgid="META"><reaction><Reaction frameid="RXN-4206" orgid="META" resource="getxml?META:RXN-4206" /></reaction>
-<common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
-<enzyme><Protein frameid="MONOMER-6328" orgid="META" resource="getxml?META:MONOMER-6328" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8024" detail="low" frameid="REG-8024" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9341" detail="low" frameid="ENZRXN-9341" orgid="META"><reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /></reaction>
-<common-name datatype="string">triose phosphate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-9181" orgid="META" resource="getxml?META:MONOMER-9181" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-7237" detail="low" frameid="REG-7237" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12253" detail="low" frameid="ENZRXN-12253" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
-<common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
-<enzyme><Protein frameid="CPLX-6992" orgid="META" resource="getxml?META:CPLX-6992" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-7089" detail="low" frameid="REG-7089" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12086" detail="low" frameid="ENZRXN-12086" orgid="META"><reaction><Reaction frameid="2-METHYLENEGLUTARATE-MUTASE-RXN" orgid="META" resource="getxml?META:2-METHYLENEGLUTARATE-MUTASE-RXN" /></reaction>
-<synonym datatype="string">&amp;alpha;-methyleneglutarate mutase</synonym>
-<synonym datatype="string">2-methyleneglutarate carboxy-methylenemethylmutase</synonym>
-<common-name datatype="string">2-methyleneglutarate mutase</common-name>
-<enzyme><Protein frameid="CPLX-6949" orgid="META" resource="getxml?META:CPLX-6949" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6697" detail="low" frameid="REG-6697" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13675" detail="low" frameid="ENZRXN-13675" orgid="META"><reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
-<common-name datatype="string">6-phosphofructokinase</common-name>
-<enzyme><Protein frameid="CPLX-7267" orgid="META" resource="getxml?META:CPLX-7267" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">citr</synonym>
-<synonym datatype="string">cit</synonym>
-<synonym datatype="string">citric acid</synonym>
-<synonym datatype="string">2-hydroxy-1,2,3-propanetricarboxylic acid</synonym>
-<appears-in-left-side-of><Reaction frameid="CITLY-RXN" orgid="META" resource="getxml?META:CITLY-RXN" /><Reaction frameid="RXN-19521" orgid="META" resource="getxml?META:RXN-19521" /><Reaction frameid="RXN-19522" orgid="META" resource="getxml?META:RXN-19522" /><Reaction frameid="RXN-19820" orgid="META" resource="getxml?META:RXN-19820" /><Reaction frameid="TRANS-RXN0-201" orgid="META" resource="getxml?META:TRANS-RXN0-201" /><Reaction frameid="RXN-684" orgid="META" resource="getxml?META:RXN-684" /><Reaction frameid="RXN-19510" orgid="META" resource="getxml?META:RXN-19510" /><Reaction frameid="RXN-19507" orgid="META" resource="getxml?META:RXN-19507" /><Reaction frameid="RXN-19516" orgid="META" resource="getxml?META:RXN-19516" /><Reaction frameid="RXN-13054" orgid="META" resource="getxml?META:RXN-13054" /><Reaction frameid="RXN-11607" orgid="META" resource="getxml?META:RXN-11607" /><Reaction frameid="2.8.3.10-RXN" orgid="META" resource="getxml?META:2.8.3.10-RXN" /><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /><Reaction frameid="RXN-14047" orgid="META" resource="getxml?META:RXN-14047" /><Reaction frameid="CITTRANS-RXN" orgid="META" resource="getxml?META:CITTRANS-RXN" /><Reaction frameid="RXN-15266" orgid="META" resource="getxml?META:RXN-15266" /><Reaction frameid="RXN-11609" orgid="META" resource="getxml?META:RXN-11609" /><Reaction frameid="RXN-10680" orgid="META" resource="getxml?META:RXN-10680" /><Reaction frameid="CITRATE--COA-LIGASE-RXN" orgid="META" resource="getxml?META:CITRATE--COA-LIGASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-14905" orgid="META" resource="getxml?META:RXN-14905" /><Reaction frameid="RXN-20718" orgid="META" resource="getxml?META:RXN-20718" /><Reaction frameid="RXN-20717" orgid="META" resource="getxml?META:RXN-20717" /><Reaction frameid="TRANS-RXN0-201" orgid="META" resource="getxml?META:TRANS-RXN0-201" /><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">citrate</common-name>
 <component-of><Compound frameid="CPD-22905" orgid="META" resource="getxml?META:CPD-22905" /><Compound frameid="CPD0-2621" orgid="META" resource="getxml?META:CPD0-2621" /><Compound frameid="CPD-19639" orgid="META" resource="getxml?META:CPD-19639" /><Compound frameid="CPD0-2434" orgid="META" resource="getxml?META:CPD0-2434" /></component-of>
 <dblink><dblink-db>MEDIADB</dblink-db>
@@ -363,14 +86,312 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C6H8O7/c7-3(8)1-6(13,5(11)12)2-4(9)10/h13H,1-2H2,(H,7,8)(H,9,10)(H,11,12)/p-3</inchi>
 <inchi-key datatype="string">InChIKey=KRKNYBCHXYNGOX-UHFFFAOYSA-K</inchi-key>
+<molecular-weight datatype="float" units="Daltons">189.101</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">192.02701</monoisotopic-mw>
+<pka1 datatype="float">3.13</pka1>
+<pka2 datatype="float">4.76</pka2>
+<pka3 datatype="float">6.39</pka3>
+<regulates><Regulation ID="META:REG0-6860" detail="low" frameid="REG0-6860" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:F16ALDOLASE-ENZRXN-CLASSI" detail="low" frameid="F16ALDOLASE-ENZRXN-CLASSI" orgid="META"><common-name datatype="string">fructose-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="FRUCBISALD-CLASSI" orgid="META" resource="getxml?META:FRUCBISALD-CLASSI" /></enzyme>
+<reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-15744" detail="low" frameid="REG0-15744" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PFRUCTPHOS-ENZRXN" detail="low" frameid="PFRUCTPHOS-ENZRXN" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="6PFK-2-CPX" orgid="META" resource="getxml?META:6PFK-2-CPX" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+<synonym datatype="string">fructose-6-p-1-kinase</synonym>
+<synonym datatype="string">fructose-6-phosphate-1-phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-12210" detail="low" frameid="REG0-12210" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:F16BDEPHOS-ENZRXN" detail="low" frameid="F16BDEPHOS-ENZRXN" orgid="META"><common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
+<enzyme><Protein frameid="F16B-CPLX" orgid="META" resource="getxml?META:F16B-CPLX" /></enzyme>
+<reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="getxml?META:F16BDEPHOS-RXN" /></reaction>
+<synonym datatype="string">fructose bisphosphatase</synonym>
+<synonym datatype="string">hexosediphosphatase</synonym>
+<synonym datatype="string">fructose-1,6-P2 1-phosphatase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7954" detail="low" frameid="REG0-7954" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:CHORISMATEMUT2-ENZRXN" detail="low" frameid="CHORISMATEMUT2-ENZRXN" orgid="META"><common-name datatype="string">chorismate mutase</common-name>
+<enzyme><Protein frameid="CHORISMUTPREPHENDEHYDRAT-CPLX" orgid="META" resource="getxml?META:CHORISMUTPREPHENDEHYDRAT-CPLX" /></enzyme>
+<reaction><Reaction frameid="CHORISMATEMUT-RXN" orgid="META" resource="getxml?META:CHORISMATEMUT-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11410" detail="low" frameid="REG0-11410" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:FUMARC-ENZRXN" detail="low" frameid="FUMARC-ENZRXN" orgid="META"><common-name datatype="string">fumarase C</common-name>
+<enzyme><Protein frameid="FUMARASE-C" orgid="META" resource="getxml?META:FUMARASE-C" /></enzyme>
+<reaction><Reaction frameid="FUMHYDR-RXN" orgid="META" resource="getxml?META:FUMHYDR-RXN" /></reaction>
+<synonym datatype="string">fumarate hydratase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7459" detail="low" frameid="REG0-7459" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ASPARTASE-ENZRXN" detail="low" frameid="ASPARTASE-ENZRXN" orgid="META"><common-name datatype="string">aspartate ammonia-lyase</common-name>
+<enzyme><Protein frameid="ASPARTASE-CPLX" orgid="META" resource="getxml?META:ASPARTASE-CPLX" /></enzyme>
+<reaction><Reaction frameid="ASPARTASE-RXN" orgid="META" resource="getxml?META:ASPARTASE-RXN" /></reaction>
+<synonym datatype="string">aspartase</synonym>
+<synonym datatype="string">fumaric aminase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-15748" detail="low" frameid="REG0-15748" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PEPCARBOX-ENZRXN" detail="low" frameid="PEPCARBOX-ENZRXN" orgid="META"><common-name datatype="string">phosphoenolpyruvate carboxylase</common-name>
+<enzyme><Protein frameid="PEPCARBOX-CPLX" orgid="META" resource="getxml?META:PEPCARBOX-CPLX" /></enzyme>
+<reaction><Reaction frameid="PEPCARBOX-RXN" orgid="META" resource="getxml?META:PEPCARBOX-RXN" /></reaction>
+<synonym datatype="string">orthophosphate:oxaloacetate carboxy-lyase (phosphorylating)</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-8863" detail="low" frameid="REG0-8863" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:4OH2OXOGLUTARALDOL-ENZRXN" detail="low" frameid="4OH2OXOGLUTARALDOL-ENZRXN" orgid="META"><common-name datatype="string">2-keto-4-hydroxyglutarate aldolase</common-name>
+<enzyme><Protein frameid="KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" orgid="META" resource="getxml?META:KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX" /></enzyme>
+<reaction><Reaction frameid="RXN-13990" orgid="META" resource="getxml?META:RXN-13990" /></reaction>
+<synonym datatype="string">4-hydroxy-2-oxoglutarate glyoxylate-lyase</synonym>
+<synonym datatype="string">KHG-aldolase</synonym>
+<synonym datatype="string">2-oxo-4-hydroxyglutarate aldolase</synonym>
+<synonym datatype="string">4-hydroxy-2-oxoglutarate aldolase</synonym>
+<synonym datatype="string">(4&lt;i&gt;S&lt;/i&gt;)-4-hydroxy-2-oxoglutarate aldolase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-7690" detail="low" frameid="REG0-7690" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ICITDEHKINASE-ENZRXN" detail="low" frameid="ICITDEHKINASE-ENZRXN" orgid="META"><common-name datatype="string">isocitrate dehydrogenase kinase</common-name>
+<enzyme><Protein frameid="CPLX0-230" orgid="META" resource="getxml?META:CPLX0-230" /></enzyme>
+<reaction><Reaction frameid="PHOSICITDEHASE-RXN" orgid="META" resource="getxml?META:PHOSICITDEHASE-RXN" /></reaction>
+<synonym datatype="string">ICDH kinase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-6905" detail="low" frameid="REG0-6905" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GSADENYLATION-ENZRXN" detail="low" frameid="GSADENYLATION-ENZRXN" orgid="META"><common-name datatype="string">glutamine synthetase adenylyltransferase</common-name>
+<enzyme><Protein frameid="GLNE-MONOMER" orgid="META" resource="getxml?META:GLNE-MONOMER" /></enzyme>
+<reaction><Reaction frameid="GSADENYLATION-RXN" orgid="META" resource="getxml?META:GSADENYLATION-RXN" /></reaction>
+<synonym datatype="string">glutamate-ammonia-ligase adenylyltransferase</synonym>
+<synonym datatype="string">ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG66-93" detail="low" frameid="REG66-93" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN66-19879" detail="low" frameid="ENZRXN66-19879" orgid="META"><common-name datatype="string">testosterone 6&amp;beta;-hydroxylase</common-name>
+<enzyme><Protein frameid="HS08544-MONOMER" orgid="META" resource="getxml?META:HS08544-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN66-591" orgid="META" resource="getxml?META:RXN66-591" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-15447" detail="low" frameid="REG-15447" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-981" detail="low" frameid="ENZRXN-981" orgid="META"><common-name datatype="string">hydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-841" orgid="META" resource="getxml?META:CPLX-841" /></enzyme>
+<reaction><Reaction frameid="RXN0-4141" orgid="META" resource="getxml?META:RXN0-4141" /></reaction>
+<synonym datatype="string">uptake hydrogenase</synonym>
+<synonym datatype="string">membrane-bound hydrogenase</synonym>
+<synonym datatype="string">MBH</synonym>
+<synonym datatype="string">hydrogenlyase</synonym>
+<synonym datatype="string">ferredoxin:H&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase</synonym>
+<synonym datatype="string">hydrogenase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-15071" detail="low" frameid="REG-15071" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-23859" detail="low" frameid="ENZRXN-23859" orgid="META"><common-name datatype="string">lactose 2-epimerase</common-name>
+<enzyme><Protein frameid="MONOMER-18526" orgid="META" resource="getxml?META:MONOMER-18526" /></enzyme>
+<reaction><Reaction frameid="RXN-15709" orgid="META" resource="getxml?META:RXN-15709" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-14692" detail="low" frameid="REG-14692" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-22600" detail="low" frameid="ENZRXN-22600" orgid="META"><common-name datatype="string">cellobiose 2-epimerase</common-name>
+<enzyme><Protein frameid="MONOMER-18526" orgid="META" resource="getxml?META:MONOMER-18526" /></enzyme>
+<reaction><Reaction frameid="CELLOBIOSE-EPIMERASE-RXN" orgid="META" resource="getxml?META:CELLOBIOSE-EPIMERASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11621" detail="low" frameid="REG-11621" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13436" detail="low" frameid="ENZRXN-13436" orgid="META"><common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-7222" orgid="META" resource="getxml?META:CPLX-7222" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-11613" detail="low" frameid="REG-11613" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12261" detail="low" frameid="ENZRXN-12261" orgid="META"><common-name datatype="string">enolase</common-name>
+<enzyme><Protein frameid="CPLX-6997" orgid="META" resource="getxml?META:CPLX-6997" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="getxml?META:2PGADEHYDRAT-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10749" detail="low" frameid="REG-10749" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6420" detail="low" frameid="ENZRXN-6420" orgid="META"><common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonyltransferase</common-name>
+<enzyme><Protein frameid="MONOMER-6247" orgid="META" resource="getxml?META:MONOMER-6247" /></enzyme>
+<reaction><Reaction frameid="RXN-4763" orgid="META" resource="getxml?META:RXN-4763" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10226" detail="low" frameid="REG-10226" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9081" detail="low" frameid="ENZRXN-9081" orgid="META"><common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="CPLX-5402" orgid="META" resource="getxml?META:CPLX-5402" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-10096" detail="low" frameid="REG-10096" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6583" detail="low" frameid="ENZRXN-6583" orgid="META"><common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
+<enzyme><Protein frameid="MONOMER-6323" orgid="META" resource="getxml?META:MONOMER-6323" /></enzyme>
+<reaction><Reaction frameid="RXN-4321" orgid="META" resource="getxml?META:RXN-4321" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9995" detail="low" frameid="REG-9995" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6162" detail="low" frameid="ENZRXN-6162" orgid="META"><common-name datatype="string">trehalose-6-phosphate phosphatase</common-name>
+<enzyme><Protein frameid="MONOMER-6002" orgid="META" resource="getxml?META:MONOMER-6002" /></enzyme>
+<reaction><Reaction frameid="TREHALOSEPHOSPHA-RXN" orgid="META" resource="getxml?META:TREHALOSEPHOSPHA-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9435" detail="low" frameid="REG-9435" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5443" detail="low" frameid="ENZRXN-5443" orgid="META"><common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
+<enzyme><Protein frameid="MONOMER-5303" orgid="META" resource="getxml?META:MONOMER-5303" /></enzyme>
+<reaction><Reaction frameid="RXN-3592" orgid="META" resource="getxml?META:RXN-3592" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8647" detail="low" frameid="REG-8647" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11806" detail="low" frameid="ENZRXN-11806" orgid="META"><common-name datatype="string">glutamate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-6821" orgid="META" resource="getxml?META:CPLX-6821" /></enzyme>
+<reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-NADP+-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8266" detail="low" frameid="REG-8266" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-5444" detail="low" frameid="ENZRXN-5444" orgid="META"><common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
+<enzyme><Protein frameid="MONOMER-5304" orgid="META" resource="getxml?META:MONOMER-5304" /></enzyme>
+<reaction><Reaction frameid="RXN-3588" orgid="META" resource="getxml?META:RXN-3588" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8216" detail="low" frameid="REG-8216" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6343" detail="low" frameid="ENZRXN-6343" orgid="META"><common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
+<enzyme><Protein frameid="MONOMER-6183" orgid="META" resource="getxml?META:MONOMER-6183" /></enzyme>
+<reaction><Reaction frameid="RXN-4704" orgid="META" resource="getxml?META:RXN-4704" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8199" detail="low" frameid="REG-8199" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6588" detail="low" frameid="ENZRXN-6588" orgid="META"><common-name datatype="string">isoflavone-7-O-glucoside-6''-O-malonate malonylesterase</common-name>
+<enzyme><Protein frameid="MONOMER-6328" orgid="META" resource="getxml?META:MONOMER-6328" /></enzyme>
+<reaction><Reaction frameid="RXN-4206" orgid="META" resource="getxml?META:RXN-4206" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8024" detail="low" frameid="REG-8024" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9341" detail="low" frameid="ENZRXN-9341" orgid="META"><common-name datatype="string">triose phosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-9181" orgid="META" resource="getxml?META:MONOMER-9181" /></enzyme>
+<reaction><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7237" detail="low" frameid="REG-7237" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12253" detail="low" frameid="ENZRXN-12253" orgid="META"><common-name datatype="string">fructose-1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-6992" orgid="META" resource="getxml?META:CPLX-6992" /></enzyme>
+<reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-7089" detail="low" frameid="REG-7089" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-12086" detail="low" frameid="ENZRXN-12086" orgid="META"><common-name datatype="string">2-methyleneglutarate mutase</common-name>
+<enzyme><Protein frameid="CPLX-6949" orgid="META" resource="getxml?META:CPLX-6949" /></enzyme>
+<reaction><Reaction frameid="2-METHYLENEGLUTARATE-MUTASE-RXN" orgid="META" resource="getxml?META:2-METHYLENEGLUTARATE-MUTASE-RXN" /></reaction>
+<synonym datatype="string">&amp;alpha;-methyleneglutarate mutase</synonym>
+<synonym datatype="string">2-methyleneglutarate carboxy-methylenemethylmutase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6697" detail="low" frameid="REG-6697" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13675" detail="low" frameid="ENZRXN-13675" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="CPLX-7267" orgid="META" resource="getxml?META:CPLX-7267" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CIT" orgid="META" resource="#META:CIT" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">citr</synonym>
+<synonym datatype="string">cit</synonym>
+<synonym datatype="string">citric acid</synonym>
+<synonym datatype="string">2-hydroxy-1,2,3-propanetricarboxylic acid</synonym>
+<appears-in-left-side-of><Reaction frameid="CITLY-RXN" orgid="META" resource="getxml?META:CITLY-RXN" /><Reaction frameid="RXN-19521" orgid="META" resource="getxml?META:RXN-19521" /><Reaction frameid="RXN-19522" orgid="META" resource="getxml?META:RXN-19522" /><Reaction frameid="RXN-19820" orgid="META" resource="getxml?META:RXN-19820" /><Reaction frameid="TRANS-RXN0-201" orgid="META" resource="getxml?META:TRANS-RXN0-201" /><Reaction frameid="RXN-684" orgid="META" resource="getxml?META:RXN-684" /><Reaction frameid="RXN-19510" orgid="META" resource="getxml?META:RXN-19510" /><Reaction frameid="RXN-19507" orgid="META" resource="getxml?META:RXN-19507" /><Reaction frameid="RXN-19516" orgid="META" resource="getxml?META:RXN-19516" /><Reaction frameid="RXN-13054" orgid="META" resource="getxml?META:RXN-13054" /><Reaction frameid="RXN-11607" orgid="META" resource="getxml?META:RXN-11607" /><Reaction frameid="2.8.3.10-RXN" orgid="META" resource="getxml?META:2.8.3.10-RXN" /><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="META" resource="getxml?META:ACONITATEDEHYDR-RXN" /><Reaction frameid="RXN-14047" orgid="META" resource="getxml?META:RXN-14047" /><Reaction frameid="CITTRANS-RXN" orgid="META" resource="getxml?META:CITTRANS-RXN" /><Reaction frameid="RXN-15266" orgid="META" resource="getxml?META:RXN-15266" /><Reaction frameid="RXN-11609" orgid="META" resource="getxml?META:RXN-11609" /><Reaction frameid="RXN-10680" orgid="META" resource="getxml?META:RXN-10680" /><Reaction frameid="CITRATE--COA-LIGASE-RXN" orgid="META" resource="getxml?META:CITRATE--COA-LIGASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-14905" orgid="META" resource="getxml?META:RXN-14905" /><Reaction frameid="RXN-20718" orgid="META" resource="getxml?META:RXN-20718" /><Reaction frameid="RXN-20717" orgid="META" resource="getxml?META:RXN-20717" /><Reaction frameid="TRANS-RXN0-201" orgid="META" resource="getxml?META:TRANS-RXN0-201" /><Reaction frameid="CITSYN-RXN" orgid="META" resource="getxml?META:CITSYN-RXN" /><Reaction frameid="ATP-CITRATE-PRO-S--LYASE-RXN" orgid="META" resource="getxml?META:ATP-CITRATE-PRO-S--LYASE-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>
