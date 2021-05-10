@@ -20,7 +20,7 @@ from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions, get_data
 from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
-from cobramod.error import NotInRangeError, UnbalancedReaction
+from cobramod.error import UnbalancedReaction, NotInRangeError
 from cobramod.test import textbook_biocyc, textbook_kegg
 
 
@@ -28,6 +28,7 @@ from cobramod.test import textbook_biocyc, textbook_kegg
 debug_log.setLevel(DEBUG)
 # Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
+dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
@@ -309,22 +310,32 @@ class CreatingSequences(TestCase):
 
     def test_test_result(self):
         # CASE 0: minimun range not reached
-        test_model = Model(0)
+        # INFO: this extra steps are needed in order to make it fail
+        test_model = textbook_biocyc.copy()
         add_reactions(
             model=test_model,
-            obj="1.8.4.9-RXN,p",
+            obj=dir_input.joinpath("test_multi_reactions.txt"),
+            database="ARA",
+            directory=dir_data,
+            show_imbalance=False,
+        )
+        test_model.add_boundary(
+            metabolite=test_model.metabolites.get_by_id("CO_A_e"),
+            type="exchange",
+        )
+        add_reactions(
+            model=test_model,
+            obj="GLUTATHIONE-SYN-RXN, p",
             directory=dir_data,
             database="ARA",
             replacement={},
         )
-        test_model.objective = "1.8.4.9_RXN_p"
-        test_model.objective_direction = "min"
         self.assertRaises(
             NotInRangeError,
             ex.test_result,
             model=test_model,
-            reaction="1.8.4.9_RXN_p",
-            minimum=550,
+            reaction="GLUTATHIONE_SYN_RXN_p",
+            ignore_list=["PROTON_p"],
         )
         # CASE 1: Single Regular reaction
         test_model = Model(0)
@@ -350,9 +361,7 @@ class CreatingSequences(TestCase):
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        ex.test_result(
-            model=test_model, reaction="1.8.4.9_RXN_c", minimum=0.01
-        )
+        ex.test_result(model=test_model, reaction="1.8.4.9_RXN_c")
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
 
         # CASE 3: single reaction with ignore_list. i.e two reactions, in which
@@ -428,7 +437,6 @@ class AddingPathways(TestCase):
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
-            minimum=0.1,
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)
         self.assertIn(
@@ -457,7 +465,6 @@ class AddingPathways(TestCase):
             sequence=test_list,
             avoid_list=["RXN-2206"],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
-            minimum=0.1,
         )
         # CASE 3: KEGG
         test_model = textbook_kegg.copy()
@@ -481,7 +488,6 @@ class AddingPathways(TestCase):
             sequence=test_list,
             avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
-            minimum=0.1,
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)
         self.assertIn(
@@ -507,7 +513,6 @@ class AddingPathways(TestCase):
             avoid_list=[],
             replacement={},
             ignore_list=[],
-            minimum=0.01,
             show_imbalance=False,
             stop_imbalance=False,
             model_id=None,
@@ -535,7 +540,6 @@ class AddingPathways(TestCase):
             avoid_list=[],
             replacement={},
             ignore_list=[],
-            minimum=0.01,
             show_imbalance=False,
             stop_imbalance=False,
             model_id=None,

@@ -14,6 +14,8 @@ from pathlib import Path
 from typing import Union, Generator, Optional, List
 
 from cobra import Model, Reaction
+from cobra.core.configuration import Configuration
+from cobra.exceptions import OptimizationError
 
 from cobramod.core.creation import create_object
 from cobramod.core.graph import build_graph, _create_quick_graph, _format_graph
@@ -22,6 +24,10 @@ from cobramod.core.retrieval import get_data
 from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
 from cobramod.error import NotInRangeError
+
+
+# Defaults to 1E-07
+cobra_tolerance: float = Configuration().tolerance
 
 
 def _create_reactions(
@@ -299,23 +305,18 @@ def _verify_sinks(model: Model, reaction: str, ignore_list: List[str]):
 
 
 def test_result(
-    model: Model,
-    reaction: str,
-    minimum: float = 0.1,
-    times: int = 0,
-    ignore_list: List[str] = [],
+    model: Model, reaction: str, times: int = 0, ignore_list: List[str] = []
 ):
     """
-    Checks if optimized objective function value for given model has a minimum
-    value. Function is recursive and checks if sink reactions
-    are enough or exceeded. It creates a demand reaction for reaction for the
-    test and removes it, if necessary.
+    Checks that a simple FBA can be run. A demand reaction will be created with
+    a minimum flux based on the COBRApy Configuration object. It will use its
+    variable 'tolerance' multiplied by 10. Function is recursive and checks if
+    sink reactions are enough or exceeded. It creates a demand reaction for
+    reaction for the test and removes it, if necessary.
 
     Args:
         model (Model): model, where reaction is located
         reaction (str): reaction identifier in model to test.
-        minimum (float, optional): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
         times (int, optional): Track of recursions. Defaults to 0.
         ignore_list (list, optional): A sequence of formatted metabolites
             to ignore when testing new reactions. Defaults to []
@@ -343,7 +344,7 @@ def test_result(
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
         model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = abs(
-            minimum
+            cobra_tolerance * 10
         )
         debug_log.debug(f'Demand "DM_{next_demand}" added to test flux.')
     # Setting maximum times for recursion
@@ -351,24 +352,8 @@ def test_result(
         raise NotInRangeError(reaction=reaction)
     # answer must be reasonable
     # comparison must be using absolute values
-    value = model.slim_optimize()
-    if not minimum <= abs(value):
-        # Append to log
-        debug_log.debug(
-            f'Test to carry non-zero fluxes failed. Reaction "{reaction}" '
-            + f"not in range. Minimun value to past test: {minimum}, the test"
-            + f"showed {abs(value)}. "
-        )
-        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
-        # Recursive with 'extra' argument
-        test_result(
-            model=model,
-            reaction=reaction,
-            minimum=minimum,
-            times=times + 1,
-            ignore_list=ignore_list,
-        )
-    else:
+    try:
+        model.slim_optimize(error_value=None)
         # if works, pass and return old objective
         debug_log.debug(
             f'Reaction "{reaction}" showed a feasible answer. Proceeding'
@@ -379,6 +364,20 @@ def test_result(
             model=model, metabolite=next_demand, boundary="demand"
         )
         _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
+    except OptimizationError:
+        debug_log.debug(
+            f'Test to carry non-zero fluxes failed. Reaction "{reaction}" '
+            + "not in range. Minimun value to past test: "
+            + f"{cobra_tolerance * 10}. The test showed an infeasible answer."
+        )
+        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
+        # Recursive with 'extra' argument
+        test_result(
+            model=model,
+            reaction=reaction,
+            times=times + 1,
+            ignore_list=ignore_list,
+        )
 
 
 def _add_sequence(
@@ -387,7 +386,6 @@ def _add_sequence(
     sequence: list,
     avoid_list: list,
     ignore_list: list,
-    minimum: float,
 ):
     """
     From a sequence of Reaction objects, add each Reaction into given model. It
@@ -405,7 +403,6 @@ def _add_sequence(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimun (float): Minimum optimized value to pass in every single test.
 
     Raises:
         TypeError: if reactions are not valid Reaction objects
@@ -434,10 +431,7 @@ def _add_sequence(
             )
             if reaction.id not in ignore_list:
                 test_result(
-                    model=model,
-                    reaction=reaction.id,
-                    ignore_list=ignore_list,
-                    minimum=minimum,
+                    model=model, reaction=reaction.id, ignore_list=ignore_list
                 )
             else:
                 debug_log.warning(
@@ -475,7 +469,6 @@ def _from_data(
     avoid_list: list,
     replacement: dict,
     ignore_list: list,
-    minimum: float,
     stop_imbalance: bool,
     show_imbalance: bool,
     model_id: str,
@@ -504,8 +497,6 @@ def _from_data(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimum (float): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -547,7 +538,6 @@ def _from_data(
             sequence=sequence,
             ignore_list=ignore_list,
             avoid_list=avoid_list,
-            minimum=minimum,
         )
         # TODO: Fix sink for metabolites in last sequence
     # Add graph to Pathway
@@ -580,7 +570,6 @@ def _from_sequence(
     ignore_list: List[str],
     stop_imbalance: bool,
     show_imbalance: bool,
-    minimum: float,
     model_id: str,
     genome: Optional[str],
 ):
@@ -606,8 +595,6 @@ def _from_sequence(
             This is useful for long cyclical pathways.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        minimum (float): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -646,7 +633,6 @@ def _from_sequence(
         pathway=pathway,
         ignore_list=ignore_list,
         avoid_list=avoid_list,
-        minimum=minimum,
     )
     # Add graph to Pathway
     graph = _format_graph(
@@ -678,7 +664,6 @@ def add_pathway(
     ignore_list: List[str] = [],
     filename: Path = None,
     summary: str = None,
-    minimum: float = 0.1,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
     model_id: str = "universal",
@@ -712,9 +697,6 @@ def add_pathway(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimum (float, optional): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
-            Defaults to 0.1
 
     Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to
@@ -757,7 +739,6 @@ def add_pathway(
             avoid_list=avoid_list,
             replacement=replacement,
             ignore_list=ignore_list,
-            minimum=minimum,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,
@@ -775,7 +756,6 @@ def add_pathway(
             database=database,
             replacement=replacement,
             ignore_list=ignore_list,
-            minimum=minimum,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,
