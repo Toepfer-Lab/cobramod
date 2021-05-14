@@ -174,7 +174,7 @@ class Pathway(Group):
             reaction: self.members.get_by_id(reaction).reaction
             for reaction in json_dict.graph.keys()
         }
-        return json_dict.visualize(filepath=filename, vertical=vertical)
+        return json_dict.visualize(filepath=filename, vertical=vertical, color=color)
 
 
 def model_convert(model: Model):

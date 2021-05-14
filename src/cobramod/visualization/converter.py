@@ -694,61 +694,63 @@ class JsonDictionary(UserDict):
         self.data["nodes"] = {}
         self.reaction_scale = dict()
 
-    def color_grading(self, color: ([int, int, int], [int, int, int]), static: bool = False):
+    def color_grading(self, color: ([int, int, int], [int, int, int])):
         starttime = timeit.default_timer()
-        intermediate = [255, 255, 255]
 
-        if static:
-            self.reaction_scale = [
-                {'type': 'value', "value": -2500, 'color': 'rgb(210,210,210)'},
-                {'type': 'value', "value": -300, 'color': 'rgb(190,190,190)'},
-                {'type': 'value', "value": 0, 'color': 'rgb(170,170,170)'},
-                {'type': 'value', "value": 300, 'color': 'rgb(140,140,140)'},
-                {'type': 'value', "value": 2500, 'color': 'rgb(110,110,110)'}
-            ]
+        # turn int arrays into numpy arrays
+        color_intermediate = np.array([220, 220, 220], dtype=np.float32)
+        color_positive = np.array(color[0], dtype=np.float32)
+        color_negative = np.array(color[1], dtype=np.float32)
 
-            return
-
+        # divide positive and negative values
         flux = list(self.flux_solution.values())
-        steps = min(100, len(flux))
-
         positive = list()
-        negative = [i for i in flux if i < 0 or (i >= 0 and positive.append(i))]
-        devide = len(positive) / (len(flux))
+        negative = [i for i in flux if i < 0 or (i > 0 and positive.append(i))]
 
-        min_flux = min(flux)
+        # array that will contain the configuration for escher
         reaction_scale = []
 
-        color1 = np.array(color[0], dtype=np.float32)
-        color2 = np.array(color[1], dtype=np.float32)
+        # necessary variables for the loop that processes the positive variables
+        steps = len(positive)
+        step_color = (color_intermediate - color_negative) / steps
+        step_value = max(positive) / steps
 
-        step_color = (color2 - color1) / (steps)
-        step_value = (max(flux) - min_flux) / (steps)
+        flux_value = step_value
+        flux_color = color_intermediate.copy() - step_color
 
         for i in range(0, steps):
             reaction_scale.append({"type": "value",
-                                   "value": min_flux,
-                                   "color": "rgb(%d,%d,%d)" % (color1[0], color1[1], color1[2])})
+                                   "value": flux_value,
+                                   "color": "rgb(%d,%d,%d)" % (flux_color[0], flux_color[1], flux_color[2])})
 
-            print("rgb(%d,%d,%d)" % (color1[0], color1[1], color1[2]))
-            color1 += step_color
-            min_flux += step_value
+            flux_color -= step_color
+            flux_value += step_value
 
+        # add the intermediate step
+        # if there are no positive or negative values this will provide the only color
+        reaction_scale.append({"type": "value",
+                               "value": 0,
+                               "color": "rgb(220,220,220)"})
+
+        # updating of the variables for the negative portion of the flux values
+        steps = len(negative)
+        step_color = (color_intermediate - color_positive) / steps
+        step_value = min(negative) / steps
+
+        flux_value = step_value
+        flux_color = color_intermediate - step_color
+
+        for i in range(0, steps):
+            reaction_scale.append({"type": "value",
+                                   "value": flux_value,
+                                   "color": "rgb(%d,%d,%d)" % (flux_color[0], flux_color[1], flux_color[2])})
+
+            flux_color -= step_color
+            flux_value += step_value
+
+        print(reaction_scale)
         print("The time difference is :", timeit.default_timer() - starttime)
 
-        """
-        # creation of a scaling based on the ordered list of flux values (currently a maximum of 10 values)
-        for value, index in zip(flux, range(10, 1, -1)):
-            reaction_scale.append(
-                {"type": "value",
-                 "value": value,
-                 "color": "rgb(%d,%d,%d)" % (20 * index, 20 * index, 20 * index),
-                 "size": 20 - index})
-            print(value, index, "%d,%d,%d" % (index, index, index))
-
-        # scaling based on escher's built-in quantile method
-        
-        """
         self.reaction_scale = reaction_scale
 
     def visualize(self, filepath: Path = None, vertical: bool = False, color: str = None):
@@ -807,6 +809,7 @@ class JsonDictionary(UserDict):
         if color is not None:
             try:
                 self.color_grading(rgb[color])
+                print("Test")
             except KeyError:
                 logging.warn("Unknown color. Using default color.")
 
