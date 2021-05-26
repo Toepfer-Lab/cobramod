@@ -435,36 +435,12 @@ class AddingPathways(TestCase):
             model=test_model,
             pathway=Pathway("test_group"),
             sequence=test_list,
-            avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
-        )
-        # CASE 2: Avoid list (3 reactions)
-        test_model = textbook_biocyc.copy()
-        test_list = list(
-            ex._create_reactions(
-                sequence=["RXN-2206", "RXN-11414", "RXN-11422"],
-                compartment="c",
-                directory=dir_data,
-                database="ARA",
-                replacement={},
-                show_imbalance=False,
-                stop_imbalance=False,
-                model=test_model,
-                model_id=None,
-                genome=None,
-            )
-        )
-        ex._add_sequence(
-            model=test_model,
-            pathway=Pathway("test_group"),
-            sequence=test_list,
-            avoid_list=["RXN-2206"],
-            ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
         )
         # CASE 3: KEGG
         test_model = textbook_kegg.copy()
@@ -486,7 +462,6 @@ class AddingPathways(TestCase):
             model=test_model,
             pathway=Pathway("test_group_kegg"),
             sequence=test_list,
-            avoid_list=[],
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
         )
         self.assertGreater(abs(test_model.slim_optimize()), 0)

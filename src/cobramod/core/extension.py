@@ -55,7 +55,7 @@ def _create_reactions(
             :obj:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
+            Values are the new identifiers. This applies to metabolites.
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str): Exclusive for BIGG. Retrieve object from specified
@@ -71,12 +71,6 @@ def _create_reactions(
     # From given list (which could include None values), retrieve only Reaction
     # Objects.
     for identifier in sequence:
-        with suppress(KeyError):
-            identifier = replacement[identifier]
-            debug_log.warning(
-                f'Reaction "{identifier}" replaced by '
-                f'"{replacement[identifier]}".'
-            )
         # Check if translation is available
         obj = create_object(
             identifier=identifier,
@@ -381,11 +375,7 @@ def test_result(
 
 
 def _add_sequence(
-    model: Model,
-    pathway: Pathway,
-    sequence: list,
-    avoid_list: list,
-    ignore_list: list,
+    model: Model, pathway: Pathway, sequence: list, ignore_list: list
 ):
     """
     From a sequence of Reaction objects, add each Reaction into given model. It
@@ -397,9 +387,6 @@ def _add_sequence(
         pathway (Pathway): Common Pathway to add the reaction.
         sequence (list): List with :class:`cobra.core.reaction.Reaction`
             objects
-        avoid_list (list): A sequence of reactions identifiers to
-            avoid adding to the model. This is useful for long pathways,
-            where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
@@ -409,20 +396,9 @@ def _add_sequence(
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
-    # TODO: Fix format in previous functions
-    compartment = sequence[0].id[-1]
-    avoid_list = [
-        f'{reaction.replace("-","_")}_{compartment}' for reaction in avoid_list
-    ]
     # Add sequence to model
     for reaction in sequence:
         # This reaction will not be added.
-        if reaction.id in avoid_list:
-            debug_log.warning(
-                f'Reaction "{reaction.id}" found in avoid list. This reaction'
-                + "will not be added to the model"
-            )
-            continue
         if reaction.id not in [reaction.id for reaction in model.reactions]:
             model.add_reactions([reaction])
             debug_log.info(f'Reaction "{reaction.id}" added to model')
@@ -460,6 +436,39 @@ def _add_sequence(
         debug_log.debug(f'Pathway "{pathway.id}" added to Model')
 
 
+def _update_reactions(
+    sequence: List[str], avoid_list: List[str], replacement: dict
+) -> List[str]:
+    """
+
+    Args:
+        sequence:
+        avoid_list:
+        replacement:
+
+    """
+    # sequence = list(item for item in sequence if item not in avoid_list)
+    new_sequence: List[str] = list()
+    for item in sequence:
+        # Remove reactions
+        if item in avoid_list:
+            debug_log.warning(
+                f'Reaction "{item}" found in avoid list. This reaction'
+                + "will not be added to the model."
+            )
+            continue
+        # Replace reactions
+        if item in replacement.keys():
+            debug_log.warning(
+                f'Reaction "{item}" will be replaced by '
+                f'"{replacement[item]}".'
+            )
+            item = replacement[item]
+        # add in the end
+        new_sequence.append(item)
+    return new_sequence
+
+
 def _from_data(
     model: Model,
     data_dict: dict,
@@ -491,7 +500,7 @@ def _from_data(
     Arguments for complex pathways:
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        avoid_list (Iterable): A sequence of reactions identifiers to
+        avoid_list (list): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
@@ -516,8 +525,10 @@ def _from_data(
     except KeyError:
         pathway = Pathway(id=identifier)
     for sequence in mapping:
-        # Remove avoid list
-        sequence = list(item for item in sequence if item not in avoid_list)
+        # Update sequence with new identifiers or removal of reactions
+        sequence = _update_reactions(
+            sequence=sequence, avoid_list=avoid_list, replacement=replacement
+        )
         if not sequence:
             continue
         # Data storage is handled by method. Reactions objects builder:
@@ -541,7 +552,6 @@ def _from_data(
             pathway=pathway,
             sequence=sequence,
             ignore_list=ignore_list,
-            avoid_list=avoid_list,
         )
         # TODO: Fix sink for metabolites in last sequence
     # Add graph to Pathway
@@ -616,7 +626,9 @@ def _from_sequence(
     # Create graph. It will be always simple lineal
     graph = _create_quick_graph(sequence=sequence)
     # Data storage is managed by the function
-    sequence = list(item for item in sequence if item not in avoid_list)
+    sequence = _update_reactions(
+        sequence=sequence, avoid_list=avoid_list, replacement=replacement
+    )
     sequence = list(
         _create_reactions(
             sequence=sequence,
@@ -637,7 +649,6 @@ def _from_sequence(
         sequence=sequence,
         pathway=pathway,
         ignore_list=ignore_list,
-        avoid_list=avoid_list,
     )
     # Add graph to Pathway
     graph = _format_graph(
