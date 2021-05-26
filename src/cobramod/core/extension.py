@@ -516,6 +516,10 @@ def _from_data(
     except KeyError:
         pathway = Pathway(id=identifier)
     for sequence in mapping:
+        # Remove avoid list
+        sequence = list(item for item in sequence if item not in avoid_list)
+        if not sequence:
+            continue
         # Data storage is handled by method. Reactions objects builder:
         sequence = list(
             _create_reactions(
@@ -612,6 +616,7 @@ def _from_sequence(
     # Create graph. It will be always simple lineal
     graph = _create_quick_graph(sequence=sequence)
     # Data storage is managed by the function
+    sequence = list(item for item in sequence if item not in avoid_list)
     sequence = list(
         _create_reactions(
             sequence=sequence,

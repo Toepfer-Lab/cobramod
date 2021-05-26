@@ -456,7 +456,7 @@ def _reaction_information(string: str) -> tuple:
         bounds
     except UnboundLocalError:
         raise WrongSyntax(
-            "Given string does not have a proper arrow.\n{string}\n"
+            f"Given string does not have a proper arrow.\n{string}\n"
             f'Please use one of this options:\n"{arrows.keys()}"'
         )
     # Separate parts
@@ -722,9 +722,6 @@ def _get_file_reactions(
 
     :code:`original_identifier, compartment`
 
-    Identifier has to end with an underscore and a compartment:
-
-    E.g **`OXYGEN-MOLECULE_c: -1`**
 
     Args:
         model (Model): model to test
@@ -1088,15 +1085,13 @@ def add_reactions(
 
         For custom reactions
 
-        :code:`reaction_identifier, reaction_name | metabolite_identifier1:
-        coefficient,`
-        :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
-        coefficient`
+        :code:`reaction_identifier, reaction_name | coefficient metabolite <->
+        coefficient metabolite
 
         Identifiers of metabolites have to end with an underscore and a
         compartment:
 
-            E.g  **`OXYGEN-MOLECULE_c: -1`**
+            E.g **`4 OXYGEN-MOLECULE_c`**
 
      - List[str]: A list with multiple str with the mentioned syntax.
 
