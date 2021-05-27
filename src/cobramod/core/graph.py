@@ -343,34 +343,41 @@ def _fix_graph(graph: dict, avoid_list: list, replacement: dict) -> dict:
     """
     new_graph = graph.copy()
     # Remove necessary keys in copy
-    for key in graph.keys():
-        if key in avoid_list:
-            del new_graph[key]
+    for reaction in avoid_list:
+        with suppress(KeyError):
+            del new_graph[reaction]
+        for key, value in new_graph.items():
+            # Avoid NoneType
+            if not value:
+                continue
+            elif reaction in value and isinstance(value, tuple):
+                new_graph[key] = tuple(
+                    item for item in value if item != reaction
+                )
+                # Transform to str if only one element
+                if len(new_graph[key]) == 1:
+                    new_graph[key] = new_graph[key][0]
+            elif reaction == value:
+                new_graph[key] = None
     # use new copy and modify
     graph = new_graph.copy()
     # Use replacements
-    for key in graph.keys():
-        if key not in replacement.keys():
-            continue
-        new_key = replacement[key]
-        for key2, value in graph.items():
+    for reaction in replacement.keys():
+        with suppress(KeyError):
+            graph[replacement[reaction]] = graph.pop(reaction)
+        for key, value in graph.items():
+            # Avoid NoneType
             if not value:
-                # In case of None
                 continue
-            # If tuple and found
-            elif isinstance(value, tuple) and key in value:
-                new_value = tuple(item.replace(key, new_key) for item in value)
-            # If string and found
-            elif key in value:
-                new_value = value.replace(key, new_key)
-            # Skip and/or update if necessary
-            else:
-                continue
-            new_graph[key2] = new_value
-        # Update key and remove old
-        new_graph[new_key] = new_graph[key]
-        del new_graph[key]
-    return new_graph
+            elif reaction in value and isinstance(value, tuple):
+                graph[key] = tuple(
+                    item.replace(reaction, replacement[reaction])
+                    for item in value
+                )
+            # Transform single string
+            elif reaction == value:
+                graph[key] == replacement[reaction]
+    return graph
 
 
 def _format_graph(

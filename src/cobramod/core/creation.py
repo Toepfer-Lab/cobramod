@@ -19,7 +19,7 @@ files.
 from collections import Counter
 from contextlib import suppress
 from pathlib import Path
-from typing import Union, Generator, List, Any
+from typing import Union, Generator, List, Any, Optional
 
 from cobra import Metabolite, Model, Reaction
 from requests import HTTPError
@@ -391,6 +391,7 @@ def _obtain_reaction(
     replacement: dict,
     stop_imbalance: bool,
     show_imbalance: bool,
+    genome: Optional[str],
 ):
     """
     Return Reaction object from local directory or given database. The method
@@ -408,6 +409,8 @@ def _obtain_reaction(
             Values are the new identifiers.
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
+        genome (str): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
     # Obtain data
     data_dict = get_data(
@@ -415,6 +418,7 @@ def _obtain_reaction(
         identifier=identifier,
         database=database,
         debug_level=10,
+        genome=genome,
     )
     # Transform it
     reaction = _get_reaction(
@@ -456,7 +460,7 @@ def _reaction_information(string: str) -> tuple:
         bounds
     except UnboundLocalError:
         raise WrongSyntax(
-            "Given string does not have a proper arrow.\n{string}\n"
+            f"Given string does not have a proper arrow.\n{string}\n"
             f'Please use one of this options:\n"{arrows.keys()}"'
         )
     # Separate parts
@@ -623,6 +627,7 @@ def _convert_string_reaction(
     stop_imbalance: bool,
     show_imbalance: bool,
     replacement: dict = {},
+    genome: str = None,
 ) -> Reaction:
     """
     Returns a Reaction from string. It can be either custom, or the identifier
@@ -660,6 +665,8 @@ def _convert_string_reaction(
             Values are the new identifiers.
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
+        genome (str): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
     """
     try:
         # Create custom reaction
@@ -685,6 +692,7 @@ def _convert_string_reaction(
             database=database,
             compartment=next(segment),
             replacement=replacement,
+            genome=genome,
             stop_imbalance=stop_imbalance,
             show_imbalance=show_imbalance,
         )
@@ -722,9 +730,6 @@ def _get_file_reactions(
 
     :code:`original_identifier, compartment`
 
-    Identifier has to end with an underscore and a compartment:
-
-    E.g **`OXYGEN-MOLECULE_c: -1`**
 
     Args:
         model (Model): model to test
@@ -738,6 +743,8 @@ def _get_file_reactions(
             :obj:`cobramod.available_databases` for a list of names.
         replacement (dict, optional): original identifiers to be replaced.
             Values are the new identifiers.
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
 
     Raises:
         FileNotFoundError: if file does not exists
@@ -1088,15 +1095,13 @@ def add_reactions(
 
         For custom reactions
 
-        :code:`reaction_identifier, reaction_name | metabolite_identifier1:
-        coefficient,`
-        :code:`metabolite_identifier2:coefficient, ..., metabolite_identifierX:
-        coefficient`
+        :code:`reaction_identifier, reaction_name | coefficient metabolite <->
+        coefficient metabolite
 
         Identifiers of metabolites have to end with an underscore and a
         compartment:
 
-            E.g  **`OXYGEN-MOLECULE_c: -1`**
+            E.g **`4 OXYGEN-MOLECULE_c`**
 
      - List[str]: A list with multiple str with the mentioned syntax.
 
@@ -1116,6 +1121,8 @@ def add_reactions(
         directory (Path): Path to directory where data is located.
         replacement (dict): original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
+        genome (str): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie.
 
     Raises:
         WrongSyntax (from str): If syntax is not followed correctly as
@@ -1128,8 +1135,9 @@ def add_reactions(
         if isinstance(obj, Path):
             # These variable will raise KeyError if no kwargs are passed.
             directory = kwargs["directory"]
-            # Empty dictionary is nothing assigned
+            # Defaults
             replacement = kwargs.pop("replacement", dict())
+            genome = kwargs.pop("genome", None)
             new_reactions = _get_file_reactions(
                 model=model,
                 filename=obj,
@@ -1138,6 +1146,7 @@ def add_reactions(
                 replacement=replacement,
                 stop_imbalance=stop_imbalance,
                 show_imbalance=show_imbalance,
+                genome=genome,
             )
         # In case of single Reaction
         elif isinstance(obj, Reaction):
@@ -1150,8 +1159,9 @@ def add_reactions(
             obj, str
         ):
             directory = kwargs["directory"]
-            # Empty dictionary is nothing assigned
+            # Defaults
             replacement = kwargs.pop("replacement", dict())
+            genome = kwargs.pop("genome", None)
             # Make a list
             if isinstance(obj, str):
                 obj = [obj]
@@ -1164,6 +1174,7 @@ def add_reactions(
                     replacement=replacement,
                     stop_imbalance=stop_imbalance,
                     show_imbalance=show_imbalance,
+                    genome=genome,
                 )
                 for line in obj
             ]

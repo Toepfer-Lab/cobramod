@@ -443,6 +443,7 @@ class SimpleFunctions(TestCase):
             replacement={},
             show_imbalance=True,
             stop_imbalance=False,
+            genome=None,
         )
         self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
         self.assertCountEqual(
@@ -460,6 +461,7 @@ class SimpleFunctions(TestCase):
             identifier="ADENODEAMIN-RXN",
             show_imbalance=True,
             stop_imbalance=False,
+            genome=None,
         )
         # WATER
         self.assertIn(
@@ -768,6 +770,19 @@ class ComplexFunctions(TestCase):
                 member=metabolite,
                 container=[meta.id for meta in test_model.metabolites],
             )
+        # CASE 2c: From string, KEGG
+        test_model = Model(0)
+        cr.add_reactions(
+            model=test_model,
+            obj="R02736, c",
+            directory=dir_data,
+            database="KEGG",
+            genome="hsa",
+        )
+        self.assertIn(
+            member="R02736_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
         # CASE 3: From List of strings
         test_model = Model(0)
         test_list = [
