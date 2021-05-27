@@ -190,8 +190,8 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
             debug_log.warning(msg=msg)
             return []
     msg = (
-        f'No genome was specified for reaction "{reaction}". '
-        + "No genes will be created."
+        f'Nothing was specified in argument "genome". "Reaction "{reaction}"'
+        " will not include genes. Please modify if necessary."
     )
     warn(message=msg, category=UserWarning)
     debug_log.warning(msg=msg)

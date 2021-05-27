@@ -534,6 +534,63 @@ class GraphTesting(TestCase):
         self.assertEqual(first=test_graph["R00472_c"], second=None)
         self.assertEqual(first=len(test_graph), second=2)
 
+    def test__fix_graph(self):
+        graph = {
+            "RXN-11430": ("RXN-19589", "RXN-11438"),
+            "RXN-19589": "RXN-8052",
+            "RXN-8052": "RXN-2208",
+            "RXN-2223": ("RXN-11445", "RXN-2224"),
+            "RXN-11438": "RXN-2208",
+            "RXN-11422": "RXN-11430",
+            "RXN-11414": "RXN-11422",
+            "RXN-2206": "RXN-11414",
+            "RXN-2221": ("RXN-2223", "RXN-2222"),
+            "RXN-2209": "RXN-2221",
+            "RXN-2208": "RXN-2209",
+            "RXN-11445": None,
+            "RXN-2222": None,
+            "RXN-2224": None,
+        }
+        # CASE 0: No difference
+        test_graph = gr._fix_graph(
+            graph=graph.copy(), avoid_list=[], replacement={}
+        )
+        self.assertDictEqual(d1=graph, d2=test_graph)
+        # CASE 1: Using replacements
+        test_graph = gr._fix_graph(
+            graph=graph.copy(),
+            avoid_list=[],
+            replacement={"RXN-11445": "RXN-REPLACED"},
+        )
+        new_graph = graph.copy()
+        new_graph["RXN-REPLACED"] = new_graph.pop("RXN-11445")
+        new_graph["RXN-2223"] = ("RXN-REPLACED", "RXN-2224")
+        self.assertDictEqual(d1=new_graph, d2=test_graph)
+        # CASE 1: Using avoid_list
+        new_graph = {
+            "RXN-11430": "RXN-19589",
+            "RXN-19589": "RXN-8052",
+            "RXN-8052": "RXN-2208",
+            "RXN-11422": "RXN-11430",
+            "RXN-2221": None,
+            "RXN-2209": "RXN-2221",
+            "RXN-2208": "RXN-2209",
+        }
+        test_graph = gr._fix_graph(
+            graph=graph.copy(),
+            avoid_list=[
+                "RXN-2206",
+                "RXN-11414",
+                "RXN-11438",
+                "RXN-2222",
+                "RXN-2223",
+                "RXN-2224",
+                "RXN-11445",
+            ],
+            replacement={},
+        )
+        self.assertDictEqual(d1=new_graph, d2=test_graph)
+
 
 if __name__ == "__main__":
     main(verbosity=2)
