@@ -7,8 +7,8 @@ Welcome to Cobramod's documentation!
    :caption: Contents:
 
    installation.rst
-   guide.rst
-   cobramod.rst
+   guide.ipynb
+   module/modules.rst
 
 Indices and tables
 ==================

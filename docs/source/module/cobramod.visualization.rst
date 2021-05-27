@@ -10,6 +10,7 @@ Submodules
    cobramod.visualization.converter
    cobramod.visualization.debug
    cobramod.visualization.items
+   cobramod.visualization.mapping
    cobramod.visualization.pair
 
 Module contents

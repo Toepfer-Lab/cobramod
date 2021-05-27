@@ -2,3 +2,6 @@
 __pycache__/
 # Files
 *.log
+docs/source/data/*
+!docs/source/data/reactions.txt
+!docs/source/data/metabolites.txt

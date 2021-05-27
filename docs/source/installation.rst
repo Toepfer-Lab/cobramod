@@ -50,4 +50,4 @@ Check the corresponding docstring of the functions for more information or
 read the :doc:`guide` to learn about these functions.
 
 To know the database that work in CobraMod, load
-:func:`cobramod.available_databases`.
+:obj:`cobramod.available_databases`.

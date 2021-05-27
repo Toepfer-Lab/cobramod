@@ -8,6 +8,7 @@ dependencies:
   - wheel=0.34.2=py37_0
   - virtualenv=20.0.34=py37_0
   - pre_commit=2.7.1=1
+  - pandoc=2.12
   - pip:
     - appdirs==1.4.4
     - attrs==19.3.0
@@ -48,3 +49,4 @@ dependencies:
     - doc8==0.8.1
     - Escher==1.7.3
     - openpyxl==3.0.7
+    - nbsphinx==0.8.4

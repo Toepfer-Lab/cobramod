@@ -9,9 +9,11 @@ Submodules
 
    cobramod.core.creation
    cobramod.core.extension
+   cobramod.core.genes
    cobramod.core.graph
    cobramod.core.pathway
    cobramod.core.retrieval
+   cobramod.core.summary
 
 Module contents
 ---------------

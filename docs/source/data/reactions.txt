@@ -1,0 +1,3 @@
+R04382, c
+R02736, c
+C06118_ce, digalacturonate transport | 1 C06118_c<-> 1 C06118_e
