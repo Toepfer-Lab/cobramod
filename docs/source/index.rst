@@ -30,18 +30,20 @@ Additionally, CobraMod uses the visualization tool `Escher
 for given pathway.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
+   :numbered:
    :caption: Contents
 
    README.rst
    functional.rst
    installation.rst
    how_to.ipynb
-   module/cobramod/index.html
+   module/index.html
 
 .. toctree::
    :maxdepth: 0
    :caption: Test case
+   :numbered:
 
    Glucosinolate scenario <GLS.ipynb>
 

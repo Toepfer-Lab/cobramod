@@ -46,6 +46,7 @@ intersphinx_mapping = {
 }
 autoapi_dirs = ["../../src/cobramod"]
 autoapi_root = "module"
+autoapi_generate_api_docs = False
 autoapi_options = [
     "members",
     "undoc-members",
