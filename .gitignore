@@ -2,6 +2,9 @@
 __pycache__/
 # Files
 *.log
+docs/build/
 docs/source/data/*
+docs/source/pathway.html
+docs/source/summary.txt
 !docs/source/data/reactions.txt
 !docs/source/data/metabolites.txt
