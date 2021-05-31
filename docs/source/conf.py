@@ -12,14 +12,14 @@
 #
 # import os
 # import sys
-# sys.path.insert(0, os.path.abspath('.'))
+# sys.path.insert(0, os.path.abspath('../../src/'))
 
 from ipywidgets.embed import DEFAULT_EMBED_REQUIREJS_URL
 
 # -- Project information -----------------------------------------------------
 
 project = "CobraMod"
-copyright = "2020, Stefano Camborda"
+copyright = "2021, Stefano Camborda"
 author = "Stefano Camborda"
 
 
@@ -29,20 +29,31 @@ author = "Stefano Camborda"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "autoapi.extension",
+    "sphinx.ext.autodoc",
     # Google docstring
     "sphinxcontrib.napoleon",
-    # Test snippets in docs
-    # "sphinx.ext.doctest",
     # ipynb support
     "nbsphinx",
     "sphinx.ext.intersphinx",
 ]
 
+# Extensions configuration
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "cobra": ("https://cobrapy.readthedocs.io/en/latest/", None),
+    "escher": ("https://escher.readthedocs.io/en/latest/", None),
 }
-
+autoapi_dirs = ["../../src/cobramod"]
+autoapi_root = "module"
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "imported-members",
+]
+autodoc_typehints = "description"
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = []
 
@@ -58,7 +69,14 @@ intersphinx_mapping = {
 # a list of builtin themes.
 #
 
-html_theme = "sphinx_rtd_theme"
+# html_theme = "sphinx_rtd_theme"
+# html_logo = "img/logo_2.png"
+# html_title = (
+#     "CobraMod: A pathway-centric curation tool for contraint-based "
+#     + "metabolic models"
+# )
+# html_short_titel = "CobraMod"
+# html_theme_options = {"logo_only": True}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
