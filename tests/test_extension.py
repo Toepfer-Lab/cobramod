@@ -21,7 +21,7 @@ from cobramod.core.creation import add_reactions, get_data
 from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
 from cobramod.error import UnbalancedReaction, NotInRangeError
-from cobramod.test import textbook_biocyc, textbook_kegg
+from cobramod.test import textbook_biocyc, textbook_kegg, textbook
 
 
 # Debug must be set in level DEBUG for the test
@@ -441,6 +441,23 @@ class AddingPathways(TestCase):
         self.assertIn(
             member="test_group",
             container=[group.id for group in test_model.groups],
+        )
+        # CASE 2: reactions already in model
+        test_model = textbook.copy()
+        reactions = [
+            reaction
+            for reaction in test_model.reactions
+            if reaction.id in ("GAPD", "PGK", "PGM")
+        ]
+        ex._add_sequence(
+            model=test_model, pathway=Pathway("test_group"), sequence=reactions
+        )
+        self.assertIn(
+            member="test_group",
+            container=[group.id for group in test_model.groups],
+        )
+        self.assertEqual(
+            first=len(test_model.groups.get_by_id("test_group")), second=3
         )
         # CASE 3: KEGG
         test_model = textbook_kegg.copy()

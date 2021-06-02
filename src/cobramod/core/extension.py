@@ -319,12 +319,6 @@ def test_result(
         NotInRangeError: if solution is infeasible after many recursions.
             Depends from the amount of metabolites in the reaction.
     """
-    if reaction in ignore_list:
-        debug_log.warning(
-            f'Reaction "{reaction}" found in ignore list. Test to carry '
-            + "non-zero fluxes skipped."
-        )
-        return
     if times == 0:
         debug_log.info(
             f'Test to carry non-zero fluxes for "{reaction}" started'
@@ -398,34 +392,26 @@ def _add_sequence(
         raise TypeError("Reactions are not valid objects. Check list")
     # Add sequence to model
     for reaction in sequence:
-        # This reaction will not be added.
-        if reaction.id not in [reaction.id for reaction in model.reactions]:
+        # Add reaction if not in model
+        if reaction not in model.reactions:
             model.add_reactions([reaction])
             debug_log.info(f'Reaction "{reaction.id}" added to model')
-            debug_log.debug(
-                f'Reaction "{reaction.id}" added to group "{pathway.id}"'
+        # Skip test but include reaction in pathway
+        if reaction.id not in ignore_list:
+            test_result(
+                model=model, reaction=reaction.id, ignore_list=ignore_list
             )
-            if reaction.id not in ignore_list:
-                test_result(
-                    model=model, reaction=reaction.id, ignore_list=ignore_list
-                )
-            else:
-                debug_log.warning(
-                    f'Skipping non-zero flux test for reaction "{reaction.id}"'
-                )
-            # Add to pathway only if reaction was not previously in the model.
-            debug_log.debug(
-                f'Reaction "{reaction.id}" passed the non-zero test.'
-            )
-            pathway.add_members(new_members=[reaction])
         else:
-            # FIXME: avoid creating reaction
-            pathway.add_members(new_members=[reaction])
-            debug_log.info(
-                f'Reaction "{reaction.id}" was found in model. '
-                f"Skipping non-zero flux test."
+            debug_log.warning(
+                f'Reaction "{reaction.id}" found in ignore list. Test to '
+                + "carry non-zero fluxes skipped."
             )
-    # TODO: Add space
+            # Add to pathway only if reaction was not previously in the model.
+        debug_log.debug(f'Reaction "{reaction.id}" passed the non-zero test.')
+        pathway.add_members(new_members=[reaction])
+        debug_log.debug(
+            f'Reaction "{reaction.id}" added to group "{pathway.id}"'
+        )
     debug_log.debug(f'Reactions added to group "{pathway.id}"')
     # Only add if there is at least 1 reaction in the group.
     if (
@@ -440,14 +426,15 @@ def _update_reactions(
     sequence: List[str], avoid_list: List[str], replacement: dict
 ) -> List[str]:
     """
+    Updates the given sequence taking into consideration reactions to avoid
+    and to rename
 
     Args:
-        sequence:
-        avoid_list:
-        replacement:
-
+        sequence (list): Names of the reactions to update
+        avoid_list (list): Reactions that should not be included in the model
+        replacement (dict): Directory with identifiers to be replaced. Keys are
+            the original identifiers and the values the new identifiers
     """
-    # sequence = list(item for item in sequence if item not in avoid_list)
     new_sequence: List[str] = list()
     for item in sequence:
         # Remove reactions
