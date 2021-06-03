@@ -16,7 +16,7 @@ from unittest import TestCase, main
 from requests import HTTPError, Response
 
 from cobramod.debug import debug_log
-from cobramod.error import WrongParserError
+from cobramod.error import WrongParserError, SuperpathwayWarning
 from cobramod.parsing import kegg as kg
 from cobramod.parsing import biocyc as bc
 from cobramod.parsing import bigg as bi
@@ -160,6 +160,11 @@ class TestBiocyc(TestCase):
         test_dict = bc.get_graph(root=test_root)
         self.assertEqual(first=len(test_dict), second=1)
         self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
+        # CASE 4: Super-Pathway
+        test_root = bc.retrieve_data(
+            directory=dir_data, identifier="PWY-5052", database="META"
+        )
+        self.assertWarns(SuperpathwayWarning, bc.get_graph, root=test_root)
 
     def test__parse_biocyc(self):
         # CASE 1: Compound

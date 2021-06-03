@@ -30,7 +30,11 @@ from warnings import warn
 from requests import get, HTTPError
 
 from cobramod.debug import debug_log
-from cobramod.error import WrongParserError, NoGeneInformation
+from cobramod.error import (
+    WrongParserError,
+    NoGeneInformation,
+    SuperpathwayWarning,
+)
 from cobramod.parsing.base import BaseParser
 
 
@@ -262,6 +266,20 @@ def get_graph(root: Any) -> dict:
     Raises:
         WrongParserError: If given root does not represent a pathway.
     """
+    # Verify non-superpathway
+    with suppress(TypeError):
+        identifier = root.find("*[@frameid]").attrib["frameid"]
+        for parent in root.findall("Pathway/parent/*"):
+            if "Super" in parent.get("frameid"):
+                msg = (
+                    f'Pathway "{identifier}" was identified as a '
+                    + "superpathway. This type of pathway does not normally "
+                    + "included all reactions. Please add the corresponding "
+                    + "sub-pathways singlely!"
+                )
+                debug_log.warning(msg=msg)
+                warn(message=msg, category=SuperpathwayWarning)
+                break
     # Parent: child
     graph: Dict[str, Any] = dict()
     reactions = set()
@@ -276,7 +294,7 @@ def get_graph(root: Any) -> dict:
         try:
             # If at least 2
             if isinstance(graph[parent], tuple):
-                graph[parent] += child
+                graph[parent] = graph[parent] + (child,)
                 continue
             # Else transform single to tuple
             graph[parent] = (graph[parent], child)
@@ -297,6 +315,7 @@ def get_graph(root: Any) -> dict:
             graph[name] = None
         except AttributeError:
             raise WrongParserError("Given root does not belong to a Pathway")
+    # Verify if Superpathway
     return graph
 
 
