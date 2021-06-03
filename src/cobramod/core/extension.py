@@ -753,10 +753,10 @@ def add_pathway(
     elif isinstance(pathway, list):
         # From Reaction
         if not group:
-            identifier = "custom_group"
+            group = "custom_group"
         _from_sequence(
             model=model,
-            identifier=identifier,
+            identifier=group,
             sequence=list(pathway),
             compartment=compartment,
             avoid_list=avoid_list,

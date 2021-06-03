@@ -12,7 +12,7 @@ metabolic models.
 """
 from logging import DEBUG
 from pathlib import Path
-from unittest import main, TestCase, skip
+from unittest import main, TestCase
 
 from cobra import Model, Reaction
 
@@ -39,7 +39,6 @@ class CreatingSequences(TestCase):
     Test for simpler functions
     """
 
-    @skip("")
     def test__create_reactions(self):
         # CASE 1: Simple Case Biocyc
         test_list = ex._create_reactions(
@@ -101,12 +100,10 @@ class CreatingSequences(TestCase):
         )
         self.assertRaises(UnbalancedReaction, next, test_list)
 
-    @skip("")
     def test__find_next_demand(self):
         # FIXME: add cases
         pass
 
-    @skip("")
     def test__verify_boundary(self):
         # CASE 0: Testing ignore list.
         test_model = textbook_biocyc.copy()
@@ -211,7 +208,6 @@ class CreatingSequences(TestCase):
             ],
         )
 
-    @skip("")
     def test__fix_side(self):
         # CASE 0a: invalid Model
         self.assertRaises(
@@ -274,7 +270,6 @@ class CreatingSequences(TestCase):
             expr="SK_PYRUVATE_c" in (sink.id for sink in test_model.sinks)
         )
 
-    @skip("")
     def test__verify_sinks(self):
         # CASE 1: Ignore list
         test_model = Model(0)
@@ -313,7 +308,6 @@ class CreatingSequences(TestCase):
                 member=sink, container=[sink.id for sink in test_model.sinks]
             )
 
-    @skip("")
     def test_test_result(self):
         # CASE 0: minimun range not reached
         # INFO: this extra steps are needed in order to make it fail
@@ -420,7 +414,6 @@ class AddingPathways(TestCase):
     visualizations.
     """
 
-    @skip("")
     def test__add_sequence(self):
         # CASE 1: Normal usage (3 reactions)
         test_model = textbook_biocyc.copy()
@@ -551,7 +544,6 @@ class AddingPathways(TestCase):
             container=[group.id for group in test_model.groups],
         )
 
-    @skip("")
     def test__from_sequence(self):
         # CASE 1: regular test
         test_model = textbook_biocyc.copy()
@@ -579,7 +571,6 @@ class AddingPathways(TestCase):
                 member=item, container=[gene.id for gene in test_model.genes]
             )
 
-    @skip("")
     def test_add_pathway(self):
         # CASE 1: Regular Biocyc
         test_model = textbook_biocyc.copy()
@@ -730,6 +721,7 @@ class AddingPathways(TestCase):
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
+            ignore_list=["R00228_c", "R00472_c"],
         )
         ex.add_pathway(
             model=test_model,
