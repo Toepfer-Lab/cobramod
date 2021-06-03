@@ -156,7 +156,6 @@ class TestGroup(TestCase):
 
     def test_visualize(self):
         # CASE 1: Members with initialization.
-        """
         test_model = textbook.copy()
         members = DictList()
         members.union(
@@ -199,14 +198,6 @@ class TestGroup(TestCase):
         self.assertEqual(
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
-
-                    "blue-orange": ([0, 131, 184], [179, 94, 0]),
-            "turquoise-orange": ([179, 97, 17], [9, 171, 179]),
-            "green-purple": ([179, 1, 113], [17, 179, 0])
-
-        """
-        color = "blue-orange"
-
         # CASE 4a: Regular Biocyc
         test_model = textbook_biocyc.copy()
         add_pathway(
@@ -218,34 +209,15 @@ class TestGroup(TestCase):
             ignore_list=[],
             show_imbalance=False,
         )
-
         # Test fluxes
         test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
         self.assertEqual(first=len(test_pathway.members), second=5)
-        #test_solution = test_pathway.solution(solution=test_model.optimize())
-        #test_pathway.visualize(solution_fluxes=test_solution)
-
-        test_solution = {
-            "AMP_DEPHOSPHORYLATION_RXN_c": -2,
-            "ADENODEAMIN_RXN_c": -1,
-            "INOPHOSPHOR_RXN_c": 0,
-            "RXN_7682_c": 1,
-            "RXN0_901_c": 2,
-        }
-        test_pathway.visualize(solution_fluxes=test_solution,color=color)
-
-        # Checking behavior of more normal values + no data (nd)
-        test_solution = {
-            "AMP_DEPHOSPHORYLATION_RXN_c": 1,
-            "ADENODEAMIN_RXN_c": 52,
-            "RXN_7682_c": 0.0001,
-            "RXN0_901_c": 12000,
-        }
+        test_solution = test_pathway.solution(solution=test_model.optimize())
+        test_pathway.visualize(solution_fluxes=test_solution)
         sleep(1)
-        #test_pathway.visualize(solution_fluxes=test_solution, vertical=True,color=color)
+        test_pathway.visualize(solution_fluxes=test_solution, vertical=True)
         sleep(1)
         # CASE 4b: Regular Biocyc
-        """
         add_pathway(
             model=test_model,
             pathway="PWY-1187",
@@ -262,7 +234,6 @@ class TestGroup(TestCase):
         test_pathway.visualize(solution_fluxes=test_solution)
         sleep(1)
         test_pathway.visualize(solution_fluxes=test_solution, vertical=True)
-        """
 
     def test_model_convert(self):
         # CASE 1: regular conversion of Groups

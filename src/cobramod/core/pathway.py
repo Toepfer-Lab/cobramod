@@ -8,7 +8,7 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
 from pathlib import Path
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Optional
 
 from escher import Builder
 from cobra.core.group import Group
@@ -27,6 +27,38 @@ class Pathway(Group):
     A Sub-class from the original COBRApy :class:`cobra.Group`, which inherits
     all its attributes and adds the method solution, to get a Solution for the
     members of this Class.
+
+    Attributes
+        vertical (bool, optional):
+            Variable that determines whether the display should be vertical or
+            horizontal using escher.
+        color_negative (str or list of int, optional) :
+            The color to use as the endpoint for the negative fluxes during the
+            creation of the color gradient. All colors of the css standard can
+            be used here or their rgb representation.
+        color_positive (str or list of int, optional) :
+            The color to use as the endpoint for the positive fluxes during the
+            creation of the color gradient. All colors of the css standard can
+            be used here or their rgb representation.
+        color_min_max (list of float, optional) :
+            The maximum and minimum to be taken into account when creating the
+            color gradient. This creates these two values artificially to allow
+            the creation of a data-independent color gradient. Fluxes larger or
+            smaller are ignored accordingly.
+        color_quantile (bool, optional) :
+            Attributes that determines whether the color gradient should be
+            determined through quantiles or equally distributed between the
+            maximum and the minimum. Defaults to None which means that the
+            gradations are evenly distributed.
+        color_n_steps (int, optional) :
+            The number of steps used when creating the color gradient. Uses the
+            number of fluxes by default. The default value is None.
+        color_max_steps (int, optional) :
+            The maximum number of steps to use when creating the color
+            gradient.
+    See Also:
+            Color names according to the css standard:
+            https://www.w3schools.com/cssref/css_colors.asp
     """
 
     def __init__(
@@ -67,6 +99,16 @@ class Pathway(Group):
                 )
                 continue
             self.add_members(new_members=[member])
+
+        # Attributes that can be used for the customization of the
+        # visualization
+        self.color_negative: Optional[Union[str, List[int]]] = None
+        self.color_positive: Optional[Union[str, List[int]]] = None
+        self.color_min_max: Optional[List[float]] = None
+        self.color_max_steps: Optional[int] = 100
+        self.color_n_steps: Optional[int] = None
+        self.color_quantile: Optional[bool] = False
+        self.vertical: Optional[bool] = True
 
     def _filter(self, solution: Solution, attribute: str) -> Series:
         """
@@ -147,8 +189,6 @@ class Pathway(Group):
         self,
         solution_fluxes: Union[Solution, Dict[str, float]] = None,
         filename: Path = None,
-        vertical: bool = False,
-        color: str = None,
     ) -> Builder:
         """
         Returns a :class:`escher.Builder`, which can be use to create visual
@@ -174,7 +214,16 @@ class Pathway(Group):
             reaction: self.members.get_by_id(reaction).reaction
             for reaction in json_dict.graph.keys()
         }
-        return json_dict.visualize(filepath=filename, vertical=vertical, color=color)
+
+        return json_dict.visualize(
+            filepath=filename,
+            vertical=self.vertical,
+            color=[self.color_negative, self.color_positive],
+            min_max=self.color_min_max,
+            quantile=self.color_quantile,
+            max_steps=self.color_max_steps,
+            n_steps=self.color_n_steps,
+        )
 
 
 def model_convert(model: Model):

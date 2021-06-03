@@ -23,7 +23,6 @@ from cobramod.visualization.converter import (
 )
 import cobramod.visualization.mapping as mp
 
-
 # Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
@@ -376,6 +375,219 @@ class TestJsonDictionary(TestCase):
             self.assertLessEqual(a=int(segment["to_node_id"]), b=11)
             self.assertLessEqual(a=int(segment["to_node_id"]), b=11)
         # TODO: CASE 2 connecting rows
+
+    def test_color_grading(self):
+        test_class = JsonDictionary()
+        test_class.flux_solution = {
+            "A": -2,
+            "B": -1,
+            "C": 0,
+            "D": 1,
+            "E": 2,
+        }
+
+        expected_scale = [
+            {"type": "value", "value": 1.0, "color": "rgb(237,192,110)"},
+            {"type": "value", "value": 2.0, "color": "rgb(255,165,0)"},
+            {"type": "value", "value": 0, "color": "rgb(220,220,220)"},
+            {"type": "value", "value": -1.0, "color": "rgb(110,174,110)"},
+            {"type": "value", "value": -2.0, "color": "rgb(0,128,0)"},
+        ]
+
+        # Case 1: 2 colors with colors defined as str or via rgb values
+        color = ["orange", "green"]
+        test_class.color_grading(color=color)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        color = [[255, 165, 0], [0, 128, 0]]
+        test_class.color_grading(color=color)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        # Case 2: 2 colors with one defined as rgb and one defined as str
+
+        color = ["orange", [0, 128, 0]]
+        test_class.color_grading(color=color)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        color = [[255, 165, 0], "green"]
+        test_class.color_grading(color=color)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        # Case 3: only one color defined
+        # redefine expected scale
+        expected_scale = [
+            {"type": "value", "value": 1.0, "color": "rgb(237,192,110)"},
+            {"type": "value", "value": 2.0, "color": "rgb(255,165,0)"},
+            {"type": "value", "value": 0, "color": "rgb(220,220,220)"},
+            {"type": "value", "value": -1.0, "color": "rgb(220,220,220)"},
+            {"type": "value", "value": -2.0, "color": "rgb(220,220,220)"},
+        ]
+
+        color = ["orange", None]
+        test_class.color_grading(color=color)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        # redefine expected scale
+        expected_scale = [
+            {"type": "value", "value": 1.0, "color": "rgb(220,220,220)"},
+            {"type": "value", "value": 2.0, "color": "rgb(220,220,220)"},
+            {"type": "value", "value": 0, "color": "rgb(220,220,220)"},
+            {"type": "value", "value": -1.0, "color": "rgb(110,174,110)"},
+            {"type": "value", "value": -2.0, "color": "rgb(0,128,0)"},
+        ]
+
+        color = ["sdfgdfvcbv", [0, 128, 0]]
+        test_class.color_grading(color=color)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        # Case 4: 2 colors and min_max defined
+        # redefine expected scale
+        expected_scale = [
+            {"type": "value", "value": 1.0, "color": "rgb(255,165,0)"},
+            {"type": "value", "value": 0, "color": "rgb(220,220,220)"},
+            {"type": "value", "value": -1.0, "color": "rgb(0,128,0)"},
+        ]
+        color = ["orange", "green"]
+        test_class.color_grading(color=color, min_max=[-1, 1])
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        # Case 5: no values left due to min_max
+
+        expected_scale = [
+            {"type": "value", "value": 0, "color": "rgb(220,220,220)"}
+        ]
+        color = ["orange", "green"]
+        test_class.color_grading(color=color, min_max=[0, 0])
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        test_class.color_grading(color=color, min_max=[5, 10])
+        expected_scale = [
+            {"type": "value", "value": 5, "color": "rgb(237,192,110)"},
+            {"type": "value", "value": 10, "color": "rgb(255,165,0)"},
+        ]
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        expected_scale = [
+            {"color": "rgb(255,165,0)", "type": "value", "value": 0.1},
+            {"color": "rgb(220,220,220)", "type": "value", "value": 0},
+            {"color": "rgb(0,128,0)", "type": "value", "value": -0.1},
+        ]
+        test_class.color_grading(color=color, min_max=[-0.1, 0.1])
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        # Case 6: values close together with and without quantile
+        test_class.flux_solution = {
+            "A": -2,
+            "B": 0.1,
+            "C": 0.2,
+            "D": 0.3,
+            "E": 2,
+        }
+        expected_scale = [
+            {"color": "rgb(228,206,165)", "type": "value", "value": 0.5},
+            {"color": "rgb(237,192,110)", "type": "value", "value": 1.0},
+            {"color": "rgb(246,178,55)", "type": "value", "value": 1.5},
+            {"color": "rgb(255,165,0)", "type": "value", "value": 2.0},
+            {"color": "rgb(220,220,220)", "type": "value", "value": 0},
+            {"color": "rgb(0,128,0)", "type": "value", "value": -2.0},
+        ]
+
+        test_class.color_grading(color=color, quantile=False)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        expected_scale = [
+            {"color": "rgb(228,206,165)", "type": "value", "value": 0.1},
+            {"color": "rgb(237,192,110)", "type": "value", "value": 0.2},
+            {"color": "rgb(246,178,55)", "type": "value", "value": 0.3},
+            {"color": "rgb(255,165,0)", "type": "value", "value": 2.0},
+            {"color": "rgb(220,220,220)", "type": "value", "value": 0},
+            {"color": "rgb(0,128,0)", "type": "value", "value": -2.0},
+        ]
+        test_class.color_grading(color=color, quantile=True)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        # Case 7: no flux
+        test_class.flux_solution = {}
+
+        expected_scale = [
+            {"color": "rgb(220,220,220)", "type": "value", "value": 0}
+        ]
+
+        test_class.color_grading(color=color)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
+
+        test_class.color_grading(color=color, quantile=True)
+
+        self.assertCountEqual(
+            test_class.reaction_scale,
+            expected_scale,
+            msg="Calculated color scale differs from the expected one",
+        )
 
     def test_json_dump(self):
         # CASE 1: Simple HTML and JSON with 4 reactions
