@@ -459,6 +459,7 @@ def _update_reactions(
 def _from_data(
     model: Model,
     data_dict: dict,
+    group: Optional[str],
     directory: Path,
     database: str,
     compartment: str,
@@ -507,6 +508,8 @@ def _from_data(
     mapping = build_graph(graph=data_dict["PATHWAY"])
     # Either create a Pathway or obtain the correct Pathway.
     identifier = data_dict["ENTRY"]
+    if group:
+        identifier = group
     try:
         pathway = model.groups.get_by_id(identifier)
     except KeyError:
@@ -661,7 +664,7 @@ def add_pathway(
     directory: Path,
     database: str,
     compartment: str,
-    group: str = "custom_group",
+    group: Optional[str] = None,
     avoid_list: List[str] = [],
     replacement: dict = {},
     ignore_list: List[str] = [],
@@ -688,8 +691,7 @@ def add_pathway(
             Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         group (str, optional): Common :class:`cobramod.pathway.Pathway`
-            identifier. Defaults to "custom_group". This only applies for
-            a list of reactions
+            identifier. This will overwrite the name of the pathway.
 
     Arguments for complex pathways:
         avoid_list (list, optional): A sequence of reactions identifiers to
@@ -746,12 +748,15 @@ def add_pathway(
             stop_imbalance=stop_imbalance,
             model_id=model_id,
             genome=genome,
+            group=group,
         )
     elif isinstance(pathway, list):
         # From Reaction
+        if not group:
+            identifier = "custom_group"
         _from_sequence(
             model=model,
-            identifier=group,
+            identifier=identifier,
             sequence=list(pathway),
             compartment=compartment,
             avoid_list=avoid_list,
