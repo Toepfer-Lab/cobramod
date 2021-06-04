@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:ERYTHROSE-4P"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ERYTHROSE-4P"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ERYTHROSE-4P</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:ERYTHROSE-4P" detail="full" frameid="ERYTHROSE-4P" orgid="META"><parent><Compound class="true" frameid="Sugar-Phosphate" orgid="META" resource="getxml?META:Sugar-Phosphate" /></parent>
@@ -12,43 +12,6 @@
 <string title="smiles">C([C@@H]([C@@H](COP([O-])([O-])=O)O)O)=O</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">198.069</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">200.00859</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-9526" detail="low" frameid="REG-9526" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9441" detail="low" frameid="ENZRXN-9441" orgid="META"><reaction><Reaction frameid="MANNPISOM-RXN" orgid="META" resource="getxml?META:MANNPISOM-RXN" /></reaction>
-<common-name datatype="string">phosphomannose isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-9281" orgid="META" resource="getxml?META:MONOMER-9281" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6307" detail="low" frameid="REG-6307" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13948" detail="low" frameid="ENZRXN-13948" orgid="META"><reaction><Reaction frameid="1.2.1.9-RXN" orgid="META" resource="getxml?META:1.2.1.9-RXN" /></reaction>
-<common-name datatype="string">NADP-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-7362" orgid="META" resource="getxml?META:CPLX-7362" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6287" detail="low" frameid="REG-6287" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13915" detail="low" frameid="ENZRXN-13915" orgid="META"><reaction><Reaction frameid="RXN-3341" orgid="META" resource="getxml?META:RXN-3341" /></reaction>
-<common-name datatype="string">6-phosphogluconate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-7335" orgid="META" resource="getxml?META:CPLX-7335" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">erythrose-4P</synonym>
-<synonym datatype="string">threose 4-phosphate</synonym>
-<synonym datatype="string">erythrose-4-phosphate</synonym>
-<synonym datatype="string">erythrose-4-P</synonym>
-<synonym datatype="string">D-erythrose-4-P</synonym>
-<appears-in-left-side-of><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="getxml?META:2TRANSKETO-RXN" /><Reaction frameid="ERYTH4PDEHYDROG-RXN" orgid="META" resource="getxml?META:ERYTH4PDEHYDROG-RXN" /><Reaction frameid="DAHPSYN-RXN" orgid="META" resource="getxml?META:DAHPSYN-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="TRANSALDOL-RXN" orgid="META" resource="getxml?META:TRANSALDOL-RXN" /><Reaction frameid="SEDOBISALDOL-RXN" orgid="META" resource="getxml?META:SEDOBISALDOL-RXN" /><Reaction frameid="RXN-17762" orgid="META" resource="getxml?META:RXN-17762" /><Reaction frameid="RXN-15789" orgid="META" resource="getxml?META:RXN-15789" /><Reaction frameid="RXN-8771" orgid="META" resource="getxml?META:RXN-8771" /><Reaction frameid="FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN" orgid="META" resource="getxml?META:FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">D-erythrose 4-phosphate</common-name>
 <dblink><dblink-db>REACTOME-CPD</dblink-db>
 <dblink-oid>29878</dblink-oid>
@@ -118,14 +81,51 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C4H9O7P/c5-1-3(6)4(7)2-11-12(8,9)10/h1,3-4,6-7H,2H2,(H2,8,9,10)/p-2/t3-,4+/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=NGHMDNPXVRFFGS-IUYQGCFVSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">198.069</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">200.00859</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-9526" detail="low" frameid="REG-9526" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9441" detail="low" frameid="ENZRXN-9441" orgid="META"><common-name datatype="string">phosphomannose isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-9281" orgid="META" resource="getxml?META:MONOMER-9281" /></enzyme>
+<reaction><Reaction frameid="MANNPISOM-RXN" orgid="META" resource="getxml?META:MANNPISOM-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6307" detail="low" frameid="REG-6307" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13948" detail="low" frameid="ENZRXN-13948" orgid="META"><common-name datatype="string">NADP-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7362" orgid="META" resource="getxml?META:CPLX-7362" /></enzyme>
+<reaction><Reaction frameid="1.2.1.9-RXN" orgid="META" resource="getxml?META:1.2.1.9-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6287" detail="low" frameid="REG-6287" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13915" detail="low" frameid="ENZRXN-13915" orgid="META"><common-name datatype="string">6-phosphogluconate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-7335" orgid="META" resource="getxml?META:CPLX-7335" /></enzyme>
+<reaction><Reaction frameid="RXN-3341" orgid="META" resource="getxml?META:RXN-3341" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="ERYTHROSE-4P" orgid="META" resource="#META:ERYTHROSE-4P" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">erythrose-4P</synonym>
+<synonym datatype="string">threose 4-phosphate</synonym>
+<synonym datatype="string">erythrose-4-phosphate</synonym>
+<synonym datatype="string">erythrose-4-P</synonym>
+<synonym datatype="string">D-erythrose-4-P</synonym>
+<appears-in-left-side-of><Reaction frameid="2TRANSKETO-RXN" orgid="META" resource="getxml?META:2TRANSKETO-RXN" /><Reaction frameid="ERYTH4PDEHYDROG-RXN" orgid="META" resource="getxml?META:ERYTH4PDEHYDROG-RXN" /><Reaction frameid="DAHPSYN-RXN" orgid="META" resource="getxml?META:DAHPSYN-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="TRANSALDOL-RXN" orgid="META" resource="getxml?META:TRANSALDOL-RXN" /><Reaction frameid="SEDOBISALDOL-RXN" orgid="META" resource="getxml?META:SEDOBISALDOL-RXN" /><Reaction frameid="RXN-17762" orgid="META" resource="getxml?META:RXN-17762" /><Reaction frameid="RXN-15789" orgid="META" resource="getxml?META:RXN-15789" /><Reaction frameid="RXN-8771" orgid="META" resource="getxml?META:RXN-8771" /><Reaction frameid="FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN" orgid="META" resource="getxml?META:FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

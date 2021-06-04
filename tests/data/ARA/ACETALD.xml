@@ -1,0 +1,94 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:ACETALD"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:ACETALD</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:ACETALD" detail="full" frameid="ACETALD" orgid="ARA"><parent><Compound class="true" frameid="n-Alkanals" orgid="ARA" resource="getxml?ARA:n-Alkanals" /></parent>
+<cml><molecule formalCharge="0" id="ACETALD" title="acetaldehyde"><atomArray><atom elementType="C" id="ACETALD-atom1" x2="716400.0" y2="512900.0" /><atom elementType="C" id="ACETALD-atom2" x2="-1200.0" y2="105900.0" /><atom elementType="O" id="ACETALD-atom3" x2="-1200.0" y2="-719100.0" /><atom elementType="H" id="ACETALD-atom4" x2="-721200.0" y2="512900.0" /></atomArray>
+<bondArray><bond atomRefs="ACETALD-atom1 ACETALD-atom2" id="ACETALD-bond1" order="1" /><bond atomRefs="ACETALD-atom2 ACETALD-atom4" id="ACETALD-bond2" order="1" /><bond atomRefs="ACETALD-atom2 ACETALD-atom3" id="ACETALD-bond3" order="2" /></bondArray>
+<formula concise="C 2 H 4 O 1" /><float title="molecularWeight" units="g/mol">44.053</float>
+<string title="smiles">CC=O</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00071</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00071</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM75</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM75</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Acetaldehyde</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Acetaldehyde</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>acald</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/acald</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15343</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15343</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00990</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00990</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>172</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/172</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>177</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=177</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15343</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15343</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00084</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00084</dblink-URL>
+</dblink>
+<dblink><dblink-db>UM-BBD-CPD</dblink-db>
+<dblink-oid>c0160</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0160</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>75-07-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=75-07-0</dblink-URL>
+</dblink>
+<synonym datatype="string">acetic aldehyde</synonym>
+<synonym datatype="string">ethanal</synonym>
+<synonym datatype="string">aldehyde</synonym>
+<synonym datatype="string">ethyl aldehyde</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">7.6844816</gibbs-0>
+<inchi datatype="string">InChI=1S/C2H4O/c1-2-3/h2H,1H3</inchi>
+<inchi-key datatype="string">InChIKey=IKHGUXGNUITLKF-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">44.053</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">44.026215</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="ARA" resource="getxml?ARA:ACETALD-DEHYDROG-RXN" /><Reaction frameid="RXN-8092" orgid="ARA" resource="getxml?ARA:RXN-8092" /><Reaction frameid="RXN66-3" orgid="ARA" resource="getxml?ARA:RXN66-3" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="LTAA-RXN" orgid="ARA" resource="getxml?ARA:LTAA-RXN" /><Reaction frameid="ALCOHOL-DEHYDROG-RXN" orgid="ARA" resource="getxml?ARA:ALCOHOL-DEHYDROG-RXN" /><Reaction frameid="THREONINE-ALDOLASE-RXN" orgid="ARA" resource="getxml?ARA:THREONINE-ALDOLASE-RXN" /><Reaction frameid="RXN-6161" orgid="ARA" resource="getxml?ARA:RXN-6161" /></appears-in-right-side-of>
+<regulates><Regulation ID="ARA:REG0-10198" detail="low" frameid="REG0-10198" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="ACETALD" orgid="ARA" resource="#ARA:ACETALD" /></regulator>
+</Regulation>
+</regulates>
+<common-name datatype="string">acetaldehyde</common-name>
+</Compound>
+</ptools-xml>

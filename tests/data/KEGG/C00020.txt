@@ -53,6 +53,7 @@ PATHWAY     map00230  Purine metabolism
             map01070  Biosynthesis of plant hormones
             map01100  Metabolic pathways
             map01110  Biosynthesis of secondary metabolites
+            map01240  Biosynthesis of cofactors
             map01523  Antifolate resistance
             map04022  cGMP-PKG signaling pathway
             map04024  cAMP signaling pathway

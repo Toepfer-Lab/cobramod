@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-17445"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-17445"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-17445</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CPD-17445" detail="full" frameid="CPD-17445" orgid="META"><parent><Compound class="true" frameid="CPD-17425" orgid="META" resource="getxml?META:CPD-17425" /></parent>
@@ -12,21 +12,18 @@
 <string title="smiles">CSS(=O)C</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">110.189</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">109.98601</monoisotopic-mw>
-<appears-in-right-side-of><Reaction frameid="RXN-16199" orgid="META" resource="getxml?META:RXN-16199" /></appears-in-right-side-of>
 <comment datatype="string">Dimethyl thiosulfinate is one of many thiosulfinates found in members of the &lt;a href="/META/NEW-IMAGE?object=TAX-40553"&gt;&lt;i&gt;Allioideae&lt;/i&gt;&lt;/a&gt; family. It comprises 72% of the total thiosulfinate content in &lt;a href="/META/NEW-IMAGE?object=TAX-4683"&gt;&lt;i&gt;Allium tuberosum&lt;/i&gt;&lt;/a&gt; [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16010345"&gt;Rose05&lt;/a&gt;].</comment>
 <common-name datatype="string">dimethyl thiosulfinate</common-name>
 <credits><created><date datatype="date">2014-12-09</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
 </credits>
@@ -53,14 +50,17 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C2H6OS2/c1-4-5(2)3/h1-2H3</inchi>
 <inchi-key datatype="string">InChIKey=RRGUMJYEQDVBFP-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">110.189</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">109.98601</monoisotopic-mw>
+<appears-in-right-side-of><Reaction frameid="RXN-16199" orgid="META" resource="getxml?META:RXN-16199" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

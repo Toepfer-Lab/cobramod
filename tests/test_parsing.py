@@ -16,7 +16,7 @@ from unittest import TestCase, main
 from requests import HTTPError, Response
 
 from cobramod.debug import debug_log
-from cobramod.error import WrongParserError
+from cobramod.error import WrongParserError, SuperpathwayWarning
 from cobramod.parsing import kegg as kg
 from cobramod.parsing import biocyc as bc
 from cobramod.parsing import bigg as bi
@@ -25,7 +25,6 @@ from cobramod.parsing import bigg as bi
 debug_log.setLevel(DEBUG)
 # Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
-dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
@@ -35,27 +34,6 @@ class TestKegg(TestCase):
     """
     Parsing and retrival for Kegg
     """
-
-    def setUp(self):
-        """
-        This is the sample string to parse for KeggParser
-        """
-        self.test_string = (
-            "ENTRY       R08618                      Reaction\n"
-            "NAME        L-methionine:2-oxo-acid aminotransferase\n"
-            "DEFINITION  L-Methionine + 2-Oxo acid <=> 4-Methylthio-2-"
-            "oxobutanoic acid + L-Amino acid\n"
-            "EQUATION    C00073 + C00161 <=> C01180 + C00151\n"
-            "RCLASS      RC00006  C00073_C01180\n"
-            "            RC00025  C00151_C00161\n"
-            "ENZYME      2.6.1.88\n"
-            "PATHWAY     rn00966  Glucosinolate biosynthesis\n"
-            "            rn01110  Biosynthesis of secondary metabolites\n"
-            "            rn01210  2-Oxocarboxylic acid metabolism\n"
-            "ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]\n"
-            "            K21346  methionine transaminase [EC:2.6.1.88]\n"
-            "            ///"
-        )
 
     def test_retrieve_data(self):
         # CASE 0b: Wrong identifier
@@ -88,10 +66,9 @@ class TestKegg(TestCase):
 
     def test__parse_kegg(self):
         # CASE 1a: Reaction (same as setup)
+        test_string = kg.retrieve_data(directory=dir_data, identifier="R08618")
         test_dict = kg.KeggParser._parse(
-            root=kg._create_dict(raw=self.test_string),
-            directory=dir_data,
-            genome="ath",
+            root=test_string, directory=dir_data, genome="ath"
         )
         self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
         self.assertIsInstance(obj=test_dict["NAME"], cls=str)
@@ -183,6 +160,11 @@ class TestBiocyc(TestCase):
         test_dict = bc.get_graph(root=test_root)
         self.assertEqual(first=len(test_dict), second=1)
         self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
+        # CASE 4: Super-Pathway
+        test_root = bc.retrieve_data(
+            directory=dir_data, identifier="PWY-5052", database="META"
+        )
+        self.assertWarns(SuperpathwayWarning, bc.get_graph, root=test_root)
 
     def test__parse_biocyc(self):
         # CASE 1: Compound
@@ -192,11 +174,11 @@ class TestBiocyc(TestCase):
         test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
-        # CASE 2: Reaction
+        # CASE 2a: Reaction in ARA
         test_root = bc.retrieve_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
-            database="META",
+            database="ARA",
         )
         test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
@@ -204,7 +186,28 @@ class TestBiocyc(TestCase):
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
         self.assertCountEqual(
             first=test_dict["GENES"]["genes"].keys(),
-            second=["YBL033C", "AT5G64300", "G-34500", "G-58286", "EG11331"],
+            second=["AT5G64300", "AT5G59750"],
+        )
+        # CASE 2b: Reaction in Meta
+        test_root = bc.retrieve_data(
+            directory=dir_data,
+            identifier="GTP-CYCLOHYDRO-II-RXN",
+            database="META",
+        )
+        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(), second=[]
+        )
+        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
+        # CASE 2c: Reaction in small subdatabase
+        test_root = bc.retrieve_data(
+            directory=dir_data,
+            identifier="GTP-CYCLOHYDRO-II-RXN",
+            database="GCF_000010885",
+        )
+        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(), second=["APA22_RS09400"]
         )
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
         # CASE 3: Protein

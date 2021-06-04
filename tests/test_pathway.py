@@ -205,7 +205,7 @@ class TestGroup(TestCase):
             pathway="SALVADEHYPOX-PWY",
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="VCHO",
             ignore_list=[],
             show_imbalance=False,
         )
@@ -223,7 +223,7 @@ class TestGroup(TestCase):
             pathway="PWY-1187",
             compartment="c",
             directory=dir_data,
-            database="META",
+            database="ARA",
             ignore_list=[],
             show_imbalance=False,
         )

@@ -14,7 +14,7 @@ REACTION    R00364 R00365 R00366 R00367 R00368 R00369 R00371 R00372
             R04486 R04777 R04951 R05055 R05704 R05835 R05841 R06171 
             R07226 R07463 R08195 R08196 R08252 R08701 R08744 R09099 
             R09717 R09718 R10060 R10062 R10179 R10685 R10722 R10908 
-            R10994 R11664 R12026 R12514
+            R10994 R11664 R12026 R12514 R12692 R12693 R12694
 PATHWAY     map00120  Primary bile acid biosynthesis
             map00230  Purine metabolism
             map00260  Glycine, serine and threonine metabolism
@@ -34,6 +34,7 @@ PATHWAY     map00120  Primary bile acid biosynthesis
             map01120  Microbial metabolism in diverse environments
             map01200  Carbon metabolism
             map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
             map01502  Vancomycin resistance
             map02010  ABC transporters
             map02026  Biofilm formation - Escherichia coli
@@ -45,22 +46,25 @@ PATHWAY     map00120  Primary bile acid biosynthesis
 MODULE      M00346  Formaldehyde assimilation, serine pathway
             M00532  Photorespiration
             M00868  Heme biosynthesis, animals and fungi, glycine => heme
-ENZYME      1.4.1.1         1.4.1.10        1.4.2.1         1.4.3.3         
-            1.4.3.19        1.4.4.2         1.4.99.5        1.5.1.22        
-            1.5.3.1         1.5.8.3         1.8.1.4         1.13.11.78      
+            M00895  Thiamine biosynthesis, prokaryotes, AIR (+ DXP/glycine) => TMP/TPP
+            M00896  Thiamine biosynthesis, archaea, AIR (+ NAD+) => TMP/TPP
+            M00897  Thiamine biosynthesis, plants, AIR (+ NAD+) => TMP/thiamine/TPP
+            M00898  Thiamine biosynthesis, pyridoxal-5P => TMP/thiamine/TPP
+ENZYME      1.4.1.1         1.4.1.10        1.4.1.27        1.4.2.1         
+            1.4.3.3         1.4.3.19        1.4.4.2         1.4.99.5        
+            1.5.1.22        1.5.3.1         1.5.8.3         1.13.11.78      
             1.21.4.2        2.1.1.20        2.1.1.156       2.1.1.162       
-            2.1.2.1         2.1.2.4         2.1.2.10        2.1.4.1         
-            2.3.1.13        2.3.1.29        2.3.1.37        2.3.1.65        
-            2.3.1.71        2.3.1.192       2.3.1.-         2.3.2.15        
-            2.3.2.-         2.4.2.59        2.4.2.60        2.6.1.4         
-            2.6.1.35        2.6.1.44        2.6.1.45        2.6.1.60        
-            2.6.1.63        2.6.1.73        2.6.1.96        2.6.1.112       
-            3.4.11.1        3.4.11.2        3.4.11.23       3.4.13.23       
-            3.4.13.-        3.5.1.24        3.5.1.32        3.5.1.58        
-            3.5.1.71        3.5.3.2         4.1.2.5         4.1.2.26        
-            4.1.2.42        4.1.2.48        4.1.2.49        4.1.2.-         
-            4.1.3.14        4.1.3.41        6.1.1.14        6.3.2.3         
-            6.3.4.13
+            2.1.2.1         2.1.2.4         2.1.4.1         2.3.1.13        
+            2.3.1.29        2.3.1.37        2.3.1.65        2.3.1.71        
+            2.3.1.192       2.3.1.-         2.3.2.15        2.3.2.-         
+            2.4.2.59        2.4.2.60        2.6.1.4         2.6.1.35        
+            2.6.1.44        2.6.1.45        2.6.1.60        2.6.1.63        
+            2.6.1.73        2.6.1.96        2.6.1.112       3.4.11.1        
+            3.4.11.2        3.4.11.23       3.4.13.23       3.4.13.-        
+            3.5.1.24        3.5.1.32        3.5.1.58        3.5.1.71        
+            3.5.3.2         4.1.2.5         4.1.2.26        4.1.2.42        
+            4.1.2.48        4.1.2.49        4.1.2.-         4.1.3.14        
+            4.1.3.41        6.1.1.14        6.3.2.3         6.3.4.13
 BRITE       Compounds with biological roles [BR:br08001]
              Peptides
               Amino acids
@@ -82,25 +86,6 @@ BRITE       Compounds with biological roles [BR:br08001]
               Inorganic and organic chemicals
                Glycine
                 D00011  Glycine (JP17/USP)
-            Pharmaceutical additives in Japan [BR:br08316]
-             Stabilizing agent
-              D00011  [102546] Glycine
-             Buffering agent
-              D00011  [102546] Glycine
-             Sweetening agent
-              D00011  [102546] Glycine
-             Base
-              D00011  [102546] Glycine
-             Flavoring substance
-              D00011  [102546] Glycine
-             Suspending agent
-              D00011  [102546] Glycine
-             pH regulator
-              D00011  [102546] Glycine
-             Diluting agent
-              D00011  [102546] Glycine
-             Solubilization agent
-              D00011  [102546] Glycine
             Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
              Chemicals
               D00011  Glycine

@@ -1,0 +1,88 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CIS-ACONITATE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CIS-ACONITATE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CIS-ACONITATE" detail="full" frameid="CIS-ACONITATE" orgid="ARA"><parent><Compound class="true" frameid="Tricarboxylates" orgid="ARA" resource="getxml?ARA:Tricarboxylates" /></parent>
+<cml><molecule formalCharge="-3" id="CIS-ACONITATE" title="cis-aconitate"><atomArray><atom elementType="C" id="CIS-ACONITATE-atom1" x2="70840.0" y2="-70610.0" /><atom elementType="C" id="CIS-ACONITATE-atom2" x2="-72260.0" y2="-70610.0" /><atom elementType="C" id="CIS-ACONITATE-atom3" x2="-710.0" y2="-111680.0" /><atom elementType="C" id="CIS-ACONITATE-atom4" x2="142390.0" y2="-111680.0" /><atom elementType="C" id="CIS-ACONITATE-atom5" x2="-143090.0" y2="-111680.0" /><atom elementType="C" id="CIS-ACONITATE-atom6" x2="-710.0" y2="-200940.0" /><atom elementType="O" id="CIS-ACONITATE-atom7" x2="142390.0" y2="-196690.0" /><atom elementType="O" formalCharge="-1" id="CIS-ACONITATE-atom8" x2="216050.0" y2="-69190.0" /><atom elementType="O" id="CIS-ACONITATE-atom9" x2="-143090.0" y2="-196690.0" /><atom elementType="O" formalCharge="-1" id="CIS-ACONITATE-atom10" x2="-216760.0" y2="-69190.0" /><atom elementType="O" id="CIS-ACONITATE-atom11" x2="70740.0" y2="-242190.0" /><atom elementType="O" formalCharge="-1" id="CIS-ACONITATE-atom12" x2="-72160.0" y2="-242190.0" /></atomArray>
+<bondArray><bond atomRefs="CIS-ACONITATE-atom2 CIS-ACONITATE-atom3" id="CIS-ACONITATE-bond1" order="1" /><bond atomRefs="CIS-ACONITATE-atom8 CIS-ACONITATE-atom4" id="CIS-ACONITATE-bond2" order="1" /><bond atomRefs="CIS-ACONITATE-atom10 CIS-ACONITATE-atom5" id="CIS-ACONITATE-bond3" order="1" /><bond atomRefs="CIS-ACONITATE-atom6 CIS-ACONITATE-atom3" id="CIS-ACONITATE-bond4" order="1" /><bond atomRefs="CIS-ACONITATE-atom1 CIS-ACONITATE-atom3" id="CIS-ACONITATE-bond5" order="2" /><bond atomRefs="CIS-ACONITATE-atom4 CIS-ACONITATE-atom1" id="CIS-ACONITATE-bond6" order="1" /><bond atomRefs="CIS-ACONITATE-atom5 CIS-ACONITATE-atom2" id="CIS-ACONITATE-bond7" order="1" /><bond atomRefs="CIS-ACONITATE-atom9 CIS-ACONITATE-atom5" id="CIS-ACONITATE-bond8" order="2" /><bond atomRefs="CIS-ACONITATE-atom7 CIS-ACONITATE-atom4" id="CIS-ACONITATE-bond9" order="2" /><bond atomRefs="CIS-ACONITATE-atom6 CIS-ACONITATE-atom11" id="CIS-ACONITATE-bond10" order="2" /><bond atomRefs="CIS-ACONITATE-atom6 CIS-ACONITATE-atom12" id="CIS-ACONITATE-bond11" order="1" /></bondArray>
+<formula concise="C 6 H 3 O 6" /><float title="molecularWeight" units="g/mol">171.086</float>
+<string title="smiles">C([O-])(=O)C(/CC(=O)[O-])=C/C(=O)[O-]</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00331</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00331</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM813</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM813</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Cis-Aconitic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Cis-Aconitic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>acon_C</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/acon_C</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16383</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16383</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00072</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00072</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>4573582</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/4573582</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00001177</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00001177</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>5459816</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=5459816</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16383</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16383</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00417</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00417</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>585-84-2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=585-84-2</dblink-URL>
+</dblink>
+<synonym datatype="string">(Z)-prop-1-ene-1,2,3-tricarboxylate</synonym>
+<synonym datatype="string">&lt;i&gt;cis&lt;/i&gt;-aconitic acid</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-191.19519</gibbs-0>
+<inchi datatype="string">InChI=1S/C6H6O6/c7-4(8)1-3(6(11)12)2-5(9)10/h1H,2H2,(H,7,8)(H,9,10)(H,11,12)/p-3/b3-1-</inchi>
+<inchi-key datatype="string">InChIKey=GTZCVFVGUGFEME-IWQZZHSRSA-K</inchi-key>
+<molecular-weight datatype="float" units="Daltons">171.086</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">174.01643</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEHYDR-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEDEHYDR-RXN" /></appears-in-right-side-of>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to LC-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href="http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">&lt;i&gt;cis&lt;/i&gt;-aconitate</common-name>
+</Compound>
+</ptools-xml>

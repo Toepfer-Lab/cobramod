@@ -1,0 +1,65 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?VCHO:SALVADEHYPOX-PWY"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>VCHO:SALVADEHYPOX-PWY</query>
+<num_results>1</num_results>
+<PGDB orgid="VCHO" version="24.5"><species datatype="string">Vibrio cholerae</species>
+<strain datatype="string">O1 biovar El Tor str. N16961</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>243277</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=243277</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Pathway ID="VCHO:SALVADEHYPOX-PWY" detail="full" frameid="SALVADEHYPOX-PWY" orgid="VCHO"><parent><Pathway class="true" frameid="Adenosine-Nucleotides-Degradation" orgid="VCHO" resource="getxml?VCHO:Adenosine-Nucleotides-Degradation" /></parent>
+<synonym datatype="string">purine ribonucleotide/ribonucleoside metabolism</synonym>
+<reaction-ordering><Reaction frameid="ADENODEAMIN-RXN" orgid="VCHO" resource="getxml?VCHO:ADENODEAMIN-RXN" /><predecessor-reactions><Reaction frameid="AMP-DEPHOSPHORYLATION-RXN" orgid="VCHO" resource="getxml?VCHO:AMP-DEPHOSPHORYLATION-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN0-901" orgid="VCHO" resource="getxml?VCHO:RXN0-901" /><predecessor-reactions><Reaction frameid="RXN-7682" orgid="VCHO" resource="getxml?VCHO:RXN-7682" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-7682" orgid="VCHO" resource="getxml?VCHO:RXN-7682" /><predecessor-reactions><Reaction frameid="INOPHOSPHOR-RXN" orgid="VCHO" resource="getxml?VCHO:INOPHOSPHOR-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="INOPHOSPHOR-RXN" orgid="VCHO" resource="getxml?VCHO:INOPHOSPHOR-RXN" /><predecessor-reactions><Reaction frameid="ADENODEAMIN-RXN" orgid="VCHO" resource="getxml?VCHO:ADENODEAMIN-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="AMP-DEPHOSPHORYLATION-RXN" orgid="VCHO" resource="getxml?VCHO:AMP-DEPHOSPHORYLATION-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="AMP" orgid="VCHO" resource="getxml?VCHO:AMP" /></left-primaries>
+<right-primaries><Compound frameid="ADENOSINE" orgid="VCHO" resource="getxml?VCHO:ADENOSINE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-7682" orgid="VCHO" resource="getxml?VCHO:RXN-7682" /><direction>L2R</direction>
+<left-primaries><Compound frameid="HYPOXANTHINE" orgid="VCHO" resource="getxml?VCHO:HYPOXANTHINE" /></left-primaries>
+<right-primaries><Compound frameid="XANTHINE" orgid="VCHO" resource="getxml?VCHO:XANTHINE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN0-901" orgid="VCHO" resource="getxml?VCHO:RXN0-901" /><direction>L2R</direction>
+<left-primaries><Compound frameid="XANTHINE" orgid="VCHO" resource="getxml?VCHO:XANTHINE" /></left-primaries>
+<right-primaries><Compound frameid="URATE" orgid="VCHO" resource="getxml?VCHO:URATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="ADENODEAMIN-RXN" orgid="VCHO" resource="getxml?VCHO:ADENODEAMIN-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="ADENOSINE" orgid="VCHO" resource="getxml?VCHO:ADENOSINE" /></left-primaries>
+<right-primaries><Compound frameid="INOSINE" orgid="VCHO" resource="getxml?VCHO:INOSINE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="INOPHOSPHOR-RXN" orgid="VCHO" resource="getxml?VCHO:INOPHOSPHOR-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="INOSINE" orgid="VCHO" resource="getxml?VCHO:INOSINE" /></left-primaries>
+<right-primaries><Compound frameid="HYPOXANTHINE" orgid="VCHO" resource="getxml?VCHO:HYPOXANTHINE" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="AMP-DEPHOSPHORYLATION-RXN" orgid="VCHO" resource="getxml?VCHO:AMP-DEPHOSPHORYLATION-RXN" /><Reaction frameid="RXN-7682" orgid="VCHO" resource="getxml?VCHO:RXN-7682" /><Reaction frameid="RXN0-901" orgid="VCHO" resource="getxml?VCHO:RXN0-901" /><Reaction frameid="ADENODEAMIN-RXN" orgid="VCHO" resource="getxml?VCHO:ADENODEAMIN-RXN" /><Reaction frameid="INOPHOSPHOR-RXN" orgid="VCHO" resource="getxml?VCHO:INOPHOSPHOR-RXN" /></reaction-list>
+<evidence><Evidence-Code ID="VCHO:EV-COMP-AINF" class="true" detail="full" frameid="EV-COMP-AINF" orgid="VCHO"><parent><Evidence-Code class="true" frameid="EV-COMP" orgid="VCHO" resource="getxml?VCHO:EV-COMP" /></parent>
+<comment datatype="string">Automated inference.  A computer inferred this assertion through one of many possible methods such as 
+sequence similarity, recognized motifs or consensus sequence, etc.  When a person made the inference 
+from computational evidence, use EV-HINF</comment>
+<common-name datatype="string">Inferred computationally without human oversight</common-name>
+</Evidence-Code>
+</evidence>
+<common-name datatype="string">adenosine nucleotides degradation II</common-name>
+<credits><created><date datatype="date">2003-01-21</date>
+<Person ID="VCHO:arnaud" detail="full" frameid="arnaud" orgid="VCHO"><common-name datatype="string">Martha Arnaud</common-name>
+<email datatype="string">arnaudm@genome.stanford.edu</email>
+</Person>
+<Organization ID="VCHO:SRI" detail="full" frameid="SRI" orgid="VCHO"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</created>
+</credits>
+</Pathway>
+</ptools-xml>

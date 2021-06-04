@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:CPD-12607"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-12607"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-12607</query>
 <num_results>1</num_results>
@@ -13,19 +13,6 @@
 <string title="smiles">C(O)[C@H]([NH3+])C(=O)NCC([O-])=O</string>
 </molecule>
 </cml>
-<common-name datatype="string">L-seryl-glycine</common-name>
-<credits><created><date datatype="date">2010-08-30</date>
-<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></created>
-</credits>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd15612</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -62,5 +49,18 @@
 <molecular-weight datatype="float" units="Daltons">162.145</molecular-weight>
 <monoisotopic-mw datatype="float" units="Daltons">162.06406</monoisotopic-mw>
 <appears-in-right-side-of><Reaction frameid="RXN-18760" orgid="ARA" resource="getxml?ARA:RXN-18760" /><Reaction frameid="RXN-11436" orgid="ARA" resource="getxml?ARA:RXN-11436" /><Reaction frameid="RXN-11437" orgid="ARA" resource="getxml?ARA:RXN-11437" /><Reaction frameid="RXN-11438" orgid="ARA" resource="getxml?ARA:RXN-11438" /><Reaction frameid="RXN-11439" orgid="ARA" resource="getxml?ARA:RXN-11439" /><Reaction frameid="RXN-11440" orgid="ARA" resource="getxml?ARA:RXN-11440" /><Reaction frameid="RXN-11441" orgid="ARA" resource="getxml?ARA:RXN-11441" /><Reaction frameid="RXN-11442" orgid="ARA" resource="getxml?ARA:RXN-11442" /><Reaction frameid="RXN-11443" orgid="ARA" resource="getxml?ARA:RXN-11443" /></appears-in-right-side-of>
+<common-name datatype="string">L-seryl-glycine</common-name>
+<credits><created><date datatype="date">2010-08-30</date>
+<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<common-name datatype="string">SRI International</common-name>
+</Organization>
+</affiliations>
+<common-name datatype="string">Ron Caspi</common-name>
+</Person>
+<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></created>
+</credits>
 </Compound>
 </ptools-xml>

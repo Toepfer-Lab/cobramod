@@ -6,7 +6,7 @@ import unittest
 
 from cobra.core import Metabolite, Reaction
 
-from cobramod.core.creation import create_object, add_reactions
+from cobramod.core.creation import create_object, add_reactions, get_data
 from cobramod.debug import debug_log
 from cobramod.error import NoIntersectFound
 from cobramod.test import textbook_kegg
@@ -28,7 +28,7 @@ class UtilsTesting(unittest.TestCase):
         test_reaction = create_object(
             directory=dir_data,
             identifier="RXN-11414",
-            database="META",
+            database="ARA",
             compartment="c",
             # In order to catch warning
             show_imbalance=False,
@@ -139,6 +139,12 @@ class UtilsTesting(unittest.TestCase):
         test_path = ui._path_match(directory=dir_data, pattern="AMP")
         self.assertRegex(text=str(test_path), expected_regex="AMP.xml")
         # CASE 2b: regular match, Biocyc reaction
+        get_data(
+            directory=dir_data,
+            identifier="GLUTAMINESYN-RXN",
+            database="ARA",
+            debug_level=10,
+        )
         test_path = ui._path_match(
             directory=dir_data, pattern="GLUTAMINESYN-RXN"
         )

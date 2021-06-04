@@ -1,7 +1,13 @@
+#!/usr/bin/env python3
+"""Unitest for build of summary
+
+This modules checks functions responsable for the creation of txt, csv and xlsx
+files.
+"""
 import tempfile
 from logging import DEBUG
 from pathlib import Path
-from unittest import TestCase
+from unittest import TestCase, main
 
 import numpy
 import pandas
@@ -264,3 +270,7 @@ class TestSummary(TestCase):
             for file in directory.iterdir():
                 if file != filename:
                     self.fail("Summary created additional files")
+
+
+if __name__ == "__main__":
+    main(verbosity=2)

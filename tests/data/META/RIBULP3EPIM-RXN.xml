@@ -1,16 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:RIBULP3EPIM-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RIBULP3EPIM-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RIBULP3EPIM-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:RIBULP3EPIM-RXN" detail="full" frameid="RIBULP3EPIM-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="XYLULOSE-5-PHOSPHATE" orgid="META" resource="getxml?META:XYLULOSE-5-PHOSPHATE" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR104083</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -83,35 +79,35 @@
 </dblink>
 <ec-number>EC-5.1.3.1<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:RIBULP3EPIM-ENZRXN" detail="low" frameid="RIBULP3EPIM-ENZRXN" orgid="META"><reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:RIBULP3EPIM-ENZRXN" detail="low" frameid="RIBULP3EPIM-ENZRXN" orgid="META"><common-name datatype="string">ribulose-phosphate 3-epimerase</common-name>
+<enzyme><Protein frameid="RIBULP3EPIM-MONOMER" orgid="META" resource="getxml?META:RIBULP3EPIM-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
 <synonym datatype="string">PPE</synonym>
 <synonym datatype="string">pentose-5-phosphate 3-epimerase</synonym>
 <synonym datatype="string">ribulose-5-phosphate 3-epimerase</synonym>
-<common-name datatype="string">ribulose-phosphate 3-epimerase</common-name>
-<enzyme><Protein frameid="RIBULP3EPIM-MONOMER" orgid="META" resource="getxml?META:RIBULP3EPIM-MONOMER" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-10082" detail="low" frameid="ENZRXN-10082" orgid="META"><reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
-<common-name datatype="string">ribulose phosphate 3-epimerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-10082" detail="low" frameid="ENZRXN-10082" orgid="META"><common-name datatype="string">ribulose phosphate 3-epimerase</common-name>
 <enzyme><Protein frameid="MONOMER-9922" orgid="META" resource="getxml?META:MONOMER-9922" /></enzyme>
+<reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2905" detail="low" frameid="ENZRXN-2905" orgid="META"><reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2905" detail="low" frameid="ENZRXN-2905" orgid="META"><common-name datatype="string">ribulose-phosphate 3-epimerase</common-name>
+<enzyme><Protein frameid="MONOMER-582" orgid="META" resource="getxml?META:MONOMER-582" /></enzyme>
+<reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
 <synonym datatype="string">PPE</synonym>
 <synonym datatype="string">R5P3E</synonym>
 <synonym datatype="string">phosphoribulose epimerase</synonym>
 <synonym datatype="string">erythrose-4-phosphate isomerase</synonym>
 <synonym datatype="string">pentose-5-phosphate 3-epimerase</synonym>
 <synonym datatype="string">D-ribulose-5-phosphate 3-epimerase</synonym>
-<common-name datatype="string">ribulose-phosphate 3-epimerase</common-name>
-<enzyme><Protein frameid="MONOMER-582" orgid="META" resource="getxml?META:MONOMER-582" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-184" detail="low" frameid="ENZRXN-184" orgid="META"><reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-184" detail="low" frameid="ENZRXN-184" orgid="META"><common-name datatype="string">pentose-5-phosphate 3-epimerase</common-name>
+<enzyme><Protein frameid="RPESYN-MONOMER" orgid="META" resource="getxml?META:RPESYN-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RIBULP3EPIM-RXN" orgid="META" resource="#META:RIBULP3EPIM-RXN" /></reaction>
 <synonym datatype="string">ribulose-phosphate 3-epimerase</synonym>
 <synonym datatype="string">phosphoribulose epimerase</synonym>
 <synonym datatype="string">erythrose-4-phosphate isomerase</synonym>
 <synonym datatype="string">phosphopentose epimerase</synonym>
 <synonym datatype="string">D-ribulose-5-phosphate 3-epimerase</synonym>
-<common-name datatype="string">pentose-5-phosphate 3-epimerase</common-name>
-<enzyme><Protein frameid="RPESYN-MONOMER" orgid="META" resource="getxml?META:RPESYN-MONOMER" /></enzyme>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">0.0<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -122,14 +118,18 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="PWY-8178" orgid="META" resource="getxml?META:PWY-8178" /><Pathway frameid="P124-PWY" orgid="META" resource="getxml?META:P124-PWY" /><Pathway frameid="P122-PWY" orgid="META" resource="getxml?META:P122-PWY" /><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /><Pathway frameid="PWY-5723" orgid="META" resource="getxml?META:PWY-5723" /><Pathway frameid="NONOXIPENT-PWY" orgid="META" resource="getxml?META:NONOXIPENT-PWY" /><Pathway frameid="P185-PWY" orgid="META" resource="getxml?META:P185-PWY" /><Pathway frameid="PWY-1861" orgid="META" resource="getxml?META:PWY-1861" /><Pathway frameid="P21-PWY" orgid="META" resource="getxml?META:P21-PWY" /></in-pathway>
 <left><Compound frameid="RIBULOSE-5P" orgid="META" resource="getxml?META:RIBULOSE-5P" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="XYLULOSE-5-PHOSPHATE" orgid="META" resource="getxml?META:XYLULOSE-5-PHOSPHATE" /></right>
 </Reaction>
 </ptools-xml>

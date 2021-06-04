@@ -1,0 +1,57 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD1F-133"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD1F-133</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD1F-133" detail="full" frameid="CPD1F-133" orgid="ARA"><parent><Compound class="true" frameid="Xanthophylls" orgid="ARA" resource="getxml?ARA:Xanthophylls" /></parent>
+<cml><molecule formalCharge="0" id="CPD1F-133" title="violaxanthin"><atomArray><atom elementType="C" id="CPD1F-133-atom1" x2="1070360.0" y2="253520.0" /><atom elementType="C" id="CPD1F-133-atom2" x2="713140.0" y2="47260.0" /><atom elementType="C" id="CPD1F-133-atom3" x2="1356150.0" y2="253520.0" /><atom elementType="C" id="CPD1F-133-atom4" x2="427360.0" y2="47260.0" /><atom elementType="C" id="CPD1F-133-atom5" x2="1683320.0" y2="237850.0" /><atom elementType="C" id="CPD1F-133-atom6" x2="1600570.0" y2="238370.0" /><atom elementType="C" id="CPD1F-133-atom7" x2="99330.0" y2="60590.0" /><atom elementType="C" id="CPD1F-133-atom8" x2="182070.0" y2="60080.0" /><atom elementType="C" id="CPD1F-133-atom9" x2="1497290.0" y2="2280.0" /><atom elementType="C" id="CPD1F-133-atom10" x2="286350.0" y2="296180.0" /><atom elementType="C" id="CPD1F-133-atom11" x2="927480.0" y2="171020.0" /><atom elementType="C" id="CPD1F-133-atom12" x2="856030.0" y2="129770.0" /><atom elementType="C" id="CPD1F-133-atom13" x2="1213260.0" y2="171020.0" /><atom elementType="C" id="CPD1F-133-atom14" x2="570250.0" y2="129760.0" /><atom elementType="C" id="CPD1F-133-atom15" x2="998920.0" y2="129770.0" /><atom elementType="C" id="CPD1F-133-atom16" x2="784580.0" y2="171020.0" /><atom elementType="C" id="CPD1F-133-atom17" x2="1141810.0" y2="129770.0" /><atom elementType="C" id="CPD1F-133-atom18" x2="641700.0" y2="171010.0" /><atom elementType="C" id="CPD1F-133-atom19" x2="1284700.0" y2="129770.0" /><atom elementType="C" id="CPD1F-133-atom20" x2="498800.0" y2="171010.0" /><atom elementType="C" id="CPD1F-133-atom21" x2="1427590.0" y2="129770.0" /><atom elementType="C" id="CPD1F-133-atom22" x2="355920.0" y2="171010.0" /><atom elementType="C" id="CPD1F-133-atom23" x2="1499030.0" y2="171020.0" /><atom elementType="C" id="CPD1F-133-atom24" x2="284470.0" y2="129760.0" /><atom elementType="C" id="CPD1F-133-atom25" x2="1712700.0" y2="125330.0" /><atom elementType="C" id="CPD1F-133-atom26" x2="70430.0" y2="173610.0" /><atom elementType="C" id="CPD1F-133-atom27" x2="1640730.0" y2="1880.0" /><atom elementType="C" id="CPD1F-133-atom28" x2="143430.0" y2="297550.0" /><atom elementType="C" id="CPD1F-133-atom29" x2="1070360.0" y2="171020.0" /><atom elementType="C" id="CPD1F-133-atom30" x2="713140.0" y2="129770.0" /><atom elementType="C" id="CPD1F-133-atom31" x2="1356150.0" y2="171020.0" /><atom elementType="C" id="CPD1F-133-atom32" x2="427360.0" y2="129760.0" /><atom elementType="C" id="CPD1F-133-atom33" x2="1712700.0" y2="43060.0" /><atom elementType="C" id="CPD1F-133-atom34" x2="70940.0" y2="256380.0" /><atom elementType="C" id="CPD1F-133-atom35" x2="1641760.0" y2="166880.0" /><atom elementType="C" id="CPD1F-133-atom36" x2="142400.0" y2="132060.0" /><atom elementType="C" id="CPD1F-133-atom37" x2="1569270.0" y2="43450.0" /><atom elementType="C" id="CPD1F-133-atom38" x2="214380.0" y2="255490.0" /><atom elementType="C" id="CPD1F-133-atom39" x2="1570480.0" y2="129770.0" /><atom elementType="C" id="CPD1F-133-atom40" x2="213030.0" y2="171010.0" /><atom elementType="O" id="CPD1F-133-atom41" x2="1783640.0" y2="0.0" /><atom elementType="O" id="CPD1F-133-atom42" x2="0.0" y2="298440.0" /><atom elementType="O" id="CPD1F-133-atom43" x2="1497800.0" y2="84520.0" /><atom elementType="O" id="CPD1F-133-atom44" x2="285350.0" y2="213420.0" /></atomArray>
+<bondArray><bond atomRefs="CPD1F-133-atom39 CPD1F-133-atom37" id="CPD1F-133-bond1" order="1" /><bond atomRefs="CPD1F-133-atom39 CPD1F-133-atom43" id="CPD1F-133-bond2" order="1" /><bond atomRefs="CPD1F-133-atom39 CPD1F-133-atom35" id="CPD1F-133-bond3" order="1" /><bond atomRefs="CPD1F-133-atom37 CPD1F-133-atom27" id="CPD1F-133-bond4" order="1" /><bond atomRefs="CPD1F-133-atom37 CPD1F-133-atom9" id="CPD1F-133-bond5" order="1" /><bond atomRefs="CPD1F-133-atom35 CPD1F-133-atom25" id="CPD1F-133-bond6" order="1" /><bond atomRefs="CPD1F-133-atom35 CPD1F-133-atom5" id="CPD1F-133-bond7" order="1" /><bond atomRefs="CPD1F-133-atom35 CPD1F-133-atom6" id="CPD1F-133-bond8" order="1" /><bond atomRefs="CPD1F-133-atom27 CPD1F-133-atom33" id="CPD1F-133-bond9" order="1" /><bond atomRefs="CPD1F-133-atom33 CPD1F-133-atom41" id="CPD1F-133-bond10" order="1" /><bond atomRefs="CPD1F-133-atom40 CPD1F-133-atom38" id="CPD1F-133-bond11" order="1" /><bond atomRefs="CPD1F-133-atom40 CPD1F-133-atom44" id="CPD1F-133-bond12" order="1" /><bond atomRefs="CPD1F-133-atom40 CPD1F-133-atom36" id="CPD1F-133-bond13" order="1" /><bond atomRefs="CPD1F-133-atom38 CPD1F-133-atom28" id="CPD1F-133-bond14" order="1" /><bond atomRefs="CPD1F-133-atom38 CPD1F-133-atom10" id="CPD1F-133-bond15" order="1" /><bond atomRefs="CPD1F-133-atom36 CPD1F-133-atom26" id="CPD1F-133-bond16" order="1" /><bond atomRefs="CPD1F-133-atom36 CPD1F-133-atom7" id="CPD1F-133-bond17" order="1" /><bond atomRefs="CPD1F-133-atom36 CPD1F-133-atom8" id="CPD1F-133-bond18" order="1" /><bond atomRefs="CPD1F-133-atom28 CPD1F-133-atom34" id="CPD1F-133-bond19" order="1" /><bond atomRefs="CPD1F-133-atom34 CPD1F-133-atom42" id="CPD1F-133-bond20" order="1" /><bond atomRefs="CPD1F-133-atom37 CPD1F-133-atom43" id="CPD1F-133-bond21" order="1" /><bond atomRefs="CPD1F-133-atom25 CPD1F-133-atom33" id="CPD1F-133-bond22" order="1" /><bond atomRefs="CPD1F-133-atom38 CPD1F-133-atom44" id="CPD1F-133-bond23" order="1" /><bond atomRefs="CPD1F-133-atom26 CPD1F-133-atom34" id="CPD1F-133-bond24" order="1" /><bond atomRefs="CPD1F-133-atom30 CPD1F-133-atom2" id="CPD1F-133-bond25" order="1" /><bond atomRefs="CPD1F-133-atom39 CPD1F-133-atom23" id="CPD1F-133-bond26" order="1" /><bond atomRefs="CPD1F-133-atom23 CPD1F-133-atom21" id="CPD1F-133-bond27" order="2" /><bond atomRefs="CPD1F-133-atom21 CPD1F-133-atom31" id="CPD1F-133-bond28" order="1" /><bond atomRefs="CPD1F-133-atom31 CPD1F-133-atom19" id="CPD1F-133-bond29" order="2" /><bond atomRefs="CPD1F-133-atom31 CPD1F-133-atom3" id="CPD1F-133-bond30" order="1" /><bond atomRefs="CPD1F-133-atom19 CPD1F-133-atom13" id="CPD1F-133-bond31" order="1" /><bond atomRefs="CPD1F-133-atom13 CPD1F-133-atom17" id="CPD1F-133-bond32" order="2" /><bond atomRefs="CPD1F-133-atom17 CPD1F-133-atom29" id="CPD1F-133-bond33" order="1" /><bond atomRefs="CPD1F-133-atom29 CPD1F-133-atom15" id="CPD1F-133-bond34" order="2" /><bond atomRefs="CPD1F-133-atom29 CPD1F-133-atom1" id="CPD1F-133-bond35" order="1" /><bond atomRefs="CPD1F-133-atom15 CPD1F-133-atom11" id="CPD1F-133-bond36" order="1" /><bond atomRefs="CPD1F-133-atom11 CPD1F-133-atom12" id="CPD1F-133-bond37" order="2" /><bond atomRefs="CPD1F-133-atom16 CPD1F-133-atom30" id="CPD1F-133-bond38" order="2" /><bond atomRefs="CPD1F-133-atom12 CPD1F-133-atom16" id="CPD1F-133-bond39" order="1" /><bond atomRefs="CPD1F-133-atom30 CPD1F-133-atom18" id="CPD1F-133-bond40" order="1" /><bond atomRefs="CPD1F-133-atom18 CPD1F-133-atom14" id="CPD1F-133-bond41" order="2" /><bond atomRefs="CPD1F-133-atom14 CPD1F-133-atom20" id="CPD1F-133-bond42" order="1" /><bond atomRefs="CPD1F-133-atom20 CPD1F-133-atom32" id="CPD1F-133-bond43" order="2" /><bond atomRefs="CPD1F-133-atom32 CPD1F-133-atom22" id="CPD1F-133-bond44" order="1" /><bond atomRefs="CPD1F-133-atom32 CPD1F-133-atom4" id="CPD1F-133-bond45" order="1" /><bond atomRefs="CPD1F-133-atom22 CPD1F-133-atom24" id="CPD1F-133-bond46" order="2" /><bond atomRefs="CPD1F-133-atom40 CPD1F-133-atom24" id="CPD1F-133-bond47" order="1" /></bondArray>
+<formula concise="C 40 H 56 O 4" /><float title="molecularWeight" units="g/mol">600.88</float>
+<string title="smiles">CC(/C=C/C=C(C)/C=C/[C@]12(C(C)(C)C[C@H](O)C[C@](O1)(C)2))=C\C=C\C=C(C)\C=C\C=C(C)\C=C\[C@]34(C(C)(C)C[C@H](O)C[C@](O3)(C)4)</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd05521</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd05521</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM583</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM583</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>448438</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=448438</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>35288</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35288</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB03101</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB03101</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C08614</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C08614</dblink-URL>
+</dblink>
+<synonym datatype="string">5,6,5',6'-diepoxy-5,6,5',6'-tetrahydro-&amp;beta;,&amp;beta;-carotene-3,3'-diol</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">635.9027</gibbs-0>
+<inchi datatype="string">InChI=1S/C40H56O4/c1-29(17-13-19-31(3)21-23-39-35(5,6)25-33(41)27-37(39,9)43-39)15-11-12-16-30(2)18-14-20-32(4)22-24-40-36(7,8)26-34(42)28-38(40,10)44-40/h11-24,33-34,41-42H,25-28H2,1-10H3/b12-11+,17-13+,18-14+,23-21+,24-22+,29-15+,30-16+,31-19+,32-20+/t33-,34-,37+,38+,39-,40-/m0/s1</inchi>
+<inchi-key datatype="string">InChIKey=SZCBXWMUOPQSOX-WVJDLNGLSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">600.88</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">600.41785</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-13185" orgid="ARA" resource="getxml?ARA:RXN-13185" /><Reaction frameid="RXN-7984" orgid="ARA" resource="getxml?ARA:RXN-7984" /><Reaction frameid="RXN-7886" orgid="ARA" resource="getxml?ARA:RXN-7886" /><Reaction frameid="RXN1F-155" orgid="ARA" resource="getxml?ARA:RXN1F-155" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-7979" orgid="ARA" resource="getxml?ARA:RXN-7979" /><Reaction frameid="RXN-13193" orgid="ARA" resource="getxml?ARA:RXN-13193" /><Reaction frameid="RXN1F-154" orgid="ARA" resource="getxml?ARA:RXN1F-154" /></appears-in-right-side-of>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
+<common-name datatype="string">violaxanthin</common-name>
+</Compound>
+</ptools-xml>

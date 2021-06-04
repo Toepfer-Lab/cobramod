@@ -24,11 +24,9 @@ class RetrievalTesting(unittest.TestCase):
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
         # CASE 1b: simple retrieval from Biocyc (reaction)
         test_dict = md.get_data(
-            directory=dir_data, database="META", identifier="GLYOXII-RXN"
+            directory=dir_data, database="ARA", identifier="GLYOXII-RXN"
         )
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
-        # CASE 2: simple retrieval from AraCyc
-        # TODO: Case 2
         # CASE 3a: Simple retrieval from KEGG (metabolite)
         test_dict = md.get_data(
             directory=dir_data, database="KEGG", identifier="C00001"
@@ -85,11 +83,13 @@ class RetrievalTesting(unittest.TestCase):
 
     def test_translate(self):
         # CASE 1: Regular compound KEGG
+        md.get_data(directory=dir_data, database="KEGG", identifier="C00002")
         test_string = md.translate(
             directory=dir_data, target="C00002", database="CAS"
         )
         self.assertEqual(first=test_string, second="56-65-5")
         # CASE 2: Regular compound Biocyc
+        md.get_data(directory=dir_data, database="ARA", identifier="AMP")
         test_string = md.translate(
             directory=dir_data, target="AMP", database="PUBCHEM"
         )

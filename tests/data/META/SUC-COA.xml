@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:SUC-COA"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:SUC-COA"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:SUC-COA</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:SUC-COA" detail="full" frameid="SUC-COA" orgid="META"><parent><Compound class="true" frameid="All-Coas" orgid="META" resource="getxml?META:All-Coas" /></parent>
@@ -13,61 +13,6 @@
 <string title="systematicName">3'-phosphoadenosine 5'-{3-[(3R)-4-{[3-({2-[(3-carboxypropanoyl)sulfanyl]ethyl}amino)-3-oxopropyl]amino}-3-hydroxy-2,2-dimethyl-4-oxobutyl] dihydrogen diphosphate}</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">862.568</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">867.1312</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-8165" detail="low" frameid="REG0-8165" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:PEPDEPHOSI-ENZRXN" detail="low" frameid="PEPDEPHOSI-ENZRXN" orgid="META"><reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
-<synonym datatype="string">pyruvate kinase</synonym>
-<synonym datatype="string">phosphoenolpyruvate kinase</synonym>
-<synonym datatype="string">phosphoenol transphosphorylase</synonym>
-<synonym datatype="string">pyruvate 2-0-phosphotransferase</synonym>
-<common-name datatype="string">pyruvate kinase</common-name>
-<enzyme><Protein frameid="PKI-COMPLEX" orgid="META" resource="getxml?META:PKI-COMPLEX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15466" detail="low" frameid="REG-15466" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-25535" detail="low" frameid="ENZRXN-25535" orgid="META"><reaction><Reaction frameid="RXN0-5055" orgid="META" resource="getxml?META:RXN0-5055" /></reaction>
-<common-name datatype="string">acetyl CoA carboxytransferase</common-name>
-<enzyme><Protein frameid="CPLX-7545" orgid="META" resource="getxml?META:CPLX-7545" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-12174" detail="low" frameid="REG-12174" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14658" detail="low" frameid="ENZRXN-14658" orgid="META"><reaction><Reaction frameid="PROPIONYL-COA-CARBOXY-RXN" orgid="META" resource="getxml?META:PROPIONYL-COA-CARBOXY-RXN" /></reaction>
-<common-name datatype="string">propionyl CoA carboxylase</common-name>
-<enzyme><Protein frameid="CPLX-7580" orgid="META" resource="getxml?META:CPLX-7580" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9093" detail="low" frameid="REG-9093" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8827" detail="low" frameid="ENZRXN-8827" orgid="META"><reaction><Reaction frameid="METHYLMALONYL-COA-EPIM-RXN" orgid="META" resource="getxml?META:METHYLMALONYL-COA-EPIM-RXN" /></reaction>
-<common-name datatype="string">DL-methylmalonyl-CoA racemase</common-name>
-<enzyme><Protein frameid="CPLX-5205" orgid="META" resource="getxml?META:CPLX-5205" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">succ-coenzyme-A</synonym>
-<synonym datatype="string">succ-&lt;i&gt;S&lt;/i&gt;-coenzyme-A</synonym>
-<synonym datatype="string">succinyl-S-coenzyme-A</synonym>
-<synonym datatype="string">succ-&lt;i&gt;S&lt;/i&gt;-CoA</synonym>
-<synonym datatype="string">succinylcoenzyme-A</synonym>
-<synonym datatype="string">succ-CoA</synonym>
-<synonym datatype="string">suc-CoA</synonym>
-<synonym datatype="string">succinyl-&lt;i&gt;S&lt;/i&gt;-CoA</synonym>
-<synonym datatype="string">succinyl-coenzyme A</synonym>
-<systematic-name datatype="string">3'-phosphoadenosine 5'-{3-[(3R)-4-{[3-({2-[(3-carboxypropanoyl)sulfanyl]ethyl}amino)-3-oxopropyl]amino}-3-hydroxy-2,2-dimethyl-4-oxobutyl] dihydrogen diphosphate}</systematic-name>
-<appears-in-left-side-of><Reaction frameid="3-OXOACID-COA-TRANSFERASE-RXN" orgid="META" resource="getxml?META:3-OXOACID-COA-TRANSFERASE-RXN" /><Reaction frameid="RXN-21329" orgid="META" resource="getxml?META:RXN-21329" /><Reaction frameid="RXN-12168" orgid="META" resource="getxml?META:RXN-12168" /><Reaction frameid="RXN-19805" orgid="META" resource="getxml?META:RXN-19805" /><Reaction frameid="RXN-11007" orgid="META" resource="getxml?META:RXN-11007" /><Reaction frameid="5-AMINOLEVULINIC-ACID-SYNTHASE-RXN" orgid="META" resource="getxml?META:5-AMINOLEVULINIC-ACID-SYNTHASE-RXN" /><Reaction frameid="RXN-8807" orgid="META" resource="getxml?META:RXN-8807" /><Reaction frameid="RXN-864" orgid="META" resource="getxml?META:RXN-864" /><Reaction frameid="RXN-14724" orgid="META" resource="getxml?META:RXN-14724" /><Reaction frameid="2.8.3.13-RXN" orgid="META" resource="getxml?META:2.8.3.13-RXN" /><Reaction frameid="OXALATE-COA-TRANSFERASE-RXN" orgid="META" resource="getxml?META:OXALATE-COA-TRANSFERASE-RXN" /><Reaction frameid="RXN-10085" orgid="META" resource="getxml?META:RXN-10085" /><Reaction frameid="3-OXOADIPATE-COA-TRANSFERASE-RXN" orgid="META" resource="getxml?META:3-OXOADIPATE-COA-TRANSFERASE-RXN" /><Reaction frameid="ARGININE-N-SUCCINYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:ARGININE-N-SUCCINYLTRANSFERASE-RXN" /><Reaction frameid="RXN-7561" orgid="META" resource="getxml?META:RXN-7561" /><Reaction frameid="RXNI-2" orgid="META" resource="getxml?META:RXNI-2" /><Reaction frameid="RXN0-1147" orgid="META" resource="getxml?META:RXN0-1147" /><Reaction frameid="RXN-8987" orgid="META" resource="getxml?META:RXN-8987" /><Reaction frameid="RXN-14933" orgid="META" resource="getxml?META:RXN-14933" /><Reaction frameid="SUCCINYL-COA-HYDROLASE-RXN" orgid="META" resource="getxml?META:SUCCINYL-COA-HYDROLASE-RXN" /><Reaction frameid="RXN-14935" orgid="META" resource="getxml?META:RXN-14935" /><Reaction frameid="RXN-8966" orgid="META" resource="getxml?META:RXN-8966" /><Reaction frameid="2.8.3.7-RXN" orgid="META" resource="getxml?META:2.8.3.7-RXN" /><Reaction frameid="RXN-8964" orgid="META" resource="getxml?META:RXN-8964" /><Reaction frameid="RXN-3641" orgid="META" resource="getxml?META:RXN-3641" /><Reaction frameid="RXN-10996" orgid="META" resource="getxml?META:RXN-10996" /><Reaction frameid="RXN-943" orgid="META" resource="getxml?META:RXN-943" /><Reaction frameid="HOMSUCTRAN-RXN" orgid="META" resource="getxml?META:HOMSUCTRAN-RXN" /><Reaction frameid="TETHYDPICSUCC-RXN" orgid="META" resource="getxml?META:TETHYDPICSUCC-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN0-268" orgid="META" resource="getxml?META:RXN0-268" /><Reaction frameid="RXN-20775" orgid="META" resource="getxml?META:RXN-20775" /><Reaction frameid="RXN-19490" orgid="META" resource="getxml?META:RXN-19490" /><Reaction frameid="2OXOGLUTARATEDEH-RXN" orgid="META" resource="getxml?META:2OXOGLUTARATEDEH-RXN" /><Reaction frameid="RXN-8891" orgid="META" resource="getxml?META:RXN-8891" /><Reaction frameid="2-OXOGLUTARATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:2-OXOGLUTARATE-SYNTHASE-RXN" /><Reaction frameid="RXN-904" orgid="META" resource="getxml?META:RXN-904" /><Reaction frameid="SUCCINATE--COA-LIGASE-GDP-FORMING-RXN" orgid="META" resource="getxml?META:SUCCINATE--COA-LIGASE-GDP-FORMING-RXN" /><Reaction frameid="SUCCCOASYN-RXN" orgid="META" resource="getxml?META:SUCCCOASYN-RXN" /><Reaction frameid="OXOGLUTARATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:OXOGLUTARATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="RXN-12511" orgid="META" resource="getxml?META:RXN-12511" /><Reaction frameid="RXN-945" orgid="META" resource="getxml?META:RXN-945" /><Reaction frameid="METHYLMALONYL-COA-MUT-RXN" orgid="META" resource="getxml?META:METHYLMALONYL-COA-MUT-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">succinyl-CoA</common-name>
 <dblink><dblink-db>REACTOME-CPD</dblink-db>
 <dblink-oid>70958</dblink-oid>
@@ -132,14 +77,69 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C25H40N7O19P3S/c1-25(2,20(38)23(39)28-6-5-14(33)27-7-8-55-16(36)4-3-15(34)35)10-48-54(45,46)51-53(43,44)47-9-13-19(50-52(40,41)42)18(37)24(49-13)32-12-31-17-21(26)29-11-30-22(17)32/h11-13,18-20,24,37-38H,3-10H2,1-2H3,(H,27,33)(H,28,39)(H,34,35)(H,43,44)(H,45,46)(H2,26,29,30)(H2,40,41,42)/p-5/t13-,18-,19-,20+,24-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=VNOYUJKHFWYWIR-ITIYDSSPSA-I</inchi-key>
+<molecular-weight datatype="float" units="Daltons">862.568</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">867.1312</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-8165" detail="low" frameid="REG0-8165" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:PEPDEPHOSI-ENZRXN" detail="low" frameid="PEPDEPHOSI-ENZRXN" orgid="META"><common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="PKI-COMPLEX" orgid="META" resource="getxml?META:PKI-COMPLEX" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="META" resource="getxml?META:PEPDEPHOS-RXN" /></reaction>
+<synonym datatype="string">pyruvate kinase</synonym>
+<synonym datatype="string">phosphoenolpyruvate kinase</synonym>
+<synonym datatype="string">phosphoenol transphosphorylase</synonym>
+<synonym datatype="string">pyruvate 2-0-phosphotransferase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-15466" detail="low" frameid="REG-15466" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-25535" detail="low" frameid="ENZRXN-25535" orgid="META"><common-name datatype="string">acetyl CoA carboxytransferase</common-name>
+<enzyme><Protein frameid="CPLX-7545" orgid="META" resource="getxml?META:CPLX-7545" /></enzyme>
+<reaction><Reaction frameid="RXN0-5055" orgid="META" resource="getxml?META:RXN0-5055" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-12174" detail="low" frameid="REG-12174" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14658" detail="low" frameid="ENZRXN-14658" orgid="META"><common-name datatype="string">propionyl CoA carboxylase</common-name>
+<enzyme><Protein frameid="CPLX-7580" orgid="META" resource="getxml?META:CPLX-7580" /></enzyme>
+<reaction><Reaction frameid="PROPIONYL-COA-CARBOXY-RXN" orgid="META" resource="getxml?META:PROPIONYL-COA-CARBOXY-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9093" detail="low" frameid="REG-9093" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8827" detail="low" frameid="ENZRXN-8827" orgid="META"><common-name datatype="string">DL-methylmalonyl-CoA racemase</common-name>
+<enzyme><Protein frameid="CPLX-5205" orgid="META" resource="getxml?META:CPLX-5205" /></enzyme>
+<reaction><Reaction frameid="METHYLMALONYL-COA-EPIM-RXN" orgid="META" resource="getxml?META:METHYLMALONYL-COA-EPIM-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC-COA" orgid="META" resource="#META:SUC-COA" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">succ-coenzyme-A</synonym>
+<synonym datatype="string">succ-&lt;i&gt;S&lt;/i&gt;-coenzyme-A</synonym>
+<synonym datatype="string">succinyl-S-coenzyme-A</synonym>
+<synonym datatype="string">succ-&lt;i&gt;S&lt;/i&gt;-CoA</synonym>
+<synonym datatype="string">succinylcoenzyme-A</synonym>
+<synonym datatype="string">succ-CoA</synonym>
+<synonym datatype="string">suc-CoA</synonym>
+<synonym datatype="string">succinyl-&lt;i&gt;S&lt;/i&gt;-CoA</synonym>
+<synonym datatype="string">succinyl-coenzyme A</synonym>
+<systematic-name datatype="string">3'-phosphoadenosine 5'-{3-[(3R)-4-{[3-({2-[(3-carboxypropanoyl)sulfanyl]ethyl}amino)-3-oxopropyl]amino}-3-hydroxy-2,2-dimethyl-4-oxobutyl] dihydrogen diphosphate}</systematic-name>
+<appears-in-left-side-of><Reaction frameid="3-OXOACID-COA-TRANSFERASE-RXN" orgid="META" resource="getxml?META:3-OXOACID-COA-TRANSFERASE-RXN" /><Reaction frameid="RXN-21329" orgid="META" resource="getxml?META:RXN-21329" /><Reaction frameid="RXN-12168" orgid="META" resource="getxml?META:RXN-12168" /><Reaction frameid="RXN-19805" orgid="META" resource="getxml?META:RXN-19805" /><Reaction frameid="RXN-11007" orgid="META" resource="getxml?META:RXN-11007" /><Reaction frameid="5-AMINOLEVULINIC-ACID-SYNTHASE-RXN" orgid="META" resource="getxml?META:5-AMINOLEVULINIC-ACID-SYNTHASE-RXN" /><Reaction frameid="RXN-8807" orgid="META" resource="getxml?META:RXN-8807" /><Reaction frameid="RXN-864" orgid="META" resource="getxml?META:RXN-864" /><Reaction frameid="RXN-14724" orgid="META" resource="getxml?META:RXN-14724" /><Reaction frameid="2.8.3.13-RXN" orgid="META" resource="getxml?META:2.8.3.13-RXN" /><Reaction frameid="OXALATE-COA-TRANSFERASE-RXN" orgid="META" resource="getxml?META:OXALATE-COA-TRANSFERASE-RXN" /><Reaction frameid="RXN-10085" orgid="META" resource="getxml?META:RXN-10085" /><Reaction frameid="3-OXOADIPATE-COA-TRANSFERASE-RXN" orgid="META" resource="getxml?META:3-OXOADIPATE-COA-TRANSFERASE-RXN" /><Reaction frameid="ARGININE-N-SUCCINYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:ARGININE-N-SUCCINYLTRANSFERASE-RXN" /><Reaction frameid="RXN-7561" orgid="META" resource="getxml?META:RXN-7561" /><Reaction frameid="RXNI-2" orgid="META" resource="getxml?META:RXNI-2" /><Reaction frameid="RXN0-1147" orgid="META" resource="getxml?META:RXN0-1147" /><Reaction frameid="RXN-8987" orgid="META" resource="getxml?META:RXN-8987" /><Reaction frameid="RXN-14933" orgid="META" resource="getxml?META:RXN-14933" /><Reaction frameid="SUCCINYL-COA-HYDROLASE-RXN" orgid="META" resource="getxml?META:SUCCINYL-COA-HYDROLASE-RXN" /><Reaction frameid="RXN-14935" orgid="META" resource="getxml?META:RXN-14935" /><Reaction frameid="RXN-8966" orgid="META" resource="getxml?META:RXN-8966" /><Reaction frameid="2.8.3.7-RXN" orgid="META" resource="getxml?META:2.8.3.7-RXN" /><Reaction frameid="RXN-8964" orgid="META" resource="getxml?META:RXN-8964" /><Reaction frameid="RXN-3641" orgid="META" resource="getxml?META:RXN-3641" /><Reaction frameid="RXN-10996" orgid="META" resource="getxml?META:RXN-10996" /><Reaction frameid="RXN-943" orgid="META" resource="getxml?META:RXN-943" /><Reaction frameid="HOMSUCTRAN-RXN" orgid="META" resource="getxml?META:HOMSUCTRAN-RXN" /><Reaction frameid="TETHYDPICSUCC-RXN" orgid="META" resource="getxml?META:TETHYDPICSUCC-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN0-268" orgid="META" resource="getxml?META:RXN0-268" /><Reaction frameid="RXN-20775" orgid="META" resource="getxml?META:RXN-20775" /><Reaction frameid="RXN-19490" orgid="META" resource="getxml?META:RXN-19490" /><Reaction frameid="2OXOGLUTARATEDEH-RXN" orgid="META" resource="getxml?META:2OXOGLUTARATEDEH-RXN" /><Reaction frameid="RXN-8891" orgid="META" resource="getxml?META:RXN-8891" /><Reaction frameid="2-OXOGLUTARATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:2-OXOGLUTARATE-SYNTHASE-RXN" /><Reaction frameid="RXN-904" orgid="META" resource="getxml?META:RXN-904" /><Reaction frameid="SUCCINATE--COA-LIGASE-GDP-FORMING-RXN" orgid="META" resource="getxml?META:SUCCINATE--COA-LIGASE-GDP-FORMING-RXN" /><Reaction frameid="SUCCCOASYN-RXN" orgid="META" resource="getxml?META:SUCCCOASYN-RXN" /><Reaction frameid="OXOGLUTARATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:OXOGLUTARATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="RXN-12511" orgid="META" resource="getxml?META:RXN-12511" /><Reaction frameid="RXN-945" orgid="META" resource="getxml?META:RXN-945" /><Reaction frameid="METHYLMALONYL-COA-MUT-RXN" orgid="META" resource="getxml?META:METHYLMALONYL-COA-MUT-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

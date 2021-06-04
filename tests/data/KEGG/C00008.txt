@@ -62,13 +62,14 @@ REACTION    R00002 R00076 R00086 R00104 R00105 R00122 R00123 R00124
             R11530 R11531 R11535 R11536 R11627 R11628 R11629 R11662 
             R11673 R11706 R11707 R11783 R11784 R11803 R11891 R11892 
             R11894 R11895 R11933 R12084 R12245 R12246 R12272 R12330 
-            R12342 R12344 R12352 R12530 R12594 R12616 R12633
+            R12342 R12344 R12352 R12530 R12594 R12616 R12633 R12695
 PATHWAY     map00190  Oxidative phosphorylation
             map00195  Photosynthesis
             map00230  Purine metabolism
             map00908  Zeatin biosynthesis
             map01100  Metabolic pathways
             map01110  Biosynthesis of secondary metabolites
+            map01240  Biosynthesis of cofactors
             map04068  FoxO signaling pathway
             map04080  Neuroactive ligand-receptor interaction
             map04142  Lysosome

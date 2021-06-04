@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPANALDOXIME"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPANALDOXIME"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:3-METHYLTHIOPROPANALDOXIME</query>
 <num_results>1</num_results>
@@ -13,7 +13,6 @@
 <string title="smiles">CSCCC/C=N/O</string>
 </molecule>
 </cml>
-<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-4-(methylsulfanyl)butanal oxime</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd17431</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -39,13 +38,14 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17241</dblink-URL>
 </dblink>
+<synonym datatype="string">(&lt;i&gt;E&lt;/i&gt;)-4-(methylthio)butanal oxime</synonym>
 <gibbs-0 datatype="float" units="kcal/mol">94.26232</gibbs-0>
 <inchi datatype="string">InChI=1S/C5H11NOS/c1-8-5-3-2-4-6-7/h4,7H,2-3,5H2,1H3/b6-4+</inchi>
 <inchi-key datatype="string">InChIKey=DNYWTMVKWUGHCB-GQCTYLIASA-N</inchi-key>
 <molecular-weight datatype="float" units="Daltons">133.208</molecular-weight>
 <monoisotopic-mw datatype="float" units="Daltons">133.05614</monoisotopic-mw>
-<synonym datatype="string">(&lt;i&gt;E&lt;/i&gt;)-4-(methylthio)butanal oxime</synonym>
 <appears-in-left-side-of><Reaction frameid="RXN-18161" orgid="ARA" resource="getxml?ARA:RXN-18161" /><Reaction frameid="RXN-11414" orgid="ARA" resource="getxml?ARA:RXN-11414" /></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction frameid="RXN-13016" orgid="ARA" resource="getxml?ARA:RXN-13016" /><Reaction frameid="RXN-2206" orgid="ARA" resource="getxml?ARA:RXN-2206" /></appears-in-right-side-of>
+<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-4-(methylsulfanyl)butanal oxime</common-name>
 </Compound>
 </ptools-xml>

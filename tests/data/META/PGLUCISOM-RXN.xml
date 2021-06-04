@@ -1,27 +1,22 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PGLUCISOM-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PGLUCISOM-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PGLUCISOM-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:PGLUCISOM-RXN" detail="full" frameid="PGLUCISOM-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right>
-<systematic-name datatype="string">&lt;small&gt;D&lt;/small&gt;-glucose-6-phosphate aldose-ketose-isomerase</systematic-name>
 <credits><created><date datatype="date">2012-09-17</date>
-<Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
+<Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
 <email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
 </Organization>
-<Person ID="META:kothari" detail="full" frameid="kothari" orgid="META"><affiliations><Organization frameid="SRI" orgid="META" resource="#META:SRI" /></affiliations>
-<comment datatype="string">Anamika Kothari is a software developer that works on the Pathway Tools software at SRI International. She has also curated of compounds and reactions in the MetaCyc database.</comment>
+<Person ID="META:kothari" detail="full" frameid="kothari" orgid="META"><comment datatype="string">Anamika Kothari is a software developer that works on the Pathway Tools software at SRI International. She has also curated of compounds and reactions in the MetaCyc database.</comment>
 <common-name datatype="string">Anamika Kothari</common-name>
 <email datatype="string">kothari@ai.sri.com</email>
+<affiliations><Organization frameid="SRI" orgid="META" resource="#META:SRI" /></affiliations>
 </Person>
 </created>
 </credits>
@@ -237,25 +232,27 @@
 </dblink>
 <ec-number>EC-5.3.1.9<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:PGLUCISOM-ENZRXN" detail="low" frameid="PGLUCISOM-ENZRXN" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:PGLUCISOM-ENZRXN" detail="low" frameid="PGLUCISOM-ENZRXN" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<enzyme><Protein frameid="CPLX0-7877" orgid="META" resource="getxml?META:CPLX0-7877" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 <synonym datatype="string">phosphoglucose isomerase</synonym>
 <synonym datatype="string">D-glucose-6-phosphate-ketol-isomerase</synonym>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
-<enzyme><Protein frameid="CPLX0-7877" orgid="META" resource="getxml?META:CPLX0-7877" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-26635" detail="low" frameid="ENZRXN-26635" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-26635" detail="low" frameid="ENZRXN-26635" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="MONOMER-20593" orgid="META" resource="getxml?META:MONOMER-20593" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN185E-1429" detail="low" frameid="ENZRXN185E-1429" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN185E-1429" detail="low" frameid="ENZRXN185E-1429" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="CPLX-9244" orgid="META" resource="getxml?META:CPLX-9244" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-19638" detail="low" frameid="ENZRXN66-19638" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-19638" detail="low" frameid="ENZRXN66-19638" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="HS02693-MONOMER" orgid="META" resource="getxml?META:HS02693-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2701" detail="low" frameid="ENZRXN-2701" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2701" detail="low" frameid="ENZRXN-2701" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-381" orgid="META" resource="getxml?META:MONOMER-381" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 <synonym datatype="string">phosphohexose isomerase</synonym>
 <synonym datatype="string">phosphohexomutase</synonym>
 <synonym datatype="string">oxoisomerase</synonym>
@@ -264,27 +261,27 @@
 <synonym datatype="string">phosphoglucoisomerase</synonym>
 <synonym datatype="string">phosphohexoisomerase</synonym>
 <synonym datatype="string">D-glucose-6-phosphate ketol-isomerase</synonym>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-381" orgid="META" resource="getxml?META:MONOMER-381" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-17850" detail="low" frameid="ENZRXN-17850" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-17850" detail="low" frameid="ENZRXN-17850" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="MONOMER-15668" orgid="META" resource="getxml?META:MONOMER-15668" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12250" detail="low" frameid="ENZRXN-12250" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">phosphoglucose isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-12250" detail="low" frameid="ENZRXN-12250" orgid="META"><common-name datatype="string">phosphoglucose isomerase</common-name>
 <enzyme><Protein frameid="CPLX-6990" orgid="META" resource="getxml?META:CPLX-6990" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-6281" detail="low" frameid="ENZRXN-6281" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<synonym datatype="string">phosphoglucoisomerase</synonym>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-6281" detail="low" frameid="ENZRXN-6281" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="CPLX-4261" orgid="META" resource="getxml?META:CPLX-4261" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
+<synonym datatype="string">phosphoglucoisomerase</synonym>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-19884" detail="low" frameid="ENZRXN-19884" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-19884" detail="low" frameid="ENZRXN-19884" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="MONOMER-17039" orgid="META" resource="getxml?META:MONOMER-17039" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2863" detail="low" frameid="ENZRXN-2863" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2863" detail="low" frameid="ENZRXN-2863" orgid="META"><common-name datatype="string">glucose 6-phosphate isomerase</common-name>
+<enzyme><Protein frameid="MONOMER-544" orgid="META" resource="getxml?META:MONOMER-544" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 <synonym datatype="string">phosphoglucose isomerase</synonym>
 <synonym datatype="string">phosphohexose isomerase</synonym>
 <synonym datatype="string">phosphohexomutase</synonym>
@@ -295,33 +292,31 @@
 <synonym datatype="string">phosphohexoisomerase</synonym>
 <synonym datatype="string">D-glucose-6-phosphate ketol-isomerase</synonym>
 <synonym datatype="string">glucosephosphate isomerase</synonym>
-<common-name datatype="string">glucose 6-phosphate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-544" orgid="META" resource="getxml?META:MONOMER-544" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-2374" detail="low" frameid="ENZRXN66-2374" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">Glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-2374" detail="low" frameid="ENZRXN66-2374" orgid="META"><common-name datatype="string">Glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="HS02693-MONOMER" orgid="META" resource="getxml?META:HS02693-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13903" detail="low" frameid="ENZRXN-13903" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<synonym datatype="string">phosphoglucose isomerase</synonym>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13903" detail="low" frameid="ENZRXN-13903" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="MONOMER-13046" orgid="META" resource="getxml?META:MONOMER-13046" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
+<synonym datatype="string">phosphoglucose isomerase</synonym>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13898" detail="low" frameid="ENZRXN-13898" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13898" detail="low" frameid="ENZRXN-13898" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="MONOMER-13041" orgid="META" resource="getxml?META:MONOMER-13041" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13755" detail="low" frameid="ENZRXN-13755" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">phosphohexose isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13755" detail="low" frameid="ENZRXN-13755" orgid="META"><common-name datatype="string">phosphohexose isomerase</common-name>
 <enzyme><Protein frameid="MONOMER-12904" orgid="META" resource="getxml?META:MONOMER-12904" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13424" detail="low" frameid="ENZRXN-13424" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">phosphoglucose isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13424" detail="low" frameid="ENZRXN-13424" orgid="META"><common-name datatype="string">phosphoglucose isomerase</common-name>
 <enzyme><Protein frameid="AT4G24620-MONOMER" orgid="META" resource="getxml?META:AT4G24620-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2425" detail="low" frameid="ENZRXN-2425" orgid="META"><reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
-<common-name datatype="string">glucose-6-phosphate isomerase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-2425" detail="low" frameid="ENZRXN-2425" orgid="META"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
 <enzyme><Protein frameid="MONOMER-2301" orgid="META" resource="getxml?META:MONOMER-2301" /></enzyme>
+<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="#META:PGLUCISOM-RXN" /></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">1.3800049<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -332,14 +327,19 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="SUCSYN-PWY" orgid="META" resource="getxml?META:SUCSYN-PWY" /><Pathway frameid="PWY-6992" orgid="META" resource="getxml?META:PWY-6992" /><Pathway frameid="ANAGLYCOLYSIS-PWY" orgid="META" resource="getxml?META:ANAGLYCOLYSIS-PWY" /><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /><Pathway frameid="PWY-7385" orgid="META" resource="getxml?META:PWY-7385" /><Pathway frameid="PWY-8013" orgid="META" resource="getxml?META:PWY-8013" /><Pathway frameid="P341-PWY" orgid="META" resource="getxml?META:P341-PWY" /><Pathway frameid="UDPNACETYLGALSYN-PWY" orgid="META" resource="getxml?META:UDPNACETYLGALSYN-PWY" /><Pathway frameid="PWY-6981" orgid="META" resource="getxml?META:PWY-6981" /><Pathway frameid="PWY-6142" orgid="META" resource="getxml?META:PWY-6142" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY-622" orgid="META" resource="getxml?META:PWY-622" /><Pathway frameid="PWY66-399" orgid="META" resource="getxml?META:PWY66-399" /><Pathway frameid="PWY-5384" orgid="META" resource="getxml?META:PWY-5384" /><Pathway frameid="PWY-7238" orgid="META" resource="getxml?META:PWY-7238" /><Pathway frameid="PWY-3801" orgid="META" resource="getxml?META:PWY-3801" /><Pathway frameid="PWY-5054" orgid="META" resource="getxml?META:PWY-5054" /><Pathway frameid="RUMP-PWY" orgid="META" resource="getxml?META:RUMP-PWY" /><Pathway frameid="P122-PWY" orgid="META" resource="getxml?META:P122-PWY" /><Pathway frameid="PWY-5659" orgid="META" resource="getxml?META:PWY-5659" /><Pathway frameid="P124-PWY" orgid="META" resource="getxml?META:P124-PWY" /><Pathway frameid="UDPNAGSYN-PWY" orgid="META" resource="getxml?META:UDPNAGSYN-PWY" /><Pathway frameid="PWY-621" orgid="META" resource="getxml?META:PWY-621" /><Pathway frameid="PWY-5514" orgid="META" resource="getxml?META:PWY-5514" /><Pathway frameid="PWY-7347" orgid="META" resource="getxml?META:PWY-7347" /></in-pathway>
 <left><Compound class="true" frameid="D-glucopyranose-6-phosphate" orgid="META" resource="getxml?META:D-glucopyranose-6-phosphate" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right>
+<systematic-name datatype="string">&lt;small&gt;D&lt;/small&gt;-glucose-6-phosphate aldose-ketose-isomerase</systematic-name>
 </Reaction>
 </ptools-xml>

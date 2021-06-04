@@ -1,0 +1,77 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:OXALODECARB-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:OXALODECARB-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Reaction ID="ARA:OXALODECARB-RXN" detail="full" frameid="OXALODECARB-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-4.1.1.112<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-14996" detail="low" frameid="ENZRXNQT-14996" orgid="ARA"><enzyme><Protein frameid="AT4G15940-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G15940-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-14940" detail="low" frameid="ENZRXNQT-14940" orgid="ARA"><enzyme><Protein frameid="AT3G16700-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G16700-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-13257" detail="low" frameid="ENZRXNQT-13257" orgid="ARA"><enzyme><Protein frameid="AT3G02770-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G02770-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-11127" detail="low" frameid="ENZRXNQT-11127" orgid="ARA"><enzyme><Protein frameid="MONOMERQT-7944" orgid="ARA" resource="getxml?ARA:MONOMERQT-7944" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-10670" detail="low" frameid="ENZRXNQT-10670" orgid="ARA"><enzyme><Protein frameid="MONOMERQT-7690" orgid="ARA" resource="getxml?ARA:MONOMERQT-7690" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-10215" detail="low" frameid="ENZRXNQT-10215" orgid="ARA"><enzyme><Protein frameid="AT5G58330-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G58330-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-10211" detail="low" frameid="ENZRXNQT-10211" orgid="ARA"><enzyme><Protein frameid="AT5G25880-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G25880-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-10210" detail="low" frameid="ENZRXNQT-10210" orgid="ARA"><enzyme><Protein frameid="AT5G11670-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G11670-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-10205" detail="low" frameid="ENZRXNQT-10205" orgid="ARA"><enzyme><Protein frameid="AT2G19900-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G19900-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ARA:ENZRXNQT-10204" detail="low" frameid="ENZRXNQT-10204" orgid="ARA"><enzyme><Protein frameid="AT1G79750-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G79750-MONOMER" /></enzyme>
+<reaction><Reaction frameid="OXALODECARB-RXN" orgid="ARA" resource="#ARA:OXALODECARB-RXN" /></reaction>
+<common-name datatype="string">oxaloacetate decarboxylase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-4.7817535</gibbs-0>
+<in-pathway><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></in-pathway>
+<left><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></left>
+<left><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="getxml?ARA:OXALACETIC_ACID" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="PYRUVATE" orgid="ARA" resource="getxml?ARA:PYRUVATE" /></right>
+<right><Compound frameid="CARBON-DIOXIDE" orgid="ARA" resource="getxml?ARA:CARBON-DIOXIDE" /></right>
+<credits><imported-from-meta><date datatype="date">2015-03-16</date>
+<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><url datatype="string">http://plantcyc.org</url>
+<abbrev-name datatype="string">PMN</abbrev-name>
+<common-name datatype="string">Carnegie Institution for Science</common-name>
+</Organization>
+<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
+<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+</Organization>
+</affiliations>
+<common-name datatype="string">Peifen Zhang</common-name>
+</Person>
+<Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></imported-from-meta>
+</credits>
+</Reaction>
+</ptools-xml>

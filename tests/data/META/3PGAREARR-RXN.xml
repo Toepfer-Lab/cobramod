@@ -1,16 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:3PGAREARR-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:3PGAREARR-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:3PGAREARR-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:3PGAREARR-RXN" detail="full" frameid="3PGAREARR-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="G3P" orgid="META" resource="getxml?META:G3P" /></right>
 <dblink><dblink-db>RHEA</dblink-db>
 <dblink-oid>15904</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -193,7 +189,9 @@
 </dblink>
 <ec-number>EC-5.4.2.12<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:PGMI-ENZRXN" detail="low" frameid="PGMI-ENZRXN" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:PGMI-ENZRXN" detail="low" frameid="PGMI-ENZRXN" orgid="META"><common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
+<enzyme><Protein frameid="PGMI-MONOMER" orgid="META" resource="getxml?META:PGMI-MONOMER" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 <synonym datatype="string">iPGM</synonym>
 <synonym datatype="string">PGAM, cofactor independent</synonym>
 <synonym datatype="string">phosphoglycerate mutase, 2,3-bisphosphoglycerate-independent</synonym>
@@ -203,50 +201,48 @@
 <synonym datatype="string">phosphoglycerate phosphomutase</synonym>
 <synonym datatype="string">D-phosphoglycerate 2,3-phosphomutase</synonym>
 <synonym datatype="string">phosphoglycerate mutase</synonym>
-<common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
-<enzyme><Protein frameid="PGMI-MONOMER" orgid="META" resource="getxml?META:PGMI-MONOMER" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN490-54" detail="low" frameid="ENZRXN490-54" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN490-54" detail="low" frameid="ENZRXN490-54" orgid="META"><common-name datatype="string">phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="SYNPCC7942_0485-MONOMER" orgid="META" resource="getxml?META:SYNPCC7942_0485-MONOMER" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-15984" detail="low" frameid="ENZRXN-15984" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-15984" detail="low" frameid="ENZRXN-15984" orgid="META"><common-name datatype="string">phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="MONOMER-14536" orgid="META" resource="getxml?META:MONOMER-14536" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-15983" detail="low" frameid="ENZRXN-15983" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-15983" detail="low" frameid="ENZRXN-15983" orgid="META"><common-name datatype="string">phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="MONOMER-14535" orgid="META" resource="getxml?META:MONOMER-14535" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13700" detail="low" frameid="ENZRXN-13700" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">cofactor-independent phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13700" detail="low" frameid="ENZRXN-13700" orgid="META"><common-name datatype="string">cofactor-independent phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="MONOMER-12861" orgid="META" resource="getxml?META:MONOMER-12861" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13698" detail="low" frameid="ENZRXN-13698" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">cofactor-independent phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13698" detail="low" frameid="ENZRXN-13698" orgid="META"><common-name datatype="string">cofactor-independent phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="MONOMER-12859" orgid="META" resource="getxml?META:MONOMER-12859" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-9327" detail="low" frameid="ENZRXN-9327" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">2,3-bisphosphoglycerate-dependent phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-9327" detail="low" frameid="ENZRXN-9327" orgid="META"><common-name datatype="string">2,3-bisphosphoglycerate-dependent phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="MONOMER-9165" orgid="META" resource="getxml?META:MONOMER-9165" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-5065" detail="low" frameid="ENZRXN-5065" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-5065" detail="low" frameid="ENZRXN-5065" orgid="META"><common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="CPLX-3845" orgid="META" resource="getxml?META:CPLX-3845" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-5064" detail="low" frameid="ENZRXN-5064" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
-<common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-5064" detail="low" frameid="ENZRXN-5064" orgid="META"><common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
 <enzyme><Protein frameid="CPLX-3844" orgid="META" resource="getxml?META:CPLX-3844" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2869" detail="low" frameid="ENZRXN-2869" orgid="META"><reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2869" detail="low" frameid="ENZRXN-2869" orgid="META"><common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
+<enzyme><Protein frameid="MONOMER-550" orgid="META" resource="getxml?META:MONOMER-550" /></enzyme>
+<reaction><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="#META:3PGAREARR-RXN" /></reaction>
 <synonym datatype="string">PGAM</synonym>
 <synonym datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</synonym>
 <synonym datatype="string">BPG-independent PGAM</synonym>
 <synonym datatype="string">phosphoglycerate phosphomutase</synonym>
 <synonym datatype="string">phosphoglyceromutase</synonym>
 <synonym datatype="string">D-phosphoglycerate 2,3-phosphomutase</synonym>
-<common-name datatype="string">2,3-bisphosphoglycerate-independent phosphoglycerate mutase</common-name>
-<enzyme><Protein frameid="MONOMER-550" orgid="META" resource="getxml?META:MONOMER-550" /></enzyme>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-1.3200073<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -257,14 +253,18 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="ANAGLYCOLYSIS-PWY" orgid="META" resource="getxml?META:ANAGLYCOLYSIS-PWY" /><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /><Pathway frameid="PWY-5484" orgid="META" resource="getxml?META:PWY-5484" /><Pathway frameid="P341-PWY" orgid="META" resource="getxml?META:P341-PWY" /><Pathway frameid="PWY-2221" orgid="META" resource="getxml?META:PWY-2221" /><Pathway frameid="PWY-6142" orgid="META" resource="getxml?META:PWY-6142" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY-7003" orgid="META" resource="getxml?META:PWY-7003" /><Pathway frameid="P124-PWY" orgid="META" resource="getxml?META:P124-PWY" /><Pathway frameid="PWY-6901" orgid="META" resource="getxml?META:PWY-6901" /><Pathway frameid="PWY-7218" orgid="META" resource="getxml?META:PWY-7218" /><Pathway frameid="PWY-7124" orgid="META" resource="getxml?META:PWY-7124" /><Pathway frameid="PWY-6886" orgid="META" resource="getxml?META:PWY-6886" /><Pathway frameid="PWY-5723" orgid="META" resource="getxml?META:PWY-5723" /><Pathway frameid="PWY-1042" orgid="META" resource="getxml?META:PWY-1042" /></in-pathway>
 <left><Compound frameid="2-PG" orgid="META" resource="getxml?META:2-PG" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="G3P" orgid="META" resource="getxml?META:G3P" /></right>
 </Reaction>
 </ptools-xml>

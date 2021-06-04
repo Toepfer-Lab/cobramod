@@ -13,6 +13,7 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
             rn01120  Microbial metabolism in diverse environments
             rn01200  Carbon metabolism
             rn01230  Biosynthesis of amino acids
+            rn01240  Biosynthesis of cofactors
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00049  Adenine ribonucleotide biosynthesis, IMP => ADP,ATP

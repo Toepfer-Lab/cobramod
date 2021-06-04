@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:CPD-15323"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-15323"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-15323</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:CPD-15323" detail="full" frameid="CPD-15323" orgid="META"><parent><Compound class="true" frameid="Aromatic-Acid" orgid="META" resource="getxml?META:Aromatic-Acid" /></parent>
@@ -12,32 +12,26 @@
 <string title="smiles">C(=O)([O-])CC(O)(C([O-])=O)CC1(\C=C/C=C\C=1)</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">222.197</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">224.06847</monoisotopic-mw>
-<synonym datatype="string">2-benzylmalate</synonym>
-<synonym datatype="string">2-benzylmalic acid</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-14463" orgid="META" resource="getxml?META:RXN-14463" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-14462" orgid="META" resource="getxml?META:RXN-14462" /></appears-in-right-side-of>
-<citation><Publication ID="META:PUB-23354699" detail="full" frameid="PUB-23354699" orgid="META"><pubmed-id datatype="string">23354699</pubmed-id>
+<citation><Publication ID="META:PUB-23354699" detail="full" frameid="PUB-23354699" orgid="META"><author datatype="string">Koketsu K</author>
+<author datatype="string">Mitsuhashi S</author>
+<author datatype="string">Tabata K</author>
+<pubmed-id datatype="string">23354699</pubmed-id>
 <source datatype="string">Appl Environ Microbiol 79(7);2201-8</source>
 <title datatype="string">Identification of homophenylalanine biosynthetic genes from the cyanobacterium Nostoc punctiforme PCC73102 and application to its microbial production by Escherichia coli.</title>
 <year datatype="integer">2013</year>
-<author datatype="string">Koketsu K</author>
-<author datatype="string">Mitsuhashi S</author>
-<author datatype="string">Tabata K</author>
 </Publication>
 </citation>
 <common-name datatype="string">2-benzyl-2-hydroxybutanedioate</common-name>
 <credits><created><date datatype="date">2013-04-26</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
 </credits>
@@ -59,14 +53,20 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C11H12O5/c12-9(13)7-11(16,10(14)15)6-8-4-2-1-3-5-8/h1-5,16H,6-7H2,(H,12,13)(H,14,15)/p-2</inchi>
 <inchi-key datatype="string">InChIKey=ZNAJIKYTBCGAQQ-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">222.197</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">224.06847</monoisotopic-mw>
+<synonym datatype="string">2-benzylmalate</synonym>
+<synonym datatype="string">2-benzylmalic acid</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-14463" orgid="META" resource="getxml?META:RXN-14463" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-14462" orgid="META" resource="getxml?META:RXN-14462" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

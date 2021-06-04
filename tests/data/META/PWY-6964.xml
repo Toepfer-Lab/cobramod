@@ -1,158 +1,11 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:PWY-6964"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PWY-6964"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PWY-6964</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Pathway ID="META:PWY-6964" detail="full" frameid="PWY-6964" orgid="META"><parent><Pathway class="true" frameid="Ammonia-Assimilation" orgid="META" resource="getxml?META:Ammonia-Assimilation" /></parent>
-<reaction-ordering><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><predecessor-reactions><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-layout><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><direction>R2L</direction>
-<left-primaries><Compound frameid="GLT" orgid="META" resource="getxml?META:GLT" /></left-primaries>
-<right-primaries><Compound frameid="GLN" orgid="META" resource="getxml?META:GLN" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="GLT" orgid="META" resource="getxml?META:GLT" /><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></left-primaries>
-<right-primaries><Compound frameid="GLN" orgid="META" resource="getxml?META:GLN" /></right-primaries>
-</reaction-layout>
-<reaction-list><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /></reaction-list>
-<species><Organism ID="META:TAX-3871" class="true" detail="full" frameid="TAX-3871" orgid="META"><parent><Organism class="true" frameid="TAX-3869" orgid="META" resource="getxml?META:TAX-3869" /></parent>
-<rank>species</rank>
-<synonym datatype="string">narrow-leaved blue lupine</synonym>
-<common-name datatype="string">Lupinus angustifolius</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3871</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3871</dblink-URL>
-</dblink>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4530" class="true" detail="full" frameid="TAX-4530" orgid="META"><parent><Organism class="true" frameid="TAX-4527" orgid="META" resource="getxml?META:TAX-4527" /></parent>
-<rank>species</rank>
-<synonym datatype="string">rice</synonym>
-<synonym datatype="string">red rice &lt;Oryza sativa&gt;</synonym>
-<synonym datatype="string">red rice</synonym>
-<common-name datatype="string">Oryza sativa</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4530</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4530</dblink-URL>
-</dblink>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3888" class="true" detail="full" frameid="TAX-3888" orgid="META"><parent><Organism class="true" frameid="TAX-3887" orgid="META" resource="getxml?META:TAX-3887" /></parent>
-<rank>species</rank>
-<synonym datatype="string">peas</synonym>
-<synonym datatype="string">pea</synonym>
-<synonym datatype="string">garden pea</synonym>
-<common-name datatype="string">Pisum sativum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3888</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3888</dblink-URL>
-</dblink>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-1140" class="true" detail="full" frameid="TAX-1140" orgid="META"><parent><Organism class="true" frameid="TAX-32046" orgid="META" resource="getxml?META:TAX-32046" /></parent>
-<rank>strain</rank>
-<strain-name datatype="string">PCC 7942</strain-name>
-<synonym datatype="string">Synechococcus elongatus PCC 7942</synonym>
-<synonym datatype="string">Synechococcus sp. PCC 7942</synonym>
-<synonym datatype="string">Synechococcus sp. IAM M-200</synonym>
-<synonym datatype="string">Synechococcus leopoliensis UTEX 2434</synonym>
-<synonym datatype="string">Synechococcus leopoliensis strain PCC 7942</synonym>
-<synonym datatype="string">Anacystis nidulans R2</synonym>
-<common-name datatype="string">Synechococcus elongatus</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>1140</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1140</dblink-URL>
-</dblink>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-29760" class="true" detail="full" frameid="TAX-29760" orgid="META"><parent><Organism class="true" frameid="TAX-3603" orgid="META" resource="getxml?META:TAX-3603" /></parent>
-<rank>species</rank>
-<synonym datatype="string">wine grape</synonym>
-<synonym datatype="string">Vitis vinifera subsp. vinifera</synonym>
-<common-name datatype="string">Vitis vinifera</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>29760</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=29760</dblink-URL>
-</dblink>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4577" class="true" detail="full" frameid="TAX-4577" orgid="META"><parent><Organism class="true" frameid="TAX-4575" orgid="META" resource="getxml?META:TAX-4575" /></parent>
-<rank>species</rank>
-<synonym datatype="string">Zea mays var. japonica</synonym>
-<synonym datatype="string">maize &lt;Zea mays&gt;</synonym>
-<synonym datatype="string">maize</synonym>
-<common-name datatype="string">Zea mays</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4577</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4577</dblink-URL>
-</dblink>
-</Organism>
-</species>
-<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
-<rank>strain</rank>
-<strain-name datatype="string">col</strain-name>
-<synonym datatype="string">Arabidopsis thaliana col</synonym>
-<common-name datatype="string">Arabidopsis thaliana</common-name>
-</Organism>
-</species>
-<super-pathways><Pathway frameid="PWY-3282" orgid="META" resource="getxml?META:PWY-3282" /></super-pathways>
-<synonym datatype="string">GS/GOGAT pathway</synonym>
-<taxonomic-range><Organism ID="META:TAX-1117" class="true" detail="full" frameid="TAX-1117" orgid="META"><parent><Organism class="true" frameid="TAX-1798711" orgid="META" resource="getxml?META:TAX-1798711" /></parent>
-<rank>phylum</rank>
-<synonym datatype="string">Oxyphotobacteria</synonym>
-<synonym datatype="string">Oxygenic photosynthetic bacteria</synonym>
-<synonym datatype="string">cyanophytes</synonym>
-<synonym datatype="string">Cyanophyta</synonym>
-<synonym datatype="string">Cyanophycota</synonym>
-<synonym datatype="string">Cyanophyceae</synonym>
-<synonym datatype="string">blue-green bacteria</synonym>
-<synonym datatype="string">blue-green algae</synonym>
-<common-name datatype="string">Cyanobacteria</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>1117</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1117</dblink-URL>
-</dblink>
-</Organism>
-<Organism ID="META:TAX-2836" class="true" detail="full" frameid="TAX-2836" orgid="META"><parent><Organism class="true" frameid="TAX-33634" orgid="META" resource="getxml?META:TAX-33634" /></parent>
-<rank>phylum</rank>
-<synonym datatype="string">diatoms &lt;genbank common name&gt;</synonym>
-<synonym datatype="string">diatoms</synonym>
-<synonym datatype="string">Diatomophyceae</synonym>
-<synonym datatype="string">Diatomea</synonym>
-<synonym datatype="string">Diatomeae</synonym>
-<synonym datatype="string">bacillariophytes</synonym>
-<common-name datatype="string">Bacillariophyta</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2836</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2836</dblink-URL>
-</dblink>
-</Organism>
-<Organism ID="META:TAX-33090" class="true" detail="full" frameid="TAX-33090" orgid="META"><parent><Organism class="true" frameid="TAX-2759" orgid="META" resource="getxml?META:TAX-2759" /></parent>
-<rank>kingdom</rank>
-<synonym datatype="string">green plants &lt;common name&gt;</synonym>
-<synonym datatype="string">green plants</synonym>
-<synonym datatype="string">Chloroplastida</synonym>
-<synonym datatype="string">chlorophyte/embryophyte group</synonym>
-<synonym datatype="string">Chlorophyta/Embryophyta group</synonym>
-<synonym datatype="string">Chlorobionta</synonym>
-<common-name datatype="string">Viridiplantae</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>33090</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33090</dblink-URL>
-</dblink>
-</Organism>
-</taxonomic-range>
 <evidence><Evidence-Code ID="META:EV-EXP-TAS" class="true" detail="full" frameid="EV-EXP-TAS" orgid="META"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="getxml?META:EV-EXP" /></parent>
 <comment datatype="string">Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
 in another database -- that itself did not describe an experiment supporting the
@@ -165,12 +18,12 @@ In general, references to the primary literature are preferred,
 but this code can be used when the original article is difficult to locate.</comment>
 <common-name datatype="string">Traceable author statement to experimental support</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-11912240" detail="full" frameid="PUB-11912240" orgid="META"><pubmed-id datatype="string">11912240</pubmed-id>
+<Publication ID="META:PUB-11912240" detail="full" frameid="PUB-11912240" orgid="META"><author datatype="string">Miflin BJ</author>
+<author datatype="string">Habash DZ</author>
+<pubmed-id datatype="string">11912240</pubmed-id>
 <source datatype="string">J Exp Bot 53(370);979-87</source>
 <title datatype="string">The role of glutamine synthetase and glutamate dehydrogenase in nitrogen assimilation and possibilities for improvement in the nitrogen utilization of crops.</title>
 <year datatype="integer">2002</year>
-<author datatype="string">Miflin BJ</author>
-<author datatype="string">Habash DZ</author>
 </Publication>
 </evidence>
 <comment datatype="string">The primary nitrogen assimilation routes in photosynthetic eukaryotes and prokaryotes are nitrogen fixation, nitrate assimilation, and ammonia assimilation. Ammonia is liberated by photorespiration, protein and amino acid metabolism, and the breakdown of nitrogen transport compounds. The rate of ammonia generation during photorespiration is about 10 times the rate of nitrate assimilation.
@@ -182,18 +35,167 @@ The pathway includes two steps catalyzed by &lt;a href="/gene?orgid=META&amp;id=
 An NADPH-dependent version of GOGAT is found in non-photosynthetic bacteria and archaea (see &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=AMMASSIM-PWY"&gt;ammonia assimilation cycle III&lt;/a&gt;).</comment>
 <common-name datatype="string">ammonia assimilation cycle II</common-name>
 <credits><created><date datatype="date">2011-12-08</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
 </credits>
 <in-pathway><Pathway frameid="PWY-3282" orgid="META" resource="getxml?META:PWY-3282" /></in-pathway>
+<reaction-ordering><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><predecessor-reactions><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><direction>R2L</direction>
+<left-primaries><Compound frameid="GLT" orgid="META" resource="getxml?META:GLT" /></left-primaries>
+<right-primaries><Compound frameid="GLN" orgid="META" resource="getxml?META:GLN" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /><direction>L2R</direction>
+<left-primaries><Compound frameid="GLT" orgid="META" resource="getxml?META:GLT" /><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></left-primaries>
+<right-primaries><Compound frameid="GLN" orgid="META" resource="getxml?META:GLN" /></right-primaries>
+</reaction-layout>
+<reaction-list><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="META" resource="getxml?META:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><Reaction frameid="GLUTAMINESYN-RXN" orgid="META" resource="getxml?META:GLUTAMINESYN-RXN" /></reaction-list>
+<species><Organism ID="META:TAX-3871" class="true" detail="full" frameid="TAX-3871" orgid="META"><parent><Organism class="true" frameid="TAX-3869" orgid="META" resource="getxml?META:TAX-3869" /></parent>
+<common-name datatype="string">Lupinus angustifolius</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3871</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3871</dblink-URL>
+</dblink>
+<rank>species</rank>
+<synonym datatype="string">narrow-leaved blue lupine</synonym>
+</Organism>
+</species>
+<species><Organism ID="META:TAX-4530" class="true" detail="full" frameid="TAX-4530" orgid="META"><parent><Organism class="true" frameid="TAX-4527" orgid="META" resource="getxml?META:TAX-4527" /></parent>
+<common-name datatype="string">Oryza sativa</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4530</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4530</dblink-URL>
+</dblink>
+<rank>species</rank>
+<synonym datatype="string">rice</synonym>
+<synonym datatype="string">red rice &lt;Oryza sativa&gt;</synonym>
+<synonym datatype="string">red rice</synonym>
+</Organism>
+</species>
+<species><Organism ID="META:TAX-3888" class="true" detail="full" frameid="TAX-3888" orgid="META"><parent><Organism class="true" frameid="TAX-3887" orgid="META" resource="getxml?META:TAX-3887" /></parent>
+<common-name datatype="string">Pisum sativum</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3888</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3888</dblink-URL>
+</dblink>
+<rank>species</rank>
+<synonym datatype="string">peas</synonym>
+<synonym datatype="string">pea</synonym>
+<synonym datatype="string">garden pea</synonym>
+</Organism>
+</species>
+<species><Organism ID="META:TAX-1140" class="true" detail="full" frameid="TAX-1140" orgid="META"><parent><Organism class="true" frameid="TAX-32046" orgid="META" resource="getxml?META:TAX-32046" /></parent>
+<common-name datatype="string">Synechococcus elongatus</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>1140</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1140</dblink-URL>
+</dblink>
+<rank>strain</rank>
+<strain-name datatype="string">PCC 7942 = FACHB-805</strain-name>
+<synonym datatype="string">Synechococcus elongatus PCC 7942 = FACHB-805</synonym>
+<synonym datatype="string">Synechococcus sp. PCC 7942</synonym>
+<synonym datatype="string">Synechococcus sp. IAM M-200</synonym>
+<synonym datatype="string">Synechococcus sp. FACHB-805</synonym>
+<synonym datatype="string">Synechococcus leopoliensis UTEX 2434</synonym>
+<synonym datatype="string">Synechococcus leopoliensis strain PCC 7942</synonym>
+<synonym datatype="string">Synechococcus elongatus PCC 7942</synonym>
+<synonym datatype="string">Anacystis nidulans R2</synonym>
+</Organism>
+</species>
+<species><Organism ID="META:TAX-29760" class="true" detail="full" frameid="TAX-29760" orgid="META"><parent><Organism class="true" frameid="TAX-3603" orgid="META" resource="getxml?META:TAX-3603" /></parent>
+<common-name datatype="string">Vitis vinifera</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>29760</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=29760</dblink-URL>
+</dblink>
+<rank>species</rank>
+<synonym datatype="string">wine grape</synonym>
+<synonym datatype="string">Vitis vinifera subsp. vinifera</synonym>
+</Organism>
+</species>
+<species><Organism ID="META:TAX-4577" class="true" detail="full" frameid="TAX-4577" orgid="META"><parent><Organism class="true" frameid="TAX-4575" orgid="META" resource="getxml?META:TAX-4575" /></parent>
+<common-name datatype="string">Zea mays</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4577</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4577</dblink-URL>
+</dblink>
+<rank>species</rank>
+<synonym datatype="string">Zea mays var. japonica</synonym>
+<synonym datatype="string">maize &lt;Zea mays&gt;</synonym>
+<synonym datatype="string">maize</synonym>
+</Organism>
+</species>
+<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
+<common-name datatype="string">Arabidopsis thaliana</common-name>
+<rank>strain</rank>
+<strain-name datatype="string">col</strain-name>
+<synonym datatype="string">Arabidopsis thaliana col</synonym>
+</Organism>
+</species>
+<super-pathways><Pathway frameid="PWY-3282" orgid="META" resource="getxml?META:PWY-3282" /></super-pathways>
+<synonym datatype="string">GS/GOGAT pathway</synonym>
+<taxonomic-range><Organism ID="META:TAX-1117" class="true" detail="full" frameid="TAX-1117" orgid="META"><parent><Organism class="true" frameid="TAX-1798711" orgid="META" resource="getxml?META:TAX-1798711" /></parent>
+<common-name datatype="string">Cyanobacteria</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>1117</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1117</dblink-URL>
+</dblink>
+<rank>phylum</rank>
+<synonym datatype="string">Oxyphotobacteria</synonym>
+<synonym datatype="string">Oxygenic photosynthetic bacteria</synonym>
+<synonym datatype="string">cyanophytes</synonym>
+<synonym datatype="string">Cyanophyta</synonym>
+<synonym datatype="string">Cyanophycota</synonym>
+<synonym datatype="string">Cyanophyceae</synonym>
+<synonym datatype="string">blue-green bacteria</synonym>
+<synonym datatype="string">blue-green algae</synonym>
+</Organism>
+<Organism ID="META:TAX-2836" class="true" detail="full" frameid="TAX-2836" orgid="META"><parent><Organism class="true" frameid="TAX-2696291" orgid="META" resource="getxml?META:TAX-2696291" /></parent>
+<common-name datatype="string">Bacillariophyta</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2836</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2836</dblink-URL>
+</dblink>
+<rank>phylum</rank>
+<synonym datatype="string">diatoms &lt;genbank common name&gt;</synonym>
+<synonym datatype="string">diatoms</synonym>
+<synonym datatype="string">Diatomophyceae</synonym>
+<synonym datatype="string">Diatomea</synonym>
+<synonym datatype="string">Diatomeae</synonym>
+<synonym datatype="string">bacillariophytes</synonym>
+</Organism>
+<Organism ID="META:TAX-33090" class="true" detail="full" frameid="TAX-33090" orgid="META"><parent><Organism class="true" frameid="TAX-2759" orgid="META" resource="getxml?META:TAX-2759" /></parent>
+<common-name datatype="string">Viridiplantae</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>33090</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33090</dblink-URL>
+</dblink>
+<rank>kingdom</rank>
+<synonym datatype="string">green plants &lt;common name&gt;</synonym>
+<synonym datatype="string">green plants</synonym>
+<synonym datatype="string">Chloroplastida</synonym>
+<synonym datatype="string">chlorophyte/embryophyte group</synonym>
+<synonym datatype="string">Chlorophyta/Embryophyta group</synonym>
+<synonym datatype="string">Chlorobionta</synonym>
+</Organism>
+</taxonomic-range>
 </Pathway>
 </ptools-xml>

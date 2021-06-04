@@ -1,0 +1,81 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-693"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-693</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-693" detail="full" frameid="CPD-693" orgid="ARA"><parent><Compound class="true" frameid="Abscisic-Acid" orgid="ARA" resource="getxml?ARA:Abscisic-Acid" /></parent>
+<cml><molecule formalCharge="-1" id="CPD-693" title="2-cis-abscisate"><atomArray><atom elementType="C" id="CPD-693-atom1" x2="5003.0" y2="2475.0" /><atom elementType="C" id="CPD-693-atom2" x2="1429.0" y2="1237.0" /><atom elementType="C" id="CPD-693-atom3" x2="2143.0" y2="4126.0" /><atom elementType="C" id="CPD-693-atom4" x2="2858.0" y2="3712.0" /><atom elementType="C" id="CPD-693-atom5" x2="3573.0" y2="2476.0" /><atom elementType="C" id="CPD-693-atom6" x2="2858.0" y2="2063.0" /><atom elementType="C" id="CPD-693-atom7" x2="4288.0" y2="1237.0" /><atom elementType="C" id="CPD-693-atom8" x2="715.0" y2="2476.0" /><atom elementType="C" id="CPD-693-atom9" x2="1429.0" y2="3714.0" /><atom elementType="C" id="CPD-693-atom10" x2="4288.0" y2="2063.0" /><atom elementType="C" id="CPD-693-atom11" x2="1429.0" y2="2063.0" /><atom elementType="C" id="CPD-693-atom12" x2="715.0" y2="3300.0" /><atom elementType="C" id="CPD-693-atom13" x2="3575.0" y2="825.0" /><atom elementType="C" id="CPD-693-atom14" x2="2143.0" y2="3300.0" /><atom elementType="C" id="CPD-693-atom15" x2="2143.0" y2="2476.0" /><atom elementType="O" id="CPD-693-atom16" x2="0.0" y2="3714.0" /><atom elementType="O" formalCharge="-1" id="CPD-693-atom17" x2="2860.0" y2="1238.0" /><atom elementType="O" id="CPD-693-atom18" x2="3575.0" y2="0.0" /><atom elementType="O" id="CPD-693-atom19" x2="2143.0" y2="1650.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-693-atom15 CPD-693-atom6" id="CPD-693-bond1" order="1" /><bond atomRefs="CPD-693-atom15 CPD-693-atom19" id="CPD-693-bond2" order="1" /><bond atomRefs="CPD-693-atom15 CPD-693-atom11" id="CPD-693-bond3" order="1" /><bond atomRefs="CPD-693-atom11 CPD-693-atom2" id="CPD-693-bond4" order="1" /><bond atomRefs="CPD-693-atom8 CPD-693-atom11" id="CPD-693-bond5" order="2" /><bond atomRefs="CPD-693-atom15 CPD-693-atom14" id="CPD-693-bond6" order="1" /><bond atomRefs="CPD-693-atom14 CPD-693-atom9" id="CPD-693-bond7" order="1" /><bond atomRefs="CPD-693-atom9 CPD-693-atom12" id="CPD-693-bond8" order="1" /><bond atomRefs="CPD-693-atom12 CPD-693-atom8" id="CPD-693-bond9" order="1" /><bond atomRefs="CPD-693-atom12 CPD-693-atom16" id="CPD-693-bond10" order="2" /><bond atomRefs="CPD-693-atom6 CPD-693-atom5" id="CPD-693-bond11" order="2" /><bond atomRefs="CPD-693-atom5 CPD-693-atom10" id="CPD-693-bond12" order="1" /><bond atomRefs="CPD-693-atom10 CPD-693-atom7" id="CPD-693-bond13" order="2" /><bond atomRefs="CPD-693-atom7 CPD-693-atom13" id="CPD-693-bond14" order="1" /><bond atomRefs="CPD-693-atom10 CPD-693-atom1" id="CPD-693-bond15" order="1" /><bond atomRefs="CPD-693-atom14 CPD-693-atom3" id="CPD-693-bond16" order="1" /><bond atomRefs="CPD-693-atom14 CPD-693-atom4" id="CPD-693-bond17" order="1" /><bond atomRefs="CPD-693-atom13 CPD-693-atom17" id="CPD-693-bond18" order="1" /><bond atomRefs="CPD-693-atom13 CPD-693-atom18" id="CPD-693-bond19" order="2" /></bondArray>
+<formula concise="C 15 H 19 O 4" /><float title="molecularWeight" units="g/mol">263.313</float>
+<string title="smiles">CC(\C=C\[C@@]1(C(C)(C)CC(=O)\C=C(C)/1)O)=C\C(=O)[O-]</string>
+</molecule>
+</cml>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Abscisic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Abscisic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB35140</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB35140</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>5584824</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/5584824</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7251168</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7251168</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7251168</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7251168</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>37569</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:37569</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C06082</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C06082</dblink-URL>
+</dblink>
+<synonym datatype="string">abscisic acid</synonym>
+<synonym datatype="string">ABA</synonym>
+<synonym datatype="string">abscisate</synonym>
+<synonym datatype="string">(+)-ABA</synonym>
+<synonym datatype="string">(+)-&lt;i&gt;S&lt;/i&gt;-ABA</synonym>
+<synonym datatype="string">abscisin II</synonym>
+<synonym datatype="string">2-&lt;i&gt;cis&lt;/i&gt;-ABA</synonym>
+<synonym datatype="string">(+)-abscisate</synonym>
+<synonym datatype="string">2-&lt;i&gt;cis&lt;/i&gt;-abscisic acid</synonym>
+<synonym datatype="string">(7E,9Z)-(6S)-6-hydroxy-3-oxo-11-apo-&amp;epsilon;-caroten-11-oate</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">97.69923</gibbs-0>
+<inchi datatype="string">InChI=1S/C15H20O4/c1-10(7-13(17)18)5-6-15(19)11(2)8-12(16)9-14(15,3)4/h5-8,19H,9H2,1-4H3,(H,17,18)/p-1/b6-5+,10-7-/t15-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=JLIDBLDQVAYHNE-YKALOCIXSA-M</inchi-key>
+<molecular-weight datatype="float" units="Daltons">263.313</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">264.13617</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-16460" orgid="ARA" resource="getxml?ARA:RXN-16460" /><Reaction frameid="1.14.13.93-RXN" orgid="ARA" resource="getxml?ARA:1.14.13.93-RXN" /><Reaction frameid="RXN-8155" orgid="ARA" resource="getxml?ARA:RXN-8155" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-11469" orgid="ARA" resource="getxml?ARA:RXN-11469" /><Reaction frameid="1.2.3.14-RXN" orgid="ARA" resource="getxml?ARA:1.2.3.14-RXN" /></appears-in-right-side-of>
+<comment datatype="string">&lt;a href="/compound?orgid=ARA&amp;id=CPD-693"&gt;Abscisic acid&lt;/a&gt; (ABA) is an isoprenoid plant hormone that was initially thought to be a signaling molecule whose accumulation induces the abscission of leaves (abscission is the process by which a plant drops one or more of its parts, such as a leaf, fruit, flower or seed), hence its name. Now, however, it is known that abscission is usually regulated by ethylene, and abscisic acid is involved in the process only in a small number of plants.
+
+In most plants the accumulation of ABA appears to be a signal for other processes.
+
+In seeds, ABA plays a dual role in embryo growth during developmen. In early embryogenesis ABA prevents seed abortion and promotes embryo growth [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5b12417697%5d"&gt;a&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/14716564"&gt;Frey04&lt;/a&gt;]. In contrast, during late embryogenesis, when the hormone level increases, ABA blocks the embryo growth by counteracting the action of gibberellin to promote germination [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10759503"&gt;White00&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11124119"&gt;Raz01&lt;/a&gt;].
+
+In other tissues ABA-mediated signalling plays an important part in plant responses to environmental stress and plant pathogens, such as development of desiccation tolerance [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10611388"&gt;Qin99&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11842158"&gt;Qin02&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11779861"&gt;Xiong02&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12221975"&gt;Zhu02&lt;/a&gt;], suppression of vivipary [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10753527"&gt;Nambara00&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11124119"&gt;Raz01&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15363412"&gt;Gazzarrini04&lt;/a&gt;], and water stress-induced closure of stomata [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11559734"&gt;Sauter01&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12834401"&gt;Tan03&lt;/a&gt;].
+
+In plants, abscisic acid is synthesized from C40 carotenoids. The C15 backbone of ABA is formed after the oxidative cleavage of &lt;a href="/compound?orgid=ARA&amp;id=CPD1F-135"&gt;&lt;i&gt;trans&lt;/i&gt;-neoxanthin&lt;/a&gt;, and the final molecule is formed by two additional reactions, a dehydrogenase and an oxidoreductase, as described in this pathway [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12692318"&gt;Schwartz03&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15862093"&gt;Nambara05&lt;/a&gt;].
+
+In some plant pathogenic fungi ABA is synthesized a different biosynthetic route that involves the direct cyclization of C15 terpenoid (sesquiterpene) [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10945263"&gt;Hirai00&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11129578"&gt;Yamamoto00a&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15618629"&gt;Inomata04&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15464154"&gt;Inomata04a&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15240257"&gt;Siewers04&lt;/a&gt;].</comment>
+<common-name datatype="string">2-&lt;i&gt;cis&lt;/i&gt;-abscisate</common-name>
+</Compound>
+</ptools-xml>

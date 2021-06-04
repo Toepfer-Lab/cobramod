@@ -1,0 +1,81 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?VCHO:HYPOXANTHINE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>VCHO:HYPOXANTHINE</query>
+<num_results>1</num_results>
+<PGDB orgid="VCHO" version="24.5"><species datatype="string">Vibrio cholerae</species>
+<strain datatype="string">O1 biovar El Tor str. N16961</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>243277</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=243277</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID="VCHO:HYPOXANTHINE" detail="full" frameid="HYPOXANTHINE" orgid="VCHO"><parent><Compound class="true" frameid="All-Nucleosides" orgid="VCHO" resource="getxml?VCHO:All-Nucleosides" /></parent>
+<parent><Compound class="true" frameid="Purine-Bases" orgid="VCHO" resource="getxml?VCHO:Purine-Bases" /></parent>
+<cml><molecule formalCharge="0" id="HYPOXANTHINE" title="hypoxanthine"><atomArray><atom elementType="C" id="HYPOXANTHINE-atom1" x2="1162.0" y2="709.0" /><atom elementType="C" id="HYPOXANTHINE-atom2" x2="727.0" y2="775.0" /><atom elementType="C" id="HYPOXANTHINE-atom3" x2="957.0" y2="642.0" /><atom elementType="C" id="HYPOXANTHINE-atom4" x2="957.0" y2="775.0" /><atom elementType="C" id="HYPOXANTHINE-atom5" x2="842.0" y2="576.0" /><atom elementType="N" id="HYPOXANTHINE-atom6" x2="1084.0" y2="601.0" /><atom elementType="N" id="HYPOXANTHINE-atom7" x2="1084.0" y2="816.0" /><atom elementType="N" id="HYPOXANTHINE-atom8" x2="842.0" y2="842.0" /><atom elementType="N" id="HYPOXANTHINE-atom9" x2="727.0" y2="642.0" /><atom elementType="O" id="HYPOXANTHINE-atom10" x2="842.0" y2="443.0" /></atomArray>
+<bondArray><bond atomRefs="HYPOXANTHINE-atom3 HYPOXANTHINE-atom5" id="HYPOXANTHINE-bond1" order="1" /><bond atomRefs="HYPOXANTHINE-atom4 HYPOXANTHINE-atom8" id="HYPOXANTHINE-bond2" order="1" /><bond atomRefs="HYPOXANTHINE-atom5 HYPOXANTHINE-atom9" id="HYPOXANTHINE-bond3" order="1" /><bond atomRefs="HYPOXANTHINE-atom8 HYPOXANTHINE-atom2" id="HYPOXANTHINE-bond4" order="2" /><bond atomRefs="HYPOXANTHINE-atom9 HYPOXANTHINE-atom2" id="HYPOXANTHINE-bond5" order="1" /><bond atomRefs="HYPOXANTHINE-atom1 HYPOXANTHINE-atom7" id="HYPOXANTHINE-bond6" order="2" /><bond atomRefs="HYPOXANTHINE-atom4 HYPOXANTHINE-atom7" id="HYPOXANTHINE-bond7" order="1" /><bond atomRefs="HYPOXANTHINE-atom6 HYPOXANTHINE-atom1" id="HYPOXANTHINE-bond8" order="1" /><bond atomRefs="HYPOXANTHINE-atom3 HYPOXANTHINE-atom4" id="HYPOXANTHINE-bond9" order="2" /><bond atomRefs="HYPOXANTHINE-atom3 HYPOXANTHINE-atom6" id="HYPOXANTHINE-bond10" order="1" /><bond atomRefs="HYPOXANTHINE-atom10 HYPOXANTHINE-atom5" id="HYPOXANTHINE-bond11" order="2" /></bondArray>
+<formula concise="C 5 H 4 N 4 O 1" /><float title="molecularWeight" units="g/mol">136.113</float>
+<string title="smiles">C1(\NC2(C(=O)N\C=N/C(\N=1)=2))</string>
+</molecule>
+</cml>
+<gibbs-0 datatype="float" units="kcal/mol">62.48449</gibbs-0>
+<inchi datatype="string">InChI=1S/C5H4N4O/c10-5-3-4(7-1-6-3)8-2-9-5/h1-2H,(H2,6,7,8,9,10)</inchi>
+<inchi-key datatype="string">InChIKey=FDGQSTZJBFJUBT-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">136.113</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">136.03851</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-7682" orgid="VCHO" resource="getxml?VCHO:RXN-7682" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="DEOXYINOPHOSPHOR-RXN" orgid="VCHO" resource="getxml?VCHO:DEOXYINOPHOSPHOR-RXN" /><Reaction frameid="INOPHOSPHOR-RXN" orgid="VCHO" resource="getxml?VCHO:INOPHOSPHOR-RXN" /><Reaction frameid="HYPOXANPRIBOSYLTRAN-RXN" orgid="VCHO" resource="getxml?VCHO:HYPOXANPRIBOSYLTRAN-RXN" /></appears-in-right-side-of>
+<common-name datatype="string">hypoxanthine</common-name>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Hypoxanthine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Hypoxanthine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>hxan</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/hxan</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17368</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17368</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00157</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00157</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB04076</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB04076</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>768</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/768</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>790</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=790</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17368</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17368</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00262</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00262</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>68-94-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=68-94-0</dblink-URL>
+</dblink>
+</Compound>
+</ptools-xml>

@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:L-GAMMA-GLUTAMYLCYSTEINE</query>
 <num_results>1</num_results>
@@ -13,7 +13,6 @@
 <string title="smiles">C(S)[C@@H](C([O-])=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
 </molecule>
 </cml>
-<common-name datatype="string">&amp;gamma;-L-glutamyl-L-cysteine</common-name>
 <dblink><dblink-db>REACTOME-CPD</dblink-db>
 <dblink-oid>174393</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -69,15 +68,16 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=686-58-8</dblink-URL>
 </dblink>
+<synonym datatype="string">&amp;gamma;-glutamylcysteine</synonym>
+<synonym datatype="string">&amp;gamma;-L-glutamylcysteine</synonym>
+<synonym datatype="string">&amp;gamma;-Glu-Cys</synonym>
 <gibbs-0 datatype="float" units="kcal/mol">-57.157494</gibbs-0>
 <inchi datatype="string">InChI=1S/C8H14N2O5S/c9-4(7(12)13)1-2-6(11)10-5(3-16)8(14)15/h4-5,16H,1-3,9H2,(H,10,11)(H,12,13)(H,14,15)/p-1/t4-,5-/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=RITKHVBHSGLULN-WHFBIAKZSA-M</inchi-key>
 <molecular-weight datatype="float" units="Daltons">249.261</molecular-weight>
 <monoisotopic-mw datatype="float" units="Daltons">250.06235</monoisotopic-mw>
-<synonym datatype="string">&amp;gamma;-glutamylcysteine</synonym>
-<synonym datatype="string">&amp;gamma;-L-glutamylcysteine</synonym>
-<synonym datatype="string">&amp;gamma;-Glu-Cys</synonym>
 <appears-in-left-side-of><Reaction frameid="RXNQT-4305" orgid="ARA" resource="getxml?ARA:RXNQT-4305" /><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-SYN-RXN" /></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="getxml?ARA:GLUTCYSLIG-RXN" /><Reaction frameid="RXNQT-4306" orgid="ARA" resource="getxml?ARA:RXNQT-4306" /></appears-in-right-side-of>
+<common-name datatype="string">&amp;gamma;-L-glutamyl-L-cysteine</common-name>
 </Compound>
 </ptools-xml>

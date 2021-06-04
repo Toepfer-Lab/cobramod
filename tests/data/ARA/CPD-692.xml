@@ -1,0 +1,57 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-692"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:CPD-692</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:CPD-692" detail="full" frameid="CPD-692" orgid="ARA"><parent><Compound class="true" frameid="Sesquiterpenes" orgid="ARA" resource="getxml?ARA:Sesquiterpenes" /></parent>
+<cml><molecule formalCharge="0" id="CPD-692" title="(%2b)-cis-abscisic+aldehyde"><atomArray><atom elementType="C" id="CPD-692-atom1" x2="5001.0" y2="2478.0" /><atom elementType="C" id="CPD-692-atom2" x2="1429.0" y2="1241.0" /><atom elementType="C" id="CPD-692-atom3" x2="2143.0" y2="4128.0" /><atom elementType="C" id="CPD-692-atom4" x2="2857.0" y2="3715.0" /><atom elementType="C" id="CPD-692-atom5" x2="3572.0" y2="2479.0" /><atom elementType="C" id="CPD-692-atom6" x2="4288.0" y2="1239.0" /><atom elementType="C" id="CPD-692-atom7" x2="2859.0" y2="2066.0" /><atom elementType="C" id="CPD-692-atom8" x2="3574.0" y2="827.0" /><atom elementType="C" id="CPD-692-atom9" x2="715.0" y2="2479.0" /><atom elementType="C" id="CPD-692-atom10" x2="1429.0" y2="3716.0" /><atom elementType="C" id="CPD-692-atom11" x2="4288.0" y2="2066.0" /><atom elementType="C" id="CPD-692-atom12" x2="1429.0" y2="2066.0" /><atom elementType="C" id="CPD-692-atom13" x2="715.0" y2="3303.0" /><atom elementType="C" id="CPD-692-atom14" x2="2143.0" y2="3303.0" /><atom elementType="C" id="CPD-692-atom15" x2="2143.0" y2="2479.0" /><atom elementType="O" id="CPD-692-atom16" x2="3574.0" y2="0.0" /><atom elementType="O" id="CPD-692-atom17" x2="0.0" y2="3716.0" /><atom elementType="O" id="CPD-692-atom18" x2="2143.0" y2="1653.0" /><atom elementType="H" id="CPD-692-atom19" x2="2860.0" y2="1239.0" /></atomArray>
+<bondArray><bond atomRefs="CPD-692-atom15 CPD-692-atom7" id="CPD-692-bond1" order="1" /><bond atomRefs="CPD-692-atom15 CPD-692-atom18" id="CPD-692-bond2" order="1" /><bond atomRefs="CPD-692-atom15 CPD-692-atom12" id="CPD-692-bond3" order="1" /><bond atomRefs="CPD-692-atom12 CPD-692-atom2" id="CPD-692-bond4" order="1" /><bond atomRefs="CPD-692-atom9 CPD-692-atom12" id="CPD-692-bond5" order="2" /><bond atomRefs="CPD-692-atom15 CPD-692-atom14" id="CPD-692-bond6" order="1" /><bond atomRefs="CPD-692-atom14 CPD-692-atom10" id="CPD-692-bond7" order="1" /><bond atomRefs="CPD-692-atom10 CPD-692-atom13" id="CPD-692-bond8" order="1" /><bond atomRefs="CPD-692-atom13 CPD-692-atom9" id="CPD-692-bond9" order="1" /><bond atomRefs="CPD-692-atom13 CPD-692-atom17" id="CPD-692-bond10" order="2" /><bond atomRefs="CPD-692-atom7 CPD-692-atom5" id="CPD-692-bond11" order="2" /><bond atomRefs="CPD-692-atom5 CPD-692-atom11" id="CPD-692-bond12" order="1" /><bond atomRefs="CPD-692-atom11 CPD-692-atom6" id="CPD-692-bond13" order="2" /><bond atomRefs="CPD-692-atom6 CPD-692-atom8" id="CPD-692-bond14" order="1" /><bond atomRefs="CPD-692-atom8 CPD-692-atom16" id="CPD-692-bond15" order="2" /><bond atomRefs="CPD-692-atom11 CPD-692-atom1" id="CPD-692-bond16" order="1" /><bond atomRefs="CPD-692-atom8 CPD-692-atom19" id="CPD-692-bond17" order="1" /><bond atomRefs="CPD-692-atom14 CPD-692-atom3" id="CPD-692-bond18" order="1" /><bond atomRefs="CPD-692-atom14 CPD-692-atom4" id="CPD-692-bond19" order="1" /></bondArray>
+<formula concise="C 15 H 20 O 3" /><float title="molecularWeight" units="g/mol">248.321</float>
+<string title="smiles">CC(\C=C\[C@@]1(C(C)(C)CC(=O)\C=C(C)/1)O)=C\C=O</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd09441</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd09441</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM1998</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM1998</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>4445405</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/4445405</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>5282224</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=5282224</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>31157</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:31157</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C13455</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C13455</dblink-URL>
+</dblink>
+<synonym datatype="string">(+)-&lt;i&gt;cis&lt;/i&gt;-ABA aldehyde</synonym>
+<synonym datatype="string">(+)-&lt;i&gt;cis&lt;/i&gt;-abscisic acid aldehyde</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">160.98242</gibbs-0>
+<inchi datatype="string">InChI=1S/C15H20O3/c1-11(6-8-16)5-7-15(18)12(2)9-13(17)10-14(15,3)4/h5-9,18H,10H2,1-4H3/b7-5+,11-6-/t15-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=RIKWDZWVHUIUAM-KICRZJJPSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">248.321</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">248.14125</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="1.2.3.14-RXN" orgid="ARA" resource="getxml?ARA:1.2.3.14-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-699" orgid="ARA" resource="getxml?ARA:RXN-699" /><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.288-RXN" /></appears-in-right-side-of>
+<common-name datatype="string">(+)-&lt;i&gt;cis&lt;/i&gt;-abscisic aldehyde</common-name>
+</Compound>
+</ptools-xml>

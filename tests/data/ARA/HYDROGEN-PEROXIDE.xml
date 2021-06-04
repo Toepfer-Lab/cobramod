@@ -1,0 +1,78 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:HYDROGEN-PEROXIDE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:HYDROGEN-PEROXIDE</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:HYDROGEN-PEROXIDE" detail="full" frameid="HYDROGEN-PEROXIDE" orgid="ARA"><parent><Compound class="true" frameid="Peroxides" orgid="ARA" resource="getxml?ARA:Peroxides" /></parent>
+<cml><molecule formalCharge="0" id="HYDROGEN-PEROXIDE" title="hydrogen+peroxide"><atomArray><atom elementType="O" id="HYDROGEN-PEROXIDE-atom1" x2="412.0" y2="-413.0" /><atom elementType="O" id="HYDROGEN-PEROXIDE-atom2" x2="-413.0" y2="-413.0" /></atomArray>
+<bondArray><bond atomRefs="HYDROGEN-PEROXIDE-atom2 HYDROGEN-PEROXIDE-atom1" id="HYDROGEN-PEROXIDE-bond1" order="1" /></bondArray>
+<formula concise="H 2 O 2" /><float title="molecularWeight" units="g/mol">34.015</float>
+<string title="smiles">OO</string>
+</molecule>
+</cml>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00025</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00025</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM22</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM22</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>h2o2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/h2o2</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16240</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16240</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB03125</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB03125</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>784</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=784</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>763</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/763</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16240</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16240</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00027</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00027</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>7722-84-1</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=7722-84-1</dblink-URL>
+</dblink>
+<synonym datatype="string">hydroperoxide</synonym>
+<synonym datatype="string">perhydrol</synonym>
+<synonym datatype="string">H&lt;SUB&gt;2&lt;/SUB&gt;O&lt;SUB&gt;2&lt;/SUB&gt;</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-11.457759</gibbs-0>
+<inchi datatype="string">InChI=1S/H2O2/c1-2/h1-2H</inchi>
+<inchi-key datatype="string">InChIKey=MHAJPDPJQMAIIY-UHFFFAOYSA-N</inchi-key>
+<molecular-weight datatype="float" units="Daltons">34.015</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">34.005478</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-8243" orgid="ARA" resource="getxml?ARA:RXN-8243" /><Reaction frameid="RXN0-6721" orgid="ARA" resource="getxml?ARA:RXN0-6721" /><Reaction frameid="RXN0-7187" orgid="ARA" resource="getxml?ARA:RXN0-7187" /><Reaction frameid="RXN0-7188" orgid="ARA" resource="getxml?ARA:RXN0-7188" /><Reaction frameid="RXN-12440" orgid="ARA" resource="getxml?ARA:RXN-12440" /><Reaction frameid="RXN-12364" orgid="ARA" resource="getxml?ARA:RXN-12364" /><Reaction frameid="RXN-17352" orgid="ARA" resource="getxml?ARA:RXN-17352" /><Reaction frameid="CHLORIDE-PEROXIDASE-RXN" orgid="ARA" resource="getxml?ARA:CHLORIDE-PEROXIDASE-RXN" /><Reaction frameid="PEROXID-RXN" orgid="ARA" resource="getxml?ARA:PEROXID-RXN" /><Reaction frameid="RXN-8667" orgid="ARA" resource="getxml?ARA:RXN-8667" /><Reaction frameid="RXN-12540" orgid="ARA" resource="getxml?ARA:RXN-12540" /><Reaction frameid="RXN-3521" orgid="ARA" resource="getxml?ARA:RXN-3521" /><Reaction frameid="L-ASCORBATE-PEROXIDASE-RXN" orgid="ARA" resource="getxml?ARA:L-ASCORBATE-PEROXIDASE-RXN" /><Reaction frameid="GLUTATHIONE-PEROXIDASE-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-PEROXIDASE-RXN" /><Reaction frameid="CATAL-RXN" orgid="ARA" resource="getxml?ARA:CATAL-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-9015" orgid="ARA" resource="getxml?ARA:RXN-9015" /><Reaction frameid="RXN-12732" orgid="ARA" resource="getxml?ARA:RXN-12732" /><Reaction frameid="RXN-18383" orgid="ARA" resource="getxml?ARA:RXN-18383" /><Reaction frameid="RXN-15977" orgid="ARA" resource="getxml?ARA:RXN-15977" /><Reaction frameid="RXN-20042" orgid="ARA" resource="getxml?ARA:RXN-20042" /><Reaction frameid="RXN-15116" orgid="ARA" resource="getxml?ARA:RXN-15116" /><Reaction frameid="RXN-16773" orgid="ARA" resource="getxml?ARA:RXN-16773" /><Reaction frameid="RXN-16774" orgid="ARA" resource="getxml?ARA:RXN-16774" /><Reaction frameid="RXN-16775" orgid="ARA" resource="getxml?ARA:RXN-16775" /><Reaction frameid="RXN-18932" orgid="ARA" resource="getxml?ARA:RXN-18932" /><Reaction frameid="RXN-4444" orgid="ARA" resource="getxml?ARA:RXN-4444" /><Reaction frameid="RXN-6381" orgid="ARA" resource="getxml?ARA:RXN-6381" /><Reaction frameid="RXN-8163" orgid="ARA" resource="getxml?ARA:RXN-8163" /><Reaction frameid="RXN-1401" orgid="ARA" resource="getxml?ARA:RXN-1401" /><Reaction frameid="RXN-4465" orgid="ARA" resource="getxml?ARA:RXN-4465" /><Reaction frameid="RXN-11026" orgid="ARA" resource="getxml?ARA:RXN-11026" /><Reaction frameid="1.5.3.12-RXN" orgid="ARA" resource="getxml?ARA:1.5.3.12-RXN" /><Reaction frameid="RXN-8183" orgid="ARA" resource="getxml?ARA:RXN-8183" /><Reaction frameid="RXN-9275" orgid="ARA" resource="getxml?ARA:RXN-9275" /><Reaction frameid="RXN-5821" orgid="ARA" resource="getxml?ARA:RXN-5821" /><Reaction frameid="RETICULINE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:RETICULINE-OXIDASE-RXN" /><Reaction frameid="TETRAHYDROBERBERINE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:TETRAHYDROBERBERINE-OXIDASE-RXN" /><Reaction frameid="D-AMINO-ACID-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:D-AMINO-ACID-OXIDASE-RXN" /><Reaction frameid="1.1.3.37-RXN" orgid="ARA" resource="getxml?ARA:1.1.3.37-RXN" /><Reaction frameid="RXN-13689" orgid="ARA" resource="getxml?ARA:RXN-13689" /><Reaction frameid="RXN-12090" orgid="ARA" resource="getxml?ARA:RXN-12090" /><Reaction frameid="RXN-12091" orgid="ARA" resource="getxml?ARA:RXN-12091" /><Reaction frameid="S-2-HYDROXY-ACID-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:S-2-HYDROXY-ACID-OXIDASE-RXN" /><Reaction frameid="RXN-10464" orgid="ARA" resource="getxml?ARA:RXN-10464" /><Reaction frameid="RXN-8093" orgid="ARA" resource="getxml?ARA:RXN-8093" /><Reaction frameid="RXN-8091" orgid="ARA" resource="getxml?ARA:RXN-8091" /><Reaction frameid="RXN-9597" orgid="ARA" resource="getxml?ARA:RXN-9597" /><Reaction frameid="PMPOXI-RXN" orgid="ARA" resource="getxml?ARA:PMPOXI-RXN" /><Reaction frameid="PUTRESCINE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:PUTRESCINE-OXIDASE-RXN" /><Reaction frameid="L-GULONOLACTONE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:L-GULONOLACTONE-OXIDASE-RXN" /><Reaction frameid="RXN-12669" orgid="ARA" resource="getxml?ARA:RXN-12669" /><Reaction frameid="RXN-13681" orgid="ARA" resource="getxml?ARA:RXN-13681" /><Reaction frameid="ALDEHYDE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:ALDEHYDE-OXIDASE-RXN" /><Reaction frameid="RXN-10745" orgid="ARA" resource="getxml?ARA:RXN-10745" /><Reaction frameid="RXN-8092" orgid="ARA" resource="getxml?ARA:RXN-8092" /><Reaction frameid="RXN-12518" orgid="ARA" resource="getxml?ARA:RXN-12518" /><Reaction frameid="THIOL-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:THIOL-OXIDASE-RXN" /><Reaction frameid="RXN-12089" orgid="ARA" resource="getxml?ARA:RXN-12089" /><Reaction frameid="RXN-11623" orgid="ARA" resource="getxml?ARA:RXN-11623" /><Reaction frameid="1.2.3.14-RXN" orgid="ARA" resource="getxml?ARA:1.2.3.14-RXN" /><Reaction frameid="RXN-10696" orgid="ARA" resource="getxml?ARA:RXN-10696" /><Reaction frameid="RXN-10707" orgid="ARA" resource="getxml?ARA:RXN-10707" /><Reaction frameid="RXN-10706" orgid="ARA" resource="getxml?ARA:RXN-10706" /><Reaction frameid="INDOLE-3-ACETALDEHYDE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:INDOLE-3-ACETALDEHYDE-OXIDASE-RXN" /><Reaction frameid="RXN-8088" orgid="ARA" resource="getxml?ARA:RXN-8088" /><Reaction frameid="RXN-8089" orgid="ARA" resource="getxml?ARA:RXN-8089" /><Reaction frameid="RXN-8090" orgid="ARA" resource="getxml?ARA:RXN-8090" /><Reaction frameid="RXN-8094" orgid="ARA" resource="getxml?ARA:RXN-8094" /><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="ARA" resource="getxml?ARA:L-ASPARTATE-OXID-RXN" /><Reaction frameid="PROTOPORGENOXI-RXN" orgid="ARA" resource="getxml?ARA:PROTOPORGENOXI-RXN" /><Reaction frameid="POLYAMINE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:POLYAMINE-OXIDASE-RXN" /><Reaction frameid="RXNQT-4210" orgid="ARA" resource="getxml?ARA:RXNQT-4210" /><Reaction frameid="RXNQT-4207" orgid="ARA" resource="getxml?ARA:RXNQT-4207" /><Reaction frameid="URATE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:URATE-OXIDASE-RXN" /><Reaction frameid="SUPEROX-DISMUT-RXN" orgid="ARA" resource="getxml?ARA:SUPEROX-DISMUT-RXN" /><Reaction frameid="RXN-969" orgid="ARA" resource="getxml?ARA:RXN-969" /><Reaction frameid="PNPOXI-RXN" orgid="ARA" resource="getxml?ARA:PNPOXI-RXN" /><Reaction frameid="SULFITE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:SULFITE-OXIDASE-RXN" /><Reaction frameid="SARCOX-RXN" orgid="ARA" resource="getxml?ARA:SARCOX-RXN" /></appears-in-right-side-of>
+<common-name datatype="string">hydrogen peroxide</common-name>
+</Compound>
+</ptools-xml>

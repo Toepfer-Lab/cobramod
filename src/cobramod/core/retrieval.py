@@ -7,6 +7,7 @@ The available databases for data retrieval can be found in the variable
 :obj:`cobramod.core.retrieval.available_databases`
 """
 from contextlib import suppress
+from collections import UserList
 from pathlib import Path
 from typing import Type
 
@@ -18,7 +19,31 @@ from cobramod.parsing.bigg import BiggParser
 from cobramod.utils import _path_match, get_key_dict
 
 parsers = [BiocycParser, KeggParser, BiggParser]
-available_databases = ["META", "ARA", "KEGG", "BIGG"]
+
+
+class ListCobramod(UserList):
+    """
+    Simple list that prints out a message about the enormous size of Biocyc.
+    """
+
+    def __init__(self, initlist=[]):
+        super().__init__(initlist=initlist)
+        self.msg = (
+            "Biocyc includes around 18.000 sub-databases. The complete list "
+            + "can be found in 'https://biocyc.org/biocyc-pgdb-list.shtml'. "
+            + "Please use the corresponding object identifier. e.g: 'ARA', "
+            + "'GCF_000963925'"
+        )
+
+    def __repr__(self):
+        print(self.msg)
+        return super().__repr__()
+
+    def __str__(self):
+        return self.msg + "\n" + super().__str__()
+
+
+available_databases = ListCobramod(["META", "KEGG", "BIGG"])
 
 
 def _get_parser(database: str) -> Type[BaseParser]:
@@ -30,7 +55,7 @@ def _get_parser(database: str) -> Type[BaseParser]:
         with suppress(WrongParserError):
             # This method will raise a WrongParserError. Skipping it will
             # return the the real parser
-            parser._return_database(database=database)
+            parser._check_database(database=database)
             real_parser = parser
             break
     try:
@@ -140,5 +165,6 @@ def translate(directory: Path, target: str, database: str) -> str:
         return data_dict[key]
     except PatternNotFound:
         raise PatternNotFound(
-            "No could be identified. Please contact maintainers"
+            "No could be identified. Probably the target does not include the "
+            + "given database"
         )

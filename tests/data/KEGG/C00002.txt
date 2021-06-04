@@ -91,7 +91,7 @@ REACTION    R00002 R00076 R00085 R00086 R00087 R00088 R00089 R00104
             R12344 R12352 R12353 R12354 R12393 R12395 R12396 R12398 
             R12417 R12419 R12429 R12433 R12434 R12449 R12485 R12494 
             R12495 R12530 R12572 R12573 R12575 R12576 R12590 R12596 
-            R12598 R12599 R12616 R12640 R12642
+            R12598 R12599 R12616 R12640 R12642 R12695
 PATHWAY     map00190  Oxidative phosphorylation
             map00195  Photosynthesis
             map00230  Purine metabolism
@@ -99,6 +99,7 @@ PATHWAY     map00190  Oxidative phosphorylation
             map00998  Biosynthesis of various secondary metabolites - part 2
             map01100  Metabolic pathways
             map01110  Biosynthesis of secondary metabolites
+            map01240  Biosynthesis of cofactors
             map03070  Bacterial secretion system
             map04020  Calcium signaling pathway
             map04066  HIF-1 signaling pathway
@@ -119,6 +120,7 @@ PATHWAY     map00190  Oxidative phosphorylation
             map05022  Pathways of neurodegeneration - multiple diseases
             map05133  Pertussis
             map05410  Hypertrophic cardiomyopathy
+            map05415  Diabetic cardiomyopathy
 MODULE      M00049  Adenine ribonucleotide biosynthesis, IMP => ADP,ATP
             M00889  Puromycin biosynthesis, ATP => puromycin
 ENZYME      1.1.98.6        1.2.1.30        1.2.1.95        1.2.1.101       

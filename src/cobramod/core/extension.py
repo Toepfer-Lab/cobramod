@@ -14,6 +14,8 @@ from pathlib import Path
 from typing import Union, Generator, Optional, List
 
 from cobra import Model, Reaction
+from cobra.core.configuration import Configuration
+from cobra.exceptions import OptimizationError
 
 from cobramod.core.creation import create_object
 from cobramod.core.graph import build_graph, _create_quick_graph, _format_graph
@@ -22,6 +24,10 @@ from cobramod.core.retrieval import get_data
 from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
 from cobramod.error import NotInRangeError
+
+
+# Defaults to 1E-07
+cobra_tolerance: float = Configuration().tolerance
 
 
 def _create_reactions(
@@ -49,7 +55,7 @@ def _create_reactions(
             :obj:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
+            Values are the new identifiers. This applies to metabolites.
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
         show_imbalance (bool): If unbalanced reaction is found, show output.
         model_id (str): Exclusive for BIGG. Retrieve object from specified
@@ -65,12 +71,6 @@ def _create_reactions(
     # From given list (which could include None values), retrieve only Reaction
     # Objects.
     for identifier in sequence:
-        with suppress(KeyError):
-            identifier = replacement[identifier]
-            debug_log.warning(
-                f'Reaction "{identifier}" replaced by '
-                f'"{replacement[identifier]}".'
-            )
         # Check if translation is available
         obj = create_object(
             identifier=identifier,
@@ -299,23 +299,18 @@ def _verify_sinks(model: Model, reaction: str, ignore_list: List[str]):
 
 
 def test_result(
-    model: Model,
-    reaction: str,
-    minimum: float = 0.1,
-    times: int = 0,
-    ignore_list: List[str] = [],
+    model: Model, reaction: str, times: int = 0, ignore_list: List[str] = []
 ):
     """
-    Checks if optimized objective function value for given model has a minimum
-    value. Function is recursive and checks if sink reactions
-    are enough or exceeded. It creates a demand reaction for reaction for the
-    test and removes it, if necessary.
+    Checks that a simple FBA can be run. A demand reaction will be created with
+    a minimum flux based on the COBRApy Configuration object. It will use its
+    variable 'tolerance' multiplied by 10. Function is recursive and checks if
+    sink reactions are enough or exceeded. It creates a demand reaction for
+    reaction for the test and removes it, if necessary.
 
     Args:
         model (Model): model, where reaction is located
         reaction (str): reaction identifier in model to test.
-        minimum (float, optional): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
         times (int, optional): Track of recursions. Defaults to 0.
         ignore_list (list, optional): A sequence of formatted metabolites
             to ignore when testing new reactions. Defaults to []
@@ -324,12 +319,6 @@ def test_result(
         NotInRangeError: if solution is infeasible after many recursions.
             Depends from the amount of metabolites in the reaction.
     """
-    if reaction in ignore_list:
-        debug_log.warning(
-            f'Reaction "{reaction}" found in ignore list. Test to carry '
-            + "non-zero fluxes skipped."
-        )
-        return
     if times == 0:
         debug_log.info(
             f'Test to carry non-zero fluxes for "{reaction}" started'
@@ -343,7 +332,7 @@ def test_result(
     with suppress(ValueError):
         model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
         model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = abs(
-            minimum
+            cobra_tolerance * 10
         )
         debug_log.debug(f'Demand "DM_{next_demand}" added to test flux.')
     # Setting maximum times for recursion
@@ -351,24 +340,8 @@ def test_result(
         raise NotInRangeError(reaction=reaction)
     # answer must be reasonable
     # comparison must be using absolute values
-    value = model.slim_optimize()
-    if not minimum <= abs(value):
-        # Append to log
-        debug_log.debug(
-            f'Test to carry non-zero fluxes failed. Reaction "{reaction}" '
-            + f"not in range. Minimun value to past test: {minimum}, the test"
-            + f"showed {abs(value)}. "
-        )
-        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
-        # Recursive with 'extra' argument
-        test_result(
-            model=model,
-            reaction=reaction,
-            minimum=minimum,
-            times=times + 1,
-            ignore_list=ignore_list,
-        )
-    else:
+    try:
+        model.slim_optimize(error_value=None)
         # if works, pass and return old objective
         debug_log.debug(
             f'Reaction "{reaction}" showed a feasible answer. Proceeding'
@@ -379,15 +352,24 @@ def test_result(
             model=model, metabolite=next_demand, boundary="demand"
         )
         _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
+    except OptimizationError:
+        debug_log.debug(
+            f'Test to carry non-zero fluxes failed. Reaction "{reaction}" '
+            + "not in range. Minimun value to past test: "
+            + f"{cobra_tolerance * 10}. The test showed an infeasible answer."
+        )
+        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
+        # Recursive with 'extra' argument
+        test_result(
+            model=model,
+            reaction=reaction,
+            times=times + 1,
+            ignore_list=ignore_list,
+        )
 
 
 def _add_sequence(
-    model: Model,
-    pathway: Pathway,
-    sequence: list,
-    avoid_list: list,
-    ignore_list: list,
-    minimum: float,
+    model: Model, pathway: Pathway, sequence: list, ignore_list: list
 ):
     """
     From a sequence of Reaction objects, add each Reaction into given model. It
@@ -399,63 +381,37 @@ def _add_sequence(
         pathway (Pathway): Common Pathway to add the reaction.
         sequence (list): List with :class:`cobra.core.reaction.Reaction`
             objects
-        avoid_list (list): A sequence of reactions identifiers to
-            avoid adding to the model. This is useful for long pathways,
-            where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimun (float): Minimum optimized value to pass in every single test.
 
     Raises:
         TypeError: if reactions are not valid Reaction objects
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list")
-    # TODO: Fix format in previous functions
-    compartment = sequence[0].id[-1]
-    avoid_list = [
-        f'{reaction.replace("-","_")}_{compartment}' for reaction in avoid_list
-    ]
     # Add sequence to model
     for reaction in sequence:
-        # This reaction will not be added.
-        if reaction.id in avoid_list:
-            debug_log.warning(
-                f'Reaction "{reaction.id}" found in avoid list. This reaction'
-                + "will not be added to the model"
-            )
-            continue
-        if reaction.id not in [reaction.id for reaction in model.reactions]:
+        # Add reaction if not in model
+        if reaction not in model.reactions:
             model.add_reactions([reaction])
             debug_log.info(f'Reaction "{reaction.id}" added to model')
-            debug_log.debug(
-                f'Reaction "{reaction.id}" added to group "{pathway.id}"'
+        # Skip test but include reaction in pathway
+        if reaction.id not in ignore_list:
+            test_result(
+                model=model, reaction=reaction.id, ignore_list=ignore_list
             )
-            if reaction.id not in ignore_list:
-                test_result(
-                    model=model,
-                    reaction=reaction.id,
-                    ignore_list=ignore_list,
-                    minimum=minimum,
-                )
-            else:
-                debug_log.warning(
-                    f'Skipping non-zero flux test for reaction "{reaction.id}"'
-                )
-            # Add to pathway only if reaction was not previously in the model.
-            debug_log.debug(
-                f'Reaction "{reaction.id}" passed the non-zero test.'
-            )
-            pathway.add_members(new_members=[reaction])
         else:
-            # FIXME: avoid creating reaction
-            pathway.add_members(new_members=[reaction])
-            debug_log.info(
-                f'Reaction "{reaction.id}" was found in model. '
-                f"Skipping non-zero flux test."
+            debug_log.warning(
+                f'Reaction "{reaction.id}" found in ignore list. Test to '
+                + "carry non-zero fluxes skipped."
             )
-    # TODO: Add space
+            # Add to pathway only if reaction was not previously in the model.
+        debug_log.debug(f'Reaction "{reaction.id}" passed the non-zero test.')
+        pathway.add_members(new_members=[reaction])
+        debug_log.debug(
+            f'Reaction "{reaction.id}" added to group "{pathway.id}"'
+        )
     debug_log.debug(f'Reactions added to group "{pathway.id}"')
     # Only add if there is at least 1 reaction in the group.
     if (
@@ -466,16 +422,50 @@ def _add_sequence(
         debug_log.debug(f'Pathway "{pathway.id}" added to Model')
 
 
+def _update_reactions(
+    sequence: List[str], avoid_list: List[str], replacement: dict
+) -> List[str]:
+    """
+    Updates the given sequence taking into consideration reactions to avoid
+    and to rename
+
+    Args:
+        sequence (list): Names of the reactions to update
+        avoid_list (list): Reactions that should not be included in the model
+        replacement (dict): Directory with identifiers to be replaced. Keys are
+            the original identifiers and the values the new identifiers
+    """
+    new_sequence: List[str] = list()
+    for item in sequence:
+        # Remove reactions
+        if item in avoid_list:
+            debug_log.warning(
+                f'Reaction "{item}" found in avoid list. This reaction'
+                + "will not be added to the model."
+            )
+            continue
+        # Replace reactions
+        if item in replacement.keys():
+            debug_log.warning(
+                f'Reaction "{item}" will be replaced by '
+                f'"{replacement[item]}".'
+            )
+            item = replacement[item]
+        # add in the end
+        new_sequence.append(item)
+    return new_sequence
+
+
 def _from_data(
     model: Model,
     data_dict: dict,
+    group: Optional[str],
     directory: Path,
     database: str,
     compartment: str,
     avoid_list: list,
     replacement: dict,
     ignore_list: list,
-    minimum: float,
     stop_imbalance: bool,
     show_imbalance: bool,
     model_id: str,
@@ -498,14 +488,12 @@ def _from_data(
     Arguments for complex pathways:
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        avoid_list (Iterable): A sequence of reactions identifiers to
+        avoid_list (list): A sequence of reactions identifiers to
             avoid adding to the model. This is useful for long pathways,
             where X reactions need to be excluded.
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimum (float): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -520,11 +508,19 @@ def _from_data(
     mapping = build_graph(graph=data_dict["PATHWAY"])
     # Either create a Pathway or obtain the correct Pathway.
     identifier = data_dict["ENTRY"]
+    if group:
+        identifier = group
     try:
         pathway = model.groups.get_by_id(identifier)
     except KeyError:
         pathway = Pathway(id=identifier)
     for sequence in mapping:
+        # Update sequence with new identifiers or removal of reactions
+        sequence = _update_reactions(
+            sequence=sequence, avoid_list=avoid_list, replacement=replacement
+        )
+        if not sequence:
+            continue
         # Data storage is handled by method. Reactions objects builder:
         sequence = list(
             _create_reactions(
@@ -546,8 +542,6 @@ def _from_data(
             pathway=pathway,
             sequence=sequence,
             ignore_list=ignore_list,
-            avoid_list=avoid_list,
-            minimum=minimum,
         )
         # TODO: Fix sink for metabolites in last sequence
     # Add graph to Pathway
@@ -580,7 +574,6 @@ def _from_sequence(
     ignore_list: List[str],
     stop_imbalance: bool,
     show_imbalance: bool,
-    minimum: float,
     model_id: str,
     genome: Optional[str],
 ):
@@ -606,8 +599,6 @@ def _from_sequence(
             This is useful for long cyclical pathways.
         replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers.
-        minimum (float): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -625,6 +616,9 @@ def _from_sequence(
     # Create graph. It will be always simple lineal
     graph = _create_quick_graph(sequence=sequence)
     # Data storage is managed by the function
+    sequence = _update_reactions(
+        sequence=sequence, avoid_list=avoid_list, replacement=replacement
+    )
     sequence = list(
         _create_reactions(
             sequence=sequence,
@@ -645,8 +639,6 @@ def _from_sequence(
         sequence=sequence,
         pathway=pathway,
         ignore_list=ignore_list,
-        avoid_list=avoid_list,
-        minimum=minimum,
     )
     # Add graph to Pathway
     graph = _format_graph(
@@ -672,13 +664,12 @@ def add_pathway(
     directory: Path,
     database: str,
     compartment: str,
-    group: str = "custom_group",
+    group: Optional[str] = None,
     avoid_list: List[str] = [],
     replacement: dict = {},
     ignore_list: List[str] = [],
     filename: Path = None,
     summary: str = None,
-    minimum: float = 0.1,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
     model_id: str = "universal",
@@ -700,8 +691,7 @@ def add_pathway(
             Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         group (str, optional): Common :class:`cobramod.pathway.Pathway`
-            identifier. Defaults to "custom_group". This only applies for
-            a list of reactions
+            identifier. This will overwrite the name of the pathway.
 
     Arguments for complex pathways:
         avoid_list (list, optional): A sequence of reactions identifiers to
@@ -712,9 +702,6 @@ def add_pathway(
         ignore_list (list): A sequence of formatted metabolites to skip when
             testing, and/or reactions that should be added but not tested.
             This is useful for long cyclical pathways.
-        minimum (float, optional): Minimum value to obtain to pass the test for
-            carrying non-zero fluxes. The test is based on a simple FBA.
-            Defaults to 0.1
 
     Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to
@@ -757,14 +744,16 @@ def add_pathway(
             avoid_list=avoid_list,
             replacement=replacement,
             ignore_list=ignore_list,
-            minimum=minimum,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,
             genome=genome,
+            group=group,
         )
     elif isinstance(pathway, list):
         # From Reaction
+        if not group:
+            group = "custom_group"
         _from_sequence(
             model=model,
             identifier=group,
@@ -775,7 +764,6 @@ def add_pathway(
             database=database,
             replacement=replacement,
             ignore_list=ignore_list,
-            minimum=minimum,
             show_imbalance=show_imbalance,
             stop_imbalance=stop_imbalance,
             model_id=model_id,

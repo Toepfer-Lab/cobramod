@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:DPG"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:DPG"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:DPG</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:DPG" detail="full" frameid="DPG" orgid="META"><parent><Compound class="true" frameid="Glycerates" orgid="META" resource="getxml?META:Glycerates" /></parent>
@@ -12,50 +12,17 @@
 <string title="smiles">C([C@@H](O)C(OP(=O)([O-])[O-])=O)OP(=O)([O-])[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">262.006</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">265.95926</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-6638" detail="low" frameid="REG-6638" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13689" detail="low" frameid="ENZRXN-13689" orgid="META"><reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
-<common-name datatype="string">6-phosphofructokinase</common-name>
-<enzyme><Protein frameid="MONOMER-12850" orgid="META" resource="getxml?META:MONOMER-12850" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="DPG" orgid="META" resource="#META:DPG" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6633" detail="low" frameid="REG-6633" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13694" detail="low" frameid="ENZRXN-13694" orgid="META"><reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
-<common-name datatype="string">6-phosphofructokinase</common-name>
-<enzyme><Protein frameid="MONOMER-12855" orgid="META" resource="getxml?META:MONOMER-12855" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="DPG" orgid="META" resource="#META:DPG" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">1,3-bisphospho-D-glycerate</synonym>
-<synonym datatype="string">3-phosphoglyceroyl-P</synonym>
-<synonym datatype="string">P-glyceroyl-P</synonym>
-<synonym datatype="string">phosphoglyceroyl-P</synonym>
-<synonym datatype="string">3-phosphoglyceroyl phosphate</synonym>
-<synonym datatype="string">3-P-glyceroyl-P</synonym>
-<synonym datatype="string">DPG</synonym>
-<synonym datatype="string">glycerate 1,3-bisphosphate</synonym>
-<synonym datatype="string">3-phosphonato-D-glyceroyl phosphate</synonym>
-<abbrev-name datatype="string">13-DPG</abbrev-name>
-<appears-in-left-side-of><Reaction frameid="2.7.4.17-RXN" orgid="META" resource="getxml?META:2.7.4.17-RXN" /><Reaction frameid="BISPHOSPHOGLYCERATE-MUTASE-RXN" orgid="META" resource="getxml?META:BISPHOSPHOGLYCERATE-MUTASE-RXN" /><Reaction frameid="RXN-17274" orgid="META" resource="getxml?META:RXN-17274" /><Reaction frameid="RXN-16914" orgid="META" resource="getxml?META:RXN-16914" /><Reaction frameid="GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="getxml?META:PHOSGLYPHOS-RXN" /><Reaction frameid="GAPDHSYNEC-RXN" orgid="META" resource="getxml?META:GAPDHSYNEC-RXN" /><Reaction frameid="1.2.1.13-RXN" orgid="META" resource="getxml?META:1.2.1.13-RXN" /><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /><Reaction frameid="PHOSPHOGLYCERATE-KINASE-GTP-RXN" orgid="META" resource="getxml?META:PHOSPHOGLYCERATE-KINASE-GTP-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">3-phospho-D-glyceroyl phosphate</common-name>
 <credits><revised><date datatype="date">2013-07-28</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -127,14 +94,47 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C3H8O10P2/c4-2(1-12-14(6,7)8)3(5)13-15(9,10)11/h2,4H,1H2,(H2,6,7,8)(H2,9,10,11)/p-4/t2-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=LJQLQCAXBUHEAZ-UWTATZPHSA-J</inchi-key>
+<molecular-weight datatype="float" units="Daltons">262.006</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">265.95926</monoisotopic-mw>
+<regulates><Regulation ID="META:REG-6638" detail="low" frameid="REG-6638" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13689" detail="low" frameid="ENZRXN-13689" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="MONOMER-12850" orgid="META" resource="getxml?META:MONOMER-12850" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="DPG" orgid="META" resource="#META:DPG" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6633" detail="low" frameid="REG-6633" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13694" detail="low" frameid="ENZRXN-13694" orgid="META"><common-name datatype="string">6-phosphofructokinase</common-name>
+<enzyme><Protein frameid="MONOMER-12855" orgid="META" resource="getxml?META:MONOMER-12855" /></enzyme>
+<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="META" resource="getxml?META:6PFRUCTPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="DPG" orgid="META" resource="#META:DPG" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">1,3-bisphospho-D-glycerate</synonym>
+<synonym datatype="string">3-phosphoglyceroyl-P</synonym>
+<synonym datatype="string">P-glyceroyl-P</synonym>
+<synonym datatype="string">phosphoglyceroyl-P</synonym>
+<synonym datatype="string">3-phosphoglyceroyl phosphate</synonym>
+<synonym datatype="string">3-P-glyceroyl-P</synonym>
+<synonym datatype="string">DPG</synonym>
+<synonym datatype="string">glycerate 1,3-bisphosphate</synonym>
+<synonym datatype="string">3-phosphonato-D-glyceroyl phosphate</synonym>
+<abbrev-name datatype="string">13-DPG</abbrev-name>
+<appears-in-left-side-of><Reaction frameid="2.7.4.17-RXN" orgid="META" resource="getxml?META:2.7.4.17-RXN" /><Reaction frameid="BISPHOSPHOGLYCERATE-MUTASE-RXN" orgid="META" resource="getxml?META:BISPHOSPHOGLYCERATE-MUTASE-RXN" /><Reaction frameid="RXN-17274" orgid="META" resource="getxml?META:RXN-17274" /><Reaction frameid="RXN-16914" orgid="META" resource="getxml?META:RXN-16914" /><Reaction frameid="GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-16-BISPHOSPHATE-SYNTHASE-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="getxml?META:PHOSGLYPHOS-RXN" /><Reaction frameid="GAPDHSYNEC-RXN" orgid="META" resource="getxml?META:GAPDHSYNEC-RXN" /><Reaction frameid="1.2.1.13-RXN" orgid="META" resource="getxml?META:1.2.1.13-RXN" /><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /><Reaction frameid="PHOSPHOGLYCERATE-KINASE-GTP-RXN" orgid="META" resource="getxml?META:PHOSPHOGLYCERATE-KINASE-GTP-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

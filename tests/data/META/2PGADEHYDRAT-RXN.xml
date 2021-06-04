@@ -1,17 +1,12 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:2PGADEHYDRAT-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:2PGADEHYDRAT-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:2PGADEHYDRAT-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:2PGADEHYDRAT-RXN" detail="full" frameid="2PGADEHYDRAT-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right>
-<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR97932</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -294,84 +289,84 @@
 </dblink>
 <ec-number>EC-4.2.1.11<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:2PGADEHYDRAT-ENZRXN" detail="low" frameid="2PGADEHYDRAT-ENZRXN" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:2PGADEHYDRAT-ENZRXN" detail="low" frameid="2PGADEHYDRAT-ENZRXN" orgid="META"><common-name datatype="string">enolase</common-name>
+<enzyme><Protein frameid="ENOLASE-CPLX" orgid="META" resource="getxml?META:ENOLASE-CPLX" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 <synonym datatype="string">phosphopyruvate hydratase</synonym>
 <synonym datatype="string">2-phosphoglycerate dehydratase</synonym>
 <synonym datatype="string">2,3-diphospho-D-glycerate</synonym>
 <synonym datatype="string">2-phospho-D glycerate phosphotransferase</synonym>
 <synonym datatype="string">2-phospho-D-glycerate hydrolyase</synonym>
-<common-name datatype="string">enolase</common-name>
-<enzyme><Protein frameid="ENOLASE-CPLX" orgid="META" resource="getxml?META:ENOLASE-CPLX" /></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN490-395" detail="low" frameid="ENZRXN490-395" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN490-395" detail="low" frameid="ENZRXN490-395" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="SYNPCC7942_0639-MONOMER" orgid="META" resource="getxml?META:SYNPCC7942_0639-MONOMER" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN3O-1202" detail="low" frameid="ENZRXN3O-1202" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN3O-1202" detail="low" frameid="ENZRXN3O-1202" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="YHR174W-MONOMER" orgid="META" resource="getxml?META:YHR174W-MONOMER" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-2174" detail="low" frameid="ENZRXN66-2174" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-2174" detail="low" frameid="ENZRXN66-2174" orgid="META"><common-name datatype="string">phosphoglycerate enolase</common-name>
 <enzyme><Protein frameid="CPLX66-20" orgid="META" resource="getxml?META:CPLX66-20" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-1764" detail="low" frameid="ENZRXN66-1764" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-1764" detail="low" frameid="ENZRXN66-1764" orgid="META"><common-name datatype="string">phosphoglycerate enolase</common-name>
 <enzyme><Protein frameid="CPLX66-299" orgid="META" resource="getxml?META:CPLX66-299" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-302" detail="low" frameid="ENZRXN66-302" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">phosphoglycerate enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN66-302" detail="low" frameid="ENZRXN66-302" orgid="META"><common-name datatype="string">phosphoglycerate enolase</common-name>
 <enzyme><Protein frameid="CPLX66-19" orgid="META" resource="getxml?META:CPLX66-19" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-15981" detail="low" frameid="ENZRXN-15981" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">phosphopyruvate hydratase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-15981" detail="low" frameid="ENZRXN-15981" orgid="META"><common-name datatype="string">phosphopyruvate hydratase</common-name>
 <enzyme><Protein frameid="MONOMER-14533" orgid="META" resource="getxml?META:MONOMER-14533" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13952" detail="low" frameid="ENZRXN-13952" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13952" detail="low" frameid="ENZRXN-13952" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="CPLX-7364" orgid="META" resource="getxml?META:CPLX-7364" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13911" detail="low" frameid="ENZRXN-13911" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13911" detail="low" frameid="ENZRXN-13911" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="CPLX-7332" orgid="META" resource="getxml?META:CPLX-7332" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13697" detail="low" frameid="ENZRXN-13697" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13697" detail="low" frameid="ENZRXN-13697" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="MONOMER-12858" orgid="META" resource="getxml?META:MONOMER-12858" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13696" detail="low" frameid="ENZRXN-13696" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-13696" detail="low" frameid="ENZRXN-13696" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="AT2G36530-MONOMER" orgid="META" resource="getxml?META:AT2G36530-MONOMER" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12261" detail="low" frameid="ENZRXN-12261" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-12261" detail="low" frameid="ENZRXN-12261" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="CPLX-6997" orgid="META" resource="getxml?META:CPLX-6997" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-9283" detail="low" frameid="ENZRXN-9283" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-9283" detail="low" frameid="ENZRXN-9283" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="MONOMER-9124" orgid="META" resource="getxml?META:MONOMER-9124" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-9282" detail="low" frameid="ENZRXN-9282" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-9282" detail="low" frameid="ENZRXN-9282" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="MONOMER-9123" orgid="META" resource="getxml?META:MONOMER-9123" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-4304" detail="low" frameid="ENZRXN-4304" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-4304" detail="low" frameid="ENZRXN-4304" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="MONOMER-4224" orgid="META" resource="getxml?META:MONOMER-4224" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2870" detail="low" frameid="ENZRXN-2870" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
-<synonym datatype="string">phosphopyruvate hydratase</synonym>
-<synonym datatype="string">2-phosphoglycerate dehydratase</synonym>
-<synonym datatype="string">2-phospho-D-glycerate hydro-lyase</synonym>
-<common-name datatype="string">enolase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-2870" detail="low" frameid="ENZRXN-2870" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="MONOMER-551" orgid="META" resource="getxml?META:MONOMER-551" /></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2741" detail="low" frameid="ENZRXN-2741" orgid="META"><reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
 <synonym datatype="string">phosphopyruvate hydratase</synonym>
 <synonym datatype="string">2-phosphoglycerate dehydratase</synonym>
 <synonym datatype="string">2-phospho-D-glycerate hydro-lyase</synonym>
-<common-name datatype="string">enolase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="META:ENZRXN-2741" detail="low" frameid="ENZRXN-2741" orgid="META"><common-name datatype="string">enolase</common-name>
 <enzyme><Protein frameid="CPLX-1867" orgid="META" resource="getxml?META:CPLX-1867" /></enzyme>
+<reaction><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="#META:2PGADEHYDRAT-RXN" /></reaction>
+<synonym datatype="string">phosphopyruvate hydratase</synonym>
+<synonym datatype="string">2-phosphoglycerate dehydratase</synonym>
+<synonym datatype="string">2-phospho-D-glycerate hydro-lyase</synonym>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-0.18701172<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -382,14 +377,19 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="ANAGLYCOLYSIS-PWY" orgid="META" resource="getxml?META:ANAGLYCOLYSIS-PWY" /><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /><Pathway frameid="PWY-5484" orgid="META" resource="getxml?META:PWY-5484" /><Pathway frameid="P341-PWY" orgid="META" resource="getxml?META:P341-PWY" /><Pathway frameid="PWY-8004" orgid="META" resource="getxml?META:PWY-8004" /><Pathway frameid="PWY-2221" orgid="META" resource="getxml?META:PWY-2221" /><Pathway frameid="PWY-1622" orgid="META" resource="getxml?META:PWY-1622" /><Pathway frameid="PWY-6142" orgid="META" resource="getxml?META:PWY-6142" /><Pathway frameid="GLUCONEO-PWY" orgid="META" resource="getxml?META:GLUCONEO-PWY" /><Pathway frameid="PWY-7003" orgid="META" resource="getxml?META:PWY-7003" /><Pathway frameid="P124-PWY" orgid="META" resource="getxml?META:P124-PWY" /><Pathway frameid="P122-PWY" orgid="META" resource="getxml?META:P122-PWY" /><Pathway frameid="PWY-6901" orgid="META" resource="getxml?META:PWY-6901" /><Pathway frameid="NPGLUCAT-PWY" orgid="META" resource="getxml?META:NPGLUCAT-PWY" /><Pathway frameid="PWY66-399" orgid="META" resource="getxml?META:PWY66-399" /><Pathway frameid="PWY-7218" orgid="META" resource="getxml?META:PWY-7218" /><Pathway frameid="PWY-7124" orgid="META" resource="getxml?META:PWY-7124" /><Pathway frameid="PWY-6886" orgid="META" resource="getxml?META:PWY-6886" /><Pathway frameid="PWY-5723" orgid="META" resource="getxml?META:PWY-5723" /><Pathway frameid="PWY-1042" orgid="META" resource="getxml?META:PWY-1042" /></in-pathway>
 <left><Compound frameid="2-PG" orgid="META" resource="getxml?META:2-PG" /></left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right>
+<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
 </Reaction>
 </ptools-xml>

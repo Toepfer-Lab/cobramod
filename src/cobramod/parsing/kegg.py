@@ -190,8 +190,8 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
             debug_log.warning(msg=msg)
             return []
     msg = (
-        f'No genome was specified for reaction "{reaction}". '
-        + "No genes will be created."
+        f'Nothing was specified in argument "genome". "Reaction "{reaction}"'
+        " will not include genes. Please modify if necessary."
     )
     warn(message=msg, category=UserWarning)
     debug_log.warning(msg=msg)
@@ -498,6 +498,7 @@ class KeggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
+        KeggParser._check_database(database=database)
         raw = retrieve_data(directory=directory, identifier=identifier)
         debug_log.log(
             level=debug_level, msg=f'Data for "{identifier}" retrieved.'
@@ -509,15 +510,13 @@ class KeggParser(BaseParser):
         return KeggParser._parse(root=raw, directory=directory, genome=genome)
 
     @staticmethod
-    def _return_database(database: str) -> str:
+    def _check_database(database: str):
         """
         Returns the name of the database. This method is used to compare with
         given database name. It will raise a warning if both names are not
         equal or belong to the list of proper names.
         """
-        if database == "KEGG":
-            return database
-        else:
+        if database != "KEGG":
             raise WrongParserError
 
     @staticmethod

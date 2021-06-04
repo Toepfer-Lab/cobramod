@@ -1,0 +1,159 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:SUC"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:SUC</query>
+<num_results>1</num_results>
+<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
+<strain datatype="string">col</strain>
+</PGDB>
+</metadata>
+<Compound ID="ARA:SUC" detail="full" frameid="SUC" orgid="ARA"><parent><Compound class="true" frameid="C4-dicarboxylates" orgid="ARA" resource="getxml?ARA:C4-dicarboxylates" /></parent>
+<cml><molecule formalCharge="-2" id="SUC" title="succinate"><atomArray><atom elementType="C" id="SUC-atom1" x2="1429500.0" y2="-823800.0" /><atom elementType="C" id="SUC-atom2" x2="2143900.0" y2="-1236300.0" /><atom elementType="C" id="SUC-atom3" x2="715000.0" y2="-1236300.0" /><atom elementType="C" id="SUC-atom4" x2="2858300.0" y2="-823800.0" /><atom elementType="O" id="SUC-atom5" x2="715000.0" y2="-2061200.0" /><atom elementType="O" formalCharge="-1" id="SUC-atom6" x2="500.0" y2="-823800.0" /><atom elementType="O" id="SUC-atom7" x2="2858300.0" y2="1200.0" /><atom elementType="O" formalCharge="-1" id="SUC-atom8" x2="3572800.0" y2="-1236300.0" /></atomArray>
+<bondArray><bond atomRefs="SUC-atom5 SUC-atom3" id="SUC-bond1" order="2" /><bond atomRefs="SUC-atom7 SUC-atom4" id="SUC-bond2" order="2" /><bond atomRefs="SUC-atom6 SUC-atom3" id="SUC-bond3" order="1" /><bond atomRefs="SUC-atom8 SUC-atom4" id="SUC-bond4" order="1" /><bond atomRefs="SUC-atom1 SUC-atom2" id="SUC-bond5" order="1" /><bond atomRefs="SUC-atom1 SUC-atom3" id="SUC-bond6" order="1" /><bond atomRefs="SUC-atom2 SUC-atom4" id="SUC-bond7" order="1" /></bondArray>
+<formula concise="C 4 H 4 O 4" /><float title="molecularWeight" units="g/mol">116.073</float>
+<string title="smiles">C(C([O-])=O)CC([O-])=O</string>
+</molecule>
+</cml>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/42/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/42/</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00036</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00036</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM25</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM25</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Succinic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Succinic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>succ</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/succ</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC30031</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC30031</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00254</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00254</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>140973</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/140973</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>30031</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:30031</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>160419</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=160419</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00001205</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00001205</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00042</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00042</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>110-15-6</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=110-15-6</dblink-URL>
+</dblink>
+<synonym datatype="string">succinic acid</synonym>
+<synonym datatype="string">suc</synonym>
+<synonym datatype="string">succ</synonym>
+<synonym datatype="string">butanedioic acid</synonym>
+<synonym datatype="string">ethylenesuccinic acid</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-125.16375</gibbs-0>
+<inchi datatype="string">InChI=1S/C4H6O4/c5-3(6)1-2-4(7)8/h1-2H2,(H,5,6)(H,7,8)/p-2</inchi>
+<inchi-key datatype="string">InChIKey=KDYFGRWQOYBRFD-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">116.073</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">118.02661</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="RXN-14971" orgid="ARA" resource="getxml?ARA:RXN-14971" /><Reaction frameid="SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" orgid="ARA" resource="getxml?ARA:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN" /><Reaction frameid="SUCCCOASYN-RXN" orgid="ARA" resource="getxml?ARA:SUCCCOASYN-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-20027" orgid="ARA" resource="getxml?ARA:RXN-20027" /><Reaction frameid="RXN-16488" orgid="ARA" resource="getxml?ARA:RXN-16488" /><Reaction frameid="RXN-16489" orgid="ARA" resource="getxml?ARA:RXN-16489" /><Reaction frameid="RXN-17812" orgid="ARA" resource="getxml?ARA:RXN-17812" /><Reaction frameid="RXN-16989" orgid="ARA" resource="getxml?ARA:RXN-16989" /><Reaction frameid="RXN-16344" orgid="ARA" resource="getxml?ARA:RXN-16344" /><Reaction frameid="RXN-16827" orgid="ARA" resource="getxml?ARA:RXN-16827" /><Reaction frameid="RXN-17811" orgid="ARA" resource="getxml?ARA:RXN-17811" /><Reaction frameid="RXN0-7316" orgid="ARA" resource="getxml?ARA:RXN0-7316" /><Reaction frameid="RXN-18385" orgid="ARA" resource="getxml?ARA:RXN-18385" /><Reaction frameid="RXN-18348" orgid="ARA" resource="getxml?ARA:RXN-18348" /><Reaction frameid="LEUCPEL-RXN" orgid="ARA" resource="getxml?ARA:LEUCPEL-RXN" /><Reaction frameid="RXN-602" orgid="ARA" resource="getxml?ARA:RXN-602" /><Reaction frameid="RXN-17679" orgid="ARA" resource="getxml?ARA:RXN-17679" /><Reaction frameid="RXN-16762" orgid="ARA" resource="getxml?ARA:RXN-16762" /><Reaction frameid="RXN-7591" orgid="ARA" resource="getxml?ARA:RXN-7591" /><Reaction frameid="1.14.11.9-RXN" orgid="ARA" resource="getxml?ARA:1.14.11.9-RXN" /><Reaction frameid="RXN-12963" orgid="ARA" resource="getxml?ARA:RXN-12963" /><Reaction frameid="RXN-14538" orgid="ARA" resource="getxml?ARA:RXN-14538" /><Reaction frameid="PROCOLLAGEN-PROLINE-3-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:PROCOLLAGEN-PROLINE-3-DIOXYGENASE-RXN" /><Reaction frameid="MHPCHYDROL-RXN" orgid="ARA" resource="getxml?ARA:MHPCHYDROL-RXN" /><Reaction frameid="THYMINE-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:THYMINE-DIOXYGENASE-RXN" /><Reaction frameid="1.14.11.18-RXN" orgid="ARA" resource="getxml?ARA:1.14.11.18-RXN" /><Reaction frameid="PROCOLLAGEN-LYSINE-5-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:PROCOLLAGEN-LYSINE-5-DIOXYGENASE-RXN" /><Reaction frameid="RXN1F-93" orgid="ARA" resource="getxml?ARA:RXN1F-93" /><Reaction frameid="RXN-7686" orgid="ARA" resource="getxml?ARA:RXN-7686" /><Reaction frameid="RXN-14071" orgid="ARA" resource="getxml?ARA:RXN-14071" /><Reaction frameid="RXN-8147" orgid="ARA" resource="getxml?ARA:RXN-8147" /><Reaction frameid="RXN-8152" orgid="ARA" resource="getxml?ARA:RXN-8152" /><Reaction frameid="RXN-12349" orgid="ARA" resource="getxml?ARA:RXN-12349" /><Reaction frameid="RXN-6524" orgid="ARA" resource="getxml?ARA:RXN-6524" /><Reaction frameid="RXN1F-168" orgid="ARA" resource="getxml?ARA:RXN1F-168" /><Reaction frameid="RXN-114" orgid="ARA" resource="getxml?ARA:RXN-114" /><Reaction frameid="RXN-118" orgid="ARA" resource="getxml?ARA:RXN-118" /><Reaction frameid="RXN-172" orgid="ARA" resource="getxml?ARA:RXN-172" /><Reaction frameid="RXN-292" orgid="ARA" resource="getxml?ARA:RXN-292" /><Reaction frameid="RXN1F-101" orgid="ARA" resource="getxml?ARA:RXN1F-101" /><Reaction frameid="RXN1F-164" orgid="ARA" resource="getxml?ARA:RXN1F-164" /><Reaction frameid="RXN1F-167" orgid="ARA" resource="getxml?ARA:RXN1F-167" /><Reaction frameid="RXN1F-169" orgid="ARA" resource="getxml?ARA:RXN1F-169" /><Reaction frameid="RXN1F-99" orgid="ARA" resource="getxml?ARA:RXN1F-99" /><Reaction frameid="SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" orgid="ARA" resource="getxml?ARA:SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" /><Reaction frameid="O-SUCCHOMOSERLYASE-RXN" orgid="ARA" resource="getxml?ARA:O-SUCCHOMOSERLYASE-RXN" /><Reaction frameid="RXN-7922" orgid="ARA" resource="getxml?ARA:RXN-7922" /><Reaction frameid="RXN-8450" orgid="ARA" resource="getxml?ARA:RXN-8450" /><Reaction frameid="RXN-7648" orgid="ARA" resource="getxml?ARA:RXN-7648" /><Reaction frameid="RXN0-5245" orgid="ARA" resource="getxml?ARA:RXN0-5245" /><Reaction frameid="RXN1F-162" orgid="ARA" resource="getxml?ARA:RXN1F-162" /><Reaction frameid="1.14.11.2-RXN" orgid="ARA" resource="getxml?ARA:1.14.11.2-RXN" /><Reaction frameid="RXN-115" orgid="ARA" resource="getxml?ARA:RXN-115" /><Reaction frameid="RXN1F-170" orgid="ARA" resource="getxml?ARA:RXN1F-170" /><Reaction frameid="RXN-7775" orgid="ARA" resource="getxml?ARA:RXN-7775" /><Reaction frameid="RXN-7687" orgid="ARA" resource="getxml?ARA:RXN-7687" /><Reaction frameid="RXN-7680" orgid="ARA" resource="getxml?ARA:RXN-7680" /><Reaction frameid="RXN-113" orgid="ARA" resource="getxml?ARA:RXN-113" /><Reaction frameid="RXN-171" orgid="ARA" resource="getxml?ARA:RXN-171" /><Reaction frameid="RXN-947" orgid="ARA" resource="getxml?ARA:RXN-947" /><Reaction frameid="RXN-991" orgid="ARA" resource="getxml?ARA:RXN-991" /><Reaction frameid="RXN-886" orgid="ARA" resource="getxml?ARA:RXN-886" /><Reaction frameid="RXN-6544" orgid="ARA" resource="getxml?ARA:RXN-6544" /><Reaction frameid="RXN-7590" orgid="ARA" resource="getxml?ARA:RXN-7590" /><Reaction frameid="RXN-7589" orgid="ARA" resource="getxml?ARA:RXN-7589" /><Reaction frameid="RXN1F-163" orgid="ARA" resource="getxml?ARA:RXN1F-163" /><Reaction frameid="RXN-527" orgid="ARA" resource="getxml?ARA:RXN-527" /><Reaction frameid="RXN1F-165" orgid="ARA" resource="getxml?ARA:RXN1F-165" /><Reaction frameid="RXN-6523" orgid="ARA" resource="getxml?ARA:RXN-6523" /><Reaction frameid="RXN-6522" orgid="ARA" resource="getxml?ARA:RXN-6522" /><Reaction frameid="RXN-6541" orgid="ARA" resource="getxml?ARA:RXN-6541" /><Reaction frameid="RXN-6550" orgid="ARA" resource="getxml?ARA:RXN-6550" /><Reaction frameid="NARINGENIN-3-DIOXYGENASE-RXN" orgid="ARA" resource="getxml?ARA:NARINGENIN-3-DIOXYGENASE-RXN" /><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ARA" resource="getxml?ARA:ISOCIT-CLEAV-RXN" /></appears-in-right-side-of>
+<regulates><Regulation ID="ARA:REG-8023" detail="low" frameid="REG-8023" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-547" detail="low" frameid="REGQT-547" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNT9-2365" detail="low" frameid="ENZRXNT9-2365" orgid="ARA"><enzyme><Protein frameid="AT5G11670-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G11670-MONOMER" /></enzyme>
+<synonym datatype="string">malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)</synonym>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-546" detail="low" frameid="REGQT-546" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNT9-1846" detail="low" frameid="ENZRXNT9-1846" orgid="ARA"><enzyme><Protein frameid="AT2G19900-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G19900-MONOMER" /></enzyme>
+<synonym datatype="string">malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)</synonym>
+<reaction><Reaction frameid="MALIC-NADP-RXN" orgid="ARA" resource="getxml?ARA:MALIC-NADP-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-532" detail="low" frameid="REGQT-532" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12854" detail="low" frameid="ENZRXNQT-12854" orgid="ARA"><enzyme><Protein frameid="CPLXQT-53" orgid="ARA" resource="getxml?ARA:CPLXQT-53" /></enzyme>
+<synonym datatype="string">NAD-dependent malic enzyme</synonym>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-530" detail="low" frameid="REGQT-530" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12853" detail="low" frameid="ENZRXNQT-12853" orgid="ARA"><enzyme><Protein frameid="CPLXQT-52" orgid="ARA" resource="getxml?ARA:CPLXQT-52" /></enzyme>
+<synonym datatype="string">NAD-dependent malic enzyme</synonym>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REGQT-527" detail="low" frameid="REGQT-527" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-12855" detail="low" frameid="ENZRXNQT-12855" orgid="ARA"><enzyme><Protein frameid="CPLXQT-54" orgid="ARA" resource="getxml?ARA:CPLXQT-54" /></enzyme>
+<synonym datatype="string">NAD malic enzyme</synonym>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.39-RXN" /></reaction>
+<common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG-6519" detail="low" frameid="REG-6519" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">+</mode>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+<Regulation ID="ARA:REG0-7799" detail="low" frameid="REG0-7799" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulator><Compound frameid="SUC" orgid="ARA" resource="#ARA:SUC" /></regulator>
+</Regulation>
+</regulates>
+<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Shulaev-LCMS,Fiehn (see &lt;A href="http://plantmetabolomics.org/tutorials/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype="string">succinate</common-name>
+</Compound>
+</ptools-xml>

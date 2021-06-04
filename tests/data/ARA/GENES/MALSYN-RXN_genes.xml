@@ -1,0 +1,41 @@
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:MALSYN-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=ARA:MALSYN-RXN&amp;detail=FULL</query>
+    <num_results>1</num_results>
+    <PGDB orgid="ARA" version="17.1">
+      <species datatype="string">Arabidopsis thaliana</species>
+      <strain datatype="string">col</strain>
+    </PGDB>
+  </metadata>
+  <Gene ID="ARA:AT5G03860" detail="full" frameid="AT5G03860" orgid="ARA">
+    <parent>
+      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+    </replicon>
+    <product>
+      <Protein frameid="AT5G03860-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G03860-MONOMER" />
+    </product>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>3702.AT5G03860.1</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/3702.AT5G03860.1</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT5G03860</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G03860</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">1032102</left-end-position>
+    <accession-1 datatype="string">AT5G03860</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">3.8236334</centisome-position>
+    <right-end-position datatype="integer">1034569</right-end-position>
+    <common-name datatype="string">MLS</common-name>
+    <component-of />
+  </Gene>
+</ptools-xml>

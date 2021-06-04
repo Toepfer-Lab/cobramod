@@ -54,4 +54,4 @@ __all__ = [
     "available_databases",
 ]
 
-__version__ = "0.3.3"
+__version__ = "0.4.3"

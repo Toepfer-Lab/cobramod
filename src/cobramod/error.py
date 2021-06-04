@@ -111,6 +111,15 @@ class AbbreviationWarning(Warning):
     pass
 
 
+class SuperpathwayWarning(Warning):
+    """
+    Simple Warning that should be raised if a pathway is identified as a
+    Superpathway
+    """
+
+    pass
+
+
 class UnbalancedReaction(Exception):
     """
     Simple Error that should be raised if a reaction has wrong mass balance.

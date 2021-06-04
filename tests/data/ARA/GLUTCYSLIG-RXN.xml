@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?ARA:GLUTCYSLIG-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLUTCYSLIG-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLUTCYSLIG-RXN</query>
 <num_results>1</num_results>
@@ -140,12 +140,15 @@
 </dblink>
 <ec-number>EC-6.3.2.2<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-13420" detail="low" frameid="ENZRXN-13420" orgid="ARA"><common-name datatype="string">glutamate&amp;mdash;cysteine ligase</common-name>
-<enzyme><Protein frameid="AT4G23100-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G23100-MONOMER" /></enzyme>
-<reaction><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="#ARA:GLUTCYSLIG-RXN" /></reaction>
+<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-13420" detail="low" frameid="ENZRXN-13420" orgid="ARA"><enzyme><Protein frameid="AT4G23100-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G23100-MONOMER" /></enzyme>
 <synonym datatype="string">gamma-glutamylcysteine synthetase activity</synonym>
+<reaction><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="#ARA:GLUTCYSLIG-RXN" /></reaction>
+<common-name datatype="string">glutamate&amp;mdash;cysteine ligase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
+<synonym datatype="string">Gamma-glutamylcysteine synthetase</synonym>
+<synonym datatype="string">Gamma-glutamyl-L-cysteine synthetase</synonym>
+<synonym datatype="string">&amp;gamma;-glutamyl-L-cysteine synthetase</synonym>
 <gibbs-0 datatype="float" units="kcal/mol">-9.315857</gibbs-0>
 <in-pathway><Pathway frameid="PWYQT-4470" orgid="ARA" resource="getxml?ARA:PWYQT-4470" /><Pathway frameid="GLUTATHIONESYN-PWY" orgid="ARA" resource="getxml?ARA:GLUTATHIONESYN-PWY" /></in-pathway>
 <left><Compound frameid="CYS" orgid="ARA" resource="getxml?ARA:CYS" /></left>
@@ -157,8 +160,5 @@
 <right><Compound frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="ARA" resource="getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE" /></right>
 <right><Compound frameid="Pi" orgid="ARA" resource="getxml?ARA:Pi" /></right>
 <right><Compound frameid="ADP" orgid="ARA" resource="getxml?ARA:ADP" /></right>
-<synonym datatype="string">Gamma-glutamylcysteine synthetase</synonym>
-<synonym datatype="string">Gamma-glutamyl-L-cysteine synthetase</synonym>
-<synonym datatype="string">&amp;gamma;-glutamyl-L-cysteine synthetase</synonym>
 </Reaction>
 </ptools-xml>

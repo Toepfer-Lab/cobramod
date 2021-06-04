@@ -1,34 +1,30 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:RXN-13059"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-13059"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RXN-13059</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:RXN-13059" detail="full" frameid="RXN-13059" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CPD-14076" orgid="META" resource="getxml?META:CPD-14076" /></right>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
-<citation><Publication ID="META:PUB-FRIESEN90" detail="full" frameid="PUB-FRIESEN90" orgid="META"><source datatype="string">Tetrahedron Letters, 31(44):6295-6298</source>
+<citation><Publication ID="META:PUB-FRIESEN90" detail="full" frameid="PUB-FRIESEN90" orgid="META"><author datatype="string">Friesen, Brent</author>
+<author datatype="string">Leete, Edward</author>
+<source datatype="string">Tetrahedron Letters, 31(44):6295-6298</source>
 <title datatype="string">Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
 <year datatype="integer">1990</year>
-<author datatype="string">Friesen, Brent</author>
-<author datatype="string">Leete, Edward</author>
 </Publication>
 </citation>
 <common-name datatype="string">3,6-dihydroxynicotinate synthase</common-name>
 <credits><created><date datatype="date">2012-02-07</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
 </credits>
@@ -45,15 +41,19 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <in-pathway><Pathway frameid="PWY-5316" orgid="META" resource="getxml?META:PWY-5316" /><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /></in-pathway>
 <left><Compound frameid="CPD-14075" orgid="META" resource="getxml?META:CPD-14075" /></left>
 <left><Compound frameid="CPD-7994" orgid="META" resource="getxml?META:CPD-7994" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound frameid="CPD-14076" orgid="META" resource="getxml?META:CPD-14076" /></right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
 </Reaction>
 </ptools-xml>

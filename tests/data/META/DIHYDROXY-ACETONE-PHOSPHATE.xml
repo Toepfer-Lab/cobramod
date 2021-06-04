@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:DIHYDROXY-ACETONE-PHOSPHATE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:DIHYDROXY-ACETONE-PHOSPHATE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:DIHYDROXY-ACETONE-PHOSPHATE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:DIHYDROXY-ACETONE-PHOSPHATE" detail="full" frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META"><parent><Compound class="true" frameid="Sugar-Phosphate" orgid="META" resource="getxml?META:Sugar-Phosphate" /></parent>
@@ -12,64 +12,6 @@
 <string title="smiles">C(C(=O)CO)OP([O-])([O-])=O</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">168.043</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">169.99803</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-11767" detail="low" frameid="REG0-11767" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GLYCEROL-3-P-ACYLTRANSFER-ENZRXN" detail="low" frameid="GLYCEROL-3-P-ACYLTRANSFER-ENZRXN" orgid="META"><reaction><Reaction frameid="RXN-1381" orgid="META" resource="getxml?META:RXN-1381" /></reaction>
-<common-name datatype="string">acyl-CoA:&lt;i&gt;sn&lt;/i&gt;-glycerol-3-phosphate 1-&lt;i&gt;O&lt;/i&gt;-acyltransferase</common-name>
-<enzyme><Protein frameid="GLYCEROL-3-P-ACYLTRANSFER-MONOMER" orgid="META" resource="getxml?META:GLYCEROL-3-P-ACYLTRANSFER-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-11450" detail="low" frameid="REG0-11450" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-6416" detail="low" frameid="ENZRXN0-6416" orgid="META"><reaction><Reaction frameid="RXN0-5260" orgid="META" resource="getxml?META:RXN0-5260" /></reaction>
-<synonym datatype="string">G3P dehydrogenase</synonym>
-<synonym datatype="string">sn-glycerol-3-phosphate:(acceptor) 2-oxidoreductase</synonym>
-<common-name datatype="string">aerobic glycerol 3-phosphate dehydrogenase</common-name>
-<enzyme><Protein frameid="AERGLYC3PDEHYDROG-CPLX" orgid="META" resource="getxml?META:AERGLYC3PDEHYDROG-CPLX" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9666" detail="low" frameid="REG-9666" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8901" detail="low" frameid="ENZRXN-8901" orgid="META"><reaction><Reaction frameid="L-LACTATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:L-LACTATE-DEHYDROGENASE-RXN" /></reaction>
-<common-name datatype="string">L-lactate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-5241" orgid="META" resource="getxml?META:CPLX-5241" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8035" detail="low" frameid="REG-8035" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9262" detail="low" frameid="ENZRXN-9262" orgid="META"><reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
-<common-name datatype="string">D-fructose 1,6-bisphosphate aldolase</common-name>
-<enzyme><Protein frameid="CPLX-5522" orgid="META" resource="getxml?META:CPLX-5522" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6311" detail="low" frameid="REG-6311" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13947" detail="low" frameid="ENZRXN-13947" orgid="META"><reaction><Reaction frameid="PYRUVFORMLY-RXN" orgid="META" resource="getxml?META:PYRUVFORMLY-RXN" /></reaction>
-<common-name datatype="string">pyruvate formate-lyase</common-name>
-<enzyme><Protein frameid="CPLX-7361" orgid="META" resource="getxml?META:CPLX-7361" /></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">dihydroxyacetone phosphate</synonym>
-<synonym datatype="string">dihydroxyacetone-P</synonym>
-<synonym datatype="string">di-OH-acetone-P</synonym>
-<synonym datatype="string">dihydroxy-acetone phosphate</synonym>
-<synonym datatype="string">3-hydroxy-2-oxopropyl phosphate</synonym>
-<abbrev-name datatype="string">DHAP</abbrev-name>
-<appears-in-left-side-of><Reaction frameid="RXN-18648" orgid="META" resource="getxml?META:RXN-18648" /><Reaction frameid="RXN1UA-47" orgid="META" resource="getxml?META:RXN1UA-47" /><Reaction frameid="RXN1UA-66" orgid="META" resource="getxml?META:RXN1UA-66" /><Reaction frameid="RXN-18614" orgid="META" resource="getxml?META:RXN-18614" /><Reaction frameid="RXN-18639" orgid="META" resource="getxml?META:RXN-18639" /><Reaction frameid="RXN0-7249" orgid="META" resource="getxml?META:RXN0-7249" /><Reaction frameid="METHGLYSYN-RXN" orgid="META" resource="getxml?META:METHGLYSYN-RXN" /><Reaction frameid="RXN-15943" orgid="META" resource="getxml?META:RXN-15943" /><Reaction frameid="RXN-15044" orgid="META" resource="getxml?META:RXN-15044" /><Reaction frameid="2.3.1.42-RXN" orgid="META" resource="getxml?META:2.3.1.42-RXN" /><Reaction frameid="RXN0-5257" orgid="META" resource="getxml?META:RXN0-5257" /><Reaction frameid="QUINOLINATE-SYNTHE-MULTI-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHE-MULTI-RXN" /><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-21532" orgid="META" resource="getxml?META:RXN-21532" /><Reaction frameid="RXN-21316" orgid="META" resource="getxml?META:RXN-21316" /><Reaction frameid="RXN-21405" orgid="META" resource="getxml?META:RXN-21405" /><Reaction frameid="KETOTETROSE-PHOSPHATE-ALDOLASE-RXN" orgid="META" resource="getxml?META:KETOTETROSE-PHOSPHATE-ALDOLASE-RXN" /><Reaction frameid="RXN-21318" orgid="META" resource="getxml?META:RXN-21318" /><Reaction frameid="SEDOBISALDOL-RXN" orgid="META" resource="getxml?META:SEDOBISALDOL-RXN" /><Reaction frameid="RXN-8631" orgid="META" resource="getxml?META:RXN-8631" /><Reaction frameid="2.7.1.121-RXN" orgid="META" resource="getxml?META:2.7.1.121-RXN" /><Reaction frameid="RXN0-7169" orgid="META" resource="getxml?META:RXN0-7169" /><Reaction frameid="RXN-20930" orgid="META" resource="getxml?META:RXN-20930" /><Reaction frameid="DARABALDOL-RXN" orgid="META" resource="getxml?META:DARABALDOL-RXN" /><Reaction frameid="RXN-19916" orgid="META" resource="getxml?META:RXN-19916" /><Reaction frameid="FUCPALDOL-RXN" orgid="META" resource="getxml?META:FUCPALDOL-RXN" /><Reaction frameid="GLYC3PDEHYDROG-RXN" orgid="META" resource="getxml?META:GLYC3PDEHYDROG-RXN" /><Reaction frameid="RXN0-5258-Yeast" orgid="META" resource="getxml?META:RXN0-5258-Yeast" /><Reaction frameid="RXN-11305" orgid="META" resource="getxml?META:RXN-11305" /><Reaction frameid="RXN-18601" orgid="META" resource="getxml?META:RXN-18601" /><Reaction frameid="RXN-18600" orgid="META" resource="getxml?META:RXN-18600" /><Reaction frameid="RXN-18589" orgid="META" resource="getxml?META:RXN-18589" /><Reaction frameid="RXN-18588" orgid="META" resource="getxml?META:RXN-18588" /><Reaction frameid="1.1.1.8-RXN" orgid="META" resource="getxml?META:1.1.1.8-RXN" /><Reaction frameid="GLYC3PDEHYDROGBIOSYN-RXN" orgid="META" resource="getxml?META:GLYC3PDEHYDROGBIOSYN-RXN" /><Reaction frameid="RXN-15298" orgid="META" resource="getxml?META:RXN-15298" /><Reaction frameid="RXN0-5260" orgid="META" resource="getxml?META:RXN0-5260" /><Reaction frameid="RXN-15745" orgid="META" resource="getxml?META:RXN-15745" /><Reaction frameid="RXN-15740" orgid="META" resource="getxml?META:RXN-15740" /><Reaction frameid="1.1.1.261-RXN" orgid="META" resource="getxml?META:1.1.1.261-RXN" /><Reaction frameid="RXN-13865" orgid="META" resource="getxml?META:RXN-13865" /><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><Reaction frameid="RXN-11745" orgid="META" resource="getxml?META:RXN-11745" /><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /><Reaction frameid="TAGAALDOL-RXN" orgid="META" resource="getxml?META:TAGAALDOL-RXN" /><Reaction frameid="GLYCEROL-3-PHOSPHATE-OXIDASE-RXN" orgid="META" resource="getxml?META:GLYCEROL-3-PHOSPHATE-OXIDASE-RXN" /><Reaction frameid="GLYCERONE-KINASE-RXN" orgid="META" resource="getxml?META:GLYCERONE-KINASE-RXN" /><Reaction frameid="4.1.2.29-RXN" orgid="META" resource="getxml?META:4.1.2.29-RXN" /><Reaction frameid="RHAMNULPALDOL-RXN" orgid="META" resource="getxml?META:RHAMNULPALDOL-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">glycerone phosphate</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00095</dblink-oid>
@@ -134,14 +76,72 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C3H7O6P/c4-1-3(5)2-9-10(6,7)8/h4H,1-2H2,(H2,6,7,8)/p-2</inchi>
 <inchi-key datatype="string">InChIKey=GNGACRATGGDKBX-UHFFFAOYSA-L</inchi-key>
+<molecular-weight datatype="float" units="Daltons">168.043</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">169.99803</monoisotopic-mw>
+<regulates><Regulation ID="META:REG0-11767" detail="low" frameid="REG0-11767" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:GLYCEROL-3-P-ACYLTRANSFER-ENZRXN" detail="low" frameid="GLYCEROL-3-P-ACYLTRANSFER-ENZRXN" orgid="META"><common-name datatype="string">acyl-CoA:&lt;i&gt;sn&lt;/i&gt;-glycerol-3-phosphate 1-&lt;i&gt;O&lt;/i&gt;-acyltransferase</common-name>
+<enzyme><Protein frameid="GLYCEROL-3-P-ACYLTRANSFER-MONOMER" orgid="META" resource="getxml?META:GLYCEROL-3-P-ACYLTRANSFER-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-1381" orgid="META" resource="getxml?META:RXN-1381" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG0-11450" detail="low" frameid="REG0-11450" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN0-6416" detail="low" frameid="ENZRXN0-6416" orgid="META"><common-name datatype="string">aerobic glycerol 3-phosphate dehydrogenase</common-name>
+<enzyme><Protein frameid="AERGLYC3PDEHYDROG-CPLX" orgid="META" resource="getxml?META:AERGLYC3PDEHYDROG-CPLX" /></enzyme>
+<reaction><Reaction frameid="RXN0-5260" orgid="META" resource="getxml?META:RXN0-5260" /></reaction>
+<synonym datatype="string">G3P dehydrogenase</synonym>
+<synonym datatype="string">sn-glycerol-3-phosphate:(acceptor) 2-oxidoreductase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-9666" detail="low" frameid="REG-9666" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-8901" detail="low" frameid="ENZRXN-8901" orgid="META"><common-name datatype="string">L-lactate dehydrogenase</common-name>
+<enzyme><Protein frameid="CPLX-5241" orgid="META" resource="getxml?META:CPLX-5241" /></enzyme>
+<reaction><Reaction frameid="L-LACTATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:L-LACTATE-DEHYDROGENASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-8035" detail="low" frameid="REG-8035" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9262" detail="low" frameid="ENZRXN-9262" orgid="META"><common-name datatype="string">D-fructose 1,6-bisphosphate aldolase</common-name>
+<enzyme><Protein frameid="CPLX-5522" orgid="META" resource="getxml?META:CPLX-5522" /></enzyme>
+<reaction><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
+</Regulation>
+<Regulation ID="META:REG-6311" detail="low" frameid="REG-6311" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13947" detail="low" frameid="ENZRXN-13947" orgid="META"><common-name datatype="string">pyruvate formate-lyase</common-name>
+<enzyme><Protein frameid="CPLX-7361" orgid="META" resource="getxml?META:CPLX-7361" /></enzyme>
+<reaction><Reaction frameid="PYRUVFORMLY-RXN" orgid="META" resource="getxml?META:PYRUVFORMLY-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="#META:DIHYDROXY-ACETONE-PHOSPHATE" /></regulator>
+</Regulation>
+</regulates>
+<synonym datatype="string">dihydroxyacetone phosphate</synonym>
+<synonym datatype="string">dihydroxyacetone-P</synonym>
+<synonym datatype="string">di-OH-acetone-P</synonym>
+<synonym datatype="string">dihydroxy-acetone phosphate</synonym>
+<synonym datatype="string">3-hydroxy-2-oxopropyl phosphate</synonym>
+<abbrev-name datatype="string">DHAP</abbrev-name>
+<appears-in-left-side-of><Reaction frameid="RXN-18648" orgid="META" resource="getxml?META:RXN-18648" /><Reaction frameid="RXN1UA-47" orgid="META" resource="getxml?META:RXN1UA-47" /><Reaction frameid="RXN1UA-66" orgid="META" resource="getxml?META:RXN1UA-66" /><Reaction frameid="RXN-18614" orgid="META" resource="getxml?META:RXN-18614" /><Reaction frameid="RXN-18639" orgid="META" resource="getxml?META:RXN-18639" /><Reaction frameid="RXN0-7249" orgid="META" resource="getxml?META:RXN0-7249" /><Reaction frameid="METHGLYSYN-RXN" orgid="META" resource="getxml?META:METHGLYSYN-RXN" /><Reaction frameid="RXN-15943" orgid="META" resource="getxml?META:RXN-15943" /><Reaction frameid="RXN-15044" orgid="META" resource="getxml?META:RXN-15044" /><Reaction frameid="2.3.1.42-RXN" orgid="META" resource="getxml?META:2.3.1.42-RXN" /><Reaction frameid="RXN0-5257" orgid="META" resource="getxml?META:RXN0-5257" /><Reaction frameid="QUINOLINATE-SYNTHE-MULTI-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHE-MULTI-RXN" /><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-21532" orgid="META" resource="getxml?META:RXN-21532" /><Reaction frameid="RXN-21316" orgid="META" resource="getxml?META:RXN-21316" /><Reaction frameid="RXN-21405" orgid="META" resource="getxml?META:RXN-21405" /><Reaction frameid="KETOTETROSE-PHOSPHATE-ALDOLASE-RXN" orgid="META" resource="getxml?META:KETOTETROSE-PHOSPHATE-ALDOLASE-RXN" /><Reaction frameid="RXN-21318" orgid="META" resource="getxml?META:RXN-21318" /><Reaction frameid="SEDOBISALDOL-RXN" orgid="META" resource="getxml?META:SEDOBISALDOL-RXN" /><Reaction frameid="RXN-8631" orgid="META" resource="getxml?META:RXN-8631" /><Reaction frameid="2.7.1.121-RXN" orgid="META" resource="getxml?META:2.7.1.121-RXN" /><Reaction frameid="RXN0-7169" orgid="META" resource="getxml?META:RXN0-7169" /><Reaction frameid="RXN-20930" orgid="META" resource="getxml?META:RXN-20930" /><Reaction frameid="DARABALDOL-RXN" orgid="META" resource="getxml?META:DARABALDOL-RXN" /><Reaction frameid="RXN-19916" orgid="META" resource="getxml?META:RXN-19916" /><Reaction frameid="FUCPALDOL-RXN" orgid="META" resource="getxml?META:FUCPALDOL-RXN" /><Reaction frameid="GLYC3PDEHYDROG-RXN" orgid="META" resource="getxml?META:GLYC3PDEHYDROG-RXN" /><Reaction frameid="RXN0-5258-Yeast" orgid="META" resource="getxml?META:RXN0-5258-Yeast" /><Reaction frameid="RXN-11305" orgid="META" resource="getxml?META:RXN-11305" /><Reaction frameid="RXN-18601" orgid="META" resource="getxml?META:RXN-18601" /><Reaction frameid="RXN-18600" orgid="META" resource="getxml?META:RXN-18600" /><Reaction frameid="RXN-18589" orgid="META" resource="getxml?META:RXN-18589" /><Reaction frameid="RXN-18588" orgid="META" resource="getxml?META:RXN-18588" /><Reaction frameid="1.1.1.8-RXN" orgid="META" resource="getxml?META:1.1.1.8-RXN" /><Reaction frameid="GLYC3PDEHYDROGBIOSYN-RXN" orgid="META" resource="getxml?META:GLYC3PDEHYDROGBIOSYN-RXN" /><Reaction frameid="RXN-15298" orgid="META" resource="getxml?META:RXN-15298" /><Reaction frameid="RXN0-5260" orgid="META" resource="getxml?META:RXN0-5260" /><Reaction frameid="RXN-15745" orgid="META" resource="getxml?META:RXN-15745" /><Reaction frameid="RXN-15740" orgid="META" resource="getxml?META:RXN-15740" /><Reaction frameid="1.1.1.261-RXN" orgid="META" resource="getxml?META:1.1.1.261-RXN" /><Reaction frameid="RXN-13865" orgid="META" resource="getxml?META:RXN-13865" /><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><Reaction frameid="RXN-11745" orgid="META" resource="getxml?META:RXN-11745" /><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /><Reaction frameid="TAGAALDOL-RXN" orgid="META" resource="getxml?META:TAGAALDOL-RXN" /><Reaction frameid="GLYCEROL-3-PHOSPHATE-OXIDASE-RXN" orgid="META" resource="getxml?META:GLYCEROL-3-PHOSPHATE-OXIDASE-RXN" /><Reaction frameid="GLYCERONE-KINASE-RXN" orgid="META" resource="getxml?META:GLYCERONE-KINASE-RXN" /><Reaction frameid="4.1.2.29-RXN" orgid="META" resource="getxml?META:4.1.2.29-RXN" /><Reaction frameid="RHAMNULPALDOL-RXN" orgid="META" resource="getxml?META:RHAMNULPALDOL-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

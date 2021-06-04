@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:NICOTINE"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:NICOTINE"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:NICOTINE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:NICOTINE" detail="full" frameid="NICOTINE" orgid="META"><parent><Compound class="true" frameid="ALKALOID" orgid="META" resource="getxml?META:ALKALOID" /></parent>
@@ -12,11 +12,6 @@
 <string title="smiles">C1(CC[C@H]([NH+](C)1)C2(\C=N/C=C\C=2))</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">163.242</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">162.11569</monoisotopic-mw>
-<synonym datatype="string">nicotine</synonym>
-<appears-in-left-side-of><Reaction frameid="NICOTINE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:NICOTINE-DEHYDROGENASE-RXN" /><Reaction frameid="RXN-8248" orgid="META" resource="getxml?META:RXN-8248" /><Reaction frameid="RXN66-61" orgid="META" resource="getxml?META:RXN66-61" /><Reaction frameid="RXN66-83" orgid="META" resource="getxml?META:RXN66-83" /><Reaction frameid="RXN66-146" orgid="META" resource="getxml?META:RXN66-146" /><Reaction frameid="RXN-13076" orgid="META" resource="getxml?META:RXN-13076" /><Reaction frameid="RXN66-101" orgid="META" resource="getxml?META:RXN66-101" /><Reaction frameid="RXN66-81" orgid="META" resource="getxml?META:RXN66-81" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-13060" orgid="META" resource="getxml?META:RXN-13060" /></appears-in-right-side-of>
 <comment datatype="string">Nicotine is the principal alkaloid in the leaves of commercially used tobacco (&lt;a href="/META/NEW-IMAGE?object=TAX-4097"&gt;&lt;i&gt;Nicotiana tabacum&lt;/i&gt;&lt;/a&gt; and &lt;a href="/META/NEW-IMAGE?object=TAX-4093"&gt;&lt;i&gt;Nicotiana rustica&lt;/i&gt;&lt;/a&gt;) [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSchmeltz77%5d"&gt;Schmeltz77&lt;/a&gt;], where it functions as a defense compound. In the plant tissue nicotine is mostly present in the &lt;a href="/compound?orgid=META&amp;id=NICOTINE"&gt;(&lt;i&gt;S&lt;/i&gt;)-nicotine&lt;/a&gt; isomeric form [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bArmstrong98%5d"&gt;Armstrong98&lt;/a&gt;], although tobacco smoke contains up to 10% of &lt;a href="/compound?orgid=META&amp;id=R-NICOTINE"&gt;(&lt;i&gt;R&lt;/i&gt;)-nicotine&lt;/a&gt;, probably due to racemization during combustion (in [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15734728"&gt;Hukkanen05&lt;/a&gt;]).
 &lt;p&gt;
 Nicotine is the addictive compound in tobacco [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/8301571"&gt;Benowitz94&lt;/a&gt;] and is a commonly used psychoactive drug. It enters the body by systemic absorption through the smoking or chewing of tobacco products [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/6705448"&gt;Benowitz84&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10224986"&gt;Jacob99&lt;/a&gt;].
@@ -25,15 +20,15 @@ In cigarette smoke nicotine is carried on particulate matter and is rapidly abso
 Other forms of nicotine (such as nicotine gum, transdermal patches, inhalers, lozenges, and sublingual tablets) are usually buffered at alkaline pH and quickly traverse cell membranes, but most reach the blood and brain more slowly. They are less likely to cause addiction due to the delayed reward [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/3391001"&gt;Benowitz88&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/8245272"&gt;Henningfield93&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15734728"&gt;Hukkanen05&lt;/a&gt;].</comment>
 <common-name datatype="string">(&lt;i&gt;S&lt;/i&gt;)-nicotine</common-name>
 <credits><revised><date datatype="date">2012-02-07</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -85,14 +80,19 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C10H14N2/c1-12-7-3-5-10(12)9-4-2-6-11-8-9/h2,4,6,8,10H,3,5,7H2,1H3/p+1/t10-/m0/s1</inchi>
 <inchi-key datatype="string">InChIKey=SNICXCGAKADSCV-JTQLQIEISA-O</inchi-key>
+<molecular-weight datatype="float" units="Daltons">163.242</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">162.11569</monoisotopic-mw>
+<synonym datatype="string">nicotine</synonym>
+<appears-in-left-side-of><Reaction frameid="NICOTINE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:NICOTINE-DEHYDROGENASE-RXN" /><Reaction frameid="RXN-8248" orgid="META" resource="getxml?META:RXN-8248" /><Reaction frameid="RXN66-61" orgid="META" resource="getxml?META:RXN66-61" /><Reaction frameid="RXN66-83" orgid="META" resource="getxml?META:RXN66-83" /><Reaction frameid="RXN66-146" orgid="META" resource="getxml?META:RXN66-146" /><Reaction frameid="RXN-13076" orgid="META" resource="getxml?META:RXN-13076" /><Reaction frameid="RXN66-101" orgid="META" resource="getxml?META:RXN66-101" /><Reaction frameid="RXN66-81" orgid="META" resource="getxml?META:RXN66-81" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN-13060" orgid="META" resource="getxml?META:RXN-13060" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

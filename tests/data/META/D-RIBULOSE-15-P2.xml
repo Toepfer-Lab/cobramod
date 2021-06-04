@@ -1,8 +1,8 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:D-RIBULOSE-15-P2"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:D-RIBULOSE-15-P2"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:D-RIBULOSE-15-P2</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID="META:D-RIBULOSE-15-P2" detail="full" frameid="D-RIBULOSE-15-P2" orgid="META"><parent><Compound class="true" frameid="Oligosaccharide-Phosphate" orgid="META" resource="getxml?META:Oligosaccharide-Phosphate" /></parent>
@@ -12,24 +12,17 @@
 <string title="smiles">C(OP([O-])([O-])=O)[C@@H](O)[C@@H](O)C(=O)COP(=O)([O-])[O-]</string>
 </molecule>
 </cml>
-<molecular-weight datatype="float" units="Daltons">306.059</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">309.98547</monoisotopic-mw>
-<synonym datatype="string">ribulose 1,5-bisphosphate</synonym>
-<synonym datatype="string">D-ribulose-1,5-diphosphate</synonym>
-<synonym datatype="string">D-ribulose-1,5-P&lt;SUB&gt;2&lt;/SUB&gt;</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-961" orgid="META" resource="getxml?META:RXN-961" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN" /><Reaction frameid="RXN-8801" orgid="META" resource="getxml?META:RXN-8801" /><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHORIBULOKINASE-RXN" /></appears-in-right-side-of>
 <common-name datatype="string">D-ribulose-1,5-bisphosphate</common-name>
 <credits><revised><date datatype="date">2013-01-10</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -81,14 +74,21 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
 <inchi datatype="string">InChI=1S/C5H12O11P2/c6-3(1-15-17(9,10)11)5(8)4(7)2-16-18(12,13)14/h3,5-6,8H,1-2H2,(H2,9,10,11)(H2,12,13,14)/p-4/t3-,5-/m1/s1</inchi>
 <inchi-key datatype="string">InChIKey=YAHZABJORDUQGO-NQXXGFSBSA-J</inchi-key>
+<molecular-weight datatype="float" units="Daltons">306.059</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">309.98547</monoisotopic-mw>
+<synonym datatype="string">ribulose 1,5-bisphosphate</synonym>
+<synonym datatype="string">D-ribulose-1,5-diphosphate</synonym>
+<synonym datatype="string">D-ribulose-1,5-P&lt;SUB&gt;2&lt;/SUB&gt;</synonym>
+<appears-in-left-side-of><Reaction frameid="RXN-961" orgid="META" resource="getxml?META:RXN-961" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN" orgid="META" resource="getxml?META:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN" /><Reaction frameid="RXN-8801" orgid="META" resource="getxml?META:RXN-8801" /><Reaction frameid="PHOSPHORIBULOKINASE-RXN" orgid="META" resource="getxml?META:PHOSPHORIBULOKINASE-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

@@ -1,38 +1,23 @@
-<ptools-xml ptools-version="24.0" xml:base="http://BioCyc.org/getxml?META:HAONITRO-RXN"><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:HAONITRO-RXN"><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:HAONITRO-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID="META:HAONITRO-RXN" detail="full" frameid="HAONITRO-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Electron-Transfer-Reactions" orgid="META" resource="getxml?META:Electron-Transfer-Reactions" /></parent>
 <parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-ordering><Reaction frameid="RXN-15815" orgid="META" resource="getxml?META:RXN-15815" /><predecessor-reactions><Reaction frameid="RXN-13583" orgid="META" resource="getxml?META:RXN-13583" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<reaction-list><Reaction frameid="RXN-15815" orgid="META" resource="getxml?META:RXN-15815" /><Reaction frameid="RXN-13583" orgid="META" resource="getxml?META:RXN-13583" /></reaction-list>
-<right><Protein class="true" frameid="Cytochromes-C-Reduced" orgid="META" resource="getxml?META:Cytochromes-C-Reduced" /><compartment><cco frameid="CCO-OUT" orgid="META" resource="getxml?META:CCO-OUT" /></compartment>
-<coefficient datatype="integer">4</coefficient>
-</right>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
-<coefficient datatype="integer">5</coefficient>
-</right>
-<right><Compound frameid="NITRITE" orgid="META" resource="getxml?META:NITRITE" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
-</right>
-<systematic-name datatype="string">hydroxylamine:oxygen oxidoreductase</systematic-name>
 <credits><revised><date datatype="date">2012-07-26</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype="string">Ron Caspi</common-name>
 <email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+</Organization>
+</affiliations>
 </Person>
 <Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
 </credits>
@@ -58,22 +43,22 @@
 </dblink>
 <ec-number>EC-1.7.2.6<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-22587" detail="low" frameid="ENZRXN-22587" orgid="META"><reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
-<common-name datatype="string">hydroxylamine reductase</common-name>
+<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-22587" detail="low" frameid="ENZRXN-22587" orgid="META"><common-name datatype="string">hydroxylamine reductase</common-name>
 <enzyme><Protein frameid="MONOMER-18518" orgid="META" resource="getxml?META:MONOMER-18518" /></enzyme>
+<reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-5106" detail="low" frameid="ENZRXN-5106" orgid="META"><reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
-<common-name datatype="string">cytochrome P460</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-5106" detail="low" frameid="ENZRXN-5106" orgid="META"><common-name datatype="string">cytochrome P460</common-name>
 <enzyme><Protein frameid="CPLX-3862" orgid="META" resource="getxml?META:CPLX-3862" /></enzyme>
+<reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-5101" detail="low" frameid="ENZRXN-5101" orgid="META"><reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
-<common-name datatype="string">cytochrome P460</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-5101" detail="low" frameid="ENZRXN-5101" orgid="META"><common-name datatype="string">cytochrome P460</common-name>
 <enzyme><Protein frameid="CPLX-3861" orgid="META" resource="getxml?META:CPLX-3861" /></enzyme>
+<reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-1802" detail="low" frameid="ENZRXN-1802" orgid="META"><reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
-<synonym datatype="string">HAO</synonym>
-<common-name datatype="string">hydroxylamine oxidoreductase</common-name>
+<Enzymatic-Reaction ID="META:ENZRXN-1802" detail="low" frameid="ENZRXN-1802" orgid="META"><common-name datatype="string">hydroxylamine oxidoreductase</common-name>
 <enzyme><Protein frameid="CPLX-1321" orgid="META" resource="getxml?META:CPLX-1321" /></enzyme>
+<reaction><Reaction frameid="HAONITRO-RXN" orgid="META" resource="#META:HAONITRO-RXN" /></reaction>
+<synonym datatype="string">HAO</synonym>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <gibbs-0 datatype="float" units="kcal/mol">-22.720062<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
@@ -84,10 +69,10 @@ manual interpretation of the computation occurred.
 </comment>
 <common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 <url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
 </Publication>
 </evidence>
 </gibbs-0>
@@ -99,5 +84,20 @@ manual interpretation of the computation occurred.
 </left>
 <left><Compound frameid="HYDROXYLAMINE" orgid="META" resource="getxml?META:HYDROXYLAMINE" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
 </left>
+<orphan>NO</orphan>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-ordering><Reaction frameid="RXN-15815" orgid="META" resource="getxml?META:RXN-15815" /><predecessor-reactions><Reaction frameid="RXN-13583" orgid="META" resource="getxml?META:RXN-13583" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<reaction-list><Reaction frameid="RXN-15815" orgid="META" resource="getxml?META:RXN-15815" /><Reaction frameid="RXN-13583" orgid="META" resource="getxml?META:RXN-13583" /></reaction-list>
+<right><Protein class="true" frameid="Cytochromes-C-Reduced" orgid="META" resource="getxml?META:Cytochromes-C-Reduced" /><compartment><cco frameid="CCO-OUT" orgid="META" resource="getxml?META:CCO-OUT" /></compartment>
+<coefficient datatype="integer">4</coefficient>
+</right>
+<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+<coefficient datatype="integer">5</coefficient>
+</right>
+<right><Compound frameid="NITRITE" orgid="META" resource="getxml?META:NITRITE" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+</right>
+<systematic-name datatype="string">hydroxylamine:oxygen oxidoreductase</systematic-name>
 </Reaction>
 </ptools-xml>

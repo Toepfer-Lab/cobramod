@@ -94,7 +94,7 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
         filename = data_dir.joinpath(f"{identifier}.json")
         debug_log.debug(
             f'Searching "{identifier}" in directory BIGG, '
-            f"sub-directory {model_id}"
+            f'sub-directory "{model_id}"'
         )
         try:
             return BiggParser._read_file(filename=filename)
@@ -239,6 +239,7 @@ class BiggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
+        BiggParser._check_database(database=database)
         try:
             model_id = kwargs["model_id"]
         except KeyError:
@@ -270,14 +271,13 @@ class BiggParser(BaseParser):
             raise WrongParserError
 
     @staticmethod
-    def _return_database(database: str) -> str:
+    def _check_database(database: str):
         """
         Returns name of the database. It will raise a Error if name is
         incorrect.
         """
-        if database == "BIGG":
-            return database
-        raise WrongParserError
+        if database != "BIGG":
+            raise WrongParserError
 
     @staticmethod
     def _read_file(filename: Path) -> dict:
