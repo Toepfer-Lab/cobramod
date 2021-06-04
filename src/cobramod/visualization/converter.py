@@ -32,7 +32,7 @@ from collections import UserDict, namedtuple
 from contextlib import suppress
 from itertools import cycle
 from json import dumps
-from typing import Dict, Optional, List, Union
+from typing import Dict, Optional, List, Union, Tuple
 from pathlib import Path
 from warnings import catch_warnings, simplefilter
 from webbrowser import open as web_open
@@ -42,6 +42,8 @@ from escher import Builder
 from IPython.core.getipython import get_ipython
 
 # from cobramod.visualization.pair import PairDictionary
+from numpy import ndarray
+
 from cobramod.visualization.items import Reaction, Node
 from cobramod.visualization.debug import debug_log
 from cobramod.visualization.mapping import get_mapping, transpose
@@ -98,19 +100,101 @@ def _convert_string(string: str) -> dict:
     return metabolites
 
 
-def _color2np_rgb(color: Union[str, List[int]]) -> np.array:
+def _color2np_rgb(color: Union[str, List[int], None]) -> ndarray:
+    """
+    This function translates the rgb or string representation into a numpy
+    array. The string representation must follow the css standard.
+
+    Args:
+        color: The color to be translated.
+
+    Returns:
+        Numpy array with the rgb representation of the color or with the
+        values [220,220,220] as standard return for incorrect inputs.
+    """
     try:
+        assert color is not None
         if not all(isinstance(elements, int) for elements in color):
             color = webcolors.name_to_rgb(color)
-    except (KeyError, TypeError, ValueError):
+    except (KeyError, TypeError, ValueError, AssertionError):
         logging.warning(
             f'Unknown color or wrong format: "{color}". Using default color.'
         )
         color = [220, 220, 220]
 
     # turn int arrays into numpy arrays
-    color = np.array(color, dtype=np.float32)
-    return color
+    return np.array(color, dtype=np.float32)
+
+
+def _divide_values(
+    flux: List[float], min_max: Optional[List[float]] = None
+) -> Tuple[List[float], List[float], bool, bool]:
+    """
+    This function divides a list into two, one consisting of the positive
+    values and one of the negative values.
+
+    Args:
+        flux (List[int]): Array that is to be divided into positive and
+            negative values.
+        min_max ([int,int]): List consisting of two values. These values
+            determine the maximum value and minimum value that are taken into
+            account in the distribution. All values outside this interval
+            are ignored.
+    Returns:
+        This function returns two lists and two bools. The first return is the
+            list consisting of positive values. The second return is the list
+            with negative values. The third return is a bool that indicates
+            whether min_max consists of two positive values. The fourth
+            return describes whether min_max consists of two negative values.
+    """
+
+    # if required, take min and max settings into account and add them if
+    # not present
+
+    both_positive = False
+    both_negative = False
+
+    for _ in [0]:
+        if min_max is None:
+            continue
+
+        if min_max[0] > min_max[1]:
+            logging.warn(
+                "Set minimum is greater than maximum. Ignoring min_max"
+            )
+            continue
+
+        both_positive = min_max[0] > 0 and min_max[1] > 0
+        both_negative = min_max[0] < 0 and min_max[1] < 0
+
+        size = len(flux)
+        msg = (
+            f"Due to set min_max values were ignored. Original range "
+            f"was [{min(flux)},{max(flux)}] "
+            f"set is [{min_max[0]},{min_max[1]}]."
+        )
+
+        flux = [value for value in flux if min_max[0] < value < min_max[1]]
+        if size > len(flux):
+            logging.info(msg)
+
+        if min_max[0] != 0 and min_max[0] not in flux:
+            flux.append(min_max[0])
+
+        if min_max[1] != 0 and min_max[1] not in flux:
+            flux.append(min_max[1])
+
+    # divide positive and negative values
+    positive = list()
+    negative = list()
+
+    for value in flux:
+        if value > 0:
+            positive.append(value)
+        elif value < 0:
+            negative.append(value)
+
+    return positive, negative, both_positive, both_negative
 
 
 class JsonDictionary(UserDict):
@@ -712,7 +796,7 @@ class JsonDictionary(UserDict):
 
     def color_grading(
         self,
-        color: List[Union[str, List[int]]],
+        color: List[Union[str, List[int], None]],
         min_max: List[float] = None,
         quantile: bool = False,
         max_steps: int = 100,
@@ -744,60 +828,22 @@ class JsonDictionary(UserDict):
                 Sets the maximum number of color steps.
         """
 
-        color_positive = color[0]
-        color_negative = color[1]
-
         # turn int arrays into numpy arrays
-        color_positive = _color2np_rgb(color_positive)
-        color_negative = _color2np_rgb(color_negative)
+        color_positive = _color2np_rgb(color[0])
+        color_negative = _color2np_rgb(color[1])
         color_intermediate = np.array([220, 220, 220], dtype=np.float32)
-
-        # bools used to handle the situation when both values of min_max are
-        # positive or negative
-        both_positive = False
-        both_negative = False
 
         try:
             flux = list(self.flux_solution.values())
         except AttributeError:
             flux = []
 
-        # if required, take min and max settings into account and add them if
-        # not present
-        for _ in [0]:
-            if min_max is not None:
-                if min_max[0] > min_max[1]:
-                    logging.warn(
-                        "Set minimum is greater than maximum. Ignoring min_max"
-                    )
-                    min_max = None
-                    continue
-
-                both_positive = min_max[0] > 0 and min_max[1] > 0
-                both_negative = min_max[0] < 0 and min_max[1] < 0
-
-                size = len(flux)
-                msg = (
-                    f"Due to set min_max values were ignored. Original range "
-                    f"was [{min(flux)},{max(flux)}] "
-                    f"set is [{min_max[0]},{min_max[1]}]."
-                )
-
-                flux = [
-                    value for value in flux if min_max[0] < value < min_max[1]
-                ]
-                if size > len(flux):
-                    logging.info(msg)
-
-                if min_max[0] != 0 and min_max[0] not in flux:
-                    flux.append(min_max[0])
-
-                if min_max[1] != 0 and min_max[1] not in flux:
-                    flux.append(min_max[1])
-
         # divide positive and negative values
-        positive = list()
-        negative = [i for i in flux if i < 0 or (i > 0 and positive.append(i))]
+        # bools used to handle the situation when both values of min_max are
+        # positive or negative
+        positive, negative, both_positive, both_negative = _divide_values(
+            flux=flux, min_max=min_max
+        )
 
         # array that will contain the configuration for escher
         reaction_scale = []
@@ -811,7 +857,7 @@ class JsonDictionary(UserDict):
         if n_steps is not None:
             steps = math.floor(n_steps / 2)
 
-        flux_values: np.array
+        flux_values: ndarray
 
         try:
             if quantile:
@@ -824,6 +870,7 @@ class JsonDictionary(UserDict):
                 # if both min_max values are positive the start is shifted
                 # from zero to the set minimum
                 if both_positive:
+                    assert min_max is not None
                     start_value = min_max[0]
 
                 flux_values = np.linspace(start_value, maximum, steps)
@@ -834,7 +881,7 @@ class JsonDictionary(UserDict):
 
             flux_values.sort()
         except ValueError:
-            flux_values = []
+            flux_values = np.empty(shape=(0, 0))
 
         for flux_value in flux_values:
             reaction_scale.append(
@@ -873,6 +920,7 @@ class JsonDictionary(UserDict):
                 # if both min_max values are negative the start will be
                 # shifted from zero to the set maximum
                 if both_negative:
+                    assert min_max is not None
                     start_value = min_max[1]
                 flux_values = np.linspace(start_value, minimum, steps)
 
@@ -882,9 +930,9 @@ class JsonDictionary(UserDict):
 
             flux_values.sort()
         except ValueError:
-            flux_values = []
+            flux_values = np.empty(shape=(0, 0))
 
-        for flux_value in reversed(flux_values):
+        for flux_value in flux_values[::-1]:
             reaction_scale.append(
                 {
                     "type": "value",
@@ -901,11 +949,11 @@ class JsonDictionary(UserDict):
     def visualize(
         self,
         filepath: Optional[Path] = None,
-        vertical: Optional[bool] = False,
+        vertical: bool = False,
         color: Optional[List[Union[str, List[int], None]]] = None,
         min_max: Optional[List[float]] = None,
-        quantile: Optional[bool] = False,
-        max_steps: Optional[int] = 100,
+        quantile: bool = False,
+        max_steps: int = 100,
         n_steps: Optional[int] = None,
     ):
         """

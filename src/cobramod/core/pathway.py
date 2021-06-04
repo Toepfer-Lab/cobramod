@@ -31,7 +31,7 @@ class Pathway(Group):
     Attributes
         vertical (bool, optional):
             Variable that determines whether the display should be vertical or
-            horizontal using escher.
+            horizontal using escher. Defaults to False.
         color_negative (str or list of int, optional) :
             The color to use as the endpoint for the negative fluxes during the
             creation of the color gradient. All colors of the css standard can
@@ -49,13 +49,13 @@ class Pathway(Group):
             Attributes that determines whether the color gradient should be
             determined through quantiles or equally distributed between the
             maximum and the minimum. Defaults to None which means that the
-            gradations are evenly distributed.
+            gradations are evenly distributed. Default value is False.
         color_n_steps (int, optional) :
             The number of steps used when creating the color gradient. Uses the
             number of fluxes by default. The default value is None.
         color_max_steps (int, optional) :
             The maximum number of steps to use when creating the color
-            gradient.
+            gradient. Default value is 100.
     See Also:
             Color names according to the css standard:
             https://www.w3schools.com/cssref/css_colors.asp
@@ -105,10 +105,10 @@ class Pathway(Group):
         self.color_negative: Optional[Union[str, List[int]]] = None
         self.color_positive: Optional[Union[str, List[int]]] = None
         self.color_min_max: Optional[List[float]] = None
-        self.color_max_steps: Optional[int] = 100
+        self.color_max_steps: int = 100
         self.color_n_steps: Optional[int] = None
-        self.color_quantile: Optional[bool] = False
-        self.vertical: Optional[bool] = True
+        self.color_quantile: bool = False
+        self.vertical: bool = False
 
     def _filter(self, solution: Solution, attribute: str) -> Series:
         """
