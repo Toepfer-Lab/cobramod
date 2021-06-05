@@ -50,3 +50,4 @@ dependencies:
     - Escher==1.7.3
     - openpyxl==3.0.7
     - nbsphinx==0.8.4
+    - webcolors==1.11.1
