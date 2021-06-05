@@ -268,6 +268,9 @@ def summary(
                 Thus, '.txt', '.csv' or '.xlsx' can be used.
     """
 
+    if isinstance(filename, str):
+        filename = Path(filename)
+
     new_values = DataModel.from_model(model)
 
     diff = original.diff(new_values)
