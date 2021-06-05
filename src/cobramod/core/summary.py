@@ -4,6 +4,7 @@
 This module is responsible for the short summary in the command
 line and for other summaries in different formats.
 """
+import logging
 import warnings
 from pathlib import Path
 from typing import Dict
@@ -200,7 +201,7 @@ class DataModel:
         """
 
         save = self._to_dataframe(model, original)
-        save.to_excel(path.with_suffix(".xlsx"), index=False)
+        save.to_excel(path, index=False)
 
     def to_csv(self, path, model: Model = None, original=None):
         """
@@ -216,7 +217,7 @@ class DataModel:
         """
 
         save = self._to_dataframe(model, original)
-        save.to_csv(path.with_suffix(".csv"), index=False)
+        save.to_csv(path, index=False)
 
     def to_txt(self, path, model: Model = None, original=None):
         """
@@ -239,21 +240,20 @@ class DataModel:
                     f"Model identifier: {model.id}",
                     "Model name:",
                     str(model.name),
-                    str(self),
+                    str(original),
                     "Changes:",
                 ]
             )
 
-        output.append(str(self.diff(original)))
+        output.append(str(self))
 
-        with open(file=str(path.with_suffix(".txt")), mode="w+") as file:
+        with open(file=str(path), mode="w") as file:
             file.writelines(line + "\n" for line in output)
 
 
 def summary(
     model: Model,
     original: DataModel,
-    file_format: str = None,
     filename: Path = None,
 ):
     """
@@ -263,10 +263,9 @@ def summary(
             model (Model): model with recent changes.
             original (DataModel): Object with data from previous model. Use
                 method :func:`cobramod.summary.DataModel`.
-            file_format (str): The format in which the further summary
-                should be generated. If no additional summary is desired,
-                this should be None.
-            filename (Path): Location where the summary should be stored.
+            filename (Path): Location where the summary should be stored. The
+                file format is determined by the suffix of the filename.
+                Thus, '.txt', '.csv' or '.xlsx' can be used.
     """
 
     new_values = DataModel.from_model(model)
@@ -293,21 +292,22 @@ def summary(
         "Sinks\t\t" + str(len(diff.sinks)) + "\n"
         "Genes\t\t" + str(len(diff.genes)) + "\n"
         "Groups\t\t" + str(len(diff.groups)) + "\n"
+        "(Includes additions & deletions)\n"
     )
 
     # if desired, create another summary in the requested format
-    if file_format is None:
-        return
     if filename is None:
-        filename = Path.cwd() / "summary"
+        return
 
     options = {
-        "excel": diff.to_excl,
-        "csv": diff.to_csv,
-        "txt": diff.to_txt,
+        ".xlsx": diff.to_excl,
+        ".csv": diff.to_csv,
+        ".txt": diff.to_txt,
     }
 
     try:
+        file_format = filename.suffix
         options[file_format](filename, model, new_values)
     except KeyError:
-        print("No known format. Use 'excel', 'csv' or 'txt'")
+        logging.warning("Unknown format therefore no summary was created."
+                        "Use '.xlsx', ',csv' or ',txt'.")

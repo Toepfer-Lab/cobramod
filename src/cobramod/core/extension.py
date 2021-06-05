@@ -668,8 +668,7 @@ def add_pathway(
     avoid_list: List[str] = [],
     replacement: dict = {},
     ignore_list: List[str] = [],
-    filename: Path = None,
-    summary: str = None,
+    filename: Path = Path.cwd() / "summary.txt",
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
     model_id: str = "universal",
@@ -705,9 +704,9 @@ def add_pathway(
 
     Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to
-            "summary" in the current working directory.
-        summary (str, optional): True to write summary in file. Can be None,
-            excel, csv or txt. Use None for no summary. Defaults to None.
+            "summary" in the current working directory. The file format is
+            defined by the suffix. The suffixes '.txt', '.csv' and '.xlsx' can
+            be used. If filename is set to None, no summary will be created.
 
     Arguments for utilities:
         stop_imbalance (bool, optional): If unbalanced reaction is found, stop
@@ -772,4 +771,4 @@ def add_pathway(
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
     # Print summary
-    summarize(model, old_values, file_format=summary, filename=filename)
+    summarize(model, old_values, filename=filename)

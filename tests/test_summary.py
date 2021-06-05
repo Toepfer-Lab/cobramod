@@ -167,10 +167,10 @@ class TestSummary(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary"
+            filename = Path(directory) / "summary.xlsx"
             tiny_base.to_excl(filename, textbook, tiny_base)
 
-            self.assertTrue(expr=filename.with_suffix(".xlsx").exists())
+            self.assertTrue(expr=filename.exists())
 
     def test_to_csv(self):
         tiny_base = DataModel(
@@ -186,10 +186,10 @@ class TestSummary(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary"
+            filename = Path(directory) / "summary.csv"
             tiny_base.to_csv(filename, textbook, tiny_base)
 
-            self.assertTrue(expr=filename.with_suffix(".csv").exists())
+            self.assertTrue(expr=filename.exists())
 
     def test_to_txt(self):
         tiny_base = DataModel(
@@ -205,36 +205,35 @@ class TestSummary(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary"
+            filename = Path(directory) / "summary.txt"
             tiny_base.to_txt(filename, textbook, tiny_base)
 
-            self.assertTrue(expr=filename.with_suffix(".txt").exists())
+            self.assertTrue(expr=filename.exists())
 
     def test_summary(self):
         # Preparation
         test_model = textbook.copy()
         old_values = DataModel.from_model(textbook)
 
-        # Case 1: None as format
+        # Case 1: None as filename
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
+            filename = None
             summary(
-                test_model, old_values, file_format=None, filename=filename
+                test_model, old_values, filename=filename
             )
 
             for _ in directory.iterdir():
-                self.fail("Summary created a file although none was passed")
+                self.fail("Summary created a file although None was passed")
 
         # Case 2: Excel as format
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
+            filename = directory / "summary.xlsx"
             summary(
-                test_model, old_values, file_format="excel", filename=filename
+                test_model, old_values, filename=filename
             )
 
-            filename = filename.with_suffix(".xlsx")
             self.assertTrue(expr=filename.exists())
 
             for file in directory.iterdir():
@@ -244,12 +243,11 @@ class TestSummary(TestCase):
         # Case 3: csv as format
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
+            filename = directory / "summary.csv"
             summary(
-                test_model, old_values, file_format="csv", filename=filename
+                test_model, old_values, filename=filename
             )
 
-            filename = filename.with_suffix(".csv")
             self.assertTrue(expr=filename.exists())
 
             for file in directory.iterdir():
@@ -259,17 +257,28 @@ class TestSummary(TestCase):
         # Case 4: txt as format
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
+            filename = directory / "summary.txt"
             summary(
-                test_model, old_values, file_format="txt", filename=filename
+                test_model, old_values, filename=filename
             )
 
-            filename = filename.with_suffix(".txt")
             self.assertTrue(expr=filename.exists())
 
             for file in directory.iterdir():
                 if file != filename:
                     self.fail("Summary created additional files")
+
+        # Case 5: unknown format
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            filename = directory / "summary.unknown"
+            summary(
+                test_model, old_values, filename=filename
+            )
+
+            for _ in directory.iterdir():
+                self.fail("Summary created a file!")
+
 
 
 if __name__ == "__main__":
