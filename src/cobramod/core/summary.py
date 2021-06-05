@@ -252,9 +252,7 @@ class DataModel:
 
 
 def summary(
-    model: Model,
-    original: DataModel,
-    filename: Path = None,
+    model: Model, original: DataModel, filename: Path = None,
 ):
     """
         Produces the short summary and another one in the defined format.
@@ -312,5 +310,7 @@ def summary(
         file_format = filename.suffix
         options[file_format](filename, model, new_values)
     except KeyError:
-        logging.warning("Unknown format therefore no summary was created."
-                        "Use '.xlsx', ',csv' or ',txt'.")
+        logging.warning(
+            "Unknown format therefore no summary was created."
+            "Use '.xlsx', ',csv' or ',txt'."
+        )

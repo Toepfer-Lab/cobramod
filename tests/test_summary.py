@@ -219,9 +219,7 @@ class TestSummary(TestCase):
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
             filename = None
-            summary(
-                test_model, old_values, filename=filename
-            )
+            summary(test_model, old_values, filename=filename)
 
             for _ in directory.iterdir():
                 self.fail("Summary created a file although None was passed")
@@ -230,9 +228,7 @@ class TestSummary(TestCase):
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
             filename = directory / "summary.xlsx"
-            summary(
-                test_model, old_values, filename=filename
-            )
+            summary(test_model, old_values, filename=filename)
 
             self.assertTrue(expr=filename.exists())
 
@@ -244,9 +240,7 @@ class TestSummary(TestCase):
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
             filename = directory / "summary.csv"
-            summary(
-                test_model, old_values, filename=filename
-            )
+            summary(test_model, old_values, filename=filename)
 
             self.assertTrue(expr=filename.exists())
 
@@ -258,9 +252,7 @@ class TestSummary(TestCase):
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
             filename = directory / "summary.txt"
-            summary(
-                test_model, old_values, filename=filename
-            )
+            summary(test_model, old_values, filename=filename)
 
             self.assertTrue(expr=filename.exists())
 
@@ -272,13 +264,10 @@ class TestSummary(TestCase):
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
             filename = directory / "summary.unknown"
-            summary(
-                test_model, old_values, filename=filename
-            )
+            summary(test_model, old_values, filename=filename)
 
             for _ in directory.iterdir():
                 self.fail("Summary created a file!")
-
 
 
 if __name__ == "__main__":
