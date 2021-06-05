@@ -3,7 +3,7 @@
 
 This module includes two TestCases:
 
-- TestItems: Creation and behaviour of JSON objects for the Escher-schema
+- TestItems: Creation and behavior of JSON objects for the Escher-schema
 - TestJsonDictionary: Testing the methods inside the JsonDictionary
 """
 from contextlib import suppress
@@ -33,7 +33,7 @@ if not dir_data.exists():
 
 class TestItems(TestCase):
     """
-    Behaviour of JSON objects
+    Behavior of JSON objects
     """
 
     def test__convert_string(self):
@@ -74,7 +74,7 @@ class TestItems(TestCase):
         self.assertIs(expr1=test_dict_a.pair, expr2=test_dict_b)
 
     def test_Node(self):
-        # CASE 0: Check instance behaviour.
+        # CASE 0: Check instance behavior.
         test_class = Node(node_type="midmarker", x=1, y=2)
         test_class_2 = Node(node_type="midmarker", x=1, y=2)
         self.assertIsNot(expr1=test_class, expr2=test_class_2)
@@ -90,7 +90,7 @@ class TestItems(TestCase):
         self.assertEqual(first=test_class["node_type"], second="metabolite")
 
     def test_Segment(self):
-        # CASE 0: Check instance behaviour.
+        # CASE 0: Check instance behavior.
         test_class = Segment(from_node_id="1", to_node_id="2")
         test_class_2 = Segment(from_node_id="1", to_node_id="2")
         self.assertIsNot(expr1=test_class, expr2=test_class_2)
@@ -109,7 +109,7 @@ class TestItems(TestCase):
         self.assertIn(member="y", container=test_class["b2"].keys())
 
     def test_Reaction(self):
-        # CASE 0: Check instance behaviour.
+        # CASE 0: Check instance behavior.
         test_class = Reaction(
             name="test_reaction",
             bigg_id="test_identifier",
@@ -160,7 +160,7 @@ class TestJsonDictionary(TestCase):
     """
 
     def test___init__(self):
-        # CASE 0: Checking behaviour with two instances
+        # CASE 0: Checking behavior with two instances
         test_class = JsonDictionary()
         test_class_2 = JsonDictionary()
         test_class["reactions"]["0"] = "test_string"
@@ -378,13 +378,7 @@ class TestJsonDictionary(TestCase):
 
     def test_color_grading(self):
         test_class = JsonDictionary()
-        test_class.flux_solution = {
-            "A": -2,
-            "B": -1,
-            "C": 0,
-            "D": 1,
-            "E": 2,
-        }
+        test_class.flux_solution = {"A": -2, "B": -1, "C": 0, "D": 1, "E": 2}
 
         expected_scale = [
             {"type": "value", "value": 1.0, "color": "rgb(237,192,110)"},
@@ -794,6 +788,30 @@ class TestJsonDictionary(TestCase):
         }
         test_builder = test_class.visualize(filepath=test_path)
         sleep(1)
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        # with color
+        test_class.flux_solution = {
+            "R0": 10,
+            "R1": 9,
+            "R2": 8,
+            "R3": 7,
+            "R4": 6,
+            "R5": 5,
+            "R6": 3,
+            "R7": 3,
+            "R8": 3,
+            "R9": 5,
+            "R10": 5,
+            "R11": 4,
+            "R12": 3,
+            "R13": 6,
+            "R14": 7,
+        }
+        test_builder = test_class.visualize(
+            filepath=test_path, color=["orange", "green"]
+        )
+        sleep(1)
 
     def test_visualize_vertical(self):
         test_path = Path.cwd().joinpath("test_map.html")
@@ -809,6 +827,14 @@ class TestJsonDictionary(TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_builder = test_class.visualize(filepath=test_path, vertical=True)
+        sleep(1)
+        # Color test
+        with suppress(FileNotFoundError):
+            test_path.unlink()
+        test_class.flux_solution = {"R1": -4, "R2": -2, "R3": 0}
+        test_builder = test_class.visualize(
+            filepath=test_path, vertical=True, color=["orange", "green"]
+        )
         sleep(1)
         # CASE 2: Complex Lineal
         test_class = JsonDictionary()
@@ -853,7 +879,7 @@ class TestJsonDictionary(TestCase):
 class TestMapping(TestCase):
     """
     This TestCase checks if the mapping for the visualization has a normal
-    behaviour
+    behavior
     """
 
     def test_child_map(self):

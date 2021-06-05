@@ -24,7 +24,6 @@ visualizations.
 - visualize: Saves Escher visualization as a HTML and return the Escher
 Builder.
 """
-import logging
 import math
 
 import webcolors
@@ -91,7 +90,7 @@ def _convert_string(string: str) -> dict:
         FACTOR = 1
         if side is left:
             FACTOR = -1
-        # Sometimes, there are no metabolites (sink reactions), the sigle "1"
+        # Sometimes, there are no metabolites (sink reactions), the single "1"
         # must be ignored
         with suppress(ValueError):
             metabolites.update(
@@ -117,7 +116,7 @@ def _color2np_rgb(color: Union[str, List[int], None]) -> ndarray:
         if not all(isinstance(elements, int) for elements in color):
             color = webcolors.name_to_rgb(color)
     except (KeyError, TypeError, ValueError, AssertionError):
-        logging.warning(
+        debug_log.warning(
             f'Unknown color or wrong format: "{color}". Using default color.'
         )
         color = [220, 220, 220]
@@ -159,7 +158,7 @@ def _divide_values(
             continue
 
         if min_max[0] > min_max[1]:
-            logging.warn(
+            debug_log.warn(
                 "Set minimum is greater than maximum. Ignoring min_max"
             )
             continue
@@ -176,7 +175,7 @@ def _divide_values(
 
         flux = [value for value in flux if min_max[0] < value < min_max[1]]
         if size > len(flux):
-            logging.info(msg)
+            debug_log.info(msg)
 
         if min_max[0] != 0 and min_max[0] not in flux:
             flux.append(min_max[0])
@@ -204,7 +203,7 @@ class JsonDictionary(UserDict):
     keyword arguments may be passed.
 
     Keyword Arguments:
-        head (dict, optional): General information of the JSOB. Keys
+        head (dict, optional): General information of the JSON. Keys
             included: map_name, map_id, map_description, homepage, schema
         reactions (dict, optional): Dictionary with multiple
             :class:`cobramod.visualization.items.Reaction` where the key is the
@@ -399,7 +398,7 @@ class JsonDictionary(UserDict):
     def add_marker(self, x: float, y: float, node_type: str):
         """
         Add a marker-type node into the JsonDictionary. Node can be a midmarker
-        or a multimarker. These markes are located in the middle of the
+        or a multimarker. These markers are located in the middle of the
         reaction. A midmarker is located between two multimarkers.
 
         Args:
@@ -440,7 +439,7 @@ class JsonDictionary(UserDict):
         ):
             last = self._get_last_number(item="nodes")
             self._overview[identifier]["nodes"][node_position] = last
-            # Defining position of labels depeding of position axis.
+            # Defining position of labels depending of position axis.
             if vertical:
                 self.add_marker(
                     x=left_edge + (self.R_WIDTH / 2),
@@ -554,7 +553,7 @@ class JsonDictionary(UserDict):
         # Obtaining position of reaction
         identifier = reaction["bigg_id"]
         position: Position = self._overview[identifier]["position"]
-        # Minimum number of identifiers. TODO: verify behaviour with 0
+        # Minimum number of identifiers. TODO: verify behavior with 0
         side_dict = {"left": 1, "right": 1}
         # Obtain products from reactions in the prior column.
         # The column must be actual - 1, or 0. This is to check for shared
@@ -980,6 +979,7 @@ class JsonDictionary(UserDict):
                 a string that defines the color name according to the css
                 standard. If None is used here, no gradient will be generated.
                 Defaults to None.
+                Example: ["orange", "green"] or [[255, 165, 0], [0, 128, 0]]
             min_max: list of float, optional
                 List consisting of two ints. The first int describes the
                 minimum, the second the maximum. These two values are

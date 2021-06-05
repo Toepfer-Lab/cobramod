@@ -8,6 +8,7 @@ from json import loads
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
+from random import randint
 from time import sleep
 
 from cobra.core import DictList, Group
@@ -213,7 +214,11 @@ class TestGroup(TestCase):
         # Test fluxes
         test_pathway = test_model.groups.get_by_id("SALVADEHYPOX-PWY")
         self.assertEqual(first=len(test_pathway.members), second=5)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
+        test_solution = {
+            reaction.id: randint(-4, 4) for reaction in test_pathway.members
+        }
+        test_pathway.color_negative = "red"
+        test_pathway.color_positive = "green"
         test_pathway.visualize(solution_fluxes=test_solution)
         sleep(1)
         test_pathway.vertical = True
@@ -232,7 +237,11 @@ class TestGroup(TestCase):
         # Test fluxes
         test_pathway = test_model.groups.get_by_id("PWY-1187")
         self.assertEqual(first=len(test_pathway.members), second=14)
-        test_solution = test_pathway.solution(solution=test_model.optimize())
+        test_solution = {
+            reaction.id: randint(-4, 4) for reaction in test_pathway.members
+        }
+        test_pathway.color_negative = "purple"
+        test_pathway.color_positive = "blue"
         test_pathway.visualize(solution_fluxes=test_solution)
         sleep(1)
         test_pathway.vertical = True
