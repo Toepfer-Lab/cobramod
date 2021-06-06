@@ -48,3 +48,4 @@ dependencies:
     - doc8==0.8.1
     - Escher==1.7.3
     - openpyxl==3.0.7
+    - webcolors==1.11.1

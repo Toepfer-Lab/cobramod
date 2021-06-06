@@ -48,15 +48,25 @@ class DataModel:
             model (Model): Model based on which a DataModel object
                 is to be created.
         """
-        data = {
-            "reactions": model.reactions.list_attr("id"),
-            "metabolites": model.metabolites.list_attr("id"),
-            "demands": model.demands.list_attr("id"),
-            "exchanges": model.exchanges.list_attr("id"),
-            "genes": model.genes.list_attr("id"),
-            "groups": model.groups.list_attr("id"),
-            "sinks": model.sinks.list_attr("id"),
+
+        characteristics = {
+            "reactions": model.reactions,
+            "metabolites": model.metabolites,
+            "demands": model.demands,
+            "exchanges": model.exchanges,
+            "genes": model.genes,
+            "groups": model.groups,
+            "sinks": model.sinks,
         }
+
+        data = {}
+
+        for identifier, values in characteristics.items():
+            try:
+                data[identifier] = values.list_attr("id")
+            except AttributeError:
+                data[identifier] = []
+
         return cls(data)
 
     def diff(self, other):

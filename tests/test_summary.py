@@ -11,6 +11,7 @@ from unittest import TestCase, main
 
 import numpy
 import pandas
+from cobra import Model
 
 from cobramod.core.summary import DataModel, summary
 from cobramod.debug import debug_log
@@ -21,8 +22,17 @@ debug_log.setLevel(DEBUG)
 
 class TestSummary(TestCase):
     def test_from_model(self):
+        # Case 1 example cobra model
         data_model = DataModel.from_model(textbook)
         self.assertIsInstance(obj=data_model, cls=DataModel)
+
+        # Case 2 Empty cobra model
+        model = Model(0)
+        data_model = DataModel.from_model(model=model)
+        self.assertIsInstance(obj=data_model, cls=DataModel)
+
+        for variable in vars(data_model).values():
+            self.assertEqual(variable, [])
 
     def test_diff(self):
         # Preparation
