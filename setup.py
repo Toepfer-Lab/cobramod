@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cobramod",
-    version="0.4.3",
+    version="0.5.0",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     package_data={"": ["data/*"]},
@@ -18,6 +18,7 @@ setup(
         "requests>=2.24.0",
         "Escher>=1.7.3",
         "openpyxl>=3.0.7",
+        "webcolors>=1.11.1"
     ],
     url="https://github.com/Toepfer-Lab/cobramod",
 )

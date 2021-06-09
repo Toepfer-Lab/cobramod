@@ -24,20 +24,25 @@ visualizations.
 - visualize: Saves Escher visualization as a HTML and return the Escher
 Builder.
 """
+import math
 
+import webcolors
 from collections import UserDict, namedtuple
 from contextlib import suppress
 from itertools import cycle
 from json import dumps
-from typing import Dict
+from typing import Dict, Optional, List, Union, Tuple
 from pathlib import Path
 from warnings import catch_warnings, simplefilter
 from webbrowser import open as web_open
 
+import numpy as np
 from escher import Builder
 from IPython.core.getipython import get_ipython
 
 # from cobramod.visualization.pair import PairDictionary
+from numpy import ndarray
+
 from cobramod.visualization.items import Reaction, Node
 from cobramod.visualization.debug import debug_log
 from cobramod.visualization.mapping import get_mapping, transpose
@@ -85,13 +90,110 @@ def _convert_string(string: str) -> dict:
         FACTOR = 1
         if side is left:
             FACTOR = -1
-        # Sometimes, there are no metabolites (sink reactions), the sigle "1"
+        # Sometimes, there are no metabolites (sink reactions), the single "1"
         # must be ignored
         with suppress(ValueError):
             metabolites.update(
                 {key: float(value) * FACTOR for value, key in sequence}
             )
     return metabolites
+
+
+def _color2np_rgb(color: Union[str, List[int], None]) -> ndarray:
+    """
+    This function translates the rgb or string representation into a numpy
+    array. The string representation must follow the css standard.
+
+    Args:
+        color: The color to be translated.
+
+    Returns:
+        Numpy array with the rgb representation of the color or with the
+        values [220,220,220] as standard return for incorrect inputs.
+    """
+    try:
+        assert color is not None
+        if not all(isinstance(elements, int) for elements in color):
+            color = webcolors.name_to_rgb(color)
+    except (KeyError, TypeError, ValueError, AssertionError):
+        debug_log.warning(
+            f'Unknown color or wrong format: "{color}". Using default color.'
+        )
+        color = [220, 220, 220]
+
+    # turn int arrays into numpy arrays
+    return np.array(color, dtype=np.float32)
+
+
+def _divide_values(
+    flux: List[float], min_max: Optional[List[float]] = None
+) -> Tuple[List[float], List[float], bool, bool]:
+    """
+    This function divides a list into two, one consisting of the positive
+    values and one of the negative values.
+
+    Args:
+        flux (List[int]): Array that is to be divided into positive and
+            negative values.
+        min_max ([int,int]): List consisting of two values. These values
+            determine the maximum value and minimum value that are taken into
+            account in the distribution. All values outside this interval
+            are ignored.
+    Returns:
+        This function returns two lists and two bools. The first return is the
+            list consisting of positive values. The second return is the list
+            with negative values. The third return is a bool that indicates
+            whether min_max consists of two positive values. The fourth
+            return describes whether min_max consists of two negative values.
+    """
+
+    # if required, take min and max settings into account and add them if
+    # not present
+
+    both_positive = False
+    both_negative = False
+
+    for _ in [0]:
+        if min_max is None:
+            continue
+
+        if min_max[0] > min_max[1]:
+            debug_log.warn(
+                "Set minimum is greater than maximum. Ignoring min_max"
+            )
+            continue
+
+        both_positive = min_max[0] > 0 and min_max[1] > 0
+        both_negative = min_max[0] < 0 and min_max[1] < 0
+
+        size = len(flux)
+        msg = (
+            f"Due to set min_max values were ignored. Original range "
+            f"was [{min(flux)},{max(flux)}] "
+            f"set is [{min_max[0]},{min_max[1]}]."
+        )
+
+        flux = [value for value in flux if min_max[0] < value < min_max[1]]
+        if size > len(flux):
+            debug_log.info(msg)
+
+        if min_max[0] != 0 and min_max[0] not in flux:
+            flux.append(min_max[0])
+
+        if min_max[1] != 0 and min_max[1] not in flux:
+            flux.append(min_max[1])
+
+    # divide positive and negative values
+    positive = list()
+    negative = list()
+
+    for value in flux:
+        if value > 0:
+            positive.append(value)
+        elif value < 0:
+            negative.append(value)
+
+    return positive, negative, both_positive, both_negative
 
 
 class JsonDictionary(UserDict):
@@ -101,7 +203,7 @@ class JsonDictionary(UserDict):
     keyword arguments may be passed.
 
     Keyword Arguments:
-        head (dict, optional): General information of the JSOB. Keys
+        head (dict, optional): General information of the JSON. Keys
             included: map_name, map_id, map_description, homepage, schema
         reactions (dict, optional): Dictionary with multiple
             :class:`cobramod.visualization.items.Reaction` where the key is the
@@ -161,6 +263,7 @@ class JsonDictionary(UserDict):
         # Dictionary with relationship of reactions
         self.graph: dict = dict()
         self.reaction_strings = dict()
+        self.reaction_scale = dict()
 
     def get_canvas(self) -> dict:
         return {
@@ -295,7 +398,7 @@ class JsonDictionary(UserDict):
     def add_marker(self, x: float, y: float, node_type: str):
         """
         Add a marker-type node into the JsonDictionary. Node can be a midmarker
-        or a multimarker. These markes are located in the middle of the
+        or a multimarker. These markers are located in the middle of the
         reaction. A midmarker is located between two multimarkers.
 
         Args:
@@ -336,7 +439,7 @@ class JsonDictionary(UserDict):
         ):
             last = self._get_last_number(item="nodes")
             self._overview[identifier]["nodes"][node_position] = last
-            # Defining position of labels depeding of position axis.
+            # Defining position of labels depending of position axis.
             if vertical:
                 self.add_marker(
                     x=left_edge + (self.R_WIDTH / 2),
@@ -450,7 +553,7 @@ class JsonDictionary(UserDict):
         # Obtaining position of reaction
         identifier = reaction["bigg_id"]
         position: Position = self._overview[identifier]["position"]
-        # Minimum number of identifiers. TODO: verify behaviour with 0
+        # Minimum number of identifiers. TODO: verify behavior with 0
         side_dict = {"left": 1, "right": 1}
         # Obtain products from reactions in the prior column.
         # The column must be actual - 1, or 0. This is to check for shared
@@ -688,8 +791,170 @@ class JsonDictionary(UserDict):
         self._overview = {}
         self.data["reactions"] = {}
         self.data["nodes"] = {}
+        self.reaction_scale = dict()
 
-    def visualize(self, filepath: Path = None, vertical: bool = False):
+    def color_grading(
+        self,
+        color: List[Union[str, List[int], None]],
+        min_max: List[float] = None,
+        quantile: bool = False,
+        max_steps: int = 100,
+        n_steps: int = None,
+    ):
+
+        """
+        Function that creates a color scale between two predefined colors. The
+        number of color gradations corresponds to the number of fluxes.
+
+        Parameters:
+            color (list of str or list of list of int):
+                list of two colors. The first color defines the endpoint for
+                positive values, the second for negative values. The colors
+                must be passed in their rgb representation.
+            min_max(list of float,optional):
+                List consisting of two floats. The first int describes the
+                minimum, the second the maximum. These two values are
+                additionally added as data values and at the same time ensure
+                that all values greater or less than these are ignored when
+                creating the gradient.
+            quantile(bool, optional):
+                Defines whether quantiles are to be used for the creation of
+                the gradient. Otherwise, the steps are equally distributed
+                between the minimum and maximum.
+            n_steps (int, optional):
+                Sets the number of color steps.
+            max_steps(int, optional):
+                Sets the maximum number of color steps.
+        """
+
+        # turn int arrays into numpy arrays
+        color_positive = _color2np_rgb(color[0])
+        color_negative = _color2np_rgb(color[1])
+        color_intermediate = np.array([220, 220, 220], dtype=np.float32)
+
+        try:
+            flux = list(self.flux_solution.values())
+        except AttributeError:
+            flux = []
+
+        # divide positive and negative values
+        # bools used to handle the situation when both values of min_max are
+        # positive or negative
+        positive, negative, both_positive, both_negative = _divide_values(
+            flux=flux, min_max=min_max
+        )
+
+        # array that will contain the configuration for escher
+        reaction_scale = []
+
+        # necessary variables for the loop that processes the positive
+        # variables
+        steps = len(positive)
+        steps = min(steps, max_steps)
+
+        # manually set steps overwrite the calculated steps
+        if n_steps is not None:
+            steps = math.floor(n_steps / 2)
+
+        flux_values: ndarray
+
+        try:
+            if quantile:
+                flux_values = np.linspace(0.0, 1.0, steps)
+                flux_values = np.quantile(positive, flux_values)
+            else:
+                maximum = max(positive)
+                start_value = maximum / steps
+
+                # if both min_max values are positive the start is shifted
+                # from zero to the set minimum
+                if both_positive:
+                    assert min_max is not None
+                    start_value = min_max[0]
+
+                flux_values = np.linspace(start_value, maximum, steps)
+
+            with np.errstate(divide="ignore"):
+                step_color = (color_intermediate - color_positive) / steps
+            flux_color = color_intermediate.copy() - step_color
+
+            flux_values.sort()
+        except ValueError:
+            flux_values = np.empty(shape=(0, 0))
+
+        for flux_value in flux_values:
+            reaction_scale.append(
+                {
+                    "type": "value",
+                    "value": flux_value,
+                    "color": "rgb(%d,%d,%d)"
+                    % (flux_color[0], flux_color[1], flux_color[2]),
+                }
+            )
+
+            flux_color -= step_color
+
+        # add the intermediate step
+        if not both_positive and not both_negative:
+            reaction_scale.append(
+                {"type": "value", "value": 0, "color": "rgb(220,220,220)"}
+            )
+
+        # updating of the variables for the negative portion of the flux values
+        steps = len(negative)
+        steps = min(steps, max_steps)
+
+        # manually set steps overwrite the calculated steps
+        if n_steps is not None:
+            steps = math.floor(n_steps / 2)
+
+        try:
+            if quantile:
+                flux_values = np.linspace(0.0, 1.0, steps)
+                flux_values = np.quantile(negative, flux_values)
+            else:
+                minimum = min(negative)
+                start_value = minimum / steps
+
+                # if both min_max values are negative the start will be
+                # shifted from zero to the set maximum
+                if both_negative:
+                    assert min_max is not None
+                    start_value = min_max[1]
+                flux_values = np.linspace(start_value, minimum, steps)
+
+            with np.errstate(divide="ignore"):
+                step_color = (color_intermediate - color_negative) / steps
+            flux_color = color_intermediate - step_color
+
+            flux_values.sort()
+        except ValueError:
+            flux_values = np.empty(shape=(0, 0))
+
+        for flux_value in flux_values[::-1]:
+            reaction_scale.append(
+                {
+                    "type": "value",
+                    "value": flux_value,
+                    "color": "rgb(%d,%d,%d)"
+                    % (flux_color[0], flux_color[1], flux_color[2]),
+                }
+            )
+
+            flux_color -= step_color
+
+        self.reaction_scale = reaction_scale
+
+    def visualize(
+        self,
+        filepath: Optional[Path] = None,
+        vertical: bool = False,
+        color: Optional[List[Union[str, List[int], None]]] = None,
+        min_max: Optional[List[float]] = None,
+        quantile: bool = False,
+        max_steps: int = 100,
+        n_steps: Optional[int] = None,
+    ):
         """
         Saves the visualization of the JsonDictionary in given path as a HTML.
         Returns the builder for the JsonDictionary. If method is called in
@@ -701,12 +966,42 @@ class JsonDictionary(UserDict):
         Blank spaces are removed from the reactions.
 
         Args:
-            filepath (Path): Path for the HTML. Defaults to "pathway.html" in
-                the current working directory
-            vertical (bool): Defines if pathway should be illustrated
-                vertically. Defaults to False.
+            filepath : Path, optional
+                Path for the HTML. Defaults to "pathway.html" in the current
+                working directory
+            vertical : bool, optional
+                Defines if pathway should be illustrated vertically.
+                Defaults to False.
+            color : list of str or list of lost of int, optional
+                A list consisting of two entries. These define the endpoints
+                for a color gradient. The entries can either be the colors as
+                a list with three elements that define the RGB values or
+                a string that defines the color name according to the css
+                standard. If None is used here, no gradient will be generated.
+                Defaults to None.
+                Example: ["orange", "green"] or [[255, 165, 0], [0, 128, 0]]
+            min_max: list of float, optional
+                List consisting of two ints. The first int describes the
+                minimum, the second the maximum. These two values are
+                additionally added as data values and at the same time ensure
+                that all values greater or less than these are ignored when
+                creating the gradient.
+                With Quantile = False, a data-independent gradient is created.
+            quantile : bool, optional
+                Defines whether quantiles are to be used for the creation of
+                the gradient. Otherwise, the steps are equally distributed
+                between the minimum and maximum.
+            max_steps : int, optional
+                Sets the maximum number of color steps.
+            n_steps : int, optional
+                Sets the maximum number of color steps.
+
         Returns:
             Builder: Escher builder object for the visualization
+
+        See Also:
+            Color names according to the css standard:
+            https://www.w3schools.com/cssref/css_colors.asp
         """
         # Define path
         if not filepath:
@@ -734,10 +1029,22 @@ class JsonDictionary(UserDict):
                     identifier=reaction,
                     vertical=vertical,
                 )
+
+        if color is not None:
+            self.color_grading(
+                color=color,
+                min_max=min_max,
+                quantile=quantile,
+                max_steps=max_steps,
+                n_steps=n_steps,
+            )
+
         builder = Builder(
-            reaction_styles=["text"],
+            # Check how reaction_styles behaves
+            reaction_styles=["color", "text"],
             map_name=self.data["head"]["map_name"],
             map_json=self.json_dump(),
+            reaction_scale=self.reaction_scale,
         )
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
