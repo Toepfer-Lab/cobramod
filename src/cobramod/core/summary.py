@@ -4,7 +4,6 @@
 This module is responsible for the short summary in the command
 line and for other summaries in different formats.
 """
-import logging
 import warnings
 from pathlib import Path
 from typing import Dict
@@ -320,7 +319,7 @@ def summary(
         file_format = filename.suffix
         options[file_format](filename, model, new_values)
     except KeyError:
-        logging.warning(
+        debug_log.warning(
             "Unknown format therefore no summary was created."
             "Use '.xlsx', ',csv' or ',txt'."
         )

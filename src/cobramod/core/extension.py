@@ -668,7 +668,7 @@ def add_pathway(
     avoid_list: List[str] = [],
     replacement: dict = {},
     ignore_list: List[str] = [],
-    filename: Path = Path.cwd() / "summary.txt",
+    filename: Path = None,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
     model_id: str = "universal",
