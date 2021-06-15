@@ -48,8 +48,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: python -m pip install tox
-      - name: Create required files
-        run: python3 tests/extra/creating_test_model.py
       - name: Run tests
         run: tox -e py
 
