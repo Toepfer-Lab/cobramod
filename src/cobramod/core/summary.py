@@ -257,16 +257,16 @@ def summary(
     filename: Path = None,
 ):
     """
-        Produces the short summary and another one in the defined format.
+    Produces the short summary and another one in the defined format.
 
-        Args:
-            model (Model): model with recent changes.
-            original (DataModel): Object with data from previous model. Use
-                method :func:`cobramod.summary.DataModel`.
-            file_format (str): The format in which the further summary
-                should be generated. If no additional summary is desired,
-                this should be None.
-            filename (Path): Location where the summary should be stored.
+    Args:
+        model (Model): model with recent changes.
+        original (DataModel): Object with data from previous model. Use
+            method :func:`cobramod.summary.DataModel`.
+        file_format (str): The format in which the further summary
+            should be generated. If no additional summary is desired,
+            this should be None.
+        filename (Path): Location where the summary should be stored.
     """
 
     new_values = DataModel.from_model(model)
