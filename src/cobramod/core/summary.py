@@ -147,7 +147,9 @@ class DataModel:
 
         return "".join(output)
 
-    def _to_dataframe(self, model: Model = None, additions=None, deletions=None):
+    def _to_dataframe(
+        self, model: Model = None, additions=None, deletions=None
+    ):
         """
         Creates a pandas DataFrame based on a DataModel object.
         You can pass another DataModel object to include it in
@@ -156,8 +158,10 @@ class DataModel:
 
         Args:
             model (Model): model for the extraction of model id and name.
-            additions (DataModel): DataModel that contains the new entities in the model
-            deletions (DataModel): DataModel that contains the remote entities in the model.
+            additions (DataModel): DataModel that contains the new entities
+                in the model
+            deletions (DataModel): DataModel that contains the removed entities
+                in the model.
         """
         dtype = pandas.StringDtype()
 
@@ -166,14 +170,12 @@ class DataModel:
             "Exchange": pandas.Series(self.exchanges, dtype=dtype),
             "Demand": pandas.Series(self.demands, dtype=dtype),
             "Sinks": pandas.Series(self.sinks, dtype=dtype),
-            "Metabolites": pandas.Series(
-                self.metabolites, dtype=dtype
-            ),
+            "Metabolites": pandas.Series(self.metabolites, dtype=dtype),
             "Genes": pandas.Series(self.genes, dtype=dtype),
             "Groups": pandas.Series(self.groups, dtype=dtype),
         }
 
-        if Model is not None:
+        if model is not None:
             model_identifier = {
                 "Model identifier": pandas.Series(str(model.id), dtype=dtype),
                 "Model name": pandas.Series(str(model.name), dtype=dtype),
@@ -186,9 +188,13 @@ class DataModel:
 
         if additions is not None:
             addition = {
-                "New in reactions": pandas.Series(additions.reactions, dtype=dtype),
-                "New in exchange": pandas.Series(additions.exchanges, dtype=dtype),
-                "New in demand": pandas.Series(additions.demands, dtype=dtype),
+                "New in Reactions": pandas.Series(
+                    additions.reactions, dtype=dtype
+                ),
+                "New in Exchange": pandas.Series(
+                    additions.exchanges, dtype=dtype
+                ),
+                "New in Demand": pandas.Series(additions.demands, dtype=dtype),
                 "New in Sinks": pandas.Series(additions.sinks, dtype=dtype),
                 "New in Metabolites": pandas.Series(
                     additions.metabolites, dtype=dtype
@@ -200,22 +206,35 @@ class DataModel:
 
         if deletions is not None:
             deleted = {
-                "Removed in reactions": pandas.Series(additions.reactions, dtype=dtype),
-                "Removed in exchange": pandas.Series(additions.exchanges, dtype=dtype),
-                "Removed in demand": pandas.Series(additions.demands, dtype=dtype),
-                "Removed in Sinks": pandas.Series(additions.sinks, dtype=dtype),
+                "Removed in Reactions": pandas.Series(
+                    additions.reactions, dtype=dtype
+                ),
+                "Removed in Exchange": pandas.Series(
+                    additions.exchanges, dtype=dtype
+                ),
+                "Removed in Demand": pandas.Series(
+                    additions.demands, dtype=dtype
+                ),
+                "Removed in Sinks": pandas.Series(
+                    additions.sinks, dtype=dtype
+                ),
                 "Removed in Metabolites": pandas.Series(
                     additions.metabolites, dtype=dtype
                 ),
-                "Removed in Genes": pandas.Series(additions.genes, dtype=dtype),
-                "Removed in Groups": pandas.Series(additions.groups, dtype=dtype),
+                "Removed in Genes": pandas.Series(
+                    additions.genes, dtype=dtype
+                ),
+                "Removed in Groups": pandas.Series(
+                    additions.groups, dtype=dtype
+                ),
             }
             dictionary.update(deleted)
 
-
         return pandas.DataFrame(dictionary)
 
-    def to_excl(self, path, model: Model = None, additions=None, deletions=None):
+    def to_excl(
+        self, path, model: Model = None, additions=None, deletions=None
+    ):
         """
         Method to save a DataModel as an Excel file.
         Can also be used to save the changes between
@@ -226,14 +245,18 @@ class DataModel:
         Args:
             path (Path): Location where the file is to be saved.
             model (Model): model for the extraction of model id and name.
-            additions (DataModel): DataModel that contains the new entities in the model
-            deletions (DataModel): DataModel that contains the remote entities in the model.
+            additions (DataModel): DataModel that contains the new entities in
+                the model
+            deletions (DataModel): DataModel that contains the remote entities
+                in the model.
         """
 
-        save = self._to_dataframe(model, additions,deletions)
+        save = self._to_dataframe(model, additions, deletions)
         save.to_excel(path, index=False)
 
-    def to_csv(self, path, model: Model = None, additions=None, deletions=None):
+    def to_csv(
+        self, path, model: Model = None, additions=None, deletions=None
+    ):
         """
         Method to save a DataModel as a csv file. Can also be used to save
         the changes between two points in time, as a csv.
@@ -243,14 +266,18 @@ class DataModel:
         Args:
             path (Path): Location where the file is to be saved.
             model (Model): model for the extraction of model id and name.
-            additions (DataModel): DataModel that contains the new entities in the model
-            deletions (DataModel): DataModel that contains the remote entities in the model.
+            additions (DataModel): DataModel that contains the new entities in
+                the model
+            deletions (DataModel): DataModel that contains the remote entities
+                in the model.
         """
 
         save = self._to_dataframe(model, additions, deletions)
         save.to_csv(path, index=False)
 
-    def to_txt(self, path, model: Model = None, additions=None, deletions=None):
+    def to_txt(
+        self, path, model: Model = None, additions=None, deletions=None
+    ):
         """
         Method to save a DataModel as a txt file. Can also be used to save
         the changes between two points in time, as a txt.
@@ -260,12 +287,14 @@ class DataModel:
         Args:
             path (Path): Location where the file is to be saved.
             model (Model): model for the extraction of model id and name.
-            additions (DataModel): DataModel that contains the new entities in the model
-            deletions (DataModel): DataModel that contains the remote entities in the model.
+            additions (DataModel): DataModel that contains the new entities in
+                the model
+            deletions (DataModel): DataModel that contains the remote entities
+                in the model.
         """
         output = []
 
-        if Model is not None:
+        if model is not None:
             output.extend(
                 [
                     "Summary:",
@@ -327,15 +356,47 @@ def summary(
 
     # output a short summary
     print(
-        "{:13} {:^7} | {:^7} {:10}".format('Quantity of', 'new', 'removed', 'entities in') + "\n" +
-        "*" + ("="*21)+"|" + ("="*19) +"*"+ "\n"
-        "{:13} {:^7} | {:^7} {:10}".format('Reactions', len(additions.reactions), len(deletions.reactions), '') + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format('Metabolites', len(additions.metabolites), len(deletions.metabolites), '') + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format('Exchange', len(additions.exchanges), len(deletions.exchanges), '') + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format('Demand', len(additions.demands), len(deletions.demands), '') + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format('Sinks', len(additions.sinks), len(deletions.sinks), '') + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format('Genes', len(additions.genes), len(deletions.genes), '') + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format('Groups', len(additions.groups), len(deletions.groups), '') + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Quantity of", "new", "removed", "entities in"
+        )
+        + "\n"
+        + "*"
+        + ("=" * 21)
+        + "|"
+        + ("=" * 19)
+        + "*"
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Reactions", len(additions.reactions), len(deletions.reactions), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Metabolites",
+            len(additions.metabolites),
+            len(deletions.metabolites),
+            "",
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Exchange", len(additions.exchanges), len(deletions.exchanges), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Demand", len(additions.demands), len(deletions.demands), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Sinks", len(additions.sinks), len(deletions.sinks), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Genes", len(additions.genes), len(deletions.genes), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Groups", len(additions.groups), len(deletions.groups), ""
+        )
+        + "\n"
     )
 
     # if desired, create another summary in the requested format
