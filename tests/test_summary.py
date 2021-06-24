@@ -163,6 +163,41 @@ class TestSummary(TestCase):
 
         pandas.testing.assert_frame_equal(expected_dataframe, dataframe)
 
+        # Case 2: same as before but now with deletions
+
+        expected_dataframe = pandas.DataFrame(
+            {
+                "Model identifier": ["e_coli_core", numpy.nan],
+                "Model name": ["", numpy.nan],
+                "Reactions": ["ACALD", "ACONTa"],
+                "Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "Demand": ["h2o_e", "lac__D_e"],
+                "Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "Metabolites": ["13dpg_c", "acald_c"],
+                "Genes": ["b1241", "b0474"],
+                "Groups": ["PWY-1187", numpy.nan],
+                "New in Reactions": ["ACALD", "ACONTa"],
+                "New in Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "New in Demand": ["h2o_e", "lac__D_e"],
+                "New in Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "New in Metabolites": ["13dpg_c", "acald_c"],
+                "New in Genes": ["b1241", "b0474"],
+                "New in Groups": ["PWY-1187", numpy.nan],
+                "Removed in Reactions": ["ACALD", "ACONTa"],
+                "Removed in Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "Removed in Demand": ["h2o_e", "lac__D_e"],
+                "Removed in Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "Removed in Metabolites": ["13dpg_c", "acald_c"],
+                "Removed in Genes": ["b1241", "b0474"],
+                "Removed in Groups": ["PWY-1187", numpy.nan],
+            },
+            dtype=pandas.StringDtype(),
+        )
+
+        dataframe = tiny_base._to_dataframe(textbook, tiny_base, tiny_base)
+
+        pandas.testing.assert_frame_equal(expected_dataframe, dataframe)
+
     def test_to_excl(self):
         tiny_base = DataModel(
             {
@@ -178,7 +213,7 @@ class TestSummary(TestCase):
 
         with tempfile.TemporaryDirectory() as directory:
             filename = Path(directory) / "summary.xlsx"
-            tiny_base.to_excl(filename, textbook, tiny_base)
+            tiny_base.to_excl(filename, textbook, tiny_base, tiny_base)
 
             self.assertTrue(expr=filename.exists())
 
@@ -197,7 +232,7 @@ class TestSummary(TestCase):
 
         with tempfile.TemporaryDirectory() as directory:
             filename = Path(directory) / "summary.csv"
-            tiny_base.to_csv(filename, textbook, tiny_base)
+            tiny_base.to_csv(filename, textbook, tiny_base, tiny_base)
 
             self.assertTrue(expr=filename.exists())
 
@@ -216,7 +251,7 @@ class TestSummary(TestCase):
 
         with tempfile.TemporaryDirectory() as directory:
             filename = Path(directory) / "summary.txt"
-            tiny_base.to_txt(filename, textbook, tiny_base)
+            tiny_base.to_txt(filename, textbook, tiny_base, tiny_base)
 
             self.assertTrue(expr=filename.exists())
 
