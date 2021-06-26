@@ -47,15 +47,25 @@ class DataModel:
             model (Model): Model based on which a DataModel object
                 is to be created.
         """
-        data = {
-            "reactions": model.reactions.list_attr("id"),
-            "metabolites": model.metabolites.list_attr("id"),
-            "demands": model.demands.list_attr("id"),
-            "exchanges": model.exchanges.list_attr("id"),
-            "genes": model.genes.list_attr("id"),
-            "groups": model.groups.list_attr("id"),
-            "sinks": model.sinks.list_attr("id"),
+
+        characteristics = {
+            "reactions": model.reactions,
+            "metabolites": model.metabolites,
+            "demands": model.demands,
+            "exchanges": model.exchanges,
+            "genes": model.genes,
+            "groups": model.groups,
+            "sinks": model.sinks,
         }
+
+        data = {}
+
+        for identifier, values in characteristics.items():
+            try:
+                data[identifier] = values.list_attr("id")
+            except AttributeError:
+                data[identifier] = []
+
         return cls(data)
 
     def diff(self, other):
@@ -137,7 +147,9 @@ class DataModel:
 
         return "".join(output)
 
-    def _to_dataframe(self, model: Model = None, original=None):
+    def _to_dataframe(
+        self, model: Model = None, additions=None, deletions=None
+    ):
         """
         Creates a pandas DataFrame based on a DataModel object.
         You can pass another DataModel object to include it in
@@ -146,46 +158,83 @@ class DataModel:
 
         Args:
             model (Model): model for the extraction of model id and name.
-            original (DataModel): Object with data from previous model. Use
-                method :func:`cobramod.summary.DataModel`.
+            additions (DataModel): DataModel that contains the new entities
+                in the model
+            deletions (DataModel): DataModel that contains the removed entities
+                in the model.
         """
         dtype = pandas.StringDtype()
 
         dictionary = {
-            "Changed reactions": pandas.Series(self.reactions, dtype=dtype),
-            "Changed exchange": pandas.Series(self.exchanges, dtype=dtype),
-            "Changed demand": pandas.Series(self.demands, dtype=dtype),
-            "Changed sinks": pandas.Series(self.sinks, dtype=dtype),
-            "Changed metabolites": pandas.Series(
-                self.metabolites, dtype=dtype
-            ),
-            "Changed genes": pandas.Series(self.genes, dtype=dtype),
-            "Changed groups": pandas.Series(self.groups, dtype=dtype),
+            "Reactions": pandas.Series(self.reactions, dtype=dtype),
+            "Exchange": pandas.Series(self.exchanges, dtype=dtype),
+            "Demand": pandas.Series(self.demands, dtype=dtype),
+            "Sinks": pandas.Series(self.sinks, dtype=dtype),
+            "Metabolites": pandas.Series(self.metabolites, dtype=dtype),
+            "Genes": pandas.Series(self.genes, dtype=dtype),
+            "Groups": pandas.Series(self.groups, dtype=dtype),
         }
 
         if model is not None:
-            original = {
+            model_identifier = {
                 "Model identifier": pandas.Series(str(model.id), dtype=dtype),
                 "Model name": pandas.Series(str(model.name), dtype=dtype),
-                "Reactions": pandas.Series(original.reactions, dtype=dtype),
-                "Exchange": pandas.Series(original.exchanges, dtype=dtype),
-                "Demand": pandas.Series(original.demands, dtype=dtype),
-                "Sinks": pandas.Series(original.sinks, dtype=dtype),
-                "Metabolites": pandas.Series(
-                    original.metabolites, dtype=dtype
-                ),
-                "Genes": pandas.Series(original.genes, dtype=dtype),
-                "Groups": pandas.Series(original.groups, dtype=dtype),
             }
 
             # Preserving the order so that the original model
             # comes first and then the modifications
-            original.update(dictionary)
-            dictionary = original
+            model_identifier.update(dictionary)
+            dictionary = model_identifier
+
+        if additions is not None:
+            addition = {
+                "New in Reactions": pandas.Series(
+                    additions.reactions, dtype=dtype
+                ),
+                "New in Exchange": pandas.Series(
+                    additions.exchanges, dtype=dtype
+                ),
+                "New in Demand": pandas.Series(additions.demands, dtype=dtype),
+                "New in Sinks": pandas.Series(additions.sinks, dtype=dtype),
+                "New in Metabolites": pandas.Series(
+                    additions.metabolites, dtype=dtype
+                ),
+                "New in Genes": pandas.Series(additions.genes, dtype=dtype),
+                "New in Groups": pandas.Series(additions.groups, dtype=dtype),
+            }
+            dictionary.update(addition)
+
+        if deletions is not None:
+            deleted = {
+                "Removed in Reactions": pandas.Series(
+                    additions.reactions, dtype=dtype
+                ),
+                "Removed in Exchange": pandas.Series(
+                    additions.exchanges, dtype=dtype
+                ),
+                "Removed in Demand": pandas.Series(
+                    additions.demands, dtype=dtype
+                ),
+                "Removed in Sinks": pandas.Series(
+                    additions.sinks, dtype=dtype
+                ),
+                "Removed in Metabolites": pandas.Series(
+                    additions.metabolites, dtype=dtype
+                ),
+                "Removed in Genes": pandas.Series(
+                    additions.genes, dtype=dtype
+                ),
+                "Removed in Groups": pandas.Series(
+                    additions.groups, dtype=dtype
+                ),
+            }
+            dictionary.update(deleted)
 
         return pandas.DataFrame(dictionary)
 
-    def to_excl(self, path, model: Model = None, original=None):
+    def to_excl(
+        self, path, model: Model = None, additions=None, deletions=None
+    ):
         """
         Method to save a DataModel as an Excel file.
         Can also be used to save the changes between
@@ -196,13 +245,18 @@ class DataModel:
         Args:
             path (Path): Location where the file is to be saved.
             model (Model): model for the extraction of model id and name.
-            original (DataModel): DataModel of the original model
+            additions (DataModel): DataModel that contains the new entities in
+                the model
+            deletions (DataModel): DataModel that contains the remote entities
+                in the model.
         """
 
-        save = self._to_dataframe(model, original)
-        save.to_excel(path.with_suffix(".xlsx"), index=False)
+        save = self._to_dataframe(model, additions, deletions)
+        save.to_excel(path, index=False)
 
-    def to_csv(self, path, model: Model = None, original=None):
+    def to_csv(
+        self, path, model: Model = None, additions=None, deletions=None
+    ):
         """
         Method to save a DataModel as a csv file. Can also be used to save
         the changes between two points in time, as a csv.
@@ -212,13 +266,18 @@ class DataModel:
         Args:
             path (Path): Location where the file is to be saved.
             model (Model): model for the extraction of model id and name.
-            original (DataModel): DataModel of the original model
+            additions (DataModel): DataModel that contains the new entities in
+                the model
+            deletions (DataModel): DataModel that contains the remote entities
+                in the model.
         """
 
-        save = self._to_dataframe(model, original)
-        save.to_csv(path.with_suffix(".csv"), index=False)
+        save = self._to_dataframe(model, additions, deletions)
+        save.to_csv(path, index=False)
 
-    def to_txt(self, path, model: Model = None, original=None):
+    def to_txt(
+        self, path, model: Model = None, additions=None, deletions=None
+    ):
         """
         Method to save a DataModel as a txt file. Can also be used to save
         the changes between two points in time, as a txt.
@@ -228,7 +287,10 @@ class DataModel:
         Args:
             path (Path): Location where the file is to be saved.
             model (Model): model for the extraction of model id and name.
-            original (DataModel): DataModel of the original model
+            additions (DataModel): DataModel that contains the new entities in
+                the model
+            deletions (DataModel): DataModel that contains the remote entities
+                in the model.
         """
         output = []
 
@@ -239,22 +301,25 @@ class DataModel:
                     f"Model identifier: {model.id}",
                     "Model name:",
                     str(model.name),
-                    str(self),
-                    "Changes:",
                 ]
             )
 
-        output.append(str(self.diff(original)))
+        output.append(str(self))
 
-        with open(file=str(path.with_suffix(".txt")), mode="w+") as file:
+        if additions is not None:
+            output.append("New:")
+            output.append(str(additions))
+
+        if deletions is not None:
+            output.append("Removed:")
+            output.append(str(deletions))
+
+        with open(file=str(path), mode="w") as file:
             file.writelines(line + "\n" for line in output)
 
 
 def summary(
-    model: Model,
-    original: DataModel,
-    file_format: str = None,
-    filename: Path = None,
+    model: Model, original: DataModel, filename: Path = None,
 ):
     """
     Produces the short summary and another one in the defined format.
@@ -263,19 +328,25 @@ def summary(
         model (Model): model with recent changes.
         original (DataModel): Object with data from previous model. Use
             method :func:`cobramod.summary.DataModel`.
-        file_format (str): The format in which the further summary
-            should be generated. If no additional summary is desired,
-            this should be None.
-        filename (Path): Location where the summary should be stored.
+        filename (Path): Location where the summary should be stored. The
+            file format is determined by the suffix of the filename.
+            Thus, '.txt', '.csv' or '.xlsx' can be used.
     """
+
+    if isinstance(filename, str):
+        filename = Path(filename)
 
     new_values = DataModel.from_model(model)
 
-    diff = original.diff(new_values)
+    deletions = original - new_values
+    additions = new_values - original
 
     # check if there are any changes otherwise notify the user
     num_changes = 0
-    for value in vars(diff).values():
+    for value in vars(additions).values():
+        num_changes += len(value)
+
+    for value in vars(deletions).values():
         num_changes += len(value)
 
     if num_changes == 0:
@@ -285,29 +356,64 @@ def summary(
 
     # output a short summary
     print(
-        "Changes:\n"
-        "Reactions \t" + str(len(diff.reactions)) + "\n"
-        "Metabolites\t" + str(len(diff.metabolites)) + "\n"
-        "Exchange \t" + str(len(diff.exchanges)) + "\n"
-        "Demand\t\t" + str(len(diff.demands)) + "\n"
-        "Sinks\t\t" + str(len(diff.sinks)) + "\n"
-        "Genes\t\t" + str(len(diff.genes)) + "\n"
-        "Groups\t\t" + str(len(diff.groups)) + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Quantity of", "new", "removed", "entities in"
+        )
+        + "\n"
+        + "*"
+        + ("=" * 21)
+        + "|"
+        + ("=" * 19)
+        + "*"
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Reactions", len(additions.reactions), len(deletions.reactions), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Metabolites",
+            len(additions.metabolites),
+            len(deletions.metabolites),
+            "",
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Exchange", len(additions.exchanges), len(deletions.exchanges), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Demand", len(additions.demands), len(deletions.demands), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Sinks", len(additions.sinks), len(deletions.sinks), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Genes", len(additions.genes), len(deletions.genes), ""
+        )
+        + "\n"
+        "{:13} {:^7} | {:^7} {:10}".format(
+            "Groups", len(additions.groups), len(deletions.groups), ""
+        )
+        + "\n"
     )
 
     # if desired, create another summary in the requested format
-    if file_format is None:
-        return
     if filename is None:
-        filename = Path.cwd() / "summary"
+        return
 
     options = {
-        "excel": diff.to_excl,
-        "csv": diff.to_csv,
-        "txt": diff.to_txt,
+        ".xlsx": new_values.to_excl,
+        ".csv": new_values.to_csv,
+        ".txt": new_values.to_txt,
     }
 
     try:
-        options[file_format](filename, model, new_values)
+        file_format = filename.suffix
+        options[file_format](filename, model, additions, deletions)
     except KeyError:
-        print("No known format. Use 'excel', 'csv' or 'txt'")
+        debug_log.warning(
+            "Unknown format therefore no summary was created."
+            "Use '.xlsx', ',csv' or ',txt'."
+        )
