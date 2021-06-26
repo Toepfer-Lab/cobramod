@@ -7,9 +7,6 @@ on:
     branches:
       - master
 
-  push:
-    branches:
-      - feat/package
 jobs:
   lint-format:
     runs-on: ubuntu-latest
