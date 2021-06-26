@@ -1,5 +1,7 @@
 name: Test build and publish Cobramod to TestPyPI
 on:
+  workflow_dispatch:
+
   pull_request:
     types: [ opened, edited, reopened, closed ]
     branches:
