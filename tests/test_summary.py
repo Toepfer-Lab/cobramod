@@ -11,6 +11,7 @@ from unittest import TestCase, main
 
 import numpy
 import pandas
+from cobra import Model
 
 from cobramod.core.summary import DataModel, summary
 from cobramod.debug import debug_log
@@ -21,8 +22,17 @@ debug_log.setLevel(DEBUG)
 
 class TestSummary(TestCase):
     def test_from_model(self):
+        # Case 1 example cobra model
         data_model = DataModel.from_model(textbook)
         self.assertIsInstance(obj=data_model, cls=DataModel)
+
+        # Case 2 Empty cobra model
+        model = Model(0)
+        data_model = DataModel.from_model(model=model)
+        self.assertIsInstance(obj=data_model, cls=DataModel)
+
+        for variable in vars(data_model).values():
+            self.assertEqual(variable, [])
 
     def test_diff(self):
         # Preparation
@@ -136,13 +146,13 @@ class TestSummary(TestCase):
                 "Metabolites": ["13dpg_c", "acald_c"],
                 "Genes": ["b1241", "b0474"],
                 "Groups": ["PWY-1187", numpy.nan],
-                "Changed reactions": ["ACALD", "ACONTa"],
-                "Changed exchange": ["EX_glc__D_e", "EX_lac__D_e"],
-                "Changed demand": ["h2o_e", "lac__D_e"],
-                "Changed sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
-                "Changed metabolites": ["13dpg_c", "acald_c"],
-                "Changed genes": ["b1241", "b0474"],
-                "Changed groups": ["PWY-1187", numpy.nan],
+                "New in Reactions": ["ACALD", "ACONTa"],
+                "New in Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "New in Demand": ["h2o_e", "lac__D_e"],
+                "New in Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "New in Metabolites": ["13dpg_c", "acald_c"],
+                "New in Genes": ["b1241", "b0474"],
+                "New in Groups": ["PWY-1187", numpy.nan],
             },
             dtype=pandas.StringDtype(),
         )
@@ -150,6 +160,41 @@ class TestSummary(TestCase):
         dataframe = tiny_base._to_dataframe(textbook, tiny_base)
 
         # Case 1: check that the dataframe contains the correct values
+
+        pandas.testing.assert_frame_equal(expected_dataframe, dataframe)
+
+        # Case 2: same as before but now with deletions
+
+        expected_dataframe = pandas.DataFrame(
+            {
+                "Model identifier": ["e_coli_core", numpy.nan],
+                "Model name": ["", numpy.nan],
+                "Reactions": ["ACALD", "ACONTa"],
+                "Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "Demand": ["h2o_e", "lac__D_e"],
+                "Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "Metabolites": ["13dpg_c", "acald_c"],
+                "Genes": ["b1241", "b0474"],
+                "Groups": ["PWY-1187", numpy.nan],
+                "New in Reactions": ["ACALD", "ACONTa"],
+                "New in Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "New in Demand": ["h2o_e", "lac__D_e"],
+                "New in Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "New in Metabolites": ["13dpg_c", "acald_c"],
+                "New in Genes": ["b1241", "b0474"],
+                "New in Groups": ["PWY-1187", numpy.nan],
+                "Removed in Reactions": ["ACALD", "ACONTa"],
+                "Removed in Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
+                "Removed in Demand": ["h2o_e", "lac__D_e"],
+                "Removed in Sinks": ["SK_GLUTATHIONE_c", "SK_GLY_c"],
+                "Removed in Metabolites": ["13dpg_c", "acald_c"],
+                "Removed in Genes": ["b1241", "b0474"],
+                "Removed in Groups": ["PWY-1187", numpy.nan],
+            },
+            dtype=pandas.StringDtype(),
+        )
+
+        dataframe = tiny_base._to_dataframe(textbook, tiny_base, tiny_base)
 
         pandas.testing.assert_frame_equal(expected_dataframe, dataframe)
 
@@ -167,10 +212,10 @@ class TestSummary(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary"
-            tiny_base.to_excl(filename, textbook, tiny_base)
+            filename = Path(directory) / "summary.xlsx"
+            tiny_base.to_excl(filename, textbook, tiny_base, tiny_base)
 
-            self.assertTrue(expr=filename.with_suffix(".xlsx").exists())
+            self.assertTrue(expr=filename.exists())
 
     def test_to_csv(self):
         tiny_base = DataModel(
@@ -186,10 +231,10 @@ class TestSummary(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary"
-            tiny_base.to_csv(filename, textbook, tiny_base)
+            filename = Path(directory) / "summary.csv"
+            tiny_base.to_csv(filename, textbook, tiny_base, tiny_base)
 
-            self.assertTrue(expr=filename.with_suffix(".csv").exists())
+            self.assertTrue(expr=filename.exists())
 
     def test_to_txt(self):
         tiny_base = DataModel(
@@ -205,36 +250,31 @@ class TestSummary(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as directory:
-            filename = Path(directory) / "summary"
-            tiny_base.to_txt(filename, textbook, tiny_base)
+            filename = Path(directory) / "summary.txt"
+            tiny_base.to_txt(filename, textbook, tiny_base, tiny_base)
 
-            self.assertTrue(expr=filename.with_suffix(".txt").exists())
+            self.assertTrue(expr=filename.exists())
 
     def test_summary(self):
         # Preparation
         test_model = textbook.copy()
         old_values = DataModel.from_model(textbook)
 
-        # Case 1: None as format
+        # Case 1: None as filename
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
-            summary(
-                test_model, old_values, file_format=None, filename=filename
-            )
+            filename = None
+            summary(test_model, old_values, filename=filename)
 
             for _ in directory.iterdir():
-                self.fail("Summary created a file although none was passed")
+                self.fail("Summary created a file although None was passed")
 
         # Case 2: Excel as format
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
-            summary(
-                test_model, old_values, file_format="excel", filename=filename
-            )
+            filename = directory / "summary.xlsx"
+            summary(test_model, old_values, filename=filename)
 
-            filename = filename.with_suffix(".xlsx")
             self.assertTrue(expr=filename.exists())
 
             for file in directory.iterdir():
@@ -244,12 +284,9 @@ class TestSummary(TestCase):
         # Case 3: csv as format
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
-            summary(
-                test_model, old_values, file_format="csv", filename=filename
-            )
+            filename = directory / "summary.csv"
+            summary(test_model, old_values, filename=filename)
 
-            filename = filename.with_suffix(".csv")
             self.assertTrue(expr=filename.exists())
 
             for file in directory.iterdir():
@@ -259,17 +296,23 @@ class TestSummary(TestCase):
         # Case 4: txt as format
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
-            filename = directory / "summary"
-            summary(
-                test_model, old_values, file_format="txt", filename=filename
-            )
+            filename = directory / "summary.txt"
+            summary(test_model, old_values, filename=filename)
 
-            filename = filename.with_suffix(".txt")
             self.assertTrue(expr=filename.exists())
 
             for file in directory.iterdir():
                 if file != filename:
                     self.fail("Summary created additional files")
+
+        # Case 5: unknown format
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            filename = directory / "summary.unknown"
+            summary(test_model, old_values, filename=filename)
+
+            for _ in directory.iterdir():
+                self.fail("Summary created a file!")
 
 
 if __name__ == "__main__":
