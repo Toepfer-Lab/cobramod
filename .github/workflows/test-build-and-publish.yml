@@ -6,6 +6,10 @@ on:
     types: [ opened, edited, reopened, closed ]
     branches:
       - master
+
+  push:
+    branches:
+      - feat/package
 jobs:
   lint-format:
     runs-on: ubuntu-latest
