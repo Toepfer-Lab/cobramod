@@ -319,7 +319,9 @@ class DataModel:
 
 
 def summary(
-    model: Model, original: DataModel, filename: Path = None,
+    model: Model,
+    original: DataModel,
+    filename: Path = None,
 ):
     """
     Produces the short summary and another one in the defined format.
