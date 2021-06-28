@@ -471,7 +471,7 @@ def _from_data(
     model_id: str,
     genome: Optional[str],
 ):
-    """"
+    """
     Adds a pathway into given model from a dictionary with the information of
     the pathway into given model from a dictionary with the information of
     the model.

@@ -2,3 +2,6 @@
 __pycache__/
 # Files
 *.log
+
+# All non-essential files created/used by tox
+.tox

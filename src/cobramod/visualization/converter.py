@@ -861,6 +861,8 @@ class JsonDictionary(UserDict):
         try:
             if quantile:
                 flux_values = np.linspace(0.0, 1.0, steps)
+
+                # throws IndexError if positive == []
                 flux_values = np.quantile(positive, flux_values)
             else:
                 maximum = max(positive)
@@ -879,7 +881,7 @@ class JsonDictionary(UserDict):
             flux_color = color_intermediate.copy() - step_color
 
             flux_values.sort()
-        except ValueError:
+        except (ValueError, IndexError):
             flux_values = np.empty(shape=(0, 0))
 
         for flux_value in flux_values:
@@ -911,6 +913,8 @@ class JsonDictionary(UserDict):
         try:
             if quantile:
                 flux_values = np.linspace(0.0, 1.0, steps)
+
+                # throws IndexError if negative == []
                 flux_values = np.quantile(negative, flux_values)
             else:
                 minimum = min(negative)
@@ -928,7 +932,7 @@ class JsonDictionary(UserDict):
             flux_color = color_intermediate - step_color
 
             flux_values.sort()
-        except ValueError:
+        except (ValueError, IndexError):
             flux_values = np.empty(shape=(0, 0))
 
         for flux_value in flux_values[::-1]:
