@@ -151,7 +151,7 @@ class TestGroup(TestCase):
         )
         # CASE 1b: Inside the model, multiple
         test_model = textbook_kegg.copy()
-        for reaction in test_model.reactions:
+        for reaction in test_model.reactions[:5]:
             test_group = Group(id=reaction.id)
             test_group.add_members([reaction])
             test_model.add_groups([test_group])
@@ -256,7 +256,7 @@ class TestGroup(TestCase):
     def test_model_convert(self):
         # CASE 1: regular conversion of Groups
         test_model = textbook.copy()
-        for reaction in test_model.reactions:
+        for reaction in test_model.reactions[:5]:
             test_group = Group(id=reaction.id)
             test_model.add_groups(group_list=[test_group])
             test_model.groups.get_by_id(reaction.id).add_members(
@@ -266,7 +266,8 @@ class TestGroup(TestCase):
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
         # Test visualize
-        # test_model.groups[-1].visualize()
+        test_model.groups[-1].visualize()
+        sleep(1)
         # CASE 2: Regular Model
         filename = dir_input.joinpath("test_model02.sbml")
         test_model = read_sbml_model(str(filename))

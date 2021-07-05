@@ -7,6 +7,7 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 - solution: Obtain the solution for the specific members.
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
+from contextlib import suppress
 from pathlib import Path
 from typing import Any, Dict, List, Union, Optional
 
@@ -185,9 +186,15 @@ class Pathway(Group):
         Transform given :class:`cobra.Group` into a proper cobramod Pathway
         object.
         """
-        return cls(
+        pathway = cls(
             id=obj.id, name=obj.name, members=obj.members, kind=obj.kind
         )
+        with suppress(KeyError):
+            pathway.notes["ORDER"] = obj.notes["ORDER"]
+        debug_log.info(
+            f'Group-object "{pathway.id}" was transformed to a Pathway-object.'
+        )
+        return pathway
 
     def modify_graph(self, reaction: str, next_reaction: Union[str, None]):
         """
