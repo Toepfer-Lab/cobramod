@@ -6,8 +6,8 @@ a model and the corresponding test that come with it.
 
 Most important functions:
 - add_pathway: Adds a pathway or multiple reactions into a model.
-- test_result: Checks that given reaction in a model is active and gives a
-flux.
+- test_non_zero_flux: Checks that given reaction in a model is active and gives
+a non zero flux.
 """
 from contextlib import suppress
 from pathlib import Path
@@ -298,7 +298,7 @@ def _verify_sinks(model: Model, reaction: str, ignore_list: List[str]):
     )
 
 
-def test_result(
+def test_non_zero_flux(
     model: Model, reaction: str, times: int = 0, ignore_list: List[str] = []
 ):
     """
@@ -360,7 +360,7 @@ def test_result(
         )
         _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
         # Recursive with 'extra' argument
-        test_result(
+        test_non_zero_flux(
             model=model,
             reaction=reaction,
             times=times + 1,
@@ -398,7 +398,7 @@ def _add_sequence(
             debug_log.info(f'Reaction "{reaction.id}" added to model')
         # Skip test but include reaction in pathway
         if reaction.id not in ignore_list:
-            test_result(
+            test_non_zero_flux(
                 model=model, reaction=reaction.id, ignore_list=ignore_list
             )
         else:
