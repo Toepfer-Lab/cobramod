@@ -1,0 +1,268 @@
+<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?ECOLI:CO-A"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECOLI:CO-A</query>
+<num_results>1</num_results>
+<PGDB orgid="ECOLI" version="25.0"><species datatype="string">Escherichia coli</species>
+<strain datatype="string">K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID="ECOLI:CO-A" detail="full" frameid="CO-A" orgid="ECOLI"><parent><Compound class="true" frameid="Cofactors" orgid="ECOLI" resource="getxml?ECOLI:Cofactors" /></parent>
+<cml><molecule formalCharge="-4" id="CO-A" title="coenzyme+A"><atomArray><atom elementType="C" id="CO-A-atom1" x2="7603.0" y2="2080.0" /><atom elementType="C" id="CO-A-atom2" x2="6733.0" y2="2029.0" /><atom elementType="C" id="CO-A-atom3" x2="3573.0" y2="3009.0" /><atom elementType="C" id="CO-A-atom4" x2="4288.0" y2="2596.0" /><atom elementType="C" id="CO-A-atom5" x2="1429.0" y2="2596.0" /><atom elementType="C" id="CO-A-atom6" x2="714.0" y2="3009.0" /><atom elementType="C" id="CO-A-atom7" x2="12487.0" y2="2234.0" /><atom elementType="C" id="CO-A-atom8" x2="7860.0" y2="3009.0" /><atom elementType="C" id="CO-A-atom9" x2="15579.0" y2="0.0" /><atom elementType="C" id="CO-A-atom10" x2="15991.0" y2="2699.0" /><atom elementType="C" id="CO-A-atom11" x2="13201.0" y2="2647.0" /><atom elementType="C" id="CO-A-atom12" x2="2858.0" y2="2596.0" /><atom elementType="C" id="CO-A-atom13" x2="16404.0" y2="1430.0" /><atom elementType="C" id="CO-A-atom14" x2="14294.0" y2="3430.0" /><atom elementType="C" id="CO-A-atom15" x2="13461.0" y2="3430.0" /><atom elementType="C" id="CO-A-atom16" x2="6431.0" y2="3009.0" /><atom elementType="C" id="CO-A-atom17" x2="16816.0" y2="715.0" /><atom elementType="C" id="CO-A-atom18" x2="15579.0" y2="1430.0" /><atom elementType="C" id="CO-A-atom19" x2="5717.0" y2="2596.0" /><atom elementType="C" id="CO-A-atom20" x2="14609.0" y2="2626.0" /><atom elementType="C" id="CO-A-atom21" x2="7146.0" y2="2596.0" /><atom elementType="N" id="CO-A-atom22" x2="17641.0" y2="715.0" /><atom elementType="N" id="CO-A-atom23" x2="2143.0" y2="3009.0" /><atom elementType="N" id="CO-A-atom24" x2="5002.0" y2="3009.0" /><atom elementType="N" id="CO-A-atom25" x2="16404.0" y2="0.0" /><atom elementType="N" id="CO-A-atom26" x2="15166.0" y2="715.0" /><atom elementType="N" id="CO-A-atom27" x2="16659.0" y2="2214.0" /><atom elementType="N" id="CO-A-atom28" x2="15324.0" y2="2214.0" /><atom elementType="O" id="CO-A-atom29" x2="2858.0" y2="1771.0" /><atom elementType="O" id="CO-A-atom30" x2="14877.0" y2="4013.0" /><atom elementType="O" id="CO-A-atom31" x2="6431.0" y2="3835.0" /><atom elementType="O" id="CO-A-atom32" x2="5717.0" y2="1771.0" /><atom elementType="O" formalCharge="-1" id="CO-A-atom33" x2="13816.0" y2="4926.0" /><atom elementType="O" id="CO-A-atom34" x2="12991.0" y2="5751.0" /><atom elementType="O" formalCharge="-1" id="CO-A-atom35" x2="12166.0" y2="4926.0" /><atom elementType="O" id="CO-A-atom36" x2="11051.0" y2="3421.0" /><atom elementType="O" formalCharge="-1" id="CO-A-atom37" x2="11051.0" y2="1771.0" /><atom elementType="O" id="CO-A-atom38" x2="9400.0" y2="3422.0" /><atom elementType="O" formalCharge="-1" id="CO-A-atom39" x2="9400.0" y2="1771.0" /><atom elementType="O" id="CO-A-atom40" x2="11876.0" y2="2596.0" /><atom elementType="O" id="CO-A-atom41" x2="8576.0" y2="2596.0" /><atom elementType="O" id="CO-A-atom42" x2="13869.0" y2="2168.0" /><atom elementType="O" id="CO-A-atom43" x2="12991.0" y2="4101.0" /><atom elementType="O" id="CO-A-atom44" x2="10226.0" y2="2596.0" /><atom elementType="P" id="CO-A-atom45" x2="12991.0" y2="4926.0" /><atom elementType="P" id="CO-A-atom46" x2="11051.0" y2="2596.0" /><atom elementType="P" id="CO-A-atom47" x2="9400.0" y2="2596.0" /><atom elementType="S" id="CO-A-atom48" x2="0.0" y2="2596.0" /></atomArray>
+<bondArray><bond atomRefs="CO-A-atom16 CO-A-atom21" id="CO-A-bond1" order="1" /><bond atomRefs="CO-A-atom19 CO-A-atom16" id="CO-A-bond2" order="1" /><bond atomRefs="CO-A-atom24 CO-A-atom19" id="CO-A-bond3" order="1" /><bond atomRefs="CO-A-atom23 CO-A-atom12" id="CO-A-bond4" order="1" /><bond atomRefs="CO-A-atom8 CO-A-atom21" id="CO-A-bond5" order="1" /><bond atomRefs="CO-A-atom3 CO-A-atom12" id="CO-A-bond6" order="1" /><bond atomRefs="CO-A-atom4 CO-A-atom24" id="CO-A-bond7" order="1" /><bond atomRefs="CO-A-atom4 CO-A-atom3" id="CO-A-bond8" order="1" /><bond atomRefs="CO-A-atom5 CO-A-atom23" id="CO-A-bond9" order="1" /><bond atomRefs="CO-A-atom6 CO-A-atom5" id="CO-A-bond10" order="1" /><bond atomRefs="CO-A-atom48 CO-A-atom6" id="CO-A-bond11" order="1" /><bond atomRefs="CO-A-atom16 CO-A-atom31" id="CO-A-bond12" order="1" /><bond atomRefs="CO-A-atom32 CO-A-atom19" id="CO-A-bond13" order="2" /><bond atomRefs="CO-A-atom29 CO-A-atom12" id="CO-A-bond14" order="2" /><bond atomRefs="CO-A-atom2 CO-A-atom21" id="CO-A-bond15" order="1" /><bond atomRefs="CO-A-atom1 CO-A-atom21" id="CO-A-bond16" order="1" /><bond atomRefs="CO-A-atom44 CO-A-atom47" id="CO-A-bond17" order="1" /><bond atomRefs="CO-A-atom47 CO-A-atom41" id="CO-A-bond18" order="1" /><bond atomRefs="CO-A-atom47 CO-A-atom38" id="CO-A-bond19" order="2" /><bond atomRefs="CO-A-atom47 CO-A-atom39" id="CO-A-bond20" order="1" /><bond atomRefs="CO-A-atom8 CO-A-atom41" id="CO-A-bond21" order="1" /><bond atomRefs="CO-A-atom14 CO-A-atom20" id="CO-A-bond22" order="1" /><bond atomRefs="CO-A-atom15 CO-A-atom11" id="CO-A-bond23" order="1" /><bond atomRefs="CO-A-atom15 CO-A-atom14" id="CO-A-bond24" order="1" /><bond atomRefs="CO-A-atom42 CO-A-atom20" id="CO-A-bond25" order="1" /><bond atomRefs="CO-A-atom42 CO-A-atom11" id="CO-A-bond26" order="1" /><bond atomRefs="CO-A-atom15 CO-A-atom43" id="CO-A-bond27" order="1" /><bond atomRefs="CO-A-atom11 CO-A-atom7" id="CO-A-bond28" order="1" /><bond atomRefs="CO-A-atom20 CO-A-atom28" id="CO-A-bond29" order="1" /><bond atomRefs="CO-A-atom7 CO-A-atom40" id="CO-A-bond30" order="1" /><bond atomRefs="CO-A-atom25 CO-A-atom9" id="CO-A-bond31" order="1" /><bond atomRefs="CO-A-atom9 CO-A-atom26" id="CO-A-bond32" order="2" /><bond atomRefs="CO-A-atom26 CO-A-atom18" id="CO-A-bond33" order="1" /><bond atomRefs="CO-A-atom18 CO-A-atom13" id="CO-A-bond34" order="2" /><bond atomRefs="CO-A-atom13 CO-A-atom17" id="CO-A-bond35" order="1" /><bond atomRefs="CO-A-atom25 CO-A-atom17" id="CO-A-bond36" order="2" /><bond atomRefs="CO-A-atom10 CO-A-atom27" id="CO-A-bond37" order="2" /><bond atomRefs="CO-A-atom13 CO-A-atom27" id="CO-A-bond38" order="1" /><bond atomRefs="CO-A-atom17 CO-A-atom22" id="CO-A-bond39" order="1" /><bond atomRefs="CO-A-atom10 CO-A-atom28" id="CO-A-bond40" order="1" /><bond atomRefs="CO-A-atom28 CO-A-atom18" id="CO-A-bond41" order="1" /><bond atomRefs="CO-A-atom14 CO-A-atom30" id="CO-A-bond42" order="1" /><bond atomRefs="CO-A-atom37 CO-A-atom46" id="CO-A-bond43" order="1" /><bond atomRefs="CO-A-atom36 CO-A-atom46" id="CO-A-bond44" order="2" /><bond atomRefs="CO-A-atom40 CO-A-atom46" id="CO-A-bond45" order="1" /><bond atomRefs="CO-A-atom35 CO-A-atom45" id="CO-A-bond46" order="1" /><bond atomRefs="CO-A-atom34 CO-A-atom45" id="CO-A-bond47" order="2" /><bond atomRefs="CO-A-atom33 CO-A-atom45" id="CO-A-bond48" order="1" /><bond atomRefs="CO-A-atom43 CO-A-atom45" id="CO-A-bond49" order="1" /><bond atomRefs="CO-A-atom44 CO-A-atom46" id="CO-A-bond50" order="1" /></bondArray>
+<formula concise="C 21 H 32 N 7 O 16 P 3 S 1" /><float title="molecularWeight" units="g/mol">763.502</float>
+<string title="smiles">CC(C)(COP([O-])(=O)OP(OC[C@H]3(O[C@@H](N1(C2(\N=C/N=C(C(\N=C/1)=2)/N)))[C@H](O)[C@H](OP([O-])(=O)[O-])3))(=O)[O-])[C@@H](O)C(=O)NCCC(=O)NCCS</string>
+</molecule>
+</cml>
+<common-name datatype="string">coenzyme A</common-name>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Coenzyme A</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Coenzyme A</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>coa</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/coa</dblink-URL>
+</dblink>
+<dblink><dblink-db>Wikipedia</dblink-db>
+<dblink-oid>Coenzyme_a</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://en.wikipedia.org/wiki/Coenzyme_a</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC57287</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC57287</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01423</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01423</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>57287</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57287</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>25113190</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=25113190</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007258</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007258</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>85-61-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=85-61-0</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00010</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00010</dblink-URL>
+</dblink>
+<synonym datatype="string">CoA</synonym>
+<synonym datatype="string">Co-A-SH</synonym>
+<synonym datatype="string">HS-CoA</synonym>
+<gibbs-0 datatype="float" units="kcal/mol">-493.56613</gibbs-0>
+<inchi datatype="string">InChI=1S/C21H36N7O16P3S/c1-21(2,16(31)19(32)24-4-3-12(29)23-5-6-48)8-41-47(38,39)44-46(36,37)40-7-11-15(43-45(33,34)35)14(30)20(42-11)28-10-27-13-17(22)25-9-26-18(13)28/h9-11,14-16,20,30-31,48H,3-8H2,1-2H3,(H,23,29)(H,24,32)(H,36,37)(H,38,39)(H2,22,25,26)(H2,33,34,35)/p-4/t11-,14-,15-,16+,20-/m1/s1</inchi>
+<inchi-key datatype="string">InChIKey=RGJOEKWQDUBAIZ-IBOSZNHHSA-J</inchi-key>
+<molecular-weight datatype="float" units="Daltons">763.502</molecular-weight>
+<monoisotopic-mw datatype="float" units="Daltons">767.11523</monoisotopic-mw>
+<appears-in-left-side-of><Reaction frameid="TRANS-RXN0-623" orgid="ECOLI" resource="getxml?ECOLI:TRANS-RXN0-623" /><Reaction frameid="RXN0-7238" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7238" /><Reaction frameid="RXN-9644" orgid="ECOLI" resource="getxml?ECOLI:RXN-9644" /><Reaction frameid="HOLO-ACP-SYNTH-RXN" orgid="ECOLI" resource="getxml?ECOLI:HOLO-ACP-SYNTH-RXN" /><Reaction frameid="RXN0-7248" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7248" /><Reaction frameid="RXN0-7239" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7239" /><Reaction frameid="ENTDB-RXN" orgid="ECOLI" resource="getxml?ECOLI:ENTDB-RXN" /><Reaction frameid="RXN-15889" orgid="ECOLI" resource="getxml?ECOLI:RXN-15889" /><Reaction frameid="PYFLAVOXRE-RXN" orgid="ECOLI" resource="getxml?ECOLI:PYFLAVOXRE-RXN" /><Reaction frameid="PYRUFLAVREDUCT-RXN" orgid="ECOLI" resource="getxml?ECOLI:PYRUFLAVREDUCT-RXN" /><Reaction frameid="PYRUVDEH-RXN" orgid="ECOLI" resource="getxml?ECOLI:PYRUVDEH-RXN" /><Reaction frameid="ACYLCOASYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACYLCOASYN-RXN" /><Reaction frameid="RXN-10819" orgid="ECOLI" resource="getxml?ECOLI:RXN-10819" /><Reaction frameid="LCARNCOALIG-RXN" orgid="ECOLI" resource="getxml?ECOLI:LCARNCOALIG-RXN" /><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACETALD-DEHYDROG-RXN" /><Reaction frameid="PROPIONATE--COA-LIGASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:PROPIONATE--COA-LIGASE-RXN" /><Reaction frameid="KETOBUTFORMLY-RXN" orgid="ECOLI" resource="getxml?ECOLI:KETOBUTFORMLY-RXN" /><Reaction frameid="2OXOGLUTARATEDEH-RXN" orgid="ECOLI" resource="getxml?ECOLI:2OXOGLUTARATEDEH-RXN" /><Reaction frameid="O-SUCCINYLBENZOATE-COA-LIG-RXN" orgid="ECOLI" resource="getxml?ECOLI:O-SUCCINYLBENZOATE-COA-LIG-RXN" /><Reaction frameid="ACETATE--COA-LIGASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACETATE--COA-LIGASE-RXN" /><Reaction frameid="SUCCCOASYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:SUCCCOASYN-RXN" /></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction frameid="RXN0-7345" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7345" /><Reaction frameid="RXN0-7342" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7342" /><Reaction frameid="RXN-14274" orgid="ECOLI" resource="getxml?ECOLI:RXN-14274" /><Reaction frameid="RXN-13617" orgid="ECOLI" resource="getxml?ECOLI:RXN-13617" /><Reaction frameid="RXN-14277" orgid="ECOLI" resource="getxml?ECOLI:RXN-14277" /><Reaction frameid="RXN-12565" orgid="ECOLI" resource="getxml?ECOLI:RXN-12565" /><Reaction frameid="RXN0-7014" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7014" /><Reaction frameid="RXN-20154" orgid="ECOLI" resource="getxml?ECOLI:RXN-20154" /><Reaction frameid="AKBLIG-RXN" orgid="ECOLI" resource="getxml?ECOLI:AKBLIG-RXN" /><Reaction frameid="RXN0-1133" orgid="ECOLI" resource="getxml?ECOLI:RXN0-1133" /><Reaction frameid="RXN-18434" orgid="ECOLI" resource="getxml?ECOLI:RXN-18434" /><Reaction frameid="2.3.1.128-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.3.1.128-RXN" /><Reaction frameid="RXN-17962" orgid="ECOLI" resource="getxml?ECOLI:RXN-17962" /><Reaction frameid="RXN-17961" orgid="ECOLI" resource="getxml?ECOLI:RXN-17961" /><Reaction frameid="RXN-17960" orgid="ECOLI" resource="getxml?ECOLI:RXN-17960" /><Reaction frameid="RXN0-7103" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7103" /><Reaction frameid="RXN-17799" orgid="ECOLI" resource="getxml?ECOLI:RXN-17799" /><Reaction frameid="RXN-17795" orgid="ECOLI" resource="getxml?ECOLI:RXN-17795" /><Reaction frameid="RXN-17791" orgid="ECOLI" resource="getxml?ECOLI:RXN-17791" /><Reaction frameid="RXN-17787" orgid="ECOLI" resource="getxml?ECOLI:RXN-17787" /><Reaction frameid="RXN-17782" orgid="ECOLI" resource="getxml?ECOLI:RXN-17782" /><Reaction frameid="RXN-17778" orgid="ECOLI" resource="getxml?ECOLI:RXN-17778" /><Reaction frameid="RXN1-42" orgid="ECOLI" resource="getxml?ECOLI:RXN1-42" /><Reaction frameid="HYDGLUTSYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:HYDGLUTSYN-RXN" /><Reaction frameid="RXN0-7165" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7165" /><Reaction frameid="MALTACETYLTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:MALTACETYLTRAN-RXN" /><Reaction frameid="RXN0-7160" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7160" /><Reaction frameid="RXN-17023" orgid="ECOLI" resource="getxml?ECOLI:RXN-17023" /><Reaction frameid="RXN-17021" orgid="ECOLI" resource="getxml?ECOLI:RXN-17021" /><Reaction frameid="RXN-17019" orgid="ECOLI" resource="getxml?ECOLI:RXN-17019" /><Reaction frameid="RXN-17008" orgid="ECOLI" resource="getxml?ECOLI:RXN-17008" /><Reaction frameid="RXN-17009" orgid="ECOLI" resource="getxml?ECOLI:RXN-17009" /><Reaction frameid="RXN-17010" orgid="ECOLI" resource="getxml?ECOLI:RXN-17010" /><Reaction frameid="RXN-17011" orgid="ECOLI" resource="getxml?ECOLI:RXN-17011" /><Reaction frameid="RXN-15943" orgid="ECOLI" resource="getxml?ECOLI:RXN-15943" /><Reaction frameid="RXN0-5418" orgid="ECOLI" resource="getxml?ECOLI:RXN0-5418" /><Reaction frameid="RXN-14251" orgid="ECOLI" resource="getxml?ECOLI:RXN-14251" /><Reaction frameid="RXN-14255" orgid="ECOLI" resource="getxml?ECOLI:RXN-14255" /><Reaction frameid="RXN0-7104" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7104" /><Reaction frameid="RXN-14394" orgid="ECOLI" resource="getxml?ECOLI:RXN-14394" /><Reaction frameid="RXN0-7046" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7046" /><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="ECOLI" resource="getxml?ECOLI:MALONYL-COA-ACP-TRANSACYL-RXN" /><Reaction frameid="2.3.1.180-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.3.1.180-RXN" /><Reaction frameid="ARYLAMINE-N-ACETYLTRANSFERASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:ARYLAMINE-N-ACETYLTRANSFERASE-RXN" /><Reaction frameid="RXN0-6512" orgid="ECOLI" resource="getxml?ECOLI:RXN0-6512" /><Reaction frameid="RXN0-6948" orgid="ECOLI" resource="getxml?ECOLI:RXN0-6948" /><Reaction frameid="7KAPSYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:7KAPSYN-RXN" /><Reaction frameid="DIHYDLIPACETRANS-RXN" orgid="ECOLI" resource="getxml?ECOLI:DIHYDLIPACETRANS-RXN" /><Reaction frameid="THIOESTER-RXN" orgid="ECOLI" resource="getxml?ECOLI:THIOESTER-RXN" /><Reaction frameid="RXN0-1147" orgid="ECOLI" resource="getxml?ECOLI:RXN0-1147" /><Reaction frameid="ACYL-COA-HYDROLASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACYL-COA-HYDROLASE-RXN" /><Reaction frameid="DIAMACTRANS-RXN" orgid="ECOLI" resource="getxml?ECOLI:DIAMACTRANS-RXN" /><Reaction frameid="RXN-1623" orgid="ECOLI" resource="getxml?ECOLI:RXN-1623" /><Reaction frameid="RXN0-5065" orgid="ECOLI" resource="getxml?ECOLI:RXN0-5065" /><Reaction frameid="RXN0-5390" orgid="ECOLI" resource="getxml?ECOLI:RXN0-5390" /><Reaction frameid="RXN-9311" orgid="ECOLI" resource="getxml?ECOLI:RXN-9311" /><Reaction frameid="RXN-1381" orgid="ECOLI" resource="getxml?ECOLI:RXN-1381" /><Reaction frameid="RXN0-5231" orgid="ECOLI" resource="getxml?ECOLI:RXN0-5231" /><Reaction frameid="2-METHYLCITRATE-SYNTHASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:2-METHYLCITRATE-SYNTHASE-RXN" /><Reaction frameid="2-ISOPROPYLMALATESYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:2-ISOPROPYLMALATESYN-RXN" /><Reaction frameid="CITSYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:CITSYN-RXN" /><Reaction frameid="MALSYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:MALSYN-RXN" /><Reaction frameid="KETOACYLCOATHIOL-RXN" orgid="ECOLI" resource="getxml?ECOLI:KETOACYLCOATHIOL-RXN" /><Reaction frameid="RXN-3641" orgid="ECOLI" resource="getxml?ECOLI:RXN-3641" /><Reaction frameid="ACETYL-COA-ACETYLTRANSFER-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACETYL-COA-ACETYLTRANSFER-RXN" /><Reaction frameid="PYRUVFORMLY-RXN" orgid="ECOLI" resource="getxml?ECOLI:PYRUVFORMLY-RXN" /><Reaction frameid="2.3.1.118-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.3.1.118-RXN" /><Reaction frameid="PTAALT-RXN" orgid="ECOLI" resource="getxml?ECOLI:PTAALT-RXN" /><Reaction frameid="ARGININE-N-SUCCINYLTRANSFERASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:ARGININE-N-SUCCINYLTRANSFERASE-RXN" /><Reaction frameid="TDPFUCACTRANS-RXN" orgid="ECOLI" resource="getxml?ECOLI:TDPFUCACTRANS-RXN" /><Reaction frameid="SPERMACTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:SPERMACTRAN-RXN" /><Reaction frameid="2.3.1.157-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.3.1.157-RXN" /><Reaction frameid="ACP-S-ACETYLTRANSFER-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACP-S-ACETYLTRANSFER-RXN" /><Reaction frameid="SERINE-O-ACETTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:SERINE-O-ACETTRAN-RXN" /><Reaction frameid="PHOSACETYLTRANS-RXN" orgid="ECOLI" resource="getxml?ECOLI:PHOSACETYLTRANS-RXN" /><Reaction frameid="HOMSUCTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:HOMSUCTRAN-RXN" /><Reaction frameid="GALACTOACETYLTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:GALACTOACETYLTRAN-RXN" /><Reaction frameid="N-ACETYLTRANSFER-RXN" orgid="ECOLI" resource="getxml?ECOLI:N-ACETYLTRANSFER-RXN" /><Reaction frameid="DEPHOSPHOCOAKIN-RXN" orgid="ECOLI" resource="getxml?ECOLI:DEPHOSPHOCOAKIN-RXN" /><Reaction frameid="TETHYDPICSUCC-RXN" orgid="ECOLI" resource="getxml?ECOLI:TETHYDPICSUCC-RXN" /></appears-in-right-side-of>
+<regulates><Regulation ID="ECOLI:REG0-12806" detail="low" frameid="REG0-12806" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:AKBLIG-ENZRXN" detail="low" frameid="AKBLIG-ENZRXN" orgid="ECOLI"><common-name datatype="string">2-amino-3-ketobutyrate CoA ligase</common-name>
+<synonym datatype="string">glycine C-acetyltransferase</synonym>
+<synonym datatype="string">AKB ligase</synonym>
+<synonym datatype="string">aminoacetone synthase</synonym>
+<synonym datatype="string">aminoacetone synthetase</synonym>
+<synonym datatype="string">acetyl-CoA:glycine C-acetyltransferase</synonym>
+<enzyme><Protein frameid="AKBLIG-CPLX" orgid="ECOLI" resource="getxml?ECOLI:AKBLIG-CPLX" /></enzyme>
+<reaction><Reaction frameid="AKBLIG-RXN" orgid="ECOLI" resource="getxml?ECOLI:AKBLIG-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-10749" detail="low" frameid="REG0-10749" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:ENZRXN0-7377" detail="low" frameid="ENZRXN0-7377" orgid="ECOLI"><common-name datatype="string">oxalyl-CoA decarboxylase</common-name>
+<enzyme><Protein frameid="CPLX0-7878" orgid="ECOLI" resource="getxml?ECOLI:CPLX0-7878" /></enzyme>
+<reaction><Reaction frameid="OXALYL-COA-DECARBOXYLASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:OXALYL-COA-DECARBOXYLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-9520" detail="low" frameid="REG0-9520" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:PANTEPADENYLYLTRAN-ENZRXN" detail="low" frameid="PANTEPADENYLYLTRAN-ENZRXN" orgid="ECOLI"><common-name datatype="string">pantetheine-phosphate adenylyltransferase</common-name>
+<synonym datatype="string">dephospho-CoA pyrophosphorylase</synonym>
+<synonym datatype="string">ATP:pantetheine-4'-phosphate adenylyltransferase</synonym>
+<synonym datatype="string">phosphopantetheine adenylyltransferase</synonym>
+<enzyme><Protein frameid="COADTRI-CPLX" orgid="ECOLI" resource="getxml?ECOLI:COADTRI-CPLX" /></enzyme>
+<reaction><Reaction frameid="PANTEPADENYLYLTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:PANTEPADENYLYLTRAN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-9396" detail="low" frameid="REG0-9396" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:ENZRXN0-1702" detail="low" frameid="ENZRXN0-1702" orgid="ECOLI"><common-name datatype="string">formyl-CoA transferase</common-name>
+<synonym datatype="string">formyl-CoA:oxalate CoA-transferase</synonym>
+<enzyme><Protein frameid="CPLX0-1142" orgid="ECOLI" resource="getxml?ECOLI:CPLX0-1142" /></enzyme>
+<reaction><Reaction frameid="RXN0-1382" orgid="ECOLI" resource="getxml?ECOLI:RXN0-1382" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-9394" detail="low" frameid="REG0-9394" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:ENZRXN0-6510" detail="low" frameid="ENZRXN0-6510" orgid="ECOLI"><common-name datatype="string">acyl-CoA thioesterase</common-name>
+<synonym datatype="string">acyl-CoA hydrolase</synonym>
+<enzyme><Protein frameid="EG11121-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:EG11121-MONOMER" /></enzyme>
+<reaction><Reaction frameid="ACYL-COA-HYDROLASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACYL-COA-HYDROLASE-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-8779" detail="low" frameid="REG0-8779" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:ACETOACETYL-COA-TRANSFER-ENZRXN" detail="low" frameid="ACETOACETYL-COA-TRANSFER-ENZRXN" orgid="ECOLI"><common-name datatype="string">acetoacetyl-CoA transferase</common-name>
+<synonym datatype="string">acetyl-CoA:acetoacetate-CoA transferase</synonym>
+<enzyme><Protein frameid="ACETOACETYL-COA-TRANSFER-CPLX" orgid="ECOLI" resource="getxml?ECOLI:ACETOACETYL-COA-TRANSFER-CPLX" /></enzyme>
+<reaction><Reaction frameid="ACETOACETYL-COA-TRANSFER-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACETOACETYL-COA-TRANSFER-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-8718" detail="low" frameid="REG0-8718" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:GALACTOACETYLTRAN-ENZRXN" detail="low" frameid="GALACTOACETYLTRAN-ENZRXN" orgid="ECOLI"><common-name datatype="string">galactoside &lt;i&gt;O&lt;/i&gt;-acetyltransferase</common-name>
+<synonym datatype="string">thiogalactoside acetyltransferase</synonym>
+<synonym datatype="string">GAT</synonym>
+<synonym datatype="string">thiogalactoside transacetylase</synonym>
+<synonym datatype="string">acetyl-CoA:&amp;beta;-D-galactoside 6-acetyltransferase</synonym>
+<synonym datatype="string">galactosidase acetyltransferase</synonym>
+<synonym datatype="string">galactoside transacetylase</synonym>
+<enzyme><Protein frameid="GALACTOACETYLTRAN-CPLX" orgid="ECOLI" resource="getxml?ECOLI:GALACTOACETYLTRAN-CPLX" /></enzyme>
+<reaction><Reaction frameid="GALACTOACETYLTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:GALACTOACETYLTRAN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-8635" detail="low" frameid="REG0-8635" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:MALTACETYLTRAN-ENZRXN" detail="low" frameid="MALTACETYLTRAN-ENZRXN" orgid="ECOLI"><common-name datatype="string">maltose &lt;i&gt;O&lt;/i&gt;-acetyltransferase</common-name>
+<synonym datatype="string">maltose transacetylase</synonym>
+<enzyme><Protein frameid="MALTACETYLTRAN-CPLX" orgid="ECOLI" resource="getxml?ECOLI:MALTACETYLTRAN-CPLX" /></enzyme>
+<reaction><Reaction frameid="MALTACETYLTRAN-RXN" orgid="ECOLI" resource="getxml?ECOLI:MALTACETYLTRAN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-8346" detail="low" frameid="REG0-8346" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:PANTOTHENATE-KIN-ENZRXN" detail="low" frameid="PANTOTHENATE-KIN-ENZRXN" orgid="ECOLI"><common-name datatype="string">pantothenate kinase</common-name>
+<synonym datatype="string">ATP:pantothenate 4'-phosphotransferase</synonym>
+<enzyme><Protein frameid="PANTOTHENATE-KIN-CPLX" orgid="ECOLI" resource="getxml?ECOLI:PANTOTHENATE-KIN-CPLX" /></enzyme>
+<reaction><Reaction frameid="PANTOTHENATE-KIN-RXN" orgid="ECOLI" resource="getxml?ECOLI:PANTOTHENATE-KIN-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-8343" detail="low" frameid="REG0-8343" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN" detail="low" frameid="3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN" orgid="ECOLI"><common-name datatype="string">3-methyl-2-oxobutanoate hydroxymethyltransferase</common-name>
+<synonym datatype="string">&amp;alpha;-ketoisovalerate hydroxymethyltransferase</synonym>
+<synonym datatype="string">dehydropantoate hydroxymethyltransferase</synonym>
+<synonym datatype="string">ketopantoate hydroxymethyltransferase</synonym>
+<synonym datatype="string">KPHMT</synonym>
+<synonym datatype="string">5,10-methylenetetrahydrofolate:3-methyl-2-oxobutanoate hydroxymethyltransferase</synonym>
+<enzyme><Protein frameid="3-METHYL-2-OXOBUT-OHCH3XFER-CPLX" orgid="ECOLI" resource="getxml?ECOLI:3-METHYL-2-OXOBUT-OHCH3XFER-CPLX" /></enzyme>
+<reaction><Reaction frameid="3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN" orgid="ECOLI" resource="getxml?ECOLI:3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-8249" detail="low" frameid="REG0-8249" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:ACP-S-ACETYLTRANSFER-ENZRXN" detail="low" frameid="ACP-S-ACETYLTRANSFER-ENZRXN" orgid="ECOLI"><common-name datatype="string">acetyl-CoA:ACP transacylase</common-name>
+<synonym datatype="string">[acyl-carrier-protein] S-acetyltransferase</synonym>
+<synonym datatype="string">acetyl-CoA:[ACP] S-acetyltransferase</synonym>
+<synonym datatype="string">acetyl-CoA:ACP transacylase</synonym>
+<enzyme><Protein frameid="CPLX0-252" orgid="ECOLI" resource="getxml?ECOLI:CPLX0-252" /></enzyme>
+<reaction><Reaction frameid="ACP-S-ACETYLTRANSFER-RXN" orgid="ECOLI" resource="getxml?ECOLI:ACP-S-ACETYLTRANSFER-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-7670" detail="low" frameid="REG0-7670" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:MALIC-NAD-ENZRXN" detail="low" frameid="MALIC-NAD-ENZRXN" orgid="ECOLI"><common-name datatype="string">malate dehydrogenase, NAD-requiring</common-name>
+<synonym datatype="string">pyruvic-malic carboxylase</synonym>
+<synonym datatype="string">(S)-malate:NAD+ oxdireductase (oxaloacetate decarboxylating)</synonym>
+<synonym datatype="string">malic enzyme, NAD-linked</synonym>
+<enzyme><Protein frameid="MALIC-NAD-CPLX" orgid="ECOLI" resource="getxml?ECOLI:MALIC-NAD-CPLX" /></enzyme>
+<reaction><Reaction frameid="1.1.1.39-RXN" orgid="ECOLI" resource="getxml?ECOLI:1.1.1.39-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-7409" detail="low" frameid="REG0-7409" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:PHOSPHOGLUCMUT-ENZRXN" detail="low" frameid="PHOSPHOGLUCMUT-ENZRXN" orgid="ECOLI"><common-name datatype="string">phosphoglucomutase</common-name>
+<synonym datatype="string">glucose phosphomutase</synonym>
+<synonym datatype="string">&amp;alpha;-D-glucose 1,6-phosphomutase</synonym>
+<enzyme><Protein frameid="PHOSPHOGLUCMUT-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:PHOSPHOGLUCMUT-MONOMER" /></enzyme>
+<reaction><Reaction frameid="PHOSPHOGLUCMUT-RXN" orgid="ECOLI" resource="getxml?ECOLI:PHOSPHOGLUCMUT-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-7217" detail="low" frameid="REG0-7217" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:GLYCEROL-3-P-ACYLTRANSFER-ENZRXN" detail="low" frameid="GLYCEROL-3-P-ACYLTRANSFER-ENZRXN" orgid="ECOLI"><common-name datatype="string">acyl-CoA:&lt;i&gt;sn&lt;/i&gt;-glycerol-3-phosphate 1-&lt;i&gt;O&lt;/i&gt;-acyltransferase</common-name>
+<enzyme><Protein frameid="GLYCEROL-3-P-ACYLTRANSFER-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:GLYCEROL-3-P-ACYLTRANSFER-MONOMER" /></enzyme>
+<reaction><Reaction frameid="RXN-1381" orgid="ECOLI" resource="getxml?ECOLI:RXN-1381" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-7083" detail="low" frameid="REG0-7083" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:MALONYL-COA-ACP-TRANSACYL-ENZRXN" detail="low" frameid="MALONYL-COA-ACP-TRANSACYL-ENZRXN" orgid="ECOLI"><common-name datatype="string">[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
+<synonym datatype="string">malonyl-CoA-acyl carrier protein transacylase</synonym>
+<synonym datatype="string">malonyl-CoA-ACP transacylase</synonym>
+<synonym datatype="string">S-malonyltransferase</synonym>
+<synonym datatype="string">malonyl-CoA:[acyl carrier protein] S-malonyltransferase</synonym>
+<synonym datatype="string">malonyl transacylase</synonym>
+<synonym datatype="string">malonyl coenzyme A-acyl carrier protein transacylase</synonym>
+<enzyme><Protein frameid="MALONYL-COA-ACP-TRANSACYL-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:MALONYL-COA-ACP-TRANSACYL-MONOMER" /></enzyme>
+<reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="ECOLI" resource="getxml?ECOLI:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+<Regulation ID="ECOLI:REG0-6903" detail="low" frameid="REG0-6903" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
+<mode datatype="string">-</mode>
+<regulated-entity><Enzymatic-Reaction ID="ECOLI:GSADENYLATION-ENZRXN" detail="low" frameid="GSADENYLATION-ENZRXN" orgid="ECOLI"><common-name datatype="string">glutamine synthetase adenylyltransferase</common-name>
+<synonym datatype="string">glutamate-ammonia-ligase adenylyltransferase</synonym>
+<synonym datatype="string">ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
+<enzyme><Protein frameid="GLNE-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:GLNE-MONOMER" /></enzyme>
+<reaction><Reaction frameid="GSADENYLATION-RXN" orgid="ECOLI" resource="getxml?ECOLI:GSADENYLATION-RXN" /></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound frameid="CO-A" orgid="ECOLI" resource="#ECOLI:CO-A" /></regulator>
+</Regulation>
+</regulates>
+</Compound>
+</ptools-xml>

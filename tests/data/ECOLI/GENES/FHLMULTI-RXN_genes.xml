@@ -1,0 +1,479 @@
+<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECOLI:FHLMULTI-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=ECOLI:FHLMULTI-RXN&amp;detail=FULL</query>
+    <num_results>7</num_results>
+    <PGDB orgid="ECOLI" version="25.0">
+      <species datatype="string">Escherichia coli</species>
+      <strain datatype="string">K-12 substr. MG1655</strain>
+      <dblink>
+        <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+        <dblink-oid>511145</dblink-oid>
+        <dblink-relationship>unification</dblink-relationship>
+        <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+      </dblink>
+    </PGDB>
+  </metadata>
+  <Gene ID="ECOLI:EG10285" detail="full" frameid="EG10285" orgid="ECOLI">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-1.4.1" orgid="ECOLI" resource="getxml?ECOLI:BC-1.4.1" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="FORMATEDEHYDROGH-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:FORMATEDEHYDROGH-MONOMER" />
+    </product>
+    <right-end-position datatype="integer">4299366</right-end-position>
+    <common-name datatype="string">fdhF</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU00152" orgid="ECOLI" resource="getxml?ECOLI:TU00152" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b4079</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b4079&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b4079</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b4079</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>fdhF</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=fdhF</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0013363</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0013363</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0281</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0281</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b4079</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b4079</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>18400</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=18400</dblink-URL>
+    </dblink>
+    <synonym datatype="string">chlF</synonym>
+    <left-end-position datatype="integer">4297219</left-end-position>
+    <accession-1 datatype="string">b4079</accession-1>
+    <accession-2 datatype="string">ECK4072</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">92.57952</centisome-position>
+  </Gene>
+  <Gene ID="ECOLI:EG10478" detail="full" frameid="EG10478" orgid="ECOLI">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HYCELARGE-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCELARGE-MONOMER" />
+    </product>
+    <right-end-position datatype="integer">2846471</right-end-position>
+    <common-name datatype="string">hycE</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2721</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2721&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2721</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2721</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>hycE</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycE</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008944</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008944</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0473</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0473</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2721</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2721</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>33159</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33159</dblink-URL>
+    </dblink>
+    <synonym datatype="string">hevE</synonym>
+    <left-end-position datatype="integer">2844762</left-end-position>
+    <accession-1 datatype="string">b2721</accession-1>
+    <accession-2 datatype="string">ECK2716</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">61.28771</centisome-position>
+  </Gene>
+  <Gene ID="ECOLI:EG10475" detail="full" frameid="EG10475" orgid="ECOLI">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HYCBSMALL-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCBSMALL-MONOMER" />
+    </product>
+    <right-end-position datatype="integer">2849849</right-end-position>
+    <common-name datatype="string">hycB</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2724</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2724&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2724</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2724</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>hycB</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycB</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008950</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008950</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0470</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0470</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2724</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2724</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>33169</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33169</dblink-URL>
+    </dblink>
+    <synonym datatype="string">hevB</synonym>
+    <left-end-position datatype="integer">2849238</left-end-position>
+    <accession-1 datatype="string">b2724</accession-1>
+    <accession-2 datatype="string">ECK2719</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">61.384136</centisome-position>
+  </Gene>
+  <Gene ID="ECOLI:EG10480" detail="full" frameid="EG10480" orgid="ECOLI">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HYCG-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCG-MONOMER" />
+    </product>
+    <right-end-position datatype="integer">2844210</right-end-position>
+    <common-name datatype="string">hycG</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2719</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2719&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2719</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2719</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>hycG</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycG</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008936</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008936</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0475</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0475</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2719</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2719</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>33151</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33151</dblink-URL>
+    </dblink>
+    <synonym datatype="string">hevG</synonym>
+    <left-end-position datatype="integer">2843443</left-end-position>
+    <accession-1 datatype="string">b2719</accession-1>
+    <accession-2 datatype="string">ECK2714</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">61.25929</centisome-position>
+  </Gene>
+  <Gene ID="ECOLI:EG10479" detail="full" frameid="EG10479" orgid="ECOLI">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-6.1" orgid="ECOLI" resource="getxml?ECOLI:BC-6.1" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HYCF-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCF-MONOMER" />
+    </product>
+    <right-end-position datatype="integer">2844752</right-end-position>
+    <common-name datatype="string">hycF</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2720</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2720&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2720</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2720</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>hycF</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycF</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008942</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008942</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0474</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0474</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2720</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2720</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>33154</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33154</dblink-URL>
+    </dblink>
+    <synonym datatype="string">hevF</synonym>
+    <left-end-position datatype="integer">2844210</left-end-position>
+    <accession-1 datatype="string">b2720</accession-1>
+    <accession-2 datatype="string">ECK2715</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">61.275818</centisome-position>
+  </Gene>
+  <Gene ID="ECOLI:EG10476" detail="full" frameid="EG10476" orgid="ECOLI">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-6.1" orgid="ECOLI" resource="getxml?ECOLI:BC-6.1" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HYCC-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCC-MONOMER" />
+    </product>
+    <right-end-position datatype="integer">2849241</right-end-position>
+    <common-name datatype="string">hycC</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2723</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2723&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2723</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2723</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>hycC</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycC</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008948</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008948</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0471</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0471</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2723</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2723</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>33166</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33166</dblink-URL>
+    </dblink>
+    <synonym datatype="string">hevC</synonym>
+    <left-end-position datatype="integer">2847415</left-end-position>
+    <accession-1 datatype="string">b2723</accession-1>
+    <accession-2 datatype="string">ECK2718</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">61.344864</centisome-position>
+  </Gene>
+  <Gene ID="ECOLI:EG10477" detail="full" frameid="EG10477" orgid="ECOLI">
+    <parent>
+      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+    </parent>
+    <parent>
+      <Gene class="true" frameid="BC-6.1" orgid="ECOLI" resource="getxml?ECOLI:BC-6.1" />
+    </parent>
+    <replicon>
+      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+    </replicon>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <product>
+      <Protein frameid="HYCD-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCD-MONOMER" />
+    </product>
+    <right-end-position datatype="integer">2847412</right-end-position>
+    <comment datatype="string">ArcA appears to activate hycD gene expression under anaerobiosis. A putative ArcA binding site was  identified 55 bp upstream of this gene [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15699038"&gt;Salmon05&lt;/a&gt;], but no promoter upstream of it has been identified. Instead hycD is transcribed from a promoter that  is located usptream of hycA gene.</comment>
+    <common-name datatype="string">hycD</common-name>
+    <component-of>
+      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2722</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2722&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2722</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2722</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECOLIHUB</dblink-db>
+      <dblink-oid>hycD</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycD</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008946</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008946</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0472</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0472</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2722</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2722</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>33162</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33162</dblink-URL>
+    </dblink>
+    <synonym datatype="string">hevD</synonym>
+    <left-end-position datatype="integer">2846489</left-end-position>
+    <accession-1 datatype="string">b2722</accession-1>
+    <accession-2 datatype="string">ECK2717</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">61.324913</centisome-position>
+  </Gene>
+</ptools-xml>
