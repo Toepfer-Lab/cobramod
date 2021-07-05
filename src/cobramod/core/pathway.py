@@ -19,6 +19,7 @@ from cobra.core.dictlist import DictList
 from pandas import Series
 
 from cobramod.debug import debug_log
+from cobramod.error import GraphKeyError
 from cobramod.visualization.converter import JsonDictionary
 
 
@@ -187,6 +188,50 @@ class Pathway(Group):
         return cls(
             id=obj.id, name=obj.name, members=obj.members, kind=obj.kind
         )
+
+    def modify_graph(self, reaction: str, next_reaction: Union[str, None]):
+        """
+        Modifies the order of the graph. This is useful when merging multiple
+        pathways or joining reactions. In the graph, the selected reaction
+        will be forced to show "next_reaction" as  its successor.
+
+        Args:
+            reaction (str): Identifier of the reaction to modify in the graph
+            next_reaction (str, None): Identifier of the next reaction. This
+                reaction will take place after "reaction". If None is passed,
+                then "reaction" will not have successors.
+
+        Raises:
+            GraphKeyError: If the reaction or the next_reaction does not appear
+            in the graph of the pathway
+        """
+        # FIXME: add behavior for changing not NoneTypes
+        # Pathway.graph is responsable for the mapping
+        if next_reaction not in self.graph.keys() and next_reaction:
+            raise GraphKeyError(
+                f'Pathway "{self.id}" does not have a reaction '
+                + f'{next_reaction}". Check that the reaction exist.'
+            )
+        try:
+            self.graph[reaction]
+            self.graph[reaction] = next_reaction
+            # We need to modify the notes as well because it will change the
+            # notes
+            msg = f'The reaction order of pathway "{self.id}" was modified. '
+            if not next_reaction:
+                msg += f'There is no next reaction after "{reaction}".'
+            else:
+                msg += (
+                    f'Reaction "{next_reaction}" takes place after '
+                    + f'"{reaction}".'
+                )
+            self.notes["ORDER"][reaction] = next_reaction
+            debug_log.info(msg=msg)
+        except KeyError:
+            raise GraphKeyError(
+                f'Pathway "{self.id}" does not have a reaction '
+                + f'{reaction}". Check that the reaction exist.'
+            )
 
     def visualize(
         self,

@@ -18,6 +18,7 @@ from cobramod.core import pathway as pt
 from cobramod.core.extension import add_pathway
 from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
+from cobramod.error import GraphKeyError
 from cobramod.test import textbook_kegg, textbook, textbook_biocyc
 
 # Debug must be set in level DEBUG for the test
@@ -272,6 +273,60 @@ class TestGroup(TestCase):
         pt.model_convert(test_model)
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
+
+    def test_modify_graph(self):
+        test_model = textbook_kegg.copy()
+        # CASE 1: merging test
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
+        add_pathway(
+            model=test_model,
+            pathway=test_sequence,
+            database="ARA",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+            avoid_list=["RXN-2206"],
+        )
+        test_sequence = ["RXN-11438", "RXN-2208", "RXN-2209", "RXN-2221"]
+        add_pathway(
+            model=test_model,
+            pathway=test_sequence,
+            database="ARA",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+        )
+        test_group: Pathway = test_model.groups.get_by_id("custom_group")
+        test_group.modify_graph(
+            reaction="RXN_11430_c", next_reaction="RXN_11438_c"
+        )
+        self.assertDictContainsSubset(
+            {"RXN_11430_c": "RXN_11438_c"}, test_group.graph
+        )
+        self.assertDictContainsSubset(
+            {"RXN_11430_c": "RXN_11438_c"}, test_group.notes["ORDER"]
+        )
+        test_group.visualize()
+        sleep(1)
+        # CASE 2: Keys do not exists
+        self.assertRaises(
+            GraphKeyError,
+            test_group.modify_graph,
+            reaction="RXN_11438_c",
+            next_reaction="NOT_RXN",
+        )
+        self.assertRaises(
+            GraphKeyError,
+            test_group.modify_graph,
+            reaction="NOT_RXN",
+            next_reaction="RXN_11438_c",
+        )
+        # CASE 3: Using None
+        test_group.modify_graph(reaction="RXN_11430_c", next_reaction=None)
+        self.assertDictContainsSubset({"RXN_11430_c": None}, test_group.graph)
+        self.assertDictContainsSubset(
+            {"RXN_11430_c": None}, test_group.notes["ORDER"]
+        )
 
 
 if __name__ == "__main__":
