@@ -91,6 +91,7 @@ class Pathway(Group):
         # TODO: Is order necessary?
         self.order: List[str] = list()
         self.graph: dict = dict()
+        self.notes = {"ORDER": ""}
         for member in members:
             # Remove no Reactions
             if not isinstance(member, Reaction):

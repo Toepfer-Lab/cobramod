@@ -237,6 +237,7 @@ class TestGroup(TestCase):
         # Test fluxes
         test_pathway = test_model.groups.get_by_id("PWY-1187")
         self.assertEqual(first=len(test_pathway.members), second=14)
+        self.assertTrue(expr=test_pathway.notes["ORDER"])
         test_solution = {
             reaction.id: randint(-4, 4) for reaction in test_pathway.members
         }
@@ -259,6 +260,8 @@ class TestGroup(TestCase):
         pt.model_convert(model=test_model)
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
+        # Test visualize
+        # test_model.groups[-1].visualize()
         # CASE 2: Regular Model
         filename = dir_input.joinpath("test_model02.sbml")
         test_model = read_sbml_model(str(filename))

@@ -560,6 +560,7 @@ def _from_data(
         pathway.graph = graph
     else:
         pathway.graph.update(graph)
+    pathway.notes["ORDER"] = pathway.graph
 
 
 def _from_sequence(
@@ -652,10 +653,12 @@ def _from_sequence(
         replacement=replacement,
         genome=genome,
     )
+    # FIXME: pointers?
     if not pathway.graph:
         pathway.graph = graph
     else:
         pathway.graph.update(graph)
+    pathway.notes["ORDER"] = pathway.graph
 
 
 def add_pathway(
