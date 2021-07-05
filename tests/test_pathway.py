@@ -274,6 +274,29 @@ class TestGroup(TestCase):
         pt.model_convert(test_model)
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
+        # CASE 3: using add_pathway
+        test_model = textbook_biocyc.copy()
+        sequence = ["PEPDEPHOS-RXN", "PYRUVFORMLY-RXN", "FHLMULTI-RXN"]
+        test_graph = {
+            "PEPDEPHOS_RXN_c": "PYRUVFORMLY_RXN_c",
+            "PYRUVFORMLY_RXN_c": "FHLMULTI_RXN_c",
+            "FHLMULTI_RXN_c": None,
+        }
+        add_pathway(
+            model=test_model,
+            pathway=sequence,
+            directory=dir_data,
+            database="ECOLI",
+            compartment="c",
+            group="test_group",
+        )
+        test_model = test_model.copy()
+        pt.model_convert(test_model)
+        test_pathway = test_model.groups.get_by_id("test_group")
+        self.assertDictEqual(d1=test_graph, d2=test_pathway.notes["ORDER"])
+        self.assertDictEqual(d1=test_graph, d2=test_pathway.graph)
+        test_pathway.visualize()
+        sleep(1)
 
     def test_modify_graph(self):
         test_model = textbook_kegg.copy()
