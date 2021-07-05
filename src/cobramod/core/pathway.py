@@ -8,7 +8,7 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
 from pathlib import Path
-from typing import Dict, List, Union, Optional
+from typing import Any, Dict, List, Union, Optional
 
 from escher import Builder
 from cobra.core.group import Group
@@ -19,6 +19,7 @@ from cobra.core.dictlist import DictList
 from pandas import Series
 
 from cobramod.debug import debug_log
+from cobramod.error import GraphKeyError
 from cobramod.visualization.converter import JsonDictionary
 
 
@@ -88,9 +89,10 @@ class Pathway(Group):
         """
         super().__init__(id=id, name=name, kind=kind)
         # Loop has to be after __init__, otherwise, behavior of class changes.
-        # TODO: Is order necessary?
+        # TODO: Is order necessary? Maybe use notes["order"] directly
         self.order: List[str] = list()
         self.graph: dict = dict()
+        self.notes: Dict[str, Any] = {"ORDER": dict()}
         for member in members:
             # Remove no Reactions
             if not isinstance(member, Reaction):
@@ -150,6 +152,8 @@ class Pathway(Group):
 
         self.__check_copy()
         super().add_members(new_members=new_members)
+        for member in new_members:
+            self.notes["ORDER"][member.id] = None
         # Extend order in order to use it later for the visualization.
         self.order.extend((member.id for member in new_members))
 
@@ -184,6 +188,50 @@ class Pathway(Group):
         return cls(
             id=obj.id, name=obj.name, members=obj.members, kind=obj.kind
         )
+
+    def modify_graph(self, reaction: str, next_reaction: Union[str, None]):
+        """
+        Modifies the order of the graph. This is useful when merging multiple
+        pathways or joining reactions. In the graph, the selected reaction
+        will be forced to show "next_reaction" as  its successor.
+
+        Args:
+            reaction (str): Identifier of the reaction to modify in the graph
+            next_reaction (str, None): Identifier of the next reaction. This
+                reaction will take place after "reaction". If None is passed,
+                then "reaction" will not have successors.
+
+        Raises:
+            GraphKeyError: If the reaction or the next_reaction does not appear
+            in the graph of the pathway
+        """
+        # FIXME: add behavior for changing not NoneTypes
+        # Pathway.graph is responsable for the mapping
+        if next_reaction not in self.graph.keys() and next_reaction:
+            raise GraphKeyError(
+                f'Pathway "{self.id}" does not have a reaction '
+                + f'{next_reaction}". Check that the reaction exist.'
+            )
+        try:
+            self.graph[reaction]
+            self.graph[reaction] = next_reaction
+            # We need to modify the notes as well because it will change the
+            # notes
+            msg = f'The reaction order of pathway "{self.id}" was modified. '
+            if not next_reaction:
+                msg += f'There is no next reaction after "{reaction}".'
+            else:
+                msg += (
+                    f'Reaction "{next_reaction}" takes place after '
+                    + f'"{reaction}".'
+                )
+            self.notes["ORDER"][reaction] = next_reaction
+            debug_log.info(msg=msg)
+        except KeyError:
+            raise GraphKeyError(
+                f'Pathway "{self.id}" does not have a reaction '
+                + f'{reaction}". Check that the reaction exist.'
+            )
 
     def visualize(
         self,

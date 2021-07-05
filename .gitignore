@@ -2,6 +2,13 @@
 __pycache__/
 # Files
 *.log
+# Documentation
+docs/build/
+docs/source/data/*
+docs/source/pathway.html
+docs/source/summary.txt
+!docs/source/data/reactions.txt
+!docs/source/data/metabolites.txt
 
 # All non-essential files created/used by tox
 .tox

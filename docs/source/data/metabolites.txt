@@ -1,0 +1,3 @@
+SUCROSE, c
+MET, c
+MALTOSE_c, MALTOSE[c], c, C12H22O11, 1
