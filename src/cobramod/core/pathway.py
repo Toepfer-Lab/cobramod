@@ -8,7 +8,7 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
 from pathlib import Path
-from typing import Dict, List, Union, Optional
+from typing import Any, Dict, List, Union, Optional
 
 from escher import Builder
 from cobra.core.group import Group
@@ -88,10 +88,10 @@ class Pathway(Group):
         """
         super().__init__(id=id, name=name, kind=kind)
         # Loop has to be after __init__, otherwise, behavior of class changes.
-        # TODO: Is order necessary?
+        # TODO: Is order necessary? Maybe use notes["order"] directly
         self.order: List[str] = list()
         self.graph: dict = dict()
-        self.notes = {"ORDER": ""}
+        self.notes: Dict[str, Any] = {"ORDER": dict()}
         for member in members:
             # Remove no Reactions
             if not isinstance(member, Reaction):
@@ -151,6 +151,8 @@ class Pathway(Group):
 
         self.__check_copy()
         super().add_members(new_members=new_members)
+        for member in new_members:
+            self.notes["ORDER"][member.id] = None
         # Extend order in order to use it later for the visualization.
         self.order.extend((member.id for member in new_members))
 

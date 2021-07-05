@@ -103,6 +103,10 @@ class TestGroup(TestCase):
         test_list = [reaction.id for reaction in test_group.members]
         self.assertIn(member="R00127_c", container=test_list)
         self.assertIn(member="R00315_c", container=test_list)
+        self.assertDictEqual(
+            d1=test_group.notes["ORDER"],
+            d2={"R00315_c": None, "R00127_c": None},
+        )
         # CASE 2: Mixing reactions and metabolites
         test_group = pt.Pathway(id="test_group")
         self.assertRaises(
