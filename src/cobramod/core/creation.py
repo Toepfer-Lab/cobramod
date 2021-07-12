@@ -359,7 +359,7 @@ def _get_reaction(
                 f'Reaction "{reaction.id}" has metabolite "{metabolite.id}" on'
                 " both sides of the equation (e.g transport reaction). COBRApy"
                 " ignores these metabolites. To avoid this, by default, "
-                "CobraMod will assifn one metabolite to the extracellular "
+                "CobraMod will assign one metabolite to the extracellular "
                 "compartment. Please curate the reaction if necessary."
             )
             debug_log.warning(msg=msg)
