@@ -20,6 +20,7 @@ from collections import Counter
 from contextlib import suppress
 from pathlib import Path
 from typing import Union, Generator, List, Any, Optional
+from warnings import warn
 
 from cobra import Metabolite, Model, Reaction
 from requests import HTTPError
@@ -61,7 +62,7 @@ def _build_metabolite(
         charge=charge,
         compartment=compartment,
     )
-    debug_log.debug(f'Metabolite "{identifier}" created.')
+    debug_log.debug(f'Manually curated metabolite "{identifier}" was created.')
     return metabolite
 
 
@@ -90,11 +91,14 @@ def _metabolite_from_string(line_string: str) -> Metabolite:
         compartment = line[2]
         formula = line[3]
         charge = line[4]
-        debug_log.debug(f'Custom Metabolite "{identifier}" identified.')
+        debug_log.debug(
+            f'Metabolite "{identifier}" was identified as a manually. '
+            + "curated metabolite."
+        )
     except IndexError:
         raise WrongSyntax(
             "Given line is invalid. Format is:\nid, name, compartment, "
-            "chemical_formula, molecular_charge"
+            f"chemical_formula, molecular_charge.\nVerify line:\n{line_string}"
         )
     return _build_metabolite(
         identifier=identifier,
@@ -148,10 +152,12 @@ def _get_metabolite(
         # KeyError
         new_identifier = f"{_fix_name(name=new_identifier)}_{compartment}"
         metabolite = model.metabolites.get_by_id(new_identifier)
-        debug_log.warning(
-            f"Metabolite '{metabolite_dict['ENTRY']}' found in given model "
-            f"under '{new_identifier}'"
+        msg = (
+            f"Metabolite '{metabolite_dict['ENTRY']}' was found as "
+            f"'{new_identifier}'. Please curate if necessary."
         )
+        debug_log.warning(msg=msg)
+        warn(message=msg, category=UserWarning)
         return metabolite
     # Format if above fails
     identifier = f"{_fix_name(name=identifier)}_{compartment}"
@@ -305,10 +311,12 @@ def _get_reaction(
         )
         new_identifier = f"{_fix_name(name=new_identifier)}_{compartment}"
         reaction = model.reactions.get_by_id(new_identifier)
-        debug_log.warning(
-            f"Reaction '{data_dict['ENTRY']}' found in given model "
-            f"under '{new_identifier}'."
+        msg = (
+            f"Reaction '{data_dict['ENTRY']}' was found as "
+            f"'{new_identifier}'. Please curate if necessary"
         )
+        debug_log.warning(msg=msg)
+        warn(message=msg, category=UserWarning)
         return reaction
     # Otherwise create from scratch
     reaction = Reaction(
@@ -321,10 +329,13 @@ def _get_reaction(
         # First, replacement, since the identifier can be already in model
         with suppress(KeyError):
             identifier = replacement[identifier]
-            debug_log.warning(
-                f'Metabolite "{identifier}" replaced by '
+            msg = (
+                f'Metabolite "{identifier}" found in "replacement" '
+                f"Metabolite will be replaced by "
                 f'"{replacement[identifier]}" in reaction "{reaction.id}".'
             )
+            debug_log.warning(msg=msg)
+            warn(message=msg, category=UserWarning)
         # Retrieve data for metabolite
         try:
             # get metabolites from model if possible.
@@ -344,10 +355,15 @@ def _get_reaction(
             metabolite = _get_metabolite(
                 metabolite_dict=metabolite, compartment="e", model=model
             )
-            debug_log.warning(
-                f'Metabolite "{metabolite.id}" of reaction "{reaction.id}" '
-                + "will be located in the extracellular compartment."
+            msg = (
+                f'Reaction "{reaction.id}" has metabolite "{metabolite.id}" on'
+                " both sides of the equation (e.g transport reaction). COBRApy"
+                " ignores these metabolites. To avoid this, by default, "
+                "CobraMod will assifn one metabolite to the extracellular "
+                "compartment. Please curate the reaction if necessary."
             )
+            debug_log.warning(msg=msg)
+            warn(message=msg, category=UserWarning)
         else:
             # No transport
             metabolite = _get_metabolite(
@@ -374,9 +390,12 @@ def _add_reactions_check(model: Model, reactions: List[Reaction]):
     """
     for member in reactions:
         if member.id in [reaction.id for reaction in model.reactions]:
-            debug_log.warning(
-                f'Reaction "{member.id}" was found in given model. Skipping'
+            msg = (
+                f'Reaction "{member.id}" is already present in the model. '
+                "Skipping additions."
             )
+            debug_log.warning(msg=msg)
+            warn(message=msg, category=UserWarning)
             continue
         model.add_reactions([member])
         debug_log.info(f'Reaction "{member.id}" was added to model.')
@@ -590,7 +609,8 @@ def _reaction_from_string(
             # It is necessary to build the metabolite.
             except (WrongParserError, HTTPError):
                 debug_log.debug(
-                    f'Custom Metabolite "{identifier}" identified.'
+                    f'Metabolite "{identifier}" was identified as a manually '
+                    + "curated reaction."
                 )
                 metabolite = _build_metabolite(
                     identifier=identifier,
@@ -599,11 +619,14 @@ def _reaction_from_string(
                     charge=0,
                     compartment=compartment,
                 )
-                debug_log.warning(
-                    f'Custom metabolite "{metabolite.id}" does not have '
-                    + "a proper formula and charge. Please modify the value"
-                    + ' manually. Charge set to 0, and formula to "X"'
+                msg = (
+                    f'Manually-curated metabolite "{metabolite.id}" does not '
+                    "have a chemical formula and charge. Please modify the "
+                    'values manually. Charge set to 0, and formula to "X".'
                 )
+                debug_log.warning(msg=msg)
+                warn(message=msg, category=UserWarning)
+
         new_reaction.add_metabolites({metabolite: coefficient})
         debug_log.debug(
             f'Metabolite "{metabolite.id}" added to Reaction '
@@ -776,8 +799,8 @@ def _ident_pathway(data_dict: dict) -> Generator:
     generator if True. Else, raises WrongDataError.
     """
     if data_dict["TYPE"] == "Pathway":
-        debug_log.info(
-            f"Object '{data_dict['ENTRY']}' identified as a pathway"
+        debug_log.debug(
+            f"Object '{data_dict['ENTRY']}' identified as a pathway."
         )
         yield data_dict
     else:
@@ -815,7 +838,7 @@ def _ident_reaction(
         WrongDataError: If data does not include reaction information.
     """
     try:
-        debug_log.info(
+        debug_log.debug(
             f"Object '{data_dict['ENTRY']}' identified as a reaction."
         )
         # First, create object and then yield it
@@ -856,7 +879,7 @@ def _ident_metabolite(
         metabolite = _get_metabolite(
             metabolite_dict=data_dict, compartment=compartment, model=model
         )
-        debug_log.info(f"Object '{metabolite.id}' identified as a metabolite")
+        debug_log.debug(f"Object '{metabolite.id}' identified as a metabolite")
         yield metabolite
     except KeyError:
         raise WrongDataError("Data does not belong to a metabolite")
@@ -962,9 +985,12 @@ def __add_metabolites_check(model: Model, metabolites: List[Metabolite]):
             model.add_metabolites(metabolite_list=member)
             debug_log.info(f'Metabolite "{member.id}" was added to model.')
             continue
-        debug_log.warning(
-            f'Metabolite "{member.id}" was already in model. Skipping.'
+        msg = (
+            f'Metabolite "{member.id}" is already present in the model. '
+            "Skipping addition."
         )
+        debug_log.warning(msg=msg)
+        warn(message=msg, category=UserWarning)
 
 
 def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
@@ -1070,9 +1096,12 @@ def __add_reactions_check(model: Model, reactions: List[Reaction]):
             model.add_reactions(reaction_list=[member])
             debug_log.info(f'Reaction "{member.id}" was added to model.')
             continue
-        debug_log.warning(
-            f'Reaction "{member.id}" was already in model. Skipping.'
+        msg = (
+            f'Reaction "{member.id}" is already present in the model. '
+            "Skipping addition."
         )
+        debug_log.warning(msg=msg)
+        warn(message=msg, category=UserWarning)
 
 
 def add_reactions(
