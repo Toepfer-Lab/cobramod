@@ -7,8 +7,9 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 - solution: Obtain the solution for the specific members.
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
+from contextlib import suppress
 from pathlib import Path
-from typing import Dict, List, Union, Optional
+from typing import Any, Dict, List, Union, Optional
 
 from escher import Builder
 from cobra.core.group import Group
@@ -19,6 +20,7 @@ from cobra.core.dictlist import DictList
 from pandas import Series
 
 from cobramod.debug import debug_log
+from cobramod.error import GraphKeyError
 from cobramod.visualization.converter import JsonDictionary
 
 
@@ -88,9 +90,8 @@ class Pathway(Group):
         """
         super().__init__(id=id, name=name, kind=kind)
         # Loop has to be after __init__, otherwise, behavior of class changes.
-        # TODO: Is order necessary?
-        self.order: List[str] = list()
         self.graph: dict = dict()
+        self.notes: Dict[str, Any] = {"ORDER": dict()}
         for member in members:
             # Remove no Reactions
             if not isinstance(member, Reaction):
@@ -98,7 +99,7 @@ class Pathway(Group):
                     f'Member "{member.id}" is not a Reaction. Skipped'
                 )
                 continue
-            self.add_members(new_members=[member])
+            super().add_members(new_members=[member])
 
         # Attributes that can be used for the customization of the
         # visualization
@@ -119,21 +120,6 @@ class Pathway(Group):
             items=[member.id for member in self.members], axis="index"
         )
 
-    def __check_copy(self):
-        """
-        This method checks if the length of the members is zero and attribute
-        "order" is larger that zero. This check is made is to check if method
-        :func:`cobra.core.model.Model.copy` is called. For copies, order must
-        reset.
-        """
-        if len(self.members) == 0 and len(self.order) > 0:
-            self.order: List[str] = list()
-            self.graph: dict = dict()
-            debug_log.debug(
-                f'Attribute order from pathway "{self.id}" reset. '
-                f"Check if a method copy() from cobra.Model was called."
-            )
-
     def add_members(self, new_members: List[Reaction]):
         """
         Add given list of :class:`cobra.core.reaction.Reaction` into the
@@ -148,10 +134,15 @@ class Pathway(Group):
         if not all([isinstance(member, Reaction) for member in new_members]):
             raise TypeError("Not all given members are Reactions.")
 
-        self.__check_copy()
+        # self.__check_copy()
         super().add_members(new_members=new_members)
-        # Extend order in order to use it later for the visualization.
-        self.order.extend((member.id for member in new_members))
+        for member in new_members:
+            try:
+                # There is no need to extend the tuple or strings because
+                # the father-reaction has at least 1 reaction
+                self.notes["ORDER"][member.id]
+            except KeyError:
+                self.notes["ORDER"][member.id] = None
 
     def solution(self, solution: Solution) -> Solution:
         """
@@ -181,9 +172,59 @@ class Pathway(Group):
         Transform given :class:`cobra.Group` into a proper cobramod Pathway
         object.
         """
-        return cls(
+        pathway = cls(
             id=obj.id, name=obj.name, members=obj.members, kind=obj.kind
         )
+        with suppress(KeyError):
+            pathway.graph = pathway.notes["ORDER"] = obj.notes["ORDER"]
+        debug_log.info(
+            f'Group-object "{pathway.id}" was transformed to a Pathway-object.'
+        )
+        return pathway
+
+    def modify_graph(self, reaction: str, next_reaction: Union[str, None]):
+        """
+        Modifies the order of the graph. This is useful when merging multiple
+        pathways or joining reactions. In the graph, the selected reaction
+        will be forced to show "next_reaction" as  its successor.
+
+        Args:
+            reaction (str): Identifier of the reaction to modify in the graph
+            next_reaction (str, None): Identifier of the next reaction. This
+                reaction will take place after "reaction". If None is passed,
+                then "reaction" will not have successors.
+
+        Raises:
+            GraphKeyError: If the reaction or the next_reaction does not appear
+            in the graph of the pathway
+        """
+        # FIXME: add behavior for changing not NoneTypes
+        # Pathway.graph is responsable for the mapping
+        if next_reaction not in self.graph.keys() and next_reaction:
+            raise GraphKeyError(
+                f'Pathway "{self.id}" does not have a reaction '
+                + f'{next_reaction}". Check that the reaction exist.'
+            )
+        try:
+            self.graph[reaction]
+            self.graph[reaction] = next_reaction
+            # We need to modify the notes as well because it will change the
+            # notes
+            msg = f'The reaction order of pathway "{self.id}" was modified. '
+            if not next_reaction:
+                msg += f'There is no next reaction after "{reaction}".'
+            else:
+                msg += (
+                    f'Reaction "{next_reaction}" takes place after '
+                    + f'"{reaction}".'
+                )
+            self.notes["ORDER"][reaction] = next_reaction
+            debug_log.info(msg=msg)
+        except KeyError:
+            raise GraphKeyError(
+                f'Pathway "{self.id}" does not have a reaction '
+                + f'{reaction}". Check that the reaction exist.'
+            )
 
     def visualize(
         self,

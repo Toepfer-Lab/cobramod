@@ -319,18 +319,20 @@ class DataModel:
 
 
 def summary(
-    model: Model, original: DataModel, filename: Path = None,
+    model: Model,
+    original: DataModel,
+    filename: Path = None,
 ):
     """
-        Produces the short summary and another one in the defined format.
+    Produces the short summary and another one in the defined format.
 
-        Args:
-            model (Model): model with recent changes.
-            original (DataModel): Object with data from previous model. Use
-                method :func:`cobramod.summary.DataModel`.
-            filename (Path): Location where the summary should be stored. The
-                file format is determined by the suffix of the filename.
-                Thus, '.txt', '.csv' or '.xlsx' can be used.
+    Args:
+        model (Model): model with recent changes.
+        original (DataModel): Object with data from previous model. Use
+            method :func:`cobramod.summary.DataModel`.
+        filename (Path): Location where the summary should be stored. The
+            file format is determined by the suffix of the filename.
+            Thus, '.txt', '.csv' or '.xlsx' can be used.
     """
 
     if isinstance(filename, str):

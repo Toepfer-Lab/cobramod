@@ -1,6 +1,10 @@
-==============================================================================
-CobraMod: A pathway-centric curation tool for contraint-based metabolic models
-==============================================================================
+======
+Readme
+======
+
+.. image:: img/logo.png
+  :width: 600
+  :align: center
 
 CobraMod is an open-source Python 3 package intended to be an extension of
 `COBRApy <https://github.com/opencobra/cobrapy>`_. This package facilitates
@@ -22,34 +26,34 @@ criteria:
 - capability to carry non‑zero fluxes
 - changes in the model.
 
-Users will receive proper warnings if any of criteria are violated. In the end,
+Users will receive proper warnings if any of criteria is violated. In the end,
 a log is saved so users can have a overview.
 
 Additionally, CobraMod uses the visualization tool `Escher
 <https://escher.readthedocs.io/en/latest/>`_ to illustrate flux distrubutions
 for given pathway.
 
-.. toctree::
-   :maxdepth: 2
-   :numbered:
-   :caption: Contents
+Installation/Development
+------------------------
 
-   README.rst
-   functional.rst
-   installation.rst
-   how_to.ipynb
-   module/index.html
+Install CobraMod through pip ::
 
-.. toctree::
-   :maxdepth: 0
-   :caption: Test case
-   :numbered:
+  pip install cobramod
 
-   Glucosinolate scenario <GLS.ipynb>
+To download the development branch, clone this repository and install it with
+the argument :code:`-e`::
 
-Indices and tables
-==================
+  pip install -e .
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+Additionally, a conda environment file is supplied in *environment.yml*
+
+Functions
+---------
+
+- Retrieve data from a database :func:`cobramod.get_data`
+- Transform data into COBRApy objects :func:`cobramod.create_object`
+- Add reactions from multiple sources :func:`cobramod.add_reactions.`
+- Add metabolites from multiple sources :func:`cobramod.add_metabolites`
+- Retrieve complete pathways :func:`cobramod.add_pathway`
+
+Check the documentation of the function for more information.

@@ -308,7 +308,7 @@ class CreatingSequences(TestCase):
                 member=sink, container=[sink.id for sink in test_model.sinks]
             )
 
-    def test_test_result(self):
+    def test_test_non_zero_flux(self):
         # CASE 0: minimun range not reached
         # INFO: this extra steps are needed in order to make it fail
         test_model = textbook_biocyc.copy()
@@ -332,7 +332,7 @@ class CreatingSequences(TestCase):
         )
         self.assertRaises(
             NotInRangeError,
-            ex.test_result,
+            ex.test_non_zero_flux,
             model=test_model,
             reaction="GLUTATHIONE_SYN_RXN_p",
             ignore_list=["PROTON_p"],
@@ -348,7 +348,7 @@ class CreatingSequences(TestCase):
             show_imbalance=False,
         )
         test_model.objective = "RXN_2206_c"
-        ex.test_result(model=test_model, reaction="RXN_2206_c")
+        ex.test_non_zero_flux(model=test_model, reaction="RXN_2206_c")
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
         # CASE 2: direction right to left
         test_model = Model(0)
@@ -361,7 +361,7 @@ class CreatingSequences(TestCase):
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        ex.test_result(model=test_model, reaction="1.8.4.9_RXN_c")
+        ex.test_non_zero_flux(model=test_model, reaction="1.8.4.9_RXN_c")
         self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
 
         # CASE 3: single reaction with ignore_list. i.e two reactions, in which
@@ -380,7 +380,7 @@ class CreatingSequences(TestCase):
             test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
         )
         test_model.objective = "RXN_2206_c"
-        ex.test_result(
+        ex.test_non_zero_flux(
             model=test_model,
             reaction="RXN_2206_c",
             ignore_list=["OXYGEN_MOLECULE_c"],
@@ -400,7 +400,7 @@ class CreatingSequences(TestCase):
         )
         test_model.objective = "1.8.4.9_RXN_c"
         test_model.objective_direction = "min"
-        ex.test_result(
+        ex.test_non_zero_flux(
             model=test_model,
             reaction="1.8.4.9_RXN_c",
             ignore_list=["PROTON_c"],

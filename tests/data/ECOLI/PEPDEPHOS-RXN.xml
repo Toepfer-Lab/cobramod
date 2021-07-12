@@ -1,0 +1,42 @@
+<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?ECOLI:PEPDEPHOS-RXN"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECOLI:PEPDEPHOS-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid="ECOLI" version="25.0"><species datatype="string">Escherichia coli</species>
+<strain datatype="string">K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Reaction ID="ECOLI:PEPDEPHOS-RXN" detail="full" frameid="PEPDEPHOS-RXN" orgid="ECOLI"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ECOLI" resource="getxml?ECOLI:Chemical-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ECOLI" resource="getxml?ECOLI:Small-Molecule-Reactions" /></parent>
+<ec-number>EC-2.7.1.40<official>T</official>
+</ec-number>
+<synonym datatype="string">pyruvate phosphorylation</synonym>
+<enzymatic-reaction><Enzymatic-Reaction ID="ECOLI:PEPDEPHOSI-ENZRXN" detail="low" frameid="PEPDEPHOSI-ENZRXN" orgid="ECOLI"><common-name datatype="string">pyruvate kinase</common-name>
+<synonym datatype="string">pyruvate kinase</synonym>
+<synonym datatype="string">phosphoenolpyruvate kinase</synonym>
+<synonym datatype="string">phosphoenol transphosphorylase</synonym>
+<synonym datatype="string">pyruvate 2-0-phosphotransferase</synonym>
+<enzyme><Protein frameid="PKI-COMPLEX" orgid="ECOLI" resource="getxml?ECOLI:PKI-COMPLEX" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="ECOLI" resource="#ECOLI:PEPDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="ECOLI:PEPDEPHOSII-ENZRXN" detail="low" frameid="PEPDEPHOSII-ENZRXN" orgid="ECOLI"><common-name datatype="string">pyruvate kinase</common-name>
+<enzyme><Protein frameid="PKII-CPLX" orgid="ECOLI" resource="getxml?ECOLI:PKII-CPLX" /></enzyme>
+<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="ECOLI" resource="#ECOLI:PEPDEPHOS-RXN" /></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<gibbs-0 datatype="float" units="kcal/mol">-2.234192</gibbs-0>
+<in-pathway><Pathway frameid="GLYCOLYSIS" orgid="ECOLI" resource="getxml?ECOLI:GLYCOLYSIS" /><Pathway frameid="PWY-5484" orgid="ECOLI" resource="getxml?ECOLI:PWY-5484" /><Pathway frameid="FERMENTATION-PWY" orgid="ECOLI" resource="getxml?ECOLI:FERMENTATION-PWY" /></in-pathway>
+<left><Compound frameid="PYRUVATE" orgid="ECOLI" resource="getxml?ECOLI:PYRUVATE" /></left>
+<left><Compound frameid="ATP" orgid="ECOLI" resource="getxml?ECOLI:ATP" /></left>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<reaction-direction>PHYSIOL-RIGHT-TO-LEFT</reaction-direction>
+<right><Compound frameid="PROTON" orgid="ECOLI" resource="getxml?ECOLI:PROTON" /></right>
+<right><Compound frameid="ADP" orgid="ECOLI" resource="getxml?ECOLI:ADP" /></right>
+<right><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="getxml?ECOLI:PHOSPHO-ENOL-PYRUVATE" /></right>
+</Reaction>
+</ptools-xml>

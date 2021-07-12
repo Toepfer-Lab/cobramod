@@ -112,6 +112,8 @@ def unformatted_matrix(graph: dict) -> List[list]:
     """
     # If graph cyclic, it will be modified
     mapping = build_graph(graph=graph)
+    if not mapping:
+        return [[]]
     # By default firsts item
     longest = mapping[0]
     # TODO: change defaults of height
@@ -176,7 +178,7 @@ def format_matrix(matrix: List[list], max_length: int) -> List[list]:
         matrix (List[list]): Matrix to fill
         max_length (int): Desired length.
     """
-    # TODO: check if sorting is necesary
+    # TODO: check if sorting is necessary
     # Sort and fill missing 0
     matrix.sort(key=len, reverse=True)
     fill_matrix(matrix=matrix, length=max_length)
