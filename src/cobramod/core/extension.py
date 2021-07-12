@@ -451,7 +451,7 @@ def _update_reactions(
         if item in avoid_list:
             msg = (
                 f'Reaction "{item}" was found in "avoid_list". Reaction {item}'
-                + " will not  be added to the model."
+                + " will not be added to the model."
             )
             debug_log.warning(msg=msg)
             warn(message=msg, category=UserWarning)
@@ -459,7 +459,7 @@ def _update_reactions(
         # Replace reactions
         if item in replacement.keys():
             msg = (
-                f'Reaction "{item}" was found inf "replacement". Reaction'
+                f'Reaction "{item}" was found in "replacement". Reaction '
                 f'will be replaced by "{replacement[item]}".'
             )
             debug_log.warning(msg=msg)

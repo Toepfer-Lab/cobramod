@@ -96,7 +96,8 @@ class Pathway(Group):
             # Remove no Reactions
             if not isinstance(member, Reaction):
                 debug_log.debug(
-                    f'Member "{member.id}" is not a Reaction. Skipped'
+                    f'Member "{member.id}" is not a Reaction. This object will'
+                    f'not be included in the pathway "{self.id}".'
                 )
                 continue
             super().add_members(new_members=[member])
