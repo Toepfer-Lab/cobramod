@@ -5,9 +5,20 @@ This simple module sets up CobraMod for its installation through pip.
 """
 from setuptools import setup, find_packages
 
+with open(file="README.rst", mode="r") as f:
+    readme = "".join(f.readlines())
+
 setup(
     name="cobramod",
-    version="0.5.2",
+    version="0.5.3a",
+    description="Python package for pathway-centric modification and extension"
+    + " of genome-scale metabolic networks",
+    long_description=readme,
+    long_description_content_type="text/x-rst",
+    author="Stefano Camborda La Cruz, "
+    + "Jan-Niklas Weder, "
+    + "Nadine Töpfer",
+    author_email="toepfer@ipk-gatersleben.de",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     package_data={"": ["data/*"]},
@@ -21,4 +32,23 @@ setup(
         "webcolors>=1.11.1",
     ],
     url="https://github.com/Toepfer-Lab/cobramod",
+    project_urls={
+        "Documentation": "https://cobramod.readthedocs.io/",
+        "Bug Tracker": "https://github.com/Toepfer-Lab/cobramod/issues",
+    },
+    keywords=[
+        "COBRA",
+        "pathway curation",
+        "genome-scale",
+        "COBRApy",
+        "biology",
+        "reconstruction",
+    ],
+    classifiers=[
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+    ],
+    license="GPL v.3.0",
+    platforms=[""],
 )
