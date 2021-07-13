@@ -21,6 +21,7 @@ from contextlib import suppress
 from json import loads, JSONDecodeError
 from pathlib import Path
 from typing import Any
+from warnings import warn
 
 from requests import get, HTTPError, Response
 
@@ -58,7 +59,7 @@ def _find_url(model_id: str, identifier: str) -> Response:
                 f"http://bigg.ucsd.edu/api/v2/models/{model_id}/{object_type}"
                 f"/{identifier}"
             )
-            debug_log.debug(f"Searching in {url_text}.")
+            debug_log.debug(f"Searching {url_text} for biochemical data.")
             # Get and check for errors
             response = get(url_text)
             response.raise_for_status()
@@ -94,7 +95,7 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
         filename = data_dir.joinpath(f"{identifier}.json")
         debug_log.debug(
             f'Searching "{identifier}" in directory BIGG, '
-            f'sub-directory "{model_id}"'
+            f'sub-directory "{model_id}".'
         )
         try:
             return BiggParser._read_file(filename=filename)
@@ -206,10 +207,12 @@ def _p_reaction(json_data: dict) -> dict:
         "XREF": _build_reference(json_data=json_data),
         "GENES": _p_genes(json_data=json_data),
     }
-    debug_log.warning(
-        f'Reaction "{json_data["bigg_id"]}" assumed to be reversible. Please '
-        + "modify it if needed."
+    msg = (
+        f'Reaction "{json_data["bigg_id"]}" from BIGG set to reversible. '
+        "Please modify if necessary."
     )
+    debug_log.warning(msg=msg)
+    warn(message=msg, category=UserWarning)
     return temp_dict
 
 
@@ -252,7 +255,8 @@ class BiggParser(BaseParser):
             directory=directory, identifier=identifier, model_id=model_id
         )
         debug_log.log(
-            level=debug_level, msg=f'Data for "{identifier}" retrieved.'
+            level=debug_level,
+            msg=f'Data for "{identifier}" was retrieved ' + "from BIGG.",
         )
         return BiggParser._parse(root=json_data)
 
