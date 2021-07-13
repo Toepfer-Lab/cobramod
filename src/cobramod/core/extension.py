@@ -517,6 +517,7 @@ def _from_data(
             Defaults to: "universal"
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained from this specie.
+            List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
     # Create mapping from dictionary
     mapping = build_graph(graph=data_dict["PATHWAY"])
@@ -635,6 +636,7 @@ def _from_sequence(
             specified model. Pathway are not available.
         genome (str): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained from this specie.
+            List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
     # Either create a Pathway or obtain the correct Pathway.
     try:
@@ -761,6 +763,7 @@ def add_pathway(
             Defaults to: "universal"
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained from this specie.
+            List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")

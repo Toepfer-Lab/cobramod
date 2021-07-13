@@ -430,6 +430,7 @@ def _obtain_reaction(
         show_imbalance (bool): If unbalanced reaction is found, show output.
         genome (str): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained from this specie.
+            List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
     # Obtain data
     data_dict = get_data(
@@ -929,6 +930,7 @@ def create_object(
             Defaults to: "universal"
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained for this specie.
+            List available at https://www.genome.jp/kegg/catalog/org_list.html
 
     Returns:
         Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
