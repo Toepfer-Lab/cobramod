@@ -27,5 +27,6 @@ jobs:
         conda env update --file environment.yml
     - name: Sphinx build
       run: |
-        conda activate cobramod
+        source activate cobramod
+        conda info
         sphinx-build docs/source docs/build
