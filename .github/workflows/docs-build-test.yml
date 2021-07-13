@@ -1,12 +1,13 @@
-name: Python Package using Conda
+name: Test documentation build
 
 on:
   push:
     branches:
       - docs
+      - master
 
 jobs:
-  build-linux:
+  build-documentation:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
@@ -26,4 +27,5 @@ jobs:
         conda env update --file environment.yml
     - name: Sphinx build
       run: |
+        conda activate cobramod
         sphinx-build docs/source docs/build
