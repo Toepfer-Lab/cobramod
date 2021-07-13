@@ -23,6 +23,6 @@ def _genes_to_reaction(reaction: Reaction, data_dict: dict):
         if not gene.name:
             gene.name = gene.id
         debug_log.info(
-            f'For reaction "{reaction.id}", gene "{gene.id}" was created and '
-            f'its name changed to "{gene.name}".'
+            f'Gene "{gene.id}" was added with gene name "{gene.name}" to '
+            f'reaction "{reaction.id}".'
         )
