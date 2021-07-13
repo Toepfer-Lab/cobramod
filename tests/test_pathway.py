@@ -18,6 +18,7 @@ from cobramod.core import pathway as pt
 from cobramod.core.extension import add_pathway
 from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
+from cobramod.error import GraphKeyError
 from cobramod.test import textbook_kegg, textbook, textbook_biocyc
 
 # Debug must be set in level DEBUG for the test
@@ -103,6 +104,10 @@ class TestGroup(TestCase):
         test_list = [reaction.id for reaction in test_group.members]
         self.assertIn(member="R00127_c", container=test_list)
         self.assertIn(member="R00315_c", container=test_list)
+        self.assertDictEqual(
+            d1=test_group.notes["ORDER"],
+            d2={"R00315_c": None, "R00127_c": None},
+        )
         # CASE 2: Mixing reactions and metabolites
         test_group = pt.Pathway(id="test_group")
         self.assertRaises(
@@ -146,7 +151,7 @@ class TestGroup(TestCase):
         )
         # CASE 1b: Inside the model, multiple
         test_model = textbook_kegg.copy()
-        for reaction in test_model.reactions:
+        for reaction in test_model.reactions[:5]:
             test_group = Group(id=reaction.id)
             test_group.add_members([reaction])
             test_model.add_groups([test_group])
@@ -237,6 +242,7 @@ class TestGroup(TestCase):
         # Test fluxes
         test_pathway = test_model.groups.get_by_id("PWY-1187")
         self.assertEqual(first=len(test_pathway.members), second=14)
+        self.assertTrue(expr=test_pathway.notes["ORDER"])
         test_solution = {
             reaction.id: randint(-4, 4) for reaction in test_pathway.members
         }
@@ -250,7 +256,7 @@ class TestGroup(TestCase):
     def test_model_convert(self):
         # CASE 1: regular conversion of Groups
         test_model = textbook.copy()
-        for reaction in test_model.reactions:
+        for reaction in test_model.reactions[:5]:
             test_group = Group(id=reaction.id)
             test_model.add_groups(group_list=[test_group])
             test_model.groups.get_by_id(reaction.id).add_members(
@@ -259,12 +265,92 @@ class TestGroup(TestCase):
         pt.model_convert(model=test_model)
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
+        # Test visualize
+        test_model.groups[-1].visualize()
+        sleep(1)
         # CASE 2: Regular Model
         filename = dir_input.joinpath("test_model02.sbml")
         test_model = read_sbml_model(str(filename))
         pt.model_convert(test_model)
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
+        # CASE 3: using add_pathway
+        test_model = textbook_biocyc.copy()
+        sequence = ["PEPDEPHOS-RXN", "PYRUVFORMLY-RXN", "FHLMULTI-RXN"]
+        test_graph = {
+            "PEPDEPHOS_RXN_c": "PYRUVFORMLY_RXN_c",
+            "PYRUVFORMLY_RXN_c": "FHLMULTI_RXN_c",
+            "FHLMULTI_RXN_c": None,
+        }
+        add_pathway(
+            model=test_model,
+            pathway=sequence,
+            directory=dir_data,
+            database="ECOLI",
+            compartment="c",
+            group="test_group",
+        )
+        test_model = test_model.copy()
+        pt.model_convert(test_model)
+        test_pathway = test_model.groups.get_by_id("test_group")
+        self.assertDictEqual(d1=test_graph, d2=test_pathway.notes["ORDER"])
+        self.assertDictEqual(d1=test_graph, d2=test_pathway.graph)
+        test_pathway.visualize()
+        sleep(1)
+
+    def test_modify_graph(self):
+        test_model = textbook_kegg.copy()
+        # CASE 1: merging test
+        test_sequence = ["RXN-2206", "RXN-11414", "RXN-11422", "RXN-11430"]
+        add_pathway(
+            model=test_model,
+            pathway=test_sequence,
+            database="ARA",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+            avoid_list=["RXN-2206"],
+        )
+        test_sequence = ["RXN-11438", "RXN-2208", "RXN-2209", "RXN-2221"]
+        add_pathway(
+            model=test_model,
+            pathway=test_sequence,
+            database="ARA",
+            directory=dir_data,
+            compartment="c",
+            show_imbalance=False,
+        )
+        test_group: Pathway = test_model.groups.get_by_id("custom_group")
+        test_group.modify_graph(
+            reaction="RXN_11430_c", next_reaction="RXN_11438_c"
+        )
+        self.assertDictContainsSubset(
+            {"RXN_11430_c": "RXN_11438_c"}, test_group.graph
+        )
+        self.assertDictContainsSubset(
+            {"RXN_11430_c": "RXN_11438_c"}, test_group.notes["ORDER"]
+        )
+        test_group.visualize()
+        sleep(1)
+        # CASE 2: Keys do not exists
+        self.assertRaises(
+            GraphKeyError,
+            test_group.modify_graph,
+            reaction="RXN_11438_c",
+            next_reaction="NOT_RXN",
+        )
+        self.assertRaises(
+            GraphKeyError,
+            test_group.modify_graph,
+            reaction="NOT_RXN",
+            next_reaction="RXN_11438_c",
+        )
+        # CASE 3: Using None
+        test_group.modify_graph(reaction="RXN_11430_c", next_reaction=None)
+        self.assertDictContainsSubset({"RXN_11430_c": None}, test_group.graph)
+        self.assertDictContainsSubset(
+            {"RXN_11430_c": None}, test_group.notes["ORDER"]
+        )
 
 
 if __name__ == "__main__":

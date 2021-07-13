@@ -155,7 +155,7 @@ def _get_ko(identifier: str) -> list:
         ]
     except HTTPError:
         raise HTTPError(
-            f'No K-Identifiers could be retrieved for "{identifier}"'
+            f'No K-Identifiers could be retrieved for "{identifier}".'
         )
 
 
@@ -250,7 +250,8 @@ def _p_entry_genes(
     if genes:
         rule = " or ".join(genes.keys())
         debug_log.warning(
-            f'Gene-reaction rule for reaction "{identifier}" assumed as "OR".'
+            f'Gene-reaction rule for reaction "{identifier}" from KEGG '
+            + ' set to "OR".'
         )
     return {"genes": genes, "rule": rule}
 
@@ -314,21 +315,25 @@ def _p_compound(kegg_dict: dict) -> dict:
             # When formulas includes 'n' e.g 'H4P2O7(HPO3)n'
             if "(" in kegg_dict["FORMULA"][0]:
                 formula = "X"
-                debug_log.warning(
-                    f'Chemical formula for the KEGG metabolite "{identifier}" '
+                msg = (
+                    f'Sum formula for metabolite "{identifier}" from KEGG '
                     'could not be found. Formula set to "X" and charge to 0. '
                     "Please modify it if necessary."
                 )
+                debug_log.warning(msg=msg)
+                warn(msg)
             else:
                 formula = "".join(kegg_dict["FORMULA"]).strip().rstrip()
         except KeyError:
             # Some general compounds do not come with formulas
             formula = "X"
-            debug_log.warning(
-                f'Chemical formula for the KEGG metabolite "{identifier}" '
+            msg = (
+                f'Sum formula for metabolite "{identifier}" from KEGG '
                 'could not be found. Formula set to "X" and charge to 0. '
                 "Please modify it if necessary."
             )
+            debug_log.warning(msg=msg)
+            warn(msg)
         return {
             "TYPE": list(
                 chain.from_iterable(
@@ -432,7 +437,7 @@ def _p_enzyme(kegg_dict: dict):
         if "Enzyme" in kegg_dict["ENTRY"][0]:
             raise NotImplementedError(
                 "Enzymes are currently not implemented. Please contact "
-                + "maintainers if the addition of enzymes is from importance"
+                + "maintainers."
             )
         else:
             raise WrongParserError(
@@ -501,7 +506,9 @@ class KeggParser(BaseParser):
         KeggParser._check_database(database=database)
         raw = retrieve_data(directory=directory, identifier=identifier)
         debug_log.log(
-            level=debug_level, msg=f'Data for "{identifier}" retrieved.'
+            level=debug_level,
+            msg=f'Data for identifier "{identifier}" '
+            + "retrieved from KEGG.",
         )
         try:
             genome = kwargs["genome"]
@@ -569,7 +576,7 @@ def retrieve_data(directory: Path, identifier: str) -> dict:
             )
             # Retrieve from URL
             url_text = f"http://rest.kegg.jp/get/{identifier}/"
-            debug_log.debug(f"Searching in {url_text}")
+            debug_log.debug(f"Searching {url_text} for biochemical data.")
             r = get(url_text)
             try:
                 r.raise_for_status()

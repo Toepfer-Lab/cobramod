@@ -15,7 +15,7 @@ Important functions from CobraMod that can be imported directly:
 - add_metabolites: Add metabolites from different objects
 - add_reactions: Add reactions from different objects
 - add_pathway: Extend given pathway into given model.
-- test_result: Test given reaction to check for a feasible solution.
+- test_non_zero_flux: Test given reaction to check for a feasible solution.
 - translate: Check for cross-references.
 
 The exclusive class :func:`cobramod.pathway.Pathway` is an extension of
@@ -37,7 +37,7 @@ from cobramod.core.creation import (
     add_metabolites,
     add_reactions,
 )
-from cobramod.core.extension import add_pathway, test_result
+from cobramod.core.extension import add_pathway, test_non_zero_flux
 from cobramod.core.pathway import Pathway, model_convert
 from cobramod.core.retrieval import get_data, translate, available_databases
 
@@ -47,11 +47,11 @@ __all__ = [
     "add_reactions",
     "add_metabolites",
     "add_pathway",
-    "test_result",
+    "test_non_zero_flux",
     "Pathway",
     "translate",
     "model_convert",
     "available_databases",
 ]
 
-__version__ = "0.5.1"
+__version__ = "0.5.3"

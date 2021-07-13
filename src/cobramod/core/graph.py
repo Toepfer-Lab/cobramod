@@ -268,7 +268,7 @@ def get_paths(graph: dict, stop_list: list) -> list:
     return paths
 
 
-def get_mapping(graph: dict, stop_list: list, new: list):
+def get_mapping(graph: dict, stop_list: list, new: list) -> list:
     """
     Gets the mapping for given graph. The mapping defines the longest paths
     for the graph without including the previous longest path. The function
@@ -292,7 +292,7 @@ def get_mapping(graph: dict, stop_list: list, new: list):
     try:
         longest = max(paths, key=len)
     except ValueError:
-        return
+        return []
     new.append(longest)
     for item in longest:
         graph.pop(item)
