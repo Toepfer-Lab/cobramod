@@ -19,8 +19,8 @@ from ipywidgets.embed import DEFAULT_EMBED_REQUIREJS_URL
 # -- Project information -----------------------------------------------------
 
 project = "CobraMod"
-copyright = "2021, Stefano Camborda"
-author = "Stefano Camborda"
+copyright = "2021, Stefano Camborda, Jan-Niklas Weder"
+author = "Stefano Camborda, Jan-Niklas Weder, Nadine Töpfer"
 
 
 # -- General configuration ---------------------------------------------------
@@ -46,7 +46,8 @@ intersphinx_mapping = {
 }
 autoapi_dirs = ["../../src/cobramod"]
 autoapi_root = "module"
-autoapi_generate_api_docs = False
+autoapi_generate_api_docs = True
+autoapi_add_toctree_entry = False
 autoapi_options = [
     "members",
     "undoc-members",
@@ -70,14 +71,14 @@ autodoc_typehints = "description"
 # a list of builtin themes.
 #
 
-# html_theme = "sphinx_rtd_theme"
-# html_logo = "img/logo_2.png"
-# html_title = (
-#     "CobraMod: A pathway-centric curation tool for contraint-based "
-#     + "metabolic models"
-# )
-# html_short_titel = "CobraMod"
-# html_theme_options = {"logo_only": True}
+html_theme = "sphinx_rtd_theme"
+html_logo = "img/logo_2.png"
+html_title = (
+    "CobraMod: A pathway-centric curation tool for contraint-based "
+    + "metabolic models"
+)
+html_short_titel = "CobraMod"
+html_theme_options = {"logo_only": True}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
