@@ -88,10 +88,3 @@ To know the databases that work with CobraMod, load and print
 
    Ecoli scenario <shikimate.ipynb>
    Glucosinolate scenario <GLS.ipynb>
-
-.. toctree::
-   :maxdepth: 0
-   :caption: Test case
-   :numbered:
-
-   README.rst
