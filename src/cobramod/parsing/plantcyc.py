@@ -69,21 +69,23 @@ def _p_compound(root: Any) -> dict:
     except AttributeError:
         formula = "X"
         charge = 0
-        debug_log.warning(
-            # ToDo hier ändern
-            f'Chemical formula for the PlantCyc metabolite "{identifier}" '
+        msg = (
+            f'Sum formula for the metabolite "{identifier}" from PlantCyc '
             'could not be found. Formula set to "X" and charge to 0. '
-            "Please modify it if necessary."
+            "Please curate."
         )
+        debug_log.warning(msg=msg)
+        warn(msg)
     # In case formula is a empty string
     if not formula:
         formula = "X"
-        debug_log.warning(
-            # ToDo hier ändern
-            f'Chemical formula for the PlantCyc metabolite "{identifier}" '
+        msg = (
+            f'Sum formula for the metabolite "{identifier}" from PlantCyc '
             'could not be found. Formula set to "X". '
-            "Please modify it if necessary."
+            "Please curate."
         )
+        debug_log.warning(msg=msg)
+        warn(msg)
     # obtain name
     try:
         name = root.find("./*/cml/*").attrib["title"]
@@ -119,7 +121,7 @@ def _get_metabolites(root: Any) -> dict:
         for metabolite in side:
             try:
                 coefficient = (
-                        float(metabolite.find("coefficient").text) * FACTOR
+                    float(metabolite.find("coefficient").text) * FACTOR
                 )
             except (AttributeError, ValueError):
                 # Value errors are for the strings like 'n'
@@ -127,9 +129,9 @@ def _get_metabolites(root: Any) -> dict:
             try:
                 identifier = (
                     metabolite.find("*/[@frameid]")
-                        .attrib["frameid"]
-                        .strip()
-                        .rstrip()
+                    .attrib["frameid"]
+                    .strip()
+                    .rstrip()
                 )
             except AttributeError:
                 raise AttributeError("Reaction cannot find participants")
@@ -186,8 +188,8 @@ def _p_genes(root: Any, identifier: str, directory: Path) -> dict:
         # Assuming rule
         rule = " or ".join(genes.keys())
         debug_log.warning(
-            f'Gene-reaction rule for reaction "{identifier}" assumed'
-            + ' to be "OR". Please modify it if necessary.'
+            f'Gene-reaction rule for reaction "{identifier}" set'
+            + ' to "OR". Please modify it if necessary.'
         )
     return {"genes": genes, "rule": rule}
 
@@ -244,10 +246,10 @@ def get_graph(root: Any) -> dict:
         for parent in root.findall("Pathway/parent/*"):
             if "Super" in parent.get("frameid"):
                 msg = (
-                        f'Pathway "{identifier}" was identified as a '
-                        + "superpathway. This type of pathway does not normally "
-                        + "included all reactions. Please add the corresponding "
-                        + "sub-pathways singlely!"
+                    f'Pathway "{identifier}" was identified as a '
+                    + "superpathway. This type of pathway does not normally "
+                    + "included all reactions. Please add the corresponding "
+                    + "sub-pathways singlely!"
                 )
                 debug_log.warning(msg=msg)
                 warn(message=msg, category=SuperpathwayWarning)
@@ -336,11 +338,11 @@ class PlantCycParser(BaseParser):
 
     @staticmethod
     def _retrieve_data(
-            directory: Path,
-            identifier: str,
-            database: str,
-            debug_level: int,
-            **kwargs,
+        directory: Path,
+        identifier: str,
+        database: str,
+        debug_level: int,
+        **kwargs,
     ) -> dict:
         """
         Retrieves data from PlantCyc and parses the most important attributes
@@ -349,7 +351,9 @@ class PlantCycParser(BaseParser):
         Args:
             directory (Path): Directory to store and retrieve local data.
             identifier (str): original identifier
-            database (str): Name of the database. Some options: "META", "ARA"
+            database (str): pmn:Name of the database.
+            Some options: "pmn:PLANT", "pmn:META".
+                Full list in: "https://plantcyc.org/list-of-pgdbs"
         debug_level (int): Level of debugging. Read package logging
             for more info.
 
@@ -361,7 +365,8 @@ class PlantCycParser(BaseParser):
             directory=directory, identifier=identifier, database=database
         )
         debug_log.log(
-            level=debug_level, msg=f'Data for "{identifier}" retrieved.'
+            level=debug_level,
+            msg=f'Data for "{identifier}" retrieved from "{database}".',
         )
         return PlantCycParser._parse(root=root, directory=directory)
 
@@ -393,7 +398,8 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
     Args:
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
-        database (str): Name of the database. Some options: "META", "ARA"
+        database (str): Name of the database. Some options: "META", "ARA".
+            Full list in: "https://plantcyc.org/list-of-pgdbs"
 
     Raises:
         HTTPError: If given reaction does not have gene information available
@@ -421,8 +427,8 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
                 raise NoGeneInformation
             if database == "META":
                 msg = (
-                    f'Object "{identifier}" comes from "META". Please use '
-                    "another sub-database from PlantCyc to add proper genes. "
+                    f'Object "{identifier}" retrieved from "META". Please use '
+                    "another database to add proper genes. "
                     "Skipping retrieval of gene information."
                 )
                 debug_log.warning(msg)
@@ -449,7 +455,9 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
     Args:
         directory (Path): Path to directory where data is located.
         identifier (str): identifier for given database.
-        database (str): Name of database. Options: "META", "ARA".
+        database (str): Name of the database.
+        Some options: "pmn:PLANT", "pmn:META".
+            Full list in: "https://plantcyc.org/list-of-pgdbs"
 
     Raises:
         Warning: If object is not available in given database
@@ -465,7 +473,7 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
         data_dir = directory.joinpath("PMN", database)
         data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.xml")
-        debug_log.debug(f'Searching "{identifier}" in directory "{database}"')
+        debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         # Search for the file on directory. Otherwise retrive from database
         try:
             return PlantCycParser._read_file(filename=filename)
@@ -477,7 +485,7 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
             url_text = (
                 f"https://pmn.plantcyc.org/getxml?{database}:{identifier}"
             )
-            debug_log.debug(f"Searching in {url_text}")
+            debug_log.debug(f"Searching {url_text} for biochemical data.")
             response = get(url_text)
             try:
                 response.raise_for_status()

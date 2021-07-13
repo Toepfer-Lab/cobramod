@@ -298,7 +298,9 @@ class TestPlantCyc(TestCase):
         test_root = pc.retrieve_data(
             directory=dir_data, identifier="AMP", database="pmn:META"
         )
-        test_dict = pc.PlantCycParser._parse(root=test_root, directory=dir_data.joinpath("PMN"))
+        test_dict = pc.PlantCycParser._parse(
+            root=test_root, directory=dir_data.joinpath("PMN")
+        )
         self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
         # CASE 2a: Reaction in ARA
@@ -307,7 +309,9 @@ class TestPlantCyc(TestCase):
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="pmn:ARA",
         )
-        test_dict = pc.PlantCycParser._parse(root=test_root, directory=dir_data.joinpath("PMN"))
+        test_dict = pc.PlantCycParser._parse(
+            root=test_root, directory=dir_data.joinpath("PMN")
+        )
         self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
         self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
@@ -321,7 +325,9 @@ class TestPlantCyc(TestCase):
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="pmn:META",
         )
-        test_dict = pc.PlantCycParser._parse(root=test_root, directory=dir_data.joinpath("PMN"))
+        test_dict = pc.PlantCycParser._parse(
+            root=test_root, directory=dir_data.joinpath("PMN")
+        )
         self.assertCountEqual(
             first=test_dict["GENES"]["genes"].keys(), second=[]
         )
@@ -332,10 +338,11 @@ class TestPlantCyc(TestCase):
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="pmn:GCF_000010885",
         )
-        test_dict = pc.PlantCycParser._parse(root=test_root, directory=dir_data.joinpath("PMN"))
+        test_dict = pc.PlantCycParser._parse(
+            root=test_root, directory=dir_data.joinpath("PMN")
+        )
         self.assertEqual(
-            first=18,
-            second=len(test_dict["GENES"]["genes"].keys())
+            first=18, second=len(test_dict["GENES"]["genes"].keys())
         )
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
         # CASE 3: Protein
@@ -344,16 +351,21 @@ class TestPlantCyc(TestCase):
             identifier="Reduced-hemoproteins",
             database="pmn:ARA",
         )
-        test_dict = pc.PlantCycParser._parse(root=test_root, directory=dir_data.joinpath("PMN"))
+        test_dict = pc.PlantCycParser._parse(
+            root=test_root, directory=dir_data.joinpath("PMN")
+        )
         self.assertEqual(first=test_dict["TYPE"], second="Protein")
         self.assertEqual(first=test_dict["FORMULA"], second="X")
         # CASE 4: Pathway
         test_root = pc.retrieve_data(
             directory=dir_data, identifier="PWY-1187", database="pmn:META"
         )
-        test_dict = pc.PlantCycParser._parse(root=test_root, directory=dir_data.joinpath("PMN"))
+        test_dict = pc.PlantCycParser._parse(
+            root=test_root, directory=dir_data.joinpath("PMN")
+        )
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
+
 
 class TestBigg(TestCase):
     def test__find_url(self):

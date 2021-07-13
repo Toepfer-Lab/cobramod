@@ -21,4 +21,10 @@ from cobramod.parsing.bigg import BiggParser
 from cobramod.parsing.kegg import KeggParser
 
 
-__all__ = ["BaseParser", "BiocycParser", "PlantCycParser", "BiggParser", "KeggParser"]
+__all__ = [
+    "BaseParser",
+    "BiocycParser",
+    "PlantCycParser",
+    "BiggParser",
+    "KeggParser",
+]
