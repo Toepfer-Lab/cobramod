@@ -16,9 +16,10 @@ from cobramod.parsing.base import BaseParser
 from cobramod.parsing.biocyc import BiocycParser
 from cobramod.parsing.kegg import KeggParser
 from cobramod.parsing.bigg import BiggParser
+from cobramod.parsing.plantcyc import PlantCycParser
 from cobramod.utils import _path_match, get_key_dict
 
-parsers = [BiocycParser, KeggParser, BiggParser]
+parsers = [BiocycParser, PlantCycParser, KeggParser, BiggParser]
 
 
 class ListCobramod(UserList):
@@ -43,7 +44,7 @@ class ListCobramod(UserList):
         return self.msg + "\n" + super().__str__()
 
 
-available_databases = ListCobramod(["META", "KEGG", "BIGG"])
+available_databases = ListCobramod(["META", "PLANT", "KEGG", "BIGG"])
 
 
 def _get_parser(database: str) -> Type[BaseParser]:
