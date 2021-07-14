@@ -72,7 +72,7 @@ autodoc_typehints = "description"
 #
 
 html_theme = "sphinx_rtd_theme"
-html_logo = "img/logo_2.png"
+html_logo = "logo_2.png"
 html_title = (
     "CobraMod: A pathway-centric curation tool for contraint-based "
     + "metabolic models"
