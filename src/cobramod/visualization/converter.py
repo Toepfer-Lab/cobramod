@@ -827,6 +827,10 @@ class JsonDictionary(UserDict):
                 Sets the maximum number of color steps.
         """
 
+        # check if any flux values exist otherwise return
+        if self.flux_solution is None:
+            return
+
         # turn int arrays into numpy arrays
         color_positive = _color2np_rgb(color[0])
         color_negative = _color2np_rgb(color[1])

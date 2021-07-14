@@ -1,0 +1,239 @@
+<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/getxml?META:PWY-1187"><metadata><url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+<service_name>getxml</service_name>
+<query>META:PWY-1187</query>
+<num_results>1</num_results>
+<PGDB orgid="META" version="24.0"><species datatype="string">MetaCyc</species>
+</PGDB>
+</metadata>
+<Pathway ID="META:PWY-1187" detail="full" frameid="PWY-1187" orgid="META"><parent><Pathway class="true" frameid="GLUCOSINOLATE-SYN" orgid="META" resource="getxml?META:GLUCOSINOLATE-SYN" /></parent>
+<pathway-link><Compound frameid="HOMOMETHIONINE" orgid="META" resource="getxml?META:HOMOMETHIONINE" /><link-target><Pathway frameid="PWY-1186" orgid="META" resource="getxml?META:PWY-1186" /></link-target>
+</pathway-link>
+<taxonomic-range><Organism ID="META:TAX-3699" class="true" detail="full" frameid="TAX-3699" orgid="META"><parent><Organism class="true" frameid="TAX-91836" orgid="META" resource="getxml?META:TAX-91836" /></parent>
+<synonym datatype="string">Capparales</synonym>
+<common-name datatype="string">Brassicales</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3699</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3699</dblink-URL>
+</dblink>
+<rank>order</rank>
+</Organism>
+</taxonomic-range>
+<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
+<synonym datatype="string">Arabidopsis thaliana col</synonym>
+<strain-name datatype="string">col</strain-name>
+<common-name datatype="string">Arabidopsis thaliana</common-name>
+<rank>strain</rank>
+</Organism>
+</species>
+<species><Organism ID="META:ORG-6338" class="true" detail="full" frameid="ORG-6338" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
+<synonym datatype="string">Arabidopsis thaliana Cvi</synonym>
+<synonym datatype="string">Arabidopsis thaliana Cape Verde Islands</synonym>
+<strain-name datatype="string">Cvi</strain-name>
+<common-name datatype="string">Arabidopsis thaliana</common-name>
+<rank>strain</rank>
+</Organism>
+</species>
+<citation><Publication ID="META:PUB-12049923" detail="full" frameid="PUB-12049923" orgid="META"><year datatype="integer">2002</year>
+<title datatype="string">Glucosinolate research in the Arabidopsis era.</title>
+<author datatype="string">Wittstock U</author>
+<author datatype="string">Halkier BA</author>
+<source datatype="string">Trends Plant Sci 2002;7(6);263-70</source>
+<pubmed-id datatype="string">12049923</pubmed-id>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-11402209" detail="full" frameid="PUB-11402209" orgid="META"><year datatype="integer">2001</year>
+<title datatype="string">Genetic control of natural variation in Arabidopsis glucosinolate accumulation.</title>
+<author datatype="string">Kliebenstein DJ</author>
+<author datatype="string">Kroymann J</author>
+<author datatype="string">Brown P</author>
+<author datatype="string">Figuth A</author>
+<author datatype="string">Pedersen D</author>
+<author datatype="string">Gershenzon J</author>
+<author datatype="string">Mitchell-Olds T</author>
+<source datatype="string">Plant Physiol 126(2);811-25</source>
+<pubmed-id datatype="string">11402209</pubmed-id>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-GRUBB03" detail="full" frameid="PUB-GRUBB03" orgid="META"><year datatype="integer">2003</year>
+<author datatype="string">Grubb, C.D.</author>
+<author datatype="string">Levy, M.</author>
+<author datatype="string">Frates, M.A.</author>
+<author datatype="string">Abel, S.</author>
+<source datatype="string">Personal communication, 2003. C. Douglas Grubb, Maggie Levy, Matthew A. Frates, Steffen Abel. Department of Vegetable Crops, University of California, Davis.</source>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-19483696" detail="full" frameid="PUB-19483696" orgid="META"><year datatype="integer">2009</year>
+<title datatype="string">Glucosinolate engineering identifies a gamma-glutamyl peptidase.</title>
+<author datatype="string">Geu-Flores F</author>
+<author datatype="string">Nielsen MT</author>
+<author datatype="string">Nafisi M</author>
+<author datatype="string">Moldrup ME</author>
+<author datatype="string">Olsen CE</author>
+<author datatype="string">Motawia MS</author>
+<author datatype="string">Halkier BA</author>
+<source datatype="string">Nat Chem Biol 5(8);575-7</source>
+<pubmed-id datatype="string">19483696</pubmed-id>
+</Publication>
+</citation>
+<citation><Publication ID="META:PUB-20303821" detail="full" frameid="PUB-20303821" orgid="META"><year datatype="integer">2010</year>
+<title datatype="string">Biosynthesis of glucosinolates - gene discovery and beyond.</title>
+<author datatype="string">Sonderby IE</author>
+<author datatype="string">Geu-Flores F</author>
+<author datatype="string">Halkier BA</author>
+<source datatype="string">Trends Plant Sci </source>
+<pubmed-id datatype="string">20303821</pubmed-id>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID="META:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="META"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+<common-name datatype="string">Inferred from experiment</common-name>
+</Evidence-Code>
+<Publication ID="META:PUB-12970475" detail="full" frameid="PUB-12970475" orgid="META"><year datatype="integer">2003</year>
+<title datatype="string">CYP83A1 and CYP83B1, Two Nonredundant Cytochrome P450 Enzymes Metabolizing Oximes in the Biosynthesis of Glucosinolates in Arabidopsis.</title>
+<author datatype="string">Naur P</author>
+<author datatype="string">Petersen BL</author>
+<author datatype="string">Mikkelsen MD</author>
+<author datatype="string">Bak S</author>
+<author datatype="string">Rasmussen H</author>
+<author datatype="string">Olsen CE</author>
+<author datatype="string">Halkier BA</author>
+<source datatype="string">Plant Physiol 133(1);63-72</source>
+<pubmed-id datatype="string">12970475</pubmed-id>
+</Publication>
+</evidence>
+<evidence><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="#META:EV-EXP" /><Publication frameid="PUB-12049923" orgid="META" resource="#META:PUB-12049923" /></evidence>
+<comment datatype="string">&lt;b&gt;General Background&lt;/b&gt;
+&lt;p&gt;
+&lt;a href="/META/NEW-IMAGE?type=COMPOUND&amp;object=Glucosinolates" title="&lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=Glucosinolates''&gt;Glucosinolates&lt;/a&gt; are secondary metabolites found in 16 plant families, including agriculturally important crop plants of the &lt;a href=''/META/NEW-IMAGE?object=TAX-3700''&gt;&lt;i&gt;Brassicaceae&lt;/i&gt;&lt;/a&gt; such cabbage, mustard, oilseed rape, and broccoli, as well as the model plant &lt;a href=''/META/NEW-IMAGE?object=TAX-3702''&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt;, and are responsible for the typical sharp taste and odor of these plants.&amp;#10;&amp;#10;The glucosinolates are substituted &amp;beta;-thioglucoside &lt;i&gt;N&lt;/i&gt;-hydroxysulfates that are formed from any one of eight amino acids, namely, &lt;a href=''/compound?orgid=META&amp;id=L-ALPHA-ALANINE''&gt;L-alanine&lt;/a&gt;, &lt;a href=''/compound?orgid=META&amp;id=VAL''&gt;L-valine&lt;/a&gt;, &lt;a href=''/compound?orgid=META&amp;id=LEU''&gt;L-leucine&lt;/a&gt;, &lt;a href=''/compound?orgid=META&amp;id=ILE''&gt;L-isoleucine&lt;/a&gt;, &lt;a href=''/compound?orgid=META&amp;id=PHE''&gt;L-phenylalanine&lt;/a&gt;, &lt;a href=''/compound?orgid=META&amp;id=MET''&gt;L-methionine&lt;/a&gt;, &lt;a href=''/compound?orgid=META&amp;id=TYR''&gt;L-tyrosine&lt;/a&gt; and &lt;a href=''/compound?orgid=META&amp;id=TRP''&gt;L-tryptophan&lt;/a&gt;. Over 115 naturally occurring glucosinolates have been identified. Much of the diversity amongst glucosinolates arises from the addition of different sized alkyl groups to the side chain of the amino acids, principally valine, phenylalanine and methionine [&lt;a href=''http://www.ncbi.nlm.nih.gov/pubmed/18458837''&gt;Hayes08&lt;/a&gt;]. They are grouped into aliphatic, aromatic, and indolic types, depending on whether they are derived from methionine, phenylalanine and tyrosine, or tryptophan. Indolylmethyl glucosinolates are found mainly in leaves. For a review, see [&lt;a href=''http://www.ncbi.nlm.nih.gov/pubmed/12049923''&gt;Wittstock02&lt;/a&gt;].&amp;#10;&amp;#10;Glucosinolates are stored in the vacuole and come into contact with the enzyme &lt;a href=''/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.2.1.147''&gt;EC 3.2.1.147, thioglucosidase&lt;/a&gt; (myrosinase) upon breakage of the cell. Myrosinase de-glucosylates the glucosinolates, resulting in formation of nitriles, isothiocyanates and thiocyanates. The precise product that is formed depends on the glucosinolate and whether an epithiospecifier protein is present. &amp;#10;&amp;#10;The breakdown products give the typical sharp taste and odor to many of the members of brassicaceae that are eaten, such as raddish and mustard. Arabidopsis has been shown to accumulate at least 23 different glucosinolates in both seeds and leaves."&gt;Glucosinolates&lt;/a&gt; are secondary metabolites found in 16 plant families, including agriculturally important crop plants of the &lt;a href="/META/NEW-IMAGE?object=TAX-3700"&gt;&lt;i&gt;Brassicaceae&lt;/i&gt;&lt;/a&gt; such cabbage, mustard, oilseed rape, and broccoli, as well as the model plant &lt;a href="/META/NEW-IMAGE?object=TAX-3702"&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt;, and are responsible for the typical sharp taste and odor of these plants.
+&lt;p&gt;
+The glucosinolates are substituted &amp;beta;-thioglucoside &lt;i&gt;N&lt;/i&gt;-hydroxysulfates that are formed from any one of eight amino acids, namely, &lt;a href="/compound?orgid=META&amp;id=L-ALPHA-ALANINE"&gt;L-alanine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=VAL"&gt;L-valine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=LEU"&gt;L-leucine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=ILE"&gt;L-isoleucine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=PHE"&gt;L-phenylalanine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=MET"&gt;L-methionine&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=TYR"&gt;L-tyrosine&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=TRP"&gt;L-tryptophan&lt;/a&gt;. Over 115 naturally occurring glucosinolates have been identified. Much of the diversity amongst glucosinolates arises from the addition of different sized alkyl groups to the side chain of the amino acids, principally valine, phenylalanine and methionine [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/18458837"&gt;Hayes08&lt;/a&gt;]. They have been grouped into aliphatic, aromatic, and indolic types, depending on whether they are derived from methionine, phenylalanine and tyrosine, or tryptophan. Indolylmethyl glucosinolates are found mainly in leaves. For a review, see [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12049923"&gt;Wittstock02&lt;/a&gt;].
+&lt;p&gt;
+Glucosinolates are stored in the vacuole and come into contact with the enzyme &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.2.1.147"&gt;EC 3.2.1.147, thioglucosidase&lt;/a&gt; (myrosinase) upon breakage of the cell. Myrosinase de-glucosylates the glucosinolates, resulting in formation of nitriles, isothiocyanates and thiocyanates. The precise product that is formed depends on the glucosinolate and whether an epithiospecifier protein is present. 
+&lt;p&gt;
+The breakdown products give the typical sharp taste and odor to many of the members of brassicaceae that are eaten, such as raddish and mustard. Arabidopsis has been shown to accumulate at least 23 different glucosinolates in both seeds and leaves.
+&lt;p&gt;
+&lt;b&gt;About This Pathway&lt;/b&gt;
+&lt;p&gt;
+Most of our knowledge on glucosinolate metabolism came from studies in &lt;a href="/META/NEW-IMAGE?object=TAX-3702"&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt;, which accumulates over 30 different glucosinolates derived from chain-elongated &lt;a href="/compound?orgid=META&amp;id=MET"&gt;L-methionine&lt;/a&gt; (ranging from &lt;a href="/compound?orgid=META&amp;id=HOMOMETHIONINE"&gt;L-homomethionine&lt;/a&gt; to &lt;a href="/compound?orgid=META&amp;id=CPDQT-277"&gt;L-hexahomomethionine&lt;/a&gt;), &lt;a href="/compound?orgid=META&amp;id=TRP"&gt;L-tryptophan&lt;/a&gt;, and &lt;a href="/compound?orgid=META&amp;id=PHE"&gt;L-phenylalanine&lt;/a&gt;. The majority of those are the aliphatic glucosinolates derived from chain-elongated methionine.
+&lt;p&gt;
+The early part of the biosynthetic pathways leading to the formation of glucosinolates is very similar to that of the pathways involved in cyanogenic glucosides biosynthesis. The pathways begin with an amino acid &lt;i&gt;N&lt;/i&gt;-monooxygenase, which is invariably a cytochrome P450 of the CYP79 family. The enzyme catalyzes the multistep conversion of the parent amino acid (or in some cases a chain-elongated form) into the corresponding oxime, the key intermediate of both glucosinolates and cyanogenic glucosides biosynthesis [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11133994"&gt;Hansen01&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12464638"&gt;Zhao02&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12609033"&gt;Chen03a&lt;/a&gt;].
+&lt;p&gt;
+In glucosinolate synthesis, the oxime is converted into a glutathione conjugate by the action of different P450 enzymes that belong to the CYP83 family [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11553739"&gt;Bak01&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12970475"&gt;Naur03&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/26361733"&gt;Clausen15&lt;/a&gt;]. Most of the glutathione moiety is cleaved off by peptidases, leaving a thiohydroximate [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/19483696"&gt;GeuFlores09&lt;/a&gt;], which is subsequently decorated with a sugar [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15584955"&gt;Douglas04&lt;/a&gt;] and a sulfate group [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15358770"&gt;Piotrowski04&lt;/a&gt;], completing the glucosinolate core structure.
+&lt;p&gt;
+The side chain is subsequently modified by different tailoring enzymes, resulting in the large variety of different glucosinolates.</comment>
+<common-name datatype="string">glucosinolate biosynthesis from homomethionine</common-name>
+<credits><revised><date datatype="date">2010-04-29</date>
+<Person ID="META:zhang" detail="full" frameid="zhang" orgid="META"><affiliations><Organization ID="META:PMN" detail="full" frameid="PMN" orgid="META"><abbrev-name datatype="string">PMN</abbrev-name>
+<url datatype="string">http://plantcyc.org</url>
+<common-name datatype="string">Carnegie Institution for Science</common-name>
+</Organization>
+</affiliations>
+<comment datatype="string">Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
+<common-name datatype="string">Peifen Zhang</common-name>
+</Person>
+<Organization ID="META:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="META"><abbrev-name datatype="string">TAIR</abbrev-name>
+<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+</Organization>
+</revised>
+<revised><date datatype="date">2016-09-01</date>
+<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><abbrev-name datatype="string">SRI International</abbrev-name>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+</Person>
+<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+</credits>
+<reaction-list><Reaction frameid="RXN-19589" orgid="META" resource="getxml?META:RXN-19589" /><Reaction frameid="RXN-8052" orgid="META" resource="getxml?META:RXN-8052" /><Reaction frameid="RXN-11445" orgid="META" resource="getxml?META:RXN-11445" /><Reaction frameid="RXN-11438" orgid="META" resource="getxml?META:RXN-11438" /><Reaction frameid="RXN-11430" orgid="META" resource="getxml?META:RXN-11430" /><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /><Reaction frameid="RXN-11414" orgid="META" resource="getxml?META:RXN-11414" /><Reaction frameid="RXN-2224" orgid="META" resource="getxml?META:RXN-2224" /><Reaction frameid="RXN-2223" orgid="META" resource="getxml?META:RXN-2223" /><Reaction frameid="RXN-2222" orgid="META" resource="getxml?META:RXN-2222" /><Reaction frameid="RXN-2221" orgid="META" resource="getxml?META:RXN-2221" /><Reaction frameid="RXN-2209" orgid="META" resource="getxml?META:RXN-2209" /><Reaction frameid="RXN-2208" orgid="META" resource="getxml?META:RXN-2208" /><Reaction frameid="RXN-2206" orgid="META" resource="getxml?META:RXN-2206" /></reaction-list>
+<reaction-layout><Reaction frameid="RXN-19589" orgid="META" resource="getxml?META:RXN-19589" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-12391" orgid="META" resource="getxml?META:CPD-12391" /></left-primaries>
+<right-primaries><Compound frameid="CPD-7546" orgid="META" resource="getxml?META:CPD-7546" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-8052" orgid="META" resource="getxml?META:RXN-8052" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-7546" orgid="META" resource="getxml?META:CPD-7546" /></left-primaries>
+<right-primaries><Compound frameid="3-METHYLTHIOPROPYLHYDROXAMIC-ACID" orgid="META" resource="getxml?META:3-METHYLTHIOPROPYLHYDROXAMIC-ACID" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-11445" orgid="META" resource="getxml?META:RXN-11445" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-HYDROXYPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-HYDROXYPROPYL-GLUCOSINOLATE" /></left-primaries>
+<right-primaries><Compound frameid="CPD-12417" orgid="META" resource="getxml?META:CPD-12417" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-11438" orgid="META" resource="getxml?META:RXN-11438" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-12391" orgid="META" resource="getxml?META:CPD-12391" /></left-primaries>
+<right-primaries><Compound frameid="3-METHYLTHIOPROPYLHYDROXAMIC-ACID" orgid="META" resource="getxml?META:3-METHYLTHIOPROPYLHYDROXAMIC-ACID" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-11430" orgid="META" resource="getxml?META:RXN-11430" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-12390" orgid="META" resource="getxml?META:CPD-12390" /></left-primaries>
+<right-primaries><Compound frameid="CPD-12391" orgid="META" resource="getxml?META:CPD-12391" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /><direction>L2R</direction>
+<left-primaries><Compound frameid="CPD-12389" orgid="META" resource="getxml?META:CPD-12389" /></left-primaries>
+<right-primaries><Compound frameid="CPD-12390" orgid="META" resource="getxml?META:CPD-12390" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-11414" orgid="META" resource="getxml?META:RXN-11414" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-METHYLTHIOPROPANALDOXIME" orgid="META" resource="getxml?META:3-METHYLTHIOPROPANALDOXIME" /></left-primaries>
+<right-primaries><Compound frameid="CPD-12389" orgid="META" resource="getxml?META:CPD-12389" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-2224" orgid="META" resource="getxml?META:RXN-2224" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-HYDROXYPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-HYDROXYPROPYL-GLUCOSINOLATE" /></left-primaries>
+<right-primaries><Compound frameid="3-BENZOYLOXYPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-BENZOYLOXYPROPYL-GLUCOSINOLATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-2223" orgid="META" resource="getxml?META:RXN-2223" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" /></left-primaries>
+<right-primaries><Compound frameid="3-HYDROXYPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-HYDROXYPROPYL-GLUCOSINOLATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-2222" orgid="META" resource="getxml?META:RXN-2222" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" /></left-primaries>
+<right-primaries><Compound frameid="2-PROPENYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:2-PROPENYL-GLUCOSINOLATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-2221" orgid="META" resource="getxml?META:RXN-2221" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-METHYLTHIOPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-METHYLTHIOPROPYL-GLUCOSINOLATE" /></left-primaries>
+<right-primaries><Compound frameid="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-2209" orgid="META" resource="getxml?META:RXN-2209" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" /></left-primaries>
+<right-primaries><Compound frameid="3-METHYLTHIOPROPYL-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-METHYLTHIOPROPYL-GLUCOSINOLATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-2208" orgid="META" resource="getxml?META:RXN-2208" /><direction>L2R</direction>
+<left-primaries><Compound frameid="3-METHYLTHIOPROPYLHYDROXAMIC-ACID" orgid="META" resource="getxml?META:3-METHYLTHIOPROPYLHYDROXAMIC-ACID" /></left-primaries>
+<right-primaries><Compound frameid="3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" orgid="META" resource="getxml?META:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE" /></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction frameid="RXN-2206" orgid="META" resource="getxml?META:RXN-2206" /><direction>L2R</direction>
+<left-primaries><Compound frameid="HOMOMETHIONINE" orgid="META" resource="getxml?META:HOMOMETHIONINE" /></left-primaries>
+<right-primaries><Compound frameid="3-METHYLTHIOPROPANALDOXIME" orgid="META" resource="getxml?META:3-METHYLTHIOPROPANALDOXIME" /></right-primaries>
+</reaction-layout>
+<reaction-ordering><Reaction frameid="RXN-19589" orgid="META" resource="getxml?META:RXN-19589" /><predecessor-reactions><Reaction frameid="RXN-11430" orgid="META" resource="getxml?META:RXN-11430" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-8052" orgid="META" resource="getxml?META:RXN-8052" /><predecessor-reactions><Reaction frameid="RXN-19589" orgid="META" resource="getxml?META:RXN-19589" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-2208" orgid="META" resource="getxml?META:RXN-2208" /><predecessor-reactions><Reaction frameid="RXN-8052" orgid="META" resource="getxml?META:RXN-8052" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-11445" orgid="META" resource="getxml?META:RXN-11445" /><predecessor-reactions><Reaction frameid="RXN-2223" orgid="META" resource="getxml?META:RXN-2223" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-2208" orgid="META" resource="getxml?META:RXN-2208" /><predecessor-reactions><Reaction frameid="RXN-11438" orgid="META" resource="getxml?META:RXN-11438" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-11438" orgid="META" resource="getxml?META:RXN-11438" /><predecessor-reactions><Reaction frameid="RXN-11430" orgid="META" resource="getxml?META:RXN-11430" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-11430" orgid="META" resource="getxml?META:RXN-11430" /><predecessor-reactions><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /><predecessor-reactions><Reaction frameid="RXN-11414" orgid="META" resource="getxml?META:RXN-11414" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-11414" orgid="META" resource="getxml?META:RXN-11414" /><predecessor-reactions><Reaction frameid="RXN-2206" orgid="META" resource="getxml?META:RXN-2206" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-2224" orgid="META" resource="getxml?META:RXN-2224" /><predecessor-reactions><Reaction frameid="RXN-2223" orgid="META" resource="getxml?META:RXN-2223" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-2223" orgid="META" resource="getxml?META:RXN-2223" /><predecessor-reactions><Reaction frameid="RXN-2221" orgid="META" resource="getxml?META:RXN-2221" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-2222" orgid="META" resource="getxml?META:RXN-2222" /><predecessor-reactions><Reaction frameid="RXN-2221" orgid="META" resource="getxml?META:RXN-2221" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-2221" orgid="META" resource="getxml?META:RXN-2221" /><predecessor-reactions><Reaction frameid="RXN-2209" orgid="META" resource="getxml?META:RXN-2209" /></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction frameid="RXN-2209" orgid="META" resource="getxml?META:RXN-2209" /><predecessor-reactions><Reaction frameid="RXN-2208" orgid="META" resource="getxml?META:RXN-2208" /></predecessor-reactions>
+</reaction-ordering>
+</Pathway>
+</ptools-xml>
