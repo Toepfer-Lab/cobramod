@@ -55,7 +55,11 @@ autoapi_options = [
     "show-module-summary",
     "imported-members",
 ]
-autodoc_typehints = "description"
+napoleon_custom_sections = [
+    ("Arguments for reactions", "params_style"),
+    ("Special arguments for databases", "params_style"),
+]
+
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = []
 

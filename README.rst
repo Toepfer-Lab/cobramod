@@ -7,7 +7,7 @@
 CobraMod: A pathway-centric curation tool for constraint-based metabolic models
 ===============================================================================
 
-.. image:: img/logo.png
+.. image:: docs/source/img/logo.png
   :width: 600
   :align: center
 

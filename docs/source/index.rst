@@ -2,17 +2,16 @@
 Introduction
 ============
 
-CobraMod is an open-source package which enables modifying and extending
-genome-scale metabolic models (GEMs) with pathway information from various
-metabolic pathways databases or user-curated data sets. This package employs
-`Escher <https://escher.github.io/>`_ for visualizing metabolic pathways and
-flux maps, and it can be
-seamlessly integrated with a `COBRApy
-<https://opencobra.github.io/cobrapy/>`_ workflow. CobraMod supports all
-databases
-from the `BioCyc collection <https://biocyc.org/>`_, the `KEGG database
-<https://www.genome.jp/kegg/>`_,
-and the `BiGG Models repository <http://bigg.ucsd.edu/>`_.
+CobraMod is a Python 3 open-source package for pathway-centric curation of
+genome-scale metabolic models (GEMs). It builds upon the
+`COBRApy toolbox <https://opencobra.github.io/cobrapy/>`_
+and offers a comprehensible set of functions for semi-automated network
+extension, curation and visualization. CobraMod supports all databases from the
+`BioCyc collection <https://biocyc.org/>`_, the
+`KEGG database <https://www.genome.jp/kegg/>`_, and the
+`BiGG Models repository <http://bigg.ucsd.edu/>`_. and can directly interact
+with Escher for pathway and flux
+visualization.
 
 This package converts the pathway information into native COBRApy objects and
 quality-checks for multiple criteria. During the creation process, these
@@ -24,14 +23,14 @@ objects will be tested for:
 - reaction reversibility
 - capability to carry non-zero fluxes
 
-CobraMod offers comprehensible and user-friendly tracking of the curation
-process. Every time our package adds a set of reactions (Pathway-object) to the
-model a summary is outputted and the complete curation procedure is written to
-a log file. If any of the curation criteria is not met or exceptions are
-encountered, CobraMod passes a warning through the Python console and the log
-file.
+CobraMod offers an user-friendly tracking of the curation process. Every time
+our package adds a set of reactions (Pathway-object) to the model a summary is
+outputted and the complete curation procedure is written to a log file. If any
+of the curation criteria is not met or exceptions are encountered, CobraMod
+passes a warning through the Python console and the log file.
 
-CobraMod uses Escher to visualize flux distributions and pathways. Each
+CobraMod uses `Escher <https://escher.github.io/>`_ to visualize flux
+distributions and pathways. Each
 Pathway-object includes a visualization method (visualize) which automatically
 generates pathway maps of the respective set of reactions. These pathway maps
 can be easily customized to visualize flux distributions using default or

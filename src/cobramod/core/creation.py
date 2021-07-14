@@ -11,10 +11,11 @@ database is used. Important functions are:
 - add_metabolites: Add reactions from multiple sources
 
 These functions are a mix of multiple simpler functions:
+
 - _metabolite_from_string, _reaction_from_string: create objects from strings.
 - _get_metabolite, _get_reaction: create objects from dictionary.
 - _convert_string_reaction, _convert_string_metabolite: create objects from
-files.
+  files.
 """
 from collections import Counter
 from contextlib import suppress
