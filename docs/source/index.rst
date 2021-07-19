@@ -9,32 +9,26 @@ and offers a comprehensible set of functions for semi-automated network
 extension, curation and visualization. CobraMod supports all databases from the
 `BioCyc collection <https://biocyc.org/>`_, the
 `KEGG database <https://www.genome.jp/kegg/>`_, and the
-`BiGG Models repository <http://bigg.ucsd.edu/>`_. and can directly interact
+`BiGG Models repository <http://bigg.ucsd.edu/>`_ and can directly interact
 with Escher for pathway and flux
 visualization.
 
-This package converts the pathway information into native COBRApy objects and
-quality-checks for multiple criteria. During the creation process, these
-objects will be tested for:
+CobraMod will use and parse the exact information from the metabolic pathway
+information. This package converts pathway information into native COBRApy
+objects and quality-checks them before adding them to the model. This includes
+testing for:
 
-- duplicate elements in the model
+- duplicate elements
 - correct chemical formula according to the data
+- assignment of genes
 - mass balance of reactions
 - reaction reversibility
 - capability to carry non-zero fluxes
 
-CobraMod offers an user-friendly tracking of the curation process. Every time
-our package adds a set of reactions (Pathway-object) to the model a summary is
-outputted and the complete curation procedure is written to a log file. If any
-of the curation criteria is not met or exceptions are encountered, CobraMod
-passes a warning through the Python console and the log file.
-
-CobraMod uses `Escher <https://escher.github.io/>`_ to visualize flux
-distributions and pathways. Each
-Pathway-object includes a visualization method (visualize) which automatically
-generates pathway maps of the respective set of reactions. These pathway maps
-can be easily customized to visualize flux distributions using default or
-user-defined colors and linear gradients or quantile normalized.
+CobraMod offers user-friendly tracking of the curation process with summary
+output and log files and customized pathway and flux visualization with Escher.
+CobraMod uses `Escher <https://escher.github.io/>`_ for visualizing pathways
+and flux distributions and offers several customization options.
 
 
 .. image:: img/pathway01.png
@@ -55,35 +49,34 @@ This package offers multiple functions for modifying and extending GEMs:
 
 Users can add the biochemical data through different methods:
 
-- Using a text file with the identifiers of the objects, or the whole
-  attributes for a curated reactions or metabolites
-- Using a single string with the identifier of the object
 - Using regular COBRApy objects
+- Using a text file with the database-specific identifiers for the reactions,
+  metabolic or pathways.
+- Using a single string with the database-specific identifier of the object
 
-Additionally, CobraMod includes a new type of :class:`cobra.core.group.Group`,
-namely :class:`cobramod.Pathway`. This Pathway-object includes the new method
-:func:`cobramod.Pathway.visualize` to create a pathway map.
+In addition to using databases, the users can include user-curated reactions
+and metabolites. These objects are plain text with simple syntax that can be
+include in the text files or directly in the functions.
 
-For more information, read the corresponding docstrings of the functions using
-`help()` or
-read the :doc:module/functions to learn more about these functions.
+CobraMod includes a new :class:`cobramod.Pathway`. This class inherits
+the methods of the original COBRApy :class:`cobra.core.group.Group`.
+This pathway-object includes the method
+:func:`cobramod.Pathway.visualize` for creating  pathway maps.
 
-To know the databases that work with CobraMod, load and print
-:obj:`cobramod.available_databases`.
+
+For more information see the docstrings of the respective functions using
+`help()` or read the :doc:`documentation <module/cobramod/index>`.
+
+To see all metabolic pathway databases that are currently supported by
+CobraMod, load and print :obj:`cobramod.available_databases`.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :numbered:
-   :caption: Contents
+   :caption: Table of content
 
    how_to.ipynb
    installation.rst
+   shikimate.ipynb
+   GLS.ipynb
    API <module/cobramod/index>
-
-.. toctree::
-   :maxdepth: 0
-   :caption: Test case
-   :numbered:
-
-   Ecoli scenario <shikimate.ipynb>
-   Glucosinolate scenario <GLS.ipynb>

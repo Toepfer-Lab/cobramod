@@ -22,10 +22,10 @@ extension, curation and visualization. CobraMod supports all databases from the
 with Escher for pathway and flux
 visualization.
 
-This package converts pathway information into native COBRApy objects and
-quality-checks them before adding them to the model. CobraMod will use and
-parse the exact information from the metabolic pathway information. This
-includes  testing for:
+CobraMod will use and parse the exact information from the metabolic pathway
+information. This package converts pathway information into native COBRApy
+objects and quality-checks them before adding them to the model. This includes
+testing for:
 
 - duplicate elements
 - correct chemical formula according to the data
