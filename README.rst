@@ -1,7 +1,7 @@
-.. image:: https://img.shields.io/github/license/Toepfer-Lab/cobramod   :alt:
-   GitHub
-.. image:: https://img.shields.io/readthedocs/cobramod/latest   :alt: Read the
-   Docs (version)
+.. image:: https://img.shields.io/github/license/Toepfer-Lab/cobramod
+   :alt: GitHub
+.. image:: https://img.shields.io/readthedocs/cobramod/latest
+   :alt: Read the Docs (version)
 
 ===============================================================================
 CobraMod: A pathway-centric curation tool for constraint-based metabolic models
@@ -22,28 +22,22 @@ extension, curation and visualization. CobraMod supports all databases from the
 with Escher for pathway and flux
 visualization.
 
-This package converts the pathway information into native COBRApy objects and
-quality-checks for multiple criteria. During the creation process, these
-objects will be tested for:
+This package converts pathway information into native COBRApy objects and
+quality-checks them before adding them to the model. CobraMod will use and
+parse the exact information from the metabolic pathway information. This
+includes  testing for:
 
-- duplicate elements in the model
+- duplicate elements
 - correct chemical formula according to the data
+- assignment of genes
 - mass balance of reactions
 - reaction reversibility
 - capability to carry non-zero fluxes
 
-CobraMod offers an user-friendly tracking of the curation process. Every time
-our package adds a set of reactions (Pathway-object) to the model a summary is
-outputted and the complete curation procedure is written to a log file. If any
-of the curation criteria is not met or exceptions are encountered, CobraMod
-passes a warning through the Python console and the log file.
-
-CobraMod uses `Escher <https://escher.github.io/>`_ to visualize flux
-distributions and pathways. Each
-Pathway-object includes a visualization method (visualize) which automatically
-generates pathway maps of the respective set of reactions. These pathway maps
-can be easily customized to visualize flux distributions using default or
-user-defined colors and linear gradients or quantile normalized.
+CobraMod offers user-friendly tracking of the curation process with summary
+output and log files and customized pathway and flux visualization with Escher.
+CobraMod uses `Escher <https://escher.github.io/>`_ for visualizing pathways
+and flux distributions and offers several customization options.
 
 Installation
 ---------------
@@ -79,14 +73,15 @@ information.
 Development
 -------------------
 
-If you want to contribute to CobraMod you can clone the repository and install
-it in developer mode using pip.::
+You can contribute to CobraMod by cloning the repository and installing it in
+developer mode using pip::
 
   pip install -e .
 
-A conda environment file is supplied in *environment.yml* for easy development.
-For bugs and suggestions, please create an issue using the corresponding tags
-at https://github.com/Toepfer-Lab/cobramod/issues
+A conda environment file is supplied (*environment.yml*). This file supplies
+the environment that  we use to ensure the reproducibility of the package. To
+report bugs and suggestions, please create an issue using the corresponding
+tags at https://github.com/Toepfer-Lab/cobramod/issues.
 
-Pull requests are also encouraged. CobraMod puts a lot of emphasis in the unit
-test. For this reason, new tests are always welcome.
+We encourage pull requests. CobraMod uses unit testing and new tests are
+welcome.
