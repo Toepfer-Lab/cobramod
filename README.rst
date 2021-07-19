@@ -7,7 +7,7 @@
 CobraMod: A pathway-centric curation tool for constraint-based metabolic models
 ===============================================================================
 
-.. image:: docs/source/img/logo.png
+.. image:: https://raw.githubusercontent.com/Toepfer-Lab/cobramod/master/docs/source/img/logo.png
   :width: 600
   :align: center
 
@@ -18,7 +18,7 @@ and offers a comprehensible set of functions for semi-automated network
 extension, curation and visualization. CobraMod supports all databases from the
 `BioCyc collection <https://biocyc.org/>`_, the
 `KEGG database <https://www.genome.jp/kegg/>`_, and the
-`BiGG Models repository <http://bigg.ucsd.edu/>`_. and can directly interact
+`BiGG Models repository <http://bigg.ucsd.edu/>`_ and can directly interact
 with Escher for pathway and flux
 visualization.
 
@@ -66,7 +66,8 @@ information.
 
 License
 ------------
-CobraMod is licensed under the GPL-3 License. Read :doc:`LICENSE` for more
+CobraMod is licensed under the GPL-3 License. Read `LICENSE
+<https://github.com/Toepfer-Lab/cobramod/blob/master/LICENSE>`_ for more
 information.
 
 
@@ -78,8 +79,8 @@ developer mode using pip::
 
   pip install -e .
 
-A conda environment file is supplied (*environment.yml*). This file supplies
-the environment that  we use to ensure the reproducibility of the package. To
+A conda environment file is supplied (*environment.yml*). This file has all
+dependencies that we use to ensure the reproducibility of the package. To
 report bugs and suggestions, please create an issue using the corresponding
 tags at https://github.com/Toepfer-Lab/cobramod/issues.
 
