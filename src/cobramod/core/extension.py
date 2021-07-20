@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """Pathway extension
 
-This module handles the addition of reactions as a pathway in to
-a model and the corresponding test that come with it.
+This module handles the addition of reactions as a pathway into
+a model and the corresponding test that comes with it.
 
 Most important functions:
 - add_pathway: Adds a pathway or multiple reactions into a model.
-- test_non_zero_flux: Checks that given reaction in a model is active and gives
-a non zero flux.
+- test_non_zero_flux: Checks that the given reaction in a model is active and gives a non-zero flux.
 """
 from contextlib import suppress
 from pathlib import Path
@@ -308,22 +307,23 @@ def test_non_zero_flux(
     model: Model, reaction: str, times: int = 0, ignore_list: List[str] = []
 ):
     """
-    Checks that a simple FBA can be run. A demand reaction will be created with
-    a minimum flux based on the COBRApy Configuration object. It will use its
-    variable 'tolerance' multiplied by 10. Function is recursive and checks if
-    sink reactions are enough or exceeded. It creates a demand reaction for
-    reaction for the test and removes it, if necessary.
+    Verifies that a simple FBA can be performed. A demand reaction is created
+    with a minimum flux based on the COBRApy Configuration object. It will use
+    its variable 'tolerance' multiplied by 10. The function is recursive and
+    checks if sink reactions are sufficient or exceeded. It generates a demand
+    reaction for the reaction used for testing and removes it if necessary.
 
     Args:
-        model (Model): model, where reaction is located
-        reaction (str): reaction identifier in model to test.
+        model (Model): Model in which the reaction is present.
+        reaction (str): Reaction identifier in model to test.
         times (int, optional): Track of recursions. Defaults to 0.
-        ignore_list (list, optional): A sequence of formatted metabolites
-            to ignore when testing new reactions. Defaults to []
+        ignore_list (list, optional): A sequence of formatted metabolites to be
+        ignored when testing new reactions. Defaults to []
 
     Raises:
-        NotInRangeError: if solution is infeasible after many recursions.
-            Depends from the amount of metabolites in the reaction.
+        NotInRangeError: If the solution is infeasible after many recursions.
+            Depends on the number of metabolites in the reaction.
+
     """
     if times == 0:
         debug_log.info(
@@ -720,17 +720,17 @@ def add_pathway(
     genome: Optional[str] = None,
 ):
     """
-    Adds a pathway from given database into a model. Argument pathway can be
-    a list of reactions identifiers or explicitly a pathway identifier. A group
-    of reactions will be included in a custom group. The data will be
-    downloaded and structured according to the database
+    Adds a pathway from the given database into a model. The argument 'pathway'
+    can be a list of reactions identifiers or explicitly a pathway identifier.
+    A group of reactions will be included in a custom group. The data will be
+    downloaded and structured according to the database.
 
     Args:
         model (Model): Model to expand.
-        pathway (list, str): Sequence of reaction identifiers or
+        pathway (list, str): Sequence of reaction identifiers or a single
             identifier for a pathway. Examples: ["RXN-2206", "RXN-207"] or
             "PWY-886"
-        directory (Path): Path for directory to stored and retrieve data.
+        directory (Path): Path for the directory to stored and retrieve data.
         database (str): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
@@ -738,31 +738,32 @@ def add_pathway(
             identifier. This will overwrite the name of the pathway.
 
     Arguments for complex pathways:
-        avoid_list (list, optional): A sequence of reactions identifiers to
-            avoid adding to the model. This is useful for long pathways, where
-            X reactions need to be excluded.
-        replacement (dict, optional): Original identifiers to be replaced.
-            Values are the new identifiers.
-        ignore_list (list): A sequence of formatted metabolites to skip when
-            testing, and/or reactions that should be added but not tested.
-            This is useful for long cyclical pathways.
+    avoid_list (list, optional): A sequence of reactions identifiers to avoid
+        adding to the model. This is useful for long pathways, where
+        X reactions need to be excluded.
+    replacement (dict, optional): Original identifiers to be replaced.
+        Values are the new identifiers.
+    ignore_list (list): A sequence of formatted metabolites to be ignored when
+    testing, and/or reactions that should be added but not tested.
+        This is useful for long cyclical pathways.
 
     Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to
             "summary" in the current working directory. The file format is
             defined by the suffix. The suffixes '.txt', '.csv' and '.xlsx' can
-            be used. If filename is set to None, no summary will be created.
+            be used. If the filename is set to None, no summary will be
+            created.
 
     Arguments for utilities:
-        stop_imbalance (bool, optional): If unbalanced reaction is found, stop
-            process. Defaults to False.
-        show_imbalance (bool, optional): If unbalanced reaction is found, show
-            output. Defaults to True.
+        stop_imbalance (bool, optional): If an unbalanced reaction is found,
+            stop the process. Defaults to False.
+        show_imbalance (bool, optional): If an unbalanced reaction is found,
+            print output. Defaults to True.
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
-            specified model. Pathway are not available.
+            specified model. Pathways are not available.
             Defaults to: "universal"
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
-            specie involved. Genes will be obtained from this specie.
+            species involved. Genes will be obtained for this species.
             List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
     if not isinstance(model, Model):

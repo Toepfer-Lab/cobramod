@@ -2,12 +2,13 @@
 """Module for graph algorithm
 
 This module creates the needed functions to find out the reaction order from
-a pathway. The vertex represent the reactions and the edges symbolize the order
-of the reactions. i.e the relationship between reactions. The main function
-of this module:
+a pathway. The vertex represents the reactions and the edges symbolize the
+order of the reactions. I.e. the relationship between reactions. The main
+function of this module:
 
 build_graph: From given dictionary with Parent-reaction:children-reaction,
 return the corresponding non-cyclic directed graph.
+
 """
 from contextlib import suppress
 from collections import Counter
@@ -25,12 +26,12 @@ from cobramod.error import NoIntersectFound
 
 def find_missing(graph: dict):
     """
-    Raise KeyError is graph is missing an Key
+    Checks whether the given graph is missing a key.
 
     Args:
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
-
+        graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values.
     Raises:
         KeyError: If keys are missing
     """
@@ -52,22 +53,23 @@ def find_missing(graph: dict):
 
 def find_cycle(graph: dict, key: str, visited: list):
     """
-    Returns a list with the cycle in the graph or False is graph is lineal.
-    This function is recursive.
+    Returns a list with the cycle in the graph or False is graph does not
+    contain a cycle. This function works recursively.
 
     Args:
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
-        key (str): Key in dictionary to start to find the cycle.
-        visited (list): List with keys already visited.
+        graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values.
+         key (str): Key out of the dictionary, from which the search is started.
+         visited (list): List with keys already visited.
 
     Returns:
-        List: Members of the graph that are in a cycle:
-        False: If the graph is lineal
+        List: Members of the graph that are in a cycle.
+        False: If the graph does not contain a cycle.
 
     Raises:
         GraphKeyError: If a key is missing its relationship. When this happens,
-            it is probably a value missing.
+            there is probably a value missing.
     """
     try:
         # Get the value and check if is already in visited. If so, then it
@@ -109,15 +111,17 @@ def find_cycle(graph: dict, key: str, visited: list):
 
 def return_cycles(graph: dict):
     """
-    Returns a nested list of cyclic paths. These paths might repeat. If path
-    is lineal then an empty list is returned.
+    Returns a nested list of cyclic paths. These paths might repeat. If the
+    graph does not contain a cycle, the list is empty.
 
     Args:
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
+        graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values.
 
     Returns:
-        List: Nested list with cyclic paths or empty list if lineal
+        List: Nested list with cyclic paths or an empty list if the graph
+            does not contain a cycle.
     """
     cycles = list()  # type: ignore
     for node in graph.keys():
@@ -132,8 +136,8 @@ def return_cycles(graph: dict):
 
 def cut_cycle(graph: dict, key: str):
     """
-    Changes value of key to None in given dictionary. It will raise an error if
-    value is a tuple
+    Changes value of the key to None in a given dictionary. It will raise an
+    error if the value is a tuple.
     """
     if not isinstance(key, str):
         raise AttributeError(
@@ -144,13 +148,15 @@ def cut_cycle(graph: dict, key: str):
 
 def cut_parents(graph: dict):
     """
-    Checks if multiple parens shared a common child. If so, the graph will
-    replace the values of these parents to a None and leave one of the parent
+    Checks if multiple parents shared a common child. If so, the graph will
+    replace the values of these parents to a None and leave one of the parents
     normal.
 
+
     Args:
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
+        graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values.
     """
     counter = Counter(graph.values())
     # Get the keys that are not one
