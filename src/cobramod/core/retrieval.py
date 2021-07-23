@@ -7,7 +7,6 @@ The available databases for data retrieval can be found in the variable
 :obj:`cobramod.core.retrieval.available_databases`
 """
 from contextlib import suppress
-from collections import UserList
 from pathlib import Path
 from typing import Type
 
@@ -22,29 +21,74 @@ from cobramod.utils import _path_match, get_key_dict
 parsers = [BiocycParser, PlantCycParser, KeggParser, BiggParser]
 
 
-class ListCobramod(UserList):
+class Databases(object):
     """
-    Simple list that prints out a message about the enormous size of Biocyc.
+    Simple object that shows the information about the database
     """
 
-    def __init__(self, initlist=[]):
-        super().__init__(initlist=initlist)
+    def __init__(self):
         self.msg = (
-            "Biocyc includes around 18.000 sub-databases. The complete list "
-            + "can be found in 'https://biocyc.org/biocyc-pgdb-list.shtml'. "
-            + "Please use the corresponding object identifier. e.g: 'ARA', "
-            + "'GCF_000963925'"
+            "CobraMod supports Biocyc, the Plant Metabolic Network (PMN), KEGG"
+            " and BiGG Models repository. Biocyc includes around 18.000 "
+            "sub-databases. The complete list for BioCyc can be found in "
+            "'https://biocyc.org/biocyc-pgdb-list.shtml'. "
+            "The database-specific identifiers can be found in the URL of the "
+            "information to retrieve. e.g. diphosphate:"
         )
 
     def __repr__(self):
-        print(self.msg)
-        return super().__repr__()
+        """
+        Returns a string about the definition of "identifier" and where
+        to obtain them.
+        """
+        self.msg2 = """\n
+BioCyc, sub-database ECOLI -> https://biocyc.org/compound?orgid=ECOLI&id=PPI ->
+PPI\nPlant Metabolic Network, sub-database CORN ->
+https://pmn.plantcyc.org/compound?orgid=CORN&id=PPI -> PPI\nKEGG ->
+https://www.genome.jp/entry/C00013 -> C00013\nBiGG Models Repository,
+universal model -> http://bigg.ucsd.edu/universal/metabolites/ppi -> ppi\n
+CobraMod uses abbreviations to represent the databases or sub-databases:\n
+Database -> Abbreviation\nBioCyc -> META or identifier of sub-database e.g:
+ECOLI, ARA, GCF_000010885\nPlant Metabolic Network -> pmn:PLANT or identifier
+of sub-database e.g pmn:ARA, pmn:CORN\nKEGG -> KEGG\nBiGG Models Repository ->
+BIGG
+        """
+        return self.msg + self.msg2
 
-    def __str__(self):
-        return self.msg + "\n" + super().__str__()
+    def _repr_html_(self):
+        """
+        Returns a HTML string about the definition of "identifier" and where
+        to obtain them.
+        """
+        return f"""<p>{self.msg}</p>
+<table style="width: 100%; border-collapse: collapse; float: left;" border="1">
+<tbody> <tr> <td style="width: 50%;"> <h3>Database</h3> </td> <td style="width:
+50%;"> <h3>URL with identifier (bold)</h3> </td> </tr> <tr> <td style="width:
+50%;">BioCyc, sub-database ECOLI</td> <td style="width:
+50%;">https://biocyc.org/compound?orgid=ECOLI&amp;id=<strong>PPI</strong></td>
+</tr> <tr> <td style="width: 50%;">Plant Metabolic Network, sub-database
+CORN</td> <td style="width:
+50%;">https://pmn.plantcyc.org/compound?orgid=CORN&amp;id=<strong>PPI</strong></td>
+</tr> <tr> <td style="width: 50%;">KEGG</td> <td style="width:
+50%;">https://www.genome.jp/entry/<strong>C00013</strong></td> </tr> <tr> <td
+style="width: 50%;">BiGG Models Repository, universal model</td> <td
+style="width:
+50%;">http://bigg.ucsd.edu/universal/metabolites/<strong>ppi</strong></td>
+</tr> </tbody> </table> <p>CobraMod uses abbreviations to represent the
+databases or sub-databases:</p> <table style="width: 100%; border-collapse:
+collapse; float: left;" border="1"> <tbody> <tr> <td style="width: 50%;">
+<h3>Database</h3> </td> <td style="width: 50%;"> <h3>Abbreviation</h3> </td>
+</tr> <tr> <td style="width: 50%;">BioCyc</td> <td style="width: 50%;">META or
+identifier of sub-database e.g: ECOLI, ARA, GCF_000010885</td> </tr> <tr> <td
+style="width: 50%;">Plant Metabolic Network</td> <td style="width: 50%;">Prefix
+"pmn:" with the sub-database identifier, e.g pmn:PLANT, pmn:ARA, pmn:CORN</td>
+</tr> <tr> <td style="width: 50%;">KEGG</td> <td style="width: 50%;">KEGG</td>
+</tr> <tr> <td style="width: 50%;">BiGG Models Repository</td> <td
+style="width: 50%;">BIGG</td> </tr> </tbody> </table>
+"""
 
 
-available_databases = ListCobramod(["META", "PLANT", "KEGG", "BIGG"])
+available_databases = Databases()
 
 
 def _get_parser(database: str) -> Type[BaseParser]:

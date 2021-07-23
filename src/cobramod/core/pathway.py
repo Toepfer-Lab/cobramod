@@ -267,6 +267,22 @@ class Pathway(Group):
             n_steps=self.color_n_steps,
         )
 
+    def _repr_html_(self):
+        """
+        Returns a HTML string with the attributes of the Pathway
+        """
+        return f"""
+<table> <tbody> <tr> <td><strong>Pathway identifier</strong></td>
+<td>{self.id}</td> </tr> <tr> <td><strong>Name</strong></td>
+<td>{self.name}</td> </tr> <tr> <td><strong>Memory address</strong></td>
+<td>0x0{id(self)}</td> </tr> <tr> <td><strong>Reactions involved</strong></td>
+<td> <p>{", ".join([rxn.id for rxn in self.members])}</p> </td> </tr> <tr>
+<td><strong>Visualization attributes</strong></td> <td> <ul> <li>vertical =
+{self.vertical}</li> <li>color_negative = {self.color_negative}</li>
+<li>color_positive = {self.color_positive}</li> <li>color_quantile =
+{self.color_quantile}</li> </ul> </td> </tr> </tbody> </table> <p>&nbsp;</p>
+"""
+
 
 def model_convert(model: Model):
     """
