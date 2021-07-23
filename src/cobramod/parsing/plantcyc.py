@@ -164,7 +164,7 @@ def _check_direction(root: Any) -> tuple:
 
 def _p_genes(root: Any, identifier: str, directory: Path) -> dict:
     """
-    Returns a dictionary with the corresponding genes and gene-reaction rules.
+    Returns a dictionary with the corresponding genes and gene-reaction rules
     This function will try to read a file for given identifier. If nothing is
     found, the dictionary will have empty entries.
     """
@@ -323,7 +323,7 @@ class PlantCycParser(BaseParser):
             with suppress(WrongParserError, AttributeError):
                 try:
                     plantcyc_dict = method(  # type: ignore
-                        root=root, directory=directory
+                        root=root, directory=directory.joinpath("PMN")
                     )
                 except TypeError:
                     plantcyc_dict = method(root=root)  # type: ignore
