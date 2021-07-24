@@ -52,14 +52,13 @@ Functions
 
 This package offers multiple functions for modifying and extending GEMs:
 
-- Retrieve metabolic pathway information from a database
-  :func:`cobramod.get_data`
-- Transform stored data into COBRApy objects :func:`cobramod.create_object`
-- Add metabolites from multiple sources :func:`cobramod.add_metabolites`
-- Add reactions from multiple sources :func:`cobramod.add_reactions`
+- Retrieve metabolic pathway information from a database `cobramod.get_data`
+- Transform stored data into COBRApy objects `cobramod.create_object`
+- Add metabolites from multiple sources `cobramod.add_metabolites`
+- Add reactions from multiple sources `cobramod.add_reactions`
 - Test reaction capability to carry a non-zero flux
-  :func:`cobramod.test_non_zero_flux`
-- Add pathway to a model :func:`cobramod.add_pathway`
+  `cobramod.test_non_zero_flux`
+- Add pathway to a model `cobramod.add_pathway`
 
 Check the `documentation <https://cobramod.readthedocs.io/>`_ for more
 information.
