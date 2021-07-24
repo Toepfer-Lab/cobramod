@@ -11,10 +11,11 @@ database is used. Important functions are:
 - add_metabolites: Add reactions from multiple sources
 
 These functions are a mix of multiple simpler functions:
+
 - _metabolite_from_string, _reaction_from_string: create objects from strings.
 - _get_metabolite, _get_reaction: create objects from dictionary.
 - _convert_string_reaction, _convert_string_metabolite: create objects from
-files.
+  files.
 """
 from collections import Counter
 from contextlib import suppress
@@ -304,6 +305,15 @@ def _get_reaction(
         Reaction: New reaction based on dictionary
     """
     identifier = data_dict["ENTRY"]
+    if data_dict["DATABASE"] == "META":
+        msg = (
+            f'Metabolic pathway information for reaction "{identifier}" comes '
+            'from database "META". No genes will be created. Please use a '
+            "specie-specific sub-database from BioCyc."
+        )
+        debug_log.warning(msg)
+        warn(message=msg, category=UserWarning)
+
     # Try to obtain if information is available
     with suppress(NoIntersectFound, KeyError):
         new_identifier = _first_item(

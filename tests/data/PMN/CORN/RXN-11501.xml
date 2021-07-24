@@ -1,0 +1,51 @@
+<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/getxml?CORN:RXN-11501"><metadata><url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+<service_name>getxml</service_name>
+<query>CORN:RXN-11501</query>
+<num_results>1</num_results>
+<PGDB orgid="CORN" version="10.1.0"><species datatype="string">Zea mays</species>
+<subspecies datatype="string">mays</subspecies>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>381124</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=381124</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Reaction ID="CORN:RXN-11501" detail="full" frameid="RXN-11501" orgid="CORN"><parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="CORN" resource="getxml?CORN:Small-Molecule-Reactions" /></parent>
+<parent><Reaction class="true" frameid="Chemical-Reactions" orgid="CORN" resource="getxml?CORN:Chemical-Reactions" /></parent>
+<enzymatic-reaction><Enzymatic-Reaction ID="CORN:ENZRXNDQC-37982" detail="low" frameid="ENZRXNDQC-37982" orgid="CORN"><common-name datatype="string">alkaline &amp;alpha;- galactosidase</common-name>
+<reaction><Reaction frameid="RXN-11501" orgid="CORN" resource="#CORN:RXN-11501" /></reaction>
+<enzyme><Protein frameid="ZM00001D003279-MONOMER" orgid="CORN" resource="getxml?CORN:ZM00001D003279-MONOMER" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="CORN:ENZRXNDQC-35160" detail="low" frameid="ENZRXNDQC-35160" orgid="CORN"><common-name datatype="string">alkaline &amp;alpha;- galactosidase</common-name>
+<reaction><Reaction frameid="RXN-11501" orgid="CORN" resource="#CORN:RXN-11501" /></reaction>
+<enzyme><Protein frameid="MONOMERDQC-51076" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51076" /></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID="CORN:ENZRXNDQC-32166" detail="low" frameid="ENZRXNDQC-32166" orgid="CORN"><common-name datatype="string">alkaline &amp;alpha;- galactosidase</common-name>
+<reaction><Reaction frameid="RXN-11501" orgid="CORN" resource="#CORN:RXN-11501" /></reaction>
+<enzyme><Protein frameid="MONOMERDQC-46690" orgid="CORN" resource="getxml?CORN:MONOMERDQC-46690" /></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<left><Compound frameid="CPD-170" orgid="CORN" resource="getxml?CORN:CPD-170" /></left>
+<left><Compound frameid="WATER" orgid="CORN" resource="getxml?CORN:WATER" /></left>
+<in-pathway><Pathway frameid="PWY-6527" orgid="CORN" resource="getxml?CORN:PWY-6527" /></in-pathway>
+<ec-number>EC-3.2.1.22</ec-number>
+<gibbs-0 datatype="float" units="kcal/mol">-3.112976</gibbs-0>
+<credits><created><date datatype="date">2010-06-15</date>
+<Person ID="CORN:pujar" detail="full" frameid="pujar" orgid="CORN"><common-name datatype="string">Anurdha Pujar</common-name>
+<email datatype="string">ap343@cornell.edu</email>
+<affiliations><Organization ID="CORN:O-28" detail="full" frameid="O-28" orgid="CORN"><abbrev-name datatype="string">Boyce Thompson Institute</abbrev-name>
+<common-name datatype="string">Boyce Thompson Institute for Plant Research</common-name>
+<url datatype="string">http://bti.cornell.edu/</url>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="O-28" orgid="CORN" resource="#CORN:O-28" /></created>
+</credits>
+<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<right><Compound frameid="CPD-1099" orgid="CORN" resource="getxml?CORN:CPD-1099" /></right>
+<right><Compound frameid="ALPHA-D-GALACTOSE" orgid="CORN" resource="getxml?CORN:ALPHA-D-GALACTOSE" /></right>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<orphan>NO</orphan>
+</Reaction>
+</ptools-xml>

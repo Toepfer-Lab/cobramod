@@ -10,7 +10,7 @@ with open(file="README.rst", mode="r") as f:
 
 setup(
     name="cobramod",
-    version="0.5.4",
+    version="0.5.4-alpha.2",
     description="Python package for pathway-centric modification and extension"
     + " of genome-scale metabolic networks",
     long_description=readme,
@@ -37,12 +37,10 @@ setup(
         "Bug Tracker": "https://github.com/Toepfer-Lab/cobramod/issues",
     },
     keywords=[
-        "COBRA",
-        "pathway curation",
-        "genome-scale",
+        "genome-scale metabolic model",
+        "constraint-based modelling",
         "COBRApy",
-        "biology",
-        "reconstruction",
+        "Escher" "metabolic model curation",
     ],
     classifiers=[
         "Intended Audience :: Science/Research",
