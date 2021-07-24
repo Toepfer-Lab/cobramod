@@ -63,6 +63,14 @@ class RetrievalTesting(unittest.TestCase):
         )
         self.assertEqual(first=test_dict["TYPE"], second="Reaction")
         self.assertEqual(first=test_dict["ENTRY"], second="CS")
+        # CASE 5: Retrieval from PMN
+        test_dict = md.get_data(
+            directory=dir_data, database="pmn:CORN", identifier="RXN-11501"
+        )
+        self.assertCountEqual(
+            first=["ZM00001D003279", "ZM00001D031303", "ZM00001D031300"],
+            second=test_dict["GENES"]["genes"].keys(),
+        )
 
     def test_check_attribute(self):
         # CASE: Generic compounds:

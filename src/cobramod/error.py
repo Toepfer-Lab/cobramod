@@ -150,10 +150,10 @@ class NotInRangeError(Exception):
             reaction (str): identifier of the reaction.
         """
         msg = (
-            f'For the non-zero flux test of "{reaction}", adding the reaction '
-            + " results in a optimization value lower than the given minimum. "
-            + "Please readjust the 'minimum' argument or add the reaction to "
-            + "the argument 'ignore_list' to be skipped from the test."
+            f'Non-zero flux test for reaction "{reaction}" failed multiple '
+            "times. Flux value results lower than solver tolerance. Please "
+            "add manually reactions that can turn over the metabolites of this"
+            " reaction."
         )
         debug_log.critical(msg)
         super().__init__(msg)
