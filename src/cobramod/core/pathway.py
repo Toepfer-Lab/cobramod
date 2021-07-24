@@ -277,6 +277,8 @@ class Pathway(Group):
 <td>{self.name}</td> </tr> <tr> <td><strong>Memory address</strong></td>
 <td>0x0{id(self)}</td> </tr> <tr> <td><strong>Reactions involved</strong></td>
 <td> <p>{", ".join([rxn.id for rxn in self.members])}</p> </td> </tr> <tr>
+<td><strong>Genes involved<br /></strong></td> <td> <p>{", ".join([gene.id for
+rxn in self.members for gene in rxn.genes])}</p> </td> </tr> <tr>
 <td><strong>Visualization attributes</strong></td> <td> <ul> <li>vertical =
 {self.vertical}</li> <li>color_negative = {self.color_negative}</li>
 <li>color_positive = {self.color_positive}</li> <li>color_quantile =
