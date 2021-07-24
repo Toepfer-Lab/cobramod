@@ -7,7 +7,6 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 - solution: Obtain the solution for the specific members.
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
-from contextlib import suppress
 from pathlib import Path
 from typing import Any, Dict, List, Union, Optional
 
@@ -176,8 +175,23 @@ class Pathway(Group):
         pathway = cls(
             id=obj.id, name=obj.name, members=obj.members, kind=obj.kind
         )
-        with suppress(KeyError):
+        # Add directly from the notes or create a quick order
+        try:
             pathway.graph = pathway.notes["ORDER"] = obj.notes["ORDER"]
+        except KeyError:
+            # Check only Reactions
+            reactions = [
+                rxn for rxn in obj.members if isinstance(rxn, Reaction)
+            ]
+            order = {}
+            for value, reaction in enumerate(reactions):
+                try:
+                    order[reaction.id] = reactions[value + 1].id
+                except IndexError:
+                    # It should be the last
+                    order[reaction.id] = None
+            pathway.graph = pathway.notes["ORDER"] = order
+
         debug_log.info(
             f'Group-object "{pathway.id}" was transformed to a Pathway-object.'
         )
@@ -260,7 +274,7 @@ class Pathway(Group):
         return json_dict.visualize(
             filepath=filename,
             vertical=self.vertical,
-            color=[self.color_negative, self.color_positive],
+            color=[self.color_positive, self.color_negative],
             min_max=self.color_min_max,
             quantile=self.color_quantile,
             max_steps=self.color_max_steps,
