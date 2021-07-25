@@ -61,7 +61,7 @@ napoleon_custom_sections = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-# templates_path = []
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -83,6 +83,7 @@ html_title = (
 )
 html_short_titel = "CobraMod"
 html_theme_options = {"logo_only": True}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -90,6 +91,8 @@ html_theme_options = {"logo_only": True}
 
 # Configuration for nbsphinx
 nbsphinx_execute = "never"
+# This statement should avoid the creation of duplicates widgets
+nbsphinx_widgets_path = ""
 html_js_files = [
     "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js",
     DEFAULT_EMBED_REQUIREJS_URL,

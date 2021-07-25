@@ -77,6 +77,5 @@ CobraMod, load and print :obj:`cobramod.available_databases`.
 
    how_to.ipynb
    installation.rst
-   shikimate.ipynb
-   GLS.ipynb
+   test_cases.ipynb
    API <module/cobramod/index>
