@@ -27,31 +27,31 @@ from cobramod.visualization.converter import JsonDictionary
 class Pathway(Group):
     """
     A Sub-class from the original COBRApy :class:`cobra.Group`, which inherits
-    all its attributes and adds the method solution, to get a Solution for the
+    all attributes and adds the method solution, to get a Solution for the
     members of this Class.
 
     Attributes
         vertical (bool, optional):
             Variable that determines whether the display should be vertical or
-            horizontal using escher. Defaults to False.
+            horizontal using Escher. Defaults to False.
         color_negative (str or list of int, optional) :
             The color to use as the endpoint for the negative fluxes during the
-            creation of the color gradient. All colors of the css standard can
-            be used here or their rgb representation.
+            creation of the color gradient. All colors of the CSS standard can
+            be used here or their RGB representation.
         color_positive (str or list of int, optional) :
             The color to use as the endpoint for the positive fluxes during the
-            creation of the color gradient. All colors of the css standard can
-            be used here or their rgb representation.
+            creation of the color gradient. All colors of the CSS standard can
+            be used here or their RGB representation.
         color_min_max (list of float, optional) :
             The maximum and minimum to be taken into account when creating the
             color gradient. This creates these two values artificially to allow
             the creation of a data-independent color gradient. Fluxes larger or
             smaller are ignored accordingly.
         color_quantile (bool, optional) :
-            Attributes that determines whether the color gradient should be
+            Attribute that defines whether the color gradient should be
             determined through quantiles or equally distributed between the
-            maximum and the minimum. Defaults to None which means that the
-            gradations are evenly distributed. Default value is False.
+            maximum and the minimum. Defaults to False which means that the
+            gradations are evenly distributed.
         color_n_steps (int, optional) :
             The number of steps used when creating the color gradient. Uses the
             number of fluxes by default. The default value is None.
@@ -77,7 +77,7 @@ class Pathway(Group):
 
         Args:
             id (str): Identifier of the pathway.
-            name (str): Name for the patway.
+            name (str): Name for the pathway.
             members (DictList): Includes the members for the pathway. It should
                 include only :class:`cobra.core.reaction.Reaction`. Defaults to
                 None.
@@ -153,7 +153,8 @@ class Pathway(Group):
             solution (Solution): Original COBRApy :class:`cobra.Solution` to
                 filter.
         Returns:
-            Solution: Filtered solution with only members of the Pathway class.
+            Solution: FFiltered solution containing only members of the Pathway
+                class.
         """
         return Solution(
             objective_value=solution.objective_value,
@@ -187,17 +188,17 @@ class Pathway(Group):
         """
         Modifies the order of the graph. This is useful when merging multiple
         pathways or joining reactions. In the graph, the selected reaction
-        will be forced to show "next_reaction" as  its successor.
+        will be forced to show "next_reaction" as its successor.
 
         Args:
-            reaction (str): Identifier of the reaction to modify in the graph
+            reaction (str): Identifier of the reaction to modify in the graph.
             next_reaction (str, None): Identifier of the next reaction. This
                 reaction will take place after "reaction". If None is passed,
                 then "reaction" will not have successors.
 
         Raises:
             GraphKeyError: If the reaction or the next_reaction does not appear
-            in the graph of the pathway
+            in the graph of the pathway.
         """
         # FIXME: add behavior for changing not NoneTypes
         # Pathway.graph is responsable for the mapping
@@ -233,15 +234,15 @@ class Pathway(Group):
         filename: Path = None,
     ) -> Builder:
         """
-        Returns a :class:`escher.Builder`, which can be use to create visual
+        Returns a :class:`escher.Builder`, which can be used to create visual
         representations of the pathway.
 
         Args:
             solution_fluxes (Solution, dict): Series or Dictionary with fluxes.
                 The values will be then showed in the Builder.
                 Defaults to None.
-            filename (Path): Path for the HTML. If None is passed, then
-                default to "pathway.html" in the current working directory.
+            filename (Path): Path for the HTML. Defaults to "pathway.html" in
+                the current working directory.
         """
         json_dict = JsonDictionary()
         # Define solution. If None, nothing will be added. Either dict or
@@ -270,7 +271,7 @@ class Pathway(Group):
 
 def model_convert(model: Model):
     """
-    Converts the all Group objects in given model to proper cobramod
+    Converts all Group objects in the given model to proper cobramod
     :class:`cobramod.pathway.Pathway`
     """
     for index, group in enumerate(iterable=model.groups):

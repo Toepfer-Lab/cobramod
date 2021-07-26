@@ -179,23 +179,25 @@ def cut_parents(graph: dict):
 
 def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
     """
-    Return a list with the path that ends with given value until it reaches
-    a node without a value as a key or the value can be found in the stop_list.
-    The function is recursive and will only work with lineal directed graphs.
+    Returns a list with a linear path.  The function creates a sequence from
+    the graph dictionary until the given value is found in the sequence or in
+    the given stop_list. The function does not work with graphs that contain
+    some kind of cycles, and will raise a recursion error.
 
     Args:
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
-        value (str): The value to search.
+        graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values.
+        value (str): The value to be searched..
         path (list): The already-visited path.
-        stop_list (list): Elements that which trigger the function to stop,
-            if found.
+        stop_list (list): Elements that trigger the function to stop, if found.
 
     Returns:
-        List: a list with the path that end up with value.
+        List: A list with the path that ends with the specified value or with
+            an element of the stop_list.
 
     Raises:
-        RecursionError: If the path is not lineal
+        RecursionError: If an element is visited more than once due to a cycle.
     """
     # Check for each key if the value matches the argument value. Extend path
     # and call recursive
@@ -223,15 +225,16 @@ def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
 
 def verify_paths(paths: list, graph: dict) -> set:
     """
-    Returns the missing keys that are not present in given paths list.
+    Returns the missing keys that are not present in the given paths list.
 
     Args:
-        paths (list): Paths from given graph
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
+        paths (list): Paths of the given graph.
+        graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values.
 
     Returns:
-        set: Either the missing nodes or an empty set
+        set: Either the missing nodes or an empty set.
     """
     reactions = set(chain.from_iterable(paths))
     return set(graph.keys()).difference(reactions)
@@ -243,14 +246,15 @@ def get_paths(graph: dict, stop_list: list) -> list:
     lineal directed paths.
 
     Args:
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values.
+        graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values.
 
     Returns:
         List: Paths from given graph
 
     Raises:
-        RecursionError: if path is not lineal
+        RecursionError: if the graph is not lineal
     """
     end_nodes = [key for key, value in graph.items() if value is None]
     # Function back will raise RecursionError if not lineal
@@ -281,13 +285,12 @@ def get_mapping(graph: dict, stop_list: list, new: list) -> list:
     modifies given graph.
 
     Args:
-        graph (dict): Dictionary with relationship between nodes. A node can
-            have multiple edges, which should be presented as values. This will
-            be modified
-        stop_list (list): Elements that which trigger the function to stop,
-            if found.
-        new (list): List with new mapping. Should be empty when call for the
-            first time.
+        graph (dict): graph (dict): Dictionary representing the relationships between nodes.
+            A node can have several edges, which should be represented in the
+            form of values. This will be modified.
+        stop_list (list): Elements that cause the function to stop when found.
+        new (list): List with new mapping. Must be empty when called for
+            the first time.
 
     Returns:
         List: A list with the new mapping. Longest path for each recursion and
@@ -308,16 +311,16 @@ def get_mapping(graph: dict, stop_list: list, new: list) -> list:
 
 def build_graph(graph: dict) -> list:
     """
-    Returns the mapping for given graph. The mapping is the defined as a list
-    with a "core" path and its branches. Cyclic graphs will be cut in order
-    to create a lineal direct graph
+    Returns the mapping for the given graph. The mapping is defined as a list
+    with a "core" path and its branches. Cyclic graphs will be cut to create
+    a lineal direct graph
 
     .. note::
-        If the first item of a branch is not in the "core", the it is in one
-        of the branches.
+        If the first element of a branch is not in the "core", then it is
+        in one of the branches.
 
     Returns:
-        List: Mapping from graph.
+        List: Mapping of the graph.
 
     Raises:
         GraphKeyError: If graph is missing a value.
