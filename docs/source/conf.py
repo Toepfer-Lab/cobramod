@@ -76,12 +76,13 @@ templates_path = ["_templates"]
 #
 
 html_theme = "sphinx_rtd_theme"
-html_logo = "logo_2.png"
 html_title = (
     "CobraMod: A pathway-centric curation tool for contraint-based "
     + "metabolic models"
 )
 html_short_titel = "CobraMod"
+html_static_path = ["_static"]
+html_logo = "logo_2.png"
 html_theme_options = {"logo_only": True}
 
 # Add any paths that contain custom static files (such as style sheets) here,
