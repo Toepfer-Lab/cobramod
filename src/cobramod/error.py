@@ -6,6 +6,8 @@ explanation.
 """
 from cobramod.debug import debug_log
 
+from cobra import Reaction
+
 
 class NoDelimiter(Exception):
     """
@@ -144,16 +146,17 @@ class NotInRangeError(Exception):
     optimized value, is not in range.
     """
 
-    def __init__(self, reaction: str):
+    def __init__(self, reaction: Reaction):
         """
         Args:
             reaction (str): identifier of the reaction.
         """
         msg = (
-            f'Non-zero flux test for reaction "{reaction}" failed multiple '
-            "times. Flux value results lower than solver tolerance. Please "
-            "add manually reactions that can turn over the metabolites of this"
-            " reaction."
+            f'The following reaction "{reaction.id}" failed the non-zero flux '
+            "test multiple times. Flux value are below solver tolerance. "
+            "Please curate manually by adding reactions that enable turnover"
+            " of metabolites: "
+            f'{", ".join([meta.id for meta in reaction.metabolites])}'
         )
         debug_log.critical(msg)
         super().__init__(msg)

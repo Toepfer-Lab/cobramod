@@ -346,7 +346,7 @@ def test_non_zero_flux(
         )
     # Setting maximum times for recursion
     if times == len(model.reactions.get_by_id(reaction).metabolites):
-        raise NotInRangeError(reaction=reaction)
+        raise NotInRangeError(reaction=model.reactions.get_by_id(reaction))
     # answer must be reasonable
     # comparison must be using absolute values
     try:
