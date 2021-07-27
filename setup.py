@@ -5,7 +5,7 @@ This simple module sets up CobraMod for its installation through pip.
 """
 from setuptools import setup, find_packages
 
-with open(file="README.rst", mode="r") as f:
+with open(file="README.md", mode="r") as f:
     readme = "".join(f.readlines())
 
 setup(
