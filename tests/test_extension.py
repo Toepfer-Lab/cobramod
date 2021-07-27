@@ -319,17 +319,6 @@ class CreatingSequences(TestCase):
             directory=dir_data,
             show_imbalance=False,
         )
-        test_model.add_boundary(
-            metabolite=test_model.metabolites.get_by_id("CO_A_e"),
-            type="exchange",
-        )
-        add_reactions(
-            model=test_model,
-            obj="GLUTATHIONE-SYN-RXN, p",
-            directory=dir_data,
-            database="ARA",
-            replacement={},
-        )
         self.assertRaises(
             NotInRangeError,
             ex.test_non_zero_flux,

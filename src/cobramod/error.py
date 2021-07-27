@@ -6,7 +6,7 @@ explanation.
 """
 from cobramod.debug import debug_log
 
-from cobra import Reaction
+from cobra import Reaction, Metabolite
 
 
 class NoDelimiter(Exception):
@@ -149,14 +149,36 @@ class NotInRangeError(Exception):
     def __init__(self, reaction: Reaction):
         """
         Args:
-            reaction (str): identifier of the reaction.
+            reaction (Reaction): COBRApy Reaction that cannot pass the
+                non-zero flux test
         """
+        # Count the number of reactions for metabolites and check which
+        # metabolite has problem with its turnover.
+        problem = []
+        metabolite: Metabolite
+        for metabolite in reaction.metabolites:
+            reactions = [
+                reaction.id
+                for reaction in metabolite.reactions
+                if "DM_" not in reaction.id or "SK_" not in reaction.id
+            ]
+            if len(reactions) == 1:
+                problem.append(metabolite.id)
         msg = (
             f'The following reaction "{reaction.id}" failed the non-zero flux '
-            "test multiple times. Flux value are below solver tolerance. "
-            "Please curate manually by adding reactions that enable turnover"
-            " of metabolites: "
-            f'{", ".join([meta.id for meta in reaction.metabolites])}'
+            "test multiple times. Flux values are below solver tolerance. "
         )
+        if problem:
+            msg += (
+                "Please curate manually by adding reactions that enable "
+                f'turnover of metabolites: {", ".join(problem)}'
+            )
+        else:
+            msg += (
+                "It it possible that one of the metabolites participates in "
+                "a cycle. For example, NADP to NADPH and viceversa. Please "
+                "make sure that those reactions have a correct equation and "
+                "that their metabolites can be turnover."
+            )
         debug_log.critical(msg)
         super().__init__(msg)

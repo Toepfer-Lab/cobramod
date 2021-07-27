@@ -1,21 +1,5 @@
-# REDOX (Intentionally unbalanced)
 Redox_ADP_ATP_p, Redox_ADP_ATP_p | ADP_p <-> ATP_p
-Redox_Hemoprotein_c, Redox_Hemoprotein_c | Ox-NADPH-Hemoprotein-Reductases_c <-> Red-NADPH-Hemoprotein-Reductases_c
-
-Redox_NAD_NADH_p, Redox_NAD_NADH_p | NAD_p <-> NADH_p
-## Transports
 TRANS_Pi_cp, Transport Phosphate_cp | Pi_c <-> Pi_p
-TRANS_PROTON_cp, Transport PROTON | PROTON_c <-> PROTON_p
-TRANS_GLT_cp, Transport GLT | GLT_c <-> GLT_p
-TRANS_ATP_cp, Transport ATP_cp | ATP_c <-> ATP_p
-TRANS_ADP_cp, Transport ADP_cp | ADP_c <-> ADP_p
-TRANS_CARBON_cp, Transport CARBON_DIOXIDE_cp | CARBON-DIOXIDE_c <-> CARBON-DIOXIDE_p
-
 TRANS_GLUTATHIONE_cp, Transport GLUTATHIONE_cp | GLUTATHIONE_c <-> GLUTATHIONE_p
-TRANS_ACETYL_COA_cp, Transport ACETYL_COA_cp | ACETYL-COA_c <->ACETYL-COA_p
-TRANS_COA_ec, Transport COA_ec | CO-A_e <-> CO-A_c
-TRANS_COA_cp, Transport COA_cp | CO-A_c <-> CO-A_p
-TRANS_PYRUVATE_cp, Transport PYRUVATE_cp | PYRUVATE_c <-> PYRUVATE_p
 
-RXN-6161, p
-ACETALD-DEHYDROG-RXN, p
+GLUTATHIONE-SYN-RXN, p
