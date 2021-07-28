@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Modules genes
 
-This module is responsable for the creation of COBRApy Genes from the parsed
+This module is responsible for the creation of COBRApy Genes from the parsed
 data of the specific parsers.
 """
 from cobra import Reaction

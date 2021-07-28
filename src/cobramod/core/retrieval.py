@@ -120,24 +120,24 @@ def get_data(
     **kwargs,
 ) -> dict:
     """
-    Retrieves and tranform the data into a dictionary for given identifier
-    in a specific database.
+    Retrieves and transforms the data into a dictionary for the given
+    identifier from a specific database.
 
     Args:
         directory (Path): Directory to store and retrieve local data.
-        identifier (str): original identifier
+        identifier (str): Original identifier.
         database (str): Name of database. Check
             :obj:`cobramod.available_databases` for a list of names.
         debug_level (int, optional): Level of debugging. Read package logging
-            for more info. Defaults to 20
+            for more info. Defaults to 20.
 
     Keyword Arguments:
-        model_id: Exclusive for BIGG. Original identifier of model to search.
-            Some examples: "e_coli_core", "universal"
+        model_id: Exclusive for BIGG. Original identifier of the model to be
+            searched. Some examples: "e_coli_core", "universal".
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
-            specie involved. Genes will be obtained from this specie.
+            species involved. Genes will be obtained for this species.
     Returns:
-        dict: relevant data for given identifier
+        dict: Relevant data for the given identifier.
     """
     real_parser = _get_parser(database=database)
     return real_parser._retrieve_data(
@@ -158,7 +158,7 @@ def _retrieve_dict(directory: Path, target: str) -> dict:
         target (str): Pattern to search.
 
     Raises:
-        FileNotFoundError: if target cannot be found
+        FileNotFoundError: If target cannot be found.
     """
 
     try:
@@ -188,19 +188,20 @@ def _retrieve_dict(directory: Path, target: str) -> dict:
 
 def translate(directory: Path, target: str, database: str) -> str:
     """
-    Return the identifier of crossref for given target. It can be a metabolite
-    or a Reaction.
+    Return the identifier of crossref for the given target. It can be a
+    metabolite or a Reaction.
 
     Args:
         directory (Path): Path of stored data.
         target (str): Identifier to search for.
-        database (str): Pattern for name of the cross-reference, e.g CAS, BIGG.
+        database (str): Pattern for the name of the cross-reference,
+            e.g CAS, BIGG.
 
     Returns
-        str: corresponding identifier for cross-reference.
+        str: Corresponding identifier for cross-reference.
 
     Raises:
-        PatternNotFound: If target cannot be properly identified
+        PatternNotFound: If the target cannot be properly identified.
     """
     # Return parsed information
     data_dict = _retrieve_dict(directory=directory, target=target)
