@@ -153,7 +153,7 @@ class Pathway(Group):
             solution (Solution): Original COBRApy :class:`cobra.Solution` to
                 filter.
         Returns:
-            Solution: FFiltered solution containing only members of the Pathway
+            Solution: Filtered solution containing only members of the Pathway
                 class.
         """
         return Solution(

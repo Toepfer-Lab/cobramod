@@ -905,8 +905,8 @@ def create_object(
     genome: str = None,
 ) -> Union[Reaction, Metabolite, dict]:
     """
-    Creates and returns COBRApy object based on given identifier and database.
-    Identifier names will be formatted.
+    Creates and returns a COBRApy object based on given identifier and
+    database. Identifier names will be formatted.
 
     .. hint:: Hyphens will become underscores. Double hyphens become single\
     underscores.
@@ -1029,7 +1029,8 @@ def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
         obj: A Path; a list with either strings or Metabolite objects,
             or a single string. See syntax above.
         database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names. Defaults to None (This is useful for custom metabolites).
+            :obj:`cobramod.available_databases` for a list of names. Defaults
+            to None (This is useful for custom metabolites).
 
     Keyword Arguments:
         directory (Path): Path to directory where the data is located.

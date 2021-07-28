@@ -54,7 +54,7 @@ def find_missing(graph: dict):
 def find_cycle(graph: dict, key: str, visited: list):
     """
     Returns a list with the cycle in the graph or False is graph does not
-    contain a cycle. This function works recursively.
+    contain a cycle.
 
     Args:
         graph (dict): Dictionary representing the relationships between nodes.
@@ -179,10 +179,10 @@ def cut_parents(graph: dict):
 
 def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
     """
-    Returns a list with a linear path.  The function creates a sequence from
+    Returns a list with a linear path. The function creates a sequence from
     the graph dictionary until the given value is found in the sequence or in
     the given stop_list. The function does not work with graphs that contain
-    some kind of cycles, and will raise a recursion error.
+    some kind of cycle and will raise a recursion error.
 
     Args:
         graph (dict): Dictionary representing the relationships between nodes.
@@ -285,9 +285,9 @@ def get_mapping(graph: dict, stop_list: list, new: list) -> list:
     modifies given graph.
 
     Args:
-        graph (dict): graph (dict): Dictionary representing the relationships between nodes.
-            A node can have several edges, which should be represented in the
-            form of values. This will be modified.
+        graph (dict): graph (dict): Dictionary representing the relationships
+            between nodes. A node can have several edges, which should be
+            represented in the form of values. This will be modified.
         stop_list (list): Elements that cause the function to stop when found.
         new (list): List with new mapping. Must be empty when called for
             the first time.

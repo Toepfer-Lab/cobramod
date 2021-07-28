@@ -114,7 +114,7 @@ def _retrieve_dict(directory: Path, target: str) -> dict:
         target (str): Pattern to search.
 
     Raises:
-        FileNotFoundError: if target cannot be found
+        FileNotFoundError: If target cannot be found.
     """
 
     try:

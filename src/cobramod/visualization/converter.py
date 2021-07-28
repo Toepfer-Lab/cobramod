@@ -8,7 +8,7 @@ The main class of this module is
 :class:`cobramod.visualization.converter.JsonDictionary`. This class is able to
 parse and store data as JSON objects. To check the attributes for each
 JSON object, please read the documentation of
-:mod:`cobramod.visualization.items`
+:mod:`cobramod.visualization.items`.
 
 Important methods:
 
@@ -204,12 +204,12 @@ class JsonDictionary(UserDict):
 
     Keyword Arguments:
         head (dict, optional): General information of the JSON. Keys
-            included: map_name, map_id, map_description, homepage, schema
+            included: map_name, map_id, map_description, homepage, schema.
         reactions (dict, optional): Dictionary with multiple
             :class:`cobramod.visualization.items.Reaction` where the key is the
             number of the reaction and the value the object. Defaults to empty
-            dictionary
-            nodes (PairDictionary): Dictionary with multiple
+            dictionary.
+        nodes (PairDictionary): Dictionary with multiple
             :class:`cobramod.visualization.items.Node` where the key is the
             number of the Node and the value the corresponding object. Defaults
             to empty dictionary.
@@ -219,10 +219,10 @@ class JsonDictionary(UserDict):
             white area in Escher.
 
     Attributes:
-        CANVAS_WIDTH (float): Width for the canvas. Defaults to 1500
-        CANVAS_HEIGHT (float): Height for the canvas. Defaults to 1500
-        R_WIDTH (float): Width of a reaction. Defaults to 350
-        R_HEIGHT (float): Height of a reaction. Defaults to 270
+        CANVAS_WIDTH (float): Width for the canvas. Defaults to 1500.
+        CANVAS_HEIGHT (float): Height for the canvas. Defaults to 1500.
+        R_WIDTH (float): Width of a reaction. Defaults to 350.
+        R_HEIGHT (float): Height of a reaction. Defaults to 270.
         reaction_data (Dict[str, float]): Dictionary with the solution to be
             visualized. Default to empty dictionary.
     """
@@ -323,7 +323,7 @@ class JsonDictionary(UserDict):
         """
         Return a set for the keys of either the reactions, the nodes or
         segments for all reactions. Options for item: "nodes", "segments",
-        "reactions"
+        "reactions".
         """
         if item == "segments":
             numbers = set()
@@ -345,7 +345,7 @@ class JsonDictionary(UserDict):
         """
         Returns the largest number of the keys from either reactions, nodes, or
         segments from each reaction. Options for item: "nodes", "segments",
-        "reactions"
+        "reactions".
         """
         # Return 0 for first item, otherwise the longest number + 1
         numbers = self._get_set(item=item)
@@ -405,7 +405,7 @@ class JsonDictionary(UserDict):
             x (float): Position in x-axis for the node.
             y (float): Position in y-axis for the node.
             node_type (str): Type of marker. Options: 'midmarker' or
-                'multimarker'
+                'multimarker'.
         """
         number = str(self._get_last_number(item="nodes"))
         self.data["nodes"][number] = Node(node_type=node_type, x=x, y=y)
@@ -482,7 +482,7 @@ class JsonDictionary(UserDict):
             reactions (list): List with reaction identifiers.
 
         Returns:
-            dict: Dictionary with products for given reactions
+            dict: Dictionary with products for given reactions.
         """
         previous = dict()
         # Find in class for the Reaction object to find their metabolites
@@ -510,13 +510,13 @@ class JsonDictionary(UserDict):
         found in given dictionary with products.
 
         Args:
-            metabolite (str): Identifier of the metabolite
+            metabolite (str): Identifier of the metabolite.
             products (dict): Dictionary with reactions and their corresponding
                 products as values.
 
         Returns:
             tuple: the node_number for the metabolite and the name of the
-                involved reaction
+                involved reaction.
         """
         # If nothing is found, empty strings
         node_number = str()
@@ -544,10 +544,10 @@ class JsonDictionary(UserDict):
 
         Args:
             metabolite_dict (dict): Dictionary with metabolites and their
-                coefficients
+                coefficients.
             reaction (Reaction): Reaction that will include the metabolite.
-            top_edge (float): Position for the top edge of the reaction-box
-            left_edge (float): Position for the left edge of the reaction-box
+            top_edge (float): Position for the top edge of the reaction-box.
+            left_edge (float): Position for the left edge of the reaction-box.
             vertical (bool): Defines if metabolite should be map vertically.
         """
         # Obtaining position of reaction
@@ -664,8 +664,8 @@ class JsonDictionary(UserDict):
 
         Args:
             metabolite_dict (dict): Dictionary with metabolites and their
-                coefficients
-            reaction (Reaction): Reaction to extend
+                coefficients.
+            reaction (Reaction): Reaction to extend.
         """
         # Defining identifier, the last number of segments and the markers
         identifier = reaction["bigg_id"]
@@ -723,11 +723,11 @@ class JsonDictionary(UserDict):
 
         Args:
             string (str): Reaction string to be parsed.
-            identifier (str): Identifier for the reaction
+            identifier (str): Identifier for the reaction.
             row (int): Row number from the visualization matrix.
             column (int): Column number of the visualization matrix.
-            name (str): The name of the reaction
-            vertical (bool): If reaction should be displayed vertically
+            name (str): The name of the reaction.
+            vertical (bool): If reaction should be displayed vertically.
         """
         # Add general data
         self._overview[identifier] = {
