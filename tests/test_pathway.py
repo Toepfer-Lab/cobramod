@@ -297,6 +297,20 @@ class TestGroup(TestCase):
         self.assertDictEqual(d1=test_graph, d2=test_pathway.graph)
         test_pathway.visualize()
         sleep(1)
+        # CASE 4: Using a Group
+        test_model = textbook_biocyc.copy()
+
+        test_group = Group(id="curated_pathway")
+        for reaction in ("GLCpts", "G6PDH2r", "PGL", "GND"):
+            test_group.add_members([test_model.reactions.get_by_id(reaction)])
+        test_model.add_groups([test_group])
+
+        # Conversion to a Pathway
+        pt.model_convert(model=test_model)
+        test_model.groups.get_by_id("curated_pathway")
+        test_model.groups.get_by_id("curated_pathway").vertical = True
+        test_model.groups.get_by_id("curated_pathway").visualize()
+        sleep(1)
 
     def test_modify_graph(self):
         test_model = textbook_kegg.copy()
