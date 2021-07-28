@@ -6,7 +6,8 @@ a model and the corresponding test that comes with it.
 
 Most important functions:
 - add_pathway: Adds a pathway or multiple reactions into a model.
-- test_non_zero_flux: Checks that the given reaction in a model is active and gives a non-zero flux.
+- test_non_zero_flux: Checks that the given reaction in a model is active and
+    gives a non-zero flux.
 """
 from contextlib import suppress
 from pathlib import Path

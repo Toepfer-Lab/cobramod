@@ -60,7 +60,8 @@ def find_cycle(graph: dict, key: str, visited: list):
         graph (dict): Dictionary representing the relationships between nodes.
             A node can have several edges, which should be represented in the
             form of values.
-         key (str): Key out of the dictionary, from which the search is started.
+         key (str): Key out of the dictionary, from which the search is
+            started.
          visited (list): List with keys already visited.
 
     Returns:
