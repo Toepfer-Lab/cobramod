@@ -101,8 +101,27 @@ class CreatingSequences(TestCase):
         self.assertRaises(UnbalancedReaction, next, test_list)
 
     def test__find_next_demand(self):
-        # FIXME: add cases
-        pass
+        # CASE 1: direction right to left
+        test_model = Model(0)
+        add_reactions(
+            model=test_model,
+            obj="1.8.4.9-RXN, c",
+            directory=dir_data,
+            database="ARA",
+            replacement={},
+        )
+        metabolite = ex._find_next_demand(
+            model=test_model, reaction_id="1.8.4.9_RXN_c"
+        )
+        self.assertIn(
+            member=metabolite,
+            container=[
+                meta.id
+                for meta in test_model.reactions.get_by_id(
+                    "1.8.4.9_RXN_c"
+                ).reactants
+            ],
+        )
 
     def test__verify_boundary(self):
         # CASE 0: Testing ignore list.
