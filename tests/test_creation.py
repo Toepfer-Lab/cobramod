@@ -444,6 +444,7 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
             stop_imbalance=False,
             genome=None,
+            model_id=None,
         )
         self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
         self.assertCountEqual(
@@ -462,6 +463,7 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
             stop_imbalance=False,
             genome=None,
+            model_id=None,
         )
         # WATER
         self.assertIn(
@@ -719,6 +721,19 @@ class ComplexFunctions(TestCase):
                 member=item,
                 container=[member.id for member in test_model.metabolites],
             )
+        # CASE 6: CASE BIGG
+        test_model = Model(0)
+        cr.add_metabolites(
+            model=test_model,
+            obj="acald, c",
+            directory=dir_data,
+            database="BIGG",
+            model_id="universal",
+        )
+        self.assertIn(
+            member="acald_c",
+            container=[member.id for member in test_model.metabolites],
+        )
 
     def test_add_reactions(self):
         # CASE 0: Missing arguments.
@@ -728,7 +743,7 @@ class ComplexFunctions(TestCase):
             model=Model(0),
             obj=dir_input.joinpath("reactions_normal.txt"),
         )
-        # CAsE 1: From Path
+        # CASE 1: From Path
         test_model = Model(0)
         cr.add_reactions(
             model=test_model,
@@ -824,6 +839,38 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
+        # CASE 5: BIGG
+        test_model = Model(0)
+        cr.add_reactions(
+            model=test_model,
+            obj="ACALDt, c",
+            directory=dir_data,
+            database="BIGG",
+            model_id="universal",
+        )
+        self.assertIn(
+            member="ACALDt_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        # CASE 6: Duplicate element
+        test_model = textbook_kegg
+        cr.add_reactions(
+            model=test_model,
+            obj="R08549, c",
+            directory=dir_data,
+            database="KEGG",
+        )
+        cr.add_reactions(
+            model=test_model,
+            obj="AKGDH, c",
+            directory=dir_data,
+            database="BIGG",
+            model_id="universal",
+        )
+        self.assertNotIn(
+            member="AKGDH_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
 
 
 if __name__ == "__main__":

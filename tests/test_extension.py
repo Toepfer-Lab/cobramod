@@ -333,7 +333,13 @@ class CreatingSequences(TestCase):
         test_model = textbook_biocyc.copy()
         add_reactions(
             model=test_model,
-            obj=dir_input.joinpath("test_multi_reactions.txt"),
+            obj=[
+                "Redox_ADP_ATP_p, Redox_ADP_ATP_p | ADP_p <-> ATP_p",
+                "TRANS_Pi_cp, Transport Phosphate_cp | Pi_c <-> Pi_p",
+                "TRANS_GLUTATHIONE_cp, Transport GLUTATHIONE_cp |"
+                + " GLUTATHIONE_c <-> GLUTATHIONE_p",
+                "GLUTATHIONE-SYN-RXN, p",
+            ],
             database="ARA",
             directory=dir_data,
             show_imbalance=False,

@@ -10,7 +10,7 @@ with open(file="README.md", mode="r") as f:
 
 setup(
     name="cobramod",
-    version="0.5.5-alpha.1",
+    version="1.0.0",
     description="Python package for pathway-centric modification and extension"
     + " of genome-scale metabolic networks",
     long_description=readme,
@@ -40,7 +40,8 @@ setup(
         "genome-scale metabolic model",
         "constraint-based modelling",
         "COBRApy",
-        "Escher" "metabolic model curation",
+        "Escher",
+        "metabolic model curation",
     ],
     classifiers=[
         "Intended Audience :: Science/Research",

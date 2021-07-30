@@ -1,0 +1,172 @@
+ENTRY       C00091                      Compound
+NAME        Succinyl-CoA;
+            Succinyl coenzyme A
+FORMULA     C25H40N7O19P3S
+EXACT_MASS  867.1313
+MOL_WEIGHT  867.6069
+REACTION    R00265 R00405 R00406 R00407 R00410 R00432 R00727 R00829 
+            R00830 R00832 R00833 R01197 R01559 R01777 R01780 R02084 
+            R02407 R02570 R02990 R03154 R04365 R05587 R05588 R06904 
+            R06908 R08549 R09280 R10343 R10640 R10641 R10904 R11773
+PATHWAY     map00020  Citrate cycle (TCA cycle)
+            map00280  Valine, leucine and isoleucine degradation
+            map00360  Phenylalanine metabolism
+            map00362  Benzoate degradation
+            map00623  Toluene degradation
+            map00626  Naphthalene degradation
+            map00630  Glyoxylate and dicarboxylate metabolism
+            map00640  Propanoate metabolism
+            map00650  Butanoate metabolism
+            map00720  Carbon fixation pathways in prokaryotes
+            map01060  Biosynthesis of plant secondary metabolites
+            map01061  Biosynthesis of phenylpropanoids
+            map01063  Biosynthesis of alkaloids derived from shikimate pathway
+            map01064  Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid
+            map01065  Biosynthesis of alkaloids derived from histidine and purine
+            map01066  Biosynthesis of alkaloids derived from terpenoid and polyketide
+            map01070  Biosynthesis of plant hormones
+            map01100  Metabolic pathways
+            map01110  Biosynthesis of secondary metabolites
+            map01120  Microbial metabolism in diverse environments
+            map01200  Carbon metabolism
+            map01220  Degradation of aromatic compounds
+MODULE      M00009  Citrate cycle (TCA cycle, Krebs cycle)
+            M00011  Citrate cycle, second carbon oxidation, 2-oxoglutarate => oxaloacetate
+            M00173  Reductive citrate cycle (Arnon-Buchanan cycle)
+            M00373  Ethylmalonyl pathway
+            M00374  Dicarboxylate-hydroxybutyrate cycle
+            M00375  Hydroxypropionate-hydroxybutylate cycle
+            M00376  3-Hydroxypropionate bi-cycle
+            M00620  Incomplete reductive citrate cycle, acetyl-CoA => oxoglutarate
+            M00741  Propanoyl-CoA metabolism, propanoyl-CoA => succinyl-CoA
+            M00878  Phenylacetate degradation, phenylaxetate => acetyl-CoA/succinyl-CoA
+ENZYME      1.2.1.52        1.2.1.76        1.2.1.105       1.2.7.3         
+            1.2.7.11        2.3.1.16        2.3.1.37        2.3.1.46        
+            2.3.1.61        2.3.1.109       2.3.1.117       2.3.1.174       
+            2.3.1.-         2.8.3.2         2.8.3.5         2.8.3.6         
+            2.8.3.13        2.8.3.15        2.8.3.18        2.8.3.20        
+            2.8.3.22        2.8.3.26        2.8.3.-         3.1.2.3         
+            5.4.99.2        6.2.1.4         6.2.1.5
+DBLINKS     CAS: 604-98-8
+            PubChem: 3391
+            ChEBI: 15380
+            LIPIDMAPS: LMFA07050370
+            KNApSAcK: C00019546
+            PDB-CCD: SCA
+            3DMET: B04629
+            NIKKAJI: J252.493G
+ATOM        55
+            1   C1b C     6.7424  -19.8100
+            2   C5a C     7.9549  -19.1100
+            3   S2a S     9.1673  -19.8100
+            4   C1b C    10.3797  -19.1100
+            5   C1b C    11.5922  -19.8100
+            6   N1b N    12.8046  -19.1100
+            7   C5a C    14.0170  -19.8100
+            8   C1b C    15.2295  -19.1100
+            9   C1b C    16.4419  -19.8100
+            10  N1b N    17.6544  -19.1100
+            11  C5a C    18.8668  -19.8100
+            12  C1c C    20.0792  -19.1100
+            13  C1d C    21.2917  -19.8100
+            14  C1b C    22.5041  -19.1100
+            15  O2b O    23.7165  -19.8100
+            16  O5a O     7.9549  -17.7102
+            17  O5a O    14.0170  -21.2099
+            18  O5a O    18.8668  -21.2096
+            19  O1a O    20.0792  -17.7100
+            20  C1a C    21.2917  -18.4100
+            21  C1a C    21.2917  -21.2100
+            22  P1b P    25.1165  -19.8100
+            23  O1c O    26.5165  -19.8100
+            24  O1c O    25.1165  -21.2100
+            25  C1y C    18.6200  -14.8400
+            26  C1y C    20.0200  -14.8400
+            27  C1y C    20.4526  -13.5085
+            28  O2x O    19.3200  -12.6856
+            29  C1y C    18.1874  -13.5085
+            30  C1b C    21.7722  -13.0797
+            31  O1a O    17.7971  -15.9726
+            32  O2b O    20.8429  -15.9726
+            33  P1b P    22.2429  -15.9726
+            34  O1c O    22.2429  -14.5726
+            35  O1c O    23.6429  -15.9726
+            36  O1c O    22.2429  -17.3726
+            37  C8y C    14.0700  -11.6900
+            38  C8y C    14.0700  -13.0900
+            39  N4y N    16.4949  -13.0900
+            40  C8x C    16.4949  -11.6900
+            41  N5x N    15.2824  -10.9900
+            42  C8y C    12.8576  -10.9900
+            43  N5x N    11.6451  -11.6900
+            44  C8x C    11.6451  -13.0900
+            45  N5x N    12.8576  -13.7900
+            46  N1a N    12.8576   -9.5902
+            47  O2b O    23.7545  -13.5120
+            48  P1b P    25.1545  -13.5120
+            49  O1c O    25.1545  -12.1120
+            50  O1c O    26.5545  -13.5120
+            51  O2c O    25.1545  -16.7320
+            52  C1b C     5.5133  -19.1002
+            53  C6a C     4.3092  -19.7953
+            54  O6a O     3.1263  -19.1122
+            55  O6a O     4.3088  -21.2097
+BOND        57
+            1     1   2 1
+            2     2   3 1
+            3     3   4 1
+            4     4   5 1
+            5     5   6 1
+            6     6   7 1
+            7     7   8 1
+            8     8   9 1
+            9     9  10 1
+            10   10  11 1
+            11   11  12 1
+            12   12  13 1
+            13   13  14 1
+            14   14  15 1
+            15    2  16 2
+            16    7  17 2
+            17   11  18 2
+            18   12  19 1 #Down
+            19   13  20 1
+            20   13  21 1
+            21   15  22 1
+            22   22  23 2
+            23   22  24 1
+            24   25  26 1
+            25   26  27 1
+            26   27  28 1
+            27   28  29 1
+            28   25  29 1
+            29   27  30 1 #Down
+            30   25  31 1 #Up
+            31   26  32 1 #Up
+            32   32  33 1
+            33   33  34 1
+            34   33  35 1
+            35   33  36 2
+            36   37  38 2
+            37   38  39 1
+            38   39  40 1
+            39   40  41 2
+            40   37  41 1
+            41   37  42 1
+            42   42  43 2
+            43   43  44 1
+            44   44  45 2
+            45   38  45 1
+            46   42  46 1
+            47   29  39 1 #Down
+            48   30  47 1
+            49   47  48 1
+            50   48  49 1
+            51   48  50 2
+            52   48  51 1
+            53   22  51 1
+            54    1  52 1
+            55   52  53 1
+            56   53  54 1
+            57   53  55 2
+///

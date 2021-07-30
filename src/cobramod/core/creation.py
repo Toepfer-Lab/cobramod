@@ -421,6 +421,7 @@ def _obtain_reaction(
     stop_imbalance: bool,
     show_imbalance: bool,
     genome: Optional[str],
+    model_id: Optional[str],
 ):
     """
     Return Reaction object from local directory or given database. The method
@@ -441,6 +442,8 @@ def _obtain_reaction(
         genome (str): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained from this specie.
             List available at https://www.genome.jp/kegg/catalog/org_list.html
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model.
     """
     # Obtain data
     data_dict = get_data(
@@ -449,6 +452,7 @@ def _obtain_reaction(
         database=database,
         debug_level=10,
         genome=genome,
+        model_id=model_id,
     )
     # Transform it
     reaction = _get_reaction(
@@ -460,6 +464,7 @@ def _obtain_reaction(
         model=model,
         show_imbalance=show_imbalance,
         stop_imbalance=stop_imbalance,
+        model_id=model_id,
     )
     return reaction
 
@@ -662,6 +667,7 @@ def _convert_string_reaction(
     show_imbalance: bool,
     replacement: dict = {},
     genome: str = None,
+    model_id: str = None,
 ) -> Reaction:
     """
     Returns a Reaction from string. It can be either custom, or the identifier
@@ -701,6 +707,8 @@ def _convert_string_reaction(
         show_imbalance (bool): If unbalanced reaction is found, show output.
         genome (str): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained from this specie.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model.
     """
     try:
         # Create custom reaction
@@ -729,6 +737,7 @@ def _convert_string_reaction(
             genome=genome,
             stop_imbalance=stop_imbalance,
             show_imbalance=show_imbalance,
+            model_id=model_id,
         )
     return new_reaction
 
@@ -779,6 +788,8 @@ def _get_file_reactions(
             Values are the new identifiers.
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
             specie involved. Genes will be obtained from this specie.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model.
 
     Raises:
         FileNotFoundError: if file does not exists
@@ -1067,7 +1078,7 @@ def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
             obj, str
         ):
             # These variable will raise KeyError if no kwargs are passed.
-            directory = kwargs["directory"]
+            # directory = kwargs["directory"]
             # Make a list
             if isinstance(obj, str):
                 obj = [obj]
@@ -1076,8 +1087,9 @@ def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
                 _convert_string_metabolite(
                     model=model,
                     line=line,
-                    directory=directory,
+                    # directory=directory,
                     database=database,
+                    **kwargs,
                 )
                 for line in obj
             ]
@@ -1179,6 +1191,7 @@ def add_reactions(
             # Defaults
             replacement = kwargs.pop("replacement", dict())
             genome = kwargs.pop("genome", None)
+            model_id = kwargs.pop("model_id", None)
             new_reactions = _get_file_reactions(
                 model=model,
                 filename=obj,
@@ -1188,6 +1201,7 @@ def add_reactions(
                 stop_imbalance=stop_imbalance,
                 show_imbalance=show_imbalance,
                 genome=genome,
+                model_id=model_id,
             )
         # In case of single Reaction
         elif isinstance(obj, Reaction):
@@ -1203,6 +1217,7 @@ def add_reactions(
             # Defaults
             replacement = kwargs.pop("replacement", dict())
             genome = kwargs.pop("genome", None)
+            model_id = kwargs.pop("model_id", None)
             # Make a list
             if isinstance(obj, str):
                 obj = [obj]
@@ -1216,6 +1231,7 @@ def add_reactions(
                     stop_imbalance=stop_imbalance,
                     show_imbalance=show_imbalance,
                     genome=genome,
+                    model_id=model_id,
                 )
                 for line in obj
             ]
