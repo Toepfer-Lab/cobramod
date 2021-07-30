@@ -1,4 +1,4 @@
-name: Test build and publish Cobramod to TestPyPI
+name: Test build and publish Cobramod to PyPI
 on:
   workflow_dispatch:
 
@@ -42,7 +42,7 @@ jobs:
     needs: [lint-format, types]
     strategy:
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-latest ]
         python-version: [ 3.7, 3.8, 3.9 ]
     runs-on: ${{ matrix.os}}
 
