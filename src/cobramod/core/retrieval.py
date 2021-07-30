@@ -30,10 +30,10 @@ class Databases(object):
         self.msg = (
             "CobraMod supports Biocyc, the Plant Metabolic Network (PMN), KEGG"
             " and BiGG Models repository. Biocyc includes around 18.000 "
-            "sub-databases. The complete list for BioCyc can be found in "
+            "sub-databases and a complete list for BioCyc can be found at "
             "'https://biocyc.org/biocyc-pgdb-list.shtml'. "
             "The database-specific identifiers can be found in the URL of the "
-            "information to retrieve. e.g. diphosphate:"
+            'respective data. For instance, for "diphosphate" this is:'
         )
 
     def __repr__(self):

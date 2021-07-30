@@ -5,12 +5,12 @@ This simple module sets up CobraMod for its installation through pip.
 """
 from setuptools import setup, find_packages
 
-with open(file="README.rst", mode="r") as f:
+with open(file="README.md", mode="r") as f:
     readme = "".join(f.readlines())
 
 setup(
     name="cobramod",
-    version="0.5.4-alpha.2",
+    version="1.0.0",
     description="Python package for pathway-centric modification and extension"
     + " of genome-scale metabolic networks",
     long_description=readme,
@@ -40,7 +40,8 @@ setup(
         "genome-scale metabolic model",
         "constraint-based modelling",
         "COBRApy",
-        "Escher" "metabolic model curation",
+        "Escher",
+        "metabolic model curation",
     ],
     classifiers=[
         "Intended Audience :: Science/Research",

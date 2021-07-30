@@ -9,10 +9,13 @@ from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
 
+from cobra import __version__
+
 from cobramod.debug import debug_log
 from cobramod.error import GraphKeyError
 from cobramod.test import textbook_kegg
 import cobramod.core.graph as gr
+from cobramod import __version__ as cobramod_version
 
 # Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
@@ -21,6 +24,9 @@ dir_data = Path(__file__).resolve().parent.joinpath("data")
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
+
+print(f"CobraMod version: {cobramod_version}")
+print(f"COBRApy version: {__version__}")
 
 
 class GraphTesting(TestCase):

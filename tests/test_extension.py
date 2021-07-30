@@ -101,8 +101,27 @@ class CreatingSequences(TestCase):
         self.assertRaises(UnbalancedReaction, next, test_list)
 
     def test__find_next_demand(self):
-        # FIXME: add cases
-        pass
+        # CASE 1: direction right to left
+        test_model = Model(0)
+        add_reactions(
+            model=test_model,
+            obj="1.8.4.9-RXN, c",
+            directory=dir_data,
+            database="ARA",
+            replacement={},
+        )
+        metabolite = ex._find_next_demand(
+            model=test_model, reaction_id="1.8.4.9_RXN_c"
+        )
+        self.assertIn(
+            member=metabolite,
+            container=[
+                meta.id
+                for meta in test_model.reactions.get_by_id(
+                    "1.8.4.9_RXN_c"
+                ).reactants
+            ],
+        )
 
     def test__verify_boundary(self):
         # CASE 0: Testing ignore list.
@@ -314,21 +333,16 @@ class CreatingSequences(TestCase):
         test_model = textbook_biocyc.copy()
         add_reactions(
             model=test_model,
-            obj=dir_input.joinpath("test_multi_reactions.txt"),
+            obj=[
+                "Redox_ADP_ATP_p, Redox_ADP_ATP_p | ADP_p <-> ATP_p",
+                "TRANS_Pi_cp, Transport Phosphate_cp | Pi_c <-> Pi_p",
+                "TRANS_GLUTATHIONE_cp, Transport GLUTATHIONE_cp |"
+                + " GLUTATHIONE_c <-> GLUTATHIONE_p",
+                "GLUTATHIONE-SYN-RXN, p",
+            ],
             database="ARA",
             directory=dir_data,
             show_imbalance=False,
-        )
-        test_model.add_boundary(
-            metabolite=test_model.metabolites.get_by_id("CO_A_e"),
-            type="exchange",
-        )
-        add_reactions(
-            model=test_model,
-            obj="GLUTATHIONE-SYN-RXN, p",
-            directory=dir_data,
-            database="ARA",
-            replacement={},
         )
         self.assertRaises(
             NotInRangeError,

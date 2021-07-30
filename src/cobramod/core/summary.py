@@ -318,11 +318,7 @@ class DataModel:
             file.writelines(line + "\n" for line in output)
 
 
-def summary(
-    model: Model,
-    original: DataModel,
-    filename: Path = None,
-):
+def summary(model: Model, original: DataModel, filename: Path = None):
     """
     Produces the short summary and another one in the defined format.
 
@@ -359,7 +355,7 @@ def summary(
     # output a short summary
     print(
         "{:13} {:^7} | {:^7} {:10}".format(
-            "Quantity of", "new", "removed", "entities in"
+            "Number of", "new", "removed", "entities in"
         )
         + "\n"
         + "*"

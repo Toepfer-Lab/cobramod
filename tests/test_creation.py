@@ -13,7 +13,7 @@ from logging import DEBUG
 from pathlib import Path
 from unittest import main, TestCase
 
-from cobra import Metabolite, Reaction, Model
+from cobra import Metabolite, Reaction, Model, __version__
 from requests import HTTPError
 
 from cobramod.core import creation as cr
@@ -21,6 +21,7 @@ from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
 from cobramod.error import WrongSyntax, NoDelimiter
 from cobramod.test import textbook_kegg
+from cobramod import __version__ as cobramod_version
 
 # Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
@@ -30,6 +31,8 @@ dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
+print(f"CobraMod version: {cobramod_version}")
+print(f"COBRApy version: {__version__}")
 
 
 class SimpleFunctions(TestCase):
@@ -444,6 +447,7 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
             stop_imbalance=False,
             genome=None,
+            model_id=None,
         )
         self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
         self.assertCountEqual(
@@ -462,6 +466,7 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
             stop_imbalance=False,
             genome=None,
+            model_id=None,
         )
         # WATER
         self.assertIn(
@@ -719,6 +724,19 @@ class ComplexFunctions(TestCase):
                 member=item,
                 container=[member.id for member in test_model.metabolites],
             )
+        # CASE 6: CASE BIGG
+        test_model = Model(0)
+        cr.add_metabolites(
+            model=test_model,
+            obj="acald, c",
+            directory=dir_data,
+            database="BIGG",
+            model_id="universal",
+        )
+        self.assertIn(
+            member="acald_c",
+            container=[member.id for member in test_model.metabolites],
+        )
 
     def test_add_reactions(self):
         # CASE 0: Missing arguments.
@@ -728,7 +746,7 @@ class ComplexFunctions(TestCase):
             model=Model(0),
             obj=dir_input.joinpath("reactions_normal.txt"),
         )
-        # CAsE 1: From Path
+        # CASE 1: From Path
         test_model = Model(0)
         cr.add_reactions(
             model=test_model,
@@ -824,6 +842,38 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
+        # CASE 5: BIGG
+        test_model = Model(0)
+        cr.add_reactions(
+            model=test_model,
+            obj="ACALDt, c",
+            directory=dir_data,
+            database="BIGG",
+            model_id="universal",
+        )
+        self.assertIn(
+            member="ACALDt_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        # CASE 6: Duplicate element
+        test_model = textbook_kegg
+        cr.add_reactions(
+            model=test_model,
+            obj="R08549, c",
+            directory=dir_data,
+            database="KEGG",
+        )
+        cr.add_reactions(
+            model=test_model,
+            obj="AKGDH, c",
+            directory=dir_data,
+            database="BIGG",
+            model_id="universal",
+        )
+        self.assertNotIn(
+            member="AKGDH_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
 
 
 if __name__ == "__main__":
