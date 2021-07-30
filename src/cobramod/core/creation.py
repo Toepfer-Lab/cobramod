@@ -3,12 +3,12 @@
 
 This module handles the creation of COBRApy's objects
 :class:`cobra.core.metabolite.Metabolite` and
-:class:`cobra.core.reaction.Reaction`. Dictionaries with the data from given
-database is used. Important functions are:
+:class:`cobra.core.reaction.Reaction`. Dictionaries containing the data of a
+given database are used. Important functions are:
 
 - create_object: Creates and Returns a COBRApy object.
 - add_reactions: Add reactions from multiple sources.
-- add_metabolites: Add reactions from multiple sources
+- add_metabolites: Add reactions from multiple sources.
 
 These functions are a mix of multiple simpler functions:
 
@@ -920,14 +920,14 @@ def create_object(
     genome: str = None,
 ) -> Union[Reaction, Metabolite, dict]:
     """
-    Creates and returns COBRApy object based on given identifier and database.
-    Identifier names will be formatted.
+    Creates and returns a COBRApy object based on given identifier and
+    database. Identifier names will be formatted.
 
     .. hint:: Hyphens will become underscores. Double hyphens become single\
     underscores.
 
     Args:
-        identifier (str): Original identifier for database
+        identifier (str): Original identifier of the database.
         directory (Path): Path to directory where data is stored.
         database (str): Name of database. Check
             :obj:`cobramod.available_databases` for a list of names.
@@ -938,19 +938,20 @@ def create_object(
             pathways.
 
     Arguments for reactions:
-        stop_imbalance (bool, optional): If unbalanced reaction is found, stop
-            process. Defaults to False.
-        show_imbalance (bool, optional): If unbalanced reaction is found, show
-            output. Defaults to True.
+        stop_imbalance (bool, optional): If an unbalanced reaction is found,
+            stop the process. Defaults to False.
+        show_imbalance (bool, optional): If an unbalanced reaction is found,
+            print output. Defaults to True.
         model (Model, optional): Model to add search for translated metabolites
-            or reactions. Defaults to a empty model.
+            or reactions. Defaults to an empty model.
+
 
     Special arguments for databases:
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
-            specified model. Pathway are not available.
+            specified model. Pathways are not available.
             Defaults to: "universal"
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
-            specie involved. Genes will be obtained for this specie.
+            species involved. Genes will be obtained for this species.
             List available at https://www.genome.jp/kegg/catalog/org_list.html
 
     Returns:
@@ -1039,7 +1040,7 @@ def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
      - List[str]: A list with multiple str with the mentioned syntax.
 
     Args:
-        model (Model): Model to expand and search for metabolites.
+        model (Model): Model to be expanded and searched for metabolites.
         obj: A Path; a list with either strings or Metabolite objects,
             or a single string. See syntax above.
         database (str): Name of database. Check
@@ -1047,10 +1048,10 @@ def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
             to None (This is useful for custom metabolites).
 
     Keyword Arguments:
-        directory (Path): Path to directory where data is located.
+        directory (Path): Path to directory where the data is located.
 
     Raises:
-        WrongSyntax (from str): If syntax is not followed correctly as
+        WrongSyntax (from str): If the syntax is not followed correctly as
             mentioned above.
         ValueError: If Keyword Arguments are missing.
         FileNotFoundError (from Path): if file does not exists
@@ -1138,11 +1139,11 @@ def add_reactions(
 ):
     """Adds given object into the model. The options are:
 
-     - Path: A file with components. E. g:
+     - Path: A file with components. E. g. :
         Path.cwd().joinpath("file_with_names.txt")
      - List[Reactions]: A list with regular Reactions
      - str: Either the identifier with its corresponding compartment or a
-     string with the whole components. This appplies for the Path option. E.g:
+     string with all components. This applies for the Path option. E.g. :
 
         :code:`reaction_identifier, compartment`
 
@@ -1154,7 +1155,7 @@ def add_reactions(
         Identifiers of metabolites have to end with an underscore and a
         compartment:
 
-            E.g **`4 OXYGEN-MOLECULE_c`**
+            E.g. **`4 OXYGEN-MOLECULE_c`**
 
      - List[str]: A list with multiple str with the mentioned syntax.
 
@@ -1165,23 +1166,24 @@ def add_reactions(
         database (str): Name of database. Check
             :obj:`cobramod.available_databases` for a list of names. Defaults
             to None (Useful for custom reactions).
-        stop_imbalance (bool): If unbalanced reaction is found, stop process.
-            Defaults to False.
-        show_imbalance (bool): If unbalanced reaction is found, show output.
-            Defaults to True.
+        stop_imbalance (bool): If an unbalanced reaction is found,
+            stop the process. Defaults to False.
+        show_imbalance (bool): If an unbalanced reaction is found, print
+            output. Defaults to True.
 
     Keyword Arguments:
         directory (Path): Path to directory where data is located.
-        replacement (dict): original identifiers to be replaced.
+        replacement (dict): Original identifiers to be replaced.
             Values are the new identifiers. Defaults to {}.
-        genome (str): Exclusive for KEGG. Abbreviation for the
-            specie involved. Genes will be obtained from this specie.
+        genome (str): Exclusive for KEGG. Abbreviation for the species
+            involved. Genes will be obtained for this species.
 
     Raises:
-        WrongSyntax (from str): If syntax is not followed correctly as
+        WrongSyntax (from str): If the syntax is not followed correctly as
             mentioned above.
         ValueError: If Keyword Arguments are missing.
-        FileNotFoundError (from Path): if file does not exists
+        FileNotFoundError (from Path): If the file does not exists.
+
     """
     try:
         # In case of a Path

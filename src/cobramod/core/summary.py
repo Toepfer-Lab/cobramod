@@ -16,9 +16,9 @@ from cobramod.debug import debug_log
 
 class DataModel:
     """
-    A class that can create a snapshot of a model and generate the summary
-    based on those snapshots. Contains methods to identify differences
-    and save them in multiple formats.
+    A class that can create a snapshot of a model and generates the summary
+    based on those snapshots. Contains methods to identify differences and
+    save them in multiple formats.
     """
 
     def __init__(self, lists: Dict[str, list]):
@@ -157,9 +157,9 @@ class DataModel:
         Intended for internal use only.
 
         Args:
-            model (Model): model for the extraction of model id and name.
+            model (Model): Model for the extraction of model id and name.
             additions (DataModel): DataModel that contains the new entities
-                in the model
+                in the model.
             deletions (DataModel): DataModel that contains the removed entities
                 in the model.
         """
@@ -244,9 +244,9 @@ class DataModel:
 
         Args:
             path (Path): Location where the file is to be saved.
-            model (Model): model for the extraction of model id and name.
+            model (Model): Model for the extraction of model id and name.
             additions (DataModel): DataModel that contains the new entities in
-                the model
+                the model.
             deletions (DataModel): DataModel that contains the remote entities
                 in the model.
         """
@@ -258,18 +258,18 @@ class DataModel:
         self, path, model: Model = None, additions=None, deletions=None
     ):
         """
-        Method to save a DataModel as a csv file. Can also be used to save
-        the changes between two points in time, as a csv.
+        Method to save a DataModel as a CSV file. Can also be used to save
+        the changes between two points in time, as a CSV.
         For other formats see :func:`cobramod.summary.DataModel.to_excl` or
         :func:`cobramod.summary.DataModel.to_txt`.
 
         Args:
             path (Path): Location where the file is to be saved.
-            model (Model): model for the extraction of model id and name.
-            additions (DataModel): DataModel that contains the new entities in
-                the model
-            deletions (DataModel): DataModel that contains the remote entities
-                in the model.
+        model (Model): Model for the extraction of model id and name.
+        additions (DataModel): DataModel that contains the new entities in
+            the model.
+        deletions (DataModel): DataModel that contains the remote entities
+            in the model.
         """
 
         save = self._to_dataframe(model, additions, deletions)
@@ -286,11 +286,11 @@ class DataModel:
 
         Args:
             path (Path): Location where the file is to be saved.
-            model (Model): model for the extraction of model id and name.
-            additions (DataModel): DataModel that contains the new entities in
-                the model
+            model (Model): Model for the extraction of model id and name.
+            additions (DataModel): DataModel that contains the new entities
+            in the model.
             deletions (DataModel): DataModel that contains the remote entities
-                in the model.
+            in the model.
         """
         output = []
 
@@ -324,10 +324,10 @@ def summary(model: Model, original: DataModel, filename: Path = None):
 
     Args:
         model (Model): model with recent changes.
-        original (DataModel): Object with data from previous model. Use
+        original (DataModel): Object with data from the previous model. Use
             method :func:`cobramod.summary.DataModel`.
-        filename (Path): Location where the summary should be stored. The
-            file format is determined by the suffix of the filename.
+        filename (Path): Location where the summary should be stored.
+            The file format is determined by the suffix of the filename.
             Thus, '.txt', '.csv' or '.xlsx' can be used.
     """
 
