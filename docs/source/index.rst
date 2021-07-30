@@ -22,6 +22,7 @@ testing for:
 - mass balance of reactions
 - reaction reversibility
 - capability to carry non-zero fluxes
+- adding available gene information
 
 CobraMod offers user-friendly tracking of the curation process with summary
 output and log files and customized pathway and flux visualization with Escher.

@@ -21,6 +21,6 @@ By default, required packages will be installed when installing CobraMod. We
 recommend using a virtual environment.
 
 .. note::
-    For development, install it with pip and add the argument :code:`-e`. An
-    environment YAML file is provided to use it with a conda environment.
-
+    For development, install with pip the development branch using the
+    argument :code:`-e`. An environment YAML file is provided to use it with a
+    conda environment.
