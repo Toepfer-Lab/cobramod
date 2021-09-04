@@ -327,7 +327,7 @@ class SimpleFunctions(TestCase):
             identifier="ACALD",
             database="BIGG",
             debug_level=10,
-            model_id="universal",
+            model_id="e_coli_core",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,

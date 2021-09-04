@@ -434,10 +434,10 @@ class TestBigg(TestCase):
         self.assertRaises(WrongParserError, bi.BiggParser._parse, str())
         # CASE 1: Regular universal reaction
         test_json = bi.retrieve_data(
-            directory=dir_data, identifier="ACALD", model_id="universal"
+            directory=dir_data, identifier="ACALDt", model_id="universal"
         )
         test_dict = bi.BiggParser._parse(root=test_json)
-        self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
+        self.assertEqual(first=len(test_dict["EQUATION"]), second=2)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         self.assertEqual(
             first={"genes": {}, "rule": ""}, second=test_dict["GENES"]
