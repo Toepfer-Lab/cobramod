@@ -30,7 +30,7 @@ from cobramod.error import WrongParserError
 from cobramod.parsing.base import BaseParser
 
 
-def _find_url(model_id: str, identifier: str) -> Response:
+def _find_url(model_id: str, identifier: str) -> (Response, str):
     """
     Tries to find a valid URL for the API of BIGG. It will return a
     :class:`requests.Response` if URL is valid.
@@ -42,7 +42,8 @@ def _find_url(model_id: str, identifier: str) -> Response:
             compound
 
     Returns:
-        Response: a valid request Response.
+        (Response,str): A valid request Response followed by the database
+            Version.
 
     Raises:
         HTTPError: If identifier is not found in BIGG database.
@@ -63,7 +64,12 @@ def _find_url(model_id: str, identifier: str) -> Response:
             # Get and check for errors
             response = get(url_text)
             response.raise_for_status()
-            return response
+
+            info_response = get("http://bigg.ucsd.edu/api/v2/database_version")
+            info_response.raise_for_status()
+            db_version = info_response.json()["bigg_models_version"]
+
+            return response, db_version
     # Otherwise
     raise HTTPError(f"Identifier '{identifier}' not found in BIGG.")
 
@@ -91,7 +97,6 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
     if directory.exists():
         # Create subdirectory data
         data_dir = directory.joinpath("BIGG").joinpath(model_id)
-        data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.json")
         debug_log.debug(
             f'Searching "{identifier}" in directory BIGG, '
@@ -101,12 +106,18 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
             return BiggParser._read_file(filename=filename)
         except FileNotFoundError:
             # It will raise an error by itself if needed
-            response = _find_url(model_id=model_id, identifier=identifier)
+            response, db_version = _find_url(
+                model_id=model_id, identifier=identifier
+            )
+
+            BaseParser._check_database_version(directory, "bigg", db_version)
+
             debug_log.info(
                 f'Object "{identifier}" found. Saving in '
                 f'directory "BIGG", subdirectory "{model_id}"'
             )
             # r.text is the raw text
+            data_dir.mkdir(parents=True, exist_ok=True)
             with open(file=filename, mode="w+") as file:
                 file.write(response.text)
             return loads(s=response.text)

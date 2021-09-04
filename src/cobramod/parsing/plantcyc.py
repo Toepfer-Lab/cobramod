@@ -24,7 +24,7 @@ from xml.etree.ElementTree import (
     ParseError,
 )
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from warnings import warn
 
 from requests import get, HTTPError
@@ -471,7 +471,6 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
 
     if directory.exists():
         data_dir = directory.joinpath("PMN", database)
-        data_dir.mkdir(parents=True, exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         # Search for the file on directory. Otherwise retrive from database
@@ -491,7 +490,16 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                 response.raise_for_status()
                 # defining root
                 root = fromstring(response.text)
+
+                metadata = root.find("metadata/PGDB")
+                BaseParser._check_database_version(
+                    directory,
+                    "pmn:" + metadata.get("orgid"),
+                    metadata.get("version"),
+                )
+
                 tree = ElementTree(root)
+                data_dir.mkdir(parents=True, exist_ok=True)
                 tree.write(str(filename))
                 debug_log.info(
                     f'Object "{identifier}" found in database. Saving in '

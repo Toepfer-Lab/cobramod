@@ -53,9 +53,10 @@ try:
     response = get(url="https://websvc.biocyc.org/kb-version?orgid=META")
     response.raise_for_status()
     kb_version = response.json()["kb-version"]
-    cobramod_kb = databases.find(  # type: ignore
-        "metadata/*[@orgid='META']"
-    ).attrib["version"]
+    cobramod_kb = databases.find("metadata/*[@orgid='META']").attrib[
+        # type: ignore
+        "version"
+    ]
     # Check that the database version is the one
     assert kb_version == cobramod_kb
 except HTTPError:
@@ -351,9 +352,8 @@ class BiocycParser(BaseParser):
         for method in (_p_reaction, _p_pathway, _p_compound):
             with suppress(WrongParserError, AttributeError):
                 try:
-                    biocyc_dict = method(  # type: ignore
-                        root=root, directory=directory
-                    )
+                    biocyc_dict = method(root=root, directory=directory)
+                    # type: ignore
                 except TypeError:
                     biocyc_dict = method(root=root)  # type: ignore
                 # This might change due to sub-database
@@ -497,7 +497,6 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
     """
     if directory.exists():
         data_dir = directory.joinpath(database)
-        data_dir.mkdir(exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         # Search for the file on directory. Otherwise retrive from database
@@ -517,7 +516,14 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                 response.raise_for_status()
                 # defining root
                 root = fromstring(response.text)
+
+                metadata = root.find("metadata/PGDB")
+                BaseParser._check_database_version(
+                    directory, metadata.get("orgid"), metadata.get("version")
+                )
+
                 tree = ElementTree(root)
+                data_dir.mkdir(exist_ok=True)
                 tree.write(str(filename))
                 debug_log.info(
                     f'Object "{identifier}" found in database. Saving in '
@@ -533,6 +539,7 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                         identifier=identifier,
                         database=database,
                     )
+
                 return root
             except HTTPError:
                 msg = f'"{identifier}" is not available in "{database}"'

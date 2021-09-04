@@ -41,6 +41,10 @@ class TestKegg(TestCase):
     Parsing and retrival for Kegg
     """
 
+    @classmethod
+    def setUpClass(cls):
+        kg.BaseParser.ignore_db_versions = True
+
     def test_retrieve_data(self):
         # CASE 0b: Wrong identifier
         self.assertRaises(
@@ -110,6 +114,10 @@ class TestKegg(TestCase):
 
 
 class TestBiocyc(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        bc.BaseParser.ignore_db_versions = True
+
     def test_retrieve_data(self):
         # CASE 1: Directory does not exist
         self.assertRaises(
@@ -235,6 +243,11 @@ class TestBiocyc(TestCase):
 
 
 class TestPlantCyc(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        pc.BaseParser.ignore_db_versions = True
+
     def test_retrieve_data(self):
         # CASE 1: Directory does not exist
         self.assertRaises(
@@ -373,9 +386,14 @@ class TestPlantCyc(TestCase):
 
 
 class TestBigg(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        bi.BaseParser.ignore_db_versions = True
+
     def test__find_url(self):
         # CASE 1: Positive request
-        test_response = bi._find_url(
+        test_response, db_version = bi._find_url(
             model_id="e_coli_core", identifier="ACALD"
         )
         self.assertIsInstance(obj=test_response, cls=Response)

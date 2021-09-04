@@ -9,6 +9,14 @@ from cobramod.debug import debug_log
 from cobra import Reaction, Metabolite
 
 
+class UserInterruption(Exception):
+    """
+    Exception that is used if the input of a user interrupts the program flow.
+    """
+
+    pass
+
+
 class NoDelimiter(Exception):
     """
     Simple Error that should be raised when a string does not include the

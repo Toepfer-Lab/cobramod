@@ -12,7 +12,12 @@ the retrieval of all the data from different databases. The class
 """
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Any, Union
+from typing import Any, Union, Optional
+
+import pandas as pd
+from warnings import warn
+
+from cobramod.error import UserInterruption
 
 
 class BaseParser(ABC):
@@ -25,6 +30,88 @@ class BaseParser(ABC):
         """
         sequence = [item[2:] for item in data_dict.keys()]
         return len(sequence) != len(set(sequence))
+
+    ignore_db_versions: bool = False
+    database_version: Optional[pd.DataFrame] = None
+
+    @staticmethod
+    def _get_database_version(directory: Path) -> pd.DataFrame:
+        if BaseParser.database_version is not None:
+            return BaseParser.database_version
+        try:
+            file = directory / "DatabaseVersions.csv"
+            BaseParser.database_version = pd.read_csv(file)
+        except FileNotFoundError:
+            BaseParser.database_version = pd.DataFrame(
+                columns=["orgid", "version"]
+            )
+
+        return BaseParser.database_version
+
+    @staticmethod
+    def _check_database_version(
+        directory: Path, database: str, version: str
+    ):
+        if BaseParser.database_version is None:
+            BaseParser._get_database_version(directory=directory)
+
+        row = BaseParser.database_version.loc[
+            BaseParser.database_version["orgid"] == database
+        ]
+
+        if row.shape[0] == 0:
+            return BaseParser._set_database_version(
+                directory, database, version
+            )
+
+        if row.shape[0] > 1:
+            exit()
+
+        expected_version = row["version"].tolist()[0]
+
+        # row can not be more than one value but python does not know that
+        # => any
+
+        if expected_version != version:
+            msg = "Versions of {} do not match. Remote has version {} " \
+                  "and local version is {}.".format(
+                    database, version, expected_version
+                  )
+            warn(
+                message=msg,
+                category=UserWarning,
+            )
+
+            if BaseParser.ignore_db_versions:
+                return
+
+            while True:
+                choice = input("Ignore version mismatch? (Y)es (N)o")
+
+                if choice.lower() == "y":
+                    break
+
+                if choice.lower() == "n":
+                    raise UserInterruption("Interrupted by user input")
+
+    @staticmethod
+    def _set_database_version(
+        directory: Path, database: str, version: str
+    ) -> bool:
+        if BaseParser.database_version is None:
+            BaseParser._get_database_version(directory=directory)
+
+        BaseParser.database_version = BaseParser.database_version.append(
+            {"orgid": database, "version": version}, ignore_index=True
+        )
+
+        print("write to" + str(directory / "DatabaseVersions.csv"))
+        print(BaseParser.database_version)
+        BaseParser.database_version.to_csv(
+            path_or_buf=str(directory / "DatabaseVersions.csv"), index=False
+        )
+
+        return True
 
     @staticmethod
     @abstractmethod

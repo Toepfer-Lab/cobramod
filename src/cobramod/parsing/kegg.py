@@ -15,6 +15,7 @@ Important class of the module:
 - KeggParser: Child of the abstract class
 :class:`cobramod.parsing.base.BaseParser`.
 """
+import io
 from contextlib import suppress
 from itertools import chain
 from pathlib import Path
@@ -26,6 +27,13 @@ from requests import get, HTTPError
 from cobramod.debug import debug_log
 from cobramod.parsing.base import BaseParser
 from cobramod.error import WrongParserError, AbbreviationWarning
+
+
+def _kegg_info_to_version(info: str) -> str:
+    with io.StringIO(info) as lines:
+        for num, line in enumerate(lines, 1):
+            if num == 2:
+                return line[line.find("Release") + 8 :].rstrip()
 
 
 def _get_keys(raw: str) -> Generator:
@@ -564,7 +572,6 @@ def retrieve_data(directory: Path, identifier: str) -> dict:
     if directory.exists():
         database = "KEGG"
         data_dir = directory.joinpath(database)
-        data_dir.mkdir(exist_ok=True)
         filename = data_dir.joinpath(f"{identifier}.txt")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         # Try to obtain the data locally or get it from KEGG and store it
@@ -581,10 +588,21 @@ def retrieve_data(directory: Path, identifier: str) -> dict:
             try:
                 r.raise_for_status()
                 unformatted_data = r.text
+
+                database_version = get("http://rest.kegg.jp/info/kegg")
+                database_version.raise_for_status()
+                database_version = database_version.text
+                database_version = _kegg_info_to_version(database_version)
+
+                BaseParser._check_database_version(
+                    directory, "kegg", database_version
+                )
+
                 debug_log.info(
                     f'Object "{identifier}" found in database. Saving in '
                     f'directory "{database}".'
                 )
+                data_dir.mkdir(exist_ok=True)
                 with open(file=filename, mode="w+") as file:
                     file.write(unformatted_data)
                 # Search for the gene information and store it if found.
