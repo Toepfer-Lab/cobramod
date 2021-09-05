@@ -8,16 +8,21 @@ the different databases. The module is separated according to the databases:
 - TestBigg: For BiGG database
 - TestKegg: For Kegg
 """
+import shutil
+import tempfile
 from xml.etree.ElementTree import Element
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
 
+import pandas as pd
+from pandas._testing import assert_frame_equal
 from requests import HTTPError, Response
 from cobra import __version__
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError, SuperpathwayWarning
+from cobramod.parsing.base import BaseParser as bp
 from cobramod.parsing import kegg as kg
 from cobramod.parsing import biocyc as bc
 from cobramod.parsing import plantcyc as pc
@@ -34,6 +39,53 @@ if not dir_data.exists():
 
 print(f"CobraMod version: {cobramod_version}")
 print(f"COBRApy version: {__version__}")
+
+
+class BaseParser(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.directory = tempfile.mkdtemp()
+        cls.versions = pd.DataFrame.from_dict({
+            "orgid": "bigg",
+            "version": "1.0.0"
+        })
+
+        cls.versions.to_csv(
+            path_or_buf=str(cls.directory / "DatabaseVersions.csv"),
+            index=False
+        )
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.directory)
+
+    def test__get_database_version(self):
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+    def test__set_database_version(self):
+        bp._set_database_version("pmn:META",
+                                 "1.0")
+
+        database = bp._get_database_version(self.directory)
+
+        self.versions.append(
+            {"orgid": "pmn:META",
+             "version": "1.0"},
+            ignore_index=True
+        )
+
+        assert_frame_equal(database, self.versions)
+
+
+    def test__check_database_version(self):
+        # unseen database
+        # database with correct version
+        # database with incorrect version (continue vs dont continue/ dont expect input)
+
+        raise False
+
 
 
 class TestKegg(TestCase):
@@ -404,6 +456,20 @@ class TestBigg(TestCase):
             model_id="e_coli_core",
             identifier="Invalid",
         )
+
+        import cobramod.core.retrieval as retrieval
+        from cobramod.test import textbook
+
+        model = textbook.copy()
+        retrieval.get_data(
+            model=model,
+            directory=dir_data,
+            database="BIGG",
+            identifier="ACALD",
+            model_id="e_coli_core"
+            # Shared identified
+        )
+        print(dir_data)
 
     def test_retrieve_data(self):
         # CASE 0

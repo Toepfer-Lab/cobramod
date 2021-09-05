@@ -36,6 +36,16 @@ class BaseParser(ABC):
 
     @staticmethod
     def _get_database_version(directory: Path) -> pd.DataFrame:
+        """
+        Loads and returns the database versioning file.
+
+        Args:
+            directory (Path): The folder used for storing data.
+
+        Returns:
+            (pd.DataFrame): A DataFrame containing the orgid and version, at
+                the time of the first retrieval, for all databases used so far.
+        """
         if BaseParser.database_version is not None:
             return BaseParser.database_version
         try:
@@ -52,6 +62,15 @@ class BaseParser(ABC):
     def _check_database_version(
         directory: Path, database: str, version: str
     ):
+        """
+        Function to compare the saved database version with the one
+        of the retrieved data.
+
+        Args:
+            directory (Path): The folder used for storing data.
+            database (str): Identifier of the database.
+            version (str): The version of the database.
+        """
         if BaseParser.database_version is None:
             BaseParser._get_database_version(directory=directory)
 
@@ -98,6 +117,18 @@ class BaseParser(ABC):
     def _set_database_version(
         directory: Path, database: str, version: str
     ) -> bool:
+        """
+        Adds the version of a database to the local data versioning file.
+
+        Args:
+            directory (Path): The folder used for storing data.
+            database (str): Identifier of the database.
+            version (str): The version of the database.
+
+        Returns:
+             (bool): Returns True if the addition was successful.
+
+        """
         if BaseParser.database_version is None:
             BaseParser._get_database_version(directory=directory)
 
