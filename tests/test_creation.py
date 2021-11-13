@@ -43,6 +43,45 @@ class SimpleFunctions(TestCase):
     """
 
     # TODO: use replacement dictionaries !!
+    def test__find_replacements(self):
+        replace_dict = {
+            "ACETALD-DEHYDROG-RXN": "R00228_c",
+            "WATER_c": "C00001_c",
+            "WATER_d": "C00001_d",
+        }
+
+        # CASE 0: Nothing found
+        test_replacement = cr._find_replacements(
+            identifier=None,
+            obj_type="reactions",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertIsNone(obj=test_replacement)
+        # CASE 1: Reaction
+        test_replacement = cr._find_replacements(
+            identifier="WATER_c",
+            obj_type="metabolites",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertIsInstance(obj=test_replacement, cls=Metabolite)
+        # CASE 2a: String
+        test_replacement = cr._find_replacements(
+            identifier="WATER_d",
+            obj_type="metabolites",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertEqual(first=test_replacement, second="C00001_d")
+        # CASE 2a: String
+        test_replacement = cr._find_replacements(
+            identifier="ACETALD-DEHYDROG-RXN",
+            obj_type="reactions",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertIsInstance(obj=test_replacement, cls=Reaction)
 
     def test__metabolite_from_string(self):
         # CASE 1: Correct input

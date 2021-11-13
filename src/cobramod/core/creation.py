@@ -20,10 +20,10 @@ These functions are a mix of multiple simpler functions:
 from collections import Counter
 from contextlib import suppress
 from pathlib import Path
-from typing import Union, Generator, List, Any, Optional
+from typing import Union, Generator, List, Any, Optional, Dict
 from warnings import warn
 
-from cobra import Metabolite, Model, Reaction
+from cobra import Metabolite, Model, Reaction, DictList
 from requests import HTTPError
 
 from cobramod.debug import debug_log
@@ -1127,6 +1127,45 @@ def __add_reactions_check(model: Model, reactions: List[Reaction]):
         )
         debug_log.warning(msg=msg)
         warn(message=msg, category=UserWarning)
+
+
+def _find_replacements(
+    identifier: str, obj_type: str, replace_dict: dict, model: Model
+) -> Union[Reaction, Metabolite, str, None]:
+    """
+    Returns either a COBRApy object if found in Model or a string with the
+    new identifier, which can be used to create a new object or retrieve data.
+    The replace_dict has two options for keys. One can be the unmodified
+    identifier given by a database, or a formated identifier
+
+    Args:
+        identifier (str): Original identifier to replacement.
+        obj_type (str): Type of object to search for. Only options are
+            "reactions" or "metabolites".
+        replace_dict (dict): Dictionary with either the new identifier and or
+            the identifier of object inside the model.
+        model (Model):
+
+    Returns:
+        Either a Reaction, Metabolite, a string with the new identifier or
+        None in case that the replacement dictionary has no entries for the
+        identifier
+    """
+    cobra_dictlist: Dict[str, DictList] = {
+        "reactions": model.reactions,
+        "metabolites": model.metabolites,
+    }
+    # Check if KeyErrors might appear, otherwise continue
+    try:
+        new_identifier = replace_dict[identifier]
+    except KeyError:
+        return None
+    # Return either COBRApy object or new string to search up in database
+    try:
+        replacement = cobra_dictlist[obj_type].get_by_id(new_identifier)
+    except KeyError:
+        replacement = new_identifier
+    return replacement
 
 
 def add_reactions(
