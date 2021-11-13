@@ -67,7 +67,9 @@ def _build_metabolite(
     return metabolite
 
 
-def _metabolite_from_string(line_string: str) -> Metabolite:
+def _metabolite_from_string(
+    line_string: str, replacement: dict, model: Model
+) -> Metabolite:
     """
     Creates a Metabolite object based on a string.
 
@@ -88,6 +90,20 @@ def _metabolite_from_string(line_string: str) -> Metabolite:
     line = [part.strip().rstrip() for part in line_string.split(",")]
     try:
         identifier = line[0]
+
+        # Try to find replacement
+        new_identifier = _find_replacements(
+            identifier=identifier,
+            obj_type="metabolites",
+            replace_dict=replacement,
+            model=model,
+        )
+        # TODO: raise warning and debug_log
+        if isinstance(new_identifier, Metabolite):
+            return new_identifier
+        elif isinstance(new_identifier, str):
+            identifier = new_identifier
+
         name = line[1]
         compartment = line[2]
         formula = line[3]
@@ -173,7 +189,7 @@ def _get_metabolite(
 
 
 def _convert_string_metabolite(
-    line: str, model: Model, **kwargs
+    line: str, model: Model, replacement: dict, **kwargs
 ) -> Metabolite:
     """
     Transform a string into a Metabolite and returns it. This object can be
@@ -192,6 +208,8 @@ def _convert_string_metabolite(
     Args:
         line (str): string with information of metabolite
         model (Model): model to test
+        replacement (dict): Dictionary with either the new identifier and or
+            the identifier of object inside the model.
 
      Keyword Arguments:
         directory (Path): Path to directory where data is located.
@@ -202,13 +220,28 @@ def _convert_string_metabolite(
         Metabolite: New metabolite object
     """
     if line.count(",") > 1:
-        # TODO: to gain performance, search for name and then create Metabolite
-        new_metabolite = _metabolite_from_string(line_string=line)
+        new_metabolite = _metabolite_from_string(
+            line_string=line, replacement=replacement, model=model
+        )
     else:
-        # Retrieve from database
+        # Prep string
         segment = (part.strip().rstrip() for part in line.split(sep=","))
+        identifier = next(segment)
+
+        old_metabolite = _find_replacements(
+            identifier=identifier,
+            replace_dict=replacement,
+            model=model,
+            obj_type="metabolites",
+        )
+        if isinstance(old_metabolite, Metabolite):
+            return old_metabolite
+        elif isinstance(old_metabolite, str):
+            identifier = old_metabolite
+
+        # Retrieve from database
         metabolite_dict = get_data(
-            identifier=next(segment), debug_level=10, **kwargs
+            identifier=identifier, debug_level=10, **kwargs
         )
         new_metabolite = _get_metabolite(
             metabolite_dict=metabolite_dict,
@@ -219,7 +252,7 @@ def _convert_string_metabolite(
 
 
 def _get_file_metabolites(
-    model: Model, filename: Path, **kwargs
+    model: Model, filename: Path, replacement: dict, **kwargs
 ) -> List[Metabolite]:
     """
     Return a list with Metabolites from a file. If a metabolite is found in
@@ -258,7 +291,9 @@ def _get_file_metabolites(
         new_metabolites = list()
         for line in _read_lines(f=f):
             new_metabolites.append(
-                _convert_string_metabolite(line=line, model=model, **kwargs)
+                _convert_string_metabolite(
+                    line=line, model=model, replacement=replacement, **kwargs
+                )
             )
     return new_metabolites
 
@@ -305,6 +340,10 @@ def _get_reaction(
         Reaction: New reaction based on dictionary
     """
     identifier = data_dict["ENTRY"]
+    # No check for replacement is needed for the reaction, as the function
+    # should create the reaction. However it should check for duplicates
+
+    # Raise Warning for Metacyc
     if data_dict["DATABASE"] == "META":
         msg = (
             f'Metabolic pathway information for reaction "{identifier}" comes '
@@ -314,7 +353,7 @@ def _get_reaction(
         debug_log.warning(msg)
         warn(message=msg, category=UserWarning)
 
-    # Try to obtain if information is available
+    # Try to obtain duplicate if information is available
     with suppress(NoIntersectFound, KeyError):
         new_identifier = _first_item(
             first=model.reactions, second=data_dict["XREF"], revert=True
@@ -328,32 +367,52 @@ def _get_reaction(
         debug_log.warning(msg=msg)
         warn(message=msg, category=UserWarning)
         return reaction
+
     # Otherwise create from scratch
     reaction = Reaction(
-        id=f'{_fix_name(name=data_dict["ENTRY"])}_{compartment}',
+        id=f"{_fix_name(name=identifier)}_{compartment}",
         name=data_dict["NAME"],
     )
     for identifier, coefficient in data_dict["EQUATION"].items():
         # Get rid of prefix r_ and l_
         identifier = identifier[2:]
+        # Check replacements
+        old_metabolite = _find_replacements(
+            identifier=identifier,
+            obj_type="metabolites",
+            replace_dict=replacement,
+            model=model,
+        )
+        # Either get data from database, use replacement or use Metabolite
+        if isinstance(old_metabolite, str):
+            meta = get_data(
+                identifier=old_metabolite, debug_level=10, **kwargs
+            )
+        elif isinstance(old_metabolite, Metabolite):
+            meta = old_metabolite
+
+        else:
+            meta = get_data(identifier=identifier, debug_level=10, **kwargs)
+
         # First, replacement, since the identifier can be already in model
-        with suppress(KeyError):
-            identifier = replacement[identifier]
-            msg = (
-                f'Metabolite "{identifier}" found in "replacement" '
-                f"Metabolite will be replaced by "
-                f'"{replacement[identifier]}" in reaction "{reaction.id}".'
-            )
-            debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
+        # with suppress(KeyError):
+        #     identifier = replacement[identifier]
+        #     msg = (
+        #         f'Metabolite "{identifier}" found in "replacement" '
+        #         f"Metabolite will be replaced by "
+        #         f'"{replacement[identifier]}" in reaction "{reaction.id}".'
+        #     )
+        #     debug_log.warning(msg=msg)
+        #     warn(message=msg, category=UserWarning)
         # Retrieve data for metabolite
-        try:
-            # get metabolites from model if possible.
-            metabolite = model.metabolites.get_by_id(identifier)
-        except KeyError:
-            metabolite = get_data(
-                identifier=identifier, debug_level=10, **kwargs
-            )
+        # try:
+        #    # get metabolites from model if possible.
+        #    metabolite = model.metabolites.get_by_id(identifier)
+        # except KeyError:
+        #    metabolite = get_data(
+        #        identifier=identifier, debug_level=10, **kwargs
+        #    )
+
         # Checking if transport reaction
         if (
             data_dict["TRANSPORT"]
@@ -362,9 +421,14 @@ def _get_reaction(
             == identifier
         ):
             # Temporary setting to extracellular
-            metabolite = _get_metabolite(
-                metabolite_dict=metabolite, compartment="e", model=model
-            )
+            if isinstance(meta, dict):
+                metabolite = _get_metabolite(
+                    metabolite_dict=meta, compartment="e", model=model
+                )
+            else:
+                metabolite = meta.copy()
+                metabolite.compartment = "e"
+
             msg = (
                 f'Reaction "{reaction.id}" has metabolite "{metabolite.id}" on'
                 " both sides of the equation (e.g transport reaction). COBRApy"
@@ -374,15 +438,19 @@ def _get_reaction(
             )
             debug_log.warning(msg=msg)
             warn(message=msg, category=UserWarning)
+
         else:
-            # No transport
-            metabolite = _get_metabolite(
-                metabolite_dict=metabolite,
-                compartment=compartment,
-                model=model,
-            )
+            # Convert dict to Metabolite
+            if isinstance(meta, dict):
+                metabolite = _get_metabolite(
+                    metabolite_dict=meta, compartment=compartment, model=model
+                )
+            else:
+                metabolite = meta
+
         reaction.add_metabolites(metabolites_to_add={metabolite: coefficient})
         reaction.bounds = data_dict["BOUNDS"]
+
     # Add genes and check imbalance
     _genes_to_reaction(reaction=reaction, data_dict=data_dict)
     check_imbalance(
@@ -445,15 +513,53 @@ def _obtain_reaction(
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
             specified model.
     """
-    # Obtain data
-    data_dict = get_data(
-        directory=directory,
+    original = identifier
+    # Find reaction or define new identifier
+    found_reaction = _find_replacements(
         identifier=identifier,
-        database=database,
-        debug_level=10,
-        genome=genome,
-        model_id=model_id,
+        obj_type="reactions",
+        replace_dict=replacement,
+        model=model,
     )
+    if isinstance(found_reaction, Reaction):
+        return found_reaction
+    elif isinstance(found_reaction, str):
+        identifier = found_reaction
+
+    # Obtain data
+    try:
+        # In case to replace completely the data
+        data_dict = get_data(
+            directory=directory,
+            identifier=replacement[identifier],
+            database=database,
+            debug_level=10,
+            genome=genome,
+            model_id=model_id,
+        )
+    # TODO: find a elegant way to refactor this
+    except (HTTPError, KeyError):
+        try:
+            data_dict = get_data(
+                directory=directory,
+                identifier=identifier,
+                database=database,
+                debug_level=10,
+                genome=genome,
+                model_id=model_id,
+            )
+        except (HTTPError, KeyError):
+            data_dict = get_data(
+                directory=directory,
+                identifier=original,
+                database=database,
+                debug_level=10,
+                genome=genome,
+                model_id=model_id,
+            )
+            data_dict["ENTRY"] = replacement[original]
+
+    # In case to only rename
     # Transform it
     reaction = _get_reaction(
         data_dict=data_dict,
@@ -544,6 +650,7 @@ def _reaction_from_string(
     database: str,
     stop_imbalance: bool,
     show_imbalance: bool,
+    replacement: dict,
     model: Model = Model(0),
 ) -> Reaction:
     """
@@ -587,6 +694,7 @@ def _reaction_from_string(
     """
     if "|" not in line_string:
         raise NoDelimiter(string=line_string)
+
     # Remove blank and obtains information
     info, reaction = [
         string.strip().rstrip() for string in line_string.split("|")
@@ -601,19 +709,32 @@ def _reaction_from_string(
     # Create Base reaction and then fill it with its components.
     bounds, metabolites = _reaction_information(string=reaction)
     new_reaction = Reaction(id=reaction_id, name=reaction_name)
+
     for identifier, coefficient in metabolites.items():
-        # Either get from model, or retrieve it.
-        try:
-            metabolite = model.metabolites.get_by_id(identifier)
-        except KeyError:
-            # _get_metabolite will also search for the metabolite under a
-            # different name.
-            compartment = identifier[-1:]
-            new_identifier = identifier[:-2]
+        metabolite = None
+        compartment = identifier[-1:]
+        new_replacement = {
+            f"{key}_{compartment}": value for key, value in replacement.items()
+        }
+
+        old_metabolite = _find_replacements(
+            identifier=identifier,
+            model=model,
+            obj_type="reactions",
+            replace_dict=new_replacement,
+        )
+        if isinstance(old_metabolite, Metabolite):
+            metabolite = old_metabolite
+        elif isinstance(old_metabolite, str):
+            identifier = old_metabolite
+        else:
+            identifier = identifier[:-2]
+
+        if not metabolite:
             try:
                 data_dict = get_data(
                     directory=directory,
-                    identifier=new_identifier,
+                    identifier=identifier,
                     database=database,
                     debug_level=10,
                 )
@@ -622,14 +743,13 @@ def _reaction_from_string(
                     compartment=compartment,
                     model=model,
                 )
-            # It is necessary to build the metabolite.
             except (WrongParserError, HTTPError):
                 debug_log.debug(
                     f'Metabolite "{identifier}" was identified as a manually '
                     + "curated reaction."
                 )
                 metabolite = _build_metabolite(
-                    identifier=identifier,
+                    identifier=identifier + f"_{compartment}",
                     formula="X",
                     name=identifier,
                     charge=0,
@@ -719,26 +839,27 @@ def _convert_string_reaction(
             model=model,
             stop_imbalance=stop_imbalance,
             show_imbalance=show_imbalance,
+            replacement=replacement,
         )
-    # If delimiter is not found, then it must be a reaction
+    # Must obtain from database
     except NoDelimiter:
         # add reaction from root. Get only left part
         segment = (part.strip().rstrip() for part in line.split(","))
         identifier = next(segment)
-        with suppress(KeyError):
-            identifier = replacement[identifier]
+        compartment = next(segment)
         new_reaction = _obtain_reaction(
             model=model,
             identifier=identifier,
             directory=directory,
             database=database,
-            compartment=next(segment),
+            compartment=compartment,
             replacement=replacement,
             genome=genome,
             stop_imbalance=stop_imbalance,
             show_imbalance=show_imbalance,
             model_id=model_id,
         )
+
     return new_reaction
 
 
@@ -1017,7 +1138,9 @@ def __add_metabolites_check(model: Model, metabolites: List[Metabolite]):
         warn(message=msg, category=UserWarning)
 
 
-def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
+def add_metabolites(
+    model: Model, obj: Any, database=None, replacement: dict = {}, **kwargs
+):
     """
     Adds given object into the model. The options are:
 
@@ -1067,6 +1190,7 @@ def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
                 model=model,
                 directory=directory,
                 database=database,
+                replacement=replacement,
             )
         # In case of a single Metabolite
         elif isinstance(obj, Metabolite):
@@ -1090,6 +1214,7 @@ def add_metabolites(model: Model, obj: Any, database=None, **kwargs):
                     line=line,
                     # directory=directory,
                     database=database,
+                    replacement=replacement,
                     **kwargs,
                 )
                 for line in obj
