@@ -1,0 +1,103 @@
+<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?GCF_000020025:HYDROXYLAMINE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>GCF_000020025:HYDROXYLAMINE</query>
+<num_results>1</num_results>
+<PGDB orgid="GCF_000020025" version="25.0"><species datatype="string">Nostoc punctiforme</species>
+<strain datatype="string">ATCC 29133; PCC 73102</strain>
+<sequence-source datatype="string">GCF_000020025.1</sequence-source>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>63737</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=63737</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID="GCF_000020025:HYDROXYLAMINE" detail="full" frameid="HYDROXYLAMINE" orgid="GCF_000020025"><cml><molecule formalCharge="0" id="HYDROXYLAMINE" title="hydroxylamine"><atomArray><atom elementType="N" id="HYDROXYLAMINE-atom1" x2="412.0" y2="-413.0" /><atom elementType="O" id="HYDROXYLAMINE-atom2" x2="-413.0" y2="-413.0" /></atomArray>
+<bondArray><bond atomRefs="HYDROXYLAMINE-atom2 HYDROXYLAMINE-atom1" id="HYDROXYLAMINE-bond1" order="1" /></bondArray>
+<formula concise="H 3 N 1 O 1" /><float title="molecularWeight" units="g/mol">33.03</float>
+<string title="smiles">NO</string>
+</molecule>
+</cml>
+<synonym datatype="string">NH2OH</synonym>
+<common-name datatype="string">hydroxylamine</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00165</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00165</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM433</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM433</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Hydroxylamine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Hydroxylamine</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15429</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15429</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB03338</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB03338</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>766</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/766</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>787</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=787</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15429</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15429</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00192</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00192</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>7803-49-8</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=7803-49-8</dblink-URL>
+</dblink>
+<monoisotopic-mw datatype="float" units="Daltons">33.021465</monoisotopic-mw>
+<credits><imported-from-meta><date datatype="date">2020-03-09</date>
+<Organization ID="GCF_000020025:SRI" detail="full" frameid="SRI" orgid="GCF_000020025"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</imported-from-meta>
+</credits>
+<inchi-key datatype="string">InChIKey=AVXURJPOCDRRFD-UHFFFAOYSA-N</inchi-key>
+<gibbs-0 datatype="float" units="kcal/mol">-8.646637<evidence><Evidence-Code ID="GCF_000020025:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="GCF_000020025"><common-name datatype="string">Inferred by computational analysis</common-name>
+<comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+</Evidence-Code>
+<Publication ID="GCF_000020025:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="GCF_000020025"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<year datatype="integer">2013</year>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<appears-in-left-side-of><Reaction frameid="RXN-3482" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-3482" /></appears-in-left-side-of>
+<inchi datatype="string">InChI=1S/H3NO/c1-2/h2H,1H2</inchi>
+<appears-in-right-side-of><Reaction frameid="RXN-17886" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-17886" /><Reaction frameid="HYDROXYLAMINE-REDUCTASE-NADH-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:HYDROXYLAMINE-REDUCTASE-NADH-RXN" /></appears-in-right-side-of>
+<molecular-weight datatype="float" units="Daltons">33.03</molecular-weight>
+</Compound>
+</ptools-xml>

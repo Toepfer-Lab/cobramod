@@ -385,9 +385,17 @@ def _get_reaction(
         )
         # Either get data from database, use replacement or use Metabolite
         if isinstance(old_metabolite, str):
-            meta = get_data(
-                identifier=old_metabolite, debug_level=10, **kwargs
-            )
+            try:
+                meta = get_data(
+                    identifier=old_metabolite, debug_level=10, **kwargs
+                )
+            except HTTPError:
+                # Only renaming
+                meta = get_data(
+                    identifier=identifier, debug_level=10, **kwargs
+                )
+                meta["ENTRY"] = old_metabolite
+
         elif isinstance(old_metabolite, Metabolite):
             meta = old_metabolite
 
@@ -860,6 +868,7 @@ def _convert_string_reaction(
             model_id=model_id,
         )
 
+    # TODO: add mass balance check
     return new_reaction
 
 
@@ -915,7 +924,6 @@ def _get_file_reactions(
     Raises:
         FileNotFoundError: if file does not exists
     """
-    # TODO: add mass balance check
     if not filename.exists():
         raise FileNotFoundError(
             f'File "{filename.name}" does not exist. '
@@ -981,10 +989,21 @@ def _ident_reaction(
         WrongDataError: If data does not include reaction information.
     """
     try:
-        debug_log.debug(
-            f"Object '{data_dict['ENTRY']}' identified as a reaction."
+        identifier = data_dict["ENTRY"]
+        debug_log.debug(f"Object '{identifier}' identified as a reaction.")
+
+        found_reaction = _find_replacements(
+            identifier=identifier,
+            obj_type="reactions",
+            replace_dict=replacement,
+            model=model,
         )
-        # First, create object and then yield it
+        if isinstance(found_reaction, Reaction):
+            yield found_reaction
+        elif isinstance(found_reaction, str):
+            data_dict["ENTRY"] = found_reaction
+
+        # Otherwise, create object and then yield it
         reaction = _get_reaction(
             data_dict=data_dict,
             directory=directory,
@@ -996,12 +1015,13 @@ def _ident_reaction(
             show_imbalance=show_imbalance,
         )
         yield reaction
+
     except KeyError:
         raise WrongDataError("Data does not belong to a reaction.")
 
 
 def _ident_metabolite(
-    data_dict: dict, compartment: str, model: Model
+    data_dict: dict, compartment: str, model: Model, replacement: dict
 ) -> Generator:
     """
     Tries to identify given dictionary if its includes metabolite information,
@@ -1018,7 +1038,20 @@ def _ident_metabolite(
         WrongDataError: If data does not include information of a metabolite.
     """
     try:
-        # First, create object and then yield it
+        identifier = data_dict["ENTRY"]
+        new_identifier = _find_replacements(
+            identifier=identifier,
+            obj_type="metabolites",
+            replace_dict=replacement,
+            model=model,
+        )
+        # TODO: raise warning and debug_log
+        if isinstance(new_identifier, Metabolite):
+            yield new_identifier
+        elif isinstance(new_identifier, str):
+            data_dict["ENTRY"] = new_identifier
+
+        # Otherwise, create object and then yield it
         metabolite = _get_metabolite(
             metabolite_dict=data_dict, compartment=compartment, model=model
         )
@@ -1091,7 +1124,10 @@ def create_object(
     for method in (
         _ident_pathway(data_dict=data_dict),
         _ident_metabolite(
-            data_dict=data_dict, compartment=compartment, model=model
+            data_dict=data_dict,
+            compartment=compartment,
+            model=model,
+            replacement=replacement,
         ),
         _ident_reaction(
             data_dict=data_dict,

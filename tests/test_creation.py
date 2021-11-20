@@ -716,6 +716,39 @@ class ComplexFunctions(TestCase):
         self.assertIsInstance(obj=test_object, cls=dict)
         self.assertEqual(first=test_object["ENTRY"], second="M00001")
 
+        # CASE 4a: Replacing names (Metabolite)
+        test_replacement = {
+            "GLC": "GLUCOSE",
+            "AMONITRO-RXN": "monooxygenase",
+            "Donor-H2": "Donor_Water",
+        }
+        test_object = cr.create_object(
+            identifier="GLC",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            replacement=test_replacement,
+        )
+        self.assertIsInstance(obj=test_object, cls=Metabolite)
+        self.assertEqual(first=test_object.compartment, second="c")
+        self.assertEqual(first=test_object.id, second="GLUCOSE_c")
+
+        # CASE 4b: Replacing names (Reaction)
+        test_object = cr.create_object(
+            identifier="AMONITRO-RXN",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            replacement=test_replacement,
+        )
+        self.assertIsInstance(obj=test_object, cls=Reaction)
+        self.assertCountEqual(first=test_object.compartments, second={"c"})
+        self.assertEqual(first=test_object.id, second="monooxygenase_c")
+        self.assertIn(
+            member="Donor_Water_c",
+            container=[meta.id for meta in test_object.metabolites],
+        )
+
     def test_add_metabolites(self):
         # CASE 0: Missing Arguments
         self.assertRaises(
@@ -975,6 +1008,7 @@ class ComplexFunctions(TestCase):
             "GLC_cb, Glucose Transport|Not_GLC_c <-> GLC_b",
             "RXN-14462, c",
             "ACETALD-DEHYDROG-RXN ,c",
+            "AMONITRO-RXN, c",
         ]
         cr.add_reactions(
             model=test_model,
@@ -984,6 +1018,7 @@ class ComplexFunctions(TestCase):
             replacement={
                 "Not_GLC": "GLC",
                 "ACETALD-DEHYDROG-RXN": "ACETALD-DEHYDROG-RXN-NEW",
+                "Donor-H2": "Donor_Water",
             },
         )
         self.assertIn(
@@ -998,7 +1033,7 @@ class ComplexFunctions(TestCase):
             member="Not_GLC_c",
             container=[metabolite.id for metabolite in test_model.metabolites],
         )
-        for metabolite in ("GLC_b", "GLC_c"):
+        for metabolite in ("GLC_b", "GLC_c", "Donor_Water_c"):
             self.assertIn(
                 member=metabolite,
                 container=[
