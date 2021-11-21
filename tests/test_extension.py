@@ -796,6 +796,38 @@ class AddingPathways(TestCase):
         self.assertEqual(first=len(test_group.members), second=7)
         self.assertEqual(first=len(test_group.graph), second=7)
 
+        # CASE 7: Using replacement arguments
+        test_model = textbook_biocyc.copy()
+        test_replacement = {
+            "RXN-8052": "Reaction_8052",
+            "RXN-2208": "Reaction_2208",
+            "RXN-2223": "Reaction_2223",
+        }
+        ex.add_pathway(
+            model=test_model,
+            pathway="PWY-1187",
+            compartment="c",
+            directory=dir_data,
+            database="ARA",
+            replacement=test_replacement,
+            show_imbalance=False,
+        )
+        for meta in test_replacement.values():
+            identifier = f"{meta}_c"
+            self.assertIn(
+                member=identifier,
+                container=[reaction.id for reaction in test_model.reactions],
+            )
+            self.assertIn(
+                member=identifier,
+                container=[
+                    reaction.id
+                    for reaction in test_model.groups.get_by_id(
+                        "PWY-1187"
+                    ).members
+                ],
+            )
+
 
 if __name__ == "__main__":
     main(verbosity=2)

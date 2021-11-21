@@ -446,6 +446,7 @@ def _update_reactions(
         replacement (dict): Directory with identifiers to be replaced. Keys are
             the original identifiers and the values the new identifiers
     """
+    # TODO: Docstrings
     new_sequence: List[str] = list()
     for item in sequence:
         # Remove reactions
@@ -457,16 +458,7 @@ def _update_reactions(
             debug_log.warning(msg=msg)
             warn(message=msg, category=UserWarning)
             continue
-        # Replace reactions
-        if item in replacement.keys():
-            msg = (
-                f'Reaction "{item}" was found in "replacement". Reaction '
-                f'will be replaced by "{replacement[item]}".'
-            )
-            debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
-            item = replacement[item]
-        # add in the end
+
         new_sequence.append(item)
     return new_sequence
 
@@ -532,14 +524,16 @@ def _from_data(
         pathway = Pathway(id=identifier)
     # Get sinks
     previous_sink = {sink.id for sink in model.sinks}
+
     for sequence in mapping:
-        # Update sequence with new identifiers or removal of reactions
+        # Update sequence with removal of reactions
         sequence = _update_reactions(
             sequence=sequence, avoid_list=avoid_list, replacement=replacement
         )
         if not sequence:
             continue
-        # Data storage is handled by method. Reactions objects builder:
+
+        # Replacements will be used here
         sequence = list(
             _create_reactions(
                 sequence=sequence,
@@ -554,6 +548,7 @@ def _from_data(
                 genome=genome,
             )
         )
+
         # Add to model
         _add_sequence(
             model=model,
