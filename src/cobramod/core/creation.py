@@ -988,8 +988,8 @@ def _ident_reaction(
     Raises:
         WrongDataError: If data does not include reaction information.
     """
+    identifier = data_dict["ENTRY"]
     try:
-        identifier = data_dict["ENTRY"]
         debug_log.debug(f"Object '{identifier}' identified as a reaction.")
 
         found_reaction = _find_replacements(
@@ -1017,6 +1017,7 @@ def _ident_reaction(
         yield reaction
 
     except KeyError:
+        data_dict["ENTRY"] = identifier
         raise WrongDataError("Data does not belong to a reaction.")
 
 
@@ -1037,8 +1038,8 @@ def _ident_metabolite(
     Raises:
         WrongDataError: If data does not include information of a metabolite.
     """
+    identifier = data_dict["ENTRY"]
     try:
-        identifier = data_dict["ENTRY"]
         new_identifier = _find_replacements(
             identifier=identifier,
             obj_type="metabolites",
@@ -1058,6 +1059,7 @@ def _ident_metabolite(
         debug_log.debug(f"Object '{metabolite.id}' identified as a metabolite")
         yield metabolite
     except KeyError:
+        data_dict["ENTRY"] = identifier
         raise WrongDataError("Data does not belong to a metabolite")
 
 

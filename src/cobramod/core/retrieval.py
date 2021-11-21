@@ -8,7 +8,9 @@ The available databases for data retrieval can be found in the variable
 """
 from contextlib import suppress
 from pathlib import Path
-from typing import Type
+from typing import Type, Optional
+
+from requests import HTTPError
 
 from cobramod.error import WrongParserError, PatternNotFound
 from cobramod.parsing.base import BaseParser
@@ -147,6 +149,44 @@ def get_data(
         debug_level=debug_level,
         **kwargs,
     )
+
+
+def _get_correct_data(
+    replacement: dict,
+    directory: Path,
+    database: str,
+    identifier: str,
+    model_id: str,
+    genome: Optional[str],
+):
+    # TODO: docstrings
+    try:
+        replacement[identifier]
+        data_dict = get_data(
+            directory=directory,
+            database=database,
+            identifier=replacement[identifier],
+            model_id=model_id,
+            genome=genome,
+        )
+    except KeyError:
+        data_dict = get_data(
+            directory=directory,
+            database=database,
+            identifier=identifier,
+            model_id=model_id,
+            genome=genome,
+        )
+    except HTTPError:
+        data_dict = get_data(
+            directory=directory,
+            database=database,
+            identifier=identifier,
+            model_id=model_id,
+            genome=genome,
+        )
+        data_dict["ENTRY"] = replacement[identifier]
+    return data_dict
 
 
 def _retrieve_dict(directory: Path, target: str) -> dict:

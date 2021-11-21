@@ -17,10 +17,10 @@ from typing import Optional, Dict, Any
 from pathlib import Path
 
 from cobra import Model
-from requests import HTTPError
 
 from cobramod.error import GraphKeyError
-from cobramod.core.creation import get_data, _fix_name
+from cobramod.core.creation import _fix_name
+from cobramod.core.retrieval import _get_correct_data
 from cobramod.utils import _first_item
 from cobramod.error import NoIntersectFound
 
@@ -347,10 +347,9 @@ def build_graph(graph: dict) -> list:
     return mapping
 
 
-def _fix_graph(graph: dict, avoid_list: list, replacement: dict) -> dict:
+def _fix_graph(graph: dict, avoid_list: list) -> dict:
     """
-    Returns a new graph, where items are replaced if found in given
-    dictionary or removed if found in given avoid list.
+    Returns a new graph, where items are removed if found in given avoid list.
     """
     # TODO: docstrings
     new_graph = graph.copy()
@@ -374,45 +373,7 @@ def _fix_graph(graph: dict, avoid_list: list, replacement: dict) -> dict:
 
             elif reaction == value:
                 new_graph[key] = None
-    return graph
-
-
-def _get_correct_data(
-    replacement: dict,
-    directory: Path,
-    database: str,
-    identifier: str,
-    model_id: str,
-    genome: Optional[str],
-):
-    # TODO: docstrings
-    try:
-        replacement[identifier]
-        data_dict = get_data(
-            directory=directory,
-            database=database,
-            identifier=replacement[identifier],
-            model_id=model_id,
-            genome=genome,
-        )
-    except KeyError:
-        data_dict = get_data(
-            directory=directory,
-            database=database,
-            identifier=identifier,
-            model_id=model_id,
-            genome=genome,
-        )
-    except HTTPError:
-        data_dict = get_data(
-            directory=directory,
-            database=database,
-            identifier=identifier,
-            model_id=model_id,
-            genome=genome,
-        )
-        data_dict["ENTRY"] = replacement[identifier]
-    return data_dict
+    return new_graph
 
 
 def _format_graph(
@@ -432,9 +393,7 @@ def _format_graph(
     contain that value. Function :func`cobramod.get_data` will use passed
     arguments to format the items.
     """
-    graph = _fix_graph(
-        graph=graph, avoid_list=avoid_list, replacement=replacement
-    )
+    graph = _fix_graph(graph=graph, avoid_list=avoid_list)
     new_graph = graph.copy()
 
     # Format tuples, single strings and kes
@@ -449,8 +408,17 @@ def _format_graph(
             genome=genome,
             replacement=replacement,
         )
+
+        # Find if replacement should be used instead of renaming
+        replace_found: bool
         try:
-            # Find synonym
+            model.reactions.get_by_id(replacement[key])
+            replace_found = True
+        except KeyError:
+            replace_found = False
+
+        # Find repetition if possible
+        try:
             new_identifier = _first_item(
                 first=model.reactions, second=key_dict["XREF"], revert=True
             )
@@ -459,6 +427,9 @@ def _format_graph(
         except (NoIntersectFound, KeyError):
             # Regular transformation
             new_key = f'{key_dict["ENTRY"].replace("-", "_")}_{compartment}'
+
+        if replace_found:
+            new_key = replacement[key]
 
         # Change in new graph values where key is found
         new_value: tuple
