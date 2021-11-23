@@ -18,7 +18,11 @@ from cobra import Model, Reaction
 from cobra.core.configuration import Configuration
 from cobra.exceptions import OptimizationError
 
-from cobramod.core.creation import create_object
+from cobramod.core.creation import (
+    create_object,
+    _get_file_reactions,
+    _convert_string_reaction,
+)
 from cobramod.core.graph import build_graph, _create_quick_graph, _format_graph
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
@@ -463,6 +467,74 @@ def _update_reactions(
     return new_sequence
 
 
+def _from_strings(
+    model: Model,
+    obj: Union[List[str], Path],
+    database: str,
+    compartment: str,
+    avoid_list: list,
+    replacement: dict,
+    ignore_list: list,
+    stop_imbalance: bool,
+    show_imbalance: bool,
+    directory: Path,
+    genome: Optional[str],
+    model_id: str,
+    pathway_name: str,
+):
+    try:
+        pathway = model.groups.get_by_id(pathway_name)
+    except KeyError:
+        pathway = Pathway(id=pathway_name)
+
+    if isinstance(obj, Path):
+        new_reactions = _get_file_reactions(
+            model=model,
+            filename=obj,
+            directory=directory,
+            database=database,
+            replacement=replacement,
+            stop_imbalance=stop_imbalance,
+            show_imbalance=show_imbalance,
+            genome=genome,
+            model_id=model_id,
+        )
+
+    else:
+        new_reactions = [
+            _convert_string_reaction(
+                line=line,
+                model=model,
+                directory=directory,
+                database=database,
+                replacement=replacement,
+                stop_imbalance=stop_imbalance,
+                show_imbalance=show_imbalance,
+                genome=genome,
+                model_id=model_id,
+            )
+            for line in obj
+        ]
+
+    graph = _create_quick_graph(
+        sequence=[reaction.id for reaction in new_reactions]
+    )
+
+    _add_sequence(
+        model=model,
+        pathway=pathway,
+        sequence=new_reactions,
+        ignore_list=ignore_list,
+    )
+    # No need to format graph because there shouldn't be replacements
+    # FIXME: pointers?
+    if not pathway.graph:
+        pathway.graph = graph
+    else:
+        pathway.graph.update(graph)
+    pathway.notes["ORDER"] = pathway.graph
+
+
 def _from_data(
     model: Model,
     data_dict: dict,
@@ -556,6 +628,7 @@ def _from_data(
             sequence=sequence,
             ignore_list=ignore_list,
         )
+
     # Inform about sinks
     sinks = {sink.id for sink in model.sinks}.difference(previous_sink)
     if sinks:
@@ -703,8 +776,8 @@ def add_pathway(
     model: Model,
     pathway: Union[list, str],
     directory: Path,
-    database: str,
     compartment: str,
+    database: Optional[str] = None,
     group: Optional[str] = None,
     avoid_list: List[str] = [],
     replacement: dict = {},
@@ -766,12 +839,13 @@ def add_pathway(
         raise TypeError("Model is invalid")
     # Save information for summary methods
     old_values = DataModel.from_model(model)
+    # FIXME: static typing for database
     if isinstance(pathway, str):
         # Get data and transform to a pathway
         data_dict = get_data(
             directory=directory,
             identifier=str(pathway),
-            database=database,
+            database=database,  # type: ignore
             model_id=model_id,
             genome=genome,
         )
@@ -781,7 +855,7 @@ def add_pathway(
             model=model,
             data_dict=data_dict,
             directory=directory,
-            database=database,
+            database=database,  # type: ignore
             compartment=compartment,
             avoid_list=avoid_list,
             replacement=replacement,
@@ -796,21 +870,39 @@ def add_pathway(
         # From Reaction
         if not group:
             group = "custom_group"
-        _from_sequence(
-            model=model,
-            identifier=group,
-            sequence=list(pathway),
-            compartment=compartment,
-            avoid_list=avoid_list,
-            directory=directory,
-            database=database,
-            replacement=replacement,
-            ignore_list=ignore_list,
-            show_imbalance=show_imbalance,
-            stop_imbalance=stop_imbalance,
-            model_id=model_id,
-            genome=genome,
-        )
+        try:
+            _from_strings(
+                model=model,
+                obj=pathway,
+                database=database,  # type: ignore
+                compartment=compartment,
+                avoid_list=avoid_list,
+                ignore_list=ignore_list,
+                genome=genome,
+                model_id=model_id,
+                directory=directory,
+                replacement=replacement,
+                show_imbalance=show_imbalance,
+                stop_imbalance=stop_imbalance,
+                pathway_name=group,
+            )
+
+        except KeyError:
+            _from_sequence(
+                model=model,
+                identifier=group,
+                sequence=list(pathway),
+                compartment=compartment,
+                avoid_list=avoid_list,
+                directory=directory,
+                database=database,  # type: ignore
+                replacement=replacement,
+                ignore_list=ignore_list,
+                show_imbalance=show_imbalance,
+                stop_imbalance=stop_imbalance,
+                model_id=model_id,
+                genome=genome,
+            )
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
     # Print summary

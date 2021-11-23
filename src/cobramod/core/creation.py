@@ -719,6 +719,7 @@ def _reaction_from_string(
     new_reaction = Reaction(id=reaction_id, name=reaction_name)
 
     for identifier, coefficient in metabolites.items():
+        original = identifier
         metabolite = None
         compartment = identifier[-1:]
         new_replacement = {
@@ -728,15 +729,24 @@ def _reaction_from_string(
         old_metabolite = _find_replacements(
             identifier=identifier,
             model=model,
-            obj_type="reactions",
+            obj_type="metabolites",
             replace_dict=new_replacement,
         )
+
         if isinstance(old_metabolite, Metabolite):
             metabolite = old_metabolite
+
         elif isinstance(old_metabolite, str):
             identifier = old_metabolite
+
         else:
+            with suppress(KeyError):
+                metabolite = model.metabolites.get_by_id(original)
+
             identifier = identifier[:-2]
+
+        with suppress(KeyError):
+            metabolite = model.metabolites.get_by_id(original)
 
         if not metabolite:
             try:
@@ -798,6 +808,7 @@ def _convert_string_reaction(
     model_id: str = None,
 ) -> Reaction:
     """
+    TODO: Docstring
     Returns a Reaction from string. It can be either custom, or the identifier
     for a reaction in a database. The function will search for the reactions
     and its corresponding metabolites under other names inside the model and
@@ -849,24 +860,31 @@ def _convert_string_reaction(
             show_imbalance=show_imbalance,
             replacement=replacement,
         )
+
     # Must obtain from database
     except NoDelimiter:
         # add reaction from root. Get only left part
         segment = (part.strip().rstrip() for part in line.split(","))
         identifier = next(segment)
-        compartment = next(segment)
-        new_reaction = _obtain_reaction(
-            model=model,
-            identifier=identifier,
-            directory=directory,
-            database=database,
-            compartment=compartment,
-            replacement=replacement,
-            genome=genome,
-            stop_imbalance=stop_imbalance,
-            show_imbalance=show_imbalance,
-            model_id=model_id,
-        )
+
+        try:
+            compartment = next(segment)
+            new_reaction = _obtain_reaction(
+                model=model,
+                identifier=identifier,
+                directory=directory,
+                database=database,
+                compartment=compartment,
+                replacement=replacement,
+                genome=genome,
+                stop_imbalance=stop_imbalance,
+                show_imbalance=show_imbalance,
+                model_id=model_id,
+            )
+
+        # Single reaction
+        except StopIteration:
+            new_reaction = model.reactions.get_by_id(line)
 
     # TODO: add mass balance check
     return new_reaction

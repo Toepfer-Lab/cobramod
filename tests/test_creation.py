@@ -468,7 +468,8 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
         )
         self.assertEqual(first="RXN_14462_c", second=test_reaction.id)
-        # CASE 2: No delimiter, compartment p
+
+        # CASE 2b: No delimiter, compartment p
         test_model = Model(0)
         test_line = "RXN-14462, p"
         test_reaction = cr._convert_string_reaction(
@@ -480,6 +481,20 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
         )
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
+
+        # CASE 2c: No delimiter, using reaction
+        test_model = textbook_kegg.copy()
+        test_line = "ACALDt"
+        test_reaction = cr._convert_string_reaction(
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+            stop_imbalance=False,
+            show_imbalance=False,
+        )
+        self.assertEqual(first="ACALDt", second=test_reaction.id)
+
         # CASE 3: 100% Custom metabolite
         test_model = Model(0)
         test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p --> Meta_B_p"
@@ -1039,6 +1054,19 @@ class ComplexFunctions(TestCase):
                 container=[
                     metabolite.id for metabolite in test_model.metabolites
                 ],
+            )
+
+        test_model = Model(0)
+        test_list = [
+            "GLC_cb, Glucose Transport| GLC_c <-> GLC_b",
+            "RXN_17742_c, RXN_17742_c |"
+            + "1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c ",
+        ]
+        cr.add_reactions(model=test_model, obj=test_list, directory=dir_data)
+        for meta in ("GLC_cb", "RXN_17742_c"):
+            self.assertIn(
+                member=meta,
+                container=[reaction.id for reaction in test_model.reactions],
             )
 
 

@@ -585,6 +585,39 @@ class AddingPathways(TestCase):
                 member=item, container=[gene.id for gene in test_model.genes]
             )
 
+    def test__from_strings(self):
+        test_model = Model(0)
+        test_list = [
+            "RXN-14462, c",
+            "ACETALD-DEHYDROG-RXN ,c",
+            "AMONITRO-RXN, c",
+        ]
+
+        ex._from_strings(
+            model=test_model,
+            obj=test_list,
+            replacement={"Not_GLC": "GLC"},
+            pathway_name="test_group",
+            show_imbalance=False,
+            stop_imbalance=False,
+            model_id=None,
+            database="GCF_000020025",
+            compartment="c",
+            directory=dir_data,
+            avoid_list=[],
+            ignore_list=[],
+            genome=None,
+        )
+        for reaction in (
+            "RXN_14462_c",
+            "ACETALD_DEHYDROG_RXN_c",
+            "AMONITRO_RXN_c",
+        ):
+            self.assertIn(
+                member=reaction,
+                container=[reaction.id for reaction in test_model.reactions],
+            )
+
     def test_add_pathway(self):
         # CASE 1: Regular Biocyc
         test_model = textbook_biocyc.copy()
@@ -852,6 +885,34 @@ class AddingPathways(TestCase):
                 ).members
             ],
         )
+        # CASE 7b: Using replacement arguments to replace
+        test_model = textbook_biocyc.copy()
+        test_list = [
+            "GLT_cb, Glutamate Transport| GLT_c <-> GLT_b",
+            "RXN_17742_c, RXN_17742_c |"
+            + "1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c ",
+            "ACALDt",
+        ]
+
+        ex.add_pathway(
+            model=test_model,
+            compartment="c",
+            pathway=test_list,
+            ignore_list=[],
+            directory=dir_data,
+            show_imbalance=False,
+        )
+
+        for reaction in ("GLT_cb", "RXN_17742_c", "ACALDt"):
+            self.assertIn(
+                member=reaction,
+                container=[
+                    reaction.id
+                    for reaction in test_model.groups.get_by_id(
+                        "custom_group"
+                    ).members
+                ],
+            )
 
 
 if __name__ == "__main__":
