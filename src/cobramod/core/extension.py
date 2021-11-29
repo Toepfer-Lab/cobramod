@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Union, Generator, Optional, List
 from warnings import warn
 
-from cobra import Model, Reaction
+from cobra import Model, Reaction, Metabolite
 from cobra.core.configuration import Configuration
 from cobra.exceptions import OptimizationError
 
@@ -28,7 +28,6 @@ from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
-from cobramod.error import NotInRangeError
 
 
 # Defaults to 1E-07
@@ -129,17 +128,21 @@ def _find_next_demand(
             if metabolite.id not in ignore_list
         ),
     }
+
     # left --> right
     if up > abs(lb):
         candidates = metabolites["products"]
+
     # left <-- right
     elif up < abs(lb):
         candidates = metabolites["reactants"]
+
     # left <--> right
     else:
         # TODO: decide what to do (reversibility)
         # FIXME: isomers sometimes shows double demand
         candidates = metabolites["products"]
+
     try:
         demand: str = next(candidates)
         return demand
@@ -308,76 +311,225 @@ def _verify_sinks(model: Model, reaction: str, ignore_list: List[str]):
     )
 
 
-def test_non_zero_flux(
-    model: Model, reaction: str, times: int = 0, ignore_list: List[str] = []
-):
-    """
-    Verifies that a simple FBA can be performed. A demand reaction is created
-    with a minimum flux based on the COBRApy Configuration object. It will use
-    its variable 'tolerance' multiplied by 10. The function is recursive and
-    checks if sink reactions are sufficient or exceeded. It generates a demand
-    reaction for the reaction used for testing and removes it if necessary.
+def _find_problem(model: Model, reaction: str) -> List[str]:
+    problem: List[str] = list()
+    value: Optional[float]
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    metabolites: List[Metabolite] = _reaction.products + _reaction.reactants
 
-    Args:
-        model (Model): Model in which the reaction is present.
-        reaction (str): Reaction identifier in model to test.
-        times (int, optional): Track of recursions. Defaults to 0.
-        ignore_list (list, optional): A sequence of formatted metabolites to be
-        ignored when testing new reactions. Defaults to []
+    # Add sink
+    for metabolite in metabolites:
+        with suppress(ValueError):
+            model.add_boundary(metabolite=metabolite, type="sink")
 
-    Raises:
-        NotInRangeError: If the solution is infeasible after many recursions.
-            Depends on the number of metabolites in the reaction.
+    assert model.slim_optimize() != 0.0
 
-    """
+    # Test each reaction
+    for metabolite in metabolites:
+        sink: Reaction = model.reactions.get_by_id(f"SK_{metabolite.id}")
+
+        if len(metabolite.reactions) < 2:
+            # Sink cannot be removed because it needs 2 reaction
+            continue
+
+        model.remove_reactions([sink])
+
+        try:
+            value = model.slim_optimize(error_value=None)
+
+            if not value:
+                value == 0.0
+
+            assert value is not None
+            if abs(value) <= cobra_tolerance:
+                raise OptimizationError("FAILED")
+
+        except OptimizationError:
+            model.add_reactions(reaction_list=[sink])
+            assert metabolite.id
+            problem.append(metabolite.id)
+
+    return problem
+
+
+def _new_verify_sink(model: Model, reaction: str):
+
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    metabolites: List[Metabolite] = _reaction.products + _reaction.reactants
+
+    for metabolite in metabolites:
+        amount = len(metabolite.reactions)
+
+        if amount <= 1:
+            model.add_boundary(metabolite=metabolite, type="sink")
+
+
+def _recursive_flux_test(
+    model: Model, reaction: str, times: int = 0
+) -> Optional[float]:
+
     if times == 0:
         debug_log.info(
             f'Test to carry non-zero fluxes for "{reaction}" started'
         )
-    # finding demand for testing
-    next_demand = _find_next_demand(
-        model=model, reaction_id=reaction, ignore_list=ignore_list
-    )
-    # The first step is to add a demand for check that the reaction has an
-    # active flux.
-    with suppress(ValueError):
-        model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
-        model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = abs(
-            cobra_tolerance * 10
-        )
-        debug_log.debug(
-            f'Demand reaction "DM_{next_demand}" for non-zero flux test was '
-            + "added to the model."
-        )
-    # Setting maximum times for recursion
-    if times == len(model.reactions.get_by_id(reaction).metabolites):
-        raise NotInRangeError(reaction=model.reactions.get_by_id(reaction))
-    # answer must be reasonable
-    # comparison must be using absolute values
-    try:
-        model.slim_optimize(error_value=None)
-        # if works, pass and return old objective
-        debug_log.info(f'Reaction "{reaction}" passed the non-zero flux test.')
-        # Remove old demand
-        _remove_boundary(
-            model=model, metabolite=next_demand, boundary="demand"
-        )
-        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
-    except OptimizationError:
-        debug_log.debug(
-            f'Non-zero flux test for reaction "{reaction}" failed. Flux value'
-            f" lower than solver tolerance ({cobra_tolerance*10}) defined in "
-            " cobramod.core.extension.solver_tolerance}. Please check the"
-            " logging information."
-        )
-        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
-        # Recursive with 'extra' argument
-        test_non_zero_flux(
-            model=model,
-            reaction=reaction,
-            times=times + 1,
-            ignore_list=ignore_list,
-        )
+    # run
+    passed: bool
+    value: Optional[float] = model.slim_optimize(error_value=None)
+
+    if not value:
+        passed = False
+        value = 0.0
+
+    # TODO: should be higher or at least?
+    elif abs(value) > cobra_tolerance:
+        passed = True
+
+    else:
+        passed = False
+
+    # Add sinks and get new value
+    if not passed:
+        if times < 1:
+            _new_verify_sink(model=model, reaction=reaction)
+            value = _recursive_flux_test(
+                model=model, reaction=reaction, times=times + 1
+            )
+
+        else:
+            problem = _find_problem(model=model, reaction=reaction)
+            msg = (
+                f"The following metabolites {problem} have a problem with "
+                "their turnover. To overcome this, sink reactions were created"
+                " to simulate their synthesis."
+            )
+            debug_log.warning(msg)
+            warn(msg)
+            value = model.slim_optimize()
+
+    assert value is not None
+    if times == 0:
+        if abs(value) > cobra_tolerance:
+            debug_log.debug(
+                f"Non-zero-flux test for reaction {reaction} passed."
+            )
+
+        else:
+            raise OptimizationError(
+                f"There is a problem with reaction {reaction}. Please create "
+                "manually the corresponding turnover reactions for the "
+                f'metabolites of "{reaction}".'
+            )
+    return value
+
+
+def _is_minimize(model: Model, reaction: str) -> bool:
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    lower: float = _reaction.lower_bound  # type: ignore
+    upper: float = _reaction.upper_bound  # type: ignore
+
+    if abs(lower) > upper:
+        return True
+    return False
+
+
+# TODO: rename
+def test_non_zero_flux(model: Model, reaction: str):
+    # Save old objective
+    original_objective = model.objective
+    original_direction = model.objective_direction
+
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    # check reversibility
+    if _is_minimize(model=model, reaction=reaction):
+        model.objective_direction = "min"
+
+    # Define new objective
+    model.objective = _reaction
+
+    # Recursive function
+    _recursive_flux_test(model=model, reaction=reaction)
+
+    # Revert back objective
+    model.objective = original_objective
+    model.objective_direction = original_direction
+
+
+# def test_non_zero_flux2(
+#     model: Model, reaction: str, times: int = 0, ignore_list: List[str] = []
+# ):
+#     """
+#     Verifies that a simple FBA can be performed. A demand reaction is created
+#   with a minimum flux based on the COBRApy Configuration object. It will use
+#     its variable 'tolerance' multiplied by 10. The function is recursive and
+#   checks if sink reactions are sufficient or exceeded. It generates a demand
+#     reaction for the reaction used for testing and removes it if necessary.
+#
+#     Args:
+#         model (Model): Model in which the reaction is present.
+#         reaction (str): Reaction identifier in model to test.
+#         times (int, optional): Track of recursions. Defaults to 0.
+#       ignore_list (list, optional): A sequence of formatted metabolites to be
+#         ignored when testing new reactions. Defaults to []
+#
+#     Raises:
+#         NotInRangeError: If the solution is infeasible after many recursions.
+#             Depends on the number of metabolites in the reaction.
+#
+#     """
+#     if times == 0:
+#         debug_log.info(
+#             f'Test to carry non-zero fluxes for "{reaction}" started'
+#         )
+#     # TODO: make sure all metabolites have at least 2 reactions. Otherwise
+#     # create sink reactions and raise warning
+#
+#     # TODO: Define new objective value
+#
+#     # TODO: remove auxiliary reactions and revert objective value
+#     next_demand = _find_next_demand(
+#         model=model, reaction_id=reaction, ignore_list=ignore_list
+#     )
+#
+#     # The first step is to add a demand for check that the reaction has an
+#     # active flux.
+#     with suppress(ValueError):
+#        model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
+#         model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = abs(
+#             cobra_tolerance * 10
+#         )
+#         debug_log.debug(
+#             f'Demand reaction "DM_{next_demand}" for non-zero flux test was '
+#             + "added to the model."
+#         )
+#     # Setting maximum times for recursion
+#     if times == len(model.reactions.get_by_id(reaction).metabolites):
+#         raise NotInRangeError(reaction=model.reactions.get_by_id(reaction))
+#     # answer must be reasonable
+#     # comparison must be using absolute values
+#     try:
+#         model.slim_optimize(error_value=None)
+#         # if works, pass and return old objective
+#       debug_log.info(f'Reaction "{reaction}" passed the non-zero flux test.')
+#         # Remove old demand
+#         _remove_boundary(
+#             model=model, metabolite=next_demand, boundary="demand"
+#         )
+#        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
+#     except OptimizationError:
+#         debug_log.debug(
+#            f'Non-zero flux test for reaction "{reaction}" failed. Flux value'
+#            f" lower than solver tolerance ({cobra_tolerance*10}) defined in "
+#             " cobramod.core.extension.solver_tolerance}. Please check the"
+#             " logging information."
+#         )
+#        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
+#         # Recursive with 'extra' argument
+#         test_non_zero_flux(
+#             model=model,
+#             reaction=reaction,
+#             # times=times + 1,
+#             # ignore_list=ignore_list,
+#         )
 
 
 def _add_sequence(
@@ -402,18 +554,21 @@ def _add_sequence(
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list.")
+
     # Add sequence to model
     reaction: Reaction
     for reaction in sequence:
+        assert reaction.id
+
         # Add reaction if not in model
         if reaction not in model.reactions:
             model.add_reactions([reaction])
             debug_log.info(f'Reaction "{reaction.id}" was added to model.')
+
         # Skip test but include reaction in pathway
         if reaction.id not in ignore_list:
-            test_non_zero_flux(
-                model=model, reaction=reaction.id, ignore_list=ignore_list
-            )
+            test_non_zero_flux(model=model, reaction=reaction.id)
+
         else:
             debug_log.warning(
                 f'Reaction "{reaction.id}" found in "ignore_list". Skipping '
@@ -428,6 +583,7 @@ def _add_sequence(
             f'Reaction "{reaction.id}" added to group "{pathway.id}".'
         )
     debug_log.debug(f'Reactions added to group "{pathway.id}".')
+
     # Only add if there is at least 1 reaction in the group.
     if (
         pathway.id not in [group.id for group in model.groups]
@@ -471,6 +627,7 @@ def _from_strings(
     model: Model,
     obj: Union[List[str], Path],
     database: str,
+    # TODO: removed some parameters
     compartment: str,
     avoid_list: list,
     replacement: dict,

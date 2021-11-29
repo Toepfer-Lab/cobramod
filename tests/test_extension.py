@@ -20,7 +20,7 @@ from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions, get_data
 from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
-from cobramod.error import UnbalancedReaction, NotInRangeError
+from cobramod.error import UnbalancedReaction
 from cobramod.test import textbook_biocyc, textbook_kegg, textbook
 
 
@@ -328,6 +328,20 @@ class CreatingSequences(TestCase):
             )
 
     def test_test_non_zero_flux(self):
+        # CASE 1: Single Regular reaction
+        test_model = Model(0)
+
+        add_reactions(
+            model=test_model,
+            obj="RXN-2206, c",
+            directory=dir_data,
+            database="ARA",
+            replacement={},
+            show_imbalance=False,
+        )
+        ex.test_non_zero_flux(model=test_model, reaction="RXN_2206_c")
+        self.assertEqual(first=7, second=len(test_model.sinks))
+
         # CASE 0: minimun range not reached
         # INFO: this extra steps are needed in order to make it fail
         test_model = textbook_biocyc.copy()
@@ -344,26 +358,13 @@ class CreatingSequences(TestCase):
             directory=dir_data,
             show_imbalance=False,
         )
-        self.assertRaises(
-            NotInRangeError,
+        self.assertWarns(
+            UserWarning,
             ex.test_non_zero_flux,
             model=test_model,
             reaction="GLUTATHIONE_SYN_RXN_p",
-            ignore_list=["PROTON_p"],
         )
-        # CASE 1: Single Regular reaction
-        test_model = Model(0)
-        add_reactions(
-            model=test_model,
-            obj="RXN-2206,c",
-            directory=dir_data,
-            database="ARA",
-            replacement={},
-            show_imbalance=False,
-        )
-        test_model.objective = "RXN_2206_c"
-        ex.test_non_zero_flux(model=test_model, reaction="RXN_2206_c")
-        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+
         # CASE 2: direction right to left
         test_model = Model(0)
         add_reactions(
@@ -371,55 +372,104 @@ class CreatingSequences(TestCase):
             obj="1.8.4.9-RXN, c",
             directory=dir_data,
             database="ARA",
-            replacement={},
         )
-        test_model.objective = "1.8.4.9_RXN_c"
-        test_model.objective_direction = "min"
         ex.test_non_zero_flux(model=test_model, reaction="1.8.4.9_RXN_c")
-        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+        self.assertEqual(first=6, second=len(test_model.sinks))
 
-        # CASE 3: single reaction with ignore_list. i.e two reactions, in which
-        # one metabolite X is created separately, and will be ignore in the
-        # new function
-        test_model = Model(0)
-        add_reactions(
-            model=test_model,
-            obj="RXN-2206, c",
-            directory=dir_data,
-            database="ARA",
-            replacement={},
-            show_imbalance=False,
-        )
-        test_model.add_boundary(
-            test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
-        )
-        test_model.objective = "RXN_2206_c"
-        ex.test_non_zero_flux(
-            model=test_model,
-            reaction="RXN_2206_c",
-            ignore_list=["OXYGEN_MOLECULE_c"],
-        )
-        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
-        # CASE 4: single reverse reaction (as CASE 2) with a ignore_list
-        test_model = Model(0)
-        add_reactions(
-            model=test_model,
-            obj="1.8.4.9-RXN, c",
-            directory=dir_data,
-            database="ARA",
-            replacement={},
-        )
-        test_model.add_boundary(
-            test_model.metabolites.get_by_id("PROTON_c"), "sink"
-        )
-        test_model.objective = "1.8.4.9_RXN_c"
-        test_model.objective_direction = "min"
-        ex.test_non_zero_flux(
-            model=test_model,
-            reaction="1.8.4.9_RXN_c",
-            ignore_list=["PROTON_c"],
-        )
-        self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+    # @skip("")
+    # def test_test_non_zero_flux(self):
+    #    # CASE 0: minimun range not reached
+    #    # INFO: this extra steps are needed in order to make it fail
+    #    test_model = textbook_biocyc.copy()
+    #    add_reactions(
+    #        model=test_model,
+    #        obj=[
+    #            "Redox_ADP_ATP_p, Redox_ADP_ATP_p | ADP_p <-> ATP_p",
+    #            "TRANS_Pi_cp, Transport Phosphate_cp | Pi_c <-> Pi_p",
+    #            "TRANS_GLUTATHIONE_cp, Transport GLUTATHIONE_cp |"
+    #            + " GLUTATHIONE_c <-> GLUTATHIONE_p",
+    #            "GLUTATHIONE-SYN-RXN, p",
+    #        ],
+    #        database="ARA",
+    #        directory=dir_data,
+    #        show_imbalance=False,
+    #    )
+    #    self.assertRaises(
+    #        NotInRangeError,
+    #        ex.test_non_zero_flux,
+    #        model=test_model,
+    #        reaction="GLUTATHIONE_SYN_RXN_p",
+    #        ignore_list=["PROTON_p"],
+    #    )
+    #    # CASE 1: Single Regular reaction
+    #    test_model = Model(0)
+    #    add_reactions(
+    #        model=test_model,
+    #        obj="RXN-2206,c",
+    #        directory=dir_data,
+    #        database="ARA",
+    #        replacement={},
+    #        show_imbalance=False,
+    #    )
+    #    test_model.objective = "RXN_2206_c"
+    #    ex.test_non_zero_flux(model=test_model, reaction="RXN_2206_c")
+    #    self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+    #    # CASE 2: direction right to left
+    #    test_model = Model(0)
+    #    add_reactions(
+    #        model=test_model,
+    #        obj="1.8.4.9-RXN, c",
+    #        directory=dir_data,
+    #        database="ARA",
+    #        replacement={},
+    #    )
+    #    test_model.objective = "1.8.4.9_RXN_c"
+    #    test_model.objective_direction = "min"
+    #    ex.test_non_zero_flux(model=test_model, reaction="1.8.4.9_RXN_c")
+    #    self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+
+    #   # CASE 3: single reaction with ignore_list. i.e two reactions, in which
+    #    # one metabolite X is created separately, and will be ignore in the
+    #    # new function
+    #    test_model = Model(0)
+    #    add_reactions(
+    #        model=test_model,
+    #        obj="RXN-2206, c",
+    #        directory=dir_data,
+    #        database="ARA",
+    #        replacement={},
+    #        show_imbalance=False,
+    #    )
+    #    test_model.add_boundary(
+    #        test_model.metabolites.get_by_id("OXYGEN_MOLECULE_c"), "sink"
+    #    )
+    #    test_model.objective = "RXN_2206_c"
+    #    ex.test_non_zero_flux(
+    #        model=test_model,
+    #        reaction="RXN_2206_c",
+    #        ignore_list=["OXYGEN_MOLECULE_c"],
+    #    )
+    #    self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
+    #    # CASE 4: single reverse reaction (as CASE 2) with a ignore_list
+    #    test_model = Model(0)
+    #    add_reactions(
+    #        model=test_model,
+    #        obj="1.8.4.9-RXN, c",
+    #        directory=dir_data,
+    #        database="ARA",
+    #        replacement={},
+    #    )
+    #    test_model.add_boundary(
+    #        test_model.metabolites.get_by_id("PROTON_c"), "sink"
+    #    )
+    #    test_model.objective = "1.8.4.9_RXN_c"
+    #    test_model.objective_direction = "min"
+    #    ex.test_non_zero_flux(
+    #        model=test_model,
+    #        reaction="1.8.4.9_RXN_c",
+    #        ignore_list=["PROTON_c"],
+    #    )
+    #    self.assertGreater(a=abs(test_model.slim_optimize()), b=0)
 
 
 class AddingPathways(TestCase):
