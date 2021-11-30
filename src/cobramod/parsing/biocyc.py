@@ -53,10 +53,9 @@ try:
     response = get(url="https://websvc.biocyc.org/kb-version?orgid=META")
     response.raise_for_status()
     kb_version = response.json()["kb-version"]
-    cobramod_kb = databases.find("metadata/*[@orgid='META']").attrib[
-        # type: ignore
-        "version"
-    ]
+    cobramod_kb = databases.find(  # type: ignore
+        "metadata/*[@orgid='META']"
+    ).attrib["version"]
     # Check that the database version is the one
     assert kb_version == cobramod_kb
 except HTTPError:
@@ -352,8 +351,9 @@ class BiocycParser(BaseParser):
         for method in (_p_reaction, _p_pathway, _p_compound):
             with suppress(WrongParserError, AttributeError):
                 try:
-                    biocyc_dict = method(root=root, directory=directory)
-                    # type: ignore
+                    biocyc_dict = method(  # type: ignore
+                        root=root, directory=directory
+                    )
                 except TypeError:
                     biocyc_dict = method(root=root)  # type: ignore
                 # This might change due to sub-database

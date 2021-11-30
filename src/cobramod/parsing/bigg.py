@@ -20,7 +20,7 @@ Important class of the module:
 from contextlib import suppress
 from json import loads, JSONDecodeError
 from pathlib import Path
-from typing import Any
+from typing import Any, Tuple
 from warnings import warn
 
 from requests import get, HTTPError, Response
@@ -30,7 +30,7 @@ from cobramod.error import WrongParserError
 from cobramod.parsing.base import BaseParser
 
 
-def _find_url(model_id: str, identifier: str) -> (Response, str):
+def _find_url(model_id: str, identifier: str) -> Tuple[Response, str]:
     """
     Tries to find a valid URL for the API of BIGG. It will return a
     :class:`requests.Response` if URL is valid.
