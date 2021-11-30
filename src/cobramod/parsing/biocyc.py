@@ -518,9 +518,11 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                 root = fromstring(response.text)
 
                 metadata = root.find("metadata/PGDB")
-                BaseParser._check_database_version(
-                    directory, metadata.get("orgid"), metadata.get("version")
-                )
+                assert metadata is not None
+                orgid = str(metadata.get("orgid"))
+                version = str(metadata.get("version"))
+
+                BaseParser.check_database_version(directory, orgid, version)
 
                 tree = ElementTree(root)
                 data_dir.mkdir(exist_ok=True)

@@ -110,7 +110,7 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
                 model_id=model_id, identifier=identifier
             )
 
-            BaseParser._check_database_version(directory, "bigg", db_version)
+            BaseParser.check_database_version(directory, "bigg", db_version)
 
             debug_log.info(
                 f'Object "{identifier}" found. Saving in '

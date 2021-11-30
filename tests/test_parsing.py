@@ -10,12 +10,14 @@ the different databases. The module is separated according to the databases:
 """
 import shutil
 import tempfile
+from unittest.mock import patch
 from xml.etree.ElementTree import Element
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
 
 import pandas as pd
+import pytest
 from pandas._testing import assert_frame_equal
 from requests import HTTPError, Response
 from cobra import __version__
@@ -42,50 +44,86 @@ print(f"COBRApy version: {__version__}")
 
 
 class BaseParser(TestCase):
-
     @classmethod
-    def setUpClass(cls):
+    def setUp(cls):
         cls.directory = tempfile.mkdtemp()
-        cls.versions = pd.DataFrame.from_dict({
-            "orgid": "bigg",
-            "version": "1.0.0"
-        })
+        bp.ignore_db_versions = False
+        cls.versions = pd.DataFrame.from_dict(
+            {"orgid": ["bigg"], "version": ["1.0.0"]}
+        )
 
         cls.versions.to_csv(
-            path_or_buf=str(cls.directory / "DatabaseVersions.csv"),
-            index=False
+            path_or_buf=str(cls.directory + "/DatabaseVersions.csv"),
+            index=False,
         )
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDown(cls):
         shutil.rmtree(cls.directory)
 
     def test__get_database_version(self):
         database = bp._get_database_version(self.directory)
+        print(database)
         assert_frame_equal(database, self.versions)
 
     def test__set_database_version(self):
-        bp._set_database_version("pmn:META",
-                                 "1.0")
+        bp._set_database_version(Path(self.directory), "pmn:META", "1.0")
 
         database = bp._get_database_version(self.directory)
 
-        self.versions.append(
-            {"orgid": "pmn:META",
-             "version": "1.0"},
-            ignore_index=True
+        self.versions = self.versions.append(
+            {"orgid": "pmn:META", "version": "1.0"}, ignore_index=True
         )
 
         assert_frame_equal(database, self.versions)
 
-
     def test__check_database_version(self):
-        # unseen database
+        (Path(self.directory) / "DatabaseVersions.csv").unlink()
+
+        # new database
+        bp.check_database_version(Path(self.directory), "bigg", "1.0.0")
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
         # database with correct version
-        # database with incorrect version (continue vs dont continue/ dont expect input)
 
-        raise False
+        with pytest.warns(None) as warnings:
+            bp.check_database_version(Path(self.directory), "bigg", "1.0.0")
 
+        assert not warnings
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+        # database with incorrect version (with user input)
+        with patch("builtins.input", return_value="y") as mock:
+            with self.assertWarnsRegex(
+                UserWarning,
+                r"Versions of .* do not match. Remote has version .* "
+                r"and local version is .*\.",
+            ):
+                bp.check_database_version(
+                    Path(self.directory), "bigg", "2.0.0"
+                )
+
+            args, kwargs = mock.call_args
+            assert args == ("Ignore version mismatch? (Y)es (N)o",)
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+        # database with incorrect version (without user input)
+        bp.ignore_db_versions = True
+        with self.assertWarnsRegex(
+            UserWarning,
+            r"Versions of .* do not match. Remote has version .* "
+            r"and local version is .*\.",
+        ):
+            bp.check_database_version(Path(self.directory), "bigg", "2.0.0")
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
 
 
 class TestKegg(TestCase):
@@ -295,7 +333,6 @@ class TestBiocyc(TestCase):
 
 
 class TestPlantCyc(TestCase):
-
     @classmethod
     def setUpClass(cls):
         pc.BaseParser.ignore_db_versions = True
@@ -438,7 +475,6 @@ class TestPlantCyc(TestCase):
 
 
 class TestBigg(TestCase):
-
     @classmethod
     def setUpClass(cls):
         bi.BaseParser.ignore_db_versions = True

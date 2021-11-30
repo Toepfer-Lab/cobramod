@@ -46,6 +46,9 @@ class BaseParser(ABC):
             (pd.DataFrame): A DataFrame containing the orgid and version, at
                 the time of the first retrieval, for all databases used so far.
         """
+        if isinstance(directory, str):
+            directory = Path(directory)
+
         if BaseParser.database_version is not None:
             return BaseParser.database_version
         try:
@@ -59,9 +62,7 @@ class BaseParser(ABC):
         return BaseParser.database_version
 
     @staticmethod
-    def _check_database_version(
-        directory: Path, database: str, version: str
-    ):
+    def check_database_version(directory: Path, database: str, version: str):
         """
         Function to compare the saved database version with the one
         of the retrieved data.
@@ -74,6 +75,7 @@ class BaseParser(ABC):
         if BaseParser.database_version is None:
             BaseParser._get_database_version(directory=directory)
 
+        assert isinstance(BaseParser.database_version, pd.DataFrame)
         row = BaseParser.database_version.loc[
             BaseParser.database_version["orgid"] == database
         ]
@@ -92,10 +94,12 @@ class BaseParser(ABC):
         # => any
 
         if expected_version != version:
-            msg = "Versions of {} do not match. Remote has version {} " \
-                  "and local version is {}.".format(
+            msg = (
+                "Versions of {} do not match. Remote has version {} "
+                "and local version is {}.".format(
                     database, version, expected_version
-                  )
+                )
+            )
             warn(
                 message=msg,
                 category=UserWarning,
@@ -132,12 +136,11 @@ class BaseParser(ABC):
         if BaseParser.database_version is None:
             BaseParser._get_database_version(directory=directory)
 
+        assert isinstance(BaseParser.database_version, pd.DataFrame)
         BaseParser.database_version = BaseParser.database_version.append(
             {"orgid": database, "version": version}, ignore_index=True
         )
 
-        print("write to" + str(directory / "DatabaseVersions.csv"))
-        print(BaseParser.database_version)
         BaseParser.database_version.to_csv(
             path_or_buf=str(directory / "DatabaseVersions.csv"), index=False
         )

@@ -24,7 +24,7 @@ from xml.etree.ElementTree import (
     ParseError,
 )
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from warnings import warn
 
 from requests import get, HTTPError
@@ -492,10 +492,14 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                 root = fromstring(response.text)
 
                 metadata = root.find("metadata/PGDB")
-                BaseParser._check_database_version(
+                assert metadata is not None
+                orgid = metadata.get("orgid")
+                version = metadata.get("version")
+
+                BaseParser.check_database_version(
                     directory,
-                    "pmn:" + metadata.get("orgid"),
-                    metadata.get("version"),
+                    "pmn:" + str(orgid),
+                    str(version),
                 )
 
                 tree = ElementTree(root)
