@@ -18,7 +18,7 @@ from unittest import TestCase, main
 
 import pandas as pd
 import pytest
-from pandas._testing import assert_frame_equal
+from pandas._testing import assert_frame_equal, assert_series_equal
 from requests import HTTPError, Response
 from cobra import __version__
 
@@ -46,6 +46,9 @@ print(f"COBRApy version: {__version__}")
 class BaseParser(TestCase):
     @classmethod
     def setUp(cls):
+        # removing metadata belonging to other tests that affect this one
+        bp.database_version = None
+
         cls.directory = tempfile.mkdtemp()
         bp.ignore_db_versions = False
         cls.versions = pd.DataFrame.from_dict(
@@ -60,11 +63,19 @@ class BaseParser(TestCase):
     @classmethod
     def tearDown(cls):
         shutil.rmtree(cls.directory)
+        # Removing metadata
+        bp.database_version = None
 
     def test__get_database_version(self):
         database = bp._get_database_version(self.directory)
-        print(database)
         assert_frame_equal(database, self.versions)
+
+    def test__get_local_databases(self):
+        databases = bp._get_local_databases(self.directory)
+
+        expected_series = pd.Series(["bigg"])
+        expected_series.name = "orgid"
+        assert_series_equal(databases, expected_series)
 
     def test__set_database_version(self):
         bp._set_database_version(Path(self.directory), "pmn:META", "1.0")

@@ -16,6 +16,7 @@ Important class of the module:
 :class:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
+from functools import lru_cache
 from xml.etree.ElementTree import (
     fromstring,
     Element,
@@ -36,38 +37,6 @@ from cobramod.error import (
     SuperpathwayWarning,
 )
 from cobramod.parsing.base import BaseParser
-
-
-# Sub databases from Biocyc
-with open(
-    file=str(
-        Path(__file__)
-        .resolve()
-        .parent.parent.joinpath("data")
-        .joinpath("biocyc_db.xml")
-    )
-) as f:
-    databases = parse(source=f)
-# Check actual biocyc database version
-try:
-    response = get(url="https://websvc.biocyc.org/kb-version?orgid=META")
-    response.raise_for_status()
-    kb_version = response.json()["kb-version"]
-    cobramod_kb = databases.find(  # type: ignore
-        "metadata/*[@orgid='META']"
-    ).attrib["version"]
-    # Check that the database version is the one
-    assert kb_version == cobramod_kb
-except HTTPError:
-    warn(
-        message="Could not get the actual Biocyc version", category=UserWarning
-    )
-except AssertionError:
-    warn(
-        message="Biocyc version is not the same in CobraMod. Please inform "
-        + "maintainers.",
-        category=UserWarning,
-    )
 
 
 def _build_reference(root: Any) -> dict:
@@ -388,7 +357,7 @@ class BiocycParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
-        BiocycParser._check_database(database=database)
+        BiocycParser._check_database(directory=directory, database=database)
         root = retrieve_data(
             directory=directory, identifier=identifier, database=database
         )
@@ -399,16 +368,40 @@ class BiocycParser(BaseParser):
         return BiocycParser._parse(root=root, directory=directory)
 
     @staticmethod
-    def _check_database(database: str):
+    @lru_cache(maxsize=1)
+    def _query_available_dbs() -> Element:
+        """
+        Function to query and cache all existing databases in BioCyc.
+        """
+
+        url = "https://biocyc.org/xmlquery?dbs"
+        response = get(url)
+        response.raise_for_status()
+
+        return fromstring(response.content)
+
+    @staticmethod
+    def _check_database(directory: Path, database: str) -> None:
         """
         Returns the name of the database. This method is used to compare with
         given database name. It will raise a warning if both names are not
         equal or belong to the list of proper names.
         """
-        if not databases.find(f"metadata/*[@orgid='{database}']"):
-            raise WrongParserError(
-                f'Database "{database}" was not found in Biocyc'
-            )
+        if not isinstance(database, str):
+            raise WrongParserError
+
+        databases = BiocycParser._query_available_dbs()
+
+        local_databases = BaseParser._get_local_databases(directory)
+        if local_databases.str.contains(database).any():
+            return
+
+        if databases.find(f"metadata/*[@orgid='{database}']"):
+            return
+
+        raise WrongParserError(
+            f'Database "{database}" was not found in Biocyc'
+        )
 
     @staticmethod
     def _read_file(filename: Path) -> Element:

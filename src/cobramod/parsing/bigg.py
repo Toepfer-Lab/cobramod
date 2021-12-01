@@ -253,7 +253,7 @@ class BiggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
-        BiggParser._check_database(database=database)
+        BiggParser._check_database(directory=directory, database=database)
         try:
             model_id = kwargs["model_id"]
         except KeyError:
@@ -286,7 +286,7 @@ class BiggParser(BaseParser):
             raise WrongParserError
 
     @staticmethod
-    def _check_database(database: str):
+    def _check_database(directory: Path, database: str):
         """
         Returns name of the database. It will raise a Error if name is
         incorrect.

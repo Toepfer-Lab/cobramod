@@ -91,7 +91,7 @@ style="width: 50%;">BIGG</td> </tr> </tbody> </table>
 available_databases = Databases()
 
 
-def _get_parser(database: str) -> Type[BaseParser]:
+def _get_parser(directory: Path, database: str) -> Type[BaseParser]:
     """
     Return the child instance of BaseParser that matches the name of the
     database.
@@ -100,7 +100,7 @@ def _get_parser(database: str) -> Type[BaseParser]:
         with suppress(WrongParserError):
             # This method will raise a WrongParserError. Skipping it will
             # return the the real parser
-            parser._check_database(database=database)
+            parser._check_database(directory=directory, database=database)
             real_parser = parser
             break
     try:
@@ -139,7 +139,7 @@ def get_data(
     Returns:
         dict: Relevant data for the given identifier.
     """
-    real_parser = _get_parser(database=database)
+    real_parser = _get_parser(directory=directory, database=database)
     return real_parser._retrieve_data(
         directory=directory,
         identifier=identifier,

@@ -521,7 +521,7 @@ class KeggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
-        KeggParser._check_database(database=database)
+        KeggParser._check_database(directory=directory, database=database)
         raw = retrieve_data(directory=directory, identifier=identifier)
         debug_log.log(
             level=debug_level,
@@ -535,7 +535,7 @@ class KeggParser(BaseParser):
         return KeggParser._parse(root=raw, directory=directory, genome=genome)
 
     @staticmethod
-    def _check_database(database: str):
+    def _check_database(directory: Path, database: str):
         """
         Returns the name of the database. This method is used to compare with
         given database name. It will raise a warning if both names are not

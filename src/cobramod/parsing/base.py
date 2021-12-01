@@ -62,6 +62,13 @@ class BaseParser(ABC):
         return BaseParser.database_version
 
     @staticmethod
+    def _get_local_databases(directory: Path) -> pd.Series:
+        databases = BaseParser._get_database_version(directory)
+        databases = databases["orgid"]
+
+        return databases
+
+    @staticmethod
     def check_database_version(directory: Path, database: str, version: str):
         """
         Function to compare the saved database version with the one
@@ -171,7 +178,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def _check_database(database: str):
+    def _check_database(directory: Path, database: str):
         """
         Basic check method.
         """
