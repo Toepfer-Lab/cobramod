@@ -300,9 +300,8 @@ def _add_sequence(
         pathway (Pathway): Common Pathway to add the reaction.
         sequence (list): List with :class:`cobra.core.reaction.Reaction`
             objects
-        ignore_list (list): A sequence of formatted metabolites to skip when
-            testing, and/or reactions that should be added but not tested.
-            This is useful for long cyclical pathways.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Raises:
         TypeError: if reactions are not valid Reaction objects
@@ -350,9 +349,10 @@ def _add_sequence(
 def _update_reactions(sequence: List[str], avoid_list: List[str]) -> List[str]:
     """
     Updates the given sequence taking into consideration reactions to avoid
+    in the sequence
 
     Args:
-        sequence (list): Names of the reactions to update
+        sequence (list): identifier of the reactions to update
         avoid_list (list): Reactions that should not be included in the model
     """
     new_sequence: List[str] = list()
@@ -397,6 +397,7 @@ def _inform_sink(model: Model, previous_sinks: Set[str]):
 def _from_strings(
     model: Model,
     obj: Union[List[str], Path],
+    pathway_name: str,
     database: str,
     replacement: dict,
     ignore_list: list,
@@ -405,7 +406,6 @@ def _from_strings(
     directory: Path,
     genome: Optional[str],
     model_id: str,
-    pathway_name: str,
 ):
     """
     Adds a Pathway into given model. The reactions are created from::
@@ -428,15 +428,29 @@ def _from_strings(
         obj (Union[List[str], Path]): Location of the file or list with strings
         database (str): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
-        replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers. This applies to metabolites.
-        ignore_list:
-        stop_imbalance:
-        show_imbalance:
-        directory:
-        genome:
-        model_id:
-        pathway_name:
+        pathway_name (str): Common :class:`cobramod.pathway.Pathway`
+            identifier
+
+    Argument for complex pathways:
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
+
+    Arguments for utilities:
+        stop_imbalance (bool, optional): If an unbalanced reaction is found,
+            stop the process. Defaults to False.
+        show_imbalance (bool, optional): If an unbalanced reaction is found,
+            print output. Defaults to True.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model. Pathways are not available.
+            Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            species involved. Genes will be obtained for this species.
+            List available at https://www.genome.jp/kegg/catalog/org_list.html
 
     """
     # Either create a Pathway or give new name.
@@ -530,14 +544,13 @@ def _from_data(
         compartment: Location of the reactions.
 
     Arguments for complex pathways:
-        replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
-        avoid_list (list): A sequence of reactions identifiers to
-            avoid adding to the model. This is useful for long pathways,
-            where X reactions need to be excluded.
-        ignore_list (list): A sequence of formatted metabolites to skip when
-            testing, and/or reactions that should be added but not tested.
-            This is useful for long cyclical pathways.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -647,17 +660,16 @@ def _from_sequence(
         database (str): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
-        directory (Path): Path for directory to stored and retrieve data.
+        directory (Path): Path for directory to store and retrieve data.
 
     Arguments for complex pathways:
-        avoid_list (list): A sequence of reactions identifiers to
-            avoid adding to the model. This is useful for long pathways,
-            where X reactions need to be excluded.
-        ignore_list (list): A sequence of formatted metabolites to skip when
-            testing, and/or reactions that should be added but not tested.
-            This is useful for long cyclical pathways.
-        replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -755,25 +767,29 @@ def add_pathway(
     Args:
         model (Model): Model to expand.
         pathway (list, str): Sequence of reaction identifiers or a single
-            identifier for a pathway. Examples: ["RXN-2206", "RXN-207"] or
-            "PWY-886"
-        directory (Path): Path for the directory to stored and retrieve data.
-        database (str): Name of the database.
+            identifier for a pathway. Examples:
+            ["RXN-2206", "RXN-207"], (Reaction to download from a database)
+            "PWY-886", (Pathway to download from a database)
+            ["ACALDt, RXN_2206_c"], (which are reactions already in the model)
+        directory (Path): Path for the directory to store and retrieve data.
+        database (str, Optional): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
-        compartment: Location of the reactions.
+            When adding reactions of the model, this argument is not necessary
+            Defaults to None.
+        compartment: Location of the reactions. If adding reaction already
+            in the model, this argument will not change the reaction's
+            compartment.
         group (str, optional): Common :class:`cobramod.pathway.Pathway`
             identifier. This will overwrite the name of the pathway.
 
     Arguments for complex pathways:
-    avoid_list (list, optional): A sequence of reactions identifiers to avoid
-        adding to the model. This is useful for long pathways, where
-        X reactions need to be excluded.
-    replacement (dict, optional): Original identifiers to be replaced.
-        Values are the new identifiers.
-    #FIXME: modify
-    ignore_list (list): A sequence of formatted metabolites to be ignored when
-    testing, and/or reactions that should be added but not tested.
-        This is useful for long cyclical pathways.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to

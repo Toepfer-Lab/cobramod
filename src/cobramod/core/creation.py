@@ -178,6 +178,7 @@ def _get_metabolite(
         debug_log.warning(msg=msg)
         warn(message=msg, category=UserWarning)
         return metabolite
+
     # Format if above fails
     identifier = f"{_fix_name(name=identifier)}_{compartment}"
     # Create object, add logging and then return it.
@@ -592,15 +593,17 @@ def _reaction_information(string: str) -> tuple:
         "<=>": (-1000, 1000),
         "<->": (-1000, 1000),
     }
-    for separator in arrows.keys():
-        if separator in string:
-            bounds = arrows[separator]
+    bounds: Optional[tuple] = None
+    separator: str = ""
+
+    for key in arrows.keys():
+        if key in string:
+            bounds = arrows[key]
+            separator = key
             break
+
     # Verify bounds
-    # TODO: refactor this
-    try:
-        bounds
-    except UnboundLocalError:
+    if not bounds:
         raise WrongSyntax(
             f"Given string does not have a proper arrow.\n{string}\n"
             f'Please use one of this options:\n"{arrows.keys()}"'
