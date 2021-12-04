@@ -16,6 +16,7 @@ Important class of the module:
 :class:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
+from functools import lru_cache
 from xml.etree.ElementTree import (
     fromstring,
     Element,
@@ -24,7 +25,7 @@ from xml.etree.ElementTree import (
     ParseError,
 )
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from warnings import warn
 
 from requests import get, HTTPError
@@ -371,13 +372,43 @@ class PlantCycParser(BaseParser):
         return PlantCycParser._parse(root=root, directory=directory)
 
     @staticmethod
-    def _check_database(database: str):
+    @lru_cache(maxsize=1)
+    def _query_available_dbs() -> Element:
         """
-        Returns name of the database. It will raise a Error if name is
-        incorrect.
+        Function to query and cache all existing databases in PlantCyc.
         """
+        url = "https://pmn.plantcyc.org/xmlquery?dbs"
+        response = get(url)
+        response.raise_for_status()
+
+        return fromstring(response.content)
+
+    @staticmethod
+    def _check_database(directory: Path, database: str) -> None:
+        """
+        Returns the name of the database. This method is used to compare with
+        given database name. It will raise a warning if both names are not
+        equal or belong to the list of proper names.
+        """
+
         if not isinstance(database, str) or not database.startswith("pmn:"):
             raise WrongParserError
+
+        databases = PlantCycParser._query_available_dbs()
+
+        local_databases = BaseParser._get_local_databases(directory)
+        if local_databases.str.contains(database).any():
+            return
+
+        # obtaining the database name without the prefix "pmn:"
+        database = database.partition("pmn:")[2]
+
+        if databases.find(f"metadata/*[@orgid='{database}']"):
+            return
+
+        raise WrongParserError(
+            f'Database "{database}" was not found in Biocyc'
+        )
 
     @staticmethod
     def _read_file(filename: Path) -> Element:
@@ -492,10 +523,14 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                 root = fromstring(response.text)
 
                 metadata = root.find("metadata/PGDB")
-                BaseParser._check_database_version(
+                assert metadata is not None
+                orgid = metadata.get("orgid")
+                version = metadata.get("version")
+
+                BaseParser.check_database_version(
                     directory,
-                    "pmn:" + metadata.get("orgid"),
-                    metadata.get("version"),
+                    "pmn:" + str(orgid),
+                    str(version),
                 )
 
                 tree = ElementTree(root)

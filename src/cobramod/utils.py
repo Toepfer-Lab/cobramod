@@ -14,7 +14,6 @@ from typing import TextIO, Iterator, Generator, Iterable, Any
 from warnings import warn
 
 from cobra import Reaction, DictList
-
 from cobramod.debug import debug_log
 from cobramod.error import (
     UnbalancedReaction,

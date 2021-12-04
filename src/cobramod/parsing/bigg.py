@@ -20,7 +20,7 @@ Important class of the module:
 from contextlib import suppress
 from json import loads, JSONDecodeError
 from pathlib import Path
-from typing import Any
+from typing import Any, Tuple
 from warnings import warn
 
 from requests import get, HTTPError, Response
@@ -30,7 +30,7 @@ from cobramod.error import WrongParserError
 from cobramod.parsing.base import BaseParser
 
 
-def _find_url(model_id: str, identifier: str) -> (Response, str):
+def _find_url(model_id: str, identifier: str) -> Tuple[Response, str]:
     """
     Tries to find a valid URL for the API of BIGG. It will return a
     :class:`requests.Response` if URL is valid.
@@ -110,7 +110,7 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
                 model_id=model_id, identifier=identifier
             )
 
-            BaseParser._check_database_version(directory, "bigg", db_version)
+            BaseParser.check_database_version(directory, "bigg", db_version)
 
             debug_log.info(
                 f'Object "{identifier}" found. Saving in '
@@ -253,7 +253,7 @@ class BiggParser(BaseParser):
         Returns:
             dict: relevant data for given identifier
         """
-        BiggParser._check_database(database=database)
+        BiggParser._check_database(directory=directory, database=database)
         try:
             model_id = kwargs["model_id"]
         except KeyError:
@@ -286,7 +286,7 @@ class BiggParser(BaseParser):
             raise WrongParserError
 
     @staticmethod
-    def _check_database(database: str):
+    def _check_database(directory: Path, database: str):
         """
         Returns name of the database. It will raise a Error if name is
         incorrect.
