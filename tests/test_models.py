@@ -29,7 +29,7 @@ if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
 
 # Large Model
-main_model = read_sbml_model(str(dir_input.joinpath("test_model02.sbml")))
+main_model = read_sbml_model(str(dir_input.joinpath("test_model.sbml")))
 
 
 if not dir_data.exists():
@@ -100,7 +100,6 @@ class ShortModel(TestCase):
         )
 
     def test_cyclical_pathways(self):
-        # test_model = main_model1.copy()
         test_model = textbook_biocyc.copy()
 
         # Adding Mannitol cycle

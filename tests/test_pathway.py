@@ -295,7 +295,7 @@ class TestGroup(TestCase):
             group="test_group",
         )
 
-        filename = dir_input.joinpath("test_model03.sbml")
+        filename = dir_input.joinpath("test_model.sbml")
         write_sbml_model(cobra_model=test_model, filename=str(filename))
 
         test_model = read_sbml_model(str(filename))
