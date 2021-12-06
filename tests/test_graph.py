@@ -495,7 +495,7 @@ class GraphTesting(TestCase):
             model=test_model,
             compartment="c",
             directory=dir_data,
-            model_id="universal",
+            model_id="e_coli_core",
             database="BIGG",
             avoid_list=[],
             replacement={},

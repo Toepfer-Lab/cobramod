@@ -8,16 +8,23 @@ the different databases. The module is separated according to the databases:
 - TestBigg: For BiGG database
 - TestKegg: For Kegg
 """
+import shutil
+import tempfile
+from unittest.mock import patch
 from xml.etree.ElementTree import Element
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
 
+import pandas as pd
+import pytest
+from pandas._testing import assert_frame_equal, assert_series_equal
 from requests import HTTPError, Response
 from cobra import __version__
 
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError, SuperpathwayWarning
+from cobramod.parsing.base import BaseParser as bp
 from cobramod.parsing import kegg as kg
 from cobramod.parsing import biocyc as bc
 from cobramod.parsing import plantcyc as pc
@@ -36,10 +43,108 @@ print(f"CobraMod version: {cobramod_version}")
 print(f"COBRApy version: {__version__}")
 
 
+class BaseParser(TestCase):
+    @classmethod
+    def setUp(cls):
+        # removing metadata belonging to other tests that affect this one
+        bp.database_version = None
+
+        cls.directory = tempfile.mkdtemp()
+        bp.ignore_db_versions = False
+        cls.versions = pd.DataFrame.from_dict(
+            {"orgid": ["bigg"], "version": ["1.0.0"]}
+        )
+
+        cls.versions.to_csv(
+            path_or_buf=str(cls.directory + "/DatabaseVersions.csv"),
+            index=False,
+        )
+
+    @classmethod
+    def tearDown(cls):
+        shutil.rmtree(cls.directory)
+        # Removing metadata
+        bp.database_version = None
+
+    def test__get_database_version(self):
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+    def test__get_local_databases(self):
+        databases = bp._get_local_databases(self.directory)
+
+        expected_series = pd.Series(["bigg"])
+        expected_series.name = "orgid"
+        assert_series_equal(databases, expected_series)
+
+    def test__set_database_version(self):
+        bp._set_database_version(Path(self.directory), "pmn:META", "1.0")
+
+        database = bp._get_database_version(self.directory)
+
+        self.versions = self.versions.append(
+            {"orgid": "pmn:META", "version": "1.0"}, ignore_index=True
+        )
+
+        assert_frame_equal(database, self.versions)
+
+    def test__check_database_version(self):
+        (Path(self.directory) / "DatabaseVersions.csv").unlink()
+
+        # new database
+        bp.check_database_version(Path(self.directory), "bigg", "1.0.0")
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+        # database with correct version
+
+        with pytest.warns(None) as warnings:
+            bp.check_database_version(Path(self.directory), "bigg", "1.0.0")
+
+        assert not warnings
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+        # database with incorrect version (with user input)
+        with patch("builtins.input", return_value="y") as mock:
+            with self.assertWarnsRegex(
+                UserWarning,
+                r"Versions of .* do not match. Remote has version .* "
+                r"and local version is .*\.",
+            ):
+                bp.check_database_version(
+                    Path(self.directory), "bigg", "2.0.0"
+                )
+
+            args, kwargs = mock.call_args
+            assert args == ("Ignore version mismatch? (Y)es (N)o",)
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+        # database with incorrect version (without user input)
+        bp.ignore_db_versions = True
+        with self.assertWarnsRegex(
+            UserWarning,
+            r"Versions of .* do not match. Remote has version .* "
+            r"and local version is .*\.",
+        ):
+            bp.check_database_version(Path(self.directory), "bigg", "2.0.0")
+
+        database = bp._get_database_version(self.directory)
+        assert_frame_equal(database, self.versions)
+
+
 class TestKegg(TestCase):
     """
     Parsing and retrival for Kegg
     """
+
+    @classmethod
+    def setUpClass(cls):
+        kg.BaseParser.ignore_db_versions = True
 
     def test_retrieve_data(self):
         # CASE 0b: Wrong identifier
@@ -110,6 +215,10 @@ class TestKegg(TestCase):
 
 
 class TestBiocyc(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        bc.BaseParser.ignore_db_versions = True
+
     def test_retrieve_data(self):
         # CASE 1: Directory does not exist
         self.assertRaises(
@@ -235,6 +344,10 @@ class TestBiocyc(TestCase):
 
 
 class TestPlantCyc(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        pc.BaseParser.ignore_db_versions = True
+
     def test_retrieve_data(self):
         # CASE 1: Directory does not exist
         self.assertRaises(
@@ -373,9 +486,13 @@ class TestPlantCyc(TestCase):
 
 
 class TestBigg(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        bi.BaseParser.ignore_db_versions = True
+
     def test__find_url(self):
         # CASE 1: Positive request
-        test_response = bi._find_url(
+        test_response, db_version = bi._find_url(
             model_id="e_coli_core", identifier="ACALD"
         )
         self.assertIsInstance(obj=test_response, cls=Response)
@@ -386,6 +503,20 @@ class TestBigg(TestCase):
             model_id="e_coli_core",
             identifier="Invalid",
         )
+
+        import cobramod.core.retrieval as retrieval
+        from cobramod.test import textbook
+
+        model = textbook.copy()
+        retrieval.get_data(
+            model=model,
+            directory=dir_data,
+            database="BIGG",
+            identifier="ACALD",
+            model_id="e_coli_core"
+            # Shared identified
+        )
+        print(dir_data)
 
     def test_retrieve_data(self):
         # CASE 0
@@ -416,10 +547,10 @@ class TestBigg(TestCase):
         self.assertRaises(WrongParserError, bi.BiggParser._parse, str())
         # CASE 1: Regular universal reaction
         test_json = bi.retrieve_data(
-            directory=dir_data, identifier="ACALD", model_id="universal"
+            directory=dir_data, identifier="ACALDt", model_id="universal"
         )
         test_dict = bi.BiggParser._parse(root=test_json)
-        self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
+        self.assertEqual(first=len(test_dict["EQUATION"]), second=2)
         self.assertEqual(first="Reaction", second=test_dict["TYPE"])
         self.assertEqual(
             first={"genes": {}, "rule": ""}, second=test_dict["GENES"]

@@ -20,6 +20,7 @@ from cobramod.core import creation as cr
 from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
 from cobramod.error import WrongSyntax, NoDelimiter
+from cobramod.parsing import BaseParser
 from cobramod.test import textbook_kegg
 from cobramod import __version__ as cobramod_version
 
@@ -326,7 +327,7 @@ class SimpleFunctions(TestCase):
             identifier="ACALD",
             database="BIGG",
             debug_level=10,
-            model_id="universal",
+            model_id="e_coli_core",
         )
         test_reaction = cr._get_reaction(
             data_dict=test_data,
@@ -572,6 +573,10 @@ class ComplexFunctions(TestCase):
     """
     Test of functions for the API
     """
+
+    @classmethod
+    def setUpClass(cls):
+        BaseParser.ignore_db_versions = True
 
     def test_create_object(self):
         # CASE 1a: metabolite from MetaCyc
