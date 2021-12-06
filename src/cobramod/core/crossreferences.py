@@ -1,7 +1,14 @@
+from functools import lru_cache
+from typing import Set
+
 import requests
 from cobra import Model, Reaction, Metabolite
 from cobra.core import Group
+from requests import HTTPError
 
+from cobramod.test import textbook
+
+@lru_cache(maxsize=512)
 def get_namespace_id(database:str) -> int:
 
     url ="https://registry.api.identifiers.org/restApi/namespaces/search/findByPrefix"
@@ -21,9 +28,8 @@ def get_namespace_id(database:str) -> int:
     id = potential_namespaces[potential_namespaces.rindex('/')+1:]
     return id
 
-get_namespace_id("metacyc.compound")
 
-
+@lru_cache(maxsize=512)
 def namespaceId2providerCode(id:int)-> [str]:
 
     url ="https://registry.api.identifiers.org/restApi/resources/search/findAllByNamespaceId?id=1691"
@@ -44,9 +50,8 @@ def namespaceId2providerCode(id:int)-> [str]:
 
     return  provider_codes
 
-namespaceId2providerCode(1691)
 
-def get_crossreferences(sort, querys, xrefs = {}):
+def get_crossreferences(sort, querys) -> Set[str]:
 
     query_list: str
 
@@ -62,38 +67,25 @@ def get_crossreferences(sort, querys, xrefs = {}):
         "output_format":"json"
     }
 
-    try:
 
-        response = requests.post(url=url,data=data)
-        response.raise_for_status()
+    response = requests.post(url=url,data=data)
+    response.raise_for_status()
 
-        response_json = response.json()
+    response_json = response.json()
 
-        print(response_json)
+    #print(response_json)
 
-        for query in querys:
-            try:
-                buffer = response_json[query]["xrefs"]
-                for ref in buffer:
-                    key, value = ref.split(":")
+    crossreferences = set()
 
-                    if key in xrefs:
-                        if isinstance(xrefs[key],str):
-                            xrefs[key] = [xrefs[key],value]
-                        else:
-                            if value not in xrefs[key]:
-                                xrefs[key].append(value)
+    for query in querys:
+        try:
+            xrefs = response_json[query]["xrefs"]
+            crossreferences.update(xrefs)
+        except KeyError:
+            pass
 
-                    else:
-                        xrefs[key] = value
-            except KeyError:
-                pass
-    except requests.exceptions.ConnectionError:
-        pass
+    return crossreferences
 
-    return xrefs
-
-get_crossreferences("chem",["metacyc.compound:ACETALD","metacycM:ACETALD"])
 
 def add_crossreferences(object):
 
@@ -121,6 +113,7 @@ def add_crossreferences(object):
         if sort is not None:
 
             ids = [object.id]
+            xrefs = object.annotation
 
             for key, value in object.annotation.items():
 
@@ -130,5 +123,29 @@ def add_crossreferences(object):
                 else:
                     ids.append(key+":"+value)
 
-            new_annotations = get_crossreferences(sort,ids,object.annotation)
-            object.annotation = new_annotations
+            potential_xrefs = get_crossreferences(sort,ids)
+            for potential_xref in potential_xrefs:
+                database, id = potential_xref.split(":")
+
+                try:
+                    namespaceID = get_namespace_id(database=database)
+                    providerCodes = namespaceId2providerCode(namespaceID)
+
+                    for providerCode in providerCodes:
+                        if providerCode not in xrefs.keys():
+                            xrefs[providerCode] = potential_xref
+                        else:
+                            database_id = xrefs[providerCode]
+                            if isinstance(database_id,str):
+                                if database_id != potential_xref:
+                                    xrefs[providerCode] = [database_id,potential_xref]
+                            elif isinstance(database_id,list):
+                                if potential_xref not in database_id:
+                                    database_id.append(potential_xref)
+                                    xrefs[providerCode] = database_id
+                            else:
+                                pass # raise warning unknown data in dict for providercode
+                except HTTPError:
+                    pass
+
+            object.annotation = xrefs
