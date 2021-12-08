@@ -213,9 +213,9 @@ def _recursive_flux_test(
         else:
             problem = _find_problem(model=model, reaction=reaction)
             msg = (
-                f"The following metabolites {problem} have a problem with "
-                "their turnover. To overcome this, sink reactions were created"
-                " to simulate their synthesis."
+                "The model cannot turnover the following metabolites "
+                f"{problem}. To overcome this, sink reactions were created to "
+                "simulate their synthesis."
             )
             debug_log.warning(msg)
             warn(msg)
@@ -251,7 +251,7 @@ def _is_minimize(model: Model, reaction: str) -> bool:
     return False
 
 
-def test_non_zero_flux(model: Model, reaction: str):
+def _test_non_zero_main(model: Model, reaction: str):
     """
     Performs non-zero flux test. In this test, a reaction is tested to make
     sure it can carry a flux. If necessary, CobraMod creates sink reactions
@@ -285,6 +285,30 @@ def test_non_zero_flux(model: Model, reaction: str):
     # Revert back objective
     model.objective = original_objective
     model.objective_direction = original_direction
+
+
+def test_non_zero_flux(model: Model, reaction: str):
+    """
+    Performs non-zero flux test. In this test, a reaction is tested to make
+    sure it can carry a flux. If necessary, CobraMod creates sink reactions
+    to simulate turnover of metabolites that participate in the reaction.
+    Warnings will be shown for these cases.
+
+    Args:
+        model (Model): Model that contains the reaction
+        reaction (str): identifier of the reaction
+
+    Raises:
+        OptimizationError: If given reaction needs manual curation
+
+    """
+    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+
+    _test_non_zero_main(model=model, reaction=reaction)
+
+    # Revert back objective and inform
+    _inform_sink(model=model, previous_sinks=previous_sinks)
+    print(f"Reaction {reaction} passed the non-zero-flux test.")
 
 
 def _add_sequence(
@@ -321,7 +345,7 @@ def _add_sequence(
 
         # Skip test but include reaction in pathway
         if reaction.id not in ignore_list:
-            test_non_zero_flux(model=model, reaction=reaction.id)
+            _test_non_zero_main(model=model, reaction=reaction.id)
 
         else:
             debug_log.warning(
