@@ -1,5 +1,6 @@
 import re
 from functools import lru_cache
+from pathlib import Path
 from typing import Set, Union, List
 
 import pandas as pd
@@ -31,12 +32,18 @@ def get_namespace_id(database: str) -> str:
     return id
 
 
-def inchikey2pubchem_cid(inchikey: str) -> Union[str, List[str]]:
+def inchikey2pubchem_cid(inchikey: str, directory) -> Union[str, List[str]]:
     if isinstance(inchikey, list):
         result: List[str] = []
         for key in inchikey:
-            result.append(inchikey2pubchem_cid(key))
+            result.append(inchikey2pubchem_cid(key, directory))
         return result
+
+    cache = load_cache_from_disk("pubchem", directory)
+    value = cache.loc[cache["ID"] == inchikey]
+
+    if len(value) > 0:
+        return value
 
     url = (
         "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/"
@@ -46,7 +53,20 @@ def inchikey2pubchem_cid(inchikey: str) -> Union[str, List[str]]:
 
     response = requests.get(url=url)
     response.raise_for_status()
-    return response.text.rstrip()
+    value = response.text.rstrip()
+
+    cache = cache.append(
+        {
+            "ID": inchikey,
+            "XRefs": value
+        }
+        , ignore_index=True
+    )
+    path = directory / "XRef" / str("pubchem" + ".feather")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    cache.to_feather(path)
+    load_cache_from_disk.cache_clear()
+    return value
 
 
 @lru_cache(maxsize=512)
@@ -70,12 +90,37 @@ def namespaceid2provider_code(id: int) -> List[str]:
     return provider_codes
 
 
-def get_crossreferences(sort, querys) -> Set[str]:
+@lru_cache(maxsize=10)
+def load_cache_from_disk(sort, directory) -> pd.DataFrame:
+    try:
+        df = pd.read_feather(directory / "XRef" / str(sort + ".feather"))
+    except FileNotFoundError:
+        df = pd.DataFrame({'ID': [],'XRefs' : []})
+
+    return df
+
+
+def get_crossreferences(sort, querys, directory) -> Set[str]:
+    all_querys = querys.copy()
     query_list: str
+    cache = load_cache_from_disk(sort, directory)
+    crossreferences = set()
 
     if isinstance(querys, list):
-        query_list = " ".join(querys)
+        for query in querys:
+            result = cache.loc[cache["ID"]==query]
+
+            if len(result) > 0:
+                all_querys.remove(query)
+                crossreferences.update(set(result))
+
+        if len(all_querys) == 0:
+            return crossreferences
+        query_list = " ".join(all_querys)
     else:
+        result = cache.loc[cache["ID"]== querys]
+        if len(result) > 0:
+            return set(result)
         query_list = querys
 
     url = "https://www.metanetx.org/cgi-bin/mnxweb/id-mapper"
@@ -96,18 +141,15 @@ def get_crossreferences(sort, querys) -> Set[str]:
             chunk1 = querys[1:half]
             chunk2 = querys[half + 1 : size]
 
-            chunk1 = get_crossreferences(sort, chunk1)
-            chunk2 = get_crossreferences(sort, chunk2)
+            chunk1 = get_crossreferences(sort, chunk1, directory)
+            chunk2 = get_crossreferences(sort, chunk2, directory)
 
             return set.union(chunk1, chunk2)
         else:
             return set()
-
     response_json = response.json()
 
-    crossreferences = set()
-
-    for query in querys:
+    for query in all_querys:
         try:
             answer = response_json[query]
         except KeyError:
@@ -128,6 +170,17 @@ def get_crossreferences(sort, querys) -> Set[str]:
         except KeyError:
             pass
 
+        cache = cache.append(
+            {
+                "ID":query,
+                "XRefs":xrefs
+             }
+            ,ignore_index=True
+        )
+        path = directory /"XRef"/ str(sort+".feather")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        cache.to_feather(path)
+        load_cache_from_disk.cache_clear()
         crossreferences.update(xrefs)
 
     return crossreferences
@@ -208,6 +261,7 @@ def add2dict_unique(key, value, dictionary):
 
 def add_crossreferences(  # noqa: C901
     object: Union[Model, Group, Reaction, Metabolite],
+    directory: Union[Path,str],
     consider_sub_elements: bool = True,
     include_metanetx_specific_ec: bool = False,
 ) -> None:
@@ -222,6 +276,7 @@ def add_crossreferences(  # noqa: C901
 
     Args:
         object: The CobraPy object to be extended.
+        directory:
         consider_sub_elements: Specifies whether additional cross-references
             should also be added to the subelements. For example, you can
             specify whether only the reaction or also its metabolites
@@ -232,17 +287,22 @@ def add_crossreferences(  # noqa: C901
             Brenda IDs being created. The default value is False.
 
     """
+    if isinstance(directory,str):
+        directory = Path(directory)
+
     if isinstance(object, Model):
         if not consider_sub_elements:
             return
         size = len(object.reactions) + len(object.metabolites)
         with tqdm(total=size) as pbar:
             for reaction in object.reactions:
-                add_crossreferences(reaction, consider_sub_elements=False)
+                add_crossreferences(reaction,
+                                    directory= directory,
+                                    consider_sub_elements=False)
                 pbar.update(1)
 
             for metabolite in object.metabolites:
-                add_crossreferences(metabolite)
+                add_crossreferences(metabolite, directory)
                 pbar.update(1)
 
     elif isinstance(object, Group):
@@ -250,7 +310,9 @@ def add_crossreferences(  # noqa: C901
             return
 
         for member in tqdm(object.members):
-            add_crossreferences(member, consider_sub_elements=False)
+            add_crossreferences(member,
+                                directory=directory,
+                                consider_sub_elements=False)
 
     else:
         sort = None
@@ -258,7 +320,7 @@ def add_crossreferences(  # noqa: C901
         if isinstance(object, Reaction):
             if consider_sub_elements:
                 for metabolite in object.metabolites:
-                    add_crossreferences(metabolite)
+                    add_crossreferences(metabolite, directory)
 
             sort = "reac"
 
@@ -281,7 +343,7 @@ def add_crossreferences(  # noqa: C901
             else:
                 ids.append(key + ":" + value)
 
-        potential_xrefs = get_crossreferences(sort, ids)
+        potential_xrefs = get_crossreferences(sort, ids, directory)
 
         for potential_xref in potential_xrefs:
 
@@ -309,7 +371,7 @@ def add_crossreferences(  # noqa: C901
 
         try:
             inchikey = xrefs["inchikey"]
-            pubchem_compound = inchikey2pubchem_cid(inchikey)
+            pubchem_compound = inchikey2pubchem_cid(inchikey, directory)
         except (KeyError, HTTPError):
             pass
         else:

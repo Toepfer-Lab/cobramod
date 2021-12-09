@@ -31,6 +31,8 @@ setup(
         "openpyxl>=3.0.7",
         "webcolors>=1.11.1",
         "tqdm>=4.62.3",
+        "pyarrow>=6.0.1",
+
     ],
     url="https://github.com/Toepfer-Lab/cobramod",
     project_urls={
