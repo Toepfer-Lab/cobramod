@@ -86,7 +86,22 @@ def get_crossreferences(sort, querys) -> Set[str]:
     }
 
     response = requests.post(url=url, data=data)
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except HTTPError as error:
+        if error.response.status_code == 413:
+
+            size = len(querys)
+            half = round(size / 2)
+            chunk1 = querys[1:half]
+            chunk2 = querys[half + 1 : size]
+
+            chunk1 = get_crossreferences(sort, chunk1)
+            chunk2 = get_crossreferences(sort, chunk2)
+
+            return set.union(chunk1, chunk2)
+        else:
+            return set()
 
     response_json = response.json()
 
