@@ -26,6 +26,7 @@ from warnings import warn
 from cobra import Metabolite, Model, Reaction, DictList
 from requests import HTTPError
 
+from cobramod.core.crossreferences import add_crossreferences
 from cobramod.debug import debug_log
 from cobramod.error import (
     WrongDataError,
@@ -1171,7 +1172,14 @@ def create_object(
     ):
         # Try to return object, unless it cannot be identified
         with suppress(WrongDataError):
-            return next(method)
+            obj = next(method)
+            # Try to add extra cross-references
+            try:
+                add_crossreferences(obj, consider_sub_elements=False)
+            except (ValueError, KeyError, ConnectionError, HTTPError):
+                pass
+
+            return obj
     raise WrongDataError(
         f'Data of "{identifier}" cannot be identified properly. Please contact'
         + " the maintainers of CobraMod"
