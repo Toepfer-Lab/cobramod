@@ -1,5 +1,4 @@
 import re
-import time
 from functools import lru_cache
 from typing import Set, Union, List
 
@@ -12,11 +11,12 @@ from tqdm import tqdm
 
 
 @lru_cache(maxsize=512)
-def get_namespace_id(database: str) -> int:
-    url = "https://registry.api.identifiers.org/restApi/namespaces/search/findByPrefix"
-    payload = {
-        "prefix": database
-    }
+def get_namespace_id(database: str) -> str:
+    url = (
+        "https://registry.api.identifiers.org/restApi/"
+        "namespaces/search/findByPrefix"
+    )
+    payload = {"prefix": database}
 
     response = requests.get(url=url, params=payload)
     response.raise_for_status()
@@ -27,20 +27,22 @@ def get_namespace_id(database: str) -> int:
     if len(potential_namespaces) > 1:
         pass  # raise uncertain
 
-    id = potential_namespaces[potential_namespaces.rindex('/') + 1:]
+    id = potential_namespaces[potential_namespaces.rindex("/") + 1 :]
     return id
 
 
 def inchikey2pubchem_cid(inchikey: str) -> Union[str, List[str]]:
     if isinstance(inchikey, list):
-        result: [int] = []
+        result: List[str] = []
         for key in inchikey:
             result.append(inchikey2pubchem_cid(key))
         return result
 
-    url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/" \
-          + inchikey + \
-          "/cids/txt"
+    url = (
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/"
+        + inchikey
+        + "/cids/txt"
+    )
 
     response = requests.get(url=url)
     response.raise_for_status()
@@ -48,18 +50,19 @@ def inchikey2pubchem_cid(inchikey: str) -> Union[str, List[str]]:
 
 
 @lru_cache(maxsize=512)
-def namespaceid2provider_code(id: int) -> [str]:
-    url = "https://registry.api.identifiers.org/restApi/resources/search/findAllByNamespaceId?id=1691"
-    payload = {
-        "id": id
-    }
+def namespaceid2provider_code(id: int) -> List[str]:
+    url = (
+        "https://registry.api.identifiers.org/restApi/resources/"
+        "search/findAllByNamespaceId?id=1691"
+    )
+    payload = {"id": id}
 
     response = requests.get(url=url, params=payload)
     response.raise_for_status()
     response_json = response.json()
     providers = response_json["_embedded"]["resources"]
 
-    provider_codes: [str] = []
+    provider_codes: List[str] = []
 
     for provider in providers:
         provider_codes.append(provider["providerCode"])
@@ -79,11 +82,26 @@ def get_crossreferences(sort, querys) -> Set[str]:
     data = {
         "query_list": query_list,
         "query_index": sort,
-        "output_format": "json"
+        "output_format": "json",
     }
 
     response = requests.post(url=url, data=data)
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except HTTPError as error:
+        if error.response.status_code == 413:
+
+            size = len(querys)
+            half = round(size / 2)
+            chunk1 = querys[1:half]
+            chunk2 = querys[half + 1 : size]
+
+            chunk1 = get_crossreferences(sort, chunk1)
+            chunk2 = get_crossreferences(sort, chunk2)
+
+            return set.union(chunk1, chunk2)
+        else:
+            return set()
 
     response_json = response.json()
 
@@ -95,7 +113,7 @@ def get_crossreferences(sort, querys) -> Set[str]:
         except KeyError:
             continue
 
-        xrefs: [str] = []
+        xrefs: List[str] = []
         try:
             xrefs = answer["xrefs"]
         except KeyError:
@@ -115,10 +133,15 @@ def get_crossreferences(sort, querys) -> Set[str]:
     return crossreferences
 
 
-def metanetx2ec(id: str,include_metanetx_specific_ec: bool = False) -> Union[str, List[str]]:
+def metanetx2ec(
+    id: str, include_metanetx_specific_ec: bool = False
+) -> Union[str, List[str]]:
     data = get_reac_prop_with_ec()
-    result = data.loc[data['ID'] == id, "classifs"]
-    pattern = re.compile("^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$")
+    result = data.loc[data["ID"] == id, "classifs"]
+    pattern = re.compile(
+        r"^\d+\.-\.-\.-|\d+\.\d+\.-\.-|"
+        r"\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$"
+    )
 
     if len(result) == 0:
         raise KeyError
@@ -146,15 +169,19 @@ def metanetx2ec(id: str,include_metanetx_specific_ec: bool = False) -> Union[str
 def get_reac_prop_with_ec() -> pd.DataFrame:
     url = "https://www.metanetx.org/ftp/latest/reac_prop.tsv"
 
-    dataFrame = pd.read_csv(url,
-                            sep="\t",
-                            comment="#",
-                            names=["ID",
-                                   "mnx_equation",
-                                   "reference",
-                                   "classifs",
-                                   "is_balanced",
-                                   "is_transport"])
+    dataFrame = pd.read_csv(
+        url,
+        sep="\t",
+        comment="#",
+        names=[
+            "ID",
+            "mnx_equation",
+            "reference",
+            "classifs",
+            "is_balanced",
+            "is_transport",
+        ],
+    )
 
     dataFrame = dataFrame.loc[dataFrame["classifs"].notna()]
     return dataFrame
@@ -179,10 +206,11 @@ def add2dict_unique(key, value, dictionary):
     return dictionary
 
 
-def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite],
-                        consider_sub_elements:bool = True,
-                        include_metanetx_specific_ec:bool = False
-                        ) -> None:
+def add_crossreferences(  # noqa: C901
+    object: Union[Model, Group, Reaction, Metabolite],
+    consider_sub_elements: bool = True,
+    include_metanetx_specific_ec: bool = False,
+) -> None:
     """Extends the passed object by cross-references. Here, only the
     cross-references of reactions or metabolites are expanded. There
     must be at least one MetaNetX resolvable identifier in the annotation
@@ -198,9 +226,9 @@ def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite],
             should also be added to the subelements. For example, you can
             specify whether only the reaction or also its metabolites
             should be expanded.
-        include_metanetx_specific_ec: Determines whether MetaNetX specific EC numbers
-            should be taken over. These are generally not found in other
-            databases. Furthermore, this could result in non-existing
+        include_metanetx_specific_ec: Determines whether MetaNetX specific
+            EC numbers should be taken over. These are generally not found in
+            other databases. Furthermore, this could result in non-existing
             Brenda IDs being created. The default value is False.
 
     """
@@ -210,8 +238,7 @@ def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite],
         size = len(object.reactions) + len(object.metabolites)
         with tqdm(total=size) as pbar:
             for reaction in object.reactions:
-                add_crossreferences(reaction,
-                                    consider_sub_elements = False)
+                add_crossreferences(reaction, consider_sub_elements=False)
                 pbar.update(1)
 
             for metabolite in object.metabolites:
@@ -223,8 +250,7 @@ def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite],
             return
 
         for member in tqdm(object.members):
-            add_crossreferences(member,
-                                consider_sub_elements = False)
+            add_crossreferences(member, consider_sub_elements=False)
 
     else:
         sort = None
@@ -270,7 +296,7 @@ def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite],
             # but "CHEBI:0000" is delivered. Therefore the following if
             # statement is used. This will also work if this condition is
             # fixed. (But then it is redundant)
-            if prefix == "chebi" and not "CHEBI:" in new_id:
+            if prefix == "chebi" and "CHEBI:" not in new_id:
                 new_id = "CHEBI:" + new_id
 
             # obsolete ids are ignored
@@ -288,13 +314,17 @@ def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite],
             pass
         else:
 
-            xrefs = add2dict_unique("pubchem.compound", pubchem_compound, xrefs)
+            xrefs = add2dict_unique(
+                "pubchem.compound", pubchem_compound, xrefs
+            )
 
         # ec_number
         try:
             metanet_xid = xrefs["metanetx.reaction"]
-            ec_number = metanetx2ec(metanet_xid,
-                                    include_metanetx_specific_ec = include_metanetx_specific_ec)
+            ec_number = metanetx2ec(
+                metanet_xid,
+                include_metanetx_specific_ec=include_metanetx_specific_ec,
+            )
         except KeyError:
             pass
         else:
