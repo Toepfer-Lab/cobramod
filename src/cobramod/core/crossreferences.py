@@ -1,13 +1,14 @@
+import re
 import time
 from functools import lru_cache
 from typing import Set, Union, List
 
 import pandas as pd
 import requests
-import tqdm
 from cobra import Model, Reaction, Metabolite
 from cobra.core import Group
 from requests import HTTPError
+from tqdm import tqdm
 
 
 @lru_cache(maxsize=512)
@@ -43,7 +44,7 @@ def inchikey2pubchem_cid(inchikey: str) -> Union[str, List[str]]:
 
     response = requests.get(url=url)
     response.raise_for_status()
-    return response.text
+    return response.text.rstrip()
 
 
 @lru_cache(maxsize=512)
@@ -114,9 +115,10 @@ def get_crossreferences(sort, querys) -> Set[str]:
     return crossreferences
 
 
-def metanetx2ec(id: str) -> Union[str, List[str]]:
+def metanetx2ec(id: str,include_metanetx_specific_ec: bool = False) -> Union[str, List[str]]:
     data = get_reac_prop_with_ec()
     result = data.loc[data['ID'] == id, "classifs"]
+    pattern = re.compile("^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$")
 
     if len(result) == 0:
         raise KeyError
@@ -125,6 +127,17 @@ def metanetx2ec(id: str) -> Union[str, List[str]]:
 
     if ";" in result:
         result = result.split(";")
+
+        for id in result:
+            if not pattern.match(id):
+                result.remove(id)
+
+        if len(result) == 0:
+            raise KeyError
+
+    else:
+        if not pattern.match(result):
+            raise KeyError
 
     return result
 
@@ -166,25 +179,39 @@ def add2dict_unique(key, value, dictionary):
     return dictionary
 
 
-def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite]) -> None:
-    """Extends the passed object by cross references. Here, only the
-    cross references of reactions or metabolites are expanded. There
+def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite],
+                        consider_sub_elements:bool = True,
+                        include_metanetx_specific_ec:bool = False
+                        ) -> None:
+    """Extends the passed object by cross-references. Here, only the
+    cross-references of reactions or metabolites are expanded. There
     must be at least one MetaNetX resolvable identifier in the annotation
-    of the object in order to get as many cross references as possible.
-    Overall, an attempt is made to add all crossreferences required by Memote.
+    of the object in order to get as many cross-references as possible.
+    Overall, an attempt is made to add all cross-references required by Memote.
     The only exception are reactom reactions. These are not added due to the
     current lack of query capabilities on the part of reactom. (Depending on
     the number of objects this function can take some time).
 
     Args:
         object: The CobraPy object to be extended.
+        consider_sub_elements: Specifies whether additional cross-references
+            should also be added to the subelements. For example, you can
+            specify whether only the reaction or also its metabolites
+            should be expanded.
+        include_metanetx_specific_ec: Determines whether MetaNetX specific EC numbers
+            should be taken over. These are generally not found in other
+            databases. Furthermore, this could result in non-existing
+            Brenda IDs being created. The default value is False.
 
     """
     if isinstance(object, Model):
+        if not consider_sub_elements:
+            return
         size = len(object.reactions) + len(object.metabolites)
         with tqdm(total=size) as pbar:
             for reaction in object.reactions:
-                add_crossreferences(reaction)
+                add_crossreferences(reaction,
+                                    consider_sub_elements = False)
                 pbar.update(1)
 
             for metabolite in object.metabolites:
@@ -192,84 +219,93 @@ def add_crossreferences(object: Union[Model, Group, Reaction, Metabolite]) -> No
                 pbar.update(1)
 
     elif isinstance(object, Group):
+        if not consider_sub_elements:
+            return
 
         for member in tqdm(object.members):
-            add_crossreferences(member)
+            add_crossreferences(member,
+                                consider_sub_elements = False)
 
     else:
         sort = None
 
         if isinstance(object, Reaction):
+            if consider_sub_elements:
+                for metabolite in object.metabolites:
+                    add_crossreferences(metabolite)
+
             sort = "reac"
 
         elif isinstance(object, Metabolite):
             sort = "chem"
 
-        if sort is not None:
+        if sort is None:
+            raise ValueError
 
-            # metanetx
+        # metanetx
 
-            ids = [object.id]
-            xrefs = object.annotation
+        ids = [object.id]
+        xrefs = object.annotation
 
-            for key, value in object.annotation.items():
+        for key, value in object.annotation.items():
 
-                if isinstance(value, list):
-                    for id in value:
-                        ids.append(key + ":" + id)
-                else:
-                    ids.append(key + ":" + value)
+            if isinstance(value, list):
+                for id in value:
+                    ids.append(key + ":" + id)
+            else:
+                ids.append(key + ":" + value)
 
-            potential_xrefs = get_crossreferences(sort, ids)
+        potential_xrefs = get_crossreferences(sort, ids)
 
-            for potential_xref in potential_xrefs:
-
-                try:
-                    prefix, new_id = potential_xref.split(":")
-                except ValueError:
-                    continue
-                prefix = prefix.lower()
-
-                # MetaNetX does not provide correct CHEBI IDs. This is because
-                # they lack the correct prefix. "CHEBI:CHEBI:0000" is correct
-                # but "CHEBI:0000" is delivered. Therefore the following if
-                # statement is used. This will also work if this condition is
-                # fixed. (But then it is redundant)
-                if prefix == "chebi" and not "CHEBI:" in new_id:
-                    new_id = "CHEBI:" + new_id
-
-                # obsolete ids are ignored
-                elif prefix == "deprecated":
-                    continue
-
-                xrefs = add2dict_unique(prefix, new_id, xrefs)
-
-            # pubchem.compound
+        for potential_xref in potential_xrefs:
 
             try:
-                inchikey = xrefs["inchikey"]
-                pubchem_compound = inchikey2pubchem_cid(inchikey)
-            except (KeyError, HTTPError):
-                pass
-            else:
+                prefix, new_id = potential_xref.split(":")
+            except ValueError:
+                continue
+            prefix = prefix.lower()
 
-                xrefs = add2dict_unique("pubchem.compound", pubchem_compound, xrefs)
+            # MetaNetX does not provide correct CHEBI IDs. This is because
+            # they lack the correct prefix. "CHEBI:CHEBI:0000" is correct
+            # but "CHEBI:0000" is delivered. Therefore the following if
+            # statement is used. This will also work if this condition is
+            # fixed. (But then it is redundant)
+            if prefix == "chebi" and not "CHEBI:" in new_id:
+                new_id = "CHEBI:" + new_id
 
-            # ec_number
-            try:
-                metanetXID = xrefs["metanetx.reaction"]
-                ec_number = metanetx2ec(metanetXID)
-            except KeyError:
-                pass
-            else:
-                xrefs = add2dict_unique("ec-code", ec_number, xrefs)
+            # obsolete ids are ignored
+            elif prefix == "deprecated":
+                continue
 
-            # brenda
-            try:
-                ec_number = xrefs["ec-code"]
-            except KeyError:
-                pass
-            else:
-                xrefs = add2dict_unique("brenda", ec_number, xrefs)
+            xrefs = add2dict_unique(prefix, new_id, xrefs)
 
-            object.annotation = xrefs
+        # pubchem.compound
+
+        try:
+            inchikey = xrefs["inchikey"]
+            pubchem_compound = inchikey2pubchem_cid(inchikey)
+        except (KeyError, HTTPError):
+            pass
+        else:
+
+            xrefs = add2dict_unique("pubchem.compound", pubchem_compound, xrefs)
+
+        # ec_number
+        try:
+            metanet_xid = xrefs["metanetx.reaction"]
+            ec_number = metanetx2ec(metanet_xid,
+                                    include_metanetx_specific_ec = include_metanetx_specific_ec)
+        except KeyError:
+            pass
+        else:
+            xrefs = add2dict_unique("ec-code", ec_number, xrefs)
+
+        # brenda
+        try:
+            ec_number = xrefs["ec-code"]
+        except KeyError:
+            pass
+        else:
+            xrefs = add2dict_unique("brenda", ec_number, xrefs)
+
+        object.annotation = xrefs
