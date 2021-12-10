@@ -1,7 +1,7 @@
 import re
 from functools import lru_cache
 from pathlib import Path
-from typing import Set, Union, List
+from typing import Set, Union, List, Any
 
 import pandas as pd
 import requests
@@ -11,39 +11,35 @@ from requests import HTTPError
 from tqdm import tqdm
 
 
-@lru_cache(maxsize=512)
-def get_namespace_id(database: str) -> str:
-    url = (
-        "https://registry.api.identifiers.org/restApi/"
-        "namespaces/search/findByPrefix"
-    )
-    payload = {"prefix": database}
+def inchikey2pubchem_cid(
+    inchikey: Union[str, List[str]], directory: Path
+) -> Union[str, List[str]]:
+    """
+    This function returns the corresponding PubChem compound ID for an
+    InChIKey. A local cache is used, which is located in the specified
+    directory under the folder XREF.
+    Args:
+        inchikey: The InChIKey for which the PubChem compound ID is to be
+            searched.
+        directory: The directory for storing the data. This is where
+            the cache is stored in a folder called XRef.
 
-    response = requests.get(url=url, params=payload)
-    response.raise_for_status()
-    response_json = response.json()
-
-    potential_namespaces: str = response_json["_links"]["namespace"]["href"]
-
-    if len(potential_namespaces) > 1:
-        pass  # raise uncertain
-
-    id = potential_namespaces[potential_namespaces.rindex("/") + 1 :]
-    return id
-
-
-def inchikey2pubchem_cid(inchikey: str, directory) -> Union[str, List[str]]:
+    Returns:
+        The PubChem compound ID(s) found as a string if it is one or as a
+        list of strings otherwise.
+    """
     if isinstance(inchikey, list):
         result: List[str] = []
         for key in inchikey:
-            result.append(inchikey2pubchem_cid(key, directory))
+            # following can return strings
+            result.append(inchikey2pubchem_cid(key, directory))  # type: ignore
         return result
 
     cache = load_cache_from_disk("pubchem", directory)
-    value = cache.loc[cache["ID"] == inchikey]
+    value = cache.loc[cache["ID"] == inchikey]["XRefs"]
 
     if len(value) > 0:
-        return value
+        return value.iloc[0]
 
     url = (
         "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/"
@@ -55,13 +51,7 @@ def inchikey2pubchem_cid(inchikey: str, directory) -> Union[str, List[str]]:
     response.raise_for_status()
     value = response.text.rstrip()
 
-    cache = cache.append(
-        {
-            "ID": inchikey,
-            "XRefs": value
-        }
-        , ignore_index=True
-    )
+    cache = cache.append({"ID": inchikey, "XRefs": value}, ignore_index=True)
     path = directory / "XRef" / str("pubchem" + ".feather")
     path.parent.mkdir(parents=True, exist_ok=True)
     cache.to_feather(path)
@@ -69,58 +59,70 @@ def inchikey2pubchem_cid(inchikey: str, directory) -> Union[str, List[str]]:
     return value
 
 
-@lru_cache(maxsize=512)
-def namespaceid2provider_code(id: int) -> List[str]:
-    url = (
-        "https://registry.api.identifiers.org/restApi/resources/"
-        "search/findAllByNamespaceId?id=1691"
-    )
-    payload = {"id": id}
-
-    response = requests.get(url=url, params=payload)
-    response.raise_for_status()
-    response_json = response.json()
-    providers = response_json["_embedded"]["resources"]
-
-    provider_codes: List[str] = []
-
-    for provider in providers:
-        provider_codes.append(provider["providerCode"])
-
-    return provider_codes
-
-
 @lru_cache(maxsize=10)
-def load_cache_from_disk(sort, directory) -> pd.DataFrame:
+def load_cache_from_disk(sort: str, directory: Path) -> pd.DataFrame:
+    """
+    The function loads the locally stored cache and returns it as a
+    pandas DataFrame. If there is no cache file yet an empty DataFrame
+    with columns 'ID' and 'XRefs' is returned.
+    Args:
+        sort: Der cache Name.
+        directory: The directory for storing the data. This is where
+            the cache is stored in a folder called XRef.
+
+    """
+
     try:
         df = pd.read_feather(directory / "XRef" / str(sort + ".feather"))
     except FileNotFoundError:
-        df = pd.DataFrame({'ID': [],'XRefs' : []})
+        df = pd.DataFrame({"ID": [], "XRefs": []})
 
     return df
 
 
-def get_crossreferences(sort, querys, directory) -> Set[str]:
-    all_querys = querys.copy()
+def get_crossreferences(  # noqa: C901
+    sort: str, querys: Union[str, List[str]], directory: Path
+) -> Set[str]:
+    """
+    Searches for IDs, other IDs from other databases. MetaNetX is
+    used for this purpose. Results are stored locally in the specified
+    directory and if they are found in it, they are loaded from it.
+    Args:
+        sort: Type of IDs' possible specifications are "chem" for
+            metabolites or "reac" for reactions.
+        querys: The IDs of a metabolite or a reaction. Can be either a string
+            of the form "database:identifier" or a list of such strings.
+            The list should only consist of identifiers for an object,
+            as these will be merged.
+        directory: The directory for storing the data. This is where
+            the cache is stored in a folder called XRef.
+
+    Returns:
+        All references retrieved as a set of strings of the
+        structure: "database:ID".
+    """
+
     query_list: str
     cache = load_cache_from_disk(sort, directory)
     crossreferences = set()
 
     if isinstance(querys, list):
+        all_querys = querys.copy()
         for query in querys:
-            result = cache.loc[cache["ID"]==query]
+            result = cache.loc[cache["ID"] == query]["XRefs"]
 
             if len(result) > 0:
                 all_querys.remove(query)
-                crossreferences.update(set(result))
+                crossreferences.update(set(result.iloc[0]))
 
         if len(all_querys) == 0:
             return crossreferences
         query_list = " ".join(all_querys)
     else:
-        result = cache.loc[cache["ID"]== querys]
+        all_querys = [querys]
+        result = cache.loc[cache["ID"] == querys]["XRefs"]
         if len(result) > 0:
-            return set(result)
+            return set(result.iloc[0])
         query_list = querys
 
     url = "https://www.metanetx.org/cgi-bin/mnxweb/id-mapper"
@@ -141,15 +143,16 @@ def get_crossreferences(sort, querys, directory) -> Set[str]:
             chunk1 = querys[1:half]
             chunk2 = querys[half + 1 : size]
 
-            chunk1 = get_crossreferences(sort, chunk1, directory)
-            chunk2 = get_crossreferences(sort, chunk2, directory)
+            result1 = get_crossreferences(sort, chunk1, directory)
+            result2 = get_crossreferences(sort, chunk2, directory)
 
-            return set.union(chunk1, chunk2)
+            return set.union(result1, result2)
         else:
             return set()
     response_json = response.json()
 
     for query in all_querys:
+        query = query[query.index(":") + 1 :]
         try:
             answer = response_json[query]
         except KeyError:
@@ -170,14 +173,16 @@ def get_crossreferences(sort, querys, directory) -> Set[str]:
         except KeyError:
             pass
 
-        cache = cache.append(
-            {
-                "ID":query,
-                "XRefs":xrefs
-             }
-            ,ignore_index=True
-        )
-        path = directory /"XRef"/ str(sort+".feather")
+        replace = {"chem": "metanetx.chemical", "reac": "metanetx.reaction"}
+
+        try:
+            mnx_id = answer["mnx_id"]
+            xrefs.append(replace[sort] + ":" + mnx_id)
+        except KeyError:
+            pass
+
+        cache = cache.append({"ID": query, "XRefs": xrefs}, ignore_index=True)
+        path = directory / "XRef" / str(sort + ".feather")
         path.parent.mkdir(parents=True, exist_ok=True)
         cache.to_feather(path)
         load_cache_from_disk.cache_clear()
@@ -187,9 +192,23 @@ def get_crossreferences(sort, querys, directory) -> Set[str]:
 
 
 def metanetx2ec(
-    id: str, include_metanetx_specific_ec: bool = False
+    id: str, directory: Path, include_metanetx_specific_ec: bool = False
 ) -> Union[str, List[str]]:
-    data = get_reac_prop_with_ec()
+    """
+    Returns the corresponding EC number for a specific MetaNetX ID.
+    Args:
+        id: The MetaNetX ID.
+        directory: The directory for storing the data. This is where
+            the cache is stored in a folder called XRef.
+        include_metanetx_specific_ec: Determines whether MetaNetX specific
+            EC numbers should be taken over. These are generally not found in
+            other databases. The default value is False.
+    Raises
+        KeyError: If no EC number can be assigned to this ID.
+    Returns:
+        All found EC numbers.
+    """
+    data = get_reac_prop_with_ec(directory)
     result = data.loc[data["ID"] == id, "classifs"]
     pattern = re.compile(
         r"^\d+\.-\.-\.-|\d+\.\d+\.-\.-|"
@@ -205,24 +224,41 @@ def metanetx2ec(
         result = result.split(";")
 
         for id in result:
-            if not pattern.match(id):
+            if not include_metanetx_specific_ec and not pattern.match(id):
                 result.remove(id)
 
         if len(result) == 0:
             raise KeyError
 
     else:
-        if not pattern.match(result):
+        if not include_metanetx_specific_ec and not pattern.match(result):
             raise KeyError
 
     return result
 
 
 @lru_cache(maxsize=1)
-def get_reac_prop_with_ec() -> pd.DataFrame:
+def get_reac_prop_with_ec(directory: Path) -> pd.DataFrame:
+    """
+    This function loads the file reac_prop from MetaNetX and stores it in
+    memory using the lru_cache. The returned DataFrame contains only the
+    rows that have an EC number.
+
+    Args:
+        directory: The directory for storing the data. This is where
+            the cache is stored in a folder called XRef.
+    """
+
+    path = directory / "XRef" / str("reac_prop" + ".feather")
+
+    try:
+        return pd.read_feather(path)
+    except FileNotFoundError:
+        pass
+
     url = "https://www.metanetx.org/ftp/latest/reac_prop.tsv"
 
-    dataFrame = pd.read_csv(
+    df = pd.read_csv(
         url,
         sep="\t",
         comment="#",
@@ -236,11 +272,34 @@ def get_reac_prop_with_ec() -> pd.DataFrame:
         ],
     )
 
-    dataFrame = dataFrame.loc[dataFrame["classifs"].notna()]
-    return dataFrame
+    df = df[~df["classifs"].isna()].reset_index(drop=True)
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_feather(path)
+
+    return df
 
 
-def add2dict_unique(key, value, dictionary):
+def add2dict_unique(
+    key, value: Union[Any, List[Any]], dictionary: dict
+) -> dict:
+    """
+    Adds key-value pairs to a dictionary. It is expected that the values
+    are either single objects or in a list. If the key does not yet exist
+    in the dictionary, the value is added directly with it. If the key
+    already exists, the values are joined together like this. That a list
+    is assigned to the key, which contains unique values. If only one value
+    remains, it will be added directly and not in a list.
+    Args:
+        key: The key to be used.
+        value: The Values to be added. This can be a single object or
+            objects in a list.
+        dictionary: The dictionary to which the objects should be added.
+
+    Returns:
+
+    """
+
     if key not in dictionary.keys():
         dictionary[key] = value
     else:
@@ -261,7 +320,7 @@ def add2dict_unique(key, value, dictionary):
 
 def add_crossreferences(  # noqa: C901
     object: Union[Model, Group, Reaction, Metabolite],
-    directory: Union[Path,str],
+    directory: Union[Path, str],
     consider_sub_elements: bool = True,
     include_metanetx_specific_ec: bool = False,
 ) -> None:
@@ -276,7 +335,8 @@ def add_crossreferences(  # noqa: C901
 
     Args:
         object: The CobraPy object to be extended.
-        directory:
+        directory: The directory for storing the data. This is where
+            the cache is stored in a folder called XRef.
         consider_sub_elements: Specifies whether additional cross-references
             should also be added to the subelements. For example, you can
             specify whether only the reaction or also its metabolites
@@ -287,7 +347,7 @@ def add_crossreferences(  # noqa: C901
             Brenda IDs being created. The default value is False.
 
     """
-    if isinstance(directory,str):
+    if isinstance(directory, str):
         directory = Path(directory)
 
     if isinstance(object, Model):
@@ -296,9 +356,9 @@ def add_crossreferences(  # noqa: C901
         size = len(object.reactions) + len(object.metabolites)
         with tqdm(total=size) as pbar:
             for reaction in object.reactions:
-                add_crossreferences(reaction,
-                                    directory= directory,
-                                    consider_sub_elements=False)
+                add_crossreferences(
+                    reaction, directory=directory, consider_sub_elements=False
+                )
                 pbar.update(1)
 
             for metabolite in object.metabolites:
@@ -310,9 +370,9 @@ def add_crossreferences(  # noqa: C901
             return
 
         for member in tqdm(object.members):
-            add_crossreferences(member,
-                                directory=directory,
-                                consider_sub_elements=False)
+            add_crossreferences(
+                member, directory=directory, consider_sub_elements=False
+            )
 
     else:
         sort = None
@@ -332,7 +392,10 @@ def add_crossreferences(  # noqa: C901
 
         # metanetx
 
-        ids = [object.id]
+        if object.id is not None:
+            ids = [object.id]
+        else:
+            ids = []
         xrefs = object.annotation
 
         for key, value in object.annotation.items():
@@ -385,6 +448,7 @@ def add_crossreferences(  # noqa: C901
             metanet_xid = xrefs["metanetx.reaction"]
             ec_number = metanetx2ec(
                 metanet_xid,
+                directory,
                 include_metanetx_specific_ec=include_metanetx_specific_ec,
             )
         except KeyError:

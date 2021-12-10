@@ -989,7 +989,9 @@ def create_object(
             obj = next(method)
             # Try to add extra cross-references
             try:
-                add_crossreferences(obj, consider_sub_elements=False)
+                add_crossreferences(
+                    obj, directory, consider_sub_elements=False
+                )
             except (ValueError, KeyError, ConnectionError, HTTPError):
                 pass
 
