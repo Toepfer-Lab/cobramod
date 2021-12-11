@@ -152,10 +152,6 @@ def get_crossreferences(  # noqa: C901
     response_json = response.json()
 
     for query in all_querys:
-        try:
-            query = query[query.index(":") + 1 :]
-        except ValueError:
-            continue
 
         try:
             answer = response_json[query]
@@ -196,7 +192,9 @@ def get_crossreferences(  # noqa: C901
 
 
 def metanetx2ec(
-    id: str, directory: Path, include_metanetx_specific_ec: bool = False
+    id: Union[str, List[str]],
+    directory: Path,
+    include_metanetx_specific_ec: bool = False,
 ) -> Union[str, List[str]]:
     """
     Returns the corresponding EC number for a specific MetaNetX ID.
@@ -212,33 +210,60 @@ def metanetx2ec(
     Returns:
         All found EC numbers.
     """
+    if isinstance(id, List):
+        result = set()
+        for single_id in id:
+            try:
+                ec_numbers = metanetx2ec(
+                    single_id, directory, include_metanetx_specific_ec
+                )
+            except KeyError:
+                continue
+
+            if isinstance(ec_numbers, str):
+                ec_numbers = [ec_numbers]
+            result.update(ec_numbers)
+
+        size = len(result)
+        if size == 0:
+            raise KeyError
+        elif size == 1:
+            return result.pop()
+        else:
+            return list(result)
+
     data = get_reac_prop_with_ec(directory)
-    result = data.loc[data["ID"] == id, "classifs"]
+    found_ec_numbers = data.loc[data["ID"] == id, "classifs"]
     pattern = re.compile(
-        r"^\d+\.-\.-\.-|\d+\.\d+\.-\.-|"
-        r"\d+\.\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$"
+        r"^\d+\.-\.-\.-|\d+\.\d+\.-\.-|\d+\."
+        r"\d+\.\d+\.-|\d+\.\d+\.\d+\.(n)?\d+$"
     )
 
-    if len(result) == 0:
+    if len(found_ec_numbers) == 0:
         raise KeyError
 
-    result = result.iloc[0]
+    found_ec_numbers = found_ec_numbers.iloc[0]
 
-    if ";" in result:
-        result = result.split(";")
+    if ";" in found_ec_numbers:
+        found_ec_numbers = found_ec_numbers.split(";")
 
-        for id in result:
-            if not include_metanetx_specific_ec and not pattern.match(id):
-                result.remove(id)
+        for found_ec_number in found_ec_numbers:
+            # id can only be a string at this point
+            if not include_metanetx_specific_ec and not pattern.match(
+                found_ec_number
+            ):
+                found_ec_numbers.remove(found_ec_number)
 
-        if len(result) == 0:
+        if len(found_ec_numbers) == 0:
             raise KeyError
 
     else:
-        if not include_metanetx_specific_ec and not pattern.match(result):
+        if not include_metanetx_specific_ec and not pattern.match(
+            found_ec_numbers
+        ):
             raise KeyError
 
-    return result
+    return found_ec_numbers
 
 
 @lru_cache(maxsize=1)

@@ -65,7 +65,7 @@ class TestCrossReferences(TestCase):
             directory = Path(directory)
             mocked_post.return_value.status_code = 200
             mocked_post.return_value.json.return_value = {
-                "HMDB62758": {
+                "hmdb:HMDB62758": {
                     "InChI": "InChI=1S/C3H8O10P2/"
                     "c4-2(1-12-14(6,7)8)3(5)13-15(9,10)11/"
                     "h2,4H,1H2,(H2,6,7,8)(H2,9,10,11)",
@@ -88,7 +88,7 @@ class TestCrossReferences(TestCase):
                 }
             }
 
-            value = get_crossreferences("chem", "HMDB62758", directory)
+            value = get_crossreferences("chem", "hmdb:HMDB62758", directory)
 
             expected = {
                 "inchikey:LJQLQCAXBUHEAZ-UHFFFAOYSA-N",
@@ -103,18 +103,19 @@ class TestCrossReferences(TestCase):
                 "inchi:InChI=1S/C3H8O10P2/"
                 "c4-2(1-12-14(6,7)8)3(5)13-15(9,10)11/"
                 "h2,4H,1H2,(H2,6,7,8)(H2,9,10,11)",
+                "metanetx.chemical:MNXM1108074",
                 "hmdb:HMDB01270",
             }
 
-            self.assertEqual(value, expected)
+            self.assertEqual(expected, value)
 
             mocked_post.return_value.json.return_value = "something_else"
-            value = get_crossreferences("chem", "HMDB62758", directory)
+            value = get_crossreferences("chem", "hmdb:HMDB62758", directory)
 
             self.assertEqual(value, expected)
 
             value = get_crossreferences(
-                "chem", ["HMDB62758", "HMDB62758"], directory
+                "chem", ["hmdb:HMDB62758", "hmdb:HMDB62758"], directory
             )
             self.assertEqual(value, expected)
 
@@ -186,11 +187,23 @@ class TestCrossReferences(TestCase):
 
         add2dict_unique("A", ["A", "B"], dictonary)
         expected = {"A": ["A", "B"], "B": "B"}
-        self.assertEqual(expected, dictonary)
+
+        # check keys
+        self.assertCountEqual(expected, dictonary)
+
+        # check values
+        for key, value in expected.items():
+            self.assertCountEqual(value, dictonary[key])
 
         add2dict_unique("C", "A", dictonary)
         expected = {"A": ["A", "B"], "B": "B", "C": "A"}
-        self.assertEqual(expected, dictonary)
+
+        # check keys
+        self.assertCountEqual(expected, dictonary)
+
+        # chack values
+        for key, value in expected.items():
+            self.assertCountEqual(value, dictonary[key])
 
     @patch("requests.get")
     @patch("pandas.read_csv")
@@ -203,7 +216,7 @@ class TestCrossReferences(TestCase):
 
         mocked_post.return_value.status_code = 200
         mocked_post.return_value.json.return_value = {
-            "HMDB62758": {
+            "hmdb:HMDB62758": {
                 "InChI": "InChI=1S/C3H8O10P2/"
                 "c4-2(1-12-14(6,7)8)3(5)13-15(9,10)11/"
                 "h2,4H,1H2,(H2,6,7,8)(H2,9,10,11)",
