@@ -53,6 +53,7 @@ This package offers multiple functions for modifying and extending GEMs:
 -   Test reaction capability to carry a non-zero flux
     `cobramod.test_non_zero_flux`
 -   Add pathway to a model `cobramod.add_pathway`
+-   Retrieve cross references `cobramod.add_crossreferences`
 
 Check the [documentation](https://cobramod.readthedocs.io/) for more
 information.

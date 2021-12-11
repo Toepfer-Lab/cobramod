@@ -1,0 +1,116 @@
+<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?GCF_000020025:ACETALD"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>GCF_000020025:ACETALD</query>
+<num_results>1</num_results>
+<PGDB orgid="GCF_000020025" version="25.0"><species datatype="string">Nostoc punctiforme</species>
+<strain datatype="string">ATCC 29133; PCC 73102</strain>
+<sequence-source datatype="string">GCF_000020025.1</sequence-source>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>63737</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=63737</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID="GCF_000020025:ACETALD" detail="full" frameid="ACETALD" orgid="GCF_000020025"><parent><Compound class="true" frameid="n-Alkanals" orgid="GCF_000020025" resource="getxml?GCF_000020025:n-Alkanals" /></parent>
+<cml><molecule formalCharge="0" id="ACETALD" title="acetaldehyde"><atomArray><atom elementType="C" id="ACETALD-atom1" x2="716400.0" y2="512900.0" /><atom elementType="C" id="ACETALD-atom2" x2="-1200.0" y2="105900.0" /><atom elementType="O" id="ACETALD-atom3" x2="-1200.0" y2="-719100.0" /><atom elementType="H" id="ACETALD-atom4" x2="-721200.0" y2="512900.0" /></atomArray>
+<bondArray><bond atomRefs="ACETALD-atom1 ACETALD-atom2" id="ACETALD-bond1" order="1" /><bond atomRefs="ACETALD-atom2 ACETALD-atom4" id="ACETALD-bond2" order="1" /><bond atomRefs="ACETALD-atom2 ACETALD-atom3" id="ACETALD-bond3" order="2" /></bondArray>
+<formula concise="C 2 H 4 O 1" /><float title="molecularWeight" units="g/mol">44.053</float>
+<string title="smiles">CC=O</string>
+</molecule>
+</cml>
+<appears-in-right-side-of><Reaction frameid="RXN0-5507" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-5507" /><Reaction frameid="RXN-11747" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-11747" /><Reaction frameid="RXN-8763" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8763" /><Reaction frameid="THREONINE-ALDOLASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:THREONINE-ALDOLASE-RXN" /><Reaction frameid="LTAA-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:LTAA-RXN" /><Reaction frameid="RXN0-5234" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-5234" /><Reaction frameid="DEOXYRIBOSE-P-ALD-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:DEOXYRIBOSE-P-ALD-RXN" /><Reaction frameid="RXN66-1" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN66-1" /></appears-in-right-side-of>
+<molecular-weight datatype="float" units="Daltons">44.053</molecular-weight>
+<synonym datatype="string">acetic aldehyde</synonym>
+<synonym datatype="string">ethanal</synonym>
+<synonym datatype="string">aldehyde</synonym>
+<synonym datatype="string">ethyl aldehyde</synonym>
+<common-name datatype="string">acetaldehyde</common-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00071</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00071</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM75</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM75</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Acetaldehyde</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Acetaldehyde</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>acald</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/acald</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15343</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15343</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00990</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00990</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>172</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/172</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>177</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=177</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15343</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15343</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00084</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00084</dblink-URL>
+</dblink>
+<dblink><dblink-db>UM-BBD-CPD</dblink-db>
+<dblink-oid>c0160</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0160</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>75-07-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=75-07-0</dblink-URL>
+</dblink>
+<monoisotopic-mw datatype="float" units="Daltons">44.026215</monoisotopic-mw>
+<credits><imported-from-meta><date datatype="date">2020-03-09</date>
+<Organization ID="GCF_000020025:SRI" detail="full" frameid="SRI" orgid="GCF_000020025"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</imported-from-meta>
+</credits>
+<inchi-key datatype="string">InChIKey=IKHGUXGNUITLKF-UHFFFAOYSA-N</inchi-key>
+<gibbs-0 datatype="float" units="kcal/mol">7.6844816<evidence><Evidence-Code ID="GCF_000020025:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="GCF_000020025"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype="string">Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID="GCF_000020025:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="GCF_000020025"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<year datatype="integer">2013</year>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype="string">Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<inchi datatype="string">InChI=1S/C2H4O/c1-2-3/h2H,1H3</inchi>
+</Compound>
+</ptools-xml>

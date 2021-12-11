@@ -184,7 +184,7 @@ def _first_item(first: DictList, second: dict, revert: bool) -> str:
     """
     Return the first item from the intersection of a DictList and the values of
     a dictionary. The identifiers from the DictList can be reverted to their
-    original. Method will raise a KeyError is no intersection is found.
+    original. Method will raise a NoIntersectFound is no intersection is found.
     """
     # Format
     if revert:

@@ -558,20 +558,9 @@ class GraphTesting(TestCase):
             "RXN-2224": None,
         }
         # CASE 0: No difference
-        test_graph = gr._fix_graph(
-            graph=graph.copy(), avoid_list=[], replacement={}
-        )
+        test_graph = gr._fix_graph(graph=graph.copy(), avoid_list=[])
         self.assertDictEqual(d1=graph, d2=test_graph)
-        # CASE 1: Using replacements
-        test_graph = gr._fix_graph(
-            graph=graph.copy(),
-            avoid_list=[],
-            replacement={"RXN-11445": "RXN-REPLACED"},
-        )
-        new_graph = graph.copy()
-        new_graph["RXN-REPLACED"] = new_graph.pop("RXN-11445")
-        new_graph["RXN-2223"] = ("RXN-REPLACED", "RXN-2224")
-        self.assertDictEqual(d1=new_graph, d2=test_graph)
+
         # CASE 1: Using avoid_list
         new_graph = {
             "RXN-11430": "RXN-19589",
@@ -593,7 +582,6 @@ class GraphTesting(TestCase):
                 "RXN-2224",
                 "RXN-11445",
             ],
-            replacement={},
         )
         self.assertDictEqual(d1=new_graph, d2=test_graph)
 

@@ -19,7 +19,8 @@ from pathlib import Path
 from cobra import Model
 
 from cobramod.error import GraphKeyError
-from cobramod.core.creation import get_data, _fix_name
+from cobramod.core.creation import _fix_name
+from cobramod.core.retrieval import _get_correct_data
 from cobramod.utils import _first_item
 from cobramod.error import NoIntersectFound
 
@@ -346,11 +347,11 @@ def build_graph(graph: dict) -> list:
     return mapping
 
 
-def _fix_graph(graph: dict, avoid_list: list, replacement: dict) -> dict:
+def _fix_graph(graph: dict, avoid_list: list) -> dict:
     """
-    Returns a new graph, where items are replaced if found in given
-    dictionary or removed if found in given avoid list.
+    Returns a new graph, where items are removed if found in given avoid list.
     """
+    # TODO: docstrings
     new_graph = graph.copy()
     # Remove necessary keys in copy
     for reaction in avoid_list:
@@ -358,8 +359,10 @@ def _fix_graph(graph: dict, avoid_list: list, replacement: dict) -> dict:
             del new_graph[reaction]
         for key, value in new_graph.items():
             # Avoid NoneType
+
             if not value:
                 continue
+
             elif reaction in value and isinstance(value, tuple):
                 new_graph[key] = tuple(
                     item for item in value if item != reaction
@@ -367,27 +370,10 @@ def _fix_graph(graph: dict, avoid_list: list, replacement: dict) -> dict:
                 # Transform to str if only one element
                 if len(new_graph[key]) == 1:
                     new_graph[key] = new_graph[key][0]
+
             elif reaction == value:
                 new_graph[key] = None
-    # use new copy and modify
-    graph = new_graph.copy()
-    # Use replacements
-    for reaction in replacement.keys():
-        with suppress(KeyError):
-            graph[replacement[reaction]] = graph.pop(reaction)
-        for key, value in graph.items():
-            # Avoid NoneType
-            if not value:
-                continue
-            elif reaction in value and isinstance(value, tuple):
-                graph[key] = tuple(
-                    item.replace(reaction, replacement[reaction])
-                    for item in value
-                )
-            # Transform single string
-            elif reaction == value:
-                graph[key] == replacement[reaction]
-    return graph
+    return new_graph
 
 
 def _format_graph(
@@ -405,57 +391,71 @@ def _format_graph(
     Returns new formatted graph. If an item if found in given replacement dict,
     the value will be replaced; if found in avoid list, the graph will not
     contain that value. Function :func`cobramod.get_data` will use passed
-    arguments to format the items. An KeyError will be raised if the format
-    was not correct.
+    arguments to format the items.
     """
-    graph = _fix_graph(
-        graph=graph, avoid_list=avoid_list, replacement=replacement
-    )
+    graph = _fix_graph(graph=graph, avoid_list=avoid_list)
     new_graph = graph.copy()
+
     # Format tuples, single strings and kes
     for key in graph.keys():
-        # Get synonym/ Format key
-        # Get data from files
-        key_dict = get_data(
+
+        # Get data from files. This is relevant for the cross references
+        key_dict = _get_correct_data(
             directory=directory,
             database=database,
             identifier=key,
             model_id=model_id,
             genome=genome,
+            replacement=replacement,
         )
+
+        # Find if replacement should be used instead of renaming
+        replace_found: bool
         try:
-            # Find synonym
+            model.reactions.get_by_id(replacement[key])
+            replace_found = True
+        except KeyError:
+            replace_found = False
+
+        # Find repetition if possible
+        try:
             new_identifier = _first_item(
                 first=model.reactions, second=key_dict["XREF"], revert=True
             )
             new_key = f"{_fix_name(name=new_identifier)}_{compartment}"
+
         except (NoIntersectFound, KeyError):
             # Regular transformation
-            new_key = f'{key.replace("-", "_")}_{compartment}'
-        # Change in new graph the values where key is found
+            new_key = f'{key_dict["ENTRY"].replace("-", "_")}_{compartment}'
+
+        if replace_found:
+            new_key = replacement[key]
+
+        # Change in new graph values where key is found
+        new_value: tuple
         for key2, value in new_graph.items():
+            new_value = value
+
+            # For None, tuple or single strings
             if not value:
-                # In case of None
                 continue
-            # If tuple and found
-            elif isinstance(value, tuple) and key in value:
+
+            if isinstance(value, tuple) and key in value:
                 new_value = tuple(item.replace(key, new_key) for item in value)
-            # If string and found
+
             elif key in value:
                 new_value = value.replace(key, new_key)
-            # Skip and/or update if necessary
-            else:
-                continue
+
             new_graph[key2] = new_value
+
         # Change the key and remove old one
-        try:
+        with suppress(KeyError):
             new_graph[new_key] = new_graph[key]
-        except KeyError:
-            pass
-        del new_graph[key]
-    # Test all names
-    for key in new_graph.keys():
-        model.reactions.get_by_id(key)
+            del new_graph[key]
+
+    # TODO: move to unittest
+    # for key in new_graph.keys():
+    #     model.reactions.get_by_id(key)
     return new_graph
 
 

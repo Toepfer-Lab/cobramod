@@ -11,20 +11,23 @@ Most important functions:
 """
 from contextlib import suppress
 from pathlib import Path
-from typing import Union, Generator, Optional, List
+from typing import Generator, List, Optional, Set, Union
 from warnings import warn
 
-from cobra import Model, Reaction
+from cobra import Metabolite, Model, Reaction
 from cobra.core.configuration import Configuration
 from cobra.exceptions import OptimizationError
 
-from cobramod.core.creation import create_object
-from cobramod.core.graph import build_graph, _create_quick_graph, _format_graph
+from cobramod.core.creation import (
+    _convert_string_reaction,
+    _get_file_reactions,
+    create_object,
+)
+from cobramod.core.graph import _create_quick_graph, _format_graph, build_graph
 from cobramod.core.pathway import Pathway
 from cobramod.core.retrieval import get_data
 from cobramod.core.summary import DataModel, summary as summarize
 from cobramod.debug import debug_log
-from cobramod.error import NotInRangeError
 
 
 # Defaults to 1E-07
@@ -88,292 +91,224 @@ def _create_reactions(
         yield obj
 
 
-def _find_next_demand(
-    model: Model, reaction_id: str, ignore_list: List[str] = []
-) -> str:
+def _find_problem(model: Model, reaction: str) -> List[str]:
     """
-    Returns an identifier of first metabolite found either in the product or
-    reactant side of given reaction.
+    Return a List with the metabolite identifiers that must have a sink
+    reaction to make the reaction carry a non-zero flux.
+    """
+    problem: List[str] = list()
+    value: Optional[float]
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    metabolites: List[Metabolite] = _reaction.products + _reaction.reactants
 
-    Reversibility of the reaction is taken into consideration. A list with
-    metabolites identifiers can be passed to ignored them.
+    # Add sink
+    for metabolite in metabolites:
+        with suppress(ValueError):
+            model.add_boundary(metabolite=metabolite, type="sink")
+            debug_log.debug(f"Sink reaction for {reaction} created.")
+
+    assert model.slim_optimize() != 0.0
+
+    # Test each reaction
+    for metabolite in metabolites:
+        sink: Reaction = model.reactions.get_by_id(f"SK_{metabolite.id}")
+
+        if len(metabolite.reactions) < 2:
+            # Sink cannot be removed because it needs 2 reaction
+            continue
+
+        model.remove_reactions([sink])
+        debug_log.debug(f"Sink reaction for {reaction} removed.")
+
+        # Find metabolites that are necessary to carry a flux
+        try:
+            value = model.slim_optimize(error_value=None)
+
+            if not value:
+                value == 0.0
+
+            assert value is not None
+            if abs(value) <= cobra_tolerance:
+                raise OptimizationError("FAILED")
+
+        except OptimizationError:
+            model.add_reactions(reaction_list=[sink])
+            debug_log.debug(
+                f"Sink reaction for {reaction} added again. Metabolite "
+                f'"{metabolite.id}" must have a sink reaction to make '
+                f'"{reaction}" carry a flux.'
+            )
+            assert metabolite.id
+            problem.append(metabolite.id)
+
+    return problem
+
+
+def _new_verify_sink(model: Model, reaction: str):
+    """
+    Creates sink reactions for the metabolites that participate in given
+    reaction. They can only be created if the corresponding metabolite only
+    participates in one reaction. Otherwise, the metabolite can be somehow
+    turnover
+    """
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    metabolites: List[Metabolite] = _reaction.products + _reaction.reactants
+
+    for metabolite in metabolites:
+        amount = len(metabolite.reactions)
+
+        if amount <= 1:
+            # Warning is called in _inform_sink
+            model.add_boundary(metabolite=metabolite, type="sink")
+
+
+def _recursive_flux_test(
+    model: Model, reaction: str, times: int = 0
+) -> Optional[float]:
+    """
+    Main part of the non-zero flux test. It is a recursive function. Firstly,
+    the function checks if there a non-zero flux. If not, it will create the
+    necessary sink reactions and rerun the test. This function warns the user
+    if sink reactions were created.
 
     Args:
-        model (Model): model to test
-        reaction_id (str): reaction identifier for model
-        ignore_list (list, optional): A sequence of formatted metabolites
-            to ignore. Defaults to []
-
-    Raises:
-        Warning: if no metabolite was found
+        model (Model): Model where the reactions are located
+        reaction (str): identifier of the reaction
+        times (int): Tracks how many times this function was called.
 
     Returns:
-        str: metabolite identifier to create a demand reaction
-    """
-    reaction: Reaction = model.reactions.get_by_id(reaction_id)
-    lb, up = reaction.bounds
-    # Checking reversibility
-    metabolites = {
-        "products": (
-            metabolite.id
-            for metabolite in reaction.products
-            if metabolite.id not in ignore_list
-        ),
-        "reactants": (
-            metabolite.id
-            for metabolite in reaction.reactants
-            if metabolite.id not in ignore_list
-        ),
-    }
-    # left --> right
-    if up > abs(lb):
-        candidates = metabolites["products"]
-    # left <-- right
-    elif up < abs(lb):
-        candidates = metabolites["reactants"]
-    # left <--> right
-    else:
-        # TODO: decide what to do (reversibility)
-        # FIXME: isomers sometimes shows double demand
-        candidates = metabolites["products"]
-    try:
-        demand: str = next(candidates)
-        return demand
-    except StopIteration:
-        raise StopIteration(
-            "No metabolite found to become a demand for the non-zero flux test"
-        )
-
-
-def _remove_boundary(model: Model, metabolite: str, boundary: str):
-    """
-    Removes given type of boundary reaction for a specified metabolite if it
-    is found in the model.
-
-    Args:
-        model (Model): model to examine
-        metabolite (str): metabolite identifier in model to examine.
-        boundary (str): type of boundary. Options: "sink", "demand"
-    """
-    type_prefix = {"sink": "SK_", "demand": "DM_"}
-    reaction = f"{type_prefix[boundary]}{metabolite}"
-    if reaction in (
-        reaction.id
-        for reaction in model.metabolites.get_by_id(metabolite).reactions
-    ):
-        model.remove_reactions([reaction])
-        debug_log.warning(
-            f'Auxiliary {boundary} reaction for "{metabolite}" removed.'
-        )
-
-
-def _verify_boundary(model: Model, metabolite: str, ignore_list: List[str]):
-    """
-    Verifies that given metabolite has enough sink and demand reaction. It will
-    create and remove them if necessary.
-
-    If a metabolite has a demand reaction, it will create a sink reaction if
-    the total amount is equal or less than two. If no demand reaction is found
-    it will create a sink reaction if the total reactions is 1. Sink reactions
-    will be delete if total reaction is either more than equal 2, or 3.
-
-    Args:
-        model (Model): model to test
-        metabolite (str): metabolite identifier for given metabolite.
-        ignore_list (list): A sequence of formatted metabolites
-            to ignore when testing new reactions. Defaults to []
+        Optional[float]: optimization value
 
     Raises:
-        Warning: If a metabolite is found in given ignore list.
+        OptimizationError: Whenever a reaction needs manual intervention
     """
-    debug_log.debug(
-        "Counting number of auxiliary demand and sink reactions related to "
-        f'metabolite "{metabolite}".'
-    )
-    if metabolite in ignore_list:
-        msg = (
-            f'Metabolite "{metabolite}" was found in "ignore_list". No '
-            "auxiliary sink reactions will be be created during the non-zero "
-            " flux test."
+
+    if times == 0:
+        debug_log.info(
+            f'Test to carry non-zero flux for "{reaction}" started.'
         )
-        debug_log.warning(msg)
-        raise Warning(msg)
-    reactions = len(model.metabolites.get_by_id(metabolite).reactions)
-    demands = [
-        reaction
-        for reaction in model.metabolites.get_by_id(metabolite).reactions
-        if "DM_" in reaction.id
-    ]
-    # Check to add sinks. If demand reaction is found and metabolite has
-    # less than two reactions, then create sink, otherwise remove any sink.
-    if demands:
-        if reactions <= 2:
-            model.add_boundary(
-                metabolite=model.metabolites.get_by_id(metabolite), type="sink"
-            )
-            debug_log.debug(
-                msg=f'Auxiliary sink reaction for "{metabolite}" created.'
+    # run
+    passed: bool
+    value: Optional[float] = model.slim_optimize(error_value=None)
+
+    if not value:
+        passed = False
+        value = 0.0
+
+    # TODO: should be higher or at least?
+    elif abs(value) > cobra_tolerance:
+        passed = True
+
+    else:
+        passed = False
+
+    # Add sinks and get new value
+    if not passed:
+        if times < 1:
+            _new_verify_sink(model=model, reaction=reaction)
+            value = _recursive_flux_test(
+                model=model, reaction=reaction, times=times + 1
             )
 
         else:
-            _remove_boundary(
-                model=model, metabolite=metabolite, boundary="sink"
+            problem = _find_problem(model=model, reaction=reaction)
+            msg = (
+                "The model cannot turnover the following metabolites "
+                f"{problem}. To overcome this, sink reactions were created to "
+                "simulate their synthesis."
             )
-    # Otherwise, if it has no demand, add the sink if it has only one reaction
-    # and remove sink if more than 2 reactions.
-    else:
-        if reactions <= 1:
-            model.add_boundary(
-                metabolite=model.metabolites.get_by_id(metabolite), type="sink"
-            )
-            debug_log.debug(
-                msg=f'Auxiliary sink reaction for "{metabolite}" created.'
-            )
-        elif not reactions <= 2:
-            _remove_boundary(
-                model=model, metabolite=metabolite, boundary="sink"
-            )
-    # Remove demand if needed. This part is always necessary since the extra
-    # demands would add extra flux into the system.
-    _remove_boundary(model=model, metabolite=metabolite, boundary="demand")
+            debug_log.warning(msg)
+            warn(msg)
+            value = model.slim_optimize()
 
-
-def _fix_side(
-    model: Model, reaction: str, side: str, ignore_list: List[str] = []
-):
-    """
-    Checks for either the product or reactant side of a reactions, if
-    participant-metabolites have enough sink reactions to produce a feasible
-    answer. If necessary, it will creates or remove them.
-
-    Args:
-        model (Model): model to test.
-        reaction_id (str): reaction identifier for given model.
-        side (str): Side to verify. Options: "right", "left"
-        ignore_list (list, optional): A sequence of formatted metabolites
-            to ignore when testing new reactions. Defaults to []:
-
-    Raises:
-        ValueError: if side is not in the options
-    """
-    participants = {
-        "right": model.reactions.get_by_id(reaction).products,
-        "left": model.reactions.get_by_id(reaction).reactants,
-    }
-    try:
-        metabolites = participants[side]
-    except KeyError:
-        raise ValueError('Only valid options are "right" and "left"')
-    for meta in metabolites:
-        # create or remove
-        with suppress(Warning):
-            _verify_boundary(
-                model=model, metabolite=meta.id, ignore_list=ignore_list
-            )
-
-
-def _verify_sinks(model: Model, reaction: str, ignore_list: List[str]):
-    """
-    Verifies, creates or removes sink reactions for metabolites found in given
-    reaction if certain conditions are met.
-
-    .. hint:: If a metabolite has a demand reaction, it will create a sink\
-    reaction if the total amount is equal or less than two. If no demand\
-    reaction is found it will create a sink reaction if the total reactions is\
-    1. Sink reactions will be delete if total reaction is either more than\
-    equal 2, or 3.
-
-    Args:
-        model (Model): model to examine.
-        reaction (str): reaction identifier for given model.
-        ignore_list (list): A sequence of formatted metabolites
-            to ignore when testing new reactions.
-    """
-    debug_log.debug(
-        "Counting number of auxiliary demand and sink reactions for reaction "
-        f'"{reaction}". Auxiliary reactions ensure that all reactants and '
-        "products of the equation can be turned over in the model."
-    )
-    # reactant side
-    _fix_side(
-        model=model, reaction=reaction, ignore_list=ignore_list, side="left"
-    )
-    # product side
-    _fix_side(
-        model=model, reaction=reaction, ignore_list=ignore_list, side="right"
-    )
-
-
-def test_non_zero_flux(
-    model: Model, reaction: str, times: int = 0, ignore_list: List[str] = []
-):
-    """
-    Verifies that a simple FBA can be performed. A demand reaction is created
-    with a minimum flux based on the COBRApy Configuration object. It will use
-    its variable 'tolerance' multiplied by 10. The function is recursive and
-    checks if sink reactions are sufficient or exceeded. It generates a demand
-    reaction for the reaction used for testing and removes it if necessary.
-
-    Args:
-        model (Model): Model in which the reaction is present.
-        reaction (str): Reaction identifier in model to test.
-        times (int, optional): Track of recursions. Defaults to 0.
-        ignore_list (list, optional): A sequence of formatted metabolites to be
-        ignored when testing new reactions. Defaults to []
-
-    Raises:
-        NotInRangeError: If the solution is infeasible after many recursions.
-            Depends on the number of metabolites in the reaction.
-
-    """
+    # Raise only if manual intervention is necessary
+    assert value is not None
     if times == 0:
-        debug_log.info(
-            f'Test to carry non-zero fluxes for "{reaction}" started'
-        )
-    # finding demand for testing
-    next_demand = _find_next_demand(
-        model=model, reaction_id=reaction, ignore_list=ignore_list
-    )
-    # The first step is to add a demand for check that the reaction has an
-    # active flux.
-    with suppress(ValueError):
-        model.add_boundary(model.metabolites.get_by_id(next_demand), "demand")
-        model.reactions.get_by_id(f"DM_{next_demand}").lower_bound = abs(
-            cobra_tolerance * 10
-        )
-        debug_log.debug(
-            f'Demand reaction "DM_{next_demand}" for non-zero flux test was '
-            + "added to the model."
-        )
-    # Setting maximum times for recursion
-    if times == len(model.reactions.get_by_id(reaction).metabolites):
-        raise NotInRangeError(reaction=model.reactions.get_by_id(reaction))
-    # answer must be reasonable
-    # comparison must be using absolute values
-    try:
-        model.slim_optimize(error_value=None)
-        # if works, pass and return old objective
-        debug_log.info(f'Reaction "{reaction}" passed the non-zero flux test.')
-        # Remove old demand
-        _remove_boundary(
-            model=model, metabolite=next_demand, boundary="demand"
-        )
-        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
-    except OptimizationError:
-        debug_log.debug(
-            f'Non-zero flux test for reaction "{reaction}" failed. Flux value'
-            f" lower than solver tolerance ({cobra_tolerance*10}) defined in "
-            " cobramod.core.extension.solver_tolerance}. Please check the"
-            " logging information."
-        )
-        _verify_sinks(model=model, reaction=reaction, ignore_list=ignore_list)
-        # Recursive with 'extra' argument
-        test_non_zero_flux(
-            model=model,
-            reaction=reaction,
-            times=times + 1,
-            ignore_list=ignore_list,
-        )
+        if abs(value) > cobra_tolerance:
+            debug_log.info(
+                f"Non-zero flux test for reaction {reaction} passed."
+            )
+
+        else:
+            raise OptimizationError(
+                f"There is a problem with reaction {reaction}. Please create "
+                "manually the corresponding turnover reactions for the "
+                f'metabolites of "{reaction}".'
+            )
+    return value
+
+
+def _is_minimize(model: Model, reaction: str) -> bool:
+    """
+    Return whether given reaction should be minimized when optimizing
+    """
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    lower: float = _reaction.lower_bound  # type: ignore
+    upper: float = _reaction.upper_bound  # type: ignore
+
+    if abs(lower) > upper:
+        return True
+    return False
+
+
+def _test_non_zero_main(model: Model, reaction: str):
+    """
+    Performs non-zero flux test. In this test, a reaction is tested to make
+    sure it can carry a flux. If necessary, CobraMod creates sink reactions
+    to simulate turnover of metabolites that participate in the reaction.
+    Warnings will be shown for these cases.
+
+    Args:
+        model (Model): Model that contains the reaction
+        reaction (str): identifier of the reaction
+
+    Raises:
+        OptimizationError: If given reaction needs manual curation
+
+    """
+    # Save old objective
+    original_objective = model.objective
+    original_direction = model.objective_direction
+
+    _reaction: Reaction = model.reactions.get_by_id(reaction)
+
+    # check reversibility
+    if _is_minimize(model=model, reaction=reaction):
+        model.objective_direction = "min"
+
+    # Define new objective
+    model.objective = _reaction
+
+    # Recursive function
+    _recursive_flux_test(model=model, reaction=reaction)
+
+    # Revert back objective
+    model.objective = original_objective
+    model.objective_direction = original_direction
+
+
+def test_non_zero_flux(model: Model, reaction: str):
+    """
+    Performs non-zero flux test. In this test, a reaction is tested to make
+    sure it can carry a flux. If necessary, CobraMod creates sink reactions
+    to simulate turnover of metabolites that participate in the reaction.
+    Warnings will be shown for these cases.
+
+    Args:
+        model (Model): Model that contains the reaction
+        reaction (str): identifier of the reaction
+
+    Raises:
+        OptimizationError: If given reaction needs manual curation
+
+    """
+    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+
+    _test_non_zero_main(model=model, reaction=reaction)
+
+    # Revert back objective and inform
+    _inform_sink(model=model, previous_sinks=previous_sinks)
+    print(f"Reaction {reaction} passed the non-zero-flux test.")
 
 
 def _add_sequence(
@@ -382,48 +317,50 @@ def _add_sequence(
     """
     From a sequence of Reaction objects, add each Reaction into given model. It
     checks if new reactions do not break the optimized value. All reactions
-    will be added to a common COBRApy Group.
+    are added to a common CobraMod Pathway.
 
     Args:
         model (Model): Model to expand.
         pathway (Pathway): Common Pathway to add the reaction.
         sequence (list): List with :class:`cobra.core.reaction.Reaction`
             objects
-        ignore_list (list): A sequence of formatted metabolites to skip when
-            testing, and/or reactions that should be added but not tested.
-            This is useful for long cyclical pathways.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Raises:
         TypeError: if reactions are not valid Reaction objects
     """
     if not all((isinstance(reaction, Reaction) for reaction in sequence)):
         raise TypeError("Reactions are not valid objects. Check list.")
+
     # Add sequence to model
     reaction: Reaction
     for reaction in sequence:
+        assert reaction.id
+
         # Add reaction if not in model
         if reaction not in model.reactions:
             model.add_reactions([reaction])
             debug_log.info(f'Reaction "{reaction.id}" was added to model.')
+
         # Skip test but include reaction in pathway
         if reaction.id not in ignore_list:
-            test_non_zero_flux(
-                model=model, reaction=reaction.id, ignore_list=ignore_list
-            )
+            _test_non_zero_main(model=model, reaction=reaction.id)
+
         else:
             debug_log.warning(
                 f'Reaction "{reaction.id}" found in "ignore_list". Skipping '
                 + "non-zero flux test."
             )
-            # Add to pathway only if reaction was not previously in the model.
-        debug_log.debug(
-            f'Reaction "{reaction.id}" passed the non-zero flux test.'
-        )
+
+        # Add to pathway only if reaction was not previously in the model.
         pathway.add_members(new_members=[reaction])
         debug_log.info(
             f'Reaction "{reaction.id}" added to group "{pathway.id}".'
         )
+
     debug_log.debug(f'Reactions added to group "{pathway.id}".')
+
     # Only add if there is at least 1 reaction in the group.
     if (
         pathway.id not in [group.id for group in model.groups]
@@ -433,22 +370,19 @@ def _add_sequence(
         debug_log.info(f'Pathway "{pathway.id}" added to Model.')
 
 
-def _update_reactions(
-    sequence: List[str], avoid_list: List[str], replacement: dict
-) -> List[str]:
+def _update_reactions(sequence: List[str], avoid_list: List[str]) -> List[str]:
     """
     Updates the given sequence taking into consideration reactions to avoid
-    and to rename
+    in the sequence
 
     Args:
-        sequence (list): Names of the reactions to update
+        sequence (list): identifier of the reactions to update
         avoid_list (list): Reactions that should not be included in the model
-        replacement (dict): Directory with identifiers to be replaced. Keys are
-            the original identifiers and the values the new identifiers
     """
     new_sequence: List[str] = list()
+
+    # Remove reactions
     for item in sequence:
-        # Remove reactions
         if item in avoid_list:
             msg = (
                 f'Reaction "{item}" was found in "avoid_list". Reaction {item}'
@@ -457,18 +391,151 @@ def _update_reactions(
             debug_log.warning(msg=msg)
             warn(message=msg, category=UserWarning)
             continue
-        # Replace reactions
-        if item in replacement.keys():
+
+        new_sequence.append(item)
+
+    return new_sequence
+
+
+def _inform_sink(model: Model, previous_sinks: Set[str]):
+    """
+    Warns the user if sinks were created during the extension of the Model.
+    i.e. Function compares a set with sink identifiers with the actual sinks
+    in a model.
+    """
+    sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}.difference(
+        previous_sinks
+    )
+
+    if sinks:
+        for reaction in sinks:
             msg = (
-                f'Reaction "{item}" was found in "replacement". Reaction '
-                f'will be replaced by "{replacement[item]}".'
+                f'Auxiliary sink reaction for "{reaction}" created. Consider '
+                "removing it and adding the synthesis reactions for the "
+                "metabolite."
             )
             debug_log.warning(msg=msg)
             warn(message=msg, category=UserWarning)
-            item = replacement[item]
-        # add in the end
-        new_sequence.append(item)
-    return new_sequence
+
+
+def _from_strings(
+    model: Model,
+    obj: Union[List[str], Path],
+    pathway_name: str,
+    database: str,
+    replacement: dict,
+    ignore_list: list,
+    stop_imbalance: bool,
+    show_imbalance: bool,
+    directory: Path,
+    genome: Optional[str],
+    model_id: str,
+):
+    """
+    Adds a Pathway into given model. The reactions are created from::
+
+     - Path: A file with components. E. g. :
+        Path.cwd().joinpath("file_with_names.txt")
+     - List[str]: A list with multiple string. Either the identifier with its
+     corresponding compartment; a string with all components or the reaction
+     identifier already in the model. This applies for the Path option. E.g. :
+
+        :code:`reaction_identifier, compartment`
+
+        For custom reactions
+
+        :code:`reaction_identifier, reaction_name | coefficient metabolite <->
+        coefficient metabolite
+
+    Args:
+        model (Model): Model to expand.
+        obj (Union[List[str], Path]): Location of the file or list with strings
+        database (str): Name of the database.
+            Check :obj:`cobramod.available_databases` for a list of names.
+        pathway_name (str): Common :class:`cobramod.pathway.Pathway`
+            identifier
+
+    Argument for complex pathways:
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
+
+    Arguments for utilities:
+        stop_imbalance (bool, optional): If an unbalanced reaction is found,
+            stop the process. Defaults to False.
+        show_imbalance (bool, optional): If an unbalanced reaction is found,
+            print output. Defaults to True.
+        model_id (str, optional): Exclusive for BIGG. Retrieve object from
+            specified model. Pathways are not available.
+            Defaults to: "universal"
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            species involved. Genes will be obtained for this species.
+            List available at https://www.genome.jp/kegg/catalog/org_list.html
+
+    """
+    # Either create a Pathway or give new name.
+    try:
+        pathway = model.groups.get_by_id(pathway_name)
+    except KeyError:
+        pathway = Pathway(id=pathway_name)
+
+    # Get sinks
+    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+
+    # Get reactions from file
+    if isinstance(obj, Path):
+        new_reactions = _get_file_reactions(
+            model=model,
+            filename=obj,
+            directory=directory,
+            database=database,
+            replacement=replacement,
+            stop_imbalance=stop_imbalance,
+            show_imbalance=show_imbalance,
+            genome=genome,
+            model_id=model_id,
+        )
+
+    # Or convert list
+    else:
+        new_reactions = [
+            _convert_string_reaction(
+                line=line,
+                model=model,
+                directory=directory,
+                database=database,
+                replacement=replacement,
+                stop_imbalance=stop_imbalance,
+                show_imbalance=show_imbalance,
+                genome=genome,
+                model_id=model_id,
+            )
+            for line in obj
+        ]
+    # Inform about sinks
+    _inform_sink(model=model, previous_sinks=previous_sinks)
+
+    graph = _create_quick_graph(
+        sequence=[reaction.id for reaction in new_reactions]
+    )
+
+    _add_sequence(
+        model=model,
+        pathway=pathway,
+        sequence=new_reactions,
+        ignore_list=ignore_list,
+    )
+
+    # No need to format graph because there shouldn't be replacements
+    if not pathway.graph:
+        pathway.graph = graph
+    else:
+        pathway.graph.update(graph)
+    pathway.notes["ORDER"] = pathway.graph
 
 
 def _from_data(
@@ -501,14 +568,13 @@ def _from_data(
         compartment: Location of the reactions.
 
     Arguments for complex pathways:
-        replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
-        avoid_list (list): A sequence of reactions identifiers to
-            avoid adding to the model. This is useful for long pathways,
-            where X reactions need to be excluded.
-        ignore_list (list): A sequence of formatted metabolites to skip when
-            testing, and/or reactions that should be added but not tested.
-            This is useful for long cyclical pathways.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -522,24 +588,29 @@ def _from_data(
     """
     # Create mapping from dictionary
     mapping = build_graph(graph=data_dict["PATHWAY"])
+
     # Either create a Pathway or obtain the correct Pathway.
     identifier = data_dict["ENTRY"]
+
     if group:
         identifier = group
+
     try:
         pathway = model.groups.get_by_id(identifier)
+
     except KeyError:
         pathway = Pathway(id=identifier)
+
     # Get sinks
-    previous_sink = {sink.id for sink in model.sinks}
+    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+
     for sequence in mapping:
-        # Update sequence with new identifiers or removal of reactions
-        sequence = _update_reactions(
-            sequence=sequence, avoid_list=avoid_list, replacement=replacement
-        )
+        # Update sequence with removal of reactions
+        sequence = _update_reactions(sequence=sequence, avoid_list=avoid_list)
         if not sequence:
             continue
-        # Data storage is handled by method. Reactions objects builder:
+
+        # Replacements will be used here
         sequence = list(
             _create_reactions(
                 sequence=sequence,
@@ -554,6 +625,7 @@ def _from_data(
                 genome=genome,
             )
         )
+
         # Add to model
         _add_sequence(
             model=model,
@@ -561,17 +633,9 @@ def _from_data(
             sequence=sequence,
             ignore_list=ignore_list,
         )
+
     # Inform about sinks
-    sinks = {sink.id for sink in model.sinks}.difference(previous_sink)
-    if sinks:
-        for reaction in sinks:
-            msg = (
-                f'Auxiliary sink reaction for "{reaction}" created. Consider '
-                "removing it and adding the synthesis reactions for the "
-                "metabolite."
-            )
-            debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
+    _inform_sink(model=model, previous_sinks=previous_sinks)
 
     # Add graph to Pathway
     graph = _format_graph(
@@ -585,8 +649,10 @@ def _from_data(
         replacement=replacement,
         genome=genome,
     )
+
     if not pathway.graph:
         pathway.graph = graph
+
     else:
         pathway.graph.update(graph)
     pathway.notes["ORDER"] = pathway.graph
@@ -618,17 +684,16 @@ def _from_sequence(
         database (str): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
-        directory (Path): Path for directory to stored and retrieve data.
+        directory (Path): Path for directory to store and retrieve data.
 
     Arguments for complex pathways:
-        avoid_list (list): A sequence of reactions identifiers to
-            avoid adding to the model. This is useful for long pathways,
-            where X reactions need to be excluded.
-        ignore_list (list): A sequence of formatted metabolites to skip when
-            testing, and/or reactions that should be added but not tested.
-            This is useful for long cyclical pathways.
-        replacement (dict): Original identifiers to be replaced.
-            Values are the new identifiers.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Arguments for utilities:
         stop_imbalance (bool): If unbalanced reaction is found, stop process.
@@ -642,16 +707,19 @@ def _from_sequence(
     # Either create a Pathway or obtain the correct Pathway.
     try:
         pathway = model.groups.get_by_id(identifier)
+
     except KeyError:
         pathway = Pathway(id=identifier)
+
     # Create graph. It will be always simple lineal
     graph = _create_quick_graph(sequence=sequence)
+
     # Data storage is managed by the function
-    sequence = _update_reactions(
-        sequence=sequence, avoid_list=avoid_list, replacement=replacement
-    )
+    sequence = _update_reactions(sequence=sequence, avoid_list=avoid_list)
+
     # Get sinks
-    previous_sink = {sink.id for sink in model.sinks}
+    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+
     sequence = list(
         _create_reactions(
             sequence=sequence,
@@ -666,6 +734,7 @@ def _from_sequence(
             genome=genome,
         )
     )
+
     # Append to model
     _add_sequence(
         model=model,
@@ -673,17 +742,10 @@ def _from_sequence(
         pathway=pathway,
         ignore_list=ignore_list,
     )
+
     # Inform about sinks
-    sinks = {sink.id for sink in model.sinks}.difference(previous_sink)
-    if sinks:
-        for reaction in sinks:
-            msg = (
-                f'Auxiliary sink reaction for "{reaction}" created. Consider '
-                "removing it and adding the synthesis reactions for the "
-                "metabolite."
-            )
-            debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
+    _inform_sink(model=model, previous_sinks=previous_sinks)
+
     # Add graph to Pathway
     graph = _format_graph(
         graph=graph,
@@ -708,8 +770,8 @@ def add_pathway(
     model: Model,
     pathway: Union[list, str],
     directory: Path,
-    database: str,
     compartment: str,
+    database: Optional[str] = None,
     group: Optional[str] = None,
     avoid_list: List[str] = [],
     replacement: dict = {},
@@ -729,24 +791,29 @@ def add_pathway(
     Args:
         model (Model): Model to expand.
         pathway (list, str): Sequence of reaction identifiers or a single
-            identifier for a pathway. Examples: ["RXN-2206", "RXN-207"] or
-            "PWY-886"
-        directory (Path): Path for the directory to stored and retrieve data.
-        database (str): Name of the database.
+            identifier for a pathway. Examples:
+            ["RXN-2206", "RXN-207"], (Reaction to download from a database)
+            "PWY-886", (Pathway to download from a database)
+            ["ACALDt, RXN_2206_c"], (which are reactions already in the model)
+        directory (Path): Path for the directory to store and retrieve data.
+        database (str, Optional): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
-        compartment: Location of the reactions.
+            When adding reactions of the model, this argument is not necessary
+            Defaults to None.
+        compartment: Location of the reactions. If adding reaction already
+            in the model, this argument will not change the reaction's
+            compartment.
         group (str, optional): Common :class:`cobramod.pathway.Pathway`
             identifier. This will overwrite the name of the pathway.
 
     Arguments for complex pathways:
-    avoid_list (list, optional): A sequence of reactions identifiers to avoid
-        adding to the model. This is useful for long pathways, where
-        X reactions need to be excluded.
-    replacement (dict, optional): Original identifiers to be replaced.
-        Values are the new identifiers.
-    ignore_list (list): A sequence of formatted metabolites to be ignored when
-    testing, and/or reactions that should be added but not tested.
-        This is useful for long cyclical pathways.
+        avoid_list (list, optional): A sequence of reactions identifiers to
+            avoid adding to the model.
+        replacement (dict, optional): Original identifiers to be replaced.
+            Values are the new identifiers. This applies to metabolites as
+            well. User can rename or replace identifiers using this argument.
+        ignore_list (list, optional): A sequence of reactions that should be
+            added but not tested for a non-zero-flux.
 
     Arguments for summary:
         filename (Path, optional): Location for the summary. Defaults to
@@ -769,14 +836,17 @@ def add_pathway(
     """
     if not isinstance(model, Model):
         raise TypeError("Model is invalid")
+
     # Save information for summary methods
     old_values = DataModel.from_model(model)
+
+    # FIXME: static typing for database
     if isinstance(pathway, str):
         # Get data and transform to a pathway
         data_dict = get_data(
             directory=directory,
             identifier=str(pathway),
-            database=database,
+            database=database,  # type: ignore
             model_id=model_id,
             genome=genome,
         )
@@ -786,7 +856,7 @@ def add_pathway(
             model=model,
             data_dict=data_dict,
             directory=directory,
-            database=database,
+            database=database,  # type: ignore
             compartment=compartment,
             avoid_list=avoid_list,
             replacement=replacement,
@@ -797,25 +867,44 @@ def add_pathway(
             genome=genome,
             group=group,
         )
+
     elif isinstance(pathway, list):
         # From Reaction
         if not group:
             group = "custom_group"
-        _from_sequence(
-            model=model,
-            identifier=group,
-            sequence=list(pathway),
-            compartment=compartment,
-            avoid_list=avoid_list,
-            directory=directory,
-            database=database,
-            replacement=replacement,
-            ignore_list=ignore_list,
-            show_imbalance=show_imbalance,
-            stop_imbalance=stop_imbalance,
-            model_id=model_id,
-            genome=genome,
-        )
+
+        try:
+            # No need for compartment and avoid_list
+            _from_strings(
+                model=model,
+                obj=pathway,
+                database=database,  # type: ignore
+                ignore_list=ignore_list,
+                genome=genome,
+                model_id=model_id,
+                directory=directory,
+                replacement=replacement,
+                show_imbalance=show_imbalance,
+                stop_imbalance=stop_imbalance,
+                pathway_name=group,
+            )
+
+        except KeyError:
+            _from_sequence(
+                model=model,
+                identifier=group,
+                sequence=list(pathway),
+                compartment=compartment,
+                avoid_list=avoid_list,
+                directory=directory,
+                database=database,  # type: ignore
+                replacement=replacement,
+                ignore_list=ignore_list,
+                show_imbalance=show_imbalance,
+                stop_imbalance=stop_imbalance,
+                model_id=model_id,
+                genome=genome,
+            )
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
     # Print summary
