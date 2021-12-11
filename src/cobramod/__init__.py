@@ -40,6 +40,7 @@ from cobramod.core.creation import (
 from cobramod.core.extension import add_pathway, test_non_zero_flux
 from cobramod.core.pathway import Pathway, model_convert
 from cobramod.core.retrieval import get_data, translate, available_databases
+from cobramod.core.crossreferences import add_crossreferences
 
 __all__ = [
     "get_data",
@@ -52,6 +53,7 @@ __all__ = [
     "translate",
     "model_convert",
     "available_databases",
+    "add_crossreferences",
 ]
 
 __version__ = "1.0.1-alpha.2"

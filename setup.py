@@ -14,7 +14,7 @@ setup(
     description="Python package for pathway-centric modification and extension"
     + " of genome-scale metabolic networks",
     long_description=readme,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     author="Stefano Camborda La Cruz, "
     + "Jan-Niklas Weder, "
     + "Nadine Töpfer",
