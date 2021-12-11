@@ -152,7 +152,11 @@ def get_crossreferences(  # noqa: C901
     response_json = response.json()
 
     for query in all_querys:
-        query = query[query.index(":") + 1 :]
+        try:
+            query = query[query.index(":") + 1 :]
+        except ValueError:
+            continue
+
         try:
             answer = response_json[query]
         except KeyError:
