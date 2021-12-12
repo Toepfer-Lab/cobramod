@@ -270,7 +270,7 @@ class TestGroup(TestCase):
         sleep(1)
 
         # CASE 2: Regular Model
-        filename = dir_input.joinpath("test_model02.sbml")
+        filename = dir_input.joinpath("test_model.sbml")
         test_model = read_sbml_model(str(filename))
         pt.model_convert(test_model)
         for group in test_model.groups:
