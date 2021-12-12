@@ -29,4 +29,5 @@ dependencies:
     - nbsphinx>=0.8.6
     - webcolors>=1.11.1
     - sphinx-autoapi>=1.8.1
+    - sphinxcontrib-bibtex>=2.4.1
 
