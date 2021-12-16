@@ -1214,7 +1214,7 @@ def __add_metabolites_check(model: Model, metabolites: List[Metabolite]):
 
 
 def add_metabolites(
-    model: Model, obj: Any, database=None, replacement: dict = {}, **kwargs
+    model: Model, obj: Any, database=None, directory: Path = None, **kwargs
 ):
     """
     Adds given object into the model. The options are:
@@ -1249,11 +1249,19 @@ def add_metabolites(
         database (str): Name of database. Check
             :obj:`cobramod.available_databases` for a list of names. Defaults
             to None (This is useful for custom metabolites).
-        replacement (dict): Dictionary with either the new identifier and/or
-            the identifier of an object inside the model.
+        directory (Path): Path to directory where the data is located.
 
     Keyword Arguments:
-        directory (Path): Path to directory where the data is located.
+        replacement (dict): Dictionary with either the new identifier and/or
+            the identifier of an object inside the model.
+        consider_sub_elements: Specifies whether additional cross-references
+            should also be added to the subelements. For example, you can
+            specify whether only the reaction or also its metabolites
+            should be expanded. Defaults to True
+        include_metanetx_specific_ec: Determines whether MetaNetX specific
+            EC numbers should be taken over. These are generally not found in
+            other databases. Furthermore, this could result in non-existing
+            Brenda IDs being created. The default value is False.
 
     Raises:
         WrongSyntax (from str): If the syntax is not followed correctly as
@@ -1261,58 +1269,72 @@ def add_metabolites(
         ValueError: If Keyword Arguments are missing.
         FileNotFoundError (from Path): if file does not exists
     """
-    try:
-        # In case of a Path
-        if isinstance(obj, Path):
-            # These variable will raise KeyError if no kwargs are passed.
-            directory = kwargs["directory"]
-            new_metabolites = _get_file_metabolites(
-                # as Path
-                filename=obj,
+    # Defaults
+    consider_sub_elements = kwargs.pop("consider_sub_elements", True)
+    include_metanetx_specific_ec = kwargs.pop(
+        "include_metanetx_specific_ec", False
+    )
+    replacement = kwargs.pop("replacement", dict())
+
+    # In case of a Path
+    if isinstance(obj, Path):
+
+        new_metabolites = _get_file_metabolites(
+            # as Path
+            filename=obj,
+            model=model,
+            directory=directory,
+            database=database,
+            replacement=replacement,
+        )
+    # In case of a single Metabolite
+    elif isinstance(obj, Metabolite):
+        new_metabolites = [obj]
+
+    # Unless, iterable with Metabolites
+    elif all([isinstance(member, Metabolite) for member in obj]):
+        new_metabolites = obj
+
+    # or a list with str
+    elif all([isinstance(member, str) for member in obj]) or isinstance(
+        obj, str
+    ):
+        if isinstance(obj, str):
+            obj = [obj]
+
+        # Create new list
+        new_metabolites = [
+            _convert_string_metabolite(
                 model=model,
+                line=line,
                 directory=directory,
                 database=database,
                 replacement=replacement,
+                **kwargs,
             )
-        # In case of a single Metabolite
-        elif isinstance(obj, Metabolite):
-            new_metabolites = [obj]
-        # Unless, iterable with Metabolites
-        elif all([isinstance(member, Metabolite) for member in obj]):
-            new_metabolites = obj
-        # or a list with str
-        elif all([isinstance(member, str) for member in obj]) or isinstance(
-            obj, str
-        ):
-            # TODO: refactor this
-            # These variable will raise KeyError if no kwargs are passed.
-            # directory = kwargs["directory"]
-            # Make a list
-            if isinstance(obj, str):
-                obj = [obj]
-            # Create new list
-            new_metabolites = [
-                _convert_string_metabolite(
-                    model=model,
-                    line=line,
-                    # directory=directory,
-                    database=database,
-                    replacement=replacement,
-                    **kwargs,
-                )
-                for line in obj
-            ]
-        # Raise error if wrong
-        else:
-            raise WrongDataError(
-                "Given object is not the type mentioned in the docstrings. "
-                + "Please use a string, a list or a pathlib 'Path' object."
-            )
-        # Otherwise, it must be a list with Metabolites.
-        __add_metabolites_check(model=model, metabolites=new_metabolites)
+            for line in obj
+        ]
 
-    except KeyError:
-        raise ValueError("Keyword Arguments are missing for given object.")
+    # Raise error if wrong
+    else:
+        raise WrongDataError(
+            "Given object is not the type mentioned in the docstrings. "
+            + "Please use a string, a list or a pathlib 'Path' object."
+        )
+
+    for metabolite in new_metabolites:
+        if not directory:
+            break
+
+        add_crossreferences(
+            object=metabolite,
+            directory=directory,
+            consider_sub_elements=consider_sub_elements,
+            include_metanetx_specific_ec=include_metanetx_specific_ec,
+        )
+
+    # Otherwise, it must be a list with Metabolites.
+    __add_metabolites_check(model=model, metabolites=new_metabolites)
 
 
 def __add_reactions_check(model: Model, reactions: List[Reaction]):
@@ -1390,6 +1412,7 @@ def _find_replacements(
 def add_reactions(
     model: Model,
     obj: Any,
+    directory: Path,
     database=None,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
@@ -1428,17 +1451,25 @@ def add_reactions(
         database (str): Name of database. Check
             :obj:`cobramod.available_databases` for a list of names. Defaults
             to None (Useful for custom reactions).
+        directory (Path): Path to directory where data is located.
         stop_imbalance (bool): If an unbalanced reaction is found,
             stop the process. Defaults to False.
         show_imbalance (bool): If an unbalanced reaction is found, print
             output. Defaults to True.
 
     Keyword Arguments:
-        directory (Path): Path to directory where data is located.
         replacement (dict): Dictionary with either the new identifier and/or
             the identifier of an object inside the model.
         genome (str): Exclusive for KEGG. Abbreviation for the species
             involved. Genes will be obtained for this species.
+        consider_sub_elements: Specifies whether additional cross-references
+            should also be added to the subelements. For example, you can
+            specify whether only the reaction or also its metabolites
+            should be expanded. Defaults to True
+        include_metanetx_specific_ec: Determines whether MetaNetX specific
+            EC numbers should be taken over. These are generally not found in
+            other databases. Furthermore, this could result in non-existing
+            Brenda IDs being created. The default value is False.
 
     Raises:
         WrongSyntax (from str): If the syntax is not followed correctly as
@@ -1447,18 +1478,51 @@ def add_reactions(
         FileNotFoundError (from Path): If the file does not exists.
 
     """
-    try:
-        # In case of a Path
-        if isinstance(obj, Path):
-            # These variable will raise KeyError if no kwargs are passed.
-            directory = kwargs["directory"]
-            # Defaults
-            replacement = kwargs.pop("replacement", dict())
-            genome = kwargs.pop("genome", None)
-            model_id = kwargs.pop("model_id", None)
-            new_reactions = _get_file_reactions(
+    # Defaults
+    replacement = kwargs.pop("replacement", dict())
+    genome = kwargs.pop("genome", None)
+    model_id = kwargs.pop("model_id", None)
+    consider_sub_elements = kwargs.pop("consider_sub_elements", True)
+    include_metanetx_specific_ec = kwargs.pop(
+        "include_metanetx_specific_ec", False
+    )
+
+    # In case of a Path
+    if isinstance(obj, Path):
+
+        new_reactions = _get_file_reactions(
+            model=model,
+            filename=obj,
+            directory=directory,
+            database=database,
+            replacement=replacement,
+            stop_imbalance=stop_imbalance,
+            show_imbalance=show_imbalance,
+            genome=genome,
+            model_id=model_id,
+        )
+
+    # In case of single Reaction
+    elif isinstance(obj, Reaction):
+        new_reactions = [obj]
+
+    # Unless, iterable with Reactions.
+    elif all([isinstance(member, Reaction) for member in obj]):
+        new_reactions = obj
+
+    # or a list with str
+    elif all([isinstance(member, str) for member in obj]) or isinstance(
+        obj, str
+    ):
+
+        # Make a list
+        if isinstance(obj, str):
+            obj = [obj]
+
+        new_reactions = [
+            _convert_string_reaction(
+                line=line,
                 model=model,
-                filename=obj,
                 directory=directory,
                 database=database,
                 replacement=replacement,
@@ -1467,50 +1531,25 @@ def add_reactions(
                 genome=genome,
                 model_id=model_id,
             )
-        # In case of single Reaction
-        elif isinstance(obj, Reaction):
-            new_reactions = [obj]
+            for line in obj
+        ]
 
-        # Unless, iterable with Reactions.
-        elif all([isinstance(member, Reaction) for member in obj]):
-            new_reactions = obj
+    # Raise error if wrong
+    else:
+        raise WrongDataError(
+            "Given object is not the type mentioned in the docstrings. "
+            + "Please use a string, a list or a pathlib 'Path' object."
+        )
 
-        # or a list with str
-        elif all([isinstance(member, str) for member in obj]) or isinstance(
-            obj, str
-        ):
-            # TODO: refactor this
-            directory = kwargs["directory"]
-            # Defaults
-            replacement = kwargs.pop("replacement", dict())
-            genome = kwargs.pop("genome", None)
-            model_id = kwargs.pop("model_id", None)
+    for reaction in new_reactions:
+        if not directory:
+            break
 
-            # Make a list
-            if isinstance(obj, str):
-                obj = [obj]
-            new_reactions = [
-                _convert_string_reaction(
-                    line=line,
-                    model=model,
-                    directory=directory,
-                    database=database,
-                    replacement=replacement,
-                    stop_imbalance=stop_imbalance,
-                    show_imbalance=show_imbalance,
-                    genome=genome,
-                    model_id=model_id,
-                )
-                for line in obj
-            ]
-        # Raise error if wrong
-        else:
-            raise WrongDataError(
-                "Given object is not the type mentioned in the docstrings. "
-                + "Please use a string, a list or a pathlib 'Path' object."
-            )
-        # Otherwise, it must be a list with Metabolites.
-        __add_reactions_check(model=model, reactions=new_reactions)
+        add_crossreferences(
+            object=reaction,
+            directory=directory,
+            consider_sub_elements=consider_sub_elements,
+            include_metanetx_specific_ec=include_metanetx_specific_ec,
+        )
 
-    except KeyError:
-        raise ValueError("Keyword Arguments are missing for given object.")
+    __add_reactions_check(model=model, reactions=new_reactions)

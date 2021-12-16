@@ -765,13 +765,6 @@ class ComplexFunctions(TestCase):
         )
 
     def test_add_metabolites(self):
-        # CASE 0: Missing Arguments
-        self.assertRaises(
-            ValueError,
-            cr.add_metabolites,
-            model=Model(0),
-            obj=dir_input.joinpath("metabolites_01_normal.txt"),
-        )
         # CASE 1: From path
         test_model = Model(0)
         cr.add_metabolites(
@@ -882,13 +875,6 @@ class ComplexFunctions(TestCase):
         )
 
     def test_add_reactions(self):
-        # CASE 0: Missing arguments.
-        self.assertRaises(
-            ValueError,
-            cr.add_reactions,
-            model=Model(0),
-            obj=dir_input.joinpath("reactions_normal.txt"),
-        )
         # CASE 1: From Path
         test_model = Model(0)
         cr.add_reactions(
@@ -965,26 +951,31 @@ class ComplexFunctions(TestCase):
             member="NPUN_RS12370",
             container=[gene.id for gene in test_model.genes],
         )
+
         # CASE 4: In case of single reaction
         test_model = Model(0)
         test_reaction = textbook_kegg.reactions.get_by_id("ACALDt")
-        cr.add_reactions(model=test_model, obj=test_reaction)
+        cr.add_reactions(
+            model=test_model, obj=test_reaction, directory=dir_data
+        )
         self.assertIn(
             member="ACALDt",
             container=[reaction.id for reaction in test_model.reactions],
         )
+
         # CASE 5: In case of multiple reactions
         test_model = Model(0)
         test_list = [
             textbook_kegg.reactions.get_by_id(reaction)
             for reaction in ("ACALDt", "ATPS4r", "ACt2r")
         ]
-        cr.add_reactions(model=test_model, obj=test_list)
+        cr.add_reactions(model=test_model, obj=test_list, directory=dir_data)
         for reaction in ("ACALDt", "ATPS4r", "ACt2r"):
             self.assertIn(
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
+
         # CASE 5: BIGG
         test_model = Model(0)
         cr.add_reactions(
