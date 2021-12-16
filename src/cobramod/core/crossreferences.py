@@ -10,6 +10,8 @@ from cobra.core import Group
 from requests import HTTPError
 from tqdm import tqdm
 
+from cobramod.debug import debug_log
+
 
 def inchikey2pubchem_cid(
     inchikey: Union[str, List[str]], directory: Path
@@ -26,7 +28,7 @@ def inchikey2pubchem_cid(
 
     Returns:
         The PubChem compound ID(s) found as a string if it is one or as a
-        list of strings otherwise.
+            list of strings otherwise.
     """
     if isinstance(inchikey, list):
         result: List[str] = []
@@ -326,7 +328,7 @@ def add2dict_unique(
         dictionary: The dictionary to which the objects should be added.
 
     Returns:
-
+        The new dictionary.
     """
 
     if key not in dictionary.keys():
@@ -381,8 +383,16 @@ def add_crossreferences(  # noqa: C901
 
     if isinstance(object, Model):
         if not consider_sub_elements:
+            debug_log.warn(
+                "A model was passed but no sub-elements are to be annotated. "
+                "Nothing changes."
+            )
             return
         size = len(object.reactions) + len(object.metabolites)
+        debug_log.debug(
+            f"A model was passed. Trying to find further references for "
+            f"{size} elements."
+        )
         with tqdm(total=size) as pbar:
             for reaction in object.reactions:
                 add_crossreferences(
@@ -396,8 +406,16 @@ def add_crossreferences(  # noqa: C901
 
     elif isinstance(object, Group):
         if not consider_sub_elements:
+            debug_log.warn(
+                "A group was passed but no sub-elements are to be annotated. "
+                "Nothing changes."
+            )
             return
 
+        debug_log.debug(
+            f"A group was passed. Trying to find further references for "
+            f"{len(object.members)} elements."
+        )
         for member in tqdm(object.members):
             add_crossreferences(
                 member, directory=directory, consider_sub_elements=False
@@ -417,15 +435,23 @@ def add_crossreferences(  # noqa: C901
             sort = "chem"
 
         if sort is None:
+            debug_log.error(
+                "An object was passed that is not of type Model, Group, "
+                "Reaction or Metabolite! Check the 'object' value."
+            )
             raise ValueError
 
         # metanetx
 
         if object.id is not None:
+            id = object.id
             ids = [object.id]
         else:
+            id = "Undefined"
             ids = []
         xrefs = object.annotation
+        size = len(xrefs)
+        total_found = 0
 
         for key, value in object.annotation.items():
 
@@ -457,6 +483,7 @@ def add_crossreferences(  # noqa: C901
             elif prefix == "deprecated":
                 continue
 
+            total_found += 1
             xrefs = add2dict_unique(prefix, new_id, xrefs)
 
         # pubchem.compound
@@ -472,6 +499,11 @@ def add_crossreferences(  # noqa: C901
                 "pubchem.compound", pubchem_compound, xrefs
             )
 
+            if isinstance(pubchem_compound, str):
+                pubchem_compound = [pubchem_compound]
+
+            total_found += len(pubchem_compound)
+
         # ec_number
         try:
             metanet_xid = xrefs["metanetx.reaction"]
@@ -485,6 +517,11 @@ def add_crossreferences(  # noqa: C901
         else:
             xrefs = add2dict_unique("ec-code", ec_number, xrefs)
 
+            if isinstance(ec_number, str):
+                ec_number = [ec_number]
+
+            total_found += len(ec_number)
+
         # brenda
         try:
             ec_number = xrefs["ec-code"]
@@ -492,5 +529,18 @@ def add_crossreferences(  # noqa: C901
             pass
         else:
             xrefs = add2dict_unique("brenda", ec_number, xrefs)
+
+            if isinstance(ec_number, str):
+                ec_number = [ec_number]
+
+            total_found += len(ec_number)
+
+        total_added = len(xrefs) - size
+
+        debug_log.debug(
+            f'For the object with the ID {id} a total of "{total_found}" '
+            f"references were found. Of these, {total_added} "
+            f"were missing and have been added."
+        )
 
         object.annotation = xrefs
