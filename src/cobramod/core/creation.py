@@ -1254,10 +1254,6 @@ def add_metabolites(
     Keyword Arguments:
         replacement (dict): Dictionary with either the new identifier and/or
             the identifier of an object inside the model.
-        consider_sub_elements: Specifies whether additional cross-references
-            should also be added to the subelements. For example, you can
-            specify whether only the reaction or also its metabolites
-            should be expanded. Defaults to True
         include_metanetx_specific_ec: Determines whether MetaNetX specific
             EC numbers should be taken over. These are generally not found in
             other databases. Furthermore, this could result in non-existing
@@ -1270,7 +1266,6 @@ def add_metabolites(
         FileNotFoundError (from Path): if file does not exists
     """
     # Defaults
-    consider_sub_elements = kwargs.pop("consider_sub_elements", True)
     include_metanetx_specific_ec = kwargs.pop(
         "include_metanetx_specific_ec", False
     )
@@ -1329,7 +1324,6 @@ def add_metabolites(
         add_crossreferences(
             object=metabolite,
             directory=directory,
-            consider_sub_elements=consider_sub_elements,
             include_metanetx_specific_ec=include_metanetx_specific_ec,
         )
 
