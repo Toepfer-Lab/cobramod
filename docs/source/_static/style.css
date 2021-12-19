@@ -2,3 +2,7 @@ div.document {
     text-align: justify;
 }
 
+div.rendered_html td{
+    text-align: left !important;
+}
+
