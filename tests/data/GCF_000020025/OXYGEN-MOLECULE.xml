@@ -1,0 +1,107 @@
+<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?GCF_000020025:OXYGEN-MOLECULE"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>GCF_000020025:OXYGEN-MOLECULE</query>
+<num_results>1</num_results>
+<PGDB orgid="GCF_000020025" version="25.0"><species datatype="string">Nostoc punctiforme</species>
+<strain datatype="string">ATCC 29133; PCC 73102</strain>
+<sequence-source datatype="string">GCF_000020025.1</sequence-source>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>63737</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=63737</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID="GCF_000020025:OXYGEN-MOLECULE" detail="full" frameid="OXYGEN-MOLECULE" orgid="GCF_000020025"><parent><Compound class="true" frameid="Inorganic-Compounds" orgid="GCF_000020025" resource="getxml?GCF_000020025:Inorganic-Compounds" /></parent>
+<cml><molecule formalCharge="0" id="OXYGEN-MOLECULE" title="oxygen"><atomArray><atom elementType="O" id="OXYGEN-MOLECULE-atom1" x2="-413.0" y2="-413.0" /><atom elementType="O" id="OXYGEN-MOLECULE-atom2" x2="412.0" y2="-413.0" /></atomArray>
+<bondArray><bond atomRefs="OXYGEN-MOLECULE-atom2 OXYGEN-MOLECULE-atom1" id="OXYGEN-MOLECULE-bond1" order="2" /></bondArray>
+<formula concise="O 2" /><float title="molecularWeight" units="g/mol">31.999</float>
+<string title="smiles">O=O</string>
+<string title="systematicName">O2</string>
+</molecule>
+</cml>
+<common-name datatype="string">oxygen</common-name>
+<systematic-name datatype="string">O2</systematic-name>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00007</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00007</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM4</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM4</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>o2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/o2</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15379</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15379</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01377</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01377</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>952</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/952</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>977</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=977</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15379</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15379</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00007</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00007</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>7782-44-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=7782-44-7</dblink-URL>
+</dblink>
+<abbrev-name datatype="string">O&lt;SUB&gt;2&lt;/SUB&gt;</abbrev-name>
+<monoisotopic-mw datatype="float" units="Daltons">31.98983</monoisotopic-mw>
+<credits><imported-from-meta><date datatype="date">2020-03-09</date>
+<Organization ID="GCF_000020025:SRI" detail="full" frameid="SRI" orgid="GCF_000020025"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</imported-from-meta>
+</credits>
+<inchi-key datatype="string">InChIKey=MYMOFIZGZYHOMD-UHFFFAOYSA-N</inchi-key>
+<gibbs-0 datatype="float" units="kcal/mol">3.92<evidence><Evidence-Code ID="GCF_000020025:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="GCF_000020025"><common-name datatype="string">Inferred by computational analysis</common-name>
+<comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+</Evidence-Code>
+<Publication ID="GCF_000020025:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="GCF_000020025"><year datatype="integer">2013</year>
+<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype="string">Latendresse M.</author>
+<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+</Publication>
+</evidence>
+</gibbs-0>
+<appears-in-left-side-of><Reaction frameid="RXN-12541" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-12541" /><Reaction frameid="PROTOCATECHUATE-34-DIOXYGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PROTOCATECHUATE-34-DIOXYGENASE-RXN" /><Reaction frameid="RXN-17880" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-17880" /><Reaction frameid="RXN-19183" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19183" /><Reaction frameid="RXN-8186" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8186" /><Reaction frameid="RXN-8187" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8187" /><Reaction frameid="RXN-8189" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8189" /><Reaction frameid="RXN-8190" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8190" /><Reaction frameid="RXN-8026" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8026" /><Reaction frameid="RXN-8025" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8025" /><Reaction frameid="RXN-8214" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8214" /><Reaction frameid="RXN-18967" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18967" /><Reaction frameid="RXN-18968" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18968" /><Reaction frameid="RXN-18960" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18960" /><Reaction frameid="RXN-18962" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18962" /><Reaction frameid="RXN-9767" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-9767" /><Reaction frameid="RXN-14710" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-14710" /><Reaction frameid="RXN-20073" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-20073" /><Reaction frameid="RXN-7676" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-7676" /><Reaction frameid="RXN-7677" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-7677" /><Reaction frameid="RXN-17523" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-17523" /><Reaction frameid="RXN-16023" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-16023" /><Reaction frameid="RXN-12918" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-12918" /><Reaction frameid="RXN-8389" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8389" /><Reaction frameid="R147-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:R147-RXN" /><Reaction frameid="R146-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:R146-RXN" /><Reaction frameid="RXN-11989" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-11989" /><Reaction frameid="RXN-961" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-961" /><Reaction frameid="RXN-9597" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-9597" /><Reaction frameid="AMINEOXID-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:AMINEOXID-RXN" /><Reaction frameid="AMACETOXID-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:AMACETOXID-RXN" /><Reaction frameid="AMINEPHEN-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:AMINEPHEN-RXN" /><Reaction frameid="PROTOPORGENOXI-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PROTOPORGENOXI-RXN" /><Reaction frameid="PEPTIDE-ASPARTATE-BETA-DIOXYGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PEPTIDE-ASPARTATE-BETA-DIOXYGENASE-RXN" /><Reaction frameid="RXN-13418" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-13418" /><Reaction frameid="RXN0-280" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-280" /><Reaction frameid="RXN-18086" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18086" /><Reaction frameid="RXN-15341" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-15341" /><Reaction frameid="RXN0-6973" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-6973" /><Reaction frameid="RXN-8184" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8184" /><Reaction frameid="RXN-16413" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-16413" /><Reaction frameid="RXN-18957" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18957" /><Reaction frameid="RXN-8215" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8215" /><Reaction frameid="RXN-18970" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18970" /><Reaction frameid="RXN-18971" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18971" /><Reaction frameid="RXN-19179" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19179" /><Reaction frameid="RXN-19180" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19180" /><Reaction frameid="RXN-19181" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19181" /><Reaction frameid="RXN-8185" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8185" /><Reaction frameid="RXN-18964" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18964" /><Reaction frameid="RXN-18965" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18965" /><Reaction frameid="UNSPECIFIC-MONOOXYGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:UNSPECIFIC-MONOOXYGENASE-RXN" /><Reaction frameid="RXN-12353" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-12353" /><Reaction frameid="RXN66-470" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN66-470" /><Reaction frameid="1.14.11.18-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:1.14.11.18-RXN" /><Reaction frameid="RXN-1321" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-1321" /><Reaction frameid="HEME-OXYGENASE-DECYCLIZING-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:HEME-OXYGENASE-DECYCLIZING-RXN" /><Reaction frameid="RXN-18341" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18341" /><Reaction frameid="RXN-18342" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18342" /><Reaction frameid="RXN-18343" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18343" /><Reaction frameid="RXN-14709" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-14709" /><Reaction frameid="RXN0-5364" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-5364" /><Reaction frameid="RXN-13262" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-13262" /><Reaction frameid="OCTADECANAL-DECARBONYLASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:OCTADECANAL-DECARBONYLASE-RXN" /><Reaction frameid="RXN-13374" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-13374" /><Reaction frameid="1.14.19.1-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:1.14.19.1-RXN" /><Reaction frameid="RXN-10664" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-10664" /><Reaction frameid="RXN-8672" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8672" /><Reaction frameid="1.4.3.19-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:1.4.3.19-RXN" /><Reaction frameid="RXN-12614" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-12614" /><Reaction frameid="RXN-8674" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8674" /><Reaction frameid="RXN-17951" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-17951" /><Reaction frameid="RXN-8673" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8673" /><Reaction frameid="4-HYDROXYPHENYLPYRUVATE-DIOXYGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:4-HYDROXYPHENYLPYRUVATE-DIOXYGENASE-RXN" /><Reaction frameid="RXN-10815" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-10815" /><Reaction frameid="L-ASPARTATE-OXID-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:L-ASPARTATE-OXID-RXN" /><Reaction frameid="RXN0-1461" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-1461" /><Reaction frameid="MYO-INOSITOL-OXYGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:MYO-INOSITOL-OXYGENASE-RXN" /><Reaction frameid="PSII-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PSII-RXN" /><Reaction frameid="PROSTAGLANDIN-ENDOPEROXIDE-SYNTHASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PROSTAGLANDIN-ENDOPEROXIDE-SYNTHASE-RXN" /><Reaction frameid="RXN-16678" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-16678" /><Reaction frameid="CYTOCHROME-C-OXIDASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:CYTOCHROME-C-OXIDASE-RXN" /><Reaction frameid="RXN1YI0-22" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN1YI0-22" /><Reaction frameid="RXN1YI0-21" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN1YI0-21" /><Reaction frameid="RXN-21237" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-21237" /><Reaction frameid="RXN0-5265" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-5265" /><Reaction frameid="1.14.99.33-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:1.14.99.33-RXN" /><Reaction frameid="PNPOXI-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PNPOXI-RXN" /><Reaction frameid="PMPOXI-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PMPOXI-RXN" /><Reaction frameid="RXN-13191" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-13191" /><Reaction frameid="RXN-5282" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-5282" /><Reaction frameid="RXN-5283" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-5283" /><Reaction frameid="RXN-5284" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-5284" /><Reaction frameid="R321-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:R321-RXN" /><Reaction frameid="RXN-20575" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-20575" /><Reaction frameid="ARACHIDONATE-15-LIPOXYGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:ARACHIDONATE-15-LIPOXYGENASE-RXN" /></appears-in-left-side-of>
+<inchi datatype="string">InChI=1S/O2/c1-2</inchi>
+<appears-in-right-side-of><Reaction frameid="SUPEROX-DISMUT-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:SUPEROX-DISMUT-RXN" /><Reaction frameid="CATAL-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:CATAL-RXN" /></appears-in-right-side-of>
+<molecular-weight datatype="float" units="Daltons">31.999</molecular-weight>
+<synonym datatype="string">oxygen molecule</synonym>
+</Compound>
+</ptools-xml>

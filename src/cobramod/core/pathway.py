@@ -178,7 +178,13 @@ class Pathway(Group):
         )
         # Add directly from the notes or create a quick order
         try:
+            # When loading model, COBRApy will modify the string
+            if isinstance(obj.notes["ORDER"], str):
+                obj.notes["ORDER"] = eval(
+                    obj.notes["ORDER"].replace("&apos;", '"')
+                )
             pathway.graph = pathway.notes["ORDER"] = obj.notes["ORDER"]
+
         except KeyError:
             # Check only Reactions
             reactions = [

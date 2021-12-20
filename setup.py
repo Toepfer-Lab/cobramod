@@ -10,11 +10,11 @@ with open(file="README.md", mode="r") as f:
 
 setup(
     name="cobramod",
-    version="1.0.1-alpha.1",
+    version="1.0.2",
     description="Python package for pathway-centric modification and extension"
     + " of genome-scale metabolic networks",
     long_description=readme,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     author="Stefano Camborda La Cruz, "
     + "Jan-Niklas Weder, "
     + "Nadine Töpfer",
@@ -30,6 +30,8 @@ setup(
         "Escher>=1.7.3",
         "openpyxl>=3.0.7",
         "webcolors>=1.11.1",
+        "tqdm>=4.62.3",
+        "pyarrow>=6.0.1",
     ],
     url="https://github.com/Toepfer-Lab/cobramod",
     project_urls={

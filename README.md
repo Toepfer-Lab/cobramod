@@ -28,6 +28,8 @@ testing for:
 -   reaction reversibility
 -   capability to carry non-zero fluxes
 -   adding available gene information
+-   MEMOTE compliance
+-   available cross-references
 
 CobraMod offers user-friendly tracking of the curation process with
 summary output and log files and customized pathway and flux
@@ -53,6 +55,8 @@ This package offers multiple functions for modifying and extending GEMs:
 -   Test reaction capability to carry a non-zero flux
     `cobramod.test_non_zero_flux`
 -   Add pathway to a model `cobramod.add_pathway`
+-   Automatic cross-references `cobramod.add_crossreferences`
+-   Testing for MEMOTE compliance
 
 Check the [documentation](https://cobramod.readthedocs.io/) for more
 information.

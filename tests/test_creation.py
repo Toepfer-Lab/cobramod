@@ -42,12 +42,52 @@ class SimpleFunctions(TestCase):
     files.
     """
 
-    # TODO: use replacement dictionaries !!
+    def test__find_replacements(self):
+        replace_dict = {
+            "ACETALD-DEHYDROG-RXN": "R00228_c",
+            "WATER_c": "C00001_c",
+            "WATER_d": "C00001_d",
+        }
+
+        # CASE 0: Nothing found
+        test_replacement = cr._find_replacements(
+            identifier=None,
+            obj_type="reactions",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertIsNone(obj=test_replacement)
+        # CASE 1: Reaction
+        test_replacement = cr._find_replacements(
+            identifier="WATER_c",
+            obj_type="metabolites",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertIsInstance(obj=test_replacement, cls=Metabolite)
+        # CASE 2a: String
+        test_replacement = cr._find_replacements(
+            identifier="WATER_d",
+            obj_type="metabolites",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertEqual(first=test_replacement, second="C00001_d")
+        # CASE 2a: String
+        test_replacement = cr._find_replacements(
+            identifier="ACETALD-DEHYDROG-RXN",
+            obj_type="reactions",
+            model=textbook_kegg,
+            replace_dict=replace_dict,
+        )
+        self.assertIsInstance(obj=test_replacement, cls=Reaction)
 
     def test__metabolite_from_string(self):
         # CASE 1: Correct input
         test_string = "MALTOSE_b, MALTOSE[b], b, C12H22O11, 0"
-        test_metabolite = cr._metabolite_from_string(line_string=test_string)
+        test_metabolite = cr._metabolite_from_string(
+            line_string=test_string, model=Model(0), replacement={}
+        )
         # Checking that new meta is in Model
         self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
         self.assertEqual(first=test_metabolite.id, second="MALTOSE_b")
@@ -104,6 +144,7 @@ class SimpleFunctions(TestCase):
             model=Model(0),
             directory=dir_data,
             database="META",
+            replacement={},
         )
         self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
         self.assertEqual(first=test_metabolite.id, second="HOMOMETHIONINE_c")
@@ -114,10 +155,24 @@ class SimpleFunctions(TestCase):
         test_metabolite = cr._convert_string_metabolite(
             line="MALTOSE_b, MALTOSE[b], b, C12H22O11, 0",
             model=Model(0),
+            replacement={},
             directory=dir_data,
         )
         self.assertEqual(first=test_metabolite.id, second="MALTOSE_b")
         self.assertEqual(first=test_metabolite.name, second="MALTOSE[b]")
+        self.assertEqual(first=test_metabolite.charge, second=0)
+        self.assertDictEqual(
+            d1=test_metabolite.elements, d2={"C": 12, "H": 22, "O": 11}
+        )
+        # CASE 2: custom metabolite
+        test_metabolite = cr._convert_string_metabolite(
+            line="MALTOSE_b, MALTOSE[c], b, C12H22O11, 0",
+            model=Model(0),
+            replacement={"MALTOSE_b": "MALTOSE_c"},
+            directory=dir_data,
+        )
+        self.assertEqual(first=test_metabolite.id, second="MALTOSE_c")
+        self.assertEqual(first=test_metabolite.name, second="MALTOSE[c]")
         self.assertEqual(first=test_metabolite.charge, second=0)
         self.assertDictEqual(
             d1=test_metabolite.elements, d2={"C": 12, "H": 22, "O": 11}
@@ -131,6 +186,7 @@ class SimpleFunctions(TestCase):
             cr._get_file_metabolites,
             test_model,
             Path.cwd().joinpath("no_file"),
+            replacement={},
         )
         # CASE 1: Metabolite is not found (or misspelled)
         self.assertRaises(
@@ -141,6 +197,7 @@ class SimpleFunctions(TestCase):
             # Directory to save / check for xml files
             directory=dir_data,
             database="META",
+            replacement={},
         )
         # CASE 2: Bad format (e. g. charge is missing).
         self.assertRaises(
@@ -151,6 +208,7 @@ class SimpleFunctions(TestCase):
             # Directory to save / check for xml files
             directory=dir_data,
             database="META",
+            replacement={},
         )
         # CASE 3: Normal input
         test_list = cr._get_file_metabolites(
@@ -160,6 +218,7 @@ class SimpleFunctions(TestCase):
             # Directory to save / check for xml files
             directory=dir_data,
             database="META",
+            replacement={},
         )
         # Length should increase
         self.assertEqual(len(test_list), 2)
@@ -392,6 +451,11 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
         )
         self.assertEqual(first="RXN_17742_c", second=test_reaction.id)
+        for metabolite in ["Oxidized_ferredoxins_c", "Reduced_ferredoxins_c"]:
+            self.assertIn(
+                member=metabolite,
+                container=[meta.id for meta in test_reaction.metabolites],
+            )
         # CASE 2: No delimiter
         test_model = Model(0)
         test_line = "RXN-14462, c"
@@ -404,7 +468,8 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
         )
         self.assertEqual(first="RXN_14462_c", second=test_reaction.id)
-        # CASE 2: No delimiter, compartment p
+
+        # CASE 2b: No delimiter, compartment p
         test_model = Model(0)
         test_line = "RXN-14462, p"
         test_reaction = cr._convert_string_reaction(
@@ -416,6 +481,20 @@ class SimpleFunctions(TestCase):
             show_imbalance=True,
         )
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
+
+        # CASE 2c: No delimiter, using reaction
+        test_model = textbook_kegg.copy()
+        test_line = "ACALDt"
+        test_reaction = cr._convert_string_reaction(
+            line=test_line,
+            model=test_model,
+            directory=dir_data,
+            database="META",
+            stop_imbalance=False,
+            show_imbalance=False,
+        )
+        self.assertEqual(first="ACALDt", second=test_reaction.id)
+
         # CASE 3: 100% Custom metabolite
         test_model = Model(0)
         test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p --> Meta_B_p"
@@ -511,7 +590,9 @@ class SimpleFunctions(TestCase):
             database="META",
             stop_imbalance=False,
             show_imbalance=True,
+            replacement={},
         )
+
         # CASE 2: Normal, ID and name differ
         test_reaction = cr._reaction_from_string(
             line_string="GLC_cb, Glucose Transport| 2 GLC_c <=> GLC_b",
@@ -519,6 +600,7 @@ class SimpleFunctions(TestCase):
             database="META",
             stop_imbalance=False,
             show_imbalance=False,
+            replacement={},
         )
         # Checking if ID, name and instance are correct.
         self.assertEqual(first=test_reaction.id, second="GLC_cb")
@@ -545,6 +627,7 @@ class SimpleFunctions(TestCase):
             database="META",
             stop_imbalance=False,
             show_imbalance=False,
+            replacement={},
         )
         self.assertEqual(
             first=-4, second=test_reaction.get_coefficient("GLT_c")
@@ -648,14 +731,40 @@ class ComplexFunctions(TestCase):
         self.assertIsInstance(obj=test_object, cls=dict)
         self.assertEqual(first=test_object["ENTRY"], second="M00001")
 
-    def test_add_metabolites(self):
-        # CASE 0: Missing Arguments
-        self.assertRaises(
-            ValueError,
-            cr.add_metabolites,
-            model=Model(0),
-            obj=dir_input.joinpath("metabolites_01_normal.txt"),
+        # CASE 4a: Replacing names (Metabolite)
+        test_replacement = {
+            "GLC": "GLUCOSE",
+            "AMONITRO-RXN": "monooxygenase",
+            "Donor-H2": "Donor_Water",
+        }
+        test_object = cr.create_object(
+            identifier="GLC",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            replacement=test_replacement,
         )
+        self.assertIsInstance(obj=test_object, cls=Metabolite)
+        self.assertEqual(first=test_object.compartment, second="c")
+        self.assertEqual(first=test_object.id, second="GLUCOSE_c")
+
+        # CASE 4b: Replacing names (Reaction)
+        test_object = cr.create_object(
+            identifier="AMONITRO-RXN",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+            replacement=test_replacement,
+        )
+        self.assertIsInstance(obj=test_object, cls=Reaction)
+        self.assertCountEqual(first=test_object.compartments, second={"c"})
+        self.assertEqual(first=test_object.id, second="monooxygenase_c")
+        self.assertIn(
+            member="Donor_Water_c",
+            container=[meta.id for meta in test_object.metabolites],
+        )
+
+    def test_add_metabolites(self):
         # CASE 1: From path
         test_model = Model(0)
         cr.add_metabolites(
@@ -684,7 +793,7 @@ class ComplexFunctions(TestCase):
         )
         # CASE 2: From string, Custom
         test_model = Model(0)
-        test_string = "Custom_c, Custom metabolites, c, H20, 0 "
+        test_string = "Custom_c, Custom metabolite, c, H20, 0 "
         cr.add_metabolites(
             model=test_model,
             obj=test_string,
@@ -742,15 +851,30 @@ class ComplexFunctions(TestCase):
             member="acald_c",
             container=[member.id for member in test_model.metabolites],
         )
+        # CASE 7: Using replacement dictionary
+        test_model = Model(0)
+        test_list = ["HOMOMETHIONINE, c", "MALTOSE, c"]
+        cr.add_metabolites(
+            model=test_model,
+            obj=test_list,
+            directory=dir_data,
+            database="META",
+            replacement={"HOMOMETHIONINE": "WATER"},
+        )
+        self.assertIn(
+            member="WATER_c",
+            container=[member.id for member in test_model.metabolites],
+        )
+        self.assertNotIn(
+            member="HOMOMETHIONINE_c",
+            container=[member.id for member in test_model.metabolites],
+        )
+        self.assertIn(
+            member="MALTOSE_c",
+            container=[member.id for member in test_model.metabolites],
+        )
 
     def test_add_reactions(self):
-        # CASE 0: Missing arguments.
-        self.assertRaises(
-            ValueError,
-            cr.add_reactions,
-            model=Model(0),
-            obj=dir_input.joinpath("reactions_normal.txt"),
-        )
         # CASE 1: From Path
         test_model = Model(0)
         cr.add_reactions(
@@ -827,26 +951,31 @@ class ComplexFunctions(TestCase):
             member="NPUN_RS12370",
             container=[gene.id for gene in test_model.genes],
         )
+
         # CASE 4: In case of single reaction
         test_model = Model(0)
         test_reaction = textbook_kegg.reactions.get_by_id("ACALDt")
-        cr.add_reactions(model=test_model, obj=test_reaction)
+        cr.add_reactions(
+            model=test_model, obj=test_reaction, directory=dir_data
+        )
         self.assertIn(
             member="ACALDt",
             container=[reaction.id for reaction in test_model.reactions],
         )
+
         # CASE 5: In case of multiple reactions
         test_model = Model(0)
         test_list = [
             textbook_kegg.reactions.get_by_id(reaction)
             for reaction in ("ACALDt", "ATPS4r", "ACt2r")
         ]
-        cr.add_reactions(model=test_model, obj=test_list)
+        cr.add_reactions(model=test_model, obj=test_list, directory=dir_data)
         for reaction in ("ACALDt", "ATPS4r", "ACt2r"):
             self.assertIn(
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
+
         # CASE 5: BIGG
         test_model = Model(0)
         cr.add_reactions(
@@ -879,6 +1008,57 @@ class ComplexFunctions(TestCase):
             member="AKGDH_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
+        # CASE 7: replacement dicts
+        test_model = Model(0)
+        test_list = [
+            "GLC_cb, Glucose Transport|Not_GLC_c <-> GLC_b",
+            "RXN-14462, c",
+            "ACETALD-DEHYDROG-RXN ,c",
+            "AMONITRO-RXN, c",
+        ]
+        cr.add_reactions(
+            model=test_model,
+            obj=test_list,
+            directory=dir_data,
+            database="GCF_000020025",
+            replacement={
+                "Not_GLC": "GLC",
+                "ACETALD-DEHYDROG-RXN": "ACETALD-DEHYDROG-RXN-NEW",
+                "Donor-H2": "Donor_Water",
+            },
+        )
+        self.assertIn(
+            member="GLC_cb",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        self.assertIn(
+            member="ACETALD_DEHYDROG_RXN_NEW_c",
+            container=[reaction.id for reaction in test_model.reactions],
+        )
+        self.assertNotIn(
+            member="Not_GLC_c",
+            container=[metabolite.id for metabolite in test_model.metabolites],
+        )
+        for metabolite in ("GLC_b", "GLC_c", "Donor_Water_c"):
+            self.assertIn(
+                member=metabolite,
+                container=[
+                    metabolite.id for metabolite in test_model.metabolites
+                ],
+            )
+
+        test_model = Model(0)
+        test_list = [
+            "GLC_cb, Glucose Transport| GLC_c <-> GLC_b",
+            "RXN_17742_c, RXN_17742_c |"
+            + "1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c ",
+        ]
+        cr.add_reactions(model=test_model, obj=test_list, directory=dir_data)
+        for meta in ("GLC_cb", "RXN_17742_c"):
+            self.assertIn(
+                member=meta,
+                container=[reaction.id for reaction in test_model.reactions],
+            )
 
 
 if __name__ == "__main__":

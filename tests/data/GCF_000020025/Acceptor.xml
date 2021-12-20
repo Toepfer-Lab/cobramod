@@ -1,0 +1,69 @@
+<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?GCF_000020025:Acceptor"><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>GCF_000020025:Acceptor</query>
+<num_results>1</num_results>
+<PGDB orgid="GCF_000020025" version="25.0"><species datatype="string">Nostoc punctiforme</species>
+<strain datatype="string">ATCC 29133; PCC 73102</strain>
+<sequence-source datatype="string">GCF_000020025.1</sequence-source>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>63737</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=63737</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID="GCF_000020025:Acceptor" class="true" detail="full" frameid="Acceptor" orgid="GCF_000020025"><parent><Compound class="true" frameid="Hydride-Acceptors" orgid="GCF_000020025" resource="getxml?GCF_000020025:Hydride-Acceptors" /></parent>
+<appears-in-right-side-of><Reaction frameid="RXN-10851" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-10851" /><Reaction frameid="RXN-20576" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-20576" /><Reaction frameid="RXN66-490" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN66-490" /><Reaction frameid="RXN-19183" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19183" /><Reaction frameid="RXN-8189" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8189" /><Reaction frameid="RXN-8190" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8190" /><Reaction frameid="RXN-8214" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8214" /><Reaction frameid="RXN-18967" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18967" /><Reaction frameid="RXN-18968" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18968" /><Reaction frameid="RXN-18960" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18960" /><Reaction frameid="RXN-18962" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18962" /><Reaction frameid="THIOREDOXIN-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:THIOREDOXIN-RXN" /><Reaction frameid="RXN-12473" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-12473" /><Reaction frameid="RXN-14315" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-14315" /><Reaction frameid="RXN-8340" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8340" /><Reaction frameid="RXN-13528" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-13528" /><Reaction frameid="RXN-8184" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8184" /><Reaction frameid="RXN-16413" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-16413" /><Reaction frameid="RXN-18957" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18957" /><Reaction frameid="RXN-8215" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8215" /><Reaction frameid="RXN-18970" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18970" /><Reaction frameid="RXN-18971" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18971" /><Reaction frameid="RXN-19179" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19179" /><Reaction frameid="RXN-19180" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19180" /><Reaction frameid="RXN-19181" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-19181" /><Reaction frameid="RXN-8185" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-8185" /><Reaction frameid="RXN-18964" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18964" /><Reaction frameid="RXN-18965" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18965" /><Reaction frameid="RXN0-5063" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-5063" /><Reaction frameid="RXN-14480" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-14480" /><Reaction frameid="RXN-20037" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-20037" /><Reaction frameid="RXN-12621" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-12621" /><Reaction frameid="RXN0-6366" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-6366" /><Reaction frameid="RXN0-2023" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-2023" /><Reaction frameid="RXN-16820" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-16820" /><Reaction frameid="PROSTAGLANDIN-ENDOPEROXIDE-SYNTHASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PROSTAGLANDIN-ENDOPEROXIDE-SYNTHASE-RXN" /></appears-in-right-side-of>
+<comment datatype="string">In general, an electron carrier is a chemical entity that can accept or donate electrons from/to another chemical entity.
+When accepting electrons, it acts as an "electron acceptor". By accepting the electrons, the acceptor is reduced, and thus prior to receiving the electrons the entity is called  "an oxidized electron acceptor" and after receiving them it is called "a reduced electron acceptor".
+&lt;p&gt;
+Many reduced electron acceptors are able to transfer the electrons to other molecules, becoming oxidized in the process. Thus the distinction between an electron acceptor and an electron donor is often not determined by the actual chemical entity, but by the role it plays in a particular reaction. However, some acceptors in biological reactions only accept electrons and do not transfer them further. Those are often known as "terminal electron acceptors".
+&lt;p&gt;
+While in general every chemical reaction in which electrons are transferred includes an electron donor and an electron acceptor, several molecules are commonly used in metabolism solely for the purpose of electron transfer, and are referred to in biology as electron carriers. Different biological electron carriers differ in the number of electrons that they transfer and in their electron affinity.
+&lt;p&gt;
+Some of the common biological electron carriers transfer only a single electron (e.g. &lt;a href="/GCF_000020025/NEW-IMAGE?type=ENZYME&amp;object=Cytochromes"&gt;cytochromes&lt;/a&gt;, &lt;a href="/GCF_000020025/NEW-IMAGE?type=ENZYME&amp;object=Blue-Copper-Proteins"&gt;blue copper proteins&lt;/a&gt;, and some &lt;a href="/GCF_000020025/NEW-IMAGE?type=ENZYME&amp;object=Ferredoxins"&gt;ferredoxins&lt;/a&gt;), some transfer two electrons (e.g. some &lt;a href="/GCF_000020025/NEW-IMAGE?type=ENZYME&amp;object=Ferredoxins"&gt;ferredoxins&lt;/a&gt;), some transfer a hydride ion ( e.g. &lt;a href="/compound?orgid=GCF_000020025&amp;id=NAD"&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; and &lt;a href="/compound?orgid=GCF_000020025&amp;id=NADP"&gt;NADP&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt;), and some transfer two electrons and two protons (&lt;a href="/GCF_000020025/NEW-IMAGE?type=COMPOUND&amp;object=ETR-Quinones" title="This class holds &lt;a href=''/GCF_000020025/NEW-IMAGE?type=COMPOUND&amp;object=Quinones''&gt;quinones&lt;/a&gt; that are involved in electron transfer within membranes.&amp;#10;&amp;#10;Quinones are organic compounds derived from aromatic compound, with two carbonyl groups incorporated into the ring structure with rearrangement of the double bonds where necessary. A classic example of a quinone is &lt;a href=''http://biocyc.org/META/new-image?object=P-BENZOQUINONE''&gt;1,4-benzoquinone&lt;/a&gt;. Quinones are commonly named with a prefix that indicates the parent aromatic hydrocarbon (for example, ''benzo-'' for benzene, ''naphtho-'' for naphthalene, and ''anthra-'' for anthracene) with a ''-quinone'' suffix.&amp;#10;&amp;#10;Several types of quinones serve as electron acceptors in electron transport chains. Quinones can carry two electrons, and when fully reduced they are referred to as &lt;a href=''/GCF_000020025/NEW-IMAGE?type=COMPOUND&amp;object=Reduced-Quinones''&gt;quinols&lt;/a&gt;. The addition of a single H atom to a quinone results in formation of a free radical called &lt;a href=''/GCF_000020025/NEW-IMAGE?type=COMPOUND&amp;object=Semiquinones''&gt;a semiquinone&lt;/a&gt;.&amp;#10;&amp;#10;Many quinone derivatives often have other biological activities, such as &lt;a href=''/GCF_000020025/NEW-IMAGE?type=COMPOUND&amp;object=CPD-11501''&gt;vitamin K&lt;/a&gt;."&gt;quinones&lt;/a&gt;, &lt;a href="/compound?orgid=GCF_000020025&amp;id=FAD"&gt;FAD&lt;/a&gt; and &lt;a href="/compound?orgid=GCF_000020025&amp;id=FMN"&gt;FMN&lt;/a&gt;).
+In addition, a number of inorganic small molecules (e.g. oxygen, nitrate, iron (III), manganese (IV), sulfate) are often used as terminal electron acceptors.
+&lt;p&gt;
+In many cases, purified enzymes can act &lt;i&gt;in vitro&lt;/i&gt; using an artificial electron carrier, and their &lt;i&gt;in vivo&lt;/i&gt; electron carrier is not known. This class of "unknown electron carriers" is used to describe such reactions, which are incompletely characterized.</comment>
+<n-name datatype="string">acceptors</n-name>
+<synonym datatype="string">A</synonym>
+<synonym datatype="string">an oxidized unknown electron donor</synonym>
+<synonym datatype="string">an oxidized unknown electron acceptor</synonym>
+<common-name datatype="string">an oxidized unknown electron carrier</common-name>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>5359011</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=5359011</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM8975</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM8975</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00028</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00028</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15339</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15339</dblink-URL>
+</dblink>
+<abbrev-name datatype="string">A</abbrev-name>
+<credits><revised><date datatype="date">2015-01-30</date>
+<Person ID="GCF_000020025:caspi" detail="full" frameid="caspi" orgid="GCF_000020025"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype="string">Ron Caspi</common-name>
+<email datatype="string">caspi@ai.sri.com</email>
+<affiliations><Organization ID="GCF_000020025:SRI" detail="full" frameid="SRI" orgid="GCF_000020025"><common-name datatype="string">SRI International</common-name>
+<email datatype="string">ptools-support@ai.sri.com</email>
+<abbrev-name datatype="string">SRI International</abbrev-name>
+<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</affiliations>
+</Person>
+<Organization frameid="SRI" orgid="GCF_000020025" resource="#GCF_000020025:SRI" /></revised>
+</credits>
+<appears-in-left-side-of><Reaction frameid="RXN-6081" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-6081" /><Reaction frameid="RXN-11647" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-11647" /><Reaction frameid="RXN-17066" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-17066" /><Reaction frameid="RXN-18399" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18399" /><Reaction frameid="RXN-18428" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18428" /><Reaction frameid="RXN-18430" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18430" /><Reaction frameid="D-2-HYDROXY-ACID-DEHYDROGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:D-2-HYDROXY-ACID-DEHYDROGENASE-RXN" /><Reaction frameid="GLYCOLATEDEHYDRO-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:GLYCOLATEDEHYDRO-RXN" /><Reaction frameid="RXN-18710" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-18710" /><Reaction frameid="RXN0-7068" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN0-7068" /><Reaction frameid="CHD-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:CHD-RXN" /><Reaction frameid="NADPH-DEHYDROGENASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:NADPH-DEHYDROGENASE-RXN" /><Reaction frameid="RXN-12104" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-12104" /><Reaction frameid="RXN-16677" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-16677" /></appears-in-left-side-of>
+</Compound>
+</ptools-xml>

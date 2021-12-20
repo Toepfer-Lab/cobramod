@@ -22,6 +22,8 @@ testing for:
 - mass balance of reactions
 - reaction reversibility
 - capability to carry non-zero fluxes
+- MEMOTE compliance
+- available cross-references
 - adding available gene information
 
 CobraMod offers user-friendly tracking of the curation process with summary
@@ -54,6 +56,9 @@ This package offers multiple functions for modifying and extending GEMs:
 - Test reaction capability to carry a non-zero flux
   :func:`cobramod.test_non_zero_flux`
 - Add pathway to a model :func:`cobramod.add_pathway`
+- Automatic cross-referencing :func:`cobramod.add_crossreferences`
+- Testing for :doc:`Memote compliance <memote>`
+
 
 Users can add the biochemical data through different methods:
 
@@ -81,7 +86,7 @@ CobraMod, load and print :obj:`cobramod.available_databases`.
    :numbered:
    :caption: Table of content
 
-   how_to.ipynb
+   guides
    installation.rst
    test_cases.ipynb
    API <module/cobramod/index>

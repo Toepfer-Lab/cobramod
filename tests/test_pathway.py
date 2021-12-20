@@ -12,7 +12,7 @@ from random import randint
 from time import sleep
 
 from cobra.core import DictList, Group
-from cobra.io import read_sbml_model
+from cobra.io import read_sbml_model, write_sbml_model
 
 from cobramod.core import pathway as pt
 from cobramod.core.extension import add_pathway
@@ -268,12 +268,16 @@ class TestGroup(TestCase):
         # Test visualize
         test_model.groups[-1].visualize()
         sleep(1)
+
         # CASE 2: Regular Model
-        filename = dir_input.joinpath("test_model02.sbml")
+        filename = dir_input.joinpath("test_model.sbml")
         test_model = read_sbml_model(str(filename))
         pt.model_convert(test_model)
         for group in test_model.groups:
             self.assertIsInstance(obj=group, cls=Pathway)
+        test_model.groups[-1].visualize()
+        sleep(1)
+
         # CASE 3: using add_pathway
         test_model = textbook_biocyc.copy()
         sequence = ["PEPDEPHOS-RXN", "PYRUVFORMLY-RXN", "FHLMULTI-RXN"]
@@ -290,7 +294,11 @@ class TestGroup(TestCase):
             compartment="c",
             group="test_group",
         )
-        test_model = test_model.copy()
+
+        filename = dir_input.joinpath("test_model.sbml")
+        write_sbml_model(cobra_model=test_model, filename=str(filename))
+
+        test_model = read_sbml_model(str(filename))
         pt.model_convert(test_model)
         test_pathway = test_model.groups.get_by_id("test_group")
         self.assertDictEqual(d1=test_graph, d2=test_pathway.notes["ORDER"])

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """CobraMod Package
 
-It is a helpbox and extension package based on COBRApy . This package
-facilitates the retrieval of biochemical data from multiple databases and help
-users extend metabolic networks.
+CobraMod is a tool for pathway-centric metabolic network curation and extension
+based on COBRApy. This package facilitates the retrieval of biochemical data
+from multiple databases and help users extend metabolic networks.
 
 CobraMod ensures an easy-friendly API, customization and a record of all the
 changes made to metabolic models.
@@ -16,7 +16,7 @@ Important functions from CobraMod that can be imported directly:
 - add_reactions: Add reactions from different objects
 - add_pathway: Extend given pathway into given model.
 - test_non_zero_flux: Test given reaction to check for a feasible solution.
-- translate: Check for cross-references.
+- add_crossreferences: Check for cross-references.
 
 The exclusive class :func:`cobramod.pathway.Pathway` is an extension of
 :class:`cobra.core.group.Group`. CobraMod uses :mod:`Escher` to visualize
@@ -33,13 +33,14 @@ INFO. Read the documentation of logging for more information.
 For a list of databases, load variable :obj:`cobramod.available_databases`
 """
 from cobramod.core.creation import (
-    create_object,
     add_metabolites,
     add_reactions,
+    create_object,
 )
+from cobramod.core.crossreferences import add_crossreferences
 from cobramod.core.extension import add_pathway, test_non_zero_flux
 from cobramod.core.pathway import Pathway, model_convert
-from cobramod.core.retrieval import get_data, translate, available_databases
+from cobramod.core.retrieval import available_databases, get_data
 
 __all__ = [
     "get_data",
@@ -49,9 +50,9 @@ __all__ = [
     "add_pathway",
     "test_non_zero_flux",
     "Pathway",
-    "translate",
     "model_convert",
     "available_databases",
+    "add_crossreferences",
 ]
 
-__version__ = "1.0.1-alpha.1"
+__version__ = "1.0.2"
