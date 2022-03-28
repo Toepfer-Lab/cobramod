@@ -1,6 +1,8 @@
 name: Test documentation build
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - docs
