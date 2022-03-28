@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Data parsing for PlantCyc
+"""Data parsing for SolanaCyc
 
-This module handles the retrieval of data from PlantCyc into a local directory.
+This module handles the retrieval of data from SolanaCyc into a local directory.
 The possible type of data that can be download:
 
 - Metabolites: Normally have an abbreviation or short name.
@@ -12,7 +12,7 @@ be used instead. The gene information for the reactions is include if found.
 Contact maintainers if other types should be added.
 
 Important class of the module:
-- PlantCycParser: Child of the abstract class
+- SolCycParser: Child of the abstract class
 :class:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
@@ -37,6 +37,7 @@ from cobramod.error import (
     SuperpathwayWarning,
 )
 from cobramod.parsing.base import BaseParser
+
 
 def _build_reference(root: Any) -> dict:
     """
@@ -70,7 +71,7 @@ def _p_compound(root: Any) -> dict:
         formula = "X"
         charge = 0
         msg = (
-            f'Sum formula for the metabolite "{identifier}" from PlantCyc '
+            f'Sum formula for the metabolite "{identifier}" from SolanaCyc '
             'could not be found. Formula set to "X" and charge to 0. '
             "Please curate."
         )
@@ -80,7 +81,7 @@ def _p_compound(root: Any) -> dict:
     if not formula:
         formula = "X"
         msg = (
-            f'Sum formula for the metabolite "{identifier}" from PlantCyc '
+            f'Sum formula for the metabolite "{identifier}" from SolanaCyc '
             'could not be found. Formula set to "X". '
             "Please curate."
         )
@@ -322,16 +323,16 @@ class SolCycParser(BaseParser):
         for method in (_p_reaction, _p_pathway, _p_compound):
             with suppress(WrongParserError, AttributeError):
                 try:
-                    plantcyc_dict = method(  # type: ignore
+                    solcyc_dict = method(  # type: ignore
                         root=root, directory=directory.joinpath("Sol")
                     )
                 except TypeError:
-                    plantcyc_dict = method(root=root)  # type: ignore
+                    solcyc_dict = method(root=root)  # type: ignore
                 # This might change due to sub-database
-                plantcyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
+                solcyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
                     "orgid"
                 ]
-                return plantcyc_dict
+                return solcyc_dict
         raise NotImplementedError(
             "Given root could not be parsed properly. Contact maintainers"
         )
@@ -345,7 +346,7 @@ class SolCycParser(BaseParser):
         **kwargs,
     ) -> dict:
         """
-        Retrieves data from PlantCyc and parses the most important attributes
+        Retrieves data from SolanaCyc and parses the most important attributes
         into a dictionary.
 
         Args:
@@ -353,7 +354,7 @@ class SolCycParser(BaseParser):
             identifier (str): original identifier
             database (str): pmn:Name of the database.
             Some options: "pmn:PLANT", "pmn:META".
-                Full list in: "https://plantcyc.org/list-of-pgdbs"
+                Full list in: "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
         debug_level (int): Level of debugging. Read package logging
             for more info.
 
@@ -374,7 +375,7 @@ class SolCycParser(BaseParser):
     @lru_cache(maxsize=1)
     def _query_available_dbs() -> Element:
         """
-        Function to query and cache all existing databases in PlantCyc.
+        Function to query and cache all existing databases in SolanaCyc.
         """
         url = "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
         response = get(url)
@@ -429,7 +430,7 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
         database (str): Name of the database. Some options: "META", "ARA".
-            Full list in: "https://plantcyc.org/list-of-pgdbs"
+            Full list in: "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
 
     Raises:
         HTTPError: If given reaction does not have gene information available
@@ -486,8 +487,8 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
         directory (Path): Path to directory where data is located.
         identifier (str): identifier for given database.
         database (str): Name of the database.
-        Some options: "pmn:PLANT", "pmn:META".
-            Full list in: "https://plantcyc.org/list-of-pgdbs"
+        Some options: "sol:SOLANA", "sol:POTATO", "sol:META".
+            Full list in: "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
 
     Raises:
         Warning: If object is not available in given database
@@ -512,7 +513,8 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
             )
             # Retrieve from URL
             url_text = (
-                f"https://solcyc.sgn.cornell.edu/getxml?{database}:{identifier}"
+                f"https://solcyc.sgn.cornell.edu/getxml?"
+                f"{database}:{identifier}"
             )
             debug_log.debug(f"Searching {url_text} for biochemical data.")
             response = get(url_text)

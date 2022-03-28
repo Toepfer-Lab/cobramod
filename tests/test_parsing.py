@@ -559,75 +559,67 @@ class TestSolCyc(TestCase):
         test_root = so.retrieve_data(
             directory=dir_data, identifier="AMP", database="sol:META"
         )
-        test_dict = so.SolCycParser._parse(
-            root=test_root, directory=dir_data
-        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
         self.assertEqual(first=test_dict["TYPE"], second="Compound")
 
         # ToDo change test to something existing in SolCyc
-        # # CASE 2a: Reaction in ARA
-        # test_root = so.retrieve_data(
-        #     directory=dir_data,
-        #     identifier="GTP-CYCLOHYDRO-II-RXN",
-        #     database="sol:ARA",
-        # )
-        # test_dict = so.SolCycParser._parse(
-        #     root=test_root, directory=dir_data
-        # )
-        # self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
-        # self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
-        # self.assertEqual(first=test_dict["TYPE"], second="Reaction")
-        # self.assertCountEqual(
-        #     first=test_dict["GENES"]["genes"].keys(),
-        #     second=["AT5G64300", "AT5G59750"],
-        # )
+        # CASE 2a: Reaction in ARA
+        test_root = so.retrieve_data(
+            directory=dir_data,
+            identifier="6PFRUCTPHOS-RXN",
+            database="sol:solanacyc",
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
+        self.assertEqual(first=5, second=len(test_dict["EQUATION"]))
+        self.assertEqual(
+            first=1, second=test_dict["EQUATION"]["r_FRUCTOSE-16-DIPHOSPHATE"]
+        )
+        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(),
+            second=[],
+        )
         # CASE 2b: Reaction in Meta
         test_root = so.retrieve_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="sol:META",
         )
-        test_dict = so.SolCycParser._parse(
-            root=test_root, directory=dir_data
-        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
         self.assertCountEqual(
             first=test_dict["GENES"]["genes"].keys(), second=[]
         )
         self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
 
         # ToDo change test to something existing in SolCyc
-        # # CASE 2c: Reaction in another database
-        # test_root = so.retrieve_data(
-        #     directory=dir_data,
-        #     identifier="GTP-CYCLOHYDRO-II-RXN",
-        #     database="sol:SOY",
-        # )
-        # test_dict = so.PlantCycParser._parse(
-        #     root=test_root, directory=dir_data
-        # )
-        # self.assertEqual(
-        #     first=8, second=len(test_dict["GENES"]["genes"].keys())
-        # )
-        # self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
+        # CASE 2c: Reaction in another database
+        test_root = so.retrieve_data(
+            directory=dir_data,
+            identifier="RXN18C3-276",
+            database="sol:SolanaCyc",
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
+        print(test_dict)
+        self.assertEqual(
+            first=0, second=len(test_dict["GENES"]["genes"].keys())
+        )
+        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
+
         # CASE 3: Protein
         test_root = so.retrieve_data(
             directory=dir_data,
             identifier="Reduced-hemoproteins",
             database="sol:SOLANACYC",
         )
-        test_dict = so.SolCycParser._parse(
-            root=test_root, directory=dir_data
-        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["TYPE"], second="Protein")
         self.assertEqual(first=test_dict["FORMULA"], second="X")
         # CASE 4: Pathway
         test_root = so.retrieve_data(
             directory=dir_data, identifier="PWY-1187", database="sol:META"
         )
-        test_dict = so.SolCycParser._parse(
-            root=test_root, directory=dir_data
-        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
 
