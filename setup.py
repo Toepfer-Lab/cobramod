@@ -28,7 +28,8 @@ setup(
         "cobra>=0.18.1",
         "requests>=2.24.0",
         "Escher>=1.7.3",
-        "openpyxl>=3.0.7",
+        "MarkupSafe==2.0.1",    # Eschers imports break due to pinned jinja and
+        "openpyxl>=3.0.7",      # unpinned MarkupSafe
         "webcolors>=1.11.1",
         "tqdm>=4.62.3",
         "pyarrow>=6.0.1",
