@@ -5,7 +5,7 @@ on:
 
   push:
     branches:
-      - docs
+      - 'docs/**'
       - master
 
 jobs:
