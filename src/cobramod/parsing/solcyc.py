@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Data parsing for PlantCyc
+"""Data parsing for SolanaCyc
 
-This module handles the retrieval of data from PlantCyc into a local directory.
-The possible type of data that can be downloaded:
+This module handles the retrieval of data from SolanaCyc into a local
+directory. The possible type of data that can be downloaded:
 
 - Metabolites: Normally have an abbreviation or short name.
 - Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
@@ -12,7 +12,7 @@ be used instead. The gene information for the reactions is included if found.
 Contact maintainers if other types should be added.
 
 Important class of the module:
-- PlantCycParser: Child of the abstract class
+- SolCycParser: Child of the abstract class
 :class:`cobramod.parsing.base.BaseParser`.
 """
 from contextlib import suppress
@@ -71,7 +71,7 @@ def _p_compound(root: Any) -> dict:
         formula = "X"
         charge = 0
         msg = (
-            f'Sum formula for the metabolite "{identifier}" from PlantCyc '
+            f'Sum formula for the metabolite "{identifier}" from SolanaCyc '
             'could not be found. Formula set to "X" and charge to 0. '
             "Please curate."
         )
@@ -81,7 +81,7 @@ def _p_compound(root: Any) -> dict:
     if not formula:
         formula = "X"
         msg = (
-            f'Sum formula for the metabolite "{identifier}" from PlantCyc '
+            f'Sum formula for the metabolite "{identifier}" from SolanaCyc '
             'could not be found. Formula set to "X". '
             "Please curate."
         )
@@ -173,7 +173,7 @@ def _p_genes(root: Any, identifier: str, directory: Path) -> dict:
     genes = dict()
     # Get the information and check if Genes can be found to be parsed
     with suppress(FileNotFoundError):
-        tree: Any = PlantCycParser._read_file(
+        tree: Any = SolCycParser._read_file(
             filename=directory.joinpath("GENES").joinpath(
                 f"{identifier}_genes.xml"
             )
@@ -312,7 +312,7 @@ def _p_pathway(root: Any) -> dict:
 
 
 # ToDo hier ändern
-class PlantCycParser(BaseParser):
+class SolCycParser(BaseParser):
     @staticmethod
     def _parse(root: Any, directory: Path) -> dict:
         """
@@ -323,16 +323,16 @@ class PlantCycParser(BaseParser):
         for method in (_p_reaction, _p_pathway, _p_compound):
             with suppress(WrongParserError, AttributeError):
                 try:
-                    plantcyc_dict = method(  # type: ignore
-                        root=root, directory=directory.joinpath("PMN")
+                    solcyc_dict = method(  # type: ignore
+                        root=root, directory=directory.joinpath("Sol")
                     )
                 except TypeError:
-                    plantcyc_dict = method(root=root)  # type: ignore
+                    solcyc_dict = method(root=root)  # type: ignore
                 # This might change due to sub-database
-                plantcyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
+                solcyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
                     "orgid"
                 ]
-                return plantcyc_dict
+                return solcyc_dict
         raise NotImplementedError(
             "Given root could not be parsed properly. Contact maintainers"
         )
@@ -346,7 +346,7 @@ class PlantCycParser(BaseParser):
         **kwargs,
     ) -> dict:
         """
-        Retrieves data from PlantCyc and parses the most important attributes
+        Retrieves data from SolanaCyc and parses the most important attributes
         into a dictionary.
 
         Args:
@@ -354,7 +354,7 @@ class PlantCycParser(BaseParser):
             identifier (str): original identifier
             database (str): pmn:Name of the database.
             Some options: "pmn:PLANT", "pmn:META".
-                Full list in: "https://plantcyc.org/list-of-pgdbs"
+                Full list in: "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
         debug_level (int): Level of debugging. Read package logging
             for more info.
 
@@ -369,15 +369,15 @@ class PlantCycParser(BaseParser):
             level=debug_level,
             msg=f'Data for "{identifier}" retrieved from "{database}".',
         )
-        return PlantCycParser._parse(root=root, directory=directory)
+        return SolCycParser._parse(root=root, directory=directory)
 
     @staticmethod
     @lru_cache(maxsize=1)
     def _query_available_dbs() -> Element:
         """
-        Function to query and cache all existing databases in PlantCyc.
+        Function to query and cache all existing databases in SolanaCyc.
         """
-        url = "https://pmn.plantcyc.org/xmlquery?dbs"
+        url = "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
         response = get(url)
         response.raise_for_status()
 
@@ -391,17 +391,17 @@ class PlantCycParser(BaseParser):
         equal or belong to the list of proper names.
         """
 
-        if not isinstance(database, str) or not database.startswith("pmn:"):
+        if not isinstance(database, str) or not database.startswith("sol:"):
             raise WrongParserError
 
-        databases = PlantCycParser._query_available_dbs()
+        databases = SolCycParser._query_available_dbs()
 
         local_databases = BaseParser._get_local_databases(directory)
         if local_databases.str.contains(database).any():
             return
 
         # obtaining the database name without the prefix "pmn:"
-        database = database.partition("pmn:")[2]
+        database = database.partition("sol:")[2]
 
         if databases.find(f"metadata/*[@orgid='{database}']"):
             return
@@ -430,7 +430,7 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
         directory (Path): Directory to store and retrieve local data.
         identifier (str): original identifier
         database (str): Name of the database. Some options: "META", "ARA".
-            Full list in: "https://plantcyc.org/list-of-pgdbs"
+            Full list in: "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
 
     Raises:
         HTTPError: If given reaction does not have gene information available
@@ -444,7 +444,7 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
     if not filename.exists():
         # This URL will not necessarily raise exception
         url_text = (
-            f"https://pmn.plantcyc.org/apixml?fn=genes-of-reaction&id="
+            f"https://solcyc.sgn.cornell.edu/apixml?fn=genes-of-reaction&id="
             f"{database}:{identifier}&detail=full"
         )
         response = get(url_text)
@@ -487,8 +487,8 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
         directory (Path): Path to directory where data is located.
         identifier (str): identifier for given database.
         database (str): Name of the database.
-        Some options: "pmn:PLANT", "pmn:META".
-            Full list in: "https://plantcyc.org/list-of-pgdbs"
+        Some options: "sol:SOLANA", "sol:POTATO", "sol:META".
+            Full list in: "https://solcyc.sgn.cornell.edu/xmlquery?dbs"
 
     Raises:
         Warning: If object is not available in given database
@@ -501,19 +501,20 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
     database = database[4:]
 
     if directory.exists():
-        data_dir = directory.joinpath("PMN", database)
+        data_dir = directory.joinpath("Sol", database)
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
         # Search for the file on directory. Otherwise retrive from database
         try:
-            return PlantCycParser._read_file(filename=filename)
+            return SolCycParser._read_file(filename=filename)
         except FileNotFoundError:
             debug_log.debug(
                 f'"{identifier}" not found in directory "{database}".'
             )
             # Retrieve from URL
             url_text = (
-                f"https://pmn.plantcyc.org/getxml?{database}:{identifier}"
+                f"https://solcyc.sgn.cornell.edu/getxml?"
+                f"{database}:{identifier}"
             )
             debug_log.debug(f"Searching {url_text} for biochemical data.")
             response = get(url_text)
@@ -529,7 +530,7 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
 
                 BaseParser.check_database_version(
                     directory,
-                    "pmn:" + str(orgid),
+                    "sol:" + str(orgid),
                     str(version),
                 )
 
@@ -561,7 +562,7 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                         root = retrieve_data(
                             directory=directory,
                             identifier=identifier,
-                            database="pmn:PLANT",
+                            database="sol:PLANT",
                         )
                         return root
                 # In case there is nothing in META

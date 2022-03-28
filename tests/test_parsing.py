@@ -29,6 +29,7 @@ from cobramod.parsing import kegg as kg
 from cobramod.parsing import biocyc as bc
 from cobramod.parsing import plantcyc as pc
 from cobramod.parsing import bigg as bi
+from cobramod.parsing import solcyc as so
 from cobramod import __version__ as cobramod_version
 
 # Debug must be set in level DEBUG for the test
@@ -481,6 +482,144 @@ class TestPlantCyc(TestCase):
         test_dict = pc.PlantCycParser._parse(
             root=test_root, directory=dir_data
         )
+        self.assertEqual(first=test_dict["TYPE"], second="Pathway")
+        self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
+
+
+class TestSolCyc(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        so.BaseParser.ignore_db_versions = True
+
+    def test_retrieve_data(self):
+        # CASE 1: Directory does not exist
+        self.assertRaises(
+            NotADirectoryError,
+            so.retrieve_data,
+            # args
+            directory=Path.cwd().joinpath("noDIr"),
+            identifier="WATER",
+            database="sol:META",
+        )
+        # CASE 2: ID not found
+        self.assertRaises(
+            HTTPError,
+            so.retrieve_data,
+            directory=dir_data,
+            identifier="WATER_fake",
+            database="sol:META",
+        )
+
+        # CASE 3: Regular META
+        test_element = so.retrieve_data(
+            directory=dir_data, identifier="WATER", database="sol:META"
+        )
+        self.assertIsInstance(obj=test_element, cls=Element)
+        # CASE 4: META from ARA if not available
+        test_element = so.retrieve_data(
+            directory=dir_data, identifier="CPD-15323", database="sol:META"
+        )
+        self.assertIsInstance(obj=test_element, cls=Element)
+
+    def test_get_graph(self):
+        # CASE 1: Regular complex lineal pathway
+        test_root = so.retrieve_data(
+            directory=dir_data, identifier="PWY-1187", database="sol:META"
+        )
+        test_dict = so.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=14)
+        self.assertCountEqual(
+            first=test_dict["RXN-2221"], second=("RXN-2222", "RXN-2223")
+        )
+        # CASE 2: Complex cyclic pathway
+        test_root = so.retrieve_data(
+            directory=dir_data, identifier="CALVIN-PWY", database="sol:META"
+        )
+        test_dict = so.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=13)
+        self.assertCountEqual(
+            first=test_dict["TRIOSEPISOMERIZATION-RXN"],
+            second=("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
+        )
+        # CASE 3: Single-reaction pathway
+        test_root = so.retrieve_data(
+            directory=dir_data, identifier="PWY-7344", database="sol:META"
+        )
+        test_dict = so.get_graph(root=test_root)
+        self.assertEqual(first=len(test_dict), second=1)
+        self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
+        # CASE 4: Super-Pathway
+        test_root = so.retrieve_data(
+            directory=dir_data, identifier="PWY-5052", database="sol:META"
+        )
+        self.assertWarns(SuperpathwayWarning, so.get_graph, root=test_root)
+
+    def test__parse_solcyc(self):
+        # CASE 1: Compound
+        test_root = so.retrieve_data(
+            directory=dir_data, identifier="AMP", database="sol:META"
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
+        self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
+        self.assertEqual(first=test_dict["TYPE"], second="Compound")
+
+        # ToDo change test to something existing in SolCyc
+        # CASE 2a: Reaction in ARA
+        test_root = so.retrieve_data(
+            directory=dir_data,
+            identifier="6PFRUCTPHOS-RXN",
+            database="sol:solanacyc",
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
+        self.assertEqual(first=5, second=len(test_dict["EQUATION"]))
+        self.assertEqual(
+            first=1, second=test_dict["EQUATION"]["r_FRUCTOSE-16-DIPHOSPHATE"]
+        )
+        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(),
+            second=[],
+        )
+        # CASE 2b: Reaction in Meta
+        test_root = so.retrieve_data(
+            directory=dir_data,
+            identifier="GTP-CYCLOHYDRO-II-RXN",
+            database="sol:META",
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
+        self.assertCountEqual(
+            first=test_dict["GENES"]["genes"].keys(), second=[]
+        )
+        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
+
+        # ToDo change test to something existing in SolCyc
+        # CASE 2c: Reaction in another database
+        test_root = so.retrieve_data(
+            directory=dir_data,
+            identifier="RXN18C3-276",
+            database="sol:SolanaCyc",
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
+        print(test_dict)
+        self.assertEqual(
+            first=0, second=len(test_dict["GENES"]["genes"].keys())
+        )
+        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
+
+        # CASE 3: Protein
+        test_root = so.retrieve_data(
+            directory=dir_data,
+            identifier="Reduced-hemoproteins",
+            database="sol:SOLANACYC",
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
+        self.assertEqual(first=test_dict["TYPE"], second="Protein")
+        self.assertEqual(first=test_dict["FORMULA"], second="X")
+        # CASE 4: Pathway
+        test_root = so.retrieve_data(
+            directory=dir_data, identifier="PWY-1187", database="sol:META"
+        )
+        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["TYPE"], second="Pathway")
         self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
 

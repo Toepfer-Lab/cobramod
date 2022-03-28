@@ -2,7 +2,7 @@
 """Data parsing for BiGG
 
 This module handles the retrieval of data from BiGG into a local directory.
-The possible type of data that can be download:
+The possible type of data that can be downloaded:
 
 - Metabolites: Normally, simple names.
 - Reactions: Mostly abbreviations.

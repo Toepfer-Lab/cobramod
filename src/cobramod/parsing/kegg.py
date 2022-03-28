@@ -2,7 +2,7 @@
 """Data parsing for KEGG
 
 This module handles the retrieval of data from KEGG into a local directory.
-The possible type of data that can be download:
+The possible type of data that can be downloaded:
 
 - Metabolite: Identifiers that start with the letter C, e.g C00001
 - Reactions: Identifiers that start with the letter R, e.g R00001. The

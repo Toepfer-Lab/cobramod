@@ -1,4 +1,5 @@
 import tempfile
+from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
@@ -17,6 +18,11 @@ from cobramod.core.crossreferences import (
     add_crossreferences,
 )
 
+# Debug must be set in level DEBUG for the test
+from cobramod.debug import debug_log
+
+debug_log.setLevel(DEBUG)
+
 
 class TestCrossReferences(TestCase):
     @patch("requests.get")
@@ -27,14 +33,11 @@ class TestCrossReferences(TestCase):
             mocked_post.return_value.text = "154"
 
             value = inchikey2pubchem_cid("Test_ID", directory)
-            print(value)
-
             self.assertEqual("154", value)
 
             # check that the local cache is used
             mocked_post.return_value.text = "155"
             value = inchikey2pubchem_cid("Test_ID", directory)
-            print(value)
             self.assertEqual(value, "154")
 
             value = inchikey2pubchem_cid(["Test_ID2", "Test_ID3"], directory)
