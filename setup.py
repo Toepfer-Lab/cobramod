@@ -10,7 +10,7 @@ with open(file="README.md", mode="r") as f:
 
 setup(
     name="cobramod",
-    version="1.0.2",
+    version="1.1-dev1",
     description="Python package for pathway-centric modification and extension"
     + " of genome-scale metabolic networks",
     long_description=readme,
