@@ -568,7 +568,7 @@ class TestSolCyc(TestCase):
         test_root = so.retrieve_data(
             directory=dir_data,
             identifier="6PFRUCTPHOS-RXN",
-            database="sol:solanacyc",
+            database="sol:SolanaCyc",
         )
         test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=5, second=len(test_dict["EQUATION"]))
@@ -600,7 +600,6 @@ class TestSolCyc(TestCase):
             database="sol:SolanaCyc",
         )
         test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
-        print(test_dict)
         self.assertEqual(
             first=0, second=len(test_dict["GENES"]["genes"].keys())
         )
@@ -610,7 +609,7 @@ class TestSolCyc(TestCase):
         test_root = so.retrieve_data(
             directory=dir_data,
             identifier="Reduced-hemoproteins",
-            database="sol:SOLANACYC",
+            database="sol:LYCO",
         )
         test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
         self.assertEqual(first=test_dict["TYPE"], second="Protein")

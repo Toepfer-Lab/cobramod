@@ -407,7 +407,7 @@ class SolCycParser(BaseParser):
             return
 
         raise WrongParserError(
-            f'Database "{database}" was not found in Biocyc'
+            f'Database "{database}" was not found in SolCyc'
         )
 
     @staticmethod

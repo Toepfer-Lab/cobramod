@@ -387,7 +387,8 @@ class BiocycParser(BaseParser):
         given database name. It will raise a warning if both names are not
         equal or belong to the list of proper names.
         """
-        if not isinstance(database, str):
+
+        if not isinstance(database, str) or ":" in database:
             raise WrongParserError
 
         databases = BiocycParser._query_available_dbs()
