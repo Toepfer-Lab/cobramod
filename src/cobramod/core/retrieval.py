@@ -51,8 +51,8 @@ https://pmn.plantcyc.org/compound?orgid=CORN&id=PPI -> PPI\n
 Sol Genomics Network, sub-database SolanaCyc ->
 https://solcyc.sgn.cornell.edu/compound?orgid=SOLANACYC&id=PPI\n
 KEGG -> https://www.genome.jp/entry/C00013 -> C00013\n
-BiGG Models Repository,universal model 
--> http://bigg.ucsd.edu/universal/metabolites/ppi -> ppi\n
+BiGG Models Repository,universal model
+ -> http://bigg.ucsd.edu/universal/metabolites/ppi -> ppi\n
 CobraMod uses abbreviations to represent the databases or sub-databases:\n
 Database -> Abbreviation\nBioCyc -> META or identifier of sub-database e.g:
 ECOLI, ARA, GCF_000010885\nPlant Metabolic Network -> pmn:PLANT or identifier
@@ -92,15 +92,15 @@ databases or sub-databases:</p> <table style="width: 100%; border-collapse:
 collapse; float: left;" border="1"> <tbody> <tr> <td style="width: 50%;">
 <h3>Database</h3> </td> <td style="width: 50%;"> <h3>Abbreviation</h3> </td>
 </tr> <tr> <td style="width: 50%;">BioCyc</td> <td style="width: 50%;">META or
-identifier of sub-database e.g: ECOLI, ARA, GCF_000010885</td> </tr> 
+identifier of sub-database e.g: ECOLI, ARA, GCF_000010885</td> </tr>
 
-<tr> <td style="width: 50%;">Plant Metabolic Network</td> 
-<td style="width: 50%;">Prefix "pmn:" with the sub-database identifier, 
-e.g pmn:PLANT, pmn:ARA, pmn:CORN</td></tr> 
+<tr> <td style="width: 50%;">Plant Metabolic Network</td>
+<td style="width: 50%;">Prefix "pmn:" with the sub-database identifier,
+ e.g pmn:PLANT, pmn:ARA, pmn:CORN</td></tr>
 
-<tr> <td style="width: 50%;">Sol Genomics Network</td> 
-<td style="width: 50%;">Prefix "sol:" with the sub-database identifier, 
-e.g sol:SolanaCyc, sol:LYCO, sol:META</td></tr> 
+<tr> <td style="width: 50%;">Sol Genomics Network</td>
+<td style="width: 50%;">Prefix "sol:" with the sub-database identifier,
+ e.g sol:SolanaCyc, sol:LYCO, sol:META</td></tr>
 
 <tr> <td style="width: 50%;">KEGG</td> <td style="width: 50%;">KEGG</td>
 </tr> <tr> <td style="width: 50%;">BiGG Models Repository</td> <td
