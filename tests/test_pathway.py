@@ -7,9 +7,10 @@ to use Escher for its visualizations.
 from json import loads
 from logging import DEBUG
 from pathlib import Path
-from unittest import TestCase, main
 from random import randint
+from tempfile import TemporaryDirectory
 from time import sleep
+from unittest import TestCase, main
 
 from cobra.core import DictList, Group
 from cobra.io import read_sbml_model, write_sbml_model
@@ -295,10 +296,12 @@ class TestGroup(TestCase):
             group="test_group",
         )
 
-        filename = dir_input.joinpath("test_model.sbml")
-        write_sbml_model(cobra_model=test_model, filename=str(filename))
+        with TemporaryDirectory() as tmp_dir:
+            filename = Path(tmp_dir).joinpath("test_model.sbml")
+            write_sbml_model(cobra_model=test_model, filename=str(filename))
 
-        test_model = read_sbml_model(str(filename))
+            test_model = read_sbml_model(str(filename))
+
         pt.model_convert(test_model)
         test_pathway = test_model.groups.get_by_id("test_group")
         self.assertDictEqual(d1=test_graph, d2=test_pathway.notes["ORDER"])

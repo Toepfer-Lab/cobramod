@@ -55,4 +55,4 @@ __all__ = [
     "add_crossreferences",
 ]
 
-__version__ = "1.1-dev1"
+__version__ = "1.1.0"

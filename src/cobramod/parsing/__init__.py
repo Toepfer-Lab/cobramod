@@ -11,6 +11,7 @@ Classes included in the sub-package:
     - PlantCycParser
     - KeggParser
     - BiggParser
+    - SolCycParser
 
 Read the corresponding documentation for each module and corresponding classes.
 """
@@ -19,6 +20,7 @@ from cobramod.parsing.biocyc import BiocycParser
 from cobramod.parsing.plantcyc import PlantCycParser
 from cobramod.parsing.bigg import BiggParser
 from cobramod.parsing.kegg import KeggParser
+from cobramod.parsing.solcyc import SolCycParser
 
 
 __all__ = [
@@ -27,4 +29,5 @@ __all__ = [
     "PlantCycParser",
     "BiggParser",
     "KeggParser",
+    "SolCycParser",
 ]

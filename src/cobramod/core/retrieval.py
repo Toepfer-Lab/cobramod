@@ -30,9 +30,10 @@ class Databases(object):
 
     def __init__(self):
         self.msg = (
-            "CobraMod supports Biocyc, the Plant Metabolic Network (PMN), KEGG"
-            " and BiGG Models repository. Biocyc includes around 18.000 "
-            "sub-databases and a complete list for BioCyc can be found at "
+            "CobraMod supports BioCyc, the Plant Metabolic Network (PMN), "
+            "Sol Genomics Network (SolCyc), KEGG and BiGG Models repository. "
+            "BioCyc includes around 18.000 sub-databases and a complete list "
+            "for BioCyc can be found at "
             "'https://biocyc.org/biocyc-pgdb-list.shtml'. "
             "The database-specific identifiers can be found in the URL of the "
             'respective data. For instance, for "diphosphate" this is:'
@@ -46,9 +47,12 @@ class Databases(object):
         self.msg2 = """\n
 BioCyc, sub-database ECOLI -> https://biocyc.org/compound?orgid=ECOLI&id=PPI ->
 PPI\nPlant Metabolic Network, sub-database CORN ->
-https://pmn.plantcyc.org/compound?orgid=CORN&id=PPI -> PPI\nKEGG ->
-https://www.genome.jp/entry/C00013 -> C00013\nBiGG Models Repository,
-universal model -> http://bigg.ucsd.edu/universal/metabolites/ppi -> ppi\n
+https://pmn.plantcyc.org/compound?orgid=CORN&id=PPI -> PPI\n
+Sol Genomics Network, sub-database SolanaCyc ->
+https://solcyc.sgn.cornell.edu/compound?orgid=SOLANACYC&id=PPI\n
+KEGG -> https://www.genome.jp/entry/C00013 -> C00013\n
+BiGG Models Repository,universal model
+ -> http://bigg.ucsd.edu/universal/metabolites/ppi -> ppi\n
 CobraMod uses abbreviations to represent the databases or sub-databases:\n
 Database -> Abbreviation\nBioCyc -> META or identifier of sub-database e.g:
 ECOLI, ARA, GCF_000010885\nPlant Metabolic Network -> pmn:PLANT or identifier
@@ -71,7 +75,14 @@ BIGG
 </tr> <tr> <td style="width: 50%;">Plant Metabolic Network, sub-database
 CORN</td> <td style="width:
 50%;">https://pmn.plantcyc.org/compound?orgid=CORN&amp;id=<strong>PPI</strong></td>
-</tr> <tr> <td style="width: 50%;">KEGG</td> <td style="width:
+</tr>
+
+<tr> <td style="width: 50%;">Sol Genomics Network, sub-database
+SolanaCyc</td> <td style="width:50%;">
+https://solcyc.sgn.cornell.edu/compound?orgid=SOLANACYC&id=<strong>PPI</strong>
+</td></tr>
+
+<tr> <td style="width: 50%;">KEGG</td> <td style="width:
 50%;">https://www.genome.jp/entry/<strong>C00013</strong></td> </tr> <tr> <td
 style="width: 50%;">BiGG Models Repository, universal model</td> <td
 style="width:
@@ -81,10 +92,17 @@ databases or sub-databases:</p> <table style="width: 100%; border-collapse:
 collapse; float: left;" border="1"> <tbody> <tr> <td style="width: 50%;">
 <h3>Database</h3> </td> <td style="width: 50%;"> <h3>Abbreviation</h3> </td>
 </tr> <tr> <td style="width: 50%;">BioCyc</td> <td style="width: 50%;">META or
-identifier of sub-database e.g: ECOLI, ARA, GCF_000010885</td> </tr> <tr> <td
-style="width: 50%;">Plant Metabolic Network</td> <td style="width: 50%;">Prefix
-"pmn:" with the sub-database identifier, e.g pmn:PLANT, pmn:ARA, pmn:CORN</td>
-</tr> <tr> <td style="width: 50%;">KEGG</td> <td style="width: 50%;">KEGG</td>
+identifier of sub-database e.g: ECOLI, ARA, GCF_000010885</td> </tr>
+
+<tr> <td style="width: 50%;">Plant Metabolic Network</td>
+<td style="width: 50%;">Prefix "pmn:" with the sub-database identifier,
+ e.g pmn:PLANT, pmn:ARA, pmn:CORN</td></tr>
+
+<tr> <td style="width: 50%;">Sol Genomics Network</td>
+<td style="width: 50%;">Prefix "sol:" with the sub-database identifier,
+ e.g sol:SolanaCyc, sol:LYCO, sol:META</td></tr>
+
+<tr> <td style="width: 50%;">KEGG</td> <td style="width: 50%;">KEGG</td>
 </tr> <tr> <td style="width: 50%;">BiGG Models Repository</td> <td
 style="width: 50%;">BIGG</td> </tr> </tbody> </table>
 """
