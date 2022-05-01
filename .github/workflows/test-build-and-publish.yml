@@ -2,6 +2,9 @@ name: Test build and publish Cobramod to PyPI
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: "0 5 * * 1"
+
   pull_request:
     types: [ opened, synchronize, reopened, closed ]
     branches:
@@ -60,7 +63,7 @@ jobs:
   build-publish:
     needs: [lint-format, types, test]
     name: Build and publish the package to TestPyPI
-    if: github.event.pull_request.merged == true
+    if: ${{ github.event.pull_request.merged == 'true' && github.event_name != 'schedule'}}
     runs-on: ubuntu-latest
 
     steps:
