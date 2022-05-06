@@ -515,6 +515,7 @@ class SimpleFunctions(TestCase):
 
     def test__obtain_reaction(self):
         # CASE 1: Regular META reaction
+        # Note VCHO does not exist in biocyc anymore
         test_model = Model(0)
         test_model.compartments = {"e": "extracellular", "p": "plastid"}
         test_reaction = cr._obtain_reaction(

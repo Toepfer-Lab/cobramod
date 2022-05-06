@@ -473,6 +473,7 @@ class AddingPathways(TestCase):
             container=[reaction.id for reaction in test_model.reactions],
         )
         # CASE 5a: Check for translations in pathways
+        # Note VCHO does not exist in biocyc anymore
         test_model = textbook_kegg.copy()
         ex.add_pathway(
             model=test_model,
@@ -502,6 +503,8 @@ class AddingPathways(TestCase):
             show_imbalance=False,
             ignore_list=["R00228_c", "R00472_c"],
         )
+
+        # Note VCHO does not exist in biocyc anymore
         ex.add_pathway(
             model=test_model,
             pathway=["ADENODEAMIN-RXN"],
