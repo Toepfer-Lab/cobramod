@@ -1,7 +1,9 @@
-
+![Generic badge](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue)
 ![GitHub](https://img.shields.io/github/license/Toepfer-Lab/cobramod)
-
 ![Read the Docs (version)](https://img.shields.io/readthedocs/cobramod/latest)
+![Version](https://img.shields.io/pypi/v/cobramod?label=version)
+![Tests](https://img.shields.io/github/workflow/status/Toepfer-Lab/cobramod/Test%20build%20and%20publish%20Cobramod%20to%20PyPI?label=tests)
+
 
 CobraMod: A pathway-centric curation tool for constraint-based metabolic models
 ===============================================================================
