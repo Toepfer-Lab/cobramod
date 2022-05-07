@@ -22,7 +22,7 @@ textbook: Model
 try:
     textbook
 except NameError:
-    textbook_raw = files(cobra.data).joinpath("textbook.xml")
+    textbook_raw = files(cobra.data).joinpath("textbook.xml.gz")
     with as_file(textbook_raw) as textbookXML:
         textbook = read_sbml_model(str(textbookXML))
 
