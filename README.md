@@ -71,6 +71,31 @@ CobraMod is licensed under the GPL-3 License. Read the
 [LICENSE](https://github.com/Toepfer-Lab/cobramod/blob/master/LICENSE)
 for more information.
 
+Citing CobraMod
+---------------
+
+For citing CobraMod you can use the following paper:
+
+[CobraMod: a pathway-centric curation tool for constraint-based metabolic models](https://doi.org/10.1093/bioinformatics/btac119)
+
+```bibtex
+@article{10.1093/bioinformatics/btac119,
+    author = {Camborda, Stefano and Weder, Jan-Niklas and Töpfer, Nadine},
+    title = "{CobraMod: a pathway-centric curation tool for constraint-based metabolic models}",
+    journal = {Bioinformatics},
+    volume = {38},
+    number = {9},
+    pages = {2654-2656},
+    year = {2022},
+    month = {02},
+    abstract = "{COnstraint-Based Reconstruction and Analysis of genome-scale metabolic models has become a widely used tool to understand metabolic network behavior at a large scale. However, existing reconstruction tools lack functionalities to address modellers' common objective to study metabolic networks on the pathway level. Thus, we developed CobraMod—a Python package for pathway-centric modification and extension of genome-scale metabolic networks. CobraMod can integrate data from various metabolic pathway databases as well as user-curated information. Our tool tests newly added metabolites, reactions and pathways against multiple curation criteria, suggests manual curation steps and provides the user with records of changes to ensure high quality metabolic reconstructions. CobraMod uses the visualization tool Escher for pathway representation and offers simple customization options for comparison of pathways and flux distributions. Our package enables coherent and reproducible workflows as it can be seamlessly integrated with COBRApy and Escher.The source code can be found at https://github.com/Toepfer-Lab/cobramod/ and can be installed with pip. The documentation including tutorials is available at https://cobramod.readthedocs.io/.}",
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/btac119},
+    url = {https://doi.org/10.1093/bioinformatics/btac119},
+    eprint = {https://academic.oup.com/bioinformatics/article-pdf/38/9/2654/43481008/btac119.pdf},
+}
+```
+
 Development
 -----------
 
