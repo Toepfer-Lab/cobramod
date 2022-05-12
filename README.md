@@ -64,13 +64,6 @@ This package offers multiple functions for modifying and extending GEMs:
 Check the [documentation](https://cobramod.readthedocs.io/) for more
 information.
 
-License
--------
-
-CobraMod is licensed under the GPL-3 License. Read the
-[LICENSE](https://github.com/Toepfer-Lab/cobramod/blob/master/LICENSE)
-for more information.
-
 Citing CobraMod
 ---------------
 
@@ -95,6 +88,13 @@ To cite CobraMod, please use the following paper:
     eprint = {https://academic.oup.com/bioinformatics/article-pdf/38/9/2654/43481008/btac119.pdf},
 }
 ```
+License
+-------
+
+CobraMod is licensed under the GPL-3 License. Read the
+[LICENSE](https://github.com/Toepfer-Lab/cobramod/blob/master/LICENSE)
+for more information.
+
 
 Development
 -----------
