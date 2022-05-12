@@ -74,7 +74,7 @@ for more information.
 Citing CobraMod
 ---------------
 
-For citing CobraMod you can use the following paper:
+To cite CobraMod, please use the following paper:
 
 [CobraMod: a pathway-centric curation tool for constraint-based metabolic models](https://doi.org/10.1093/bioinformatics/btac119)
 
