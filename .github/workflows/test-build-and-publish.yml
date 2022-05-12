@@ -63,7 +63,7 @@ jobs:
   build-publish:
     needs: [lint-format, types, test]
     name: Build and publish the package to TestPyPI
-    if: ${{ github.event.pull_request.merged == 'true' && github.event_name != 'schedule'}}
+    if: github.event.pull_request.merged == true && github.event_name != 'schedule'
     runs-on: ubuntu-latest
 
     steps:
