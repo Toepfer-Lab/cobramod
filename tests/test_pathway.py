@@ -207,6 +207,7 @@ class TestGroup(TestCase):
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
         # CASE 4a: Regular Biocyc
+        # Note VCHO does not exist in biocyc anymore
         test_model = textbook_biocyc.copy()
         add_pathway(
             model=test_model,
