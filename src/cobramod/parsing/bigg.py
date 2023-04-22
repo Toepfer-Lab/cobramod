@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Data parsing for BiGG
 
 This module handles the retrieval of data from BiGG into a local directory.
@@ -17,20 +16,23 @@ Important class of the module:
 - BiggParser: Child of the abstract class
 :class:`cobramod.parsing.base.BaseParser`.
 """
+from __future__ import annotations
+
 from contextlib import suppress
-from json import loads, JSONDecodeError
+from json import JSONDecodeError, loads
 from pathlib import Path
-from typing import Any, Tuple
+from typing import Any
 from warnings import warn
 
-from requests import get, HTTPError, Response
+from requests import HTTPError, Response, get
 
+import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
 from cobramod.parsing.base import BaseParser
 
 
-def _find_url(model_id: str, identifier: str) -> Tuple[Response, str]:
+def find_url(model_id: str, query: str) -> tuple[Response, str]:
     """
     Tries to find a valid URL for the API of BIGG. It will return a
     :class:`requests.Response` if URL is valid.
@@ -52,13 +54,13 @@ def _find_url(model_id: str, identifier: str) -> Tuple[Response, str]:
         with suppress(HTTPError):
             # Check that status is available
             debug_log.debug(
-                f'{object_type.capitalize()[:-1]} "{identifier}" not found in '
+                f'{object_type.capitalize()[:-1]} "{query}" not found in '
                 f'directory "BIGG", subdirectory "{model_id}".'
             )
             # Retrieve from URL
             url_text = (
                 f"http://bigg.ucsd.edu/api/v2/models/{model_id}/{object_type}"
-                f"/{identifier}"
+                f"/{query}"
             )
             debug_log.debug(f"Searching {url_text} for biochemical data.")
             # Get and check for errors
@@ -71,7 +73,7 @@ def _find_url(model_id: str, identifier: str) -> Tuple[Response, str]:
 
             return response, db_version
     # Otherwise
-    raise HTTPError(f"Identifier '{identifier}' not found in BIGG.")
+    raise HTTPError(f"Identifier '{query}' not found in BIGG.")
 
 
 def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
@@ -106,9 +108,7 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
             return BiggParser._read_file(filename=filename)
         except FileNotFoundError:
             # It will raise an error by itself if needed
-            response, db_version = _find_url(
-                model_id=model_id, identifier=identifier
-            )
+            response, db_version = find_url(model_id=model_id, query=identifier)
 
             BaseParser.check_database_version(directory, "bigg", db_version)
 
@@ -127,7 +127,7 @@ def retrieve_data(directory: Path, identifier: str, model_id: str) -> dict:
         raise NotADirectoryError(msg)
 
 
-def _build_reference(json_data: dict) -> dict:
+def build_reference(json_data: dict[str, Any]) -> dict[str, str]:
     """
     Return a dictionary of cross-references, where the keys are the
     cross-references and values the their identifiers.
@@ -136,9 +136,99 @@ def _build_reference(json_data: dict) -> dict:
     try:
         return {item: references[item][0]["id"] for item in references}
     except KeyError:
-        raise KeyError(
-            "Problem with given json dictionary. Inform maintainers"
+        raise KeyError("Problem with given json dictionary. Inform maintainers")
+
+
+def parse_reaction_attributes(
+    data: dict[str, Any], entry: str
+) -> dict[str, Any]:
+    results = data.get("results", None)
+
+    if results:
+        databases = data.get("database_links", None)
+        data = results.pop()
+        data["database_links"] = databases
+
+    reaction_str = data.get("reaction_string", "")
+
+    reaction_str = reaction_str.replace("&#8652;", "<->")
+    reaction_str = reaction_str.replace("&rarr;", "-->")
+    reaction_str = reaction_str.replace("&larr;", "<--")
+
+    position = cmod_utils.get_arrow_position(reaction_str)
+
+    if position == -1:
+        raise AttributeError(
+            f"Reaction string for {entry} did not include an arrow in the "
+            "equation"
         )
+
+    reactants = [
+        item.rstrip().strip()
+        for item in reaction_str[:position].rstrip().strip().split("+")
+    ]
+    products = [
+        item.rstrip().strip()
+        for item in reaction_str[position + 3 :].rstrip().strip().split("+")
+    ]
+
+    arrow = reaction_str[position : position + 3]
+
+    reaction_str = str()
+
+    for side in (reactants, products):
+        prefix = "r"
+
+        if side is reactants:
+            prefix = "l"
+
+        for i, item in enumerate(side):
+            try:
+                coefficient, identifier = [
+                    item.strip().rstrip() for item in item.split(" ")
+                ]
+            except ValueError:
+                # In case no coefficient is given, it must be 1
+                coefficient = "1"
+                identifier = item
+
+            reaction_str += f"{coefficient} {prefix}_{identifier[:-2]}"
+
+            if i < len(side) - 1:
+                reaction_str += " + "
+
+            if side is reactants and i == len(side) - 1:
+                reaction_str += f" {arrow} "
+
+    attributes: dict[str, Any] = {
+        "name": data.get("name", ""),
+        "equation": reaction_str,
+        "genes": None,
+        "xref": build_reference(data),
+        "replacements": {},
+        "transport": cmod_utils.is_transport(reaction_str),
+    }
+    return attributes
+
+
+def parse_metabolite_attributes(data: dict[str, Any]) -> dict[str, Any]:
+    # For generic compounds, a list comes, otherwise it is a regular
+    # string
+    try:
+        formula: str = data["formulae"].pop()
+        charge = int(data["charges"].pop())
+
+    except IndexError:
+        formula = data["formula"]
+        charge = int(data["charge"])
+
+    attributes = {
+        "name": data.get("name", ""),
+        "formula": formula,
+        "charge": charge,
+        "xref": build_reference(data),
+    }
+    return attributes
 
 
 def _p_compound(json_data: dict) -> dict:
@@ -159,7 +249,7 @@ def _p_compound(json_data: dict) -> dict:
         "FORMULA": formula,
         "CHARGE": charge,
         "DATABASE": "BIGG",
-        "XREF": _build_reference(json_data=json_data),
+        "XREF": build_reference(json_data=json_data),
     }
 
 
@@ -215,7 +305,7 @@ def _p_reaction(json_data: dict) -> dict:
             data_dict=_get_metabolites(json_data=json_data)
         ),
         "DATABASE": "BIGG",
-        "XREF": _build_reference(json_data=json_data),
+        "XREF": build_reference(json_data=json_data),
         "GENES": _p_genes(json_data=json_data),
     }
     msg = (

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Data parsing for PlantCyc
 
 This module handles the retrieval of data from PlantCyc into a local directory.
@@ -406,9 +405,7 @@ class PlantCycParser(BaseParser):
         if databases.find(f"metadata/*[@orgid='{database}']"):
             return
 
-        raise WrongParserError(
-            f'Database "{database}" was not found in Biocyc'
-        )
+        raise WrongParserError(f'Database "{database}" was not found in Biocyc')
 
     @staticmethod
     def _read_file(filename: Path) -> Element:

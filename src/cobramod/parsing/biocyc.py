@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Data parsing for Biocyc
 
 This module handles the retrieval of data from BioCyc into a local directory.
@@ -15,31 +14,28 @@ Important class of the module:
 - BiocycParser: Child of the abstract class
 :class:`cobramod.parsing.base.BaseParser`.
 """
+from __future__ import annotations
+
+import functools
+import xml.etree.ElementTree as et
 from contextlib import suppress
-from functools import lru_cache
-from xml.etree.ElementTree import (
-    fromstring,
-    Element,
-    ElementTree,
-    parse,
-    ParseError,
-)
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 from warnings import warn
 
-from requests import get, HTTPError
+import requests
 
+import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
 from cobramod.error import (
-    WrongParserError,
     NoGeneInformation,
     SuperpathwayWarning,
+    WrongParserError,
 )
 from cobramod.parsing.base import BaseParser
 
 
-def _build_reference(root: Any) -> dict:
+def build_cross_references_xml(root: Any) -> dict[str, str]:
     """
     Returns a dictionary with the corresponding cross-references and their
     identifiers.
@@ -99,7 +95,7 @@ def _p_compound(root: Any) -> dict:
         "FORMULA": formula,
         "CHARGE": charge,
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
-        "XREF": _build_reference(root=root),
+        "XREF": build_cross_references_xml(root=root),
     }
 
 
@@ -108,7 +104,7 @@ def _get_metabolites(root: Any) -> dict:
     Returns a dictionary with the metabolites that participates in the reaction
     of given XML.
     """
-    metabolites: Dict[str, float] = dict()
+    metabolites: dict[str, float] = dict()
     reactants = root.findall("./Reaction/left")
     products = root.findall("./Reaction/right")
     for side in (reactants, products):
@@ -163,7 +159,135 @@ def _check_direction(root: Any) -> tuple:
         )
 
 
-def _p_genes(root: Any, identifier: str, directory: Path) -> dict:
+def reaction_str_from_xml(root: et.Element) -> str:
+    reactants = root.findall("./Reaction/left")
+    products = root.findall("./Reaction/right")
+
+    if not reactants or not products:
+        raise AttributeError(
+            "The current et.Element does not show any properties of being a"
+            "reaction."
+        )
+    reaction_str: str = ""
+
+    for side in (reactants, products):
+        prefix = "r"
+
+        if side is reactants:
+            prefix = "l"
+
+        for i, item in enumerate(side):
+            element = item.find("coefficient")
+            if not element:
+                coefficient: float = 1.0
+
+            else:
+                value = element.text
+                if not value:
+                    raise AttributeError("Given Elements does not include text")
+
+                coefficient = float(value)
+
+            element = item.find("*/[@frameid]")
+
+            if element is None:
+                raise AttributeError("Metabolite was not found in the XML root")
+            else:
+                identifier = element.attrib["frameid"].strip().rstrip()
+
+            reaction_str += f"{coefficient} {prefix}_{identifier}"
+
+            if i < len(side) - 1:
+                reaction_str += " + "
+
+            if side is reactants and i == len(side) - 1:
+                reaction_str += f" {get_direction_from_xml(root)} "
+
+    return reaction_str
+
+
+def get_direction_from_xml(root: et.Element) -> str:
+    """
+    Returns the direction of the chemical reaction
+    """
+    element = root.find("*/reaction-direction")
+    if element is None:
+        raise AttributeError(
+            "Attribute 'reaction-direction' was not found in the given Element"
+        )
+    text = element.text
+    if not text:
+        raise AttributeError(
+            "Given element does not include text and thus, reversibility "
+            "cannot be infered"
+        )
+
+    reversibility = {
+        "REVERSIBLE": "<->",
+        "RIGHT-TO-LEFT": "<--",
+        "PHYSIOL-RIGHT-TO-LEFT": "<--",
+        "LEFT-TO-RIGHT": "-->",
+        "PHYSIOL-LEFT-TO-RIGHT": "-->",
+    }
+    return reversibility[text]
+
+
+def parse_reaction_attributes(root: et.Element, entry: str) -> dict[str, Any]:
+    try:
+        name = root.find("*[@ID]/enzymatic-reaction/*/common-name")
+        if name is not None and name.text:
+            name = name.text
+    except AttributeError:
+        name = entry
+    equation = reaction_str_from_xml(root)
+    attributes = {
+        "name": name,
+        "equation": equation,
+        "genes": None,
+        "xref": build_cross_references_xml(root),
+        "replacements": {},
+        "transport": cmod_utils.is_transport(equation),
+    }
+    return attributes
+
+
+def parse_metabolite_attributes(root: et.Element, entry: str):
+    try:
+        element = root.find("./*/cml/*")
+
+        if element is None:
+            raise AttributeError("No compound was found in given XML root")
+        name = element.attrib["title"]
+
+    except AttributeError:
+        name = entry
+
+    try:
+        element = root.find("./*/cml/*/formula")
+        if element is None:
+            raise AttributeError("No formula was found in given XML root")
+        formula = element.attrib["concise"].replace(" ", "")
+
+        element = root.find("./*/cml/molecule")
+        if element is None:
+            raise AttributeError("No formula was found in given XML root")
+        charge = float(element.attrib["formalCharge"])
+
+    # Must be Protein
+    except AttributeError:
+        formula = "X"
+        charge = 0
+
+    attributes: dict[str, Any] = {
+        "name": name,
+        "formula": formula,
+        "charge": charge,
+        "xref": build_cross_references_xml(root),
+    }
+    return attributes
+
+
+def _p_genes(identifier: str, directory: Path) -> dict:
     """
     Returns a dictionary with the corresponding genes and gene-reaction rules.
     This function will try to read a file for given identifier. If nothing is
@@ -214,9 +338,8 @@ def _p_reaction(root: Any, directory: Path) -> dict:
             data_dict=_get_metabolites(root=root)
         ),
         "DATABASE": database,
-        "XREF": _build_reference(root=root),
+        "XREF": build_cross_references_xml(root=root),
         "GENES": _p_genes(
-            root=root,
             identifier=identifier,
             directory=directory.joinpath(database),
         ),
@@ -254,7 +377,7 @@ def get_graph(root: Any) -> dict:
                 warn(message=msg, category=SuperpathwayWarning)
                 break
     # Parent: child
-    graph: Dict[str, Any] = dict()
+    graph: dict[str, Any] = dict()
     reactions = set()
     # line: Element
     for line in root.findall("*/reaction-ordering"):
@@ -304,7 +427,7 @@ def _p_pathway(root: Any) -> dict:
         "ENTRY": identifier,
         "PATHWAY": reaction_dict,
         "DATABASE": root.find("*[@frameid]").attrib["orgid"],
-        "XREF": _build_reference(root=root),
+        "XREF": build_cross_references_xml(root=root),
     }
     return pathway
 
@@ -320,11 +443,9 @@ class BiocycParser(BaseParser):
         for method in (_p_reaction, _p_pathway, _p_compound):
             with suppress(WrongParserError, AttributeError):
                 try:
-                    biocyc_dict = method(  # type: ignore
-                        root=root, directory=directory
-                    )
+                    biocyc_dict = method(root=root, directory=directory)
                 except TypeError:
-                    biocyc_dict = method(root=root)  # type: ignore
+                    biocyc_dict = method(root=root)
                 # This might change due to sub-database
                 biocyc_dict["DATABASE"] = root.find("*[@frameid]").attrib[
                     "orgid"
@@ -340,7 +461,6 @@ class BiocycParser(BaseParser):
         identifier: str,
         database: str,
         debug_level: int,
-        **kwargs,
     ) -> dict:
         """
         Retrieves data from biocyc and parses the most important attributes
@@ -368,17 +488,17 @@ class BiocycParser(BaseParser):
         return BiocycParser._parse(root=root, directory=directory)
 
     @staticmethod
-    @lru_cache(maxsize=1)
-    def _query_available_dbs() -> Element:
+    @functools.lru_cache(maxsize=1)
+    def _query_available_dbs() -> et.Element:
         """
         Function to query and cache all existing databases in BioCyc.
         """
 
         url = "https://biocyc.org/xmlquery?dbs"
-        response = get(url)
+        response = requests.get(url)
         response.raise_for_status()
 
-        return fromstring(response.content)
+        return et.fromstring(response.content)
 
     @staticmethod
     def _check_database(directory: Path, database: str) -> None:
@@ -400,19 +520,17 @@ class BiocycParser(BaseParser):
         if databases.find(f"metadata/*[@orgid='{database}']"):
             return
 
-        raise WrongParserError(
-            f'Database "{database}" was not found in Biocyc'
-        )
+        raise WrongParserError(f'Database "{database}" was not found in Biocyc')
 
     @staticmethod
-    def _read_file(filename: Path) -> Element:
+    def _read_file(filename: Path) -> et.Element:
         """
         Reads and return given filename as a Element. I will raise a error if
         file is not an valid xml.
         """
         try:
-            return parse(source=str(filename)).getroot()
-        except ParseError:
+            return et.parse(source=str(filename)).getroot()
+        except et.ParseError:
             raise WrongParserError("Wrong filetype")
 
 
@@ -441,12 +559,12 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
             f"https://websvc.biocyc.org/apixml?fn=genes-of-reaction&id="
             f"{database}:{identifier}&detail=full"
         )
-        response = get(url_text)
+        response = requests.get(url_text)
         try:
             response.raise_for_status()
-            root = fromstring(response.text)
+            root = et.fromstring(response.text)
             # Check for results in root
-            tree: Any = ElementTree(root)
+            tree: Any = et.ElementTree(root)
             if int(tree.find("*/num_results").text) == 0:
                 raise NoGeneInformation
             if database == "META":
@@ -457,20 +575,21 @@ def _get_gene_xml(directory: Path, identifier: str, database: str):
                 )
                 debug_log.warning(msg)
                 warn(message=msg, category=UserWarning)
-                raise NoGeneInformation(msg)
             tree.write(str(filename))
             debug_log.info(
                 f'Object "{identifier}_gene.xml" saved in '
                 f'directory "{database}/GENES".'
             )
-        except HTTPError:
+        except requests.HTTPError:
             # Warning
             raise NoGeneInformation(
                 f"Object {identifier} does not have gene information"
             )
 
 
-def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
+def retrieve_data(
+    directory: Path, identifier: str, database: str
+) -> et.Element:
     """
     Searchs in given parent directory if data is located in their respective
     database directory. If not, data will be retrieved from the corresponding
@@ -493,9 +612,11 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
         data_dir = directory.joinpath(database)
         filename = data_dir.joinpath(f"{identifier}.xml")
         debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
+
         # Search for the file on directory. Otherwise retrive from database
         try:
             return BiocycParser._read_file(filename=filename)
+
         except FileNotFoundError:
             debug_log.debug(
                 f'"{identifier}" not found in directory "{database}".'
@@ -505,26 +626,29 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                 f"https://websvc.biocyc.org/getxml?{database}:{identifier}"
             )
             debug_log.debug(f"Searching {url_text} for biochemical data.")
-            response = get(url_text)
+            response = requests.get(url_text)
             try:
                 response.raise_for_status()
                 # defining root
-                root = fromstring(response.text)
+                root = et.fromstring(response.text)
 
                 metadata = root.find("metadata/PGDB")
-                assert metadata is not None
+                if not isinstance(metadata, et.Element):
+                    raise TypeError("'metadata/PGDB' was not found in the root")
+
                 orgid = str(metadata.get("orgid"))
                 version = str(metadata.get("version"))
 
                 BaseParser.check_database_version(directory, orgid, version)
 
-                tree = ElementTree(root)
+                tree = et.ElementTree(root)
                 data_dir.mkdir(exist_ok=True)
                 tree.write(str(filename))
                 debug_log.info(
                     f'Object "{identifier}" found in database. Saving in '
                     f'directory "{database}".'
                 )
+
                 # Obtain genes if possible. This should be only call one time
                 # If information is already available, the genes should be
                 # available if found
@@ -537,13 +661,15 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                     )
 
                 return root
-            except HTTPError:
+
+            except requests.HTTPError:
                 msg = f'"{identifier}" is not available in "{database}"'
                 debug_log.critical(msg)
+
                 # Try with META
                 if database != "META":
                     # This will raise an error if not found in META
-                    with suppress(HTTPError):
+                    with suppress(requests.HTTPError):
                         root = retrieve_data(
                             directory=directory,
                             identifier=identifier,
@@ -551,7 +677,16 @@ def retrieve_data(directory: Path, identifier: str, database: str) -> Element:
                         )
                         return root
                 # In case there is nothing in META
-                raise HTTPError(msg)
+                raise requests.HTTPError(msg)
+
+            except et.ParseError:
+                msg = (
+                    f"The entry {database}:{identifier} did not return a "
+                    "valid XML. Probably you need a subscription for "
+                    "BioCyc."
+                )
+                debug_log.error(msg)
+                raise et.ParseError(msg)
     else:
         msg = "Directory not found. Please create the given directory."
         debug_log.critical(msg)

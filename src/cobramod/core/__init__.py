@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Core package
 
 This sub-package contains the principal modules, which are responsible for the

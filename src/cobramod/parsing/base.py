@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Abstract class Base
 
 This module contains an abstract class, which is used as a base for
@@ -161,7 +160,7 @@ class BaseParser(ABC):
         identifier: str,
         database: str,
         debug_level: int,
-        **kwargs
+        **kwargs,
     ) -> dict:
         """
         Method to retrieve data from server or local directory.

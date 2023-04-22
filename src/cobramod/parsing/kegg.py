@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Data parsing for KEGG
 
 This module handles the retrieval of data from KEGG into a local directory.
@@ -15,18 +14,133 @@ Important class of the module:
 - KeggParser: Child of the abstract class
 :class:`cobramod.parsing.base.BaseParser`.
 """
+from __future__ import annotations
+
 import io
 from contextlib import suppress
 from itertools import chain
 from pathlib import Path
-from typing import Generator, Union, Dict
+from typing import Any, Dict, Generator, Union
 from warnings import warn
 
-from requests import get, HTTPError
+from requests import HTTPError, get
 
+import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
+from cobramod.error import AbbreviationWarning, WrongParserError
 from cobramod.parsing.base import BaseParser
-from cobramod.error import WrongParserError, AbbreviationWarning
+
+
+def parse_metabolite_attributes(
+    data: dict[str, list[str]], entry: str
+) -> dict[str, Any]:
+    attributes: dict[str, Any] = {
+        "name": data.get("NAME", [entry]).pop(),
+        "formula": data.get("FORMULA", []).pop(),
+        # NOTE: BiGG compounds does not show charges at a specific
+        # ph-Value
+        "charge": 0,
+        "xref": build_references(data),
+    }
+    return attributes
+
+
+def parse_reaction_attributes(
+    data: dict[str, list[str]], entry: str
+) -> dict[str, Any]:
+    reaction_str = data.get("EQUATION", []).pop()
+
+    if not reaction_str:
+        raise AttributeError(f"There is no reaction found for '{entry}'")
+
+    position = cmod_utils.get_arrow_position(reaction_str)
+
+    if position == -1:
+        raise AttributeError(
+            f"Reaction string for {entry} did not include an arrow in the "
+            "equation"
+        )
+    reactants = [
+        item.rstrip().strip()
+        for item in reaction_str[:position].rstrip().strip().split("+")
+    ]
+    products = [
+        item.rstrip().strip()
+        for item in reaction_str[position + 3 :].rstrip().strip().split("+")
+    ]
+
+    arrow = reaction_str[position : position + 3]
+
+    reaction_str = str()
+
+    for side in (reactants, products):
+        prefix = "r"
+
+        if side is reactants:
+            prefix = "l"
+
+        for i, item in enumerate(side):
+            try:
+                coefficient, identifier = [
+                    item.strip().rstrip() for item in item.split(" ")
+                ]
+            except ValueError:
+                # In case no coefficient is given, it must be 1
+                coefficient = "1"
+                identifier = item
+
+            reaction_str += f"{coefficient} {prefix}_{identifier}"
+
+            if i < len(side) - 1:
+                reaction_str += " + "
+
+            if side is reactants and i == len(side) - 1:
+                reaction_str += f" {arrow} "
+
+    attributes = {
+        "name": data.get("NAME", [entry]).pop(),
+        "equation": reaction_str,
+        "genes": None,
+        "xref": build_references(data),
+        "replacements": {},
+        "transport": cmod_utils.is_transport(reaction_str),
+    }
+    return attributes
+
+
+def data_from_string(raw: str) -> dict[str, list[str]]:
+    """
+    Formats most of the keys for KEGG data and returns a dictionary.
+    """
+    lines = [line for line in raw.split(sep="\n")]
+    data: dict[str, list[str]] = dict()
+
+    for line in lines:
+        segment = line.split(" ")
+
+        if segment[0] != "///" and segment[0]:
+            data[segment[0]] = []
+
+    actual_key: str = ""
+
+    for line in lines:
+        if "///" in line:
+            break
+
+        # Create a list for each new key
+        key = None
+        for entry in data.keys():
+            if entry in line:
+                key = entry
+                break
+
+        if not key:
+            data[actual_key].append(line.strip().rstrip())
+        else:
+            actual_key = key
+            line = line[line.find(key) + len(key) :].strip().rstrip()
+            data[actual_key] = [line]
+    return data
 
 
 def _kegg_info_to_version(info: str) -> str:
@@ -141,18 +255,18 @@ def _get_metabolites(line: str) -> tuple:
     return arrows[arrow], metabolites
 
 
-def _build_reference(data_dict: dict) -> Union[dict, None]:
+def build_references(data_dict: dict[str, list[str]]) -> dict[str, str]:
     """
     Return a dictionary, where the keys are the names of cross-references
     and keys their identifiers. If nothing is found, it will return None
     """
-    try:
-        return {
-            item[0].strip().rstrip(): item[1].strip().rstrip()
-            for item in [name.split(":") for name in data_dict["DBLINKS"]]
-        }
-    except KeyError:
-        return None
+    references = dict()
+
+    for line in data_dict.get("DBLINKS", []):
+        items = [item.rstrip().strip() for item in line.split(":")]
+        references[items[0]] = items[1]
+
+    return references
 
 
 def _get_ko(identifier: str) -> list:
@@ -302,7 +416,7 @@ def _p_reaction(kegg_dict: dict, directory: Path, genome: str) -> dict:
             "EQUATION": metabolites,
             "BOUNDS": bounds,
             "TRANSPORT": BaseParser._check_transport(data_dict=metabolites),
-            "XREF": _build_reference(data_dict=kegg_dict),
+            "XREF": build_references(data_dict=kegg_dict),
             "GENES": _p_entry_genes(
                 kegg_dict=kegg_dict,
                 identifier=identifier,
@@ -354,9 +468,7 @@ def _p_compound(kegg_dict: dict) -> dict:
             warn(msg)
         return {
             "TYPE": list(
-                chain.from_iterable(
-                    item.split() for item in kegg_dict["ENTRY"]
-                )
+                chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
             )[-1],
             "ENTRY": identifier,
             "NAME": kegg_dict["NAME"][0],
@@ -364,7 +476,7 @@ def _p_compound(kegg_dict: dict) -> dict:
             "FORMULA": formula,
             # FIXME: search information about charges
             "CHARGE": 0,
-            "XREF": _build_reference(data_dict=kegg_dict),
+            "XREF": build_references(data_dict=kegg_dict),
         }
     except KeyError:
         raise WrongParserError
@@ -434,14 +546,12 @@ def _p_pathway(kegg_dict: dict) -> dict:
         return {
             "TYPE": "Pathway",
             "ENTRY": list(
-                chain.from_iterable(
-                    item.split() for item in kegg_dict["ENTRY"]
-                )
+                chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
             )[0],
             "NAME": kegg_dict["NAME"][0],
             "DATABASE": "KEGG",
             "PATHWAY": graph,
-            "XREF": _build_reference(data_dict=kegg_dict),
+            "XREF": build_references(data_dict=kegg_dict),
         }
     except KeyError:
         raise WrongParserError
@@ -525,8 +635,7 @@ class KeggParser(BaseParser):
         raw = retrieve_data(directory=directory, identifier=identifier)
         debug_log.log(
             level=debug_level,
-            msg=f'Data for identifier "{identifier}" '
-            + "retrieved from KEGG.",
+            msg=f'Data for identifier "{identifier}" ' + "retrieved from KEGG.",
         )
         try:
             genome = kwargs["genome"]

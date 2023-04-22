@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Data parsing for SolanaCyc
 
 This module handles the retrieval of data from SolanaCyc into a local
@@ -406,9 +405,7 @@ class SolCycParser(BaseParser):
         if databases.find(f"metadata/*[@orgid='{database}']"):
             return
 
-        raise WrongParserError(
-            f'Database "{database}" was not found in SolCyc'
-        )
+        raise WrongParserError(f'Database "{database}" was not found in SolCyc')
 
     @staticmethod
     def _read_file(filename: Path) -> Element:

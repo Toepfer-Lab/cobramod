@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """CobraMod's helpful function
 
 This module is intended to stored multiple functions, which cannot be grouped
@@ -10,16 +9,62 @@ example:
 from itertools import chain
 from pathlib import Path
 from re import match
-from typing import TextIO, Iterator, Generator, Iterable, Any
+from typing import Any, Generator, Iterable, Iterator, TextIO, Optional
 from warnings import warn
 
-from cobra import Reaction, DictList
+import cobra.core as cobra_core
+from cobra import DictList, Reaction
+
 from cobramod.debug import debug_log
 from cobramod.error import (
-    UnbalancedReaction,
     PatternNotFound,
-    NoIntersectFound,
+    UnbalancedReaction,
 )
+
+ARROWS: dict[str, tuple[int, int]] = {
+    "<=>": (-1000, 1000),
+    "<->": (-1000, 1000),
+    "==>": (0, 1000),
+    "-->": (0, 1000),
+    "<==": (1000, 0),
+    "<--": (1000, 0),
+}
+
+
+def build_metabolite(
+    identifier: str, formula: str, name: str, charge: float, compartment: str
+) -> cobra_core.Metabolite:
+    """
+    Returns a basic :class:`cobra.Metabolite`. Creation of the metabolite
+    writes in the log a with a DEBUG level.
+    level.
+
+    Args:
+        identifier (str): Short name for Metabolite.
+        formula (str): Chemical formula
+        name (name): Long name for Metabolite
+        charge (float): Charge of the metabolite
+        compartment (str): Location
+
+    Returns:
+        Metabolite: new created metabolite
+    """
+    metabolite = cobra_core.Metabolite(
+        id=identifier,
+        formula=formula,
+        name=name,
+        charge=charge,
+        compartment=compartment,
+    )
+    # debug_log.debug(f'Manually curated metabolite "{identifier}" was created.')
+    return metabolite
+
+
+def fix_name(name: str) -> str:
+    """
+    Returns new string, where hyphens are replaced to underscores
+    """
+    return name.replace("-", "_")
 
 
 def check_imbalance(
@@ -63,7 +108,7 @@ def get_key_dict(dictionary: dict, pattern: str) -> str:
     raise PatternNotFound("No pattern was found for given dictionary.")
 
 
-def _read_lines(f: TextIO) -> Iterator:
+def read_lines(f: TextIO) -> Iterator:
     """
     Reads Text I/O and returns iterator of line that are not comments nor
     blanks spaces
@@ -84,7 +129,7 @@ def create_replacement(filename: Path) -> dict:
     """
     replace_dict = dict()
     with open(file=str(filename), mode="r") as f:
-        for line in _read_lines(f=f):
+        for line in read_lines(f=f):
             key, value = line.rsplit(sep=":")
             replace_dict[key.strip().rstrip()] = value.strip().rstrip()
     return replace_dict
@@ -180,7 +225,9 @@ def _path_match(directory: Path, pattern: str) -> Path:
         raise StopIteration(f"No file found with pattern '{pattern}'")
 
 
-def _first_item(first: DictList, second: dict, revert: bool) -> str:
+def find_intersection(
+    dictlist: cobra_core.DictList, query: dict[str, str], revert: bool
+) -> Optional[str]:
     """
     Return the first item from the intersection of a DictList and the values of
     a dictionary. The identifiers from the DictList can be reverted to their
@@ -188,13 +235,70 @@ def _first_item(first: DictList, second: dict, revert: bool) -> str:
     """
     # Format
     if revert:
-        dict_set = {item.id[:-2].replace("_", "-") for item in first}
+        dict_set: set[str] = {
+            item.id[:-2].replace("_", "-") for item in dictlist
+        }
     # No format
     else:
-        dict_set = {item.id for item in first}
+        dict_set = {item.id for item in dictlist}
     # Error if nothing to pop, or empty Model
     try:
-        common = dict_set.intersection(set(second.values()))
+        common = dict_set.intersection(set(query.values()))
         return common.pop()
-    except (KeyError, AttributeError):
-        raise NoIntersectFound
+    except KeyError:
+        return None
+
+
+def is_compound(string: str) -> bool:
+    try:
+        float(string)
+
+    except ValueError:
+        if string[0] not in ["<", "-", "+"]:
+            return True
+    return False
+
+
+def get_arrow_position(reaction_str: str) -> int:
+    position = -1
+    for item in ARROWS:
+        position = reaction_str.find(item)
+
+        if position != -1:
+            break
+    return position
+
+
+def is_transport(reaction_str: str) -> bool:
+    """
+    Check if given reaction includes same participant in both sides,
+    meaning that there is a tranport reaction. Prefix is not taken into
+    consideration.
+    """
+    position = get_arrow_position(reaction_str)
+
+    reactants = {
+        item[2:].rstrip().strip()
+        for item in reaction_str[:position].rstrip().strip().split(" ")
+        if is_compound(item)
+    }
+    products = {
+        item[2:].rstrip().strip()
+        for item in reaction_str[position + 3 :].rstrip().strip().split(" ")
+        if is_compound(item)
+    }
+
+    return len(reactants.intersection(products)) > 0
+
+
+def convert_to_transport(reaction_str: str, compartment: str) -> str:
+    """Modifies the reaction string such that the left side of the equation
+    comes from the extracelullar compartment"""
+    position = get_arrow_position(reaction_str)
+
+    reactants = reaction_str[:position]
+    products = reaction_str[position:]
+
+    reactants = reactants.replace(f"_{compartment}", "_e")
+
+    return reactants + products
