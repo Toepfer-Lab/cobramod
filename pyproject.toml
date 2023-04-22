@@ -1,0 +1,42 @@
+[project]
+name = "cobramod"
+description="Python package for pathway-centric modification and extension of genome-scale metabolic networks"
+authors = [
+  { name="Stefano Camborda La Cruz", email="scambord@uni-koeln.de" },
+  { name="Jan-Niklas Weder", email="jweder@uni-koeln.de" },
+  { name="Nadine Töpfer", email="ntoepfer@uni-koeln.de" },
+]
+maintainers = [
+  { name="Nadine Töpfer", email="ntoepfer@uni-koeln.de" },
+] 
+requires-python = ">=3.8"
+dynamic = ["version", "readme"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+keywords = [ "genome-scale metabolic model", "constraint-based modelling", "COBRApy", "Escher", "metabolic model curation" ]
+license= {file = "LICENSE"}
+dependencies = [
+    "cobra>=0.26.0",
+    "requests>=2.24.0",
+    "webcolors>=1.11.1",
+    "tqdm>=4.62.3",
+    "pyarrow>=6.0.1",
+]
+
+[project.optional-dependencies]
+escher = ["escher-legacy>=1.7.4"]
+
+[project.urls]
+homepage = "https://github.com/Toepfer-Lab/cobramod"
+Documentation = "https://cobramod.readthedocs.io/"
+bugtracker = "https://github.com/Toepfer-Lab/cobramod/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "cobramod.__version__"}
+readme = {file = "README.md", content-type = "text/markdown"}
+
+[tool.black]
+line-length = 80

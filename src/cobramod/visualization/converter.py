@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """JSON creator
 
 This module handles the convertion of strings into a proper object that can be
@@ -37,7 +36,11 @@ from warnings import catch_warnings, simplefilter
 from webbrowser import open as web_open
 
 import numpy as np
-from escher import Builder
+
+try:
+    import escher
+except ImportError:
+    pass
 from IPython.core.getipython import get_ipython
 
 # from cobramod.visualization.pair import PairDictionary
@@ -336,9 +339,7 @@ class JsonDictionary(UserDict):
         elif item in ("reactions", "nodes"):
             numbers = {int(key) for key in self.data[item]}
         else:
-            raise ValueError(
-                "Argument 'item' not correct. Refer to docstring."
-            )
+            raise ValueError("Argument 'item' not correct. Refer to docstring.")
         return numbers
 
     def _get_last_number(self, item: str) -> int:
@@ -502,9 +503,7 @@ class JsonDictionary(UserDict):
                     pass
         return previous
 
-    def _find_shared(
-        self, metabolite: str, products: Dict[str, list]
-    ) -> tuple:
+    def _find_shared(self, metabolite: str, products: Dict[str, list]) -> tuple:
         """
         Returns the node number of the metabolite and the reaction involved if
         found in given dictionary with products.
@@ -644,9 +643,7 @@ class JsonDictionary(UserDict):
             else:
                 side_dict["right"] = counter
             # Add coefficient to reaction object
-            reaction.add_metabolite(
-                bigg_id=metabolite, coefficient=coefficient
-            )
+            reaction.add_metabolite(bigg_id=metabolite, coefficient=coefficient)
             # Add to node dictionary. Last minus one, since the node was
             # already added.
             # Either product or reactant
@@ -801,7 +798,6 @@ class JsonDictionary(UserDict):
         max_steps: int = 100,
         n_steps: int = None,
     ):
-
         """
         Function that creates a color scale between two predefined colors. The
         number of color gradations corresponds to the number of fluxes.
@@ -955,7 +951,7 @@ class JsonDictionary(UserDict):
 
     def visualize(
         self,
-        filepath: Optional[Path] = None,
+        filepath: Union[str, Path],
         vertical: bool = False,
         color: Optional[List[Union[str, List[int], None]]] = None,
         min_max: Optional[List[float]] = None,
@@ -1012,8 +1008,8 @@ class JsonDictionary(UserDict):
             https://www.w3schools.com/cssref/css_colors.asp
         """
         # Define path
-        if not filepath:
-            filepath = Path.cwd().joinpath("pathway.html")
+        if isinstance(filepath, str):
+            filepath = Path.cwd().joinpath(filepath)
         # Use relationship
         mapping = get_mapping(graph=self.graph)
         if vertical:
@@ -1047,7 +1043,7 @@ class JsonDictionary(UserDict):
                 n_steps=n_steps,
             )
 
-        builder = Builder(
+        builder = escher.Builder(
             # Check how reaction_styles behaves
             reaction_styles=["color", "text"],
             map_name=self.data["head"]["map_name"],

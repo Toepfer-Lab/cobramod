@@ -5,22 +5,11 @@ repos:
     -   id: no-commit-to-branch
         args: [-b master]
 -   repo: https://github.com/psf/black
-    rev: 19.3b0
+    rev: 23.3.0
     hooks:
     -   id: black
-        args: [--line-length=79, --check, --diff]
--   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.8
+        args: [--config=./pyproject.toml, --check, --diff]
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 'v0.0.262'
     hooks:
-    -   id: flake8
-        args: [--config=.toml]
--   repo: https://github.com/pre-commit/mirrors-mypy.git
-    rev: v0.730
-    hooks:
-    -   id: mypy
-        args: [--config-file=mypy.ini]
--   repo: https://github.com/PyCQA/doc8
-    rev: 0.9.0a1
-    hooks:
-    -   id: doc8
-        arg: [--config=.toml]
+    -   id: ruff
