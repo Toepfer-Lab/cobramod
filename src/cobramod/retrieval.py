@@ -11,10 +11,10 @@ from warnings import warn
 import cobra.core as cobra_core
 import requests
 
-import cobramod.parsing as cmod_parsing
-import cobramod.core as cmod_core
 import cobramod.utils as cmod_utils
+from cobramod.core import creation
 from cobramod.debug import debug_log
+from cobramod.parsing import bigg, biocyc, kegg
 
 BIOCYC = "https://websvc.biocyc.org/getxml?id="
 PMN = "https://pmn.plantcyc.org/getxml?"
@@ -58,30 +58,24 @@ class Data:
 
         if is_compound:
             mode = "Metabolite"
-            attributes = cmod_parsing.bigg.parse_metabolite_attributes(data)
+            attributes = bigg.parse_metabolite_attributes(data)
         else:
             mode = "Reaction"
-            attributes = cmod_parsing.bigg.parse_reaction_attributes(
-                data, entry
-            )
+            attributes = bigg.parse_reaction_attributes(data, entry)
 
         return cls(entry, attributes, mode, database, path)
 
     @classmethod
     def from_text(cls, entry: str, text: str, database: str, path: Path):
-        data: dict[str, list[str]] = cmod_parsing.kegg.data_from_string(text)
+        data: dict[str, list[str]] = kegg.data_from_string(text)
         mode = data["ENTRY"][0].split()[-1]
 
         if mode == "Compound":
             mode = "Metabolite"
-            attributes = cmod_parsing.kegg.parse_metabolite_attributes(
-                data, entry
-            )
+            attributes = kegg.parse_metabolite_attributes(data, entry)
 
         elif mode == "Reaction":
-            attributes = cmod_parsing.kegg.parse_reaction_attributes(
-                data, entry
-            )
+            attributes = kegg.parse_reaction_attributes(data, entry)
         else:
             raise AttributeError(f"Cannot parse type '{mode}'")
 
@@ -91,15 +85,11 @@ class Data:
     def from_xml(cls, entry: str, root: et.Element, database: str, path: Path):
         if root.findall("Compound") or root.findall("Protein"):
             mode = "Metabolite"
-            attributes = cmod_parsing.biocyc.parse_metabolite_attributes(
-                root, entry
-            )
+            attributes = biocyc.parse_metabolite_attributes(root, entry)
 
         elif root.findall("Reaction"):
             mode = "Reaction"
-            attributes = cmod_parsing.biocyc.parse_reaction_attributes(
-                root, entry
-            )
+            attributes = biocyc.parse_reaction_attributes(root, entry)
         else:
             raise AttributeError(
                 "Cannot infere the object type from given et.Element"
@@ -107,9 +97,13 @@ class Data:
         return cls(entry, attributes, mode, database, path)
 
     def parse(
-        self, model: cobra_core.Model, compartment: str
+        self,
+        model: cobra_core.Model,
+        compartment: str,
+        replacement: dict[str, str] = {},
     ) -> cobra_core.Object:
-        identifier = f"{self.identifier.replace('-','_')}_{compartment}"
+        identifier = replacement.get(self.identifier, self.identifier)
+        identifier = f"{identifier.replace('-','_')}_{compartment}"
 
         if self.mode == "Metabolite":
             try:
@@ -124,13 +118,13 @@ class Data:
                     compartment,
                 )
         elif self.mode == "Reaction":
-            replacement = cmod_utils.find_intersection(
+            xref = cmod_utils.find_intersection(
                 dictlist=model.reactions,
                 query=self.attributes["xref"],
                 revert=True,
             )
-            if replacement:
-                self.identifier = replacement
+            if xref:
+                self.identifier = xref
 
             try:
                 return model.reactions.get_by_id(identifier)
@@ -149,7 +143,7 @@ class Data:
                         part = part[2:]
                         part += f"_{compartment}"
 
-                    part = self.attributes["replacements"].get(part, part)
+                    part = replacement.get(part, part)
 
                     reaction_str += f"{part} "
 
@@ -181,6 +175,7 @@ class Data:
                     self.database,
                     # NOTE: add model_id
                     "",
+                    replacement,
                 )
                 return reaction
 
@@ -207,7 +202,7 @@ def get_response(
 
         try:
             if database == "bigg":
-                response, _ = cmod_parsing.bigg.find_url(model_id, query)
+                response, _ = bigg.find_url(model_id, query)
                 # This extra attribute if later use to save the file in their
                 # corresponding directories
                 response.extra = Path(model_id)
@@ -297,6 +292,7 @@ def get_data(
     directory: Union[str, Path],
     database: Optional[str],
     model_id: Optional[str] = None,
+    # genome: Optional[str] = None,
     # NOTE: add docstring
 ):
     if isinstance(directory, str):
@@ -354,8 +350,9 @@ def build_reaction_from_str(
     reaction: cobra_core.Reaction,
     reaction_str: str,
     directory: Path,
-    database: str,
-    model_id: str,
+    database: Optional[str],
+    model_id: Optional[str],
+    replacement: dict[str, str],
 ):
     position = cmod_utils.get_arrow_position(reaction_str)
     arrow = reaction_str[position : position + 3]
@@ -384,11 +381,13 @@ def build_reaction_from_str(
 
     for identifier, coefficient in compounds.items():
         compartment = identifier[-1]
+
+        identifier = replacement.get(identifier[:-2], identifier[:-2])
+        identifier = f"{identifier}_{compartment}"
+
         try:
             data = get_data(identifier[:-2], directory, database, model_id)
-            metabolite = cmod_core.creation.get_metabolite(
-                data, compartment, model
-            )
+            metabolite = creation.metabolite_from_data(data, compartment, model)
         except AttributeError:
             # NOTE: add log. This is only for custom
             metabolite = cobra_core.Metabolite(

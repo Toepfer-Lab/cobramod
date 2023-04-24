@@ -56,7 +56,7 @@ def build_metabolite(
         charge=charge,
         compartment=compartment,
     )
-    # debug_log.debug(f'Manually curated metabolite "{identifier}" was created.')
+    debug_log.debug(f'Manually curated metabolite "{identifier}" was created.')
     return metabolite
 
 
@@ -302,3 +302,52 @@ def convert_to_transport(reaction_str: str, compartment: str) -> str:
     reactants = reactants.replace(f"_{compartment}", "_e")
 
     return reactants + products
+
+
+def confirm_metabolite(
+    model: cobra_core.Model, metabolites: list[cobra_core.Metabolite]
+):
+    """
+    Checks if given metabolites are already in the model. If not, they will be
+    added into the model.
+
+    Args:
+        model (Model): Model to extend.
+        metabolites (List[Metabolites]): List with Metabolites.
+    """
+    # A Loop in necessary to log the skipped metabolites.
+    for member in metabolites:
+        found = model.metabolites.has_id(member.id)
+
+        if not found:
+            model.add_metabolites(metabolite_list=member)
+            debug_log.info(f'Metabolite "{member.id}" was added to model.')
+            continue
+
+        msg = (
+            f'Metabolite "{member.id}" is already present in the model. '
+            "Skipping addition."
+        )
+        debug_log.warning(msg=msg)
+        warn(message=msg, category=UserWarning)
+
+
+def confirm_reaction(
+    model: cobra_core.Model, reactions: list[cobra_core.Reaction]
+):
+    """
+    Check function that adds Reactions to given model if it does not
+    contain the reaction. It logs the skipped reactions.
+    """
+    for member in reactions:
+        if model.reactions.has_id(member.id):
+            msg = (
+                f'Reaction "{member.id}" is already present in the model. '
+                "Skipping additions."
+            )
+            debug_log.warning(msg=msg)
+            warn(message=msg, category=UserWarning)
+            continue
+
+        model.add_reactions([member])
+        debug_log.info(f'Reaction "{member.id}" was added to model.')

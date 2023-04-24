@@ -20,7 +20,7 @@ import io
 from contextlib import suppress
 from itertools import chain
 from pathlib import Path
-from typing import Any, Dict, Generator, Union
+from typing import Any, Generator, Union, Optional
 from warnings import warn
 
 from requests import HTTPError, get
@@ -29,6 +29,8 @@ import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
 from cobramod.error import AbbreviationWarning, WrongParserError
 from cobramod.parsing.base import BaseParser
+
+KO_LINK = "http://rest.kegg.jp/link/ko/"
 
 
 def parse_metabolite_attributes(
@@ -100,10 +102,14 @@ def parse_reaction_attributes(
     attributes = {
         "name": data.get("NAME", [entry]).pop(),
         "equation": reaction_str,
-        "genes": None,
         "xref": build_references(data),
         "replacements": {},
         "transport": cmod_utils.is_transport(reaction_str),
+        "genes": parse_genes(
+            identifier=entry,
+            directory=Path(),
+            genome="",
+        ),
     }
     return attributes
 
@@ -188,7 +194,7 @@ def _create_dict(raw: str) -> dict:
     lines = (line for line in raw.split("\n"))
     keys = set(_get_keys(raw=raw))
     actual_key = str()
-    kegg_dict: Dict[str, list] = {}
+    kegg_dict: dict[str, list] = {}
     # Create dictionary
     for line in lines:
         if "///" in line:
@@ -291,7 +297,9 @@ def _get_ko(identifier: str) -> list:
         )
 
 
-def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
+def parse_ko_to_genes(
+    string: str, reaction: str, genome: Optional[str]
+) -> list[str]:
     """
     Returns with a list with the corresponding genes for given genome. String
     is the raw text that include the gene information. If Abbreviation or no
@@ -299,7 +307,8 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
     """
     # Retrive the KO-identifiers
     text = string.replace("\t", " ").splitlines()
-    genes: Dict[str, list] = dict()
+
+    genes: dict[str, list] = dict()
     # Separate the lines and append the gene identifier to the corresponding
     # genome
     for line in text:
@@ -330,7 +339,7 @@ def _parse_ko(string: str, reaction: str, genome: str = None) -> list:
     return []
 
 
-def _get_genes(directory: Path, identifier: str):
+def retrieve_kegg_genes(directory: Path, identifier: str):
     """
     Stores the genes for given reaction in given directory. Function will call
     a HTTPError if nothing is found.
@@ -355,17 +364,18 @@ def _get_genes(directory: Path, identifier: str):
             raise HTTPError(f'Gene information for "{identifier}" unavailable')
 
 
-def _p_entry_genes(
-    kegg_dict: dict, directory: Path, identifier: str, genome: str
-) -> dict:
+def parse_genes(
+    directory: Path, identifier: str, genome: str
+) -> dict[str, Any]:
     """
     From given KEGG dictionary returns a dictionary with the key
     "genes" which include a dictionary with the identifier and name of the
     gene; and the key "rule" for the COBRApy representation of the
     gene-reaction rule
     """
-    genes: Dict[str, str] = dict()
+    genes: dict[str, str] = dict()
     rule = str()
+
     filename = (
         directory.joinpath("KEGG")
         .joinpath("GENES")
@@ -373,12 +383,14 @@ def _p_entry_genes(
     )
     with suppress(FileNotFoundError):
         with open(file=filename, mode="r") as file:
-            genes_list = _parse_ko(
+            genes_list = parse_ko_to_genes(
                 string=str(file.read()), reaction=identifier, genome=genome
             )
             for gene in genes_list:
                 genes[gene] = ""
+
             rule = " or ".join(genes.keys())
+
     if genes:
         rule = " or ".join(genes.keys())
         debug_log.warning(
@@ -417,7 +429,7 @@ def _p_reaction(kegg_dict: dict, directory: Path, genome: str) -> dict:
             "BOUNDS": bounds,
             "TRANSPORT": BaseParser._check_transport(data_dict=metabolites),
             "XREF": build_references(data_dict=kegg_dict),
-            "GENES": _p_entry_genes(
+            "GENES": parse_genes(
                 kegg_dict=kegg_dict,
                 identifier=identifier,
                 directory=directory,
@@ -726,7 +738,9 @@ def retrieve_data(directory: Path, identifier: str) -> dict:
                     file.write(unformatted_data)
                 # Search for the gene information and store it if found.
                 with suppress(HTTPError):
-                    _get_genes(directory=directory, identifier=identifier)
+                    retrieve_kegg_genes(
+                        directory=directory, identifier=identifier
+                    )
                 return _create_dict(raw=unformatted_data)
             except HTTPError:
                 msg = (

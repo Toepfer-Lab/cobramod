@@ -243,7 +243,6 @@ def parse_reaction_attributes(root: et.Element, entry: str) -> dict[str, Any]:
     attributes = {
         "name": name,
         "equation": equation,
-        "genes": None,
         "xref": build_cross_references_xml(root),
         "replacements": {},
         "transport": cmod_utils.is_transport(equation),
@@ -287,7 +286,7 @@ def parse_metabolite_attributes(root: et.Element, entry: str):
     return attributes
 
 
-def _p_genes(identifier: str, directory: Path) -> dict:
+def parse_genes(identifier: str, directory: Path) -> dict[str, Any]:
     """
     Returns a dictionary with the corresponding genes and gene-reaction rules.
     This function will try to read a file for given identifier. If nothing is
@@ -339,7 +338,7 @@ def _p_reaction(root: Any, directory: Path) -> dict:
         ),
         "DATABASE": database,
         "XREF": build_cross_references_xml(root=root),
-        "GENES": _p_genes(
+        "GENES": parse_genes(
             identifier=identifier,
             directory=directory.joinpath(database),
         ),

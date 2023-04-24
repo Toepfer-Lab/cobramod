@@ -139,7 +139,6 @@ def get_crossreferences(  # noqa: C901
         response.raise_for_status()
     except HTTPError as error:
         if error.response.status_code == 413:
-
             size = len(querys)
             half = round(size / 2)
             chunk1 = querys[1:half]
@@ -154,7 +153,6 @@ def get_crossreferences(  # noqa: C901
     response_json = response.json()
 
     for query in all_querys:
-
         try:
             answer = response_json[query]
         except KeyError:
@@ -379,7 +377,7 @@ def add_crossreferences(  # noqa: C901
 
     """
     if isinstance(directory, str):
-        directory = Path(directory)
+        directory = Path(directory).absolute()
 
     if isinstance(object, Model):
         if not consider_sub_elements:
@@ -454,7 +452,6 @@ def add_crossreferences(  # noqa: C901
         total_found = 0
 
         for key, value in object.annotation.items():
-
             if isinstance(value, list):
                 for id in value:
                     ids.append(key + ":" + id)
@@ -464,7 +461,6 @@ def add_crossreferences(  # noqa: C901
         potential_xrefs = get_crossreferences(sort, ids, directory)
 
         for potential_xref in potential_xrefs:
-
             try:
                 prefix, new_id = potential_xref.split(":")
             except ValueError:
@@ -494,10 +490,7 @@ def add_crossreferences(  # noqa: C901
         except (KeyError, HTTPError):
             pass
         else:
-
-            xrefs = add2dict_unique(
-                "pubchem.compound", pubchem_compound, xrefs
-            )
+            xrefs = add2dict_unique("pubchem.compound", pubchem_compound, xrefs)
 
             if isinstance(pubchem_compound, str):
                 pubchem_compound = [pubchem_compound]

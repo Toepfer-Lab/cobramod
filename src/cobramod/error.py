@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Errors for CobraMod
 
 This module creates special errors for CobraMod. Read each error for their

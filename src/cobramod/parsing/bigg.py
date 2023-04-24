@@ -200,13 +200,16 @@ def parse_reaction_attributes(
             if side is reactants and i == len(side) - 1:
                 reaction_str += f" {arrow} "
 
+    genes = parse_genes(
+        data.get("genes", []), data.get("gene_reaction_rule", "")
+    )
     attributes: dict[str, Any] = {
-        "name": data.get("name", ""),
+        "name": data.get("name", data.get("exported_reaction_id", "")),
         "equation": reaction_str,
-        "genes": None,
         "xref": build_reference(data),
         "replacements": {},
         "transport": cmod_utils.is_transport(reaction_str),
+        "genes": genes,
     }
     return attributes
 
@@ -270,7 +273,15 @@ def _get_metabolites(json_data: dict) -> dict:
     return meta_dict
 
 
-def _p_genes(json_data: dict) -> dict:
+def parse_genes(data: list[dict[str, Any]], rule: str):
+    genes: dict[str, str] = {}
+    for gene in data:
+        genes[gene["bigg_id"]] = gene.get("name", "")
+
+    return {"genes": genes, "rule": rule}
+
+
+def _p_genes(json_data: dict[str, Any]) -> dict[str, Any]:
     """
     Return a dictionary that includes the genes and gene-reaction-rule for
     given reaction. The dictionary include the key "genes", which is dictionary

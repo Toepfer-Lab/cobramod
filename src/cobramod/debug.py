@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Debugging configuration for CobraMod
 
 This module configures the debug logging tool. The format of the syntax:
