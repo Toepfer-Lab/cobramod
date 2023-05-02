@@ -1272,11 +1272,15 @@ def create_object(
                     directory, identifier, genome
                 )
             else:
-                # NOTE: add message
+                msg = (
+                    "No genes were specified for the KEGG reaction "
+                    f"{identifier}. No genes will be added."
+                )
+                warn(message=msg, category=UserWarning)
+                debug_log.warning(msg=msg)
                 return obj
 
         else:
-            # FIXME: add msg
             raise AttributeError(f"No parser was found for: {data.path}")
 
         genes_to_reaction(obj, gene_information)
