@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Pathway extension
 
 This module handles the addition of reactions as a pathway into
@@ -9,43 +8,41 @@ Most important functions:
 - test_non_zero_flux: Checks that the given reaction in a model is active and
     gives a non-zero flux.
 """
+from __future__ import annotations
+
 from contextlib import suppress
 from pathlib import Path
-from typing import Generator, List, Optional, Set, Union
+from typing import Generator, Optional, Union
 from warnings import warn
 
-from cobra import Metabolite, Model, Reaction
-from cobra.core.configuration import Configuration
-from cobra.exceptions import OptimizationError
+import cobra.core as cobra_core
+import cobra.exceptions as cobra_exceptions
 
-from cobramod.core.creation import (
-    _convert_string_reaction,
-    _get_file_reactions,
-    create_object,
-)
-from cobramod.core.graph import _create_quick_graph, _format_graph, build_graph
+import cobramod.retrieval as cmod_retrieval
+import cobramod.utils as cmod_utils
+from cobramod.core import creation as cmod_core_creation
+from cobramod.core import graph as cmod_core_graph
 from cobramod.core.pathway import Pathway
-from cobramod.core.retrieval import get_data
-from cobramod.core.summary import DataModel, summary as summarize
+from cobramod.core.summary import DataModel
+from cobramod.core.summary import summary as summarize
 from cobramod.debug import debug_log
 
-
 # Defaults to 1E-07
-cobra_tolerance: float = Configuration().tolerance
+cobra_tolerance: float = cobra_core.Configuration().tolerance
 
 
-def _create_reactions(
-    sequence: List[str],
+def yield_reaction_from_list(
+    sequence: list[str],
     compartment: str,
     directory: Path,
     database: str,
     show_imbalance: bool,
     stop_imbalance: bool,
     replacement: dict,
-    model: Model,
+    model: cobra_core.Model,
     model_id: str,
     genome: Optional[str],
-) -> Generator:
+) -> Generator[cobra_core.Reaction, None, None]:
     """
     Yields a Reaction from given list of identifiers .
 
@@ -76,7 +73,7 @@ def _create_reactions(
     # Objects.
     for identifier in sequence:
         # Check if translation is available
-        obj = create_object(
+        obj = cmod_core_creation.create_object(
             identifier=identifier,
             directory=directory,
             database=database,
@@ -88,55 +85,64 @@ def _create_reactions(
             model_id=model_id,
             genome=genome,
         )
+        if not isinstance(obj, cobra_core.Reaction):
+            raise TypeError("Given object is not a valid COBRApy Reaction")
         yield obj
 
 
-def _find_problem(model: Model, reaction: str) -> List[str]:
+def find_problem(model: cobra_core.Model, identifier: str) -> list[str]:
     """
     Return a List with the metabolite identifiers that must have a sink
     reaction to make the reaction carry a non-zero flux.
     """
-    problem: List[str] = list()
+    problem: list[str] = list()
     value: Optional[float]
-    _reaction: Reaction = model.reactions.get_by_id(reaction)
-    metabolites: List[Metabolite] = _reaction.products + _reaction.reactants
+
+    reaction = model.reactions.get_by_id(identifier)
+    if not isinstance(reaction, cobra_core.Reaction):
+        raise TypeError("Given object is not a COBRApy Reaction")
+
+    metabolites: list[cobra_core.Metabolite] = (
+        reaction.products + reaction.reactants
+    )
 
     # Add sink
     for metabolite in metabolites:
         with suppress(ValueError):
             model.add_boundary(metabolite=metabolite, type="sink")
-            debug_log.debug(f"Sink reaction for {reaction} created.")
+            debug_log.debug(f"Sink reaction for {identifier} created.")
 
     assert model.slim_optimize() != 0.0
 
     # Test each reaction
     for metabolite in metabolites:
-        sink: Reaction = model.reactions.get_by_id(f"SK_{metabolite.id}")
+        sink = model.reactions.get_by_id(f"SK_{metabolite.id}")
+        if not isinstance(sink, cobra_core.Reaction):
+            raise TypeError("Given object is not a COBRApy Reaction")
 
         if len(metabolite.reactions) < 2:
             # Sink cannot be removed because it needs 2 reaction
             continue
 
         model.remove_reactions([sink])
-        debug_log.debug(f"Sink reaction for {reaction} removed.")
+        debug_log.debug(f"Sink reaction for {identifier} removed.")
 
         # Find metabolites that are necessary to carry a flux
         try:
             value = model.slim_optimize(error_value=None)
 
             if not value:
-                value == 0.0
+                value = 0.0
 
-            assert value is not None
             if abs(value) <= cobra_tolerance:
-                raise OptimizationError("FAILED")
+                raise cobra_exceptions.OptimizationError("FAILED")
 
-        except OptimizationError:
+        except cobra_exceptions.OptimizationError:
             model.add_reactions(reaction_list=[sink])
             debug_log.debug(
-                f"Sink reaction for {reaction} added again. Metabolite "
+                f"Sink reaction for {identifier} added again. Metabolite "
                 f'"{metabolite.id}" must have a sink reaction to make '
-                f'"{reaction}" carry a flux.'
+                f'"{identifier}" carry a flux.'
             )
             assert metabolite.id
             problem.append(metabolite.id)
@@ -144,27 +150,9 @@ def _find_problem(model: Model, reaction: str) -> List[str]:
     return problem
 
 
-def _new_verify_sink(model: Model, reaction: str):
-    """
-    Creates sink reactions for the metabolites that participate in given
-    reaction. They can only be created if the corresponding metabolite only
-    participates in one reaction. Otherwise, the metabolite can be somehow
-    turnover
-    """
-    _reaction: Reaction = model.reactions.get_by_id(reaction)
-    metabolites: List[Metabolite] = _reaction.products + _reaction.reactants
-
-    for metabolite in metabolites:
-        amount = len(metabolite.reactions)
-
-        if amount <= 1:
-            # Warning is called in _inform_sink
-            model.add_boundary(metabolite=metabolite, type="sink")
-
-
-def _recursive_flux_test(
-    model: Model, reaction: str, times: int = 0
-) -> Optional[float]:
+def recursive_flux_test(
+    model: cobra_core.Model, identifier: str, times: int = 0
+) -> float:
     """
     Main part of the non-zero flux test. It is a recursive function. Firstly,
     the function checks if there a non-zero flux. If not, it will create the
@@ -185,17 +173,16 @@ def _recursive_flux_test(
 
     if times == 0:
         debug_log.info(
-            f'Test to carry non-zero flux for "{reaction}" started.'
+            f'Test to carry non-zero flux for "{identifier}" started.'
         )
     # run
     passed: bool
-    value: Optional[float] = model.slim_optimize(error_value=None)
+    value = model.slim_optimize()
 
     if not value:
         passed = False
         value = 0.0
 
-    # TODO: should be higher or at least?
     elif abs(value) > cobra_tolerance:
         passed = True
 
@@ -205,13 +192,13 @@ def _recursive_flux_test(
     # Add sinks and get new value
     if not passed:
         if times < 1:
-            _new_verify_sink(model=model, reaction=reaction)
-            value = _recursive_flux_test(
-                model=model, reaction=reaction, times=times + 1
+            cmod_utils.confirm_sink(model=model, identifier=identifier)
+            value = recursive_flux_test(
+                model=model, identifier=identifier, times=times + 1
             )
 
         else:
-            problem = _find_problem(model=model, reaction=reaction)
+            problem = find_problem(model=model, identifier=identifier)
             msg = (
                 "The model cannot turnover the following metabolites "
                 f"{problem}. To overcome this, sink reactions were created to "
@@ -222,36 +209,22 @@ def _recursive_flux_test(
             value = model.slim_optimize()
 
     # Raise only if manual intervention is necessary
-    assert value is not None
     if times == 0:
         if abs(value) > cobra_tolerance:
             debug_log.info(
-                f"Non-zero flux test for reaction {reaction} passed."
+                f"Non-zero flux test for reaction {identifier} passed."
             )
 
         else:
-            raise OptimizationError(
-                f"There is a problem with reaction {reaction}. Please create "
+            raise cobra_exceptions.OptimizationError(
+                f"There is a problem with reaction {identifier}. Please create "
                 "manually the corresponding turnover reactions for the "
-                f'metabolites of "{reaction}".'
+                f'metabolites of "{identifier}".'
             )
     return value
 
 
-def _is_minimize(model: Model, reaction: str) -> bool:
-    """
-    Return whether given reaction should be minimized when optimizing
-    """
-    _reaction: Reaction = model.reactions.get_by_id(reaction)
-    lower: float = _reaction.lower_bound  # type: ignore
-    upper: float = _reaction.upper_bound  # type: ignore
-
-    if abs(lower) > upper:
-        return True
-    return False
-
-
-def _test_non_zero_main(model: Model, reaction: str):
+def non_zero_core(model: cobra_core.Model, identifier: str):
     """
     Performs non-zero flux test. In this test, a reaction is tested to make
     sure it can carry a flux. If necessary, CobraMod creates sink reactions
@@ -270,24 +243,24 @@ def _test_non_zero_main(model: Model, reaction: str):
     original_objective = model.objective
     original_direction = model.objective_direction
 
-    _reaction: Reaction = model.reactions.get_by_id(reaction)
+    reaction = model.reactions.get_by_id(identifier)
 
     # check reversibility
-    if _is_minimize(model=model, reaction=reaction):
+    if cmod_utils.reaction_is_minimize(model=model, identifier=identifier):
         model.objective_direction = "min"
 
     # Define new objective
-    model.objective = _reaction
+    model.objective = reaction
 
     # Recursive function
-    _recursive_flux_test(model=model, reaction=reaction)
+    recursive_flux_test(model=model, identifier=identifier)
 
     # Revert back objective
     model.objective = original_objective
     model.objective_direction = original_direction
 
 
-def test_non_zero_flux(model: Model, reaction: str):
+def test_non_zero_flux(model: cobra_core.Model, reaction: str):
     """
     Performs non-zero flux test. In this test, a reaction is tested to make
     sure it can carry a flux. If necessary, CobraMod creates sink reactions
@@ -302,17 +275,20 @@ def test_non_zero_flux(model: Model, reaction: str):
         OptimizationError: If given reaction needs manual curation
 
     """
-    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+    previous_sinks: set[str] = {sink.id for sink in model.sinks if sink.id}
 
-    _test_non_zero_main(model=model, reaction=reaction)
+    non_zero_core(model=model, identifier=reaction)
 
     # Revert back objective and inform
-    _inform_sink(model=model, previous_sinks=previous_sinks)
+    cmod_utils.inform_new_sinks(model=model, previous_sinks=previous_sinks)
     print(f"Reaction {reaction} passed the non-zero-flux test.")
 
 
-def _add_sequence(
-    model: Model, pathway: Pathway, sequence: list, ignore_list: list
+def add_reactions_to_Pathway(
+    model: cobra_core.Model,
+    pathway: Union[cobra_core.Group, Pathway],
+    sequence: list[cobra_core.Reaction],
+    ignore_list: list,
 ):
     """
     From a sequence of Reaction objects, add each Reaction into given model. It
@@ -330,14 +306,13 @@ def _add_sequence(
     Raises:
         TypeError: if reactions are not valid Reaction objects
     """
-    if not all((isinstance(reaction, Reaction) for reaction in sequence)):
+    if not all(
+        (isinstance(reaction, cobra_core.Reaction) for reaction in sequence)
+    ):
         raise TypeError("Reactions are not valid objects. Check list.")
 
     # Add sequence to model
-    reaction: Reaction
     for reaction in sequence:
-        assert reaction.id
-
         # Add reaction if not in model
         if reaction not in model.reactions:
             model.add_reactions([reaction])
@@ -345,7 +320,7 @@ def _add_sequence(
 
         # Skip test but include reaction in pathway
         if reaction.id not in ignore_list:
-            _test_non_zero_main(model=model, reaction=reaction.id)
+            non_zero_core(model=model, identifier=reaction.id)
 
         else:
             debug_log.warning(
@@ -362,15 +337,14 @@ def _add_sequence(
     debug_log.debug(f'Reactions added to group "{pathway.id}".')
 
     # Only add if there is at least 1 reaction in the group.
-    if (
-        pathway.id not in [group.id for group in model.groups]
-        and len(pathway.members) > 0
-    ):
+    if model.groups.has_id(pathway.id) and len(pathway.members) > 0:
         model.add_groups(group_list=[pathway])
         debug_log.info(f'Pathway "{pathway.id}" added to Model.')
 
 
-def _update_reactions(sequence: List[str], avoid_list: List[str]) -> List[str]:
+def remove_avoid_reactions(
+    sequence: list[str], avoid_list: list[str]
+) -> list[str]:
     """
     Updates the given sequence taking into consideration reactions to avoid
     in the sequence
@@ -379,7 +353,7 @@ def _update_reactions(sequence: List[str], avoid_list: List[str]) -> List[str]:
         sequence (list): identifier of the reactions to update
         avoid_list (list): Reactions that should not be included in the model
     """
-    new_sequence: List[str] = list()
+    new_sequence: list[str] = list()
 
     # Remove reactions
     for item in sequence:
@@ -397,32 +371,11 @@ def _update_reactions(sequence: List[str], avoid_list: List[str]) -> List[str]:
     return new_sequence
 
 
-def _inform_sink(model: Model, previous_sinks: Set[str]):
-    """
-    Warns the user if sinks were created during the extension of the Model.
-    i.e. Function compares a set with sink identifiers with the actual sinks
-    in a model.
-    """
-    sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}.difference(
-        previous_sinks
-    )
-
-    if sinks:
-        for reaction in sinks:
-            msg = (
-                f'Auxiliary sink reaction for "{reaction}" created. Consider '
-                "removing it and adding the synthesis reactions for the "
-                "metabolite."
-            )
-            debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
-
-
-def _from_strings(
-    model: Model,
-    obj: Union[List[str], Path],
-    pathway_name: str,
-    database: str,
+def add_pathway_from_file(
+    model: cobra_core.Model,
+    file: Union[str, Path],
+    identifier: str,
+    database: Optional[str],
     replacement: dict,
     ignore_list: list,
     stop_imbalance: bool,
@@ -434,11 +387,10 @@ def _from_strings(
     """
     Adds a Pathway into given model. The reactions are created from::
 
-     - Path: A file with components. E. g. :
-        Path.cwd().joinpath("file_with_names.txt")
-     - List[str]: A list with multiple string. Either the identifier with its
-     corresponding compartment; a string with all components or the reaction
-     identifier already in the model. This applies for the Path option. E.g. :
+     - Path or str: A file with components. E. g. :
+        Path.cwd().joinpath("file_with_names.txt") or "./file_with_names.txt"
+
+      This applies for both options :
 
         :code:`reaction_identifier, compartment`
 
@@ -449,10 +401,10 @@ def _from_strings(
 
     Args:
         model (Model): Model to expand.
-        obj (Union[List[str], Path]): Location of the file or list with strings
+        path (Union[str, Path]): Location of the file.
         database (str): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
-        pathway_name (str): Common :class:`cobramod.pathway.Pathway`
+        identifier (str): Common :class:`cobramod.pathway.Pathway`
             identifier
 
     Argument for complex pathways:
@@ -477,53 +429,46 @@ def _from_strings(
             List available at https://www.genome.jp/kegg/catalog/org_list.html
 
     """
+    if isinstance(file, str):
+        file = Path(file).absolute()
+
     # Either create a Pathway or give new name.
     try:
-        pathway = model.groups.get_by_id(pathway_name)
+        pathway = model.groups.get_by_id(identifier)
+        if not isinstance(pathway, cobra_core.Group) or not isinstance(
+            pathway, Pathway
+        ):
+            raise TypeError(
+                "Given object is not a valid COBRApy Group or a Cobramod Pathway"
+            )
     except KeyError:
-        pathway = Pathway(id=pathway_name)
+        pathway = Pathway(id=identifier)
+        model.add_groups([pathway])
 
     # Get sinks
-    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+    previous_sinks: set[str] = {sink.id for sink in model.sinks if sink.id}
 
     # Get reactions from file
-    if isinstance(obj, Path):
-        new_reactions = _get_file_reactions(
-            model=model,
-            filename=obj,
-            directory=directory,
-            database=database,
-            replacement=replacement,
-            stop_imbalance=stop_imbalance,
-            show_imbalance=show_imbalance,
-            genome=genome,
-            model_id=model_id,
-        )
+    new_reactions = cmod_core_creation.get_file_reactions(
+        model=model,
+        filename=file,
+        directory=directory,
+        database=database,
+        replacement=replacement,
+        stop_imbalance=stop_imbalance,
+        show_imbalance=show_imbalance,
+        genome=genome,
+        model_id=model_id,
+    )
 
-    # Or convert list
-    else:
-        new_reactions = [
-            _convert_string_reaction(
-                line=line,
-                model=model,
-                directory=directory,
-                database=database,
-                replacement=replacement,
-                stop_imbalance=stop_imbalance,
-                show_imbalance=show_imbalance,
-                genome=genome,
-                model_id=model_id,
-            )
-            for line in obj
-        ]
     # Inform about sinks
-    _inform_sink(model=model, previous_sinks=previous_sinks)
+    cmod_utils.inform_new_sinks(model=model, previous_sinks=previous_sinks)
 
-    graph = _create_quick_graph(
+    graph = cmod_core_graph.build_lineal_graph(
         sequence=[reaction.id for reaction in new_reactions]
     )
 
-    _add_sequence(
+    add_reactions_to_Pathway(
         model=model,
         pathway=pathway,
         sequence=new_reactions,
@@ -538,9 +483,9 @@ def _from_strings(
     pathway.notes["ORDER"] = pathway.graph
 
 
-def _from_data(
-    model: Model,
-    data_dict: dict,
+def add_pathway_from_data(
+    model: cobra_core.Model,
+    data: cmod_retrieval.Data,
     group: Optional[str],
     directory: Path,
     database: str,
@@ -587,32 +532,45 @@ def _from_data(
             List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
     # Create mapping from dictionary
-    mapping = build_graph(graph=data_dict["PATHWAY"])
+    mapping = cmod_core_graph.get_graph_dict(data.attributes["pathway"])
 
     # Either create a Pathway or obtain the correct Pathway.
-    identifier = data_dict["ENTRY"]
+    identifier = data.identifier
 
     if group:
         identifier = group
 
     try:
         pathway = model.groups.get_by_id(identifier)
+        if not isinstance(pathway, cobra_core.Group) or not isinstance(
+            pathway, Pathway
+        ):
+            raise TypeError(
+                "Given object is not a valid COBRApy Group or a Cobramod Pathway"
+            )
 
     except KeyError:
         pathway = Pathway(id=identifier)
+        model.add_groups([pathway])
 
     # Get sinks
-    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+    previous_sinks: set[str] = {sink.id for sink in model.sinks if sink.id}
+
+    # FIXME: this should be changed
+    graph: dict[str, list[str]] = dict()
 
     for sequence in mapping:
         # Update sequence with removal of reactions
-        sequence = _update_reactions(sequence=sequence, avoid_list=avoid_list)
+        sequence = remove_avoid_reactions(
+            sequence=sequence, avoid_list=avoid_list
+        )
+
         if not sequence:
             continue
 
         # Replacements will be used here
         sequence = list(
-            _create_reactions(
+            yield_reaction_from_list(
                 sequence=sequence,
                 compartment=compartment,
                 directory=directory,
@@ -625,9 +583,26 @@ def _from_data(
                 genome=genome,
             )
         )
+        previous: str = ""
+        for i, reaction in enumerate(sequence):
+            if i == len(sequence) - 1:
+                graph[reaction.id] = []
+
+            if previous:
+                value = graph.get(previous)
+
+                if not value:
+                    value = [reaction.id]
+
+                elif isinstance(value, list):
+                    value.append(reaction.id)
+
+                graph[previous] = value
+
+            previous = reaction.id
 
         # Add to model
-        _add_sequence(
+        add_reactions_to_Pathway(
             model=model,
             pathway=pathway,
             sequence=sequence,
@@ -635,20 +610,7 @@ def _from_data(
         )
 
     # Inform about sinks
-    _inform_sink(model=model, previous_sinks=previous_sinks)
-
-    # Add graph to Pathway
-    graph = _format_graph(
-        graph=data_dict["PATHWAY"],
-        model=model,
-        compartment=compartment,
-        database=database,
-        model_id=model_id,
-        directory=directory,
-        avoid_list=avoid_list,
-        replacement=replacement,
-        genome=genome,
-    )
+    cmod_utils.inform_new_sinks(model=model, previous_sinks=previous_sinks)
 
     if not pathway.graph:
         pathway.graph = graph
@@ -658,16 +620,16 @@ def _from_data(
     pathway.notes["ORDER"] = pathway.graph
 
 
-def _from_sequence(
-    model: Model,
+def add_pathway_from_strings(
+    model: cobra_core.Model,
     identifier: str,
-    sequence: List[str],
+    sequence: list[str],
     database: str,
     compartment: str,
     directory: Path,
-    avoid_list: List[str],
-    replacement: dict,
-    ignore_list: List[str],
+    avoid_list: list[str],
+    replacement: dict[str, str],
+    ignore_list: list[str],
     stop_imbalance: bool,
     show_imbalance: bool,
     model_id: str,
@@ -707,21 +669,23 @@ def _from_sequence(
     # Either create a Pathway or obtain the correct Pathway.
     try:
         pathway = model.groups.get_by_id(identifier)
+        if not isinstance(pathway, cobra_core.Group):
+            raise TypeError(
+                f"The group for {identifier} is not a COBRApy Group object"
+            )
 
     except KeyError:
         pathway = Pathway(id=identifier)
-
-    # Create graph. It will be always simple lineal
-    graph = _create_quick_graph(sequence=sequence)
+        model.add_groups([pathway])
 
     # Data storage is managed by the function
-    sequence = _update_reactions(sequence=sequence, avoid_list=avoid_list)
+    sequence = remove_avoid_reactions(sequence=sequence, avoid_list=avoid_list)
 
     # Get sinks
-    previous_sinks: Set[str] = {sink.id for sink in model.sinks if sink.id}
+    previous_sinks: set[str] = {sink.id for sink in model.sinks if sink.id}
 
-    sequence = list(
-        _create_reactions(
+    reactions = list(
+        yield_reaction_from_list(
             sequence=sequence,
             compartment=compartment,
             database=database,
@@ -734,52 +698,44 @@ def _from_sequence(
             genome=genome,
         )
     )
+    # Create graph. It will be always simple lineal
+    graph = cmod_core_graph.build_lineal_graph(
+        sequence=[reaction.id for reaction in reactions]
+    )
 
     # Append to model
-    _add_sequence(
+    add_reactions_to_Pathway(
         model=model,
-        sequence=sequence,
+        sequence=reactions,
         pathway=pathway,
         ignore_list=ignore_list,
     )
 
     # Inform about sinks
-    _inform_sink(model=model, previous_sinks=previous_sinks)
+    cmod_utils.inform_new_sinks(model=model, previous_sinks=previous_sinks)
 
-    # Add graph to Pathway
-    graph = _format_graph(
-        graph=graph,
-        model=model,
-        compartment=compartment,
-        database=database,
-        model_id=model_id,
-        directory=directory,
-        avoid_list=avoid_list,
-        replacement=replacement,
-        genome=genome,
-    )
-    # FIXME: pointers?
-    if not pathway.graph:
-        pathway.graph = graph
-    else:
-        pathway.graph.update(graph)
-    pathway.notes["ORDER"] = pathway.graph
+    if isinstance(pathway, Pathway):
+        if not pathway.graph:
+            pathway.graph = graph
+        else:
+            pathway.graph.update(graph)
+        pathway.notes["ORDER"] = pathway.graph
 
 
 def add_pathway(
-    model: Model,
-    pathway: Union[list, str],
-    directory: Path,
+    model: cobra_core.Model,
+    pathway: Union[list[str], str, Path],
+    directory: Union[Path, str],
     compartment: str,
     database: Optional[str] = None,
     group: Optional[str] = None,
-    avoid_list: List[str] = [],
+    avoid_list: list[str] = [],
     replacement: dict = {},
-    ignore_list: List[str] = [],
-    filename: Path = None,
+    ignore_list: list[str] = [],
+    filename: Optional[Union[str, Path]] = None,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
-    model_id: str = "universal",
+    model_id: str = "",
     genome: Optional[str] = None,
 ):
     """
@@ -834,29 +790,42 @@ def add_pathway(
             species involved. Genes will be obtained for this species.
             List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
-    if not isinstance(model, Model):
+    if not isinstance(model, cobra_core.Model):
         raise TypeError("Model is invalid")
+
+    if isinstance(directory, str):
+        directory = Path(directory).absolute()
 
     # Save information for summary methods
     old_values = DataModel.from_model(model)
 
-    # FIXME: static typing for database
+    # Check if identifier
     if isinstance(pathway, str):
-        # Get data and transform to a pathway
-        data_dict = get_data(
+        identifier = pathway
+
+        pathway = Path(pathway).absolute()
+
+        # Identifier found
+        if not pathway.suffix:
+            pathway = identifier
+
+    if isinstance(pathway, str):
+        data_dict = cmod_retrieval.get_data(
             directory=directory,
-            identifier=str(pathway),
-            database=database,  # type: ignore
+            identifier=pathway,
+            database=database,
             model_id=model_id,
-            genome=genome,
+            # genome=genome,
         )
-        # Run the function to convert the reaction, create the graph and add
-        # to Pathway
-        _from_data(
+        if not database:
+            raise AttributeError(
+                "Database argument cannot be empty. Specify the name"
+            )
+        add_pathway_from_data(
             model=model,
-            data_dict=data_dict,
+            data=data_dict,
             directory=directory,
-            database=database,  # type: ignore
+            database=database,
             compartment=compartment,
             avoid_list=avoid_list,
             replacement=replacement,
@@ -868,44 +837,50 @@ def add_pathway(
             group=group,
         )
 
-    elif isinstance(pathway, list):
-        # From Reaction
+    elif isinstance(pathway, Path):
         if not group:
             group = "custom_group"
 
-        try:
-            # No need for compartment and avoid_list
-            _from_strings(
-                model=model,
-                obj=pathway,
-                database=database,  # type: ignore
-                ignore_list=ignore_list,
-                genome=genome,
-                model_id=model_id,
-                directory=directory,
-                replacement=replacement,
-                show_imbalance=show_imbalance,
-                stop_imbalance=stop_imbalance,
-                pathway_name=group,
+        add_pathway_from_file(
+            model=model,
+            file=pathway,
+            database=database,
+            ignore_list=ignore_list,
+            genome=genome,
+            model_id=model_id,
+            directory=directory,
+            replacement=replacement,
+            show_imbalance=show_imbalance,
+            stop_imbalance=stop_imbalance,
+            identifier=group,
+        )
+
+    elif isinstance(pathway, list):
+        if not group:
+            group = "custom_group"
+
+        if not database:
+            raise AttributeError(
+                "Database argument cannot be empty. Specify the name"
             )
 
-        except KeyError:
-            _from_sequence(
-                model=model,
-                identifier=group,
-                sequence=list(pathway),
-                compartment=compartment,
-                avoid_list=avoid_list,
-                directory=directory,
-                database=database,  # type: ignore
-                replacement=replacement,
-                ignore_list=ignore_list,
-                show_imbalance=show_imbalance,
-                stop_imbalance=stop_imbalance,
-                model_id=model_id,
-                genome=genome,
-            )
+        add_pathway_from_strings(
+            model=model,
+            identifier=group,
+            sequence=pathway,
+            compartment=compartment,
+            avoid_list=avoid_list,
+            directory=directory,
+            database=database,
+            replacement=replacement,
+            ignore_list=ignore_list,
+            show_imbalance=show_imbalance,
+            stop_imbalance=stop_imbalance,
+            model_id=model_id,
+            genome=genome,
+        )
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
-    # Print summary
-    summarize(model, old_values, filename=filename)
+
+    if filename:
+        summarize(model, old_values, filename=filename)

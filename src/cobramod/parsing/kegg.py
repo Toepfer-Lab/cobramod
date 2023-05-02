@@ -20,7 +20,7 @@ import io
 from contextlib import suppress
 from itertools import chain
 from pathlib import Path
-from typing import Any, Generator, Union, Optional
+from typing import Any, Generator, Optional, Union
 from warnings import warn
 
 from requests import HTTPError, get
@@ -28,7 +28,6 @@ from requests import HTTPError, get
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
 from cobramod.error import AbbreviationWarning, WrongParserError
-from cobramod.parsing.base import BaseParser
 
 KO_LINK = "http://rest.kegg.jp/link/ko/"
 
@@ -36,9 +35,18 @@ KO_LINK = "http://rest.kegg.jp/link/ko/"
 def parse_metabolite_attributes(
     data: dict[str, list[str]], entry: str
 ) -> dict[str, Any]:
+    formula = data.get("FORMULA", ["X"]).pop()
+
+    # NOTE: replace e.g (HPO3)n
+
+    if formula.find("("):
+        formula = formula.replace("(", "")
+        formula = formula.replace(")", "")
+        formula = formula.replace("n", "")
+
     attributes: dict[str, Any] = {
         "name": data.get("NAME", [entry]).pop(),
-        "formula": data.get("FORMULA", []).pop(),
+        "formula": formula,
         # NOTE: BiGG compounds does not show charges at a specific
         # ph-Value
         "charge": 0,
@@ -210,55 +218,55 @@ def _create_dict(raw: str) -> dict:
     return kegg_dict
 
 
-def _get_metabolites(line: str) -> tuple:
-    """
-    Returns the bounds of the reaction as a tuple and a dictionary with the
-    participant metabolites of the reaction
-
-    Args:
-        line (str): Equation in string form
-
-    Returns:
-        Tuple: bounds (tuple), dictionary with metabolites
-
-    Raises:
-        UnboundLocalError: If reversibility cannot be found for given reaction
-    """
-    # Obtaining bounds
-    arrows = {"<=>": (-1000, 1000), "==>": (0, 1000), "<==": (-1000, 1000)}
-    for item in arrows.keys():
-        if item in line:
-            position = line.find(item)
-            arrow = line[position : position + 3]
-    try:
-        arrow
-    except UnboundLocalError:
-        raise UnboundLocalError(
-            f'Reversibility for "{line}" could not be found.'
-        )
-    # Getting metabolites
-    metabolites = dict()
-    reactants, products = [
-        side.rstrip().strip().split("+") for side in line.split(arrow)
-    ]
-    for side in (reactants, products):
-        FACTOR = 1
-        prefix = "r"
-        if side is reactants:
-            FACTOR = -1
-            prefix = "l"
-        for metabolite in side:
-            try:
-                coefficient, identifier = [
-                    item.strip().rstrip()
-                    for item in metabolite.rstrip().strip().split(" ")
-                ]
-            except ValueError:
-                # In case no coefficient is given, it must be 1
-                identifier = metabolite.strip().rstrip()
-                coefficient = "1"
-            metabolites[f"{prefix}_{identifier}"] = float(coefficient) * FACTOR
-    return arrows[arrow], metabolites
+# def _get_metabolites(line: str) -> tuple:
+#     """
+#     Returns the bounds of the reaction as a tuple and a dictionary with the
+#     participant metabolites of the reaction
+#
+#     Args:
+#         line (str): Equation in string form
+#
+#     Returns:
+#         Tuple: bounds (tuple), dictionary with metabolites
+#
+#     Raises:
+#         UnboundLocalError: If reversibility cannot be found for given reaction
+#     """
+#     # Obtaining bounds
+#     arrows = {"<=>": (-1000, 1000), "==>": (0, 1000), "<==": (-1000, 1000)}
+#     for item in arrows.keys():
+#         if item in line:
+#             position = line.find(item)
+#             arrow = line[position : position + 3]
+#     try:
+#         arrow
+#     except UnboundLocalError:
+#         raise UnboundLocalError(
+#             f'Reversibility for "{line}" could not be found.'
+#         )
+#     # Getting metabolites
+#     metabolites = dict()
+#     reactants, products = [
+#         side.rstrip().strip().split("+") for side in line.split(arrow)
+#     ]
+#     for side in (reactants, products):
+#         FACTOR = 1
+#         prefix = "r"
+#         if side is reactants:
+#             FACTOR = -1
+#             prefix = "l"
+#         for metabolite in side:
+#             try:
+#                 coefficient, identifier = [
+#                     item.strip().rstrip()
+#                     for item in metabolite.rstrip().strip().split(" ")
+#                 ]
+#             except ValueError:
+#                 # In case no coefficient is given, it must be 1
+#                 identifier = metabolite.strip().rstrip()
+#                 coefficient = "1"
+#             metabolites[f"{prefix}_{identifier}"] = float(coefficient) * FACTOR
+#     return arrows[arrow], metabolites
 
 
 def build_references(data_dict: dict[str, list[str]]) -> dict[str, str]:
@@ -400,98 +408,98 @@ def parse_genes(
     return {"genes": genes, "rule": rule}
 
 
-def _p_reaction(kegg_dict: dict, directory: Path, genome: str) -> dict:
-    """
-    Returns a dictionary that is the representation of a reaction
-    """
-    try:
-        object_type = list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-1]
-        if object_type != "Reaction":
-            raise WrongParserError(
-                "Given dictionary does not belong to a reaction."
-            )
-        identifier = list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-2]
-        # Obtain bounds
-        bounds, metabolites = _get_metabolites(line=kegg_dict["EQUATION"][0])
-        with suppress(KeyError):
-            if "irreversible" in ",".join(kegg_dict["COMMENT"]):
-                bounds = (0, 1000)
-        return {
-            "TYPE": object_type,
-            "ENTRY": identifier,
-            "NAME": kegg_dict["NAME"][0],
-            "DATABASE": "KEGG",
-            "EQUATION": metabolites,
-            "BOUNDS": bounds,
-            "TRANSPORT": BaseParser._check_transport(data_dict=metabolites),
-            "XREF": build_references(data_dict=kegg_dict),
-            "GENES": parse_genes(
-                kegg_dict=kegg_dict,
-                identifier=identifier,
-                directory=directory,
-                genome=genome,
-            ),
-        }
-    except KeyError:
-        raise WrongParserError
-
-
-def _p_compound(kegg_dict: dict) -> dict:
-    """
-    Returns a dictionary that is the representation of a metabolite
-    """
-    try:
-        object_type = list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-1]
-        if object_type != "Compound":
-            raise WrongParserError(
-                "Given dictionary does not belong to a metabolite."
-            )
-        identifier = list(
-            chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-        )[-2]
-        try:
-            # When formulas includes 'n' e.g 'H4P2O7(HPO3)n'
-            if "(" in kegg_dict["FORMULA"][0]:
-                formula = "X"
-                msg = (
-                    f'Sum formula for metabolite "{identifier}" from KEGG '
-                    'could not be found. Formula set to "X" and charge to 0. '
-                    "Please modify it if necessary."
-                )
-                debug_log.warning(msg=msg)
-                warn(msg)
-            else:
-                formula = "".join(kegg_dict["FORMULA"]).strip().rstrip()
-        except KeyError:
-            # Some general compounds do not come with formulas
-            formula = "X"
-            msg = (
-                f'Sum formula for metabolite "{identifier}" from KEGG '
-                'could not be found. Formula set to "X" and charge to 0. '
-                "Please modify it if necessary."
-            )
-            debug_log.warning(msg=msg)
-            warn(msg)
-        return {
-            "TYPE": list(
-                chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
-            )[-1],
-            "ENTRY": identifier,
-            "NAME": kegg_dict["NAME"][0],
-            "DATABASE": "KEGG",
-            "FORMULA": formula,
-            # FIXME: search information about charges
-            "CHARGE": 0,
-            "XREF": build_references(data_dict=kegg_dict),
-        }
-    except KeyError:
-        raise WrongParserError
+# def _p_reaction(kegg_dict: dict, directory: Path, genome: str) -> dict:
+#     """
+#     Returns a dictionary that is the representation of a reaction
+#     """
+#     try:
+#         object_type = list(
+#             chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+#         )[-1]
+#         if object_type != "Reaction":
+#             raise WrongParserError(
+#                 "Given dictionary does not belong to a reaction."
+#             )
+#         identifier = list(
+#             chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+#         )[-2]
+#         # Obtain bounds
+#         bounds, metabolites = _get_metabolites(line=kegg_dict["EQUATION"][0])
+#         with suppress(KeyError):
+#             if "irreversible" in ",".join(kegg_dict["COMMENT"]):
+#                 bounds = (0, 1000)
+#         return {
+#             "TYPE": object_type,
+#             "ENTRY": identifier,
+#             "NAME": kegg_dict["NAME"][0],
+#             "DATABASE": "KEGG",
+#             "EQUATION": metabolites,
+#             "BOUNDS": bounds,
+#             "TRANSPORT": BaseParser._check_transport(data_dict=metabolites),
+#             "XREF": build_references(data_dict=kegg_dict),
+#             "GENES": parse_genes(
+#                 kegg_dict=kegg_dict,
+#                 identifier=identifier,
+#                 directory=directory,
+#                 genome=genome,
+#             ),
+#         }
+#     except KeyError:
+#         raise WrongParserError
+#
+#
+# def _p_compound(kegg_dict: dict) -> dict:
+#     """
+#     Returns a dictionary that is the representation of a metabolite
+#     """
+#     try:
+#         object_type = list(
+#             chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+#         )[-1]
+#         if object_type != "Compound":
+#             raise WrongParserError(
+#                 "Given dictionary does not belong to a metabolite."
+#             )
+#         identifier = list(
+#             chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+#         )[-2]
+#         try:
+#             # When formulas includes 'n' e.g 'H4P2O7(HPO3)n'
+#             if "(" in kegg_dict["FORMULA"][0]:
+#                 formula = "X"
+#                 msg = (
+#                     f'Sum formula for metabolite "{identifier}" from KEGG '
+#                     'could not be found. Formula set to "X" and charge to 0. '
+#                     "Please modify it if necessary."
+#                 )
+#                 debug_log.warning(msg=msg)
+#                 warn(msg)
+#             else:
+#                 formula = "".join(kegg_dict["FORMULA"]).strip().rstrip()
+#         except KeyError:
+#             # Some general compounds do not come with formulas
+#             formula = "X"
+#             msg = (
+#                 f'Sum formula for metabolite "{identifier}" from KEGG '
+#                 'could not be found. Formula set to "X" and charge to 0. '
+#                 "Please modify it if necessary."
+#             )
+#             debug_log.warning(msg=msg)
+#             warn(msg)
+#         return {
+#             "TYPE": list(
+#                 chain.from_iterable(item.split() for item in kegg_dict["ENTRY"])
+#             )[-1],
+#             "ENTRY": identifier,
+#             "NAME": kegg_dict["NAME"][0],
+#             "DATABASE": "KEGG",
+#             "FORMULA": formula,
+#             # FIXME: search information about charges
+#             "CHARGE": 0,
+#             "XREF": build_references(data_dict=kegg_dict),
+#         }
+#     except KeyError:
+#         raise WrongParserError
 
 
 def get_graph(kegg_dict: dict) -> dict:
@@ -506,11 +514,12 @@ def get_graph(kegg_dict: dict) -> dict:
         chain.from_iterable(line.split(sep=",") for line in sequences)
     )
     reactions = [line.split(sep=",") for line in sequences]
-    graph = dict()  # type: ignore
+    graph: dict[str, Any] = dict()
+
     line: list
     for index_j, line in enumerate(iterable=reactions):
         reaction: str
-        for index_i, reaction in enumerate(iterable=line):
+        for reaction in line:
             # If index not found, then ignore it
             with suppress(IndexError):
                 # In KEGG the order of the reactions is defined by its order in
@@ -543,6 +552,20 @@ def get_graph(kegg_dict: dict) -> dict:
     if not graph:
         raise WrongParserError("Given root does not belong to a Pathway")
     return graph
+
+
+def parse_pathway_attributes(
+    data: dict[str, list[str]], entry: str
+) -> dict[str, Any]:
+    graph = get_graph(data)
+    name = data.get("NAME", [entry])
+
+    attributes = {
+        "name": name.pop(),
+        "xref": build_references(data),
+        "pathway": graph,
+    }
+    return attributes
 
 
 def _p_pathway(kegg_dict: dict) -> dict:
@@ -585,171 +608,3 @@ def _p_enzyme(kegg_dict: dict):
             )
     except KeyError:
         raise WrongParserError
-
-
-class KeggParser(BaseParser):
-    @staticmethod
-    def _parse(root: dict, directory: Path, genome: str = None) -> dict:
-        """
-        Parses raw text from KEGG database and transforms it in a dictionary
-        that can be used later as commom data type for cobramod. It identifies
-        the type of object depending of it information.
-
-        Args:
-            root (dict): dictionary with information for an object
-
-        Returns:
-            dict: data from KEGG
-        """
-        for method in (_p_enzyme, _p_compound, _p_reaction, _p_pathway):
-            with suppress(WrongParserError):
-                try:
-                    kegg_dict = method(  # type: ignore
-                        kegg_dict=root, directory=directory, genome=genome
-                    )
-                except TypeError:
-                    # TODO: Find better solution
-                    try:
-                        kegg_dict = method(  # type: ignore
-                            kegg_dict=root, directory=directory
-                        )
-                    except TypeError:
-                        kegg_dict = method(kegg_dict=root)  # type: ignore
-                return kegg_dict
-        raise NotImplementedError(
-            "Given identifier could not be parsed properly. "
-            "Please contact maintainers."
-        )
-
-    @staticmethod
-    def _retrieve_data(
-        directory: Path,
-        identifier: str,
-        database: str,
-        debug_level: int,
-        **kwargs,
-    ) -> dict:
-        """
-        Retrieves data from KEGG database and parses the most important
-        attributes into a dictionary
-
-        Args:
-            directory (Path): Directory to store and retrieve local data.
-            identifier (str): original identifier
-            database (str): name of database.
-        debug_level (int): Level of debugging. Read package logging
-            for more info.
-
-        Returns:
-            dict: relevant data for given identifier
-        """
-        KeggParser._check_database(directory=directory, database=database)
-        raw = retrieve_data(directory=directory, identifier=identifier)
-        debug_log.log(
-            level=debug_level,
-            msg=f'Data for identifier "{identifier}" ' + "retrieved from KEGG.",
-        )
-        try:
-            genome = kwargs["genome"]
-        except KeyError:
-            genome = None
-        return KeggParser._parse(root=raw, directory=directory, genome=genome)
-
-    @staticmethod
-    def _check_database(directory: Path, database: str):
-        """
-        Returns the name of the database. This method is used to compare with
-        given database name. It will raise a warning if both names are not
-        equal or belong to the list of proper names.
-        """
-        if database != "KEGG":
-            raise WrongParserError
-
-    @staticmethod
-    def _read_file(filename: Path) -> dict:
-        """
-        Reads the given file a returns a KEGG dictionary with most important
-        information from it.
-        """
-        try:
-            with open(file=filename, mode="r") as file:
-                unformatted_data = file.read()
-            return _create_dict(raw=unformatted_data)
-        except TypeError:
-            raise WrongParserError("Wrong filetype")
-
-
-def retrieve_data(directory: Path, identifier: str) -> dict:
-    """
-    Retrieves and stores the data of given identifier for the KEGG database.
-
-    Args:
-        directory (Path): Path for data storage.
-        identifier (str): official name for given object in KEGG
-
-    Raises:
-        NotImplementedError: If identifier contains a semicolon (:)
-        HTTPError: If given identifier is not found in KEGG.
-        NotADirectoryError:  If parent directory is not found.
-
-    Returns:
-        dict: dictionary from KEGG identifier with basic information
-    """
-    # NOTE: As KEGG only support xml for pathways, Metabolites and Reactions
-    # have to be parsed differently. Only specific keys are necessary
-    if ":" in identifier:
-        # Get rid of prefix
-        identifier = identifier[identifier.find(":") + 1 :]
-    if directory.exists():
-        database = "KEGG"
-        data_dir = directory.joinpath(database)
-        filename = data_dir.joinpath(f"{identifier}.txt")
-        debug_log.debug(f'Searching "{identifier}" in directory "{database}".')
-        # Try to obtain the data locally or get it from KEGG and store it
-        try:
-            return KeggParser._read_file(filename=filename)
-        except FileNotFoundError:
-            debug_log.debug(
-                f'"{identifier}" not found in directory "{database}".'
-            )
-            # Retrieve from URL
-            url_text = f"http://rest.kegg.jp/get/{identifier}/"
-            debug_log.debug(f"Searching {url_text} for biochemical data.")
-            r = get(url_text)
-            try:
-                r.raise_for_status()
-                unformatted_data = r.text
-
-                database_version = get("http://rest.kegg.jp/info/kegg")
-                database_version.raise_for_status()
-                database_version = database_version.text
-                database_version = _kegg_info_to_version(database_version)
-
-                BaseParser.check_database_version(
-                    directory, "kegg", database_version
-                )
-
-                debug_log.info(
-                    f'Object "{identifier}" found in database. Saving in '
-                    f'directory "{database}".'
-                )
-                data_dir.mkdir(exist_ok=True)
-                with open(file=filename, mode="w+") as file:
-                    file.write(unformatted_data)
-                # Search for the gene information and store it if found.
-                with suppress(HTTPError):
-                    retrieve_kegg_genes(
-                        directory=directory, identifier=identifier
-                    )
-                return _create_dict(raw=unformatted_data)
-            except HTTPError:
-                msg = (
-                    f'"{identifier}" not available in "{database}". '
-                    + "Please verify the name of the identifier."
-                )
-                debug_log.critical(msg)
-                raise HTTPError(msg)
-    else:
-        msg = "Directory not found. Please create the given directory."
-        debug_log.critical(msg)
-        raise NotADirectoryError(msg)

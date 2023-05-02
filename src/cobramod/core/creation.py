@@ -349,7 +349,7 @@ def get_reaction(
     replacement: dict[str, str],
     show_imbalance: bool,
     stop_imbalance: bool,
-    model: cobra_core.Model = cobra_core.Model(),
+    model: cobra_core.Model,
 ) -> cobra_core.Reaction:
     if data.database == "META":
         msg = (
@@ -946,7 +946,7 @@ def string_to_reaction(
 
         if database is None:
             raise TypeError(
-                "Function 'string_to_reaction' cannot retrieve if metabolic"
+                "Function 'string_to_reaction' cannot retrieve metabolic "
                 "pathway information if no database if provided"
             )
 
@@ -1247,7 +1247,12 @@ def create_object(
 
     if data.mode == "Reaction":
         obj = get_reaction(
-            data, compartment, replacement, show_imbalance, stop_imbalance
+            data,
+            compartment,
+            replacement,
+            show_imbalance,
+            stop_imbalance,
+            model,
         )
     else:
         obj = data.parse(model, compartment, replacement)
@@ -1255,7 +1260,6 @@ def create_object(
     if isinstance(obj, cobra_core.Reaction):
         if data.path.suffix == ".xml":
             gene_information = biocyc.parse_genes(
-                # gene_information = cmod_parsing.biocyc.parse_genes(
                 identifier,
                 directory.joinpath(data.database),
             )
@@ -1589,4 +1593,4 @@ def add_reactions(
             include_metanetx_specific_ec=include_metanetx_specific_ec,
         )
 
-    cmod_utils.confirm_reaction(model=model, reactions=reactions)
+    cmod_utils.add_reactions_to_model(model=model, reactions=reactions)

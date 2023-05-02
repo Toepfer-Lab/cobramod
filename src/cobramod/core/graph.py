@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module for graph algorithm
 
 This module creates the needed functions to find out the reaction order from
@@ -10,19 +9,14 @@ build_graph: From given dictionary with Parent-reaction:children-reaction,
 return the corresponding non-cyclic directed graph.
 
 """
-from contextlib import suppress
-from collections import Counter
-from itertools import chain
-from typing import Optional, Dict, Any
-from pathlib import Path
+from __future__ import annotations
 
-from cobra import Model
+from collections import Counter
+from contextlib import suppress
+from itertools import chain
+from typing import Any, Dict
 
 from cobramod.error import GraphKeyError
-from cobramod.core.creation import _fix_name
-from cobramod.core.retrieval import _get_correct_data
-from cobramod.utils import _first_item
-from cobramod.error import NoIntersectFound
 
 
 def find_missing(graph: dict):
@@ -52,7 +46,7 @@ def find_missing(graph: dict):
         )
 
 
-def find_cycle(graph: dict, key: str, visited: list):
+def find_cycle(graph: dict[str, str], key: str, visited: list):
     """
     Returns a list with the cycle in the graph or False is graph does not
     contain a cycle.
@@ -311,7 +305,7 @@ def get_mapping(graph: dict, stop_list: list, new: list) -> list:
     return new
 
 
-def build_graph(graph: dict) -> list:
+def get_graph_dict(graph: dict[str, str]) -> list[list[str]]:
     """
     Returns the mapping for the given graph. The mapping is defined as a list
     with a "core" path and its branches. Cyclic graphs will be cut to create
@@ -347,7 +341,7 @@ def build_graph(graph: dict) -> list:
     return mapping
 
 
-def _fix_graph(graph: dict, avoid_list: list) -> dict:
+def filter_graph(graph: dict, avoid_list: list) -> dict:
     """
     Returns a new graph, where items are removed if found in given avoid list.
     """
@@ -376,101 +370,19 @@ def _fix_graph(graph: dict, avoid_list: list) -> dict:
     return new_graph
 
 
-def _format_graph(
-    graph: dict,
-    model: Model,
-    compartment: str,
-    directory: Path,
-    database: str,
-    model_id: str,
-    avoid_list: list,
-    replacement: dict,
-    genome: Optional[str],
-) -> dict:
+def build_lineal_graph(sequence: list[str]) -> dict[str, str]:
     """
-    Returns new formatted graph. If an item if found in given replacement dict,
-    the value will be replaced; if found in avoid list, the graph will not
-    contain that value. Function :func`cobramod.get_data` will use passed
-    arguments to format the items.
+    Creates a returns a simple lineal directed graph from given sequence
     """
-    graph = _fix_graph(graph=graph, avoid_list=avoid_list)
-    new_graph = graph.copy()
-
-    # Format tuples, single strings and kes
-    for key in graph.keys():
-
-        # Get data from files. This is relevant for the cross references
-        key_dict = _get_correct_data(
-            directory=directory,
-            database=database,
-            identifier=key,
-            model_id=model_id,
-            genome=genome,
-            replacement=replacement,
-        )
-
-        # Find if replacement should be used instead of renaming
-        replace_found: bool
-        try:
-            model.reactions.get_by_id(replacement[key])
-            replace_found = True
-        except KeyError:
-            replace_found = False
-
-        # Find repetition if possible
-        try:
-            new_identifier = _first_item(
-                first=model.reactions, second=key_dict["XREF"], revert=True
-            )
-            new_key = f"{_fix_name(name=new_identifier)}_{compartment}"
-
-        except (NoIntersectFound, KeyError):
-            # Regular transformation
-            new_key = f'{key_dict["ENTRY"].replace("-", "_")}_{compartment}'
-
-        if replace_found:
-            new_key = replacement[key]
-
-        # Change in new graph values where key is found
-        new_value: tuple
-        for key2, value in new_graph.items():
-            new_value = value
-
-            # For None, tuple or single strings
-            if not value:
-                continue
-
-            if isinstance(value, tuple) and key in value:
-                new_value = tuple(item.replace(key, new_key) for item in value)
-
-            elif key in value:
-                new_value = value.replace(key, new_key)
-
-            new_graph[key2] = new_value
-
-        # Change the key and remove old one
-        with suppress(KeyError):
-            new_graph[new_key] = new_graph[key]
-            del new_graph[key]
-
-    # TODO: move to unittest
-    # for key in new_graph.keys():
-    #     model.reactions.get_by_id(key)
-    return new_graph
-
-
-def _create_quick_graph(sequence: list) -> dict:
-    """
-    Creates a returns a simple lineal directed graph from given sequence. This
-    function is used for adding pathways
-    """
-    graph = dict()
+    graph: dict[str, str] = dict()
     for index, reaction in enumerate(sequence):
         try:
             parent = reaction
             child = sequence[index + 1]
             graph[parent] = child
+
         except IndexError:
             # It must be the first one
-            graph[reaction] = None
+            graph[reaction] = ""
+
     return graph

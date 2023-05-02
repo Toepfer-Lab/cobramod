@@ -691,6 +691,20 @@ class ComplexFunctions(unittest.TestCase):
             show_imbalance=False,
         )
         self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
+        # CASE: Metabolites has correct formula
+        test_object = cr.create_object(
+            identifier="C00404",
+            directory=dir_data,
+            compartment="c",
+            database="KEGG",
+            show_imbalance=False,
+        )
+        if not isinstance(test_object, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy object")
+        if test_object.formula is None:
+            raise TypeError("Formula is empty!")
+
+        self.assertEqual(test_object.formula.find("("), -1)
         # # CASE: pathway from MetaCyc
         # test_object = cr.create_object(
         #     identifier="PWY-1187",

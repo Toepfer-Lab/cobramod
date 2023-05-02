@@ -26,8 +26,8 @@ ARROWS: dict[str, tuple[int, int]] = {
     "<->": (-1000, 1000),
     "==>": (0, 1000),
     "-->": (0, 1000),
-    "<==": (1000, 0),
-    "<--": (1000, 0),
+    "<==": (-1000, 0),
+    "<--": (-1000, 0),
 }
 
 
@@ -81,7 +81,10 @@ def check_imbalance(
     Raises:
         UnbalancedReaction: if given reaction is unbalanced.
     """
-    dict_balance = reaction.check_mass_balance()
+    try:
+        dict_balance = reaction.check_mass_balance()
+    except ValueError:
+        dict()
     # Will stop if True
     if dict_balance != {}:
         msg = (
@@ -332,7 +335,30 @@ def confirm_metabolite(
         warn(message=msg, category=UserWarning)
 
 
-def confirm_reaction(
+def confirm_sink(model: cobra_core.Model, identifier: str):
+    """
+    Creates sink reactions for the metabolites that participate in given
+    reaction. They can only be created if the corresponding metabolite only
+    participates in one reaction. Otherwise, the metabolite can be somehow
+    turnover
+    """
+    reaction = model.reactions.get_by_id(identifier)
+    if not isinstance(reaction, cobra_core.Reaction):
+        raise TypeError("Given object is not a COBRApy Reaction")
+
+    metabolites: list[cobra_core.Metabolite] = (
+        reaction.products + reaction.reactants
+    )
+
+    for metabolite in metabolites:
+        amount = len(metabolite.reactions)
+
+        if amount <= 1:
+            # Warning is called in _inform_sink
+            model.add_boundary(metabolite=metabolite, type="sink")
+
+
+def add_reactions_to_model(
     model: cobra_core.Model, reactions: list[cobra_core.Reaction]
 ):
     """
@@ -351,3 +377,42 @@ def confirm_reaction(
 
         model.add_reactions([member])
         debug_log.info(f'Reaction "{member.id}" was added to model.')
+
+
+def reaction_is_minimize(model: cobra_core.Model, identifier: str) -> bool:
+    """
+    Return whether given reaction should be minimized when optimizing
+    """
+    reaction = model.reactions.get_by_id(identifier)
+
+    if not isinstance(reaction, cobra_core.Reaction):
+        raise TypeError("Given object is not a COBRApy Reaction")
+
+    lower = reaction.lower_bound
+    upper = reaction.upper_bound
+
+    if abs(lower) > upper:
+        return True
+
+    return False
+
+
+def inform_new_sinks(model: cobra_core.Model, previous_sinks: set[str]):
+    """
+    Warns the user if sinks were created during the extension of the Model.
+    i.e. Function compares a set with sink identifiers with the actual sinks
+    in a model.
+    """
+    sinks: set[str] = {sink.id for sink in model.sinks if sink.id}.difference(
+        previous_sinks
+    )
+
+    if sinks:
+        for reaction in sinks:
+            msg = (
+                f'Auxiliary sink reaction for "{reaction}" created. Consider '
+                "removing it and adding the synthesis reactions for the "
+                "metabolite."
+            )
+            debug_log.warning(msg=msg)
+            warn(message=msg, category=UserWarning)

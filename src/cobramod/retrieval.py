@@ -19,6 +19,7 @@ from cobramod.parsing import bigg, biocyc, kegg
 BIOCYC = "https://websvc.biocyc.org/getxml?id="
 PMN = "https://pmn.plantcyc.org/getxml?"
 KEGG = "https://rest.kegg.jp/get/"
+# FIXME: change universal model
 BIGG = "https://bigg.ucsd.edu/api/v2/models/universal/"
 
 EXTENSIONS = [".xml", ".txt", ".json"]
@@ -76,6 +77,10 @@ class Data:
 
         elif mode == "Reaction":
             attributes = kegg.parse_reaction_attributes(data, entry)
+
+        elif mode == "Module":
+            mode = "Pathway"
+            attributes = kegg.parse_pathway_attributes(data, entry)
         else:
             raise AttributeError(f"Cannot parse type '{mode}'")
 
@@ -90,6 +95,10 @@ class Data:
         elif root.findall("Reaction"):
             mode = "Reaction"
             attributes = biocyc.parse_reaction_attributes(root, entry)
+
+        elif root.findall("Pathway"):
+            mode = "Pathway"
+            attributes = biocyc.parse_pathway_attributes(root, entry)
         else:
             raise AttributeError(
                 "Cannot infere the object type from given et.Element"
@@ -205,7 +214,7 @@ def get_response(
                 response, _ = bigg.find_url(model_id, query)
                 # This extra attribute if later use to save the file in their
                 # corresponding directories
-                response.extra = Path(model_id)
+                response.extra = Path(model_id)  # type: ignore
 
             else:
                 response = requests.get(url)
@@ -214,7 +223,11 @@ def get_response(
             # Not a valid content-type to process
             header = response.headers.get("Content-Type", "").lower()
 
-            if "html" in header:
+            if "html" in header and (database != "kegg" or database != "bigg"):
+                warn(
+                    f"Cannot retrieve data from '{url}'. It is possible that a "
+                    "subscription is required. Try using 'META'"
+                )
                 continue
 
             return database, response
@@ -329,7 +342,13 @@ def get_data(
                 )
 
         except StopIteration:
-            database, response = get_response(identifier, model_id)
+            query = identifier
+
+            # Biocyc family
+            if database != "kegg" or database != "bigg":
+                query = f"{database}:{identifier}"
+
+            database, response = get_response(query, model_id)
 
             if database == "bigg":
                 extra: Path = getattr(response, "extra")

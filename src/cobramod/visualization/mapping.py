@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Mapping of graph
 
 This modules handles the mapping of a directed graph into a matrix that can be
@@ -10,7 +9,7 @@ it will cut it.
 from itertools import chain
 from typing import Dict, List
 
-from cobramod.core.graph import build_graph
+from cobramod.core.graph import get_graph_dict
 
 
 def get_all_values(dictionary: dict, keys: list) -> set:
@@ -111,7 +110,7 @@ def unformatted_matrix(graph: dict) -> List[list]:
         KeyError: If keys in graph are missing
     """
     # If graph cyclic, it will be modified
-    mapping = build_graph(graph=graph)
+    mapping = get_graph_dict(graph=graph)
     if not mapping:
         return [[]]
     # By default firsts item
@@ -125,7 +124,6 @@ def unformatted_matrix(graph: dict) -> List[list]:
     matrix[0] = longest
     # dictionary for start positions
     start_position = {"0": 0}
-    key: list
     for index, keys in relation.items():
         # child = item, parent = index
         item: str
