@@ -150,7 +150,6 @@ class Pathway(cobra_core.Group):
         ):
             raise TypeError("Not all given members are Reactions.")
 
-        # self.__check_copy()
         super().add_members(new_members=new_members)
         for member in new_members:
             try:
@@ -298,10 +297,9 @@ class Pathway(cobra_core.Group):
 
         # Get graph and add to json_dict
         json_dict.graph = self.graph.copy()
-        json_dict.reaction_strings = {
-            reaction: self._model.reactions.get_by_id(reaction).reaction
-            for reaction in json_dict.graph.keys()
-        }
+        reactions: dict[str, str] = {m.id: m.reaction for m in self.members}
+        json_dict.reaction_strings = reactions
+
         if _has_escher:
             return json_dict.visualize(
                 filepath=filename,

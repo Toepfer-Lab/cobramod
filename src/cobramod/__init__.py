@@ -37,9 +37,9 @@ from cobramod.core.creation import (
     create_object,
 )
 from cobramod.core.crossreferences import add_crossreferences
-from cobramod.core.extension import test_non_zero_flux
+from cobramod.core.extension import test_non_zero_flux, add_pathway
 from cobramod.core.pathway import Pathway, model_convert
-from cobramod.core.retrieval import available_databases, get_data
+from cobramod.retrieval import get_data
 
 __all__ = [
     "get_data",
@@ -50,7 +50,6 @@ __all__ = [
     "test_non_zero_flux",
     "Pathway",
     "model_convert",
-    "available_databases",
     "add_crossreferences",
 ]
 

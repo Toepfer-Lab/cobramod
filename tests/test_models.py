@@ -7,12 +7,12 @@ examples should simulate real cases. There are two test:
 - ShortModel: This should utilize the textbook_biocyc model from cobramod.
 - LargeModel: Uses a real GEM
 """
+import unittest
 from logging import DEBUG
 from pathlib import Path
-from unittest import TestCase, main
 
-from cobra.io import read_sbml_model
-
+import cobra.core as cobra_core
+import cobra.io as cobra_io
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions
 from cobramod.debug import debug_log
@@ -29,14 +29,16 @@ if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
 
 # Large Model
-main_model = read_sbml_model(str(dir_input.joinpath("test_model.sbml")))
+main_model = cobra_io.read_sbml_model(
+    str(dir_input.joinpath("test_model.sbml"))
+)
 
 
 if not dir_data.exists():
     dir_data.mkdir(parents=True)
 
 
-class ShortModel(TestCase):
+class ShortModel(unittest.TestCase):
     def test_lineal_pathways(self):
         # For this test, Gluconeogenesis; L-aspartate and L-asparagine
         # biosynthesis, and Nicotine biosynthesis added to test for feasible
@@ -59,11 +61,11 @@ class ShortModel(TestCase):
         )
         add_reactions(
             model=test_model,
-            obj=(
+            obj=[
                 "Redox_Hemoprotein_c, Redox_Hemoprotein_c | "
                 + "Ox-NADPH-Hemoprotein-Reductases_c <-> "
                 + "Red-NADPH-Hemoprotein-Reductases_c"
-            ),
+            ],
             directory=dir_data,
             database="ARA",
         )
@@ -152,9 +154,15 @@ class ShortModel(TestCase):
             compartment="p",
             show_imbalance=False,
         )
-        test_model.reactions.get_by_id("Biomass_Ecoli_core").add_metabolites(
-            {test_model.metabolites.get_by_id("GLUTATHIONE_p"): -1}
-        )
+        reaction = test_model.reactions.get_by_id("Biomass_Ecoli_core")
+        if not isinstance(reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        metabolite = test_model.metabolites.get_by_id("GLUTATHIONE_p")
+        if not isinstance(metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy metabolite")
+
+        reaction.add_metabolites({metabolite: -1})
 
         self.assertIn(
             member="GLUTATHIONESYN-PWY",
@@ -165,7 +173,7 @@ class ShortModel(TestCase):
 
         add_reactions(
             model=test_model,
-            obj="TRANS_GLY_cp, Transport GLY_cp | GLY_c <-> GLY_p",
+            obj=["TRANS_GLY_cp, Transport GLY_cp | GLY_c <-> GLY_p"],
             directory=dir_data,
             database="ARA",
         )
@@ -179,15 +187,20 @@ class ShortModel(TestCase):
             compartment="c",
             show_imbalance=False,
         )
+        reaction = test_model.reactions.get_by_id("Biomass_Ecoli_core")
+        if not isinstance(reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
 
-        test_model.reactions.get_by_id("Biomass_Ecoli_core").add_metabolites(
-            {
-                test_model.metabolites.get_by_id(
-                    "3_METHYLSULFINYLPROPYL_GLUCOSINOLATE_c"
-                ): -0.75,
-                test_model.metabolites.get_by_id("GLUTATHIONE_p"): 1,
-            }
+        metabolite_a = test_model.metabolites.get_by_id(
+            "3_METHYLSULFINYLPROPYL_GLUCOSINOLATE_c"
         )
+        if not isinstance(metabolite_a, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy metabolite")
+        metabolite_b = test_model.metabolites.get_by_id("GLUTATHIONE_p")
+        if not isinstance(metabolite_b, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy metabolite")
+
+        reaction.add_metabolites({metabolite_a: -0.75, metabolite_b: 1})
         self.assertGreater(abs(test_model.optimize().objective_value), 0)
 
         # Lipid initalization
@@ -200,14 +213,20 @@ class ShortModel(TestCase):
             compartment="p",
             show_imbalance=False,
         )
-        test_model.reactions.get_by_id("Biomass_Ecoli_core").add_metabolites(
-            {test_model.metabolites.get_by_id("Acetoacetyl_ACPs_p"): -1}
-        )
+        reaction = test_model.reactions.get_by_id("Biomass_Ecoli_core")
+        if not isinstance(reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        metabolite = test_model.metabolites.get_by_id("Acetoacetyl_ACPs_p")
+        if not isinstance(metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy metabolite")
+
+        reaction.add_metabolites({metabolite: -1})
 
         self.assertGreater(test_model.slim_optimize(error_value=0), 0)
 
 
-class LargeModel(TestCase):
+class LargeModel(unittest.TestCase):
     def test_lineal_pathways(self):
         """In this test, unrelated pathways are appended to the large model
         and tested
@@ -282,4 +301,4 @@ class LargeModel(TestCase):
 
 
 if __name__ == "__main__":
-    main(verbosity=2)
+    unittest.main(verbosity=2, failfast=True)

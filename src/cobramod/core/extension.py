@@ -557,7 +557,7 @@ def add_pathway_from_data(
     previous_sinks: set[str] = {sink.id for sink in model.sinks if sink.id}
 
     # FIXME: this should be changed
-    graph: dict[str, list[str]] = dict()
+    graph: dict[str, Union[tuple[str], str, None]] = dict()
 
     for sequence in mapping:
         # Update sequence with removal of reactions
@@ -586,16 +586,17 @@ def add_pathway_from_data(
         previous: str = ""
         for i, reaction in enumerate(sequence):
             if i == len(sequence) - 1:
-                graph[reaction.id] = []
+                graph[reaction.id] = None
 
             if previous:
                 value = graph.get(previous)
 
                 if not value:
-                    value = [reaction.id]
+                    value = reaction.id
 
-                elif isinstance(value, list):
-                    value.append(reaction.id)
+                elif isinstance(value, tuple):
+                    a = list(value) + [reaction.id]
+                    value = tuple(a)
 
                 graph[previous] = value
 
@@ -795,6 +796,11 @@ def add_pathway(
 
     if isinstance(directory, str):
         directory = Path(directory).absolute()
+
+    if not directory.exists():
+        raise FileNotFoundError(
+            f"Directory '{str(directory)}' not found. Create the data directory"
+        )
 
     # Save information for summary methods
     old_values = DataModel.from_model(model)

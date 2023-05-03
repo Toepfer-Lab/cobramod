@@ -52,6 +52,11 @@ def find_url(model_id: str, query: str) -> tuple[Response, str]:
                 f'{object_type.capitalize()[:-1]} "{query}" not found in '
                 f'directory "BIGG", subdirectory "{model_id}".'
             )
+            # FIXME: BIGG combines compartments in their internal identifier.
+            # To overcome this, use universal
+            if object_type == "metabolites":
+                model_id = "universal"
+
             # Retrieve from URL
             url_text = (
                 f"http://bigg.ucsd.edu/api/v2/models/{model_id}/{object_type}"

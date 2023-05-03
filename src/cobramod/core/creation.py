@@ -1477,7 +1477,7 @@ def add_reactions(
      - Path: A file with components. E. g. :
         Path.cwd().joinpath("file_with_names.txt")
      - List[Reactions]: A list with regular Reactions
-     - str: Either the identifier with its corresponding compartment or a
+     - List[str]: Either the identifier with its corresponding compartment or a
      string with all components. This applies for the Path option. E.g. :
 
         :code:`reaction_identifier, compartment`

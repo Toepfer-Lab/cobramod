@@ -53,7 +53,11 @@ def inchikey2pubchem_cid(
     response.raise_for_status()
     value = response.text.rstrip()
 
-    cache = cache.append({"ID": inchikey, "XRefs": value}, ignore_index=True)
+    # cache = cache.append({"ID": inchikey, "XRefs": value}, ignore_index=True)
+    cache = pd.concat(
+        [cache, pd.DataFrame([{"ID": inchikey, "XRefs": value}])],
+        ignore_index=True,
+    )
     path = directory / "XRef" / str("pubchem" + ".feather")
     path.parent.mkdir(parents=True, exist_ok=True)
     cache.to_feather(path)
@@ -181,7 +185,11 @@ def get_crossreferences(  # noqa: C901
         except KeyError:
             pass
 
-        cache = cache.append({"ID": query, "XRefs": xrefs}, ignore_index=True)
+        cache = pd.concat(
+            [cache, pd.DataFrame([{"ID": query, "XRefs": xrefs}])],
+            ignore_index=True,
+        )
+        # cache = cache.append({"ID": query, "XRefs": xrefs}, ignore_index=True)
         path = directory / "XRef" / str(sort + ".feather")
         path.parent.mkdir(parents=True, exist_ok=True)
         cache.to_feather(path)

@@ -11,17 +11,16 @@ from pathlib import Path
 from time import sleep
 from unittest import TestCase, main
 
-from escher import Builder
-
+import cobramod.visualization.mapping as mp
 from cobramod.error import FoundInPairError
-from cobramod.visualization.pair import PairDictionary
-from cobramod.visualization.items import Node, Segment, Reaction
 from cobramod.visualization.converter import (
     JsonDictionary,
-    _convert_string,
     Position,
+    _convert_string,
 )
-import cobramod.visualization.mapping as mp
+from cobramod.visualization.items import Node, Reaction, Segment
+from cobramod.visualization.pair import PairDictionary
+from escher import Builder
 
 # Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
@@ -48,9 +47,7 @@ class TestItems(TestCase):
         self.assertEqual(first=test_dict["C00002_c"], second=-1)
         self.assertEqual(first=test_dict["C00227_c"], second=1)
         # CASE 3: Reaction with multiple coefficients.
-        test_string = (
-            "C00001_c + 2 C00002_c --> C00009_c + C00080_c + G11113_c"
-        )
+        test_string = "C00001_c + 2 C00002_c --> C00009_c + C00080_c + G11113_c"
         test_dict = _convert_string(string=test_string)
         self.assertEqual(first=test_dict["C00002_c"], second=-2)
         self.assertEqual(first=test_dict["C00080_c"], second=1)
@@ -143,9 +140,7 @@ class TestItems(TestCase):
             label_y=200,
             segments={"0": Segment(from_node_id="0", to_node_id="1")},
         )
-        self.assertIn(
-            member="b1", container=test_class["segments"]["0"].keys()
-        )
+        self.assertIn(member="b1", container=test_class["segments"]["0"].keys())
         # CASE 2: method add_metabolite
         test_class.add_metabolite(bigg_id="test_metabolite", coefficient=1)
         self.assertEqual(
@@ -199,9 +194,7 @@ class TestJsonDictionary(TestCase):
         test_class._overview["R6"] = {"position": Position(row=2, column=0)}
         test_class._overview["R7"] = {"position": Position(row=2, column=3)}
         # CASE 1: Retrieving columns
-        test_list = test_class._get_matrix_reactions(
-            vertical=False, position=1
-        )
+        test_list = test_class._get_matrix_reactions(vertical=False, position=1)
         self.assertCountEqual(first=["R1", "R2", "R4"], second=test_list)
         # CASE 2: Retrieving Row
         test_list = test_class._get_matrix_reactions(vertical=True, position=2)
@@ -1100,9 +1093,7 @@ class TestMapping(TestCase):
         # CASE 0: Simple Matrix m*m
         test_matrix = [["R1", "R2"], ["R3", "R4"]]
         test_answer = mp.transpose(matrix=test_matrix)
-        self.assertEqual(
-            first=[["R1", "R3"], ["R2", "R4"]], second=test_answer
-        )
+        self.assertEqual(first=[["R1", "R3"], ["R2", "R4"]], second=test_answer)
         # CASE 1: Different dimensions m*n
         test_matrix = [["R1", "R2", "R3", "R4"], [0, 0, "R5", 0]]
         test_answer = mp.transpose(matrix=test_matrix)

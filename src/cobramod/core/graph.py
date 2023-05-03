@@ -14,12 +14,12 @@ from __future__ import annotations
 from collections import Counter
 from contextlib import suppress
 from itertools import chain
-from typing import Any, Dict
+from typing import Any, Dict, Union
 
 from cobramod.error import GraphKeyError
 
 
-def find_missing(graph: dict):
+def find_missing(graph: dict[str, Union[str, tuple[str]]]):
     """
     Checks whether the given graph is missing a key.
 
@@ -46,66 +46,38 @@ def find_missing(graph: dict):
         )
 
 
-def find_cycle(graph: dict[str, str], key: str, visited: list):
-    """
-    Returns a list with the cycle in the graph or False is graph does not
-    contain a cycle.
+def find_cycle(
+    graph: dict[str, Union[str, tuple[str]]], key: str, visited: list[str]
+) -> list[str]:
+    visited.append(key)
 
-    Args:
-        graph (dict): Dictionary representing the relationships between nodes.
-            A node can have several edges, which should be represented in the
-            form of values.
-         key (str): Key out of the dictionary, from which the search is
-            started.
-         visited (list): List with keys already visited.
+    value = graph.get(key, None)
 
-    Returns:
-        List: Members of the graph that are in a cycle.
-        False: If the graph does not contain a cycle.
-
-    Raises:
-        GraphKeyError: If a key is missing its relationship. When this happens,
-            there is probably a value missing.
-    """
-    try:
-        # Get the value and check if is already in visited. If so, then it
-        # is not lineal. Otherwise, finish until return Lineal
-        value = graph[key]
+    if isinstance(value, str):
         if value in visited:
             return visited
-        elif value is None:
-            return False
-        # For tuples, the value will be added in the exception
-        if not isinstance(value, tuple):
-            visited.append(value)
-        return find_cycle(graph=graph, key=value, visited=visited)
-    except KeyError:
-        # If not a tuple then, the graph is missing an edge
-        if not isinstance(key, tuple):
-            raise GraphKeyError(f'Value for "{key}" is missing.')
-        from_tuple = list()
-        for single in key:
+
+        return find_cycle(graph, value, visited)
+
+    elif isinstance(value, tuple):
+        from_tuple: list[list[str]] = list()
+
+        for element in value:
             # In case of a set, all values must be tested as well
             old_visited = visited.copy()
-            old_visited.append(single)
-            branch = find_cycle(graph=graph, key=single, visited=old_visited)
-            # Only append if not False
+
+            branch = find_cycle(graph, element, old_visited)
+
             if branch:
-                if isinstance(branch[0], list):
-                    from_tuple.extend(branch)
-                    continue
-                # In case of a list
                 from_tuple.append(branch)
-        # Return False for an empty list
-        if not from_tuple:
-            return False
-        # Return first object
-        elif len(from_tuple) == 1:
-            return from_tuple[0]
-        return from_tuple
+
+        if from_tuple:
+            return from_tuple.pop()
+
+    return []
 
 
-def return_cycles(graph: dict):
+def return_cycles(graph: dict[str, Union[str, tuple[str]]]):
     """
     Returns a nested list of cyclic paths. These paths might repeat. If the
     graph does not contain a cycle, the list is empty.
@@ -119,18 +91,18 @@ def return_cycles(graph: dict):
         List: Nested list with cyclic paths or an empty list if the graph
             does not contain a cycle.
     """
-    cycles = list()  # type: ignore
+    cycles: list[list[str]] = list()
+
     for node in graph.keys():
         cycle = find_cycle(graph=graph, key=node, visited=[])
+
         if cycle:
-            if isinstance(cycle[0], list):
-                cycles.extend(cycle)
-                continue
             cycles.append(cycle)
+
     return cycles
 
 
-def cut_cycle(graph: dict, key: str):
+def cut_cycle(graph: dict[str, Union[str, None, tuple[str]]], key: str):
     """
     Changes value of the key to None in a given dictionary. It will raise an
     error if the value is a tuple.
@@ -173,7 +145,12 @@ def cut_parents(graph: dict):
             graph[key] = None
 
 
-def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
+def back(
+    graph: dict[str, Union[str, tuple[str]]],
+    value: str,
+    path: list[str],
+    stop_list: list = [],
+) -> list[str]:
     """
     Returns a list with a linear path. The function creates a sequence from
     the graph dictionary until the given value is found in the sequence or in
@@ -219,7 +196,7 @@ def back(graph: dict, value: str, path: list, stop_list: list = []) -> list:
     return path
 
 
-def verify_paths(paths: list, graph: dict) -> set:
+def verify_paths(paths: list, graph: dict) -> set[str]:
     """
     Returns the missing keys that are not present in the given paths list.
 
@@ -236,9 +213,9 @@ def verify_paths(paths: list, graph: dict) -> set:
     return set(graph.keys()).difference(reactions)
 
 
-def get_paths(graph: dict, stop_list: list) -> list:
+def get_paths(graph: dict, stop_list: list) -> list[list[str]]:
     """
-    Returns a list with the longest path in a graph. This only works with
+    Returns a list with the longest paths in a graph. This only works with
     lineal directed paths.
 
     Args:
@@ -253,16 +230,19 @@ def get_paths(graph: dict, stop_list: list) -> list:
         RecursionError: if the graph is not lineal
     """
     end_nodes = [key for key, value in graph.items() if value is None]
+
     # Function back will raise RecursionError if not lineal
     path_generator = (
         back(graph=graph, value=node, path=[node], stop_list=stop_list)
         for node in end_nodes
     )
-    paths = list()
-    for node in end_nodes:
+    paths: list[list[str]] = list()
+
+    for _ in end_nodes:
         with suppress(StopIteration):
             single = next(path_generator)
             paths.append(single)
+
     # FIXME: this is a temporal solution. When multiple tuples are located in
     # the graph, back would not be able to find all member
     difference = verify_paths(paths=paths, graph=graph)
@@ -271,6 +251,7 @@ def get_paths(graph: dict, stop_list: list) -> list:
         # the behavior of the visualization
         for item in difference:
             paths.append([item])
+
     return paths
 
 
@@ -305,7 +286,7 @@ def get_mapping(graph: dict, stop_list: list, new: list) -> list:
     return new
 
 
-def get_graph_dict(graph: dict[str, str]) -> list[list[str]]:
+def get_graph_dict(graph: dict[str, Union[str, tuple[str]]]) -> list[list[str]]:
     """
     Returns the mapping for the given graph. The mapping is defined as a list
     with a "core" path and its branches. Cyclic graphs will be cut to create
@@ -370,11 +351,11 @@ def filter_graph(graph: dict, avoid_list: list) -> dict:
     return new_graph
 
 
-def build_lineal_graph(sequence: list[str]) -> dict[str, str]:
+def build_lineal_graph(sequence: list[str]) -> dict[str, Union[str, None]]:
     """
     Creates a returns a simple lineal directed graph from given sequence
     """
-    graph: dict[str, str] = dict()
+    graph: dict[str, Union[None, str]] = dict()
     for index, reaction in enumerate(sequence):
         try:
             parent = reaction
@@ -383,6 +364,6 @@ def build_lineal_graph(sequence: list[str]) -> dict[str, str]:
 
         except IndexError:
             # It must be the first one
-            graph[reaction] = ""
+            graph[reaction] = None
 
     return graph

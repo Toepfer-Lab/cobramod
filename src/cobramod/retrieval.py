@@ -33,6 +33,7 @@ class Data:
     database: str
     attributes: dict[str, Any]
     path: Path
+    model_id: str
 
     def __init__(
         self,
@@ -41,12 +42,14 @@ class Data:
         mode: Literal["Pathway", "Reaction", "Metabolite"],
         database: str,
         path: Path,
+        model_id: str,
     ):
         self.mode = mode
         self.identifier = identifier
         self.attributes = attributes
         self.database = database
         self.path = path
+        self.model_id = model_id
 
     def __repr__(self):
         return f"Data [{self.mode}: {self.identifier}]"
@@ -56,6 +59,7 @@ class Data:
         cls, entry: str, data: dict[str, Any], database: str, path: Path
     ):
         is_compound = data.get("formulae", None)
+        model_id = path.parent.name
 
         if is_compound:
             mode = "Metabolite"
@@ -64,7 +68,7 @@ class Data:
             mode = "Reaction"
             attributes = bigg.parse_reaction_attributes(data, entry)
 
-        return cls(entry, attributes, mode, database, path)
+        return cls(entry, attributes, mode, database, path, model_id)
 
     @classmethod
     def from_text(cls, entry: str, text: str, database: str, path: Path):
@@ -84,7 +88,7 @@ class Data:
         else:
             raise AttributeError(f"Cannot parse type '{mode}'")
 
-        return cls(entry, attributes, mode, database, path)
+        return cls(entry, attributes, mode, database, path, "")
 
     @classmethod
     def from_xml(cls, entry: str, root: et.Element, database: str, path: Path):
@@ -103,7 +107,7 @@ class Data:
             raise AttributeError(
                 "Cannot infere the object type from given et.Element"
             )
-        return cls(entry, attributes, mode, database, path)
+        return cls(entry, attributes, mode, database, path, "")
 
     def parse(
         self,
@@ -182,8 +186,7 @@ class Data:
                     reaction_str,
                     directory,
                     self.database,
-                    # NOTE: add model_id
-                    "",
+                    self.model_id,
                     replacement,
                 )
                 return reaction
@@ -212,22 +215,40 @@ def get_response(
         try:
             if database == "bigg":
                 response, _ = bigg.find_url(model_id, query)
+                response.raise_for_status()
+
                 # This extra attribute if later use to save the file in their
                 # corresponding directories
                 response.extra = Path(model_id)  # type: ignore
 
-            else:
-                response = requests.get(url)
-                response.raise_for_status()
+                return database, response
+
+            s = requests.Session()
+            # FIXME: find a better way
+            user, pwd = cmod_utils.get_credentials(
+                Path.cwd().joinpath("credentials.txt")
+            )
+            s.post(
+                "https://websvc.biocyc.org/credentials/login/",
+                data={"email": user, "password": pwd},
+            )
+
+            response = s.get(url)
+            s.close()
+            response.raise_for_status()
 
             # Not a valid content-type to process
             header = response.headers.get("Content-Type", "").lower()
 
-            if "html" in header and (database != "kegg" or database != "bigg"):
+            if "html" in header and ":" in query:
                 warn(
                     f"Cannot retrieve data from '{url}'. It is possible that a "
                     "subscription is required. Try using 'META'"
                 )
+                continue
+
+            # Query Kegg or Bigg with biocyc url
+            elif "html" in header:
                 continue
 
             return database, response
@@ -317,9 +338,9 @@ def get_data(
             filename = next(directory.rglob(identifier + "*"))
 
         except StopIteration:
-            database, response = get_response(identifier)
+            response_database, response = get_response(identifier)
 
-            if database == "bigg":
+            if response_database == "bigg":
                 extra: Path = getattr(response, "extra")
 
                 if not extra:
@@ -327,10 +348,18 @@ def get_data(
                         "The 'extra' attribute was not found in the response"
                     )
                 directory = directory.joinpath(extra)
+
             filename = write(identifier, directory, response)
     else:
+        # Create dir if needed
+        if not directory.joinpath(database).exists():
+            directory.joinpath(database).mkdir()
+
         try:
             if model_id:
+                if not directory.joinpath(database, model_id).exists():
+                    directory.joinpath(database, model_id).mkdir()
+
                 filename = next(
                     get_files(
                         directory.joinpath(database, model_id), identifier
@@ -345,12 +374,12 @@ def get_data(
             query = identifier
 
             # Biocyc family
-            if database != "kegg" or database != "bigg":
+            if database != "KEGG" and database != "BIGG":
                 query = f"{database}:{identifier}"
 
-            database, response = get_response(query, model_id)
+            response_database, response = get_response(query, model_id)
 
-            if database == "bigg":
+            if response_database == "bigg":
                 extra: Path = getattr(response, "extra")
 
                 if not extra:
@@ -358,6 +387,12 @@ def get_data(
                         "The 'extra' attribute was not found in the response"
                     )
                 directory = directory.joinpath("BIGG", extra)
+
+                if not directory.exists():
+                    directory.mkdir()
+
+            else:
+                directory = directory.joinpath(database)
 
             filename = write(identifier, directory, response)
 

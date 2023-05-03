@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 import tempfile
+import unittest
 from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase
@@ -6,20 +8,19 @@ from unittest.mock import patch
 
 import pandas as pd
 from cobra import Metabolite, Reaction
-from numpy import NaN
-
 from cobramod.core.crossreferences import (
-    inchikey2pubchem_cid,
-    load_cache_from_disk,
-    get_crossreferences,
-    get_reac_prop_with_ec,
-    metanetx2ec,
     add2dict_unique,
     add_crossreferences,
+    get_crossreferences,
+    get_reac_prop_with_ec,
+    inchikey2pubchem_cid,
+    load_cache_from_disk,
+    metanetx2ec,
 )
 
 # Debug must be set in level DEBUG for the test
 from cobramod.debug import debug_log
+from numpy import NaN
 
 debug_log.setLevel(DEBUG)
 
@@ -54,7 +55,8 @@ class TestCrossReferences(TestCase):
 
             dict = {"ID": "new_ID", "XRefs": "test"}
 
-            result = df.append(dict, ignore_index=True)
+            # result = df.append(dict, ignore_index=True)
+            result = pd.concat([df, pd.DataFrame([dict])], ignore_index=True)
             (directory / "XRef").mkdir(exist_ok=True)
             result.to_feather(directory / "XRef" / str("test" + ".feather"))
             load_cache_from_disk.cache_clear()
@@ -310,3 +312,7 @@ class TestCrossReferences(TestCase):
 
             for key, value in expected_annotations.items():
                 self.assertCountEqual(value, reaction.annotation[key])
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2, failfast=True)

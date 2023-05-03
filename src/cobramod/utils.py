@@ -6,20 +6,16 @@ example:
 
  - check_imbalance: Check for unbalanced reactions.
 """
-from itertools import chain
 from pathlib import Path
 from re import match
-from typing import Any, Generator, Iterable, Iterator, TextIO, Optional
+from typing import Any, Generator, Iterable, Iterator, Optional, TextIO
 from warnings import warn
 
 import cobra.core as cobra_core
 from cobra import DictList, Reaction
 
+import cobramod.error as cmod_error
 from cobramod.debug import debug_log
-from cobramod.error import (
-    PatternNotFound,
-    UnbalancedReaction,
-)
 
 ARROWS: dict[str, tuple[int, int]] = {
     "<=>": (-1000, 1000),
@@ -81,10 +77,8 @@ def check_imbalance(
     Raises:
         UnbalancedReaction: if given reaction is unbalanced.
     """
-    try:
-        dict_balance = reaction.check_mass_balance()
-    except ValueError:
-        dict()
+    dict_balance = reaction.check_mass_balance()
+
     # Will stop if True
     if dict_balance != {}:
         msg = (
@@ -92,8 +86,8 @@ def check_imbalance(
             + f"affected. Please verify:\n{dict_balance}"
         )
         if stop_imbalance:
-            raise UnbalancedReaction(
-                identifier=reaction.id, dict_balance=dict_balance
+            raise cmod_error.UnbalancedReaction(
+                identifier=reaction.id, dict_balance=str(dict_balance)
             )
         if show_imbalance:
             debug_log.warning(msg)
@@ -108,7 +102,9 @@ def get_key_dict(dictionary: dict, pattern: str) -> str:
     for key in dictionary.keys():
         if match(pattern=pattern, string=key):
             return str(key)
-    raise PatternNotFound("No pattern was found for given dictionary.")
+    raise cmod_error.PatternNotFound(
+        "No pattern was found for given dictionary."
+    )
 
 
 def read_lines(f: TextIO) -> Iterator:
@@ -138,38 +134,6 @@ def create_replacement(filename: Path) -> dict:
     return replace_dict
 
 
-def _replace_item(iterable: Iterable, replacement: dict = {}) -> Generator:
-    """
-    For an item in Iterable, replaces it for its corresponding value in
-    given dictionary.
-
-    Args:
-        iterable (Iterable): sequence to modify
-        replacement (dict, optional): original identifiers to be replaced.
-            Values are the new identifiers. Defaults to {}.
-
-    Yields:
-        Generator: Either original keys or the replacements
-    """
-    for item in iterable:
-        if item in set(chain.from_iterable(replacement.keys())):
-            debug_log.warning(f'Replacing "{item}" with "{replacement[item]}"')
-            yield replacement[item]
-        else:
-            yield item
-
-
-def _remove_item(iterable: Iterable, avoid_list: Iterable = []) -> Generator:
-    """
-    Returns Generator of items that are not in the avoid list.
-    """
-    for item in iterable:
-        if item in avoid_list:
-            debug_log.warning(f'Avoiding root for "{item}"')
-        else:
-            yield item
-
-
 def compare_type(first: Any, second: Any):
     """
     Returns True is both objects are the same type, else raise TypeError.
@@ -191,23 +155,6 @@ def compare_DictList(first: DictList, second: DictList) -> Generator:
             yield item.id
 
 
-def _save_diff(differences: dict) -> list:
-    """
-    Save differences in a list for later be used in a stdout or other kind of
-    outputs.
-    """
-    output = list()
-    if all([value == [] for value in differences.values()]):
-        output.append("No differences!")
-    else:
-        output.append("Differences:")
-        for key, value in differences.items():
-            if value != []:
-                output.append(f"{key.capitalize()}:")
-                output += [f"- {identifier}" for identifier in value]
-    return output
-
-
 def write_to_file(sequences: Iterable, filename: Path):
     """
     Writes to given file all items from the iterable in separate lines.
@@ -216,25 +163,13 @@ def write_to_file(sequences: Iterable, filename: Path):
         f.writelines(line + "\n" for line in sequences)
 
 
-def _path_match(directory: Path, pattern: str) -> Path:
-    """
-    Returns first match as a Path object, given a pattern for a specific
-    directory.
-    """
-    match = directory.glob(pattern=f"**/{pattern}.*")
-    try:
-        return next(match)
-    except StopIteration:
-        raise StopIteration(f"No file found with pattern '{pattern}'")
-
-
 def find_intersection(
     dictlist: cobra_core.DictList, query: dict[str, str], revert: bool
 ) -> Optional[str]:
     """
     Return the first item from the intersection of a DictList and the values of
     a dictionary. The identifiers from the DictList can be reverted to their
-    original. Method will raise a NoIntersectFound is no intersection is found.
+    original. Returns None if no intersection is found
     """
     # Format
     if revert:
@@ -416,3 +351,11 @@ def inform_new_sinks(model: cobra_core.Model, previous_sinks: set[str]):
             )
             debug_log.warning(msg=msg)
             warn(message=msg, category=UserWarning)
+
+
+def get_credentials(file: Path) -> tuple[str, str]:
+    with open(file, "r") as f:
+        user = f.readline().rstrip().strip()
+        pwd = f.readline().rstrip().strip()
+
+    return user, pwd
