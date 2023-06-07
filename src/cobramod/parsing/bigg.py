@@ -21,13 +21,13 @@ from __future__ import annotations
 from contextlib import suppress
 from typing import Any
 
-from requests import HTTPError, Response, get
+import requests
 
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
 
 
-def find_url(model_id: str, query: str) -> tuple[Response, str]:
+def find_url(model_id: str, query: str) -> tuple[requests.Response, str]:
     """
     Tries to find a valid URL for the API of BIGG. It will return a
     :class:`requests.Response` if URL is valid.
@@ -46,7 +46,7 @@ def find_url(model_id: str, query: str) -> tuple[Response, str]:
         HTTPError: If identifier is not found in BIGG database.
     """
     for object_type in ("reactions", "metabolites"):
-        with suppress(HTTPError):
+        with suppress(requests.HTTPError):
             # Check that status is available
             debug_log.debug(
                 f'{object_type.capitalize()[:-1]} "{query}" not found in '
@@ -64,16 +64,18 @@ def find_url(model_id: str, query: str) -> tuple[Response, str]:
             )
             debug_log.debug(f"Searching {url_text} for biochemical data.")
             # Get and check for errors
-            response = get(url_text)
+            response = requests.get(url_text)
             response.raise_for_status()
 
-            info_response = get("http://bigg.ucsd.edu/api/v2/database_version")
+            info_response = requests.get(
+                "http://bigg.ucsd.edu/api/v2/database_version"
+            )
             info_response.raise_for_status()
             db_version = info_response.json()["bigg_models_version"]
 
             return response, db_version
     # Otherwise
-    raise HTTPError(f"Identifier '{query}' not found in BIGG.")
+    raise requests.HTTPError(f"Identifier '{query}' not found in BIGG.")
 
 
 def build_reference(json_data: dict[str, Any]) -> dict[str, str]:
@@ -168,11 +170,12 @@ def parse_metabolite_attributes(data: dict[str, Any]) -> dict[str, Any]:
     # For generic compounds, a list comes, otherwise it is a regular
     # string
     try:
-        formula: str = data["formulae"].pop()
+        formula: str = data.get("formulae", data.get("formula", [])).pop()
         charge = int(data["charges"].pop())
 
-    except IndexError:
-        formula = data["formula"]
+    except AttributeError:
+        # NOTE: add message
+        formula = data.get("formulae", data.get("formula", "X"))
         charge = int(data["charge"])
 
     attributes = {

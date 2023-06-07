@@ -56,7 +56,7 @@ def parse_metabolite_attributes(
 
 
 def parse_reaction_attributes(
-    data: dict[str, list[str]], entry: str
+    data: dict[str, list[str]], entry: str, genome: str, gene_directory: Path
 ) -> dict[str, Any]:
     reaction_str = data.get("EQUATION", []).pop()
 
@@ -115,8 +115,8 @@ def parse_reaction_attributes(
         "transport": cmod_utils.is_transport(reaction_str),
         "genes": parse_genes(
             identifier=entry,
-            directory=Path(),
-            genome="",
+            directory=gene_directory,
+            genome=genome,
         ),
     }
     return attributes
@@ -353,11 +353,14 @@ def retrieve_kegg_genes(directory: Path, identifier: str):
     a HTTPError if nothing is found.
     """
     # GENES directory will depend from the subdatabase
-    directory = directory.joinpath("KEGG").joinpath("GENES")
+    directory = directory.joinpath("GENES")
+
     if not directory.exists():
         directory.mkdir()
+
     # Retrieval of the Gene information
     filename = directory.joinpath(f"{identifier}_genes.txt")
+
     if not filename.exists():
         # Obtain list of KO
         # This URL will not necessarily raise exception
@@ -384,11 +387,7 @@ def parse_genes(
     genes: dict[str, str] = dict()
     rule = str()
 
-    filename = (
-        directory.joinpath("KEGG")
-        .joinpath("GENES")
-        .joinpath(f"{identifier}_genes.txt")
-    )
+    filename = directory.joinpath(f"{identifier}_genes.txt")
     with suppress(FileNotFoundError):
         with open(file=filename, mode="r") as file:
             genes_list = parse_ko_to_genes(

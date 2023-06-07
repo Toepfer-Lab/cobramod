@@ -24,14 +24,13 @@ from typing import Optional, Union
 from warnings import warn
 
 import cobra.core as cobra_core
+import requests
 
 import cobramod.error as cmod_error
 import cobramod.retrieval as cmod_retrieval
 import cobramod.utils as cmod_utils
 from cobramod.core import crossreferences
-from cobramod.core.genes import genes_to_reaction
 from cobramod.debug import debug_log
-from cobramod.parsing import biocyc, kegg
 
 
 def build_metabolite(
@@ -1233,8 +1232,9 @@ def create_object(
             database=database,
             # debug_level=10,
             model_id=model_id,
+            genome=genome,
         )
-    except AttributeError:
+    except requests.HTTPError:
         # If not found, then rename
         data = cmod_retrieval.get_data(
             directory=directory,
@@ -1242,6 +1242,7 @@ def create_object(
             database=database,
             # debug_level=10,
             model_id=model_id,
+            genome=genome,
         )
         data.identifier = replacement.get(identifier, identifier)
 
@@ -1256,34 +1257,6 @@ def create_object(
         )
     else:
         obj = data.parse(model, compartment, replacement)
-
-    if isinstance(obj, cobra_core.Reaction):
-        if data.path.suffix == ".xml":
-            gene_information = biocyc.parse_genes(
-                identifier,
-                directory.joinpath(data.database),
-            )
-        elif data.path.suffix == ".json":
-            gene_information = data.attributes["genes"]
-
-        elif data.path.suffix == ".txt":
-            if genome:
-                gene_information = kegg.parse_genes(
-                    directory, identifier, genome
-                )
-            else:
-                msg = (
-                    "No genes were specified for the KEGG reaction "
-                    f"{identifier}. No genes will be added."
-                )
-                warn(message=msg, category=UserWarning)
-                debug_log.warning(msg=msg)
-                return obj
-
-        else:
-            raise AttributeError(f"No parser was found for: {data.path}")
-
-        genes_to_reaction(obj, gene_information)
 
     return obj
 

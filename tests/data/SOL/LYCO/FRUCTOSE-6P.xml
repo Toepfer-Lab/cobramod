@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='25.0' xml:base='http://localhost:1555/getxml?LYCO:FRUCTOSE-6P'><metadata><url>http://localhost:1555/</url>
+<service_name>getxml</service_name>
+<query>LYCO:FRUCTOSE-6P</query>
+<num_results>1</num_results>
+<PGDB orgid='LYCO' version='3.8'><species datatype='string'>Solanum lycopersicum</species>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4081</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4081</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='LYCO:FRUCTOSE-6P' orgid='LYCO' frameid='FRUCTOSE-6P' detail='full'><parent><Compound resource='getxml?LYCO:CPD-18719' orgid='LYCO' frameid='CPD-18719' class='true'/></parent>
+<cml><molecule id='FRUCTOSE-6P' title='D-fructose-6-phosphate' formalCharge='-2'><atomArray><atom id='FRUCTOSE-6P-atom1' elementType='O' x2='830.0' y2='-1711.0'/><atom id='FRUCTOSE-6P-atom2' elementType='O' x2='5002.0' y2='-2408.0'/><atom id='FRUCTOSE-6P-atom3' elementType='O' x2='2376.0' y2='0.0'/><atom id='FRUCTOSE-6P-atom4' elementType='O' x2='4170.0' y2='0.0'/><atom id='FRUCTOSE-6P-atom5' elementType='O' x2='4726.0' y2='-1707.0'/><atom id='FRUCTOSE-6P-atom6' elementType='O' x2='0.0' y2='-2525.0' formalCharge='-1'/><atom id='FRUCTOSE-6P-atom7' elementType='O' x2='847.0' y2='-3361.0' formalCharge='-1'/><atom id='FRUCTOSE-6P-atom8' elementType='C' x2='4196.0' y2='-2237.0'/><atom id='FRUCTOSE-6P-atom9' elementType='C' x2='1821.0' y2='-1707.0'/><atom id='FRUCTOSE-6P-atom10' elementType='O' x2='1649.0' y2='-2514.0'/><atom id='FRUCTOSE-6P-atom11' elementType='O' x2='3273.0' y2='-1937.0'/><atom id='FRUCTOSE-6P-atom12' elementType='C' x2='2860.0' y2='-668.0'/><atom id='FRUCTOSE-6P-atom13' elementType='C' x2='2606.0' y2='-1452.0'/><atom id='FRUCTOSE-6P-atom14' elementType='C' x2='3685.0' y2='-668.0'/><atom id='FRUCTOSE-6P-atom15' elementType='C' x2='3941.0' y2='-1452.0'/><atom id='FRUCTOSE-6P-atom16' elementType='P' x2='825.0' y2='-2536.0'/></atomArray>
+<bondArray><bond id='FRUCTOSE-6P-bond1' atomRefs='FRUCTOSE-6P-atom14 FRUCTOSE-6P-atom15' order='1'/><bond id='FRUCTOSE-6P-bond2' atomRefs='FRUCTOSE-6P-atom12 FRUCTOSE-6P-atom14' order='1'/><bond id='FRUCTOSE-6P-bond3' atomRefs='FRUCTOSE-6P-atom12 FRUCTOSE-6P-atom13' order='1'/><bond id='FRUCTOSE-6P-bond4' atomRefs='FRUCTOSE-6P-atom11 FRUCTOSE-6P-atom15' order='1'/><bond id='FRUCTOSE-6P-bond5' atomRefs='FRUCTOSE-6P-atom11 FRUCTOSE-6P-atom13' order='1'/><bond id='FRUCTOSE-6P-bond6' atomRefs='FRUCTOSE-6P-atom10 FRUCTOSE-6P-atom16' order='1'/><bond id='FRUCTOSE-6P-bond7' atomRefs='FRUCTOSE-6P-atom13 FRUCTOSE-6P-atom9' order='1'/><bond id='FRUCTOSE-6P-bond8' atomRefs='FRUCTOSE-6P-atom9 FRUCTOSE-6P-atom10' order='1'/><bond id='FRUCTOSE-6P-bond9' atomRefs='FRUCTOSE-6P-atom15 FRUCTOSE-6P-atom8' order='1'/><bond id='FRUCTOSE-6P-bond10' atomRefs='FRUCTOSE-6P-atom7 FRUCTOSE-6P-atom16' order='1'/><bond id='FRUCTOSE-6P-bond11' atomRefs='FRUCTOSE-6P-atom6 FRUCTOSE-6P-atom16' order='1'/><bond id='FRUCTOSE-6P-bond12' atomRefs='FRUCTOSE-6P-atom15 FRUCTOSE-6P-atom5' order='1'/><bond id='FRUCTOSE-6P-bond13' atomRefs='FRUCTOSE-6P-atom14 FRUCTOSE-6P-atom4' order='1'/><bond id='FRUCTOSE-6P-bond14' atomRefs='FRUCTOSE-6P-atom12 FRUCTOSE-6P-atom3' order='1'/><bond id='FRUCTOSE-6P-bond15' atomRefs='FRUCTOSE-6P-atom2 FRUCTOSE-6P-atom8' order='1'/><bond id='FRUCTOSE-6P-bond16' atomRefs='FRUCTOSE-6P-atom1 FRUCTOSE-6P-atom16' order='2'/></bondArray>
+<formula concise='C 6 H 11 O 9 P 1'/><float title='molecularWeight' units='g/mol'>258.121</float>
+<string title='smiles'>C(OP(=O)([O-])[O-])[C@H]1(O[C@](O)(CO)[C@@H](O)[C@H](O)1)</string>
+</molecule>
+</cml>
+<appears-in-left-side-of><Reaction resource='getxml?LYCO:6-PHOSPHOFRUCTO-2-KINASE-RXN' orgid='LYCO' frameid='6-PHOSPHOFRUCTO-2-KINASE-RXN'/><Reaction resource='getxml?LYCO:2.7.1.90-RXN' orgid='LYCO' frameid='2.7.1.90-RXN'/><Reaction resource='getxml?LYCO:L-GLN-FRUCT-6-P-AMINOTRANS-RXN' orgid='LYCO' frameid='L-GLN-FRUCT-6-P-AMINOTRANS-RXN'/><Reaction resource='getxml?LYCO:SUCROSE-PHOSPHATE-SYNTHASE-RXN' orgid='LYCO' frameid='SUCROSE-PHOSPHATE-SYNTHASE-RXN'/><Reaction resource='getxml?LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-317.66592</gibbs-0>
+<synonym datatype='string'>D-fructose-6-phosphate</synonym>
+<synonym datatype='string'>F6P</synonym>
+<synonym datatype='string'>fructose-6P</synonym>
+<synonym datatype='string'>fructose-6-P</synonym>
+<synonym datatype='string'>fruc6p</synonym>
+<synonym datatype='string'>fru-6-P</synonym>
+<synonym datatype='string'>fructose-6-phosphate</synonym>
+<synonym datatype='string'>A-D-fructose-6-P</synonym>
+<synonym datatype='string'>D-fructose-6-P</synonym>
+<common-name datatype='string'>D-fructose-6-phosphate</common-name>
+<monoisotopic-mw datatype='float' units='Daltons'>260.02972</monoisotopic-mw>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00085</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00085</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>643-13-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=643-13-0</dblink-URL>
+</dblink>
+<inchi datatype='string'>InChI=1/C6H13O9P/c7-2-6(10)5(9)4(8)3(15-6)1-14-16(11,12)13/h3-5,7-10H,1-2H2,(H2,11,12,13)/p-2/t3-,4-,5+,6-/m1/s1/fC6H11O9P/q-2</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?LYCO:TRANSALDOL-RXN' orgid='LYCO' frameid='TRANSALDOL-RXN'/><Reaction resource='getxml?LYCO:3.1.3.46-RXN' orgid='LYCO' frameid='3.1.3.46-RXN'/><Reaction resource='getxml?LYCO:F16BDEPHOS-RXN' orgid='LYCO' frameid='F16BDEPHOS-RXN'/><Reaction resource='getxml?LYCO:RXN-6182' orgid='LYCO' frameid='RXN-6182'/><Reaction resource='getxml?LYCO:PGLUCISOM-RXN' orgid='LYCO' frameid='PGLUCISOM-RXN'/><Reaction resource='getxml?LYCO:MANNPISOM-RXN' orgid='LYCO' frameid='MANNPISOM-RXN'/><Reaction resource='getxml?LYCO:FRUCTOKINASE-RXN' orgid='LYCO' frameid='FRUCTOKINASE-RXN'/><Reaction resource='getxml?LYCO:2TRANSKETO-RXN' orgid='LYCO' frameid='2TRANSKETO-RXN'/></appears-in-right-side-of>
+<molecular-weight datatype='float' units='Daltons'>258.121</molecular-weight>
+</Compound>
+</ptools-xml>

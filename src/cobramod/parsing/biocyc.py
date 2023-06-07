@@ -22,6 +22,8 @@ from pathlib import Path
 from typing import Any
 from warnings import warn
 
+import requests
+
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
 from cobramod.error import (
@@ -119,7 +121,9 @@ def get_direction_from_xml(root: et.Element) -> str:
     return reversibility[text]
 
 
-def parse_reaction_attributes(root: et.Element, entry: str) -> dict[str, Any]:
+def parse_reaction_attributes(
+    root: et.Element, entry: str, gene_directory: Path
+) -> dict[str, Any]:
     try:
         name = root.find("*[@ID]/enzymatic-reaction/*/common-name")
         if name is not None and name.text:
@@ -127,12 +131,14 @@ def parse_reaction_attributes(root: et.Element, entry: str) -> dict[str, Any]:
     except AttributeError:
         name = entry
     equation = reaction_str_from_xml(root)
+
     attributes = {
         "name": name,
         "equation": equation,
         "xref": build_cross_references_xml(root),
         "replacements": {},
         "transport": cmod_utils.is_transport(equation),
+        "genes": parse_genes(entry, gene_directory),
     }
     return attributes
 
@@ -173,7 +179,7 @@ def parse_metabolite_attributes(root: et.Element, entry: str):
     return attributes
 
 
-def get_graph(root: Any) -> dict:
+def get_graph(root: et.Element) -> dict:
     """
     Return a directed graph from given XML Element. A key represent the
     parent reaction and the value is the child. A parent can have multiple
@@ -190,27 +196,44 @@ def get_graph(root: Any) -> dict:
         WrongParserError: If given root does not represent a pathway.
     """
     # Verify non-superpathway
-    with suppress(TypeError):
-        identifier = root.find("*[@frameid]").attrib["frameid"]
-        for parent in root.findall("Pathway/parent/*"):
-            if "Super" in parent.get("frameid"):
-                msg = (
-                    f'Pathway "{identifier}" was identified as a '
-                    + "superpathway. This type of pathway does not normally "
-                    + "included all reactions. Please add the corresponding "
-                    + "sub-pathways singlely!"
-                )
-                debug_log.warning(msg=msg)
-                warn(message=msg, category=SuperpathwayWarning)
-                break
-    # Parent: child
+    element = root.find("*[@frameid]")
+    if element is None:
+        raise TypeError("Not a valid Element")
+
+    identifier = element.get("frameid")
+
+    for pathway in element.findall("*/Pathway"):
+        frameid = pathway.get("frameid")
+
+        if frameid is None:
+            raise TypeError("Not a valid Element")
+
+        if "Super" in frameid:
+            msg = (
+                f'Pathway "{identifier}" was identified as a '
+                + "superpathway. This type of pathway does not normally "
+                + "included all reactions. Please add the corresponding "
+                + "sub-pathways singlely!"
+            )
+            debug_log.warning(msg=msg)
+            warn(message=msg, category=SuperpathwayWarning)
+            break
+
     graph: dict[str, Any] = dict()
     reactions = set()
-    # line: Element
+
     for line in root.findall("*/reaction-ordering"):
         # Get reactions and add them to set
-        child = line.find("*/[@frameid]").attrib["frameid"]
-        parent = line.find("predecessor-reactions/").attrib["frameid"]
+        element = line.find("*/[@frameid]")
+        if element is None:
+            raise TypeError("Not a valid Element")
+        child = element.attrib["frameid"]
+
+        element = line.find("predecessor-reactions/")
+        if element is None:
+            raise TypeError("Not a valid Element")
+        parent = element.attrib["frameid"]
+
         reactions.add(parent)
         reactions.add(child)
         # Expand keys
@@ -224,21 +247,26 @@ def get_graph(root: Any) -> dict:
         except KeyError:
             # Create new one
             graph[parent] = child
+
     # Find missing elements and insert a None
     for reaction in reactions:
         try:
             graph[reaction]
         except KeyError:
             graph[reaction] = None
+
     if not graph:
         # It could be a single-reaction pathway. Give a None since it is just
         # one
         try:
-            name = root.find("*/reaction-layout/Reaction").attrib["frameid"]
+            element = root.find("*/reaction-layout/Reaction")
+            if element is None:
+                raise TypeError("Not a valid Element")
+            name = element.attrib["frameid"]
             graph[name] = None
         except AttributeError:
             raise WrongParserError("Given root does not belong to a Pathway")
-    # Verify if Superpathway
+
     return graph
 
 
@@ -259,6 +287,75 @@ def parse_pathway_attributes(root: et.Element, entry: str) -> dict[str, Any]:
     return attributes
 
 
+def retrieve_gene_information(directory: Path, identifier: str, database: str):
+    """
+    Retrieve the gene information for given reaction in a specific database
+    Args:
+        directory (Path): Directory to store and retrieve local data.
+        identifier (str): original identifier
+        database (str): Name of the database. Some options: "META", "ARA".
+            Full list in: "https://biocyc.org/biocyc-pgdb-list.shtml"
+    Raises:
+        HTTPError: If given reaction does not have gene information available
+    """
+    # GENES directory will depend from the sub-database
+    directory = directory.joinpath("GENES")
+
+    if not directory.exists():
+        directory.mkdir()
+
+    # Retrieval of the Gene information
+    filename = directory.joinpath(f"{identifier}_genes.xml")
+    if database == "META":
+        msg = (
+            f'Object "{identifier}" retrieved from "META". Please use '
+            "a sub-database to add proper genes. "
+            "Skipping retrieval of gene information."
+        )
+        debug_log.warning(msg)
+        warn(message=msg, category=UserWarning)
+
+        return
+
+    if not filename.exists():
+        # This URL will not necessarily raise exception
+        url_text = (
+            f"https://websvc.biocyc.org/apixml?fn=genes-of-reaction&id="
+            f"{database}:{identifier}&detail=full"
+        )
+
+        # FIXME: find a better way
+        user, pwd = cmod_utils.get_credentials(
+            Path.cwd().joinpath("credentials.txt")
+        )
+        s = requests.Session()
+        s.post(
+            "https://websvc.biocyc.org/credentials/login/",
+            data={"email": user, "password": pwd},
+        )
+        response = s.get(url_text)
+        s.close()
+        try:
+            response.raise_for_status()
+            root = et.fromstring(response.text)
+            # Check for results in root
+            tree = et.ElementTree(root)
+
+            element = tree.find("*/num_results")
+            if not isinstance(element, et.Element):
+                raise AttributeError("No gene information available")
+
+            tree.write(str(filename))
+            debug_log.info(
+                f'Object "{identifier}_gene.xml" saved in '
+                f'directory "{database}/GENES".'
+            )
+        except requests.HTTPError:
+            raise AttributeError(
+                f"Object {identifier} does not have gene information"
+            )
+
+
 def parse_genes(identifier: str, directory: Path) -> dict:
     """
     Returns a dictionary with the corresponding genes and gene-reaction rules.
@@ -269,9 +366,7 @@ def parse_genes(identifier: str, directory: Path) -> dict:
     genes = dict()
     # Get the information and check if Genes can be found to be parsed
     with suppress(FileNotFoundError):
-        tree = et.parse(
-            directory.joinpath("GENES").joinpath(f"{identifier}_genes.xml")
-        ).getroot()
+        tree = et.parse(directory.joinpath(f"{identifier}_genes.xml")).getroot()
 
         if not isinstance(tree, et.Element):
             raise TypeError("Given root is not a valid Element object")

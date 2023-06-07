@@ -12,19 +12,25 @@ import cobra.core as cobra_core
 import requests
 
 import cobramod.utils as cmod_utils
-from cobramod.core import creation
+from cobramod.core import creation, genes
 from cobramod.debug import debug_log
-from cobramod.parsing import bigg, biocyc, kegg
+from cobramod.parsing import bigg, biocyc, kegg, plantcyc, solcyc
 
 BIOCYC = "https://websvc.biocyc.org/getxml?id="
-PMN = "https://pmn.plantcyc.org/getxml?"
+PMN = "https://pmn.plantcyc.org/getxml?id="
 KEGG = "https://rest.kegg.jp/get/"
-# FIXME: change universal model
-BIGG = "https://bigg.ucsd.edu/api/v2/models/universal/"
+SOLCYC = "https://solcyc.sgn.cornell.edu/getxml?id="
 
 EXTENSIONS = [".xml", ".txt", ".json"]
 
-databases = {"biocyc": BIOCYC, "plantcyc": PMN, "kegg": KEGG, "bigg": BIGG}
+# NOTE: bigg uses an extra function
+databases = {
+    "BIOCYC": BIOCYC,
+    "PMN": PMN,
+    "KEGG": KEGG,
+    "BIGG": "",
+    "SOL": SOLCYC,
+}
 
 
 class Data:
@@ -34,6 +40,7 @@ class Data:
     attributes: dict[str, Any]
     path: Path
     model_id: str
+    genome: str
 
     def __init__(
         self,
@@ -50,6 +57,7 @@ class Data:
         self.database = database
         self.path = path
         self.model_id = model_id
+        self.genome = ""
 
     def __repr__(self):
         return f"Data [{self.mode}: {self.identifier}]"
@@ -58,8 +66,12 @@ class Data:
     def from_json(
         cls, entry: str, data: dict[str, Any], database: str, path: Path
     ):
-        is_compound = data.get("formulae", None)
+        is_compound = data.get("formulae", data.get("formula", None))
         model_id = path.parent.name
+
+        # Non universal models includes suffices
+        if model_id != "universal":
+            entry = entry[: entry.find("_")]
 
         if is_compound:
             mode = "Metabolite"
@@ -71,16 +83,21 @@ class Data:
         return cls(entry, attributes, mode, database, path, model_id)
 
     @classmethod
-    def from_text(cls, entry: str, text: str, database: str, path: Path):
+    def from_text(
+        cls, entry: str, text: str, database: str, path: Path, genome: str
+    ):
         data: dict[str, list[str]] = kegg.data_from_string(text)
         mode = data["ENTRY"][0].split()[-1]
+        gene_path = path.parent.joinpath("GENES")
 
         if mode == "Compound":
             mode = "Metabolite"
             attributes = kegg.parse_metabolite_attributes(data, entry)
 
         elif mode == "Reaction":
-            attributes = kegg.parse_reaction_attributes(data, entry)
+            attributes = kegg.parse_reaction_attributes(
+                data, entry, genome, gene_path
+            )
 
         elif mode == "Module":
             mode = "Pathway"
@@ -88,17 +105,23 @@ class Data:
         else:
             raise AttributeError(f"Cannot parse type '{mode}'")
 
-        return cls(entry, attributes, mode, database, path, "")
+        obj = cls(entry, attributes, mode, database, path, "")
+        obj.genome = genome
+        return obj
 
     @classmethod
     def from_xml(cls, entry: str, root: et.Element, database: str, path: Path):
+        gene_path = path.parent.joinpath("GENES")
+
         if root.findall("Compound") or root.findall("Protein"):
             mode = "Metabolite"
             attributes = biocyc.parse_metabolite_attributes(root, entry)
 
         elif root.findall("Reaction"):
             mode = "Reaction"
-            attributes = biocyc.parse_reaction_attributes(root, entry)
+            attributes = biocyc.parse_reaction_attributes(
+                root, entry, gene_path
+            )
 
         elif root.findall("Pathway"):
             mode = "Pathway"
@@ -140,7 +163,11 @@ class Data:
                 self.identifier = xref
 
             try:
-                return model.reactions.get_by_id(identifier)
+                reaction = model.reactions.get_by_id(identifier)
+                if not isinstance(reaction, cobra_core.Reaction):
+                    raise TypeError("Not a valid COBRApy Reaction")
+                genes.genes_to_reaction(reaction, self.attributes["genes"])
+                return reaction
 
             except KeyError:
                 reaction = cobra_core.Reaction(
@@ -189,6 +216,9 @@ class Data:
                     self.model_id,
                     replacement,
                 )
+
+                genes.genes_to_reaction(reaction, self.attributes["genes"])
+
                 return reaction
 
         else:
@@ -209,77 +239,86 @@ def get_response(
     if not model_id:
         model_id = "universal"
 
-    for database, web in databases.items():
-        url = web + query
+    subdatabase = ""
 
-        try:
-            if database == "bigg":
-                response, _ = bigg.find_url(model_id, query)
-                response.raise_for_status()
+    biocyc_credentials = False
 
-                # This extra attribute if later use to save the file in their
-                # corresponding directories
-                response.extra = Path(model_id)  # type: ignore
+    try:
+        # e.g sol:META:water
+        database, subdatabase, identifier = query.split(":")
+        url = f"{databases[database]}{subdatabase}:{identifier}"
 
-                return database, response
+    except ValueError:
+        database, identifier = query.split(":")
 
-            s = requests.Session()
-            # FIXME: find a better way
-            user, pwd = cmod_utils.get_credentials(
-                Path.cwd().joinpath("credentials.txt")
-            )
-            s.post(
-                "https://websvc.biocyc.org/credentials/login/",
-                data={"email": user, "password": pwd},
-            )
+        if database == "KEGG":
+            url = databases["KEGG"]
+        elif database == "BIGG":
+            url = databases["BIGG"]
+        else:
+            url = f"{databases['BIOCYC']}{database}:{identifier}"
+            biocyc_credentials = True
 
-            response = s.get(url)
-            s.close()
-            response.raise_for_status()
+    if database == "BIGG":
+        response, _ = bigg.find_url(model_id, query)
+        response.raise_for_status()
 
-            # Not a valid content-type to process
-            header = response.headers.get("Content-Type", "").lower()
+        # This extra attribute if later use to save the file in their
+        # corresponding directories
+        response.extra = Path(model_id)  # type: ignore
 
-            if "html" in header and ":" in query:
-                warn(
-                    f"Cannot retrieve data from '{url}'. It is possible that a "
-                    "subscription is required. Try using 'META'"
-                )
-                continue
+        return database, response
 
-            # Query Kegg or Bigg with biocyc url
-            elif "html" in header:
-                continue
+    s = requests.Session()
+    if biocyc_credentials:
+        # FIXME: find a better way
+        user, pwd = cmod_utils.get_credentials(
+            Path.cwd().joinpath("credentials.txt")
+        )
+        s.post(
+            "https://websvc.biocyc.org/credentials/login/",
+            data={"email": user, "password": pwd},
+        )
 
-            return database, response
+    response = s.get(url)
+    s.close()
+    response.raise_for_status()
 
-        except (requests.HTTPError, requests.Timeout, requests.ConnectionError):
-            continue
+    # Not a valid content-type to process
+    header = response.headers.get("Content-Type", "").lower()
 
-    raise AttributeError(
-        f"No website was able to return information from the query: {query}"
-    )
+    if response.text[:300].find("Subscription") != -1 and "html" in header:
+        raise requests.HTTPError(
+            f"Cannot retrieve data from '{url}'. It is possible that a "
+            "subscription is required. Try using 'META'"
+        )
+
+    return database, response
 
 
-def file_to_Data_class(identifier: str, filename: Path) -> Data:
+def file_to_Data_class(
+    identifier: str, filename: Path, genome: Optional[str]
+) -> Data:
     f = open(filename, "r")
     text = f.read()
     f.close()
 
     suffix = filename.suffix
     parent = filename.parent.name
-    bigg_parent = filename.parents[1].name
+    extra_dir = filename.parents[1].name
 
     if suffix == ".json":
-        return Data.from_json(
-            identifier, json.loads(text), bigg_parent, filename
-        )
+        return Data.from_json(identifier, json.loads(text), extra_dir, filename)
 
     elif suffix == ".xml":
+        if extra_dir == "PMN" or extra_dir == "SOL":
+            parent = f"{extra_dir}:{parent}"
         return Data.from_xml(identifier, et.fromstring(text), parent, filename)
 
     elif suffix == ".txt":
-        return Data.from_text(identifier, text, parent, filename)
+        if not genome:
+            genome = ""
+        return Data.from_text(identifier, text, parent, filename, genome)
 
     else:
         raise AttributeError("Cannot parse given content type")
@@ -326,11 +365,19 @@ def get_data(
     directory: Union[str, Path],
     database: Optional[str],
     model_id: Optional[str] = None,
-    # genome: Optional[str] = None,
+    genome: Optional[str] = None,
     # NOTE: add docstring
 ):
     if isinstance(directory, str):
         directory = Path(directory).absolute()
+
+    # Biocyc db families
+    family = ""
+    if database is not None and database.find(":") != -1:
+        family, database = (i.rstrip().strip() for i in database.split(":"))
+        family = family.upper()
+
+        directory = directory.joinpath(family)
 
     # Try first locally and the query databases
     if not database:
@@ -371,13 +418,31 @@ def get_data(
                 )
 
         except StopIteration:
-            query = identifier
+            if family:
+                query = f"{family}:{database}:{identifier}"
 
-            # Biocyc family
-            if database != "KEGG" and database != "BIGG":
+            else:
                 query = f"{database}:{identifier}"
 
             response_database, response = get_response(query, model_id)
+
+            if genome:
+                kegg.retrieve_kegg_genes(directory, genome)
+
+            if database != "KEGG" and database != "BIGG":
+                if not family:
+                    biocyc.retrieve_gene_information(
+                        directory, identifier, database
+                    )
+
+                elif family == "PMN":
+                    plantcyc.retrieve_gene_information(
+                        directory, identifier, database
+                    )
+                elif family == "SOL":
+                    solcyc.retrieve_gene_information(
+                        directory, identifier, database
+                    )
 
             if response_database == "bigg":
                 extra: Path = getattr(response, "extra")
@@ -396,7 +461,8 @@ def get_data(
 
             filename = write(identifier, directory, response)
 
-    return file_to_Data_class(identifier, filename)
+    data = file_to_Data_class(identifier, filename, genome)
+    return data
 
 
 def build_reaction_from_str(
@@ -433,6 +499,10 @@ def build_reaction_from_str(
 
         compounds[metabolite] = float(coefficient)
 
+    # It must be a biocyc family
+    if database is not None and database.find(":") != -1:
+        directory = directory.parent
+
     for identifier, coefficient in compounds.items():
         compartment = identifier[-1]
 
@@ -442,7 +512,8 @@ def build_reaction_from_str(
         try:
             data = get_data(identifier[:-2], directory, database, model_id)
             metabolite = creation.metabolite_from_data(data, compartment, model)
-        except AttributeError:
+
+        except (requests.HTTPError, ValueError):
             # NOTE: add log. This is only for custom
             metabolite = cobra_core.Metabolite(
                 identifier, name=identifier, compartment=compartment

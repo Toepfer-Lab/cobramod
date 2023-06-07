@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='25.0' xml:base='http://localhost:1555/getxml?LYCO:6PFRUCTPHOS-RXN'><metadata><url>http://localhost:1555/</url>
+<service_name>getxml</service_name>
+<query>LYCO:6PFRUCTPHOS-RXN</query>
+<num_results>1</num_results>
+<PGDB orgid='LYCO' version='3.8'><species datatype='string'>Solanum lycopersicum</species>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4081</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4081</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Reaction ID='LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN' detail='full'><parent><Reaction resource='getxml?LYCO:Chemical-Reactions' orgid='LYCO' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?LYCO:Small-Molecule-Reactions' orgid='LYCO' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<gibbs-0 datatype='float' units='kcal/mol'>-14.492371</gibbs-0>
+<orphan>NO</orphan>
+<synonym datatype='string'>fructose-6-phosphate phosphorylation</synonym>
+<synonym datatype='string'>Phosphohexokinase</synonym>
+<synonym datatype='string'>Phosphofructokinase I</synonym>
+<in-pathway><Pathway resource='getxml?LYCO:PWY-1042' orgid='LYCO' frameid='PWY-1042'/><Pathway resource='getxml?LYCO:GLYCOLYSIS' orgid='LYCO' frameid='GLYCOLYSIS'/></in-pathway>
+<ec-number>EC-2.7.1.11<official>T</official>
+</ec-number>
+<enzymatic-reaction><Enzymatic-Reaction ID='LYCO:ENZRXND7A-12774' orgid='LYCO' frameid='ENZRXND7A-12774' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC06G063220.2-MONOMER' orgid='LYCO' frameid='SOLYC06G063220.2-MONOMER'/></enzyme>
+<common-name datatype='string'>6-phosphofructokinase</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-9744' orgid='LYCO' frameid='ENZRXND7A-9744' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC12G095880.1-MONOMER' orgid='LYCO' frameid='SOLYC12G095880.1-MONOMER'/></enzyme>
+<common-name datatype='string'>phosphofructokinase, putative</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-9370' orgid='LYCO' frameid='ENZRXND7A-9370' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC11G010450.1-MONOMER' orgid='LYCO' frameid='SOLYC11G010450.1-MONOMER'/></enzyme>
+<common-name datatype='string'>Phosphofructokinase family protein</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-7191' orgid='LYCO' frameid='ENZRXND7A-7191' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC08G066100.2-MONOMER' orgid='LYCO' frameid='SOLYC08G066100.2-MONOMER'/></enzyme>
+<common-name datatype='string'>Phosphofructokinase family protein</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-6264' orgid='LYCO' frameid='ENZRXND7A-6264' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC07G045160.2-MONOMER' orgid='LYCO' frameid='SOLYC07G045160.2-MONOMER'/></enzyme>
+<common-name datatype='string'>phosphofructokinase, putative</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-4187' orgid='LYCO' frameid='ENZRXND7A-4187' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC04G014270.2-MONOMER' orgid='LYCO' frameid='SOLYC04G014270.2-MONOMER'/></enzyme>
+<common-name datatype='string'>Phosphofructokinase family protein</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-4155' orgid='LYCO' frameid='ENZRXND7A-4155' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC04G015200.2-MONOMER' orgid='LYCO' frameid='SOLYC04G015200.2-MONOMER'/></enzyme>
+<common-name datatype='string'>phosphofructokinase, putative</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-3858' orgid='LYCO' frameid='ENZRXND7A-3858' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC04G072580.1-MONOMER' orgid='LYCO' frameid='SOLYC04G072580.1-MONOMER'/></enzyme>
+<common-name datatype='string'>phosphofructokinase, putative</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='LYCO:ENZRXND7A-3123' orgid='LYCO' frameid='ENZRXND7A-3123' detail='low'><enzyme><Protein resource='getxml?LYCO:SOLYC03G093520.2-MONOMER' orgid='LYCO' frameid='SOLYC03G093520.2-MONOMER'/></enzyme>
+<common-name datatype='string'>Phosphofructokinase family protein</common-name>
+<reaction><Reaction resource='#LYCO:6PFRUCTPHOS-RXN' orgid='LYCO' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<left><Compound resource='getxml?LYCO:ATP' orgid='LYCO' frameid='ATP'/></left>
+<left><Compound resource='getxml?LYCO:FRUCTOSE-6P' orgid='LYCO' frameid='FRUCTOSE-6P'/></left>
+<right><Compound resource='getxml?LYCO:PROTON' orgid='LYCO' frameid='PROTON'/><coefficient datatype='integer'>2</coefficient>
+</right>
+<right><Compound resource='getxml?LYCO:ADP' orgid='LYCO' frameid='ADP'/></right>
+<right><Compound resource='getxml?LYCO:FRUCTOSE-16-DIPHOSPHATE' orgid='LYCO' frameid='FRUCTOSE-16-DIPHOSPHATE'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+</Reaction>
+</ptools-xml>
