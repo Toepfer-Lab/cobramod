@@ -337,7 +337,7 @@ def add_reactions_to_Pathway(
     debug_log.debug(f'Reactions added to group "{pathway.id}".')
 
     # Only add if there is at least 1 reaction in the group.
-    if model.groups.has_id(pathway.id) and len(pathway.members) > 0:
+    if not model.groups.has_id(pathway.id) and len(pathway.members) > 0:
         model.add_groups(group_list=[pathway])
         debug_log.info(f'Pathway "{pathway.id}" added to Model.')
 

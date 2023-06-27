@@ -14,6 +14,7 @@ Important class of the module:
 - SolCycParser: Child of the abstract class
 :class:`cobramod.parsing.base.BaseParser`.
 """
+import urllib.parse
 import xml.etree.ElementTree as et
 from pathlib import Path
 from typing import Any
@@ -38,7 +39,7 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
         HTTPError: If given reaction does not have gene information available
     """
     # GENES directory will depend from the sub-database
-    directory = directory.joinpath("GENES")
+    directory = directory.joinpath(database, "GENES")
 
     if not directory.exists():
         directory.mkdir()
@@ -58,9 +59,11 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
 
     if not filename.exists():
         # This URL will not necessarily raise exception
+        encoded_id = urllib.parse.quote(identifier, safe="")
+
         url_text = (
             f"https://solcyc.sgn.cornell.edu/apixml?fn=genes-of-reaction&id="
-            f"{database}:{identifier}&detail=full"
+            f"{database}:{encoded_id}&detail=full"
         )
         response = requests.get(url_text)
         try:

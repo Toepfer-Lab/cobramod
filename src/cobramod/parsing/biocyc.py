@@ -16,6 +16,7 @@ Important class of the module:
 """
 from __future__ import annotations
 
+import urllib.parse
 import xml.etree.ElementTree as et
 from contextlib import suppress
 from pathlib import Path
@@ -124,11 +125,10 @@ def get_direction_from_xml(root: et.Element) -> str:
 def parse_reaction_attributes(
     root: et.Element, entry: str, gene_directory: Path
 ) -> dict[str, Any]:
-    try:
-        name = root.find("*[@ID]/enzymatic-reaction/*/common-name")
-        if name is not None and name.text:
-            name = name.text
-    except AttributeError:
+    name = root.find("*[@ID]/enzymatic-reaction/*/common-name")
+    if name is not None and name.text:
+        name = name.text
+    else:
         name = entry
     equation = reaction_str_from_xml(root)
 
@@ -299,7 +299,7 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
         HTTPError: If given reaction does not have gene information available
     """
     # GENES directory will depend from the sub-database
-    directory = directory.joinpath("GENES")
+    directory = directory.joinpath(database, "GENES")
 
     if not directory.exists():
         directory.mkdir()
@@ -319,9 +319,11 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
 
     if not filename.exists():
         # This URL will not necessarily raise exception
+        encoded_id = urllib.parse.quote(identifier, safe="")
+
         url_text = (
             f"https://websvc.biocyc.org/apixml?fn=genes-of-reaction&id="
-            f"{database}:{identifier}&detail=full"
+            f"{database}:{encoded_id}&detail=full"
         )
 
         # FIXME: find a better way
@@ -342,8 +344,13 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
             tree = et.ElementTree(root)
 
             element = tree.find("*/num_results")
+
             if not isinstance(element, et.Element):
                 raise AttributeError("No gene information available")
+
+            # Ignore metabolites
+            if element.text == "0":
+                return
 
             tree.write(str(filename))
             debug_log.info(
@@ -372,17 +379,12 @@ def parse_genes(identifier: str, directory: Path) -> dict:
             raise TypeError("Given root is not a valid Element object")
 
         for gene in tree.findall("Gene"):
-            element = gene.find("common-name")
+            name = gene.attrib.get("frameid")
 
-            if not isinstance(element, et.Element):
+            if name is None:
                 raise TypeError("Given root is not a valid Element object")
 
-            name = element.text
-
-            if not name:
-                name = identifier
-
-            genes[gene.attrib["frameid"]] = name
+            genes[name] = name
 
         # Assuming rule
         rule = " or ".join(genes.keys())

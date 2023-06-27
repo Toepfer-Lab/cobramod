@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Test variables
 
 This module creates the textbook models for testing. These are based on the

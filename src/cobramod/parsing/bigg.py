@@ -54,8 +54,8 @@ def find_url(model_id: str, query: str) -> tuple[requests.Response, str]:
             )
             # FIXME: BIGG combines compartments in their internal identifier.
             # To overcome this, use universal
-            if object_type == "metabolites":
-                model_id = "universal"
+            # if object_type == "metabolites":
+            #     model_id = "universal"
 
             # Retrieve from URL
             url_text = (
@@ -75,7 +75,9 @@ def find_url(model_id: str, query: str) -> tuple[requests.Response, str]:
 
             return response, db_version
     # Otherwise
-    raise requests.HTTPError(f"Identifier '{query}' not found in BIGG.")
+    raise requests.HTTPError(
+        f"Identifier '{query}' not found in BIGG (model: '{model_id}')."
+    )
 
 
 def build_reference(json_data: dict[str, Any]) -> dict[str, str]:

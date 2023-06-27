@@ -1,8 +1,18 @@
 """
+Retrieval of data from multiple databases
+
+This module includes the class 'Data', that is responsable for the internal
+data representation for this package. The class Data includes methods for
+parsing itself into a Reaction, Metabolite or Pathway.
+
+Additionally, this package includes high level functions such as `get_data`,
+`file_to_Data_class` or `get_response` that handles the data retrieval or
+convertion
 """
 from __future__ import annotations
 
 import json
+import urllib.parse
 import xml.etree.ElementTree as et
 from pathlib import Path
 from typing import Any, Literal, Optional, Union
@@ -15,6 +25,9 @@ import cobramod.utils as cmod_utils
 from cobramod.core import creation, genes
 from cobramod.debug import debug_log
 from cobramod.parsing import bigg, biocyc, kegg, plantcyc, solcyc
+from cobramod.parsing import db_version as cmod_db
+
+db_configuration = cmod_db.DataVersionConfigurator()
 
 BIOCYC = "https://websvc.biocyc.org/getxml?id="
 PMN = "https://pmn.plantcyc.org/getxml?id="
@@ -41,6 +54,7 @@ class Data:
     path: Path
     model_id: str
     genome: str
+    version: str
 
     def __init__(
         self,
@@ -50,6 +64,7 @@ class Data:
         database: str,
         path: Path,
         model_id: str,
+        version: str,
     ):
         self.mode = mode
         self.identifier = identifier
@@ -58,6 +73,7 @@ class Data:
         self.path = path
         self.model_id = model_id
         self.genome = ""
+        self.version = version
 
     def __repr__(self):
         return f"Data [{self.mode}: {self.identifier}]"
@@ -68,6 +84,24 @@ class Data:
     ):
         is_compound = data.get("formulae", data.get("formula", None))
         model_id = path.parent.name
+
+        if path.parents[1].joinpath("database_version").exists():
+            with open(path.parents[1].joinpath("database_version"), "r") as f:
+                version = json.load(f).get("bigg_models_version")
+        else:
+            info_response = requests.get(
+                "http://bigg.ucsd.edu/api/v2/database_version"
+            )
+            info_response.raise_for_status()
+
+            with path.parents[1].joinpath("database_version").open(
+                mode="w+"
+            ) as f:
+                f.write(info_response.text)
+            version = info_response.json().get("bigg_models_version")
+
+        if version is None:
+            raise Exception("Version of the BIGG JSON cannot be empty!")
 
         # Non universal models includes suffices
         if model_id != "universal":
@@ -80,7 +114,7 @@ class Data:
             mode = "Reaction"
             attributes = bigg.parse_reaction_attributes(data, entry)
 
-        return cls(entry, attributes, mode, database, path, model_id)
+        return cls(entry, attributes, mode, database, path, model_id, version)
 
     @classmethod
     def from_text(
@@ -89,6 +123,20 @@ class Data:
         data: dict[str, list[str]] = kegg.data_from_string(text)
         mode = data["ENTRY"][0].split()[-1]
         gene_path = path.parent.joinpath("GENES")
+
+        if path.parent.joinpath("database_version").exists():
+            with open(path.parent.joinpath("database_version"), "r") as f:
+                version = cmod_utils.kegg_info_to_version(f.read())
+        else:
+            info_response = requests.get("http://rest.kegg.jp/info/kegg")
+            info_response.raise_for_status()
+
+            with path.parent.joinpath("database_version").open(mode="w+") as f:
+                f.write(info_response.text)
+            version = cmod_utils.kegg_info_to_version(info_response.text)
+
+        if version is None:
+            raise Exception("Version of the BIGG JSON cannot be empty!")
 
         if mode == "Compound":
             mode = "Metabolite"
@@ -105,12 +153,19 @@ class Data:
         else:
             raise AttributeError(f"Cannot parse type '{mode}'")
 
-        obj = cls(entry, attributes, mode, database, path, "")
+        obj = cls(entry, attributes, mode, database, path, "", version)
         obj.genome = genome
         return obj
 
     @classmethod
     def from_xml(cls, entry: str, root: et.Element, database: str, path: Path):
+        version = root.find("metadata/PGDB")
+        if version is not None:
+            version = version.attrib.get("version")
+
+        if version is None:
+            raise Exception("Version for the XML cannot be empty!")
+
         gene_path = path.parent.joinpath("GENES")
 
         if root.findall("Compound") or root.findall("Protein"):
@@ -130,7 +185,7 @@ class Data:
             raise AttributeError(
                 "Cannot infere the object type from given et.Element"
             )
-        return cls(entry, attributes, mode, database, path, "")
+        return cls(entry, attributes, mode, database, path, "", version)
 
     def parse(
         self,
@@ -250,16 +305,16 @@ def get_response(
 
     except ValueError:
         database, identifier = query.split(":")
+        encoded_id = urllib.parse.quote(identifier, safe="")
 
         if database == "KEGG":
-            url = databases["KEGG"]
-        elif database == "BIGG":
-            url = databases["BIGG"]
+            url = f"{databases['KEGG']}{encoded_id}"
         else:
-            url = f"{databases['BIOCYC']}{database}:{identifier}"
+            url = f"{databases['BIOCYC']}{database}:{encoded_id}"
             biocyc_credentials = True
 
     if database == "BIGG":
+        query = query.removeprefix("BIGG:")
         response, _ = bigg.find_url(model_id, query)
         response.raise_for_status()
 
@@ -371,6 +426,8 @@ def get_data(
     if isinstance(directory, str):
         directory = Path(directory).absolute()
 
+    main_dir = directory
+
     # Biocyc db families
     family = ""
     if database is not None and database.find(":") != -1:
@@ -379,10 +436,14 @@ def get_data(
 
         directory = directory.joinpath(family)
 
+    if not directory.exists():
+        directory.mkdir()
+
     # Try first locally and the query databases
     if not database:
         try:
             filename = next(directory.rglob(identifier + "*"))
+            response_database = filename.parent.name.upper()
 
         except StopIteration:
             response_database, response = get_response(identifier)
@@ -412,10 +473,13 @@ def get_data(
                         directory.joinpath(database, model_id), identifier
                     )
                 )
+                response_database = "BIGG"
+
             else:
                 filename = next(
                     get_files(directory.joinpath(database), identifier)
                 )
+                response_database = filename.parent.name.upper()
 
         except StopIteration:
             if family:
@@ -426,8 +490,8 @@ def get_data(
 
             response_database, response = get_response(query, model_id)
 
-            if genome:
-                kegg.retrieve_kegg_genes(directory, genome)
+            if database == "KEGG":
+                kegg.retrieve_kegg_genes(directory, identifier)
 
             if database != "KEGG" and database != "BIGG":
                 if not family:
@@ -444,7 +508,7 @@ def get_data(
                         directory, identifier, database
                     )
 
-            if response_database == "bigg":
+            if response_database == "BIGG":
                 extra: Path = getattr(response, "extra")
 
                 if not extra:
@@ -462,6 +526,13 @@ def get_data(
             filename = write(identifier, directory, response)
 
     data = file_to_Data_class(identifier, filename, genome)
+
+    if family:
+        response_database = f"{family}:{database}"
+
+    db_configuration.check_database_version(
+        main_dir, response_database, data.version
+    )
     return data
 
 

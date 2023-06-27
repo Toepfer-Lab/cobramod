@@ -6,6 +6,7 @@ example:
 
  - check_imbalance: Check for unbalanced reactions.
 """
+import io
 from pathlib import Path
 from re import match
 from typing import Any, Generator, Iterable, Iterator, Optional, TextIO
@@ -359,3 +360,17 @@ def get_credentials(file: Path) -> tuple[str, str]:
         pwd = f.readline().rstrip().strip()
 
     return user, pwd
+
+
+def kegg_info_to_version(info: str) -> str:
+    with io.StringIO(info) as lines:
+        for num, line in enumerate(lines, 1):
+            if num == 2:
+                return line[line.find("Release") + 8 :].rstrip()
+
+    msg = (
+        "Error determining the kegg version. "
+        'Instead, "Undefined" is used as version.'
+    )
+    warn(message=msg, category=UserWarning)
+    return "Undefined"

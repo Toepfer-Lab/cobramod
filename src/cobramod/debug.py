@@ -8,7 +8,7 @@ The default level is set to INFO.
 
 The name of logger variable is `debug_log`
 """
-from logging import Formatter, FileHandler, getLogger, INFO
+from logging import INFO, FileHandler, Formatter, getLogger
 
 # Creating corresponding Logs
 # Format
