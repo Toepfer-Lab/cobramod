@@ -1,6 +1,6 @@
 ENTRY       R08549                      Reaction
 NAME        2-oxoglutarate:NAD+ 2-oxidoreductase (CoA-succinylating);
-            2-Oxoglutarate dehydrogenase complex
+            2-oxoglutarate dehydrogenase complex
 DEFINITION  2-Oxoglutarate + CoA + NAD+ <=> Succinyl-CoA + CO2 + NADH + H+
 EQUATION    C00026 + C00010 + C00003 <=> C00091 + C00011 + C00004 + C00080
 COMMENT     multienzyme system: ec 1.2.4.2, ec 2.3.1.61 and ec 1.8.1.4
@@ -14,7 +14,7 @@ PATHWAY     rn01100  Metabolic pathways
             rn01120  Microbial metabolism in diverse environments
             rn01200  Carbon metabolism
 ORTHOLOGY   K00164  2-oxoglutarate dehydrogenase E1 component [EC:1.2.4.2]
-            K00382  dihydrolipoamide dehydrogenase [EC:1.8.1.4]
+            K00382  dihydrolipoyl dehydrogenase [EC:1.8.1.4]
             K00658  2-oxoglutarate dehydrogenase E2 component (dihydrolipoamide succinyltransferase) [EC:2.3.1.61]
             K01616  multifunctional 2-oxoglutarate metabolism enzyme [EC:2.2.1.5 4.1.1.71 1.2.4.2 2.3.1.61]
 DBLINKS     RHEA: 27789

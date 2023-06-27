@@ -8,12 +8,13 @@ import cobra.core as cobra_core
 import cobramod.core.creation as cmod_core_creation
 import cobramod.error as cmod_error
 import cobramod.utils as ui
+from cobra import __version__ as cobra_version
+from cobramod import __version__ as cmod_version
 from cobramod.debug import debug_log
 from cobramod.test import textbook_kegg
 
-# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-# Setting directory for data
+
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
 
@@ -150,4 +151,7 @@ class UtilsTesting(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    print(f"CobraMod version: {cmod_version}")
+    print(f"COBRApy version: {cobra_version}")
+
     unittest.main(verbosity=2)

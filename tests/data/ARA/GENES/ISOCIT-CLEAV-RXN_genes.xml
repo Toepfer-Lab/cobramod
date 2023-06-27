@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:ISOCIT-CLEAV-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:ISOCIT-CLEAV-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,30 +9,30 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT3G21720" detail="full" frameid="AT3G21720" orgid="ARA">
+  <Gene ID="ARA:AT3G21720" orgid="ARA" frameid="AT3G21720" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-3" orgid="ARA" resource="getxml?ARA:CHROMOSOME-3" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-3" orgid="ARA" frameid="CHROMOSOME-3" />
     </replicon>
     <product>
-      <Protein frameid="AT3G21720-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G21720-MONOMER" />
+      <Protein resource="getxml?ARA:AT3G21720-MONOMER" orgid="ARA" frameid="AT3G21720-MONOMER" />
     </product>
+    <common-name datatype="string">AT3G21720</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">32.604385</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT3G21720</accession-1>
+    <synonym datatype="string">ICL</synonym>
+    <synonym datatype="string">icl</synonym>
+    <synonym datatype="string">At3g21720</synonym>
+    <right-end-position datatype="integer">7656018</right-end-position>
+    <left-end-position datatype="integer">7652494</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G21720</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G21720</dblink-URL>
     </dblink>
-    <synonym datatype="string">ICL</synonym>
-    <synonym datatype="string">icl</synonym>
-    <synonym datatype="string">At3g21720</synonym>
-    <left-end-position datatype="integer">7652494</left-end-position>
-    <accession-1 datatype="string">AT3G21720</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">32.604385</centisome-position>
-    <right-end-position datatype="integer">7656018</right-end-position>
-    <common-name datatype="string">AT3G21720</common-name>
-    <component-of />
   </Gene>
 </ptools-xml>

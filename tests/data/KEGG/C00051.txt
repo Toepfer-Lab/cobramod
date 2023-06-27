@@ -20,7 +20,7 @@ REACTION    R00094 R00115 R00120 R00274 R00494 R00497 R00499 R00527
             R08350 R08351 R08352 R08353 R08354 R08355 R08511 R08512 
             R08678 R09338 R09367 R09368 R09409 R11411 R11650 R11652 
             R11659 R11734 R11736 R11737 R11739 R11861 R11905 R11929 
-            R11947 R12578
+            R11947 R12578 R12917 R12918 R12919 R12946 R13043
 PATHWAY     map00270  Cysteine and methionine metabolism
             map00480  Glutathione metabolism
             map01100  Metabolic pathways
@@ -29,19 +29,22 @@ PATHWAY     map00270  Cysteine and methionine metabolism
             map04216  Ferroptosis
             map04918  Thyroid hormone synthesis
             map04976  Bile secretion
+            map05208  Chemical carcinogenesis - reactive oxygen species
             map05415  Diabetic cardiomyopathy
 MODULE      M00118  Glutathione biosynthesis, glutamate => glutathione
+NETWORK     nt06026  Glutathione biosynthesis
+            nt06525  Ferroptosis
 ENZYME      1.5.4.1         1.8.1.7         1.8.1.9         1.8.1.10        
             1.8.3.3         1.8.4.1         1.8.4.2         1.8.4.3         
             1.8.4.4         1.8.4.7         1.8.4.9         1.8.5.1         
             1.8.5.7         1.8.5.8         1.11.1.9        1.11.1.12       
             1.11.1.27       1.13.11.18      1.14.14.43      1.14.14.45      
-            1.20.4.2        1.21.4.5        2.3.2.2         2.3.2.15        
-            2.5.1.18        2.5.1.-         2.8.1.3         3.1.2.6         
-            3.1.2.7         3.1.2.12        3.1.2.13        3.4.19.13       
-            3.5.1.78        3.5.1.-         4.3.2.7         4.4.1.5         
-            4.4.1.20        4.4.1.22        4.4.1.34        6.3.1.8         
-            6.3.1.9         6.3.2.3
+            1.20.4.2        1.21.4.5        2.1.1.137       2.3.2.2         
+            2.3.2.15        2.5.1.18        2.5.1.-         2.8.1.3         
+            2.8.4.6         3.1.2.6         3.1.2.7         3.1.2.12        
+            3.1.2.13        3.4.19.13       3.5.1.78        3.5.1.-         
+            4.3.2.7         4.4.1.5         4.4.1.20        4.4.1.22        
+            4.4.1.34        6.3.1.8         6.3.1.9         6.3.2.3
 BRITE       Compounds with biological roles [BR:br08001]
              Vitamins and cofactors
               Cofactors
@@ -53,18 +56,18 @@ BRITE       Compounds with biological roles [BR:br08001]
                V03A ALL OTHER THERAPEUTIC PRODUCTS
                 V03AB Antidotes
                  V03AB32 Glutathione
-                  D00014  Glutathione (JP17) &lt;JP&gt;
+                  D00014  Glutathione (JP18) &lt;JP&gt;
             Therapeutic category of drugs in Japan [BR:br08301]
              1  Agents affecting nervous system and sensory organs
               13  Agents affecting sensory organs
                131  Ophthalmic agents
                 1319  Others
-                 D00014  Glutathione (JP17)
+                 D00014  Glutathione (JP18)
              3  Agents affecting metabolism
               39  Other agents affecting metabolism
                392  Antidotes
                 3922  Glutathiones
-                 D00014  Glutathione (JP17)
+                 D00014  Glutathione (JP18)
             Animal drugs in Japan [BR:br08331]
              96  Agents affecting metabolism
               967  Agents for liver disease and antidotes
@@ -76,9 +79,8 @@ BRITE       Compounds with biological roles [BR:br08001]
 DBLINKS     CAS: 70-18-8
             PubChem: 3353
             ChEBI: 16856
-            ChEMBL: CHEMBL1514919 CHEMBL1543
             KNApSAcK: C00001518
-            PDB-CCD: GSH
+            PDB-CCD: GSH VDW
             3DMET: B01138
             NIKKAJI: J10.686K
 ATOM        20

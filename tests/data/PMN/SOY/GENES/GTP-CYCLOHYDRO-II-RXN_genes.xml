@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/apixml?fn=genes-of-reaction%26id=SOY:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
+<ptools-xml ptools-version="26.0" xml:base="http://pmn.plantcyc.org/apixml?fn=genes-of-reaction%26id=SOY:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
   <metadata>
-    <url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+    <url>http://pmn.plantcyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=SOY:GTP-CYCLOHYDRO-II-RXN&amp;detail=FULL</query>
     <num_results>8</num_results>
-    <PGDB orgid="SOY" version="10.0.1">
+    <PGDB orgid="SOY" version="10.0.2">
       <species datatype="string">Glycine max</species>
       <dblink>
         <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
@@ -14,121 +14,121 @@
       </dblink>
     </PGDB>
   </metadata>
-  <Gene ID="SOY:GLYMA.05G175500" detail="full" frameid="GLYMA.05G175500" orgid="SOY">
+  <Gene ID="SOY:GLYMA.05G175500" orgid="SOY" frameid="GLYMA.05G175500" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="MONOMERN7V-48752" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48752" />
-      <Protein frameid="MONOMERN7V-48751" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48751" />
-      <Protein frameid="MONOMERN7V-48750" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48750" />
-      <Protein frameid="MONOMERN7V-48749" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48749" />
-      <Protein frameid="MONOMERN7V-48748" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48748" />
-      <Protein frameid="MONOMERN7V-48747" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48747" />
-      <Protein frameid="MONOMERN7V-48746" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48746" />
-      <Protein frameid="GLYMA.05G175500-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.05G175500-MONOMER" />
+      <Protein resource="getxml?SOY:MONOMERN7V-48752" orgid="SOY" frameid="MONOMERN7V-48752" />
+      <Protein resource="getxml?SOY:MONOMERN7V-48751" orgid="SOY" frameid="MONOMERN7V-48751" />
+      <Protein resource="getxml?SOY:MONOMERN7V-48750" orgid="SOY" frameid="MONOMERN7V-48750" />
+      <Protein resource="getxml?SOY:MONOMERN7V-48749" orgid="SOY" frameid="MONOMERN7V-48749" />
+      <Protein resource="getxml?SOY:MONOMERN7V-48748" orgid="SOY" frameid="MONOMERN7V-48748" />
+      <Protein resource="getxml?SOY:MONOMERN7V-48747" orgid="SOY" frameid="MONOMERN7V-48747" />
+      <Protein resource="getxml?SOY:MONOMERN7V-48746" orgid="SOY" frameid="MONOMERN7V-48746" />
+      <Protein resource="getxml?SOY:GLYMA.05G175500-MONOMER" orgid="SOY" frameid="GLYMA.05G175500-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.05G175500</common-name>
     <accession-1 datatype="string">Glyma.05G175500</accession-1>
+    <common-name datatype="string">Glyma.05G175500</common-name>
   </Gene>
-  <Gene ID="SOY:GLYMA.13G332567" detail="full" frameid="GLYMA.13G332567" orgid="SOY">
+  <Gene ID="SOY:GLYMA.13G332567" orgid="SOY" frameid="GLYMA.13G332567" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="GLYMA.13G332567-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.13G332567-MONOMER" />
+      <Protein resource="getxml?SOY:GLYMA.13G332567-MONOMER" orgid="SOY" frameid="GLYMA.13G332567-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.13G332567</common-name>
     <accession-1 datatype="string">Glyma.13G332567</accession-1>
+    <common-name datatype="string">Glyma.13G332567</common-name>
   </Gene>
-  <Gene ID="SOY:GLYMA.13G332633" detail="full" frameid="GLYMA.13G332633" orgid="SOY">
+  <Gene ID="SOY:GLYMA.13G332633" orgid="SOY" frameid="GLYMA.13G332633" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="GLYMA.13G332633-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.13G332633-MONOMER" />
+      <Protein resource="getxml?SOY:GLYMA.13G332633-MONOMER" orgid="SOY" frameid="GLYMA.13G332633-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.13G332633</common-name>
     <accession-1 datatype="string">Glyma.13G332633</accession-1>
+    <common-name datatype="string">Glyma.13G332633</common-name>
   </Gene>
-  <Gene ID="SOY:GLYMA.15G041600" detail="full" frameid="GLYMA.15G041600" orgid="SOY">
+  <Gene ID="SOY:GLYMA.15G041600" orgid="SOY" frameid="GLYMA.15G041600" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="MONOMERN7V-51038" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51038" />
-      <Protein frameid="MONOMERN7V-51037" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51037" />
-      <Protein frameid="MONOMERN7V-51036" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51036" />
-      <Protein frameid="MONOMERN7V-51035" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51035" />
-      <Protein frameid="GLYMA.15G041600-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.15G041600-MONOMER" />
+      <Protein resource="getxml?SOY:MONOMERN7V-51038" orgid="SOY" frameid="MONOMERN7V-51038" />
+      <Protein resource="getxml?SOY:MONOMERN7V-51037" orgid="SOY" frameid="MONOMERN7V-51037" />
+      <Protein resource="getxml?SOY:MONOMERN7V-51036" orgid="SOY" frameid="MONOMERN7V-51036" />
+      <Protein resource="getxml?SOY:MONOMERN7V-51035" orgid="SOY" frameid="MONOMERN7V-51035" />
+      <Protein resource="getxml?SOY:GLYMA.15G041600-MONOMER" orgid="SOY" frameid="GLYMA.15G041600-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.15G041600</common-name>
     <accession-1 datatype="string">Glyma.15G041600</accession-1>
+    <common-name datatype="string">Glyma.15G041600</common-name>
   </Gene>
-  <Gene ID="SOY:GLYMA.15G055700" detail="full" frameid="GLYMA.15G055700" orgid="SOY">
+  <Gene ID="SOY:GLYMA.15G055700" orgid="SOY" frameid="GLYMA.15G055700" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="MONOMERN7V-51065" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51065" />
-      <Protein frameid="GLYMA.15G055700-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.15G055700-MONOMER" />
+      <Protein resource="getxml?SOY:MONOMERN7V-51065" orgid="SOY" frameid="MONOMERN7V-51065" />
+      <Protein resource="getxml?SOY:GLYMA.15G055700-MONOMER" orgid="SOY" frameid="GLYMA.15G055700-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.15G055700</common-name>
     <accession-1 datatype="string">Glyma.15G055700</accession-1>
+    <common-name datatype="string">Glyma.15G055700</common-name>
   </Gene>
-  <Gene ID="SOY:GLYMA.08G070400" detail="full" frameid="GLYMA.08G070400" orgid="SOY">
+  <Gene ID="SOY:GLYMA.08G070400" orgid="SOY" frameid="GLYMA.08G070400" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="GLYMA.08G070400-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.08G070400-MONOMER" />
+      <Protein resource="getxml?SOY:GLYMA.08G070400-MONOMER" orgid="SOY" frameid="GLYMA.08G070400-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.08G070400</common-name>
     <accession-1 datatype="string">Glyma.08G070400</accession-1>
+    <common-name datatype="string">Glyma.08G070400</common-name>
   </Gene>
-  <Gene ID="SOY:GLYMA.08G177300" detail="full" frameid="GLYMA.08G177300" orgid="SOY">
+  <Gene ID="SOY:GLYMA.08G177300" orgid="SOY" frameid="GLYMA.08G177300" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="GLYMA.08G177300-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.08G177300-MONOMER" />
+      <Protein resource="getxml?SOY:GLYMA.08G177300-MONOMER" orgid="SOY" frameid="GLYMA.08G177300-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.08G177300</common-name>
     <accession-1 datatype="string">Glyma.08G177300</accession-1>
+    <common-name datatype="string">Glyma.08G177300</common-name>
   </Gene>
-  <Gene ID="SOY:GLYMA.08G132700" detail="full" frameid="GLYMA.08G132700" orgid="SOY">
+  <Gene ID="SOY:GLYMA.08G132700" orgid="SOY" frameid="GLYMA.08G132700" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="SOY" resource="getxml?SOY:ORFs" />
+      <Gene resource="getxml?SOY:ORFs" orgid="SOY" frameid="ORFs" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="SOYBEAN" orgid="SOY" resource="getxml?SOY:SOYBEAN" />
+      <Genetic-Element resource="getxml?SOY:SOYBEAN" orgid="SOY" frameid="SOYBEAN" />
     </replicon>
     <product>
-      <Protein frameid="MONOMERN7V-51890" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51890" />
-      <Protein frameid="GLYMA.08G132700-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.08G132700-MONOMER" />
+      <Protein resource="getxml?SOY:MONOMERN7V-51890" orgid="SOY" frameid="MONOMERN7V-51890" />
+      <Protein resource="getxml?SOY:GLYMA.08G132700-MONOMER" orgid="SOY" frameid="GLYMA.08G132700-MONOMER" />
     </product>
-    <common-name datatype="string">Glyma.08G132700</common-name>
     <accession-1 datatype="string">Glyma.08G132700</accession-1>
+    <common-name datatype="string">Glyma.08G132700</common-name>
   </Gene>
 </ptools-xml>

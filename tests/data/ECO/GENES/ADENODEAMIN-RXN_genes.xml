@@ -1,0 +1,213 @@
+<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECO:ADENODEAMIN-RXN%26detail=FULL">
+  <metadata>
+    <url>http://BioCyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=ECO:ADENODEAMIN-RXN&amp;detail=FULL</query>
+    <num_results>2</num_results>
+    <PGDB orgid="ECOLI" version="27.0">
+      <species datatype="string">Escherichia coli</species>
+      <strain datatype="string">K-12 substr. MG1655</strain>
+      <dblink>
+        <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+        <dblink-oid>511145</dblink-oid>
+        <dblink-relationship>unification</dblink-relationship>
+        <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+      </dblink>
+    </PGDB>
+  </metadata>
+  <Gene ID="ECOLI:EG12097" orgid="ECOLI" frameid="EG12097" detail="full">
+    <parent>
+      <Gene resource="getxml?ECOLI:Unclassified-Genes" orgid="ECOLI" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
+    </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation ID="ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>Luria-Bertani broth</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>LB Lennox</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>MOPS medium with 0.4% glucose</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>M9 medium with 1% glycerol</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>LB enriched</with-growth-media>
+      </Growth-Observation>
+    </knockout-growth-observations>
+    <product>
+      <Protein resource="getxml?ECOLI:EG12097-MONOMER" orgid="ECOLI" frameid="EG12097-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?ECOLI:TU0-13675" orgid="ECOLI" frameid="TU0-13675" />
+    </component-of>
+    <accession-1 datatype="string">b2593</accession-1>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>604302</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/604302</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2593</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2593&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2593</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2593</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008530</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008530</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB2021</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB2021</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2593</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2593</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">2734303</left-end-position>
+    <right-end-position datatype="integer">2735034</right-end-position>
+    <synonym datatype="string">pgeF</synonym>
+    <accession-2 datatype="string">ECK2591</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">58.907967</centisome-position>
+    <common-name datatype="string">yfiH</common-name>
+  </Gene>
+  <Gene ID="ECOLI:EG10030" orgid="ECOLI" frameid="EG10030" detail="full">
+    <parent>
+      <Gene resource="getxml?ECOLI:BC-1.7.33" orgid="ECOLI" frameid="BC-1.7.33" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
+    </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation ID="ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>MOPS medium with 0.4% glucose</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
+      <Growth-Observation resource="#ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" />
+    </knockout-growth-observations>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <product>
+      <Protein resource="getxml?ECOLI:ADENODEAMIN-MONOMER" orgid="ECOLI" frameid="ADENODEAMIN-MONOMER" />
+    </product>
+    <citation>
+      <Publication ID="ECOLI:PUB-1998686" orgid="ECOLI" frameid="PUB-1998686" detail="full">
+        <year datatype="integer">1991</year>
+        <source datatype="string">Biochemistry 30(8);2273-80</source>
+        <title datatype="string">Deduced amino acid sequence of Escherichia coli adenosine deaminase reveals evolutionarily conserved amino acid residues: implications for catalytic function.</title>
+        <pubmed-id datatype="string">1998686</pubmed-id>
+        <author datatype="string">Chang ZY</author>
+        <author datatype="string">Nygaard P</author>
+        <author datatype="string">Chinault AC</author>
+        <author datatype="string">Kellems RE</author>
+      </Publication>
+    </citation>
+    <citation>
+      <Publication ID="ECOLI:PUB-765747" orgid="ECOLI" frameid="PUB-765747" detail="full">
+        <year datatype="integer">1975</year>
+        <source datatype="string">Mol Gen Genet 143(1);85-91</source>
+        <title datatype="string">Location on the chromosome of Escherichia coli of genes governing purine metabolism. Adenosine deaminase (add), guanosine kinase (gsk) and hypoxanthine phosphoribosyltransferase (hpt).</title>
+        <pubmed-id datatype="string">765747</pubmed-id>
+        <author datatype="string">Jochimsen B</author>
+        <author datatype="string">Nygaard P</author>
+        <author datatype="string">Vestergaard T</author>
+      </Publication>
+    </citation>
+    <component-of>
+      <Transcription-Unit resource="getxml?ECOLI:TU0-13350" orgid="ECOLI" frameid="TU0-13350" />
+    </component-of>
+    <accession-1 datatype="string">b1623</accession-1>
+    <dblink>
+      <dblink-db>MIM</dblink-db>
+      <dblink-oid>102700</dblink-oid>
+      <dblink-relationship>RELATED-TO</dblink-relationship>
+      <dblink-URL>http://omim.org/entry/102700</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b1623</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b1623&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b1623</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b1623</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0005435</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0005435</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB0029</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB0029</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b1623</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b1623</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>CGSC</dblink-db>
+      <dblink-oid>1042</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=1042</dblink-URL>
+    </dblink>
+    <left-end-position datatype="integer">1702233</left-end-position>
+    <right-end-position datatype="integer">1703234</right-end-position>
+    <accession-2 datatype="string">ECK1618</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">36.673</centisome-position>
+    <common-name datatype="string">add</common-name>
+  </Gene>
+</ptools-xml>

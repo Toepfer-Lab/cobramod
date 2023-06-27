@@ -1,12 +1,24 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:2.6.1.58-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:2.6.1.58-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:2.6.1.58-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:2.6.1.58-RXN" detail="full" frameid="2.6.1.58-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<Reaction ID='META:2.6.1.58-RXN' orgid='META' frameid='2.6.1.58-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:PHE' orgid='META' frameid='PHE'/></left>
+<left><Compound resource='getxml?META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></left>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN-15649' orgid='META' frameid='ENZRXN-15649' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6920' orgid='META' frameid='CPLX-6920'/></enzyme>
+<reaction><Reaction resource='#META:2.6.1.58-RXN' orgid='META' frameid='2.6.1.58-RXN'/></reaction>
+<common-name datatype='string'>phenylalanine transaminase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-12339' orgid='META' frameid='ENZRXN-12339' detail='low'><enzyme><Protein resource='getxml?META:YHR137W-MONOMER' orgid='META' frameid='YHR137W-MONOMER'/></enzyme>
+<reaction><Reaction resource='#META:2.6.1.58-RXN' orgid='META' frameid='2.6.1.58-RXN'/></reaction>
+<common-name datatype='string'>L-phenylalanine:pyruvate aminotransferase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR125716</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -24,37 +36,26 @@
 </dblink>
 <ec-number>EC-2.6.1.58<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-15649" detail="low" frameid="ENZRXN-15649" orgid="META"><common-name datatype="string">phenylalanine transaminase</common-name>
-<enzyme><Protein frameid="CPLX-6920" orgid="META" resource="getxml?META:CPLX-6920" /></enzyme>
-<reaction><Reaction frameid="2.6.1.58-RXN" orgid="META" resource="#META:2.6.1.58-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12339" detail="low" frameid="ENZRXN-12339" orgid="META"><common-name datatype="string">L-phenylalanine:pyruvate aminotransferase</common-name>
-<enzyme><Protein frameid="YHR137W-MONOMER" orgid="META" resource="getxml?META:YHR137W-MONOMER" /></enzyme>
-<reaction><Reaction frameid="2.6.1.58-RXN" orgid="META" resource="#META:2.6.1.58-RXN" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-2.0899963<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-2.0899963<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype='string'>Latendresse M.</author>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY-7275" orgid="META" resource="getxml?META:PWY-7275" /><Pathway frameid="PWY-5079" orgid="META" resource="getxml?META:PWY-5079" /></in-pathway>
-<left><Compound frameid="PHE" orgid="META" resource="getxml?META:PHE" /></left>
-<left><Compound frameid="PYRUVATE" orgid="META" resource="getxml?META:PYRUVATE" /></left>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
 <reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="PHENYL-PYRUVATE" orgid="META" resource="getxml?META:PHENYL-PYRUVATE" /></right>
-<right><Compound frameid="L-ALPHA-ALANINE" orgid="META" resource="getxml?META:L-ALPHA-ALANINE" /></right>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<right><Compound resource='getxml?META:PHENYL-PYRUVATE' orgid='META' frameid='PHENYL-PYRUVATE'/></right>
+<right><Compound resource='getxml?META:L-ALPHA-ALANINE' orgid='META' frameid='L-ALPHA-ALANINE'/></right>
+<in-pathway><Pathway resource='getxml?META:PWY-7275' orgid='META' frameid='PWY-7275'/><Pathway resource='getxml?META:PWY-5079' orgid='META' frameid='PWY-5079'/></in-pathway>
 </Reaction>
 </ptools-xml>

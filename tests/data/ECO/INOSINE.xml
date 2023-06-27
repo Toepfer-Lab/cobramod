@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:INOSINE'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:INOSINE</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:INOSINE' orgid='ECOLI' frameid='INOSINE' detail='full'><parent><Compound resource='getxml?ECOLI:Nucleosides' orgid='ECOLI' frameid='Nucleosides' class='true'/></parent>
+<parent><Compound resource='getxml?ECOLI:Purine-Ribonucleosides' orgid='ECOLI' frameid='Purine-Ribonucleosides' class='true'/></parent>
+<cml><molecule id='INOSINE' title='inosine' formalCharge='0'><atomArray><atom id='INOSINE-atom1' elementType='C' x2='611.0' y2='2234.0'/><atom id='INOSINE-atom2' elementType='C' x2='3703.0' y2='0.0'/><atom id='INOSINE-atom3' elementType='C' x2='4115.0' y2='2699.0'/><atom id='INOSINE-atom4' elementType='C' x2='1325.0' y2='2647.0'/><atom id='INOSINE-atom5' elementType='C' x2='4528.0' y2='1430.0'/><atom id='INOSINE-atom6' elementType='C' x2='1585.0' y2='3430.0'/><atom id='INOSINE-atom7' elementType='C' x2='2418.0' y2='3430.0'/><atom id='INOSINE-atom8' elementType='C' x2='3703.0' y2='1430.0'/><atom id='INOSINE-atom9' elementType='C' x2='4940.0' y2='715.0'/><atom id='INOSINE-atom10' elementType='C' x2='2733.0' y2='2626.0'/><atom id='INOSINE-atom11' elementType='N' x2='3290.0' y2='715.0'/><atom id='INOSINE-atom12' elementType='N' x2='4528.0' y2='0.0'/><atom id='INOSINE-atom13' elementType='N' x2='4783.0' y2='2214.0'/><atom id='INOSINE-atom14' elementType='N' x2='3448.0' y2='2214.0'/><atom id='INOSINE-atom15' elementType='O' x2='0.0' y2='2596.0'/><atom id='INOSINE-atom16' elementType='O' x2='1172.0' y2='4144.0'/><atom id='INOSINE-atom17' elementType='O' x2='2830.0' y2='4144.0'/><atom id='INOSINE-atom18' elementType='O' x2='5765.0' y2='715.0'/><atom id='INOSINE-atom19' elementType='O' x2='1993.0' y2='2168.0'/></atomArray>
+<bondArray><bond id='INOSINE-bond1' atomRefs='INOSINE-atom7 INOSINE-atom10' order='1'/><bond id='INOSINE-bond2' atomRefs='INOSINE-atom6 INOSINE-atom4' order='1'/><bond id='INOSINE-bond3' atomRefs='INOSINE-atom6 INOSINE-atom7' order='1'/><bond id='INOSINE-bond4' atomRefs='INOSINE-atom19 INOSINE-atom10' order='1'/><bond id='INOSINE-bond5' atomRefs='INOSINE-atom19 INOSINE-atom4' order='1'/><bond id='INOSINE-bond6' atomRefs='INOSINE-atom4 INOSINE-atom1' order='1'/><bond id='INOSINE-bond7' atomRefs='INOSINE-atom10 INOSINE-atom14' order='1'/><bond id='INOSINE-bond8' atomRefs='INOSINE-atom1 INOSINE-atom15' order='1'/><bond id='INOSINE-bond9' atomRefs='INOSINE-atom12 INOSINE-atom2' order='1'/><bond id='INOSINE-bond10' atomRefs='INOSINE-atom2 INOSINE-atom11' order='2'/><bond id='INOSINE-bond11' atomRefs='INOSINE-atom11 INOSINE-atom8' order='1'/><bond id='INOSINE-bond12' atomRefs='INOSINE-atom8 INOSINE-atom5' order='2'/><bond id='INOSINE-bond13' atomRefs='INOSINE-atom5 INOSINE-atom9' order='1'/><bond id='INOSINE-bond14' atomRefs='INOSINE-atom12 INOSINE-atom9' order='1'/><bond id='INOSINE-bond15' atomRefs='INOSINE-atom3 INOSINE-atom13' order='2'/><bond id='INOSINE-bond16' atomRefs='INOSINE-atom5 INOSINE-atom13' order='1'/><bond id='INOSINE-bond17' atomRefs='INOSINE-atom9 INOSINE-atom18' order='2'/><bond id='INOSINE-bond18' atomRefs='INOSINE-atom3 INOSINE-atom14' order='1'/><bond id='INOSINE-bond19' atomRefs='INOSINE-atom14 INOSINE-atom8' order='1'/><bond id='INOSINE-bond20' atomRefs='INOSINE-atom7 INOSINE-atom17' order='1'/><bond id='INOSINE-bond21' atomRefs='INOSINE-atom6 INOSINE-atom16' order='1'/></bondArray>
+<formula concise='C 10 H 12 N 4 O 5'/><float title='molecularWeight' units='g/mol'>268.229</float>
+<string title='smiles'>C(O)[C@H]3(O[C@@H](N1(C2(\N=C/NC(=O)C(\N=C/1)=2)))[C@H](O)[C@H](O)3)</string>
+</molecule>
+</cml>
+<inchi-key datatype='string'>InChIKey=UGQMRVRMYYASKQ-KQYNXXCUSA-N</inchi-key>
+<gibbs-0 datatype='float' units='kcal/mol'>-20.28556</gibbs-0>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-18' orgid='ECOLI' frameid='RXN0-18'/><Reaction resource='getxml?ECOLI:TRANS-RXN-108G' orgid='ECOLI' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?ECOLI:INOSINE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='INOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:INOSINEKIN-RXN' orgid='ECOLI' frameid='INOSINEKIN-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:RXN0-18' orgid='ECOLI' frameid='RXN0-18'/><Reaction resource='getxml?ECOLI:TRANS-RXN-108G' orgid='ECOLI' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?ECOLI:RXN-7607' orgid='ECOLI' frameid='RXN-7607'/><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></appears-in-right-side-of>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>6021</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=6021</dblink-URL>
+</dblink>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000008855117</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000008855117</dblink-URL>
+</dblink>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/281/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/281/</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00246</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00246</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM334</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM334</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Inosine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Inosine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>ins</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/ins</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB04335</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB04335</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17596</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17596</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00195</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00195</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>5799</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/5799</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17596</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17596</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00294</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00294</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>58-63-9</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-63-9</dblink-URL>
+</dblink>
+<synonym datatype='string'>hypoxanthine-ribose</synonym>
+<synonym datatype='string'>iso-prinosine</synonym>
+<synonym datatype='string'>riboxine</synonym>
+<synonym datatype='string'>hypoxanthine riboside</synonym>
+<monoisotopic-mw datatype='float' units='Daltons'>268.08078</monoisotopic-mw>
+<molecular-weight datatype='float' units='Daltons'>268.229</molecular-weight>
+<inchi datatype='string'>InChI=1S/C10H12N4O5/c15-1-4-6(16)7(17)10(19-4)14-3-13-5-8(14)11-2-12-9(5)18/h2-4,6-7,10,15-17H,1H2,(H,11,12,18)/t4-,6-,7-,10-/m1/s1</inchi>
+<common-name datatype='string'>inosine</common-name>
+</Compound>
+</ptools-xml>

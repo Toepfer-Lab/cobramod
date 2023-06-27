@@ -18,7 +18,7 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
             M00165  Reductive pentose phosphate cycle (Calvin cycle)
             M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
-ORTHOLOGY   K00150  glyceraldehyde-3-phosphate dehydrogenase (NAD(P)) [EC:1.2.1.59]
+ORTHOLOGY   K00150  glyceraldehyde-3-phosphate dehydrogenase (NAD(P)+) (phosphorylating) [EC:1.2.1.59]
             K05298  glyceraldehyde-3-phosphate dehydrogenase (NADP+) (phosphorylating) [EC:1.2.1.13]
 DBLINKS     RHEA: 10299
 ///

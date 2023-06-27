@@ -1,33 +1,42 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:NIACINE"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:NIACINE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:NIACINE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:NIACINE" detail="full" frameid="NIACINE" orgid="META"><parent><Compound class="true" frameid="B-vitamins" orgid="META" resource="getxml?META:B-vitamins" /></parent>
-<cml><molecule formalCharge="-1" id="NIACINE" title="nicotinate"><atomArray><atom elementType="C" id="NIACINE-atom1" x2="0.0" y2="1232.0" /><atom elementType="C" id="NIACINE-atom2" x2="707.0" y2="1652.0" /><atom elementType="C" id="NIACINE-atom3" x2="0.0" y2="406.0" /><atom elementType="C" id="NIACINE-atom4" x2="1421.0" y2="420.0" /><atom elementType="C" id="NIACINE-atom5" x2="1421.0" y2="1239.0" /><atom elementType="C" id="NIACINE-atom6" x2="2157.0" y2="1659.0" /><atom elementType="N" id="NIACINE-atom7" x2="714.0" y2="0.0" /><atom elementType="O" formalCharge="-1" id="NIACINE-atom8" x2="2871.0" y2="1247.0" /><atom elementType="O" id="NIACINE-atom9" x2="2157.0" y2="2484.0" /></atomArray>
-<bondArray><bond atomRefs="NIACINE-atom3 NIACINE-atom7" id="NIACINE-bond1" order="1" /><bond atomRefs="NIACINE-atom1 NIACINE-atom3" id="NIACINE-bond2" order="2" /><bond atomRefs="NIACINE-atom4 NIACINE-atom5" id="NIACINE-bond3" order="1" /><bond atomRefs="NIACINE-atom7 NIACINE-atom4" id="NIACINE-bond4" order="2" /><bond atomRefs="NIACINE-atom5 NIACINE-atom2" id="NIACINE-bond5" order="2" /><bond atomRefs="NIACINE-atom5 NIACINE-atom6" id="NIACINE-bond6" order="1" /><bond atomRefs="NIACINE-atom2 NIACINE-atom1" id="NIACINE-bond7" order="1" /><bond atomRefs="NIACINE-atom8 NIACINE-atom6" id="NIACINE-bond8" order="1" /><bond atomRefs="NIACINE-atom6 NIACINE-atom9" id="NIACINE-bond9" order="2" /></bondArray>
-<formula concise="C 6 H 4 N 1 O 2" /><float title="molecularWeight" units="g/mol">122.103</float>
-<string title="smiles">C1(\N=C/C(/C(=O)[O-])=C\C=1)</string>
-<string title="systematicName">3-pyridinecarboxylic acid</string>
+<Compound ID='META:NIACINE' orgid='META' frameid='NIACINE' detail='full'><parent><Compound resource='getxml?META:B-vitamins' orgid='META' frameid='B-vitamins' class='true'/></parent>
+<parent><Compound resource='getxml?META:Pyridinemonocarboxylic-Acids' orgid='META' frameid='Pyridinemonocarboxylic-Acids' class='true'/></parent>
+<cml><molecule id='NIACINE' title='nicotinate' formalCharge='-1'><atomArray><atom id='NIACINE-atom1' elementType='C' x2='0.0' y2='1232.0'/><atom id='NIACINE-atom2' elementType='C' x2='707.0' y2='1652.0'/><atom id='NIACINE-atom3' elementType='C' x2='0.0' y2='406.0'/><atom id='NIACINE-atom4' elementType='C' x2='1421.0' y2='420.0'/><atom id='NIACINE-atom5' elementType='C' x2='1421.0' y2='1239.0'/><atom id='NIACINE-atom6' elementType='C' x2='2157.0' y2='1659.0'/><atom id='NIACINE-atom7' elementType='N' x2='714.0' y2='0.0'/><atom id='NIACINE-atom8' elementType='O' x2='2871.0' y2='1247.0' formalCharge='-1'/><atom id='NIACINE-atom9' elementType='O' x2='2157.0' y2='2484.0'/></atomArray>
+<bondArray><bond id='NIACINE-bond1' atomRefs='NIACINE-atom3 NIACINE-atom7' order='1'/><bond id='NIACINE-bond2' atomRefs='NIACINE-atom1 NIACINE-atom3' order='2'/><bond id='NIACINE-bond3' atomRefs='NIACINE-atom4 NIACINE-atom5' order='1'/><bond id='NIACINE-bond4' atomRefs='NIACINE-atom7 NIACINE-atom4' order='2'/><bond id='NIACINE-bond5' atomRefs='NIACINE-atom5 NIACINE-atom2' order='2'/><bond id='NIACINE-bond6' atomRefs='NIACINE-atom5 NIACINE-atom6' order='1'/><bond id='NIACINE-bond7' atomRefs='NIACINE-atom2 NIACINE-atom1' order='1'/><bond id='NIACINE-bond8' atomRefs='NIACINE-atom8 NIACINE-atom6' order='1'/><bond id='NIACINE-bond9' atomRefs='NIACINE-atom6 NIACINE-atom9' order='2'/></bondArray>
+<formula concise='C 6 H 4 N 1 O 2'/><float title='molecularWeight' units='g/mol'>122.103</float>
+<string title='smiles'>C1(\N=C/C(/C(=O)[O-])=C\C=1)</string>
+<string title='systematicName'>3-pyridinecarboxylic acid</string>
 </molecule>
 </cml>
-<comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=NIACINE"&gt;Nicotinate&lt;/a&gt; (niacin, 3-pyridinecarboxylate) is a carboxylic derivative of &lt;a href="/compound?orgid=META&amp;id=PYRIDINE"&gt;pyridine&lt;/a&gt; that is found in nature as part of pyridine cofactors (e.g., NAD and NADP) and alkaloids (e.g., &lt;a href="/compound?orgid=META&amp;id=NICOTINE"&gt;(&lt;i&gt;S&lt;/i&gt;)-nicotine&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=CPD-12317"&gt;anabasine&lt;/a&gt;). Nicotinate is an essential compound for those organisms that are not able to synthesize it, and is thus also called vitamin B&lt;sub&gt;3&lt;/sub&gt;. In addition, nicotinate is also a carbon and nitrogen source for different bacteria and some fungi.</comment>
-<common-name datatype="string">nicotinate</common-name>
-<credits><revised><date datatype="date">2010-03-26</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
-</credits>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-8444' orgid='META' frameid='RXN-8444'/><Reaction resource='getxml?META:RXN-19316' orgid='META' frameid='RXN-19316'/><Reaction resource='getxml?META:RXN-19306' orgid='META' frameid='RXN-19306'/><Reaction resource='getxml?META:DMBPPRIBOSYLTRANS-RXN' orgid='META' frameid='DMBPPRIBOSYLTRANS-RXN'/><Reaction resource='getxml?META:RXN-19301' orgid='META' frameid='RXN-19301'/><Reaction resource='getxml?META:RXN-19300' orgid='META' frameid='RXN-19300'/><Reaction resource='getxml?META:RXN-19299' orgid='META' frameid='RXN-19299'/><Reaction resource='getxml?META:RXN-19298' orgid='META' frameid='RXN-19298'/><Reaction resource='getxml?META:RXN-19295' orgid='META' frameid='RXN-19295'/><Reaction resource='getxml?META:RXN-16790' orgid='META' frameid='RXN-16790'/><Reaction resource='getxml?META:NICOTINAMID-RXN' orgid='META' frameid='NICOTINAMID-RXN'/><Reaction resource='getxml?META:RXN-14701' orgid='META' frameid='RXN-14701'/></appears-in-right-side-of>
+<inchi datatype='string'>InChI=1S/C6H5NO2/c8-6(9)5-2-1-3-7-4-5/h1-4H,(H,8,9)/p-1</inchi>
+<synonym datatype='string'>3-pyridinecarboxylic acid</synonym>
+<synonym datatype='string'>nicotinic acid</synonym>
+<synonym datatype='string'>wampocap</synonym>
+<synonym datatype='string'>nicolar</synonym>
+<synonym datatype='string'>nicocap</synonym>
+<synonym datatype='string'>nicobid</synonym>
+<synonym datatype='string'>nico-400-</synonym>
+<synonym datatype='string'>nicamin</synonym>
+<synonym datatype='string'>niacin</synonym>
+<synonym datatype='string'>niacine</synonym>
+<synonym datatype='string'>vitamin B&lt;sub&gt;3&lt;/sub&gt;</synonym>
+<synonym datatype='string'>3-pyridinecarboxylate</synonym>
+<synonym datatype='string'>pyridine-3-carboxylate</synonym>
+<molecular-weight datatype='float' units='Daltons'>122.103</molecular-weight>
+<monoisotopic-mw datatype='float' units='Daltons'>123.03203</monoisotopic-mw>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000000001795</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000000001795</dblink-URL>
+</dblink>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/248/</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -88,50 +97,68 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=59-67-6</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-14.987576<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<systematic-name datatype='string'>3-pyridinecarboxylic acid</systematic-name>
+<inchi-key datatype='string'>InChIKey=PVNIIMVLHYAWGP-UHFFFAOYSA-M</inchi-key>
+<common-name datatype='string'>nicotinate</common-name>
+<gibbs-0 datatype='float' units='kcal/mol'>-14.987576<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype='string'>Latendresse M.</author>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C6H5NO2/c8-6(9)5-2-1-3-7-4-5/h1-4H,(H,8,9)/p-1</inchi>
-<inchi-key datatype="string">InChIKey=PVNIIMVLHYAWGP-UHFFFAOYSA-M</inchi-key>
-<molecular-weight datatype="float" units="Daltons">122.103</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">123.03203</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-7038" detail="low" frameid="REG-7038" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11942" detail="low" frameid="ENZRXN-11942" orgid="META"><common-name datatype="string">6-hydroxynicotinate 3-monooxygenase</common-name>
-<enzyme><Protein frameid="MONOMER-11619" orgid="META" resource="getxml?META:MONOMER-11619" /></enzyme>
-<reaction><Reaction frameid="RXN-7573" orgid="META" resource="getxml?META:RXN-7573" /></reaction>
+<regulates><Regulation ID='META:REG-7038' orgid='META' frameid='REG-7038' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NIACINE' orgid='META' frameid='NIACINE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-11942' orgid='META' frameid='ENZRXN-11942' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-11619' orgid='META' frameid='MONOMER-11619'/></enzyme>
+<reaction><Reaction resource='getxml?META:RXN-7573' orgid='META' frameid='RXN-7573'/></reaction>
+<common-name datatype='string'>6-hydroxynicotinate 3-monooxygenase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound frameid="NIACINE" orgid="META" resource="#META:NIACINE" /></regulator>
+<mode datatype='string'>-</mode>
 </Regulation>
 </regulates>
-<synonym datatype="string">3-pyridinecarboxylic acid</synonym>
-<synonym datatype="string">nicotinic acid</synonym>
-<synonym datatype="string">wampocap</synonym>
-<synonym datatype="string">nicolar</synonym>
-<synonym datatype="string">nicocap</synonym>
-<synonym datatype="string">nicobid</synonym>
-<synonym datatype="string">nico-400-</synonym>
-<synonym datatype="string">nicamin</synonym>
-<synonym datatype="string">niacin</synonym>
-<synonym datatype="string">niacine</synonym>
-<synonym datatype="string">vitamin B&lt;sub&gt;3&lt;/sub&gt;</synonym>
-<synonym datatype="string">3-pyridinecarboxylate</synonym>
-<synonym datatype="string">pyridine-3-carboxylate</synonym>
-<systematic-name datatype="string">3-pyridinecarboxylic acid</systematic-name>
-<appears-in-left-side-of><Reaction frameid="RXN-13972" orgid="META" resource="getxml?META:RXN-13972" /><Reaction frameid="RXN-13973" orgid="META" resource="getxml?META:RXN-13973" /><Reaction frameid="NICOTINATE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:NICOTINATE-DEHYDROGENASE-RXN" /><Reaction frameid="NICOTINATE-GLUCOSYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:NICOTINATE-GLUCOSYLTRANSFERASE-RXN" /><Reaction frameid="NICOTINATEPRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:NICOTINATEPRIBOSYLTRANS-RXN" /><Reaction frameid="RXN-13057" orgid="META" resource="getxml?META:RXN-13057" /><Reaction frameid="RXN-11353" orgid="META" resource="getxml?META:RXN-11353" /><Reaction frameid="RXN-8442" orgid="META" resource="getxml?META:RXN-8442" /><Reaction frameid="RXN-7637" orgid="META" resource="getxml?META:RXN-7637" /><Reaction frameid="NICOTINATE-N-METHYLTRANSFERASE-RXN" orgid="META" resource="getxml?META:NICOTINATE-N-METHYLTRANSFERASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-8444" orgid="META" resource="getxml?META:RXN-8444" /><Reaction frameid="RXN-19316" orgid="META" resource="getxml?META:RXN-19316" /><Reaction frameid="RXN-19306" orgid="META" resource="getxml?META:RXN-19306" /><Reaction frameid="DMBPPRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:DMBPPRIBOSYLTRANS-RXN" /><Reaction frameid="RXN-19301" orgid="META" resource="getxml?META:RXN-19301" /><Reaction frameid="RXN-19300" orgid="META" resource="getxml?META:RXN-19300" /><Reaction frameid="RXN-19299" orgid="META" resource="getxml?META:RXN-19299" /><Reaction frameid="RXN-19298" orgid="META" resource="getxml?META:RXN-19298" /><Reaction frameid="RXN-19295" orgid="META" resource="getxml?META:RXN-19295" /><Reaction frameid="RXN-16790" orgid="META" resource="getxml?META:RXN-16790" /><Reaction frameid="NICOTINAMID-RXN" orgid="META" resource="getxml?META:NICOTINAMID-RXN" /><Reaction frameid="RXN-14701" orgid="META" resource="getxml?META:RXN-14701" /></appears-in-right-side-of>
+<credits><revised><date datatype='date'>2010-03-26</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<email datatype='string'>caspi@ai.sri.com</email>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+</Organization>
+</affiliations>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
+</comment>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
+<last-curated><date datatype='date'>2022-06-12</date>
+<Person resource='#META:caspi' orgid='META' frameid='caspi'/><Organization resource='#META:SRI' orgid='META' frameid='SRI'/></last-curated>
+</credits>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=META&amp;id=NIACINE&quot;&gt;Nicotinate&lt;/a&gt; (niacin, 3-pyridinecarboxylate) is a carboxylic derivative of &lt;a href=&quot;/compound?orgid=META&amp;id=PYRIDINE&quot;&gt;pyridine&lt;/a&gt; that is found in nature as part of pyridine cofactors (e.g., NAD and NADP) and alkaloids (e.g., &lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINE&quot;&gt;(&lt;i&gt;S&lt;/i&gt;)-nicotine&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-12317&quot;&gt;anabasine&lt;/a&gt;).
+&lt;p&gt;
+Nicotinate is one of three forms of vitamin B&lt;sub&gt;3&lt;/sub&gt;: &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINAMIDE&quot;&gt;nicotinamide&lt;/a&gt;, and &lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINAMIDE_RIBOSE&quot;&gt;nicotinamide riboside&lt;/a&gt; [more accurately named 1-(&amp;beta;-D ribofuranosyl)nicotinamide]. These three forms are interchangeable, and are usually used for the biosynthesis of &lt;a href=&quot;/compound?orgid=META&amp;id=NAD&quot;&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; [&lt;a href=&quot;https://linkinghub.elsevier.com/retrieve/pii/S0021925818741641&quot;&gt;Elvehjem38&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15137942&quot;&gt;Bieganowski04&lt;/a&gt;].
+&lt;p&gt;
+&lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINAMIDE_RIBOSE&quot;&gt;1-(&amp;beta;-D ribofuranosyl)nicotinamide&lt;/a&gt; can be converted to &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINAMIDE&quot;&gt;nicotinamide&lt;/a&gt; by &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.2.2.3&quot;&gt;EC 3.2.2.3, uridine nucleosidase&lt;/a&gt;
+&lt;p&gt;
+&lt;a href=&quot;/META/NEW-IMAGE?type=REACTION&amp;object=RXN-8441&quot;&gt;1-(&amp;beta;-D ribofuranosyl)nicotinamide + H&lt;sub&gt;2&lt;/sub&gt;O  &amp;rarr;  D-ribofuranose + nicotinamide + H&lt;SUP&gt;+&lt;/SUP&gt;&lt;/a&gt;
+&lt;p&gt;
+and &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINAMIDE&quot;&gt;nicotinamide&lt;/a&gt; can be hydrolyzed to &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt; by &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.5.1.19&quot;&gt;EC 3.5.1.19, nicotinamidase&lt;/a&gt; (which is not present in humans)
+&lt;p&gt;
+&lt;a href=&quot;/META/NEW-IMAGE?type=REACTION&amp;object=NICOTINAMID-RXN&quot;&gt;nicotinamide + H&lt;sub&gt;2&lt;/sub&gt;O  &amp;rarr;  ammonium + nicotinate&lt;/a&gt;
+&lt;p&gt;
+
+Eukaryotes and prokaryotes produce NAD &lt;i&gt;de novo&lt;/i&gt; from &lt;a href=&quot;/compound?orgid=META&amp;id=TRP&quot;&gt;L-tryptophan&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=L-ASPARTATE&quot;&gt;L-aspartate&lt;/a&gt;, respectively, by pathways that bypasses vitamin B3 compounds and instead proceed via &lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINATE_NUCLEOTIDE&quot;&gt;&amp;beta;-nicotinate D-ribonucleotide&lt;/a&gt; (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=NADSYN-PWY&quot;&gt;NAD &lt;i&gt;de novo&lt;/i&gt; biosynthesis II (from tryptophan)&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PYRIDNUCSYN-PWY&quot;&gt;NAD &lt;i&gt;de novo&lt;/i&gt; biosynthesis I&lt;/a&gt;). Vitamin B3 compounds are used in NAD salvage pathways such as &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5381&quot;&gt;NAD salvage (plants)&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY3O-4106&quot;&gt;NAD salvage pathway IV (from nicotinamide riboside)&lt;/a&gt; [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/13563526&quot;&gt;Preiss58&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/13563527&quot;&gt;Preiss58a&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15137942&quot;&gt;Bieganowski04&lt;/a&gt;].
+&lt;p&gt;
+In populations with a tryptophan-poor diet the NAD &lt;i&gt;de novo&lt;/i&gt; biosynthesis pathway is not sufficient to produce the required NAD, making the salvage pathways that rely on vitamin B&lt;sub&gt;3&lt;/sub&gt; compounds the main source of NAD. Under these conditions a difficiency of vitamin B&lt;sub&gt;3&lt;/sub&gt; compounds can result in the disease pellagra.</comment>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-13972' orgid='META' frameid='RXN-13972'/><Reaction resource='getxml?META:RXN-13973' orgid='META' frameid='RXN-13973'/><Reaction resource='getxml?META:NICOTINATE-DEHYDROGENASE-RXN' orgid='META' frameid='NICOTINATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:NICOTINATE-GLUCOSYLTRANSFERASE-RXN' orgid='META' frameid='NICOTINATE-GLUCOSYLTRANSFERASE-RXN'/><Reaction resource='getxml?META:NICOTINATEPRIBOSYLTRANS-RXN' orgid='META' frameid='NICOTINATEPRIBOSYLTRANS-RXN'/><Reaction resource='getxml?META:RXN-13057' orgid='META' frameid='RXN-13057'/><Reaction resource='getxml?META:RXN-11353' orgid='META' frameid='RXN-11353'/><Reaction resource='getxml?META:RXN-8442' orgid='META' frameid='RXN-8442'/><Reaction resource='getxml?META:RXN-7637' orgid='META' frameid='RXN-7637'/><Reaction resource='getxml?META:NICOTINATE-N-METHYLTRANSFERASE-RXN' orgid='META' frameid='NICOTINATE-N-METHYLTRANSFERASE-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

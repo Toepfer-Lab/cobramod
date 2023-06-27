@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=GCF_000020025:RXN-14462%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=GCF_000020025:RXN-14462%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=GCF_000020025:RXN-14462&amp;detail=FULL</query>
     <num_results>1</num_results>
-    <PGDB orgid="GCF_000020025" version="24.5">
+    <PGDB orgid="GCF_000020025" version="27.0">
       <species datatype="string">Nostoc punctiforme</species>
       <strain datatype="string">ATCC 29133; PCC 73102</strain>
       <sequence-source datatype="string">GCF_000020025.1</sequence-source>
@@ -16,26 +16,27 @@
       </dblink>
     </PGDB>
   </metadata>
-  <Gene ID="GCF_000020025:NPUN_RS12370" detail="full" frameid="NPUN_RS12370" orgid="GCF_000020025">
+  <Gene ID="GCF_000020025:NPUN_RS12370" orgid="GCF_000020025" frameid="NPUN_RS12370" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="GCF_000020025" resource="getxml?GCF_000020025:Unclassified-Genes" />
+      <Gene resource="getxml?GCF_000020025:Unclassified-Genes" orgid="GCF_000020025" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="NC_010628" orgid="GCF_000020025" resource="getxml?GCF_000020025:NC_010628" />
+      <Genetic-Element resource="getxml?GCF_000020025:NC_010628" orgid="GCF_000020025" frameid="NC_010628" />
     </replicon>
-    <abbrev-name datatype="string">RS12370</abbrev-name>
     <transcription-direction datatype="string">+</transcription-direction>
     <product>
-      <Protein frameid="NPUN_RS12370-MONOMER" orgid="GCF_000020025" resource="getxml?GCF_000020025:NPUN_RS12370-MONOMER" />
+      <Protein resource="getxml?GCF_000020025:NPUN_RS12370-MONOMER" orgid="GCF_000020025" frameid="NPUN_RS12370-MONOMER" />
     </product>
-    <accession-1 datatype="string">NPUN_RS12370</accession-1>
+    <accession-1 datatype="string">Npun_F2464</accession-1>
+    <accession-2 datatype="string">NPUN_RS12370</accession-2>
     <component-of>
-      <Transcription-Unit frameid="TU220G-1945" orgid="GCF_000020025" resource="getxml?GCF_000020025:TU220G-1945" />
+      <Transcription-Unit resource="getxml?GCF_000020025:TU220G-1945" orgid="GCF_000020025" frameid="TU220G-1945" />
     </component-of>
+    <right-end-position datatype="integer">3078923</right-end-position>
     <left-end-position datatype="integer">3077745</left-end-position>
     <common-name datatype="string">hphA</common-name>
-    <right-end-position datatype="integer">3078923</right-end-position>
     <centisome-position datatype="float" units="CENTISOMES">37.37703</centisome-position>
-    <accession-2 datatype="string">Npun_F2464</accession-2>
+    <synonym datatype="string">F2464</synonym>
+    <synonym datatype="string">RS12370</synonym>
   </Gene>
 </ptools-xml>

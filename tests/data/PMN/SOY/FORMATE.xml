@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='26.0' xml:base='http://pmn.plantcyc.org/getxml?SOY:FORMATE'><metadata><url>http://pmn.plantcyc.org/</url>
+<service_name>getxml</service_name>
+<query>SOY:FORMATE</query>
+<num_results>1</num_results>
+<PGDB orgid='SOY' version='10.0.2'><species datatype='string'>Glycine max</species>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3847</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3847</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='SOY:FORMATE' orgid='SOY' frameid='FORMATE' detail='full'><parent><Compound resource='getxml?SOY:Short-Chain-Carboxylates' orgid='SOY' frameid='Short-Chain-Carboxylates' class='true'/></parent>
+<cml><molecule id='FORMATE' title='formate' formalCharge='-1'><atomArray><atom id='FORMATE-atom1' elementType='C' x2='-856.0' y2='-1611.0'/><atom id='FORMATE-atom2' elementType='O' x2='-856.0' y2='-9861.0'/><atom id='FORMATE-atom3' elementType='O' x2='-8000.0' y2='2514.0' formalCharge='-1'/><atom id='FORMATE-atom4' elementType='H' x2='6289.0' y2='2514.0'/></atomArray>
+<bondArray><bond id='FORMATE-bond1' atomRefs='FORMATE-atom2 FORMATE-atom1' order='2'/><bond id='FORMATE-bond2' atomRefs='FORMATE-atom3 FORMATE-atom1' order='1'/><bond id='FORMATE-bond3' atomRefs='FORMATE-atom1 FORMATE-atom4' order='1'/></bondArray>
+<formula concise='C 1 H 1 O 2'/><float title='molecularWeight' units='g/mol'>45.018</float>
+<string title='smiles'>C([O-])=O</string>
+</molecule>
+</cml>
+<inchi-key datatype='string'>InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Formic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Formic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>for</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/for</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15740</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15740</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00142</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00142</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>33693</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/33693</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>277</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/277</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15740</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15740</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>283</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=283</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00058</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00058</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>64-18-6</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=64-18-6</dblink-URL>
+</dblink>
+<gibbs-0 datatype='float' units='kcal/mol'>-73.93095</gibbs-0>
+<synonym datatype='string'>formic acid</synonym>
+<appears-in-left-side-of><Reaction resource='getxml?SOY:RXN0-724' orgid='SOY' frameid='RXN0-724'/><Reaction resource='getxml?SOY:RXN0-723' orgid='SOY' frameid='RXN0-723'/><Reaction resource='getxml?SOY:FORMATETHFLIG-RXN' orgid='SOY' frameid='FORMATETHFLIG-RXN'/><Reaction resource='getxml?SOY:1.2.1.2-RXN' orgid='SOY' frameid='1.2.1.2-RXN'/></appears-in-left-side-of>
+<molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?SOY:FORMYL-COA-HYDROLASE-RXN' orgid='SOY' frameid='FORMYL-COA-HYDROLASE-RXN'/><Reaction resource='getxml?SOY:RXN-19833' orgid='SOY' frameid='RXN-19833'/><Reaction resource='getxml?SOY:RXN-19830' orgid='SOY' frameid='RXN-19830'/><Reaction resource='getxml?SOY:RXN-11881' orgid='SOY' frameid='RXN-11881'/><Reaction resource='getxml?SOY:RXN66-305' orgid='SOY' frameid='RXN66-305'/><Reaction resource='getxml?SOY:RXN-13707' orgid='SOY' frameid='RXN-13707'/><Reaction resource='getxml?SOY:RXN3O-130' orgid='SOY' frameid='RXN3O-130'/><Reaction resource='getxml?SOY:1.14.13.70-RXN' orgid='SOY' frameid='1.14.13.70-RXN'/><Reaction resource='getxml?SOY:RXN66-13' orgid='SOY' frameid='RXN66-13'/><Reaction resource='getxml?SOY:RXN-13961' orgid='SOY' frameid='RXN-13961'/><Reaction resource='getxml?SOY:3.7.1.9-RXN' orgid='SOY' frameid='3.7.1.9-RXN'/><Reaction resource='getxml?SOY:FORMALDEHYDE-DEHYDROGENASE-RXN' orgid='SOY' frameid='FORMALDEHYDE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?SOY:RXN-12087' orgid='SOY' frameid='RXN-12087'/><Reaction resource='getxml?SOY:ARYLFORMAMIDASE-RXN' orgid='SOY' frameid='ARYLFORMAMIDASE-RXN'/><Reaction resource='getxml?SOY:FORMYLTHFDEFORMYL-RXN' orgid='SOY' frameid='FORMYLTHFDEFORMYL-RXN'/><Reaction resource='getxml?SOY:FORMAMIDASE-RXN' orgid='SOY' frameid='FORMAMIDASE-RXN'/><Reaction resource='getxml?SOY:GTP-CYCLOHYDRO-I-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?SOY:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='SOY' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?SOY:DIOHBUTANONEPSYN-RXN' orgid='SOY' frameid='DIOHBUTANONEPSYN-RXN'/><Reaction resource='getxml?SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?SOY:R146-RXN' orgid='SOY' frameid='R146-RXN'/><Reaction resource='getxml?SOY:R147-RXN' orgid='SOY' frameid='R147-RXN'/><Reaction resource='getxml?SOY:PYRIMSYN1-RXN' orgid='SOY' frameid='PYRIMSYN1-RXN'/></appears-in-right-side-of>
+<inchi datatype='string'>InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
+<credits><imported-from-meta><date datatype='date'>2013-05-02</date>
+<Person ID='SOY:nilo-poyanco' orgid='SOY' frameid='nilo-poyanco' detail='full'><affiliations><Organization ID='SOY:PMN' orgid='SOY' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
+<url datatype='string'>http://plantcyc.org</url>
+<credits><imported-from-meta><date datatype='date'>2013-05-02</date>
+<Person resource='#SOY:nilo-poyanco' orgid='SOY' frameid='nilo-poyanco'/><Organization resource='#SOY:PMN' orgid='SOY' frameid='PMN'/></imported-from-meta>
+</credits>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
+</Organization>
+</affiliations>
+<email datatype='string'>rnilo@stanford.edu</email>
+<credits><imported-from-meta><date datatype='date'>2013-05-02</date>
+<Person resource='#SOY:nilo-poyanco' orgid='SOY' frameid='nilo-poyanco'/><Organization resource='#SOY:PMN' orgid='SOY' frameid='PMN'/></imported-from-meta>
+</credits>
+</Person>
+<Organization resource='#SOY:PMN' orgid='SOY' frameid='PMN'/></imported-from-meta>
+</credits>
+<monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
+<common-name datatype='string'>formate</common-name>
+</Compound>
+</ptools-xml>

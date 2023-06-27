@@ -1,18 +1,46 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-12389"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-12389'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-12389</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Compound ID="ARA:CPD-12389" detail="full" frameid="CPD-12389" orgid="ARA"><parent><Compound class="true" frameid="CPD-19473" orgid="ARA" resource="getxml?ARA:CPD-19473" /></parent>
-<cml><molecule formalCharge="0" id="CPD-12389" title="1-(methylsulfanyl)-4-aci-nitrobutane"><atomArray><atom elementType="C" id="CPD-12389-atom1" x2="28444.0" y2="-25311.0" /><atom elementType="C" id="CPD-12389-atom2" x2="987.0" y2="-25180.0" /><atom elementType="C" id="CPD-12389-atom3" x2="7749.0" y2="-29292.0" /><atom elementType="C" id="CPD-12389-atom4" x2="-6385.0" y2="-29052.0" /><atom elementType="C" id="CPD-12389-atom5" x2="15001.0" y2="-25311.0" /><atom elementType="N" formalCharge="1" id="CPD-12389-atom6" x2="-13530.0" y2="-24927.0" /><atom elementType="O" id="CPD-12389-atom7" x2="-20674.0" y2="-29052.0" /><atom elementType="O" formalCharge="-1" id="CPD-12389-atom8" x2="-13530.0" y2="-16677.0" /><atom elementType="S" id="CPD-12389-atom9" x2="22132.0" y2="-29412.0" /></atomArray>
-<bondArray><bond atomRefs="CPD-12389-atom2 CPD-12389-atom4" id="CPD-12389-bond1" order="1" /><bond atomRefs="CPD-12389-atom5 CPD-12389-atom3" id="CPD-12389-bond2" order="1" /><bond atomRefs="CPD-12389-atom9 CPD-12389-atom1" id="CPD-12389-bond3" order="1" /><bond atomRefs="CPD-12389-atom9 CPD-12389-atom5" id="CPD-12389-bond4" order="1" /><bond atomRefs="CPD-12389-atom3 CPD-12389-atom2" id="CPD-12389-bond5" order="1" /><bond atomRefs="CPD-12389-atom4 CPD-12389-atom6" id="CPD-12389-bond6" order="2" /><bond atomRefs="CPD-12389-atom6 CPD-12389-atom8" id="CPD-12389-bond7" order="1" /><bond atomRefs="CPD-12389-atom6 CPD-12389-atom7" id="CPD-12389-bond8" order="1" /></bondArray>
-<formula concise="C 5 H 11 N 1 O 2 S 1" /><float title="molecularWeight" units="g/mol">149.207</float>
-<string title="smiles">CSCCCC=[N+](O)[O-]</string>
+<Compound ID='ARA:CPD-12389' orgid='ARA' frameid='CPD-12389' detail='full'><parent><Compound resource='getxml?ARA:CPD-19473' orgid='ARA' frameid='CPD-19473' class='true'/></parent>
+<cml><molecule id='CPD-12389' title='1-(methylsulfanyl)-4-aci-nitrobutane' formalCharge='0'><atomArray><atom id='CPD-12389-atom1' elementType='C' x2='28444.0' y2='-25311.0'/><atom id='CPD-12389-atom2' elementType='C' x2='987.0' y2='-25180.0'/><atom id='CPD-12389-atom3' elementType='C' x2='7749.0' y2='-29292.0'/><atom id='CPD-12389-atom4' elementType='C' x2='-6385.0' y2='-29052.0'/><atom id='CPD-12389-atom5' elementType='C' x2='15001.0' y2='-25311.0'/><atom id='CPD-12389-atom6' elementType='N' x2='-13530.0' y2='-24927.0' formalCharge='1'/><atom id='CPD-12389-atom7' elementType='O' x2='-20674.0' y2='-29052.0'/><atom id='CPD-12389-atom8' elementType='O' x2='-13530.0' y2='-16677.0' formalCharge='-1'/><atom id='CPD-12389-atom9' elementType='S' x2='22132.0' y2='-29412.0'/></atomArray>
+<bondArray><bond id='CPD-12389-bond1' atomRefs='CPD-12389-atom2 CPD-12389-atom4' order='1'/><bond id='CPD-12389-bond2' atomRefs='CPD-12389-atom5 CPD-12389-atom3' order='1'/><bond id='CPD-12389-bond3' atomRefs='CPD-12389-atom9 CPD-12389-atom1' order='1'/><bond id='CPD-12389-bond4' atomRefs='CPD-12389-atom9 CPD-12389-atom5' order='1'/><bond id='CPD-12389-bond5' atomRefs='CPD-12389-atom3 CPD-12389-atom2' order='1'/><bond id='CPD-12389-bond6' atomRefs='CPD-12389-atom4 CPD-12389-atom6' order='2'/><bond id='CPD-12389-bond7' atomRefs='CPD-12389-atom6 CPD-12389-atom8' order='1'/><bond id='CPD-12389-bond8' atomRefs='CPD-12389-atom6 CPD-12389-atom7' order='1'/></bondArray>
+<formula concise='C 5 H 11 N 1 O 2 S 1'/><float title='molecularWeight' units='g/mol'>149.207</float>
+<string title='smiles'>CSCCCC=[N+](O)[O-]</string>
 </molecule>
 </cml>
+<common-name datatype='string'>1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
+<inchi datatype='string'>InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
+<inchi-key datatype='string'>InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-11422' orgid='ARA' frameid='RXN-11422'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>61.462326</gibbs-0>
+<synonym datatype='string'>4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
+<molecular-weight datatype='float' units='Daltons'>149.207</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-11414' orgid='ARA' frameid='RXN-11414'/></appears-in-right-side-of>
+<credits><created><date datatype='date'>2010-04-26</date>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
+<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
+<abbrev-name datatype='string'>PMN</abbrev-name>
+<url datatype='string'>http://plantcyc.org</url>
+</Organization>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype='string'>TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></created>
+</credits>
+<monoisotopic-mw datatype='float' units='Daltons'>151.0667</monoisotopic-mw>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000062238402</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000062238402</dblink-URL>
+</dblink>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM10222</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -23,27 +51,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131522</dblink-URL>
 </dblink>
-<synonym datatype="string">4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">61.462326</gibbs-0>
-<inchi datatype="string">InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
-<inchi-key datatype="string">InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
-<molecular-weight datatype="float" units="Daltons">149.207</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">151.0667</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="RXN-11422" orgid="ARA" resource="getxml?ARA:RXN-11422" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-11414" orgid="ARA" resource="getxml?ARA:RXN-11414" /></appears-in-right-side-of>
-<common-name datatype="string">1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
-<credits><created><date datatype="date">2010-04-26</date>
-<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><url datatype="string">http://plantcyc.org</url>
-<abbrev-name datatype="string">PMN</abbrev-name>
-<common-name datatype="string">Carnegie Institution for Science</common-name>
-</Organization>
-<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
-<common-name datatype="string">The Arabidopsis Information Resource</common-name>
-</Organization>
-</affiliations>
-<common-name datatype="string">Peifen Zhang</common-name>
-</Person>
-<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
-</credits>
 </Compound>
 </ptools-xml>

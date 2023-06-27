@@ -1,0 +1,104 @@
+ENTRY       C00073                      Compound
+NAME        L-Methionine;
+            Methionine;
+            L-2-Amino-4methylthiobutyric acid
+FORMULA     C5H11NO2S
+EXACT_MASS  149.051
+MOL_WEIGHT  149.2113
+REMARK      Same as: D00019
+REACTION    R00177 R00648 R00649 R00650 R00651 R00652 R00653 R00654 
+            R00655 R00656 R00657 R00946 R01078 R02025 R02821 R03472 
+            R03659 R04153 R04405 R04710 R06268 R06269 R06270 R06895 
+            R07396 R07606 R07608 R07767 R08583 R08588 R08618 R08635 
+            R08862 R08873 R08875 R08893 R09373 R09394 R09637 R09639 
+            R10204 R10220 R10246 R10430 R10437 R10552 R10645 R10646 
+            R10649 R10650 R10652 R10653 R10667 R11063 R11112 R11274 
+            R11275 R11293 R11294 R11484 R11700 R11710 R11919 R12002 
+            R12055 R12098 R12161 R12162 R12238 R12239 R12423 R12424 
+            R12497 R12507 R12569 R12724 R12750 R12788 R13130 R13131
+PATHWAY     map00270  Cysteine and methionine metabolism
+            map00470  D-Amino acid metabolism
+            map00966  Glucosinolate biosynthesis
+            map00970  Aminoacyl-tRNA biosynthesis
+            map00999  Biosynthesis of various plant secondary metabolites
+            map01060  Biosynthesis of plant secondary metabolites
+            map01070  Biosynthesis of plant hormones
+            map01100  Metabolic pathways
+            map01110  Biosynthesis of secondary metabolites
+            map01210  2-Oxocarboxylic acid metabolism
+            map01230  Biosynthesis of amino acids
+            map01240  Biosynthesis of cofactors
+            map01523  Antifolate resistance
+            map04974  Protein digestion and absorption
+            map04978  Mineral absorption
+            map05230  Central carbon metabolism in cancer
+MODULE      M00017  Methionine biosynthesis, aspartate => homoserine => methionine
+            M00034  Methionine salvage pathway
+            M00035  Methionine degradation
+            M00368  Ethylene biosynthesis, methionine => ethylene
+            M00609  Cysteine biosynthesis, methionine => cysteine
+            M00953  Mugineic acid biosynthesis, methionine => 3-epihydroxymugineic acid
+NETWORK     nt06030  Methionine metabolism
+ENZYME      1.1.98.7        1.1.99.38       1.3.98.3        1.3.98.6        
+            1.3.98.7        1.4.3.2         1.8.4.11        1.8.4.13        
+            1.8.4.14        1.17.98.2       1.21.98.1       1.21.98.3       
+            1.21.98.4       1.21.98.5       1.97.1.4        2.1.1.3         
+            2.1.1.5         2.1.1.10        2.1.1.12        2.1.1.13        
+            2.1.1.14        2.1.1.280       2.1.1.308       2.1.1.326       
+            2.1.1.342       2.1.1.350       2.1.1.379       2.1.1.-         
+            2.4.99.17       2.5.1.6         2.5.1.49        2.5.1.63        
+            2.5.1.94        2.5.1.120       2.5.1.147       2.6.1.5         
+            2.6.1.57        2.6.1.73        2.6.1.88        2.6.1.117       
+            2.6.1.-         2.8.1.6         2.8.1.8         2.8.4.3         
+            2.8.4.4         2.8.4.5         3.4.13.12       3.5.1.31        
+            3.13.2.3        4.1.1.57        4.1.3.44        4.1.99.17       
+            4.1.99.19       4.1.99.22       4.1.99.23       4.1.99.26       
+            4.3.1.30        4.3.1.32        4.4.1.11        4.7.1.1         
+            5.1.1.2         6.1.1.10
+BRITE       Compounds with biological roles [BR:br08001]
+             Peptides
+              Amino acids
+               Common amino acids
+                C00073  Methionine (Met)
+            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303]
+             V VARIOUS
+              V03 ALL OTHER THERAPEUTIC PRODUCTS
+               V03A ALL OTHER THERAPEUTIC PRODUCTS
+                V03AB Antidotes
+                 V03AB26 Methionine
+                  D00019  Methionine (USP)
+            Risk category of Japanese OTC drugs [BR:br08312]
+             Third-class OTC drugs
+              Inorganic and organic chemicals
+               Methionine
+                D00019  Methionine (USP)
+            Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
+             Chemicals
+              D00019  L-Methionine
+DBLINKS     CAS: 63-68-3
+            PubChem: 3373
+            ChEBI: 16643
+            KNApSAcK: C00001379
+            PDB-CCD: MET
+            3DMET: B01148
+            NIKKAJI: J9.174J
+ATOM        9
+            1   C1c C    24.5047  -19.4197
+            2   C6a C    23.3598  -18.6719
+            3   C1b C    25.7313  -18.7361
+            4   N1a N    24.5455  -20.8273
+            5   O6a O    22.1332  -19.3553
+            6   O6a O    23.3772  -17.2641
+            7   C1b C    26.9405  -19.4546
+            8   S2a S    28.1672  -18.7712
+            9   C1a C    29.3647  -19.4896
+BOND        8
+            1     1   2 1
+            2     1   3 1
+            3     1   4 1 #Down
+            4     2   5 1
+            5     2   6 2
+            6     3   7 1
+            7     7   8 1
+            8     8   9 1
+///

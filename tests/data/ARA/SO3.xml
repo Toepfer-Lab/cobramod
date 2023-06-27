@@ -1,19 +1,31 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:SO3"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:SO3'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:SO3</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Compound ID="ARA:SO3" detail="full" frameid="SO3" orgid="ARA"><parent><Compound class="true" frameid="Inorganic-Anions" orgid="ARA" resource="getxml?ARA:Inorganic-Anions" /></parent>
-<cml><molecule formalCharge="-2" id="SO3" title="sulfite"><atomArray><atom elementType="O" formalCharge="-1" id="SO3-atom1" x2="1429.0" y2="1238.0" /><atom elementType="O" formalCharge="-1" id="SO3-atom2" x2="0.0" y2="1237.0" /><atom elementType="O" id="SO3-atom3" x2="714.0" y2="0.0" /><atom elementType="S" id="SO3-atom4" x2="714.0" y2="825.0" /></atomArray>
-<bondArray><bond atomRefs="SO3-atom4 SO3-atom3" id="SO3-bond1" order="2" /><bond atomRefs="SO3-atom4 SO3-atom2" id="SO3-bond2" order="1" /><bond atomRefs="SO3-atom1 SO3-atom4" id="SO3-bond3" order="1" /></bondArray>
-<formula concise="O 3 S 1" /><float title="molecularWeight" units="g/mol">80.058</float>
-<string title="smiles">[O-]S([O-])=O</string>
-<string title="systematicName">trioxosulfate(2-)</string>
+<Compound ID='ARA:SO3' orgid='ARA' frameid='SO3' detail='full'><parent><Compound resource='getxml?ARA:Inorganic-Anions' orgid='ARA' frameid='Inorganic-Anions' class='true'/></parent>
+<cml><molecule id='SO3' title='sulfite' formalCharge='-2'><atomArray><atom id='SO3-atom1' elementType='O' x2='1429.0' y2='1238.0' formalCharge='-1'/><atom id='SO3-atom2' elementType='O' x2='0.0' y2='1237.0' formalCharge='-1'/><atom id='SO3-atom3' elementType='O' x2='714.0' y2='0.0'/><atom id='SO3-atom4' elementType='S' x2='714.0' y2='825.0'/></atomArray>
+<bondArray><bond id='SO3-bond1' atomRefs='SO3-atom4 SO3-atom3' order='2'/><bond id='SO3-bond2' atomRefs='SO3-atom4 SO3-atom2' order='1'/><bond id='SO3-bond3' atomRefs='SO3-atom1 SO3-atom4' order='1'/></bondArray>
+<formula concise='O 3 S 1'/><float title='molecularWeight' units='g/mol'>80.058</float>
+<string title='smiles'>[O-]S([O-])=O</string>
+<string title='systematicName'>trioxosulfate(2-)</string>
 </molecule>
 </cml>
+<common-name datatype='string'>sulfite</common-name>
+<inchi datatype='string'>InChI=1S/H2O3S/c1-4(2)3/h(H2,1,2,3)/p-2</inchi>
+<inchi-key datatype='string'>InChIKey=LSNNMFCWUKXFEE-UHFFFAOYSA-L</inchi-key>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-8315' orgid='ARA' frameid='RXN-8315'/><Reaction resource='getxml?ARA:1.8.4.8-RXN' orgid='ARA' frameid='1.8.4.8-RXN'/><Reaction resource='getxml?ARA:ADENYLYLSULFATE-REDUCTASE-RXN' orgid='ARA' frameid='ADENYLYLSULFATE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:1.8.4.9-RXN' orgid='ARA' frameid='1.8.4.9-RXN'/><Reaction resource='getxml?ARA:SULFITE-OXIDASE-RXN' orgid='ARA' frameid='SULFITE-OXIDASE-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-127.39823</gibbs-0>
+<systematic-name datatype='string'>trioxosulfate(2-)</systematic-name>
+<synonym datatype='string'>SO&lt;SUB&gt;3&lt;/SUB&gt;</synonym>
+<synonym datatype='string'>SO&lt;SUB&gt;3&lt;/SUB&gt;&lt;SUP&gt;-2&lt;/SUP&gt;</synonym>
+<molecular-weight datatype='float' units='Daltons'>80.058</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-16574' orgid='ARA' frameid='RXN-16574'/><Reaction resource='getxml?ARA:4.4.1.19-RXN' orgid='ARA' frameid='4.4.1.19-RXN'/><Reaction resource='getxml?ARA:RXN-13161' orgid='ARA' frameid='RXN-13161'/><Reaction resource='getxml?ARA:RXN-9733' orgid='ARA' frameid='RXN-9733'/><Reaction resource='getxml?ARA:RXN-1223' orgid='ARA' frameid='RXN-1223'/><Reaction resource='getxml?ARA:SULFITE-REDUCTASE-FERREDOXIN-RXN' orgid='ARA' frameid='SULFITE-REDUCTASE-FERREDOXIN-RXN'/><Reaction resource='getxml?ARA:THIOSULFATE-SULFURTRANSFERASE-RXN' orgid='ARA' frameid='THIOSULFATE-SULFURTRANSFERASE-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>81.972466</monoisotopic-mw>
 <dblink><dblink-db>BIGG</dblink-db>
 <dblink-oid>so3</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -44,16 +56,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17359</dblink-URL>
 </dblink>
-<synonym datatype="string">SO&lt;SUB&gt;3&lt;/SUB&gt;</synonym>
-<synonym datatype="string">SO&lt;SUB&gt;3&lt;/SUB&gt;&lt;SUP&gt;-2&lt;/SUP&gt;</synonym>
-<systematic-name datatype="string">trioxosulfate(2-)</systematic-name>
-<gibbs-0 datatype="float" units="kcal/mol">-127.39823</gibbs-0>
-<inchi datatype="string">InChI=1S/H2O3S/c1-4(2)3/h(H2,1,2,3)/p-2</inchi>
-<inchi-key datatype="string">InChIKey=LSNNMFCWUKXFEE-UHFFFAOYSA-L</inchi-key>
-<molecular-weight datatype="float" units="Daltons">80.058</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">81.972466</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="RXN-8315" orgid="ARA" resource="getxml?ARA:RXN-8315" /><Reaction frameid="1.8.4.8-RXN" orgid="ARA" resource="getxml?ARA:1.8.4.8-RXN" /><Reaction frameid="ADENYLYLSULFATE-REDUCTASE-RXN" orgid="ARA" resource="getxml?ARA:ADENYLYLSULFATE-REDUCTASE-RXN" /><Reaction frameid="1.8.4.9-RXN" orgid="ARA" resource="getxml?ARA:1.8.4.9-RXN" /><Reaction frameid="SULFITE-OXIDASE-RXN" orgid="ARA" resource="getxml?ARA:SULFITE-OXIDASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-16574" orgid="ARA" resource="getxml?ARA:RXN-16574" /><Reaction frameid="4.4.1.19-RXN" orgid="ARA" resource="getxml?ARA:4.4.1.19-RXN" /><Reaction frameid="RXN-13161" orgid="ARA" resource="getxml?ARA:RXN-13161" /><Reaction frameid="RXN-9733" orgid="ARA" resource="getxml?ARA:RXN-9733" /><Reaction frameid="RXN-1223" orgid="ARA" resource="getxml?ARA:RXN-1223" /><Reaction frameid="SULFITE-REDUCTASE-FERREDOXIN-RXN" orgid="ARA" resource="getxml?ARA:SULFITE-REDUCTASE-FERREDOXIN-RXN" /><Reaction frameid="THIOSULFATE-SULFURTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:THIOSULFATE-SULFURTRANSFERASE-RXN" /></appears-in-right-side-of>
-<common-name datatype="string">sulfite</common-name>
 </Compound>
 </ptools-xml>

@@ -25,9 +25,8 @@ from cobramod.core import pathway as pt
 from cobramod.core.extension import add_pathway
 from cobramod.debug import debug_log
 
-# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-# Setting directory for data
+
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
 
@@ -226,14 +225,13 @@ class TestGroup(unittest.TestCase):
             first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
         )
         # CASE: Regular Biocyc
-        # Note VCHO does not exist in biocyc anymore
         test_model = cmod_test.textbook_biocyc.copy()
         add_pathway(
             model=test_model,
             pathway="SALVADEHYPOX-PWY",
             compartment="c",
             directory=dir_data,
-            database="VCHO",
+            database="ECO",
             ignore_list=[],
             show_imbalance=False,
         )

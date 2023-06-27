@@ -168,7 +168,11 @@ class Data:
 
         gene_path = path.parent.joinpath("GENES")
 
-        if root.findall("Compound") or root.findall("Protein"):
+        if (
+            root.findall("Compound")
+            or root.findall("Protein")
+            or root.findall("RNA")
+        ):
             mode = "Metabolite"
             attributes = biocyc.parse_metabolite_attributes(root, entry)
 

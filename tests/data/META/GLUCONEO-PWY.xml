@@ -1,57 +1,355 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:GLUCONEO-PWY"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:GLUCONEO-PWY'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:GLUCONEO-PWY</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Pathway ID="META:GLUCONEO-PWY" detail="full" frameid="GLUCONEO-PWY" orgid="META"><parent><Pathway class="true" frameid="Gluconeogenesis" orgid="META" resource="getxml?META:Gluconeogenesis" /></parent>
-<citation><Publication ID="META:PUB-SUNG88" detail="full" frameid="PUB-SUNG88" orgid="META"><author datatype="string">Sung, S-J. S.</author>
-<author datatype="string">Xu, D. P.</author>
-<author datatype="string">Galloway, C. M.</author>
-<author datatype="string">Black, C. C.</author>
-<source datatype="string">Phsiologia Plantarum 72:650-654</source>
-<title datatype="string">A reassessment of glycolysis and gluconeogenesis in higher plants</title>
-<year datatype="integer">1988</year>
+<Pathway ID='META:GLUCONEO-PWY' orgid='META' frameid='GLUCONEO-PWY' detail='full'><parent><Pathway resource='getxml?META:Gluconeogenesis' orgid='META' frameid='Gluconeogenesis' class='true'/></parent>
+<enzymes-not-used><Protein resource='getxml?META:ALKAPHOSPHA-CPLX' orgid='META' frameid='ALKAPHOSPHA-CPLX'/><Protein resource='getxml?META:AT4G24620-MONOMER' orgid='META' frameid='AT4G24620-MONOMER'/></enzymes-not-used>
+<taxonomic-range><Organism ID='META:TAX-4751' orgid='META' frameid='TAX-4751' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33154' orgid='META' frameid='TAX-33154' class='true'/></parent>
+<synonym datatype='string'>Mycota</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4751</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4751</dblink-URL>
+</dblink>
+<common-name datatype='string'>Fungi</common-name>
+<rank>kingdom</rank>
+</Organism>
+<Organism ID='META:TAX-33090' orgid='META' frameid='TAX-33090' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
+<synonym datatype='string'>green plants &lt;common name&gt;</synonym>
+<synonym datatype='string'>green plants</synonym>
+<synonym datatype='string'>Chloroplastida</synonym>
+<synonym datatype='string'>chlorophyte/embryophyte group</synonym>
+<synonym datatype='string'>Chlorophyta/Embryophyta group</synonym>
+<synonym datatype='string'>Chlorobionta</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>33090</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33090</dblink-URL>
+</dblink>
+<common-name datatype='string'>Viridiplantae</common-name>
+<rank>kingdom</rank>
+</Organism>
+<Organism ID='META:TAX-2157' orgid='META' frameid='TAX-2157' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<synonym datatype='string'>Metabacteria</synonym>
+<synonym datatype='string'>Mendosicutes</synonym>
+<synonym datatype='string'>Archaebacteria</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2157</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2157</dblink-URL>
+</dblink>
+<common-name datatype='string'>Archaea</common-name>
+<rank>superkingdom</rank>
+</Organism>
+<Organism ID='META:TAX-2' orgid='META' frameid='TAX-2' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<synonym datatype='string'>eubacteria</synonym>
+<synonym datatype='string'>Bacteria</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
+</dblink>
+<common-name datatype='string'>Bacteria &lt;bacteria&gt;</common-name>
+<rank>superkingdom</rank>
+</Organism>
+</taxonomic-range>
+<reaction-ordering><Reaction resource='getxml?META:PGLUCISOM-RXN' orgid='META' frameid='PGLUCISOM-RXN'/><predecessor-reactions><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/><predecessor-reactions><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/><predecessor-reactions><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/><predecessor-reactions><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/><predecessor-reactions><Reaction resource='getxml?META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/><predecessor-reactions><Reaction resource='getxml?META:PHOSGLYPHOS-RXN' orgid='META' frameid='PHOSGLYPHOS-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:PHOSGLYPHOS-RXN' orgid='META' frameid='PHOSGLYPHOS-RXN'/><predecessor-reactions><Reaction resource='getxml?META:3PGAREARR-RXN' orgid='META' frameid='3PGAREARR-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:3PGAREARR-RXN' orgid='META' frameid='3PGAREARR-RXN'/><predecessor-reactions><Reaction resource='getxml?META:2PGADEHYDRAT-RXN' orgid='META' frameid='2PGADEHYDRAT-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:2PGADEHYDRAT-RXN' orgid='META' frameid='2PGADEHYDRAT-RXN'/><predecessor-reactions><Reaction resource='getxml?META:PEPCARBOXYKIN-RXN' orgid='META' frameid='PEPCARBOXYKIN-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:PEPCARBOXYKIN-RXN' orgid='META' frameid='PEPCARBOXYKIN-RXN'/><predecessor-reactions><Reaction resource='getxml?META:MALATE-DEH-RXN' orgid='META' frameid='MALATE-DEH-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:2PGADEHYDRAT-RXN' orgid='META' frameid='2PGADEHYDRAT-RXN'/><predecessor-reactions><Reaction resource='getxml?META:PEPSYNTH-RXN' orgid='META' frameid='PEPSYNTH-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:PEPSYNTH-RXN' orgid='META' frameid='PEPSYNTH-RXN'/><predecessor-reactions><Reaction resource='getxml?META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:PEPSYNTH-RXN' orgid='META' frameid='PEPSYNTH-RXN'/><predecessor-reactions><Reaction resource='getxml?META:MALIC-NADP-RXN' orgid='META' frameid='MALIC-NADP-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<species><Organism ID='META:TAX-3708' orgid='META' frameid='TAX-3708' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3705' orgid='META' frameid='TAX-3705' class='true'/></parent>
+<synonym datatype='string'>rapeseeds</synonym>
+<synonym datatype='string'>rape</synonym>
+<synonym datatype='string'>oilseed rape</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3708</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3708</dblink-URL>
+</dblink>
+<common-name datatype='string'>Brassica napus</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3659' orgid='META' frameid='TAX-3659' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3655' orgid='META' frameid='TAX-3655' class='true'/></parent>
+<synonym datatype='string'>cucumbers</synonym>
+<synonym datatype='string'>cucumber &lt;Cucumis sativus&gt;</synonym>
+<synonym datatype='string'>cucumber</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3659</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3659</dblink-URL>
+</dblink>
+<common-name datatype='string'>Cucumis sativus</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-511145' orgid='META' frameid='TAX-511145' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-83333' orgid='META' frameid='TAX-83333' class='true'/></parent>
+<synonym datatype='string'>Escherichia coli str. K-12 substr. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli str. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli str. K12 substr. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli strain MG1655</synonym>
+<synonym datatype='string'>Escherichia coli MG1655</synonym>
+<strain-name datatype='string'>K-12 substr. MG1655</strain-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+<common-name datatype='string'>Escherichia coli</common-name>
+<rank>strain</rank>
+<comment datatype='string'>EcoCyc is a model-organism database for &lt;i&gt;Escherichia coli&lt;/i&gt; K-12 MG1655.  For more information, see URL EcoCyc.org.
+&lt;p&gt;
+The &lt;i&gt;E. coli&lt;/i&gt; genome sequence used in EcoCyc is GenBank accession number U00096.2.  Despite the
+involvement of EcoCyc staff in ongoing updates to the U00096 record, some annotation differences may
+be found between U00096 and EcoCyc, such as due to recent updates to EcoCyc.
+</comment>
+<citation><Publication ID='META:PUB-23143106' orgid='META' frameid='PUB-23143106' detail='full'><year datatype='integer'>2013</year>
+<source datatype='string'>Nucleic Acids Res 41(Database issue);D605-12</source>
+<pubmed-id datatype='string'>23143106</pubmed-id>
+<author datatype='string'>Keseler IM</author>
+<author datatype='string'>Mackie A</author>
+<author datatype='string'>Peralta-Gil M</author>
+<author datatype='string'>Santos-Zavaleta A</author>
+<author datatype='string'>Gama-Castro S</author>
+<author datatype='string'>Bonavides-Martinez C</author>
+<author datatype='string'>Fulcher C</author>
+<author datatype='string'>Huerta AM</author>
+<author datatype='string'>Kothari A</author>
+<author datatype='string'>Krummenacker M</author>
+<author datatype='string'>Latendresse M</author>
+<author datatype='string'>Muniz-Rascado L</author>
+<author datatype='string'>Ong Q</author>
+<author datatype='string'>Paley S</author>
+<author datatype='string'>Schroder I</author>
+<author datatype='string'>Shearer AG</author>
+<author datatype='string'>Subhraveti P</author>
+<author datatype='string'>Travers M</author>
+<author datatype='string'>Weerasinghe D</author>
+<author datatype='string'>Weiss V</author>
+<author datatype='string'>Collado-Vides J</author>
+<author datatype='string'>Gunsalus RP</author>
+<author datatype='string'>Paulsen I</author>
+<author datatype='string'>Karp PD</author>
+<title datatype='string'>EcoCyc: fusing model organism databases with systems biology.</title>
 </Publication>
 </citation>
-<evidence><Evidence-Code ID="META:EV-EXP-IDA" class="true" detail="full" frameid="EV-EXP-IDA" orgid="META"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="getxml?META:EV-EXP" /></parent>
-<comment datatype="string">IDA inferred from direct assay.
-
-&lt;br&gt;
-The assertion was inferred from a direct experimental assay such as
-&lt;ul&gt;
-    &lt;li&gt; Enzyme assays
-    &lt;li&gt; In vitro reconstitution (e.g. transcription)
-    &lt;li&gt; Immunofluorescence
-    &lt;li&gt; Cell fractionation
-&lt;/ul&gt;</comment>
-<common-name datatype="string">Inferred from direct assay</common-name>
-</Evidence-Code>
-<Publication ID="META:PUB-5335797" detail="full" frameid="PUB-5335797" orgid="META"><author datatype="string">Eisenstein AB</author>
-<pubmed-id datatype="string">5335797</pubmed-id>
-<source datatype="string">Am J Clin Nutr 20(3);282-9</source>
-<title datatype="string">Current concepts of gluconeogenesis.</title>
-<year datatype="integer">1967</year>
-</Publication>
-</evidence>
-<comment datatype="string">Gluconeogenesis is the generation of glucose from non-sugar carbon substrates such as &lt;a href="/compound?orgid=META&amp;id=PYRUVATE"&gt;pyruvate&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=L-LACTATE"&gt;(&lt;i&gt;S&lt;/i&gt;)-lactate&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=GLYCEROL"&gt;glycerol&lt;/a&gt;, and glucogenic amino acids (primarily &lt;a href="/compound?orgid=META&amp;id=L-ALPHA-ALANINE"&gt;L-alanine&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=GLN"&gt;L-glutamine&lt;/a&gt;). The process is essentially the reversal of the &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=GLYCOLYSIS"&gt;glycolysis&lt;/a&gt; pathway. However, two glycolytic enzymes catalyze irreversible reactions. In order to enable the pathway to flow in the direction of glucose production, these reactions are catalyzed by other enzymes (&lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.1.3.11"&gt;EC 3.1.3.11, fructose-bisphosphatase&lt;/a&gt; and &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.7.9.2"&gt;EC 2.7.9.2, pyruvate, water dikinase&lt;/a&gt;) in the opposite direction.
-&lt;p&gt;
-Enzymes of the gluconeogenic pathway are widely distributed in archaea, bacteria, fungi, plants and animals, and are often considered to be central to the origins of metabolism [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15803666"&gt;Ronimus03&lt;/a&gt;]. Note that this pathway describes gluconeogenesis in plants and microorganisms, the mammalian pathway is described at &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY66-399"&gt;gluconeogenesis III&lt;/a&gt;.
-&lt;p&gt;
-Bacteria use gluconeogenesis to synthesize glucose from non-sugar C2 or C3 compounds or the intermediates of the tricarboxylic acid (TCA) cycle when there sufficient amounts of hexose are not available to them [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9168612"&gt;Osteras97&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11815613"&gt;Oh02&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16109965"&gt;Tang05a&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/20439709"&gt;Marrero10&lt;/a&gt;].
-&lt;p&gt;
-In photosynthetic organisms, the product of photosynthetic carbon fixation (&lt;a href="/compound?orgid=META&amp;id=GAP"&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt;) is transported from the chloroplast into the cytoplasm, where it is transformed to hexose phosphate via gluconeogenesis. In plants, these hexose phosphates are used to synthesize sucrose, as documented in &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-7347"&gt;sucrose biosynthesis III&lt;/a&gt; [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSung88%5d"&gt;Sung88&lt;/a&gt;].</comment>
-<common-name datatype="string">gluconeogenesis I</common-name>
-<credits><created><date datatype="date">1994-05-13</date>
-<Person ID="META:riley" detail="full" frameid="riley" orgid="META"><comment datatype="string">Monica Riley (1926-2013) was a pioneer in the fields of molecular biology and microbial genome analysis. She was a co-founder of the EcoCyc database and curated a significant amount of material in its early days.</comment>
-<common-name datatype="string">Monica Riley</common-name>
-<affiliations><Organization ID="META:O-18" detail="full" frameid="O-18" orgid="META"><common-name datatype="string">Marine Biological Laboratory</common-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="O-18" orgid="META" resource="#META:O-18" /></created>
-</credits>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3847' orgid='META' frameid='TAX-3847' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-1462606' orgid='META' frameid='TAX-1462606' class='true'/></parent>
+<synonym datatype='string'>soybeans</synonym>
+<synonym datatype='string'>soybean</synonym>
+<synonym datatype='string'>Phaseolus max</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3847</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3847</dblink-URL>
+</dblink>
+<common-name datatype='string'>Glycine max</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4513' orgid='META' frameid='TAX-4513' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4512' orgid='META' frameid='TAX-4512' class='true'/></parent>
+<synonym datatype='string'>barley</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4513</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4513</dblink-URL>
+</dblink>
+<common-name datatype='string'>Hordeum vulgare</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4097' orgid='META' frameid='TAX-4097' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4085' orgid='META' frameid='TAX-4085' class='true'/></parent>
+<synonym datatype='string'>tobacco</synonym>
+<synonym datatype='string'>common tobacco</synonym>
+<synonym datatype='string'>American tobacco</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4097</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4097</dblink-URL>
+</dblink>
+<common-name datatype='string'>Nicotiana tabacum</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4530' orgid='META' frameid='TAX-4530' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4527' orgid='META' frameid='TAX-4527' class='true'/></parent>
+<synonym datatype='string'>rice</synonym>
+<synonym datatype='string'>red rice &lt;Oryza sativa&gt;</synonym>
+<synonym datatype='string'>red rice</synonym>
+<synonym datatype='string'>Asian cultivated rice</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4530</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4530</dblink-URL>
+</dblink>
+<common-name datatype='string'>Oryza sativa</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3888' orgid='META' frameid='TAX-3888' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3887' orgid='META' frameid='TAX-3887' class='true'/></parent>
+<synonym datatype='string'>peas</synonym>
+<synonym datatype='string'>pea</synonym>
+<synonym datatype='string'>garden pea</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3888</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3888</dblink-URL>
+</dblink>
+<common-name datatype='string'>Pisum sativum</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3988' orgid='META' frameid='TAX-3988' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3987' orgid='META' frameid='TAX-3987' class='true'/></parent>
+<synonym datatype='string'>Ricinus sanguineus</synonym>
+<synonym datatype='string'>castor bean</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3988</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3988</dblink-URL>
+</dblink>
+<common-name datatype='string'>Ricinus communis</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4081' orgid='META' frameid='TAX-4081' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-49274' orgid='META' frameid='TAX-49274' class='true'/></parent>
+<synonym datatype='string'>tomato</synonym>
+<synonym datatype='string'>Solanum lycopersicum var. humboldtii</synonym>
+<synonym datatype='string'>Solanum esculentum</synonym>
+<synonym datatype='string'>Lycopersicon esculentum var. esculentum</synonym>
+<synonym datatype='string'>Lycopersicon esculentum</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4081</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4081</dblink-URL>
+</dblink>
+<common-name datatype='string'>Solanum lycopersicum</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4113' orgid='META' frameid='TAX-4113' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4107' orgid='META' frameid='TAX-4107' class='true'/></parent>
+<synonym datatype='string'>Solanum tuberosum subsp. tuberosum</synonym>
+<synonym datatype='string'>potato</synonym>
+<synonym datatype='string'>potatoes</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4113</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4113</dblink-URL>
+</dblink>
+<common-name datatype='string'>Solanum tuberosum</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3906' orgid='META' frameid='TAX-3906' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3904' orgid='META' frameid='TAX-3904' class='true'/></parent>
+<synonym datatype='string'>fava bean</synonym>
+<synonym datatype='string'>faba bean</synonym>
+<synonym datatype='string'>broad bean</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3906</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3906</dblink-URL>
+</dblink>
+<common-name datatype='string'>Vicia faba</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4577' orgid='META' frameid='TAX-4577' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4575' orgid='META' frameid='TAX-4575' class='true'/></parent>
+<synonym datatype='string'>Zea mays var. japonica</synonym>
+<synonym datatype='string'>maize &lt;Zea mays&gt;</synonym>
+<synonym datatype='string'>maize</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4577</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4577</dblink-URL>
+</dblink>
+<common-name datatype='string'>Zea mays</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:ORG-5993' orgid='META' frameid='ORG-5993' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3702' orgid='META' frameid='TAX-3702' class='true'/></parent>
+<synonym datatype='string'>Arabidopsis thaliana col</synonym>
+<strain-name datatype='string'>col</strain-name>
+<common-name datatype='string'>Arabidopsis thaliana</common-name>
+<rank>strain</rank>
+</Organism>
+</species>
+<reaction-layout><Reaction resource='getxml?META:PGLUCISOM-RXN' orgid='META' frameid='PGLUCISOM-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?META:ALPHA-GLC-6-P' orgid='META' frameid='ALPHA-GLC-6-P'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:MALATE-DEH-RXN' orgid='META' frameid='MALATE-DEH-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:MAL' orgid='META' frameid='MAL'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:OXALACETIC_ACID' orgid='META' frameid='OXALACETIC_ACID'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:MAL' orgid='META' frameid='MAL'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?META:GAP' orgid='META' frameid='GAP'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:DIHYDROXY-ACETONE-PHOSPHATE' orgid='META' frameid='DIHYDROXY-ACETONE-PHOSPHATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:MALIC-NADP-RXN' orgid='META' frameid='MALIC-NADP-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:MAL' orgid='META' frameid='MAL'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:PEPSYNTH-RXN' orgid='META' frameid='PEPSYNTH-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:PHOSPHO-ENOL-PYRUVATE' orgid='META' frameid='PHOSPHO-ENOL-PYRUVATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:PEPCARBOXYKIN-RXN' orgid='META' frameid='PEPCARBOXYKIN-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:OXALACETIC_ACID' orgid='META' frameid='OXALACETIC_ACID'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:PHOSPHO-ENOL-PYRUVATE' orgid='META' frameid='PHOSPHO-ENOL-PYRUVATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:2PGADEHYDRAT-RXN' orgid='META' frameid='2PGADEHYDRAT-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?META:2-PG' orgid='META' frameid='2-PG'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:PHOSPHO-ENOL-PYRUVATE' orgid='META' frameid='PHOSPHO-ENOL-PYRUVATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:3PGAREARR-RXN' orgid='META' frameid='3PGAREARR-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:2-PG' orgid='META' frameid='2-PG'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:G3P' orgid='META' frameid='G3P'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:PHOSGLYPHOS-RXN' orgid='META' frameid='PHOSGLYPHOS-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:G3P' orgid='META' frameid='G3P'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:DPG' orgid='META' frameid='DPG'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?META:GAP' orgid='META' frameid='GAP'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:DPG' orgid='META' frameid='DPG'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?META:FRUCTOSE-16-DIPHOSPHATE' orgid='META' frameid='FRUCTOSE-16-DIPHOSPHATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:GAP' orgid='META' frameid='GAP'/><Compound resource='getxml?META:DIHYDROXY-ACETONE-PHOSPHATE' orgid='META' frameid='DIHYDROXY-ACETONE-PHOSPHATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:FRUCTOSE-16-DIPHOSPHATE' orgid='META' frameid='FRUCTOSE-16-DIPHOSPHATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></right-primaries>
+</reaction-layout>
 <dblink><dblink-db>ECOCYC</dblink-db>
 <dblink-oid>GLUCONEO-PWY</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -62,347 +360,54 @@ In photosynthetic organisms, the product of photosynthetic carbon fixation (&lt;
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pmn.plantcyc.org/ARA/NEW-IMAGE?type=PATHWAY&amp;object=GLUCONEO-PWY</dblink-URL>
 </dblink>
-<enzymes-not-used><Protein frameid="ALKAPHOSPHA-CPLX" orgid="META" resource="getxml?META:ALKAPHOSPHA-CPLX" /><Protein frameid="AT4G24620-MONOMER" orgid="META" resource="getxml?META:AT4G24620-MONOMER" /></enzymes-not-used>
-<pathway-link><Compound frameid="MAL" orgid="META" resource="getxml?META:MAL" /><incoming-link-target><Reaction frameid="MALSYN-RXN" orgid="META" resource="getxml?META:MALSYN-RXN" /></incoming-link-target>
+<common-name datatype='string'>gluconeogenesis I</common-name>
+<reaction-list><Reaction resource='getxml?META:PGLUCISOM-RXN' orgid='META' frameid='PGLUCISOM-RXN'/><Reaction resource='getxml?META:MALATE-DEH-RXN' orgid='META' frameid='MALATE-DEH-RXN'/><Reaction resource='getxml?META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/><Reaction resource='getxml?META:MALIC-NADP-RXN' orgid='META' frameid='MALIC-NADP-RXN'/><Reaction resource='getxml?META:PEPSYNTH-RXN' orgid='META' frameid='PEPSYNTH-RXN'/><Reaction resource='getxml?META:PEPCARBOXYKIN-RXN' orgid='META' frameid='PEPCARBOXYKIN-RXN'/><Reaction resource='getxml?META:2PGADEHYDRAT-RXN' orgid='META' frameid='2PGADEHYDRAT-RXN'/><Reaction resource='getxml?META:3PGAREARR-RXN' orgid='META' frameid='3PGAREARR-RXN'/><Reaction resource='getxml?META:PHOSGLYPHOS-RXN' orgid='META' frameid='PHOSGLYPHOS-RXN'/><Reaction resource='getxml?META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/></reaction-list>
+<credits><created><date datatype='date'>1994-05-13</date>
+<Person ID='META:riley' orgid='META' frameid='riley' detail='full'><common-name datatype='string'>Monica Riley</common-name>
+<affiliations><Organization ID='META:O-18' orgid='META' frameid='O-18' detail='full'><common-name datatype='string'>Marine Biological Laboratory</common-name>
+</Organization>
+</affiliations>
+<comment datatype='string'>Monica Riley (1926-2013) was a pioneer in the fields of molecular biology and microbial genome analysis. She was a co-founder of the EcoCyc database and curated a significant amount of material in its early days.</comment>
+</Person>
+<Organization resource='#META:O-18' orgid='META' frameid='O-18'/></created>
+</credits>
+<comment datatype='string'>Gluconeogenesis is the generation of glucose from non-sugar carbon substrates such as &lt;a href=&quot;/compound?orgid=META&amp;id=PYRUVATE&quot;&gt;pyruvate&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=L-LACTATE&quot;&gt;(&lt;i&gt;S&lt;/i&gt;)-lactate&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=GLYCEROL&quot;&gt;glycerol&lt;/a&gt;, and glucogenic amino acids (primarily &lt;a href=&quot;/compound?orgid=META&amp;id=L-ALPHA-ALANINE&quot;&gt;L-alanine&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=GLN&quot;&gt;L-glutamine&lt;/a&gt;). The process is essentially the reversal of the &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=GLYCOLYSIS&quot;&gt;glycolysis&lt;/a&gt; pathway. However, two glycolytic enzymes catalyze irreversible reactions. In order to enable the pathway to flow in the direction of glucose production, these reactions are catalyzed by other enzymes (&lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.1.3.11&quot;&gt;EC 3.1.3.11, fructose-bisphosphatase&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.7.9.2&quot;&gt;EC 2.7.9.2, pyruvate, water dikinase&lt;/a&gt;) in the opposite direction.
+&lt;p&gt;
+Enzymes of the gluconeogenic pathway are widely distributed in archaea, bacteria, fungi, plants and animals, and are often considered to be central to the origins of metabolism [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15803666&quot;&gt;Ronimus03&lt;/a&gt;]. Note that this pathway describes gluconeogenesis in plants and microorganisms, the mammalian pathway is described at &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY66-399&quot;&gt;gluconeogenesis III&lt;/a&gt;.
+&lt;p&gt;
+Bacteria use gluconeogenesis to synthesize glucose from non-sugar C2 or C3 compounds or the intermediates of the tricarboxylic acid (TCA) cycle when there sufficient amounts of hexose are not available to them [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/9168612&quot;&gt;Osteras97&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11815613&quot;&gt;Oh02&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16109965&quot;&gt;Tang05a&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/20439709&quot;&gt;Marrero10&lt;/a&gt;].
+&lt;p&gt;
+In photosynthetic organisms, the product of photosynthetic carbon fixation (&lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt;) is transported from the chloroplast into the cytoplasm, where it is transformed to hexose phosphate via gluconeogenesis. In plants, these hexose phosphates are used to synthesize sucrose, as documented in &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-7347&quot;&gt;sucrose biosynthesis III&lt;/a&gt; [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSung88%5d&quot;&gt;Sung88&lt;/a&gt;].</comment>
+<pathway-link><Compound resource='getxml?META:MAL' orgid='META' frameid='MAL'/><incoming-link-target><Reaction resource='getxml?META:MALSYN-RXN' orgid='META' frameid='MALSYN-RXN'/></incoming-link-target>
 </pathway-link>
-<reaction-ordering><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="getxml?META:PGLUCISOM-RXN" /><predecessor-reactions><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="getxml?META:F16BDEPHOS-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><predecessor-reactions><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /><predecessor-reactions><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="getxml?META:F16BDEPHOS-RXN" /><predecessor-reactions><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><predecessor-reactions><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /><predecessor-reactions><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="getxml?META:PHOSGLYPHOS-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="getxml?META:PHOSGLYPHOS-RXN" /><predecessor-reactions><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="getxml?META:3PGAREARR-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="getxml?META:3PGAREARR-RXN" /><predecessor-reactions><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="getxml?META:2PGADEHYDRAT-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="getxml?META:2PGADEHYDRAT-RXN" /><predecessor-reactions><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="getxml?META:PEPCARBOXYKIN-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="getxml?META:PEPCARBOXYKIN-RXN" /><predecessor-reactions><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="getxml?META:2PGADEHYDRAT-RXN" /><predecessor-reactions><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /><predecessor-reactions><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /><predecessor-reactions><Reaction frameid="MALIC-NADP-RXN" orgid="META" resource="getxml?META:MALIC-NADP-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-layout><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="getxml?META:PGLUCISOM-RXN" /><direction>R2L</direction>
-<left-primaries><Compound class="true" frameid="D-glucopyranose-6-phosphate" orgid="META" resource="getxml?META:D-glucopyranose-6-phosphate" /></left-primaries>
-<right-primaries><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="MAL" orgid="META" resource="getxml?META:MAL" /></left-primaries>
-<right-primaries><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="MAL" orgid="META" resource="getxml?META:MAL" /></left-primaries>
-<right-primaries><Compound frameid="PYRUVATE" orgid="META" resource="getxml?META:PYRUVATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /><direction>R2L</direction>
-<left-primaries><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /></left-primaries>
-<right-primaries><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="getxml?META:DIHYDROXY-ACETONE-PHOSPHATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="MALIC-NADP-RXN" orgid="META" resource="getxml?META:MALIC-NADP-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="MAL" orgid="META" resource="getxml?META:MAL" /></left-primaries>
-<right-primaries><Compound frameid="PYRUVATE" orgid="META" resource="getxml?META:PYRUVATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="PYRUVATE" orgid="META" resource="getxml?META:PYRUVATE" /></left-primaries>
-<right-primaries><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="getxml?META:PEPCARBOXYKIN-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /></left-primaries>
-<right-primaries><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="getxml?META:2PGADEHYDRAT-RXN" /><direction>R2L</direction>
-<left-primaries><Compound frameid="2-PG" orgid="META" resource="getxml?META:2-PG" /></left-primaries>
-<right-primaries><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="META" resource="getxml?META:PHOSPHO-ENOL-PYRUVATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="getxml?META:3PGAREARR-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="2-PG" orgid="META" resource="getxml?META:2-PG" /></left-primaries>
-<right-primaries><Compound frameid="G3P" orgid="META" resource="getxml?META:G3P" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="getxml?META:PHOSGLYPHOS-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="G3P" orgid="META" resource="getxml?META:G3P" /></left-primaries>
-<right-primaries><Compound frameid="DPG" orgid="META" resource="getxml?META:DPG" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /><direction>R2L</direction>
-<left-primaries><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /></left-primaries>
-<right-primaries><Compound frameid="DPG" orgid="META" resource="getxml?META:DPG" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><direction>R2L</direction>
-<left-primaries><Compound frameid="FRUCTOSE-16-DIPHOSPHATE" orgid="META" resource="getxml?META:FRUCTOSE-16-DIPHOSPHATE" /></left-primaries>
-<right-primaries><Compound frameid="GAP" orgid="META" resource="getxml?META:GAP" /><Compound frameid="DIHYDROXY-ACETONE-PHOSPHATE" orgid="META" resource="getxml?META:DIHYDROXY-ACETONE-PHOSPHATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="getxml?META:F16BDEPHOS-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="FRUCTOSE-16-DIPHOSPHATE" orgid="META" resource="getxml?META:FRUCTOSE-16-DIPHOSPHATE" /></left-primaries>
-<right-primaries><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right-primaries>
-</reaction-layout>
-<reaction-list><Reaction frameid="PGLUCISOM-RXN" orgid="META" resource="getxml?META:PGLUCISOM-RXN" /><Reaction frameid="MALATE-DEH-RXN" orgid="META" resource="getxml?META:MALATE-DEH-RXN" /><Reaction frameid="1.1.1.39-RXN" orgid="META" resource="getxml?META:1.1.1.39-RXN" /><Reaction frameid="TRIOSEPISOMERIZATION-RXN" orgid="META" resource="getxml?META:TRIOSEPISOMERIZATION-RXN" /><Reaction frameid="MALIC-NADP-RXN" orgid="META" resource="getxml?META:MALIC-NADP-RXN" /><Reaction frameid="PEPSYNTH-RXN" orgid="META" resource="getxml?META:PEPSYNTH-RXN" /><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="META" resource="getxml?META:PEPCARBOXYKIN-RXN" /><Reaction frameid="2PGADEHYDRAT-RXN" orgid="META" resource="getxml?META:2PGADEHYDRAT-RXN" /><Reaction frameid="3PGAREARR-RXN" orgid="META" resource="getxml?META:3PGAREARR-RXN" /><Reaction frameid="PHOSGLYPHOS-RXN" orgid="META" resource="getxml?META:PHOSGLYPHOS-RXN" /><Reaction frameid="GAPOXNPHOSPHN-RXN" orgid="META" resource="getxml?META:GAPOXNPHOSPHN-RXN" /><Reaction frameid="F16ALDOLASE-RXN" orgid="META" resource="getxml?META:F16ALDOLASE-RXN" /><Reaction frameid="F16BDEPHOS-RXN" orgid="META" resource="getxml?META:F16BDEPHOS-RXN" /></reaction-list>
-<species><Organism ID="META:TAX-3708" class="true" detail="full" frameid="TAX-3708" orgid="META"><parent><Organism class="true" frameid="TAX-3705" orgid="META" resource="getxml?META:TAX-3705" /></parent>
-<common-name datatype="string">Brassica napus</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3708</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3708</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">rapeseeds</synonym>
-<synonym datatype="string">rape</synonym>
-<synonym datatype="string">oilseed rape</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3659" class="true" detail="full" frameid="TAX-3659" orgid="META"><parent><Organism class="true" frameid="TAX-3655" orgid="META" resource="getxml?META:TAX-3655" /></parent>
-<common-name datatype="string">Cucumis sativus</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3659</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3659</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">cucumbers</synonym>
-<synonym datatype="string">cucumber &lt;Cucumis sativus&gt;</synonym>
-<synonym datatype="string">cucumber</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-511145" class="true" detail="full" frameid="TAX-511145" orgid="META"><parent><Organism class="true" frameid="TAX-83333" orgid="META" resource="getxml?META:TAX-83333" /></parent>
-<citation><Publication ID="META:PUB-23143106" detail="full" frameid="PUB-23143106" orgid="META"><author datatype="string">Keseler IM</author>
-<author datatype="string">Mackie A</author>
-<author datatype="string">Peralta-Gil M</author>
-<author datatype="string">Santos-Zavaleta A</author>
-<author datatype="string">Gama-Castro S</author>
-<author datatype="string">Bonavides-Martinez C</author>
-<author datatype="string">Fulcher C</author>
-<author datatype="string">Huerta AM</author>
-<author datatype="string">Kothari A</author>
-<author datatype="string">Krummenacker M</author>
-<author datatype="string">Latendresse M</author>
-<author datatype="string">Muniz-Rascado L</author>
-<author datatype="string">Ong Q</author>
-<author datatype="string">Paley S</author>
-<author datatype="string">Schroder I</author>
-<author datatype="string">Shearer AG</author>
-<author datatype="string">Subhraveti P</author>
-<author datatype="string">Travers M</author>
-<author datatype="string">Weerasinghe D</author>
-<author datatype="string">Weiss V</author>
-<author datatype="string">Collado-Vides J</author>
-<author datatype="string">Gunsalus RP</author>
-<author datatype="string">Paulsen I</author>
-<author datatype="string">Karp PD</author>
-<pubmed-id datatype="string">23143106</pubmed-id>
-<source datatype="string">Nucleic Acids Res 41(Database issue);D605-12</source>
-<title datatype="string">EcoCyc: fusing model organism databases with systems biology.</title>
-<year datatype="integer">2013</year>
+<citation><Publication ID='META:PUB-SUNG88' orgid='META' frameid='PUB-SUNG88' detail='full'><year datatype='integer'>1988</year>
+<source datatype='string'>Phsiologia Plantarum 72:650-654</source>
+<author datatype='string'>Sung, S-J. S.</author>
+<author datatype='string'>Xu, D. P.</author>
+<author datatype='string'>Galloway, C. M.</author>
+<author datatype='string'>Black, C. C.</author>
+<title datatype='string'>A reassessment of glycolysis and gluconeogenesis in higher plants</title>
 </Publication>
 </citation>
-<comment datatype="string">EcoCyc is a model-organism database for &lt;i&gt;Escherichia coli&lt;/i&gt; K-12 MG1655.  For more information, see URL EcoCyc.org.
-&lt;p&gt;
-The &lt;i&gt;E. coli&lt;/i&gt; genome sequence used in EcoCyc is GenBank accession number U00096.2.  Despite the
-involvement of EcoCyc staff in ongoing updates to the U00096 record, some annotation differences may
-be found between U00096 and EcoCyc, such as due to recent updates to EcoCyc.
-</comment>
-<common-name datatype="string">Escherichia coli</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>511145</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
-</dblink>
-<rank>strain</rank>
-<strain-name datatype="string">K-12 substr. MG1655</strain-name>
-<synonym datatype="string">Escherichia coli str. K-12 substr. MG1655</synonym>
-<synonym datatype="string">Escherichia coli str. MG1655</synonym>
-<synonym datatype="string">Escherichia coli str. K12 substr. MG1655</synonym>
-<synonym datatype="string">Escherichia coli strain MG1655</synonym>
-<synonym datatype="string">Escherichia coli MG1655</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3847" class="true" detail="full" frameid="TAX-3847" orgid="META"><parent><Organism class="true" frameid="TAX-1462606" orgid="META" resource="getxml?META:TAX-1462606" /></parent>
-<common-name datatype="string">Glycine max</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3847</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3847</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">soybeans</synonym>
-<synonym datatype="string">soybean</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4513" class="true" detail="full" frameid="TAX-4513" orgid="META"><parent><Organism class="true" frameid="TAX-4512" orgid="META" resource="getxml?META:TAX-4512" /></parent>
-<common-name datatype="string">Hordeum vulgare</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4513</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4513</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">barley</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4097" class="true" detail="full" frameid="TAX-4097" orgid="META"><parent><Organism class="true" frameid="TAX-4085" orgid="META" resource="getxml?META:TAX-4085" /></parent>
-<common-name datatype="string">Nicotiana tabacum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4097</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4097</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">tobacco</synonym>
-<synonym datatype="string">common tobacco</synonym>
-<synonym datatype="string">American tobacco</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4530" class="true" detail="full" frameid="TAX-4530" orgid="META"><parent><Organism class="true" frameid="TAX-4527" orgid="META" resource="getxml?META:TAX-4527" /></parent>
-<common-name datatype="string">Oryza sativa</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4530</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4530</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">rice</synonym>
-<synonym datatype="string">red rice &lt;Oryza sativa&gt;</synonym>
-<synonym datatype="string">red rice</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3888" class="true" detail="full" frameid="TAX-3888" orgid="META"><parent><Organism class="true" frameid="TAX-3887" orgid="META" resource="getxml?META:TAX-3887" /></parent>
-<common-name datatype="string">Pisum sativum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3888</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3888</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">peas</synonym>
-<synonym datatype="string">pea</synonym>
-<synonym datatype="string">garden pea</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3988" class="true" detail="full" frameid="TAX-3988" orgid="META"><parent><Organism class="true" frameid="TAX-3987" orgid="META" resource="getxml?META:TAX-3987" /></parent>
-<common-name datatype="string">Ricinus communis</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3988</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3988</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">Ricinus sanguineus</synonym>
-<synonym datatype="string">castor bean</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4081" class="true" detail="full" frameid="TAX-4081" orgid="META"><parent><Organism class="true" frameid="TAX-49274" orgid="META" resource="getxml?META:TAX-49274" /></parent>
-<common-name datatype="string">Solanum lycopersicum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4081</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4081</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">tomato</synonym>
-<synonym datatype="string">Solanum lycopersicum var. humboldtii</synonym>
-<synonym datatype="string">Solanum esculentum</synonym>
-<synonym datatype="string">Lycopersicon esculentum var. esculentum</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4113" class="true" detail="full" frameid="TAX-4113" orgid="META"><parent><Organism class="true" frameid="TAX-4107" orgid="META" resource="getxml?META:TAX-4107" /></parent>
-<common-name datatype="string">Solanum tuberosum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4113</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4113</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">Solanum tuberosum subsp. tuberosum</synonym>
-<synonym datatype="string">potato</synonym>
-<synonym datatype="string">potatoes</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3906" class="true" detail="full" frameid="TAX-3906" orgid="META"><parent><Organism class="true" frameid="TAX-3904" orgid="META" resource="getxml?META:TAX-3904" /></parent>
-<common-name datatype="string">Vicia faba</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3906</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3906</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">fava bean</synonym>
-<synonym datatype="string">faba bean</synonym>
-<synonym datatype="string">broad bean</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4577" class="true" detail="full" frameid="TAX-4577" orgid="META"><parent><Organism class="true" frameid="TAX-4575" orgid="META" resource="getxml?META:TAX-4575" /></parent>
-<common-name datatype="string">Zea mays</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4577</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4577</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">Zea mays var. japonica</synonym>
-<synonym datatype="string">maize &lt;Zea mays&gt;</synonym>
-<synonym datatype="string">maize</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
-<common-name datatype="string">Arabidopsis thaliana</common-name>
-<rank>strain</rank>
-<strain-name datatype="string">col</strain-name>
-<synonym datatype="string">Arabidopsis thaliana col</synonym>
-</Organism>
-</species>
-<taxonomic-range><Organism ID="META:TAX-4751" class="true" detail="full" frameid="TAX-4751" orgid="META"><parent><Organism class="true" frameid="TAX-33154" orgid="META" resource="getxml?META:TAX-33154" /></parent>
-<common-name datatype="string">Fungi</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4751</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4751</dblink-URL>
-</dblink>
-<rank>kingdom</rank>
-</Organism>
-<Organism ID="META:TAX-33090" class="true" detail="full" frameid="TAX-33090" orgid="META"><parent><Organism class="true" frameid="TAX-2759" orgid="META" resource="getxml?META:TAX-2759" /></parent>
-<common-name datatype="string">Viridiplantae</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>33090</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33090</dblink-URL>
-</dblink>
-<rank>kingdom</rank>
-<synonym datatype="string">green plants &lt;common name&gt;</synonym>
-<synonym datatype="string">green plants</synonym>
-<synonym datatype="string">Chloroplastida</synonym>
-<synonym datatype="string">chlorophyte/embryophyte group</synonym>
-<synonym datatype="string">Chlorophyta/Embryophyta group</synonym>
-<synonym datatype="string">Chlorobionta</synonym>
-</Organism>
-<Organism ID="META:TAX-2157" class="true" detail="full" frameid="TAX-2157" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
-<common-name datatype="string">Archaea</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2157</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2157</dblink-URL>
-</dblink>
-<rank>superkingdom</rank>
-<synonym datatype="string">Metabacteria</synonym>
-<synonym datatype="string">Mendosicutes</synonym>
-<synonym datatype="string">Archaebacteria</synonym>
-</Organism>
-<Organism ID="META:TAX-2" class="true" detail="full" frameid="TAX-2" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
-<common-name datatype="string">Bacteria &lt;bacteria&gt;</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
-</dblink>
-<rank>superkingdom</rank>
-<synonym datatype="string">eubacteria</synonym>
-<synonym datatype="string">Bacteria</synonym>
-</Organism>
-</taxonomic-range>
+<evidence><Evidence-Code ID='META:EV-EXP-IDA' orgid='META' frameid='EV-EXP-IDA' detail='full' class='true'><parent><Evidence-Code resource='getxml?META:EV-EXP' orgid='META' frameid='EV-EXP' class='true'/></parent>
+<common-name datatype='string'>Inferred from direct assay</common-name>
+<comment datatype='string'>IDA inferred from direct assay.
+
+&lt;br&gt;
+The assertion was inferred from a direct experimental assay such as
+&lt;ul&gt;
+    &lt;li&gt; Enzyme assays
+    &lt;li&gt; In vitro reconstitution (e.g. transcription)
+    &lt;li&gt; Immunofluorescence
+    &lt;li&gt; Cell fractionation
+&lt;/ul&gt;</comment>
+</Evidence-Code>
+<Publication ID='META:PUB-5335797' orgid='META' frameid='PUB-5335797' detail='full'><year datatype='integer'>1967</year>
+<source datatype='string'>Am J Clin Nutr 20(3);282-9</source>
+<pubmed-id datatype='string'>5335797</pubmed-id>
+<author datatype='string'>Eisenstein AB</author>
+<title datatype='string'>Current concepts of gluconeogenesis.</title>
+</Publication>
+</evidence>
 </Pathway>
 </ptools-xml>

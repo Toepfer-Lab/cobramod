@@ -27,7 +27,7 @@ class TestSummary(TestCase):
         self.assertIsInstance(obj=data_model, cls=DataModel)
 
         # Case 2 Empty cobra model
-        model = Model(0)
+        model = Model("0")
         data_model = DataModel.from_model(model=model)
         self.assertIsInstance(obj=data_model, cls=DataModel)
 
@@ -138,7 +138,7 @@ class TestSummary(TestCase):
         expected_dataframe = pandas.DataFrame(
             {
                 "Model identifier": ["e_coli_core", numpy.nan],
-                "Model name": ["", numpy.nan],
+                "Model name": ["None", numpy.nan],
                 "Reactions": ["ACALD", "ACONTa"],
                 "Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
                 "Demand": ["h2o_e", "lac__D_e"],
@@ -168,7 +168,7 @@ class TestSummary(TestCase):
         expected_dataframe = pandas.DataFrame(
             {
                 "Model identifier": ["e_coli_core", numpy.nan],
-                "Model name": ["", numpy.nan],
+                "Model name": ["None", numpy.nan],
                 "Reactions": ["ACALD", "ACONTa"],
                 "Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
                 "Demand": ["h2o_e", "lac__D_e"],

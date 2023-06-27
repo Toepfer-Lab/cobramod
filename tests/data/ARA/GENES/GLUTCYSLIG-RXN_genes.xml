@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GLUTCYSLIG-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GLUTCYSLIG-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,16 +9,28 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT4G23100" detail="full" frameid="AT4G23100" orgid="ARA">
+  <Gene ID="ARA:AT4G23100" orgid="ARA" frameid="AT4G23100" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-4" orgid="ARA" resource="getxml?ARA:CHROMOSOME-4" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-4" orgid="ARA" frameid="CHROMOSOME-4" />
     </replicon>
     <product>
-      <Protein frameid="AT4G23100-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G23100-MONOMER" />
+      <Protein resource="getxml?ARA:AT4G23100-MONOMER" orgid="ARA" frameid="AT4G23100-MONOMER" />
     </product>
+    <common-name datatype="string">GSH1</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">65.12319</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT4G23100</accession-1>
+    <synonym datatype="string">GSHA</synonym>
+    <synonym datatype="string">AT4G23100</synonym>
+    <synonym datatype="string">CAD2</synonym>
+    <synonym datatype="string">ECS1</synonym>
+    <synonym datatype="string">PAD2</synonym>
+    <synonym datatype="string">RML1</synonym>
+    <right-end-position datatype="integer">12107310</right-end-position>
+    <left-end-position datatype="integer">12103172</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT4G23100</dblink-oid>
@@ -31,17 +43,5 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/Z29490</dblink-URL>
     </dblink>
-    <synonym datatype="string">GSHA</synonym>
-    <synonym datatype="string">AT4G23100</synonym>
-    <synonym datatype="string">CAD2</synonym>
-    <synonym datatype="string">ECS1</synonym>
-    <synonym datatype="string">PAD2</synonym>
-    <synonym datatype="string">RML1</synonym>
-    <left-end-position datatype="integer">12103172</left-end-position>
-    <accession-1 datatype="string">AT4G23100</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">65.12319</centisome-position>
-    <right-end-position datatype="integer">12107310</right-end-position>
-    <common-name datatype="string">GSH1</common-name>
-    <component-of />
   </Gene>
 </ptools-xml>

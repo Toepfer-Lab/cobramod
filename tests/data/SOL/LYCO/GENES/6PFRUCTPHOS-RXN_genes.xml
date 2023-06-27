@@ -1,0 +1,268 @@
+<ptools-xml ptools-version="25.0" xml:base="http://localhost:1555/apixml?fn=genes-of-reaction%26id=LYCO:6PFRUCTPHOS-RXN%26detail=FULL">
+  <metadata>
+    <url>http://localhost:1555/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=LYCO:6PFRUCTPHOS-RXN&amp;detail=FULL</query>
+    <num_results>9</num_results>
+    <PGDB orgid="LYCO" version="3.8">
+      <species datatype="string">Solanum lycopersicum</species>
+      <dblink>
+        <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+        <dblink-oid>4081</dblink-oid>
+        <dblink-relationship>unification</dblink-relationship>
+        <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4081</dblink-URL>
+      </dblink>
+    </PGDB>
+  </metadata>
+  <Gene ID="LYCO:SOLYC03G093520.2" orgid="LYCO" frameid="SOLYC03G093520.2" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_03" orgid="LYCO" frameid="CHROMOSOME_03" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC03G093520.2-MONOMER" orgid="LYCO" frameid="SOLYC03G093520.2-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-7131" orgid="LYCO" frameid="TUD7A-7131" />
+    </component-of>
+    <left-end-position datatype="integer">48317205</left-end-position>
+    <synonym datatype="string">Solyc03g093520</synonym>
+    <common-name datatype="string">Solyc03g093520.2</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>18655</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=18655</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT5G61580 (DB=ATH, EVALUE=0.0, PERC_IDENT=74.12, ALIGN_LENGTH=537) similar to CBI38613.3 (DB=NR, EVALUE=0.0, PERC_IDENT=77.22, ALIGN_LENGTH=518) similar to Q9FKG3 (DB=SWP, EVALUE=0.0, PERC_IDENT=74.12, ALIGN_LENGTH=537))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">74.51677</centisome-position>
+    <right-end-position datatype="integer">48329757</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC04G072580.1" orgid="LYCO" frameid="SOLYC04G072580.1" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_04" orgid="LYCO" frameid="CHROMOSOME_04" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC04G072580.1-MONOMER" orgid="LYCO" frameid="SOLYC04G072580.1-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-30481" orgid="LYCO" frameid="TUD7A-30481" />
+    </component-of>
+    <left-end-position datatype="integer">57151221</left-end-position>
+    <synonym datatype="string">Solyc04g072580</synonym>
+    <common-name datatype="string">Solyc04g072580.1</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>22181</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=22181</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT4G26270 (DB=ATH, EVALUE=0.0, PERC_IDENT=74.89, ALIGN_LENGTH=454) similar to XP_002514189.1 (DB=NR, EVALUE=0.0, PERC_IDENT=73.67, ALIGN_LENGTH=490) similar to Q94AA4 (DB=SWP, EVALUE=0.0, PERC_IDENT=74.89, ALIGN_LENGTH=454))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">89.20914</centisome-position>
+    <right-end-position datatype="integer">57152720</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC04G015200.2" orgid="LYCO" frameid="SOLYC04G015200.2" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_04" orgid="LYCO" frameid="CHROMOSOME_04" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC04G015200.2-MONOMER" orgid="LYCO" frameid="SOLYC04G015200.2-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-8891" orgid="LYCO" frameid="TUD7A-8891" />
+    </component-of>
+    <left-end-position datatype="integer">5380802</left-end-position>
+    <synonym datatype="string">Solyc04g015200</synonym>
+    <common-name datatype="string">Solyc04g015200.2</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>20860</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=20860</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT5G47810 (DB=ATH, EVALUE=0.0, PERC_IDENT=76.87, ALIGN_LENGTH=428) similar to XP_002525025.1 (DB=NR, EVALUE=0.0, PERC_IDENT=79.41, ALIGN_LENGTH=442) similar to Q9FIK0 (DB=SWP, EVALUE=0.0, PERC_IDENT=76.87, ALIGN_LENGTH=428))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">8.399063</centisome-position>
+    <right-end-position datatype="integer">5383565</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC04G014270.2" orgid="LYCO" frameid="SOLYC04G014270.2" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_04" orgid="LYCO" frameid="CHROMOSOME_04" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC04G014270.2-MONOMER" orgid="LYCO" frameid="SOLYC04G014270.2-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-30760" orgid="LYCO" frameid="TUD7A-30760" />
+    </component-of>
+    <left-end-position datatype="integer">4578337</left-end-position>
+    <synonym datatype="string">Solyc04g014270</synonym>
+    <synonym datatype="string">SGN-U568189</synonym>
+    <synonym datatype="string">SGN-U595799</synonym>
+    <common-name datatype="string">Solyc04g014270.2</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>20769</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=20769</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT2G22480 (DB=ATH, EVALUE=0.0, PERC_IDENT=77.59, ALIGN_LENGTH=540) similar to XP_002310313.1 (DB=NR, EVALUE=0.0, PERC_IDENT=87.95, ALIGN_LENGTH=473) similar to Q8VYN6 (DB=SWP, EVALUE=0.0, PERC_IDENT=77.59, ALIGN_LENGTH=540))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">7.14647</centisome-position>
+    <right-end-position datatype="integer">4585956</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC07G045160.2" orgid="LYCO" frameid="SOLYC07G045160.2" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_07" orgid="LYCO" frameid="CHROMOSOME_07" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC07G045160.2-MONOMER" orgid="LYCO" frameid="SOLYC07G045160.2-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-15509" orgid="LYCO" frameid="TUD7A-15509" />
+    </component-of>
+    <left-end-position datatype="integer">55581267</left-end-position>
+    <synonym datatype="string">Solyc07g045160</synonym>
+    <synonym datatype="string">SGN-U572520</synonym>
+    <synonym datatype="string">SGN-U584839</synonym>
+    <synonym datatype="string">SGN-U589794</synonym>
+    <common-name datatype="string">Solyc07g045160.2</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>29573</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=29573</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT5G56630 (DB=ATH, EVALUE=0.0, PERC_IDENT=76.34, ALIGN_LENGTH=486) similar to XP_002516495.1 (DB=NR, EVALUE=0.0, PERC_IDENT=81.00, ALIGN_LENGTH=479) similar to Q9C5J7 (DB=SWP, EVALUE=0.0, PERC_IDENT=76.34, ALIGN_LENGTH=486))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">85.157715</centisome-position>
+    <right-end-position datatype="integer">55585242</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC08G066100.2" orgid="LYCO" frameid="SOLYC08G066100.2" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_08" orgid="LYCO" frameid="CHROMOSOME_08" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC08G066100.2-MONOMER" orgid="LYCO" frameid="SOLYC08G066100.2-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-28241" orgid="LYCO" frameid="TUD7A-28241" />
+    </component-of>
+    <left-end-position datatype="integer">51736638</left-end-position>
+    <synonym datatype="string">Solyc08g066100</synonym>
+    <common-name datatype="string">Solyc08g066100.2</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>31966</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=31966</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT4G26270 (DB=ATH, EVALUE=0.0, PERC_IDENT=77.78, ALIGN_LENGTH=459) similar to XP_002283274.1 (DB=NR, EVALUE=0.0, PERC_IDENT=76.72, ALIGN_LENGTH=481) similar to Q94AA4 (DB=SWP, EVALUE=0.0, PERC_IDENT=77.78, ALIGN_LENGTH=459))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">82.07911</centisome-position>
+    <right-end-position datatype="integer">51744013</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC11G010450.1" orgid="LYCO" frameid="SOLYC11G010450.1" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_11" orgid="LYCO" frameid="CHROMOSOME_11" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC11G010450.1-MONOMER" orgid="LYCO" frameid="SOLYC11G010450.1-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">+</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-22394" orgid="LYCO" frameid="TUD7A-22394" />
+    </component-of>
+    <left-end-position datatype="integer">3499439</left-end-position>
+    <synonym datatype="string">Solyc11g010450</synonym>
+    <common-name datatype="string">Solyc11g010450.1</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>38648</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=38648</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT2G22480 (DB=ATH, EVALUE=0.0, PERC_IDENT=85.68, ALIGN_LENGTH=475) similar to XP_002310313.1 (DB=NR, EVALUE=0.0, PERC_IDENT=88.79, ALIGN_LENGTH=473) similar to Q8VYN6 (DB=SWP, EVALUE=0.0, PERC_IDENT=85.68, ALIGN_LENGTH=475))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">6.554972</centisome-position>
+    <right-end-position datatype="integer">3505629</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC12G095880.1" orgid="LYCO" frameid="SOLYC12G095880.1" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_12" orgid="LYCO" frameid="CHROMOSOME_12" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC12G095880.1-MONOMER" orgid="LYCO" frameid="SOLYC12G095880.1-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-25875" orgid="LYCO" frameid="TUD7A-25875" />
+    </component-of>
+    <left-end-position datatype="integer">63327094</left-end-position>
+    <synonym datatype="string">Solyc12g095880</synonym>
+    <synonym datatype="string">SGN-U591403</synonym>
+    <common-name datatype="string">Solyc12g095880.1</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>42752</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=42752</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT4G26270 (DB=ATH, EVALUE=0.0, PERC_IDENT=79.04, ALIGN_LENGTH=477) similar to XP_002514189.1 (DB=NR, EVALUE=0.0, PERC_IDENT=80.75, ALIGN_LENGTH=478) similar to Q94AA4 (DB=SWP, EVALUE=0.0, PERC_IDENT=79.04, ALIGN_LENGTH=477))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">96.70289</centisome-position>
+    <right-end-position datatype="integer">63335562</right-end-position>
+  </Gene>
+  <Gene ID="LYCO:SOLYC06G063220.2" orgid="LYCO" frameid="SOLYC06G063220.2" detail="full">
+    <parent>
+      <Gene resource="getxml?LYCO:Unclassified-Genes" orgid="LYCO" frameid="Unclassified-Genes" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?LYCO:CHROMOSOME_06" orgid="LYCO" frameid="CHROMOSOME_06" />
+    </replicon>
+    <product>
+      <Protein resource="getxml?LYCO:SOLYC06G063220.2-MONOMER" orgid="LYCO" frameid="SOLYC06G063220.2-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <component-of>
+      <Transcription-Unit resource="getxml?LYCO:TUD7A-29348" orgid="LYCO" frameid="TUD7A-29348" />
+    </component-of>
+    <left-end-position datatype="integer">36321101</left-end-position>
+    <synonym datatype="string">Solyc06g063220</synonym>
+    <synonym datatype="string">SGN-U579672</synonym>
+    <synonym datatype="string">SGN-U591783</synonym>
+    <common-name datatype="string">Solyc06g063220.2</common-name>
+    <dblink>
+      <dblink-db>SGN_LOCI</dblink-db>
+      <dblink-oid>26883</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://solgenomics.net/phenome/locus_display.pl?locus_id=26883</dblink-URL>
+    </dblink>
+    <comment datatype="string">(similar to AT1G51650 (DB=ATH, EVALUE=2e-31, PERC_IDENT=81.16, ALIGN_LENGTH=69) similar to ACS83605.1 (DB=NR, EVALUE=3e-31, PERC_IDENT=88.57, ALIGN_LENGTH=70) similar to Q06450 (DB=SWP, EVALUE=1e-30, PERC_IDENT=84.29, ALIGN_LENGTH=70))</comment>
+    <centisome-position datatype="float" units="CENTISOMES">78.88751</centisome-position>
+    <right-end-position datatype="integer">36322547</right-end-position>
+  </Gene>
+</ptools-xml>

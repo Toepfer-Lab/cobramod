@@ -1,9 +1,10 @@
-<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?ECOLI:PHOSPHO-ENOL-PYRUVATE"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECOLI:PHOSPHO-ENOL-PYRUVATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECOLI:PHOSPHO-ENOL-PYRUVATE</query>
 <num_results>1</num_results>
-<PGDB orgid="ECOLI" version="25.0"><species datatype="string">Escherichia coli</species>
-<strain datatype="string">K-12 substr. MG1655</strain>
+<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -11,14 +12,233 @@
 </dblink>
 </PGDB>
 </metadata>
-<Compound ID="ECOLI:PHOSPHO-ENOL-PYRUVATE" detail="full" frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI"><parent><Compound class="true" frameid="Monocarboxylates" orgid="ECOLI" resource="getxml?ECOLI:Monocarboxylates" /></parent>
-<cml><molecule formalCharge="-3" id="PHOSPHO-ENOL-PYRUVATE" title="phosphoenolpyruvate"><atomArray><atom elementType="C" id="PHOSPHO-ENOL-PYRUVATE-atom1" x2="1428700.0" y2="2062700.0" /><atom elementType="C" id="PHOSPHO-ENOL-PYRUVATE-atom2" x2="1428700.0" y2="1237700.0" /><atom elementType="C" id="PHOSPHO-ENOL-PYRUVATE-atom3" x2="713800.0" y2="825800.0" /><atom elementType="O" formalCharge="-1" id="PHOSPHO-ENOL-PYRUVATE-atom4" x2="0.0" y2="1237700.0" /><atom elementType="O" id="PHOSPHO-ENOL-PYRUVATE-atom5" x2="713800.0" y2="1000.0" /><atom elementType="O" id="PHOSPHO-ENOL-PYRUVATE-atom6" x2="2967600.0" y2="1649600.0" /><atom elementType="O" formalCharge="-1" id="PHOSPHO-ENOL-PYRUVATE-atom7" x2="2967600.0" y2="0.0" /><atom elementType="O" formalCharge="-1" id="PHOSPHO-ENOL-PYRUVATE-atom8" x2="3793400.0" y2="824800.0" /><atom elementType="O" id="PHOSPHO-ENOL-PYRUVATE-atom9" x2="2143800.0" y2="824800.0" /><atom elementType="P" id="PHOSPHO-ENOL-PYRUVATE-atom10" x2="2967600.0" y2="824800.0" /></atomArray>
-<bondArray><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom3 PHOSPHO-ENOL-PYRUVATE-atom2" id="PHOSPHO-ENOL-PYRUVATE-bond1" order="1" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom5 PHOSPHO-ENOL-PYRUVATE-atom3" id="PHOSPHO-ENOL-PYRUVATE-bond2" order="2" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom8 PHOSPHO-ENOL-PYRUVATE-atom10" id="PHOSPHO-ENOL-PYRUVATE-bond3" order="1" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom7 PHOSPHO-ENOL-PYRUVATE-atom10" id="PHOSPHO-ENOL-PYRUVATE-bond4" order="1" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom2 PHOSPHO-ENOL-PYRUVATE-atom9" id="PHOSPHO-ENOL-PYRUVATE-bond5" order="1" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom6 PHOSPHO-ENOL-PYRUVATE-atom10" id="PHOSPHO-ENOL-PYRUVATE-bond6" order="2" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom4 PHOSPHO-ENOL-PYRUVATE-atom3" id="PHOSPHO-ENOL-PYRUVATE-bond7" order="1" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom9 PHOSPHO-ENOL-PYRUVATE-atom10" id="PHOSPHO-ENOL-PYRUVATE-bond8" order="1" /><bond atomRefs="PHOSPHO-ENOL-PYRUVATE-atom2 PHOSPHO-ENOL-PYRUVATE-atom1" id="PHOSPHO-ENOL-PYRUVATE-bond9" order="2" /></bondArray>
-<formula concise="C 3 H 2 O 6 P 1" /><float title="molecularWeight" units="g/mol">165.019</float>
-<string title="smiles">C=C(OP(=O)([O-])[O-])C([O-])=O</string>
+<Compound ID='ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE' detail='full'><parent><Compound resource='getxml?ECOLI:Monocarboxylates' orgid='ECOLI' frameid='Monocarboxylates' class='true'/></parent>
+<cml><molecule id='PHOSPHO-ENOL-PYRUVATE' title='phosphoenolpyruvate' formalCharge='-3'><atomArray><atom id='PHOSPHO-ENOL-PYRUVATE-atom1' elementType='C' x2='1428700.0' y2='2062700.0'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom2' elementType='C' x2='1428700.0' y2='1237700.0'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom3' elementType='C' x2='713800.0' y2='825800.0'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom4' elementType='O' x2='0.0' y2='1237700.0' formalCharge='-1'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom5' elementType='O' x2='713800.0' y2='1000.0'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom6' elementType='O' x2='2967600.0' y2='1649600.0'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom7' elementType='O' x2='2967600.0' y2='0.0' formalCharge='-1'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom8' elementType='O' x2='3793400.0' y2='824800.0' formalCharge='-1'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom9' elementType='O' x2='2143800.0' y2='824800.0'/><atom id='PHOSPHO-ENOL-PYRUVATE-atom10' elementType='P' x2='2967600.0' y2='824800.0'/></atomArray>
+<bondArray><bond id='PHOSPHO-ENOL-PYRUVATE-bond1' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom3 PHOSPHO-ENOL-PYRUVATE-atom2' order='1'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond2' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom5 PHOSPHO-ENOL-PYRUVATE-atom3' order='2'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond3' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom8 PHOSPHO-ENOL-PYRUVATE-atom10' order='1'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond4' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom7 PHOSPHO-ENOL-PYRUVATE-atom10' order='1'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond5' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom2 PHOSPHO-ENOL-PYRUVATE-atom9' order='1'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond6' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom6 PHOSPHO-ENOL-PYRUVATE-atom10' order='2'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond7' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom4 PHOSPHO-ENOL-PYRUVATE-atom3' order='1'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond8' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom9 PHOSPHO-ENOL-PYRUVATE-atom10' order='1'/><bond id='PHOSPHO-ENOL-PYRUVATE-bond9' atomRefs='PHOSPHO-ENOL-PYRUVATE-atom2 PHOSPHO-ENOL-PYRUVATE-atom1' order='2'/></bondArray>
+<formula concise='C 3 H 2 O 6 P 1'/><float title='molecularWeight' units='g/mol'>165.019</float>
+<string title='smiles'>C=C(OP(=O)([O-])[O-])C([O-])=O</string>
 </molecule>
 </cml>
-<common-name datatype="string">phospho&lt;i&gt;enol&lt;/i&gt;pyruvate</common-name>
+<regulates><Regulation ID='ECOLI:REG0-15746' orgid='ECOLI' frameid='REG0-15746' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PFRUCTPHOS-ENZRXN' orgid='ECOLI' frameid='PFRUCTPHOS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:6PFRUCTPHOS-RXN' orgid='ECOLI' frameid='6PFRUCTPHOS-RXN'/></reaction>
+<synonym datatype='string'>fructose-6-p-1-kinase</synonym>
+<synonym datatype='string'>fructose-6-phosphate-1-phosphotransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:6PFK-2-CPX' orgid='ECOLI' frameid='6PFK-2-CPX'/></enzyme>
+<common-name datatype='string'>6-phosphofructokinase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-12381' orgid='ECOLI' frameid='REG0-12381' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ISOCITLYASE-ENZRXN' orgid='ECOLI' frameid='ISOCITLYASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:ISOCIT-CLEAV-RXN' orgid='ECOLI' frameid='ISOCIT-CLEAV-RXN'/></reaction>
+<enzyme><Protein resource='getxml?ECOLI:ISOCIT-LYASE' orgid='ECOLI' frameid='ISOCIT-LYASE'/></enzyme>
+<common-name datatype='string'>isocitrate lyase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11786' orgid='ECOLI' frameid='REG0-11786' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' orgid='ECOLI' frameid='3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:2.5.1.19-RXN' orgid='ECOLI' frameid='2.5.1.19-RXN'/></reaction>
+<synonym datatype='string'>5-enol-pyruvylshikimate-3-phosphate synthase</synonym>
+<synonym datatype='string'>EPSP synthase</synonym>
+<synonym datatype='string'>phosphoenolpyruvate: 3-phosphoshikimate 1-carboxyvinyl transferase</synonym>
+<synonym datatype='string'>EPSPS</synonym>
+<enzyme><Protein resource='getxml?ECOLI:AROA-MONOMER' orgid='ECOLI' frameid='AROA-MONOMER'/></enzyme>
+<common-name datatype='string'>3-phosphoshikimate 1-carboxyvinyltransferase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11444' orgid='ECOLI' frameid='REG0-11444' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-6416' orgid='ECOLI' frameid='ENZRXN0-6416' detail='low'><reaction><Reaction resource='getxml?ECOLI:RXN0-5260' orgid='ECOLI' frameid='RXN0-5260'/></reaction>
+<synonym datatype='string'>G3P dehydrogenase</synonym>
+<synonym datatype='string'>sn-glycerol-3-phosphate:(acceptor) 2-oxidoreductase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:AERGLYC3PDEHYDROG-CPLX' orgid='ECOLI' frameid='AERGLYC3PDEHYDROG-CPLX'/></enzyme>
+<common-name datatype='string'>aerobic glycerol 3-phosphate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10867' orgid='ECOLI' frameid='REG0-10867' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PHOSACETYLTRANS-ENZRXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/></reaction>
+<synonym datatype='string'>phosphotransacetylase</synonym>
+<synonym datatype='string'>phosphoacylase</synonym>
+<synonym datatype='string'>acetyl-CoA:orthophosphate acetyltransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:PHOSACETYLTRANS-CPLX' orgid='ECOLI' frameid='PHOSACETYLTRANS-CPLX'/></enzyme>
+<common-name datatype='string'>phosphate acetyltransferase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10865' orgid='ECOLI' frameid='REG0-10865' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction resource='#ECOLI:PHOSACETYLTRANS-ENZRXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-ENZRXN'/></regulated-entity>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10744' orgid='ECOLI' frameid='REG0-10744' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PGLUCISOM-ENZRXN' orgid='ECOLI' frameid='PGLUCISOM-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PGLUCISOM-RXN' orgid='ECOLI' frameid='PGLUCISOM-RXN'/></reaction>
+<synonym datatype='string'>phosphoglucose isomerase</synonym>
+<synonym datatype='string'>D-glucose-6-phosphate-ketol-isomerase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:CPLX0-7877' orgid='ECOLI' frameid='CPLX0-7877'/></enzyme>
+<common-name datatype='string'>glucose-6-phosphate isomerase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10661' orgid='ECOLI' frameid='REG0-10661' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GLUCOKIN-ENZRXN' orgid='ECOLI' frameid='GLUCOKIN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:GLUCOKIN-RXN' orgid='ECOLI' frameid='GLUCOKIN-RXN'/></reaction>
+<synonym datatype='string'>ATP:D-glucose 6-phosphotransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:GLUCOKIN-MONOMER' orgid='ECOLI' frameid='GLUCOKIN-MONOMER'/></enzyme>
+<common-name datatype='string'>glucokinase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10237' orgid='ECOLI' frameid='REG0-10237' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ISOCITDEH-ENZRXN' orgid='ECOLI' frameid='ISOCITDEH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:ISOCITDEH-RXN' orgid='ECOLI' frameid='ISOCITDEH-RXN'/></reaction>
+<synonym datatype='string'>oxalosuccinate decarboxylase</synonym>
+<synonym datatype='string'>isocitrate dehydrogenase (NADP+)</synonym>
+<enzyme><Protein resource='getxml?ECOLI:ISOCITHASE-CPLX' orgid='ECOLI' frameid='ISOCITHASE-CPLX'/></enzyme>
+<common-name datatype='string'>isocitrate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-9101' orgid='ECOLI' frameid='REG0-9101' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:THI-P-SYN-ENZRXN' orgid='ECOLI' frameid='THI-P-SYN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:THI-P-SYN-RXN' orgid='ECOLI' frameid='THI-P-SYN-RXN'/></reaction>
+<synonym datatype='string'>thiamine phosphate pyrophosphorylase</synonym>
+<synonym datatype='string'>2-methyl-4-amino-5-hydroxymethylpyrimidine-diphosphate: 4-methyl-5-(2-phosphoethyl)-thiazole 2-methyl-4-aminopyrimidine-5-methenyltransferase</synonym>
+<synonym datatype='string'>thiamine monophosphate synthase</synonym>
+<synonym datatype='string'>thiamin-phosphate pyrophosphorylase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:THIE-MONOMER' orgid='ECOLI' frameid='THIE-MONOMER'/></enzyme>
+<common-name datatype='string'>thiamine phosphate synthase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8814' orgid='ECOLI' frameid='REG0-8814' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:F16BDEPHOS-ENZRXN' orgid='ECOLI' frameid='F16BDEPHOS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:F16BDEPHOS-RXN' orgid='ECOLI' frameid='F16BDEPHOS-RXN'/></reaction>
+<synonym datatype='string'>fructose bisphosphatase</synonym>
+<synonym datatype='string'>hexosediphosphatase</synonym>
+<synonym datatype='string'>fructose-1,6-P2 1-phosphatase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:F16B-CPLX' orgid='ECOLI' frameid='F16B-CPLX'/></enzyme>
+<common-name datatype='string'>fructose-1,6-bisphosphatase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8813' orgid='ECOLI' frameid='REG0-8813' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction resource='#ECOLI:F16BDEPHOS-ENZRXN' orgid='ECOLI' frameid='F16BDEPHOS-ENZRXN'/></regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8397' orgid='ECOLI' frameid='REG0-8397' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PEPSYNTH-ENZRXN' orgid='ECOLI' frameid='PEPSYNTH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PEPSYNTH-RXN' orgid='ECOLI' frameid='PEPSYNTH-RXN'/></reaction>
+<synonym datatype='string'>pyruvate, water dikinase</synonym>
+<synonym datatype='string'>phosphoenolpyruvate synthase</synonym>
+<synonym datatype='string'>PEP synthase</synonym>
+<synonym datatype='string'>ATP:pyruvate, water phosphotransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:PEPSYNTH-CPLX' orgid='ECOLI' frameid='PEPSYNTH-CPLX'/></enzyme>
+<common-name datatype='string'>phosphoenolpyruvate synthetase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7695' orgid='ECOLI' frameid='REG0-7695' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ICITDEHKINASE-ENZRXN' orgid='ECOLI' frameid='ICITDEHKINASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PHOSICITDEHASE-RXN' orgid='ECOLI' frameid='PHOSICITDEHASE-RXN'/></reaction>
+<synonym datatype='string'>ICDH kinase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:CPLX0-230' orgid='ECOLI' frameid='CPLX0-230'/></enzyme>
+<common-name datatype='string'>isocitrate dehydrogenase kinase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7602' orgid='ECOLI' frameid='REG0-7602' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ICITDEHDEPHOSPH-ENZRXN' orgid='ECOLI' frameid='ICITDEHDEPHOSPH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:DEPHOSICITDEHASE-RXN' orgid='ECOLI' frameid='DEPHOSICITDEHASE-RXN'/></reaction>
+<synonym datatype='string'>ICDH phosphatase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:CPLX0-230' orgid='ECOLI' frameid='CPLX0-230'/></enzyme>
+<common-name datatype='string'>isocitrate dehydrogenase phosphatase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7473' orgid='ECOLI' frameid='REG0-7473' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:6PFRUCTPHOS-ENZRXN' orgid='ECOLI' frameid='6PFRUCTPHOS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:6PFRUCTPHOS-RXN' orgid='ECOLI' frameid='6PFRUCTPHOS-RXN'/></reaction>
+<synonym datatype='string'>fructose-6-p-1-kinase</synonym>
+<synonym datatype='string'>fructose-6-phosphate-1-phosphotransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:6PFK-1-CPX' orgid='ECOLI' frameid='6PFK-1-CPX'/></enzyme>
+<common-name datatype='string'>6-phosphofructokinase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7199' orgid='ECOLI' frameid='REG0-7199' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PEPCARBOXYKIN-ENZRXN' orgid='ECOLI' frameid='PEPCARBOXYKIN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PEPCARBOXYKIN-RXN' orgid='ECOLI' frameid='PEPCARBOXYKIN-RXN'/></reaction>
+<synonym datatype='string'>phosphopyruvate carboxylase (ATP)</synonym>
+<synonym datatype='string'>phosphoenolpyruvate carboxylase</synonym>
+<synonym datatype='string'>phosphoenolpyruvate carboxykinase</synonym>
+<synonym datatype='string'>ATP:oxaloacetate carboxy-lyase (transphosphorylating)</synonym>
+<enzyme><Protein resource='getxml?ECOLI:PEPCARBOXYKIN-MONOMER' orgid='ECOLI' frameid='PEPCARBOXYKIN-MONOMER'/></enzyme>
+<common-name datatype='string'>phospho&lt;i&gt;enol&lt;/i&gt;pyruvate carboxykinase (ATP)</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6940' orgid='ECOLI' frameid='REG0-6940' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:METHGLYSYN-ENZRXN' orgid='ECOLI' frameid='METHGLYSYN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:METHGLYSYN-RXN' orgid='ECOLI' frameid='METHGLYSYN-RXN'/></reaction>
+<synonym datatype='string'>glycerone-phosphate phospho-lyase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:METHGLYSYN-CPLX' orgid='ECOLI' frameid='METHGLYSYN-CPLX'/></enzyme>
+<common-name datatype='string'>methylglyoxal synthase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6902' orgid='ECOLI' frameid='REG0-6902' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GSADENYLATION-ENZRXN' orgid='ECOLI' frameid='GSADENYLATION-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:GSADENYLATION-RXN' orgid='ECOLI' frameid='GSADENYLATION-RXN'/></reaction>
+<synonym datatype='string'>glutamate-ammonia-ligase adenylyltransferase</synonym>
+<synonym datatype='string'>ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:GLNE-MONOMER' orgid='ECOLI' frameid='GLNE-MONOMER'/></enzyme>
+<common-name datatype='string'>glutamine synthetase adenylyltransferase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6847' orgid='ECOLI' frameid='REG0-6847' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-402' orgid='ECOLI' frameid='ENZRXN0-402' detail='low'><reaction><Reaction resource='getxml?ECOLI:F16BDEPHOS-RXN' orgid='ECOLI' frameid='F16BDEPHOS-RXN'/></reaction>
+<enzyme><Protein resource='getxml?ECOLI:CPLX0-303' orgid='ECOLI' frameid='CPLX0-303'/></enzyme>
+<common-name datatype='string'>fructose-1,6-bisphosphatase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ECOLI:PHOSPHO-ENOL-PYRUVATE' orgid='ECOLI' frameid='PHOSPHO-ENOL-PYRUVATE'/></regulator>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=DTBNBXWJWCWCIK-UHFFFAOYSA-K</inchi-key>
+<gibbs-0 datatype='float' units='kcal/mol'>-293.83633</gibbs-0>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN-22214' orgid='ECOLI' frameid='RXN-22214'/><Reaction resource='getxml?ECOLI:RXN-21080' orgid='ECOLI' frameid='RXN-21080'/><Reaction resource='getxml?ECOLI:RXN0-7166' orgid='ECOLI' frameid='RXN0-7166'/><Reaction resource='getxml?ECOLI:2.7.3.9-RXN' orgid='ECOLI' frameid='2.7.3.9-RXN'/><Reaction resource='getxml?ECOLI:RXN-17354' orgid='ECOLI' frameid='RXN-17354'/><Reaction resource='getxml?ECOLI:RXN0-6717' orgid='ECOLI' frameid='RXN0-6717'/><Reaction resource='getxml?ECOLI:RXN0-7047' orgid='ECOLI' frameid='RXN0-7047'/><Reaction resource='getxml?ECOLI:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN' orgid='ECOLI' frameid='PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:KDO-8PSYNTH-RXN' orgid='ECOLI' frameid='KDO-8PSYNTH-RXN'/><Reaction resource='getxml?ECOLI:DAHPSYN-RXN' orgid='ECOLI' frameid='DAHPSYN-RXN'/><Reaction resource='getxml?ECOLI:2.7.1.121-RXN' orgid='ECOLI' frameid='2.7.1.121-RXN'/><Reaction resource='getxml?ECOLI:UDPNACETYLGLUCOSAMENOLPYRTRANS-RXN' orgid='ECOLI' frameid='UDPNACETYLGLUCOSAMENOLPYRTRANS-RXN'/><Reaction resource='getxml?ECOLI:2.5.1.19-RXN' orgid='ECOLI' frameid='2.5.1.19-RXN'/></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:PEPDEPHOS-RXN' orgid='ECOLI' frameid='PEPDEPHOS-RXN'/><Reaction resource='getxml?ECOLI:PEPCARBOX-RXN' orgid='ECOLI' frameid='PEPCARBOX-RXN'/><Reaction resource='getxml?ECOLI:2PGADEHYDRAT-RXN' orgid='ECOLI' frameid='2PGADEHYDRAT-RXN'/><Reaction resource='getxml?ECOLI:PEPCARBOXYKIN-RXN' orgid='ECOLI' frameid='PEPCARBOXYKIN-RXN'/><Reaction resource='getxml?ECOLI:PEPSYNTH-RXN' orgid='ECOLI' frameid='PEPSYNTH-RXN'/></appears-in-right-side-of>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000003870145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000003870145</dblink-URL>
+</dblink>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00061</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -69,225 +289,11 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00074</dblink-URL>
 </dblink>
-<synonym datatype="string">PEP</synonym>
-<synonym datatype="string">2-(phosphooxy)- 2-propenoate</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-293.83633</gibbs-0>
-<inchi datatype="string">InChI=1S/C3H5O6P/c1-2(3(4)5)9-10(6,7)8/h1H2,(H,4,5)(H2,6,7,8)/p-3</inchi>
-<inchi-key datatype="string">InChIKey=DTBNBXWJWCWCIK-UHFFFAOYSA-K</inchi-key>
-<molecular-weight datatype="float" units="Daltons">165.019</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">167.98238</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="RXN-22214" orgid="ECOLI" resource="getxml?ECOLI:RXN-22214" /><Reaction frameid="RXN-21080" orgid="ECOLI" resource="getxml?ECOLI:RXN-21080" /><Reaction frameid="RXN0-7166" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7166" /><Reaction frameid="2.7.3.9-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.7.3.9-RXN" /><Reaction frameid="RXN-17354" orgid="ECOLI" resource="getxml?ECOLI:RXN-17354" /><Reaction frameid="RXN0-6717" orgid="ECOLI" resource="getxml?ECOLI:RXN0-6717" /><Reaction frameid="RXN0-7047" orgid="ECOLI" resource="getxml?ECOLI:RXN0-7047" /><Reaction frameid="PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN" /><Reaction frameid="KDO-8PSYNTH-RXN" orgid="ECOLI" resource="getxml?ECOLI:KDO-8PSYNTH-RXN" /><Reaction frameid="DAHPSYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:DAHPSYN-RXN" /><Reaction frameid="2.7.1.121-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.7.1.121-RXN" /><Reaction frameid="UDPNACETYLGLUCOSAMENOLPYRTRANS-RXN" orgid="ECOLI" resource="getxml?ECOLI:UDPNACETYLGLUCOSAMENOLPYRTRANS-RXN" /><Reaction frameid="2.5.1.19-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.5.1.19-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="PEPDEPHOS-RXN" orgid="ECOLI" resource="getxml?ECOLI:PEPDEPHOS-RXN" /><Reaction frameid="PEPCARBOX-RXN" orgid="ECOLI" resource="getxml?ECOLI:PEPCARBOX-RXN" /><Reaction frameid="2PGADEHYDRAT-RXN" orgid="ECOLI" resource="getxml?ECOLI:2PGADEHYDRAT-RXN" /><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="ECOLI" resource="getxml?ECOLI:PEPCARBOXYKIN-RXN" /><Reaction frameid="PEPSYNTH-RXN" orgid="ECOLI" resource="getxml?ECOLI:PEPSYNTH-RXN" /></appears-in-right-side-of>
-<regulates><Regulation ID="ECOLI:REG0-15746" detail="low" frameid="REG0-15746" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:PFRUCTPHOS-ENZRXN" detail="low" frameid="PFRUCTPHOS-ENZRXN" orgid="ECOLI"><common-name datatype="string">6-phosphofructokinase</common-name>
-<synonym datatype="string">fructose-6-p-1-kinase</synonym>
-<synonym datatype="string">fructose-6-phosphate-1-phosphotransferase</synonym>
-<enzyme><Protein frameid="6PFK-2-CPX" orgid="ECOLI" resource="getxml?ECOLI:6PFK-2-CPX" /></enzyme>
-<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="ECOLI" resource="getxml?ECOLI:6PFRUCTPHOS-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-12381" detail="low" frameid="REG0-12381" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:ISOCITLYASE-ENZRXN" detail="low" frameid="ISOCITLYASE-ENZRXN" orgid="ECOLI"><common-name datatype="string">isocitrate lyase</common-name>
-<enzyme><Protein frameid="ISOCIT-LYASE" orgid="ECOLI" resource="getxml?ECOLI:ISOCIT-LYASE" /></enzyme>
-<reaction><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ECOLI" resource="getxml?ECOLI:ISOCIT-CLEAV-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-11786" detail="low" frameid="REG0-11786" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN" detail="low" frameid="3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN" orgid="ECOLI"><common-name datatype="string">3-phosphoshikimate 1-carboxyvinyltransferase</common-name>
-<synonym datatype="string">5-enol-pyruvylshikimate-3-phosphate synthase</synonym>
-<synonym datatype="string">EPSP synthase</synonym>
-<synonym datatype="string">phosphoenolpyruvate: 3-phosphoshikimate 1-carboxyvinyl transferase</synonym>
-<synonym datatype="string">EPSPS</synonym>
-<enzyme><Protein frameid="AROA-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:AROA-MONOMER" /></enzyme>
-<reaction><Reaction frameid="2.5.1.19-RXN" orgid="ECOLI" resource="getxml?ECOLI:2.5.1.19-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-11444" detail="low" frameid="REG0-11444" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:ENZRXN0-6416" detail="low" frameid="ENZRXN0-6416" orgid="ECOLI"><common-name datatype="string">aerobic glycerol 3-phosphate dehydrogenase</common-name>
-<synonym datatype="string">G3P dehydrogenase</synonym>
-<synonym datatype="string">sn-glycerol-3-phosphate:(acceptor) 2-oxidoreductase</synonym>
-<enzyme><Protein frameid="AERGLYC3PDEHYDROG-CPLX" orgid="ECOLI" resource="getxml?ECOLI:AERGLYC3PDEHYDROG-CPLX" /></enzyme>
-<reaction><Reaction frameid="RXN0-5260" orgid="ECOLI" resource="getxml?ECOLI:RXN0-5260" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-10867" detail="low" frameid="REG0-10867" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:PHOSACETYLTRANS-ENZRXN" detail="low" frameid="PHOSACETYLTRANS-ENZRXN" orgid="ECOLI"><common-name datatype="string">phosphate acetyltransferase</common-name>
-<synonym datatype="string">phosphotransacetylase</synonym>
-<synonym datatype="string">phosphoacylase</synonym>
-<synonym datatype="string">acetyl-CoA:orthophosphate acetyltransferase</synonym>
-<enzyme><Protein frameid="PHOSACETYLTRANS-CPLX" orgid="ECOLI" resource="getxml?ECOLI:PHOSACETYLTRANS-CPLX" /></enzyme>
-<reaction><Reaction frameid="PHOSACETYLTRANS-RXN" orgid="ECOLI" resource="getxml?ECOLI:PHOSACETYLTRANS-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-10865" detail="low" frameid="REG0-10865" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction frameid="PHOSACETYLTRANS-ENZRXN" orgid="ECOLI" resource="#ECOLI:PHOSACETYLTRANS-ENZRXN" /></regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-10744" detail="low" frameid="REG0-10744" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:PGLUCISOM-ENZRXN" detail="low" frameid="PGLUCISOM-ENZRXN" orgid="ECOLI"><common-name datatype="string">glucose-6-phosphate isomerase</common-name>
-<synonym datatype="string">phosphoglucose isomerase</synonym>
-<synonym datatype="string">D-glucose-6-phosphate-ketol-isomerase</synonym>
-<enzyme><Protein frameid="CPLX0-7877" orgid="ECOLI" resource="getxml?ECOLI:CPLX0-7877" /></enzyme>
-<reaction><Reaction frameid="PGLUCISOM-RXN" orgid="ECOLI" resource="getxml?ECOLI:PGLUCISOM-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-10661" detail="low" frameid="REG0-10661" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:GLUCOKIN-ENZRXN" detail="low" frameid="GLUCOKIN-ENZRXN" orgid="ECOLI"><common-name datatype="string">glucokinase</common-name>
-<synonym datatype="string">ATP:D-glucose 6-phosphotransferase</synonym>
-<enzyme><Protein frameid="GLUCOKIN-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:GLUCOKIN-MONOMER" /></enzyme>
-<reaction><Reaction frameid="GLUCOKIN-RXN" orgid="ECOLI" resource="getxml?ECOLI:GLUCOKIN-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-10237" detail="low" frameid="REG0-10237" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:ISOCITDEH-ENZRXN" detail="low" frameid="ISOCITDEH-ENZRXN" orgid="ECOLI"><common-name datatype="string">isocitrate dehydrogenase</common-name>
-<synonym datatype="string">oxalosuccinate decarboxylase</synonym>
-<synonym datatype="string">isocitrate dehydrogenase (NADP+)</synonym>
-<enzyme><Protein frameid="ISOCITHASE-CPLX" orgid="ECOLI" resource="getxml?ECOLI:ISOCITHASE-CPLX" /></enzyme>
-<reaction><Reaction frameid="ISOCITDEH-RXN" orgid="ECOLI" resource="getxml?ECOLI:ISOCITDEH-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-9101" detail="low" frameid="REG0-9101" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:THI-P-SYN-ENZRXN" detail="low" frameid="THI-P-SYN-ENZRXN" orgid="ECOLI"><common-name datatype="string">thiamine phosphate synthase</common-name>
-<synonym datatype="string">thiamine phosphate pyrophosphorylase</synonym>
-<synonym datatype="string">2-methyl-4-amino-5-hydroxymethylpyrimidine-diphosphate: 4-methyl-5-(2-phosphoethyl)-thiazole 2-methyl-4-aminopyrimidine-5-methenyltransferase</synonym>
-<synonym datatype="string">thiamine monophosphate synthase</synonym>
-<synonym datatype="string">thiamin-phosphate pyrophosphorylase</synonym>
-<enzyme><Protein frameid="THIE-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:THIE-MONOMER" /></enzyme>
-<reaction><Reaction frameid="THI-P-SYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:THI-P-SYN-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-8814" detail="low" frameid="REG0-8814" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:F16BDEPHOS-ENZRXN" detail="low" frameid="F16BDEPHOS-ENZRXN" orgid="ECOLI"><common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
-<synonym datatype="string">fructose bisphosphatase</synonym>
-<synonym datatype="string">hexosediphosphatase</synonym>
-<synonym datatype="string">fructose-1,6-P2 1-phosphatase</synonym>
-<enzyme><Protein frameid="F16B-CPLX" orgid="ECOLI" resource="getxml?ECOLI:F16B-CPLX" /></enzyme>
-<reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="ECOLI" resource="getxml?ECOLI:F16BDEPHOS-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-8813" detail="low" frameid="REG0-8813" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction frameid="F16BDEPHOS-ENZRXN" orgid="ECOLI" resource="#ECOLI:F16BDEPHOS-ENZRXN" /></regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-8397" detail="low" frameid="REG0-8397" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:PEPSYNTH-ENZRXN" detail="low" frameid="PEPSYNTH-ENZRXN" orgid="ECOLI"><common-name datatype="string">phosphoenolpyruvate synthetase</common-name>
-<synonym datatype="string">pyruvate, water dikinase</synonym>
-<synonym datatype="string">phosphoenolpyruvate synthase</synonym>
-<synonym datatype="string">PEP synthase</synonym>
-<synonym datatype="string">ATP:pyruvate, water phosphotransferase</synonym>
-<enzyme><Protein frameid="PEPSYNTH-CPLX" orgid="ECOLI" resource="getxml?ECOLI:PEPSYNTH-CPLX" /></enzyme>
-<reaction><Reaction frameid="PEPSYNTH-RXN" orgid="ECOLI" resource="getxml?ECOLI:PEPSYNTH-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-7695" detail="low" frameid="REG0-7695" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:ICITDEHKINASE-ENZRXN" detail="low" frameid="ICITDEHKINASE-ENZRXN" orgid="ECOLI"><common-name datatype="string">isocitrate dehydrogenase kinase</common-name>
-<synonym datatype="string">ICDH kinase</synonym>
-<enzyme><Protein frameid="CPLX0-230" orgid="ECOLI" resource="getxml?ECOLI:CPLX0-230" /></enzyme>
-<reaction><Reaction frameid="PHOSICITDEHASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:PHOSICITDEHASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-7602" detail="low" frameid="REG0-7602" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:ICITDEHDEPHOSPH-ENZRXN" detail="low" frameid="ICITDEHDEPHOSPH-ENZRXN" orgid="ECOLI"><common-name datatype="string">isocitrate dehydrogenase phosphatase</common-name>
-<synonym datatype="string">ICDH phosphatase</synonym>
-<enzyme><Protein frameid="CPLX0-230" orgid="ECOLI" resource="getxml?ECOLI:CPLX0-230" /></enzyme>
-<reaction><Reaction frameid="DEPHOSICITDEHASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:DEPHOSICITDEHASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-7473" detail="low" frameid="REG0-7473" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:6PFRUCTPHOS-ENZRXN" detail="low" frameid="6PFRUCTPHOS-ENZRXN" orgid="ECOLI"><common-name datatype="string">6-phosphofructokinase</common-name>
-<synonym datatype="string">fructose-6-p-1-kinase</synonym>
-<synonym datatype="string">fructose-6-phosphate-1-phosphotransferase</synonym>
-<enzyme><Protein frameid="6PFK-1-CPX" orgid="ECOLI" resource="getxml?ECOLI:6PFK-1-CPX" /></enzyme>
-<reaction><Reaction frameid="6PFRUCTPHOS-RXN" orgid="ECOLI" resource="getxml?ECOLI:6PFRUCTPHOS-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-7199" detail="low" frameid="REG0-7199" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:PEPCARBOXYKIN-ENZRXN" detail="low" frameid="PEPCARBOXYKIN-ENZRXN" orgid="ECOLI"><common-name datatype="string">phospho&lt;i&gt;enol&lt;/i&gt;pyruvate carboxykinase (ATP)</common-name>
-<synonym datatype="string">phosphopyruvate carboxylase (ATP)</synonym>
-<synonym datatype="string">phosphoenolpyruvate carboxylase</synonym>
-<synonym datatype="string">phosphoenolpyruvate carboxykinase</synonym>
-<synonym datatype="string">ATP:oxaloacetate carboxy-lyase (transphosphorylating)</synonym>
-<enzyme><Protein frameid="PEPCARBOXYKIN-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:PEPCARBOXYKIN-MONOMER" /></enzyme>
-<reaction><Reaction frameid="PEPCARBOXYKIN-RXN" orgid="ECOLI" resource="getxml?ECOLI:PEPCARBOXYKIN-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-6940" detail="low" frameid="REG0-6940" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:METHGLYSYN-ENZRXN" detail="low" frameid="METHGLYSYN-ENZRXN" orgid="ECOLI"><common-name datatype="string">methylglyoxal synthase</common-name>
-<synonym datatype="string">glycerone-phosphate phospho-lyase</synonym>
-<enzyme><Protein frameid="METHGLYSYN-CPLX" orgid="ECOLI" resource="getxml?ECOLI:METHGLYSYN-CPLX" /></enzyme>
-<reaction><Reaction frameid="METHGLYSYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:METHGLYSYN-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-6902" detail="low" frameid="REG0-6902" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:GSADENYLATION-ENZRXN" detail="low" frameid="GSADENYLATION-ENZRXN" orgid="ECOLI"><common-name datatype="string">glutamine synthetase adenylyltransferase</common-name>
-<synonym datatype="string">glutamate-ammonia-ligase adenylyltransferase</synonym>
-<synonym datatype="string">ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
-<enzyme><Protein frameid="GLNE-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:GLNE-MONOMER" /></enzyme>
-<reaction><Reaction frameid="GSADENYLATION-RXN" orgid="ECOLI" resource="getxml?ECOLI:GSADENYLATION-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-6847" detail="low" frameid="REG0-6847" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:ENZRXN0-402" detail="low" frameid="ENZRXN0-402" orgid="ECOLI"><common-name datatype="string">fructose-1,6-bisphosphatase</common-name>
-<enzyme><Protein frameid="CPLX0-303" orgid="ECOLI" resource="getxml?ECOLI:CPLX0-303" /></enzyme>
-<reaction><Reaction frameid="F16BDEPHOS-RXN" orgid="ECOLI" resource="getxml?ECOLI:F16BDEPHOS-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="PHOSPHO-ENOL-PYRUVATE" orgid="ECOLI" resource="#ECOLI:PHOSPHO-ENOL-PYRUVATE" /></regulator>
-</Regulation>
-</regulates>
+<synonym datatype='string'>PEP</synonym>
+<synonym datatype='string'>2-(phosphooxy)- 2-propenoate</synonym>
+<monoisotopic-mw datatype='float' units='Daltons'>167.98238</monoisotopic-mw>
+<molecular-weight datatype='float' units='Daltons'>165.019</molecular-weight>
+<inchi datatype='string'>InChI=1S/C3H5O6P/c1-2(3(4)5)9-10(6,7)8/h1H2,(H,4,5)(H2,6,7,8)/p-3</inchi>
+<common-name datatype='string'>phospho&lt;i&gt;enol&lt;/i&gt;pyruvate</common-name>
 </Compound>
 </ptools-xml>

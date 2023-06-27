@@ -20,8 +20,8 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
             M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
             M00552  D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P
-ORTHOLOGY   K00134  glyceraldehyde 3-phosphate dehydrogenase [EC:1.2.1.12]
-            K00150  glyceraldehyde-3-phosphate dehydrogenase (NAD(P)) [EC:1.2.1.59]
-            K10705  glyceraldehyde-3-phosphate dehydrogenase, spermatogenic [EC:1.2.1.12]
+ORTHOLOGY   K00134  glyceraldehyde 3-phosphate dehydrogenase (phosphorylating) [EC:1.2.1.12]
+            K00150  glyceraldehyde-3-phosphate dehydrogenase (NAD(P)+) (phosphorylating) [EC:1.2.1.59]
+            K10705  glyceraldehyde-3-phosphate dehydrogenase (phosphorylating), spermatogenic [EC:1.2.1.12]
 DBLINKS     RHEA: 10303
 ///

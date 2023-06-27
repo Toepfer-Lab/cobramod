@@ -1,9 +1,10 @@
-<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?ECOLI:PYRUVFORMLY-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECOLI:PYRUVFORMLY-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECOLI:PYRUVFORMLY-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ECOLI" version="25.0"><species datatype="string">Escherichia coli</species>
-<strain datatype="string">K-12 substr. MG1655</strain>
+<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -11,31 +12,31 @@
 </dblink>
 </PGDB>
 </metadata>
-<Reaction ID="ECOLI:PYRUVFORMLY-RXN" detail="full" frameid="PYRUVFORMLY-RXN" orgid="ECOLI"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ECOLI" resource="getxml?ECOLI:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ECOLI" resource="getxml?ECOLI:Small-Molecule-Reactions" /></parent>
-<comment datatype="string">A key reaction of anaerobic glucose fermentation pathway.</comment>
-<ec-number>EC-2.3.1.54<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ECOLI:PYRUVFORMLY-ENZRXN" detail="low" frameid="PYRUVFORMLY-ENZRXN" orgid="ECOLI"><common-name datatype="string">pyruvate formate-lyase</common-name>
-<synonym datatype="string">formate C-acetyltransferase</synonym>
-<synonym datatype="string">formate acetyltransferase</synonym>
-<synonym datatype="string">acetyl-CoA:formate C-acetyltransferase</synonym>
-<enzyme><Protein frameid="PYRUVFORMLY-CPLX" orgid="ECOLI" resource="getxml?ECOLI:PYRUVFORMLY-CPLX" /></enzyme>
-<reaction><Reaction frameid="PYRUVFORMLY-RXN" orgid="ECOLI" resource="#ECOLI:PYRUVFORMLY-RXN" /></reaction>
+<Reaction ID='ECOLI:PYRUVFORMLY-RXN' orgid='ECOLI' frameid='PYRUVFORMLY-RXN' detail='full'><parent><Reaction resource='getxml?ECOLI:Chemical-Reactions' orgid='ECOLI' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ECOLI:Small-Molecule-Reactions' orgid='ECOLI' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<reaction-direction>RIGHT-TO-LEFT</reaction-direction>
+<comment datatype='string'>A key reaction of anaerobic glucose fermentation pathway.</comment>
+<gibbs-0 datatype='float' units='kcal/mol'>4.830017</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:PYRUVFORMLY-ENZRXN' orgid='ECOLI' frameid='PYRUVFORMLY-ENZRXN' detail='low'><reaction><Reaction resource='#ECOLI:PYRUVFORMLY-RXN' orgid='ECOLI' frameid='PYRUVFORMLY-RXN'/></reaction>
+<synonym datatype='string'>formate C-acetyltransferase</synonym>
+<synonym datatype='string'>formate acetyltransferase</synonym>
+<synonym datatype='string'>acetyl-CoA:formate C-acetyltransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:PYRUVFORMLY-CPLX' orgid='ECOLI' frameid='PYRUVFORMLY-CPLX'/></enzyme>
+<common-name datatype='string'>pyruvate formate-lyase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ECOLI:TDCEPYFORMLY-ENZRXN" detail="low" frameid="TDCEPYFORMLY-ENZRXN" orgid="ECOLI"><common-name datatype="string">pyruvate formate-lyase</common-name>
-<synonym datatype="string">PFL</synonym>
-<enzyme><Protein frameid="KETOBUTFORMLY-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:KETOBUTFORMLY-MONOMER" /></enzyme>
-<reaction><Reaction frameid="PYRUVFORMLY-RXN" orgid="ECOLI" resource="#ECOLI:PYRUVFORMLY-RXN" /></reaction>
+<Enzymatic-Reaction ID='ECOLI:TDCEPYFORMLY-ENZRXN' orgid='ECOLI' frameid='TDCEPYFORMLY-ENZRXN' detail='low'><reaction><Reaction resource='#ECOLI:PYRUVFORMLY-RXN' orgid='ECOLI' frameid='PYRUVFORMLY-RXN'/></reaction>
+<synonym datatype='string'>PFL</synonym>
+<enzyme><Protein resource='getxml?ECOLI:KETOBUTFORMLY-MONOMER' orgid='ECOLI' frameid='KETOBUTFORMLY-MONOMER'/></enzyme>
+<common-name datatype='string'>pyruvate formate-lyase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">4.830017</gibbs-0>
-<in-pathway><Pathway frameid="FERMENTATION-PWY" orgid="ECOLI" resource="getxml?ECOLI:FERMENTATION-PWY" /></in-pathway>
-<left><Compound frameid="FORMATE" orgid="ECOLI" resource="getxml?ECOLI:FORMATE" /></left>
-<left><Compound frameid="ACETYL-COA" orgid="ECOLI" resource="getxml?ECOLI:ACETYL-COA" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>RIGHT-TO-LEFT</reaction-direction>
-<right><Compound frameid="PYRUVATE" orgid="ECOLI" resource="getxml?ECOLI:PYRUVATE" /></right>
-<right><Compound frameid="CO-A" orgid="ECOLI" resource="getxml?ECOLI:CO-A" /></right>
+<left><Compound resource='getxml?ECOLI:FORMATE' orgid='ECOLI' frameid='FORMATE'/></left>
+<left><Compound resource='getxml?ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></left>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<ec-number>EC-2.3.1.54<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></right>
+<right><Compound resource='getxml?ECOLI:CO-A' orgid='ECOLI' frameid='CO-A'/></right>
+<in-pathway><Pathway resource='getxml?ECOLI:FERMENTATION-PWY' orgid='ECOLI' frameid='FERMENTATION-PWY'/><Pathway resource='getxml?ECOLI:PWY-5480' orgid='ECOLI' frameid='PWY-5480'/><Pathway resource='getxml?ECOLI:PWY-5485' orgid='ECOLI' frameid='PWY-5485'/></in-pathway>
 </Reaction>
 </ptools-xml>

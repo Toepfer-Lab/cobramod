@@ -1,9 +1,10 @@
-<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?ECOLI:FHLMULTI-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECOLI:FHLMULTI-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECOLI:FHLMULTI-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ECOLI" version="25.0"><species datatype="string">Escherichia coli</species>
-<strain datatype="string">K-12 substr. MG1655</strain>
+<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -11,23 +12,23 @@
 </dblink>
 </PGDB>
 </metadata>
-<Reaction ID="ECOLI:FHLMULTI-RXN" detail="full" frameid="FHLMULTI-RXN" orgid="ECOLI"><parent><Reaction class="true" frameid="Composite-Reactions" orgid="ECOLI" resource="getxml?ECOLI:Composite-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ECOLI" resource="getxml?ECOLI:Small-Molecule-Reactions" /></parent>
-<comment datatype="string">Decomposition of formate to CO2 and H2.</comment>
-<enzymatic-reaction><Enzymatic-Reaction ID="ECOLI:FHLMULTI-ENZRXN" detail="low" frameid="FHLMULTI-ENZRXN" orgid="ECOLI"><common-name datatype="string">formate hydrogenlyase complex</common-name>
-<synonym datatype="string">FHL-complex</synonym>
-<enzyme><Protein frameid="FHLMULTI-CPLX" orgid="ECOLI" resource="getxml?ECOLI:FHLMULTI-CPLX" /></enzyme>
-<reaction><Reaction frameid="FHLMULTI-RXN" orgid="ECOLI" resource="#ECOLI:FHLMULTI-RXN" /></reaction>
+<Reaction ID='ECOLI:FHLMULTI-RXN' orgid='ECOLI' frameid='FHLMULTI-RXN' detail='full'><parent><Reaction resource='getxml?ECOLI:Composite-Reactions' orgid='ECOLI' frameid='Composite-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ECOLI:Small-Molecule-Reactions' orgid='ECOLI' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<comment datatype='string'>Decomposition of formate to CO2 and H2.</comment>
+<gibbs-0 datatype='float' units='kcal/mol'>5.9941254</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:FHLMULTI-ENZRXN' orgid='ECOLI' frameid='FHLMULTI-ENZRXN' detail='low'><reaction><Reaction resource='#ECOLI:FHLMULTI-RXN' orgid='ECOLI' frameid='FHLMULTI-RXN'/></reaction>
+<synonym datatype='string'>FHL-complex</synonym>
+<enzyme><Protein resource='getxml?ECOLI:FHLMULTI-CPLX' orgid='ECOLI' frameid='FHLMULTI-CPLX'/></enzyme>
+<common-name datatype='string'>formate hydrogenlyase complex</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">5.9941254</gibbs-0>
-<in-pathway><Pathway frameid="FERMENTATION-PWY" orgid="ECOLI" resource="getxml?ECOLI:FERMENTATION-PWY" /></in-pathway>
-<left><Compound frameid="PROTON" orgid="ECOLI" resource="getxml?ECOLI:PROTON" /></left>
-<left><Compound frameid="FORMATE" orgid="ECOLI" resource="getxml?ECOLI:FORMATE" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<reaction-list><Reaction frameid="RXN0-3281" orgid="ECOLI" resource="getxml?ECOLI:RXN0-3281" /><Reaction frameid="RXN-12275" orgid="ECOLI" resource="getxml?ECOLI:RXN-12275" /></reaction-list>
-<right><Compound frameid="CARBON-DIOXIDE" orgid="ECOLI" resource="getxml?ECOLI:CARBON-DIOXIDE" /></right>
-<right><Compound frameid="HYDROGEN-MOLECULE" orgid="ECOLI" resource="getxml?ECOLI:HYDROGEN-MOLECULE" /></right>
+<left><Compound resource='getxml?ECOLI:PROTON' orgid='ECOLI' frameid='PROTON'/></left>
+<left><Compound resource='getxml?ECOLI:FORMATE' orgid='ECOLI' frameid='FORMATE'/></left>
+<reaction-list><Reaction resource='getxml?ECOLI:RXN0-3281' orgid='ECOLI' frameid='RXN0-3281'/><Reaction resource='getxml?ECOLI:HYDROG-RXN' orgid='ECOLI' frameid='HYDROG-RXN'/></reaction-list>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<right><Compound resource='getxml?ECOLI:CARBON-DIOXIDE' orgid='ECOLI' frameid='CARBON-DIOXIDE'/></right>
+<right><Compound resource='getxml?ECOLI:HYDROGEN-MOLECULE' orgid='ECOLI' frameid='HYDROGEN-MOLECULE'/></right>
+<in-pathway><Pathway resource='getxml?ECOLI:FERMENTATION-PWY' orgid='ECOLI' frameid='FERMENTATION-PWY'/><Pathway resource='getxml?ECOLI:PWY-6772' orgid='ECOLI' frameid='PWY-6772'/></in-pathway>
 </Reaction>
 </ptools-xml>

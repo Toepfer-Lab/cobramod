@@ -1,13 +1,26 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:ACETALD-DEHYDROG-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:ACETALD-DEHYDROG-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:ACETALD-DEHYDROG-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:ACETALD-DEHYDROG-RXN" detail="full" frameid="ACETALD-DEHYDROG-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:ACETALD-DEHYDROG-RXN' orgid='ARA' frameid='ACETALD-DEHYDROG-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<ec-number>EC-1.2.1.10<official>T</official>
+</ec-number>
+<in-pathway><Pathway resource='getxml?ARA:ETOH-ACETYLCOA-ANA-PWY' orgid='ARA' frameid='ETOH-ACETYLCOA-ANA-PWY'/></in-pathway>
+<left><Compound resource='getxml?ARA:NAD' orgid='ARA' frameid='NAD'/></left>
+<left><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></left>
+<left><Compound resource='getxml?ARA:ACETALD' orgid='ARA' frameid='ACETALD'/></left>
+<gibbs-0 datatype='float' units='kcal/mol'>-7.378174</gibbs-0>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
+<right><Compound resource='getxml?ARA:NADH' orgid='ARA' frameid='NADH'/></right>
+<right><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <dblink><dblink-db>PIR</dblink-db>
 <dblink-oid>B55511</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -48,17 +61,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T31270</dblink-URL>
 </dblink>
-<ec-number>EC-1.2.1.10<official>T</official>
-</ec-number>
-<gibbs-0 datatype="float" units="kcal/mol">-7.378174</gibbs-0>
-<in-pathway><Pathway frameid="ETOH-ACETYLCOA-ANA-PWY" orgid="ARA" resource="getxml?ARA:ETOH-ACETYLCOA-ANA-PWY" /></in-pathway>
-<left><Compound frameid="NAD" orgid="ARA" resource="getxml?ARA:NAD" /></left>
-<left><Compound frameid="CO-A" orgid="ARA" resource="getxml?ARA:CO-A" /></left>
-<left><Compound frameid="ACETALD" orgid="ARA" resource="getxml?ARA:ACETALD" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
-<right><Compound frameid="NADH" orgid="ARA" resource="getxml?ARA:NADH" /></right>
-<right><Compound frameid="ACETYL-COA" orgid="ARA" resource="getxml?ARA:ACETYL-COA" /></right>
 </Reaction>
 </ptools-xml>

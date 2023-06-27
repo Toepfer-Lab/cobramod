@@ -1,42 +1,43 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-2221"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:RXN-2221'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-2221</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:RXN-2221" detail="full" frameid="RXN-2221" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:RXN-2221' orgid='ARA' frameid='RXN-2221' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<comment datatype='string'>This reaction is unbalanced. It is a proposed reaction in[&lt;a href=&quot;/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bGrubb03%5d&quot;&gt;GRUBB03&lt;/a&gt;].</comment>
 <ec-number>EC-1.14.13.237</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-5309" detail="low" frameid="ENZRXNQT-5309" orgid="ARA"><enzyme><Protein frameid="AT5G07800-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G07800-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-2221" orgid="ARA" resource="#ARA:RXN-2221" /></reaction>
-<common-name datatype="string">Aliphatic glucosinolate S-oxygenase</common-name>
+<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
+<left><Compound resource='getxml?ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE' orgid='ARA' frameid='3-METHYLTHIOPROPYL-GLUCOSINOLATE'/></left>
+<left><Compound resource='getxml?ARA:OXYGEN-MOLECULE' orgid='ARA' frameid='OXYGEN-MOLECULE'/></left>
+<left><Compound resource='getxml?ARA:NADPH' orgid='ARA' frameid='NADPH'/></left>
+<left><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></left>
+<gibbs-0 datatype='float' units='kcal/mol'>-93.99054</gibbs-0>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE' orgid='ARA' frameid='3-METHYLSULFINYLPROPYL-GLUCOSINOLATE'/></right>
+<right><Compound resource='getxml?ARA:NADP' orgid='ARA' frameid='NADP'/></right>
+<right><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-5309' orgid='ARA' frameid='ENZRXNQT-5309' detail='low'><common-name datatype='string'>Aliphatic glucosinolate S-oxygenase</common-name>
+<reaction><Reaction resource='#ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></reaction>
+<enzyme><Protein resource='getxml?ARA:AT5G07800-MONOMER' orgid='ARA' frameid='AT5G07800-MONOMER'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-12515" detail="low" frameid="ENZRXNQT-12515" orgid="ARA"><enzyme><Protein frameid="AT1G62560-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G62560-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-2221" orgid="ARA" resource="#ARA:RXN-2221" /></reaction>
-<common-name datatype="string">Aliphatic glucosinolate S-oxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-12515' orgid='ARA' frameid='ENZRXNQT-12515' detail='low'><common-name datatype='string'>Aliphatic glucosinolate S-oxygenase</common-name>
+<reaction><Reaction resource='#ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></reaction>
+<enzyme><Protein resource='getxml?ARA:AT1G62560-MONOMER' orgid='ARA' frameid='AT1G62560-MONOMER'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-12514" detail="low" frameid="ENZRXNQT-12514" orgid="ARA"><enzyme><Protein frameid="AT1G62540-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G62540-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-2221" orgid="ARA" resource="#ARA:RXN-2221" /></reaction>
-<common-name datatype="string">Aliphatic glucosinolate S-oxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-12514' orgid='ARA' frameid='ENZRXNQT-12514' detail='low'><common-name datatype='string'>Aliphatic glucosinolate S-oxygenase</common-name>
+<reaction><Reaction resource='#ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></reaction>
+<enzyme><Protein resource='getxml?ARA:AT1G62540-MONOMER' orgid='ARA' frameid='AT1G62540-MONOMER'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-12513" detail="low" frameid="ENZRXNQT-12513" orgid="ARA"><enzyme><Protein frameid="AT1G65860-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G65860-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-2221" orgid="ARA" resource="#ARA:RXN-2221" /></reaction>
-<common-name datatype="string">Aliphatic glucosinolate S-oxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-12513' orgid='ARA' frameid='ENZRXNQT-12513' detail='low'><common-name datatype='string'>Aliphatic glucosinolate S-oxygenase</common-name>
+<reaction><Reaction resource='#ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></reaction>
+<enzyme><Protein resource='getxml?ARA:AT1G65860-MONOMER' orgid='ARA' frameid='AT1G65860-MONOMER'/></enzyme>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-93.99054</gibbs-0>
-<in-pathway><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></in-pathway>
-<left><Compound frameid="3-METHYLTHIOPROPYL-GLUCOSINOLATE" orgid="ARA" resource="getxml?ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE" /></left>
-<left><Compound frameid="OXYGEN-MOLECULE" orgid="ARA" resource="getxml?ARA:OXYGEN-MOLECULE" /></left>
-<left><Compound frameid="NADPH" orgid="ARA" resource="getxml?ARA:NADPH" /></left>
-<left><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" orgid="ARA" resource="getxml?ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE" /></right>
-<right><Compound frameid="NADP" orgid="ARA" resource="getxml?ARA:NADP" /></right>
-<right><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></right>
-<comment datatype="string">This reaction is unbalanced. It is a proposed reaction in[&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bGrubb03%5d"&gt;GRUBB03&lt;/a&gt;].</comment>
 </Reaction>
 </ptools-xml>

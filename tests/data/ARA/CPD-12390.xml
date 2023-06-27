@@ -1,18 +1,50 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-12390"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-12390'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-12390</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Compound ID="ARA:CPD-12390" detail="full" frameid="CPD-12390" orgid="ARA"><parent><Compound class="true" frameid="CPD-19474" orgid="ARA" resource="getxml?ARA:CPD-19474" /></parent>
-<cml><molecule formalCharge="-1" id="CPD-12390" title="(E)-1-(glutathion-S-yl)-N-hydroxy-omega-(methylsulfanyl)butan-1-imine"><atomArray><atom elementType="C" id="CPD-12390-atom1" x2="7147.0" y2="3713.0" /><atom elementType="C" id="CPD-12390-atom2" x2="5002.0" y2="3301.0" /><atom elementType="C" id="CPD-12390-atom3" x2="4287.0" y2="3713.0" /><atom elementType="C" id="CPD-12390-atom4" x2="714.0" y2="2475.0" /><atom elementType="C" id="CPD-12390-atom5" x2="1429.0" y2="2062.0" /><atom elementType="C" id="CPD-12390-atom6" x2="5716.0" y2="3713.0" /><atom elementType="C" id="CPD-12390-atom7" x2="5001.0" y2="825.0" /><atom elementType="C" id="CPD-12390-atom8" x2="2858.0" y2="2062.0" /><atom elementType="C" id="CPD-12390-atom9" x2="714.0" y2="3300.0" /><atom elementType="C" id="CPD-12390-atom10" x2="2858.0" y2="1238.0" /><atom elementType="C" id="CPD-12390-atom11" x2="1429.0" y2="1238.0" /><atom elementType="C" id="CPD-12390-atom12" x2="3572.0" y2="3301.0" /><atom elementType="C" id="CPD-12390-atom13" x2="5715.0" y2="1238.0" /><atom elementType="C" id="CPD-12390-atom14" x2="3572.0" y2="825.0" /><atom elementType="C" id="CPD-12390-atom15" x2="1429.0" y2="3712.0" /><atom elementType="N" formalCharge="1" id="CPD-12390-atom16" x2="0.0" y2="3712.0" /><atom elementType="N" id="CPD-12390-atom17" x2="4287.0" y2="1238.0" /><atom elementType="N" id="CPD-12390-atom18" x2="2143.0" y2="825.0" /><atom elementType="N" id="CPD-12390-atom19" x2="2858.0" y2="3713.0" /><atom elementType="O" id="CPD-12390-atom20" x2="714.0" y2="825.0" /><atom elementType="O" formalCharge="-1" id="CPD-12390-atom21" x2="6430.0" y2="825.0" /><atom elementType="O" id="CPD-12390-atom22" x2="5715.0" y2="2062.0" /><atom elementType="O" id="CPD-12390-atom23" x2="3572.0" y2="0.0" /><atom elementType="O" id="CPD-12390-atom24" x2="1429.0" y2="4537.0" /><atom elementType="O" formalCharge="-1" id="CPD-12390-atom25" x2="2143.0" y2="3300.0" /><atom elementType="O" id="CPD-12390-atom26" x2="2858.0" y2="4539.0" /><atom elementType="S" id="CPD-12390-atom27" x2="6432.0" y2="3301.0" /><atom elementType="S" id="CPD-12390-atom28" x2="3572.0" y2="2475.0" /></atomArray>
-<bondArray><bond atomRefs="CPD-12390-atom22 CPD-12390-atom13" id="CPD-12390-bond1" order="2" /><bond atomRefs="CPD-12390-atom21 CPD-12390-atom13" id="CPD-12390-bond2" order="1" /><bond atomRefs="CPD-12390-atom17 CPD-12390-atom7" id="CPD-12390-bond3" order="1" /><bond atomRefs="CPD-12390-atom17 CPD-12390-atom14" id="CPD-12390-bond4" order="1" /><bond atomRefs="CPD-12390-atom14 CPD-12390-atom23" id="CPD-12390-bond5" order="2" /><bond atomRefs="CPD-12390-atom14 CPD-12390-atom10" id="CPD-12390-bond6" order="1" /><bond atomRefs="CPD-12390-atom7 CPD-12390-atom13" id="CPD-12390-bond7" order="1" /><bond atomRefs="CPD-12390-atom10 CPD-12390-atom18" id="CPD-12390-bond8" order="1" /><bond atomRefs="CPD-12390-atom10 CPD-12390-atom8" id="CPD-12390-bond9" order="1" /><bond atomRefs="CPD-12390-atom8 CPD-12390-atom28" id="CPD-12390-bond10" order="1" /><bond atomRefs="CPD-12390-atom12 CPD-12390-atom19" id="CPD-12390-bond11" order="2" /><bond atomRefs="CPD-12390-atom19 CPD-12390-atom26" id="CPD-12390-bond12" order="1" /><bond atomRefs="CPD-12390-atom12 CPD-12390-atom3" id="CPD-12390-bond13" order="1" /><bond atomRefs="CPD-12390-atom3 CPD-12390-atom2" id="CPD-12390-bond14" order="1" /><bond atomRefs="CPD-12390-atom2 CPD-12390-atom6" id="CPD-12390-bond15" order="1" /><bond atomRefs="CPD-12390-atom6 CPD-12390-atom27" id="CPD-12390-bond16" order="1" /><bond atomRefs="CPD-12390-atom27 CPD-12390-atom1" id="CPD-12390-bond17" order="1" /><bond atomRefs="CPD-12390-atom28 CPD-12390-atom12" id="CPD-12390-bond18" order="1" /><bond atomRefs="CPD-12390-atom11 CPD-12390-atom5" id="CPD-12390-bond19" order="1" /><bond atomRefs="CPD-12390-atom5 CPD-12390-atom4" id="CPD-12390-bond20" order="1" /><bond atomRefs="CPD-12390-atom4 CPD-12390-atom9" id="CPD-12390-bond21" order="1" /><bond atomRefs="CPD-12390-atom9 CPD-12390-atom15" id="CPD-12390-bond22" order="1" /><bond atomRefs="CPD-12390-atom15 CPD-12390-atom24" id="CPD-12390-bond23" order="2" /><bond atomRefs="CPD-12390-atom15 CPD-12390-atom25" id="CPD-12390-bond24" order="1" /><bond atomRefs="CPD-12390-atom9 CPD-12390-atom16" id="CPD-12390-bond25" order="1" /><bond atomRefs="CPD-12390-atom11 CPD-12390-atom20" id="CPD-12390-bond26" order="2" /><bond atomRefs="CPD-12390-atom18 CPD-12390-atom11" id="CPD-12390-bond27" order="1" /></bondArray>
-<formula concise="C 15 H 25 N 4 O 7 S 2" /><float title="molecularWeight" units="g/mol">437.505</float>
-<string title="smiles">CSCCCC(/SC[C@H](NC(=O)CC[C@H]([NH3+])C([O-])=O)C(=O)NCC([O-])=O)=N\O</string>
+<Compound ID='ARA:CPD-12390' orgid='ARA' frameid='CPD-12390' detail='full'><parent><Compound resource='getxml?ARA:CPD-19474' orgid='ARA' frameid='CPD-19474' class='true'/></parent>
+<cml><molecule id='CPD-12390' title='(Z)-1-(glutathion-S-yl)-N-hydroxy-omega-(methylsulfanyl)butan-1-imine' formalCharge='-1'><atomArray><atom id='CPD-12390-atom1' elementType='C' x2='9290.0' y2='0.0'/><atom id='CPD-12390-atom2' elementType='C' x2='7145.0' y2='412.0'/><atom id='CPD-12390-atom3' elementType='C' x2='6430.0' y2='0.0'/><atom id='CPD-12390-atom4' elementType='C' x2='2143.0' y2='2475.0'/><atom id='CPD-12390-atom5' elementType='C' x2='2858.0' y2='2887.0'/><atom id='CPD-12390-atom6' elementType='C' x2='7859.0' y2='0.0'/><atom id='CPD-12390-atom7' elementType='C' x2='7144.0' y2='2888.0'/><atom id='CPD-12390-atom8' elementType='C' x2='5001.0' y2='1651.0'/><atom id='CPD-12390-atom9' elementType='C' x2='1428.0' y2='2887.0'/><atom id='CPD-12390-atom10' elementType='C' x2='5001.0' y2='2475.0'/><atom id='CPD-12390-atom11' elementType='C' x2='3572.0' y2='2475.0'/><atom id='CPD-12390-atom12' elementType='C' x2='5715.0' y2='412.0'/><atom id='CPD-12390-atom13' elementType='C' x2='7858.0' y2='2475.0'/><atom id='CPD-12390-atom14' elementType='C' x2='5715.0' y2='2888.0'/><atom id='CPD-12390-atom15' elementType='C' x2='714.0' y2='2474.0'/><atom id='CPD-12390-atom16' elementType='N' x2='1429.0' y2='3711.0' formalCharge='1'/><atom id='CPD-12390-atom17' elementType='N' x2='6430.0' y2='2475.0'/><atom id='CPD-12390-atom18' elementType='N' x2='4286.0' y2='2888.0'/><atom id='CPD-12390-atom19' elementType='N' x2='5001.0' y2='0.0'/><atom id='CPD-12390-atom20' elementType='O' x2='3572.0' y2='1650.0'/><atom id='CPD-12390-atom21' elementType='O' x2='8573.0' y2='2888.0' formalCharge='-1'/><atom id='CPD-12390-atom22' elementType='O' x2='7858.0' y2='1651.0'/><atom id='CPD-12390-atom23' elementType='O' x2='5715.0' y2='3713.0'/><atom id='CPD-12390-atom24' elementType='O' x2='714.0' y2='1649.0'/><atom id='CPD-12390-atom25' elementType='O' x2='0.0' y2='2886.0' formalCharge='-1'/><atom id='CPD-12390-atom26' elementType='O' x2='4286.0' y2='413.0'/><atom id='CPD-12390-atom27' elementType='S' x2='8575.0' y2='412.0'/><atom id='CPD-12390-atom28' elementType='S' x2='5715.0' y2='1238.0'/></atomArray>
+<bondArray><bond id='CPD-12390-bond1' atomRefs='CPD-12390-atom22 CPD-12390-atom13' order='2'/><bond id='CPD-12390-bond2' atomRefs='CPD-12390-atom21 CPD-12390-atom13' order='1'/><bond id='CPD-12390-bond3' atomRefs='CPD-12390-atom17 CPD-12390-atom7' order='1'/><bond id='CPD-12390-bond4' atomRefs='CPD-12390-atom17 CPD-12390-atom14' order='1'/><bond id='CPD-12390-bond5' atomRefs='CPD-12390-atom14 CPD-12390-atom23' order='2'/><bond id='CPD-12390-bond6' atomRefs='CPD-12390-atom14 CPD-12390-atom10' order='1'/><bond id='CPD-12390-bond7' atomRefs='CPD-12390-atom7 CPD-12390-atom13' order='1'/><bond id='CPD-12390-bond8' atomRefs='CPD-12390-atom10 CPD-12390-atom18' order='1'/><bond id='CPD-12390-bond9' atomRefs='CPD-12390-atom10 CPD-12390-atom8' order='1'/><bond id='CPD-12390-bond10' atomRefs='CPD-12390-atom8 CPD-12390-atom28' order='1'/><bond id='CPD-12390-bond11' atomRefs='CPD-12390-atom12 CPD-12390-atom19' order='2'/><bond id='CPD-12390-bond12' atomRefs='CPD-12390-atom19 CPD-12390-atom26' order='1'/><bond id='CPD-12390-bond13' atomRefs='CPD-12390-atom12 CPD-12390-atom3' order='1'/><bond id='CPD-12390-bond14' atomRefs='CPD-12390-atom3 CPD-12390-atom2' order='1'/><bond id='CPD-12390-bond15' atomRefs='CPD-12390-atom2 CPD-12390-atom6' order='1'/><bond id='CPD-12390-bond16' atomRefs='CPD-12390-atom6 CPD-12390-atom27' order='1'/><bond id='CPD-12390-bond17' atomRefs='CPD-12390-atom27 CPD-12390-atom1' order='1'/><bond id='CPD-12390-bond18' atomRefs='CPD-12390-atom28 CPD-12390-atom12' order='1'/><bond id='CPD-12390-bond19' atomRefs='CPD-12390-atom11 CPD-12390-atom5' order='1'/><bond id='CPD-12390-bond20' atomRefs='CPD-12390-atom5 CPD-12390-atom4' order='1'/><bond id='CPD-12390-bond21' atomRefs='CPD-12390-atom4 CPD-12390-atom9' order='1'/><bond id='CPD-12390-bond22' atomRefs='CPD-12390-atom9 CPD-12390-atom15' order='1'/><bond id='CPD-12390-bond23' atomRefs='CPD-12390-atom15 CPD-12390-atom24' order='2'/><bond id='CPD-12390-bond24' atomRefs='CPD-12390-atom15 CPD-12390-atom25' order='1'/><bond id='CPD-12390-bond25' atomRefs='CPD-12390-atom9 CPD-12390-atom16' order='1'/><bond id='CPD-12390-bond26' atomRefs='CPD-12390-atom11 CPD-12390-atom20' order='2'/><bond id='CPD-12390-bond27' atomRefs='CPD-12390-atom18 CPD-12390-atom11' order='1'/></bondArray>
+<formula concise='C 15 H 25 N 4 O 7 S 2'/><float title='molecularWeight' units='g/mol'>437.505</float>
+<string title='smiles'>CSCCCC(\SC[C@H](NC(=O)CC[C@H]([NH3+])C([O-])=O)C(=O)NCC([O-])=O)=N\O</string>
 </molecule>
 </cml>
+<common-name datatype='string'>(&lt;i&gt;Z&lt;/i&gt;)-1-(glutathion-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine</common-name>
+<inchi datatype='string'>InChI=1S/C15H26N4O7S2/c1-27-6-2-3-12(19-26)28-8-10(14(23)17-7-13(21)22)18-11(20)5-4-9(16)15(24)25/h9-10,26H,2-8,16H2,1H3,(H,17,23)(H,18,20)(H,21,22)(H,24,25)/p-1/b19-12-/t9-,10-/m0/s1</inchi>
+<inchi-key datatype='string'>InChIKey=MZIFZNVMGWJZJS-CKPZPDRJSA-M</inchi-key>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-11430' orgid='ARA' frameid='RXN-11430'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>29.20598</gibbs-0>
+<molecular-weight datatype='float' units='Daltons'>437.505</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-18161' orgid='ARA' frameid='RXN-18161'/><Reaction resource='getxml?ARA:RXN-11422' orgid='ARA' frameid='RXN-11422'/></appears-in-right-side-of>
+<credits><created><date datatype='date'>2010-04-26</date>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
+<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
+<abbrev-name datatype='string'>PMN</abbrev-name>
+<url datatype='string'>http://plantcyc.org</url>
+</Organization>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype='string'>TAIR</abbrev-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></created>
+</credits>
+<monoisotopic-mw datatype='float' units='Daltons'>438.1243</monoisotopic-mw>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000095635924</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000095635924</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>136061</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:136061</dblink-URL>
+</dblink>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM10224</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -23,26 +55,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=90657180</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">29.20598</gibbs-0>
-<inchi datatype="string">InChI=1S/C15H26N4O7S2/c1-27-6-2-3-12(19-26)28-8-10(14(23)17-7-13(21)22)18-11(20)5-4-9(16)15(24)25/h9-10,26H,2-8,16H2,1H3,(H,17,23)(H,18,20)(H,21,22)(H,24,25)/p-1/b19-12+/t9-,10-/m0/s1</inchi>
-<inchi-key datatype="string">InChIKey=MZIFZNVMGWJZJS-VLYKUNOGSA-M</inchi-key>
-<molecular-weight datatype="float" units="Daltons">437.505</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">438.1243</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="RXN-11430" orgid="ARA" resource="getxml?ARA:RXN-11430" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-18161" orgid="ARA" resource="getxml?ARA:RXN-18161" /><Reaction frameid="RXN-11422" orgid="ARA" resource="getxml?ARA:RXN-11422" /></appears-in-right-side-of>
-<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-1-(glutathion-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine</common-name>
-<credits><created><date datatype="date">2010-04-26</date>
-<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><url datatype="string">http://plantcyc.org</url>
-<abbrev-name datatype="string">PMN</abbrev-name>
-<common-name datatype="string">Carnegie Institution for Science</common-name>
-</Organization>
-<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
-<common-name datatype="string">The Arabidopsis Information Resource</common-name>
-</Organization>
-</affiliations>
-<common-name datatype="string">Peifen Zhang</common-name>
-</Person>
-<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
-</credits>
 </Compound>
 </ptools-xml>

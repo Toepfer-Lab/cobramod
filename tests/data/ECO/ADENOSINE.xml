@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:ADENOSINE'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:ADENOSINE</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE' detail='full'><parent><Compound resource='getxml?ECOLI:Nucleosides' orgid='ECOLI' frameid='Nucleosides' class='true'/></parent>
+<parent><Compound resource='getxml?ECOLI:Purine-Ribonucleosides' orgid='ECOLI' frameid='Purine-Ribonucleosides' class='true'/></parent>
+<cml><molecule id='ADENOSINE' title='adenosine' formalCharge='0'><atomArray><atom id='ADENOSINE-atom1' elementType='C' x2='611.0' y2='2234.0'/><atom id='ADENOSINE-atom2' elementType='C' x2='3703.0' y2='0.0'/><atom id='ADENOSINE-atom3' elementType='C' x2='4115.0' y2='2699.0'/><atom id='ADENOSINE-atom4' elementType='C' x2='1325.0' y2='2647.0'/><atom id='ADENOSINE-atom5' elementType='C' x2='4528.0' y2='1430.0'/><atom id='ADENOSINE-atom6' elementType='C' x2='1585.0' y2='3430.0'/><atom id='ADENOSINE-atom7' elementType='C' x2='2418.0' y2='3430.0'/><atom id='ADENOSINE-atom8' elementType='C' x2='4940.0' y2='715.0'/><atom id='ADENOSINE-atom9' elementType='C' x2='3703.0' y2='1430.0'/><atom id='ADENOSINE-atom10' elementType='C' x2='2733.0' y2='2626.0'/><atom id='ADENOSINE-atom11' elementType='N' x2='5765.0' y2='715.0'/><atom id='ADENOSINE-atom12' elementType='N' x2='4528.0' y2='0.0'/><atom id='ADENOSINE-atom13' elementType='N' x2='3290.0' y2='715.0'/><atom id='ADENOSINE-atom14' elementType='N' x2='4783.0' y2='2214.0'/><atom id='ADENOSINE-atom15' elementType='N' x2='3448.0' y2='2214.0'/><atom id='ADENOSINE-atom16' elementType='O' x2='0.0' y2='2596.0'/><atom id='ADENOSINE-atom17' elementType='O' x2='1115.0' y2='4101.0'/><atom id='ADENOSINE-atom18' elementType='O' x2='2830.0' y2='4144.0'/><atom id='ADENOSINE-atom19' elementType='O' x2='1993.0' y2='2168.0'/></atomArray>
+<bondArray><bond id='ADENOSINE-bond1' atomRefs='ADENOSINE-atom7 ADENOSINE-atom10' order='1'/><bond id='ADENOSINE-bond2' atomRefs='ADENOSINE-atom6 ADENOSINE-atom4' order='1'/><bond id='ADENOSINE-bond3' atomRefs='ADENOSINE-atom6 ADENOSINE-atom7' order='1'/><bond id='ADENOSINE-bond4' atomRefs='ADENOSINE-atom19 ADENOSINE-atom10' order='1'/><bond id='ADENOSINE-bond5' atomRefs='ADENOSINE-atom19 ADENOSINE-atom4' order='1'/><bond id='ADENOSINE-bond6' atomRefs='ADENOSINE-atom6 ADENOSINE-atom17' order='1'/><bond id='ADENOSINE-bond7' atomRefs='ADENOSINE-atom4 ADENOSINE-atom1' order='1'/><bond id='ADENOSINE-bond8' atomRefs='ADENOSINE-atom10 ADENOSINE-atom15' order='1'/><bond id='ADENOSINE-bond9' atomRefs='ADENOSINE-atom1 ADENOSINE-atom16' order='1'/><bond id='ADENOSINE-bond10' atomRefs='ADENOSINE-atom12 ADENOSINE-atom2' order='2'/><bond id='ADENOSINE-bond11' atomRefs='ADENOSINE-atom2 ADENOSINE-atom13' order='1'/><bond id='ADENOSINE-bond12' atomRefs='ADENOSINE-atom13 ADENOSINE-atom9' order='2'/><bond id='ADENOSINE-bond13' atomRefs='ADENOSINE-atom9 ADENOSINE-atom5' order='1'/><bond id='ADENOSINE-bond14' atomRefs='ADENOSINE-atom5 ADENOSINE-atom8' order='2'/><bond id='ADENOSINE-bond15' atomRefs='ADENOSINE-atom12 ADENOSINE-atom8' order='1'/><bond id='ADENOSINE-bond16' atomRefs='ADENOSINE-atom3 ADENOSINE-atom14' order='2'/><bond id='ADENOSINE-bond17' atomRefs='ADENOSINE-atom5 ADENOSINE-atom14' order='1'/><bond id='ADENOSINE-bond18' atomRefs='ADENOSINE-atom8 ADENOSINE-atom11' order='1'/><bond id='ADENOSINE-bond19' atomRefs='ADENOSINE-atom3 ADENOSINE-atom15' order='1'/><bond id='ADENOSINE-bond20' atomRefs='ADENOSINE-atom15 ADENOSINE-atom9' order='1'/><bond id='ADENOSINE-bond21' atomRefs='ADENOSINE-atom7 ADENOSINE-atom18' order='1'/></bondArray>
+<formula concise='C 10 H 13 N 5 O 4'/><float title='molecularWeight' units='g/mol'>267.244</float>
+<string title='smiles'>C(O)[C@H]3(O[C@@H](N1(C2(\C(\N=C/1)=C(N)/N=C\N=2)))[C@H](O)[C@H](O)3)</string>
+<string title='systematicName'>(2R,3R,4S,5R)-2-(6-aminopurin-9-yl)-5-(hydroxymethyl)oxolane-3,4-diol</string>
+</molecule>
+</cml>
+<regulates><Regulation ID='ECOLI:REG0-12186' orgid='ECOLI' frameid='REG0-12186' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7912' orgid='ECOLI' frameid='ENZRXN0-7912' detail='low'><reaction><Reaction resource='getxml?ECOLI:RXN-16165' orgid='ECOLI' frameid='RXN-16165'/></reaction>
+<synonym datatype='string'>methionyl-tRNA synthetase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:METG-CPLX' orgid='ECOLI' frameid='METG-CPLX'/></enzyme>
+<common-name datatype='string'>methionine&amp;mdash;tRNA ligase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11691' orgid='ECOLI' frameid='REG0-11691' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-6184' orgid='ECOLI' frameid='ENZRXN0-6184' detail='low'><reaction><Reaction resource='getxml?ECOLI:RXN-12458' orgid='ECOLI' frameid='RXN-12458'/></reaction>
+<synonym datatype='string'>tRNA (guanine-N1-)-methyltransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:CPLX0-3950' orgid='ECOLI' frameid='CPLX0-3950'/></enzyme>
+<common-name datatype='string'>tRNA m&lt;sup&gt;1&lt;/sup&gt;G37 methyltransferase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8272' orgid='ECOLI' frameid='REG0-8272' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:DAPASYN-ENZRXN' orgid='ECOLI' frameid='DAPASYN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:DAPASYN-RXN' orgid='ECOLI' frameid='DAPASYN-RXN'/></reaction>
+<synonym datatype='string'>7,8-diamino-pelargonic acid aminotransferase</synonym>
+<synonym datatype='string'>DAPA aminotransferase</synonym>
+<synonym datatype='string'>7,8-diaminonanoate transaminase</synonym>
+<synonym datatype='string'>DAPA transaminase</synonym>
+<synonym datatype='string'>S-adenosyl-L-methionine:8-amino-7-oxononanoate aminotransferase</synonym>
+<synonym datatype='string'>DAPA synthetase</synonym>
+<synonym datatype='string'>DAPA synthase</synonym>
+<synonym datatype='string'>adenosylmethionine-8-amino-7-oxononanoate aminotransferase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:DAPASYN-CPLX' orgid='ECOLI' frameid='DAPASYN-CPLX'/></enzyme>
+<common-name datatype='string'>7,8-diaminopelargonic acid synthase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8066' orgid='ECOLI' frameid='REG0-8066' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:DEOXYGUANPHOSPHOR-ENZRXN' orgid='ECOLI' frameid='DEOXYGUANPHOSPHOR-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:DEOXYGUANPHOSPHOR-RXN' orgid='ECOLI' frameid='DEOXYGUANPHOSPHOR-RXN'/></reaction>
+<enzyme><Protein resource='getxml?ECOLI:DEOD-CPLX' orgid='ECOLI' frameid='DEOD-CPLX'/></enzyme>
+<common-name datatype='string'>deoxyguanosine phosphorylase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></regulator>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7540' orgid='ECOLI' frameid='REG0-7540' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GMP-SYN-NH3-ENZRXN' orgid='ECOLI' frameid='GMP-SYN-NH3-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:GMP-SYN-NH3-RXN' orgid='ECOLI' frameid='GMP-SYN-NH3-RXN'/></reaction>
+<synonym datatype='string'>xanthosine-5'-phosphate ammonia ligase</synonym>
+<synonym datatype='string'>GMP synthetase</synonym>
+<synonym datatype='string'>XMP aminase</synonym>
+<synonym datatype='string'>GMP synthetase (ammonia dependent)</synonym>
+<synonym datatype='string'>xanthosine 5'-phosphate aminase</synonym>
+<enzyme><Protein resource='getxml?ECOLI:GMP-SYN-CPLX' orgid='ECOLI' frameid='GMP-SYN-CPLX'/></enzyme>
+<common-name datatype='string'>xanthosine-5'-phosphate:ammonia ligase (AMP-forming)</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></regulator>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=OIRDTQYFTABQOQ-KQYNXXCUSA-N</inchi-key>
+<gibbs-0 datatype='float' units='kcal/mol'>87.03457</gibbs-0>
+<systematic-name datatype='string'>(2R,3R,4S,5R)-2-(6-aminopurin-9-yl)-5-(hydroxymethyl)oxolane-3,4-diol</systematic-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN-108A' orgid='ECOLI' frameid='TRANS-RXN-108A'/><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/><Reaction resource='getxml?ECOLI:ADENOSINE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='ADENOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:ADENPHOSPHOR-RXN' orgid='ECOLI' frameid='ADENPHOSPHOR-RXN'/></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN-108A' orgid='ECOLI' frameid='TRANS-RXN-108A'/><Reaction resource='getxml?ECOLI:RXN-14513' orgid='ECOLI' frameid='RXN-14513'/><Reaction resource='getxml?ECOLI:RXN-14126' orgid='ECOLI' frameid='RXN-14126'/><Reaction resource='getxml?ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN'/></appears-in-right-side-of>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000002169830</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000002169830</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00182</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00182</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM212</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM212</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Adenosine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Adenosine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>adn</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/adn</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC16335</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC16335</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00050</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00050</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB00640</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB00640</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>18660726</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/18660726</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>60961</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=60961</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>16335</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16335</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00212</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00212</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>58-61-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-61-7</dblink-URL>
+</dblink>
+<synonym datatype='string'>adenine-D-ribose</synonym>
+<synonym datatype='string'>9-&amp;beta;-D-ribofuranosyl-9H-purin-6-amine</synonym>
+<synonym datatype='string'>9-&amp;beta;-D-ribofuranosidoadenine</synonym>
+<synonym datatype='string'>adenine riboside</synonym>
+<monoisotopic-mw datatype='float' units='Daltons'>267.09674</monoisotopic-mw>
+<molecular-weight datatype='float' units='Daltons'>267.244</molecular-weight>
+<inchi datatype='string'>InChI=1S/C10H13N5O4/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(18)6(17)4(1-16)19-10/h2-4,6-7,10,16-18H,1H2,(H2,11,12,13)/t4-,6-,7-,10-/m1/s1</inchi>
+<common-name datatype='string'>adenosine</common-name>
+</Compound>
+</ptools-xml>

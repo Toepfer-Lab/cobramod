@@ -21,6 +21,7 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map01120  Microbial metabolism in diverse environments
             map01200  Carbon metabolism
             map01240  Biosynthesis of cofactors
+            map01250  Biosynthesis of nucleotide sugars
             map04152  AMPK signaling pathway
             map04922  Glucagon signaling pathway
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
@@ -28,12 +29,13 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00549  Nucleotide sugar biosynthesis, glucose => UDP-glucose
             M00892  UDP-N-acetyl-D-glucosamine biosynthesis, eukaryotes, glucose => UDP-GlcNAc
             M00909  UDP-N-acetyl-D-glucosamine biosynthesis, prokaryotes, glucose => UDP-GlcNAc
+NETWORK     nt06015  N-Glycan biosynthesis
+            nt06017  Glycogen metabolism
 ENZYME      2.4.1.15        2.7.1.1         2.7.1.2         2.7.1.63        
             2.7.1.147       2.7.1.199       3.1.3.9         3.2.1.26        
             5.1.3.15        5.3.1.9         5.4.2.2         5.4.2.5
 DBLINKS     PubChem: 3937
             ChEBI: 17665
-            ChEMBL: CHEMBL4283156
             PDB-CCD: G6P
             3DMET: B01304
             NIKKAJI: J40.066A

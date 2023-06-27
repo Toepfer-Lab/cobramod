@@ -10,12 +10,13 @@ REACTION    R00021 R00093 R00114 R00253 R00256 R00257 R00573 R00575
             R01231 R01375 R01716 R02576 R02781 R02895 R03652 R03905 
             R04011 R04212 R04463 R04558 R05224 R05225 R05815 R07456 
             R08244 R08855 R08890 R08891 R08956 R09195 R09598 R09599 
-            R10089 R11515 R11627 R11941 R12352 R12478 R12507 R12590
+            R10089 R11515 R11627 R11941 R12352 R12478 R12507 R12590 
+            R12939
 PATHWAY     map00220  Arginine biosynthesis
             map00230  Purine metabolism
             map00240  Pyrimidine metabolism
             map00250  Alanine, aspartate and glutamate metabolism
-            map00471  D-Glutamine and D-glutamate metabolism
+            map00470  D-Amino acid metabolism
             map00630  Glyoxylate and dicarboxylate metabolism
             map00750  Vitamin B6 metabolism
             map00910  Nitrogen metabolism
@@ -24,6 +25,7 @@ PATHWAY     map00220  Arginine biosynthesis
             map01100  Metabolic pathways
             map01120  Microbial metabolism in diverse environments
             map01230  Biosynthesis of amino acids
+            map01232  Nucleotide metabolism
             map01240  Biosynthesis of cofactors
             map02010  ABC transporters
             map02020  Two-component system
@@ -33,20 +35,20 @@ PATHWAY     map00220  Arginine biosynthesis
             map04974  Protein digestion and absorption
             map04978  Mineral absorption
             map05230  Central carbon metabolism in cancer
-MODULE      M00048  Inosine monophosphate biosynthesis, PRPP + glutamine => IMP
-            M00051  Uridine monophosphate biosynthesis, glutamine (+ PRPP) => UMP
+MODULE      M00048  De novo purine biosynthesis, PRPP + glutamine => IMP
+            M00051  De novo pyrimidine biosynthesis, glutamine (+ PRPP) => UMP
             M00916  Pyridoxal-P biosynthesis, R5P + glyceraldehyde-3P + glutamine => pyridoxal-P
 ENZYME      1.4.1.13        1.4.1.14        1.4.7.1         2.3.1.14        
             2.3.1.68        2.3.2.1         2.3.2.14        2.4.2.14        
             2.6.1.15        2.6.1.16        2.6.1.50        2.6.1.64        
             2.6.1.85        2.6.1.86        2.6.1.100       2.6.1.101       
-            2.6.1.117       2.7.3.13        3.5.1.2         3.5.1.38        
-            3.5.1.133       4.1.3.27        4.3.2.10        4.3.3.6         
-            5.1.1.10        6.1.1.18        6.3.1.2         6.3.4.2         
-            6.3.5.1         6.3.5.2         6.3.5.3         6.3.5.4         
-            6.3.5.5         6.3.5.6         6.3.5.7         6.3.5.9         
-            6.3.5.10        6.3.5.11        6.3.5.12        6.3.5.13        
-            6.3.5.-
+            2.6.1.117       2.6.1.123       2.7.3.13        3.5.1.2         
+            3.5.1.38        3.5.1.133       4.1.3.27        4.3.2.10        
+            4.3.3.6         5.1.1.10        6.1.1.18        6.3.1.2         
+            6.3.4.2         6.3.5.1         6.3.5.2         6.3.5.3         
+            6.3.5.4         6.3.5.5         6.3.5.6         6.3.5.7         
+            6.3.5.9         6.3.5.10        6.3.5.11        6.3.5.12        
+            6.3.5.13        6.3.5.-
 BRITE       Compounds with biological roles [BR:br08001]
              Peptides
               Amino acids
@@ -60,11 +62,6 @@ BRITE       Compounds with biological roles [BR:br08001]
                  A16AA03 Glutamine
                   D00015  Glutamine (USP) &lt;JP/US&gt;
             USP drug classification [BR:br08302]
-             Gastrointestinal Agents
-              Gastrointestinal Agents, Other
-               Short Bowel Syndrome Agents
-                Glutamine
-                 D00015  Glutamine (USP)
              Genetic, Enzyme, or Protein Disorder: Replacement, Modifiers, Treatment
               Glutamine
                D00015  Glutamine (USP)
@@ -73,12 +70,17 @@ BRITE       Compounds with biological roles [BR:br08001]
               23  Digestive organ agents
                232  Peptic ulcer agents
                 2322  Glutamines
-                 D00015  Glutamine (USP); L-Glutamine (JP17)
+                 D00015  Glutamine (USP); L-Glutamine (JP18)
             Risk category of Japanese OTC drugs [BR:br08312]
              Third-class OTC drugs
               Inorganic and organic chemicals
                L-Glutamine
                 D00015  Glutamine (USP)
+            Drug groups [BR:br08330]
+             Gastrointestinal agent
+              DG01975  Agents for peptic ulcer
+               DG02008  Gastric mucosal protectant
+                D00015  Glutamine
             Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
              Chemicals
               D00015  L-Glutamine
@@ -91,7 +93,6 @@ BRITE       Compounds with biological roles [BR:br08001]
 DBLINKS     CAS: 56-85-9
             PubChem: 3364
             ChEBI: 18050
-            ChEMBL: CHEMBL930
             KNApSAcK: C00001359
             PDB-CCD: GLN
             3DMET: B00017

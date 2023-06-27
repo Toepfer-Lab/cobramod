@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GLYOXII-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GLYOXII-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,30 +9,26 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT2G31350" detail="full" frameid="AT2G31350" orgid="ARA">
+  <Gene ID="ARA:AT2G31350" orgid="ARA" frameid="AT2G31350" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-2" orgid="ARA" resource="getxml?ARA:CHROMOSOME-2" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-2" orgid="ARA" frameid="CHROMOSOME-2" />
     </replicon>
     <product>
-      <Protein frameid="AT2G31350-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G31350-MONOMER" />
+      <Protein resource="getxml?ARA:AT2G31350-MONOMER" orgid="ARA" frameid="AT2G31350-MONOMER" />
     </product>
-    <dblink>
-      <dblink-db>TAIR</dblink-db>
-      <dblink-oid>AT2G31350</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT2G31350</dblink-URL>
-    </dblink>
-    <left-end-position datatype="integer">13375369</left-end-position>
-    <accession-1 datatype="string">AT2G31350</accession-1>
+    <common-name datatype="string">GLX2-5</common-name>
     <centisome-position datatype="float" units="CENTISOMES">67.87681</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT2G31350</accession-1>
+    <right-end-position datatype="integer">13378134</right-end-position>
     <citation>
-      <Publication ID="ARA:PUB-16227621" detail="full" frameid="PUB-16227621" orgid="ARA">
+      <Publication ID="ARA:PUB-16227621" orgid="ARA" frameid="PUB-16227621" detail="full">
+        <source datatype="string">J Biol Chem 280(49);40668-75</source>
         <title datatype="string">Structural studies on a mitochondrial glyoxalase II.</title>
         <year datatype="integer">2005</year>
-        <pubmed-id datatype="string">16227621</pubmed-id>
         <author datatype="string">Marasinghe GP</author>
         <author datatype="string">Sander IM</author>
         <author datatype="string">Bennett B</author>
@@ -40,59 +36,63 @@
         <author datatype="string">Yang KW</author>
         <author datatype="string">Makaroff CA</author>
         <author datatype="string">Crowder MW</author>
-        <source datatype="string">J Biol Chem 280(49);40668-75</source>
+        <pubmed-id datatype="string">16227621</pubmed-id>
       </Publication>
     </citation>
-    <right-end-position datatype="integer">13378134</right-end-position>
-    <common-name datatype="string">GLX2-5</common-name>
-    <component-of />
+    <left-end-position datatype="integer">13375369</left-end-position>
+    <dblink>
+      <dblink-db>TAIR</dblink-db>
+      <dblink-oid>AT2G31350</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT2G31350</dblink-URL>
+    </dblink>
   </Gene>
-  <Gene ID="ARA:AT2G43430" detail="full" frameid="AT2G43430" orgid="ARA">
+  <Gene ID="ARA:AT2G43430" orgid="ARA" frameid="AT2G43430" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-2" orgid="ARA" resource="getxml?ARA:CHROMOSOME-2" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-2" orgid="ARA" frameid="CHROMOSOME-2" />
     </replicon>
     <product>
-      <Protein frameid="AT2G43430-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G43430-MONOMER" />
+      <Protein resource="getxml?ARA:AT2G43430-MONOMER" orgid="ARA" frameid="AT2G43430-MONOMER" />
     </product>
+    <common-name datatype="string">GLX2-1</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">91.56111</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT2G43430</accession-1>
+    <synonym datatype="string">GLY1</synonym>
+    <right-end-position datatype="integer">18045332</right-end-position>
+    <left-end-position datatype="integer">18042446</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT2G43430</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT2G43430</dblink-URL>
     </dblink>
-    <synonym datatype="string">GLY1</synonym>
-    <left-end-position datatype="integer">18042446</left-end-position>
-    <accession-1 datatype="string">AT2G43430</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">91.56111</centisome-position>
-    <right-end-position datatype="integer">18045332</right-end-position>
-    <common-name datatype="string">GLX2-1</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT3G10850" detail="full" frameid="AT3G10850" orgid="ARA">
+  <Gene ID="ARA:AT3G10850" orgid="ARA" frameid="AT3G10850" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-3" orgid="ARA" resource="getxml?ARA:CHROMOSOME-3" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-3" orgid="ARA" frameid="CHROMOSOME-3" />
     </replicon>
     <product>
-      <Protein frameid="AT3G10850-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G10850-MONOMER" />
+      <Protein resource="getxml?ARA:AT3G10850-MONOMER" orgid="ARA" frameid="AT3G10850-MONOMER" />
     </product>
+    <common-name datatype="string">GLX2-2</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">14.475724</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT3G10850</accession-1>
+    <synonym datatype="string">GLY2</synonym>
+    <right-end-position datatype="integer">3399579</right-end-position>
+    <left-end-position datatype="integer">3397554</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G10850</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G10850</dblink-URL>
     </dblink>
-    <synonym datatype="string">GLY2</synonym>
-    <left-end-position datatype="integer">3397554</left-end-position>
-    <accession-1 datatype="string">AT3G10850</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">14.475724</centisome-position>
-    <right-end-position datatype="integer">3399579</right-end-position>
-    <common-name datatype="string">GLX2-2</common-name>
-    <component-of />
   </Gene>
 </ptools-xml>

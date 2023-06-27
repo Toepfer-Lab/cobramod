@@ -1,13 +1,219 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PWY-6531"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:PWY-6531'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PWY-6531</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Pathway ID="META:PWY-6531" detail="full" frameid="PWY-6531" orgid="META"><parent><Pathway class="true" frameid="SUGAR-ALCOHOLS-DEG" orgid="META" resource="getxml?META:SUGAR-ALCOHOLS-DEG" /></parent>
-<evidence><Evidence-Code ID="META:EV-EXP-TAS" class="true" detail="full" frameid="EV-EXP-TAS" orgid="META"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="getxml?META:EV-EXP" /></parent>
-<comment datatype="string">Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
+<Pathway ID='META:PWY-6531' orgid='META' frameid='PWY-6531' detail='full'><parent><Pathway resource='getxml?META:SUGAR-ALCOHOLS-DEG' orgid='META' frameid='SUGAR-ALCOHOLS-DEG' class='true'/></parent>
+<taxonomic-range><Organism ID='META:TAX-2870' orgid='META' frameid='TAX-2870' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-569578' orgid='META' frameid='TAX-569578' class='true'/></parent>
+<synonym datatype='string'>Phaeophyta</synonym>
+<synonym datatype='string'>Fucophyceae</synonym>
+<synonym datatype='string'>Chromophycota</synonym>
+<synonym datatype='string'>brown algae &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>brown algae</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2870</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2870</dblink-URL>
+</dblink>
+<common-name datatype='string'>Phaeophyceae</common-name>
+<rank>class</rank>
+</Organism>
+<Organism ID='META:TAX-5794' orgid='META' frameid='TAX-5794' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33630' orgid='META' frameid='TAX-33630' class='true'/></parent>
+<synonym datatype='string'>apicomplexans &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>apicomplexans</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>5794</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5794</dblink-URL>
+</dblink>
+<common-name datatype='string'>Apicomplexa</common-name>
+<rank>phylum</rank>
+</Organism>
+</taxonomic-range>
+<reaction-ordering><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/><predecessor-reactions><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/><predecessor-reactions><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/><predecessor-reactions><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/><predecessor-reactions><Reaction resource='getxml?META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/><predecessor-reactions><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<species><Organism ID='META:TAX-5807' orgid='META' frameid='TAX-5807' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-5806' orgid='META' frameid='TAX-5806' class='true'/></parent>
+<synonym datatype='string'>Cryptosporidium sp. A9</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A8</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A7-MAZM</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A6</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A5</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A4</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A3</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A2</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A1</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A12</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A11</synonym>
+<synonym datatype='string'>Cryptosporidium sp. A10</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>5807</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5807</dblink-URL>
+</dblink>
+<common-name datatype='string'>Cryptosporidium parvum</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-2880' orgid='META' frameid='TAX-2880' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2879' orgid='META' frameid='TAX-2879' class='true'/></parent>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2880</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2880</dblink-URL>
+</dblink>
+<common-name datatype='string'>Ectocarpus siliculosus</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-5800' orgid='META' frameid='TAX-5800' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-5799' orgid='META' frameid='TAX-5799' class='true'/></parent>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>5800</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5800</dblink-URL>
+</dblink>
+<common-name datatype='string'>Eimeria</common-name>
+<rank>genus</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-5802' orgid='META' frameid='TAX-5802' detail='full' class='true'><parent><Organism resource='#META:TAX-5800' orgid='META' frameid='TAX-5800' class='true'/></parent>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>5802</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5802</dblink-URL>
+</dblink>
+<common-name datatype='string'>Eimeria tenella</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-5811' orgid='META' frameid='TAX-5811' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-5810' orgid='META' frameid='TAX-5810' class='true'/></parent>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>5811</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5811</dblink-URL>
+</dblink>
+<common-name datatype='string'>Toxoplasma gondii</common-name>
+<rank>species</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-508771' orgid='META' frameid='TAX-508771' detail='full' class='true'><parent><Organism resource='#META:TAX-5811' orgid='META' frameid='TAX-5811' class='true'/></parent>
+<synonym datatype='string'>Toxoplasma gondii ME49</synonym>
+<synonym datatype='string'>Toxoplasma gondii strain ME49</synonym>
+<strain-name datatype='string'>ME49</strain-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>508771</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=508771</dblink-URL>
+</dblink>
+<common-name datatype='string'>Toxoplasma gondii</common-name>
+<rank>strain</rank>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-383379' orgid='META' frameid='TAX-383379' detail='full' class='true'><parent><Organism resource='#META:TAX-5811' orgid='META' frameid='TAX-5811' class='true'/></parent>
+<synonym datatype='string'>Toxoplasma gondii RH</synonym>
+<strain-name datatype='string'>RH</strain-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>383379</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=383379</dblink-URL>
+</dblink>
+<common-name datatype='string'>Toxoplasma gondii</common-name>
+<rank>strain</rank>
+</Organism>
+</species>
+<reaction-layout><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?META:MANNITOL-1P' orgid='META' frameid='MANNITOL-1P'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:CPD-15382' orgid='META' frameid='CPD-15382'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:BETA-D-FRUCTOSE' orgid='META' frameid='BETA-D-FRUCTOSE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:BETA-D-FRUCTOSE' orgid='META' frameid='BETA-D-FRUCTOSE'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:MANNITOL' orgid='META' frameid='MANNITOL'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:CPD-15382' orgid='META' frameid='CPD-15382'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:MANNITOL-1P' orgid='META' frameid='MANNITOL-1P'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:MANNITOL' orgid='META' frameid='MANNITOL'/></right-primaries>
+</reaction-layout>
+<dblink><dblink-db>LIGAND-MAP</dblink-db>
+<dblink-oid>map00051</dblink-oid>
+<dblink-relationship>PART-OF</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?map00051</dblink-URL>
+</dblink>
+<common-name datatype='string'>mannitol cycle</common-name>
+<reaction-list><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></reaction-list>
+<credits><created><date datatype='date'>2010-06-17</date>
+<Person ID='META:fulcher' orgid='META' frameid='fulcher' detail='full'><common-name datatype='string'>Carol Fulcher</common-name>
+<email datatype='string'>fulcher@ai.sri.com</email>
+<middle-name datatype='string'>A</middle-name>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+</Organization>
+</affiliations>
+<comment datatype='string'>Carol Fulcher was a curator of the MetaCyc database at SRI International. She has also curated many tier 2 databases for various bacteria.</comment>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
+<revised><date datatype='date'>2015-03-19</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<email datatype='string'>caspi@ai.sri.com</email>
+<affiliations><Organization resource='#META:SRI' orgid='META' frameid='SRI'/></affiliations>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
+</comment>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
+</credits>
+<comment datatype='string'>&lt;b&gt;General Background&lt;/b&gt;
+&lt;p&gt;
+Of the ten existing hexitols (&lt;a href=&quot;/compound?orgid=META&amp;id=CPD-15703&quot;&gt;allitol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-12811&quot;&gt;D-altritol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-15702&quot;&gt;L-altritol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=SORBITOL&quot;&gt;D-sorbitol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-12810&quot;&gt;L-sorbitol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-15701&quot;&gt;L-mannitol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-357&quot;&gt;D-Iditol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-369&quot;&gt;L-iditol&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=GALACTITOL&quot;&gt;galactitol&lt;/a&gt;) only three occur naturally - &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=SORBITOL&quot;&gt;D-sorbitol&lt;/a&gt; (also known as D-glucitol), and &lt;a href=&quot;/compound?orgid=META&amp;id=GALACTITOL&quot;&gt;galactitol&lt;/a&gt; (owing to symmetry, D- and L-galactitol are identical).
+&lt;p&gt;
+The mannitol cycle has been described in &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-2870&quot;&gt;&lt;i&gt;Phaeophyceae&lt;/i&gt;&lt;/a&gt; (brown algae) and in protozoan parasite members of the genus &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-5800&quot;&gt;&lt;i&gt;Eimeria&lt;/i&gt;&lt;/a&gt;. In brown algae &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt; is one of the two main carbon storage compounds (the other is &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=CPD-3602&quot; title=&quot;Laminaran is a storage glucan found in brown algae. It is a linear polysaccharide made up of glucose units connected by &amp;beta;(1-&gt;3) and &amp;beta;(1-&gt;6) linkages. The ratio of &amp;beta;(1-&gt;3) to &amp;beta;(1-&gt;6) linkages is 3:1.&quot;&gt;laminaran&lt;/a&gt;). Depending on the species, mannitol can represent up to 20&#x96;30% of the dry weight. In addition, it also serves as an osmoprotectant and an antioxidant.
+&lt;p&gt;
+The mannitol cycle also operates in oocysts of the apicomplexan parasites &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-5802&quot;&gt;&lt;i&gt;Eimeria tenella&lt;/i&gt;&lt;/a&gt;, &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-5811&quot;&gt;&lt;i&gt;Toxoplasma gondii&lt;/i&gt;&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-5807&quot;&gt;&lt;i&gt;Cryptosporidium parvum&lt;/i&gt;&lt;/a&gt;, where mannitol serves as the main source of energy for sporulating oocysts. It comprises approximately 25% of the dry weight of unsporulated oocysts and is reduced to 3% by the completion of sporulation [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15463215&quot;&gt;Schmatz89&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/2538747&quot;&gt;Schmatz89a&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/1487375&quot;&gt;Michalski92&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/9309770&quot;&gt;Schmatz97&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/9461622&quot;&gt;Liberator98&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10219290&quot;&gt;Allocco99&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11780835&quot;&gt;Allocco01&lt;/a&gt;].
+The parasite &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-5802&quot;&gt;&lt;i&gt;Eimeria tenella&lt;/i&gt;&lt;/a&gt; causes coccidiosis (an intestinal disease) and poses an economic problem in the poultry industry. Inhibitors of enzymes in the cycle are of interest because the animal hosts do not biosynthesize or degrade &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt;.
+&lt;p&gt;
+The mannitol cycle has also been proposed to occur in some &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4751&quot;&gt;&lt;i&gt;Fungi&lt;/i&gt;&lt;/a&gt; [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/6782999&quot;&gt;Hult80&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15251212&quot;&gt;Chakraborty04&lt;/a&gt;], but its presence in fungi is controversial [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/3141571&quot;&gt;Singh88&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/17092745&quot;&gt;Velez07&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/20136633&quot;&gt;Dulermo10&lt;/a&gt;].
+&lt;p&gt;
+The mannitol cycle in parasites appears to be regulated in part by a protein inhibitor of the key enzyme mannitol-1-phosphate dehydrogenase in order to prevent a futile cycle of &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; utilization.
+&lt;p&gt;
+&lt;b&gt;About This Pathway&lt;/b&gt;
+&lt;p&gt;
+&lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt; is formed in the mannitol cycle from &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;fructose 6-phosphate&lt;/a&gt; in two enzymatic steps: the direct reduction of &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;fructose 6-phosphate&lt;/a&gt; into &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL-1P&quot;&gt;D-mannitol 1-phosphate&lt;/a&gt;, and the hydrolysis of the phosphoric ester of the latter to produce &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt;.
+This route for mannitol formation is also found in other organisms, including some bacteria, fungi, and red micro- and macroalgae.
+&lt;p&gt;
+&lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;Fructose 6-phosphate&lt;/a&gt; is provided either from &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=GLYCOLYSIS&quot;&gt;glycolysis&lt;/a&gt;, or, in photosynthetic organisms such as brown algae, from the &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=CALVIN-PWY&quot;&gt;Calvin-Benson-Bassham cycle&lt;/a&gt;.
+The first reaction is catalyzed by &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-1.1.1.17&quot;&gt;EC 1.1.1.17, mannitol-1-phosphate 5-dehydrogenase&lt;/a&gt;. This enzyme has been studied as a target for drug development [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11780835&quot;&gt;Allocco01&lt;/a&gt;].
+The second reaction, which is irreversible &lt;i&gt;in vivo&lt;/i&gt;, is catalyzed by &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.1.3.22&quot;&gt;EC 3.1.3.22, mannitol-1-phosphatase&lt;/a&gt;, producing &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt;, which is then stored for later use.
+&lt;p&gt;
+The second half of the cycle involves the conversion of mannitol back to fructose 6-phosphate. The process starts with &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-1.1.1.67&quot;&gt;EC 1.1.1.67, mannitol 2-dehydrogenase&lt;/a&gt;, which produces &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=FRU&quot; title=&quot;Fructose is a 6-carbon polyhydroxyketone. When dissolved in solution fructose forms one of two&amp;#10;ring structures - the 5-member ring &lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=Fructofuranose''&gt;D-fructofuranose&lt;/a&gt;and the 6-member ring &lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=D-Fructopyranose''&gt;D-fructopyranose&lt;/a&gt;.&amp;#10;Mixtures at equilibrium contain 70% fructopyranose and 30% fructofuranose.&amp;#10;&amp;#10;A homopolymeric form of fructose is called &lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=Fructans''&gt;a fructan&lt;/a&gt;, and can be formed by &amp;beta;(2-&gt;1)&amp;#10;or &amp;beta;(2-&gt;6) glycosidic bonds between fructose molecules.&amp;#10;&amp;#10;This compound class represents a reducing sugar that exists in solution in multiple configurations. The open-chain structure shown here is provided only as a schematic illustration of chirality. Consult the appropriate class instances for information on specific ring structures and their anomeric configuration.&quot;&gt;D-fructose&lt;/a&gt;, and continues by the action of &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.7.1.4&quot;&gt;EC 2.7.1.4, fructokinase&lt;/a&gt;, which produces &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt;. 
+&lt;p&gt;
+&lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;Fructose 6-phosphate&lt;/a&gt; may enter glycolysis to produce &lt;a href=&quot;/compound?orgid=META&amp;id=ATP&quot;&gt;ATP&lt;/a&gt; via conversion to &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-16-DIPHOSPHATE&quot;&gt;&amp;beta;-D-fructofuranose 1,6-bisphosphate&lt;/a&gt; catalyzed by a unique pyrophosphate-dependent phosphofructokinase found in protozoa and plants [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/1331784&quot;&gt;Peng92&lt;/a&gt;]. &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; could also enter gluconeogenesis. Re-entry of &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; into the mannitol cycle would create a futile cycle and evidence suggests that mechanisms exist to prevent this, including the inhibition of mannitol-1-phosphate dehydrogenase by a dedicated protein inhibitor [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/9309770&quot;&gt;Schmatz97&lt;/a&gt;].
+&lt;p&gt;
+Evidence that the cycle proceeds in one direction only is based on the apparent lack of a mannitol kinase and higher &lt;i&gt;K&lt;/i&gt;&lt;sub&gt;m&lt;/sub&gt; values for the dehydrogenase enzymes in the reverse direction than in the forward direction [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/2538747&quot;&gt;Schmatz89a&lt;/a&gt;].</comment>
+<pathway-link><Compound resource='getxml?META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/><link-target><Pathway resource='getxml?META:CALVIN-PWY' orgid='META' frameid='CALVIN-PWY'/></link-target>
+<link-target><Pathway resource='getxml?META:GLYCOLYSIS' orgid='META' frameid='GLYCOLYSIS'/></link-target>
+</pathway-link>
+<evidence><Evidence-Code ID='META:EV-EXP-TAS' orgid='META' frameid='EV-EXP-TAS' detail='full' class='true'><parent><Evidence-Code resource='getxml?META:EV-EXP' orgid='META' frameid='EV-EXP' class='true'/></parent>
+<common-name datatype='string'>Traceable author statement to experimental support</common-name>
+<comment datatype='string'>Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
 in another database -- that itself did not describe an experiment supporting the
 assertion.  However, the statement did reference another publication describing an experiment 
 that supports the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
@@ -16,17 +222,17 @@ assertion, and the latter code is used when there is a possibility that an exper
 not done to support the assertion.
 In general, references to the primary literature are preferred,
 but this code can be used when the original article is difficult to locate.</comment>
-<common-name datatype="string">Traceable author statement to experimental support</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-9309770" detail="full" frameid="PUB-9309770" orgid="META"><author datatype="string">Schmatz DM</author>
-<pubmed-id datatype="string">9309770</pubmed-id>
-<source datatype="string">Parasitology 114 Suppl;S81-9</source>
-<title datatype="string">The mannitol cycle in Eimeria.</title>
-<year datatype="integer">1997</year>
+<Publication ID='META:PUB-9309770' orgid='META' frameid='PUB-9309770' detail='full'><year datatype='integer'>1997</year>
+<source datatype='string'>Parasitology 114 Suppl;S81-9</source>
+<pubmed-id datatype='string'>9309770</pubmed-id>
+<author datatype='string'>Schmatz DM</author>
+<title datatype='string'>The mannitol cycle in Eimeria.</title>
 </Publication>
 </evidence>
-<evidence><Evidence-Code ID="META:EV-EXP-IDA" class="true" detail="full" frameid="EV-EXP-IDA" orgid="META"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="getxml?META:EV-EXP" /></parent>
-<comment datatype="string">IDA inferred from direct assay.
+<evidence><Evidence-Code ID='META:EV-EXP-IDA' orgid='META' frameid='EV-EXP-IDA' detail='full' class='true'><parent><Evidence-Code resource='getxml?META:EV-EXP' orgid='META' frameid='EV-EXP' class='true'/></parent>
+<common-name datatype='string'>Inferred from direct assay</common-name>
+<comment datatype='string'>IDA inferred from direct assay.
 
 &lt;br&gt;
 The assertion was inferred from a direct experimental assay such as
@@ -36,217 +242,15 @@ The assertion was inferred from a direct experimental assay such as
     &lt;li&gt; Immunofluorescence
     &lt;li&gt; Cell fractionation
 &lt;/ul&gt;</comment>
-<common-name datatype="string">Inferred from direct assay</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-2538747" detail="full" frameid="PUB-2538747" orgid="META"><author datatype="string">Schmatz DM</author>
-<author datatype="string">Baginsky WF</author>
-<author datatype="string">Turner MJ</author>
-<pubmed-id datatype="string">2538747</pubmed-id>
-<source datatype="string">Mol Biochem Parasitol 32(2-3);263-70</source>
-<title datatype="string">Evidence for and characterization of a mannitol cycle in Eimeria tenella.</title>
-<year datatype="integer">1989</year>
+<Publication ID='META:PUB-2538747' orgid='META' frameid='PUB-2538747' detail='full'><year datatype='integer'>1989</year>
+<source datatype='string'>Mol Biochem Parasitol 32(2-3);263-70</source>
+<pubmed-id datatype='string'>2538747</pubmed-id>
+<author datatype='string'>Schmatz DM</author>
+<author datatype='string'>Baginsky WF</author>
+<author datatype='string'>Turner MJ</author>
+<title datatype='string'>Evidence for and characterization of a mannitol cycle in Eimeria tenella.</title>
 </Publication>
 </evidence>
-<comment datatype="string">&lt;b&gt;General Background&lt;/b&gt;
-&lt;p&gt;
-Of the ten existing hexitols (&lt;a href="/compound?orgid=META&amp;id=CPD-15703"&gt;allitol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-12811"&gt;D-altritol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-15702"&gt;L-altritol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=SORBITOL"&gt;D-sorbitol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-12810"&gt;L-sorbitol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-15701"&gt;L-mannitol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-357"&gt;D-Iditol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-369"&gt;L-iditol&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=GALACTITOL"&gt;galactitol&lt;/a&gt;) only three occur naturally - &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=SORBITOL"&gt;D-sorbitol&lt;/a&gt; (also known as D-glucitol), and &lt;a href="/compound?orgid=META&amp;id=GALACTITOL"&gt;galactitol&lt;/a&gt; (owing to symmetry, D- and L-galactitol are identical).
-&lt;p&gt;
-The mannitol cycle has been described in &lt;a href="/META/NEW-IMAGE?object=TAX-2870"&gt;&lt;i&gt;Phaeophyceae&lt;/i&gt;&lt;/a&gt; (brown algae) and in protozoan parasite members of the genus &lt;a href="/META/NEW-IMAGE?object=TAX-5800"&gt;&lt;i&gt;Eimeria&lt;/i&gt;&lt;/a&gt;. In brown algae &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt; is one of the two main carbon storage compounds (the other is &lt;a href="/META/NEW-IMAGE?type=COMPOUND&amp;object=CPD-3602" title="Laminaran is a storage glucan found in brown algae. It is a linear polysaccharide made up of glucose units connected by &amp;beta;(1-&gt;3) and &amp;beta;(1-&gt;6) linkages. The ratio of &amp;beta;(1-&gt;3) to &amp;beta;(1-&gt;6) linkages is 3:1."&gt;laminaran&lt;/a&gt;). Depending on the species, mannitol can represent up to 20&#150;30% of the dry weight. In addition, it also serves as an osmoprotectant and an antioxidant.
-&lt;p&gt;
-The mannitol cycle also operates in oocysts of the apicomplexan parasites &lt;a href="/META/NEW-IMAGE?object=TAX-5802"&gt;&lt;i&gt;Eimeria tenella&lt;/i&gt;&lt;/a&gt;, &lt;a href="/META/NEW-IMAGE?object=TAX-5811"&gt;&lt;i&gt;Toxoplasma gondii&lt;/i&gt;&lt;/a&gt; and &lt;a href="/META/NEW-IMAGE?object=TAX-5807"&gt;&lt;i&gt;Cryptosporidium parvum&lt;/i&gt;&lt;/a&gt;, where mannitol serves as the main source of energy for sporulating oocysts. It comprises approximately 25% of the dry weight of unsporulated oocysts and is reduced to 3% by the completion of sporulation [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15463215"&gt;Schmatz89&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/2538747"&gt;Schmatz89a&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/1487375"&gt;Michalski92&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9309770"&gt;Schmatz97&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9461622"&gt;Liberator98&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10219290"&gt;Allocco99&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11780835"&gt;Allocco01&lt;/a&gt;].
-The parasite &lt;a href="/META/NEW-IMAGE?object=TAX-5802"&gt;&lt;i&gt;Eimeria tenella&lt;/i&gt;&lt;/a&gt; causes coccidiosis (an intestinal disease) and poses an economic problem in the poultry industry. Inhibitors of enzymes in the cycle are of interest because the animal hosts do not biosynthesize or degrade &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt;.
-&lt;p&gt;
-The mannitol cycle has also been proposed to occur in some &lt;a href="/META/NEW-IMAGE?object=TAX-4751"&gt;&lt;i&gt;Fungi&lt;/i&gt;&lt;/a&gt; [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/6782999"&gt;Hult80&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15251212"&gt;Chakraborty04&lt;/a&gt;], but its presence in fungi is controversial [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/3141571"&gt;Singh88&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/17092745"&gt;Velez07&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/20136633"&gt;Dulermo10&lt;/a&gt;].
-&lt;p&gt;
-The mannitol cycle in parasites appears to be regulated in part by a protein inhibitor of the key enzyme mannitol-1-phosphate dehydrogenase in order to prevent a futile cycle of &lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; utilization.
-&lt;p&gt;
-&lt;b&gt;About This Pathway&lt;/b&gt;
-&lt;p&gt;
-&lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt; is formed in the mannitol cycle from &lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;fructose 6-phosphate&lt;/a&gt; in two enzymatic steps: the direct reduction of &lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;fructose 6-phosphate&lt;/a&gt; into &lt;a href="/compound?orgid=META&amp;id=MANNITOL-1P"&gt;D-mannitol 1-phosphate&lt;/a&gt;, and the hydrolysis of the phosphoric ester of the latter to produce &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt;.
-This route for mannitol formation is also found in other organisms, including some bacteria, fungi, and red micro- and macroalgae.
-&lt;p&gt;
-&lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;Fructose 6-phosphate&lt;/a&gt; is provided either from &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=GLYCOLYSIS"&gt;glycolysis&lt;/a&gt;, or, in photosynthetic organisms such as brown algae, from the &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=CALVIN-PWY"&gt;Calvin-Benson-Bassham cycle&lt;/a&gt;.
-The first reaction is catalyzed by &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-1.1.1.17"&gt;EC 1.1.1.17, mannitol-1-phosphate 5-dehydrogenase&lt;/a&gt;. This enzyme has been studied as a target for drug development [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11780835"&gt;Allocco01&lt;/a&gt;].
-The second reaction, which is irreversible &lt;i&gt;in vivo&lt;/i&gt;, is catalyzed by &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-3.1.3.22"&gt;EC 3.1.3.22, mannitol-1-phosphatase&lt;/a&gt;, producing &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt;, which is then stored for later use.
-&lt;p&gt;
-The second half of the cycle involves the conversion of mannitol back to fructose 6-phosphate. The process starts with &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-1.1.1.67"&gt;EC 1.1.1.67, mannitol 2-dehydrogenase&lt;/a&gt;, which produces &lt;a href="/META/NEW-IMAGE?type=COMPOUND&amp;object=FRU" title="Fructose is a 6-carbon polyhydroxyketone. When dissolved in solution fructose forms one of two&amp;#10;ring structures - the 5-member ring &lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=Fructofuranose''&gt;D-fructofuranose&lt;/a&gt;and the 6-member ring &lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=D-Fructopyranose''&gt;D-fructopyranose&lt;/a&gt;.&amp;#10;Mixtures at equilibrium contain 70% fructopyranose and 30% fructofuranose.&amp;#10;&amp;#10;A homopolymeric form of fructose is called &lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=Fructans''&gt;a fructan&lt;/a&gt;, and can be formed by &amp;beta;(2-&gt;1)&amp;#10;or &amp;beta;(2-&gt;6) glycosidic bonds between fructose molecules.&amp;#10;&amp;#10;This compound class represents a reducing sugar that exists in solution in multiple configurations. The open-chain structure shown here is provided only as a schematic illustration of chirality. Consult the appropriate class instances for information on specific ring structures and their anomeric configuration."&gt;D-fructose&lt;/a&gt;, and continues by the action of &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.7.1.4"&gt;EC 2.7.1.4, fructokinase&lt;/a&gt;, which produces &lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt;. 
-&lt;p&gt;
-&lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;Fructose 6-phosphate&lt;/a&gt; may enter glycolysis to produce &lt;a href="/compound?orgid=META&amp;id=ATP"&gt;ATP&lt;/a&gt; via conversion to &lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-16-DIPHOSPHATE"&gt;&amp;beta;-D-fructose 1,6-bisphosphate&lt;/a&gt; catalyzed by a unique pyrophosphate-dependent phosphofructokinase found in protozoa and plants [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/1331784"&gt;Peng92&lt;/a&gt;]. &lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; could also enter gluconeogenesis. Re-entry of &lt;a href="/compound?orgid=META&amp;id=FRUCTOSE-6P"&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; into the mannitol cycle would create a futile cycle and evidence suggests that mechanisms exist to prevent this, including the inhibition of mannitol-1-phosphate dehydrogenase by a dedicated protein inhibitor [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/9309770"&gt;Schmatz97&lt;/a&gt;].
-&lt;p&gt;
-Evidence that the cycle proceeds in one direction only is based on the apparent lack of a mannitol kinase and higher &lt;i&gt;K&lt;/i&gt;&lt;sub&gt;m&lt;/sub&gt; values for the dehydrogenase enzymes in the reverse direction than in the forward direction [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/2538747"&gt;Schmatz89a&lt;/a&gt;].</comment>
-<common-name datatype="string">mannitol cycle</common-name>
-<credits><created><date datatype="date">2010-06-17</date>
-<Person ID="META:fulcher" detail="full" frameid="fulcher" orgid="META"><comment datatype="string">Carol Fulcher was a curator of the MetaCyc database at SRI International. She has also curated many tier 2 databases for various bacteria.</comment>
-<common-name datatype="string">Carol Fulcher</common-name>
-<email datatype="string">fulcher@ai.sri.com</email>
-<middle-name datatype="string">A</middle-name>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
-<revised><date datatype="date">2015-03-19</date>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /><Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization frameid="SRI" orgid="META" resource="#META:SRI" /></affiliations>
-</Person>
-</revised>
-</credits>
-<dblink><dblink-db>LIGAND-MAP</dblink-db>
-<dblink-oid>map00051</dblink-oid>
-<dblink-relationship>PART-OF</dblink-relationship>
-<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?map00051</dblink-URL>
-</dblink>
-<pathway-link><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /><link-target><Pathway frameid="CALVIN-PWY" orgid="META" resource="getxml?META:CALVIN-PWY" /></link-target>
-<link-target><Pathway frameid="GLYCOLYSIS" orgid="META" resource="getxml?META:GLYCOLYSIS" /></link-target>
-</pathway-link>
-<reaction-ordering><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="getxml?META:MANNPDEHYDROG-RXN" /><predecessor-reactions><Reaction frameid="FRUCTOKINASE-RXN" orgid="META" resource="getxml?META:FRUCTOKINASE-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="FRUCTOKINASE-RXN" orgid="META" resource="getxml?META:FRUCTOKINASE-RXN" /><predecessor-reactions><Reaction frameid="RXN-14515" orgid="META" resource="getxml?META:RXN-14515" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="RXN-14515" orgid="META" resource="getxml?META:RXN-14515" /><predecessor-reactions><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /><predecessor-reactions><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:MANNITOL-1-PHOSPHATASE-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:MANNITOL-1-PHOSPHATASE-RXN" /><predecessor-reactions><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="getxml?META:MANNPDEHYDROG-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-layout><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="getxml?META:MANNPDEHYDROG-RXN" /><direction>R2L</direction>
-<left-primaries><Compound frameid="MANNITOL-1P" orgid="META" resource="getxml?META:MANNITOL-1P" /></left-primaries>
-<right-primaries><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="RXN-14515" orgid="META" resource="getxml?META:RXN-14515" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CPD-15382" orgid="META" resource="getxml?META:CPD-15382" /></left-primaries>
-<right-primaries><Compound frameid="BETA-D-FRUCTOSE" orgid="META" resource="getxml?META:BETA-D-FRUCTOSE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="FRUCTOKINASE-RXN" orgid="META" resource="getxml?META:FRUCTOKINASE-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="BETA-D-FRUCTOSE" orgid="META" resource="getxml?META:BETA-D-FRUCTOSE" /></left-primaries>
-<right-primaries><Compound frameid="FRUCTOSE-6P" orgid="META" resource="getxml?META:FRUCTOSE-6P" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="MANNITOL" orgid="META" resource="getxml?META:MANNITOL" /></left-primaries>
-<right-primaries><Compound frameid="CPD-15382" orgid="META" resource="getxml?META:CPD-15382" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:MANNITOL-1-PHOSPHATASE-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="MANNITOL-1P" orgid="META" resource="getxml?META:MANNITOL-1P" /></left-primaries>
-<right-primaries><Compound frameid="MANNITOL" orgid="META" resource="getxml?META:MANNITOL" /></right-primaries>
-</reaction-layout>
-<reaction-list><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="getxml?META:MANNPDEHYDROG-RXN" /><Reaction frameid="RXN-14515" orgid="META" resource="getxml?META:RXN-14515" /><Reaction frameid="FRUCTOKINASE-RXN" orgid="META" resource="getxml?META:FRUCTOKINASE-RXN" /><Reaction frameid="MANNITOL-2-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:MANNITOL-2-DEHYDROGENASE-RXN" /><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:MANNITOL-1-PHOSPHATASE-RXN" /></reaction-list>
-<species><Organism ID="META:TAX-5807" class="true" detail="full" frameid="TAX-5807" orgid="META"><parent><Organism class="true" frameid="TAX-5806" orgid="META" resource="getxml?META:TAX-5806" /></parent>
-<common-name datatype="string">Cryptosporidium parvum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>5807</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5807</dblink-URL>
-</dblink>
-<rank>species</rank>
-<synonym datatype="string">Cryptosporidium sp. A9</synonym>
-<synonym datatype="string">Cryptosporidium sp. A8</synonym>
-<synonym datatype="string">Cryptosporidium sp. A7-MAZM</synonym>
-<synonym datatype="string">Cryptosporidium sp. A6</synonym>
-<synonym datatype="string">Cryptosporidium sp. A5</synonym>
-<synonym datatype="string">Cryptosporidium sp. A4</synonym>
-<synonym datatype="string">Cryptosporidium sp. A3</synonym>
-<synonym datatype="string">Cryptosporidium sp. A2</synonym>
-<synonym datatype="string">Cryptosporidium sp. A1</synonym>
-<synonym datatype="string">Cryptosporidium sp. A12</synonym>
-<synonym datatype="string">Cryptosporidium sp. A11</synonym>
-<synonym datatype="string">Cryptosporidium sp. A10</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-2880" class="true" detail="full" frameid="TAX-2880" orgid="META"><parent><Organism class="true" frameid="TAX-2879" orgid="META" resource="getxml?META:TAX-2879" /></parent>
-<common-name datatype="string">Ectocarpus siliculosus</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2880</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2880</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-5800" class="true" detail="full" frameid="TAX-5800" orgid="META"><parent><Organism class="true" frameid="TAX-5799" orgid="META" resource="getxml?META:TAX-5799" /></parent>
-<common-name datatype="string">Eimeria</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>5800</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5800</dblink-URL>
-</dblink>
-<rank>genus</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-5802" class="true" detail="full" frameid="TAX-5802" orgid="META"><parent><Organism class="true" frameid="TAX-5800" orgid="META" resource="#META:TAX-5800" /></parent>
-<common-name datatype="string">Eimeria tenella</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>5802</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5802</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-5811" class="true" detail="full" frameid="TAX-5811" orgid="META"><parent><Organism class="true" frameid="TAX-5810" orgid="META" resource="getxml?META:TAX-5810" /></parent>
-<common-name datatype="string">Toxoplasma gondii</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>5811</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5811</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-508771" class="true" detail="full" frameid="TAX-508771" orgid="META"><parent><Organism class="true" frameid="TAX-5811" orgid="META" resource="#META:TAX-5811" /></parent>
-<common-name datatype="string">Toxoplasma gondii</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>508771</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=508771</dblink-URL>
-</dblink>
-<rank>strain</rank>
-<strain-name datatype="string">ME49</strain-name>
-<synonym datatype="string">Toxoplasma gondii ME49</synonym>
-<synonym datatype="string">Toxoplasma gondii strain ME49</synonym>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-383379" class="true" detail="full" frameid="TAX-383379" orgid="META"><parent><Organism class="true" frameid="TAX-5811" orgid="META" resource="#META:TAX-5811" /></parent>
-<common-name datatype="string">Toxoplasma gondii</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>383379</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=383379</dblink-URL>
-</dblink>
-<rank>strain</rank>
-<strain-name datatype="string">RH</strain-name>
-<synonym datatype="string">Toxoplasma gondii RH</synonym>
-</Organism>
-</species>
-<taxonomic-range><Organism ID="META:TAX-2870" class="true" detail="full" frameid="TAX-2870" orgid="META"><parent><Organism class="true" frameid="TAX-569578" orgid="META" resource="getxml?META:TAX-569578" /></parent>
-<common-name datatype="string">Phaeophyceae</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2870</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2870</dblink-URL>
-</dblink>
-<rank>class</rank>
-<synonym datatype="string">Phaeophyta</synonym>
-<synonym datatype="string">Fucophyceae</synonym>
-<synonym datatype="string">Chromophycota</synonym>
-<synonym datatype="string">brown algae &lt;genbank common name&gt;</synonym>
-<synonym datatype="string">brown algae</synonym>
-</Organism>
-<Organism ID="META:TAX-5794" class="true" detail="full" frameid="TAX-5794" orgid="META"><parent><Organism class="true" frameid="TAX-33630" orgid="META" resource="getxml?META:TAX-33630" /></parent>
-<common-name datatype="string">Apicomplexa</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>5794</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5794</dblink-URL>
-</dblink>
-<rank>phylum</rank>
-<synonym datatype="string">apicomplexans &lt;genbank common name&gt;</synonym>
-<synonym datatype="string">apicomplexans</synonym>
-</Organism>
-</taxonomic-range>
 </Pathway>
 </ptools-xml>

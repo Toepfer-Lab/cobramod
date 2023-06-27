@@ -1,52 +1,57 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-16199"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:RXN-16199'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RXN-16199</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:RXN-16199" detail="full" frameid="RXN-16199" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<credits><created><date datatype="date">2014-12-09</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
-</credits>
+<Reaction ID='META:RXN-16199' orgid='META' frameid='RXN-16199' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:CPD-17426' orgid='META' frameid='CPD-17426'/><coefficient datatype='integer'>2</coefficient>
+</left>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR119936</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/equa_info/MNXR119936</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-148.59698<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<spontaneous datatype='boolean'>true</spontaneous>
+<gibbs-0 datatype='float' units='kcal/mol'>-148.59698<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype='string'>Latendresse M.</author>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY-7614" orgid="META" resource="getxml?META:PWY-7614" /></in-pathway>
-<left><Compound frameid="CPD-17426" orgid="META" resource="getxml?META:CPD-17426" /><coefficient datatype="integer">2</coefficient>
-</left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CPD-17445" orgid="META" resource="getxml?META:CPD-17445" /></right>
-<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></right>
-<spontaneous datatype="boolean">true</spontaneous>
+<orphan>YES-PUTATIVE</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<right><Compound resource='getxml?META:CPD-17445' orgid='META' frameid='CPD-17445'/></right>
+<right><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/></right>
+<credits><created><date datatype='date'>2014-12-09</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<email datatype='string'>caspi@ai.sri.com</email>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+</Organization>
+</affiliations>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
+</comment>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
+</credits>
+<in-pathway><Pathway resource='getxml?META:PWY-7614' orgid='META' frameid='PWY-7614'/></in-pathway>
 </Reaction>
 </ptools-xml>

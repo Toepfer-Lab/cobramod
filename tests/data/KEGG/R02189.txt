@@ -10,6 +10,7 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
             rn01110  Biosynthesis of secondary metabolites
             rn01120  Microbial metabolism in diverse environments
             rn01200  Carbon metabolism
+            rn01250  Biosynthesis of nucleotide sugars
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00549  Nucleotide sugar biosynthesis, glucose => UDP-glucose
 ORTHOLOGY   K00886  polyphosphate glucokinase [EC:2.7.1.63]

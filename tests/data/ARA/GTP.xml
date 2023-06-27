@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:GTP'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:GTP</query>
+<num_results>1</num_results>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
+</PGDB>
+</metadata>
+<Compound ID='ARA:GTP' orgid='ARA' frameid='GTP' detail='full'><parent><Compound resource='getxml?ARA:All-Nucleosides' orgid='ARA' frameid='All-Nucleosides' class='true'/></parent>
+<parent><Compound resource='getxml?ARA:Purine-ribonucleosides-5-PPP' orgid='ARA' frameid='Purine-ribonucleosides-5-PPP' class='true'/></parent>
+<cml><molecule id='GTP' title='GTP' formalCharge='-4'><atomArray><atom id='GTP-atom1' elementType='C' x2='5556.0' y2='2948.0'/><atom id='GTP-atom2' elementType='C' x2='9060.0' y2='3413.0'/><atom id='GTP-atom3' elementType='C' x2='6270.0' y2='3361.0'/><atom id='GTP-atom4' elementType='C' x2='9473.0' y2='2144.0'/><atom id='GTP-atom5' elementType='C' x2='6530.0' y2='4144.0'/><atom id='GTP-atom6' elementType='C' x2='7363.0' y2='4144.0'/><atom id='GTP-atom7' elementType='C' x2='8648.0' y2='2144.0'/><atom id='GTP-atom8' elementType='C' x2='9885.0' y2='1429.0'/><atom id='GTP-atom9' elementType='C' x2='7678.0' y2='3340.0'/><atom id='GTP-atom10' elementType='C' x2='8648.0' y2='714.0'/><atom id='GTP-atom11' elementType='N' x2='8235.0' y2='0.0'/><atom id='GTP-atom12' elementType='N' x2='9728.0' y2='2928.0'/><atom id='GTP-atom13' elementType='N' x2='8235.0' y2='1429.0'/><atom id='GTP-atom14' elementType='N' x2='9473.0' y2='714.0'/><atom id='GTP-atom15' elementType='N' x2='8393.0' y2='2928.0'/><atom id='GTP-atom16' elementType='O' x2='6060.0' y2='4815.0'/><atom id='GTP-atom17' elementType='O' x2='7775.0' y2='4858.0'/><atom id='GTP-atom18' elementType='O' x2='10710.0' y2='1429.0'/><atom id='GTP-atom19' elementType='O' x2='825.0' y2='4134.0'/><atom id='GTP-atom20' elementType='O' x2='825.0' y2='2484.0' formalCharge='-1'/><atom id='GTP-atom21' elementType='O' x2='0.0' y2='3309.0' formalCharge='-1'/><atom id='GTP-atom22' elementType='O' x2='4121.0' y2='2491.0' formalCharge='-1'/><atom id='GTP-atom23' elementType='O' x2='4120.0' y2='4134.0'/><atom id='GTP-atom24' elementType='O' x2='2475.0' y2='4134.0'/><atom id='GTP-atom25' elementType='O' x2='2475.0' y2='2484.0' formalCharge='-1'/><atom id='GTP-atom26' elementType='O' x2='4945.0' y2='3310.0'/><atom id='GTP-atom27' elementType='O' x2='6938.0' y2='2882.0'/><atom id='GTP-atom28' elementType='O' x2='1650.0' y2='3309.0'/><atom id='GTP-atom29' elementType='O' x2='3300.0' y2='3309.0'/><atom id='GTP-atom30' elementType='P' x2='825.0' y2='3309.0'/><atom id='GTP-atom31' elementType='P' x2='4120.0' y2='3309.0'/><atom id='GTP-atom32' elementType='P' x2='2475.0' y2='3309.0'/></atomArray>
+<bondArray><bond id='GTP-bond1' atomRefs='GTP-atom6 GTP-atom9' order='1'/><bond id='GTP-bond2' atomRefs='GTP-atom5 GTP-atom3' order='1'/><bond id='GTP-bond3' atomRefs='GTP-atom5 GTP-atom6' order='1'/><bond id='GTP-bond4' atomRefs='GTP-atom27 GTP-atom9' order='1'/><bond id='GTP-bond5' atomRefs='GTP-atom27 GTP-atom3' order='1'/><bond id='GTP-bond6' atomRefs='GTP-atom5 GTP-atom16' order='1'/><bond id='GTP-bond7' atomRefs='GTP-atom26 GTP-atom31' order='1'/><bond id='GTP-bond8' atomRefs='GTP-atom29 GTP-atom31' order='1'/><bond id='GTP-bond9' atomRefs='GTP-atom22 GTP-atom31' order='1'/><bond id='GTP-bond10' atomRefs='GTP-atom31 GTP-atom23' order='2'/><bond id='GTP-bond11' atomRefs='GTP-atom3 GTP-atom1' order='1'/><bond id='GTP-bond12' atomRefs='GTP-atom9 GTP-atom15' order='1'/><bond id='GTP-bond13' atomRefs='GTP-atom1 GTP-atom26' order='1'/><bond id='GTP-bond14' atomRefs='GTP-atom28 GTP-atom32' order='1'/><bond id='GTP-bond15' atomRefs='GTP-atom25 GTP-atom32' order='1'/><bond id='GTP-bond16' atomRefs='GTP-atom24 GTP-atom32' order='2'/><bond id='GTP-bond17' atomRefs='GTP-atom29 GTP-atom32' order='1'/><bond id='GTP-bond18' atomRefs='GTP-atom21 GTP-atom30' order='1'/><bond id='GTP-bond19' atomRefs='GTP-atom20 GTP-atom30' order='1'/><bond id='GTP-bond20' atomRefs='GTP-atom19 GTP-atom30' order='2'/><bond id='GTP-bond21' atomRefs='GTP-atom28 GTP-atom30' order='1'/><bond id='GTP-bond22' atomRefs='GTP-atom14 GTP-atom10' order='1'/><bond id='GTP-bond23' atomRefs='GTP-atom10 GTP-atom13' order='2'/><bond id='GTP-bond24' atomRefs='GTP-atom13 GTP-atom7' order='1'/><bond id='GTP-bond25' atomRefs='GTP-atom7 GTP-atom4' order='2'/><bond id='GTP-bond26' atomRefs='GTP-atom4 GTP-atom8' order='1'/><bond id='GTP-bond27' atomRefs='GTP-atom14 GTP-atom8' order='1'/><bond id='GTP-bond28' atomRefs='GTP-atom2 GTP-atom12' order='2'/><bond id='GTP-bond29' atomRefs='GTP-atom4 GTP-atom12' order='1'/><bond id='GTP-bond30' atomRefs='GTP-atom10 GTP-atom11' order='1'/><bond id='GTP-bond31' atomRefs='GTP-atom8 GTP-atom18' order='2'/><bond id='GTP-bond32' atomRefs='GTP-atom2 GTP-atom15' order='1'/><bond id='GTP-bond33' atomRefs='GTP-atom15 GTP-atom7' order='1'/><bond id='GTP-bond34' atomRefs='GTP-atom6 GTP-atom17' order='1'/></bondArray>
+<formula concise='C 10 H 12 N 5 O 14 P 3'/><float title='molecularWeight' units='g/mol'>519.151</float>
+<string title='smiles'>C(OP(=O)([O-])OP(=O)([O-])OP(=O)([O-])[O-])[C@H]3(O[C@@H](N1(C2(\N=C(N)/NC(=O)C(\N=C/1)=2)))[C@H](O)[C@H](O)3)</string>
+</molecule>
+</cml>
+<regulates><Regulation ID='ARA:REG-9558' orgid='ARA' frameid='REG-9558' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG-10693' orgid='ARA' frameid='REG-10693' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7019' orgid='ARA' frameid='REG0-7019' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7491' orgid='ARA' frameid='REG0-7491' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8376' orgid='ARA' frameid='REG0-8376' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8481' orgid='ARA' frameid='REG0-8481' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8482' orgid='ARA' frameid='REG0-8482' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7804' orgid='ARA' frameid='REG0-7804' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7411' orgid='ARA' frameid='REG0-7411' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-11743' orgid='ARA' frameid='REG0-11743' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8778' orgid='ARA' frameid='REG0-8778' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG-10988' orgid='ARA' frameid='REG-10988' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG-7211' orgid='ARA' frameid='REG-7211' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG-12893' orgid='ARA' frameid='REG-12893' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG-7185' orgid='ARA' frameid='REG-7185' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8825' orgid='ARA' frameid='REG0-8825' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7073' orgid='ARA' frameid='REG0-7073' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7089' orgid='ARA' frameid='REG0-7089' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG-12491' orgid='ARA' frameid='REG-12491' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7275' orgid='ARA' frameid='REG0-7275' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REGQT-464' orgid='ARA' frameid='REGQT-464' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-12423' orgid='ARA' frameid='ENZRXN-12423' detail='low'><common-name datatype='string'>phytyl monophosphate kinase</common-name>
+<reaction><Reaction resource='getxml?ARA:RXN-7763' orgid='ARA' frameid='RXN-7763'/></reaction>
+<enzyme><Protein resource='getxml?ARA:MONOMER-11913' orgid='ARA' frameid='MONOMER-11913'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REGQT-305' orgid='ARA' frameid='REGQT-305' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9536' orgid='ARA' frameid='ENZRXNQT-9536' detail='low'><common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
+<reaction><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/></reaction>
+<enzyme><Protein resource='getxml?ARA:CPLXQT-17' orgid='ARA' frameid='CPLXQT-17'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<common-name datatype='string'>GTP</common-name>
+<inchi datatype='string'>InChI=1S/C10H16N5O14P3/c11-10-13-7-4(8(18)14-10)12-2-15(7)9-6(17)5(16)3(27-9)1-26-31(22,23)29-32(24,25)28-30(19,20)21/h2-3,5-6,9,16-17H,1H2,(H,22,23)(H,24,25)(H2,19,20,21)(H3,11,13,14,18)/p-4/t3-,5-,6-,9-/m1/s1</inchi>
+<inchi-key datatype='string'>InChIKey=XKMLYUALXHKNFT-UUOKFMHZSA-J</inchi-key>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?ARA:2.7.7.34-RXN' orgid='ARA' frameid='2.7.7.34-RXN'/><Reaction resource='getxml?ARA:RXN-8340' orgid='ARA' frameid='RXN-8340'/><Reaction resource='getxml?ARA:RXN0-7068' orgid='ARA' frameid='RXN0-7068'/><Reaction resource='getxml?ARA:RXN-11409' orgid='ARA' frameid='RXN-11409'/><Reaction resource='getxml?ARA:4.1.1.32-RXN' orgid='ARA' frameid='4.1.1.32-RXN'/><Reaction resource='getxml?ARA:GUANYLCYC-RXN' orgid='ARA' frameid='GUANYLCYC-RXN'/><Reaction resource='getxml?ARA:2.7.7.13-RXN' orgid='ARA' frameid='2.7.7.13-RXN'/><Reaction resource='getxml?ARA:2.7.7.30-RXN' orgid='ARA' frameid='2.7.7.30-RXN'/><Reaction resource='getxml?ARA:GTPPYPHOSKIN-RXN' orgid='ARA' frameid='GTPPYPHOSKIN-RXN'/><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-I-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?ARA:URKI-RXN' orgid='ARA' frameid='URKI-RXN'/><Reaction resource='getxml?ARA:ADENYLOSUCCINATE-SYNTHASE-RXN' orgid='ARA' frameid='ADENYLOSUCCINATE-SYNTHASE-RXN'/><Reaction resource='getxml?ARA:RXN0-1021' orgid='ARA' frameid='RXN0-1021'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-553.3185</gibbs-0>
+<synonym datatype='string'>guanylyl imidodiphosphate</synonym>
+<synonym datatype='string'>guanosine 5'-triphosphate</synonym>
+<synonym datatype='string'>guanosine-triphosphate</synonym>
+<molecular-weight datatype='float' units='Daltons'>519.151</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:GDPKIN-RXN' orgid='ARA' frameid='GDPKIN-RXN'/><Reaction resource='getxml?ARA:3.6.1.17-RXN' orgid='ARA' frameid='3.6.1.17-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>522.99066</monoisotopic-mw>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000060094177</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000060094177</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00038</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00038</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM51</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM51</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>135398632</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=135398632</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>GTP</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=GTP</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>gtp</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/gtp</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC37565</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC37565</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01273</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01273</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>5414499</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/5414499</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>37565</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:37565</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00044</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00044</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>86-01-1</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=86-01-1</dblink-URL>
+</dblink>
+</Compound>
+</ptools-xml>

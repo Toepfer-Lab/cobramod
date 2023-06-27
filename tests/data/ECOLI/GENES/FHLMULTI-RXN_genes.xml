@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECOLI:FHLMULTI-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECOLI:FHLMULTI-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=ECOLI:FHLMULTI-RXN&amp;detail=FULL</query>
     <num_results>7</num_results>
-    <PGDB orgid="ECOLI" version="25.0">
+    <PGDB orgid="ECOLI" version="27.0">
       <species datatype="string">Escherichia coli</species>
       <strain datatype="string">K-12 substr. MG1655</strain>
       <dblink>
@@ -15,25 +15,68 @@
       </dblink>
     </PGDB>
   </metadata>
-  <Gene ID="ECOLI:EG10285" detail="full" frameid="EG10285" orgid="ECOLI">
+  <Gene ID="ECOLI:EG10285" orgid="ECOLI" frameid="EG10285" detail="full">
     <parent>
-      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
     </parent>
     <parent>
-      <Gene class="true" frameid="BC-1.4.1" orgid="ECOLI" resource="getxml?ECOLI:BC-1.4.1" />
+      <Gene resource="getxml?ECOLI:BC-1.4.1" orgid="ECOLI" frameid="BC-1.4.1" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation ID="ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>Luria-Bertani broth</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>LB Lennox</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>MOPS medium with 0.4% glucose</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>MOPS medium with 0.4% glucose</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>M9 medium with 1% glycerol</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation ID="ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NORMAL</growth-status>
+        <with-growth-media>LB enriched</with-growth-media>
+      </Growth-Observation>
+    </knockout-growth-observations>
     <transcription-direction datatype="string">-</transcription-direction>
     <product>
-      <Protein frameid="FORMATEDEHYDROGH-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:FORMATEDEHYDROGH-MONOMER" />
+      <Protein resource="getxml?ECOLI:FORMATEDEHYDROGH-MONOMER" orgid="ECOLI" frameid="FORMATEDEHYDROGH-MONOMER" />
     </product>
-    <right-end-position datatype="integer">4299366</right-end-position>
-    <common-name datatype="string">fdhF</common-name>
     <component-of>
-      <Transcription-Unit frameid="TU00152" orgid="ECOLI" resource="getxml?ECOLI:TU00152" />
+      <Transcription-Unit resource="getxml?ECOLI:TU00152" orgid="ECOLI" frameid="TU00152" />
     </component-of>
+    <accession-1 datatype="string">b4079</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b4079</dblink-oid>
@@ -45,12 +88,6 @@
       <dblink-oid>511145.b4079</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/511145.b4079</dblink-URL>
-    </dblink>
-    <dblink>
-      <dblink-db>ECOLIHUB</dblink-db>
-      <dblink-oid>fdhF</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=fdhF</dblink-URL>
     </dblink>
     <dblink>
       <dblink-db>ASAP</dblink-db>
@@ -76,28 +113,36 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=18400</dblink-URL>
     </dblink>
-    <synonym datatype="string">chlF</synonym>
     <left-end-position datatype="integer">4297219</left-end-position>
-    <accession-1 datatype="string">b4079</accession-1>
+    <right-end-position datatype="integer">4299366</right-end-position>
+    <synonym datatype="string">chlF</synonym>
     <accession-2 datatype="string">ECK4072</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">92.57952</centisome-position>
+    <common-name datatype="string">fdhF</common-name>
   </Gene>
-  <Gene ID="ECOLI:EG10478" detail="full" frameid="EG10478" orgid="ECOLI">
+  <Gene ID="ECOLI:EG10478" orgid="ECOLI" frameid="EG10478" detail="full">
     <parent>
-      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation resource="#ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" />
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
+      <Growth-Observation resource="#ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" />
+    </knockout-growth-observations>
     <transcription-direction datatype="string">-</transcription-direction>
     <product>
-      <Protein frameid="HYCELARGE-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCELARGE-MONOMER" />
+      <Protein resource="getxml?ECOLI:HYCELARGE-MONOMER" orgid="ECOLI" frameid="HYCELARGE-MONOMER" />
     </product>
-    <right-end-position datatype="integer">2846471</right-end-position>
-    <common-name datatype="string">hycE</common-name>
     <component-of>
-      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+      <Transcription-Unit resource="getxml?ECOLI:TU00153" orgid="ECOLI" frameid="TU00153" />
     </component-of>
+    <accession-1 datatype="string">b2721</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b2721</dblink-oid>
@@ -109,12 +154,6 @@
       <dblink-oid>511145.b2721</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/511145.b2721</dblink-URL>
-    </dblink>
-    <dblink>
-      <dblink-db>ECOLIHUB</dblink-db>
-      <dblink-oid>hycE</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycE</dblink-URL>
     </dblink>
     <dblink>
       <dblink-db>ASAP</dblink-db>
@@ -140,28 +179,49 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33159</dblink-URL>
     </dblink>
-    <synonym datatype="string">hevE</synonym>
     <left-end-position datatype="integer">2844762</left-end-position>
-    <accession-1 datatype="string">b2721</accession-1>
+    <right-end-position datatype="integer">2846471</right-end-position>
+    <synonym datatype="string">hevE</synonym>
     <accession-2 datatype="string">ECK2716</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">61.28771</centisome-position>
+    <common-name datatype="string">hycE</common-name>
   </Gene>
-  <Gene ID="ECOLI:EG10475" detail="full" frameid="EG10475" orgid="ECOLI">
+  <Gene ID="ECOLI:EG10475" orgid="ECOLI" frameid="EG10475" detail="full">
     <parent>
-      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation resource="#ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" />
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
+    </knockout-growth-observations>
     <transcription-direction datatype="string">-</transcription-direction>
     <product>
-      <Protein frameid="HYCBSMALL-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCBSMALL-MONOMER" />
+      <Protein resource="getxml?ECOLI:HYCBSMALL-MONOMER" orgid="ECOLI" frameid="HYCBSMALL-MONOMER" />
     </product>
-    <right-end-position datatype="integer">2849849</right-end-position>
-    <common-name datatype="string">hycB</common-name>
     <component-of>
-      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+      <Transcription-Unit resource="getxml?ECOLI:TU00153" orgid="ECOLI" frameid="TU00153" />
     </component-of>
+    <accession-1 datatype="string">b2724</accession-1>
+    <regulated-by>
+      <Regulation ID="ECOLI:REG0-16138" orgid="ECOLI" frameid="REG0-16138" detail="low">
+        <parent>
+          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
+        </parent>
+        <regulated-entity>
+          <Gene resource="#ECOLI:EG10475" orgid="ECOLI" frameid="EG10475" />
+        </regulated-entity>
+        <mode datatype="string">+</mode>
+        <regulator>
+          <Protein resource="getxml?ECOLI:G7518-MONOMER" orgid="ECOLI" frameid="G7518-MONOMER" />
+        </regulator>
+      </Regulation>
+    </regulated-by>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b2724</dblink-oid>
@@ -173,12 +233,6 @@
       <dblink-oid>511145.b2724</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/511145.b2724</dblink-URL>
-    </dblink>
-    <dblink>
-      <dblink-db>ECOLIHUB</dblink-db>
-      <dblink-oid>hycB</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycB</dblink-URL>
     </dblink>
     <dblink>
       <dblink-db>ASAP</dblink-db>
@@ -204,28 +258,36 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33169</dblink-URL>
     </dblink>
-    <synonym datatype="string">hevB</synonym>
     <left-end-position datatype="integer">2849238</left-end-position>
-    <accession-1 datatype="string">b2724</accession-1>
+    <right-end-position datatype="integer">2849849</right-end-position>
+    <synonym datatype="string">hevB</synonym>
     <accession-2 datatype="string">ECK2719</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">61.384136</centisome-position>
+    <common-name datatype="string">hycB</common-name>
   </Gene>
-  <Gene ID="ECOLI:EG10480" detail="full" frameid="EG10480" orgid="ECOLI">
+  <Gene ID="ECOLI:EG10480" orgid="ECOLI" frameid="EG10480" detail="full">
     <parent>
-      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation resource="#ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" />
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
+      <Growth-Observation resource="#ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" />
+    </knockout-growth-observations>
     <transcription-direction datatype="string">-</transcription-direction>
     <product>
-      <Protein frameid="HYCG-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCG-MONOMER" />
+      <Protein resource="getxml?ECOLI:HYCG-MONOMER" orgid="ECOLI" frameid="HYCG-MONOMER" />
     </product>
-    <right-end-position datatype="integer">2844210</right-end-position>
-    <common-name datatype="string">hycG</common-name>
     <component-of>
-      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+      <Transcription-Unit resource="getxml?ECOLI:TU00153" orgid="ECOLI" frameid="TU00153" />
     </component-of>
+    <accession-1 datatype="string">b2719</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b2719</dblink-oid>
@@ -237,12 +299,6 @@
       <dblink-oid>511145.b2719</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/511145.b2719</dblink-URL>
-    </dblink>
-    <dblink>
-      <dblink-db>ECOLIHUB</dblink-db>
-      <dblink-oid>hycG</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycG</dblink-URL>
     </dblink>
     <dblink>
       <dblink-db>ASAP</dblink-db>
@@ -268,31 +324,45 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33151</dblink-URL>
     </dblink>
-    <synonym datatype="string">hevG</synonym>
     <left-end-position datatype="integer">2843443</left-end-position>
-    <accession-1 datatype="string">b2719</accession-1>
+    <right-end-position datatype="integer">2844210</right-end-position>
+    <synonym datatype="string">hevG</synonym>
     <accession-2 datatype="string">ECK2714</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">61.25929</centisome-position>
+    <common-name datatype="string">hycG</common-name>
   </Gene>
-  <Gene ID="ECOLI:EG10479" detail="full" frameid="EG10479" orgid="ECOLI">
+  <Gene ID="ECOLI:EG10479" orgid="ECOLI" frameid="EG10479" detail="full">
     <parent>
-      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
     </parent>
     <parent>
-      <Gene class="true" frameid="BC-6.1" orgid="ECOLI" resource="getxml?ECOLI:BC-6.1" />
+      <Gene resource="getxml?ECOLI:BC-6.1" orgid="ECOLI" frameid="BC-6.1" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation ID="ECOLI:OBS0-43" orgid="ECOLI" frameid="OBS0-43" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NONE</growth-status>
+        <with-growth-media>LB enriched</with-growth-media>
+      </Growth-Observation>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation resource="#ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" />
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
+    </knockout-growth-observations>
     <transcription-direction datatype="string">-</transcription-direction>
     <product>
-      <Protein frameid="HYCF-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCF-MONOMER" />
+      <Protein resource="getxml?ECOLI:HYCF-MONOMER" orgid="ECOLI" frameid="HYCF-MONOMER" />
     </product>
-    <right-end-position datatype="integer">2844752</right-end-position>
-    <common-name datatype="string">hycF</common-name>
     <component-of>
-      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+      <Transcription-Unit resource="getxml?ECOLI:TU00153" orgid="ECOLI" frameid="TU00153" />
     </component-of>
+    <accession-1 datatype="string">b2720</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b2720</dblink-oid>
@@ -304,12 +374,6 @@
       <dblink-oid>511145.b2720</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/511145.b2720</dblink-URL>
-    </dblink>
-    <dblink>
-      <dblink-db>ECOLIHUB</dblink-db>
-      <dblink-oid>hycF</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycF</dblink-URL>
     </dblink>
     <dblink>
       <dblink-db>ASAP</dblink-db>
@@ -335,31 +399,39 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33154</dblink-URL>
     </dblink>
-    <synonym datatype="string">hevF</synonym>
     <left-end-position datatype="integer">2844210</left-end-position>
-    <accession-1 datatype="string">b2720</accession-1>
+    <right-end-position datatype="integer">2844752</right-end-position>
+    <synonym datatype="string">hevF</synonym>
     <accession-2 datatype="string">ECK2715</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">61.275818</centisome-position>
+    <common-name datatype="string">hycF</common-name>
   </Gene>
-  <Gene ID="ECOLI:EG10476" detail="full" frameid="EG10476" orgid="ECOLI">
+  <Gene ID="ECOLI:EG10476" orgid="ECOLI" frameid="EG10476" detail="full">
     <parent>
-      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
     </parent>
     <parent>
-      <Gene class="true" frameid="BC-6.1" orgid="ECOLI" resource="getxml?ECOLI:BC-6.1" />
+      <Gene resource="getxml?ECOLI:BC-6.1" orgid="ECOLI" frameid="BC-6.1" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation resource="#ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" />
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
+      <Growth-Observation resource="#ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" />
+    </knockout-growth-observations>
     <transcription-direction datatype="string">-</transcription-direction>
     <product>
-      <Protein frameid="HYCC-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCC-MONOMER" />
+      <Protein resource="getxml?ECOLI:HYCC-MONOMER" orgid="ECOLI" frameid="HYCC-MONOMER" />
     </product>
-    <right-end-position datatype="integer">2849241</right-end-position>
-    <common-name datatype="string">hycC</common-name>
     <component-of>
-      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+      <Transcription-Unit resource="getxml?ECOLI:TU00153" orgid="ECOLI" frameid="TU00153" />
     </component-of>
+    <accession-1 datatype="string">b2723</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b2723</dblink-oid>
@@ -371,12 +443,6 @@
       <dblink-oid>511145.b2723</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/511145.b2723</dblink-URL>
-    </dblink>
-    <dblink>
-      <dblink-db>ECOLIHUB</dblink-db>
-      <dblink-oid>hycC</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycC</dblink-URL>
     </dblink>
     <dblink>
       <dblink-db>ASAP</dblink-db>
@@ -402,32 +468,40 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33166</dblink-URL>
     </dblink>
-    <synonym datatype="string">hevC</synonym>
     <left-end-position datatype="integer">2847415</left-end-position>
-    <accession-1 datatype="string">b2723</accession-1>
+    <right-end-position datatype="integer">2849241</right-end-position>
+    <synonym datatype="string">hevC</synonym>
     <accession-2 datatype="string">ECK2718</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">61.344864</centisome-position>
+    <common-name datatype="string">hycC</common-name>
   </Gene>
-  <Gene ID="ECOLI:EG10477" detail="full" frameid="EG10477" orgid="ECOLI">
+  <Gene ID="ECOLI:EG10477" orgid="ECOLI" frameid="EG10477" detail="full">
     <parent>
-      <Gene class="true" frameid="BC-1.3.5" orgid="ECOLI" resource="getxml?ECOLI:BC-1.3.5" />
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
     </parent>
     <parent>
-      <Gene class="true" frameid="BC-6.1" orgid="ECOLI" resource="getxml?ECOLI:BC-6.1" />
+      <Gene resource="getxml?ECOLI:BC-6.1" orgid="ECOLI" frameid="BC-6.1" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="COLI-K12" orgid="ECOLI" resource="getxml?ECOLI:COLI-K12" />
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation resource="#ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" />
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
+      <Growth-Observation resource="#ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" />
+    </knockout-growth-observations>
     <transcription-direction datatype="string">-</transcription-direction>
     <product>
-      <Protein frameid="HYCD-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:HYCD-MONOMER" />
+      <Protein resource="getxml?ECOLI:HYCD-MONOMER" orgid="ECOLI" frameid="HYCD-MONOMER" />
     </product>
-    <right-end-position datatype="integer">2847412</right-end-position>
-    <comment datatype="string">ArcA appears to activate hycD gene expression under anaerobiosis. A putative ArcA binding site was  identified 55 bp upstream of this gene [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15699038"&gt;Salmon05&lt;/a&gt;], but no promoter upstream of it has been identified. Instead hycD is transcribed from a promoter that  is located usptream of hycA gene.</comment>
-    <common-name datatype="string">hycD</common-name>
+    <comment datatype="string">ArcA appears to activate &lt;i&gt;hycD&lt;/i&gt; expression under anaerobiosis; a putative ArcA binding site was identified 55 bp upstream of this gene [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15699038"&gt;Salmon05&lt;/a&gt;], but no promoter upstream of it has been identified. Instead &lt;i&gt;hycD&lt;/i&gt; is transcribed from a promoter that is located usptream of &lt;i&gt;hycA&lt;/i&gt; gene.</comment>
     <component-of>
-      <Transcription-Unit frameid="TU00153" orgid="ECOLI" resource="getxml?ECOLI:TU00153" />
+      <Transcription-Unit resource="getxml?ECOLI:TU00153" orgid="ECOLI" frameid="TU00153" />
     </component-of>
+    <accession-1 datatype="string">b2722</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b2722</dblink-oid>
@@ -439,12 +513,6 @@
       <dblink-oid>511145.b2722</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/511145.b2722</dblink-URL>
-    </dblink>
-    <dblink>
-      <dblink-db>ECOLIHUB</dblink-db>
-      <dblink-oid>hycD</dblink-oid>
-      <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>http://porteco.org/AjaxSearch.jsp?searchString=hycD</dblink-URL>
     </dblink>
     <dblink>
       <dblink-db>ASAP</dblink-db>
@@ -470,10 +538,11 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=33162</dblink-URL>
     </dblink>
-    <synonym datatype="string">hevD</synonym>
     <left-end-position datatype="integer">2846489</left-end-position>
-    <accession-1 datatype="string">b2722</accession-1>
+    <right-end-position datatype="integer">2847412</right-end-position>
+    <synonym datatype="string">hevD</synonym>
     <accession-2 datatype="string">ECK2717</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">61.324913</centisome-position>
+    <common-name datatype="string">hycD</common-name>
   </Gene>
 </ptools-xml>

@@ -1,33 +1,34 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-11445"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:RXN-11445'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-11445</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:RXN-11445" detail="full" frameid="RXN-11445" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
-<gibbs-0 datatype="float" units="kcal/mol">-3.6100464</gibbs-0>
-<in-pathway><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></in-pathway>
-<left><Compound frameid="3-HYDROXYPROPYL-GLUCOSINOLATE" orgid="ARA" resource="getxml?ARA:3-HYDROXYPROPYL-GLUCOSINOLATE" /></left>
-<left><Compound frameid="SINAPOYL-COA" orgid="ARA" resource="getxml?ARA:SINAPOYL-COA" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<Reaction ID='ARA:RXN-11445' orgid='ARA' frameid='RXN-11445' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
+<left><Compound resource='getxml?ARA:3-HYDROXYPROPYL-GLUCOSINOLATE' orgid='ARA' frameid='3-HYDROXYPROPYL-GLUCOSINOLATE'/></left>
+<left><Compound resource='getxml?ARA:SINAPOYL-COA' orgid='ARA' frameid='SINAPOYL-COA'/></left>
+<gibbs-0 datatype='float' units='kcal/mol'>-3.6100464</gibbs-0>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CPD-12417" orgid="ARA" resource="getxml?ARA:CPD-12417" /></right>
-<right><Compound frameid="CO-A" orgid="ARA" resource="getxml?ARA:CO-A" /></right>
-<credits><created><date datatype="date">2010-04-30</date>
-<Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><url datatype="string">http://plantcyc.org</url>
-<abbrev-name datatype="string">PMN</abbrev-name>
-<common-name datatype="string">Carnegie Institution for Science</common-name>
+<right><Compound resource='getxml?ARA:CPD-12417' orgid='ARA' frameid='CPD-12417'/></right>
+<right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<credits><created><date datatype='date'>2010-04-30</date>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
+<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
+<abbrev-name datatype='string'>PMN</abbrev-name>
+<url datatype='string'>http://plantcyc.org</url>
 </Organization>
-<Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
-<common-name datatype="string">The Arabidopsis Information Resource</common-name>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
+<abbrev-name datatype='string'>TAIR</abbrev-name>
 </Organization>
 </affiliations>
-<common-name datatype="string">Peifen Zhang</common-name>
 </Person>
-<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></created>
+<Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></created>
 </credits>
 </Reaction>
 </ptools-xml>

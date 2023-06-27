@@ -15,19 +15,21 @@ from pathlib import Path
 
 import cobra.core as cobra_core
 import cobramod.retrieval as cmod_retrieval
+import requests
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
 from cobramod.core import creation as cr
 from cobramod.debug import debug_log
 from cobramod.error import NoDelimiter, WrongSyntax
+from cobramod.parsing.db_version import DataVersionConfigurator
 from cobramod.test import textbook_kegg
 
 NAME = "test_model"
 
-# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
+data_conf = DataVersionConfigurator()
+data_conf.force_same_version = True
 
-# Data and Input dir
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
 
@@ -184,7 +186,7 @@ class SimpleFunctions(unittest.TestCase):
         )
         # CASE: Metabolite is not found (or misspelled)
         self.assertRaises(
-            AttributeError,
+            requests.HTTPError,
             cr.get_file_metabolites,
             test_model,
             dir_input.joinpath("metabolites_02_misspelled.txt"),

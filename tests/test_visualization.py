@@ -6,10 +6,10 @@ This module includes two TestCases:
 - TestItems: Creation and behavior of JSON objects for the Escher-schema
 - TestJsonDictionary: Testing the methods inside the JsonDictionary
 """
+import unittest
 from contextlib import suppress
 from pathlib import Path
 from time import sleep
-from unittest import TestCase, main
 
 import cobramod.visualization.mapping as mp
 from cobramod.error import FoundInPairError
@@ -22,7 +22,6 @@ from cobramod.visualization.items import Node, Reaction, Segment
 from cobramod.visualization.pair import PairDictionary
 from escher import Builder
 
-# Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
@@ -30,7 +29,7 @@ if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
 
 
-class TestItems(TestCase):
+class TestItems(unittest.TestCase):
     """
     Behavior of JSON objects
     """
@@ -149,7 +148,7 @@ class TestItems(TestCase):
         )
 
 
-class TestJsonDictionary(TestCase):
+class TestJsonDictionary(unittest.TestCase):
     """
     Methods for the JsonDictionary.
     """
@@ -869,7 +868,7 @@ class TestJsonDictionary(TestCase):
         test_builder
 
 
-class TestMapping(TestCase):
+class TestMapping(unittest.TestCase):
     """
     This TestCase checks if the mapping for the visualization has a normal
     behavior
@@ -1124,4 +1123,4 @@ class TestMapping(TestCase):
 
 
 if __name__ == "__main__":
-    main(verbosity=2)
+    unittest.main(verbosity=2)

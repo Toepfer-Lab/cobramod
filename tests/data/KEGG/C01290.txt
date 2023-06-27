@@ -10,13 +10,17 @@ FORMULA     C31H56NO13R
 REMARK      Same as: G00092
 COMMENT     Generic compound in reaction hierarchy
 REACTION    R03354 R03355 R03486 R03488 R03489 R03490 R03491 R03492 
-            R03618 R04493
+            R03618 R04493 R12960 R12961
 PATHWAY     map00600  Sphingolipid metabolism
+            map00601(G00092)  Glycosphingolipid biosynthesis - lacto and neolacto series
+            map00603(G00092)  Glycosphingolipid biosynthesis - globo and isoglobo series
+            map00604(G00092)  Glycosphingolipid biosynthesis - ganglio series
             map01100  Metabolic pathways
 MODULE      M00066  Lactosylceramide biosynthesis
+NETWORK     nt06014  Sphingolipid degradation
 ENZYME      2.4.1.92        2.4.1.206       2.4.1.228       2.4.1.274       
-            2.4.99.1        2.4.99.9        3.2.1.18        3.2.1.22        
-            3.2.1.23        3.2.1.47        3.2.1.52
+            2.4.3.1         2.4.3.9         2.8.2.11        3.1.6.8         
+            3.2.1.18        3.2.1.22        3.2.1.23        3.2.1.52
 BRITE       Compounds with biological roles [BR:br08001]
              Lipids
               Glycolipids
@@ -24,8 +28,6 @@ BRITE       Compounds with biological roles [BR:br08001]
                 C01290  Lactosylceramide
 DBLINKS     PubChem: 4509
             ChEBI: 17950
-            LIPIDMAPS: LMSP0501AB00
-            LipidBank: GSG1147
 ATOM        46
             1   C1y C    15.9666  -18.9599
             2   C1y C    15.9337  -17.5704

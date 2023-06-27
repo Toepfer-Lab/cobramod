@@ -17,7 +17,6 @@ ENZYME      1.8.1.13        1.14.99.50      4.3.2.9         6.3.2.2
 DBLINKS     CAS: 636-58-8
             PubChem: 3938
             ChEBI: 17515
-            ChEMBL: CHEMBL460831
             KNApSAcK: C00007507
             PDB-CCD: 3GC
             3DMET: B01305

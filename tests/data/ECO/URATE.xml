@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:URATE'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:URATE</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:URATE' orgid='ECOLI' frameid='URATE' detail='full'><parent><Compound resource='getxml?ECOLI:Purines' orgid='ECOLI' frameid='Purines' class='true'/></parent>
+<cml><molecule id='URATE' title='urate' formalCharge='0'><atomArray><atom id='URATE-atom1' elementType='C' x2='22688.0' y2='-12899.0'/><atom id='URATE-atom2' elementType='C' x2='22688.0' y2='-4649.0'/><atom id='URATE-atom3' elementType='C' x2='15543.0' y2='-17024.0'/><atom id='URATE-atom4' elementType='C' x2='35384.0' y2='-8774.0'/><atom id='URATE-atom5' elementType='C' x2='8399.0' y2='-4649.0'/><atom id='URATE-atom6' elementType='N' x2='30534.0' y2='-15448.0'/><atom id='URATE-atom7' elementType='N' x2='30534.0' y2='-2099.0'/><atom id='URATE-atom8' elementType='N' x2='15543.0' y2='-524.0'/><atom id='URATE-atom9' elementType='N' x2='8399.0' y2='-12899.0'/><atom id='URATE-atom10' elementType='O' x2='15543.0' y2='-25274.0'/><atom id='URATE-atom11' elementType='O' x2='43634.0' y2='-8774.0'/><atom id='URATE-atom12' elementType='O' x2='1254.0' y2='-524.0'/></atomArray>
+<bondArray><bond id='URATE-bond1' atomRefs='URATE-atom9 URATE-atom3' order='1'/><bond id='URATE-bond2' atomRefs='URATE-atom3 URATE-atom1' order='1'/><bond id='URATE-bond3' atomRefs='URATE-atom5 URATE-atom9' order='1'/><bond id='URATE-bond4' atomRefs='URATE-atom2 URATE-atom8' order='1'/><bond id='URATE-bond5' atomRefs='URATE-atom8 URATE-atom5' order='1'/><bond id='URATE-bond6' atomRefs='URATE-atom12 URATE-atom5' order='2'/><bond id='URATE-bond7' atomRefs='URATE-atom10 URATE-atom3' order='2'/><bond id='URATE-bond8' atomRefs='URATE-atom6 URATE-atom1' order='1'/><bond id='URATE-bond9' atomRefs='URATE-atom2 URATE-atom1' order='2'/><bond id='URATE-bond10' atomRefs='URATE-atom2 URATE-atom7' order='1'/><bond id='URATE-bond11' atomRefs='URATE-atom7 URATE-atom4' order='1'/><bond id='URATE-bond12' atomRefs='URATE-atom6 URATE-atom4' order='1'/><bond id='URATE-bond13' atomRefs='URATE-atom4 URATE-atom11' order='2'/></bondArray>
+<formula concise='C 5 H 4 N 4 O 3'/><float title='molecularWeight' units='g/mol'>168.112</float>
+<string title='smiles'>C12(NC(=O)NC(C(=O)NC(=O)N1)=2)</string>
+</molecule>
+</cml>
+<citation><Publication ID='ECOLI:PUB-ROBERTS90' orgid='ECOLI' frameid='PUB-ROBERTS90' detail='full'><year datatype='integer'>1890</year>
+<source datatype='string'>Med Chir Trans. 73: 245-271</source>
+<title datatype='string'>On the history of uric acid in the urine, with reference to the formation of uric acid concretions and deposits.</title>
+<author datatype='string'>Roberts, W.</author>
+</Publication>
+</citation>
+<inchi-key datatype='string'>InChIKey=LEHOTFFKMJEONL-UHFFFAOYSA-N</inchi-key>
+<gibbs-0 datatype='float' units='kcal/mol'>-44.21552</gibbs-0>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-530' orgid='ECOLI' frameid='TRANS-RXN0-530'/></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-530' orgid='ECOLI' frameid='TRANS-RXN0-530'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></appears-in-right-side-of>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000028136055</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000028136055</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Uric acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Uric acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>urate</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/urate</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17775</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17775</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00289</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00289</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB01696</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB01696</dblink-URL>
+</dblink>
+<dblink><dblink-db>Wikipedia</dblink-db>
+<dblink-oid>Uric_acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://en.wikipedia.org/wiki/Uric_acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>44229235</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=44229235</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17775</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17775</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00366</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00366</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>69-93-2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=69-93-2</dblink-URL>
+</dblink>
+<synonym datatype='string'>2,6,8-trioxypurine</synonym>
+<synonym datatype='string'>purine-2,6,8-(1H,3H,9H)-trione</synonym>
+<synonym datatype='string'>7,9-dihydro-1H-purine-2,6,8(3H)-trione</synonym>
+<monoisotopic-mw datatype='float' units='Daltons'>168.02834</monoisotopic-mw>
+<molecular-weight datatype='float' units='Daltons'>168.112</molecular-weight>
+<inchi datatype='string'>InChI=1S/C5H4N4O3/c10-3-1-2(7-4(11)6-1)8-5(12)9-3/h(H4,6,7,8,9,10,11,12)</inchi>
+<common-name datatype='string'>urate</common-name>
+</Compound>
+</ptools-xml>

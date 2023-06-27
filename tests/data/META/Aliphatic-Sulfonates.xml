@@ -1,21 +1,24 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:Aliphatic-Sulfonates"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:Aliphatic-Sulfonates'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:Aliphatic-Sulfonates</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:Aliphatic-Sulfonates" class="true" detail="full" frameid="Aliphatic-Sulfonates" orgid="META"><parent><Compound class="true" frameid="SULFONATES" orgid="META" resource="getxml?META:SULFONATES" /></parent>
-<subclass><Compound class="true" frameid="Alkanesulfonates" orgid="META" resource="getxml?META:Alkanesulfonates" /></subclass>
-<instance><Compound frameid="CPD-10246" orgid="META" resource="getxml?META:CPD-10246" /></instance>
-<instance><Compound frameid="CPD-11725" orgid="META" resource="getxml?META:CPD-11725" /></instance>
-<cml><molecule formalCharge="-1" id="Aliphatic-Sulfonates" title="an+aliphatic+sulfonate"><atomArray><atom elementType="C" id="Aliphatic-Sulfonates-atom1" x2="333.0" y2="525.0" /><atom elementType="O" formalCharge="-1" id="Aliphatic-Sulfonates-atom2" x2="999.0" y2="525.0" /><atom elementType="O" id="Aliphatic-Sulfonates-atom3" x2="858.0" y2="0.0" /><atom elementType="O" id="Aliphatic-Sulfonates-atom4" x2="474.0" y2="0.0" /><atom elementType="S" id="Aliphatic-Sulfonates-atom5" x2="666.0" y2="333.0" /><atom elementType="R" id="Aliphatic-Sulfonates-atom6" x2="0.0" y2="334.0" /></atomArray>
-<bondArray><bond atomRefs="Aliphatic-Sulfonates-atom1 Aliphatic-Sulfonates-atom5" id="Aliphatic-Sulfonates-bond1" order="1" /><bond atomRefs="Aliphatic-Sulfonates-atom5 Aliphatic-Sulfonates-atom2" id="Aliphatic-Sulfonates-bond2" order="1" /><bond atomRefs="Aliphatic-Sulfonates-atom3 Aliphatic-Sulfonates-atom5" id="Aliphatic-Sulfonates-bond3" order="2" /><bond atomRefs="Aliphatic-Sulfonates-atom4 Aliphatic-Sulfonates-atom5" id="Aliphatic-Sulfonates-bond4" order="2" /><bond atomRefs="Aliphatic-Sulfonates-atom1 Aliphatic-Sulfonates-atom6" id="Aliphatic-Sulfonates-bond5" order="1" /></bondArray>
-<formula concise="" /><string title="smiles">C([R])S(=O)(=O)[O-]</string>
+<Compound ID='META:Aliphatic-Sulfonates' orgid='META' frameid='Aliphatic-Sulfonates' detail='full' class='true'><parent><Compound resource='getxml?META:SULFONATES' orgid='META' frameid='SULFONATES' class='true'/></parent>
+<subclass><Compound resource='getxml?META:RS-3-Sulfolactate' orgid='META' frameid='RS-3-Sulfolactate' class='true'/></subclass>
+<subclass><Compound resource='getxml?META:2-3-dihydroxypropane-1-sulfonate' orgid='META' frameid='2-3-dihydroxypropane-1-sulfonate' class='true'/></subclass>
+<subclass><Compound resource='getxml?META:Alkanesulfonates' orgid='META' frameid='Alkanesulfonates' class='true'/></subclass>
+<instance><Compound resource='getxml?META:CPD-10246' orgid='META' frameid='CPD-10246'/></instance>
+<instance><Compound resource='getxml?META:CPD-11725' orgid='META' frameid='CPD-11725'/></instance>
+<instance><Compound resource='getxml?META:CPD-19111' orgid='META' frameid='CPD-19111'/></instance>
+<cml><molecule id='Aliphatic-Sulfonates' title='an+aliphatic+sulfonate' formalCharge='-1'><atomArray><atom id='Aliphatic-Sulfonates-atom1' elementType='C' x2='7147.0' y2='11268.0'/><atom id='Aliphatic-Sulfonates-atom2' elementType='O' x2='10173.0' y2='0.0'/><atom id='Aliphatic-Sulfonates-atom3' elementType='O' x2='18419.0' y2='14292.0'/><atom id='Aliphatic-Sulfonates-atom4' elementType='O' x2='21439.0' y2='3022.0' formalCharge='-1'/><atom id='Aliphatic-Sulfonates-atom5' elementType='S' x2='14294.0' y2='7147.0'/><atom id='Aliphatic-Sulfonates-atom6' elementType='R' x2='0.0' y2='7169.0'/></atomArray>
+<bondArray><bond id='Aliphatic-Sulfonates-bond1' atomRefs='Aliphatic-Sulfonates-atom1 Aliphatic-Sulfonates-atom5' order='1'/><bond id='Aliphatic-Sulfonates-bond2' atomRefs='Aliphatic-Sulfonates-atom2 Aliphatic-Sulfonates-atom5' order='2'/><bond id='Aliphatic-Sulfonates-bond3' atomRefs='Aliphatic-Sulfonates-atom1 Aliphatic-Sulfonates-atom6' order='1'/><bond id='Aliphatic-Sulfonates-bond4' atomRefs='Aliphatic-Sulfonates-atom5 Aliphatic-Sulfonates-atom3' order='2'/><bond id='Aliphatic-Sulfonates-bond5' atomRefs='Aliphatic-Sulfonates-atom5 Aliphatic-Sulfonates-atom4' order='1'/></bondArray>
+<formula concise=''/><string title='smiles'>C([R])S([O-])(=O)=O</string>
 </molecule>
 </cml>
-<comment datatype="string">This compound class stands for generic and unspecified aliphatic sulfonate compounds.</comment>
-<common-name datatype="string">an aliphatic sulfonate</common-name>
+<appears-in-right-side-of><Reaction resource='getxml?META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN'/></appears-in-right-side-of>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd28694</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -26,7 +29,8 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/chem_info/MNXM148895</dblink-URL>
 </dblink>
-<appears-in-left-side-of><Reaction frameid="ABC-56-RXN" orgid="META" resource="getxml?META:ABC-56-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="ABC-56-RXN" orgid="META" resource="getxml?META:ABC-56-RXN" /></appears-in-right-side-of>
+<common-name datatype='string'>an aliphatic sulfonate</common-name>
+<comment datatype='string'>This compound class stands for generic and unspecified aliphatic sulfonate compounds.</comment>
+<appears-in-left-side-of><Reaction resource='getxml?META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

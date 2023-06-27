@@ -1,13 +1,27 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-2206"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:RXN-2206'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RXN-2206</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:RXN-2206" detail="full" frameid="RXN-2206" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Composite-Reactions" orgid="META" resource="getxml?META:Composite-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<Reaction ID='META:RXN-2206' orgid='META' frameid='RXN-2206' detail='full'><parent><Reaction resource='getxml?META:Composite-Reactions' orgid='META' frameid='Composite-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:HOMOMETHIONINE' orgid='META' frameid='HOMOMETHIONINE'/></left>
+<left><Compound resource='getxml?META:OXYGEN-MOLECULE' orgid='META' frameid='OXYGEN-MOLECULE'/><coefficient datatype='integer'>2</coefficient>
+</left>
+<left><Protein resource='getxml?META:Red-NADPH-Hemoprotein-Reductases' orgid='META' frameid='Red-NADPH-Hemoprotein-Reductases' class='true'/><coefficient datatype='integer'>2</coefficient>
+</left>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN-2845' orgid='META' frameid='ENZRXN-2845' detail='low'><enzyme><Protein resource='getxml?META:CPLX-2303' orgid='META' frameid='CPLX-2303'/></enzyme>
+<reaction><Reaction resource='#META:RXN-2206' orgid='META' frameid='RXN-2206'/></reaction>
+<common-name datatype='string'>CYP79F2 homomethionine monooxygenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-2844' orgid='META' frameid='ENZRXN-2844' detail='low'><enzyme><Protein resource='getxml?META:CPLX-2302' orgid='META' frameid='CPLX-2302'/></enzyme>
+<reaction><Reaction resource='#META:RXN-2206' orgid='META' frameid='RXN-2206'/></reaction>
+<common-name datatype='string'>CYP79F1 homomethionine monooxygenase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR144010</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -19,45 +33,31 @@
 <dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R08665</dblink-URL>
 </dblink>
 <ec-number>EC-1.14.14.42</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-2845" detail="low" frameid="ENZRXN-2845" orgid="META"><common-name datatype="string">CYP79F2 homomethionine monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX-2303" orgid="META" resource="getxml?META:CPLX-2303" /></enzyme>
-<reaction><Reaction frameid="RXN-2206" orgid="META" resource="#META:RXN-2206" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-2844" detail="low" frameid="ENZRXN-2844" orgid="META"><common-name datatype="string">CYP79F1 homomethionine monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX-2302" orgid="META" resource="getxml?META:CPLX-2302" /></enzyme>
-<reaction><Reaction frameid="RXN-2206" orgid="META" resource="#META:RXN-2206" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-184.48651<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<reaction-list><Reaction resource='getxml?META:RXN-13014' orgid='META' frameid='RXN-13014'/><Reaction resource='getxml?META:RXN-13015' orgid='META' frameid='RXN-13015'/><Reaction resource='getxml?META:RXN-13016' orgid='META' frameid='RXN-13016'/></reaction-list>
+<gibbs-0 datatype='float' units='kcal/mol'>-184.48651<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype='string'>Latendresse M.</author>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY-1187" orgid="META" resource="getxml?META:PWY-1187" /></in-pathway>
-<left><Compound frameid="HOMOMETHIONINE" orgid="META" resource="getxml?META:HOMOMETHIONINE" /></left>
-<left><Compound frameid="OXYGEN-MOLECULE" orgid="META" resource="getxml?META:OXYGEN-MOLECULE" /><coefficient datatype="integer">2</coefficient>
-</left>
-<left><Protein class="true" frameid="Red-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Red-NADPH-Hemoprotein-Reductases" /><coefficient datatype="integer">2</coefficient>
-</left>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<reaction-list><Reaction frameid="RXN-13014" orgid="META" resource="getxml?META:RXN-13014" /><Reaction frameid="RXN-13015" orgid="META" resource="getxml?META:RXN-13015" /><Reaction frameid="RXN-13016" orgid="META" resource="getxml?META:RXN-13016" /></reaction-list>
-<right><Compound frameid="3-METHYLTHIOPROPANALDOXIME" orgid="META" resource="getxml?META:3-METHYLTHIOPROPANALDOXIME" /></right>
-<right><Compound frameid="CARBON-DIOXIDE" orgid="META" resource="getxml?META:CARBON-DIOXIDE" /></right>
-<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /><coefficient datatype="integer">3</coefficient>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<right><Compound resource='getxml?META:3-METHYLTHIOPROPANALDOXIME' orgid='META' frameid='3-METHYLTHIOPROPANALDOXIME'/></right>
+<right><Compound resource='getxml?META:CARBON-DIOXIDE' orgid='META' frameid='CARBON-DIOXIDE'/></right>
+<right><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/><coefficient datatype='integer'>3</coefficient>
 </right>
-<right><Protein class="true" frameid="Ox-NADPH-Hemoprotein-Reductases" orgid="META" resource="getxml?META:Ox-NADPH-Hemoprotein-Reductases" /><coefficient datatype="integer">2</coefficient>
+<right><Protein resource='getxml?META:Ox-NADPH-Hemoprotein-Reductases' orgid='META' frameid='Ox-NADPH-Hemoprotein-Reductases' class='true'/><coefficient datatype='integer'>2</coefficient>
 </right>
+<in-pathway><Pathway resource='getxml?META:PWY-1187' orgid='META' frameid='PWY-1187'/></in-pathway>
 </Reaction>
 </ptools-xml>

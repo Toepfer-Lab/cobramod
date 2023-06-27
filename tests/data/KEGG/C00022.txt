@@ -22,17 +22,17 @@ REACTION    R00006 R00008 R00014 R00195 R00196 R00197 R00198 R00199
             R01811 R01858 R01874 R02050 R02261 R02271 R02293 R02320 
             R02408 R02628 R02721 R02754 R02953 R02970 R03001 R03037 
             R03050 R03081 R03105 R03145 R03277 R03465 R03502 R03528 
-            R03732 R03796 R03854 R04152 R04187 R04672 R04861 R04941 
-            R05136 R05298 R05538 R05544 R05553 R05605 R05636 R05648 
-            R05652 R05861 R06602 R06603 R06913 R06923 R06934 R07399 
-            R07633 R07634 R07685 R07692 R07713 R08166 R08170 R08197 
-            R08200 R08253 R08570 R08648 R08654 R08660 R08667 R08686 
-            R08698 R08714 R09048 R09088 R09238 R09254 R09366 R10147 
-            R10178 R10180 R10283 R10487 R10527 R10539 R10542 R10550 
-            R10552 R10583 R10597 R10616 R10674 R10691 R10866 R10992 
-            R11023 R11038 R11099 R11141 R11213 R11257 R11352 R11463 
-            R11591 R11593 R11676 R11864 R11996 R12188 R12212 R12237 
-            R12343 R12622 R12689 R12707
+            R03732 R03796 R03854 R04152 R04187 R04350 R04672 R04861 
+            R04941 R05136 R05298 R05538 R05544 R05553 R05605 R05636 
+            R05648 R05652 R05861 R06602 R06603 R06913 R06923 R06934 
+            R07399 R07633 R07634 R07685 R07692 R07713 R08166 R08170 
+            R08197 R08200 R08253 R08570 R08648 R08654 R08660 R08667 
+            R08686 R08698 R08714 R09048 R09088 R09238 R09254 R09366 
+            R10147 R10178 R10180 R10283 R10487 R10527 R10539 R10542 
+            R10550 R10552 R10583 R10597 R10616 R10674 R10691 R10866 
+            R10992 R11023 R11038 R11099 R11141 R11213 R11257 R11352 
+            R11463 R11591 R11593 R11676 R11864 R11996 R12188 R12212 
+            R12237 R12343 R12622 R12689 R12707 R12768 R13049 R13050
 PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00020  Citrate cycle (TCA cycle)
             map00030  Pentose phosphate pathway
@@ -49,7 +49,7 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00362  Benzoate degradation
             map00430  Taurine and hypotaurine metabolism
             map00440  Phosphonate and phosphinate metabolism
-            map00473  D-Alanine metabolism
+            map00470  D-Amino acid metabolism
             map00620  Pyruvate metabolism
             map00621  Dioxin degradation
             map00622  Xylene degradation
@@ -62,9 +62,10 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00730  Thiamine metabolism
             map00760  Nicotinate and nicotinamide metabolism
             map00770  Pantothenate and CoA biosynthesis
+            map00785  Lipoic acid metabolism
             map00900  Terpenoid backbone biosynthesis
-            map00997  Biosynthesis of various secondary metabolites - part 3
-            map00999  Biosynthesis of various secondary metabolites - part 1
+            map00997  Biosynthesis of various other secondary metabolites
+            map00998  Biosynthesis of various antibiotics
             map01060  Biosynthesis of plant secondary metabolites
             map01061  Biosynthesis of phenylpropanoids
             map01062  Biosynthesis of terpenoids and steroids
@@ -111,19 +112,22 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00620  Incomplete reductive citrate cycle, acetyl-CoA => oxoglutarate
             M00631  D-Galacturonate degradation (bacteria), D-galacturonate => pyruvate + D-glyceraldehyde 3P
             M00633  Semi-phosphorylative Entner-Doudoroff pathway, gluconate/galactonate => glycerate-3P
+NETWORK     nt06031  Citrate cycle and pyruvate metabolism
+            nt06032  Lipoic acid metabolism
+            nt06166  Human papillomavirus (HPV)
 ENZYME      1.1.1.27        1.1.1.28        1.1.1.38        1.1.1.39        
-            1.1.1.40        1.1.1.83        1.1.2.3         1.1.2.4         
-            1.1.2.5         1.1.3.2         1.1.5.12        1.1.99.6        
-            1.1.99.7        1.1.99.40       1.2.1.22        1.2.1.23        
-            1.2.1.49        1.2.1.51        1.2.1.104       1.2.3.3         
-            1.2.3.6         1.2.3.15        1.2.4.1         1.2.5.1         
-            1.2.7.1         1.2.7.11        1.2.7.-         1.3.1.110       
+            1.1.1.40        1.1.1.83        1.1.1.436       1.1.2.3         
+            1.1.2.4         1.1.2.5         1.1.3.2         1.1.5.12        
+            1.1.99.6        1.1.99.7        1.1.99.40       1.2.1.22        
+            1.2.1.23        1.2.1.49        1.2.1.51        1.2.1.104       
+            1.2.3.3         1.2.3.6         1.2.3.15        1.2.4.1         
+            1.2.5.1         1.2.7.1         1.2.7.11        1.2.7.-         
             1.4.1.1         1.4.1.17        1.4.3.3         1.4.3.19        
             1.5.1.11        1.5.1.16        1.5.1.17        1.5.1.22        
             1.5.1.23        1.5.1.24        1.5.1.26        1.5.1.28        
             1.5.1.52        1.14.11.43      1.14.11.44      2.1.3.1         
             2.2.1.6         2.2.1.7         2.2.1.12        2.3.1.54        
-            2.3.1.182       2.6.1.2         2.6.1.12        2.6.1.15        
+            2.3.3.21        2.6.1.2         2.6.1.12        2.6.1.15        
             2.6.1.18        2.6.1.21        2.6.1.30        2.6.1.37        
             2.6.1.40        2.6.1.41        2.6.1.43        2.6.1.44        
             2.6.1.46        2.6.1.47        2.6.1.51        2.6.1.56        
@@ -146,21 +150,24 @@ ENZYME      1.1.1.27        1.1.1.28        1.1.1.38        1.1.1.39
             4.1.3.45        4.1.3.46        4.1.99.1        4.1.99.2        
             4.2.1.-         4.2.99.20       4.2.99.21       4.3.1.10        
             4.3.1.13        4.3.1.15        4.3.1.17        4.3.1.18        
-            4.3.1.19        4.3.3.7         4.4.1.1         4.4.1.13        
-            4.4.1.15        4.4.1.24        4.4.1.25        4.4.1.28        
-            4.4.1.35        4.4.1.36        4.4.1.-         4.5.1.2         
-            6.4.1.1         7.2.4.2
+            4.3.1.19        4.3.3.7         4.3.3.8         4.4.1.1         
+            4.4.1.13        4.4.1.15        4.4.1.24        4.4.1.25        
+            4.4.1.28        4.4.1.35        4.4.1.36        4.4.1.-         
+            4.5.1.2         6.4.1.1         7.2.4.2
 BRITE       Compounds with biological roles [BR:br08001]
              Organic acids
               Carboxylic acids
                2-Oxocarboxylic acids
                 C00022  Pyruvate; 2-Oxopropanoate
+            Lipids [BR:br08002]
+             FA  Fatty acyls
+              FA01 Fatty Acids and Conjugates
+               FA0106 Oxo fatty acids
+                C00022  2-Oxopropanoic acid
 DBLINKS     CAS: 127-17-3
             PubChem: 3324
             ChEBI: 15361 32816
-            ChEMBL: CHEMBL1162144
             LIPIDMAPS: LMFA01060077
-            LipidBank: DFA0385
             KNApSAcK: C00001200
             PDB-CCD: PYR
             3DMET: B00006

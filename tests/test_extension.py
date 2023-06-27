@@ -17,20 +17,22 @@ from pathlib import Path
 import cobra.core as cobra_core
 import cobramod.error as cmod_error
 import cobramod.retrieval as cmod_retrieval
+import requests
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions
 from cobramod.core.pathway import Pathway
 from cobramod.debug import debug_log
+from cobramod.parsing.db_version import DataVersionConfigurator
 from cobramod.test import textbook, textbook_biocyc, textbook_kegg
 
 NAME = "test_model"
 
-# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
+data_conf = DataVersionConfigurator()
+data_conf.force_same_version = True
 
-# Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
 
@@ -468,12 +470,11 @@ class AddingPathways(unittest.TestCase):
             container=[reaction.id for reaction in test_model.reactions],
         )
         # CASE: Check for translations in pathways
-        # NOTE: VCHO does not exist in biocyc anymore
         test_model = textbook_kegg.copy()
         ex.add_pathway(
             model=test_model,
             pathway="SALVADEHYPOX-PWY",
-            database="VCHO",
+            database="ECO",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
@@ -503,11 +504,10 @@ class AddingPathways(unittest.TestCase):
             ignore_list=["R00228_c", "R00472_c"],
         )
 
-        # NOTE: VCHO does not exist in biocyc anymore
         ex.add_pathway(
             model=test_model,
             pathway=["ADENODEAMIN-RXN"],
-            database="VCHO",
+            database="ECO",
             directory=dir_data,
             compartment="c",
             show_imbalance=False,
@@ -631,7 +631,7 @@ class AddingPathways(unittest.TestCase):
         test_model = textbook_biocyc.copy()
 
         self.assertRaises(
-            AttributeError,
+            requests.HTTPError,
             ex.add_pathway,
             model=test_model,
             compartment="c",

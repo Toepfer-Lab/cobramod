@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/apixml?fn=genes-of-reaction%26id=CORN:RXN-11501%26detail=FULL">
+<ptools-xml ptools-version="26.0" xml:base="http://pmn.plantcyc.org/apixml?fn=genes-of-reaction%26id=CORN:RXN-11501%26detail=FULL">
   <metadata>
-    <url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+    <url>http://pmn.plantcyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=CORN:RXN-11501&amp;detail=FULL</query>
     <num_results>3</num_results>
-    <PGDB orgid="CORN" version="10.1.0">
+    <PGDB orgid="CORN" version="11.1.0">
       <species datatype="string">Zea mays</species>
       <subspecies datatype="string">mays</subspecies>
       <dblink>
@@ -15,44 +15,55 @@
       </dblink>
     </PGDB>
   </metadata>
-  <Gene ID="CORN:ZM00001D031300" detail="full" frameid="ZM00001D031300" orgid="CORN">
+  <Gene ID="CORN:ZM00001EB033890" orgid="CORN" frameid="ZM00001EB033890" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="CORN" resource="getxml?CORN:ORFs" />
+      <Gene resource="getxml?CORN:Unclassified-Genes" orgid="CORN" frameid="Unclassified-Genes" class="true" />
     </parent>
     <product>
-      <Protein frameid="MONOMERDQC-46690" orgid="CORN" resource="getxml?CORN:MONOMERDQC-46690" />
-      <Protein frameid="MONOMERDQC-46689" orgid="CORN" resource="getxml?CORN:MONOMERDQC-46689" />
-      <Protein frameid="ZM00001D031300-MONOMER" orgid="CORN" resource="getxml?CORN:ZM00001D031300-MONOMER" />
+      <Protein resource="getxml?CORN:ZM00001EB033890_P001" orgid="CORN" frameid="ZM00001EB033890_P001" />
     </product>
-    <common-name datatype="string">Zm00001d031300</common-name>
-    <accession-1 datatype="string">Zm00001d031300</accession-1>
+    <common-name datatype="string">Zm00001eb033890</common-name>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>Zm00001eb033890</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://plants.ensembl.org/Zea_mays/Gene/Summary?g=Zm00001eb033890</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">Zm00001eb033890</accession-1>
   </Gene>
-  <Gene ID="CORN:ZM00001D031303" detail="full" frameid="ZM00001D031303" orgid="CORN">
+  <Gene ID="CORN:ZM00001EB033880" orgid="CORN" frameid="ZM00001EB033880" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="CORN" resource="getxml?CORN:ORFs" />
+      <Gene resource="getxml?CORN:Unclassified-Genes" orgid="CORN" frameid="Unclassified-Genes" class="true" />
     </parent>
     <product>
-      <Protein frameid="MONOMERDQC-51076" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51076" />
-      <Protein frameid="MONOMERDQC-51075" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51075" />
-      <Protein frameid="MONOMERDQC-51074" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51074" />
-      <Protein frameid="MONOMERDQC-51073" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51073" />
-      <Protein frameid="MONOMERDQC-51072" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51072" />
-      <Protein frameid="MONOMERDQC-51071" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51071" />
-      <Protein frameid="MONOMERDQC-51070" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51070" />
-      <Protein frameid="MONOMERDQC-51069" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51069" />
-      <Protein frameid="ZM00001D031303-MONOMER" orgid="CORN" resource="getxml?CORN:ZM00001D031303-MONOMER" />
+      <Protein resource="getxml?CORN:ZM00001EB033880_P001" orgid="CORN" frameid="ZM00001EB033880_P001" />
     </product>
-    <common-name datatype="string">Zm00001d031303</common-name>
-    <accession-1 datatype="string">Zm00001d031303</accession-1>
+    <common-name datatype="string">Zm00001eb033880</common-name>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>Zm00001eb033880</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://plants.ensembl.org/Zea_mays/Gene/Summary?g=Zm00001eb033880</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">Zm00001eb033880</accession-1>
   </Gene>
-  <Gene ID="CORN:ZM00001D003279" detail="full" frameid="ZM00001D003279" orgid="CORN">
+  <Gene ID="CORN:ZM00001EB033870" orgid="CORN" frameid="ZM00001EB033870" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="CORN" resource="getxml?CORN:ORFs" />
+      <Gene resource="getxml?CORN:Unclassified-Genes" orgid="CORN" frameid="Unclassified-Genes" class="true" />
     </parent>
     <product>
-      <Protein frameid="ZM00001D003279-MONOMER" orgid="CORN" resource="getxml?CORN:ZM00001D003279-MONOMER" />
+      <Protein resource="getxml?CORN:ZM00001EB033870_P001" orgid="CORN" frameid="ZM00001EB033870_P001" />
+      <Protein resource="getxml?CORN:ZM00001EB033870_P002" orgid="CORN" frameid="ZM00001EB033870_P002" />
+      <Protein resource="getxml?CORN:ZM00001EB033870_P003" orgid="CORN" frameid="ZM00001EB033870_P003" />
+      <Protein resource="getxml?CORN:ZM00001EB033870_P004" orgid="CORN" frameid="ZM00001EB033870_P004" />
     </product>
-    <common-name datatype="string">Zm00001d003279</common-name>
-    <accession-1 datatype="string">Zm00001d003279</accession-1>
+    <common-name datatype="string">Zm00001eb033870</common-name>
+    <dblink>
+      <dblink-db>ENSEMBL</dblink-db>
+      <dblink-oid>Zm00001eb033870</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://plants.ensembl.org/Zea_mays/Gene/Summary?g=Zm00001eb033870</dblink-URL>
+    </dblink>
+    <accession-1 datatype="string">Zm00001eb033870</accession-1>
   </Gene>
 </ptools-xml>

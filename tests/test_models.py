@@ -13,29 +13,29 @@ from pathlib import Path
 
 import cobra.core as cobra_core
 import cobra.io as cobra_io
+from cobra import __version__ as cobra_version
+from cobramod import __version__ as cmod_version
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions
 from cobramod.debug import debug_log
+from cobramod.parsing.db_version import DataVersionConfigurator
 from cobramod.test import textbook_biocyc
 
-# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-# Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
-dir_input = Path(__file__).resolve().parent.joinpath("input")
+
+data_conf = DataVersionConfigurator()
 
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
 
+dir_input = Path(__file__).resolve().parent.joinpath("input")
+
 # Large Model
 main_model = cobra_io.read_sbml_model(
     str(dir_input.joinpath("test_model.sbml"))
 )
-
-
-if not dir_data.exists():
-    dir_data.mkdir(parents=True)
 
 
 class ShortModel(unittest.TestCase):
@@ -301,4 +301,7 @@ class LargeModel(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    print(f"CobraMod version: {cmod_version}")
+    print(f"COBRApy version: {cobra_version}")
+
     unittest.main(verbosity=2, failfast=True)

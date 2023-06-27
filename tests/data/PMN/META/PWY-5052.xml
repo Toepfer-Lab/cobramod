@@ -1,233 +1,171 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/getxml?META:PWY-5052"><metadata><url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='26.0' xml:base='http://pmn.plantcyc.org/getxml?META:PWY-5052'><metadata><url>http://pmn.plantcyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PWY-5052</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.0"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='26.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Pathway ID="META:PWY-5052" detail="full" frameid="PWY-5052" orgid="META"><parent><Pathway class="true" frameid="GIBBERELLIN-SYN" orgid="META" resource="getxml?META:GIBBERELLIN-SYN" /></parent>
-<parent><Pathway class="true" frameid="Super-Pathways" orgid="META" resource="getxml?META:Super-Pathways" /></parent>
-<pathway-link><Compound frameid="GERANYLGERANYL-PP" orgid="META" resource="getxml?META:GERANYLGERANYL-PP" /><link-target><Pathway frameid="PWY-5120" orgid="META" resource="getxml?META:PWY-5120" /></link-target>
-</pathway-link>
-<taxonomic-range><Organism ID="META:TAX-5506" class="true" detail="full" frameid="TAX-5506" orgid="META"><parent><Organism class="true" frameid="TAX-110618" orgid="META" resource="getxml?META:TAX-110618" /></parent>
-<synonym datatype="string">Gibberella</synonym>
-<common-name datatype="string">Fusarium</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>5506</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5506</dblink-URL>
-</dblink>
-<rank>genus</rank>
-</Organism>
-<Organism ID="META:TAX-396" class="true" detail="full" frameid="TAX-396" orgid="META"><parent><Organism class="true" frameid="TAX-379" orgid="META" resource="getxml?META:TAX-379" /></parent>
-<common-name datatype="string">Rhizobium phaseoli</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>396</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=396</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-<Organism ID="META:TAX-192" class="true" detail="full" frameid="TAX-192" orgid="META"><parent><Organism class="true" frameid="TAX-191" orgid="META" resource="getxml?META:TAX-191" /></parent>
-<synonym datatype="string">Spirillum lipoferum</synonym>
-<synonym datatype="string">Roseomonas fauriae</synonym>
-<synonym datatype="string">bacterium ASAZOES-148</synonym>
-<synonym datatype="string">Azospirillum brasiliense</synonym>
-<common-name datatype="string">Azospirillum brasilense</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>192</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=192</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-<Organism ID="META:TAX-193" class="true" detail="full" frameid="TAX-193" orgid="META"><parent><Organism class="true" frameid="TAX-191" orgid="META" resource="getxml?META:TAX-191" /></parent>
-<synonym datatype="string">"Spirillum lipoferum" Beijerinck 1925</synonym>
-<common-name datatype="string">Azospirillum lipoferum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>193</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=193</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-<Organism ID="META:TAX-434" class="true" detail="full" frameid="TAX-434" orgid="META"><parent><Organism class="true" frameid="TAX-433" orgid="META" resource="getxml?META:TAX-433" /></parent>
-<synonym datatype="string">Ulvina</synonym>
-<synonym datatype="string">Termobacterium</synonym>
-<synonym datatype="string">Mycoderma</synonym>
-<synonym datatype="string">"Acetobacterium" Ludwig 1898</synonym>
-<synonym datatype="string">Acetimonas</synonym>
-<common-name datatype="string">Acetobacter</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>434</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=434</dblink-URL>
-</dblink>
-<rank>genus</rank>
-</Organism>
-<Organism ID="META:TAX-49222" class="true" detail="full" frameid="TAX-49222" orgid="META"><parent><Organism class="true" frameid="TAX-40995" orgid="META" resource="getxml?META:TAX-40995" /></parent>
-<common-name datatype="string">Sphaceloma</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>49222</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=49222</dblink-URL>
-</dblink>
-<rank>genus</rank>
-</Organism>
-<Organism ID="META:TAX-55067" class="true" detail="full" frameid="TAX-55067" orgid="META"><parent><Organism class="true" frameid="TAX-5020" orgid="META" resource="getxml?META:TAX-5020" /></parent>
-<common-name datatype="string">Phaeosphaeria</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>55067</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=55067</dblink-URL>
-</dblink>
-<rank>genus</rank>
-</Organism>
-<Organism ID="META:TAX-131221" class="true" detail="full" frameid="TAX-131221" orgid="META"><parent><Organism class="true" frameid="TAX-35493" orgid="META" resource="getxml?META:TAX-35493" /></parent>
-<synonym datatype="string">charophyte/embryophyte group</synonym>
-<synonym datatype="string">Charophyta/Embryophyta group</synonym>
-<common-name datatype="string">Streptophytina</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>131221</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=131221</dblink-URL>
-</dblink>
-<rank>subphylum</rank>
-</Organism>
-</taxonomic-range>
-<sub-pathways><Pathway frameid="PWY-5053" orgid="META" resource="getxml?META:PWY-5053" /><Pathway frameid="PWY-7232" orgid="META" resource="getxml?META:PWY-7232" /><Pathway frameid="PWY-5070" orgid="META" resource="getxml?META:PWY-5070" /><Pathway frameid="PWY-5035" orgid="META" resource="getxml?META:PWY-5035" /><Pathway frameid="PWY-5036" orgid="META" resource="getxml?META:PWY-5036" /></sub-pathways>
-<species><Organism ID="META:TAX-3661" class="true" detail="full" frameid="TAX-3661" orgid="META"><parent><Organism class="true" frameid="TAX-3660" orgid="META" resource="getxml?META:TAX-3660" /></parent>
-<synonym datatype="string">winter squash</synonym>
-<synonym datatype="string">great pumpkin</synonym>
-<synonym datatype="string">Boston marrow</synonym>
-<common-name datatype="string">Cucurbita maxima</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3661</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3661</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4530" class="true" detail="full" frameid="TAX-4530" orgid="META"><parent><Organism class="true" frameid="TAX-4527" orgid="META" resource="getxml?META:TAX-4527" /></parent>
-<synonym datatype="string">rice</synonym>
-<synonym datatype="string">red rice &lt;Oryza sativa&gt;</synonym>
-<synonym datatype="string">red rice</synonym>
-<common-name datatype="string">Oryza sativa</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4530</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4530</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3886" class="true" detail="full" frameid="TAX-3886" orgid="META"><parent><Organism class="true" frameid="TAX-3883" orgid="META" resource="getxml?META:TAX-3883" /></parent>
-<synonym datatype="string">scarlet runner bean</synonym>
-<synonym datatype="string">Phaseolus multiflorus</synonym>
-<common-name datatype="string">Phaseolus coccineus</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3886</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3886</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3888" class="true" detail="full" frameid="TAX-3888" orgid="META"><parent><Organism class="true" frameid="TAX-3887" orgid="META" resource="getxml?META:TAX-3887" /></parent>
-<synonym datatype="string">peas</synonym>
-<synonym datatype="string">pea</synonym>
-<synonym datatype="string">garden pea</synonym>
-<common-name datatype="string">Pisum sativum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3888</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3888</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-3562" class="true" detail="full" frameid="TAX-3562" orgid="META"><parent><Organism class="true" frameid="TAX-3561" orgid="META" resource="getxml?META:TAX-3561" /></parent>
-<synonym datatype="string">spinach</synonym>
-<synonym datatype="string">Spinacea oleracea</synonym>
-<common-name datatype="string">Spinacia oleracea</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3562</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3562</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-4565" class="true" detail="full" frameid="TAX-4565" orgid="META"><parent><Organism class="true" frameid="TAX-4564" orgid="META" resource="getxml?META:TAX-4564" /></parent>
-<synonym datatype="string">wheat</synonym>
-<synonym datatype="string">Triticum vulgare</synonym>
-<synonym datatype="string">Triticum aestivum subsp. aestivum</synonym>
-<synonym datatype="string">common wheat</synonym>
-<synonym datatype="string">Canadian hard winter wheat</synonym>
-<synonym datatype="string">bread wheat</synonym>
-<common-name datatype="string">Triticum aestivum</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4565</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4565</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
-<synonym datatype="string">Arabidopsis thaliana col</synonym>
-<strain-name datatype="string">col</strain-name>
-<common-name datatype="string">Arabidopsis thaliana</common-name>
-<rank>strain</rank>
-</Organism>
-</species>
-<citation><Publication ID="META:PUB-11986764" detail="full" frameid="PUB-11986764" orgid="META"><year datatype="integer">2001</year>
-<title datatype="string">Occurrence of Gibberellins in Vascular Plants, Fungi, and Bacteria.</title>
-<author datatype="string">MacMillan J</author>
-<source datatype="string">J Plant Growth Regul 20(4);387-442</source>
-<pubmed-id datatype="string">11986764</pubmed-id>
+<Pathway ID='META:PWY-5052' orgid='META' frameid='PWY-5052' detail='full'><parent><Pathway resource='getxml?META:GIBBERELLIN-SYN' orgid='META' frameid='GIBBERELLIN-SYN' class='true'/></parent>
+<parent><Pathway resource='getxml?META:Super-Pathways' orgid='META' frameid='Super-Pathways' class='true'/></parent>
+<reaction-ordering><Reaction resource='getxml?META:RXN1F-143' orgid='META' frameid='RXN1F-143'/><predecessor-reactions><Reaction resource='getxml?META:RXN1F-161' orgid='META' frameid='RXN1F-161'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:RXN1F-162' orgid='META' frameid='RXN1F-162'/><predecessor-reactions><Reaction resource='getxml?META:RXN1F-161' orgid='META' frameid='RXN1F-161'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:RXN-6544' orgid='META' frameid='RXN-6544'/><predecessor-reactions><Reaction resource='getxml?META:RXN1F-161' orgid='META' frameid='RXN1F-161'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:RXN-14317' orgid='META' frameid='RXN-14317'/><predecessor-reactions><Reaction resource='getxml?META:RXN1F-169' orgid='META' frameid='RXN1F-169'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:RXN1F-162' orgid='META' frameid='RXN1F-162'/><predecessor-reactions><Reaction resource='getxml?META:RXN-6522' orgid='META' frameid='RXN-6522'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?META:RXN-6522' orgid='META' frameid='RXN-6522'/><predecessor-reactions><Reaction resource='getxml?META:RXN1F-162' orgid='META' frameid='RXN1F-162'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-layout><Pathway resource='getxml?META:PWY-5034' orgid='META' frameid='PWY-5034'/><direction>L2R</direction>
+</reaction-layout>
+<reaction-layout><Pathway resource='getxml?META:PWY-5032' orgid='META' frameid='PWY-5032'/><direction>L2R</direction>
+</reaction-layout>
+<reaction-layout><Pathway resource='getxml?META:PWY-7232' orgid='META' frameid='PWY-7232'/><direction>L2R</direction>
+</reaction-layout>
+<reaction-layout><Pathway resource='getxml?META:PWY-5070' orgid='META' frameid='PWY-5070'/><direction>L2R</direction>
+</reaction-layout>
+<reaction-layout><Pathway resource='getxml?META:PWY-5035' orgid='META' frameid='PWY-5035'/><direction>L2R</direction>
+</reaction-layout>
+<reaction-layout><Pathway resource='getxml?META:PWY-5036' orgid='META' frameid='PWY-5036'/><direction>L2R</direction>
+</reaction-layout>
+<reaction-list><Pathway resource='getxml?META:PWY-5034' orgid='META' frameid='PWY-5034'/><Pathway resource='getxml?META:PWY-5032' orgid='META' frameid='PWY-5032'/><Pathway resource='getxml?META:PWY-7232' orgid='META' frameid='PWY-7232'/><Pathway resource='getxml?META:PWY-5070' orgid='META' frameid='PWY-5070'/><Pathway resource='getxml?META:PWY-5035' orgid='META' frameid='PWY-5035'/><Pathway resource='getxml?META:PWY-5036' orgid='META' frameid='PWY-5036'/></reaction-list>
+<citation><Publication ID='META:PUB-11986764' orgid='META' frameid='PUB-11986764' detail='full'><title datatype='string'>Occurrence of Gibberellins in Vascular Plants, Fungi, and Bacteria.</title>
+<year datatype='integer'>2001</year>
+<pubmed-id datatype='string'>11986764</pubmed-id>
+<author datatype='string'>MacMillan J</author>
+<source datatype='string'>J Plant Growth Regul 20(4);387-442</source>
 </Publication>
 </citation>
-<evidence><Evidence-Code ID="META:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="META"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
+<evidence><Evidence-Code ID='META:EV-EXP' orgid='META' frameid='EV-EXP' detail='full' class='true'><comment datatype='string'>Inferred from experiment.  The evidence for an assertion comes from a
 wet-lab experiment of some type.
 </comment>
-<common-name datatype="string">Inferred from experiment</common-name>
+<common-name datatype='string'>Inferred from experiment</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-SPONSEL04" detail="full" frameid="PUB-SPONSEL04" orgid="META"><year datatype="integer">2004</year>
-<title datatype="string">Gibberellin biosynthesis and inactivation.</title>
-<author datatype="string">Sponsel V.M.</author>
-<author datatype="string">Hedden P.</author>
-<source datatype="string">Plant Hormones. Biosynthesis, Signal transduction, Action! Kluwer Academic Publishers, Ed. P.J. Davies</source>
+<Publication ID='META:PUB-SPONSEL04' orgid='META' frameid='PUB-SPONSEL04' detail='full'><title datatype='string'>Gibberellin biosynthesis and inactivation.</title>
+<year datatype='integer'>2004</year>
+<author datatype='string'>Sponsel V.M.</author>
+<author datatype='string'>Hedden P.</author>
+<source datatype='string'>Plant Hormones. Biosynthesis, Signal transduction, Action! Kluwer Academic Publishers, Ed. P.J. Davies</source>
 </Publication>
 </evidence>
-<comment datatype="string">This super-pathway provides an overview of the complexity and interconnectivity of gibberellins biosynthesis. It is important to note that a given species shown here may not synthesize all the gibberellins presented. To know which gibberellins are found in a specfic species, refer to the subpathways given below.
+<comment datatype='string'>This super-pathway provides an overview of the complexity and interconnectivity of gibberellins biosynthesis. It is important to note that a given species shown here may not synthesize all the gibberellins presented. To know which gibberellins are found in a specfic species, refer to the subpathways given below.
 &lt;p&gt;
 &lt;b&gt;General Background&lt;/b&gt;
 &lt;p&gt;
-At the time of this review, 136 fully characterized gibberellins (starting with GA&lt;sub&gt;1&lt;/sub&gt; [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/5638147"&gt;MacMillan68&lt;/a&gt;]) have been identified in more than a hundred vascular plant species, seven bacteria and seven fungi [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSPONSEL04%5d"&gt;Sponsel04&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11986764"&gt;MacMillan01&lt;/a&gt;].  Of these gibberellins only a few have biological activity.
-Many of the GAs identified early in the history of the discovery of these hormones are the ones which possess the highest biological activity.  These include GA&lt;sub&gt;1&lt;/sub&gt;, GA&lt;sub&gt;3&lt;/sub&gt;, GA&lt;sub&gt;4&lt;/sub&gt;, GA&lt;sub&gt;5&lt;/sub&gt;, GA&lt;sub&gt;6&lt;/sub&gt; and GA&lt;sub&gt;7&lt;/sub&gt;.  GA&lt;sub&gt;1&lt;/sub&gt; is the most active GA for stem elongation in &lt;a href="/META/NEW-IMAGE?object=TAX-4577"&gt;&lt;i&gt;Zea mays&lt;/i&gt;&lt;/a&gt; and &lt;a href="/META/NEW-IMAGE?object=TAX-3888"&gt;&lt;i&gt;Pisum sativum&lt;/i&gt;&lt;/a&gt;, while GA&lt;sub&gt;4&lt;/sub&gt; is the most active GA in Cucurbitaceae and in &lt;i&gt;Arabidopsis thaliana&lt;/i&gt;. GA&lt;sub&gt;3&lt;/sub&gt; (gibberellic acid), on the other hand, has been identified in more than 40 plants and is the major GA in the fungus &lt;a href="/META/NEW-IMAGE?object=TAX-5127"&gt;&lt;i&gt;Fusarium fujikuroi&lt;/i&gt;&lt;/a&gt;.  GA&lt;sub&gt;3&lt;/sub&gt; is used commercially to promote seed germination, stem elongation and fruit growth.  In &lt;a href="/META/NEW-IMAGE?object=TAX-4520"&gt;&lt;i&gt;Lolium&lt;/i&gt;&lt;/a&gt;, GA&lt;sub&gt;5&lt;/sub&gt; and GA&lt;sub&gt;6&lt;/sub&gt; have been shown to enhance flowering, whilst GA&lt;sub&gt;1&lt;/sub&gt; and GA&lt;sub&gt;4&lt;/sub&gt; enhanced stem elongation [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12475622"&gt;King03&lt;/a&gt;].
+At the time of this review, 136 fully characterized gibberellins (starting with GA&lt;sub&gt;1&lt;/sub&gt; [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/5638147&quot;&gt;MacMillan68&lt;/a&gt;]) have been identified in more than a hundred vascular plant species, seven bacteria and seven fungi [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSPONSEL04%5d&quot;&gt;Sponsel04&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11986764&quot;&gt;MacMillan01&lt;/a&gt;].  Of these gibberellins only a few have biological activity.
+Many of the GAs identified early in the history of the discovery of these hormones are the ones which possess the highest biological activity.  These include GA&lt;sub&gt;1&lt;/sub&gt;, GA&lt;sub&gt;3&lt;/sub&gt;, GA&lt;sub&gt;4&lt;/sub&gt;, GA&lt;sub&gt;5&lt;/sub&gt;, GA&lt;sub&gt;6&lt;/sub&gt; and GA&lt;sub&gt;7&lt;/sub&gt;.  GA&lt;sub&gt;1&lt;/sub&gt; is the most active GA for stem elongation in &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4577&quot;&gt;&lt;i&gt;Zea mays&lt;/i&gt;&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-3888&quot;&gt;&lt;i&gt;Pisum sativum&lt;/i&gt;&lt;/a&gt;, while GA&lt;sub&gt;4&lt;/sub&gt; is the most active GA in Cucurbitaceae and in &lt;i&gt;Arabidopsis thaliana&lt;/i&gt;. GA&lt;sub&gt;3&lt;/sub&gt; (gibberellic acid), on the other hand, has been identified in more than 40 plants and is the major GA in the fungus &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-5127&quot;&gt;&lt;i&gt;Fusarium fujikuroi&lt;/i&gt;&lt;/a&gt;.  GA&lt;sub&gt;3&lt;/sub&gt; is used commercially to promote seed germination, stem elongation and fruit growth.  In &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4520&quot;&gt;&lt;i&gt;Lolium&lt;/i&gt;&lt;/a&gt;, GA&lt;sub&gt;5&lt;/sub&gt; and GA&lt;sub&gt;6&lt;/sub&gt; have been shown to enhance flowering, whilst GA&lt;sub&gt;1&lt;/sub&gt; and GA&lt;sub&gt;4&lt;/sub&gt; enhanced stem elongation [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12475622&quot;&gt;King03&lt;/a&gt;].
 &lt;p&gt;
-Gibberellins are diterpenes which, in higher plants, are synthesized in the plastids from glyceraldehyde-3-phosphate and pyruvate &lt;i&gt;via&lt;/i&gt; the isopentenyl diphosphate (IPP). They all have either 19 or 20 carbon units grouped into either four or five ring systems (see &lt;a href="/compound?orgid=META&amp;id=CPD1F-95"&gt;gibberellin A&lt;sub&gt;12&lt;/sub&gt;&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=CPD1F-134"&gt;gibberellin A&lt;sub&gt;9&lt;/sub&gt;&lt;/a&gt;, respectively).  The fifth ring is a lactone ring.  GAs containing a tetracyclic &lt;i&gt;ent&lt;/i&gt;-gibberellane structure (&lt;a href="/compound?orgid=META&amp;id=CPD1F-95"&gt;gibberellin A&lt;sub&gt;12&lt;/sub&gt;&lt;/a&gt;) are called C&lt;sub&gt;20&lt;/sub&gt;-GAs, whereas GAs containing a pentacyclic 20-nor-&lt;i&gt;ent&lt;/i&gt;-gibberellane structure (&lt;a href="/compound?orgid=META&amp;id=CPD1F-134"&gt;gibberellin A&lt;sub&gt;9&lt;/sub&gt;&lt;/a&gt;) are called C&lt;sub&gt;19&lt;/sub&gt;-GAs.  C&lt;sub&gt;20&lt;/sub&gt;-GAs do not usually have biological activity but can be metabolized to active C&lt;sub&gt;19&lt;/sub&gt;-GAs (note that not all C&lt;sub&gt;19&lt;/sub&gt;-GAs are bioactive).
+Gibberellins are diterpenes which, in higher plants, are synthesized in the plastids from glyceraldehyde-3-phosphate and pyruvate &lt;i&gt;via&lt;/i&gt; the isopentenyl diphosphate (IPP). They all have either 19 or 20 carbon units grouped into either four or five ring systems (see &lt;a href=&quot;/compound?orgid=META&amp;id=CPD1F-95&quot;&gt;gibberellin A&lt;sub&gt;12&lt;/sub&gt;&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=CPD1F-134&quot;&gt;gibberellin A&lt;sub&gt;9&lt;/sub&gt;&lt;/a&gt;, respectively).  The fifth ring is a lactone ring.  GAs containing a tetracyclic &lt;i&gt;ent&lt;/i&gt;-gibberellane structure (&lt;a href=&quot;/compound?orgid=META&amp;id=CPD1F-95&quot;&gt;gibberellin A&lt;sub&gt;12&lt;/sub&gt;&lt;/a&gt;) are called C&lt;sub&gt;20&lt;/sub&gt;-GAs, whereas GAs containing a pentacyclic 20-nor-&lt;i&gt;ent&lt;/i&gt;-gibberellane structure (&lt;a href=&quot;/compound?orgid=META&amp;id=CPD1F-134&quot;&gt;gibberellin A&lt;sub&gt;9&lt;/sub&gt;&lt;/a&gt;) are called C&lt;sub&gt;19&lt;/sub&gt;-GAs.  C&lt;sub&gt;20&lt;/sub&gt;-GAs do not usually have biological activity but can be metabolized to active C&lt;sub&gt;19&lt;/sub&gt;-GAs (note that not all C&lt;sub&gt;19&lt;/sub&gt;-GAs are bioactive).
 &lt;p&gt;
 Gibberellins are believed to be synthesized in young tissues of the shoot and also the developing seed. It is uncertain whether young root tissues also produce gibberellins. There is also some evidence that leaves may be the source of some biosynthesis.
 &lt;p&gt;
 Active gibberellins show many physiological effects, each depending on the type of gibberellin present as well as the species of plant.  Some of the physiological processes stimulated by gibberellins are: i) stimulation of stem elongation by stimulating cell division and elongation, ii) stimulation of bolting/flowering in response to long days, iii) interruption of seed dormancy in plants requiring stratification or light to induce germination, iv) stimulation of enzyme production (&amp;alpha;-amylases) in germinating cereal grains for mobilization of seed reserves, v) induction of maleness in dioecious flowers (sex expression), vi) parthenocarpic (seedless) fruit development, and vii) delay of senescence in leaves and citrus fruits.
 &lt;p&gt;
-Certain commercial chemicals which are used to stunt growth do so in part because they block the synthesis of gibberellins.  Some of these chemicals are &lt;a href="/compound?orgid=META&amp;id=CPD-6966"&gt;phosphon D&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-6967"&gt;AMO-1618&lt;/a&gt;,  &lt;a href="/compound?orgid=META&amp;id=CPD-6968"&gt;cycocel&lt;/a&gt;, &lt;a href="/compound?orgid=META&amp;id=CPD-4022"&gt;ancymidol&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=CPD-6970"&gt;paclobutrazol&lt;/a&gt; (more inhibitors of GA biosynthesis can be found in [&lt;a href="/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSPONSEL04%5d"&gt;Sponsel04&lt;/a&gt;]).  During active growth, the plant will maintain giberellin homeostasis by metabolizing most gibberellins by rapid hydroxylation to inactive conjugates. Active &lt;a href="/compound?orgid=META&amp;id=GIBBERELLIN"&gt;gibberellin A&lt;sub&gt;3&lt;/sub&gt;&lt;/a&gt; is degraded much slower which helps to explain the symptoms observed in the disease bakanae caused by the rice pathogen &lt;a href="/META/NEW-IMAGE?object=TAX-5127"&gt;&lt;i&gt;Fusarium fujikuroi&lt;/i&gt;&lt;/a&gt;.  This pathogen produces large amounts of GA&lt;sub&gt;3&lt;/sub&gt; which it secretes.  Inactive conjugates might be stored or translocated via the phloem and xylem before their release (activation) at the proper time and in the proper tissue.</comment>
-<common-name datatype="string">superpathway of gibberellin biosynthesis</common-name>
-<credits><revised><date datatype="date">2013-10-21</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><abbrev-name datatype="string">SRI International</abbrev-name>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
+Certain commercial chemicals which are used to stunt growth do so in part because they block the synthesis of gibberellins.  Some of these chemicals are &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-6966&quot;&gt;phosphon D&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=AMO-1618&quot;&gt;AMO-1618&lt;/a&gt;,  &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-6968&quot;&gt;cycocel&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-4022&quot;&gt;ancymidol&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-6970&quot;&gt;paclobutrazol&lt;/a&gt; (more inhibitors of GA biosynthesis can be found in [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSPONSEL04%5d&quot;&gt;Sponsel04&lt;/a&gt;]).  During active growth, the plant will maintain giberellin homeostasis by metabolizing most gibberellins by rapid hydroxylation to inactive conjugates. Active &lt;a href=&quot;/compound?orgid=META&amp;id=GIBBERELLIN&quot;&gt;gibberellin A&lt;sub&gt;3&lt;/sub&gt;&lt;/a&gt; is degraded much slower which helps to explain the symptoms observed in the disease bakanae caused by the rice pathogen &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-5127&quot;&gt;&lt;i&gt;Fusarium fujikuroi&lt;/i&gt;&lt;/a&gt;.  This pathogen produces large amounts of GA&lt;sub&gt;3&lt;/sub&gt; which it secretes.  Inactive conjugates might be stored or translocated via the phloem and xylem before their release (activation) at the proper time and in the proper tissue.</comment>
+<species><Organism ID='META:TAX-3661' orgid='META' frameid='TAX-3661' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3660' orgid='META' frameid='TAX-3660' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Cucurbita maxima</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3661</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3661</dblink-URL>
+</dblink>
+<synonym datatype='string'>winter squash</synonym>
+<synonym datatype='string'>great pumpkin</synonym>
+<synonym datatype='string'>Boston marrow</synonym>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4530' orgid='META' frameid='TAX-4530' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4527' orgid='META' frameid='TAX-4527' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Oryza sativa</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4530</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4530</dblink-URL>
+</dblink>
+<synonym datatype='string'>rice</synonym>
+<synonym datatype='string'>red rice &lt;Oryza sativa&gt;</synonym>
+<synonym datatype='string'>red rice</synonym>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3886' orgid='META' frameid='TAX-3886' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3883' orgid='META' frameid='TAX-3883' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Phaseolus coccineus</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3886</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3886</dblink-URL>
+</dblink>
+<synonym datatype='string'>scarlet runner bean</synonym>
+<synonym datatype='string'>Phaseolus multiflorus</synonym>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3888' orgid='META' frameid='TAX-3888' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3887' orgid='META' frameid='TAX-3887' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Pisum sativum</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3888</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3888</dblink-URL>
+</dblink>
+<synonym datatype='string'>peas</synonym>
+<synonym datatype='string'>pea</synonym>
+<synonym datatype='string'>garden pea</synonym>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-3562' orgid='META' frameid='TAX-3562' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3561' orgid='META' frameid='TAX-3561' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Spinacia oleracea</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3562</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3562</dblink-URL>
+</dblink>
+<synonym datatype='string'>spinach</synonym>
+<synonym datatype='string'>Spinacea oleracea</synonym>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-4565' orgid='META' frameid='TAX-4565' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4564' orgid='META' frameid='TAX-4564' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Triticum aestivum</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4565</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4565</dblink-URL>
+</dblink>
+<synonym datatype='string'>wheat</synonym>
+<synonym datatype='string'>Triticum vulgare</synonym>
+<synonym datatype='string'>Triticum aestivum subsp. aestivum</synonym>
+<synonym datatype='string'>common wheat</synonym>
+<synonym datatype='string'>Canadian hard winter wheat</synonym>
+<synonym datatype='string'>bread wheat</synonym>
+</Organism>
+</species>
+<species><Organism ID='META:ORG-5993' orgid='META' frameid='ORG-5993' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3702' orgid='META' frameid='TAX-3702' class='true'/></parent>
+<rank>strain</rank>
+<common-name datatype='string'>Arabidopsis thaliana</common-name>
+<strain-name datatype='string'>col</strain-name>
+<synonym datatype='string'>Arabidopsis thaliana col</synonym>
+</Organism>
+</species>
+<common-name datatype='string'>superpathway of gibberellin biosynthesis</common-name>
+<sub-pathways><Pathway resource='getxml?META:PWY-5053' orgid='META' frameid='PWY-5053'/><Pathway resource='getxml?META:PWY-7232' orgid='META' frameid='PWY-7232'/><Pathway resource='getxml?META:PWY-5070' orgid='META' frameid='PWY-5070'/><Pathway resource='getxml?META:PWY-5035' orgid='META' frameid='PWY-5035'/><Pathway resource='getxml?META:PWY-5036' orgid='META' frameid='PWY-5036'/></sub-pathways>
+<credits><revised><date datatype='date'>2013-10-21</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
 </Organization>
 </affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
+<comment datatype='string'>Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype='string'>Ron Caspi</common-name>
+<email datatype='string'>caspi@ai.sri.com</email>
 </Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
 </credits>
 <dblink><dblink-db>PLANTCYC</dblink-db>
 <dblink-oid>PWY-5052</dblink-oid>
@@ -239,30 +177,108 @@ Certain commercial chemicals which are used to stunt growth do so in part becaus
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pmn.plantcyc.org/ARA/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5052</dblink-URL>
 </dblink>
-<reaction-list><Pathway frameid="PWY-5034" orgid="META" resource="getxml?META:PWY-5034" /><Pathway frameid="PWY-5032" orgid="META" resource="getxml?META:PWY-5032" /><Pathway frameid="PWY-7232" orgid="META" resource="getxml?META:PWY-7232" /><Pathway frameid="PWY-5070" orgid="META" resource="getxml?META:PWY-5070" /><Pathway frameid="PWY-5035" orgid="META" resource="getxml?META:PWY-5035" /><Pathway frameid="PWY-5036" orgid="META" resource="getxml?META:PWY-5036" /></reaction-list>
-<reaction-layout><Pathway frameid="PWY-5034" orgid="META" resource="getxml?META:PWY-5034" /><direction>L2R</direction>
-</reaction-layout>
-<reaction-layout><Pathway frameid="PWY-5032" orgid="META" resource="getxml?META:PWY-5032" /><direction>L2R</direction>
-</reaction-layout>
-<reaction-layout><Pathway frameid="PWY-7232" orgid="META" resource="getxml?META:PWY-7232" /><direction>L2R</direction>
-</reaction-layout>
-<reaction-layout><Pathway frameid="PWY-5070" orgid="META" resource="getxml?META:PWY-5070" /><direction>L2R</direction>
-</reaction-layout>
-<reaction-layout><Pathway frameid="PWY-5035" orgid="META" resource="getxml?META:PWY-5035" /><direction>L2R</direction>
-</reaction-layout>
-<reaction-layout><Pathway frameid="PWY-5036" orgid="META" resource="getxml?META:PWY-5036" /><direction>L2R</direction>
-</reaction-layout>
-<reaction-ordering><Reaction frameid="RXN1F-143" orgid="META" resource="getxml?META:RXN1F-143" /><predecessor-reactions><Reaction frameid="RXN1F-161" orgid="META" resource="getxml?META:RXN1F-161" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="RXN1F-162" orgid="META" resource="getxml?META:RXN1F-162" /><predecessor-reactions><Reaction frameid="RXN1F-161" orgid="META" resource="getxml?META:RXN1F-161" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="RXN-6544" orgid="META" resource="getxml?META:RXN-6544" /><predecessor-reactions><Reaction frameid="RXN1F-161" orgid="META" resource="getxml?META:RXN1F-161" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="RXN-14317" orgid="META" resource="getxml?META:RXN-14317" /><predecessor-reactions><Reaction frameid="RXN1F-169" orgid="META" resource="getxml?META:RXN1F-169" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="RXN1F-162" orgid="META" resource="getxml?META:RXN1F-162" /><predecessor-reactions><Reaction frameid="RXN-6522" orgid="META" resource="getxml?META:RXN-6522" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="RXN-6522" orgid="META" resource="getxml?META:RXN-6522" /><predecessor-reactions><Reaction frameid="RXN1F-162" orgid="META" resource="getxml?META:RXN1F-162" /></predecessor-reactions>
-</reaction-ordering>
+<taxonomic-range><Organism ID='META:TAX-5506' orgid='META' frameid='TAX-5506' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-110618' orgid='META' frameid='TAX-110618' class='true'/></parent>
+<rank>genus</rank>
+<common-name datatype='string'>Fusarium</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>5506</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5506</dblink-URL>
+</dblink>
+<synonym datatype='string'>Setofusarium</synonym>
+<synonym datatype='string'>Rectifusarium</synonym>
+<synonym datatype='string'>Nothofusarium</synonym>
+<synonym datatype='string'>Neocosmospora</synonym>
+<synonym datatype='string'>Luteonectria</synonym>
+<synonym datatype='string'>Luteonectria Sand.-Den., L. Lombard, Schroers &amp; Rossman, 2021</synonym>
+<synonym datatype='string'>Haematonectria</synonym>
+<synonym datatype='string'>Gibberella</synonym>
+<synonym datatype='string'>Geejayessia</synonym>
+<synonym datatype='string'>Fusarium sect. Setofusarium</synonym>
+<synonym datatype='string'>Cyanonectria</synonym>
+<synonym datatype='string'>Bisifusarium</synonym>
+<synonym datatype='string'>Albonectria</synonym>
+</Organism>
+<Organism ID='META:TAX-396' orgid='META' frameid='TAX-396' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-379' orgid='META' frameid='TAX-379' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Rhizobium phaseoli</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>396</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=396</dblink-URL>
+</dblink>
+<synonym datatype='string'>Rhizobium sp. S2</synonym>
+<synonym datatype='string'>Rhizobium sp. BS3</synonym>
+<synonym datatype='string'>Rhizobium sp. B3</synonym>
+</Organism>
+<Organism ID='META:TAX-192' orgid='META' frameid='TAX-192' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-191' orgid='META' frameid='TAX-191' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Azospirillum brasilense</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>192</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=192</dblink-URL>
+</dblink>
+<synonym datatype='string'>Spirillum lipoferum</synonym>
+<synonym datatype='string'>Roseomonas fauriae</synonym>
+<synonym datatype='string'>bacterium ASAZOES-148</synonym>
+<synonym datatype='string'>Azospirillum brasiliense</synonym>
+</Organism>
+<Organism ID='META:TAX-193' orgid='META' frameid='TAX-193' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-191' orgid='META' frameid='TAX-191' class='true'/></parent>
+<rank>species</rank>
+<common-name datatype='string'>Azospirillum lipoferum</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>193</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=193</dblink-URL>
+</dblink>
+<synonym datatype='string'>&quot;Spirillum lipoferum&quot; Beijerinck 1925</synonym>
+</Organism>
+<Organism ID='META:TAX-434' orgid='META' frameid='TAX-434' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-433' orgid='META' frameid='TAX-433' class='true'/></parent>
+<rank>genus</rank>
+<common-name datatype='string'>Acetobacter</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>434</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=434</dblink-URL>
+</dblink>
+<synonym datatype='string'>Ulvina</synonym>
+<synonym datatype='string'>Termobacterium</synonym>
+<synonym datatype='string'>Mycoderma</synonym>
+<synonym datatype='string'>&quot;Acetobacterium&quot; Ludwig 1898</synonym>
+<synonym datatype='string'>Acetimonas</synonym>
+</Organism>
+<Organism ID='META:TAX-49222' orgid='META' frameid='TAX-49222' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-40995' orgid='META' frameid='TAX-40995' class='true'/></parent>
+<rank>genus</rank>
+<common-name datatype='string'>Sphaceloma</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>49222</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=49222</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-55067' orgid='META' frameid='TAX-55067' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-5020' orgid='META' frameid='TAX-5020' class='true'/></parent>
+<rank>genus</rank>
+<common-name datatype='string'>Phaeosphaeria</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>55067</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=55067</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-131221' orgid='META' frameid='TAX-131221' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-35493' orgid='META' frameid='TAX-35493' class='true'/></parent>
+<rank>subphylum</rank>
+<common-name datatype='string'>Streptophytina</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>131221</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=131221</dblink-URL>
+</dblink>
+<synonym datatype='string'>charophyte/embryophyte group</synonym>
+<synonym datatype='string'>Charophyta/Embryophyta group</synonym>
+</Organism>
+</taxonomic-range>
+<pathway-link><Compound resource='getxml?META:GERANYLGERANYL-PP' orgid='META' frameid='GERANYLGERANYL-PP'/><link-target><Pathway resource='getxml?META:PWY-5120' orgid='META' frameid='PWY-5120'/></link-target>
+</pathway-link>
 </Pathway>
 </ptools-xml>

@@ -14,11 +14,14 @@ from cobramod import __version__ as cmod_version
 from cobramod.core.creation import create_object
 from cobramod.debug import debug_log
 from cobramod.error import AbbreviationWarning
+from cobramod.parsing.db_version import DataVersionConfigurator
 
-# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-# Setting directory for data
+data_conf = DataVersionConfigurator()
+data_conf.force_same_version = True
+
 dir_data = Path(__file__).resolve().parent.joinpath("data")
+
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")

@@ -1,18 +1,38 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:CPD-3746"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-3746'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-3746</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Compound ID="ARA:CPD-3746" detail="full" frameid="CPD-3746" orgid="ARA"><parent><Compound class="true" frameid="Alkanesulfonates" orgid="ARA" resource="getxml?ARA:Alkanesulfonates" /></parent>
-<cml><molecule formalCharge="-1" id="CPD-3746" title="methanesulfonate"><atomArray><atom elementType="C" id="CPD-3746-atom1" x2="825.0" y2="1650.0" /><atom elementType="O" id="CPD-3746-atom2" x2="824.0" y2="0.0" /><atom elementType="O" id="CPD-3746-atom3" x2="1650.0" y2="825.0" /><atom elementType="O" formalCharge="-1" id="CPD-3746-atom4" x2="0.0" y2="825.0" /><atom elementType="S" id="CPD-3746-atom5" x2="825.0" y2="825.0" /></atomArray>
-<bondArray><bond atomRefs="CPD-3746-atom4 CPD-3746-atom5" id="CPD-3746-bond1" order="1" /><bond atomRefs="CPD-3746-atom3 CPD-3746-atom5" id="CPD-3746-bond2" order="2" /><bond atomRefs="CPD-3746-atom2 CPD-3746-atom5" id="CPD-3746-bond3" order="2" /><bond atomRefs="CPD-3746-atom1 CPD-3746-atom5" id="CPD-3746-bond4" order="1" /></bondArray>
-<formula concise="C 1 H 3 O 3 S 1" /><float title="molecularWeight" units="g/mol">95.093</float>
-<string title="smiles">CS(=O)(=O)[O-]</string>
+<Compound ID='ARA:CPD-3746' orgid='ARA' frameid='CPD-3746' detail='full'><parent><Compound resource='getxml?ARA:Alkanesulfonates' orgid='ARA' frameid='Alkanesulfonates' class='true'/></parent>
+<cml><molecule id='CPD-3746' title='methanesulfonate' formalCharge='-1'><atomArray><atom id='CPD-3746-atom1' elementType='C' x2='825.0' y2='1650.0'/><atom id='CPD-3746-atom2' elementType='O' x2='824.0' y2='0.0'/><atom id='CPD-3746-atom3' elementType='O' x2='1650.0' y2='825.0'/><atom id='CPD-3746-atom4' elementType='O' x2='0.0' y2='825.0' formalCharge='-1'/><atom id='CPD-3746-atom5' elementType='S' x2='825.0' y2='825.0'/></atomArray>
+<bondArray><bond id='CPD-3746-bond1' atomRefs='CPD-3746-atom4 CPD-3746-atom5' order='1'/><bond id='CPD-3746-bond2' atomRefs='CPD-3746-atom3 CPD-3746-atom5' order='2'/><bond id='CPD-3746-bond3' atomRefs='CPD-3746-atom2 CPD-3746-atom5' order='2'/><bond id='CPD-3746-bond4' atomRefs='CPD-3746-atom1 CPD-3746-atom5' order='1'/></bondArray>
+<formula concise='C 1 H 3 O 3 S 1'/><float title='molecularWeight' units='g/mol'>95.093</float>
+<string title='smiles'>CS(=O)(=O)[O-]</string>
 </molecule>
 </cml>
+<comment datatype='string'>Methanesulfonate is a very stable strong acid and a key intermediate in the biogeochemical cycling
+of sulfur. It is formed in megatonne quantities in the atmosphere from the chemical oxidation of
+atmospheric &lt;a href=&quot;/compound?orgid=ARA&amp;id=CPD-7670&quot;&gt;dimethyl sulfide&lt;/a&gt; and deposited on the Earth by rain and snow, and by dry deposition
+[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10591843&quot;&gt;Kelly99&lt;/a&gt;].</comment>
+<common-name datatype='string'>methanesulfonate</common-name>
+<inchi datatype='string'>InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)/p-1</inchi>
+<inchi-key datatype='string'>InChIKey=AFVFQIVMOAPDHO-UHFFFAOYSA-M</inchi-key>
+<gibbs-0 datatype='float' units='kcal/mol'>-71.5487</gibbs-0>
+<synonym datatype='string'>methylsulfonate</synonym>
+<synonym datatype='string'>MSA</synonym>
+<synonym datatype='string'>methanesulfonic acid</synonym>
+<molecular-weight datatype='float' units='Daltons'>95.093</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-18181' orgid='ARA' frameid='RXN-18181'/><Reaction resource='getxml?ARA:RXN-2223' orgid='ARA' frameid='RXN-2223'/><Reaction resource='getxml?ARA:RXNQT-4344' orgid='ARA' frameid='RXNQT-4344'/><Reaction resource='getxml?ARA:RXN-2222' orgid='ARA' frameid='RXN-2222'/><Reaction resource='getxml?ARA:RXNQT-4341' orgid='ARA' frameid='RXNQT-4341'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>95.98811</monoisotopic-mw>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000008418524</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000008418524</dblink-URL>
+</dblink>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd08023</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -58,19 +78,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C11145</dblink-URL>
 </dblink>
-<synonym datatype="string">methylsulfonate</synonym>
-<synonym datatype="string">MSA</synonym>
-<synonym datatype="string">methanesulfonic acid</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-71.5487</gibbs-0>
-<inchi datatype="string">InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)/p-1</inchi>
-<inchi-key datatype="string">InChIKey=AFVFQIVMOAPDHO-UHFFFAOYSA-M</inchi-key>
-<molecular-weight datatype="float" units="Daltons">95.093</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">95.98811</monoisotopic-mw>
-<appears-in-right-side-of><Reaction frameid="RXN-18181" orgid="ARA" resource="getxml?ARA:RXN-18181" /><Reaction frameid="RXN-2223" orgid="ARA" resource="getxml?ARA:RXN-2223" /><Reaction frameid="RXNQT-4344" orgid="ARA" resource="getxml?ARA:RXNQT-4344" /><Reaction frameid="RXN-2222" orgid="ARA" resource="getxml?ARA:RXN-2222" /><Reaction frameid="RXNQT-4341" orgid="ARA" resource="getxml?ARA:RXNQT-4341" /></appears-in-right-side-of>
-<comment datatype="string">Methanesulfonate is a very stable strong acid and a key intermediate in the biogeochemical cycling
-of sulfur. It is formed in megatonne quantities in the atmosphere from the chemical oxidation of
-atmospheric &lt;a href="/compound?orgid=ARA&amp;id=CPD-7670"&gt;dimethyl sulfide&lt;/a&gt; and deposited on the Earth by rain and snow, and by dry deposition
-[&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/10591843"&gt;Kelly99a&lt;/a&gt;].</comment>
-<common-name datatype="string">methanesulfonate</common-name>
 </Compound>
 </ptools-xml>

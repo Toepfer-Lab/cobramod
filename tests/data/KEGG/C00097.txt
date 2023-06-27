@@ -10,13 +10,15 @@ REACTION    R00782 R00891 R00892 R00893 R00894 R00895 R00896 R00897
             R02743 R03217 R03260 R03524 R03650 R03923 R04230 R04231 
             R04859 R04870 R07274 R07360 R07460 R08168 R08608 R08632 
             R08653 R08659 R08666 R08685 R08848 R09562 R09591 R10409 
-            R10670 R10672 R10736 R11014 R11015 R11524 R11528 R11583
+            R10670 R10672 R10736 R11014 R11015 R11524 R11528 R11583 
+            R12765 R12767
 PATHWAY     map00260  Glycine, serine and threonine metabolism
             map00270  Cysteine and methionine metabolism
             map00311  Penicillin and cephalosporin biosynthesis
             map00332  Carbapenem biosynthesis
             map00430  Taurine and hypotaurine metabolism
             map00460  Cyanoamino acid metabolism
+            map00470  D-Amino acid metabolism
             map00480  Glutathione metabolism
             map00730  Thiamine metabolism
             map00770  Pantothenate and CoA biosynthesis
@@ -38,17 +40,20 @@ MODULE      M00021  Cysteine biosynthesis, serine => cysteine
             M00609  Cysteine biosynthesis, methionine => cysteine
             M00672  Penicillin biosynthesis, aminoadipate + cycteine + valine => penicillin
             M00673  Cephamycin C biosynthesis, aminoadipate + cycteine + valine => cephamycin C
+NETWORK     nt06026  Glutathione biosynthesis
+            nt06030  Methionine metabolism
+            nt06525  Ferroptosis
 ENZYME      1.8.1.6         1.8.1.9         1.8.1.10        1.8.3.5         
             1.8.3.6         1.8.4.3         1.8.4.4         1.13.11.20      
-            1.14.14.43      1.14.14.45      1.14.99.51      1.14.99.52      
-            1.14.-.-        2.5.1.47        2.5.1.48        2.5.1.49        
+            1.14.14.43      1.14.14.45      1.14.99.52      1.14.-.-        
+            1.21.3.10       2.5.1.47        2.5.1.48        2.5.1.49        
             2.5.1.65        2.6.1.1         2.6.1.3         2.8.1.4         
             2.8.1.7         2.8.1.9         3.4.11.1        3.4.11.2        
             3.4.11.23       3.4.13.-        3.13.1.6        4.2.1.22        
             4.3.2.9         4.4.1.1         4.4.1.9         4.4.1.10        
             4.4.1.13        4.4.1.28        5.1.1.10        6.1.1.16        
-            6.3.1.13        6.3.2.2         6.3.2.5         6.3.2.26        
-            6.3.2.51
+            6.2.1.69        6.3.1.13        6.3.2.2         6.3.2.5         
+            6.3.2.26        6.3.2.51
 BRITE       Compounds with biological roles [BR:br08001]
              Peptides
               Amino acids
@@ -59,23 +64,22 @@ BRITE       Compounds with biological roles [BR:br08001]
               39  Other agents affecting metabolism
                399  Miscellaneous
                 3999  Others
-                 D00026  L-Cysteine (JP17)
+                 D00026  L-Cysteine (JP18)
             Classification of Japanese OTC drugs [BR:br08313]
              Nourishing tonics and health supplements
               45 Protein and amino acid based drugs
-               D00026  L-Cysteine (JP17)
+               D00026  L-Cysteine (JP18)
             Risk category of Japanese OTC drugs [BR:br08312]
              Third-class OTC drugs
               Inorganic and organic chemicals
                L-Cysteine
-                D00026  L-Cysteine (JP17)
+                D00026  L-Cysteine (JP18)
             Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
              Chemicals
               D00026  L-Cysteine
 DBLINKS     CAS: 52-90-4
             PubChem: 3397
             ChEBI: 17561
-            ChEMBL: CHEMBL863
             KNApSAcK: C00001351
             PDB-CCD: CYS
             3DMET: B01159

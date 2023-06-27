@@ -1,25 +1,70 @@
-<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?META:ACETALD-DEHYDROG-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:ACETALD-DEHYDROG-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ACETALD-DEHYDROG-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="25.1"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:ACETALD-DEHYDROG-RXN" detail="full" frameid="ACETALD-DEHYDROG-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<credits><revised><date datatype="date">2010-09-13</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
-</credits>
+<Reaction ID='META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:ACETALD' orgid='META' frameid='ACETALD'/></left>
+<left><Compound resource='getxml?META:CO-A' orgid='META' frameid='CO-A'/></left>
+<left><Compound resource='getxml?META:NAD' orgid='META' frameid='NAD'/></left>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN0-8531' orgid='META' frameid='ENZRXN0-8531' detail='low'><enzyme><Protein resource='getxml?META:G7285-MONOMER' orgid='META' frameid='G7285-MONOMER'/></enzyme>
+<synonym datatype='string'>A-ALD</synonym>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:MHPF-ENZRXN' orgid='META' frameid='MHPF-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:MHPF-MONOMER' orgid='META' frameid='MHPF-MONOMER'/></enzyme>
+<synonym datatype='string'>acetaldehyde:NAD+ oxidoreductase (CoA-acetylating)</synonym>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase (acetylating)</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ACETALD-DEHYDROG-ENZRXN' orgid='META' frameid='ACETALD-DEHYDROG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:ADHE-CPLX' orgid='META' frameid='ADHE-CPLX'/></enzyme>
+<synonym datatype='string'>acetaldehyde:NAD+ oxidoreductase (CoA-acetylating)</synonym>
+<synonym datatype='string'>ACDH</synonym>
+<synonym datatype='string'>coenzyme A linked aldehyde dehydrogenase</synonym>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-26159' orgid='META' frameid='ENZRXN-26159' detail='low'><enzyme><Protein resource='getxml?META:STM2463-MONOMER' orgid='META' frameid='STM2463-MONOMER'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase (acetylating)</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-21046' orgid='META' frameid='ENZRXN-21046' detail='low'><enzyme><Protein resource='getxml?META:GIO2-535-MONOMER' orgid='META' frameid='GIO2-535-MONOMER'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-20828' orgid='META' frameid='ENZRXN-20828' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-17646' orgid='META' frameid='MONOMER-17646'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-14164' orgid='META' frameid='ENZRXN-14164' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-13299' orgid='META' frameid='MONOMER-13299'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>aldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13574' orgid='META' frameid='ENZRXN-13574' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-12780' orgid='META' frameid='MONOMER-12780'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase (acylating)</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-11711' orgid='META' frameid='ENZRXN-11711' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-11388' orgid='META' frameid='MONOMER-11388'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acylating aldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-650' orgid='META' frameid='ENZRXN-650' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-354' orgid='META' frameid='MONOMER-354'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-142' orgid='META' frameid='ENZRXN-142' detail='low'><enzyme><Protein resource='getxml?META:AADCLOS-MONOMER' orgid='META' frameid='AADCLOS-MONOMER'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-27171' orgid='META' frameid='ENZRXN-27171' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-20853' orgid='META' frameid='MONOMER-20853'/></enzyme>
+<reaction><Reaction resource='#META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>acetaldehyde dehydrogenase (acetylating)</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR95210</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -72,84 +117,43 @@
 </dblink>
 <ec-number>EC-1.2.1.10<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-8531" detail="low" frameid="ENZRXN0-8531" orgid="META"><synonym datatype="string">A-ALD</synonym>
-<common-name datatype="string">acetaldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="G7285-MONOMER" orgid="META" resource="getxml?META:G7285-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:MHPF-ENZRXN" detail="low" frameid="MHPF-ENZRXN" orgid="META"><synonym datatype="string">acetaldehyde:NAD+ oxidoreductase (CoA-acetylating)</synonym>
-<common-name datatype="string">acetaldehyde dehydrogenase (acetylating)</common-name>
-<enzyme><Protein frameid="MHPF-MONOMER" orgid="META" resource="getxml?META:MHPF-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ACETALD-DEHYDROG-ENZRXN" detail="low" frameid="ACETALD-DEHYDROG-ENZRXN" orgid="META"><synonym datatype="string">acetaldehyde:NAD+ oxidoreductase (CoA-acetylating)</synonym>
-<synonym datatype="string">ACDH</synonym>
-<synonym datatype="string">coenzyme A linked aldehyde dehydrogenase</synonym>
-<common-name datatype="string">acetaldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="ADHE-CPLX" orgid="META" resource="getxml?META:ADHE-CPLX" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-26159" detail="low" frameid="ENZRXN-26159" orgid="META"><common-name datatype="string">acetaldehyde dehydrogenase (acetylating)</common-name>
-<enzyme><Protein frameid="STM2463-MONOMER" orgid="META" resource="getxml?META:STM2463-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-21046" detail="low" frameid="ENZRXN-21046" orgid="META"><common-name datatype="string">acetaldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="GIO2-535-MONOMER" orgid="META" resource="getxml?META:GIO2-535-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20828" detail="low" frameid="ENZRXN-20828" orgid="META"><common-name datatype="string">acetaldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="MONOMER-17646" orgid="META" resource="getxml?META:MONOMER-17646" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-14164" detail="low" frameid="ENZRXN-14164" orgid="META"><common-name datatype="string">aldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="MONOMER-13299" orgid="META" resource="getxml?META:MONOMER-13299" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13574" detail="low" frameid="ENZRXN-13574" orgid="META"><common-name datatype="string">acetaldehyde dehydrogenase (acylating)</common-name>
-<enzyme><Protein frameid="MONOMER-12780" orgid="META" resource="getxml?META:MONOMER-12780" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-11711" detail="low" frameid="ENZRXN-11711" orgid="META"><common-name datatype="string">acylating aldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="MONOMER-11388" orgid="META" resource="getxml?META:MONOMER-11388" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-650" detail="low" frameid="ENZRXN-650" orgid="META"><common-name datatype="string">acetaldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="MONOMER-354" orgid="META" resource="getxml?META:MONOMER-354" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-142" detail="low" frameid="ENZRXN-142" orgid="META"><common-name datatype="string">acetaldehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="AADCLOS-MONOMER" orgid="META" resource="getxml?META:AADCLOS-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-27171" detail="low" frameid="ENZRXN-27171" orgid="META"><common-name datatype="string">acetaldehyde dehydrogenase (acetylating)</common-name>
-<enzyme><Protein frameid="MONOMER-20853" orgid="META" resource="getxml?META:MONOMER-20853" /></enzyme>
-<reaction><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="META" resource="#META:ACETALD-DEHYDROG-RXN" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-7.378174<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-7.378174<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
-<author datatype="string">Latendresse M.</author>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype='string'>Latendresse M.</author>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY-5162" orgid="META" resource="getxml?META:PWY-5162" /><Pathway frameid="PWY-8062" orgid="META" resource="getxml?META:PWY-8062" /><Pathway frameid="PWY-8060" orgid="META" resource="getxml?META:PWY-8060" /><Pathway frameid="PWY-5436" orgid="META" resource="getxml?META:PWY-5436" /><Pathway frameid="PWY0-1477" orgid="META" resource="getxml?META:PWY0-1477" /><Pathway frameid="P122-PWY" orgid="META" resource="getxml?META:P122-PWY" /><Pathway frameid="PWY-7085" orgid="META" resource="getxml?META:PWY-7085" /><Pathway frameid="PWY-7180" orgid="META" resource="getxml?META:PWY-7180" /><Pathway frameid="PWY4LZ-257" orgid="META" resource="getxml?META:PWY4LZ-257" /><Pathway frameid="PWY-6587" orgid="META" resource="getxml?META:PWY-6587" /><Pathway frameid="FERMENTATION-PWY" orgid="META" resource="getxml?META:FERMENTATION-PWY" /><Pathway frameid="P161-PWY" orgid="META" resource="getxml?META:P161-PWY" /><Pathway frameid="PWY-5480" orgid="META" resource="getxml?META:PWY-5480" /><Pathway frameid="PHOSPHONOTASE-PWY" orgid="META" resource="getxml?META:PHOSPHONOTASE-PWY" /><Pathway frameid="ETOH-ACETYLCOA-ANA-PWY" orgid="META" resource="getxml?META:ETOH-ACETYLCOA-ANA-PWY" /></in-pathway>
-<left><Compound frameid="ACETALD" orgid="META" resource="getxml?META:ACETALD" /></left>
-<left><Compound frameid="CO-A" orgid="META" resource="getxml?META:CO-A" /></left>
-<left><Compound frameid="NAD" orgid="META" resource="getxml?META:NAD" /></left>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
 <reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="ACETYL-COA" orgid="META" resource="getxml?META:ACETYL-COA" /></right>
-<right><Compound frameid="NADH" orgid="META" resource="getxml?META:NADH" /></right>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<right><Compound resource='getxml?META:ACETYL-COA' orgid='META' frameid='ACETYL-COA'/></right>
+<right><Compound resource='getxml?META:NADH' orgid='META' frameid='NADH'/></right>
+<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
+<credits><revised><date datatype='date'>2010-09-13</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<email datatype='string'>caspi@ai.sri.com</email>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+</Organization>
+</affiliations>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
+</comment>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
+</credits>
+<in-pathway><Pathway resource='getxml?META:FERMENTATION-PWY' orgid='META' frameid='FERMENTATION-PWY'/><Pathway resource='getxml?META:PWY-6587' orgid='META' frameid='PWY-6587'/><Pathway resource='getxml?META:PWY-5162' orgid='META' frameid='PWY-5162'/><Pathway resource='getxml?META:PWY-8062' orgid='META' frameid='PWY-8062'/><Pathway resource='getxml?META:PWY-8060' orgid='META' frameid='PWY-8060'/><Pathway resource='getxml?META:PWY-5436' orgid='META' frameid='PWY-5436'/><Pathway resource='getxml?META:PWY0-1477' orgid='META' frameid='PWY0-1477'/><Pathway resource='getxml?META:P122-PWY' orgid='META' frameid='P122-PWY'/><Pathway resource='getxml?META:PWY-7085' orgid='META' frameid='PWY-7085'/><Pathway resource='getxml?META:PWY-7180' orgid='META' frameid='PWY-7180'/><Pathway resource='getxml?META:PWY4LZ-257' orgid='META' frameid='PWY4LZ-257'/><Pathway resource='getxml?META:P161-PWY' orgid='META' frameid='P161-PWY'/><Pathway resource='getxml?META:PWY-5480' orgid='META' frameid='PWY-5480'/><Pathway resource='getxml?META:PHOSPHONOTASE-PWY' orgid='META' frameid='PHOSPHONOTASE-PWY'/><Pathway resource='getxml?META:ETOH-ACETYLCOA-ANA-PWY' orgid='META' frameid='ETOH-ACETYLCOA-ANA-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

@@ -1,10 +1,11 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?GCF_000020025:PHENYL-PYRUVATE"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?GCF_000020025:PHENYL-PYRUVATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>GCF_000020025:PHENYL-PYRUVATE</query>
 <num_results>1</num_results>
-<PGDB orgid="GCF_000020025" version="24.5"><species datatype="string">Nostoc punctiforme</species>
-<strain datatype="string">ATCC 29133; PCC 73102</strain>
-<sequence-source datatype="string">GCF_000020025.1</sequence-source>
+<PGDB orgid='GCF_000020025' version='27.0'><species datatype='string'>Nostoc punctiforme</species>
+<strain datatype='string'>ATCC 29133; PCC 73102</strain>
+<sequence-source datatype='string'>GCF_000020025.1</sequence-source>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>63737</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -12,32 +13,42 @@
 </dblink>
 </PGDB>
 </metadata>
-<Compound ID="GCF_000020025:PHENYL-PYRUVATE" detail="full" frameid="PHENYL-PYRUVATE" orgid="GCF_000020025"><parent><Compound class="true" frameid="2-Oxo-carboxylates" orgid="GCF_000020025" resource="getxml?GCF_000020025:2-Oxo-carboxylates" /></parent>
-<parent><Compound class="true" frameid="Aromatic-Oxoacids" orgid="GCF_000020025" resource="getxml?GCF_000020025:Aromatic-Oxoacids" /></parent>
-<cml><molecule formalCharge="-1" id="PHENYL-PYRUVATE" title="3-phenyl-2-oxopropanoate"><atomArray><atom elementType="C" id="PHENYL-PYRUVATE-atom1" x2="4286.0" y2="2066.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom2" x2="3568.0" y2="2472.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom3" x2="4282.0" y2="1232.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom4" x2="2858.0" y2="2062.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom5" x2="3572.0" y2="823.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom6" x2="2137.0" y2="828.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom7" x2="2857.0" y2="1242.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom8" x2="1428.0" y2="1240.0" /><atom elementType="C" id="PHENYL-PYRUVATE-atom9" x2="714.0" y2="825.0" /><atom elementType="O" id="PHENYL-PYRUVATE-atom10" x2="1429.0" y2="2069.0" /><atom elementType="O" id="PHENYL-PYRUVATE-atom11" x2="714.0" y2="0.0" /><atom elementType="O" formalCharge="-1" id="PHENYL-PYRUVATE-atom12" x2="0.0" y2="1238.0" /></atomArray>
-<bondArray><bond atomRefs="PHENYL-PYRUVATE-atom7 PHENYL-PYRUVATE-atom6" id="PHENYL-PYRUVATE-bond1" order="1" /><bond atomRefs="PHENYL-PYRUVATE-atom6 PHENYL-PYRUVATE-atom8" id="PHENYL-PYRUVATE-bond2" order="1" /><bond atomRefs="PHENYL-PYRUVATE-atom4 PHENYL-PYRUVATE-atom2" id="PHENYL-PYRUVATE-bond3" order="1" /><bond atomRefs="PHENYL-PYRUVATE-atom2 PHENYL-PYRUVATE-atom1" id="PHENYL-PYRUVATE-bond4" order="2" /><bond atomRefs="PHENYL-PYRUVATE-atom1 PHENYL-PYRUVATE-atom3" id="PHENYL-PYRUVATE-bond5" order="1" /><bond atomRefs="PHENYL-PYRUVATE-atom5 PHENYL-PYRUVATE-atom3" id="PHENYL-PYRUVATE-bond6" order="2" /><bond atomRefs="PHENYL-PYRUVATE-atom5 PHENYL-PYRUVATE-atom7" id="PHENYL-PYRUVATE-bond7" order="1" /><bond atomRefs="PHENYL-PYRUVATE-atom7 PHENYL-PYRUVATE-atom4" id="PHENYL-PYRUVATE-bond8" order="2" /><bond atomRefs="PHENYL-PYRUVATE-atom8 PHENYL-PYRUVATE-atom10" id="PHENYL-PYRUVATE-bond9" order="2" /><bond atomRefs="PHENYL-PYRUVATE-atom8 PHENYL-PYRUVATE-atom9" id="PHENYL-PYRUVATE-bond10" order="1" /><bond atomRefs="PHENYL-PYRUVATE-atom9 PHENYL-PYRUVATE-atom11" id="PHENYL-PYRUVATE-bond11" order="2" /><bond atomRefs="PHENYL-PYRUVATE-atom9 PHENYL-PYRUVATE-atom12" id="PHENYL-PYRUVATE-bond12" order="1" /></bondArray>
-<formula concise="C 9 H 7 O 3" /><float title="molecularWeight" units="g/mol">163.152</float>
-<string title="smiles">C([O-])(=O)C(=O)CC1(\C=C/C=C\C=1)</string>
+<Compound ID='GCF_000020025:PHENYL-PYRUVATE' orgid='GCF_000020025' frameid='PHENYL-PYRUVATE' detail='full'><parent><Compound resource='getxml?GCF_000020025:2-Oxo-carboxylates' orgid='GCF_000020025' frameid='2-Oxo-carboxylates' class='true'/></parent>
+<parent><Compound resource='getxml?GCF_000020025:Aromatic-Oxoacids' orgid='GCF_000020025' frameid='Aromatic-Oxoacids' class='true'/></parent>
+<cml><molecule id='PHENYL-PYRUVATE' title='3-phenyl-2-oxopropanoate' formalCharge='-1'><atomArray><atom id='PHENYL-PYRUVATE-atom1' elementType='C' x2='4286.0' y2='2066.0'/><atom id='PHENYL-PYRUVATE-atom2' elementType='C' x2='3568.0' y2='2472.0'/><atom id='PHENYL-PYRUVATE-atom3' elementType='C' x2='4282.0' y2='1232.0'/><atom id='PHENYL-PYRUVATE-atom4' elementType='C' x2='2858.0' y2='2062.0'/><atom id='PHENYL-PYRUVATE-atom5' elementType='C' x2='3572.0' y2='823.0'/><atom id='PHENYL-PYRUVATE-atom6' elementType='C' x2='2137.0' y2='828.0'/><atom id='PHENYL-PYRUVATE-atom7' elementType='C' x2='2857.0' y2='1242.0'/><atom id='PHENYL-PYRUVATE-atom8' elementType='C' x2='1428.0' y2='1240.0'/><atom id='PHENYL-PYRUVATE-atom9' elementType='C' x2='714.0' y2='825.0'/><atom id='PHENYL-PYRUVATE-atom10' elementType='O' x2='1429.0' y2='2069.0'/><atom id='PHENYL-PYRUVATE-atom11' elementType='O' x2='714.0' y2='0.0'/><atom id='PHENYL-PYRUVATE-atom12' elementType='O' x2='0.0' y2='1238.0' formalCharge='-1'/></atomArray>
+<bondArray><bond id='PHENYL-PYRUVATE-bond1' atomRefs='PHENYL-PYRUVATE-atom7 PHENYL-PYRUVATE-atom6' order='1'/><bond id='PHENYL-PYRUVATE-bond2' atomRefs='PHENYL-PYRUVATE-atom6 PHENYL-PYRUVATE-atom8' order='1'/><bond id='PHENYL-PYRUVATE-bond3' atomRefs='PHENYL-PYRUVATE-atom4 PHENYL-PYRUVATE-atom2' order='1'/><bond id='PHENYL-PYRUVATE-bond4' atomRefs='PHENYL-PYRUVATE-atom2 PHENYL-PYRUVATE-atom1' order='2'/><bond id='PHENYL-PYRUVATE-bond5' atomRefs='PHENYL-PYRUVATE-atom1 PHENYL-PYRUVATE-atom3' order='1'/><bond id='PHENYL-PYRUVATE-bond6' atomRefs='PHENYL-PYRUVATE-atom5 PHENYL-PYRUVATE-atom3' order='2'/><bond id='PHENYL-PYRUVATE-bond7' atomRefs='PHENYL-PYRUVATE-atom5 PHENYL-PYRUVATE-atom7' order='1'/><bond id='PHENYL-PYRUVATE-bond8' atomRefs='PHENYL-PYRUVATE-atom7 PHENYL-PYRUVATE-atom4' order='2'/><bond id='PHENYL-PYRUVATE-bond9' atomRefs='PHENYL-PYRUVATE-atom8 PHENYL-PYRUVATE-atom10' order='2'/><bond id='PHENYL-PYRUVATE-bond10' atomRefs='PHENYL-PYRUVATE-atom8 PHENYL-PYRUVATE-atom9' order='1'/><bond id='PHENYL-PYRUVATE-bond11' atomRefs='PHENYL-PYRUVATE-atom9 PHENYL-PYRUVATE-atom11' order='2'/><bond id='PHENYL-PYRUVATE-bond12' atomRefs='PHENYL-PYRUVATE-atom9 PHENYL-PYRUVATE-atom12' order='1'/></bondArray>
+<formula concise='C 9 H 7 O 3'/><float title='molecularWeight' units='g/mol'>163.152</float>
+<string title='smiles'>C([O-])(=O)C(=O)CC1(\C=C/C=C\C=1)</string>
 </molecule>
 </cml>
-<monoisotopic-mw datatype="float" units="Daltons">164.04735</monoisotopic-mw>
-<gibbs-0 datatype="float" units="kcal/mol">-4.2342157<evidence><Evidence-Code ID="GCF_000020025:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="GCF_000020025"><common-name datatype="string">Inferred by computational analysis</common-name>
-<comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<appears-in-right-side-of><Reaction resource='getxml?GCF_000020025:2.6.1.58-RXN' orgid='GCF_000020025' frameid='2.6.1.58-RXN'/><Reaction resource='getxml?GCF_000020025:RXN-10814' orgid='GCF_000020025' frameid='RXN-10814'/><Reaction resource='getxml?GCF_000020025:PREPHENATEDEHYDRAT-RXN' orgid='GCF_000020025' frameid='PREPHENATEDEHYDRAT-RXN'/></appears-in-right-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-4.2342157<evidence><Evidence-Code ID='GCF_000020025:EV-COMP' orgid='GCF_000020025' frameid='EV-COMP' detail='full' class='true'><comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
+<common-name datatype='string'>Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="GCF_000020025:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="GCF_000020025"><year datatype="integer">2013</year>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<author datatype="string">Latendresse M.</author>
+<Publication ID='GCF_000020025:PUB-LATENDRESSE2013' orgid='GCF_000020025' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C9H8O3/c10-8(9(11)12)6-7-4-2-1-3-5-7/h1-5H,6H2,(H,11,12)/p-1</inchi>
-<molecular-weight datatype="float" units="Daltons">163.152</molecular-weight>
+<inchi datatype='string'>InChI=1S/C9H8O3/c10-8(9(11)12)6-7-4-2-1-3-5-7/h1-5H,6H2,(H,11,12)/p-1</inchi>
+<appears-in-left-side-of><Reaction resource='getxml?GCF_000020025:RXN-14462' orgid='GCF_000020025' frameid='RXN-14462'/><Reaction resource='getxml?GCF_000020025:PHENYLPYRUVATE-TAUTOMERASE-RXN' orgid='GCF_000020025' frameid='PHENYLPYRUVATE-TAUTOMERASE-RXN'/><Reaction resource='getxml?GCF_000020025:RXN-10815' orgid='GCF_000020025' frameid='RXN-10815'/></appears-in-left-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>164.04735</monoisotopic-mw>
+<molecular-weight datatype='float' units='Daltons'>163.152</molecular-weight>
+<credits><imported-from-meta><date datatype='date'>2020-03-09</date>
+<Organization ID='GCF_000020025:SRI' orgid='GCF_000020025' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+</Organization>
+</imported-from-meta>
+</credits>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00143</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -93,23 +104,13 @@ manual interpretation of the computation occurred.
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=156-06-9</dblink-URL>
 </dblink>
-<inchi-key datatype="string">InChIKey=BTNMPGBKDVTSJY-UHFFFAOYSA-M</inchi-key>
-<common-name datatype="string">3-phenyl-2-oxopropanoate</common-name>
-<synonym datatype="string">&amp;alpha;-ketohydrocinnamic acid</synonym>
-<synonym datatype="string">&lt;i&gt;keto&lt;/i&gt;-phenylpyruvate</synonym>
-<synonym datatype="string">phenylpyruvate</synonym>
-<synonym datatype="string">3-phenylpyruvate</synonym>
-<synonym datatype="string">3-phenylpyruvic acid</synonym>
-<synonym datatype="string">2-oxo-3-phenylpropanoate</synonym>
-<appears-in-right-side-of><Reaction frameid="2.6.1.58-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:2.6.1.58-RXN" /><Reaction frameid="RXN-10814" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-10814" /><Reaction frameid="PREPHENATEDEHYDRAT-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PREPHENATEDEHYDRAT-RXN" /></appears-in-right-side-of>
-<credits><imported-from-meta><date datatype="date">2020-03-09</date>
-<Organization ID="GCF_000020025:SRI" detail="full" frameid="SRI" orgid="GCF_000020025"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<common-name datatype="string">SRI International</common-name>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</imported-from-meta>
-</credits>
-<appears-in-left-side-of><Reaction frameid="RXN-14462" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-14462" /><Reaction frameid="PHENYLPYRUVATE-TAUTOMERASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:PHENYLPYRUVATE-TAUTOMERASE-RXN" /><Reaction frameid="RXN-10815" orgid="GCF_000020025" resource="getxml?GCF_000020025:RXN-10815" /></appears-in-left-side-of>
+<common-name datatype='string'>3-phenyl-2-oxopropanoate</common-name>
+<synonym datatype='string'>&amp;alpha;-ketohydrocinnamic acid</synonym>
+<synonym datatype='string'>&lt;i&gt;keto&lt;/i&gt;-phenylpyruvate</synonym>
+<synonym datatype='string'>phenylpyruvate</synonym>
+<synonym datatype='string'>3-phenylpyruvate</synonym>
+<synonym datatype='string'>3-phenylpyruvic acid</synonym>
+<synonym datatype='string'>2-oxo-3-phenylpropanoate</synonym>
+<inchi-key datatype='string'>InChIKey=BTNMPGBKDVTSJY-UHFFFAOYSA-M</inchi-key>
 </Compound>
 </ptools-xml>

@@ -10,4 +10,5 @@ PATHWAY     rn00966  Glucosinolate biosynthesis
             rn01210  2-Oxocarboxylic acid metabolism
 ORTHOLOGY   K14287  methionine transaminase [EC:2.6.1.88]
             K21346  methionine transaminase [EC:2.6.1.88]
+DBLINKS     RHEA: 31766
 ///

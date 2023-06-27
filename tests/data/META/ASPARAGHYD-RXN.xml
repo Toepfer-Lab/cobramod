@@ -1,12 +1,56 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ASPARAGHYD-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:ASPARAGHYD-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ASPARAGHYD-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:ASPARAGHYD-RXN" detail="full" frameid="ASPARAGHYD-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<Reaction ID='META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:ASN' orgid='META' frameid='ASN'/></left>
+<left><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/></left>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ASPARAGHYDB-ENZRXN' orgid='META' frameid='ASPARAGHYDB-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:ANSB-CPLX' orgid='META' frameid='ANSB-CPLX'/></enzyme>
+<synonym datatype='string'>asparaginase</synonym>
+<synonym datatype='string'>L-asparagine aminohydrolase</synonym>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ASPARAGHYDA-ENZRXN' orgid='META' frameid='ASPARAGHYDA-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:ANSA-CPLX' orgid='META' frameid='ANSA-CPLX'/></enzyme>
+<synonym datatype='string'>L-asparagine aminohydrolase</synonym>
+<synonym datatype='string'>asparaginase</synonym>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN0-302' orgid='META' frameid='ENZRXN0-302' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-263' orgid='META' frameid='CPLX0-263'/></enzyme>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN66-3216' orgid='META' frameid='ENZRXN66-3216' detail='low'><enzyme><Protein resource='getxml?META:HS15413-MONOMER' orgid='META' frameid='HS15413-MONOMER'/></enzyme>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN66-2850' orgid='META' frameid='ENZRXN66-2850' detail='low'><enzyme><Protein resource='getxml?META:CPLX66-530' orgid='META' frameid='CPLX66-530'/></enzyme>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13926' orgid='META' frameid='ENZRXN-13926' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7341' orgid='META' frameid='CPLX-7341'/></enzyme>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13907' orgid='META' frameid='ENZRXN-13907' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7328' orgid='META' frameid='CPLX-7328'/></enzyme>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13906' orgid='META' frameid='ENZRXN-13906' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7327' orgid='META' frameid='CPLX-7327'/></enzyme>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-9761' orgid='META' frameid='ENZRXN-9761' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-9561' orgid='META' frameid='MONOMER-9561'/></enzyme>
+<reaction><Reaction resource='#META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>asparaginase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR96056</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -141,69 +185,26 @@
 </ec-number>
 <ec-number>EC-3.5.1.1<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ASPARAGHYDB-ENZRXN" detail="low" frameid="ASPARAGHYDB-ENZRXN" orgid="META"><common-name datatype="string">asparaginase</common-name>
-<enzyme><Protein frameid="ANSB-CPLX" orgid="META" resource="getxml?META:ANSB-CPLX" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-<synonym datatype="string">L-asparaginase</synonym>
-<synonym datatype="string">L-asparagine aminohydrolase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ASPARAGHYDA-ENZRXN" detail="low" frameid="ASPARAGHYDA-ENZRXN" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
-<enzyme><Protein frameid="ANSA-CPLX" orgid="META" resource="getxml?META:ANSA-CPLX" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-<synonym datatype="string">L-asparagine aminohydrolase</synonym>
-<synonym datatype="string">asparaginase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN0-302" detail="low" frameid="ENZRXN0-302" orgid="META"><common-name datatype="string">asparaginase</common-name>
-<enzyme><Protein frameid="CPLX0-263" orgid="META" resource="getxml?META:CPLX0-263" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-3216" detail="low" frameid="ENZRXN66-3216" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
-<enzyme><Protein frameid="HS15413-MONOMER" orgid="META" resource="getxml?META:HS15413-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN66-2850" detail="low" frameid="ENZRXN66-2850" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
-<enzyme><Protein frameid="CPLX66-530" orgid="META" resource="getxml?META:CPLX66-530" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13926" detail="low" frameid="ENZRXN-13926" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
-<enzyme><Protein frameid="CPLX-7341" orgid="META" resource="getxml?META:CPLX-7341" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13907" detail="low" frameid="ENZRXN-13907" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
-<enzyme><Protein frameid="CPLX-7328" orgid="META" resource="getxml?META:CPLX-7328" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13906" detail="low" frameid="ENZRXN-13906" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
-<enzyme><Protein frameid="CPLX-7327" orgid="META" resource="getxml?META:CPLX-7327" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-9761" detail="low" frameid="ENZRXN-9761" orgid="META"><common-name datatype="string">asparaginase</common-name>
-<enzyme><Protein frameid="MONOMER-9561" orgid="META" resource="getxml?META:MONOMER-9561" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="#META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-4.297142<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-4.297142<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype='string'>Latendresse M.</author>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="ASPASN-PWY" orgid="META" resource="getxml?META:ASPASN-PWY" /><Pathway frameid="ASPARAGINE-DEG1-PWY-1" orgid="META" resource="getxml?META:ASPARAGINE-DEG1-PWY-1" /><Reaction frameid="3.5.5.4-RXN" orgid="META" resource="getxml?META:3.5.5.4-RXN" /><Pathway frameid="ASPARAGINE-DEG1-PWY" orgid="META" resource="getxml?META:ASPARAGINE-DEG1-PWY" /></in-pathway>
-<left><Compound frameid="ASN" orgid="META" resource="getxml?META:ASN" /></left>
-<left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /></right>
-<right><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></right>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<right><Compound resource='getxml?META:L-ASPARTATE' orgid='META' frameid='L-ASPARTATE'/></right>
+<right><Compound resource='getxml?META:AMMONIUM' orgid='META' frameid='AMMONIUM'/></right>
+<in-pathway><Pathway resource='getxml?META:ASPASN-PWY' orgid='META' frameid='ASPASN-PWY'/><Reaction resource='getxml?META:3.5.5.4-RXN' orgid='META' frameid='3.5.5.4-RXN'/><Pathway resource='getxml?META:ASPARAGINE-DEG1-PWY' orgid='META' frameid='ASPARAGINE-DEG1-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

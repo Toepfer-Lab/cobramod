@@ -17,4 +17,18 @@ MODULE      M00004  Pentose phosphate pathway (Pentose phosphate cycle)
             M00008  Entner-Doudoroff pathway, glucose-6P => glyceraldehyde-3P + pyruvate
 ORTHOLOGY   K00036  glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.363]
             K13937  hexose-6-phosphate dehydrogenase [EC:1.1.1.47 3.1.1.31]
+REFERENCE   1  [PMID:14275652]
+  AUTHORS   SALAS M, VINUELA E, SOLS A.
+  TITLE     SPONTANEOUS AND ENZYMATICALLY CATALYZED ANOMERIZATION OF GLUCOSE 6-PHOSPHATE AND  ANOMERIC SPECIFICITY OF RELATED ENZYMES.
+  JOURNAL   J Biol Chem 240:561-8 (1965)
+REFERENCE   2  [PMID:11457850]
+  AUTHORS   Miclet E, Stoven V, Michels PA, Opperdoes FR, Lallemand JY, Duffieux F.
+  TITLE     NMR spectroscopic analysis of the first two steps of the pentose-phosphate pathway elucidates the role of 6-phosphogluconolactonase.
+  JOURNAL   J Biol Chem 276:34840-6 (2001)
+            DOI:10.1074/jbc.M105174200
+REFERENCE   3  [PMID:9485426]
+  AUTHORS   Cosgrove MS, Naylor C, Paludan S, Adams MJ, Levy HR
+  TITLE     On the mechanism of the reaction catalyzed by glucose 6-phosphate dehydrogenase.
+  JOURNAL   Biochemistry 37:2759-67 (1998)
+            DOI:10.1021/bi972069y
 ///

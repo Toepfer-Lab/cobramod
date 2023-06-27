@@ -1,26 +1,35 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:AMONITRO-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:AMONITRO-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:AMONITRO-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:AMONITRO-RXN" detail="full" frameid="AMONITRO-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Electron-Transfer-Reactions" orgid="META" resource="getxml?META:Electron-Transfer-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<credits><revised><date datatype="date">2010-03-16</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
-</credits>
+<Reaction ID='META:AMONITRO-RXN' orgid='META' frameid='AMONITRO-RXN' detail='full'><parent><Reaction resource='getxml?META:Electron-Transfer-Reactions' orgid='META' frameid='Electron-Transfer-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:Donor-H2' orgid='META' frameid='Donor-H2' class='true'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</left>
+<left><Compound resource='getxml?META:AMMONIA' orgid='META' frameid='AMMONIA'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</left>
+<left><Compound resource='getxml?META:OXYGEN-MOLECULE' orgid='META' frameid='OXYGEN-MOLECULE'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</left>
+<reaction-ordering><Reaction resource='getxml?META:RXN-15862' orgid='META' frameid='RXN-15862'/><predecessor-reactions><Reaction resource='getxml?META:RXN-15863' orgid='META' frameid='RXN-15863'/></predecessor-reactions>
+</reaction-ordering>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN-5142' orgid='META' frameid='ENZRXN-5142' detail='low'><enzyme><Protein resource='getxml?META:CPLX-3882' orgid='META' frameid='CPLX-3882'/></enzyme>
+<reaction><Reaction resource='#META:AMONITRO-RXN' orgid='META' frameid='AMONITRO-RXN'/></reaction>
+<common-name datatype='string'>ammonia monooxygenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-5105' orgid='META' frameid='ENZRXN-5105' detail='low'><enzyme><Protein resource='getxml?META:CPLX-3242' orgid='META' frameid='CPLX-3242'/></enzyme>
+<reaction><Reaction resource='#META:AMONITRO-RXN' orgid='META' frameid='AMONITRO-RXN'/></reaction>
+<common-name datatype='string'>ammonia monooxygenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-1801' orgid='META' frameid='ENZRXN-1801' detail='low'><enzyme><Protein resource='getxml?META:CPLX-9117' orgid='META' frameid='CPLX-9117'/></enzyme>
+<synonym datatype='string'>ammonium monooxygenase</synonym>
+<reaction><Reaction resource='#META:AMONITRO-RXN' orgid='META' frameid='AMONITRO-RXN'/></reaction>
+<common-name datatype='string'>ammonia monooxygenase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR115701</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -33,38 +42,32 @@
 </dblink>
 <ec-number>EC-1.14.99.39<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN-5142" detail="low" frameid="ENZRXN-5142" orgid="META"><common-name datatype="string">ammonia monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX-3882" orgid="META" resource="getxml?META:CPLX-3882" /></enzyme>
-<reaction><Reaction frameid="AMONITRO-RXN" orgid="META" resource="#META:AMONITRO-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-5105" detail="low" frameid="ENZRXN-5105" orgid="META"><common-name datatype="string">ammonia monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX-3242" orgid="META" resource="getxml?META:CPLX-3242" /></enzyme>
-<reaction><Reaction frameid="AMONITRO-RXN" orgid="META" resource="#META:AMONITRO-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-1801" detail="low" frameid="ENZRXN-1801" orgid="META"><common-name datatype="string">ammonia monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX-9117" orgid="META" resource="getxml?META:CPLX-9117" /></enzyme>
-<reaction><Reaction frameid="AMONITRO-RXN" orgid="META" resource="#META:AMONITRO-RXN" /></reaction>
-<synonym datatype="string">ammonium monooxygenase</synonym>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<in-pathway><Pathway frameid="AMMOXID-PWY" orgid="META" resource="getxml?META:AMMOXID-PWY" /><Pathway frameid="PWY-2242" orgid="META" resource="getxml?META:PWY-2242" /></in-pathway>
-<left><Compound class="true" frameid="Donor-H2" orgid="META" resource="getxml?META:Donor-H2" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
-</left>
-<left><Compound frameid="AMMONIA" orgid="META" resource="getxml?META:AMMONIA" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
-</left>
-<left><Compound frameid="OXYGEN-MOLECULE" orgid="META" resource="getxml?META:OXYGEN-MOLECULE" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
-</left>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-ordering><Reaction frameid="RXN-15862" orgid="META" resource="getxml?META:RXN-15862" /><predecessor-reactions><Reaction frameid="RXN-15863" orgid="META" resource="getxml?META:RXN-15863" /></predecessor-reactions>
-</reaction-ordering>
+<reaction-list><Reaction resource='getxml?META:RXN-15863' orgid='META' frameid='RXN-15863'/><Reaction resource='getxml?META:RXN-15862' orgid='META' frameid='RXN-15862'/></reaction-list>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<reaction-list><Reaction frameid="RXN-15863" orgid="META" resource="getxml?META:RXN-15863" /><Reaction frameid="RXN-15862" orgid="META" resource="getxml?META:RXN-15862" /></reaction-list>
-<right><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<right><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
 </right>
-<right><Compound frameid="HYDROXYLAMINE" orgid="META" resource="getxml?META:HYDROXYLAMINE" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+<right><Compound resource='getxml?META:HYDROXYLAMINE' orgid='META' frameid='HYDROXYLAMINE'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
 </right>
-<right><Compound class="true" frameid="Acceptor" orgid="META" resource="getxml?META:Acceptor" /><compartment><cco frameid="CCO-IN" orgid="META" resource="getxml?META:CCO-IN" /></compartment>
+<right><Compound resource='getxml?META:Acceptor' orgid='META' frameid='Acceptor' class='true'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
 </right>
+<credits><revised><date datatype='date'>2010-03-16</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<email datatype='string'>caspi@ai.sri.com</email>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+</Organization>
+</affiliations>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
+</comment>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
+</credits>
+<in-pathway><Pathway resource='getxml?META:AMMOXID-PWY' orgid='META' frameid='AMMOXID-PWY'/><Pathway resource='getxml?META:PWY-2242' orgid='META' frameid='PWY-2242'/></in-pathway>
 </Reaction>
 </ptools-xml>

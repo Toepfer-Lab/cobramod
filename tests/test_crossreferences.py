@@ -8,6 +8,8 @@ from unittest.mock import patch
 
 import pandas as pd
 from cobra import Metabolite, Reaction
+from cobra import __version__ as cobra_version
+from cobramod import __version__ as cmod_version
 from cobramod.core.crossreferences import (
     add2dict_unique,
     add_crossreferences,
@@ -17,12 +19,13 @@ from cobramod.core.crossreferences import (
     load_cache_from_disk,
     metanetx2ec,
 )
-
-# Debug must be set in level DEBUG for the test
 from cobramod.debug import debug_log
+from cobramod.parsing.db_version import DataVersionConfigurator
 from numpy import NaN
 
 debug_log.setLevel(DEBUG)
+data_conf = DataVersionConfigurator()
+data_conf.force_same_version = True
 
 
 class TestCrossReferences(TestCase):
@@ -315,4 +318,7 @@ class TestCrossReferences(TestCase):
 
 
 if __name__ == "__main__":
+    print(f"CobraMod version: {cmod_version}")
+    print(f"COBRApy version: {cobra_version}")
+
     unittest.main(verbosity=2, failfast=True)

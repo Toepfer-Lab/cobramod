@@ -1,18 +1,37 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:ACETALD"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:ACETALD'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:ACETALD</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Compound ID="ARA:ACETALD" detail="full" frameid="ACETALD" orgid="ARA"><parent><Compound class="true" frameid="n-Alkanals" orgid="ARA" resource="getxml?ARA:n-Alkanals" /></parent>
-<cml><molecule formalCharge="0" id="ACETALD" title="acetaldehyde"><atomArray><atom elementType="C" id="ACETALD-atom1" x2="716400.0" y2="512900.0" /><atom elementType="C" id="ACETALD-atom2" x2="-1200.0" y2="105900.0" /><atom elementType="O" id="ACETALD-atom3" x2="-1200.0" y2="-719100.0" /><atom elementType="H" id="ACETALD-atom4" x2="-721200.0" y2="512900.0" /></atomArray>
-<bondArray><bond atomRefs="ACETALD-atom1 ACETALD-atom2" id="ACETALD-bond1" order="1" /><bond atomRefs="ACETALD-atom2 ACETALD-atom4" id="ACETALD-bond2" order="1" /><bond atomRefs="ACETALD-atom2 ACETALD-atom3" id="ACETALD-bond3" order="2" /></bondArray>
-<formula concise="C 2 H 4 O 1" /><float title="molecularWeight" units="g/mol">44.053</float>
-<string title="smiles">CC=O</string>
+<Compound ID='ARA:ACETALD' orgid='ARA' frameid='ACETALD' detail='full'><parent><Compound resource='getxml?ARA:Toxins' orgid='ARA' frameid='Toxins' class='true'/></parent>
+<parent><Compound resource='getxml?ARA:n-Alkanals' orgid='ARA' frameid='n-Alkanals' class='true'/></parent>
+<cml><molecule id='ACETALD' title='acetaldehyde' formalCharge='0'><atomArray><atom id='ACETALD-atom1' elementType='C' x2='716400.0' y2='512900.0'/><atom id='ACETALD-atom2' elementType='C' x2='-1200.0' y2='105900.0'/><atom id='ACETALD-atom3' elementType='O' x2='-1200.0' y2='-719100.0'/><atom id='ACETALD-atom4' elementType='H' x2='-721200.0' y2='512900.0'/></atomArray>
+<bondArray><bond id='ACETALD-bond1' atomRefs='ACETALD-atom1 ACETALD-atom2' order='1'/><bond id='ACETALD-bond2' atomRefs='ACETALD-atom2 ACETALD-atom4' order='1'/><bond id='ACETALD-bond3' atomRefs='ACETALD-atom2 ACETALD-atom3' order='2'/></bondArray>
+<formula concise='C 2 H 4 O 1'/><float title='molecularWeight' units='g/mol'>44.053</float>
+<string title='smiles'>CC=O</string>
 </molecule>
 </cml>
+<regulates><Regulation ID='ARA:REG0-10198' orgid='ARA' frameid='REG0-10198' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:ACETALD' orgid='ARA' frameid='ACETALD'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<common-name datatype='string'>acetaldehyde</common-name>
+<inchi datatype='string'>InChI=1S/C2H4O/c1-2-3/h2H,1H3</inchi>
+<inchi-key datatype='string'>InChIKey=IKHGUXGNUITLKF-UHFFFAOYSA-N</inchi-key>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:ACETALD-DEHYDROG-RXN' orgid='ARA' frameid='ACETALD-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:RXN-8092' orgid='ARA' frameid='RXN-8092'/><Reaction resource='getxml?ARA:RXN66-3' orgid='ARA' frameid='RXN66-3'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>7.6844816</gibbs-0>
+<synonym datatype='string'>acetic aldehyde</synonym>
+<synonym datatype='string'>ethanal</synonym>
+<synonym datatype='string'>aldehyde</synonym>
+<synonym datatype='string'>ethyl aldehyde</synonym>
+<molecular-weight datatype='float' units='Daltons'>44.053</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-22435' orgid='ARA' frameid='RXN-22435'/><Reaction resource='getxml?ARA:LTAA-RXN' orgid='ARA' frameid='LTAA-RXN'/><Reaction resource='getxml?ARA:ALCOHOL-DEHYDROG-RXN' orgid='ARA' frameid='ALCOHOL-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:THREONINE-ALDOLASE-RXN' orgid='ARA' frameid='THREONINE-ALDOLASE-RXN'/><Reaction resource='getxml?ARA:RXN-6161' orgid='ARA' frameid='RXN-6161'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>44.026215</monoisotopic-mw>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00071</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -73,22 +92,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=75-07-0</dblink-URL>
 </dblink>
-<synonym datatype="string">acetic aldehyde</synonym>
-<synonym datatype="string">ethanal</synonym>
-<synonym datatype="string">aldehyde</synonym>
-<synonym datatype="string">ethyl aldehyde</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">7.6844816</gibbs-0>
-<inchi datatype="string">InChI=1S/C2H4O/c1-2-3/h2H,1H3</inchi>
-<inchi-key datatype="string">InChIKey=IKHGUXGNUITLKF-UHFFFAOYSA-N</inchi-key>
-<molecular-weight datatype="float" units="Daltons">44.053</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">44.026215</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="ACETALD-DEHYDROG-RXN" orgid="ARA" resource="getxml?ARA:ACETALD-DEHYDROG-RXN" /><Reaction frameid="RXN-8092" orgid="ARA" resource="getxml?ARA:RXN-8092" /><Reaction frameid="RXN66-3" orgid="ARA" resource="getxml?ARA:RXN66-3" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="LTAA-RXN" orgid="ARA" resource="getxml?ARA:LTAA-RXN" /><Reaction frameid="ALCOHOL-DEHYDROG-RXN" orgid="ARA" resource="getxml?ARA:ALCOHOL-DEHYDROG-RXN" /><Reaction frameid="THREONINE-ALDOLASE-RXN" orgid="ARA" resource="getxml?ARA:THREONINE-ALDOLASE-RXN" /><Reaction frameid="RXN-6161" orgid="ARA" resource="getxml?ARA:RXN-6161" /></appears-in-right-side-of>
-<regulates><Regulation ID="ARA:REG0-10198" detail="low" frameid="REG0-10198" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="ACETALD" orgid="ARA" resource="#ARA:ACETALD" /></regulator>
-</Regulation>
-</regulates>
-<common-name datatype="string">acetaldehyde</common-name>
 </Compound>
 </ptools-xml>

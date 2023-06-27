@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='26.0' xml:base='http://pmn.plantcyc.org/getxml?META:FORMATE'><metadata><url>http://pmn.plantcyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:FORMATE</query>
+<num_results>1</num_results>
+<PGDB orgid='META' version='26.0'><species datatype='string'>MetaCyc</species>
+</PGDB>
+</metadata>
+<Compound ID='META:FORMATE' orgid='META' frameid='FORMATE' detail='full'><parent><Compound resource='getxml?META:Short-Chain-Carboxylates' orgid='META' frameid='Short-Chain-Carboxylates' class='true'/></parent>
+<cml><molecule id='FORMATE' title='formate' formalCharge='-1'><atomArray><atom id='FORMATE-atom1' elementType='C' x2='-856.0' y2='-1611.0'/><atom id='FORMATE-atom2' elementType='O' x2='-856.0' y2='-9861.0'/><atom id='FORMATE-atom3' elementType='O' x2='-8000.0' y2='2514.0' formalCharge='-1'/><atom id='FORMATE-atom4' elementType='H' x2='6289.0' y2='2514.0'/></atomArray>
+<bondArray><bond id='FORMATE-bond1' atomRefs='FORMATE-atom2 FORMATE-atom1' order='2'/><bond id='FORMATE-bond2' atomRefs='FORMATE-atom3 FORMATE-atom1' order='1'/><bond id='FORMATE-bond3' atomRefs='FORMATE-atom1 FORMATE-atom4' order='1'/></bondArray>
+<formula concise='C 1 H 1 O 2'/><float title='molecularWeight' units='g/mol'>45.018</float>
+<string title='smiles'>C([O-])=O</string>
+</molecule>
+</cml>
+<gibbs-0 datatype='float' units='kcal/mol'>-73.93095<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
+computational analysis.  The assertion itself might have been made
+by a person or by a computer, that is, EV-COMP does not specify whether
+manual interpretation of the computation occurred.
+&lt;p&gt;
+</comment>
+<common-name datatype='string'>Inferred by computational analysis</common-name>
+</Evidence-Code>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+</Publication>
+</evidence>
+</gibbs-0>
+<appears-in-left-side-of><Reaction resource='getxml?META:FHLMULTI-RXN' orgid='META' frameid='FHLMULTI-RXN'/><Reaction resource='getxml?META:RXN0-3281' orgid='META' frameid='RXN0-3281'/><Reaction resource='getxml?META:FORMATETHFLIG-RXN' orgid='META' frameid='FORMATETHFLIG-RXN'/><Reaction resource='getxml?META:FORMATE-KINASE-RXN' orgid='META' frameid='FORMATE-KINASE-RXN'/><Reaction resource='getxml?META:GARTRANSFORMYL2-RXN' orgid='META' frameid='GARTRANSFORMYL2-RXN'/><Reaction resource='getxml?META:RXN-12274' orgid='META' frameid='RXN-12274'/><Reaction resource='getxml?META:1.2.2.3-RXN' orgid='META' frameid='1.2.2.3-RXN'/><Reaction resource='getxml?META:RXN-16835' orgid='META' frameid='RXN-16835'/><Reaction resource='getxml?META:FORMATE-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='FORMATE-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:1.2.1.2-RXN' orgid='META' frameid='1.2.1.2-RXN'/><Reaction resource='getxml?META:RXN-11237' orgid='META' frameid='RXN-11237'/><Reaction resource='getxml?META:FORMATEDEHYDROG-RXN' orgid='META' frameid='FORMATEDEHYDROG-RXN'/><Reaction resource='getxml?META:RXN-15617' orgid='META' frameid='RXN-15617'/><Reaction resource='getxml?META:RIBONUCLEOSIDE-TRIP-REDUCT-RXN' orgid='META' frameid='RIBONUCLEOSIDE-TRIP-REDUCT-RXN'/><Reaction resource='getxml?META:RXN0-746' orgid='META' frameid='RXN0-746'/><Reaction resource='getxml?META:RXN0-724' orgid='META' frameid='RXN0-724'/><Reaction resource='getxml?META:RXN0-723' orgid='META' frameid='RXN0-723'/><Reaction resource='getxml?META:RXN0-745' orgid='META' frameid='RXN0-745'/><Reaction resource='getxml?META:FORMATE--DIHYDROFOLATE-LIGASE-RXN' orgid='META' frameid='FORMATE--DIHYDROFOLATE-LIGASE-RXN'/><Reaction resource='getxml?META:TRANS-RXN-1' orgid='META' frameid='TRANS-RXN-1'/><Reaction resource='getxml?META:RXN-10066' orgid='META' frameid='RXN-10066'/><Reaction resource='getxml?META:FORMATE-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='FORMATE-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:TRANS-RXN-213' orgid='META' frameid='TRANS-RXN-213'/><Reaction resource='getxml?META:PYRUVFORMLY-RXN' orgid='META' frameid='PYRUVFORMLY-RXN'/></appears-in-left-side-of>
+<appears-in-right-side-of><Reaction resource='getxml?META:GTP-CYCLOHYDRO-II-RXN' orgid='META' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?META:3.5.1.27-RXN' orgid='META' frameid='3.5.1.27-RXN'/><Reaction resource='getxml?META:RXN-21796' orgid='META' frameid='RXN-21796'/><Reaction resource='getxml?META:RXN-21602' orgid='META' frameid='RXN-21602'/><Reaction resource='getxml?META:RXN-21418' orgid='META' frameid='RXN-21418'/><Reaction resource='getxml?META:3.5.1.91-RXN' orgid='META' frameid='3.5.1.91-RXN'/><Reaction resource='getxml?META:FORMAMIDASE-RXN' orgid='META' frameid='FORMAMIDASE-RXN'/><Reaction resource='getxml?META:RXN-13262' orgid='META' frameid='RXN-13262'/><Reaction resource='getxml?META:R147-RXN' orgid='META' frameid='R147-RXN'/><Reaction resource='getxml?META:LACTATE-ALDOLASE-RXN' orgid='META' frameid='LACTATE-ALDOLASE-RXN'/><Reaction resource='getxml?META:RXN-21248' orgid='META' frameid='RXN-21248'/><Reaction resource='getxml?META:RXN-11453' orgid='META' frameid='RXN-11453'/><Reaction resource='getxml?META:RXN-20438' orgid='META' frameid='RXN-20438'/><Reaction resource='getxml?META:RXN-21170' orgid='META' frameid='RXN-21170'/><Reaction resource='getxml?META:RXN-11881' orgid='META' frameid='RXN-11881'/><Reaction resource='getxml?META:RXN-21167' orgid='META' frameid='RXN-21167'/><Reaction resource='getxml?META:RXN-20763' orgid='META' frameid='RXN-20763'/><Reaction resource='getxml?META:RXN-20741' orgid='META' frameid='RXN-20741'/><Reaction resource='getxml?META:N-FORMYLGLUTAMATE-DEFORMYLASE-RXN' orgid='META' frameid='N-FORMYLGLUTAMATE-DEFORMYLASE-RXN'/><Reaction resource='getxml?META:RXN-20445' orgid='META' frameid='RXN-20445'/><Reaction resource='getxml?META:RXN-20130' orgid='META' frameid='RXN-20130'/><Reaction resource='getxml?META:RXN-20136' orgid='META' frameid='RXN-20136'/><Reaction resource='getxml?META:RXN-20135' orgid='META' frameid='RXN-20135'/><Reaction resource='getxml?META:RXN-20129' orgid='META' frameid='RXN-20129'/><Reaction resource='getxml?META:RXN-19980' orgid='META' frameid='RXN-19980'/><Reaction resource='getxml?META:1.14.13.70-RXN' orgid='META' frameid='1.14.13.70-RXN'/><Reaction resource='getxml?META:RXN-19833' orgid='META' frameid='RXN-19833'/><Reaction resource='getxml?META:RXN-13961' orgid='META' frameid='RXN-13961'/><Reaction resource='getxml?META:RXN-19830' orgid='META' frameid='RXN-19830'/><Reaction resource='getxml?META:RXN3O-130' orgid='META' frameid='RXN3O-130'/><Reaction resource='getxml?META:RXN-13707' orgid='META' frameid='RXN-13707'/><Reaction resource='getxml?META:RXN-15499' orgid='META' frameid='RXN-15499'/><Reaction resource='getxml?META:RXN-15957' orgid='META' frameid='RXN-15957'/><Reaction resource='getxml?META:RXN-19725' orgid='META' frameid='RXN-19725'/><Reaction resource='getxml?META:RXN66-13' orgid='META' frameid='RXN66-13'/><Reaction resource='getxml?META:RXN66-305' orgid='META' frameid='RXN66-305'/><Reaction resource='getxml?META:3.7.1.9-RXN' orgid='META' frameid='3.7.1.9-RXN'/><Reaction resource='getxml?META:RXN-19490' orgid='META' frameid='RXN-19490'/><Reaction resource='getxml?META:RXN-17561' orgid='META' frameid='RXN-17561'/><Reaction resource='getxml?META:1.14.99.21-RXN' orgid='META' frameid='1.14.99.21-RXN'/><Reaction resource='getxml?META:RXN1G-129' orgid='META' frameid='RXN1G-129'/><Reaction resource='getxml?META:RXN-18815' orgid='META' frameid='RXN-18815'/><Reaction resource='getxml?META:RXN-18529' orgid='META' frameid='RXN-18529'/><Reaction resource='getxml?META:RXN0-1382' orgid='META' frameid='RXN0-1382'/><Reaction resource='getxml?META:RXN-17615' orgid='META' frameid='RXN-17615'/><Reaction resource='getxml?META:RXN66-346' orgid='META' frameid='RXN66-346'/><Reaction resource='getxml?META:RXN-14746' orgid='META' frameid='RXN-14746'/><Reaction resource='getxml?META:RXN-14744' orgid='META' frameid='RXN-14744'/><Reaction resource='getxml?META:RXN66-349' orgid='META' frameid='RXN66-349'/><Reaction resource='getxml?META:RXN-17150' orgid='META' frameid='RXN-17150'/><Reaction resource='getxml?META:RXN-16480' orgid='META' frameid='RXN-16480'/><Reaction resource='getxml?META:RXN-17122' orgid='META' frameid='RXN-17122'/><Reaction resource='getxml?META:RXN-11054' orgid='META' frameid='RXN-11054'/><Reaction resource='getxml?META:RXN-13868' orgid='META' frameid='RXN-13868'/><Reaction resource='getxml?META:RXN-16191' orgid='META' frameid='RXN-16191'/><Reaction resource='getxml?META:RXN-7593' orgid='META' frameid='RXN-7593'/><Reaction resource='getxml?META:FORMYLTHFDEFORMYL-RXN' orgid='META' frameid='FORMYLTHFDEFORMYL-RXN'/><Reaction resource='getxml?META:ARYLFORMAMIDASE-RXN' orgid='META' frameid='ARYLFORMAMIDASE-RXN'/><Reaction resource='getxml?META:FORMYLMETHIONINE-DEFORMYLASE-RXN' orgid='META' frameid='FORMYLMETHIONINE-DEFORMYLASE-RXN'/><Reaction resource='getxml?META:TRANS-RXN-1' orgid='META' frameid='TRANS-RXN-1'/><Reaction resource='getxml?META:3.5.1.88-RXN' orgid='META' frameid='3.5.1.88-RXN'/><Reaction resource='getxml?META:RXN-15187' orgid='META' frameid='RXN-15187'/><Reaction resource='getxml?META:RXN-10063' orgid='META' frameid='RXN-10063'/><Reaction resource='getxml?META:RXN-14028' orgid='META' frameid='RXN-14028'/><Reaction resource='getxml?META:OCTADECANAL-DECARBONYLASE-RXN' orgid='META' frameid='OCTADECANAL-DECARBONYLASE-RXN'/><Reaction resource='getxml?META:RXN-10824' orgid='META' frameid='RXN-10824'/><Reaction resource='getxml?META:RXN-13557' orgid='META' frameid='RXN-13557'/><Reaction resource='getxml?META:RXN-13286' orgid='META' frameid='RXN-13286'/><Reaction resource='getxml?META:RXN-12612' orgid='META' frameid='RXN-12612'/><Reaction resource='getxml?META:PYRIMSYN1-RXN' orgid='META' frameid='PYRIMSYN1-RXN'/><Reaction resource='getxml?META:TRANS-RXN-213' orgid='META' frameid='TRANS-RXN-213'/><Reaction resource='getxml?META:RXN-12087' orgid='META' frameid='RXN-12087'/><Reaction resource='getxml?META:RXN-11318' orgid='META' frameid='RXN-11318'/><Reaction resource='getxml?META:GTP-CYCLOHYDRO-I-RXN' orgid='META' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?META:RXN-11073' orgid='META' frameid='RXN-11073'/><Reaction resource='getxml?META:RXN-8408' orgid='META' frameid='RXN-8408'/><Reaction resource='getxml?META:RXN-10056' orgid='META' frameid='RXN-10056'/><Reaction resource='getxml?META:FORMALDEHYDE-DEHYDROGENASE-RXN' orgid='META' frameid='FORMALDEHYDE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN0-5409' orgid='META' frameid='RXN0-5409'/><Reaction resource='getxml?META:DIOHBUTANONEPSYN-RXN' orgid='META' frameid='DIOHBUTANONEPSYN-RXN'/><Reaction resource='getxml?META:RXN0-5253' orgid='META' frameid='RXN0-5253'/><Reaction resource='getxml?META:RXN-7592' orgid='META' frameid='RXN-7592'/><Reaction resource='getxml?META:RXN-7586' orgid='META' frameid='RXN-7586'/><Reaction resource='getxml?META:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='META' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?META:RXN-2884' orgid='META' frameid='RXN-2884'/><Reaction resource='getxml?META:R146-RXN' orgid='META' frameid='R146-RXN'/><Reaction resource='getxml?META:KETOBUTFORMLY-RXN' orgid='META' frameid='KETOBUTFORMLY-RXN'/><Reaction resource='getxml?META:1.13.11.41-RXN' orgid='META' frameid='1.13.11.41-RXN'/><Reaction resource='getxml?META:FORMYL-COA-HYDROLASE-RXN' orgid='META' frameid='FORMYL-COA-HYDROLASE-RXN'/><Reaction resource='getxml?META:NN-DIMETHYLFORMAMIDASE-RXN' orgid='META' frameid='NN-DIMETHYLFORMAMIDASE-RXN'/><Reaction resource='getxml?META:FORMYLASPARTATE-DEFORMYLASE-RXN' orgid='META' frameid='FORMYLASPARTATE-DEFORMYLASE-RXN'/><Reaction resource='getxml?META:OXALATE-DECARBOXYLASE-RXN' orgid='META' frameid='OXALATE-DECARBOXYLASE-RXN'/></appears-in-right-side-of>
+<inchi datatype='string'>InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
+<inchi-key datatype='string'>InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
+<regulates><Regulation ID='META:REG0-7828' orgid='META' frameid='REG0-7828' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='META:CYANLY-ENZRXN' orgid='META' frameid='CYANLY-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:CYANLY-CPLX' orgid='META' frameid='CYANLY-CPLX'/></enzyme>
+<reaction><Reaction resource='getxml?META:R524-RXN' orgid='META' frameid='R524-RXN'/></reaction>
+<common-name datatype='string'>cyanase</common-name>
+<synonym datatype='string'>cyanate hydrolase</synonym>
+<synonym datatype='string'>cyanate C-N-lyase</synonym>
+<synonym datatype='string'>cyanate aminohydrolase</synonym>
+<synonym datatype='string'>cyanate lyase</synonym>
+<synonym datatype='string'>cyanate hydratase</synonym>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound resource='#META:FORMATE' orgid='META' frameid='FORMATE'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='META:REG0-11830' orgid='META' frameid='REG0-11830' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-7782' orgid='META' frameid='ENZRXN0-7782' detail='low'><enzyme><Protein resource='getxml?META:EG11512-MONOMER' orgid='META' frameid='EG11512-MONOMER'/></enzyme>
+<reaction><Reaction resource='getxml?META:TRANS-RXN0-571' orgid='META' frameid='TRANS-RXN0-571'/></reaction>
+<common-name datatype='string'>acetate:H&lt;sup&gt;+&lt;/sup&gt; symporter</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound resource='#META:FORMATE' orgid='META' frameid='FORMATE'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='META:REG-6186' orgid='META' frameid='REG-6186' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13818' orgid='META' frameid='ENZRXN-13818' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7307' orgid='META' frameid='CPLX-7307'/></enzyme>
+<reaction><Reaction resource='getxml?META:SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN' orgid='META' frameid='SUCCINATE-DEHYDROGENASE-UBIQUINONE-RXN'/></reaction>
+<common-name datatype='string'>succinate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound resource='#META:FORMATE' orgid='META' frameid='FORMATE'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<common-name datatype='string'>formate</common-name>
+<molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
+<monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Formic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Formic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>for</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/for</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15740</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15740</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00142</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00142</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>277</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/277</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15740</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15740</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>283</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=283</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00058</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00058</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>64-18-6</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=64-18-6</dblink-URL>
+</dblink>
+<synonym datatype='string'>formic acid</synonym>
+</Compound>
+</ptools-xml>

@@ -7,719 +7,695 @@ the different databases. The module is separated according to the databases:
 - TestBiocyc: For Biocyc-related databases
 - TestBigg: For BiGG database
 - TestKegg: For Kegg
+- TestPlantCyc: For PlantCyc
+- TestSolcyc: For SolCyc
 """
-import shutil
-import tempfile
-from unittest.mock import patch
-from xml.etree.ElementTree import Element
+import unittest
 from logging import DEBUG
 from pathlib import Path
-from unittest import TestCase, main
 
-import pandas as pd
-import pytest
-from pandas._testing import assert_frame_equal, assert_series_equal
-from requests import HTTPError, Response
-from cobra import __version__
-
+import cobra.core as cobra_core
+import cobramod.error as cmod_error
+import cobramod.retrieval as cmod_retrieval
+import requests
+from cobra import __version__ as cobra_version
+from cobramod import __version__ as cmod_version
 from cobramod.debug import debug_log
-from cobramod.error import WrongParserError, SuperpathwayWarning
-from cobramod.parsing.base import BaseParser as bp
-from cobramod.parsing import kegg as kg
-from cobramod.parsing import biocyc as bc
-from cobramod.parsing import plantcyc as pc
 from cobramod.parsing import bigg as bi
-from cobramod.parsing import solcyc as so
-from cobramod import __version__ as cobramod_version
+from cobramod.parsing.db_version import DataVersionConfigurator
 
-# Debug must be set in level DEBUG for the test
 debug_log.setLevel(DEBUG)
-# Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
+
+data_conf = DataVersionConfigurator()
+
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
 
-print(f"CobraMod version: {cobramod_version}")
-print(f"COBRApy version: {__version__}")
 
-
-class BaseParser(TestCase):
-    @classmethod
-    def setUp(cls):
-        # removing metadata belonging to other tests that affect this one
-        bp.database_version = None
-
-        cls.directory = tempfile.mkdtemp()
-        bp.ignore_db_versions = False
-        cls.versions = pd.DataFrame.from_dict(
-            {"orgid": ["bigg"], "version": ["1.0.0"]}
-        )
-
-        cls.versions.to_csv(
-            path_or_buf=str(cls.directory + "/DatabaseVersions.csv"),
-            index=False,
-        )
-
-    @classmethod
-    def tearDown(cls):
-        shutil.rmtree(cls.directory)
-        # Removing metadata
-        bp.database_version = None
-
-    def test__get_database_version(self):
-        database = bp._get_database_version(self.directory)
-        assert_frame_equal(database, self.versions)
-
-    def test__get_local_databases(self):
-        databases = bp._get_local_databases(self.directory)
-
-        expected_series = pd.Series(["bigg"])
-        expected_series.name = "orgid"
-        assert_series_equal(databases, expected_series)
-
-    def test__set_database_version(self):
-        bp._set_database_version(Path(self.directory), "pmn:META", "1.0")
-
-        database = bp._get_database_version(self.directory)
-
-        self.versions = self.versions.append(
-            {"orgid": "pmn:META", "version": "1.0"}, ignore_index=True
-        )
-
-        assert_frame_equal(database, self.versions)
-
-    def test__check_database_version(self):
-        (Path(self.directory) / "DatabaseVersions.csv").unlink()
-
-        # new database
-        bp.check_database_version(Path(self.directory), "bigg", "1.0.0")
-
-        database = bp._get_database_version(self.directory)
-        assert_frame_equal(database, self.versions)
-
-        # database with correct version
-
-        with pytest.warns(None) as warnings:
-            bp.check_database_version(Path(self.directory), "bigg", "1.0.0")
-
-        assert not warnings
-
-        database = bp._get_database_version(self.directory)
-        assert_frame_equal(database, self.versions)
-
-        # database with incorrect version (with user input)
-        with patch("builtins.input", return_value="y") as mock:
-            with self.assertWarnsRegex(
-                UserWarning,
-                r"Versions of .* do not match. Remote has version .* "
-                r"and local version is .*\.",
-            ):
-                bp.check_database_version(
-                    Path(self.directory), "bigg", "2.0.0"
-                )
-
-            args, kwargs = mock.call_args
-            assert args == ("Ignore version mismatch? (Y)es (N)o",)
-
-        database = bp._get_database_version(self.directory)
-        assert_frame_equal(database, self.versions)
-
-        # database with incorrect version (without user input)
-        bp.ignore_db_versions = True
-        with self.assertWarnsRegex(
-            UserWarning,
-            r"Versions of .* do not match. Remote has version .* "
-            r"and local version is .*\.",
-        ):
-            bp.check_database_version(Path(self.directory), "bigg", "2.0.0")
-
-        database = bp._get_database_version(self.directory)
-        assert_frame_equal(database, self.versions)
-
-
-class TestKegg(TestCase):
+class TestKegg(unittest.TestCase):
     """
     Parsing and retrival for Kegg
     """
 
     @classmethod
     def setUpClass(cls):
-        kg.BaseParser.ignore_db_versions = True
+        data_conf.force_same_version = True
 
-    def test_retrieve_data(self):
-        # CASE 0b: Wrong identifier
+    def test_get_data(self):
+        # CASE: Wrong identifier
         self.assertRaises(
-            HTTPError,
-            kg.retrieve_data,
+            requests.HTTPError,
+            cmod_retrieval.get_data,
             directory=dir_data,
             identifier="R08618-wrong",
+            database="KEGG",
         )
-        #
-        # CASE 1: Regular reaction
-        test_data = kg.retrieve_data(directory=dir_data, identifier="R08618")
-        self.assertIsInstance(obj=test_data, cls=dict)
-        # CASE 1: Regular compound
-        test_data = kg.retrieve_data(directory=dir_data, identifier="C01290")
-        self.assertIsInstance(obj=test_data, cls=dict)
 
-    def test_get_graph(self):
-        # CASE 0: Normal Module
-        test_dict = kg.retrieve_data(directory=dir_data, identifier="M00001")
-        test_graph = kg.get_graph(kegg_dict=test_dict)
+        # CASE: Regular reaction
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="R08618", database="KEGG"
+        )
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: Regular compound
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="C01290", database="KEGG"
+        )
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: RNA
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="GLT-tRNAs", database="pmn:PLANT"
+        )
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: Module
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="M00001", database="KEGG"
+        )
+        test_graph = test_data.attributes["pathway"]
         self.assertEqual(first=test_graph["R00200"], second=None)
         self.assertEqual(first=len(test_graph), second=15)
-        # CASE 1: Simple branch
-        test_dict = kg.retrieve_data(directory=dir_data, identifier="M00040")
-        test_graph = kg.get_graph(kegg_dict=test_dict)
+
+        # CASE: Simple branch
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="M00040", database="KEGG"
+        )
+        test_graph = test_data.attributes["pathway"]
         self.assertEqual(first=test_graph["R00732"], second=None)
         self.assertEqual(first=test_graph["R00733"], second=None)
         self.assertEqual(first=len(test_graph), second=4)
 
-    def test__parse_kegg(self):
-        # CASE 1a: Reaction (same as setup)
-        test_string = kg.retrieve_data(directory=dir_data, identifier="R08618")
-        test_dict = kg.KeggParser._parse(
-            root=test_string, directory=dir_data, genome="ath"
-        )
-        self.assertEqual(first=len(test_dict["EQUATION"]), second=4)
-        self.assertIsInstance(obj=test_dict["NAME"], cls=str)
-        self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(), second=["AT3G19710"]
-        )
-        self.assertEqual(first=test_dict["GENES"]["rule"], second="AT3G19710")
-        # CASE 2: Compound
-        self.test_string = kg.retrieve_data(
-            directory=dir_data, identifier="C01290"
-        )
-        test_dict = kg.KeggParser._parse(
-            root=self.test_string, directory=dir_data
-        )
-
-        self.assertEqual(first="Compound", second=test_dict["TYPE"])
-        # CASE 2: EC number (not working for now)
-        self.test_string = kg.retrieve_data(
-            directory=dir_data, identifier="7.1.2.2"
-        )
-        self.assertRaises(
-            NotImplementedError,
-            kg.KeggParser._parse,
-            root=self.test_string,
+    def test_parse(self):
+        # CASE: Reaction (same as setup)
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
+            identifier="R08618",
+            database="KEGG",
+            genome="ath",
         )
-        # CASE 3: Pathway
-        test_data = kg.retrieve_data(directory=dir_data, identifier="M00001")
-        test_dict = kg._p_pathway(kegg_dict=test_data)
-        self.assertEqual(first="Pathway", second=test_dict["TYPE"])
-        self.assertEqual(first="M00001", second=test_dict["ENTRY"])
+        self.assertEqual(test_data.attributes["genes"]["rule"], "AT3G19710")
+        self.assertEqual(
+            test_data.attributes["genes"]["genes"], {"AT3G19710": ""}
+        )
+
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        self.assertEqual(test_reaction.id, "R08618_c")
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(first=len(test_reaction.metabolites), second=4)
+        self.assertEqual(len(test_reaction.genes), 1)
+
+        # CASE: Compound
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="C01290", database="KEGG"
+        )
+        test_metabolite = test_data.parse(cobra_core.Model(""), "c")
+        self.assertEqual(test_metabolite.id, "C01290_c")
+
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(test_metabolite.formula, "C31H56NO13R")
+
+        # CASE: EC number (not working for now)
+        self.assertRaises(
+            AttributeError,
+            cmod_retrieval.get_data,
+            directory=dir_data,
+            identifier="7.1.2.2",
+            database="KEGG",
+        )
+
+        # CASE: Pathway
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="M00001", database="KEGG"
+        )
+        self.assertEqual("Pathway", test_data.mode)
+        self.assertEqual("M00001", test_data.identifier)
+        self.assertEqual(15, len(test_data.attributes["pathway"]))
 
 
-class TestBiocyc(TestCase):
+class TestBiocyc(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        bc.BaseParser.ignore_db_versions = True
+        data_conf.force_same_version = True
 
-    def test_retrieve_data(self):
-        # CASE 1: Directory does not exist
+    def test_get_data(self):
+        # CASE: ID not found
         self.assertRaises(
-            NotADirectoryError,
-            bc.retrieve_data,
-            # args
-            directory=Path.cwd().joinpath("noDIr"),
-            identifier="WATER",
-            database="META",
-        )
-        # CASE 2: ID not found
-        self.assertRaises(
-            HTTPError,
-            bc.retrieve_data,
+            requests.HTTPError,
+            cmod_retrieval.get_data,
             directory=dir_data,
             identifier="WATER_fake",
             database="META",
         )
-        # CASE 3: Regular META
-        test_element = bc.retrieve_data(
+        # CASE: Regular META
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="WATER", database="META"
         )
-        self.assertIsInstance(obj=test_element, cls=Element)
-        # CASE 4: META from ARA if not available
-        test_element = bc.retrieve_data(
-            directory=dir_data, identifier="CPD-15323", database="ARA"
-        )
-        self.assertIsInstance(obj=test_element, cls=Element)
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
 
-    def test_get_graph(self):
-        # CASE 1: Regular complex lineal pathway
-        test_root = bc.retrieve_data(
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="ACETALD", database="ARA"
+        )
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="PWY-5337", database="ARA"
+        )
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: Regular complex lineal pathway
+
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="PWY-1187", database="META"
         )
-        test_dict = bc.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=14)
-        self.assertCountEqual(
-            first=test_dict["RXN-2221"], second=("RXN-2222", "RXN-2223")
-        )
-        # CASE 2: Complex cyclic pathway
-        test_root = bc.retrieve_data(
+
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 14)
+        self.assertCountEqual(test_graph["RXN-2221"], ("RXN-2222", "RXN-2223"))
+
+        # CASE: Complex cyclic pathway
+
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="CALVIN-PWY", database="META"
         )
-        test_dict = bc.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=13)
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 13)
         self.assertCountEqual(
-            first=test_dict["TRIOSEPISOMERIZATION-RXN"],
-            second=("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
+            test_graph["TRIOSEPISOMERIZATION-RXN"],
+            ("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
         )
-        # CASE 3: Single-reaction pathway
-        test_root = bc.retrieve_data(
+
+        # CASE: Single-reaction pathway
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="PWY-7344", database="META"
         )
-        test_dict = bc.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=1)
-        self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
-        # CASE 4: Super-Pathway
-        test_root = bc.retrieve_data(
-            directory=dir_data, identifier="PWY-5052", database="META"
-        )
-        self.assertWarns(SuperpathwayWarning, bc.get_graph, root=test_root)
 
-    def test__parse_biocyc(self):
-        # CASE 1: Compound
-        test_root = bc.retrieve_data(
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 1)
+        self.assertEqual(test_graph["UDPGLUCEPIM-RXN"], None)
+
+        # CASE: Super-Pathway
+        self.assertWarns(
+            cmod_error.SuperpathwayWarning,
+            cmod_retrieval.get_data,
+            identifier="PWY-5052",
+            database="META",
+            directory=dir_data,
+        )
+
+    def test_parse(self):
+        # CASE: Compound
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="AMP", database="META"
         )
-        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
-        self.assertEqual(first=test_dict["TYPE"], second="Compound")
-        # CASE 2a: Reaction in ARA
-        test_root = bc.retrieve_data(
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
+
+        self.assertEqual(test_metabolite.id, "AMP_p")
+
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(test_metabolite.formula, "C10H12N5O7P1")
+
+        # CASE: Reaction in ARA
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="ARA",
         )
-        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
-        self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
-        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
-        self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(),
-            second=["AT5G64300", "AT5G59750"],
+
+        self.assertEqual(
+            test_data.attributes["genes"]["rule"], "AT5G64300 or AT5G59750"
         )
-        # CASE 2b: Reaction in Meta
-        test_root = bc.retrieve_data(
+        self.assertCountEqual(
+            test_data.attributes["genes"]["genes"].keys(),
+            ["AT5G64300", "AT5G59750"],
+        )
+
+        # NOTE: retrieve data before this test
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        self.assertEqual(test_reaction.id, "GTP_CYCLOHYDRO_II_RXN_c")
+
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(len(test_reaction.genes), 2)
+
+        # CASE: Reaction in Meta
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="META",
         )
-        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
-        self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(), second=[]
-        )
-        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
-        # CASE 2c: Reaction in small subdatabase
-        test_root = bc.retrieve_data(
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        self.assertEqual(test_reaction.id, "GTP_CYCLOHYDRO_II_RXN_c")
+        self.assertEqual(test_data.attributes["genes"]["rule"], "")
+        self.assertCountEqual(test_data.attributes["genes"]["genes"].keys(), [])
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(len(test_reaction.genes), 0)
+
+        self.assertEqual(test_reaction.bounds, (0, 1000))
+
+        # CASE: Reaction in small subdatabase
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="GCF_000010885",
         )
-        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
         self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(), second=["APA22_RS09400"]
+            test_data.attributes["genes"]["genes"].keys(),
+            ["APA22_RS09400"],
         )
-        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
-        # CASE 3: Protein
-        test_root = bc.retrieve_data(
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(test_reaction.bounds, (0, 1000))
+
+        # CASE: Protein
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="Reduced-hemoproteins",
             database="ARA",
         )
-        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=test_dict["TYPE"], second="Protein")
-        self.assertEqual(first=test_dict["FORMULA"], second="X")
-        # CASE 4: Pathway
-        test_root = bc.retrieve_data(
-            directory=dir_data, identifier="PWY-1187", database="META"
+
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
+
+        self.assertEqual(test_metabolite.id, "Reduced_hemoproteins_p")
+
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(test_metabolite.formula, "X")
+
+        # CASE: Pathway
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
+            identifier="PWY-1187",
+            database="META",
         )
-        test_dict = bc.BiocycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=test_dict["TYPE"], second="Pathway")
-        self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 14)
 
 
-class TestPlantCyc(TestCase):
+class TestPlantCyc(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        pc.BaseParser.ignore_db_versions = True
+        data_conf.force_same_version = True
 
-    def test_retrieve_data(self):
-        # CASE 1: Directory does not exist
+    def test_get_data(self):
+        # CASE: ID not found
         self.assertRaises(
-            NotADirectoryError,
-            pc.retrieve_data,
-            # args
-            directory=Path.cwd().joinpath("noDIr"),
-            identifier="WATER",
-            database="pmn:PLANT",
-        )
-        # CASE 2: ID not found
-        self.assertRaises(
-            HTTPError,
-            pc.retrieve_data,
+            requests.HTTPError,
+            cmod_retrieval.get_data,
             directory=dir_data,
             identifier="WATER_fake",
             database="pmn:PLANT",
         )
 
-        # CASE 3: Regular META
-        test_element = pc.retrieve_data(
+        # CASE: Regular PLANT
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="WATER", database="pmn:PLANT"
         )
-        self.assertIsInstance(obj=test_element, cls=Element)
-        # CASE 4: META from ARA if not available
-        test_element = pc.retrieve_data(
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: META from pmn
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="CPD-15323", database="pmn:META"
         )
-        self.assertIsInstance(obj=test_element, cls=Element)
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
 
-    def test_get_graph(self):
-        # CASE 1: Regular complex lineal pathway
-        test_root = pc.retrieve_data(
+        # CASE: Pathway from CORN
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="CALVIN-PWY", database="pmn:CORN"
+        )
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: Regular complex lineal pathway
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="PWY-1187", database="pmn:META"
         )
-        test_dict = pc.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=14)
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 14)
+        self.assertCountEqual(test_graph["RXN-2221"], ("RXN-2222", "RXN-2223"))
+
+        # CASE: Complex cyclic pathway
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data, identifier="CALVIN-PWY", database="pmn:CORN"
+        )
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 13)
         self.assertCountEqual(
-            first=test_dict["RXN-2221"], second=("RXN-2222", "RXN-2223")
+            test_graph["TRIOSEPISOMERIZATION-RXN"],
+            ("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
         )
-        # CASE 2: Complex cyclic pathway
-        test_root = pc.retrieve_data(
-            directory=dir_data, identifier="CALVIN-PWY", database="pmn:META"
-        )
-        test_dict = pc.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=13)
-        self.assertCountEqual(
-            first=test_dict["TRIOSEPISOMERIZATION-RXN"],
-            second=("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
-        )
-        # CASE 3: Single-reaction pathway
-        test_root = pc.retrieve_data(
+
+        # CASE: Single-reaction pathway
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="PWY-7344", database="pmn:META"
         )
-        test_dict = pc.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=1)
-        self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
-        # CASE 4: Super-Pathway
-        test_root = pc.retrieve_data(
-            directory=dir_data, identifier="PWY-5052", database="pmn:META"
-        )
-        self.assertWarns(SuperpathwayWarning, pc.get_graph, root=test_root)
 
-    def test__parse_plantcyc(self):
-        # CASE 1: Compound
-        test_root = pc.retrieve_data(
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 1)
+        self.assertEqual(test_graph["UDPGLUCEPIM-RXN"], None)
+
+        # CASE: Super-Pathway
+        self.assertWarns(
+            cmod_error.SuperpathwayWarning,
+            cmod_retrieval.get_data,
+            identifier="PWY-5052",
+            database="pmn:META",
+            directory=dir_data,
+        )
+
+    def test_parse(self):
+        # CASE: Compound
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="AMP", database="pmn:META"
         )
-        test_dict = pc.PlantCycParser._parse(
-            root=test_root, directory=dir_data
-        )
-        self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
-        self.assertEqual(first=test_dict["TYPE"], second="Compound")
-        # CASE 2a: Reaction in ARA
-        test_root = pc.retrieve_data(
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
+
+        self.assertEqual(test_metabolite.id, "AMP_p")
+
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(test_metabolite.formula, "C10H12N5O7P1")
+
+        # CASE: Reaction in ARA
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="pmn:ARA",
         )
-        test_dict = pc.PlantCycParser._parse(
-            root=test_root, directory=dir_data
+
+        self.assertEqual(
+            test_data.attributes["genes"]["rule"], "AT5G64300 or AT5G59750"
         )
-        self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
-        self.assertEqual(first=test_dict["EQUATION"]["l_WATER"], second=-3)
-        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
         self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(),
-            second=["AT5G64300", "AT5G59750"],
+            test_data.attributes["genes"]["genes"].keys(),
+            ["AT5G64300", "AT5G59750"],
         )
-        # CASE 2b: Reaction in Meta
-        test_root = pc.retrieve_data(
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        self.assertEqual(test_reaction.id, "GTP_CYCLOHYDRO_II_RXN_c")
+
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(len(test_reaction.genes), 2)
+
+        # CASE: Reaction in Meta
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="pmn:META",
         )
-        test_dict = pc.PlantCycParser._parse(
-            root=test_root, directory=dir_data
-        )
-        self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(), second=[]
-        )
-        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
-        # CASE 2c: Reaction in another database
-        test_root = pc.retrieve_data(
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        self.assertEqual(test_reaction.id, "GTP_CYCLOHYDRO_II_RXN_c")
+        self.assertEqual(test_data.attributes["genes"]["rule"], "")
+        self.assertCountEqual(test_data.attributes["genes"]["genes"].keys(), [])
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(len(test_reaction.genes), 0)
+
+        self.assertEqual(test_reaction.bounds, (0, 1000))
+
+        # CASE: Reaction in another database
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="pmn:SOY",
         )
-        test_dict = pc.PlantCycParser._parse(
-            root=test_root, directory=dir_data
-        )
-        self.assertEqual(
-            first=8, second=len(test_dict["GENES"]["genes"].keys())
-        )
-        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
-        # CASE 3: Protein
-        test_root = pc.retrieve_data(
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(len(test_reaction.genes), 8)
+
+        # CASE: Protein
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="Reduced-hemoproteins",
             database="pmn:ARA",
         )
-        test_dict = pc.PlantCycParser._parse(
-            root=test_root, directory=dir_data
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
+
+        self.assertEqual(test_metabolite.id, "Reduced_hemoproteins_p")
+
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(test_metabolite.formula, "X")
+
+        # CASE: Pathway
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
+            identifier="PWY-1187",
+            database="pmn:META",
         )
-        self.assertEqual(first=test_dict["TYPE"], second="Protein")
-        self.assertEqual(first=test_dict["FORMULA"], second="X")
-        # CASE 4: Pathway
-        test_root = pc.retrieve_data(
-            directory=dir_data, identifier="PWY-1187", database="pmn:META"
-        )
-        test_dict = pc.PlantCycParser._parse(
-            root=test_root, directory=dir_data
-        )
-        self.assertEqual(first=test_dict["TYPE"], second="Pathway")
-        self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 14)
 
 
-class TestSolCyc(TestCase):
+class TestSolCyc(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        so.BaseParser.ignore_db_versions = True
+        data_conf.force_same_version = True
 
-    def test_retrieve_data(self):
-        # CASE 1: Directory does not exist
+    def test_get_data(self):
+        # CASE: ID not found
         self.assertRaises(
-            NotADirectoryError,
-            so.retrieve_data,
-            # args
-            directory=Path.cwd().joinpath("noDIr"),
-            identifier="WATER",
-            database="sol:META",
-        )
-        # CASE 2: ID not found
-        self.assertRaises(
-            HTTPError,
-            so.retrieve_data,
+            requests.HTTPError,
+            cmod_retrieval.get_data,
             directory=dir_data,
             identifier="WATER_fake",
             database="sol:META",
         )
 
-        # CASE 3: Regular META
-        test_element = so.retrieve_data(
+        # CASE: Regular META
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="WATER", database="sol:META"
         )
-        self.assertIsInstance(obj=test_element, cls=Element)
-        # CASE 4: META from ARA if not available
-        test_element = so.retrieve_data(
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: Regular META
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="CPD-15323", database="sol:META"
         )
-        self.assertIsInstance(obj=test_element, cls=Element)
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
 
-    def test_get_graph(self):
-        # CASE 1: Regular complex lineal pathway
-        test_root = so.retrieve_data(
+        # CASE: Regular complex lineal pathway
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="PWY-1187", database="sol:META"
         )
-        test_dict = so.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=14)
-        self.assertCountEqual(
-            first=test_dict["RXN-2221"], second=("RXN-2222", "RXN-2223")
-        )
-        # CASE 2: Complex cyclic pathway
-        test_root = so.retrieve_data(
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 14)
+        self.assertCountEqual(test_graph["RXN-2221"], ("RXN-2222", "RXN-2223"))
+
+        # CASE: Complex cyclic pathway
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="CALVIN-PWY", database="sol:META"
         )
-        test_dict = so.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=13)
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 13)
         self.assertCountEqual(
-            first=test_dict["TRIOSEPISOMERIZATION-RXN"],
-            second=("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
+            test_graph["TRIOSEPISOMERIZATION-RXN"],
+            ("SEDOBISALDOL-RXN", "F16ALDOLASE-RXN"),
         )
-        # CASE 3: Single-reaction pathway
-        test_root = so.retrieve_data(
+
+        # CASE: Single-reaction pathway
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="PWY-7344", database="sol:META"
         )
-        test_dict = so.get_graph(root=test_root)
-        self.assertEqual(first=len(test_dict), second=1)
-        self.assertEqual(first=test_dict["UDPGLUCEPIM-RXN"], second=None)
-        # CASE 4: Super-Pathway
-        test_root = so.retrieve_data(
-            directory=dir_data, identifier="PWY-5052", database="sol:META"
-        )
-        self.assertWarns(SuperpathwayWarning, so.get_graph, root=test_root)
 
-    def test__parse_solcyc(self):
-        # CASE 1: Compound
-        test_root = so.retrieve_data(
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 1)
+        self.assertEqual(test_graph["UDPGLUCEPIM-RXN"], None)
+
+    def test_parse_(self):
+        # CASE: Compound
+        test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="AMP", database="sol:META"
         )
-        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=test_dict["FORMULA"], second="C10H12N5O7P1")
-        self.assertEqual(first=test_dict["TYPE"], second="Compound")
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
 
-        # ToDo change test to something existing in SolCyc
-        # CASE 2a: Reaction in ARA
-        test_root = so.retrieve_data(
+        self.assertEqual(test_metabolite.id, "AMP_p")
+
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(test_metabolite.formula, "C10H12N5O7P1")
+
+        # CASE: Reaction in sub database LYCO
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="6PFRUCTPHOS-RXN",
-            database="sol:SolanaCyc",
+            database="sol:LYCO",
         )
-        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=5, second=len(test_dict["EQUATION"]))
-        self.assertEqual(
-            first=1, second=test_dict["EQUATION"]["r_FRUCTOSE-16-DIPHOSPHATE"]
-        )
-        self.assertEqual(first=test_dict["TYPE"], second="Reaction")
-        self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(),
-            second=[],
-        )
-        # CASE 2b: Reaction in Meta
-        test_root = so.retrieve_data(
+
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(len(test_reaction.genes), 9)
+        self.assertEqual(len(test_reaction.metabolites), 5)
+
+        # CASE: Reaction in Meta
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="GTP-CYCLOHYDRO-II-RXN",
             database="sol:META",
         )
-        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
-        self.assertCountEqual(
-            first=test_dict["GENES"]["genes"].keys(), second=[]
-        )
-        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        self.assertEqual(test_reaction.id, "GTP_CYCLOHYDRO_II_RXN_c")
+        self.assertEqual(test_data.attributes["genes"]["rule"], "")
+        self.assertCountEqual(test_data.attributes["genes"]["genes"].keys(), [])
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(len(test_reaction.genes), 0)
 
-        # ToDo change test to something existing in SolCyc
-        # CASE 2c: Reaction in another database
-        test_root = so.retrieve_data(
+        self.assertEqual(test_reaction.bounds, (0, 1000))
+
+        # CASE: Reaction in another database
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
-            identifier="RXN18C3-276",
-            database="sol:SolanaCyc",
+            identifier="RXN-2221",
+            database="sol:LYCO",
         )
-        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(
-            first=0, second=len(test_dict["GENES"]["genes"].keys())
-        )
-        self.assertEqual(first=test_dict["BOUNDS"], second=(0, 1000))
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
 
-        # CASE 3: Protein
-        test_root = so.retrieve_data(
+        self.assertEqual(len(test_reaction.genes), 0)
+        self.assertEqual(test_reaction.bounds, (0, 1000))
+
+        # CASE: Protein
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="Reduced-hemoproteins",
             database="sol:LYCO",
         )
-        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=test_dict["TYPE"], second="Protein")
-        self.assertEqual(first=test_dict["FORMULA"], second="X")
-        # CASE 4: Pathway
-        test_root = so.retrieve_data(
-            directory=dir_data, identifier="PWY-1187", database="sol:META"
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
+
+        self.assertEqual(test_metabolite.id, "Reduced_hemoproteins_p")
+
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(test_metabolite.formula, "X")
+
+        # CASE: Pathway
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
+            identifier="PWY-1187",
+            database="pmn:META",
         )
-        test_dict = so.SolCycParser._parse(root=test_root, directory=dir_data)
-        self.assertEqual(first=test_dict["TYPE"], second="Pathway")
-        self.assertEqual(first=len(test_dict["PATHWAY"]), second=14)
+        test_graph = test_data.attributes["pathway"]
+        self.assertEqual(len(test_graph), 14)
 
 
-class TestBigg(TestCase):
+class TestBigg(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        bi.BaseParser.ignore_db_versions = True
+        data_conf.force_same_version = True
 
-    def test__find_url(self):
-        # CASE 1: Positive request
-        test_response, db_version = bi._find_url(
-            model_id="e_coli_core", identifier="ACALD"
-        )
-        self.assertIsInstance(obj=test_response, cls=Response)
-        # CASE 2: Negative request
+    def test_find_url(self):
+        # CASE: Error
         self.assertRaises(
-            HTTPError,
-            bi._find_url,
+            requests.HTTPError,
+            bi.find_url,
             model_id="e_coli_core",
-            identifier="Invalid",
+            query="Invalid",
         )
 
-        import cobramod.core.retrieval as retrieval
-        from cobramod.test import textbook
+        # CASE: from specific model
+        response, _ = bi.find_url(query="ACALD", model_id="e_coli_core")
+        self.assertIsInstance(response, requests.Response)
 
-        model = textbook.copy()
-        retrieval.get_data(
-            model=model,
+    def test_get_data(self):
+        # CASE: metabolite
+        test_data = cmod_retrieval.get_data(
             directory=dir_data,
+            identifier="accoa_c",
+            model_id="e_coli_core",
             database="BIGG",
+        )
+        self.assertEqual(test_data.mode, "Metabolite")
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+
+        # CASE: Regular reaction from ecoli
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
             identifier="ACALD",
-            model_id="e_coli_core"
-            # Shared identified
+            model_id="e_coli_core",
+            database="BIGG",
         )
-        print(dir_data)
+        self.assertEqual(test_data.mode, "Reaction")
+        self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
 
-    def test_retrieve_data(self):
-        # CASE 0
-        test_data = bi.retrieve_data(
-            directory=dir_data, identifier="accoa_c", model_id="e_coli_core"
+    def test_parse(self):
+        # CASE: Regular universal reaction
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
+            identifier="ACALDt",
+            model_id="universal",
+            database="BIGG",
         )
-        # CASE 1: Regular reaction from ecoli
-        test_data = bi.retrieve_data(
-            directory=dir_data, identifier="ACALD", model_id="e_coli_core"
+        test_reaction = test_data.parse(cobra_core.Model(""), "c")
+
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+        self.assertEqual(len(test_reaction.genes), 0)
+
+        self.assertEqual(first=len(test_reaction.metabolites), second=2)
+
+        # CASE: Regular universal metabolite
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
+            identifier="coa",
+            model_id="universal",
+            database="BIGG",
         )
-        bi._p_reaction(json_data=test_data)
-        self.assertIsInstance(obj=test_data, cls=dict)
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(test_metabolite.formula, "C21H32N7O16P3S")
+
+        # CASE: Ecoli reaction
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
+            identifier="PDH",
+            model_id="e_coli_core",
+            database="BIGG",
+        )
         self.assertEqual(
-            first=test_data["results"][0]["lower_bound"], second=-1000
-        )
-        self.assertEqual(first=len(test_data["metabolites"]), second=6)
-        # CASE 2: Regular metabolite from universal
-        test_data = bi.retrieve_data(
-            directory=dir_data, identifier="accoa", model_id="universal"
-        )
-        self.assertIsInstance(obj=test_data, cls=dict)
-        self.assertEqual(
-            first=test_data["formulae"][0], second="C23H34N7O17P3S"
+            test_data.attributes["genes"]["rule"], "b0114 and b0115 and b0116"
         )
 
-    def test__parse_bigg(self):
-        # CASE 0: Wrong type
-        self.assertRaises(WrongParserError, bi.BiggParser._parse, str())
-        # CASE 1: Regular universal reaction
-        test_json = bi.retrieve_data(
-            directory=dir_data, identifier="ACALDt", model_id="universal"
+        test_reaction = test_data.parse(cobra_core.Model(""), "p")
+
+        if not isinstance(test_reaction, cobra_core.Reaction):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(len(test_reaction.genes), 3)
+
+        # CASE: Ecoli metabolite
+        test_data = cmod_retrieval.get_data(
+            directory=dir_data,
+            identifier="co2_c",
+            model_id="e_coli_core",
+            database="BIGG",
         )
-        test_dict = bi.BiggParser._parse(root=test_json)
-        self.assertEqual(first=len(test_dict["EQUATION"]), second=2)
-        self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        self.assertEqual(
-            first={"genes": {}, "rule": ""}, second=test_dict["GENES"]
-        )
-        # CASE 2: Regular universal metabolite
-        test_json = bi.retrieve_data(
-            directory=dir_data, identifier="coa", model_id="universal"
-        )
-        test_dict = bi.BiggParser._parse(root=test_json)
-        self.assertEqual(first="Compound", second=test_dict["TYPE"])
-        self.assertEqual(first="C21H32N7O16P3S", second=test_dict["FORMULA"])
-        # CASE 3: Ecoli reaction
-        test_json = bi.retrieve_data(
-            directory=dir_data, identifier="PDH", model_id="e_coli_core"
-        )
-        test_dict = bi.BiggParser._parse(root=test_json)
-        self.assertEqual(first=len(test_dict["EQUATION"]), second=6)
-        self.assertEqual(first="Reaction", second=test_dict["TYPE"])
-        self.assertEqual(
-            first="b0114 and b0115 and b0116",
-            second=test_dict["GENES"]["rule"],
-        )
-        self.assertEqual(first=3, second=len(test_dict["GENES"]["genes"]))
-        # CASE 4: Ecoli metabolite
-        test_json = bi.retrieve_data(
-            directory=dir_data, identifier="co2_c", model_id="e_coli_core"
-        )
-        test_dict = bi.BiggParser._parse(root=test_json)
-        self.assertEqual(first="Compound", second=test_dict["TYPE"])
-        self.assertEqual(first="CO2", second=test_dict["FORMULA"])
+        test_metabolite = test_data.parse(cobra_core.Model(""), "p")
+        if not isinstance(test_metabolite, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy Reaction")
+
+        self.assertEqual(test_metabolite.id, "co2_p")
+        self.assertEqual(test_metabolite.formula, "CO2")
 
 
 if __name__ == "__main__":
-    main(verbosity=2)
+    print(f"CobraMod version: {cmod_version}")
+    print(f"COBRApy version: {cobra_version}")
+
+    unittest.main(verbosity=2, failfast=True)

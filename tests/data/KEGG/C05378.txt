@@ -24,7 +24,6 @@ ENZYME      2.7.1.11        2.7.1.56        2.7.1.90        2.7.1.146
             3.1.3.11        4.1.2.13
 DBLINKS     PubChem: 7752
             ChEBI: 28013
-            ChEMBL: CHEMBL2111113 CHEMBL97893
             PDB-CCD: FBP
             3DMET: B01851
             NIKKAJI: J322.162H

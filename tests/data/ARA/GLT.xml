@@ -1,21 +1,96 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLT"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:GLT'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLT</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Compound ID="ARA:GLT" detail="full" frameid="GLT" orgid="ARA"><parent><Compound class="true" frameid="Amino-Acids-20" orgid="ARA" resource="getxml?ARA:Amino-Acids-20" /></parent>
-<parent><Compound class="true" frameid="Glutamates" orgid="ARA" resource="getxml?ARA:Glutamates" /></parent>
-<parent><Compound class="true" frameid="L-Amino-Acids" orgid="ARA" resource="getxml?ARA:L-Amino-Acids" /></parent>
-<parent><Compound class="true" frameid="Negatively-charged-polar-amino-acids" orgid="ARA" resource="getxml?ARA:Negatively-charged-polar-amino-acids" /></parent>
-<cml><molecule formalCharge="-1" id="GLT" title="L-glutamate"><atomArray><atom elementType="C" id="GLT-atom1" x2="1457.0" y2="983.0" /><atom elementType="C" id="GLT-atom2" x2="1529.0" y2="941.0" /><atom elementType="C" id="GLT-atom3" x2="1457.0" y2="1065.0" /><atom elementType="C" id="GLT-atom4" x2="1529.0" y2="859.0" /><atom elementType="C" id="GLT-atom5" x2="1529.0" y2="1106.0" /><atom elementType="N" formalCharge="1" id="GLT-atom6" x2="1386.0" y2="1106.0" /><atom elementType="O" formalCharge="-1" id="GLT-atom7" x2="1457.0" y2="818.0" /><atom elementType="O" id="GLT-atom8" x2="1600.0" y2="818.0" /><atom elementType="O" id="GLT-atom9" x2="1529.0" y2="1189.0" /><atom elementType="O" formalCharge="-1" id="GLT-atom10" x2="1600.0" y2="1065.0" /></atomArray>
-<bondArray><bond atomRefs="GLT-atom4 GLT-atom8" id="GLT-bond1" order="2" /><bond atomRefs="GLT-atom4 GLT-atom7" id="GLT-bond2" order="1" /><bond atomRefs="GLT-atom2 GLT-atom4" id="GLT-bond3" order="1" /><bond atomRefs="GLT-atom5 GLT-atom10" id="GLT-bond4" order="1" /><bond atomRefs="GLT-atom5 GLT-atom9" id="GLT-bond5" order="2" /><bond atomRefs="GLT-atom1 GLT-atom2" id="GLT-bond6" order="1" /><bond atomRefs="GLT-atom3 GLT-atom6" id="GLT-bond7" order="1" /><bond atomRefs="GLT-atom3 GLT-atom5" id="GLT-bond8" order="1" /><bond atomRefs="GLT-atom3 GLT-atom1" id="GLT-bond9" order="1" /></bondArray>
-<formula concise="C 5 H 8 N 1 O 4" /><float title="molecularWeight" units="g/mol">146.122</float>
-<string title="smiles">C(CC[C@@H](C(=O)[O-])[NH3+])([O-])=O</string>
+<Compound ID='ARA:GLT' orgid='ARA' frameid='GLT' detail='full'><parent><Compound resource='getxml?ARA:Neurotransmitters' orgid='ARA' frameid='Neurotransmitters' class='true'/></parent>
+<parent><Compound resource='getxml?ARA:Amino-Acids-20' orgid='ARA' frameid='Amino-Acids-20' class='true'/></parent>
+<parent><Compound resource='getxml?ARA:Glutamates' orgid='ARA' frameid='Glutamates' class='true'/></parent>
+<parent><Compound resource='getxml?ARA:L-Amino-Acids' orgid='ARA' frameid='L-Amino-Acids' class='true'/></parent>
+<parent><Compound resource='getxml?ARA:Negatively-charged-polar-amino-acids' orgid='ARA' frameid='Negatively-charged-polar-amino-acids' class='true'/></parent>
+<cml><molecule id='GLT' title='L-glutamate' formalCharge='-1'><atomArray><atom id='GLT-atom1' elementType='C' x2='1457.0' y2='983.0'/><atom id='GLT-atom2' elementType='C' x2='1529.0' y2='941.0'/><atom id='GLT-atom3' elementType='C' x2='1457.0' y2='1065.0'/><atom id='GLT-atom4' elementType='C' x2='1529.0' y2='859.0'/><atom id='GLT-atom5' elementType='C' x2='1529.0' y2='1106.0'/><atom id='GLT-atom6' elementType='N' x2='1386.0' y2='1106.0' formalCharge='1'/><atom id='GLT-atom7' elementType='O' x2='1457.0' y2='818.0' formalCharge='-1'/><atom id='GLT-atom8' elementType='O' x2='1600.0' y2='818.0'/><atom id='GLT-atom9' elementType='O' x2='1529.0' y2='1189.0'/><atom id='GLT-atom10' elementType='O' x2='1600.0' y2='1065.0' formalCharge='-1'/></atomArray>
+<bondArray><bond id='GLT-bond1' atomRefs='GLT-atom4 GLT-atom8' order='2'/><bond id='GLT-bond2' atomRefs='GLT-atom4 GLT-atom7' order='1'/><bond id='GLT-bond3' atomRefs='GLT-atom2 GLT-atom4' order='1'/><bond id='GLT-bond4' atomRefs='GLT-atom5 GLT-atom10' order='1'/><bond id='GLT-bond5' atomRefs='GLT-atom5 GLT-atom9' order='2'/><bond id='GLT-bond6' atomRefs='GLT-atom1 GLT-atom2' order='1'/><bond id='GLT-bond7' atomRefs='GLT-atom3 GLT-atom6' order='1'/><bond id='GLT-bond8' atomRefs='GLT-atom3 GLT-atom5' order='1'/><bond id='GLT-bond9' atomRefs='GLT-atom3 GLT-atom1' order='1'/></bondArray>
+<formula concise='C 5 H 8 N 1 O 4'/><float title='molecularWeight' units='g/mol'>146.122</float>
+<string title='smiles'>C(CC[C@@H](C(=O)[O-])[NH3+])([O-])=O</string>
 </molecule>
 </cml>
+<regulates><Regulation ID='ARA:REG-15653' orgid='ARA' frameid='REG-15653' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG-8144' orgid='ARA' frameid='REG-8144' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-11302' orgid='ARA' frameid='REG0-11302' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG66-78' orgid='ARA' frameid='REG66-78' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8740' orgid='ARA' frameid='REG0-8740' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8754' orgid='ARA' frameid='REG0-8754' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-7397' orgid='ARA' frameid='REG0-7397' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-8403' orgid='ARA' frameid='REG0-8403' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG-9139' orgid='ARA' frameid='REG-9139' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REGQT-480' orgid='ARA' frameid='REGQT-480' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-10489' orgid='ARA' frameid='ENZRXNQT-10489' detail='low'><common-name datatype='string'>pyruvate kinase</common-name>
+<reaction><Reaction resource='getxml?ARA:PEPDEPHOS-RXN' orgid='ARA' frameid='PEPDEPHOS-RXN'/></reaction>
+<enzyme><Protein resource='getxml?ARA:CPLXQT-37' orgid='ARA' frameid='CPLXQT-37'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<regulator><Compound resource='#ARA:GLT' orgid='ARA' frameid='GLT'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Fiehn,Shulaev-CEMS,Nikolau-AminoAcids (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
+<common-name datatype='string'>L-glutamate</common-name>
+<inchi datatype='string'>InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1</inchi>
+<inchi-key datatype='string'>InChIKey=WHUUTDBJXJRKMK-VKHMYHEASA-M</inchi-key>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-3742' orgid='ARA' frameid='RXN-3742'/><Reaction resource='getxml?ARA:RXN-6102' orgid='ARA' frameid='RXN-6102'/><Reaction resource='getxml?ARA:RXN-22683' orgid='ARA' frameid='RXN-22683'/><Reaction resource='getxml?ARA:RXN-20400' orgid='ARA' frameid='RXN-20400'/><Reaction resource='getxml?ARA:ABC-13-RXN' orgid='ARA' frameid='ABC-13-RXN'/><Reaction resource='getxml?ARA:RXN-20084' orgid='ARA' frameid='RXN-20084'/><Reaction resource='getxml?ARA:GLURS-RXN' orgid='ARA' frameid='GLURS-RXN'/><Reaction resource='getxml?ARA:RXN-9386' orgid='ARA' frameid='RXN-9386'/><Reaction resource='getxml?ARA:TRANS-RXN-232' orgid='ARA' frameid='TRANS-RXN-232'/><Reaction resource='getxml?ARA:TRANS-RXN-234' orgid='ARA' frameid='TRANS-RXN-234'/><Reaction resource='getxml?ARA:GLUTAMATE-FORMIMINOTRANSFERASE-RXN' orgid='ARA' frameid='GLUTAMATE-FORMIMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:GLUTAMINESYN-RXN' orgid='ARA' frameid='GLUTAMINESYN-RXN'/><Reaction resource='getxml?ARA:RXN-12878' orgid='ARA' frameid='RXN-12878'/><Reaction resource='getxml?ARA:PROLINE-MULTI' orgid='ARA' frameid='PROLINE-MULTI'/><Reaction resource='getxml?ARA:GLUTDECARBOX-RXN' orgid='ARA' frameid='GLUTDECARBOX-RXN'/><Reaction resource='getxml?ARA:RXN-2947' orgid='ARA' frameid='RXN-2947'/><Reaction resource='getxml?ARA:RXN-10884' orgid='ARA' frameid='RXN-10884'/><Reaction resource='getxml?ARA:RXN-10885' orgid='ARA' frameid='RXN-10885'/><Reaction resource='getxml?ARA:RXN-10886' orgid='ARA' frameid='RXN-10886'/><Reaction resource='getxml?ARA:RXN-10887' orgid='ARA' frameid='RXN-10887'/><Reaction resource='getxml?ARA:GLUTAMATE-DEHYDROGENASE-NADP+-RXN' orgid='ARA' frameid='GLUTAMATE-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?ARA:GLUTDEHYD-RXN' orgid='ARA' frameid='GLUTDEHYD-RXN'/><Reaction resource='getxml?ARA:RXN0-2921' orgid='ARA' frameid='RXN0-2921'/><Reaction resource='getxml?ARA:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN' orgid='ARA' frameid='GLUTAMATE-SYNTHASE-FERREDOXIN-RXN'/><Reaction resource='getxml?ARA:PRPPAMIDOTRANS-RXN' orgid='ARA' frameid='PRPPAMIDOTRANS-RXN'/><Reaction resource='getxml?ARA:FORMYLTHFGLUSYNTH-RXN' orgid='ARA' frameid='FORMYLTHFGLUSYNTH-RXN'/><Reaction resource='getxml?ARA:GLUTAMATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='GLUTAMATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:GLUTAMATE-SYNTHASE-NADH-RXN' orgid='ARA' frameid='GLUTAMATE-SYNTHASE-NADH-RXN'/><Reaction resource='getxml?ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN'/><Reaction resource='getxml?ARA:DIHYDROFOLATESYNTH-RXN' orgid='ARA' frameid='DIHYDROFOLATESYNTH-RXN'/><Reaction resource='getxml?ARA:GLUTAMATE-N-ACETYLTRANSFERASE-RXN' orgid='ARA' frameid='GLUTAMATE-N-ACETYLTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:N-ACETYLTRANSFER-RXN' orgid='ARA' frameid='N-ACETYLTRANSFER-RXN'/><Reaction resource='getxml?ARA:GLUTKIN-RXN' orgid='ARA' frameid='GLUTKIN-RXN'/><Reaction resource='getxml?ARA:FOLYLPOLYGLUTAMATESYNTH-RXN' orgid='ARA' frameid='FOLYLPOLYGLUTAMATESYNTH-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-82.27311</gibbs-0>
+<synonym datatype='string'>1-amino-propane-1,3-dicarboxylic acid</synonym>
+<synonym datatype='string'>glutacid</synonym>
+<synonym datatype='string'>glutaminic acid</synonym>
+<synonym datatype='string'>L-glutamic acid</synonym>
+<synonym datatype='string'>&amp;alpha;-aminoglutaric acid</synonym>
+<synonym datatype='string'>E</synonym>
+<synonym datatype='string'>glt</synonym>
+<synonym datatype='string'>glut</synonym>
+<synonym datatype='string'>L-glu</synonym>
+<synonym datatype='string'>2-aminopentanedioic acid</synonym>
+<molecular-weight datatype='float' units='Daltons'>146.122</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-12618' orgid='ARA' frameid='RXN-12618'/><Reaction resource='getxml?ARA:GLUTAMIN-RXN' orgid='ARA' frameid='GLUTAMIN-RXN'/><Reaction resource='getxml?ARA:PSERTRANSAMPYR-RXN' orgid='ARA' frameid='PSERTRANSAMPYR-RXN'/><Reaction resource='getxml?ARA:RXN-20408' orgid='ARA' frameid='RXN-20408'/><Reaction resource='getxml?ARA:RXN-18759' orgid='ARA' frameid='RXN-18759'/><Reaction resource='getxml?ARA:RXN-19732' orgid='ARA' frameid='RXN-19732'/><Reaction resource='getxml?ARA:RXN66-565' orgid='ARA' frameid='RXN66-565'/><Reaction resource='getxml?ARA:ABC-13-RXN' orgid='ARA' frameid='ABC-13-RXN'/><Reaction resource='getxml?ARA:RXN-19574' orgid='ARA' frameid='RXN-19574'/><Reaction resource='getxml?ARA:RXN-3741' orgid='ARA' frameid='RXN-3741'/><Reaction resource='getxml?ARA:HISTAMINOTRANS-RXN' orgid='ARA' frameid='HISTAMINOTRANS-RXN'/><Reaction resource='getxml?ARA:ORNITHINE-GLU-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='ORNITHINE-GLU-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-11664' orgid='ARA' frameid='RXN-11664'/><Reaction resource='getxml?ARA:TRANS-RXN-232' orgid='ARA' frameid='TRANS-RXN-232'/><Reaction resource='getxml?ARA:TRANS-RXN-234' orgid='ARA' frameid='TRANS-RXN-234'/><Reaction resource='getxml?ARA:RXN0-3942' orgid='ARA' frameid='RXN0-3942'/><Reaction resource='getxml?ARA:6.3.5.6-RXN' orgid='ARA' frameid='6.3.5.6-RXN'/><Reaction resource='getxml?ARA:RXN-14116' orgid='ARA' frameid='RXN-14116'/><Reaction resource='getxml?ARA:2.6.1.49-RXN' orgid='ARA' frameid='2.6.1.49-RXN'/><Reaction resource='getxml?ARA:RXN0-5040' orgid='ARA' frameid='RXN0-5040'/><Reaction resource='getxml?ARA:6.3.5.7-RXN' orgid='ARA' frameid='6.3.5.7-RXN'/><Reaction resource='getxml?ARA:PREPHENATE-TRANSAMINE-RXN' orgid='ARA' frameid='PREPHENATE-TRANSAMINE-RXN'/><Reaction resource='getxml?ARA:2.6.1.22-RXN' orgid='ARA' frameid='2.6.1.22-RXN'/><Reaction resource='getxml?ARA:RXN-12533' orgid='ARA' frameid='RXN-12533'/><Reaction resource='getxml?ARA:RXN-10814' orgid='ARA' frameid='RXN-10814'/><Reaction resource='getxml?ARA:1.5.1.9-RXN' orgid='ARA' frameid='1.5.1.9-RXN'/><Reaction resource='getxml?ARA:GLUTAMIDOTRANS-RXN' orgid='ARA' frameid='GLUTAMIDOTRANS-RXN'/><Reaction resource='getxml?ARA:RXN-7737' orgid='ARA' frameid='RXN-7737'/><Reaction resource='getxml?ARA:5-OXOPROLINASE-ATP-HYDROLYSING-RXN' orgid='ARA' frameid='5-OXOPROLINASE-ATP-HYDROLYSING-RXN'/><Reaction resource='getxml?ARA:CTPSYN-RXN' orgid='ARA' frameid='CTPSYN-RXN'/><Reaction resource='getxml?ARA:ASNSYNB-RXN' orgid='ARA' frameid='ASNSYNB-RXN'/><Reaction resource='getxml?ARA:CARBPSYN-RXN' orgid='ARA' frameid='CARBPSYN-RXN'/><Reaction resource='getxml?ARA:FGAMSYN-RXN' orgid='ARA' frameid='FGAMSYN-RXN'/><Reaction resource='getxml?ARA:GMP-SYN-GLUT-RXN' orgid='ARA' frameid='GMP-SYN-GLUT-RXN'/><Reaction resource='getxml?ARA:NAD-SYNTH-GLN-RXN' orgid='ARA' frameid='NAD-SYNTH-GLN-RXN'/><Reaction resource='getxml?ARA:RXN-11322' orgid='ARA' frameid='RXN-11322'/><Reaction resource='getxml?ARA:RXN-11428' orgid='ARA' frameid='RXN-11428'/><Reaction resource='getxml?ARA:RXN-11429' orgid='ARA' frameid='RXN-11429'/><Reaction resource='getxml?ARA:RXN-11430' orgid='ARA' frameid='RXN-11430'/><Reaction resource='getxml?ARA:RXN-11431' orgid='ARA' frameid='RXN-11431'/><Reaction resource='getxml?ARA:RXN-11432' orgid='ARA' frameid='RXN-11432'/><Reaction resource='getxml?ARA:RXN-11433' orgid='ARA' frameid='RXN-11433'/><Reaction resource='getxml?ARA:RXN-11434' orgid='ARA' frameid='RXN-11434'/><Reaction resource='getxml?ARA:RXN-11435' orgid='ARA' frameid='RXN-11435'/><Reaction resource='getxml?ARA:PYRROLINECARBDEHYDROG-RXN' orgid='ARA' frameid='PYRROLINECARBDEHYDROG-RXN'/><Reaction resource='getxml?ARA:ANTHRANSYN-RXN' orgid='ARA' frameid='ANTHRANSYN-RXN'/><Reaction resource='getxml?ARA:RXNQT-4362' orgid='ARA' frameid='RXNQT-4362'/><Reaction resource='getxml?ARA:2.6.1.57-RXN' orgid='ARA' frameid='2.6.1.57-RXN'/><Reaction resource='getxml?ARA:BRANCHED-CHAINAMINOTRANSFERILEU-RXN' orgid='ARA' frameid='BRANCHED-CHAINAMINOTRANSFERILEU-RXN'/><Reaction resource='getxml?ARA:BRANCHED-CHAINAMINOTRANSFERLEU-RXN' orgid='ARA' frameid='BRANCHED-CHAINAMINOTRANSFERLEU-RXN'/><Reaction resource='getxml?ARA:BRANCHED-CHAINAMINOTRANSFERVAL-RXN' orgid='ARA' frameid='BRANCHED-CHAINAMINOTRANSFERVAL-RXN'/><Reaction resource='getxml?ARA:RXN-6641' orgid='ARA' frameid='RXN-6641'/><Reaction resource='getxml?ARA:2-AMINOADIPATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='2-AMINOADIPATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:ALANINE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='ALANINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:TRYPTOPHAN-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='TRYPTOPHAN-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='GLYCINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:GABATRANSAM-RXN' orgid='ARA' frameid='GABATRANSAM-RXN'/><Reaction resource='getxml?ARA:TYROSINE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='TYROSINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:ORNITHINE-GLU-AMINOTRANSFORASE-RXN' orgid='ARA' frameid='ORNITHINE-GLU-AMINOTRANSFORASE-RXN'/><Reaction resource='getxml?ARA:PABASYN-RXN' orgid='ARA' frameid='PABASYN-RXN'/><Reaction resource='getxml?ARA:L-GLN-FRUCT-6-P-AMINOTRANS-RXN' orgid='ARA' frameid='L-GLN-FRUCT-6-P-AMINOTRANS-RXN'/><Reaction resource='getxml?ARA:PSERTRANSAM-RXN' orgid='ARA' frameid='PSERTRANSAM-RXN'/><Reaction resource='getxml?ARA:ASPAMINOTRANS-RXN' orgid='ARA' frameid='ASPAMINOTRANS-RXN'/><Reaction resource='getxml?ARA:ACETYLORNTRANSAM-RXN' orgid='ARA' frameid='ACETYLORNTRANSAM-RXN'/></appears-in-right-side-of>
+<pka1 datatype='float'>2.19</pka1>
+<monoisotopic-mw datatype='float' units='Daltons'>147.05316</monoisotopic-mw>
+<pka2 datatype='float'>4.25</pka2>
+<pka3 datatype='float'>9.67</pka3>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000001482113</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000001482113</dblink-URL>
+</dblink>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/25/</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -71,74 +146,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=56-86-0</dblink-URL>
 </dblink>
-<synonym datatype="string">1-amino-propane-1,3-dicarboxylic acid</synonym>
-<synonym datatype="string">glutacid</synonym>
-<synonym datatype="string">glutaminic acid</synonym>
-<synonym datatype="string">L-glutamic acid</synonym>
-<synonym datatype="string">&amp;alpha;-aminoglutaric acid</synonym>
-<synonym datatype="string">E</synonym>
-<synonym datatype="string">glt</synonym>
-<synonym datatype="string">glut</synonym>
-<synonym datatype="string">L-glu</synonym>
-<synonym datatype="string">2-aminopentanedioic acid</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-82.27311</gibbs-0>
-<inchi datatype="string">InChI=1S/C5H9NO4/c6-3(5(9)10)1-2-4(7)8/h3H,1-2,6H2,(H,7,8)(H,9,10)/p-1/t3-/m0/s1</inchi>
-<inchi-key datatype="string">InChIKey=WHUUTDBJXJRKMK-VKHMYHEASA-M</inchi-key>
-<molecular-weight datatype="float" units="Daltons">146.122</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">147.05316</monoisotopic-mw>
-<abbrev-name datatype="string">glu</abbrev-name>
-<pka1 datatype="float">2.19</pka1>
-<pka2 datatype="float">4.25</pka2>
-<pka3 datatype="float">9.67</pka3>
-<appears-in-left-side-of><Reaction frameid="RXN-20400" orgid="ARA" resource="getxml?ARA:RXN-20400" /><Reaction frameid="ABC-13-RXN" orgid="ARA" resource="getxml?ARA:ABC-13-RXN" /><Reaction frameid="RXN-20084" orgid="ARA" resource="getxml?ARA:RXN-20084" /><Reaction frameid="GLURS-RXN" orgid="ARA" resource="getxml?ARA:GLURS-RXN" /><Reaction frameid="RXN-9386" orgid="ARA" resource="getxml?ARA:RXN-9386" /><Reaction frameid="TRANS-RXN-232" orgid="ARA" resource="getxml?ARA:TRANS-RXN-232" /><Reaction frameid="TRANS-RXN-234" orgid="ARA" resource="getxml?ARA:TRANS-RXN-234" /><Reaction frameid="GLUTAMATE-FORMIMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-FORMIMINOTRANSFERASE-RXN" /><Reaction frameid="GLUTAMINESYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMINESYN-RXN" /><Reaction frameid="RXN-12878" orgid="ARA" resource="getxml?ARA:RXN-12878" /><Reaction frameid="PROLINE-MULTI" orgid="ARA" resource="getxml?ARA:PROLINE-MULTI" /><Reaction frameid="GLUTDECARBOX-RXN" orgid="ARA" resource="getxml?ARA:GLUTDECARBOX-RXN" /><Reaction frameid="RXN-2947" orgid="ARA" resource="getxml?ARA:RXN-2947" /><Reaction frameid="RXN-10884" orgid="ARA" resource="getxml?ARA:RXN-10884" /><Reaction frameid="RXN-10885" orgid="ARA" resource="getxml?ARA:RXN-10885" /><Reaction frameid="RXN-10886" orgid="ARA" resource="getxml?ARA:RXN-10886" /><Reaction frameid="RXN-10887" orgid="ARA" resource="getxml?ARA:RXN-10887" /><Reaction frameid="GLUTAMATE-DEHYDROGENASE-NADP+-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-DEHYDROGENASE-NADP+-RXN" /><Reaction frameid="GLUTDEHYD-RXN" orgid="ARA" resource="getxml?ARA:GLUTDEHYD-RXN" /><Reaction frameid="RXN-3742" orgid="ARA" resource="getxml?ARA:RXN-3742" /><Reaction frameid="RXN0-2921" orgid="ARA" resource="getxml?ARA:RXN0-2921" /><Reaction frameid="GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-SYNTHASE-FERREDOXIN-RXN" /><Reaction frameid="PRPPAMIDOTRANS-RXN" orgid="ARA" resource="getxml?ARA:PRPPAMIDOTRANS-RXN" /><Reaction frameid="FORMYLTHFGLUSYNTH-RXN" orgid="ARA" resource="getxml?ARA:FORMYLTHFGLUSYNTH-RXN" /><Reaction frameid="GLUTAMATE-DEHYDROGENASE-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-DEHYDROGENASE-RXN" /><Reaction frameid="RXN-6102" orgid="ARA" resource="getxml?ARA:RXN-6102" /><Reaction frameid="GLUTAMATE-SYNTHASE-NADH-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-SYNTHASE-NADH-RXN" /><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="getxml?ARA:GLUTCYSLIG-RXN" /><Reaction frameid="DIHYDROFOLATESYNTH-RXN" orgid="ARA" resource="getxml?ARA:DIHYDROFOLATESYNTH-RXN" /><Reaction frameid="GLUTAMATE-N-ACETYLTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMATE-N-ACETYLTRANSFERASE-RXN" /><Reaction frameid="N-ACETYLTRANSFER-RXN" orgid="ARA" resource="getxml?ARA:N-ACETYLTRANSFER-RXN" /><Reaction frameid="GLUTKIN-RXN" orgid="ARA" resource="getxml?ARA:GLUTKIN-RXN" /><Reaction frameid="FOLYLPOLYGLUTAMATESYNTH-RXN" orgid="ARA" resource="getxml?ARA:FOLYLPOLYGLUTAMATESYNTH-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="PSERTRANSAMPYR-RXN" orgid="ARA" resource="getxml?ARA:PSERTRANSAMPYR-RXN" /><Reaction frameid="RXN-20408" orgid="ARA" resource="getxml?ARA:RXN-20408" /><Reaction frameid="RXN-18759" orgid="ARA" resource="getxml?ARA:RXN-18759" /><Reaction frameid="RXN-19732" orgid="ARA" resource="getxml?ARA:RXN-19732" /><Reaction frameid="RXN66-565" orgid="ARA" resource="getxml?ARA:RXN66-565" /><Reaction frameid="ABC-13-RXN" orgid="ARA" resource="getxml?ARA:ABC-13-RXN" /><Reaction frameid="VAGL-RXN" orgid="ARA" resource="getxml?ARA:VAGL-RXN" /><Reaction frameid="RXN-19574" orgid="ARA" resource="getxml?ARA:RXN-19574" /><Reaction frameid="RXN-3741" orgid="ARA" resource="getxml?ARA:RXN-3741" /><Reaction frameid="HISTAMINOTRANS-RXN" orgid="ARA" resource="getxml?ARA:HISTAMINOTRANS-RXN" /><Reaction frameid="ORNITHINE-GLU-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ORNITHINE-GLU-AMINOTRANSFERASE-RXN" /><Reaction frameid="RXN-11664" orgid="ARA" resource="getxml?ARA:RXN-11664" /><Reaction frameid="TRANS-RXN-232" orgid="ARA" resource="getxml?ARA:TRANS-RXN-232" /><Reaction frameid="TRANS-RXN-234" orgid="ARA" resource="getxml?ARA:TRANS-RXN-234" /><Reaction frameid="RXN0-3942" orgid="ARA" resource="getxml?ARA:RXN0-3942" /><Reaction frameid="6.3.5.6-RXN" orgid="ARA" resource="getxml?ARA:6.3.5.6-RXN" /><Reaction frameid="GLUTAMIN-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMIN-RXN" /><Reaction frameid="RXN-14116" orgid="ARA" resource="getxml?ARA:RXN-14116" /><Reaction frameid="2.6.1.49-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.49-RXN" /><Reaction frameid="RXN0-5040" orgid="ARA" resource="getxml?ARA:RXN0-5040" /><Reaction frameid="6.3.5.7-RXN" orgid="ARA" resource="getxml?ARA:6.3.5.7-RXN" /><Reaction frameid="PREPHENATE-TRANSAMINE-RXN" orgid="ARA" resource="getxml?ARA:PREPHENATE-TRANSAMINE-RXN" /><Reaction frameid="2.6.1.22-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.22-RXN" /><Reaction frameid="RXN-12533" orgid="ARA" resource="getxml?ARA:RXN-12533" /><Reaction frameid="RXN-10814" orgid="ARA" resource="getxml?ARA:RXN-10814" /><Reaction frameid="1.5.1.9-RXN" orgid="ARA" resource="getxml?ARA:1.5.1.9-RXN" /><Reaction frameid="GLUTAMIDOTRANS-RXN" orgid="ARA" resource="getxml?ARA:GLUTAMIDOTRANS-RXN" /><Reaction frameid="RXN-7737" orgid="ARA" resource="getxml?ARA:RXN-7737" /><Reaction frameid="5-OXOPROLINASE-ATP-HYDROLYSING-RXN" orgid="ARA" resource="getxml?ARA:5-OXOPROLINASE-ATP-HYDROLYSING-RXN" /><Reaction frameid="CTPSYN-RXN" orgid="ARA" resource="getxml?ARA:CTPSYN-RXN" /><Reaction frameid="ASNSYNB-RXN" orgid="ARA" resource="getxml?ARA:ASNSYNB-RXN" /><Reaction frameid="CARBPSYN-RXN" orgid="ARA" resource="getxml?ARA:CARBPSYN-RXN" /><Reaction frameid="FGAMSYN-RXN" orgid="ARA" resource="getxml?ARA:FGAMSYN-RXN" /><Reaction frameid="GMP-SYN-GLUT-RXN" orgid="ARA" resource="getxml?ARA:GMP-SYN-GLUT-RXN" /><Reaction frameid="NAD-SYNTH-GLN-RXN" orgid="ARA" resource="getxml?ARA:NAD-SYNTH-GLN-RXN" /><Reaction frameid="RXN-11322" orgid="ARA" resource="getxml?ARA:RXN-11322" /><Reaction frameid="RXN-11428" orgid="ARA" resource="getxml?ARA:RXN-11428" /><Reaction frameid="RXN-11429" orgid="ARA" resource="getxml?ARA:RXN-11429" /><Reaction frameid="RXN-11430" orgid="ARA" resource="getxml?ARA:RXN-11430" /><Reaction frameid="RXN-11431" orgid="ARA" resource="getxml?ARA:RXN-11431" /><Reaction frameid="RXN-11432" orgid="ARA" resource="getxml?ARA:RXN-11432" /><Reaction frameid="RXN-11433" orgid="ARA" resource="getxml?ARA:RXN-11433" /><Reaction frameid="RXN-11434" orgid="ARA" resource="getxml?ARA:RXN-11434" /><Reaction frameid="RXN-11435" orgid="ARA" resource="getxml?ARA:RXN-11435" /><Reaction frameid="PYRROLINECARBDEHYDROG-RXN" orgid="ARA" resource="getxml?ARA:PYRROLINECARBDEHYDROG-RXN" /><Reaction frameid="ANTHRANSYN-RXN" orgid="ARA" resource="getxml?ARA:ANTHRANSYN-RXN" /><Reaction frameid="RXNQT-4362" orgid="ARA" resource="getxml?ARA:RXNQT-4362" /><Reaction frameid="2.6.1.57-RXN" orgid="ARA" resource="getxml?ARA:2.6.1.57-RXN" /><Reaction frameid="RXNQT-4143" orgid="ARA" resource="getxml?ARA:RXNQT-4143" /><Reaction frameid="BRANCHED-CHAINAMINOTRANSFERILEU-RXN" orgid="ARA" resource="getxml?ARA:BRANCHED-CHAINAMINOTRANSFERILEU-RXN" /><Reaction frameid="BRANCHED-CHAINAMINOTRANSFERLEU-RXN" orgid="ARA" resource="getxml?ARA:BRANCHED-CHAINAMINOTRANSFERLEU-RXN" /><Reaction frameid="BRANCHED-CHAINAMINOTRANSFERVAL-RXN" orgid="ARA" resource="getxml?ARA:BRANCHED-CHAINAMINOTRANSFERVAL-RXN" /><Reaction frameid="RXN-6641" orgid="ARA" resource="getxml?ARA:RXN-6641" /><Reaction frameid="2-AMINOADIPATE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:2-AMINOADIPATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="ALANINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ALANINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="TRYPTOPHAN-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:TRYPTOPHAN-AMINOTRANSFERASE-RXN" /><Reaction frameid="GLYCINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="GABATRANSAM-RXN" orgid="ARA" resource="getxml?ARA:GABATRANSAM-RXN" /><Reaction frameid="TYROSINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:TYROSINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="ORNITHINE-GLU-AMINOTRANSFORASE-RXN" orgid="ARA" resource="getxml?ARA:ORNITHINE-GLU-AMINOTRANSFORASE-RXN" /><Reaction frameid="PABASYN-RXN" orgid="ARA" resource="getxml?ARA:PABASYN-RXN" /><Reaction frameid="L-GLN-FRUCT-6-P-AMINOTRANS-RXN" orgid="ARA" resource="getxml?ARA:L-GLN-FRUCT-6-P-AMINOTRANS-RXN" /><Reaction frameid="PSERTRANSAM-RXN" orgid="ARA" resource="getxml?ARA:PSERTRANSAM-RXN" /><Reaction frameid="ASPAMINOTRANS-RXN" orgid="ARA" resource="getxml?ARA:ASPAMINOTRANS-RXN" /><Reaction frameid="ACETYLORNTRANSAM-RXN" orgid="ARA" resource="getxml?ARA:ACETYLORNTRANSAM-RXN" /></appears-in-right-side-of>
-<regulates><Regulation ID="ARA:REG-15653" detail="low" frameid="REG-15653" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG-8144" detail="low" frameid="REG-8144" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG0-11302" detail="low" frameid="REG0-11302" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG66-78" detail="low" frameid="REG66-78" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG0-8740" detail="low" frameid="REG0-8740" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG0-8754" detail="low" frameid="REG0-8754" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG0-7397" detail="low" frameid="REG0-7397" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG0-8403" detail="low" frameid="REG0-8403" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG-9139" detail="low" frameid="REG-9139" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REGQT-480" detail="low" frameid="REGQT-480" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ARA:ENZRXNQT-10489" detail="low" frameid="ENZRXNQT-10489" orgid="ARA"><enzyme><Protein frameid="CPLXQT-37" orgid="ARA" resource="getxml?ARA:CPLXQT-37" /></enzyme>
-<reaction><Reaction frameid="PEPDEPHOS-RXN" orgid="ARA" resource="getxml?ARA:PEPDEPHOS-RXN" /></reaction>
-<common-name datatype="string">pyruvate kinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLT" orgid="ARA" resource="#ARA:GLT" /></regulator>
-</Regulation>
-</regulates>
-<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=" http://www.plantmetabolomics.org "&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Fiehn,Shulaev-CEMS,Nikolau-AminoAcids (see &lt;A href="http://plantmetabolomics.org/tutorials/protocols.php"&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype="string">L-glutamate</common-name>
+<abbrev-name datatype='string'>glu</abbrev-name>
 </Compound>
 </ptools-xml>

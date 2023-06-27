@@ -1,12 +1,132 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLYOXYLATE-BYPASS"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:GLYOXYLATE-BYPASS'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLYOXYLATE-BYPASS</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Pathway ID="ARA:GLYOXYLATE-BYPASS" detail="full" frameid="GLYOXYLATE-BYPASS" orgid="ARA"><parent><Pathway class="true" frameid="Energy-Metabolism" orgid="ARA" resource="getxml?ARA:Energy-Metabolism" /></parent>
+<Pathway ID='ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS' detail='full'><parent><Pathway resource='getxml?ARA:Energy-Metabolism' orgid='ARA' frameid='Energy-Metabolism' class='true'/></parent>
+<pathway-link><Compound resource='getxml?ARA:MAL' orgid='ARA' frameid='MAL'/><link-target><Pathway resource='getxml?ARA:GLYOXDEG-PWY' orgid='ARA' frameid='GLYOXDEG-PWY'/></link-target>
+</pathway-link>
+<comment datatype='string'>&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: Enzyme(s) that catalyzes one or more of the key reactions in this pathway were predicted in Arabidopsis thaliana col. &lt;A href=&quot;http://www.plantcyc.org/about/savi_pipeline&quot;&gt;[more info]&lt;/A&gt;
+&lt;p&gt;
+&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
+&lt;p&gt;
+&lt;b&gt;General Information:&lt;/b&gt;
+&lt;p&gt;
+The glyoxylate cycle is involved primarily in the conversion of lipids into carbohydrates, which occurs in germinating oil seeds (for an overview, see &lt;a href=&quot;/ARA/NEW-IMAGE?type=PATHWAY&amp;object=PWY-561&quot;&gt;superpathway of glyoxylate cycle and fatty acid degradation&lt;/a&gt;) [&lt;a href=&quot;/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bBROWNLEADER97%5d&quot;&gt;Brownleader97&lt;/a&gt;].  This pathway is essentially a modified version of the TCA cycle (see &lt;a href=&quot;/ARA/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5690&quot;&gt;TCA cycle II (plants and fungi)&lt;/a&gt;) that bypasses those steps in the cycle that lead to a loss of CO&lt;sub&gt;2&lt;/sub&gt;.  This pathway uses a two-step bypass (compared to the TCA cycle), which converts &lt;a href=&quot;/compound?orgid=ARA&amp;id=THREO-DS-ISO-CITRATE&quot;&gt;D-&lt;i&gt;threo&lt;/i&gt;-isocitrate&lt;/a&gt; to form &lt;a href=&quot;/compound?orgid=ARA&amp;id=SUC&quot;&gt;succinate&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=ARA&amp;id=MAL&quot;&gt;(&lt;i&gt;S&lt;/i&gt;)-malate&lt;/a&gt; via the formation of &lt;a href=&quot;/compound?orgid=ARA&amp;id=GLYOX&quot;&gt;glyoxylate&lt;/a&gt; [&lt;a href=&quot;/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bBROWNLEADER97%5d&quot;&gt;Brownleader97&lt;/a&gt;].  The two enzymes responsible for this bypass are isocitrate lyase (EC 4.1.3.1) and malate synthase (EC 2.3.3.9).</comment>
+<in-pathway><Pathway resource='getxml?ARA:PWY-561' orgid='ARA' frameid='PWY-561'/></in-pathway>
+<reaction-layout><Reaction resource='getxml?ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:MAL' orgid='ARA' frameid='MAL'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:OXALACETIC_ACID' orgid='ARA' frameid='OXALACETIC_ACID'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:ACONITATEDEHYDR-RXN' orgid='ARA' frameid='ACONITATEDEHYDR-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:CIT' orgid='ARA' frameid='CIT'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:CIS-ACONITATE' orgid='ARA' frameid='CIS-ACONITATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/><Compound resource='getxml?ARA:OXALACETIC_ACID' orgid='ARA' frameid='OXALACETIC_ACID'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:CIT' orgid='ARA' frameid='CIT'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:CIS-ACONITATE' orgid='ARA' frameid='CIS-ACONITATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:THREO-DS-ISO-CITRATE' orgid='ARA' frameid='THREO-DS-ISO-CITRATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:THREO-DS-ISO-CITRATE' orgid='ARA' frameid='THREO-DS-ISO-CITRATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:SUC' orgid='ARA' frameid='SUC'/><Compound resource='getxml?ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:GLYOX' orgid='ARA' frameid='GLYOX'/><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:MAL' orgid='ARA' frameid='MAL'/></right-primaries>
+</reaction-layout>
+<common-name datatype='string'>glyoxylate cycle</common-name>
+<reaction-ordering><Reaction resource='getxml?ARA:ACONITATEDEHYDR-RXN' orgid='ARA' frameid='ACONITATEDEHYDR-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:ACONITATEDEHYDR-RXN' orgid='ARA' frameid='ACONITATEDEHYDR-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<synonym datatype='string'>glyoxylate bypass</synonym>
+<synonym datatype='string'>glyoxylate shunt</synonym>
+<reaction-list><Reaction resource='getxml?ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/><Reaction resource='getxml?ARA:ACONITATEDEHYDR-RXN' orgid='ARA' frameid='ACONITATEDEHYDR-RXN'/><Reaction resource='getxml?ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN'/><Reaction resource='getxml?ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/></reaction-list>
+<credits><revised><date datatype='date'>2007-12-04</date>
+<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
+<common-name datatype='string'>Ron Caspi</common-name>
+<affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</affiliations>
+</Person>
+<Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></revised>
+</credits>
+<evidence><Evidence-Code ID='ARA:EV-COMP-HINF' orgid='ARA' frameid='EV-COMP-HINF' detail='full' class='true'><parent><Evidence-Code resource='getxml?ARA:EV-COMP' orgid='ARA' frameid='EV-COMP' class='true'/></parent>
+<comment datatype='string'>Human inference.  A curator or author inferred this assertion after review of one or more possible types 
+of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
+When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
+<common-name datatype='string'>Inferred by a human based on computational evidence</common-name>
+</Evidence-Code>
+<Publication ID='ARA:PUB-PMNRXN2019' orgid='ARA' frameid='PUB-PMNRXN2019' detail='full'><title datatype='string'>This pathway, a member of the Conditionally Accepted PMN Pathways (CAPP version 6.0), was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because its genome encodes enzyme(s) predicted by E2P2 (version 4.0) to catalyze key reaction(s) in the pathway.</title>
+<year datatype='integer'>2019</year>
+<url datatype='string'>https://www.plantcyc.org/about/savi-pipeline</url>
+</Publication>
+</evidence>
+<citation><Publication ID='ARA:PUB-BROWNLEADER97' orgid='ARA' frameid='PUB-BROWNLEADER97' detail='full'><source datatype='string'>Plant Biochemistry, Eds Dey &amp; Harborne, Academic Press,  Harcourt Brace &amp; Co, Publishers, London</source>
+<title datatype='string'>Carbohydrate metabolism: primary metabolism of monosaccharides</title>
+<year datatype='integer'>1997</year>
+<author datatype='string'>Brownleader, M.D.</author>
+<author datatype='string'>Harborne, J.B.</author>
+<author datatype='string'>Dey, P.M.</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-11173291' orgid='ARA' frameid='PUB-11173291' detail='full'><source datatype='string'>Trends Plant Sci 6(2);72-8</source>
+<title datatype='string'>Re-examining the role of the glyoxylate cycle in oilseeds.</title>
+<year datatype='integer'>2001</year>
+<author datatype='string'>Eastmond PJ</author>
+<author datatype='string'>Graham IA</author>
+<pubmed-id datatype='string'>11173291</pubmed-id>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-PENFIELD06' orgid='ARA' frameid='PUB-PENFIELD06' detail='full'><source datatype='string'>:October 4, 2006. The Arabidopsis Book. Rockville, MD: American Society of Plant Biologists. doi: 10.1199/tab.0100, http://www.aspb.org/publications/arabidopsis/</source>
+<title datatype='string'>Storage Reserve Mobilisation and Seedling Establishment in Arabidopsis</title>
+<year datatype='integer'>2006</year>
+<author datatype='string'>Penfield, Steven</author>
+<author datatype='string'>Pinfield-Wells, Helen</author>
+<author datatype='string'>Graham, Ian</author>
+<url datatype='string'>http://www.bioone.org/doi/full/10.1199/tab.0100</url>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID='ARA:EV-AS-TAS' orgid='ARA' frameid='EV-AS-TAS' detail='full' class='true'><parent><Evidence-Code resource='getxml?ARA:EV-AS' orgid='ARA' frameid='EV-AS' class='true'/></parent>
+<comment datatype='string'>Traceable author statement.  The assertion was made in a publication -- such as a review or 
+in another database -- that itself did not describe an experiment supporting the
+assertion.  The statement referenced another publication that supported the assertion,
+but it is unclear whether that publication described an experiment that supported
+the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
+is that the former code is used when it is certain that experimental evidence supports the
+assertion, and the latter code is used when there is a possibility that an experiment was
+not done to support the assertion.
+In general, references to the primary literature are preferred,
+but this code can be used when the original article is difficult to locate.</comment>
+<common-name datatype='string'>Traceable author statement</common-name>
+</Evidence-Code>
+<Publication resource='#ARA:PUB-BROWNLEADER97' orgid='ARA' frameid='PUB-BROWNLEADER97'/></evidence>
+<evidence><Evidence-Code ID='ARA:EV-EXP' orgid='ARA' frameid='EV-EXP' detail='full' class='true'><comment datatype='string'>Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+<common-name datatype='string'>Inferred from experiment</common-name>
+</Evidence-Code>
+<Publication resource='#ARA:PUB-11173291' orgid='ARA' frameid='PUB-11173291'/></evidence>
+<super-pathways><Pathway resource='getxml?ARA:PWY-561' orgid='ARA' frameid='PWY-561'/></super-pathways>
 <dblink><dblink-db>PLANTCYC</dblink-db>
 <dblink-oid>GLYOXYLATE-BYPASS</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -17,124 +137,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://biocyc.org/META/new-image?object=GLYOXYLATE-BYPASS</dblink-URL>
 </dblink>
-<super-pathways><Pathway frameid="PWY-561" orgid="ARA" resource="getxml?ARA:PWY-561" /></super-pathways>
-<synonym datatype="string">glyoxylate bypass</synonym>
-<synonym datatype="string">glyoxylate shunt</synonym>
-<in-pathway><Pathway frameid="PWY-561" orgid="ARA" resource="getxml?ARA:PWY-561" /></in-pathway>
-<pathway-link><Compound frameid="MAL" orgid="ARA" resource="getxml?ARA:MAL" /><link-target><Pathway frameid="GLYOXDEG-PWY" orgid="ARA" resource="getxml?ARA:GLYOXDEG-PWY" /></link-target>
-</pathway-link>
-<reaction-ordering><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEDEHYDR-RXN" /><predecessor-reactions><Reaction frameid="CITSYN-RXN" orgid="ARA" resource="getxml?ARA:CITSYN-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="CITSYN-RXN" orgid="ARA" resource="getxml?ARA:CITSYN-RXN" /><predecessor-reactions><Reaction frameid="MALATE-DEH-RXN" orgid="ARA" resource="getxml?ARA:MALATE-DEH-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEHYDR-RXN" /><predecessor-reactions><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEDEHYDR-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ARA" resource="getxml?ARA:ISOCIT-CLEAV-RXN" /><predecessor-reactions><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEHYDR-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="MALSYN-RXN" orgid="ARA" resource="getxml?ARA:MALSYN-RXN" /><predecessor-reactions><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ARA" resource="getxml?ARA:ISOCIT-CLEAV-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction frameid="MALATE-DEH-RXN" orgid="ARA" resource="getxml?ARA:MALATE-DEH-RXN" /><predecessor-reactions><Reaction frameid="MALSYN-RXN" orgid="ARA" resource="getxml?ARA:MALSYN-RXN" /></predecessor-reactions>
-</reaction-ordering>
-<reaction-layout><Reaction frameid="MALATE-DEH-RXN" orgid="ARA" resource="getxml?ARA:MALATE-DEH-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="MAL" orgid="ARA" resource="getxml?ARA:MAL" /></left-primaries>
-<right-primaries><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="getxml?ARA:OXALACETIC_ACID" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEDEHYDR-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CIT" orgid="ARA" resource="getxml?ARA:CIT" /></left-primaries>
-<right-primaries><Compound frameid="CIS-ACONITATE" orgid="ARA" resource="getxml?ARA:CIS-ACONITATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="CITSYN-RXN" orgid="ARA" resource="getxml?ARA:CITSYN-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="ACETYL-COA" orgid="ARA" resource="getxml?ARA:ACETYL-COA" /><Compound frameid="OXALACETIC_ACID" orgid="ARA" resource="getxml?ARA:OXALACETIC_ACID" /></left-primaries>
-<right-primaries><Compound frameid="CIT" orgid="ARA" resource="getxml?ARA:CIT" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEHYDR-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CIS-ACONITATE" orgid="ARA" resource="getxml?ARA:CIS-ACONITATE" /></left-primaries>
-<right-primaries><Compound frameid="THREO-DS-ISO-CITRATE" orgid="ARA" resource="getxml?ARA:THREO-DS-ISO-CITRATE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ARA" resource="getxml?ARA:ISOCIT-CLEAV-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="THREO-DS-ISO-CITRATE" orgid="ARA" resource="getxml?ARA:THREO-DS-ISO-CITRATE" /></left-primaries>
-<right-primaries><Compound frameid="SUC" orgid="ARA" resource="getxml?ARA:SUC" /><Compound frameid="GLYOX" orgid="ARA" resource="getxml?ARA:GLYOX" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="MALSYN-RXN" orgid="ARA" resource="getxml?ARA:MALSYN-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="GLYOX" orgid="ARA" resource="getxml?ARA:GLYOX" /><Compound frameid="ACETYL-COA" orgid="ARA" resource="getxml?ARA:ACETYL-COA" /></left-primaries>
-<right-primaries><Compound frameid="MAL" orgid="ARA" resource="getxml?ARA:MAL" /></right-primaries>
-</reaction-layout>
-<reaction-list><Reaction frameid="MALATE-DEH-RXN" orgid="ARA" resource="getxml?ARA:MALATE-DEH-RXN" /><Reaction frameid="ACONITATEDEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEDEHYDR-RXN" /><Reaction frameid="CITSYN-RXN" orgid="ARA" resource="getxml?ARA:CITSYN-RXN" /><Reaction frameid="ACONITATEHYDR-RXN" orgid="ARA" resource="getxml?ARA:ACONITATEHYDR-RXN" /><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ARA" resource="getxml?ARA:ISOCIT-CLEAV-RXN" /><Reaction frameid="MALSYN-RXN" orgid="ARA" resource="getxml?ARA:MALSYN-RXN" /></reaction-list>
-<evidence><Evidence-Code ID="ARA:EV-COMP-HINF" class="true" detail="full" frameid="EV-COMP-HINF" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-COMP" orgid="ARA" resource="getxml?ARA:EV-COMP" /></parent>
-<comment datatype="string">Human inference.  A curator or author inferred this assertion after review of one or more possible types 
-of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
-When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
-<common-name datatype="string">Inferred by a human based on computational evidence</common-name>
-</Evidence-Code>
-<Publication ID="ARA:PUB-PMNRXN2019" detail="full" frameid="PUB-PMNRXN2019" orgid="ARA"><title datatype="string">This pathway, a member of the Conditionally Accepted PMN Pathways (CAPP version 6.0), was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because its genome encodes enzyme(s) predicted by E2P2 (version 4.0) to catalyze key reaction(s) in the pathway.</title>
-<url datatype="string">https://www.plantcyc.org/about/savi-pipeline</url>
-<year datatype="integer">2019</year>
-</Publication>
-</evidence>
-<citation><Publication ID="ARA:PUB-BROWNLEADER97" detail="full" frameid="PUB-BROWNLEADER97" orgid="ARA"><title datatype="string">Carbohydrate metabolism: primary metabolism of monosaccharides</title>
-<year datatype="integer">1997</year>
-<author datatype="string">Brownleader, M.D.</author>
-<author datatype="string">Harborne, J.B.</author>
-<author datatype="string">Dey, P.M.</author>
-<source datatype="string">Plant Biochemistry, Eds Dey &amp; Harborne, Academic Press,  Harcourt Brace &amp; Co, Publishers, London</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-11173291" detail="full" frameid="PUB-11173291" orgid="ARA"><title datatype="string">Re-examining the role of the glyoxylate cycle in oilseeds.</title>
-<year datatype="integer">2001</year>
-<pubmed-id datatype="string">11173291</pubmed-id>
-<author datatype="string">Eastmond PJ</author>
-<author datatype="string">Graham IA</author>
-<source datatype="string">Trends Plant Sci 6(2);72-8</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-PENFIELD06" detail="full" frameid="PUB-PENFIELD06" orgid="ARA"><title datatype="string">Storage Reserve Mobilisation and Seedling Establishment in Arabidopsis</title>
-<url datatype="string">http://www.bioone.org/doi/full/10.1199/tab.0100</url>
-<year datatype="integer">2006</year>
-<author datatype="string">Penfield, Steven</author>
-<author datatype="string">Pinfield-Wells, Helen</author>
-<author datatype="string">Graham, Ian</author>
-<source datatype="string">:October 4, 2006. The Arabidopsis Book. Rockville, MD: American Society of Plant Biologists. doi: 10.1199/tab.0100, http://www.aspb.org/publications/arabidopsis/</source>
-</Publication>
-</citation>
-<evidence><Evidence-Code ID="ARA:EV-AS-TAS" class="true" detail="full" frameid="EV-AS-TAS" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-AS" orgid="ARA" resource="getxml?ARA:EV-AS" /></parent>
-<comment datatype="string">Traceable author statement.  The assertion was made in a publication -- such as a review or 
-in another database -- that itself did not describe an experiment supporting the
-assertion.  The statement referenced another publication that supported the assertion,
-but it is unclear whether that publication described an experiment that supported
-the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
-is that the former code is used when it is certain that experimental evidence supports the
-assertion, and the latter code is used when there is a possibility that an experiment was
-not done to support the assertion.
-In general, references to the primary literature are preferred,
-but this code can be used when the original article is difficult to locate.</comment>
-<common-name datatype="string">Traceable author statement</common-name>
-</Evidence-Code>
-<Publication frameid="PUB-BROWNLEADER97" orgid="ARA" resource="#ARA:PUB-BROWNLEADER97" /></evidence>
-<evidence><Evidence-Code ID="ARA:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="ARA"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
-wet-lab experiment of some type.
-</comment>
-<common-name datatype="string">Inferred from experiment</common-name>
-</Evidence-Code>
-<Publication frameid="PUB-11173291" orgid="ARA" resource="#ARA:PUB-11173291" /></evidence>
-<comment datatype="string">&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: Enzyme(s) that catalyzes one or more of the key reactions in this pathway were predicted in Arabidopsis thaliana col. &lt;A href="http://www.plantcyc.org/about/savi_pipeline"&gt;[more info]&lt;/A&gt;
-&lt;p&gt;
-&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
-&lt;p&gt;
-&lt;b&gt;General Information:&lt;/b&gt;
-&lt;p&gt;
-The glyoxylate cycle is involved primarily in the conversion of lipids into carbohydrates, which occurs in germinating oil seeds (for an overview, see &lt;a href="/ARA/NEW-IMAGE?type=PATHWAY&amp;object=PWY-561"&gt;superpathway of glyoxylate cycle and fatty acid degradation&lt;/a&gt;) [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bBROWNLEADER97%5d"&gt;Brownleader97a&lt;/a&gt;].  This pathway is essentially a modified version of the TCA cycle (see &lt;a href="/ARA/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5690"&gt;TCA cycle II (plants and fungi)&lt;/a&gt;) that bypasses those steps in the cycle that lead to a loss of CO&lt;sub&gt;2&lt;/sub&gt;.  This pathway uses a two-step bypass (compared to the TCA cycle), which converts &lt;a href="/compound?orgid=ARA&amp;id=THREO-DS-ISO-CITRATE"&gt;D-&lt;i&gt;threo&lt;/i&gt;-isocitrate&lt;/a&gt; to form &lt;a href="/compound?orgid=ARA&amp;id=SUC"&gt;succinate&lt;/a&gt; and &lt;a href="/compound?orgid=ARA&amp;id=MAL"&gt;(&lt;i&gt;S&lt;/i&gt;)-malate&lt;/a&gt; via the formation of &lt;a href="/compound?orgid=ARA&amp;id=GLYOX"&gt;glyoxylate&lt;/a&gt; [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bBROWNLEADER97%5d"&gt;Brownleader97a&lt;/a&gt;].  The two enzymes responsible for this bypass are isocitrate lyase (EC 4.1.3.1) and malate synthase (EC 2.3.3.9).</comment>
-<common-name datatype="string">glyoxylate cycle</common-name>
-<credits><revised><date datatype="date">2007-12-04</date>
-<Person ID="ARA:caspi" detail="full" frameid="caspi" orgid="ARA"><email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="ARA:SRI" detail="full" frameid="SRI" orgid="ARA"><email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<common-name datatype="string">SRI International</common-name>
-</Organization>
-</affiliations>
-<common-name datatype="string">Ron Caspi</common-name>
-</Person>
-<Organization frameid="SRI" orgid="ARA" resource="#ARA:SRI" /></revised>
-</credits>
 </Pathway>
 </ptools-xml>

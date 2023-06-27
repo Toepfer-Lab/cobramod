@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:SALVADEHYPOX-PWY'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:SALVADEHYPOX-PWY</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Pathway ID='ECOLI:SALVADEHYPOX-PWY' orgid='ECOLI' frameid='SALVADEHYPOX-PWY' detail='full'><parent><Pathway resource='getxml?ECOLI:Adenosine-Nucleotides-Degradation' orgid='ECOLI' frameid='Adenosine-Nucleotides-Degradation' class='true'/></parent>
+<comment datatype='string'>&lt;b&gt;General Background&lt;/b&gt;
+&lt;p&gt;
+The distinction between nucleoside degradation and salvage is not always straightforward.  A general rule is that degradation pathways start with the nucleotide forms and convert them to simpler forms, eventually leading to complete mineralization, while salvage pathways start with either the nucleoside or the free base form, and convert those to the nucleotide forms.  
+&lt;p&gt;
+Nucleotide recycling is achieved by a combination of both types of pathways - a nucleotide is partially degraded via a degradation pathway, but the products are shuttled into a salvage pathway rather then towards complete mineralization.
+&lt;p&gt;
+&lt;b&gt;About This Pathway&lt;/b&gt;
+&lt;p&gt;
+This pathway shares several steps with the pathway &lt;a href=&quot;/ECOLI/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6609&quot;&gt;adenine and adenosine salvage III&lt;/a&gt;. However, the salvage pathway starts with the free base adenine and ends with the nucleotide IMP which leads to biosynthesis of other nucleotides, while this degradation pathway starts with the nucleotide form (AMP) and ends with urate.  In most organisms urate is degraded further, providing the organism with carbon, nitrogen and energy.  However, this does not appear to be the case in &lt;i&gt;E. coli&lt;/i&gt;.  Although radiolabeled carbon experiments have indicated the presence of a uricase activity that catalyzes the degradation of urate to &lt;i&gt;S&lt;/i&gt;-allantoin, no such enzyme has been characterized in &lt;i&gt;E. coli&lt;/i&gt;.  Xanthine degradation does not progress past &lt;i&gt;S&lt;/i&gt;-allantoin or allantoate and this catabolism does not suffice as a source of nitrogen under aerobic growth conditions [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10986234&quot;&gt;Xi00&lt;/a&gt;].  As shown in the pathway, a number of different nucleotidases can potentially hydrolyze AMP to adenosine and phosphate.</comment>
+<evidence><Evidence-Code ID='ECOLI:EV-EXP-IDA' orgid='ECOLI' frameid='EV-EXP-IDA' detail='full' class='true'><parent><Evidence-Code resource='getxml?ECOLI:EV-EXP' orgid='ECOLI' frameid='EV-EXP' class='true'/></parent>
+<comment datatype='string'>IDA inferred from direct assay.
+
+&lt;br&gt;
+The assertion was inferred from a direct experimental assay such as
+&lt;ul&gt;
+    &lt;li&gt; Enzyme assays
+    &lt;li&gt; In vitro reconstitution (e.g. transcription)
+    &lt;li&gt; Immunofluorescence
+    &lt;li&gt; Cell fractionation
+&lt;/ul&gt;</comment>
+<common-name datatype='string'>Inferred from direct assay</common-name>
+</Evidence-Code>
+<Publication ID='ECOLI:PUB-10986234' orgid='ECOLI' frameid='PUB-10986234' detail='full'><year datatype='integer'>2000</year>
+<source datatype='string'>J Bacteriol 182(19);5332-41</source>
+<title datatype='string'>Purine catabolism in Escherichia coli and function of xanthine dehydrogenase in purine salvage.</title>
+<pubmed-id datatype='string'>10986234</pubmed-id>
+<author datatype='string'>Xi H</author>
+<author datatype='string'>Schneider BL</author>
+<author datatype='string'>Reitzer L</author>
+</Publication>
+</evidence>
+<credits><created><date datatype='date'>2003-01-21</date>
+<Person ID='ECOLI:arnaud' orgid='ECOLI' frameid='arnaud' detail='full'><common-name datatype='string'>Martha Arnaud</common-name>
+</Person>
+<Organization ID='ECOLI:SRI' orgid='ECOLI' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
+</Organization>
+</created>
+<last-curated><date datatype='date'>2011-12-12</date>
+<Person ID='ECOLI:fulcher' orgid='ECOLI' frameid='fulcher' detail='full'><affiliations><Organization resource='#ECOLI:SRI' orgid='ECOLI' frameid='SRI'/></affiliations>
+<email datatype='string'>fulcher@ai.sri.com</email>
+<common-name datatype='string'>Carol Fulcher</common-name>
+</Person>
+<Organization resource='#ECOLI:SRI' orgid='ECOLI' frameid='SRI'/></last-curated>
+</credits>
+<reaction-ordering><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/><predecessor-reactions><Reaction resource='getxml?ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/><predecessor-reactions><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/><predecessor-reactions><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/><predecessor-reactions><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-list><Reaction resource='getxml?ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN'/><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction-list>
+<reaction-layout><Reaction resource='getxml?ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ECOLI:AMP' orgid='ECOLI' frameid='AMP'/></left-primaries>
+<right-primaries><Compound resource='getxml?ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ECOLI:HYPOXANTHINE' orgid='ECOLI' frameid='HYPOXANTHINE'/></left-primaries>
+<right-primaries><Compound resource='getxml?ECOLI:XANTHINE' orgid='ECOLI' frameid='XANTHINE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ECOLI:XANTHINE' orgid='ECOLI' frameid='XANTHINE'/></left-primaries>
+<right-primaries><Compound resource='getxml?ECOLI:URATE' orgid='ECOLI' frameid='URATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></left-primaries>
+<right-primaries><Compound resource='getxml?ECOLI:INOSINE' orgid='ECOLI' frameid='INOSINE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ECOLI:INOSINE' orgid='ECOLI' frameid='INOSINE'/></left-primaries>
+<right-primaries><Compound resource='getxml?ECOLI:HYPOXANTHINE' orgid='ECOLI' frameid='HYPOXANTHINE'/></right-primaries>
+</reaction-layout>
+<synonym datatype='string'>purine ribonucleotide/ribonucleoside metabolism</synonym>
+<enzymes-not-used><Protein resource='getxml?ECOLI:EG12115-MONOMER' orgid='ECOLI' frameid='EG12115-MONOMER'/></enzymes-not-used>
+<common-name datatype='string'>adenosine nucleotides degradation II</common-name>
+</Pathway>
+</ptools-xml>

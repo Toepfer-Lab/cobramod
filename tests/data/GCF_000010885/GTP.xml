@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?GCF_000010885:GTP'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>GCF_000010885:GTP</query>
+<num_results>1</num_results>
+<PGDB orgid='GCF_000010885' version='27.0'><species datatype='string'>Acetobacter pasteurianus</species>
+<subspecies datatype='string'>pasteurianus</subspecies>
+<strain datatype='string'>IFO 3283-22</strain>
+<sequence-source datatype='string'>GCF_000010885</sequence-source>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>634455</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=634455</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='GCF_000010885:GTP' orgid='GCF_000010885' frameid='GTP' detail='full'><parent><Compound resource='getxml?GCF_000010885:All-Nucleosides' orgid='GCF_000010885' frameid='All-Nucleosides' class='true'/></parent>
+<parent><Compound resource='getxml?GCF_000010885:Purine-ribonucleosides-5-PPP' orgid='GCF_000010885' frameid='Purine-ribonucleosides-5-PPP' class='true'/></parent>
+<cml><molecule id='GTP' title='GTP' formalCharge='-4'><atomArray><atom id='GTP-atom1' elementType='C' x2='-4022.0' y2='-5327.0'/><atom id='GTP-atom2' elementType='C' x2='-806.0' y2='-6936.0'/><atom id='GTP-atom3' elementType='C' x2='-3249.0' y2='-5085.0'/><atom id='GTP-atom4' elementType='C' x2='-2076.0' y2='-7355.0'/><atom id='GTP-atom5' elementType='C' x2='-2989.0' y2='-4302.0'/><atom id='GTP-atom6' elementType='C' x2='-2156.0' y2='-4302.0'/><atom id='GTP-atom7' elementType='C' x2='-2076.0' y2='-6526.0'/><atom id='GTP-atom8' elementType='C' x2='-2796.0' y2='-7765.0'/><atom id='GTP-atom9' elementType='C' x2='-1908.0' y2='-5069.0'/><atom id='GTP-atom10' elementType='C' x2='-3506.0' y2='-6526.0'/><atom id='GTP-atom11' elementType='N' x2='-4220.0' y2='-6113.0'/><atom id='GTP-atom12' elementType='N' x2='-1287.0' y2='-7610.0'/><atom id='GTP-atom13' elementType='N' x2='-2796.0' y2='-6106.0'/><atom id='GTP-atom14' elementType='N' x2='-3506.0' y2='-7355.0'/><atom id='GTP-atom15' elementType='N' x2='-1289.0' y2='-6275.0'/><atom id='GTP-atom16' elementType='O' x2='-3459.0' y2='-3631.0'/><atom id='GTP-atom17' elementType='O' x2='-1670.0' y2='-3638.0'/><atom id='GTP-atom18' elementType='O' x2='-2796.0' y2='-8590.0'/><atom id='GTP-atom19' elementType='O' x2='-8748.0' y2='-4143.0'/><atom id='GTP-atom20' elementType='O' x2='-9568.0' y2='-4968.0' formalCharge='-1'/><atom id='GTP-atom21' elementType='O' x2='-8748.0' y2='-5793.0' formalCharge='-1'/><atom id='GTP-atom22' elementType='O' x2='-5458.0' y2='-4141.0'/><atom id='GTP-atom23' elementType='O' x2='-5458.0' y2='-5791.0' formalCharge='-1'/><atom id='GTP-atom24' elementType='O' x2='-7102.0' y2='-5785.0' formalCharge='-1'/><atom id='GTP-atom25' elementType='O' x2='-7103.0' y2='-4142.0'/><atom id='GTP-atom26' elementType='O' x2='-4633.0' y2='-4965.0'/><atom id='GTP-atom27' elementType='O' x2='-2581.0' y2='-5564.0'/><atom id='GTP-atom28' elementType='O' x2='-7923.0' y2='-4967.0'/><atom id='GTP-atom29' elementType='O' x2='-6278.0' y2='-4966.0'/><atom id='GTP-atom30' elementType='P' x2='-8748.0' y2='-4968.0'/><atom id='GTP-atom31' elementType='P' x2='-5458.0' y2='-4966.0'/><atom id='GTP-atom32' elementType='P' x2='-7103.0' y2='-4967.0'/></atomArray>
+<bondArray><bond id='GTP-bond1' atomRefs='GTP-atom9 GTP-atom15' order='1'/><bond id='GTP-bond2' atomRefs='GTP-atom6 GTP-atom9' order='1'/><bond id='GTP-bond3' atomRefs='GTP-atom5 GTP-atom3' order='1'/><bond id='GTP-bond4' atomRefs='GTP-atom5 GTP-atom6' order='1'/><bond id='GTP-bond5' atomRefs='GTP-atom7 GTP-atom15' order='1'/><bond id='GTP-bond6' atomRefs='GTP-atom4 GTP-atom7' order='2'/><bond id='GTP-bond7' atomRefs='GTP-atom14 GTP-atom8' order='1'/><bond id='GTP-bond8' atomRefs='GTP-atom8 GTP-atom4' order='1'/><bond id='GTP-bond9' atomRefs='GTP-atom27 GTP-atom9' order='1'/><bond id='GTP-bond10' atomRefs='GTP-atom27 GTP-atom3' order='1'/><bond id='GTP-bond11' atomRefs='GTP-atom7 GTP-atom13' order='1'/><bond id='GTP-bond12' atomRefs='GTP-atom12 GTP-atom4' order='1'/><bond id='GTP-bond13' atomRefs='GTP-atom3 GTP-atom1' order='1'/><bond id='GTP-bond14' atomRefs='GTP-atom1 GTP-atom26' order='1'/><bond id='GTP-bond15' atomRefs='GTP-atom15 GTP-atom2' order='1'/><bond id='GTP-bond16' atomRefs='GTP-atom2 GTP-atom12' order='2'/><bond id='GTP-bond17' atomRefs='GTP-atom10 GTP-atom14' order='1'/><bond id='GTP-bond18' atomRefs='GTP-atom13 GTP-atom10' order='2'/><bond id='GTP-bond19' atomRefs='GTP-atom6 GTP-atom17' order='1'/><bond id='GTP-bond20' atomRefs='GTP-atom5 GTP-atom16' order='1'/><bond id='GTP-bond21' atomRefs='GTP-atom10 GTP-atom11' order='1'/><bond id='GTP-bond22' atomRefs='GTP-atom26 GTP-atom31' order='1'/><bond id='GTP-bond23' atomRefs='GTP-atom29 GTP-atom31' order='1'/><bond id='GTP-bond24' atomRefs='GTP-atom31 GTP-atom22' order='2'/><bond id='GTP-bond25' atomRefs='GTP-atom28 GTP-atom32' order='1'/><bond id='GTP-bond26' atomRefs='GTP-atom24 GTP-atom32' order='1'/><bond id='GTP-bond27' atomRefs='GTP-atom32 GTP-atom25' order='2'/><bond id='GTP-bond28' atomRefs='GTP-atom29 GTP-atom32' order='1'/><bond id='GTP-bond29' atomRefs='GTP-atom20 GTP-atom30' order='1'/><bond id='GTP-bond30' atomRefs='GTP-atom30 GTP-atom19' order='2'/><bond id='GTP-bond31' atomRefs='GTP-atom28 GTP-atom30' order='1'/><bond id='GTP-bond32' atomRefs='GTP-atom8 GTP-atom18' order='2'/><bond id='GTP-bond33' atomRefs='GTP-atom30 GTP-atom21' order='1'/><bond id='GTP-bond34' atomRefs='GTP-atom31 GTP-atom23' order='1'/></bondArray>
+<formula concise='C 10 H 12 N 5 O 14 P 3'/><float title='molecularWeight' units='g/mol'>519.151</float>
+<string title='smiles'>C(OP([O-])(=O)OP(=O)([O-])OP([O-])(=O)[O-])[C@H]1(O[C@H]([C@H](O)[C@H](O)1)N2(\C=N/C3(C(=O)NC(/N)=N/C2=3)))</string>
+</molecule>
+</cml>
+<inchi-key datatype='string'>InChIKey=XKMLYUALXHKNFT-UUOKFMHZSA-J</inchi-key>
+<inchi datatype='string'>InChI=1S/C10H16N5O14P3/c11-10-13-7-4(8(18)14-10)12-2-15(7)9-6(17)5(16)3(27-9)1-26-31(22,23)29-32(24,25)28-30(19,20)21/h2-3,5-6,9,16-17H,1H2,(H,22,23)(H,24,25)(H2,19,20,21)(H3,11,13,14,18)/p-4/t3-,5-,6-,9-/m1/s1</inchi>
+<monoisotopic-mw datatype='float' units='Daltons'>522.99066</monoisotopic-mw>
+<appears-in-right-side-of><Reaction resource='getxml?GCF_000010885:RXN0-6427' orgid='GCF_000010885' frameid='RXN0-6427'/><Reaction resource='getxml?GCF_000010885:GDPKIN-RXN' orgid='GCF_000010885' frameid='GDPKIN-RXN'/></appears-in-right-side-of>
+<credits><imported-from-meta><date datatype='date'>2019-02-06</date>
+<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><common-name datatype='string'>SRI International</common-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</imported-from-meta>
+</credits>
+<common-name datatype='string'>GTP</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?GCF_000010885:RXN-11409' orgid='GCF_000010885' frameid='RXN-11409'/><Reaction resource='getxml?GCF_000010885:RXN-14117' orgid='GCF_000010885' frameid='RXN-14117'/><Reaction resource='getxml?GCF_000010885:GTPPYPHOSKIN-RXN' orgid='GCF_000010885' frameid='GTPPYPHOSKIN-RXN'/><Reaction resource='getxml?GCF_000010885:RXN-8340' orgid='GCF_000010885' frameid='RXN-8340'/><Reaction resource='getxml?GCF_000010885:RXN-16456' orgid='GCF_000010885' frameid='RXN-16456'/><Reaction resource='getxml?GCF_000010885:RXN0-262' orgid='GCF_000010885' frameid='RXN0-262'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-I-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?GCF_000010885:RXN0-5462' orgid='GCF_000010885' frameid='RXN0-5462'/><Reaction resource='getxml?GCF_000010885:RXN-14063' orgid='GCF_000010885' frameid='RXN-14063'/><Reaction resource='getxml?GCF_000010885:COBINPGUANYLYLTRANS-RXN' orgid='GCF_000010885' frameid='COBINPGUANYLYLTRANS-RXN'/><Reaction resource='getxml?GCF_000010885:ADENYLOSUCCINATE-SYNTHASE-RXN' orgid='GCF_000010885' frameid='ADENYLOSUCCINATE-SYNTHASE-RXN'/></appears-in-left-side-of>
+<molecular-weight datatype='float' units='Daltons'>519.151</molecular-weight>
+<synonym datatype='string'>guanylyl imidodiphosphate</synonym>
+<synonym datatype='string'>guanosine 5'-triphosphate</synonym>
+<synonym datatype='string'>guanosine-triphosphate</synonym>
+<gibbs-0 datatype='float' units='kcal/mol'>-553.3185</gibbs-0>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>GTP</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=GTP</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>gtp</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/gtp</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC37565</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC37565</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01273</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01273</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>5414499</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/5414499</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>7058167</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=7058167</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>37565</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:37565</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00044</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00044</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>86-01-1</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=86-01-1</dblink-URL>
+</dblink>
+</Compound>
+</ptools-xml>

@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:RXN-698%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:RXN-698%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,40 +9,64 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT1G30100" detail="full" frameid="AT1G30100" orgid="ARA">
+  <Gene ID="ARA:AT1G30100" orgid="ARA" frameid="AT1G30100" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-1" orgid="ARA" frameid="CHROMOSOME-1" />
     </replicon>
     <product>
-      <Protein frameid="AT1G30100-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G30100-MONOMER" />
+      <Protein resource="getxml?ARA:AT1G30100-MONOMER" orgid="ARA" frameid="AT1G30100-MONOMER" />
     </product>
+    <common-name datatype="string">AT1G30100</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">34.736885</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT1G30100</accession-1>
+    <synonym datatype="string">NCED5</synonym>
+    <right-end-position datatype="integer">10573349</right-end-position>
+    <left-end-position datatype="integer">10571324</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT1G30100</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G30100</dblink-URL>
     </dblink>
-    <synonym datatype="string">NCED5</synonym>
-    <left-end-position datatype="integer">10571324</left-end-position>
-    <accession-1 datatype="string">AT1G30100</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">34.736885</centisome-position>
-    <right-end-position datatype="integer">10573349</right-end-position>
-    <common-name datatype="string">AT1G30100</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT3G14440" detail="full" frameid="AT3G14440" orgid="ARA">
+  <Gene ID="ARA:AT3G14440" orgid="ARA" frameid="AT3G14440" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-3" orgid="ARA" resource="getxml?ARA:CHROMOSOME-3" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-3" orgid="ARA" frameid="CHROMOSOME-3" />
     </replicon>
     <product>
-      <Protein frameid="AT3G14440-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G14440-MONOMER" />
+      <Protein resource="getxml?ARA:AT3G14440-MONOMER" orgid="ARA" frameid="AT3G14440-MONOMER" />
     </product>
+    <common-name datatype="string">NCED3</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">20.584276</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT3G14440</accession-1>
+    <right-end-position datatype="integer">4833606</right-end-position>
+    <citation>
+      <Publication ID="ARA:PUB-11532178" orgid="ARA" frameid="PUB-11532178" detail="full">
+        <source datatype="string">Plant J 27(4);325-33</source>
+        <title datatype="string">Regulation of drought tolerance by gene manipulation of 9-cis-epoxycarotenoid dioxygenase, a key enzyme in abscisic acid biosynthesis in Arabidopsis.</title>
+        <year datatype="integer">2001</year>
+        <author datatype="string">Iuchi S</author>
+        <author datatype="string">Kobayashi M</author>
+        <author datatype="string">Taji T</author>
+        <author datatype="string">Naramoto M</author>
+        <author datatype="string">Seki M</author>
+        <author datatype="string">Kato T</author>
+        <author datatype="string">Tabata S</author>
+        <author datatype="string">Kakubari Y</author>
+        <author datatype="string">Yamaguchi-Shinozaki K</author>
+        <author datatype="string">Shinozaki K</author>
+        <pubmed-id datatype="string">11532178</pubmed-id>
+      </Publication>
+    </citation>
+    <left-end-position datatype="integer">4831295</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G14440</dblink-oid>
@@ -61,93 +85,78 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.ncbi.nlm.nih.gov/gene?term=NCED3</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">4831295</left-end-position>
-    <accession-1 datatype="string">AT3G14440</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">20.584276</centisome-position>
-    <citation>
-      <Publication ID="ARA:PUB-11532178" detail="full" frameid="PUB-11532178" orgid="ARA">
-        <title datatype="string">Regulation of drought tolerance by gene manipulation of 9-cis-epoxycarotenoid dioxygenase, a key enzyme in abscisic acid biosynthesis in Arabidopsis.</title>
-        <year datatype="integer">2001</year>
-        <pubmed-id datatype="string">11532178</pubmed-id>
-        <author datatype="string">Iuchi S</author>
-        <author datatype="string">Kobayashi M</author>
-        <author datatype="string">Taji T</author>
-        <author datatype="string">Naramoto M</author>
-        <author datatype="string">Seki M</author>
-        <author datatype="string">Kato T</author>
-        <author datatype="string">Tabata S</author>
-        <author datatype="string">Kakubari Y</author>
-        <author datatype="string">Yamaguchi-Shinozaki K</author>
-        <author datatype="string">Shinozaki K</author>
-        <source datatype="string">Plant J 27(4);325-33</source>
-      </Publication>
-    </citation>
-    <right-end-position datatype="integer">4833606</right-end-position>
-    <common-name datatype="string">NCED3</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT1G78390" detail="full" frameid="AT1G78390" orgid="ARA">
+  <Gene ID="ARA:AT1G78390" orgid="ARA" frameid="AT1G78390" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-1" orgid="ARA" frameid="CHROMOSOME-1" />
     </replicon>
     <product>
-      <Protein frameid="AT1G78390-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G78390-MONOMER" />
+      <Protein resource="getxml?ARA:AT1G78390-MONOMER" orgid="ARA" frameid="AT1G78390-MONOMER" />
     </product>
+    <common-name datatype="string">NCED9</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">96.9218</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT1G78390</accession-1>
+    <right-end-position datatype="integer">29497768</right-end-position>
+    <citation>
+      <Publication resource="#ARA:PUB-11532178" orgid="ARA" frameid="PUB-11532178" />
+    </citation>
+    <left-end-position datatype="integer">29495788</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT1G78390</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G78390</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">29495788</left-end-position>
-    <accession-1 datatype="string">AT1G78390</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">96.9218</centisome-position>
-    <citation>
-      <Publication frameid="PUB-11532178" orgid="ARA" resource="#ARA:PUB-11532178" />
-    </citation>
-    <right-end-position datatype="integer">29497768</right-end-position>
-    <common-name datatype="string">NCED9</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT3G24220" detail="full" frameid="AT3G24220" orgid="ARA">
+  <Gene ID="ARA:AT3G24220" orgid="ARA" frameid="AT3G24220" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-3" orgid="ARA" resource="getxml?ARA:CHROMOSOME-3" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-3" orgid="ARA" frameid="CHROMOSOME-3" />
     </replicon>
     <product>
-      <Protein frameid="AT3G24220-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G24220-MONOMER" />
+      <Protein resource="getxml?ARA:AT3G24220-MONOMER" orgid="ARA" frameid="AT3G24220-MONOMER" />
     </product>
+    <common-name datatype="string">NCED6</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">37.329105</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT3G24220</accession-1>
+    <right-end-position datatype="integer">8763179</right-end-position>
+    <citation>
+      <Publication resource="#ARA:PUB-11532178" orgid="ARA" frameid="PUB-11532178" />
+    </citation>
+    <left-end-position datatype="integer">8761441</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G24220</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G24220</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">8761441</left-end-position>
-    <accession-1 datatype="string">AT3G24220</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">37.329105</centisome-position>
-    <citation>
-      <Publication frameid="PUB-11532178" orgid="ARA" resource="#ARA:PUB-11532178" />
-    </citation>
-    <right-end-position datatype="integer">8763179</right-end-position>
-    <common-name datatype="string">NCED6</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT4G18350" detail="full" frameid="AT4G18350" orgid="ARA">
+  <Gene ID="ARA:AT4G18350" orgid="ARA" frameid="AT4G18350" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-4" orgid="ARA" resource="getxml?ARA:CHROMOSOME-4" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-4" orgid="ARA" frameid="CHROMOSOME-4" />
     </replicon>
     <product>
-      <Protein frameid="AT4G18350-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G18350-MONOMER" />
+      <Protein resource="getxml?ARA:AT4G18350-MONOMER" orgid="ARA" frameid="AT4G18350-MONOMER" />
     </product>
+    <common-name datatype="string">NCED2</common-name>
+    <centisome-position datatype="float" units="CENTISOMES">54.57432</centisome-position>
+    <component-of />
+    <accession-1 datatype="string">AT4G18350</accession-1>
+    <right-end-position datatype="integer">10144456</right-end-position>
+    <citation>
+      <Publication resource="#ARA:PUB-11532178" orgid="ARA" frameid="PUB-11532178" />
+    </citation>
+    <left-end-position datatype="integer">10142661</left-end-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT4G18350</dblink-oid>
@@ -166,32 +175,23 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/NM_117945</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">10142661</left-end-position>
-    <accession-1 datatype="string">AT4G18350</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">54.57432</centisome-position>
-    <citation>
-      <Publication frameid="PUB-11532178" orgid="ARA" resource="#ARA:PUB-11532178" />
-    </citation>
-    <right-end-position datatype="integer">10144456</right-end-position>
-    <common-name datatype="string">NCED2</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT4G19170" detail="full" frameid="AT4G19170" orgid="ARA">
+  <Gene ID="ARA:AT4G19170" orgid="ARA" frameid="AT4G19170" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <product>
-      <Protein frameid="AT4G19170-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G19170-MONOMER" />
+      <Protein resource="getxml?ARA:AT4G19170-MONOMER" orgid="ARA" frameid="AT4G19170-MONOMER" />
     </product>
+    <common-name datatype="string">AT4G19170</common-name>
+    <accession-1 datatype="string">AT4G19170</accession-1>
+    <synonym datatype="string">NCED4</synonym>
+    <synonym datatype="string">CCD4</synonym>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT4G19170</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G19170</dblink-URL>
     </dblink>
-    <synonym datatype="string">NCED4</synonym>
-    <synonym datatype="string">CCD4</synonym>
-    <accession-1 datatype="string">AT4G19170</accession-1>
-    <common-name datatype="string">AT4G19170</common-name>
   </Gene>
 </ptools-xml>

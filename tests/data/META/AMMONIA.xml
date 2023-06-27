@@ -1,17 +1,24 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:AMMONIA"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:AMMONIA'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:AMMONIA</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:AMMONIA" detail="full" frameid="AMMONIA" orgid="META"><cml><molecule formalCharge="0" id="AMMONIA" title="ammonia"><atomArray><atom elementType="N" id="AMMONIA-atom1" x2="-2041.0" y2="-100000.0" /><atom elementType="H" id="AMMONIA-atom2" x2="-100000.0" y2="-100000.0" /><atom elementType="H" id="AMMONIA-atom3" x2="99490.0" y2="-100000.0" /><atom elementType="H" id="AMMONIA-atom4" x2="-2041.0" y2="-27551.0" /></atomArray>
-<bondArray><bond atomRefs="AMMONIA-atom1 AMMONIA-atom2" id="AMMONIA-bond1" order="1" /><bond atomRefs="AMMONIA-atom1 AMMONIA-atom3" id="AMMONIA-bond2" order="1" /><bond atomRefs="AMMONIA-atom4 AMMONIA-atom1" id="AMMONIA-bond3" order="1" /></bondArray>
-<formula concise="H 3 N 1" /><float title="molecularWeight" units="g/mol">17.03</float>
-<string title="smiles">N</string>
+<Compound ID='META:AMMONIA' orgid='META' frameid='AMMONIA' detail='full'><parent><Compound resource='getxml?META:Inorganic-Compounds' orgid='META' frameid='Inorganic-Compounds' class='true'/></parent>
+<parent><Compound resource='getxml?META:Nitrogen-Molecular-Entities' orgid='META' frameid='Nitrogen-Molecular-Entities' class='true'/></parent>
+<cml><molecule id='AMMONIA' title='ammonia' formalCharge='0'><atomArray><atom id='AMMONIA-atom1' elementType='N' x2='-2041.0' y2='-100000.0'/><atom id='AMMONIA-atom2' elementType='H' x2='-100000.0' y2='-100000.0'/><atom id='AMMONIA-atom3' elementType='H' x2='99490.0' y2='-100000.0'/><atom id='AMMONIA-atom4' elementType='H' x2='-2041.0' y2='-27551.0'/></atomArray>
+<bondArray><bond id='AMMONIA-bond1' atomRefs='AMMONIA-atom1 AMMONIA-atom2' order='1'/><bond id='AMMONIA-bond2' atomRefs='AMMONIA-atom1 AMMONIA-atom3' order='1'/><bond id='AMMONIA-bond3' atomRefs='AMMONIA-atom4 AMMONIA-atom1' order='1'/></bondArray>
+<formula concise='H 3 N 1'/><float title='molecularWeight' units='g/mol'>17.03</float>
+<string title='smiles'>N</string>
 </molecule>
 </cml>
-<common-name datatype="string">ammonia</common-name>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-23694' orgid='META' frameid='RXN-23694'/><Reaction resource='getxml?META:RXN-23692' orgid='META' frameid='RXN-23692'/><Reaction resource='getxml?META:RXN-23691' orgid='META' frameid='RXN-23691'/><Reaction resource='getxml?META:RXN-22977' orgid='META' frameid='RXN-22977'/><Reaction resource='getxml?META:RXN-22959' orgid='META' frameid='RXN-22959'/><Reaction resource='getxml?META:RXN-22960' orgid='META' frameid='RXN-22960'/><Reaction resource='getxml?META:RXN-22958' orgid='META' frameid='RXN-22958'/><Reaction resource='getxml?META:GLUTAMIN-RXN' orgid='META' frameid='GLUTAMIN-RXN'/><Reaction resource='getxml?META:RXN-20084' orgid='META' frameid='RXN-20084'/><Reaction resource='getxml?META:RXN-12878' orgid='META' frameid='RXN-12878'/><Reaction resource='getxml?META:RXN-22439' orgid='META' frameid='RXN-22439'/><Reaction resource='getxml?META:RXN-22710' orgid='META' frameid='RXN-22710'/><Reaction resource='getxml?META:RXN-22577' orgid='META' frameid='RXN-22577'/><Reaction resource='getxml?META:RXN-22440' orgid='META' frameid='RXN-22440'/><Reaction resource='getxml?META:RXN-22275' orgid='META' frameid='RXN-22275'/><Reaction resource='getxml?META:TRANS-RXN0-544' orgid='META' frameid='TRANS-RXN0-544'/><Reaction resource='getxml?META:RXN-19345' orgid='META' frameid='RXN-19345'/><Reaction resource='getxml?META:RXN-19275' orgid='META' frameid='RXN-19275'/><Reaction resource='getxml?META:RXN-19274' orgid='META' frameid='RXN-19274'/><Reaction resource='getxml?META:RXN-18499' orgid='META' frameid='RXN-18499'/><Reaction resource='getxml?META:RXN-18398' orgid='META' frameid='RXN-18398'/><Reaction resource='getxml?META:RXN-17130' orgid='META' frameid='RXN-17130'/><Reaction resource='getxml?META:RXN-16587' orgid='META' frameid='RXN-16587'/></appears-in-right-side-of>
+<inchi datatype='string'>InChI=1S/H3N/h1H3</inchi>
+<synonym datatype='string'>NH&lt;SUB&gt;3&lt;/SUB&gt;</synonym>
+<molecular-weight datatype='float' units='Daltons'>17.03</molecular-weight>
+<monoisotopic-mw datatype='float' units='Daltons'>17.026548</monoisotopic-mw>
 <dblink><dblink-db>CHEBI</dblink-db>
 <dblink-oid>16134</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -52,65 +59,61 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=7664-41-7</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">11.853362<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<inchi-key datatype='string'>InChIKey=QGZKDVFQNNGYKY-UHFFFAOYSA-N</inchi-key>
+<common-name datatype='string'>ammonia</common-name>
+<gibbs-0 datatype='float' units='kcal/mol'>11.853362<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<author datatype='string'>Latendresse M.</author>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/H3N/h1H3</inchi>
-<inchi-key datatype="string">InChIKey=QGZKDVFQNNGYKY-UHFFFAOYSA-N</inchi-key>
-<molecular-weight datatype="float" units="Daltons">17.03</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">17.026548</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-6725" detail="low" frameid="REG0-6725" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ASNSYNA-ENZRXN" detail="low" frameid="ASNSYNA-ENZRXN" orgid="META"><common-name datatype="string">asparagine synthetase</common-name>
-<enzyme><Protein frameid="ASNSYNA-CPLX" orgid="META" resource="getxml?META:ASNSYNA-CPLX" /></enzyme>
-<reaction><Reaction frameid="ASNSYNA-RXN" orgid="META" resource="getxml?META:ASNSYNA-RXN" /></reaction>
-<synonym datatype="string">aspartate-ammonia ligase</synonym>
+<regulates><Regulation ID='META:REG0-6725' orgid='META' frameid='REG0-6725' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:AMMONIA' orgid='META' frameid='AMMONIA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='META:ASNSYNA-ENZRXN' orgid='META' frameid='ASNSYNA-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:ASNSYNA-CPLX' orgid='META' frameid='ASNSYNA-CPLX'/></enzyme>
+<synonym datatype='string'>aspartate-ammonia ligase</synonym>
+<reaction><Reaction resource='getxml?META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN'/></reaction>
+<common-name datatype='string'>asparagine synthetase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound frameid="AMMONIA" orgid="META" resource="#META:AMMONIA" /></regulator>
+<mode datatype='string'>-</mode>
 </Regulation>
-<Regulation ID="META:REG-11182" detail="low" frameid="REG-11182" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN1F-2097" detail="low" frameid="ENZRXN1F-2097" orgid="META"><common-name datatype="string">porphobilinogen deaminase</common-name>
-<enzyme><Protein frameid="AT5G08280-MONOMER" orgid="META" resource="getxml?META:AT5G08280-MONOMER" /></enzyme>
-<reaction><Reaction frameid="OHMETHYLBILANESYN-RXN" orgid="META" resource="getxml?META:OHMETHYLBILANESYN-RXN" /></reaction>
+<Regulation ID='META:REG-11182' orgid='META' frameid='REG-11182' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:AMMONIA' orgid='META' frameid='AMMONIA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN1F-2097' orgid='META' frameid='ENZRXN1F-2097' detail='low'><enzyme><Protein resource='getxml?META:AT5G08280-MONOMER' orgid='META' frameid='AT5G08280-MONOMER'/></enzyme>
+<reaction><Reaction resource='getxml?META:OHMETHYLBILANESYN-RXN' orgid='META' frameid='OHMETHYLBILANESYN-RXN'/></reaction>
+<common-name datatype='string'>porphobilinogen deaminase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound frameid="AMMONIA" orgid="META" resource="#META:AMMONIA" /></regulator>
+<mode datatype='string'>-</mode>
 </Regulation>
-<Regulation ID="META:REG-10927" detail="low" frameid="REG-10927" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9761" detail="low" frameid="ENZRXN-9761" orgid="META"><common-name datatype="string">asparaginase</common-name>
-<enzyme><Protein frameid="MONOMER-9561" orgid="META" resource="getxml?META:MONOMER-9561" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="getxml?META:ASPARAGHYD-RXN" /></reaction>
+<Regulation ID='META:REG-10927' orgid='META' frameid='REG-10927' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:AMMONIA' orgid='META' frameid='AMMONIA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9761' orgid='META' frameid='ENZRXN-9761' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-9561' orgid='META' frameid='MONOMER-9561'/></enzyme>
+<reaction><Reaction resource='getxml?META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>asparaginase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound frameid="AMMONIA" orgid="META" resource="#META:AMMONIA" /></regulator>
+<mode datatype='string'>-</mode>
 </Regulation>
-<Regulation ID="META:REG-8649" detail="low" frameid="REG-8649" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-11806" detail="low" frameid="ENZRXN-11806" orgid="META"><common-name datatype="string">glutamate dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-6821" orgid="META" resource="getxml?META:CPLX-6821" /></enzyme>
-<reaction><Reaction frameid="GLUTAMATE-DEHYDROGENASE-NADP+-RXN" orgid="META" resource="getxml?META:GLUTAMATE-DEHYDROGENASE-NADP+-RXN" /></reaction>
+<Regulation ID='META:REG-8649' orgid='META' frameid='REG-8649' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:AMMONIA' orgid='META' frameid='AMMONIA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-11806' orgid='META' frameid='ENZRXN-11806' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6821' orgid='META' frameid='CPLX-6821'/></enzyme>
+<reaction><Reaction resource='getxml?META:GLUTAMATE-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='GLUTAMATE-DEHYDROGENASE-NADP+-RXN'/></reaction>
+<common-name datatype='string'>glutamate dehydrogenase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound frameid="AMMONIA" orgid="META" resource="#META:AMMONIA" /></regulator>
+<mode datatype='string'>-</mode>
 </Regulation>
 </regulates>
-<synonym datatype="string">NH&lt;SUB&gt;3&lt;/SUB&gt;</synonym>
-<appears-in-left-side-of><Reaction frameid="TRANS-RXN0-544" orgid="META" resource="getxml?META:TRANS-RXN0-544" /><Reaction frameid="RXN-20091" orgid="META" resource="getxml?META:RXN-20091" /><Reaction frameid="AMONITRO-RXN" orgid="META" resource="getxml?META:AMONITRO-RXN" /><Reaction frameid="RXN-15862" orgid="META" resource="getxml?META:RXN-15862" /><Reaction frameid="RXN-11811" orgid="META" resource="getxml?META:RXN-11811" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="TRANS-RXN0-544" orgid="META" resource="getxml?META:TRANS-RXN0-544" /><Reaction frameid="RXN-20084" orgid="META" resource="getxml?META:RXN-20084" /><Reaction frameid="RXN-19345" orgid="META" resource="getxml?META:RXN-19345" /><Reaction frameid="RXN-19275" orgid="META" resource="getxml?META:RXN-19275" /><Reaction frameid="RXN-19274" orgid="META" resource="getxml?META:RXN-19274" /><Reaction frameid="RXN-18499" orgid="META" resource="getxml?META:RXN-18499" /><Reaction frameid="RXN-18398" orgid="META" resource="getxml?META:RXN-18398" /><Reaction frameid="RXN-17130" orgid="META" resource="getxml?META:RXN-17130" /><Reaction frameid="RXN-16587" orgid="META" resource="getxml?META:RXN-16587" /></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-22735' orgid='META' frameid='RXN-22735'/><Reaction resource='getxml?META:RXN-22736' orgid='META' frameid='RXN-22736'/><Reaction resource='getxml?META:RXN-20083' orgid='META' frameid='RXN-20083'/><Reaction resource='getxml?META:RXN-20081' orgid='META' frameid='RXN-20081'/><Reaction resource='getxml?META:RXN-17900' orgid='META' frameid='RXN-17900'/><Reaction resource='getxml?META:RXN-14325' orgid='META' frameid='RXN-14325'/><Reaction resource='getxml?META:GMP-SYN-NH3-RXN' orgid='META' frameid='GMP-SYN-NH3-RXN'/><Reaction resource='getxml?META:RXN-12590' orgid='META' frameid='RXN-12590'/><Reaction resource='getxml?META:RXN-22734' orgid='META' frameid='RXN-22734'/><Reaction resource='getxml?META:RXN-22713' orgid='META' frameid='RXN-22713'/><Reaction resource='getxml?META:RXN-22439' orgid='META' frameid='RXN-22439'/><Reaction resource='getxml?META:RXN-22711' orgid='META' frameid='RXN-22711'/><Reaction resource='getxml?META:TRANS-RXN0-544' orgid='META' frameid='TRANS-RXN0-544'/><Reaction resource='getxml?META:RXN-20091' orgid='META' frameid='RXN-20091'/><Reaction resource='getxml?META:AMONITRO-RXN' orgid='META' frameid='AMONITRO-RXN'/><Reaction resource='getxml?META:RXN-15862' orgid='META' frameid='RXN-15862'/><Reaction resource='getxml?META:RXN-11811' orgid='META' frameid='RXN-11811'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

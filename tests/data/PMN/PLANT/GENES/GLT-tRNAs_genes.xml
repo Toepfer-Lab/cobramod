@@ -1,0 +1,8 @@
+<ptools-xml ptools-version="26.0" xml:base="http://pmn.plantcyc.org/apixml?fn=genes-of-reaction%26id=PLANT:GLT-tRNAs%26detail=FULL">
+  <metadata>
+    <url>http://pmn.plantcyc.org/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=PLANT:GLT-tRNAs&amp;detail=FULL</query>
+    <num_results>0</num_results>
+  </metadata>
+</ptools-xml>

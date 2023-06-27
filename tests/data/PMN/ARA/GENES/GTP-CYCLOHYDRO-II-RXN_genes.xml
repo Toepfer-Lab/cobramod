@@ -1,61 +1,61 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/apixml?fn=genes-of-reaction%26id=ARA:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
+<ptools-xml ptools-version="26.0" xml:base="http://pmn.plantcyc.org/apixml?fn=genes-of-reaction%26id=ARA:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
   <metadata>
-    <url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+    <url>http://pmn.plantcyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=ARA:GTP-CYCLOHYDRO-II-RXN&amp;detail=FULL</query>
     <num_results>2</num_results>
-    <PGDB orgid="ARA" version="17.1.1">
+    <PGDB orgid="ARA" version="17.2.0">
       <species datatype="string">Arabidopsis thaliana</species>
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT5G64300" detail="full" frameid="AT5G64300" orgid="ARA">
+  <Gene ID="ARA:AT5G64300" orgid="ARA" frameid="AT5G64300" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-5" orgid="ARA" frameid="CHROMOSOME-5" />
     </replicon>
     <product>
-      <Protein frameid="AT5G64300-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G64300-MONOMER" />
+      <Protein resource="getxml?ARA:AT5G64300-MONOMER" orgid="ARA" frameid="AT5G64300-MONOMER" />
     </product>
-    <right-end-position datatype="integer">25738388</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">25735630</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">95.34283</centisome-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G64300</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G64300</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">25735630</left-end-position>
-    <centisome-position datatype="float" units="CENTISOMES">95.34283</centisome-position>
-    <accession-1 datatype="string">AT5G64300</accession-1>
-    <component-of />
-    <common-name datatype="string">AT5G64300</common-name>
     <synonym datatype="string">RFD1</synonym>
     <synonym datatype="string">RIBA1</synonym>
     <synonym datatype="string">GCH</synonym>
+    <common-name datatype="string">AT5G64300</common-name>
+    <accession-1 datatype="string">AT5G64300</accession-1>
+    <right-end-position datatype="integer">25738388</right-end-position>
   </Gene>
-  <Gene ID="ARA:AT5G59750" detail="full" frameid="AT5G59750" orgid="ARA">
+  <Gene ID="ARA:AT5G59750" orgid="ARA" frameid="AT5G59750" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-5" orgid="ARA" frameid="CHROMOSOME-5" />
     </replicon>
     <product>
-      <Protein frameid="AT5G59750-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G59750-MONOMER" />
+      <Protein resource="getxml?ARA:AT5G59750-MONOMER" orgid="ARA" frameid="AT5G59750-MONOMER" />
     </product>
-    <right-end-position datatype="integer">24092768</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">24090515</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">89.24817</centisome-position>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G59750</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G59750</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">24090515</left-end-position>
-    <centisome-position datatype="float" units="CENTISOMES">89.24817</centisome-position>
-    <accession-1 datatype="string">AT5G59750</accession-1>
-    <component-of />
     <common-name datatype="string">AT5G59750</common-name>
+    <accession-1 datatype="string">AT5G59750</accession-1>
+    <right-end-position datatype="integer">24092768</right-end-position>
   </Gene>
 </ptools-xml>
