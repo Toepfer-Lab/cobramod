@@ -888,5 +888,4 @@ def add_pathway(
     else:
         raise ValueError("Argument 'pathway' must be iterable or a identifier")
 
-    if filename:
-        summarize(model, old_values, filename=filename)
+    summarize(model, old_values, filename=filename)
