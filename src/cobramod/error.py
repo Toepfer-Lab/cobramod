@@ -118,7 +118,7 @@ class AbbreviationWarning(Warning):
     pass
 
 
-class SuperpathwayWarning(Warning):
+class SuperpathwayException(Exception):
     """
     Simple Warning that should be raised if a pathway is identified as a
     Superpathway

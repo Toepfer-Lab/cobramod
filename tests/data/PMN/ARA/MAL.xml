@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='26.0' xml:base='http://pmn.plantcyc.org/getxml?ARA:MAL'><metadata><url>http://pmn.plantcyc.org/</url>
+<service_name>getxml</service_name>
+<query>ARA:MAL</query>
+<num_results>1</num_results>
+<PGDB orgid='ARA' version='17.2.0'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
+</PGDB>
+</metadata>
+<Compound ID='ARA:MAL' orgid='ARA' frameid='MAL' detail='full'><parent><Compound resource='getxml?ARA:RS-Malate' orgid='ARA' frameid='RS-Malate' class='true'/></parent>
+<cml><molecule id='MAL' title='(S)-malate' formalCharge='-2'><atomArray><atom id='MAL-atom1' elementType='C' x2='-16722.0' y2='6011.0'/><atom id='MAL-atom2' elementType='C' x2='-23866.0' y2='10137.0'/><atom id='MAL-atom3' elementType='C' x2='-9576.0' y2='10137.0'/><atom id='MAL-atom4' elementType='C' x2='-31011.0' y2='6011.0'/><atom id='MAL-atom5' elementType='O' x2='-23866.0' y2='18386.0'/><atom id='MAL-atom6' elementType='O' x2='-2432.0' y2='6011.0' formalCharge='-1'/><atom id='MAL-atom7' elementType='O' x2='-9576.0' y2='18386.0'/><atom id='MAL-atom8' elementType='O' x2='-31011.0' y2='-2239.0'/><atom id='MAL-atom9' elementType='O' x2='-38157.0' y2='10137.0' formalCharge='-1'/></atomArray>
+<bondArray><bond id='MAL-bond1' atomRefs='MAL-atom8 MAL-atom4' order='2'/><bond id='MAL-bond2' atomRefs='MAL-atom4 MAL-atom9' order='1'/><bond id='MAL-bond3' atomRefs='MAL-atom4 MAL-atom2' order='1'/><bond id='MAL-bond4' atomRefs='MAL-atom2 MAL-atom1' order='1'/><bond id='MAL-bond5' atomRefs='MAL-atom2 MAL-atom5' order='1'/><bond id='MAL-bond6' atomRefs='MAL-atom1 MAL-atom3' order='1'/><bond id='MAL-bond7' atomRefs='MAL-atom3 MAL-atom6' order='1'/><bond id='MAL-bond8' atomRefs='MAL-atom3 MAL-atom7' order='2'/></bondArray>
+<formula concise='C 4 H 4 O 5'/><float title='molecularWeight' units='g/mol'>132.073</float>
+<string title='smiles'>C(=O)([O-])C[C@H](O)C([O-])=O</string>
+</molecule>
+</cml>
+<gibbs-0 datatype='float' units='kcal/mol'>-161.16376</gibbs-0>
+<molecular-weight datatype='float' units='Daltons'>132.073</molecular-weight>
+<inchi datatype='string'>InChI=1S/C4H6O5/c5-2(4(8)9)1-3(6)7/h2,5H,1H2,(H,6,7)(H,8,9)/p-2/t2-/m0/s1</inchi>
+<synonym datatype='string'>L-hydroxybutanedioic acid</synonym>
+<synonym datatype='string'>L-hydroxysuccinic acid</synonym>
+<synonym datatype='string'>(S)-malate</synonym>
+<synonym datatype='string'>mal</synonym>
+<synonym datatype='string'>L-mal</synonym>
+<synonym datatype='string'>(&lt;i&gt;S&lt;/i&gt;)-malic acid</synonym>
+<synonym datatype='string'>L-apple acid</synonym>
+<synonym datatype='string'>L-malic acid</synonym>
+<synonym datatype='string'>hydroxysuccinic acid</synonym>
+<synonym datatype='string'>hydroxybutanedioic acid</synonym>
+<synonym datatype='string'>malic acid</synonym>
+<synonym datatype='string'>L-malate</synonym>
+<synonym datatype='string'>malate</synonym>
+<regulates><Regulation ID='ARA:REG-7377' orgid='ARA' frameid='REG-7377' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:MAL' orgid='ARA' frameid='MAL'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7673' orgid='ARA' frameid='REG0-7673' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:MAL' orgid='ARA' frameid='MAL'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG-9346' orgid='ARA' frameid='REG-9346' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:MAL' orgid='ARA' frameid='MAL'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7271' orgid='ARA' frameid='REG0-7271' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:MAL' orgid='ARA' frameid='MAL'/></regulator>
+</Regulation>
+</regulates>
+<common-name datatype='string'>(&lt;i&gt;S&lt;/i&gt;)-malate</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-19748' orgid='ARA' frameid='RXN-19748'/><Reaction resource='getxml?ARA:TRANS-RXN-224' orgid='ARA' frameid='TRANS-RXN-224'/><Reaction resource='getxml?ARA:RXN8J2-1' orgid='ARA' frameid='RXN8J2-1'/><Reaction resource='getxml?ARA:TRANS-RXN-225' orgid='ARA' frameid='TRANS-RXN-225'/><Reaction resource='getxml?ARA:MALATE-DEHYDROGENASE-NADP+-RXN' orgid='ARA' frameid='MALATE-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?ARA:2.3.1.92-RXN' orgid='ARA' frameid='2.3.1.92-RXN'/><Reaction resource='getxml?ARA:1.1.1.39-RXN' orgid='ARA' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/><Reaction resource='getxml?ARA:MALIC-NADP-RXN' orgid='ARA' frameid='MALIC-NADP-RXN'/><Reaction resource='getxml?ARA:FUMHYDR-RXN' orgid='ARA' frameid='FUMHYDR-RXN'/></appears-in-left-side-of>
+<inchi-key datatype='string'>InChIKey=BJEPYKJPYRNKOW-REOHCLBHSA-L</inchi-key>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Malic acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Malic acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>mal__L</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/mal__L</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC15589</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC15589</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00156</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00156</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>34045</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/34045</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>4573566</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/4573566</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>6915-15-7</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=6915-15-7</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>5459792</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=5459792</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>15589</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15589</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>97-67-6</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=97-67-6</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00149</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00149</dblink-URL>
+</dblink>
+<monoisotopic-mw datatype='float' units='Daltons'>134.02153</monoisotopic-mw>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:TRANS-RXN-224' orgid='ARA' frameid='TRANS-RXN-224'/><Reaction resource='getxml?ARA:TRANS-RXN-225' orgid='ARA' frameid='TRANS-RXN-225'/><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/></appears-in-right-side-of>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Shulaev-LCMS,Fiehn (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
+</Compound>
+</ptools-xml>

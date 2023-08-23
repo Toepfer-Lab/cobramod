@@ -1055,6 +1055,17 @@ class ComplexFunctions(unittest.TestCase):
         for meta in ("GLC_cb", "RXN_17742_c"):
             self.assertTrue(test_model.reactions.has_id(meta))
 
+        # CASE PMN:ARA
+        test_model = cobra_core.Model(NAME)
+        reaction_str = [
+            "PYR_MAL_pc, Pyruvate/Malate transporter |"
+            "PYRUVATE_p + MAL_c <-> PYRUVATE_c + MAL_p"
+        ]
+
+        cr.add_reactions(test_model, reaction_str, dir_data, "PMN:ARA")
+
+        self.assertTrue(test_model.reactions.has_id("PYR_MAL_pc"))
+
 
 if __name__ == "__main__":
     print(f"CobraMod version: {cmod_version}")

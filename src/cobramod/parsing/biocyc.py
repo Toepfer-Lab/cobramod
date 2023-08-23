@@ -25,12 +25,9 @@ from warnings import warn
 
 import requests
 
+import cobramod.error as cmod_error
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
-from cobramod.error import (
-    SuperpathwayWarning,
-    WrongParserError,
-)
 
 
 def build_cross_references_xml(root: Any) -> dict[str, str]:
@@ -213,12 +210,17 @@ def get_graph(root: et.Element) -> dict:
                 f'Pathway "{identifier}" was identified as a '
                 + "superpathway. This type of pathway does not normally "
                 + "included all reactions. Please add the corresponding "
-                + "sub-pathways singlely!"
+                + "sub-pathways singlely!. "
+                # NOTE: ToDo
+                + "For the moment, CobraMod does not support them"
             )
-            debug_log.warning(msg=msg)
-            warn(message=msg, category=SuperpathwayWarning)
-            break
+            debug_log.error(msg=msg)
+            raise cmod_error.SuperpathwayException(msg)
 
+    # identifiers = [
+    #     a.attrib["frameid"]
+    #     for a in root.findall("*/reaction-ordering/Reaction")
+    # ]
     graph: dict[str, Any] = dict()
     reactions = set()
 
@@ -265,7 +267,9 @@ def get_graph(root: et.Element) -> dict:
             name = element.attrib["frameid"]
             graph[name] = None
         except AttributeError:
-            raise WrongParserError("Given root does not belong to a Pathway")
+            raise cmod_error.WrongParserError(
+                "Given root does not belong to a Pathway"
+            )
 
     return graph
 

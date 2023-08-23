@@ -575,8 +575,8 @@ def build_reaction_from_str(
         compounds[metabolite] = float(coefficient)
 
     # It must be a biocyc family
-    if database is not None and database.find(":") != -1:
-        directory = directory.parent
+    # if database is not None and database.find(":") != -1:
+    #     directory = directory.parent
 
     for identifier, coefficient in compounds.items():
         compartment = identifier[-1]
