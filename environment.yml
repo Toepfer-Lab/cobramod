@@ -25,3 +25,4 @@ dependencies:
   - nbsphinx
   - sphinx-autoapi
   - sphinxcontrib-bibtex
+  - openpyxl

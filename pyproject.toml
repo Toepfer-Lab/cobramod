@@ -24,6 +24,7 @@ dependencies = [
     "webcolors>=1.11.1",
     "tqdm>=4.62.3",
     "pyarrow>=6.0.1",
+    "openpyxl>=3.0.10",
 ]
 
 [project.optional-dependencies]
