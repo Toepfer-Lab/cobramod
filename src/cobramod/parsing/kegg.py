@@ -7,12 +7,6 @@ The possible type of data that can be downloaded:
 - Reactions: Identifiers that start with the letter R, e.g R00001. The
 gene information for reactions is also included if the specie is specified
 - Module Pathways: Identifiers that start with the letter M, e.g M00001
-
-Contact maintainers if other types should be added.
-
-Important class of the module:
-- KeggParser: Child of the abstract class
-:class:`cobramod.parsing.base.BaseParser`.
 """
 from __future__ import annotations
 

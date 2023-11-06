@@ -6,13 +6,6 @@ The possible type of data that can be downloaded:
 - Metabolites: Normally have an abbreviation or short name.
 - Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
 be used instead. The gene information for the reactions is included if found.
-- Pathways
-
-Contact maintainers if other types should be added.
-
-Important class of the module:
-- BiocycParser: Child of the abstract class
-:class:`cobramod.parsing.base.BaseParser`.
 """
 from __future__ import annotations
 

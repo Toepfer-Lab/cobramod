@@ -1,18 +1,7 @@
-"""Data parsing for PlantCyc
+"""Gene parsing for Plantcyc
 
-This module handles the retrieval of data from PlantCyc into a local directory.
-The possible type of data that can be downloaded:
-
-- Metabolites: Normally have an abbreviation or short name.
-- Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
-be used instead. The gene information for the reactions is included if found.
-- Pathways
-
-Contact maintainers if other types should be added.
-
-Important class of the module:
-- PlantCycParser: Child of the abstract class
-:class:`cobramod.parsing.base.BaseParser`.
+The main functions to parse Metabolites and Reactions are found in the module
+Biocyc
 """
 import urllib.parse
 import xml.etree.ElementTree as et

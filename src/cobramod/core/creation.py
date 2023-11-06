@@ -3,18 +3,7 @@
 This module handles the creation of COBRApy's objects
 :class:`cobra.core.metabolite.Metabolite` and
 :class:`cobra.core.reaction.Reaction`. Dictionaries containing the data of a
-given database are used. Important functions are:
-
-- create_object: Creates and Returns a COBRApy object.
-- add_reactions: Add reactions from multiple sources.
-- add_metabolites: Add reactions from multiple sources.
-
-These functions are a mix of multiple simpler functions:
-
-- _metabolite_from_string, _reaction_from_string: create objects from strings.
-- _get_metabolite, _get_reaction: create objects from dictionary.
-- _convert_string_reaction, _convert_string_metabolite: create objects from
-  files.
+given database are used.
 """
 from __future__ import annotations
 
@@ -37,19 +26,19 @@ def build_metabolite(
     identifier: str, formula: str, name: str, charge: float, compartment: str
 ) -> cobra_core.Metabolite:
     """
-    Returns a basic :class:`cobra.Metabolite`. Creation of the metabolite
-    writes in the log a with a DEBUG level.
-    level.
+    Returns a basic :class:`cobra.Metabolite`.
+
+    LOG level: Debug
 
     Args:
-        identifier (str): Short name for Metabolite.
+        identifier (str): Short name for Metabolite
         formula (str): Chemical formula
         name (name): Long name for Metabolite
         charge (float): Charge of the metabolite
         compartment (str): Location
 
     Returns:
-        Metabolite: new created metabolite
+        Metabolite
     """
     metabolite = cobra_core.Metabolite(
         id=identifier,
@@ -63,11 +52,11 @@ def build_metabolite(
 
 
 def metabolite_from_string(
-    line_string: str, replacement: dict, model: cobra_core.Model
+    line_string: str, replacement: dict[str, str], model: cobra_core.Model
 ) -> cobra_core.Metabolite:
     """
     Creates a Metabolite object based on a string. Function will try to find
-    the metabolite in the model and return it if possible.
+    the metabolite in the model or cross-reference and return it if possible.
 
     The string must follow the syntax:
 
@@ -76,12 +65,15 @@ def metabolite_from_string(
 
     Args:
         line_string (str): string with information
+        replacement (dict[str, str]): Dictionary with either the new identifier
+            and/or the identifier of an object inside the model
+        model (Model): Model to search for cross-references
 
     Raises:
-        IndexError: if format is does not follow syntax.
+        WrongSyntax: if format is does not follow syntax
 
     Returns:
-        Metabolite: New Metabolite with given information.
+        Metabolite
     """
     line = [part.strip().rstrip() for part in line_string.split(",")]
 
@@ -129,6 +121,14 @@ def metabolite_from_data(
     compartment: str,
     model: cobra_core.Model = cobra_core.Model(),
 ) -> cobra_core.Metabolite:
+    """
+    Parses the metabolite information from a Data object and creates a
+    Metabolite in given compartment. This function will try to figure out if
+    the metabolite is already in the model
+
+    Returns:
+        Metabolite
+    """
     # Try to obtain available translation
     xref = cmod_utils.find_intersection(
         dictlist=model.metabolites,
@@ -144,71 +144,8 @@ def metabolite_from_data(
     if not isinstance(metabolite, cobra_core.Metabolite):
         raise AttributeError("Given object is not a Metabolite")
 
-    # FIXME: add debug information
+    debug_log.debug(f"Metabolite '{metabolite.id}' created from Data object")
     return metabolite
-
-
-# def get_metabolite(
-#     metabolite_dict: dict[str, Any], compartment: str, model: Model = Model()
-# ) -> Metabolite:
-#     """
-#     Return Metabolite based on data saved as a dictionary. The function
-#     will look in given model if compound is already in the model under
-#     another translation (name).
-#
-#     Args:
-#         metabolite_dict (dict): dictionary with data of metabolite
-#         compartment (str): location of the metabolite.
-#         model (Model): Model to search for equivalents. Defaults to empty Model
-#
-#     Returns:
-#         Metabolite: New object based on a dictionary.
-#
-#     Raises:
-#         WrongDataError: If dictionary data does not represent a metabolite.
-#     """
-#     if not metabolite_dict["FORMULA"]:
-#         raise WrongDataError(
-#             "Given dictionary does not correspond to a Metabolite."
-#         )
-#     identifier: str = metabolite_dict["ENTRY"]
-#
-#     # Try to obtain available translation
-#     replacement = cmod_utils.find_intersection(
-#         dictlist=model.metabolites,
-#         query=metabolite_dict["XREF"],
-#         revert=True,
-#     )
-#
-#     if replacement:
-#         identifier = replacement
-#
-#     with suppress(KeyError):
-#         alt_identifier = f"{cmod_utils.fix_name(name=identifier)}_{compartment}"
-#         metabolite = model.metabolites.get_by_id(alt_identifier)
-#
-#         if not isinstance(metabolite, cobra_core.Metabolite):
-#             raise TypeError(
-#                 f"The object {metabolite} is not a valid COBRApy Metabolite"
-#             )
-#         msg = (
-#             f"Metabolite '{metabolite_dict['ENTRY']}' was found as "
-#             f"'{alt_identifier}'. Please curate if necessary."
-#         )
-#         debug_log.warning(msg=msg)
-#         warn(message=msg, category=UserWarning)
-#         return metabolite
-#
-#     # Format if above fails
-#     identifier = f"{cmod_utils.fix_name(name=identifier)}_{compartment}"
-#     # Create object, add logging and then return it.
-#     return build_metabolite(
-#         identifier=identifier,
-#         formula=metabolite_dict["FORMULA"],
-#         name=metabolite_dict["NAME"],
-#         charge=metabolite_dict["CHARGE"],
-#         compartment=compartment,
-#     )
 
 
 def convert_string_metabolite(
@@ -221,8 +158,8 @@ def convert_string_metabolite(
 ) -> cobra_core.Metabolite:
     """
     Transform a string into a Metabolite and returns it. This object can be
-    either custom or from a database. If the compound if found under a
-    different name, this will be returned instead.
+    either manually-curated or from a database. If the compound if found under
+    a different name (cross-reference), this will be returned instead.
 
     Custom metabolite syntax:
 
@@ -235,17 +172,17 @@ def convert_string_metabolite(
 
     Args:
         line (str): string with information of metabolite
-        model (Model): model to test
-        replacement (dict): Dictionary with either the new identifier and/or
-            the identifier of an object inside the model.
-        directory (Path): Path to directory where data is located.
-        database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
-
-        model_id (str): Exclusive for BIGG. Name of model
+        model (Model): Model to check for cross-references
+        replacement (dict[str, str]): Dictionary with either the new identifier
+            and/or the identifier of an object inside the model
+        directory (Path): Path to directory where data is located
+        database (str, optional): Name of database. Check
+            :obj:`cobramod.retrieval.available_databases` for a list of names.
+            The argument can be None ONLY for manually curated metabolites
+        model_id (str, optional): Exclusive for BIGG. Name of model
 
     Returns:
-        Metabolite: New metabolite object
+        Metabolite
     """
     if line.count(",") > 1:
         new_metabolite = metabolite_from_string(
@@ -290,7 +227,8 @@ def get_file_metabolites(
 ) -> list[cobra_core.Metabolite]:
     """
     Return a list with Metabolites from a file. If a metabolite is found in
-    model under a different name, it will be included in the list instead.
+    model under a different name (cross-reference), it will be included in the
+    list instead.
 
     Custom metabolite syntax:
 
@@ -302,19 +240,21 @@ def get_file_metabolites(
     :code:`metabolite_identifier, compartment`
 
     Args:
-        model (Model): model to test
+        model (Model): Model to get metabolites if available
         filename (Path): location of the file with metabolites
-        replacement (dict): Dictionary with either the new identifier and/or
-            the identifier of object inside the model.
-
-    Keyword Arguments:
+        replacement (dict[str, str]): Dictionary with either the new identifier
+            and/or the identifier of object inside the model.
         directory (Path): Path to directory where data is located.
-        database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
+        database (str, optional): Name of database. Check
+            :obj:`cobramod.retrieval.available_databases` for a list of names.
+            The argument can be None ONLY for manually curated metabolites
+        model_id (str, optional): Bigg-specific argument. Name of the model
 
     Raises:
-        TypeError: if model is invalid
-        FileNotFoundError: if given file is not found
+        FileNotFoundError: If given file is not found
+
+    Returns:
+        list[Metabolite]
     """
     if not filename.exists():
         raise FileNotFoundError(
@@ -324,7 +264,7 @@ def get_file_metabolites(
     # For each line, build and add metabolite. If a Metabolite is no properly
     # created, either raise an Error or use a default.
     with open(filename, "r") as f:
-        new_metabolites = list()
+        new_metabolites: list[cobra_core.Metabolite] = list()
         for line in cmod_utils.read_lines(f=f):
             new_metabolites.append(
                 convert_string_metabolite(
@@ -332,14 +272,6 @@ def get_file_metabolites(
                 )
             )
     return new_metabolites
-
-
-# def _return_duplicate(data_dict: dict) -> bool:
-#     """
-#     Check for the duplicate in a dictionary with prefixes-
-#     """
-#     sequence = Counter([item[2:] for item in data_dict.keys()])
-#     return sequence.most_common(1)[0][0]
 
 
 def get_reaction(
@@ -350,6 +282,26 @@ def get_reaction(
     stop_imbalance: bool,
     model: cobra_core.Model,
 ) -> cobra_core.Reaction:
+    """
+    Creates a :class:`cobra:Reaction` from reaction Data. Location of the
+    reaction can be set with the argument 'compartment'.
+
+    This function searchs if the reaction and their metabolites are already in
+    the model and will use them instead. Additionally, genes will be created
+    and linked to the reaction.
+
+    Args:
+        data_dict (Data): Biochemical information of the reaction
+        compartment (str): Locations of the reaction
+        replacement (dict[str, str]): Original identifiers to be replaced
+            Values are the new identifiers.
+        model (Model): Model to search for duplicates and cross-references
+        stop_imbalance (bool): If unbalanced reaction is found, stop process
+        show_imbalance (bool): If unbalanced reaction is found, show output
+
+    Returns:
+        Reaction
+    """
     if data.database == "META":
         msg = (
             f'Metabolic pathway information for reaction "{data.identifier}" '
@@ -370,6 +322,7 @@ def get_reaction(
 
     data.attributes["replacements"] = replacement
     reaction = data.parse(model, compartment, replacement)
+
     if not isinstance(reaction, cobra_core.Reaction):
         raise AttributeError("Given object is not a Metabolite")
 
@@ -380,329 +333,6 @@ def get_reaction(
     )
 
     return reaction
-
-
-# def _get_reaction(
-#     data_dict: dict,
-#     compartment: str,
-#     replacement: dict,
-#     model: Model,
-#     show_imbalance: bool,
-#     stop_imbalance: bool,
-#     **kwargs,
-# ) -> Reaction:
-#     """
-#     Creates a :class:`cobra:Reaction` from given dictionary with biochemical
-#     data. Location of the reactions can be set with the argument 'compartment'.
-#     This function searchs if the reaction and their metabolites are already
-#     in the model and will use them instead. Additionally, genes will be
-#     created and linked to the reaction.
-#
-#     Args:
-#         data_dict (dict): Dictionary with data of a Reaction.
-#         compartment (str): Locations of the reactions
-#         replacement (dict): Original identifiers to be replaced.
-#             Values are the new identifiers.
-#         model (Model): Model to search for duplicates and cross-references.
-#         stop_imbalance (bool): If unbalanced reaction is found, stop process.
-#         show_imbalance (bool): If unbalanced reaction is found, show output.
-#
-#     Keyword Arguments:
-#         directory (Path): Path to directory where data is located.
-#         database (str): Name of database. Check
-#             :obj:`cobramod.available_databases` for a list of names.
-#
-#     Returns:
-#         Reaction: New reaction based on dictionary
-#     """
-#     identifier: str = data_dict["ENTRY"]
-#
-#     # Raise Warning for Metacyc
-#     if data_dict["DATABASE"] == "META":
-#         msg = (
-#             f'Metabolic pathway information for reaction "{identifier}" comes '
-#             'from database "META". No genes will be created. Please use a '
-#             "specie-specific sub-database from BioCyc."
-#         )
-#         debug_log.warning(msg)
-#         warn(message=msg, category=UserWarning)
-#
-#     # Try to obtain cross-reference
-#     if data_dict["XREF"]:
-#         reference = find_intersection(
-#             dictlist=model.reactions, query=data_dict["XREF"], revert=True
-#         )
-#
-#         if reference:
-#             identifier = reference
-#
-#     with suppress(KeyError):
-#         new_identifier = f"{cmod_utils.fix_name(name=identifier)}_{compartment}"
-#
-#         reaction = model.reactions.get_by_id(new_identifier)
-#         if not isinstance(reaction, cobra_core.Reaction):
-#             raise TypeError(
-#                 f"The object {reaction} is not a valid COBRApy Metabolite"
-#             )
-#
-#         msg = (
-#             f"Reaction '{data_dict['ENTRY']}' was found as "
-#             f"'{new_identifier}'. Please curate if necessary"
-#         )
-#         debug_log.warning(msg=msg)
-#         warn(message=msg, category=UserWarning)
-#         return reaction
-#
-#     # Otherwise create from scratch
-#     reaction = Reaction(
-#         id=f"{cmod_utils.fix_name(name=identifier)}_{compartment}",
-#         name=data_dict["NAME"],
-#     )
-#
-#     for identifier, coefficient in data_dict["EQUATION"].items():
-#         # Get rid of prefix r_ and l_
-#         identifier = identifier[2:]
-#
-#         # Check replacements
-#         old_metabolite = find_replacements(
-#             identifier=identifier,
-#             obj_type="metabolites",
-#             replace_dict=replacement,
-#             model=model,
-#         )
-#
-#         # Either get data from database, use replacement or use Metabolite
-#         if isinstance(old_metabolite, str):
-#             try:
-#                 meta = get_data(
-#                     identifier=old_metabolite, debug_level=10, **kwargs
-#                 )
-#             except HTTPError:
-#                 # Renaming instead
-#                 meta = get_data(identifier=identifier, debug_level=10, **kwargs)
-#                 meta["ENTRY"] = old_metabolite
-#
-#         elif isinstance(old_metabolite, Metabolite):
-#             meta = old_metabolite
-#
-#         else:
-#             # Normal retrieval
-#             meta = get_data(identifier=identifier, debug_level=10, **kwargs)
-#
-#         # Check for transport reaction
-#         if (
-#             data_dict["TRANSPORT"]
-#             and coefficient < 0
-#             and _return_duplicate(data_dict=data_dict["EQUATION"]) == identifier
-#         ):
-#             # Temporary setting to extracellular
-#             if isinstance(meta, dict):
-#                 metabolite = get_metabolite(
-#                     metabolite_dict=meta, compartment="e", model=model
-#                 )
-#             else:
-#                 metabolite = meta.copy()
-#                 if not isinstance(metabolite, cobra_core.Metabolite):
-#                     raise TypeError(
-#                         f"The object {metabolite} is not a valid COBRApy Metabolite"
-#                     )
-#                 metabolite.compartment = "e"
-#
-#             msg = (
-#                 f'Reaction "{reaction.id}" has metabolite "{metabolite.id}" on'
-#                 " both sides of the equation (e.g transport reaction). COBRApy"
-#                 " ignores these metabolites. To avoid this, by default, "
-#                 "CobraMod will assign one metabolite to the extracellular "
-#                 "compartment. Please curate the reaction if necessary."
-#             )
-#             debug_log.warning(msg=msg)
-#             warn(message=msg, category=UserWarning)
-#
-#         else:
-#             # Convert dict to Metabolite
-#             if isinstance(meta, dict):
-#                 metabolite = get_metabolite(
-#                     metabolite_dict=meta, compartment=compartment, model=model
-#                 )
-#             else:
-#                 metabolite = meta
-#
-#         reaction.add_metabolites(metabolites_to_add={metabolite: coefficient})
-#         reaction.bounds = data_dict["BOUNDS"]
-#
-#     # Add genes and check imbalances
-#     genes_to_reaction(reaction=reaction, data_dict=data_dict)
-#     cmod_utils.check_imbalance(
-#         reaction=reaction,
-#         show_imbalance=show_imbalance,
-#         stop_imbalance=stop_imbalance,
-#     )
-#     return reaction
-
-
-# def _obtain_reaction(
-#     model: Model,
-#     identifier: str,
-#     directory: Path,
-#     database: str,
-#     compartment: str,
-#     replacement: dict,
-#     stop_imbalance: bool,
-#     show_imbalance: bool,
-#     genome: Optional[str],
-#     model_id: Optional[str],
-# ):
-#     """
-#     Return Reaction object from local directory or given database. The method
-#     will look in given model if the reaction and/or their corresponding
-#     metabolites are already in the model under other names.
-#
-#     Args:
-#         model (Model): Model to add reactions and search for equivalents.
-#         identifier (str): Original identifier of the reaction.
-#         directory (Path): Directory to search data.
-#         database (str): Name of database. Check
-#             :obj:`cobramod.available_databases` for a list of names.
-#         compartment (str): Location of the reaction.
-#         replacement (dict): Dictionary with either the new identifier and/or
-#             the identifier of object inside the model.
-#         stop_imbalance (bool): If unbalanced reaction is found, stop process.
-#         show_imbalance (bool): If unbalanced reaction is found, show output.
-#         genome (str): Exclusive for KEGG. Abbreviation for the
-#             specie involved. Genes will be obtained from this specie.
-#             List available at https://www.genome.jp/kegg/catalog/org_list.html
-#         model_id (str, optional): Exclusive for BIGG. Retrieve object from
-#             specified model.
-#     """
-#     # Find reaction or define new identifier
-#     found_reaction = find_replacements(
-#         identifier=identifier,
-#         obj_type="reactions",
-#         replace_dict=replacement,
-#         model=model,
-#     )
-#     if isinstance(found_reaction, cobra_core.Reaction):
-#         return found_reaction
-#
-#     try:
-#         query = replacement[identifier]
-#     except KeyError:
-#         query = identifier
-#
-#     try:
-#         # Regular entry
-#         data_dict = get_data(
-#             directory=directory,
-#             identifier=query,
-#             database=database,
-#             debug_level=10,
-#             genome=genome,
-#             model_id=model_id,
-#         )
-#     except HTTPError:
-#         # Renaming instead
-#         data_dict = get_data(
-#             directory=directory,
-#             identifier=identifier,
-#             database=database,
-#             debug_level=10,
-#             genome=genome,
-#             model_id=model_id,
-#         )
-#         # query would be the replacement-identifier
-#         data_dict["ENTRY"] = query
-#
-#     # Transform it
-#     reaction = get_reaction(
-#         data_dict=data_dict,
-#         compartment=compartment,
-#         directory=directory,
-#         database=database,
-#         replacement=replacement,
-#         model=model,
-#         show_imbalance=show_imbalance,
-#         stop_imbalance=stop_imbalance,
-#         model_id=model_id,
-#     )
-#     return reaction
-
-
-# def _reaction_information(string: str) -> tuple:
-#     """
-#     Parses the string and transforms it to dictionary with the metabolite and
-#     their corresponding coefficients. It will raise WrongSyntax if the format
-#     is wrong. Returns a tuple with the bounds of the reactions and its
-#     participants as a dictionary. Reversibility will depend on the type of
-#     arrow that. Options are:
-#
-#     **`<--, -->, <=>, <->`**
-#
-#     """
-#     # Define bounds
-#     arrows = {
-#         "-->": (0, 1000),
-#         "<--": (-1000, 0),
-#         "<=>": (-1000, 1000),
-#         "<->": (-1000, 1000),
-#     }
-#     bounds: Optional[tuple] = None
-#     separator: str = ""
-#
-#     for key in arrows.keys():
-#         if key in string:
-#             bounds = arrows[key]
-#             separator = key
-#             break
-#
-#     # Verify bounds
-#     if not bounds:
-#         raise WrongSyntax(
-#             f"Given string does not have a proper arrow.\n{string}\n"
-#             f'Please use one of this options:\n"{arrows.keys()}"'
-#         )
-#     # Separate parts
-#     reactants, products = [
-#         part.rstrip().strip() for part in string.split(separator)
-#     ]
-#     participants = dict()
-#     # Check for each side and make a dictionary with the coefficients
-#     for side in (reactants, products):
-#         FACTOR = 1
-#
-#         if side is reactants:
-#             FACTOR = -1
-#
-#         for metabolite in side.split("+"):
-#             # Get rid off blanks in the sides
-#             metabolite = metabolite.rstrip().strip()
-#
-#             # Obtain coefficient or give a 1 to the metabolite if nothing found
-#             try:
-#                 coefficient, identifier = [
-#                     string.strip().rstrip() for string in metabolite.split(" ")
-#                 ]
-#                 if "_" not in identifier[-2:]:
-#                     raise WrongSyntax(
-#                         f'Metabolite "{identifier}" is missing a compartment. '
-#                         + "Please add an underscore and the corresponding"
-#                         + "compartment. E.g. WATER_p"
-#                     )
-#             except ValueError:
-#                 coefficient = "1"
-#                 identifier = metabolite
-#
-#             try:
-#                 # Make sure that no empty strings are added.
-#                 if identifier:
-#                     participants[identifier] = float(coefficient) * FACTOR
-#
-#             except ValueError:
-#                 raise WrongSyntax(
-#                     f"Check the syntax for the given line:\n{string}. "
-#                     + "Please use COBRApy standards. Example:\n"
-#                     + "g6p_c --> f6p_c + h2o_c"
-#                 )
-#     return bounds, participants
 
 
 def reaction_from_string(
@@ -717,10 +347,11 @@ def reaction_from_string(
 ) -> cobra_core.Reaction:
     """
     Returns a custom reaction from a string that includes the information
-    of the reaction and its metabolites. If the metabolites are not in inside
-    the model:
-    they will be retrieved from the specified database. Function  will also
-    search for translated-metabolites in the model.
+    of the reaction and its metabolites.
+
+    If the metabolites are not in inside the model, they will be retrieved from
+    the specified database. This Function will also search for cross-references
+    in the model.
 
     Syntax:
 
@@ -734,28 +365,29 @@ def reaction_from_string(
 
     Else, include a model to retrieve identifiers from it.
 
-    Reversibility will depend on the type of arrow that. Options are
+    Reversibility will depend on the type of arrow. Options are:
 
     **`<--, -->, <=>, <->`**
 
     Args:
         line_string (str): string with information
-        directory (Path): Path to directory where data is located.
-        database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
-        model (Model, Optional): A model to obtain metabolite objects from.
-            Defaults to an empty Model.
-        stop_imbalance (bool): If unbalanced reaction is found, stop process.
-        show_imbalance (bool): If unbalanced reaction is found, show output.
+        directory (Path): Path to directory where data is located
+        database (str, optional): Name of database. Check
+            :obj:`cobramod.retrieval.available_databases` for a list of names.
+            The argument can be None ONLY for manually curated metabolites
+        stop_imbalance (bool): If unbalanced reaction is found, stop process
+        show_imbalance (bool): If unbalanced reaction is found, show output
         replacement (dict): Dictionary with either the new identifier and/or
-            the identifier of an object inside the model.
+            the identifier of an object inside the model
+        model_id (optional, str): Bigg-specific argument. Name of the model
+        model (Model, optional): A model to obtain metabolite objects from.
+            Defaults to an empty Model
 
     Raises:
-        WrongSyntax: if identifier has a wrong format.
         NoDelimiter: If no delimiter "|" is found.
 
     Returns:
-        Reaction: New reaction object.
+        Reaction
     """
     # Remove blank and obtains information
     try:
@@ -808,10 +440,10 @@ def string_to_reaction(
     genome: Optional[str],
 ) -> cobra_core.Reaction:
     """
-    Returns a :class:`cobra.Reaction` from a string. It can be either custom,
-    or the identifier for a reaction in a database. The function will search
-    for cross-references of the reaction and its metabolites if the database
-    provides that information
+    Returns a :class:`cobra.Reaction` from a string. It can be either
+    manually-curated, or the identifier for a reaction in a database. The
+    function will search for cross-references of the reaction and its
+    metabolites if the database provides that information
 
     Syntax:
 
@@ -835,18 +467,22 @@ def string_to_reaction(
 
     Args:
         line (str): String with custom reaction or identifier of reaction
-        model (Model): Model to search for object if necessary.
-        directory (Path): Path to directory, where data is located.
-        database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
-        replacement (dict): Dictionary with either the new identifier and/or
-            the identifier of an object inside the model.
-        stop_imbalance (bool): If unbalanced reaction is found, stop process.
-        show_imbalance (bool): If unbalanced reaction is found, show output.
-        genome (str): Exclusive for KEGG. Abbreviation for the
-            specie involved. Genes will be obtained from this specie.
+        model (Model): Model to search for cross-references
+        directory (Path): Path to directory, where data is located
+        database (str, optional): Name of database. Check
+            :obj:`cobramod.retrieval.available_databases` for a list of names.
+            This argument can be empty ONLY for manually-curated reactions
+        stop_imbalance (bool): If unbalanced reaction is found, stop process
+        show_imbalance (bool): If unbalanced reaction is found, show output
+        replacement (dict[str, str]): Dictionary with either the new identifier
+            and/or the identifier of an object inside the model.
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
-            specified model.
+            specified model
+
+    Returns:
+        Reaction
     """
     if "|" in line:
         # Create custom reaction
@@ -889,7 +525,8 @@ def string_to_reaction(
         if not isinstance(reaction, cobra_core.Reaction):
             raise AttributeError("Given object is not a valid COBRApy Reaction")
 
-    # TODO: add mass balance check
+        cmod_utils.check_imbalance(reaction, stop_imbalance, show_imbalance)
+
     return reaction
 
 
@@ -930,24 +567,26 @@ def get_file_reactions(
 
 
     Args:
-        model (Model): model to test
-        filename (Path): location of the file with reaction information
-        stop_imbalance (bool): If unbalanced reaction is found, stop process.
-        show_imbalance (bool): If unbalanced reaction is found, show output.
-
-    Keyword Arguments:
-        directory (Path): Path to directory where data is located.
-        database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
-        replacement (dict): Dictionary with either the new identifier and/or
-            the identifier of an object inside the model.
-        genome (str, optional): Exclusive for KEGG. Abbreviation for the
-            specie involved. Genes will be obtained from this specie.
+        model (Model): model to check for cross-references
+        filename (Path, str): location of the file with reaction information
+        directory (Path): Path to directory where data is located
+        stop_imbalance (bool): If unbalanced reaction is found, stop process
+        show_imbalance (bool): If unbalanced reaction is found, show output
+        replacement (dict[str, str]): Dictionary with either the new identifier
+            and/or the identifier of an object inside the model
+        database (str, optional): Name of database. Check
+            :obj:`cobramod.retrieval.available_databases` for a list of names.
+            This argument can be empty ONLY for manually-curated reactions
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
-            specified model.
+            specified model
+        genome (str, optional): Exclusive for KEGG. Abbreviation for the
+            specie involved. Genes will be obtained from this specie
 
     Raises:
-        FileNotFoundError: if file does not exists
+        FileNotFoundError: If file does not exists
+
+    Returns:
+        list[Reaction]
     """
     if isinstance(filename, str):
         filename = Path(filename).absolute()
@@ -976,126 +615,6 @@ def get_file_reactions(
     return new_reactions
 
 
-# def _ident_pathway(data_dict: dict) -> Generator:
-#     """
-#     Checks if given dictionary belongs to a pathway object. Returns its as
-#     generator if True. Else, raises WrongDataError.
-#     """
-#     if data_dict["TYPE"] == "Pathway":
-#         debug_log.debug(
-#             f"Object '{data_dict['ENTRY']}' identified as a pathway."
-#         )
-#         yield data_dict
-#     else:
-#         raise WrongDataError("Data does not belong to a pathway")
-#
-#
-# def _ident_reaction(
-#     data_dict: dict,
-#     directory: Path,
-#     replacement: dict,
-#     database: str,
-#     compartment: str,
-#     show_imbalance: bool,
-#     stop_imbalance: bool,
-#     model: Model,
-# ) -> Generator:
-#     """
-#     Tries to identify given dictionary if it includes information of a
-#     reaction. If True, it will yield a Reaction.
-#
-#     Args:
-#         data_dict (dict): dictionary to examine.
-#         directory (Path): directory to retrived and store data.
-#         replacement (dict): Dictionary with either the new identifier and/or
-#             the identifier of an object inside the model.
-#         database (str): name of the database to query retrive data.
-#         compartment: location of the reaction.
-#         stop_imbalance (bool): If unbalanced reaction is found, stop process.
-#         show_imbalance (bool): If unbalanced reaction is found, show output.
-#
-#     Returns:
-#        Generator: Reaction from dictionary.
-#
-#     Raises:
-#         WrongDataError: If data does not include reaction information.
-#     """
-#     identifier = data_dict["ENTRY"]
-#     try:
-#         debug_log.debug(f"Object '{identifier}' identified as a reaction.")
-#
-#         found_reaction = find_replacements(
-#             identifier=identifier,
-#             obj_type="reactions",
-#             replace_dict=replacement,
-#             model=model,
-#         )
-#         if isinstance(found_reaction, Reaction):
-#             yield found_reaction
-#         elif isinstance(found_reaction, str):
-#             data_dict["ENTRY"] = found_reaction
-#
-#         # Otherwise, create object and then yield it
-#         reaction = get_reaction(
-#             data_dict=data_dict,
-#             directory=directory,
-#             replacement=replacement,
-#             database=database,
-#             compartment=compartment,
-#             model=model,
-#             stop_imbalance=stop_imbalance,
-#             show_imbalance=show_imbalance,
-#         )
-#         yield reaction
-#
-#     except KeyError:
-#         data_dict["ENTRY"] = identifier
-#         raise WrongDataError("Data does not belong to a reaction.")
-#
-#
-# def _ident_metabolite(
-#     data_dict: dict, compartment: str, model: Model, replacement: dict
-# ) -> Generator:
-#     """
-#     Tries to identify given dictionary if its includes metabolite information,
-#     and transforms it into a metabolite in a generator
-#
-#     Args:
-#         data_dict: dictionary with data of a metabolite.
-#         compartment: location of the metabolite.
-#
-#     Returns:
-#         Generator: new Metabolite based on given dictionary.
-#
-#     Raises:
-#         WrongDataError: If data does not include information of a metabolite.
-#     """
-#     identifier = data_dict["ENTRY"]
-#     try:
-#         new_identifier = find_replacements(
-#             identifier=identifier,
-#             obj_type="metabolites",
-#             replace_dict=replacement,
-#             model=model,
-#         )
-#         if isinstance(new_identifier, Metabolite):
-#             yield new_identifier
-#
-#         elif isinstance(new_identifier, str):
-#             data_dict["ENTRY"] = new_identifier
-#
-#         # Otherwise, create object and then yield it
-#         metabolite = get_metabolite(
-#             metabolite_dict=data_dict, compartment=compartment, model=model
-#         )
-#         debug_log.debug(f"Object '{metabolite.id}' identified as a metabolite")
-#         yield metabolite
-#
-#     except KeyError:
-#         data_dict["ENTRY"] = identifier
-#         raise WrongDataError("Data does not belong to a metabolite")
-
-
 def create_object(
     identifier: str,
     directory: Union[Path, str],
@@ -1112,37 +631,36 @@ def create_object(
     Creates and returns a COBRApy object based on given identifier and
     database. Identifier names will be formatted.
 
-    .. hint:: Hyphens will become underscores. Double hyphens become single\
-    underscores.
+    .. hint:: Hyphens will become underscores.
 
     Args:
         identifier (str): Original identifier of the database.
         directory (Path): Path to directory where data is stored.
         database (str): Name of database. Check
-            :obj:`cobramod.available_databases` for a list of names.
+            :obj:`cobramod.retrieval.available_databases` for a list of names.
         compartment (str): Location of the object. In case of reaction, all
             metabolites will be included in the same location.
-        replacement (dict): Dictionary with either the new identifier and/or
-            the identifier of an object inside the model.
+        replacement (dict[str, str]): Dictionary with either the new identifier
+            and/or the identifier of an object inside the model.
 
     Arguments for reactions:
-        stop_imbalance (bool, optional): If an unbalanced reaction is found,
-            stop the process. Defaults to False.
-        show_imbalance (bool, optional): If an unbalanced reaction is found,
-            print output. Defaults to True.
-        model (Model, optional): model in which cross-references for reaction
-            and metabolites might be found and used.
+        stop_imbalance (bool): If an unbalanced reaction is found, stop the
+            process. Defaults to False.
+        show_imbalance (bool): If an unbalanced reaction is found, print
+            output. Defaults to True.
+        model (Model): Model in which cross-references for reaction
+            and metabolites might be found and used. If nothing is specified,
+            it uses an empty model by default
 
     Special arguments for databases:
         model_id (str, optional): Exclusive for BIGG. Retrieve object from
-            specified model. Internal function use the default: "universal"
+            specified model. Internal functions use the default: "universal"
         genome (str, optional): Exclusive for KEGG. Abbreviation for the
             species involved. Genes will be obtained for this species.
             List available at https://www.genome.jp/kegg/catalog/org_list.html
 
     Returns:
-        Union[Reaction, Metabolite]: A Reaction or Metabolite object; or the
-            information for a pathway.
+        cobra.core.Object: A Reaction or Metabolite object
     """
     query = replacement.get(identifier, identifier)
 

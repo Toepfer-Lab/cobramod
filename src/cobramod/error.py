@@ -139,7 +139,7 @@ class UnbalancedReaction(Exception):
         """
         msg = (
             f'Reaction "{identifier}" unbalanced. Following atoms are '
-            + f"affected. Please verify:\n{dict_balance}"
+            + f"affected. Please verify: {dict_balance}"
         )
         debug_log.critical(msg)
         super().__init__(msg)

@@ -8,13 +8,7 @@ The possible type of data that can be downloaded:
 - Genes: It is included in the Reactions. Names and gene-reaction-rule is also
 acquired
 
-They change identifiers depending on the model given. BiGG have multiple
-models.
-Contact maintainers if other types should be added.
-
-Important class of the module:
-- BiggParser: Child of the abstract class
-:class:`cobramod.parsing.base.BaseParser`.
+They change identifiers depending on the model given. BiGG have multiple models
 """
 from __future__ import annotations
 

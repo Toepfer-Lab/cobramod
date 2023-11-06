@@ -36,6 +36,85 @@ SOLCYC = "https://solcyc.sgn.cornell.edu/getxml?id="
 
 EXTENSIONS = [".xml", ".txt", ".json"]
 
+
+class Databases:
+    """
+    Simple object that shows the information about the database
+    """
+
+    def __init__(self):
+        self.msg = (
+            "CobraMod supports BioCyc, the Plant Metabolic Network (PMN), "
+            "Sol Genomics Network (SolCyc), KEGG and BiGG Models repository. "
+            "BioCyc includes around 18.000 sub-databases. A complete list "
+            "for BioCyc can be found at: "
+            "'https://biocyc.org/biocyc-pgdb-list.shtml'.\n"
+            "The database-specific identifiers can be found in the URL of the "
+            "respective data."
+        )
+
+    def __repr__(self):
+        """
+        Returns a string about the definition of "identifier" and where
+        to obtain them.
+        """
+        self.msg2 = (
+            "CobraMod uses abbreviations to represent the databases or "
+            "sub-databases:\n"
+            "Abbreviation   Database Name\n"
+            "META           Biocyc, subdatabase MetaCyc\n"
+            "ARA            Biocyc, subdatabase AraCyc\n"
+            "\n"
+            "KEGG           Kyoto encyclopedia of Genes and Genomes\n"
+            "BIGG           BiGG Models\n"
+            "\n"
+            "PMN:META       Plantcyc, subdatabase META\n"
+            "PMN:ARA        Plantcyc, subdatabase ARA\n"
+            "\n"
+            "SOL:META       SolCyc, subdatabase META\n"
+            "SOL:LYCO       SolCyc, subdatabase LYCO\n"
+            "This applies for all subdatabases from SolCyc, BioCyc and Plantcyc\n"
+        )
+
+        return self.msg + self.msg2
+
+    def _repr_html_(self):
+        """
+        Returns a HTML string about the definition of "identifier" and where
+        to obtain them.
+        """
+        return """<p>CobraMod supports BioCyc, the Plant Metabolic Network
+    (PMN), Sol Genomics Network (SolCyc), KEGG and BiGG Models repository.
+    BioCyc includes around 18.000 sub-databases. A complete list for BioCyc can
+    be found at: 'https://biocyc.org/biocyc-pgdb-list.shtml'.<br />The
+    database-specific identifiers can be found in the URL of the respective
+    data.CobraMod uses abbreviations to represent the databases or
+    sub-databases:</p> <table style="width: 50%; border-collapse: collapse;"
+    border="1"> <tbody> <tr> <td style="width:
+        50%;"><strong>Abbreviation</strong></td> <td style="width:
+            50%;"><strong>Database name</strong></td> </tr> <tr> <td
+            style="width: 50%;">META</td> <td style="width: 50%;">Biocyc,
+            subdatabase MetaCyc</td> </tr> <tr> <td style="width:
+                50%;">ARA</td> <td style="width: 50%;">Biocyc, subdatabase
+                AraCyc</td> </tr> <tr> <td style="width: 50%;">KEGG</td> <td
+                style="width: 50%;">Kyoto encyclopedia of Genes and
+                Genomes</td> </tr> <tr> <td style="width: 50%;">BIGG</td> <td
+                style="width: 50%;">BiGG Models</td> </tr> <tr> <td
+                style="width: 50%;">PMN:META</td> <td style="width:
+                    50%;">PlantCyc, subdatabase META</td> </tr> <tr> <td
+                    style="width: 50%;">PMN:ARA</td> <td style="width:
+                        50%;">PlantCyc, subdatabase ARA</td> </tr> <tr> <td
+                        style="width: 50%;">SOL:META</td> <td style="width:
+                            50%;">SolCyc, subdatabase META</td> </tr> <tr> <td
+                            style="width: 50%;">SOL:LYCO</td> <td style="width:
+                                50%;">SolCyc. subdatabase Meta</td> </tr>
+                                </tbody> </table> <p>This applies for all
+                                subdatabases from SolCyc, BioCyc and
+                                Plantcyc</p>"""
+
+
+available_databases = Databases()
+
 # NOTE: bigg uses an extra function
 databases = {
     "BIOCYC": BIOCYC,
@@ -55,6 +134,10 @@ class Data:
     model_id: str
     genome: str
     version: str
+    """
+    CobraMod's Data object. This class is responsable for converting
+    information into COBRApy objects
+    """
 
     def __init__(
         self,
@@ -82,6 +165,9 @@ class Data:
     def from_json(
         cls, entry: str, data: dict[str, Any], database: str, path: Path
     ):
+        """
+        Creates an instance from a JSON file. Database: BIGG
+        """
         is_compound = data.get("formulae", data.get("formula", None))
         model_id = path.parent.name
 
@@ -120,6 +206,9 @@ class Data:
     def from_text(
         cls, entry: str, text: str, database: str, path: Path, genome: str
     ):
+        """
+        Creates an instance from plain text. Database: KEGG
+        """
         data: dict[str, list[str]] = kegg.data_from_string(text)
         mode = data["ENTRY"][0].split()[-1]
         gene_path = path.parent.joinpath("GENES")
@@ -159,6 +248,9 @@ class Data:
 
     @classmethod
     def from_xml(cls, entry: str, root: et.Element, database: str, path: Path):
+        """
+        Creates an instance from an XML file. Database: Biocyc families
+        """
         version = root.find("metadata/PGDB")
         if version is not None:
             version = version.attrib.get("version")
@@ -197,6 +289,22 @@ class Data:
         compartment: str,
         replacement: dict[str, str] = {},
     ) -> cobra_core.Object:
+        """
+        Parses information and creates a cobrapy Object. This can be a
+        Metabolite or Reaction.
+
+        Args:
+            model (cobra.core.Model): Model to search for information
+            compartment (str): Location of the object
+            replacement (dict[str, str]): In case of Reactions, the dictionary
+                represents the metabolites to replace. The key is the
+                identifier of the object to replaced and the value is the new
+                identifier to use instead. Defaults to an empty dictionary
+
+        Returns:
+            cobra.core.Object This can be a Reaction or Metabolites
+
+        """
         identifier = replacement.get(self.identifier, self.identifier)
         identifier = f"{identifier.replace('-','_')}_{compartment}"
 
@@ -322,7 +430,7 @@ def get_response(
         response, _ = bigg.find_url(model_id, query)
         response.raise_for_status()
 
-        # This extra attribute if later use to save the file in their
+        # This extra attribute is later used to save the file in their
         # corresponding directories
         response.extra = Path(model_id)  # type: ignore
 
@@ -358,6 +466,18 @@ def get_response(
 def file_to_Data_class(
     identifier: str, filename: Path, genome: Optional[str]
 ) -> Data:
+    """
+    Creates a Data object from given file.
+
+    Args:
+        identifier (str): Identifier of the object. It should be included in
+            the file itself
+        filename (Path): Location of the file
+        genome (Optional[str]): BIGG-specific argument. Genome involved
+
+    Returns:
+        Data
+    """
     f = open(filename, "r")
     text = f.read()
     f.close()
@@ -412,6 +532,9 @@ def write(name: str, directory: Path, response: requests.Response) -> Path:
 
 
 def get_files(directory: Path, identifier: str):
+    """
+    Returns a Generator with the possible files given a specific identifier
+    """
     for item in directory.iterdir():
         for pattern in EXTENSIONS:
             if not item.match(identifier + pattern):
@@ -425,8 +548,23 @@ def get_data(
     database: Optional[str],
     model_id: Optional[str] = None,
     genome: Optional[str] = None,
-    # NOTE: add docstring
-):
+) -> Data:
+    """
+    Retrieves the Data for given identifier. This function either retrieves
+    from the server of the databases or locally.
+
+    Args:
+        identifier (str): Name of the object to retrieve
+        dictionary (str or Path): Location of the files to retrieve or store
+        database (Optional[str]): Name of the database. Check
+            cobramod.retrieval.available_databases for more information
+        model_id (Optional[str]): BIGG-specific argument. Name of the model to
+            retrieve information
+        genome: (Optional[str]): Name of the genome to retrieve
+
+    Returns:
+        Data
+    """
     if isinstance(directory, str):
         directory = Path(directory).absolute()
 
@@ -549,6 +687,25 @@ def build_reaction_from_str(
     model_id: Optional[str],
     replacement: dict[str, str],
 ):
+    """
+    Populates the reaction with Metabolites from given reaction string.
+    Metabolites are retrieved from the servers or locally
+
+    Args:
+        model (cobra.core.Model): Model to search for metabolites
+        reaction (cobra.core.Reaction): Empty reaction to populate
+        reaction_str (str): valid reaction string
+        directory (Path): Path for the location of the directory where the
+            information is stored
+        database (str, optional): Name of the database. Check
+            cobramod.retrieval.available_databases for more information
+        model_id (str, optional): BIGG-specific argument. Name of the model to
+            retrieve information
+        genome: (Optional[str]): Name of the genome to retrieve
+        replacement (dict[str, str]): The dictionary represents the metabolites
+            to replace. The key is the identifier of the object to replaced and
+            the value is the new identifier to use instead
+    """
     position = cmod_utils.get_arrow_position(reaction_str)
     arrow = reaction_str[position : position + 3]
     reaction.bounds = cmod_utils.ARROWS[arrow]
@@ -562,6 +719,10 @@ def build_reaction_from_str(
             coefficient = 1
             metabolite = pair.rstrip().strip()
 
+            # Empty part
+            if metabolite == "":
+                break
+
         compounds[metabolite] = -1.0 * float(coefficient)
 
     # products
@@ -571,6 +732,10 @@ def build_reaction_from_str(
         except ValueError:
             coefficient = 1
             metabolite = pair.rstrip().strip()
+
+            # Empty part
+            if metabolite == "":
+                break
 
         compounds[metabolite] = float(coefficient)
 
@@ -589,13 +754,16 @@ def build_reaction_from_str(
             metabolite = creation.metabolite_from_data(data, compartment, model)
 
         except (requests.HTTPError, ValueError):
-            # NOTE: add log. This is only for custom
             metabolite = cobra_core.Metabolite(
                 identifier, name=identifier, compartment=compartment
             )
+            debug_log.debug(f"Curated Metabolite '{metabolite.id}' created")
 
         # NOTE: add logs
         if not isinstance(metabolite, cobra_core.Metabolite):
             raise TypeError("Given object is not a valid COBRApy Metabolite")
 
         reaction.add_metabolites({metabolite: coefficient})
+        debug_log.debug(
+            f"Metabolite '{metabolite.id}' added to reaction '{reaction.id}'"
+        )
