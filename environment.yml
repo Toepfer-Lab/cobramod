@@ -9,6 +9,7 @@ dependencies:
 - conda-forge::cobra
 - bioconda::escher
 - jasonb857::ipywidgets
+- jasonb857::jinja2
 - jupyter
 - jupytext
 - matplotlib
@@ -17,12 +18,12 @@ dependencies:
 - python
 - ruff
 - pre-commit
+- conda-forge::sphinx
+- conda-forge::nbsphinx
+- conda-forge::sphinx-autoapi
 - pip:
-  - Sphinx
   - sphinx-rtd-theme
   - sphinxcontrib-napoleon
   - doc8
-  - nbsphinx
-  - sphinx-autoapi
   - sphinxcontrib-bibtex
   - openpyxl
