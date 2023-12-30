@@ -144,8 +144,8 @@ class BaseParser(ABC):
             BaseParser._get_database_version(directory=directory)
 
         assert isinstance(BaseParser.database_version, pd.DataFrame)
-        BaseParser.database_version = BaseParser.database_version.append(
-            {"orgid": database, "version": version}, ignore_index=True
+        BaseParser.database_version = pd.concat(
+            [BaseParser.database_version, pd.DataFrame({"orgid": [database], "version": [version]})], ignore_index=True
         )
 
         BaseParser.database_version.to_csv(
