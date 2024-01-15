@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECOLI:ACETYL-COA'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECOLI:ACETYL-COA</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA' detail='full'><parent><Compound resource='getxml?ECOLI:ACYL-COA' orgid='ECOLI' frameid='ACYL-COA' class='true'/></parent>
+<parent><Compound resource='getxml?ECOLI:Acetylated-Acetyl-Acceptors' orgid='ECOLI' frameid='Acetylated-Acetyl-Acceptors' class='true'/></parent>
+<cml><molecule id='ACETYL-COA' title='acetyl-CoA' formalCharge='-4'><atomArray><atom id='ACETYL-COA-atom1' elementType='C' x2='1.16524e+7' y2='1239000.0'/><atom id='ACETYL-COA-atom2' elementType='C' x2='2623000.0' y2='1755000.0'/><atom id='ACETYL-COA-atom3' elementType='C' x2='3493000.0' y2='1806000.0'/><atom id='ACETYL-COA-atom4' elementType='C' x2='6653000.0' y2='826000.0'/><atom id='ACETYL-COA-atom5' elementType='C' x2='5938000.0' y2='1239000.0'/><atom id='ACETYL-COA-atom6' elementType='C' x2='8797000.0' y2='1239000.0'/><atom id='ACETYL-COA-atom7' elementType='C' x2='9512000.0' y2='826000.0'/><atom id='ACETYL-COA-atom8' elementType='C' x2='1540500.0' y2='4126500.0'/><atom id='ACETYL-COA-atom9' elementType='C' x2='2366000.0' y2='826000.0'/><atom id='ACETYL-COA-atom10' elementType='C' x2='5973400.0' y2='5708500.0'/><atom id='ACETYL-COA-atom11' elementType='C' x2='4688800.0' y2='3299800.0'/><atom id='ACETYL-COA-atom12' elementType='C' x2='1.09392e+7' y2='824300.0'/><atom id='ACETYL-COA-atom13' elementType='C' x2='2328400.0' y2='4371000.0'/><atom id='ACETYL-COA-atom14' elementType='C' x2='7368000.0' y2='1239000.0'/><atom id='ACETYL-COA-atom15' elementType='C' x2='5779100.0' y2='4070000.0'/><atom id='ACETYL-COA-atom16' elementType='C' x2='3418700.0' y2='5141100.0'/><atom id='ACETYL-COA-atom17' elementType='C' x2='2593800.0' y2='5152100.0'/><atom id='ACETYL-COA-atom18' elementType='C' x2='3795000.0' y2='826000.0'/><atom id='ACETYL-COA-atom19' elementType='C' x2='6537200.0' y2='4395500.0'/><atom id='ACETYL-COA-atom20' elementType='C' x2='5118200.0' y2='4563800.0'/><atom id='ACETYL-COA-atom21' elementType='C' x2='4509000.0' y2='1239000.0'/><atom id='ACETYL-COA-atom22' elementType='C' x2='3663200.0' y2='4353200.0'/><atom id='ACETYL-COA-atom23' elementType='C' x2='3080000.0' y2='1239000.0'/><atom id='ACETYL-COA-atom24' elementType='N' x2='7198100.0' y2='3901700.0'/><atom id='ACETYL-COA-atom25' elementType='N' x2='8083000.0' y2='826000.0'/><atom id='ACETYL-COA-atom26' elementType='N' x2='5224000.0' y2='826000.0'/><atom id='ACETYL-COA-atom27' elementType='N' x2='6634300.0' y2='5214700.0'/><atom id='ACETYL-COA-atom28' elementType='N' x2='5215400.0' y2='5383000.0'/><atom id='ACETYL-COA-atom29' elementType='N' x2='5513700.0' y2='3288800.0'/><atom id='ACETYL-COA-atom30' elementType='N' x2='4444300.0' y2='4087800.0'/><atom id='ACETYL-COA-atom31' elementType='O' x2='1.09392e+7' y2='11600.0'/><atom id='ACETYL-COA-atom32' elementType='O' x2='7368000.0' y2='2064000.0'/><atom id='ACETYL-COA-atom33' elementType='O' x2='3912500.0' y2='5802000.0'/><atom id='ACETYL-COA-atom34' elementType='O' x2='3795000.0' y2='0.0'/><atom id='ACETYL-COA-atom35' elementType='O' x2='4509000.0' y2='2064000.0'/><atom id='ACETYL-COA-atom36' elementType='O' x2='1295600.0' y2='6653700.0'/><atom id='ACETYL-COA-atom37' elementType='O' x2='2945600.0' y2='6648200.0' formalCharge='-1'/><atom id='ACETYL-COA-atom38' elementType='O' x2='2123300.0' y2='7476000.0' formalCharge='-1'/><atom id='ACETYL-COA-atom39' elementType='O' x2='1651000.0' y2='2889000.0' formalCharge='-1'/><atom id='ACETYL-COA-atom40' elementType='O' x2='1000.0' y2='2889000.0'/><atom id='ACETYL-COA-atom41' elementType='O' x2='826000.0' y2='413000.0' formalCharge='-1'/><atom id='ACETYL-COA-atom42' elementType='O' x2='0.0' y2='1239000.0'/><atom id='ACETYL-COA-atom43' elementType='O' x2='826000.0' y2='3714000.0'/><atom id='ACETYL-COA-atom44' elementType='O' x2='1650000.0' y2='1239000.0'/><atom id='ACETYL-COA-atom45' elementType='O' x2='2989300.0' y2='3877200.0'/><atom id='ACETYL-COA-atom46' elementType='O' x2='2117800.0' y2='5826000.0'/><atom id='ACETYL-COA-atom47' elementType='O' x2='826000.0' y2='2064000.0'/><atom id='ACETYL-COA-atom48' elementType='P' x2='2120600.0' y2='6651000.0'/><atom id='ACETYL-COA-atom49' elementType='P' x2='826000.0' y2='2889000.0'/><atom id='ACETYL-COA-atom50' elementType='P' x2='826000.0' y2='1239000.0'/><atom id='ACETYL-COA-atom51' elementType='S' x2='1.0226e+7' y2='1239000.0'/></atomArray>
+<bondArray><bond id='ACETYL-COA-bond1' atomRefs='ACETYL-COA-atom51 ACETYL-COA-atom12' order='1'/><bond id='ACETYL-COA-bond2' atomRefs='ACETYL-COA-atom12 ACETYL-COA-atom31' order='2'/><bond id='ACETYL-COA-bond3' atomRefs='ACETYL-COA-atom12 ACETYL-COA-atom1' order='1'/><bond id='ACETYL-COA-bond4' atomRefs='ACETYL-COA-atom18 ACETYL-COA-atom23' order='1'/><bond id='ACETYL-COA-bond5' atomRefs='ACETYL-COA-atom21 ACETYL-COA-atom18' order='1'/><bond id='ACETYL-COA-bond6' atomRefs='ACETYL-COA-atom26 ACETYL-COA-atom21' order='1'/><bond id='ACETYL-COA-bond7' atomRefs='ACETYL-COA-atom25 ACETYL-COA-atom14' order='1'/><bond id='ACETYL-COA-bond8' atomRefs='ACETYL-COA-atom9 ACETYL-COA-atom23' order='1'/><bond id='ACETYL-COA-bond9' atomRefs='ACETYL-COA-atom4 ACETYL-COA-atom14' order='1'/><bond id='ACETYL-COA-bond10' atomRefs='ACETYL-COA-atom5 ACETYL-COA-atom26' order='1'/><bond id='ACETYL-COA-bond11' atomRefs='ACETYL-COA-atom5 ACETYL-COA-atom4' order='1'/><bond id='ACETYL-COA-bond12' atomRefs='ACETYL-COA-atom6 ACETYL-COA-atom25' order='1'/><bond id='ACETYL-COA-bond13' atomRefs='ACETYL-COA-atom7 ACETYL-COA-atom6' order='1'/><bond id='ACETYL-COA-bond14' atomRefs='ACETYL-COA-atom18 ACETYL-COA-atom34' order='1'/><bond id='ACETYL-COA-bond15' atomRefs='ACETYL-COA-atom35 ACETYL-COA-atom21' order='2'/><bond id='ACETYL-COA-bond16' atomRefs='ACETYL-COA-atom32 ACETYL-COA-atom14' order='2'/><bond id='ACETYL-COA-bond17' atomRefs='ACETYL-COA-atom3 ACETYL-COA-atom23' order='1'/><bond id='ACETYL-COA-bond18' atomRefs='ACETYL-COA-atom2 ACETYL-COA-atom23' order='1'/><bond id='ACETYL-COA-bond19' atomRefs='ACETYL-COA-atom42 ACETYL-COA-atom50' order='2'/><bond id='ACETYL-COA-bond20' atomRefs='ACETYL-COA-atom50 ACETYL-COA-atom44' order='1'/><bond id='ACETYL-COA-bond21' atomRefs='ACETYL-COA-atom50 ACETYL-COA-atom41' order='1'/><bond id='ACETYL-COA-bond22' atomRefs='ACETYL-COA-atom50 ACETYL-COA-atom47' order='1'/><bond id='ACETYL-COA-bond23' atomRefs='ACETYL-COA-atom9 ACETYL-COA-atom44' order='1'/><bond id='ACETYL-COA-bond24' atomRefs='ACETYL-COA-atom40 ACETYL-COA-atom49' order='2'/><bond id='ACETYL-COA-bond25' atomRefs='ACETYL-COA-atom43 ACETYL-COA-atom49' order='1'/><bond id='ACETYL-COA-bond26' atomRefs='ACETYL-COA-atom39 ACETYL-COA-atom49' order='1'/><bond id='ACETYL-COA-bond27' atomRefs='ACETYL-COA-atom47 ACETYL-COA-atom49' order='1'/><bond id='ACETYL-COA-bond28' atomRefs='ACETYL-COA-atom22 ACETYL-COA-atom30' order='1'/><bond id='ACETYL-COA-bond29' atomRefs='ACETYL-COA-atom22 ACETYL-COA-atom16' order='1'/><bond id='ACETYL-COA-bond30' atomRefs='ACETYL-COA-atom16 ACETYL-COA-atom33' order='1'/><bond id='ACETYL-COA-bond31' atomRefs='ACETYL-COA-atom30 ACETYL-COA-atom11' order='1'/><bond id='ACETYL-COA-bond32' atomRefs='ACETYL-COA-atom10 ACETYL-COA-atom28' order='2'/><bond id='ACETYL-COA-bond33' atomRefs='ACETYL-COA-atom29 ACETYL-COA-atom15' order='1'/><bond id='ACETYL-COA-bond34' atomRefs='ACETYL-COA-atom36 ACETYL-COA-atom48' order='2'/><bond id='ACETYL-COA-bond35' atomRefs='ACETYL-COA-atom17 ACETYL-COA-atom16' order='1'/><bond id='ACETYL-COA-bond36' atomRefs='ACETYL-COA-atom28 ACETYL-COA-atom20' order='1'/><bond id='ACETYL-COA-bond37' atomRefs='ACETYL-COA-atom20 ACETYL-COA-atom30' order='1'/><bond id='ACETYL-COA-bond38' atomRefs='ACETYL-COA-atom27 ACETYL-COA-atom10' order='1'/><bond id='ACETYL-COA-bond39' atomRefs='ACETYL-COA-atom45 ACETYL-COA-atom22' order='1'/><bond id='ACETYL-COA-bond40' atomRefs='ACETYL-COA-atom37 ACETYL-COA-atom48' order='1'/><bond id='ACETYL-COA-bond41' atomRefs='ACETYL-COA-atom38 ACETYL-COA-atom48' order='1'/><bond id='ACETYL-COA-bond42' atomRefs='ACETYL-COA-atom11 ACETYL-COA-atom29' order='2'/><bond id='ACETYL-COA-bond43' atomRefs='ACETYL-COA-atom46 ACETYL-COA-atom48' order='1'/><bond id='ACETYL-COA-bond44' atomRefs='ACETYL-COA-atom17 ACETYL-COA-atom46' order='1'/><bond id='ACETYL-COA-bond45' atomRefs='ACETYL-COA-atom13 ACETYL-COA-atom45' order='1'/><bond id='ACETYL-COA-bond46' atomRefs='ACETYL-COA-atom13 ACETYL-COA-atom17' order='1'/><bond id='ACETYL-COA-bond47' atomRefs='ACETYL-COA-atom15 ACETYL-COA-atom20' order='2'/><bond id='ACETYL-COA-bond48' atomRefs='ACETYL-COA-atom19 ACETYL-COA-atom27' order='2'/><bond id='ACETYL-COA-bond49' atomRefs='ACETYL-COA-atom24 ACETYL-COA-atom19' order='1'/><bond id='ACETYL-COA-bond50' atomRefs='ACETYL-COA-atom15 ACETYL-COA-atom19' order='1'/><bond id='ACETYL-COA-bond51' atomRefs='ACETYL-COA-atom43 ACETYL-COA-atom8' order='1'/><bond id='ACETYL-COA-bond52' atomRefs='ACETYL-COA-atom13 ACETYL-COA-atom8' order='1'/><bond id='ACETYL-COA-bond53' atomRefs='ACETYL-COA-atom51 ACETYL-COA-atom7' order='1'/></bondArray>
+<formula concise='C 23 H 34 N 7 O 17 P 3 S 1'/><float title='molecularWeight' units='g/mol'>805.54</float>
+<string title='smiles'>CC(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)COP(OP([O-])(OC[C@@H]1([C@@H](OP([O-])([O-])=O)[C@@H](O)[C@@H](O1)N2(C3(\N=C/N=C(C(\N=C/2)=3)/N))))=O)([O-])=O</string>
+</molecule>
+</cml>
+<regulates><Regulation ID='ECOLI:REG0-11728' orgid='ECOLI' frameid='REG0-11728' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ACETOACETYL-COA-TRANSFER-ENZRXN' orgid='ECOLI' frameid='ACETOACETYL-COA-TRANSFER-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ACETOACETYL-COA-TRANSFER-CPLX' orgid='ECOLI' frameid='ACETOACETYL-COA-TRANSFER-CPLX'/></enzyme>
+<synonym datatype='string'>acetyl-CoA:acetoacetate-CoA transferase</synonym>
+<common-name datatype='string'>acetoacetyl-CoA transferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:ACETOACETYL-COA-TRANSFER-RXN' orgid='ECOLI' frameid='ACETOACETYL-COA-TRANSFER-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-9397' orgid='ECOLI' frameid='REG0-9397' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-1702' orgid='ECOLI' frameid='ENZRXN0-1702' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-1142' orgid='ECOLI' frameid='CPLX0-1142'/></enzyme>
+<synonym datatype='string'>formyl-CoA:oxalate CoA-transferase</synonym>
+<common-name datatype='string'>formyl-CoA transferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-1382' orgid='ECOLI' frameid='RXN0-1382'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7671' orgid='ECOLI' frameid='REG0-7671' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALIC-NAD-ENZRXN' orgid='ECOLI' frameid='MALIC-NAD-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:MALIC-NAD-CPLX' orgid='ECOLI' frameid='MALIC-NAD-CPLX'/></enzyme>
+<synonym datatype='string'>pyruvic-malic carboxylase</synonym>
+<synonym datatype='string'>(S)-malate:NAD+ oxdireductase (oxaloacetate decarboxylating)</synonym>
+<synonym datatype='string'>malic enzyme, NAD-linked</synonym>
+<synonym datatype='string'>malate dehydrogenase, NAD-requiring</synonym>
+<common-name datatype='string'>malate dehydrogenase (oxaloacetate-decarboxylating)</common-name>
+<reaction><Reaction resource='getxml?ECOLI:1.1.1.39-RXN' orgid='ECOLI' frameid='1.1.1.39-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7612' orgid='ECOLI' frameid='REG0-7612' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALIC-NADP-ENZRXN' orgid='ECOLI' frameid='MALIC-NADP-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:MALIC-NADP-CPLX' orgid='ECOLI' frameid='MALIC-NADP-CPLX'/></enzyme>
+<synonym datatype='string'>malic enzyme</synonym>
+<synonym datatype='string'>malate dehydrogenase, NADP+-linked</synonym>
+<synonym datatype='string'>pyruvic-malic carboxylase</synonym>
+<synonym datatype='string'>(S)-malate:NADP+ oxidoreductase (oxaloacetate-decarboxylating)</synonym>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:MALIC-NADP-RXN' orgid='ECOLI' frameid='MALIC-NADP-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7410' orgid='ECOLI' frameid='REG0-7410' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PHOSPHOGLUCMUT-ENZRXN' orgid='ECOLI' frameid='PHOSPHOGLUCMUT-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PHOSPHOGLUCMUT-MONOMER' orgid='ECOLI' frameid='PHOSPHOGLUCMUT-MONOMER'/></enzyme>
+<synonym datatype='string'>glucose phosphomutase</synonym>
+<synonym datatype='string'>&amp;alpha;-D-glucose 1,6-phosphomutase</synonym>
+<common-name datatype='string'>phosphoglucomutase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PHOSPHOGLUCMUT-RXN' orgid='ECOLI' frameid='PHOSPHOGLUCMUT-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7273' orgid='ECOLI' frameid='REG0-7273' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PEPCARBOX-ENZRXN' orgid='ECOLI' frameid='PEPCARBOX-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PEPCARBOX-CPLX' orgid='ECOLI' frameid='PEPCARBOX-CPLX'/></enzyme>
+<synonym datatype='string'>orthophosphate:oxaloacetate carboxy-lyase (phosphorylating)</synonym>
+<common-name datatype='string'>phosphoenolpyruvate carboxylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PEPCARBOX-RXN' orgid='ECOLI' frameid='PEPCARBOX-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7082' orgid='ECOLI' frameid='REG0-7082' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALONYL-COA-ACP-TRANSACYL-ENZRXN' orgid='ECOLI' frameid='MALONYL-COA-ACP-TRANSACYL-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:MALONYL-COA-ACP-TRANSACYL-MONOMER' orgid='ECOLI' frameid='MALONYL-COA-ACP-TRANSACYL-MONOMER'/></enzyme>
+<synonym datatype='string'>malonyl-CoA-acyl carrier protein transacylase</synonym>
+<synonym datatype='string'>malonyl-CoA-ACP transacylase</synonym>
+<synonym datatype='string'>S-malonyltransferase</synonym>
+<synonym datatype='string'>malonyl-CoA:[acyl carrier protein] S-malonyltransferase</synonym>
+<synonym datatype='string'>malonyl transacylase</synonym>
+<synonym datatype='string'>malonyl coenzyme A-acyl carrier protein transacylase</synonym>
+<common-name datatype='string'>[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ECOLI' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6743' orgid='ECOLI' frameid='REG0-6743' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:ACETYL-COA' orgid='ECOLI' frameid='ACETYL-COA'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:CITSYN-ENZRXN' orgid='ECOLI' frameid='CITSYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CITRATE-SI-SYNTHASE' orgid='ECOLI' frameid='CITRATE-SI-SYNTHASE'/></enzyme>
+<synonym datatype='string'>condensing enzyme</synonym>
+<synonym datatype='string'>citrogenase</synonym>
+<synonym datatype='string'>oxalaoacetate  transacetylase</synonym>
+<common-name datatype='string'>citrate synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:CITSYN-RXN' orgid='ECOLI' frameid='CITSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+</regulates>
+<molecular-weight datatype='float' units='Daltons'>805.54</molecular-weight>
+<component-of><Protein resource='getxml?ECOLI:MONOMER-51' orgid='ECOLI' frameid='MONOMER-51'/></component-of>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00022</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00022</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM21</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM21</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Acetyl-CoA</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Acetyl-CoA</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>accoa</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/accoa</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC57288</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC57288</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01206</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01206</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>57288</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57288</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>45266541</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=45266541</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007259</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007259</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>72-89-9</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=72-89-9</dblink-URL>
+</dblink>
+<dblink><dblink-db>UM-BBD-CPD</dblink-db>
+<dblink-oid>c0031</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0031</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00024</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00024</dblink-URL>
+</dblink>
+<synonym datatype='string'>acetyl coenzyme-A</synonym>
+<synonym datatype='string'>ac-CoA</synonym>
+<synonym datatype='string'>acetylcoenzyme-A</synonym>
+<synonym datatype='string'>acetyl-&lt;i&gt;S&lt;/i&gt;-CoA</synonym>
+<synonym datatype='string'>ac-&lt;i&gt;S&lt;/i&gt;-CoA</synonym>
+<inchi-key datatype='string'>InChIKey=ZSLZBFCDCINBPY-ZSJPKINUSA-J</inchi-key>
+<monoisotopic-mw datatype='float' units='Daltons'>809.1258</monoisotopic-mw>
+<inchi datatype='string'>InChI=1S/C23H38N7O17P3S/c1-12(31)51-7-6-25-14(32)4-5-26-21(35)18(34)23(2,3)9-44-50(41,42)47-49(39,40)43-8-13-17(46-48(36,37)38)16(33)22(45-13)30-11-29-15-19(24)27-10-28-20(15)30/h10-11,13,16-18,22,33-34H,4-9H2,1-3H3,(H,25,32)(H,26,35)(H,39,40)(H,41,42)(H2,24,27,28)(H2,36,37,38)/p-4/t13-,16-,17-,18+,22-/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:PYFLAVOXRE-RXN' orgid='ECOLI' frameid='PYFLAVOXRE-RXN'/><Reaction resource='getxml?ECOLI:ACECOATRANS-RXN' orgid='ECOLI' frameid='ACECOATRANS-RXN'/><Reaction resource='getxml?ECOLI:PYRUFLAVREDUCT-RXN' orgid='ECOLI' frameid='PYRUFLAVREDUCT-RXN'/><Reaction resource='getxml?ECOLI:PYRUVDEH-RXN' orgid='ECOLI' frameid='PYRUVDEH-RXN'/><Reaction resource='getxml?ECOLI:ACETALD-DEHYDROG-RXN' orgid='ECOLI' frameid='ACETALD-DEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:ACETATE--COA-LIGASE-RXN' orgid='ECOLI' frameid='ACETATE--COA-LIGASE-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>acetyl-CoA</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-5231' orgid='ECOLI' frameid='RXN0-5231'/><Reaction resource='getxml?ECOLI:RXN0-7345' orgid='ECOLI' frameid='RXN0-7345'/><Reaction resource='getxml?ECOLI:RXN0-7342' orgid='ECOLI' frameid='RXN0-7342'/><Reaction resource='getxml?ECOLI:RXN-14274' orgid='ECOLI' frameid='RXN-14274'/><Reaction resource='getxml?ECOLI:RXN-13617' orgid='ECOLI' frameid='RXN-13617'/><Reaction resource='getxml?ECOLI:RXN-14277' orgid='ECOLI' frameid='RXN-14277'/><Reaction resource='getxml?ECOLI:RXN-12565' orgid='ECOLI' frameid='RXN-12565'/><Reaction resource='getxml?ECOLI:RXN0-7014' orgid='ECOLI' frameid='RXN0-7014'/><Reaction resource='getxml?ECOLI:RXN-20155' orgid='ECOLI' frameid='RXN-20155'/><Reaction resource='getxml?ECOLI:RXN-20154' orgid='ECOLI' frameid='RXN-20154'/><Reaction resource='getxml?ECOLI:AKBLIG-RXN' orgid='ECOLI' frameid='AKBLIG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-1133' orgid='ECOLI' frameid='RXN0-1133'/><Reaction resource='getxml?ECOLI:RXN0-5055' orgid='ECOLI' frameid='RXN0-5055'/><Reaction resource='getxml?ECOLI:RXN-18434' orgid='ECOLI' frameid='RXN-18434'/><Reaction resource='getxml?ECOLI:2.3.1.128-RXN' orgid='ECOLI' frameid='2.3.1.128-RXN'/><Reaction resource='getxml?ECOLI:RXN-17962' orgid='ECOLI' frameid='RXN-17962'/><Reaction resource='getxml?ECOLI:RXN-17961' orgid='ECOLI' frameid='RXN-17961'/><Reaction resource='getxml?ECOLI:RXN-17960' orgid='ECOLI' frameid='RXN-17960'/><Reaction resource='getxml?ECOLI:RXN-17799' orgid='ECOLI' frameid='RXN-17799'/><Reaction resource='getxml?ECOLI:RXN-17795' orgid='ECOLI' frameid='RXN-17795'/><Reaction resource='getxml?ECOLI:RXN-17791' orgid='ECOLI' frameid='RXN-17791'/><Reaction resource='getxml?ECOLI:RXN-17787' orgid='ECOLI' frameid='RXN-17787'/><Reaction resource='getxml?ECOLI:RXN-17782' orgid='ECOLI' frameid='RXN-17782'/><Reaction resource='getxml?ECOLI:RXN-17778' orgid='ECOLI' frameid='RXN-17778'/><Reaction resource='getxml?ECOLI:RXN0-6512' orgid='ECOLI' frameid='RXN0-6512'/><Reaction resource='getxml?ECOLI:RXN0-7165' orgid='ECOLI' frameid='RXN0-7165'/><Reaction resource='getxml?ECOLI:RXN0-7160' orgid='ECOLI' frameid='RXN0-7160'/><Reaction resource='getxml?ECOLI:RXN-15943' orgid='ECOLI' frameid='RXN-15943'/><Reaction resource='getxml?ECOLI:RXN0-5418' orgid='ECOLI' frameid='RXN0-5418'/><Reaction resource='getxml?ECOLI:RXN0-7075' orgid='ECOLI' frameid='RXN0-7075'/><Reaction resource='getxml?ECOLI:RXN-14394' orgid='ECOLI' frameid='RXN-14394'/><Reaction resource='getxml?ECOLI:2.3.1.180-RXN' orgid='ECOLI' frameid='2.3.1.180-RXN'/><Reaction resource='getxml?ECOLI:ARYLAMINE-N-ACETYLTRANSFERASE-RXN' orgid='ECOLI' frameid='ARYLAMINE-N-ACETYLTRANSFERASE-RXN'/><Reaction resource='getxml?ECOLI:DIHYDLIPACETRANS-RXN' orgid='ECOLI' frameid='DIHYDLIPACETRANS-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6948' orgid='ECOLI' frameid='RXN0-6948'/><Reaction resource='getxml?ECOLI:KETOACYLCOATHIOL-RXN' orgid='ECOLI' frameid='KETOACYLCOATHIOL-RXN'/><Reaction resource='getxml?ECOLI:2-ISOPROPYLMALATESYN-RXN' orgid='ECOLI' frameid='2-ISOPROPYLMALATESYN-RXN'/><Reaction resource='getxml?ECOLI:CITSYN-RXN' orgid='ECOLI' frameid='CITSYN-RXN'/><Reaction resource='getxml?ECOLI:MALSYN-RXN' orgid='ECOLI' frameid='MALSYN-RXN'/><Reaction resource='getxml?ECOLI:RXN-3641' orgid='ECOLI' frameid='RXN-3641'/><Reaction resource='getxml?ECOLI:ACETYL-COA-ACETYLTRANSFER-RXN' orgid='ECOLI' frameid='ACETYL-COA-ACETYLTRANSFER-RXN'/><Reaction resource='getxml?ECOLI:PYRUVFORMLY-RXN' orgid='ECOLI' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?ECOLI:2.3.1.118-RXN' orgid='ECOLI' frameid='2.3.1.118-RXN'/><Reaction resource='getxml?ECOLI:SPERMACTRAN-RXN' orgid='ECOLI' frameid='SPERMACTRAN-RXN'/><Reaction resource='getxml?ECOLI:2.3.1.157-RXN' orgid='ECOLI' frameid='2.3.1.157-RXN'/><Reaction resource='getxml?ECOLI:ACETOACETYL-COA-TRANSFER-RXN' orgid='ECOLI' frameid='ACETOACETYL-COA-TRANSFER-RXN'/><Reaction resource='getxml?ECOLI:TDPFUCACTRANS-RXN' orgid='ECOLI' frameid='TDPFUCACTRANS-RXN'/><Reaction resource='getxml?ECOLI:SERINE-O-ACETTRAN-RXN' orgid='ECOLI' frameid='SERINE-O-ACETTRAN-RXN'/><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/><Reaction resource='getxml?ECOLI:N-ACETYLTRANSFER-RXN' orgid='ECOLI' frameid='N-ACETYLTRANSFER-RXN'/><Reaction resource='getxml?ECOLI:MALTACETYLTRAN-RXN' orgid='ECOLI' frameid='MALTACETYLTRAN-RXN'/><Reaction resource='getxml?ECOLI:GALACTOACETYLTRAN-RXN' orgid='ECOLI' frameid='GALACTOACETYLTRAN-RXN'/><Reaction resource='getxml?ECOLI:DIAMACTRANS-RXN' orgid='ECOLI' frameid='DIAMACTRANS-RXN'/><Reaction resource='getxml?ECOLI:ACP-S-ACETYLTRANSFER-RXN' orgid='ECOLI' frameid='ACP-S-ACETYLTRANSFER-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-506.8639</gibbs-0>
+</Compound>
+</ptools-xml>

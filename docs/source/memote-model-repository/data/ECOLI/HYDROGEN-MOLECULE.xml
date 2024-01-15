@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECOLI:HYDROGEN-MOLECULE'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECOLI:HYDROGEN-MOLECULE</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:HYDROGEN-MOLECULE' orgid='ECOLI' frameid='HYDROGEN-MOLECULE' detail='full'><parent><Compound resource='getxml?ECOLI:Inorganic-Compounds' orgid='ECOLI' frameid='Inorganic-Compounds' class='true'/></parent>
+<cml><molecule id='HYDROGEN-MOLECULE' title='H2' formalCharge='0'><atomArray><atom id='HYDROGEN-MOLECULE-atom1' elementType='H' x2='-414.0' y2='-414.0'/><atom id='HYDROGEN-MOLECULE-atom2' elementType='H' x2='412.0' y2='-414.0'/></atomArray>
+<bondArray><bond id='HYDROGEN-MOLECULE-bond1' atomRefs='HYDROGEN-MOLECULE-atom2 HYDROGEN-MOLECULE-atom1' order='1'/></bondArray>
+<formula concise='H 2'/><float title='molecularWeight' units='g/mol'>2.016</float>
+<string title='smiles'>[H]</string>
+</molecule>
+</cml>
+<molecular-weight datatype='float' units='Daltons'>2.016</molecular-weight>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>113555</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=113555</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd11640</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd11640</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM195</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM195</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>h2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/h2</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC18276</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC18276</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01362</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01362</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>18276</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:18276</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>762</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/762</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>783</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=783</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00282</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00282</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>1333-74-0</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=1333-74-0</dblink-URL>
+</dblink>
+<synonym datatype='string'>hydrogen</synonym>
+<synonym datatype='string'>hydrogen molecule</synonym>
+<synonym datatype='string'>dihydrogen</synonym>
+<inchi-key datatype='string'>InChIKey=UFHFLCQGNIYNRP-UHFFFAOYSA-N</inchi-key>
+<monoisotopic-mw datatype='float' units='Daltons'>2.01565</monoisotopic-mw>
+<inchi datatype='string'>InChI=1S/H2/h1H</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-610' orgid='ECOLI' frameid='TRANS-RXN0-610'/><Reaction resource='getxml?ECOLI:RXN0-5255' orgid='ECOLI' frameid='RXN0-5255'/><Reaction resource='getxml?ECOLI:FHLMULTI-RXN' orgid='ECOLI' frameid='FHLMULTI-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>H&lt;SUB&gt;2&lt;/SUB&gt;</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7399' orgid='ECOLI' frameid='RXN0-7399'/><Reaction resource='getxml?ECOLI:RXN-16420' orgid='ECOLI' frameid='RXN-16420'/><Reaction resource='getxml?ECOLI:HYDROG-RXN' orgid='ECOLI' frameid='HYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5256' orgid='ECOLI' frameid='RXN0-5256'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-610' orgid='ECOLI' frameid='TRANS-RXN0-610'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>24.752243</gibbs-0>
+</Compound>
+</ptools-xml>
