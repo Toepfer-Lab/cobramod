@@ -1,0 +1,68 @@
+ENTRY       C06118                      Compound
+NAME        4-(4-Deoxy-alpha-D-gluc-4-enuronosyl)-D-galacturonate;
+            4-(4-Deoxy-alpha-D-galact-4-enuronosyl)-D-galacturonate;
+            Unsaturated digalacturonate
+FORMULA     C12H16O12
+EXACT_MASS  352.0642
+MOL_WEIGHT  352.2482
+REMARK      Same as: G10113
+REACTION    R02361 R04382
+PATHWAY     map00040  Pentose and glucuronate interconversions
+            map01100  Metabolic pathways
+ENZYME      4.2.2.2         4.2.2.6         4.2.2.9
+DBLINKS     PubChem: 8378
+            ChEBI: 27450
+            3DMET: B01975
+            NIKKAJI: J2.761.155I
+ATOM        24
+            1   C1y C    27.4831  -25.6542
+            2   C1y C    27.4831  -24.2502
+            3   O2a O    26.2649  -26.3531
+            4   C1y C    28.7014  -26.3596
+            5   O2x O    28.7014  -23.5513
+            6   C6a C    26.2649  -23.5513
+            7   C1y C    25.0723  -27.0584
+            8   C1y C    29.9131  -25.6542
+            9   O1a O    28.6820  -27.7636
+            10  C1y C    29.9131  -24.2502
+            11  O6a O    26.2586  -22.1536
+            12  O6a O    25.0595  -24.2437
+            13  O2x O    23.8606  -26.3596
+            14  C1y C    25.0723  -28.4560
+            15  O1a O    31.1185  -26.3596
+            16  O1a O    31.1185  -23.5449
+            17  C2y C    22.6423  -27.0584
+            18  C1y C    23.8606  -29.1615
+            19  O1a O    26.2649  -29.1615
+            20  C2x C    22.6423  -28.4560
+            21  C6a C    21.4243  -26.3596
+            22  O1a O    23.8414  -30.5655
+            23  O6a O    21.4178  -24.9554
+            24  O6a O    20.2123  -27.0455
+BOND        25
+            1     1   2 1
+            2     1   3 1 #Up
+            3     1   4 1
+            4     2   5 1
+            5     2   6 1 #Up
+            6     7   3 1 #Down
+            7     4   8 1
+            8     4   9 1 #Up
+            9     5  10 1
+            10    6  11 1
+            11    6  12 2
+            12    7  13 1
+            13    7  14 1
+            14    8  15 1 #Down
+            15   10  16 1 #Up
+            16   13  17 1
+            17   14  18 1
+            18   14  19 1 #Down
+            19   17  20 2
+            20   17  21 1
+            21   18  22 1 #Up
+            22   21  23 1
+            23   21  24 2
+            24    8  10 1
+            25   18  20 1
+///

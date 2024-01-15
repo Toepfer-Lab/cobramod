@@ -21,6 +21,7 @@ dependencies:
 - conda-forge::sphinx
 - conda-forge::nbsphinx
 - conda-forge::sphinx-autoapi
+- conda-forge::jupyter_contrib_nbextensions
 - pip:
   - sphinx-rtd-theme
   - sphinxcontrib-napoleon
