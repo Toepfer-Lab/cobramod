@@ -199,8 +199,8 @@ class TestBiocyc(unittest.TestCase):
         self.assertEqual(test_graph["UDPGLUCEPIM-RXN"], None)
 
         # CASE: Super-Pathway
-        self.assertWarns(
-            cmod_error.SuperpathwayWarning,
+        self.assertRaises(
+            cmod_error.SuperpathwayException,
             cmod_retrieval.get_data,
             identifier="PWY-5052",
             database="META",
@@ -362,8 +362,8 @@ class TestPlantCyc(unittest.TestCase):
         self.assertEqual(test_graph["UDPGLUCEPIM-RXN"], None)
 
         # CASE: Super-Pathway
-        self.assertWarns(
-            cmod_error.SuperpathwayWarning,
+        self.assertRaises(
+            cmod_error.SuperpathwayException,
             cmod_retrieval.get_data,
             identifier="PWY-5052",
             database="pmn:META",

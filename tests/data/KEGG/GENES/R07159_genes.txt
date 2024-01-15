@@ -87,6 +87,7 @@ ko:K11389	iag:Igag_1482
 ko:K11389	thg:TCELL_0959
 ko:K11389	pfm:Pyrfu_0662
 ko:K11389	pdl:Pyrde_0538
+ko:K11389	pare:PYJP_14890
 ko:K11389	pai:PAE1029
 ko:K11389	pis:Pisl_1226
 ko:K11389	pcl:Pcal_0664

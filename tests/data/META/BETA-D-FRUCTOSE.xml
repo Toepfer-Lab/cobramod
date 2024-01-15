@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:BETA-D-FRUCTOSE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:BETA-D-FRUCTOSE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:BETA-D-FRUCTOSE</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:BETA-D-FRUCTOSE' orgid='META' frameid='BETA-D-FRUCTOSE' detail='full'><parent><Compound resource='getxml?META:Fructofuranose' orgid='META' frameid='Fructofuranose' class='true'/></parent>
@@ -13,14 +13,17 @@
 <string title='smiles'>C(O)[C@H]1(O[C@](O)(CO)[C@H]([C@@H]1O)O)</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:3.2.1.80-RXN' orgid='META' frameid='3.2.1.80-RXN'/><Reaction resource='getxml?META:3-KETOGLUCOSIDASE-RXN' orgid='META' frameid='3-KETOGLUCOSIDASE-RXN'/><Reaction resource='getxml?META:3.2.1.48-RXN' orgid='META' frameid='3.2.1.48-RXN'/><Reaction resource='getxml?META:RXN-9985' orgid='META' frameid='RXN-9985'/><Reaction resource='getxml?META:3.2.1.26-RXN' orgid='META' frameid='3.2.1.26-RXN'/><Reaction resource='getxml?META:RXN0-5186' orgid='META' frameid='RXN0-5186'/><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/><Reaction resource='getxml?META:SUCROSE-PHOSPHORYLASE-RXN' orgid='META' frameid='SUCROSE-PHOSPHORYLASE-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-15154' orgid='META' frameid='RXN-15154'/><Reaction resource='getxml?META:SUCROSE-SYNTHASE-RXN' orgid='META' frameid='SUCROSE-SYNTHASE-RXN'/><Reaction resource='getxml?META:KETOHEXOKINASE-RXN' orgid='META' frameid='KETOHEXOKINASE-RXN'/><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C6H12O6/c7-1-3-4(9)5(10)6(11,2-8)12-3/h3-5,7-11H,1-2H2/t3-,4-,5+,6-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>180.157</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:3.2.1.80-RXN' orgid='META' frameid='3.2.1.80-RXN'/><Reaction resource='getxml?META:3-KETOGLUCOSIDASE-RXN' orgid='META' frameid='3-KETOGLUCOSIDASE-RXN'/><Reaction resource='getxml?META:3.2.1.48-RXN' orgid='META' frameid='3.2.1.48-RXN'/><Reaction resource='getxml?META:RXN-9985' orgid='META' frameid='RXN-9985'/><Reaction resource='getxml?META:3.2.1.26-RXN' orgid='META' frameid='3.2.1.26-RXN'/><Reaction resource='getxml?META:RXN0-5186' orgid='META' frameid='RXN0-5186'/><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/><Reaction resource='getxml?META:SUCROSE-PHOSPHORYLASE-RXN' orgid='META' frameid='SUCROSE-PHOSPHORYLASE-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>180.06339</monoisotopic-mw>
 <synonym datatype='string'>&amp;beta;-D-fructose</synonym>
 <synonym datatype='string'>&amp;beta;-fruit sugar</synonym>
 <synonym datatype='string'>&amp;beta;-Levulose</synonym>
 <synonym datatype='string'>&amp;beta;-D-arabino-Hexulose</synonym>
-<molecular-weight datatype='float' units='Daltons'>180.157</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>180.06339</monoisotopic-mw>
+<common-name datatype='string'>&amp;beta;-D-fructofuranose</common-name>
+<inchi-key datatype='string'>InChIKey=RFSUNEUAIZKAJO-ARQDHWQXSA-N</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000001529270</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -71,8 +74,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C02336</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=RFSUNEUAIZKAJO-ARQDHWQXSA-N</inchi-key>
-<common-name datatype='string'>&amp;beta;-D-fructofuranose</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-95.91656<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -82,12 +83,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-15154' orgid='META' frameid='RXN-15154'/><Reaction resource='getxml?META:SUCROSE-SYNTHASE-RXN' orgid='META' frameid='SUCROSE-SYNTHASE-RXN'/><Reaction resource='getxml?META:KETOHEXOKINASE-RXN' orgid='META' frameid='KETOHEXOKINASE-RXN'/><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

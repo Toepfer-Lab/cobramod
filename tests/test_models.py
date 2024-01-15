@@ -13,6 +13,7 @@ from pathlib import Path
 
 import cobra.core as cobra_core
 import cobra.io as cobra_io
+import cobramod.error as cmod_error
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
 from cobramod.core import extension as ex
@@ -85,8 +86,11 @@ class ShortModel(unittest.TestCase):
             container=[group.id for group in test_model.groups],
         )
 
-        # Ading aspartate and asparagine biosynthesis
-        ex.add_pathway(
+        # Adding aspartate and asparagine biosynthesis
+        # Before 27.1 in Metacyc, this was a pathway
+        self.assertRaises(
+            cmod_error.SuperpathwayException,
+            ex.add_pathway,
             model=test_model,
             pathway="ASPASN-PWY",
             directory=dir_data,
@@ -94,6 +98,26 @@ class ShortModel(unittest.TestCase):
             compartment="c",
             ignore_list=[],
             show_imbalance=False,
+        )
+        ex.add_pathway(
+            model=test_model,
+            pathway="ASPARAGINESYN-PWY",
+            directory=dir_data,
+            database="META",
+            compartment="c",
+            ignore_list=[],
+            show_imbalance=False,
+            group="ASPASN-PWY",
+        )
+        ex.add_pathway(
+            model=test_model,
+            pathway="ASPARTATESYN-PWY",
+            directory=dir_data,
+            database="META",
+            compartment="c",
+            ignore_list=[],
+            show_imbalance=False,
+            group="ASPASN-PWY",
         )
         self.assertGreater(a=abs(test_model.optimize().objective_value), b=0)
         self.assertIn(

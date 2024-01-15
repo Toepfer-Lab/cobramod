@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:3-METHYLSULFINYLPROPYL-GLUCOSINOLATE</query>
 <num_results>1</num_results>
@@ -14,30 +14,30 @@
 <string title='smiles'>CS(=O)CCCC(\S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\OS(=O)(=O)[O-]</string>
 </molecule>
 </cml>
+<synonym datatype='string'>3-(methylsulfinyl)propyl-glucosinolate</synonym>
+<inchi-key datatype='string'>InChIKey=PHYYADMVYQURSX-XEAHXTBRSA-M</inchi-key>
 <comment datatype='string'>This compound was entered into AraCyc based on its presence in the
 &lt;A href=&quot;http://kanaya.naist.jp/knapsack_jsp/information.jsp?word=C00007343&quot;&gt;KNApSAcK database&lt;/A&gt;
 which provides reference(s) concerning this compound in Arabidopsis.
 </comment>
-<common-name datatype='string'>glucoiberin</common-name>
-<inchi datatype='string'>InChI=1S/C11H21NO10S3/c1-24(17)4-2-3-7(12-22-25(18,19)20)23-11-10(16)9(15)8(14)6(5-13)21-11/h6,8-11,13-16H,2-5H2,1H3,(H,18,19,20)/p-1/b12-7-/t6-,8-,9+,10-,11+,24?/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=PHYYADMVYQURSX-XEAHXTBRSA-M</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2223' orgid='ARA' frameid='RXN-2223'/><Reaction resource='getxml?ARA:RXN-2222' orgid='ARA' frameid='RXN-2222'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-100.38967</gibbs-0>
-<synonym datatype='string'>3-(methylsulfinyl)propyl-glucosinolate</synonym>
-<molecular-weight datatype='float' units='Daltons'>422.46</molecular-weight>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></appears-in-right-side-of>
-<monoisotopic-mw datatype='float' units='Daltons'>423.03275</monoisotopic-mw>
-<citation><Publication ID='ARA:PUB-11251105' orgid='ARA' frameid='PUB-11251105' detail='full'><source datatype='string'>Plant Cell 13(3);681-93</source>
+<citation><Publication ID='ARA:PUB-11251105' orgid='ARA' frameid='PUB-11251105' detail='full'><year datatype='integer'>2001</year>
 <title datatype='string'>Gene duplication in the diversification of secondary metabolism: tandem 2-oxoglutarate-dependent dioxygenases control glucosinolate biosynthesis in Arabidopsis.</title>
-<year datatype='integer'>2001</year>
+<source datatype='string'>Plant Cell 13(3);681-93</source>
+<pubmed-id datatype='string'>11251105</pubmed-id>
 <author datatype='string'>Kliebenstein DJ</author>
 <author datatype='string'>Lambrix VM</author>
 <author datatype='string'>Reichelt M</author>
 <author datatype='string'>Gershenzon J</author>
 <author datatype='string'>Mitchell-Olds T</author>
-<pubmed-id datatype='string'>11251105</pubmed-id>
 </Publication>
 </citation>
+<molecular-weight datatype='float' units='Daltons'>422.46</molecular-weight>
+<inchi datatype='string'>InChI=1S/C11H21NO10S3/c1-24(17)4-2-3-7(12-22-25(18,19)20)23-11-10(16)9(15)8(14)6(5-13)21-11/h6,8-11,13-16H,2-5H2,1H3,(H,18,19,20)/p-1/b12-7-/t6-,8-,9+,10-,11+,24?/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2223' orgid='ARA' frameid='RXN-2223'/><Reaction resource='getxml?ARA:RXN-2222' orgid='ARA' frameid='RXN-2222'/></appears-in-left-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>423.03275</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-100.38967</gibbs-0>
+<common-name datatype='string'>glucoiberin</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004097565</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

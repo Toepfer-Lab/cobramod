@@ -59,22 +59,22 @@ BRITE       Compounds with biological roles [BR:br08001]
               Amino acids
                Common amino acids
                 C00097  Cysteine (Cys)
-            Therapeutic category of drugs in Japan [BR:br08301]
+            Therapeutic category of drugs in Japan [BR:br08301(D00026)]
              3  Agents affecting metabolism
               39  Other agents affecting metabolism
                399  Miscellaneous
                 3999  Others
                  D00026  L-Cysteine (JP18)
-            Classification of Japanese OTC drugs [BR:br08313]
+            Classification of Japanese OTC drugs [BR:br08313(D00026)]
              Nourishing tonics and health supplements
               45 Protein and amino acid based drugs
                D00026  L-Cysteine (JP18)
-            Risk category of Japanese OTC drugs [BR:br08312]
+            Risk category of Japanese OTC drugs [BR:br08312(D00026)]
              Third-class OTC drugs
               Inorganic and organic chemicals
                L-Cysteine
                 D00026  L-Cysteine (JP18)
-            Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
+            Drugs listed in the Japanese Pharmacopoeia [BR:br08311(D00026)]
              Chemicals
               D00026  L-Cysteine
 DBLINKS     CAS: 52-90-4

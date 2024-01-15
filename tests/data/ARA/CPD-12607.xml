@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-12607'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-12607'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-12607</query>
 <num_results>1</num_results>
@@ -14,25 +14,25 @@
 <string title='smiles'>C(O)[C@H]([NH3+])C(=O)NCC([O-])=O</string>
 </molecule>
 </cml>
-<common-name datatype='string'>L-seryl-glycine</common-name>
-<inchi datatype='string'>InChI=1S/C5H10N2O4/c6-3(2-8)5(11)7-1-4(9)10/h3,8H,1-2,6H2,(H,7,11)(H,9,10)/t3-/m0/s1</inchi>
 <inchi-key datatype='string'>InChIKey=WOUIMBGNEUWXQG-VKHMYHEASA-N</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>-52.0188</gibbs-0>
-<molecular-weight datatype='float' units='Daltons'>162.145</molecular-weight>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-18760' orgid='ARA' frameid='RXN-18760'/><Reaction resource='getxml?ARA:RXN-11436' orgid='ARA' frameid='RXN-11436'/><Reaction resource='getxml?ARA:RXN-11437' orgid='ARA' frameid='RXN-11437'/><Reaction resource='getxml?ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/><Reaction resource='getxml?ARA:RXN-11439' orgid='ARA' frameid='RXN-11439'/><Reaction resource='getxml?ARA:RXN-11440' orgid='ARA' frameid='RXN-11440'/><Reaction resource='getxml?ARA:RXN-11441' orgid='ARA' frameid='RXN-11441'/><Reaction resource='getxml?ARA:RXN-11442' orgid='ARA' frameid='RXN-11442'/><Reaction resource='getxml?ARA:RXN-11443' orgid='ARA' frameid='RXN-11443'/></appears-in-right-side-of>
 <credits><created><date datatype='date'>2010-08-30</date>
-<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
-<common-name datatype='string'>Ron Caspi</common-name>
-<affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
-<common-name datatype='string'>SRI International</common-name>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
+<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><abbrev-name datatype='string'>SRI International</abbrev-name>
 <url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<common-name datatype='string'>SRI International</common-name>
 </Organization>
 </affiliations>
+<email datatype='string'>caspi@ai.sri.com</email>
+<common-name datatype='string'>Ron Caspi</common-name>
 </Person>
 <Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></created>
 </credits>
+<molecular-weight datatype='float' units='Daltons'>162.145</molecular-weight>
+<inchi datatype='string'>InChI=1S/C5H10N2O4/c6-3(2-8)5(11)7-1-4(9)10/h3,8H,1-2,6H2,(H,7,11)(H,9,10)/t3-/m0/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-18760' orgid='ARA' frameid='RXN-18760'/><Reaction resource='getxml?ARA:RXN-11436' orgid='ARA' frameid='RXN-11436'/><Reaction resource='getxml?ARA:RXN-11437' orgid='ARA' frameid='RXN-11437'/><Reaction resource='getxml?ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/><Reaction resource='getxml?ARA:RXN-11439' orgid='ARA' frameid='RXN-11439'/><Reaction resource='getxml?ARA:RXN-11440' orgid='ARA' frameid='RXN-11440'/><Reaction resource='getxml?ARA:RXN-11441' orgid='ARA' frameid='RXN-11441'/><Reaction resource='getxml?ARA:RXN-11442' orgid='ARA' frameid='RXN-11442'/><Reaction resource='getxml?ARA:RXN-11443' orgid='ARA' frameid='RXN-11443'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>162.06406</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-52.0188</gibbs-0>
+<common-name datatype='string'>L-seryl-glycine</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000002022602</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

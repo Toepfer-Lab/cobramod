@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:1.1.1.288-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:1.1.1.288-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:1.1.1.288-RXN</query>
 <num_results>1</num_results>
@@ -9,39 +9,39 @@
 </metadata>
 <Reaction ID='ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<comment datatype='string'>NADP(+) cannot replace NAD(+) and short-chain alcohols such as ethanol, isopropanol, butanol and cyclohexanol cannot replace xanthoxin as substrate.  Involved in the abscisic-acid biosynthesis pathway in plants, along with EC 1.2.3.14, EC 1.13.11.51 and EC 1.14.13.93.</comment>
-<ec-number>EC-1.1.1.288<official>T</official>
-</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-695' orgid='ARA' frameid='PWY-695'/></in-pathway>
 <left><Compound resource='getxml?ARA:CPD-7279' orgid='ARA' frameid='CPD-7279'/></left>
 <left><Compound resource='getxml?ARA:NAD' orgid='ARA' frameid='NAD'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-8.71817</gibbs-0>
+<ec-number>EC-1.1.1.288<official>T</official>
+</ec-number>
+<comment datatype='string'>NADP(+) cannot replace NAD(+) and short-chain alcohols such as ethanol, isopropanol, butanol and cyclohexanol cannot replace xanthoxin as substrate.  Involved in the abscisic-acid biosynthesis pathway in plants, along with EC 1.2.3.14, EC 1.13.11.51 and EC 1.14.13.93.</comment>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?ARA:CPD-692' orgid='ARA' frameid='CPD-692'/></right>
 <right><Compound resource='getxml?ARA:NADH' orgid='ARA' frameid='NADH'/></right>
 <right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-6975' orgid='ARA' frameid='ENZRXNQT-6975' detail='low'><common-name datatype='string'>xanthoxin dehydrogenase</common-name>
+<orphan>NO</orphan>
+<gibbs-0 datatype='float' units='kcal/mol'>-8.71817</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-6975' orgid='ARA' frameid='ENZRXNQT-6975' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G26760-MONOMER' orgid='ARA' frameid='AT3G26760-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G26760-MONOMER' orgid='ARA' frameid='AT3G26760-MONOMER'/></enzyme>
+<common-name datatype='string'>xanthoxin dehydrogenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-6790' orgid='ARA' frameid='ENZRXNQT-6790' detail='low'><common-name datatype='string'>xanthoxin dehydrogenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-6790' orgid='ARA' frameid='ENZRXNQT-6790' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G26770-MONOMER' orgid='ARA' frameid='AT3G26770-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G26770-MONOMER' orgid='ARA' frameid='AT3G26770-MONOMER'/></enzyme>
+<common-name datatype='string'>xanthoxin dehydrogenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-6371' orgid='ARA' frameid='ENZRXNQT-6371' detail='low'><common-name datatype='string'>xanthoxin dehydrogenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-6371' orgid='ARA' frameid='ENZRXNQT-6371' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G51680-MONOMER' orgid='ARA' frameid='AT3G51680-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G51680-MONOMER' orgid='ARA' frameid='AT3G51680-MONOMER'/></enzyme>
+<common-name datatype='string'>xanthoxin dehydrogenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-5946' orgid='ARA' frameid='ENZRXNQT-5946' detail='low'><common-name datatype='string'>xanthoxin dehydrogenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-5946' orgid='ARA' frameid='ENZRXNQT-5946' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G42960-MONOMER' orgid='ARA' frameid='AT3G42960-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G42960-MONOMER' orgid='ARA' frameid='AT3G42960-MONOMER'/></enzyme>
+<common-name datatype='string'>xanthoxin dehydrogenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXN-12830' orgid='ARA' frameid='ENZRXN-12830' detail='low'><common-name datatype='string'>xanthoxin dehydrogenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXN-12830' orgid='ARA' frameid='ENZRXN-12830' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G52340-MONOMER' orgid='ARA' frameid='AT1G52340-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G52340-MONOMER' orgid='ARA' frameid='AT1G52340-MONOMER'/></enzyme>
+<common-name datatype='string'>xanthoxin dehydrogenase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<orphan>NO</orphan>
+<in-pathway><Pathway resource='getxml?ARA:PWY-695' orgid='ARA' frameid='PWY-695'/></in-pathway>
 </Reaction>
 </ptools-xml>

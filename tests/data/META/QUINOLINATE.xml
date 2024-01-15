@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:QUINOLINATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:QUINOLINATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:QUINOLINATE</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:QUINOLINATE' orgid='META' frameid='QUINOLINATE' detail='full'><cml><molecule id='QUINOLINATE' title='quinolinate' formalCharge='-2'><atomArray><atom id='QUINOLINATE-atom1' elementType='C' x2='-31754.0' y2='-715.0'/><atom id='QUINOLINATE-atom2' elementType='C' x2='-24609.0' y2='3410.0'/><atom id='QUINOLINATE-atom3' elementType='C' x2='-31754.0' y2='-8965.0'/><atom id='QUINOLINATE-atom4' elementType='C' x2='-17464.0' y2='-715.0'/><atom id='QUINOLINATE-atom5' elementType='C' x2='-17464.0' y2='-8965.0'/><atom id='QUINOLINATE-atom6' elementType='C' x2='-10320.0' y2='3410.0'/><atom id='QUINOLINATE-atom7' elementType='C' x2='-10320.0' y2='-13090.0'/><atom id='QUINOLINATE-atom8' elementType='N' x2='-24609.0' y2='-13090.0'/><atom id='QUINOLINATE-atom9' elementType='O' x2='-3175.0' y2='-715.0' formalCharge='-1'/><atom id='QUINOLINATE-atom10' elementType='O' x2='-10320.0' y2='11660.0'/><atom id='QUINOLINATE-atom11' elementType='O' x2='-3175.0' y2='-8965.0' formalCharge='-1'/><atom id='QUINOLINATE-atom12' elementType='O' x2='-10320.0' y2='-21340.0'/></atomArray>
@@ -12,15 +12,31 @@
 <string title='smiles'>C1(\N=C(C(/C([O-])=O)=C\C=1)\C([O-])=O)</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-5721' orgid='META' frameid='RXN-5721'/><Reaction resource='getxml?META:QUINOPRIBOTRANS-RXN' orgid='META' frameid='QUINOPRIBOTRANS-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHE-MULTI-RXN' orgid='META' frameid='QUINOLINATE-SYNTHE-MULTI-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHA-RXN' orgid='META' frameid='QUINOLINATE-SYNTHA-RXN'/></appears-in-right-side-of>
 <inchi datatype='string'>InChI=1S/C7H5NO4/c9-6(10)4-2-1-3-8-5(4)7(11)12/h1-3H,(H,9,10)(H,11,12)/p-2</inchi>
+<molecular-weight datatype='float' units='Daltons'>165.105</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-5721' orgid='META' frameid='RXN-5721'/><Reaction resource='getxml?META:QUINOPRIBOTRANS-RXN' orgid='META' frameid='QUINOPRIBOTRANS-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHE-MULTI-RXN' orgid='META' frameid='QUINOLINATE-SYNTHE-MULTI-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHA-RXN' orgid='META' frameid='QUINOLINATE-SYNTHA-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>167.02185</monoisotopic-mw>
 <synonym datatype='string'>2,3-pyridinedicarboxylic acid</synonym>
 <synonym datatype='string'>2,3-pyridinedicarboxylate</synonym>
 <synonym datatype='string'>quinolinic acid</synonym>
 <synonym datatype='string'>pyridine-2,3-dicarboxylic acid</synonym>
 <synonym datatype='string'>pyridine-2,3-dicarboxylate</synonym>
-<molecular-weight datatype='float' units='Daltons'>165.105</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>167.02185</monoisotopic-mw>
+<common-name datatype='string'>quinolinate</common-name>
+<regulates><Regulation ID='META:REG-12795' orgid='META' frameid='REG-12795' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:QUINOLINATE' orgid='META' frameid='QUINOLINATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-16791' orgid='META' frameid='ENZRXN-16791' detail='low'><reaction><Reaction resource='getxml?META:AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN' orgid='META' frameid='AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN'/></reaction>
+<synonym datatype='string'>picolinic acid carboxylase</synonym>
+<synonym datatype='string'>aminocarboxymuconate-semialdehyde decarboxylase</synonym>
+<synonym datatype='string'>&amp;alpha;-amino &amp;beta;-carboxymuconate &amp;epsilon;-semialdehyde decarboxylase</synonym>
+<synonym datatype='string'>picolinic carboxylase</synonym>
+<common-name datatype='string'>2-amino 3-carboxymuconate 6-semialdehyde decarboxylase</common-name>
+<enzyme><Protein resource='getxml?META:HS14455-MONOMER' orgid='META' frameid='HS14455-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=GJAWHXHKYYXBSV-UHFFFAOYSA-L</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000000331671</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -86,8 +102,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=89-00-9</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=GJAWHXHKYYXBSV-UHFFFAOYSA-L</inchi-key>
-<common-name datatype='string'>quinolinate</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-110.29488<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -97,25 +111,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG-12795' orgid='META' frameid='REG-12795' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:QUINOLINATE' orgid='META' frameid='QUINOLINATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-16791' orgid='META' frameid='ENZRXN-16791' detail='low'><enzyme><Protein resource='getxml?META:HS14455-MONOMER' orgid='META' frameid='HS14455-MONOMER'/></enzyme>
-<synonym datatype='string'>picolinic acid carboxylase</synonym>
-<synonym datatype='string'>aminocarboxymuconate-semialdehyde decarboxylase</synonym>
-<synonym datatype='string'>&amp;alpha;-amino &amp;beta;-carboxymuconate &amp;epsilon;-semialdehyde decarboxylase</synonym>
-<synonym datatype='string'>picolinic carboxylase</synonym>
-<reaction><Reaction resource='getxml?META:AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN' orgid='META' frameid='AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN'/></reaction>
-<common-name datatype='string'>2-amino 3-carboxymuconate 6-semialdehyde decarboxylase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
 </Compound>
 </ptools-xml>

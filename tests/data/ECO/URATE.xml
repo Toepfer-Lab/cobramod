@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:URATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:URATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:URATE</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -19,16 +19,13 @@
 <string title='smiles'>C12(NC(=O)NC(C(=O)NC(=O)N1)=2)</string>
 </molecule>
 </cml>
+<molecular-weight datatype='float' units='Daltons'>168.112</molecular-weight>
 <citation><Publication ID='ECOLI:PUB-ROBERTS90' orgid='ECOLI' frameid='PUB-ROBERTS90' detail='full'><year datatype='integer'>1890</year>
-<source datatype='string'>Med Chir Trans. 73: 245-271</source>
 <title datatype='string'>On the history of uric acid in the urine, with reference to the formation of uric acid concretions and deposits.</title>
 <author datatype='string'>Roberts, W.</author>
+<source datatype='string'>Med Chir Trans. 73: 245-271</source>
 </Publication>
 </citation>
-<inchi-key datatype='string'>InChIKey=LEHOTFFKMJEONL-UHFFFAOYSA-N</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>-44.21552</gibbs-0>
-<appears-in-left-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-530' orgid='ECOLI' frameid='TRANS-RXN0-530'/></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-530' orgid='ECOLI' frameid='TRANS-RXN0-530'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></appears-in-right-side-of>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000028136055</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -87,9 +84,13 @@
 <synonym datatype='string'>2,6,8-trioxypurine</synonym>
 <synonym datatype='string'>purine-2,6,8-(1H,3H,9H)-trione</synonym>
 <synonym datatype='string'>7,9-dihydro-1H-purine-2,6,8(3H)-trione</synonym>
+<inchi-key datatype='string'>InChIKey=LEHOTFFKMJEONL-UHFFFAOYSA-N</inchi-key>
 <monoisotopic-mw datatype='float' units='Daltons'>168.02834</monoisotopic-mw>
-<molecular-weight datatype='float' units='Daltons'>168.112</molecular-weight>
 <inchi datatype='string'>InChI=1S/C5H4N4O3/c10-3-1-2(7-4(11)6-1)8-5(12)9-3/h(H4,6,7,8,9,10,11,12)</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-530' orgid='ECOLI' frameid='TRANS-RXN0-530'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></appears-in-right-side-of>
 <common-name datatype='string'>urate</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-530' orgid='ECOLI' frameid='TRANS-RXN0-530'/></appears-in-left-side-of>
+<comment datatype='string'>Free uric acid is not found in urine. Instead, it is present as &lt;a href=&quot;http://biocyc.org/META/new-image?object=CPD-15041&quot;&gt;biurate&lt;/a&gt; and quadrurate salts [&lt;a href=&quot;/ECOLI/reference.html?type=CITATION-REFERENCE&amp;object=%5bRoberts90%5d&quot;&gt;Roberts90&lt;/a&gt;]. Excess accumulation of uric acid in the blood can lead to a type of arthritis known as gout, during which needle-like crystals of uric acid salts precipitate in joints, capillaries, skin, and other tissues. Saturation levels of uric acid in blood may also result in formation of sodium urate kidney stones.</comment>
+<gibbs-0 datatype='float' units='kcal/mol'>-44.21552</gibbs-0>
 </Compound>
 </ptools-xml>

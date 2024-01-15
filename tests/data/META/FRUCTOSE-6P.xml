@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:FRUCTOSE-6P'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:FRUCTOSE-6P'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:FRUCTOSE-6P</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P' detail='full'><parent><Compound resource='getxml?META:CPD-18719' orgid='META' frameid='CPD-18719' class='true'/></parent>
@@ -13,8 +13,11 @@
 <string title='smiles'>C(OP(=O)([O-])[O-])[C@H]1(O[C@@](CO)(O)[C@@H](O)[C@H](O)1)</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:GLUCOSAMINE-6-P-DEAMIN-RXN' orgid='META' frameid='GLUCOSAMINE-6-P-DEAMIN-RXN'/><Reaction resource='getxml?META:PGLUCISOM-RXN' orgid='META' frameid='PGLUCISOM-RXN'/><Reaction resource='getxml?META:RXN-22106' orgid='META' frameid='RXN-22106'/><Reaction resource='getxml?META:2TRANSKETO-RXN' orgid='META' frameid='2TRANSKETO-RXN'/><Reaction resource='getxml?META:TRANSALDOL-RXN' orgid='META' frameid='TRANSALDOL-RXN'/><Reaction resource='getxml?META:MANNPISOM-RXN' orgid='META' frameid='MANNPISOM-RXN'/><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/><Reaction resource='getxml?META:RXN-15605' orgid='META' frameid='RXN-15605'/><Reaction resource='getxml?META:RXN-14812' orgid='META' frameid='RXN-14812'/><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/><Reaction resource='getxml?META:RXN0-304' orgid='META' frameid='RXN0-304'/><Reaction resource='getxml?META:R12-RXN' orgid='META' frameid='R12-RXN'/><Reaction resource='getxml?META:3.1.3.46-RXN' orgid='META' frameid='3.1.3.46-RXN'/><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN' orgid='META' frameid='FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN'/><Reaction resource='getxml?META:L-GLN-FRUCT-6-P-AMINOTRANS-RXN' orgid='META' frameid='L-GLN-FRUCT-6-P-AMINOTRANS-RXN'/><Reaction resource='getxml?META:RXN-9935' orgid='META' frameid='RXN-9935'/><Reaction resource='getxml?META:SUCROSE-PHOSPHATE-SYNTHASE-RXN' orgid='META' frameid='SUCROSE-PHOSPHATE-SYNTHASE-RXN'/><Reaction resource='getxml?META:RXN-13745' orgid='META' frameid='RXN-13745'/><Reaction resource='getxml?META:RXN0-313' orgid='META' frameid='RXN0-313'/><Reaction resource='getxml?META:R302-RXN' orgid='META' frameid='R302-RXN'/><Reaction resource='getxml?META:6-PHOSPHOFRUCTO-2-KINASE-RXN' orgid='META' frameid='6-PHOSPHOFRUCTO-2-KINASE-RXN'/><Reaction resource='getxml?META:2.7.1.90-RXN' orgid='META' frameid='2.7.1.90-RXN'/><Reaction resource='getxml?META:6PFRUCTPHOS-RXN' orgid='META' frameid='6PFRUCTPHOS-RXN'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C6H13O9P/c7-2-6(10)5(9)4(8)3(15-6)1-14-16(11,12)13/h3-5,7-10H,1-2H2,(H2,11,12,13)/p-2/t3-,4-,5+,6-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>258.121</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-24072' orgid='META' frameid='RXN-24072'/><Reaction resource='getxml?META:RXN-24071' orgid='META' frameid='RXN-24071'/><Reaction resource='getxml?META:GLUCOSAMINE-6-P-DEAMIN-RXN' orgid='META' frameid='GLUCOSAMINE-6-P-DEAMIN-RXN'/><Reaction resource='getxml?META:PGLUCISOM-RXN' orgid='META' frameid='PGLUCISOM-RXN'/><Reaction resource='getxml?META:RXN-22106' orgid='META' frameid='RXN-22106'/><Reaction resource='getxml?META:2TRANSKETO-RXN' orgid='META' frameid='2TRANSKETO-RXN'/><Reaction resource='getxml?META:TRANSALDOL-RXN' orgid='META' frameid='TRANSALDOL-RXN'/><Reaction resource='getxml?META:MANNPISOM-RXN' orgid='META' frameid='MANNPISOM-RXN'/><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/><Reaction resource='getxml?META:RXN-15605' orgid='META' frameid='RXN-15605'/><Reaction resource='getxml?META:RXN-14812' orgid='META' frameid='RXN-14812'/><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/><Reaction resource='getxml?META:RXN0-304' orgid='META' frameid='RXN0-304'/><Reaction resource='getxml?META:R12-RXN' orgid='META' frameid='R12-RXN'/><Reaction resource='getxml?META:3.1.3.46-RXN' orgid='META' frameid='3.1.3.46-RXN'/><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>260.02972</monoisotopic-mw>
 <synonym datatype='string'>D-fructose-6-phosphate</synonym>
 <synonym datatype='string'>fructose-6P</synonym>
 <synonym datatype='string'>fructose-6-P</synonym>
@@ -25,9 +28,145 @@
 <synonym datatype='string'>D-fructose-6-P</synonym>
 <synonym datatype='string'>D-fructose 6-phosphate</synonym>
 <synonym datatype='string'>D-fructofuranose 6-phosphate</synonym>
-<molecular-weight datatype='float' units='Daltons'>258.121</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>260.02972</monoisotopic-mw>
+<common-name datatype='string'>&amp;beta;-D-fructofuranose 6-phosphate</common-name>
+<abbrev-name datatype='string'>F6P</abbrev-name>
 <component-of><Compound resource='getxml?META:CPD-25839' orgid='META' frameid='CPD-25839'/></component-of>
+<regulates><Regulation ID='META:REG0-7844' orgid='META' frameid='REG0-7844' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:NAG6PDEACET-ENZRXN' orgid='META' frameid='NAG6PDEACET-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:NAG6PDEACET-RXN' orgid='META' frameid='NAG6PDEACET-RXN'/></reaction>
+<synonym datatype='string'>N-acetyl-D-glucosamine-6-phosphate amidohydrolase</synonym>
+<common-name datatype='string'>&lt;i&gt;N&lt;/i&gt;-acetylglucosamine-6-phosphate deacetylase</common-name>
+<enzyme><Protein resource='getxml?META:NAG6PDEACET-CPLX' orgid='META' frameid='NAG6PDEACET-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7476' orgid='META' frameid='REG0-7476' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:6PFRUCTPHOS-ENZRXN' orgid='META' frameid='6PFRUCTPHOS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:6PFRUCTPHOS-RXN' orgid='META' frameid='6PFRUCTPHOS-RXN'/></reaction>
+<synonym datatype='string'>fructose-6-p-1-kinase</synonym>
+<synonym datatype='string'>fructose-6-phosphate-1-phosphotransferase</synonym>
+<common-name datatype='string'>6-phosphofructokinase</common-name>
+<enzyme><Protein resource='getxml?META:6PFK-1-CPX' orgid='META' frameid='6PFK-1-CPX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-6899' orgid='META' frameid='REG0-6899' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:GSADENYLATION-ENZRXN' orgid='META' frameid='GSADENYLATION-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:GSADENYLATION-RXN' orgid='META' frameid='GSADENYLATION-RXN'/></reaction>
+<synonym datatype='string'>glutamate-ammonia-ligase adenylyltransferase</synonym>
+<synonym datatype='string'>ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
+<common-name datatype='string'>glutamine synthetase adenylyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:GLNE-MONOMER' orgid='META' frameid='GLNE-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7689' orgid='META' frameid='REG0-7689' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ICITDEHKINASE-ENZRXN' orgid='META' frameid='ICITDEHKINASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:PHOSICITDEHASE-RXN' orgid='META' frameid='PHOSICITDEHASE-RXN'/></reaction>
+<synonym datatype='string'>ICDH kinase</synonym>
+<common-name datatype='string'>isocitrate dehydrogenase kinase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX0-230' orgid='META' frameid='CPLX0-230'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG66-82' orgid='META' frameid='REG66-82' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN66-1' orgid='META' frameid='ENZRXN66-1' detail='low'><reaction><Reaction resource='getxml?META:3.1.3.46-RXN' orgid='META' frameid='3.1.3.46-RXN'/></reaction>
+<common-name datatype='string'>fructose-2,6-bisphosphatase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX66-503' orgid='META' frameid='CPLX66-503'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-13572' orgid='META' frameid='REG-13572' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-889' orgid='META' frameid='ENZRXN-889' detail='low'><reaction><Reaction resource='getxml?META:TREHALOSEPHOSPHA-RXN' orgid='META' frameid='TREHALOSEPHOSPHA-RXN'/></reaction>
+<synonym datatype='string'>trehalose phosphatase</synonym>
+<common-name datatype='string'>trehalose-6-phosphate phosphatase</common-name>
+<enzyme><Protein resource='getxml?META:YDR074W-MONOMER' orgid='META' frameid='YDR074W-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-13569' orgid='META' frameid='REG-13569' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-862' orgid='META' frameid='ENZRXN-862' detail='low'><reaction><Reaction resource='getxml?META:TREHALOSE6PSYN-RXN' orgid='META' frameid='TREHALOSE6PSYN-RXN'/></reaction>
+<synonym datatype='string'>UDP-glucose-glucosephosphate glucosyltransferase</synonym>
+<common-name datatype='string'>trehalose-6-phosphate synthase</common-name>
+<enzyme><Protein resource='getxml?META:YBR126C-MONOMER' orgid='META' frameid='YBR126C-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-9920' orgid='META' frameid='REG-9920' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9242' orgid='META' frameid='ENZRXN-9242' detail='low'><reaction><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></reaction>
+<common-name datatype='string'>fructokinase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-5502' orgid='META' frameid='CPLX-5502'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8307' orgid='META' frameid='REG-8307' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-5044' orgid='META' frameid='ENZRXN-5044' detail='low'><reaction><Reaction resource='getxml?META:RXN-15754' orgid='META' frameid='RXN-15754'/></reaction>
+<common-name datatype='string'>NAD(P)&lt;sup&gt;+&lt;/sup&gt;-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-3823' orgid='META' frameid='CPLX-3823'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8047' orgid='META' frameid='REG-8047' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9201' orgid='META' frameid='ENZRXN-9201' detail='low'><reaction><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></reaction>
+<common-name datatype='string'>fructokinase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-5461' orgid='META' frameid='CPLX-5461'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8040' orgid='META' frameid='REG-8040' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9241' orgid='META' frameid='ENZRXN-9241' detail='low'><reaction><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></reaction>
+<common-name datatype='string'>fructokinase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-5501' orgid='META' frameid='CPLX-5501'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8025' orgid='META' frameid='REG-8025' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9341' orgid='META' frameid='ENZRXN-9341' detail='low'><reaction><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/></reaction>
+<common-name datatype='string'>triose phosphate isomerase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-9181' orgid='META' frameid='MONOMER-9181'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6698' orgid='META' frameid='REG-6698' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13675' orgid='META' frameid='ENZRXN-13675' detail='low'><reaction><Reaction resource='getxml?META:6PFRUCTPHOS-RXN' orgid='META' frameid='6PFRUCTPHOS-RXN'/></reaction>
+<common-name datatype='string'>6-phosphofructokinase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7267' orgid='META' frameid='CPLX-7267'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6156' orgid='META' frameid='REG-6156' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13951' orgid='META' frameid='ENZRXN-13951' detail='low'><reaction><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/></reaction>
+<common-name datatype='string'>mannitol-1-phosphate 5-dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-13098' orgid='META' frameid='MONOMER-13098'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=BGWGXPAPYGQALX-ARQDHWQXSA-L</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004096690</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -78,8 +217,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=643-13-0</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=BGWGXPAPYGQALX-ARQDHWQXSA-L</inchi-key>
-<common-name datatype='string'>&amp;beta;-D-fructofuranose 6-phosphate</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-317.66592<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -89,148 +226,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG0-7844' orgid='META' frameid='REG0-7844' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:NAG6PDEACET-ENZRXN' orgid='META' frameid='NAG6PDEACET-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:NAG6PDEACET-CPLX' orgid='META' frameid='NAG6PDEACET-CPLX'/></enzyme>
-<synonym datatype='string'>N-acetyl-D-glucosamine-6-phosphate amidohydrolase</synonym>
-<reaction><Reaction resource='getxml?META:NAG6PDEACET-RXN' orgid='META' frameid='NAG6PDEACET-RXN'/></reaction>
-<common-name datatype='string'>&lt;i&gt;N&lt;/i&gt;-acetylglucosamine-6-phosphate deacetylase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-7476' orgid='META' frameid='REG0-7476' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:6PFRUCTPHOS-ENZRXN' orgid='META' frameid='6PFRUCTPHOS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:6PFK-1-CPX' orgid='META' frameid='6PFK-1-CPX'/></enzyme>
-<synonym datatype='string'>fructose-6-p-1-kinase</synonym>
-<synonym datatype='string'>fructose-6-phosphate-1-phosphotransferase</synonym>
-<reaction><Reaction resource='getxml?META:6PFRUCTPHOS-RXN' orgid='META' frameid='6PFRUCTPHOS-RXN'/></reaction>
-<common-name datatype='string'>6-phosphofructokinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG0-7689' orgid='META' frameid='REG0-7689' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ICITDEHKINASE-ENZRXN' orgid='META' frameid='ICITDEHKINASE-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-230' orgid='META' frameid='CPLX0-230'/></enzyme>
-<synonym datatype='string'>ICDH kinase</synonym>
-<reaction><Reaction resource='getxml?META:PHOSICITDEHASE-RXN' orgid='META' frameid='PHOSICITDEHASE-RXN'/></reaction>
-<common-name datatype='string'>isocitrate dehydrogenase kinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-6899' orgid='META' frameid='REG0-6899' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:GSADENYLATION-ENZRXN' orgid='META' frameid='GSADENYLATION-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:GLNE-MONOMER' orgid='META' frameid='GLNE-MONOMER'/></enzyme>
-<synonym datatype='string'>glutamate-ammonia-ligase adenylyltransferase</synonym>
-<synonym datatype='string'>ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
-<reaction><Reaction resource='getxml?META:GSADENYLATION-RXN' orgid='META' frameid='GSADENYLATION-RXN'/></reaction>
-<common-name datatype='string'>glutamine synthetase adenylyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG66-82' orgid='META' frameid='REG66-82' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN66-1' orgid='META' frameid='ENZRXN66-1' detail='low'><enzyme><Protein resource='getxml?META:CPLX66-503' orgid='META' frameid='CPLX66-503'/></enzyme>
-<reaction><Reaction resource='getxml?META:3.1.3.46-RXN' orgid='META' frameid='3.1.3.46-RXN'/></reaction>
-<common-name datatype='string'>fructose-2,6-bisphosphatase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-13572' orgid='META' frameid='REG-13572' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-889' orgid='META' frameid='ENZRXN-889' detail='low'><enzyme><Protein resource='getxml?META:YDR074W-MONOMER' orgid='META' frameid='YDR074W-MONOMER'/></enzyme>
-<synonym datatype='string'>trehalose phosphatase</synonym>
-<reaction><Reaction resource='getxml?META:TREHALOSEPHOSPHA-RXN' orgid='META' frameid='TREHALOSEPHOSPHA-RXN'/></reaction>
-<common-name datatype='string'>trehalose-6-phosphate phosphatase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-13569' orgid='META' frameid='REG-13569' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-862' orgid='META' frameid='ENZRXN-862' detail='low'><enzyme><Protein resource='getxml?META:YBR126C-MONOMER' orgid='META' frameid='YBR126C-MONOMER'/></enzyme>
-<synonym datatype='string'>UDP-glucose-glucosephosphate glucosyltransferase</synonym>
-<reaction><Reaction resource='getxml?META:TREHALOSE6PSYN-RXN' orgid='META' frameid='TREHALOSE6PSYN-RXN'/></reaction>
-<common-name datatype='string'>trehalose-6-phosphate synthase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG-9920' orgid='META' frameid='REG-9920' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9242' orgid='META' frameid='ENZRXN-9242' detail='low'><enzyme><Protein resource='getxml?META:CPLX-5502' orgid='META' frameid='CPLX-5502'/></enzyme>
-<reaction><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></reaction>
-<common-name datatype='string'>fructokinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-8307' orgid='META' frameid='REG-8307' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-5044' orgid='META' frameid='ENZRXN-5044' detail='low'><enzyme><Protein resource='getxml?META:CPLX-3823' orgid='META' frameid='CPLX-3823'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-15754' orgid='META' frameid='RXN-15754'/></reaction>
-<common-name datatype='string'>NAD(P)&lt;sup&gt;+&lt;/sup&gt;-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG-8047' orgid='META' frameid='REG-8047' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9201' orgid='META' frameid='ENZRXN-9201' detail='low'><enzyme><Protein resource='getxml?META:CPLX-5461' orgid='META' frameid='CPLX-5461'/></enzyme>
-<reaction><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></reaction>
-<common-name datatype='string'>fructokinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-8040' orgid='META' frameid='REG-8040' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9241' orgid='META' frameid='ENZRXN-9241' detail='low'><enzyme><Protein resource='getxml?META:CPLX-5501' orgid='META' frameid='CPLX-5501'/></enzyme>
-<reaction><Reaction resource='getxml?META:FRUCTOKINASE-RXN' orgid='META' frameid='FRUCTOKINASE-RXN'/></reaction>
-<common-name datatype='string'>fructokinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-8025' orgid='META' frameid='REG-8025' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9341' orgid='META' frameid='ENZRXN-9341' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-9181' orgid='META' frameid='MONOMER-9181'/></enzyme>
-<reaction><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/></reaction>
-<common-name datatype='string'>triose phosphate isomerase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-6698' orgid='META' frameid='REG-6698' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13675' orgid='META' frameid='ENZRXN-13675' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7267' orgid='META' frameid='CPLX-7267'/></enzyme>
-<reaction><Reaction resource='getxml?META:6PFRUCTPHOS-RXN' orgid='META' frameid='6PFRUCTPHOS-RXN'/></reaction>
-<common-name datatype='string'>6-phosphofructokinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG-6156' orgid='META' frameid='REG-6156' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:FRUCTOSE-6P' orgid='META' frameid='FRUCTOSE-6P'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13951' orgid='META' frameid='ENZRXN-13951' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-13098' orgid='META' frameid='MONOMER-13098'/></enzyme>
-<reaction><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/></reaction>
-<common-name datatype='string'>mannitol-1-phosphate 5-dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<appears-in-left-side-of><Reaction resource='getxml?META:L-GLN-FRUCT-6-P-AMINOTRANS-RXN' orgid='META' frameid='L-GLN-FRUCT-6-P-AMINOTRANS-RXN'/><Reaction resource='getxml?META:RXN-9935' orgid='META' frameid='RXN-9935'/><Reaction resource='getxml?META:SUCROSE-PHOSPHATE-SYNTHASE-RXN' orgid='META' frameid='SUCROSE-PHOSPHATE-SYNTHASE-RXN'/><Reaction resource='getxml?META:RXN-13745' orgid='META' frameid='RXN-13745'/><Reaction resource='getxml?META:RXN0-313' orgid='META' frameid='RXN0-313'/><Reaction resource='getxml?META:R302-RXN' orgid='META' frameid='R302-RXN'/><Reaction resource='getxml?META:6-PHOSPHOFRUCTO-2-KINASE-RXN' orgid='META' frameid='6-PHOSPHOFRUCTO-2-KINASE-RXN'/><Reaction resource='getxml?META:2.7.1.90-RXN' orgid='META' frameid='2.7.1.90-RXN'/><Reaction resource='getxml?META:FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN' orgid='META' frameid='FRUCTOSE-6-PHOSPHATE-PHOSPHOKETOLASE-RXN'/><Reaction resource='getxml?META:6PFRUCTPHOS-RXN' orgid='META' frameid='6PFRUCTPHOS-RXN'/></appears-in-left-side-of>
-<abbrev-name datatype='string'>F6P</abbrev-name>
 </Compound>
 </ptools-xml>

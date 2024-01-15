@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CYS'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CYS'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CYS</query>
 <num_results>1</num_results>
@@ -17,6 +17,15 @@
 <string title='smiles'>C(S)[C@@H](C(=O)[O-])[NH3+]</string>
 </molecule>
 </cml>
+<abbrev-name datatype='string'>cys</abbrev-name>
+<synonym datatype='string'>C</synonym>
+<synonym datatype='string'>carbocysteine</synonym>
+<synonym datatype='string'>cysteine</synonym>
+<synonym datatype='string'>Cys</synonym>
+<synonym datatype='string'>L-cys</synonym>
+<inchi-key datatype='string'>InChIKey=XUJNEKJLAYXESH-REOHCLBHSA-N</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to CE-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
+<molecular-weight datatype='float' units='Daltons'>121.154</molecular-weight>
 <regulates><Regulation ID='ARA:REG-13331' orgid='ARA' frameid='REG-13331' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>+</mode>
@@ -30,12 +39,12 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG-8565' orgid='ARA' frameid='REG-8565' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-1644' orgid='ARA' frameid='ENZRXN-1644' detail='low'><common-name datatype='string'>serine acetyltransferase</common-name>
+<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-1644' orgid='ARA' frameid='ENZRXN-1644' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-1324' orgid='ARA' frameid='CPLX-1324'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:SERINE-O-ACETTRAN-RXN' orgid='ARA' frameid='SERINE-O-ACETTRAN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-1324' orgid='ARA' frameid='CPLX-1324'/></enzyme>
+<common-name datatype='string'>serine acetyltransferase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG0-8042' orgid='ARA' frameid='REG0-8042' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
@@ -47,74 +56,66 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-276' orgid='ARA' frameid='REGQT-276' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9508' orgid='ARA' frameid='ENZRXNQT-9508' detail='low'><common-name datatype='string'>serine acetyltransferase</common-name>
+<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9508' orgid='ARA' frameid='ENZRXNQT-9508' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G56760-MONOMER' orgid='ARA' frameid='AT5G56760-MONOMER'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:SERINE-O-ACETTRAN-RXN' orgid='ARA' frameid='SERINE-O-ACETTRAN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G56760-MONOMER' orgid='ARA' frameid='AT5G56760-MONOMER'/></enzyme>
+<common-name datatype='string'>serine acetyltransferase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-264' orgid='ARA' frameid='REGQT-264' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-4433' orgid='ARA' frameid='ENZRXNQT-4433' detail='low'><common-name datatype='string'>aspartate kinase</common-name>
+<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-4433' orgid='ARA' frameid='ENZRXNQT-4433' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G31230-MONOMER' orgid='ARA' frameid='AT1G31230-MONOMER'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:ASPARTATEKIN-RXN' orgid='ARA' frameid='ASPARTATEKIN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G31230-MONOMER' orgid='ARA' frameid='AT1G31230-MONOMER'/></enzyme>
+<common-name datatype='string'>aspartate kinase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>+</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-258' orgid='ARA' frameid='REGQT-258' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-4432' orgid='ARA' frameid='ENZRXNQT-4432' detail='low'><common-name datatype='string'>homoserine dehydrogenase</common-name>
+<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-4432' orgid='ARA' frameid='ENZRXNQT-4432' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G31230-MONOMER' orgid='ARA' frameid='AT1G31230-MONOMER'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:HOMOSERDEHYDROG-RXN' orgid='ARA' frameid='HOMOSERDEHYDROG-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G31230-MONOMER' orgid='ARA' frameid='AT1G31230-MONOMER'/></enzyme>
+<common-name datatype='string'>homoserine dehydrogenase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-252' orgid='ARA' frameid='REGQT-252' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-5939' orgid='ARA' frameid='ENZRXNQT-5939' detail='low'><common-name datatype='string'>serine acetyltransferase</common-name>
+<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-5939' orgid='ARA' frameid='ENZRXNQT-5939' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G35640-MONOMER' orgid='ARA' frameid='AT4G35640-MONOMER'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:SERINE-O-ACETTRAN-RXN' orgid='ARA' frameid='SERINE-O-ACETTRAN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT4G35640-MONOMER' orgid='ARA' frameid='AT4G35640-MONOMER'/></enzyme>
+<common-name datatype='string'>serine acetyltransferase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-250' orgid='ARA' frameid='REGQT-250' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-5976' orgid='ARA' frameid='ENZRXNQT-5976' detail='low'><common-name datatype='string'>aspartate kinase</common-name>
+<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-5976' orgid='ARA' frameid='ENZRXNQT-5976' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G19710-MONOMER' orgid='ARA' frameid='AT4G19710-MONOMER'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:ASPARTATEKIN-RXN' orgid='ARA' frameid='ASPARTATEKIN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT4G19710-MONOMER' orgid='ARA' frameid='AT4G19710-MONOMER'/></enzyme>
+<common-name datatype='string'>aspartate kinase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>+</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-245' orgid='ARA' frameid='REGQT-245' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-5975' orgid='ARA' frameid='ENZRXNQT-5975' detail='low'><common-name datatype='string'>homoserine dehydrogenase</common-name>
+<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-5975' orgid='ARA' frameid='ENZRXNQT-5975' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G19710-MONOMER' orgid='ARA' frameid='AT4G19710-MONOMER'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:HOMOSERDEHYDROG-RXN' orgid='ARA' frameid='HOMOSERDEHYDROG-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT4G19710-MONOMER' orgid='ARA' frameid='AT4G19710-MONOMER'/></enzyme>
+<common-name datatype='string'>homoserine dehydrogenase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:CYS' orgid='ARA' frameid='CYS'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 </regulates>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to CE-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>L-cysteine</common-name>
 <inchi datatype='string'>InChI=1S/C3H7NO2S/c4-2(1-7)3(5)6/h2,7H,1,4H2,(H,5,6)/t2-/m0/s1</inchi>
-<inchi-key datatype='string'>InChIKey=XUJNEKJLAYXESH-REOHCLBHSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-22606' orgid='ARA' frameid='RXN-22606'/><Reaction resource='getxml?ARA:RXN-22698' orgid='ARA' frameid='RXN-22698'/><Reaction resource='getxml?ARA:RXN-22915' orgid='ARA' frameid='RXN-22915'/><Reaction resource='getxml?ARA:RXN-18899' orgid='ARA' frameid='RXN-18899'/><Reaction resource='getxml?ARA:RXN-14185' orgid='ARA' frameid='RXN-14185'/><Reaction resource='getxml?ARA:RXN-8351' orgid='ARA' frameid='RXN-8351'/><Reaction resource='getxml?ARA:RXN66-555' orgid='ARA' frameid='RXN66-555'/><Reaction resource='getxml?ARA:CYSTEINE-DIOXYGENASE-RXN' orgid='ARA' frameid='CYSTEINE-DIOXYGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-14647' orgid='ARA' frameid='RXN-14647'/><Reaction resource='getxml?ARA:RXN0-3' orgid='ARA' frameid='RXN0-3'/><Reaction resource='getxml?ARA:RXN-15881' orgid='ARA' frameid='RXN-15881'/><Reaction resource='getxml?ARA:RXN0-308' orgid='ARA' frameid='RXN0-308'/><Reaction resource='getxml?ARA:RXN-12588' orgid='ARA' frameid='RXN-12588'/><Reaction resource='getxml?ARA:RXN-14385' orgid='ARA' frameid='RXN-14385'/><Reaction resource='getxml?ARA:RXNQT-4357' orgid='ARA' frameid='RXNQT-4357'/><Reaction resource='getxml?ARA:L-3-CYANOALANINE-SYNTHASE-RXN' orgid='ARA' frameid='L-3-CYANOALANINE-SYNTHASE-RXN'/><Reaction resource='getxml?ARA:P-PANTOCYSLIG-RXN' orgid='ARA' frameid='P-PANTOCYSLIG-RXN'/><Reaction resource='getxml?ARA:O-SUCCHOMOSERLYASE-RXN' orgid='ARA' frameid='O-SUCCHOMOSERLYASE-RXN'/><Reaction resource='getxml?ARA:CYSPH-RXN' orgid='ARA' frameid='CYSPH-RXN'/><Reaction resource='getxml?ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-9.312156</gibbs-0>
-<synonym datatype='string'>C</synonym>
-<synonym datatype='string'>carbocysteine</synonym>
-<synonym datatype='string'>cysteine</synonym>
-<synonym datatype='string'>Cys</synonym>
-<synonym datatype='string'>L-cys</synonym>
-<molecular-weight datatype='float' units='Daltons'>121.154</molecular-weight>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-18932' orgid='ARA' frameid='RXN-18932'/><Reaction resource='getxml?ARA:RXN-15130' orgid='ARA' frameid='RXN-15130'/><Reaction resource='getxml?ARA:RXN-14048' orgid='ARA' frameid='RXN-14048'/><Reaction resource='getxml?ARA:RXN-14647' orgid='ARA' frameid='RXN-14647'/><Reaction resource='getxml?ARA:RXN0-3' orgid='ARA' frameid='RXN0-3'/><Reaction resource='getxml?ARA:RXN-11623' orgid='ARA' frameid='RXN-11623'/><Reaction resource='getxml?ARA:ACSERLY-RXN' orgid='ARA' frameid='ACSERLY-RXN'/><Reaction resource='getxml?ARA:RXN-6622' orgid='ARA' frameid='RXN-6622'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-22606' orgid='ARA' frameid='RXN-22606'/><Reaction resource='getxml?ARA:RXN-22698' orgid='ARA' frameid='RXN-22698'/><Reaction resource='getxml?ARA:RXN-22915' orgid='ARA' frameid='RXN-22915'/><Reaction resource='getxml?ARA:RXN-18899' orgid='ARA' frameid='RXN-18899'/><Reaction resource='getxml?ARA:RXN-14185' orgid='ARA' frameid='RXN-14185'/><Reaction resource='getxml?ARA:RXN-8351' orgid='ARA' frameid='RXN-8351'/><Reaction resource='getxml?ARA:RXN66-555' orgid='ARA' frameid='RXN66-555'/><Reaction resource='getxml?ARA:CYSTEINE-DIOXYGENASE-RXN' orgid='ARA' frameid='CYSTEINE-DIOXYGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-14647' orgid='ARA' frameid='RXN-14647'/><Reaction resource='getxml?ARA:RXN0-3' orgid='ARA' frameid='RXN0-3'/><Reaction resource='getxml?ARA:RXN-15881' orgid='ARA' frameid='RXN-15881'/><Reaction resource='getxml?ARA:RXN0-308' orgid='ARA' frameid='RXN0-308'/><Reaction resource='getxml?ARA:RXN-12588' orgid='ARA' frameid='RXN-12588'/><Reaction resource='getxml?ARA:RXN-14385' orgid='ARA' frameid='RXN-14385'/><Reaction resource='getxml?ARA:RXNQT-4357' orgid='ARA' frameid='RXNQT-4357'/><Reaction resource='getxml?ARA:L-3-CYANOALANINE-SYNTHASE-RXN' orgid='ARA' frameid='L-3-CYANOALANINE-SYNTHASE-RXN'/><Reaction resource='getxml?ARA:P-PANTOCYSLIG-RXN' orgid='ARA' frameid='P-PANTOCYSLIG-RXN'/><Reaction resource='getxml?ARA:O-SUCCHOMOSERLYASE-RXN' orgid='ARA' frameid='O-SUCCHOMOSERLYASE-RXN'/><Reaction resource='getxml?ARA:CYSPH-RXN' orgid='ARA' frameid='CYSPH-RXN'/><Reaction resource='getxml?ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>121.01975</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-9.312156</gibbs-0>
+<common-name datatype='string'>L-cysteine</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000000895042</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -185,6 +186,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=52-90-4</dblink-URL>
 </dblink>
-<abbrev-name datatype='string'>cys</abbrev-name>
 </Compound>
 </ptools-xml>

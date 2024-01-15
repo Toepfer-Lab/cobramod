@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:3-METHYLTHIOPROPANALDOXIME'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:3-METHYLTHIOPROPANALDOXIME'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:3-METHYLTHIOPROPANALDOXIME</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:3-METHYLTHIOPROPANALDOXIME' orgid='META' frameid='3-METHYLTHIOPROPANALDOXIME' detail='full'><parent><Compound resource='getxml?META:CPD-19472' orgid='META' frameid='CPD-19472' class='true'/></parent>
@@ -13,11 +13,14 @@
 <string title='smiles'>CSCCC/C=N/O</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-2206' orgid='META' frameid='RXN-2206'/><Reaction resource='getxml?META:RXN-13016' orgid='META' frameid='RXN-13016'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-11414' orgid='META' frameid='RXN-11414'/><Reaction resource='getxml?META:RXN-18161' orgid='META' frameid='RXN-18161'/><Reaction resource='getxml?META:RXN-2207' orgid='META' frameid='RXN-2207'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C5H11NOS/c1-8-5-3-2-4-6-7/h4,7H,2-3,5H2,1H3/b6-4+</inchi>
-<synonym datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-4-(methylthio)butanal oxime</synonym>
 <molecular-weight datatype='float' units='Daltons'>133.208</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-2206' orgid='META' frameid='RXN-2206'/><Reaction resource='getxml?META:RXN-13016' orgid='META' frameid='RXN-13016'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>133.05614</monoisotopic-mw>
+<synonym datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-4-(methylthio)butanal oxime</synonym>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-4-(methylsulfanyl)butanal oxime</common-name>
+<inchi-key datatype='string'>InChIKey=DNYWTMVKWUGHCB-GQCTYLIASA-N</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000087515519</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -48,8 +51,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C17241</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=DNYWTMVKWUGHCB-GQCTYLIASA-N</inchi-key>
-<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-4-(methylsulfanyl)butanal oxime</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>94.26232<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -59,12 +60,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-11414' orgid='META' frameid='RXN-11414'/><Reaction resource='getxml?META:RXN-18161' orgid='META' frameid='RXN-18161'/><Reaction resource='getxml?META:RXN-2207' orgid='META' frameid='RXN-2207'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

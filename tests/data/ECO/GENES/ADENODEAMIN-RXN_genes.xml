@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECO:ADENODEAMIN-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECO:ADENODEAMIN-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=ECO:ADENODEAMIN-RXN&amp;detail=FULL</query>
     <num_results>2</num_results>
-    <PGDB orgid="ECOLI" version="27.0">
+    <PGDB orgid="ECOLI" version="27.5">
       <species datatype="string">Escherichia coli</species>
       <strain datatype="string">K-12 substr. MG1655</strain>
       <dblink>
@@ -63,10 +63,10 @@
       <Protein resource="getxml?ECOLI:EG12097-MONOMER" orgid="ECOLI" frameid="EG12097-MONOMER" />
     </product>
     <transcription-direction datatype="string">-</transcription-direction>
+    <accession-1 datatype="string">b2593</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-13675" orgid="ECOLI" frameid="TU0-13675" />
     </component-of>
-    <accession-1 datatype="string">b2593</accession-1>
     <dblink>
       <dblink-db>MIM</dblink-db>
       <dblink-oid>604302</dblink-oid>
@@ -103,12 +103,12 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2593</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">2734303</left-end-position>
-    <right-end-position datatype="integer">2735034</right-end-position>
     <synonym datatype="string">pgeF</synonym>
+    <common-name datatype="string">yfiH</common-name>
     <accession-2 datatype="string">ECK2591</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">58.907967</centisome-position>
-    <common-name datatype="string">yfiH</common-name>
+    <right-end-position datatype="integer">2735034</right-end-position>
+    <left-end-position datatype="integer">2734303</left-end-position>
   </Gene>
   <Gene ID="ECOLI:EG10030" orgid="ECOLI" frameid="EG10030" detail="full">
     <parent>
@@ -135,33 +135,33 @@
     <product>
       <Protein resource="getxml?ECOLI:ADENODEAMIN-MONOMER" orgid="ECOLI" frameid="ADENODEAMIN-MONOMER" />
     </product>
+    <accession-1 datatype="string">b1623</accession-1>
     <citation>
       <Publication ID="ECOLI:PUB-1998686" orgid="ECOLI" frameid="PUB-1998686" detail="full">
-        <year datatype="integer">1991</year>
-        <source datatype="string">Biochemistry 30(8);2273-80</source>
-        <title datatype="string">Deduced amino acid sequence of Escherichia coli adenosine deaminase reveals evolutionarily conserved amino acid residues: implications for catalytic function.</title>
         <pubmed-id datatype="string">1998686</pubmed-id>
+        <year datatype="integer">1991</year>
+        <title datatype="string">Deduced amino acid sequence of Escherichia coli adenosine deaminase reveals evolutionarily conserved amino acid residues: implications for catalytic function.</title>
         <author datatype="string">Chang ZY</author>
         <author datatype="string">Nygaard P</author>
         <author datatype="string">Chinault AC</author>
         <author datatype="string">Kellems RE</author>
+        <source datatype="string">Biochemistry 30(8);2273-80</source>
       </Publication>
     </citation>
     <citation>
       <Publication ID="ECOLI:PUB-765747" orgid="ECOLI" frameid="PUB-765747" detail="full">
-        <year datatype="integer">1975</year>
-        <source datatype="string">Mol Gen Genet 143(1);85-91</source>
-        <title datatype="string">Location on the chromosome of Escherichia coli of genes governing purine metabolism. Adenosine deaminase (add), guanosine kinase (gsk) and hypoxanthine phosphoribosyltransferase (hpt).</title>
         <pubmed-id datatype="string">765747</pubmed-id>
+        <year datatype="integer">1975</year>
+        <title datatype="string">Location on the chromosome of Escherichia coli of genes governing purine metabolism. Adenosine deaminase (add), guanosine kinase (gsk) and hypoxanthine phosphoribosyltransferase (hpt).</title>
         <author datatype="string">Jochimsen B</author>
         <author datatype="string">Nygaard P</author>
         <author datatype="string">Vestergaard T</author>
+        <source datatype="string">Mol Gen Genet 143(1);85-91</source>
       </Publication>
     </citation>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-13350" orgid="ECOLI" frameid="TU0-13350" />
     </component-of>
-    <accession-1 datatype="string">b1623</accession-1>
     <dblink>
       <dblink-db>MIM</dblink-db>
       <dblink-oid>102700</dblink-oid>
@@ -204,10 +204,10 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=1042</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">1702233</left-end-position>
-    <right-end-position datatype="integer">1703234</right-end-position>
+    <common-name datatype="string">add</common-name>
     <accession-2 datatype="string">ECK1618</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">36.673</centisome-position>
-    <common-name datatype="string">add</common-name>
+    <right-end-position datatype="integer">1703234</right-end-position>
+    <left-end-position datatype="integer">1702233</left-end-position>
   </Gene>
 </ptools-xml>

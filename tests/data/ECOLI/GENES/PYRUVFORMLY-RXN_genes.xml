@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECOLI:PYRUVFORMLY-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECOLI:PYRUVFORMLY-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=ECOLI:PYRUVFORMLY-RXN&amp;detail=FULL</query>
-    <num_results>2</num_results>
-    <PGDB orgid="ECOLI" version="27.0">
+    <num_results>3</num_results>
+    <PGDB orgid="ECOLI" version="27.5">
       <species datatype="string">Escherichia coli</species>
       <strain datatype="string">K-12 substr. MG1655</strain>
       <dblink>
@@ -15,20 +15,27 @@
       </dblink>
     </PGDB>
   </metadata>
-  <Gene ID="ECOLI:G7627" orgid="ECOLI" frameid="G7627" detail="full">
+  <Gene ID="ECOLI:EG11784" orgid="ECOLI" frameid="EG11784" detail="full">
     <parent>
-      <Gene resource="getxml?ECOLI:BC-1.1.3" orgid="ECOLI" frameid="BC-1.1.3" class="true" />
+      <Gene resource="getxml?ECOLI:BC-1.3.7" orgid="ECOLI" frameid="BC-1.3.7" class="true" />
     </parent>
     <parent>
-      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
+      <Gene resource="getxml?ECOLI:BC-5.5.4" orgid="ECOLI" frameid="BC-5.5.4" class="true" />
     </parent>
     <parent>
-      <Gene resource="getxml?ECOLI:BC-1.7.30" orgid="ECOLI" frameid="BC-1.7.30" class="true" />
+      <Gene resource="getxml?ECOLI:BC-5.5.6" orgid="ECOLI" frameid="BC-5.5.6" class="true" />
     </parent>
     <replicon>
       <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
     </replicon>
     <knockout-growth-observations>
+      <Growth-Observation ID="ECOLI:OBS0-43" orgid="ECOLI" frameid="OBS0-43" detail="low">
+        <parent>
+          <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
+        </parent>
+        <growth-status>NONE</growth-status>
+        <with-growth-media>LB enriched</with-growth-media>
+      </Growth-Observation>
       <Growth-Observation ID="ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" detail="low">
         <parent>
           <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
@@ -64,6 +71,86 @@
         <growth-status>NORMAL</growth-status>
         <with-growth-media>M9 medium with 1% glycerol</with-growth-media>
       </Growth-Observation>
+    </knockout-growth-observations>
+    <product>
+      <Protein resource="getxml?ECOLI:EG11784-MONOMER" orgid="ECOLI" frameid="EG11784-MONOMER" />
+    </product>
+    <transcription-direction datatype="string">-</transcription-direction>
+    <accession-1 datatype="string">b2579</accession-1>
+    <component-of>
+      <Transcription-Unit resource="getxml?ECOLI:TU0-42577" orgid="ECOLI" frameid="TU0-42577" />
+      <Transcription-Unit resource="getxml?ECOLI:TU0-1143" orgid="ECOLI" frameid="TU0-1143" />
+    </component-of>
+    <dblink>
+      <dblink-db>REGULONDB</dblink-db>
+      <dblink-oid>b2579</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://regulondb.ccg.unam.mx/search?term=b2579&amp;organism=ECK12&amp;type=All</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>STRING</dblink-db>
+      <dblink-oid>511145.b2579</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://string-db.org/network/511145.b2579</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ASAP</dblink-db>
+      <dblink-oid>ABE-0008489</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://asap.ahabs.wisc.edu/asap/feature_info.php?FeatureID=ABE-0008489</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>ECHOBASE</dblink-db>
+      <dblink-oid>EB1732</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>http://www.york.ac.uk/res/thomas/Gene.cfm?recordID=EB1732</dblink-URL>
+    </dblink>
+    <dblink>
+      <dblink-db>OU-MICROARRAY</dblink-db>
+      <dblink-oid>b2579</dblink-oid>
+      <dblink-relationship>unification</dblink-relationship>
+      <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2579</dblink-URL>
+    </dblink>
+    <synonym datatype="string">yfiD</synonym>
+    <common-name datatype="string">grcA</common-name>
+    <accession-2 datatype="string">ECK2577</accession-2>
+    <centisome-position datatype="float" units="CENTISOMES">58.51507</centisome-position>
+    <right-end-position datatype="integer">2716449</right-end-position>
+    <regulated-by>
+      <Regulation ID="ECOLI:REG0-14361" orgid="ECOLI" frameid="REG0-14361" detail="low">
+        <parent>
+          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
+        </parent>
+        <regulator>
+          <Protein resource="getxml?ECOLI:CPLX0-7797" orgid="ECOLI" frameid="CPLX0-7797" />
+        </regulator>
+        <regulated-entity>
+          <Gene resource="#ECOLI:EG11784" orgid="ECOLI" frameid="EG11784" />
+        </regulated-entity>
+        <mode datatype="string">+</mode>
+      </Regulation>
+    </regulated-by>
+    <left-end-position datatype="integer">2716066</left-end-position>
+  </Gene>
+  <Gene ID="ECOLI:G7627" orgid="ECOLI" frameid="G7627" detail="full">
+    <parent>
+      <Gene resource="getxml?ECOLI:BC-1.1.3" orgid="ECOLI" frameid="BC-1.1.3" class="true" />
+    </parent>
+    <parent>
+      <Gene resource="getxml?ECOLI:BC-1.3.5" orgid="ECOLI" frameid="BC-1.3.5" class="true" />
+    </parent>
+    <parent>
+      <Gene resource="getxml?ECOLI:BC-1.7.30" orgid="ECOLI" frameid="BC-1.7.30" class="true" />
+    </parent>
+    <replicon>
+      <Genetic-Element resource="getxml?ECOLI:COLI-K12" orgid="ECOLI" frameid="COLI-K12" />
+    </replicon>
+    <knockout-growth-observations>
+      <Growth-Observation resource="#ECOLI:OBS0-439" orgid="ECOLI" frameid="OBS0-439" />
+      <Growth-Observation resource="#ECOLI:OBS0-49" orgid="ECOLI" frameid="OBS0-49" />
+      <Growth-Observation resource="#ECOLI:OBS0-40" orgid="ECOLI" frameid="OBS0-40" />
+      <Growth-Observation resource="#ECOLI:OBS0-37" orgid="ECOLI" frameid="OBS0-37" />
+      <Growth-Observation resource="#ECOLI:OBS0-33" orgid="ECOLI" frameid="OBS0-33" />
       <Growth-Observation ID="ECOLI:OBS0-44" orgid="ECOLI" frameid="OBS0-44" detail="low">
         <parent>
           <Growth-Observation resource="getxml?ECOLI:Primary-Growth-Observations" orgid="ECOLI" frameid="Primary-Growth-Observations" class="true" />
@@ -77,11 +164,11 @@
       <Protein resource="getxml?ECOLI:KETOBUTFORMLY-INACT-MONOMER" orgid="ECOLI" frameid="KETOBUTFORMLY-INACT-MONOMER" />
     </product>
     <transcription-direction datatype="string">-</transcription-direction>
+    <accession-1 datatype="string">b3114</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-14551" orgid="ECOLI" frameid="TU0-14551" />
       <Transcription-Unit resource="getxml?ECOLI:TU00125" orgid="ECOLI" frameid="TU00125" />
     </component-of>
-    <accession-1 datatype="string">b3114</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b3114</dblink-oid>
@@ -112,12 +199,12 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b3114</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">3260124</left-end-position>
-    <right-end-position datatype="integer">3262418</right-end-position>
     <synonym datatype="string">yhaS</synonym>
+    <common-name datatype="string">tdcE</common-name>
     <accession-2 datatype="string">ECK3103</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">70.23629</centisome-position>
-    <common-name datatype="string">tdcE</common-name>
+    <right-end-position datatype="integer">3262418</right-end-position>
+    <left-end-position datatype="integer">3260124</left-end-position>
   </Gene>
   <Gene ID="ECOLI:EG10701" orgid="ECOLI" frameid="EG10701" detail="full">
     <parent>
@@ -138,49 +225,50 @@
     <product>
       <Protein resource="getxml?ECOLI:PYRUVFORMLY-MONOMER" orgid="ECOLI" frameid="PYRUVFORMLY-MONOMER" />
     </product>
+    <accession-1 datatype="string">b0903</accession-1>
     <citation>
       <Publication ID="ECOLI:PUB-6758723" orgid="ECOLI" frameid="PUB-6758723" detail="full">
-        <year datatype="integer">1982</year>
-        <source datatype="string">Arch Microbiol 132(4);365-71</source>
-        <title datatype="string">Expression of pyruvate formate-lyase of Escherichia coli from the cloned structural gene.</title>
         <pubmed-id datatype="string">6758723</pubmed-id>
+        <year datatype="integer">1982</year>
+        <title datatype="string">Expression of pyruvate formate-lyase of Escherichia coli from the cloned structural gene.</title>
         <author datatype="string">Pecher A</author>
         <author datatype="string">Blaschkowski HP</author>
         <author datatype="string">Knappe K</author>
         <author datatype="string">Bock A</author>
+        <source datatype="string">Arch Microbiol 132(4);365-71</source>
       </Publication>
     </citation>
     <citation>
       <Publication ID="ECOLI:PUB-3053170" orgid="ECOLI" frameid="PUB-3053170" detail="full">
-        <year datatype="integer">1988</year>
-        <source datatype="string">Eur J Biochem 177(1);153-8</source>
-        <title datatype="string">Primary structures of Escherichia coli pyruvate formate-lyase and pyruvate-formate-lyase-activating enzyme deduced from the DNA nucleotide sequences.</title>
         <pubmed-id datatype="string">3053170</pubmed-id>
+        <year datatype="integer">1988</year>
+        <title datatype="string">Primary structures of Escherichia coli pyruvate formate-lyase and pyruvate-formate-lyase-activating enzyme deduced from the DNA nucleotide sequences.</title>
         <author datatype="string">Rodel W</author>
         <author datatype="string">Plaga W</author>
         <author datatype="string">Frank R</author>
         <author datatype="string">Knappe J</author>
+        <source datatype="string">Eur J Biochem 177(1);153-8</source>
       </Publication>
     </citation>
     <citation>
       <Publication ID="ECOLI:PUB-3053657" orgid="ECOLI" frameid="PUB-3053657" detail="full">
-        <year datatype="integer">1988</year>
-        <source datatype="string">J Bacteriol 170(11);5330-6</source>
-        <title datatype="string">Anaerobic regulation of pyruvate formate-lyase from Escherichia coli K-12.</title>
         <pubmed-id datatype="string">3053657</pubmed-id>
+        <year datatype="integer">1988</year>
+        <title datatype="string">Anaerobic regulation of pyruvate formate-lyase from Escherichia coli K-12.</title>
         <author datatype="string">Sawers G</author>
         <author datatype="string">Bock A</author>
+        <source datatype="string">J Bacteriol 170(11);5330-6</source>
       </Publication>
     </citation>
     <citation>
       <Publication ID="ECOLI:PUB-1917868" orgid="ECOLI" frameid="PUB-1917868" detail="full">
-        <year datatype="integer">1991</year>
-        <source datatype="string">J Bacteriol 173(20);6390-7</source>
-        <title datatype="string">Carbon metabolism regulates expression of the pfl (pyruvate formate-lyase) gene in Escherichia coli.</title>
         <pubmed-id datatype="string">1917868</pubmed-id>
+        <year datatype="integer">1991</year>
+        <title datatype="string">Carbon metabolism regulates expression of the pfl (pyruvate formate-lyase) gene in Escherichia coli.</title>
         <author datatype="string">Rasmussen LJ</author>
         <author datatype="string">Moller PL</author>
         <author datatype="string">Atlung T</author>
+        <source datatype="string">J Bacteriol 173(20);6390-7</source>
       </Publication>
     </citation>
     <component-of>
@@ -193,33 +281,6 @@
       <Transcription-Unit resource="getxml?ECOLI:TU00378" orgid="ECOLI" frameid="TU00378" />
       <Transcription-Unit resource="getxml?ECOLI:TU00377" orgid="ECOLI" frameid="TU00377" />
     </component-of>
-    <accession-1 datatype="string">b0903</accession-1>
-    <regulated-by>
-      <Regulation ID="ECOLI:REG0-16139" orgid="ECOLI" frameid="REG0-16139" detail="low">
-        <parent>
-          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
-        </parent>
-        <regulated-entity>
-          <Gene resource="#ECOLI:EG10701" orgid="ECOLI" frameid="EG10701" />
-        </regulated-entity>
-        <mode datatype="string">+</mode>
-        <regulator>
-          <Protein resource="getxml?ECOLI:G7518-MONOMER" orgid="ECOLI" frameid="G7518-MONOMER" />
-        </regulator>
-      </Regulation>
-      <Regulation ID="ECOLI:REG0-16062" orgid="ECOLI" frameid="REG0-16062" detail="low">
-        <parent>
-          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
-        </parent>
-        <regulated-entity>
-          <Gene resource="#ECOLI:EG10701" orgid="ECOLI" frameid="EG10701" />
-        </regulated-entity>
-        <mode datatype="string">-</mode>
-        <regulator>
-          <Protein resource="getxml?ECOLI:EG12105-MONOMER" orgid="ECOLI" frameid="EG12105-MONOMER" />
-        </regulator>
-      </Regulation>
-    </regulated-by>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b0903</dblink-oid>
@@ -256,11 +317,37 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=410</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">951272</left-end-position>
-    <right-end-position datatype="integer">953554</right-end-position>
     <synonym datatype="string">pfl</synonym>
+    <common-name datatype="string">pflB</common-name>
     <accession-2 datatype="string">ECK0894</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">20.494255</centisome-position>
-    <common-name datatype="string">pflB</common-name>
+    <right-end-position datatype="integer">953554</right-end-position>
+    <regulated-by>
+      <Regulation ID="ECOLI:REG0-16139" orgid="ECOLI" frameid="REG0-16139" detail="low">
+        <parent>
+          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
+        </parent>
+        <regulator>
+          <Protein resource="getxml?ECOLI:G7518-MONOMER" orgid="ECOLI" frameid="G7518-MONOMER" />
+        </regulator>
+        <regulated-entity>
+          <Gene resource="#ECOLI:EG10701" orgid="ECOLI" frameid="EG10701" />
+        </regulated-entity>
+        <mode datatype="string">+</mode>
+      </Regulation>
+      <Regulation ID="ECOLI:REG0-16062" orgid="ECOLI" frameid="REG0-16062" detail="low">
+        <parent>
+          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
+        </parent>
+        <regulator>
+          <Protein resource="getxml?ECOLI:EG12105-MONOMER" orgid="ECOLI" frameid="EG12105-MONOMER" />
+        </regulator>
+        <regulated-entity>
+          <Gene resource="#ECOLI:EG10701" orgid="ECOLI" frameid="EG10701" />
+        </regulated-entity>
+        <mode datatype="string">-</mode>
+      </Regulation>
+    </regulated-by>
+    <left-end-position datatype="integer">951272</left-end-position>
   </Gene>
 </ptools-xml>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:RXN0-901'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:RXN0-901'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:RXN0-901</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -14,23 +14,23 @@
 </metadata>
 <Reaction ID='ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901' detail='full'><parent><Reaction resource='getxml?ECOLI:Chemical-Reactions' orgid='ECOLI' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ECOLI:Small-Molecule-Reactions' orgid='ECOLI' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<comment datatype='string'>XdhA-XdhB-XdhC is a putative heterotrimeric xanthine dehydrogenase [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10986234&quot;&gt;Xi00&lt;/a&gt;].</comment>
-<gibbs-0 datatype='float' units='kcal/mol'>31.107788</gibbs-0>
-<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ENZRXN0-1062' orgid='ECOLI' frameid='ENZRXN0-1062' detail='low'><reaction><Reaction resource='#ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:CPLX0-761' orgid='ECOLI' frameid='CPLX0-761'/></enzyme>
-<common-name datatype='string'>xanthine:NAD+ oxidoreductase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <left><Compound resource='getxml?ECOLI:XANTHINE' orgid='ECOLI' frameid='XANTHINE'/></left>
 <left><Compound resource='getxml?ECOLI:NAD' orgid='ECOLI' frameid='NAD'/></left>
 <left><Compound resource='getxml?ECOLI:WATER' orgid='ECOLI' frameid='WATER'/></left>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<ec-number>EC-1.17.1.4<official>T</official>
-</ec-number>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ENZRXN0-1062' orgid='ECOLI' frameid='ENZRXN0-1062' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-761' orgid='ECOLI' frameid='CPLX0-761'/></enzyme>
+<common-name datatype='string'>xanthine:NAD+ oxidoreductase</common-name>
+<reaction><Reaction resource='#ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <right><Compound resource='getxml?ECOLI:URATE' orgid='ECOLI' frameid='URATE'/></right>
 <right><Compound resource='getxml?ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></right>
 <right><Compound resource='getxml?ECOLI:PROTON' orgid='ECOLI' frameid='PROTON'/></right>
 <in-pathway><Pathway resource='getxml?ECOLI:SALVADEHYPOX-PWY' orgid='ECOLI' frameid='SALVADEHYPOX-PWY'/><Pathway resource='getxml?ECOLI:PWY-6608' orgid='ECOLI' frameid='PWY-6608'/></in-pathway>
+<comment datatype='string'>XdhA-XdhB-XdhC is a putative heterotrimeric xanthine dehydrogenase [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10986234&quot;&gt;Xi00&lt;/a&gt;].</comment>
+<gibbs-0 datatype='float' units='kcal/mol'>31.107788</gibbs-0>
+<ec-number>EC-1.17.1.4<official>T</official>
+</ec-number>
 </Reaction>
 </ptools-xml>

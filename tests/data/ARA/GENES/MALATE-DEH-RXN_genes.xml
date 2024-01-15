@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:MALATE-DEH-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:MALATE-DEH-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -19,12 +19,11 @@
     <product>
       <Protein resource="getxml?ARA:AT5G09660-MONOMER" orgid="ARA" frameid="AT5G09660-MONOMER" />
     </product>
-    <common-name datatype="string">PMDH2</common-name>
     <centisome-position datatype="float" units="CENTISOMES">11.089824</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT5G09660</accession-1>
     <right-end-position datatype="integer">2995676</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">2993445</left-end-position>
+    <common-name datatype="string">PMDH2</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G09660</dblink-oid>
@@ -37,6 +36,7 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/3702.AT5G09660.4</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT5G09660</accession-1>
   </Gene>
   <Gene ID="ARA:AT3G47520" orgid="ARA" frameid="AT3G47520" detail="full">
     <parent>
@@ -48,13 +48,12 @@
     <product>
       <Protein resource="getxml?ARA:AT3G47520-MONOMER" orgid="ARA" frameid="AT3G47520-MONOMER" />
     </product>
-    <common-name datatype="string">pNAD-MDH</common-name>
-    <centisome-position datatype="float" units="CENTISOMES">74.66408</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT3G47520</accession-1>
     <synonym datatype="string">MDH</synonym>
+    <centisome-position datatype="float" units="CENTISOMES">74.66408</centisome-position>
     <right-end-position datatype="integer">17526026</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">17524259</left-end-position>
+    <common-name datatype="string">pNAD-MDH</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G47520</dblink-oid>
@@ -73,6 +72,7 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/3702.AT3G47520.1</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT3G47520</accession-1>
   </Gene>
   <Gene ID="ARA:AT3G15020" orgid="ARA" frameid="AT3G15020" detail="full">
     <parent>
@@ -84,18 +84,18 @@
     <product>
       <Protein resource="getxml?ARA:AT3G15020-MONOMER" orgid="ARA" frameid="AT3G15020-MONOMER" />
     </product>
-    <common-name datatype="string">mMDH2</common-name>
     <centisome-position datatype="float" units="CENTISOMES">21.54201</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT3G15020</accession-1>
     <right-end-position datatype="integer">5058255</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">5056075</left-end-position>
+    <common-name datatype="string">mMDH2</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G15020</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G15020</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT3G15020</accession-1>
   </Gene>
   <Gene ID="ARA:AT2G22780" orgid="ARA" frameid="AT2G22780" detail="full">
     <parent>
@@ -107,12 +107,11 @@
     <product>
       <Protein resource="getxml?ARA:AT2G22780-MONOMER" orgid="ARA" frameid="AT2G22780-MONOMER" />
     </product>
-    <common-name datatype="string">PMDH1</common-name>
     <centisome-position datatype="float" units="CENTISOMES">49.207397</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT2G22780</accession-1>
     <right-end-position datatype="integer">9699223</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">9696495</left-end-position>
+    <common-name datatype="string">PMDH1</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT2G22780</dblink-oid>
@@ -131,6 +130,7 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/3702.AT2G22780.1</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT2G22780</accession-1>
   </Gene>
   <Gene ID="ARA:AT1G53240" orgid="ARA" frameid="AT1G53240" detail="full">
     <parent>
@@ -142,12 +142,11 @@
     <product>
       <Protein resource="getxml?ARA:AT1G53240-MONOMER" orgid="ARA" frameid="AT1G53240-MONOMER" />
     </product>
-    <common-name datatype="string">mMDH1</common-name>
     <centisome-position datatype="float" units="CENTISOMES">65.25341</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT1G53240</accession-1>
     <right-end-position datatype="integer">19860605</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">19858283</left-end-position>
+    <common-name datatype="string">mMDH1</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT1G53240</dblink-oid>
@@ -160,6 +159,7 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://string-db.org/network/3702.AT1G53240.1</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT1G53240</accession-1>
   </Gene>
   <Gene ID="ARA:AT5G56720" orgid="ARA" frameid="AT5G56720" detail="full">
     <parent>
@@ -171,18 +171,18 @@
     <product>
       <Protein resource="getxml?ARA:AT5G56720-MONOMER" orgid="ARA" frameid="AT5G56720-MONOMER" />
     </product>
-    <common-name datatype="string">c-NAD-MDH3</common-name>
     <centisome-position datatype="float" units="CENTISOMES">85.07019</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT5G56720</accession-1>
     <right-end-position datatype="integer">22963944</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">22962763</left-end-position>
+    <common-name datatype="string">c-NAD-MDH3</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G56720</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G56720</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT5G56720</accession-1>
   </Gene>
   <Gene ID="ARA:AT1G04410" orgid="ARA" frameid="AT1G04410" detail="full">
     <parent>
@@ -194,18 +194,18 @@
     <product>
       <Protein resource="getxml?ARA:AT1G04410-MONOMER" orgid="ARA" frameid="AT1G04410-MONOMER" />
     </product>
-    <common-name datatype="string">c-NAD-MDH1</common-name>
     <centisome-position datatype="float" units="CENTISOMES">3.907252</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT1G04410</accession-1>
     <right-end-position datatype="integer">1191411</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">1189077</left-end-position>
+    <common-name datatype="string">c-NAD-MDH1</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT1G04410</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G04410</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT1G04410</accession-1>
   </Gene>
   <Gene ID="ARA:AT5G43330" orgid="ARA" frameid="AT5G43330" detail="full">
     <parent>
@@ -217,18 +217,18 @@
     <product>
       <Protein resource="getxml?ARA:AT5G43330-MONOMER" orgid="ARA" frameid="AT5G43330-MONOMER" />
     </product>
-    <common-name datatype="string">c-NAD-MDH2</common-name>
     <centisome-position datatype="float" units="CENTISOMES">64.49018</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT5G43330</accession-1>
     <right-end-position datatype="integer">17409873</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">17407661</left-end-position>
+    <common-name datatype="string">c-NAD-MDH2</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G43330</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G43330</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT5G43330</accession-1>
   </Gene>
   <Gene ID="ARA:AT3G53910" orgid="ARA" frameid="AT3G53910" detail="full">
     <parent>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:AMP-DEPHOSPHORYLATION-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:AMP-DEPHOSPHORYLATION-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:AMP-DEPHOSPHORYLATION-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -14,20 +14,20 @@
 </metadata>
 <Reaction ID='ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN' detail='full'><parent><Reaction resource='getxml?ECOLI:Chemical-Reactions' orgid='ECOLI' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ECOLI:Small-Molecule-Reactions' orgid='ECOLI' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<gibbs-0 datatype='float' units='kcal/mol'>6.127014</gibbs-0>
-<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7738' orgid='ECOLI' frameid='ENZRXN0-7738' detail='low'><reaction><Reaction resource='#ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:ALKAPHOSPHA-CPLX' orgid='ECOLI' frameid='ALKAPHOSPHA-CPLX'/></enzyme>
-<common-name datatype='string'>AMP phosphatase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <left><Compound resource='getxml?ECOLI:AMP' orgid='ECOLI' frameid='AMP'/></left>
 <left><Compound resource='getxml?ECOLI:WATER' orgid='ECOLI' frameid='WATER'/></left>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<orphan>NO</orphan>
-<ec-number>EC-3.1.3.5</ec-number>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7738' orgid='ECOLI' frameid='ENZRXN0-7738' detail='low'><enzyme><Protein resource='getxml?ECOLI:ALKAPHOSPHA-CPLX' orgid='ECOLI' frameid='ALKAPHOSPHA-CPLX'/></enzyme>
+<common-name datatype='string'>AMP phosphatase</common-name>
+<reaction><Reaction resource='#ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN'/></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <right><Compound resource='getxml?ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></right>
 <right><Compound resource='getxml?ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></right>
 <in-pathway><Pathway resource='getxml?ECOLI:SALVADEHYPOX-PWY' orgid='ECOLI' frameid='SALVADEHYPOX-PWY'/></in-pathway>
+<gibbs-0 datatype='float' units='kcal/mol'>6.127014</gibbs-0>
+<ec-number>EC-3.1.3.5</ec-number>
 </Reaction>
 </ptools-xml>

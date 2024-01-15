@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:GLUTATHIONE-SYN-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:GLUTATHIONE-SYN-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLUTATHIONE-SYN-RXN</query>
 <num_results>1</num_results>
@@ -9,23 +9,22 @@
 </metadata>
 <Reaction ID='ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<ec-number>EC-6.3.2.3<official>T</official>
-</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWYQT-4470' orgid='ARA' frameid='PWYQT-4470'/><Pathway resource='getxml?ARA:GLUTATHIONESYN-PWY' orgid='ARA' frameid='GLUTATHIONESYN-PWY'/></in-pathway>
 <left><Compound resource='getxml?ARA:GLY' orgid='ARA' frameid='GLY'/></left>
 <left><Compound resource='getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE' orgid='ARA' frameid='L-GAMMA-GLUTAMYLCYSTEINE'/></left>
 <left><Compound resource='getxml?ARA:ATP' orgid='ARA' frameid='ATP'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-6.265869</gibbs-0>
+<synonym datatype='string'>Glutathione synthetase</synonym>
+<ec-number>EC-6.3.2.3<official>T</official>
+</ec-number>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
 <right><Compound resource='getxml?ARA:GLUTATHIONE' orgid='ARA' frameid='GLUTATHIONE'/></right>
 <right><Compound resource='getxml?ARA:Pi' orgid='ARA' frameid='Pi'/></right>
 <right><Compound resource='getxml?ARA:ADP' orgid='ARA' frameid='ADP'/></right>
-<synonym datatype='string'>Glutathione synthetase</synonym>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-13423' orgid='ARA' frameid='ENZRXN-13423' detail='low'><common-name datatype='string'>glutathione synthetase</common-name>
+<gibbs-0 datatype='float' units='kcal/mol'>-6.265869</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-13423' orgid='ARA' frameid='ENZRXN-13423' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-7214' orgid='ARA' frameid='CPLX-7214'/></enzyme>
 <reaction><Reaction resource='#ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-7214' orgid='ARA' frameid='CPLX-7214'/></enzyme>
+<common-name datatype='string'>glutathione synthetase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <dblink><dblink-db>UNIPROT</dblink-db>
@@ -173,5 +172,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T52565</dblink-URL>
 </dblink>
+<in-pathway><Pathway resource='getxml?ARA:PWYQT-4470' orgid='ARA' frameid='PWYQT-4470'/><Pathway resource='getxml?ARA:GLUTATHIONESYN-PWY' orgid='ARA' frameid='GLUTATHIONESYN-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

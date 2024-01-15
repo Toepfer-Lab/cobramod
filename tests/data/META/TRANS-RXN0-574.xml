@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:TRANS-RXN0-574'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:TRANS-RXN0-574'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:TRANS-RXN0-574</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID='META:TRANS-RXN0-574' orgid='META' frameid='TRANS-RXN0-574' detail='full'><parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?META:TR-19' orgid='META' frameid='TR-19' class='true'/></parent>
 <left><Compound resource='getxml?META:Glucopyranose' orgid='META' frameid='Glucopyranose' class='true'/><compartment><cco resource='getxml?META:CCO-OUT' orgid='META' frameid='CCO-OUT'/></compartment>
 </left>
-<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN0-7803' orgid='META' frameid='ENZRXN0-7803' detail='low'><enzyme><Protein resource='getxml?META:MALX-MONOMER' orgid='META' frameid='MALX-MONOMER'/></enzyme>
-<reaction><Reaction resource='#META:TRANS-RXN0-574' orgid='META' frameid='TRANS-RXN0-574'/></reaction>
-<common-name datatype='string'>transport of glucose</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<right><Compound resource='getxml?META:Glucopyranose' orgid='META' frameid='Glucopyranose' class='true'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</right>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR100188</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/equa_info/MNXR100188</dblink-URL>
 </dblink>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <gibbs-0 datatype='float' units='kcal/mol'>0.0<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -29,38 +28,39 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<orphan>NO</orphan>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<right><Compound resource='getxml?META:Glucopyranose' orgid='META' frameid='Glucopyranose' class='true'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
-</right>
 <credits><created><date datatype='date'>2013-11-26</date>
 <Person ID='META:amackie' orgid='META' frameid='amackie' detail='full'><common-name datatype='string'>Amanda Mackie</common-name>
-<email datatype='string'>amanda.mackie@mq.edu.au</email>
+<comment datatype='string'>Amanda Mackie is a BioCyc curator at Macquarie University.</comment>
 <affiliations><Organization ID='META:O0-13' orgid='META' frameid='O0-13' detail='full'><common-name datatype='string'>Macquarie University</common-name>
 </Organization>
 </affiliations>
-<comment datatype='string'>Amanda Mackie is a BioCyc curator at Macquarie University.</comment>
+<email datatype='string'>amanda.mackie@mq.edu.au</email>
 </Person>
 <Organization resource='#META:O0-13' orgid='META' frameid='O0-13'/></created>
 <imported-from-ecoli><date datatype='date'>2013-12-18</date>
 <Person ID='META:paley' orgid='META' frameid='paley' detail='full'><common-name datatype='string'>Suzanne Paley</common-name>
-<email datatype='string'>paley@ai.sri.com</email>
+<comment datatype='string'>Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
 <affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
 <common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
 <abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
 </Organization>
 </affiliations>
-<comment datatype='string'>Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+<email datatype='string'>paley@ai.sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></imported-from-ecoli>
 </credits>
+<orphan>NO</orphan>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN0-7803' orgid='META' frameid='ENZRXN0-7803' detail='low'><reaction><Reaction resource='#META:TRANS-RXN0-574' orgid='META' frameid='TRANS-RXN0-574'/></reaction>
+<common-name datatype='string'>transport of glucose</common-name>
+<enzyme><Protein resource='getxml?META:MALX-MONOMER' orgid='META' frameid='MALX-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

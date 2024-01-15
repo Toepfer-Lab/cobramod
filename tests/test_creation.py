@@ -490,74 +490,6 @@ class SimpleFunctions(unittest.TestCase):
                 container=[meta.id for meta in test_reaction.metabolites],
             )
 
-    # def test_obtain_reaction(self):
-    #     # CASE: Regular META reaction
-    #     # Note VCHO does not exist in biocyc anymore
-    #     test_model = cobra_core.Model(NAME)
-    #     test_model.compartments = {"e": "extracellular", "p": "plastid"}
-    #     test_reaction = cr._obtain_reaction(
-    #         model=test_model,
-    #         directory=dir_data,
-    #         identifier="OXALODECARB-RXN",
-    #         database="VCHO",
-    #         compartment="p",
-    #         replacement={},
-    #         show_imbalance=True,
-    #         stop_imbalance=False,
-    #         genome=None,
-    #         model_id=None,
-    #     )
-    #     self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
-    #     self.assertCountEqual(
-    #         first=[gene.id for gene in test_reaction.genes],
-    #         second=["VC0550", "VC0551", "VC0792"],
-    #     )
-    #     # CASE 2: check for equivalent. (Similar to CASE 6b in _get_reaction)
-    #     test_model = textbook_kegg.copy()
-    #     test_reaction = cr._obtain_reaction(
-    #         model=test_model,
-    #         directory=dir_data,
-    #         compartment="c",
-    #         database="META",
-    #         replacement={},
-    #         identifier="ADENODEAMIN-RXN",
-    #         show_imbalance=True,
-    #         stop_imbalance=False,
-    #         genome=None,
-    #         model_id=None,
-    #     )
-    #     # WATER
-    #     self.assertIn(
-    #         member="C00001_c",
-    #         container=[
-    #             metabolite.id for metabolite in test_reaction.metabolites
-    #         ],
-    #     )
-    #     # PROTON
-    #     self.assertIn(
-    #         member="C00080_c",
-    #         container=[
-    #             metabolite.id for metabolite in test_reaction.metabolites
-    #         ],
-    #     )
-    #     # TODO: test more databases
-
-    # def test__reaction_information(self):
-    #     # CASE 0: Missing compartment
-    #     self.assertRaises(
-    #         WrongSyntax, cr._reaction_information, string=["2 GLC_c <=> GLC"]
-    #     )
-    #     # CASE 1: Regular usage
-    #     test_tuple, test_dict = cr._reaction_information(
-    #         string="GLC_c --> GLC_b"
-    #     )
-    #     self.assertEqual(first=test_tuple, second=(0, 1000))
-    #     self.assertDictEqual(d1=test_dict, d2={"GLC_c": -1.0, "GLC_b": 1.0})
-    #     # CASE 2: Regular usage. One-sided
-    #     test_tuple, test_dict = cr._reaction_information(string="GLC_c -->")
-    #     self.assertEqual(first=test_tuple, second=(0, 1000))
-    #     self.assertDictEqual(d1=test_dict, d2={"GLC_c": -1.0})
-
     def test_reaction_from_string(self):
         # CASE: wrong format, no delimiter
         self.assertRaises(
@@ -707,24 +639,6 @@ class ComplexFunctions(unittest.TestCase):
             raise TypeError("Formula is empty!")
 
         self.assertEqual(test_object.formula.find("("), -1)
-        # # CASE: pathway from MetaCyc
-        # test_object = cr.create_object(
-        #     identifier="PWY-1187",
-        #     directory=dir_data,
-        #     compartment="c",
-        #     database="META",
-        # )
-        # self.assertIsInstance(obj=test_object, cls=dict)
-        # self.assertEqual(first=test_object["ENTRY"], second="PWY-1187")
-        #     # CASE 3a: pathway from MetaCyc
-        #     test_object = cr.create_object(
-        #         identifier="M00001",
-        #         directory=dir_data,
-        #         compartment="c",
-        #         database="KEGG",
-        #     )
-        #     self.assertIsInstance(obj=test_object, cls=dict)
-        #     self.assertEqual(first=test_object["ENTRY"], second="M00001")
 
         # CASE: Replacing names (Metabolite)
         test_replacement = {

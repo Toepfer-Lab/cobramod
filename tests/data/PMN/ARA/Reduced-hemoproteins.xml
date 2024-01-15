@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='26.0' xml:base='http://pmn.plantcyc.org/getxml?ARA:Reduced-hemoproteins'><metadata><url>http://pmn.plantcyc.org/</url>
+<ptools-xml ptools-version='27.0' xml:base='http://localhost:1555/getxml?ARA:Reduced-hemoproteins'><metadata><url>http://localhost:1555/</url>
 <service_name>getxml</service_name>
 <query>ARA:Reduced-hemoproteins</query>
 <num_results>1</num_results>
-<PGDB orgid='ARA' version='17.2.0'><species datatype='string'>Arabidopsis thaliana</species>
+<PGDB orgid='ARA' version='27.0'><species datatype='string'>Arabidopsis thaliana</species>
 <strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
 <Protein ID='ARA:Reduced-hemoproteins' orgid='ARA' frameid='Reduced-hemoproteins' detail='full' class='true'><parent><Protein resource='getxml?ARA:Hemoproteins' orgid='ARA' frameid='Hemoproteins' class='true'/></parent>
+<common-name datatype='string'>a reduced hemoprotein</common-name>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:NADPH--FERRIHEMOPROTEIN-REDUCTASE-RXN' orgid='ARA' frameid='NADPH--FERRIHEMOPROTEIN-REDUCTASE-RXN'/></appears-in-right-side-of>
 <n-name datatype='string'>reduced hemoproteins</n-name>
-<common-name datatype='string'>a reduced hemoprotein</common-name>
 </Protein>
 </ptools-xml>

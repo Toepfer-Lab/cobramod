@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:3-METHYLTHIOPROPYL-GLUCOSINOLATE</query>
 <num_results>1</num_results>
@@ -14,18 +14,18 @@
 <string title='smiles'>CSCCCC(\S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\OS(=O)(=O)[O-]</string>
 </molecule>
 </cml>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
-<common-name datatype='string'>glucoiberverin</common-name>
-<inchi datatype='string'>InChI=1S/C11H21NO9S3/c1-22-4-2-3-7(12-21-24(17,18)19)23-11-10(16)9(15)8(14)6(5-13)20-11/h6,8-11,13-16H,2-5H2,1H3,(H,17,18,19)/p-1/b12-7-/t6-,8-,9+,10-,11+/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=ZCZCVJVUJGULMO-IIPHORNXSA-M</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-58.819653</gibbs-0>
 <synonym datatype='string'>3-(methylthio)propyl-glucosinolate</synonym>
 <synonym datatype='string'>3-(methylsulfanyl)propyl-glucosinolate</synonym>
 <synonym datatype='string'>glucoibervirin</synonym>
+<inchi-key datatype='string'>InChIKey=ZCZCVJVUJGULMO-IIPHORNXSA-M</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
 <molecular-weight datatype='float' units='Daltons'>406.46</molecular-weight>
+<inchi datatype='string'>InChI=1S/C11H21NO9S3/c1-22-4-2-3-7(12-21-24(17,18)19)23-11-10(16)9(15)8(14)6(5-13)20-11/h6,8-11,13-16H,2-5H2,1H3,(H,17,18,19)/p-1/b12-7-/t6-,8-,9+,10-,11+/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-2209' orgid='ARA' frameid='RXN-2209'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2221' orgid='ARA' frameid='RXN-2221'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>407.03784</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-58.819653</gibbs-0>
+<common-name datatype='string'>glucoiberverin</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000059206612</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

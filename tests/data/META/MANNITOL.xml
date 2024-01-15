@@ -1,24 +1,54 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:MANNITOL'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:MANNITOL'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:MANNITOL</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:MANNITOL' orgid='META' frameid='MANNITOL' detail='full'><parent><Compound resource='getxml?META:Hexitols' orgid='META' frameid='Hexitols' class='true'/></parent>
+<parent><Compound resource='getxml?META:Sweetening-Agent' orgid='META' frameid='Sweetening-Agent' class='true'/></parent>
 <cml><molecule id='MANNITOL' title='D-mannitol' formalCharge='0'><atomArray><atom id='MANNITOL-atom1' elementType='C' x2='-9235.0' y2='-17875.0'/><atom id='MANNITOL-atom2' elementType='C' x2='-44960.0' y2='-13751.0'/><atom id='MANNITOL-atom3' elementType='C' x2='-16379.0' y2='-13751.0'/><atom id='MANNITOL-atom4' elementType='C' x2='-37815.0' y2='-17875.0'/><atom id='MANNITOL-atom5' elementType='C' x2='-23524.0' y2='-17875.0'/><atom id='MANNITOL-atom6' elementType='C' x2='-30670.0' y2='-13751.0'/><atom id='MANNITOL-atom7' elementType='O' x2='-2089.0' y2='-13751.0'/><atom id='MANNITOL-atom8' elementType='O' x2='-52104.0' y2='-17875.0'/><atom id='MANNITOL-atom9' elementType='O' x2='-16379.0' y2='-5500.0'/><atom id='MANNITOL-atom10' elementType='O' x2='-37815.0' y2='-26126.0'/><atom id='MANNITOL-atom11' elementType='O' x2='-23524.0' y2='-26126.0'/><atom id='MANNITOL-atom12' elementType='O' x2='-30670.0' y2='-5500.0'/></atomArray>
 <bondArray><bond id='MANNITOL-bond1' atomRefs='MANNITOL-atom3 MANNITOL-atom9' order='1'/><bond id='MANNITOL-bond2' atomRefs='MANNITOL-atom4 MANNITOL-atom10' order='1'/><bond id='MANNITOL-bond3' atomRefs='MANNITOL-atom5 MANNITOL-atom11' order='1'/><bond id='MANNITOL-bond4' atomRefs='MANNITOL-atom6 MANNITOL-atom12' order='1'/><bond id='MANNITOL-bond5' atomRefs='MANNITOL-atom2 MANNITOL-atom8' order='1'/><bond id='MANNITOL-bond6' atomRefs='MANNITOL-atom1 MANNITOL-atom7' order='1'/><bond id='MANNITOL-bond7' atomRefs='MANNITOL-atom3 MANNITOL-atom1' order='1'/><bond id='MANNITOL-bond8' atomRefs='MANNITOL-atom5 MANNITOL-atom3' order='1'/><bond id='MANNITOL-bond9' atomRefs='MANNITOL-atom4 MANNITOL-atom2' order='1'/><bond id='MANNITOL-bond10' atomRefs='MANNITOL-atom6 MANNITOL-atom5' order='1'/><bond id='MANNITOL-bond11' atomRefs='MANNITOL-atom4 MANNITOL-atom6' order='1'/></bondArray>
 <formula concise='C 6 H 14 O 6'/><float title='molecularWeight' units='g/mol'>182.173</float>
 <string title='smiles'>C([C@H]([C@H]([C@@H]([C@@H](CO)O)O)O)O)O</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-23380' orgid='META' frameid='RXN-23380'/><Reaction resource='getxml?META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-23380' orgid='META' frameid='RXN-23380'/><Reaction resource='getxml?META:TRANS-RXN-156' orgid='META' frameid='TRANS-RXN-156'/><Reaction resource='getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:1.1.3.40-RXN' orgid='META' frameid='1.1.3.40-RXN'/><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:1.1.1.255-RXN' orgid='META' frameid='1.1.1.255-RXN'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C6H14O6/c7-1-3(9)5(11)6(12)4(10)2-8/h3-12H,1-2H2/t3-,4-,5-,6-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>182.173</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-23380' orgid='META' frameid='RXN-23380'/><Reaction resource='getxml?META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>182.07904</monoisotopic-mw>
 <synonym datatype='string'>D-mitobronitol</synonym>
 <synonym datatype='string'>(2R,3R,4R,5R)-hexane-1,2,3,4,5,6-hexol</synonym>
-<molecular-weight datatype='float' units='Daltons'>182.173</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>182.07904</monoisotopic-mw>
+<common-name datatype='string'>D-mannitol</common-name>
+<regulates><Regulation ID='META:REG0-7552' orgid='META' frameid='REG0-7552' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:MANNITOL' orgid='META' frameid='MANNITOL'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:MANNONDEHYDRAT-ENZRXN' orgid='META' frameid='MANNONDEHYDRAT-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:MANNONDEHYDRAT-RXN' orgid='META' frameid='MANNONDEHYDRAT-RXN'/></reaction>
+<synonym datatype='string'>D-mannonate hydro-lyase</synonym>
+<synonym datatype='string'>mannonate hydrolase</synonym>
+<synonym datatype='string'>mannonate hydratase</synonym>
+<synonym datatype='string'>ManD</synonym>
+<common-name datatype='string'>D-mannonate dehydratase</common-name>
+<enzyme><Protein resource='getxml?META:MANNONDEHYDRAT-MONOMER' orgid='META' frameid='MANNONDEHYDRAT-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-10899' orgid='META' frameid='REG-10899' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:MANNITOL' orgid='META' frameid='MANNITOL'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-6091' orgid='META' frameid='ENZRXN-6091' detail='low'><reaction><Reaction resource='getxml?META:TRE6PHYDRO-RXN' orgid='META' frameid='TRE6PHYDRO-RXN'/></reaction>
+<synonym datatype='string'>phospho-&amp;alpha;(1,1)glucosidase</synonym>
+<synonym datatype='string'>7751281</synonym>
+<synonym datatype='string'>phosphotrehalase</synonym>
+<common-name datatype='string'>trehalose-6-phosphate hydrolase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-5946' orgid='META' frameid='MONOMER-5946'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=FBPFZTCFMRRESA-KVTDHHQDSA-N</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000002041302</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -89,8 +119,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=69-65-8</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=FBPFZTCFMRRESA-KVTDHHQDSA-N</inchi-key>
-<common-name datatype='string'>D-mannitol</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-81.64432<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -100,38 +128,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG0-7552' orgid='META' frameid='REG0-7552' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:MANNITOL' orgid='META' frameid='MANNITOL'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:MANNONDEHYDRAT-ENZRXN' orgid='META' frameid='MANNONDEHYDRAT-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:MANNONDEHYDRAT-MONOMER' orgid='META' frameid='MANNONDEHYDRAT-MONOMER'/></enzyme>
-<synonym datatype='string'>D-mannonate hydro-lyase</synonym>
-<synonym datatype='string'>mannonate hydrolase</synonym>
-<synonym datatype='string'>mannonate hydratase</synonym>
-<synonym datatype='string'>ManD</synonym>
-<reaction><Reaction resource='getxml?META:MANNONDEHYDRAT-RXN' orgid='META' frameid='MANNONDEHYDRAT-RXN'/></reaction>
-<common-name datatype='string'>D-mannonate dehydratase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-10899' orgid='META' frameid='REG-10899' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:MANNITOL' orgid='META' frameid='MANNITOL'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-6091' orgid='META' frameid='ENZRXN-6091' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-5946' orgid='META' frameid='MONOMER-5946'/></enzyme>
-<synonym datatype='string'>phospho-&amp;alpha;(1,1)glucosidase</synonym>
-<synonym datatype='string'>7751281</synonym>
-<synonym datatype='string'>phosphotrehalase</synonym>
-<reaction><Reaction resource='getxml?META:TRE6PHYDRO-RXN' orgid='META' frameid='TRE6PHYDRO-RXN'/></reaction>
-<common-name datatype='string'>trehalose-6-phosphate hydrolase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<appears-in-left-side-of><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-23380' orgid='META' frameid='RXN-23380'/><Reaction resource='getxml?META:TRANS-RXN-156' orgid='META' frameid='TRANS-RXN-156'/><Reaction resource='getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:1.1.3.40-RXN' orgid='META' frameid='1.1.3.40-RXN'/><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:1.1.1.255-RXN' orgid='META' frameid='1.1.1.255-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

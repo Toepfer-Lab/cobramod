@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:THREO-DS-ISO-CITRATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:THREO-DS-ISO-CITRATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:THREO-DS-ISO-CITRATE</query>
 <num_results>1</num_results>
@@ -14,17 +14,6 @@
 <string title='smiles'>C(=O)([C@@H](CC([O-])=O)[C@@H](O)C([O-])=O)[O-]</string>
 </molecule>
 </cml>
-<regulates><Regulation ID='ARA:REG-11614' orgid='ARA' frameid='REG-11614' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:THREO-DS-ISO-CITRATE' orgid='ARA' frameid='THREO-DS-ISO-CITRATE'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to LC-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>D-&lt;i&gt;threo&lt;/i&gt;-isocitrate</common-name>
-<inchi datatype='string'>InChI=1S/C6H8O7/c7-3(8)1-2(5(10)11)4(9)6(12)13/h2,4,9H,1H2,(H,7,8)(H,10,11)(H,12,13)/p-3/t2-,4+/m0/s1</inchi>
-<inchi-key datatype='string'>InChIKey=ODBLHEXUDAPZAU-ZAFYKAAXSA-K</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-9951' orgid='ARA' frameid='RXN-9951'/><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/><Reaction resource='getxml?ARA:ISOCITRATE-DEHYDROGENASE-NAD+-RXN' orgid='ARA' frameid='ISOCITRATE-DEHYDROGENASE-NAD+-RXN'/><Reaction resource='getxml?ARA:ISOCITDEH-RXN' orgid='ARA' frameid='ISOCITDEH-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-230.47293</gibbs-0>
 <synonym datatype='string'>(1&lt;i&gt;R&lt;/i&gt;, 2&lt;i&gt;S&lt;/i&gt;)-1-hydroxypropane-1,2,3-tricarboxylate</synonym>
 <synonym datatype='string'>D-&lt;i&gt;threo&lt;/i&gt;-isocitric acid</synonym>
 <synonym datatype='string'>isocitric acid</synonym>
@@ -32,9 +21,20 @@
 <synonym datatype='string'>threo-D&lt;SUB&gt;s&lt;/SUB&gt;-isocitrate</synonym>
 <synonym datatype='string'>I-CIT</synonym>
 <synonym datatype='string'>D-isocitrate</synonym>
+<inchi-key datatype='string'>InChIKey=ODBLHEXUDAPZAU-ZAFYKAAXSA-K</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to LC-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
 <molecular-weight datatype='float' units='Daltons'>189.101</molecular-weight>
+<regulates><Regulation ID='ARA:REG-11614' orgid='ARA' frameid='REG-11614' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:THREO-DS-ISO-CITRATE' orgid='ARA' frameid='THREO-DS-ISO-CITRATE'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<inchi datatype='string'>InChI=1S/C6H8O7/c7-3(8)1-2(5(10)11)4(9)6(12)13/h2,4,9H,1H2,(H,7,8)(H,10,11)(H,12,13)/p-3/t2-,4+/m0/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-14047' orgid='ARA' frameid='RXN-14047'/><Reaction resource='getxml?ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-9951' orgid='ARA' frameid='RXN-9951'/><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/><Reaction resource='getxml?ARA:ISOCITRATE-DEHYDROGENASE-NAD+-RXN' orgid='ARA' frameid='ISOCITRATE-DEHYDROGENASE-NAD+-RXN'/><Reaction resource='getxml?ARA:ISOCITDEH-RXN' orgid='ARA' frameid='ISOCITDEH-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>192.02701</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-230.47293</gibbs-0>
+<common-name datatype='string'>D-&lt;i&gt;threo&lt;/i&gt;-isocitrate</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000000895179</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

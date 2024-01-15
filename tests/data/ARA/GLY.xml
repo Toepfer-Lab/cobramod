@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:GLY'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:GLY'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLY</query>
 <num_results>1</num_results>
@@ -17,6 +17,13 @@
 <string title='smiles'>C([NH3+])C([O-])=O</string>
 </molecule>
 </cml>
+<abbrev-name datatype='string'>gly</abbrev-name>
+<synonym datatype='string'>G</synonym>
+<synonym datatype='string'>aminoacetic acid</synonym>
+<synonym datatype='string'>gly</synonym>
+<inchi-key datatype='string'>InChIKey=DHMQDGOQFOQNFH-UHFFFAOYSA-N</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Fiehn,Shulaev-CEMS,Nikolau-AminoAcids (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
+<molecular-weight datatype='float' units='Daltons'>75.067</molecular-weight>
 <regulates><Regulation ID='ARA:REG0-8041' orgid='ARA' frameid='REG0-8041' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:GLY' orgid='ARA' frameid='GLY'/></regulator>
 <mode datatype='string'>-</mode>
@@ -30,18 +37,12 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 </regulates>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Fiehn,Shulaev-CEMS,Nikolau-AminoAcids (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>glycine</common-name>
 <inchi datatype='string'>InChI=1S/C2H5NO2/c3-1-2(4)5/h1,3H2,(H,4,5)</inchi>
-<inchi-key datatype='string'>InChIKey=DHMQDGOQFOQNFH-UHFFFAOYSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-20401' orgid='ARA' frameid='RXN-20401'/><Reaction resource='getxml?ARA:1.4.99.5-RXN' orgid='ARA' frameid='1.4.99.5-RXN'/><Reaction resource='getxml?ARA:SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXNQT-4300' orgid='ARA' frameid='RXNQT-4300'/><Reaction resource='getxml?ARA:RXN0-7068' orgid='ARA' frameid='RXN0-7068'/><Reaction resource='getxml?ARA:RXN-14651' orgid='ARA' frameid='RXN-14651'/><Reaction resource='getxml?ARA:GCVMULTI-RXN' orgid='ARA' frameid='GCVMULTI-RXN'/><Reaction resource='getxml?ARA:GCVP-RXN' orgid='ARA' frameid='GCVP-RXN'/><Reaction resource='getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='GLYCINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN'/><Reaction resource='getxml?ARA:GLYRIBONUCSYN-RXN' orgid='ARA' frameid='GLYRIBONUCSYN-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-37.2444</gibbs-0>
-<synonym datatype='string'>G</synonym>
-<synonym datatype='string'>aminoacetic acid</synonym>
-<synonym datatype='string'>gly</synonym>
-<molecular-weight datatype='float' units='Daltons'>75.067</molecular-weight>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-16195' orgid='ARA' frameid='RXN-16195'/><Reaction resource='getxml?ARA:RXN-16192' orgid='ARA' frameid='RXN-16192'/><Reaction resource='getxml?ARA:RXN-19595' orgid='ARA' frameid='RXN-19595'/><Reaction resource='getxml?ARA:RXN-19731' orgid='ARA' frameid='RXN-19731'/><Reaction resource='getxml?ARA:RXN-16202' orgid='ARA' frameid='RXN-16202'/><Reaction resource='getxml?ARA:SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-19594' orgid='ARA' frameid='RXN-19594'/><Reaction resource='getxml?ARA:RXN-19591' orgid='ARA' frameid='RXN-19591'/><Reaction resource='getxml?ARA:RXN-19593' orgid='ARA' frameid='RXN-19593'/><Reaction resource='getxml?ARA:RXN-19592' orgid='ARA' frameid='RXN-19592'/><Reaction resource='getxml?ARA:RXN-19589' orgid='ARA' frameid='RXN-19589'/><Reaction resource='getxml?ARA:RXN-19588' orgid='ARA' frameid='RXN-19588'/><Reaction resource='getxml?ARA:RXN-19590' orgid='ARA' frameid='RXN-19590'/><Reaction resource='getxml?ARA:RXN-19587' orgid='ARA' frameid='RXN-19587'/><Reaction resource='getxml?ARA:RXN-19576' orgid='ARA' frameid='RXN-19576'/><Reaction resource='getxml?ARA:RXN-11665' orgid='ARA' frameid='RXN-11665'/><Reaction resource='getxml?ARA:LTAA-RXN' orgid='ARA' frameid='LTAA-RXN'/><Reaction resource='getxml?ARA:RXN-13328' orgid='ARA' frameid='RXN-13328'/><Reaction resource='getxml?ARA:RXN-14651' orgid='ARA' frameid='RXN-14651'/><Reaction resource='getxml?ARA:GLYOHMETRANS-RXN' orgid='ARA' frameid='GLYOHMETRANS-RXN'/><Reaction resource='getxml?ARA:RXN-12532' orgid='ARA' frameid='RXN-12532'/><Reaction resource='getxml?ARA:RXN-6642' orgid='ARA' frameid='RXN-6642'/><Reaction resource='getxml?ARA:2.3.2.15-RXN' orgid='ARA' frameid='2.3.2.15-RXN'/><Reaction resource='getxml?ARA:RXNQT-4362' orgid='ARA' frameid='RXNQT-4362'/><Reaction resource='getxml?ARA:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-6622' orgid='ARA' frameid='RXN-6622'/><Reaction resource='getxml?ARA:THREONINE-ALDOLASE-RXN' orgid='ARA' frameid='THREONINE-ALDOLASE-RXN'/><Reaction resource='getxml?ARA:SARCOX-RXN' orgid='ARA' frameid='SARCOX-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-20401' orgid='ARA' frameid='RXN-20401'/><Reaction resource='getxml?ARA:1.4.99.5-RXN' orgid='ARA' frameid='1.4.99.5-RXN'/><Reaction resource='getxml?ARA:SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXNQT-4300' orgid='ARA' frameid='RXNQT-4300'/><Reaction resource='getxml?ARA:RXN0-7068' orgid='ARA' frameid='RXN0-7068'/><Reaction resource='getxml?ARA:RXN-14651' orgid='ARA' frameid='RXN-14651'/><Reaction resource='getxml?ARA:GCVMULTI-RXN' orgid='ARA' frameid='GCVMULTI-RXN'/><Reaction resource='getxml?ARA:GCVP-RXN' orgid='ARA' frameid='GCVP-RXN'/><Reaction resource='getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='GLYCINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN'/><Reaction resource='getxml?ARA:GLYRIBONUCSYN-RXN' orgid='ARA' frameid='GLYRIBONUCSYN-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>75.03203</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-37.2444</gibbs-0>
+<common-name datatype='string'>glycine</common-name>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/37/</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -112,6 +113,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=56-40-6</dblink-URL>
 </dblink>
-<abbrev-name datatype='string'>gly</abbrev-name>
 </Compound>
 </ptools-xml>

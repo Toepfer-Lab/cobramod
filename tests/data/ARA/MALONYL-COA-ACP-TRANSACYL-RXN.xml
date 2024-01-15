@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:MALONYL-COA-ACP-TRANSACYL-RXN</query>
 <num_results>1</num_results>
@@ -8,19 +8,18 @@
 </PGDB>
 </metadata>
 <Reaction ID='ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Protein-Modification-Reactions' orgid='ARA' frameid='Protein-Modification-Reactions' class='true'/></parent>
-<ec-number>EC-2.3.1.39<official>T</official>
-</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-4381' orgid='ARA' frameid='PWY-4381'/><Pathway resource='getxml?ARA:PWY-7388' orgid='ARA' frameid='PWY-7388'/><Pathway resource='getxml?ARA:PWY-6799' orgid='ARA' frameid='PWY-6799'/></in-pathway>
 <left><Protein resource='getxml?ARA:ACP' orgid='ARA' frameid='ACP' class='true'/></left>
 <left><Compound resource='getxml?ARA:MALONYL-COA' orgid='ARA' frameid='MALONYL-COA'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-8.398743</gibbs-0>
+<ec-number>EC-2.3.1.39<official>T</official>
+</ec-number>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <right><Protein resource='getxml?ARA:MALONYL-ACP' orgid='ARA' frameid='MALONYL-ACP' class='true'/></right>
 <right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-29219' orgid='ARA' frameid='ENZRXNQT-29219' detail='low'><common-name datatype='string'>[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
+<gibbs-0 datatype='float' units='kcal/mol'>-8.398743</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-29219' orgid='ARA' frameid='ENZRXNQT-29219' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G30200-MONOMER' orgid='ARA' frameid='AT2G30200-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G30200-MONOMER' orgid='ARA' frameid='AT2G30200-MONOMER'/></enzyme>
+<common-name datatype='string'>[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <dblink><dblink-db>UNIPROT</dblink-db>
@@ -333,5 +332,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=XYRTFA</dblink-URL>
 </dblink>
+<in-pathway><Pathway resource='getxml?ARA:PWY-4381' orgid='ARA' frameid='PWY-4381'/><Pathway resource='getxml?ARA:PWY-7388' orgid='ARA' frameid='PWY-7388'/><Pathway resource='getxml?ARA:PWY-6799' orgid='ARA' frameid='PWY-6799'/></in-pathway>
 </Reaction>
 </ptools-xml>

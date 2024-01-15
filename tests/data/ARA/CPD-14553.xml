@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-14553'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-14553'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-14553</query>
 <num_results>1</num_results>
@@ -15,41 +15,41 @@
 <string title='smiles'>C(O)[C@@H]1([C@H](O)[C@H](O)[C@@H](O)[C@H](O1)OP(OP(OC[C@@H]3([C@H]([C@H]([C@H](N2(\C=C/C(=O)NC2=O))O3)O)O))(=O)[O-])(=O)[O-])</string>
 </molecule>
 </cml>
-<common-name datatype='string'>UDP-&amp;alpha;-D-galactose</common-name>
-<inchi datatype='string'>InChI=1S/C15H24N2O17P2/c18-3-5-8(20)10(22)12(24)14(32-5)33-36(28,29)34-35(26,27)30-4-6-9(21)11(23)13(31-6)17-2-1-7(19)16-15(17)25/h1-2,5-6,8-14,18,20-24H,3-4H2,(H,26,27)(H,28,29)(H,16,19,25)/p-2/t5-,6-,8+,9-,10+,11-,12-,13-,14-/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=HSCJRCZFDFQWRP-ABVWGUQPSA-L</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:2.4.1.156-RXN' orgid='ARA' frameid='2.4.1.156-RXN'/><Reaction resource='getxml?ARA:PROCOLLAGEN-GALACTOSYLTRANSFERASE-RXN' orgid='ARA' frameid='PROCOLLAGEN-GALACTOSYLTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-18259' orgid='ARA' frameid='RXN-18259'/><Reaction resource='getxml?ARA:RXN-18244' orgid='ARA' frameid='RXN-18244'/><Reaction resource='getxml?ARA:2.4.1.37-RXN' orgid='ARA' frameid='2.4.1.37-RXN'/><Reaction resource='getxml?ARA:RXN-12319' orgid='ARA' frameid='RXN-12319'/><Reaction resource='getxml?ARA:2.4.1.228-RXN' orgid='ARA' frameid='2.4.1.228-RXN'/><Reaction resource='getxml?ARA:2.4.1.134-RXN' orgid='ARA' frameid='2.4.1.134-RXN'/><Reaction resource='getxml?ARA:2.4.1.123-RXN' orgid='ARA' frameid='2.4.1.123-RXN'/><Reaction resource='getxml?ARA:2.4.1.46-RXN' orgid='ARA' frameid='2.4.1.46-RXN'/><Reaction resource='getxml?ARA:RXN-1225' orgid='ARA' frameid='RXN-1225'/><Reaction resource='getxml?ARA:RXN-12417' orgid='ARA' frameid='RXN-12417'/><Reaction resource='getxml?ARA:RXN-12418' orgid='ARA' frameid='RXN-12418'/><Reaction resource='getxml?ARA:RXN-9462' orgid='ARA' frameid='RXN-9462'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-566.8436</gibbs-0>
 <synonym datatype='string'>UDP-&amp;alpha;-D-galactopyranose</synonym>
 <synonym datatype='string'>UDP-galactose</synonym>
 <synonym datatype='string'>UDP-Gal</synonym>
-<molecular-weight datatype='float' units='Daltons'>564.289</molecular-weight>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:GALACTURIDYLYLTRANS-RXN' orgid='ARA' frameid='GALACTURIDYLYLTRANS-RXN'/><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/><Reaction resource='getxml?ARA:UTPHEXPURIDYLYLTRANS-RXN' orgid='ARA' frameid='UTPHEXPURIDYLYLTRANS-RXN'/></appears-in-right-side-of>
+<inchi-key datatype='string'>InChIKey=HSCJRCZFDFQWRP-ABVWGUQPSA-L</inchi-key>
 <credits><created><date datatype='date'>2012-07-26</date>
-<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
-<common-name datatype='string'>Ron Caspi</common-name>
-<affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
-<common-name datatype='string'>SRI International</common-name>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
+<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><abbrev-name datatype='string'>SRI International</abbrev-name>
 <url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<common-name datatype='string'>SRI International</common-name>
 </Organization>
 </affiliations>
+<email datatype='string'>caspi@ai.sri.com</email>
+<common-name datatype='string'>Ron Caspi</common-name>
 </Person>
 <Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></created>
 <imported-from-meta><date datatype='date'>2013-05-17</date>
-<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
-<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
-<abbrev-name datatype='string'>PMN</abbrev-name>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
 <url datatype='string'>http://plantcyc.org</url>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
 </Organization>
-<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
-<abbrev-name datatype='string'>TAIR</abbrev-name>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
 </Organization>
 </affiliations>
+<common-name datatype='string'>Peifen Zhang</common-name>
 </Person>
 <Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/></imported-from-meta>
 </credits>
+<molecular-weight datatype='float' units='Daltons'>564.289</molecular-weight>
+<inchi datatype='string'>InChI=1S/C15H24N2O17P2/c18-3-5-8(20)10(22)12(24)14(32-5)33-36(28,29)34-35(26,27)30-4-6-9(21)11(23)13(31-6)17-2-1-7(19)16-15(17)25/h1-2,5-6,8-14,18,20-24H,3-4H2,(H,26,27)(H,28,29)(H,16,19,25)/p-2/t5-,6-,8+,9-,10+,11-,12-,13-,14-/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:GALACTURIDYLYLTRANS-RXN' orgid='ARA' frameid='GALACTURIDYLYLTRANS-RXN'/><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/><Reaction resource='getxml?ARA:UTPHEXPURIDYLYLTRANS-RXN' orgid='ARA' frameid='UTPHEXPURIDYLYLTRANS-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:2.4.1.156-RXN' orgid='ARA' frameid='2.4.1.156-RXN'/><Reaction resource='getxml?ARA:PROCOLLAGEN-GALACTOSYLTRANSFERASE-RXN' orgid='ARA' frameid='PROCOLLAGEN-GALACTOSYLTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-18259' orgid='ARA' frameid='RXN-18259'/><Reaction resource='getxml?ARA:RXN-18244' orgid='ARA' frameid='RXN-18244'/><Reaction resource='getxml?ARA:2.4.1.37-RXN' orgid='ARA' frameid='2.4.1.37-RXN'/><Reaction resource='getxml?ARA:RXN-12319' orgid='ARA' frameid='RXN-12319'/><Reaction resource='getxml?ARA:2.4.1.228-RXN' orgid='ARA' frameid='2.4.1.228-RXN'/><Reaction resource='getxml?ARA:2.4.1.134-RXN' orgid='ARA' frameid='2.4.1.134-RXN'/><Reaction resource='getxml?ARA:2.4.1.123-RXN' orgid='ARA' frameid='2.4.1.123-RXN'/><Reaction resource='getxml?ARA:2.4.1.46-RXN' orgid='ARA' frameid='2.4.1.46-RXN'/><Reaction resource='getxml?ARA:RXN-1225' orgid='ARA' frameid='RXN-1225'/><Reaction resource='getxml?ARA:RXN-12417' orgid='ARA' frameid='RXN-12417'/><Reaction resource='getxml?ARA:RXN-12418' orgid='ARA' frameid='RXN-12418'/><Reaction resource='getxml?ARA:RXN-9462' orgid='ARA' frameid='RXN-9462'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>566.055</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-566.8436</gibbs-0>
+<common-name datatype='string'>UDP-&amp;alpha;-D-galactose</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000008551104</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

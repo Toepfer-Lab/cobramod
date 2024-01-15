@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-692'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-692'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-692</query>
 <num_results>1</num_results>
@@ -14,16 +14,16 @@
 <string title='smiles'>CC(\C=C\[C@@]1(C(C)(C)CC(=O)\C=C(C)/1)O)=C\C=O</string>
 </molecule>
 </cml>
-<common-name datatype='string'>(+)-&lt;i&gt;cis&lt;/i&gt;-abscisic aldehyde</common-name>
-<inchi datatype='string'>InChI=1S/C15H20O3/c1-11(6-8-16)5-7-15(18)12(2)9-13(17)10-14(15,3)4/h5-9,18H,10H2,1-4H3/b7-5+,11-6-/t15-/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=RIKWDZWVHUIUAM-KICRZJJPSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:1.2.3.14-RXN' orgid='ARA' frameid='1.2.3.14-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>160.98242</gibbs-0>
 <synonym datatype='string'>(+)-&lt;i&gt;cis&lt;/i&gt;-ABA aldehyde</synonym>
 <synonym datatype='string'>(+)-&lt;i&gt;cis&lt;/i&gt;-abscisic acid aldehyde</synonym>
+<inchi-key datatype='string'>InChIKey=RIKWDZWVHUIUAM-KICRZJJPSA-N</inchi-key>
 <molecular-weight datatype='float' units='Daltons'>248.321</molecular-weight>
+<inchi datatype='string'>InChI=1S/C15H20O3/c1-11(6-8-16)5-7-15(18)12(2)9-13(17)10-14(15,3)4/h5-9,18H,10H2,1-4H3/b7-5+,11-6-/t15-/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-699' orgid='ARA' frameid='RXN-699'/><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:1.2.3.14-RXN' orgid='ARA' frameid='1.2.3.14-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>248.14125</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>160.98242</gibbs-0>
+<common-name datatype='string'>(+)-&lt;i&gt;cis&lt;/i&gt;-abscisic aldehyde</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004654852</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

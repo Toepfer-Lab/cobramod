@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR</query>
 <num_results>1</num_results>
-<PGDB orgid='GCF_000010885' version='27.0'><species datatype='string'>Acetobacter pasteurianus</species>
+<PGDB orgid='GCF_000010885' version='27.5'><species datatype='string'>Acetobacter pasteurianus</species>
 <subspecies datatype='string'>pasteurianus</subspecies>
 <strain datatype='string'>IFO 3283-22</strain>
 <sequence-source datatype='string'>GCF_000010885</sequence-source>
@@ -20,27 +20,25 @@
 <string title='smiles'>C([C@@H]2([C@@H](O)[C@@H](O)[C@H](NC1(/N=C(N)\NC(=O)C(/N)=1))O2))OP(=O)([O-])[O-]</string>
 </molecule>
 </cml>
+<gibbs-0 datatype='float' units='kcal/mol'>-212.19257</gibbs-0>
 <inchi-key datatype='string'>InChIKey=OCLCLRXKNJCOJD-UMMCILCDSA-L</inchi-key>
-<inchi datatype='string'>InChI=1S/C9H16N5O8P/c10-3-6(13-9(11)14-7(3)17)12-8-5(16)4(15)2(22-8)1-21-23(18,19)20/h2,4-5,8,15-16H,1,10H2,(H2,18,19,20)(H4,11,12,13,14,17)/p-2/t2-,4-,5-,8-/m1/s1</inchi>
-<monoisotopic-mw datatype='float' units='Daltons'>353.07364</monoisotopic-mw>
-<appears-in-right-side-of><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>2,5-diamino-6-(5-phospho-D-ribosylamino)pyrimidin-4(3H)-one</common-name>
+<molecular-weight datatype='float' units='Daltons'>351.212</molecular-weight>
 <credits><imported-from-meta><date datatype='date'>2019-02-06</date>
-<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
+<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
 <url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
 </Organization>
 </imported-from-meta>
 </credits>
-<common-name datatype='string'>2,5-diamino-6-(5-phospho-D-ribosylamino)pyrimidin-4(3H)-one</common-name>
-<appears-in-left-side-of><Reaction resource='getxml?GCF_000010885:RIBOFLAVINSYNDEAM-RXN' orgid='GCF_000010885' frameid='RIBOFLAVINSYNDEAM-RXN'/></appears-in-left-side-of>
-<molecular-weight datatype='float' units='Daltons'>351.212</molecular-weight>
+<inchi datatype='string'>InChI=1S/C9H16N5O8P/c10-3-6(13-9(11)14-7(3)17)12-8-5(16)4(15)2(22-8)1-21-23(18,19)20/h2,4-5,8,15-16H,1,10H2,(H2,18,19,20)(H4,11,12,13,14,17)/p-2/t2-,4-,5-,8-/m1/s1</inchi>
 <synonym datatype='string'>2,5-diamino-6-hydroxy-4-(5-phosphoribosylamino)pyrimidine</synonym>
 <synonym datatype='string'>DARP</synonym>
 <synonym datatype='string'>2,5-diamino-6-(1-D-ribosylamino)pyrimidin-4(3H)-one 5'-phosphate</synonym>
 <synonym datatype='string'>2,5-diamino-6-(ribosylamino)-4-(3H)-pyrimidinone 5'-phosphate</synonym>
 <synonym datatype='string'>2,5-diamino-6-(D-ribosylamino)pyrimidin-4(3H)-one 5'-phosphate</synonym>
-<gibbs-0 datatype='float' units='kcal/mol'>-212.19257</gibbs-0>
+<appears-in-right-side-of><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/></appears-in-right-side-of>
 <dblink><dblink-db>BIGG</dblink-db>
 <dblink-oid>25drapp</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -61,5 +59,7 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C01304</dblink-URL>
 </dblink>
+<monoisotopic-mw datatype='float' units='Daltons'>353.07364</monoisotopic-mw>
+<appears-in-left-side-of><Reaction resource='getxml?GCF_000010885:RIBOFLAVINSYNDEAM-RXN' orgid='GCF_000010885' frameid='RIBOFLAVINSYNDEAM-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

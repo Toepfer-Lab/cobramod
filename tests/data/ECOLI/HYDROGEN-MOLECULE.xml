@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECOLI:HYDROGEN-MOLECULE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECOLI:HYDROGEN-MOLECULE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECOLI:HYDROGEN-MOLECULE</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -19,10 +19,7 @@
 <string title='smiles'>[H]</string>
 </molecule>
 </cml>
-<inchi-key datatype='string'>InChIKey=UFHFLCQGNIYNRP-UHFFFAOYSA-N</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>24.752243</gibbs-0>
-<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7399' orgid='ECOLI' frameid='RXN0-7399'/><Reaction resource='getxml?ECOLI:RXN-16420' orgid='ECOLI' frameid='RXN-16420'/><Reaction resource='getxml?ECOLI:HYDROG-RXN' orgid='ECOLI' frameid='HYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5256' orgid='ECOLI' frameid='RXN0-5256'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-610' orgid='ECOLI' frameid='TRANS-RXN0-610'/></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-610' orgid='ECOLI' frameid='TRANS-RXN0-610'/><Reaction resource='getxml?ECOLI:RXN0-5255' orgid='ECOLI' frameid='RXN0-5255'/><Reaction resource='getxml?ECOLI:FHLMULTI-RXN' orgid='ECOLI' frameid='FHLMULTI-RXN'/></appears-in-right-side-of>
+<molecular-weight datatype='float' units='Daltons'>2.016</molecular-weight>
 <dblink><dblink-db>REACTOME-CPD</dblink-db>
 <dblink-oid>113555</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -81,9 +78,12 @@
 <synonym datatype='string'>hydrogen</synonym>
 <synonym datatype='string'>hydrogen molecule</synonym>
 <synonym datatype='string'>dihydrogen</synonym>
+<inchi-key datatype='string'>InChIKey=UFHFLCQGNIYNRP-UHFFFAOYSA-N</inchi-key>
 <monoisotopic-mw datatype='float' units='Daltons'>2.01565</monoisotopic-mw>
-<molecular-weight datatype='float' units='Daltons'>2.016</molecular-weight>
 <inchi datatype='string'>InChI=1S/H2/h1H</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-610' orgid='ECOLI' frameid='TRANS-RXN0-610'/><Reaction resource='getxml?ECOLI:RXN0-5255' orgid='ECOLI' frameid='RXN0-5255'/><Reaction resource='getxml?ECOLI:FHLMULTI-RXN' orgid='ECOLI' frameid='FHLMULTI-RXN'/></appears-in-right-side-of>
 <common-name datatype='string'>H&lt;SUB&gt;2&lt;/SUB&gt;</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7399' orgid='ECOLI' frameid='RXN0-7399'/><Reaction resource='getxml?ECOLI:RXN-16420' orgid='ECOLI' frameid='RXN-16420'/><Reaction resource='getxml?ECOLI:HYDROG-RXN' orgid='ECOLI' frameid='HYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5256' orgid='ECOLI' frameid='RXN0-5256'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-610' orgid='ECOLI' frameid='TRANS-RXN0-610'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>24.752243</gibbs-0>
 </Compound>
 </ptools-xml>

@@ -14,6 +14,12 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
             rn01230  Biosynthesis of amino acids
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
+BRITE       Enzymatic reactions [BR:br08201]
+             2. Transferase reactions
+              2.7  Transferring phosphorus-containing groups
+               2.7.1  Phosphotransferases with an alcohol group as acceptor
+                2.7.1.40
+                 R00200  ATP + Pyruvate <=> ADP + Phosphoenolpyruvate
 ORTHOLOGY   K00873  pyruvate kinase [EC:2.7.1.40]
             K12406  pyruvate kinase isozymes R/L [EC:2.7.1.40]
 DBLINKS     RHEA: 18160

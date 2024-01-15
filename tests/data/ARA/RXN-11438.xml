@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:RXN-11438'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:RXN-11438'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-11438</query>
 <num_results>1</num_results>
@@ -9,50 +9,28 @@
 </metadata>
 <Reaction ID='ARA:RXN-11438' orgid='ARA' frameid='RXN-11438' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<comment datatype='string'>hypothetical reaction involving a C-S lyase. Co-product was not defined.</comment>
-<ec-number>EC-4.4.1</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 <left><Compound resource='getxml?ARA:CPD-12391' orgid='ARA' frameid='CPD-12391'/></left>
 <left><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>5.677002</gibbs-0>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound resource='getxml?ARA:3-METHYLTHIOPROPYLHYDROXAMIC-ACID' orgid='ARA' frameid='3-METHYLTHIOPROPYLHYDROXAMIC-ACID'/></right>
-<right><Compound resource='getxml?ARA:CPD-12607' orgid='ARA' frameid='CPD-12607'/></right>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-9310' orgid='ARA' frameid='ENZRXNQT-9310' detail='low'><common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
-<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT4G28420-MONOMER' orgid='ARA' frameid='AT4G28420-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-9118' orgid='ARA' frameid='ENZRXNQT-9118' detail='low'><common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
-<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT4G28410-MONOMER' orgid='ARA' frameid='AT4G28410-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-9023' orgid='ARA' frameid='ENZRXNQT-9023' detail='low'><common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
-<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G24850-MONOMER' orgid='ARA' frameid='AT2G24850-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXN-17801' orgid='ARA' frameid='ENZRXN-17801' detail='low'><common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
-<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G20610-MONOMER' orgid='ARA' frameid='AT2G20610-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<orphan>NO</orphan>
+<ec-number>EC-4.4.1</ec-number>
 <credits><created><date datatype='date'>2010-04-27</date>
-<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
-<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
-<abbrev-name datatype='string'>PMN</abbrev-name>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
 <url datatype='string'>http://plantcyc.org</url>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
 </Organization>
-<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
-<abbrev-name datatype='string'>TAIR</abbrev-name>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
 </Organization>
 </affiliations>
+<common-name datatype='string'>Peifen Zhang</common-name>
 </Person>
 <Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></created>
 </credits>
-<citation><Publication ID='ARA:PUB-19483696' orgid='ARA' frameid='PUB-19483696' detail='full'><source datatype='string'>Nat Chem Biol 5(8);575-7</source>
+<comment datatype='string'>hypothetical reaction involving a C-S lyase. Co-product was not defined.</comment>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<citation><Publication ID='ARA:PUB-19483696' orgid='ARA' frameid='PUB-19483696' detail='full'><year datatype='integer'>2009</year>
 <title datatype='string'>Glucosinolate engineering identifies a gamma-glutamyl peptidase.</title>
-<year datatype='integer'>2009</year>
+<source datatype='string'>Nat Chem Biol 5(8);575-7</source>
+<pubmed-id datatype='string'>19483696</pubmed-id>
 <author datatype='string'>Geu-Flores F</author>
 <author datatype='string'>Nielsen MT</author>
 <author datatype='string'>Nafisi M</author>
@@ -60,8 +38,30 @@
 <author datatype='string'>Olsen CE</author>
 <author datatype='string'>Motawia MS</author>
 <author datatype='string'>Halkier BA</author>
-<pubmed-id datatype='string'>19483696</pubmed-id>
 </Publication>
 </citation>
+<right><Compound resource='getxml?ARA:3-METHYLTHIOPROPYLHYDROXAMIC-ACID' orgid='ARA' frameid='3-METHYLTHIOPROPYLHYDROXAMIC-ACID'/></right>
+<right><Compound resource='getxml?ARA:CPD-12607' orgid='ARA' frameid='CPD-12607'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<orphan>NO</orphan>
+<gibbs-0 datatype='float' units='kcal/mol'>5.677002</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-9310' orgid='ARA' frameid='ENZRXNQT-9310' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G28420-MONOMER' orgid='ARA' frameid='AT4G28420-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-9118' orgid='ARA' frameid='ENZRXNQT-9118' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G28410-MONOMER' orgid='ARA' frameid='AT4G28410-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-9023' orgid='ARA' frameid='ENZRXNQT-9023' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G24850-MONOMER' orgid='ARA' frameid='AT2G24850-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXN-17801' orgid='ARA' frameid='ENZRXN-17801' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G20610-MONOMER' orgid='ARA' frameid='AT2G20610-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-11438' orgid='ARA' frameid='RXN-11438'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(glycylcystein-&lt;i&gt;S&lt;/i&gt;-yl)-4-(methylthio)-butylhydroximate C-S lyase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 </Reaction>
 </ptools-xml>

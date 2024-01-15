@@ -1,19 +1,19 @@
 kegg             Kyoto Encyclopedia of Genes and Genomes
-kegg             Release 106.0+/06-19, Jun 23
+kegg             Release 109.0+/01-13, Jan 24
                  Kanehisa Laboratories
-                 pathway   1,052,120 entries
-                 brite       353,280 entries
-                 module          555 entries
-                 orthology    25,898 entries
-                 genome       22,507 entries
-                 genes     48,363,983 entries
-                 compound     19,119 entries
-                 glycan       11,222 entries
-                 reaction     11,937 entries
-                 rclass        3,195 entries
-                 enzyme        8,056 entries
-                 network       1,457 entries
-                 variant       1,052 entries
-                 disease       2,644 entries
-                 drug         12,149 entries
-                 dgroup        2,430 entries
+                 pathway   1,121,555 entries
+                 brite       374,360 entries
+                 module          559 entries
+                 orthology    26,456 entries
+                 genome       24,353 entries
+                 genes     51,934,945 entries
+                 compound     19,270 entries
+                 glycan       11,219 entries
+                 reaction     11,990 entries
+                 rclass        3,194 entries
+                 enzyme        8,109 entries
+                 network       1,544 entries
+                 variant       1,274 entries
+                 disease       2,676 entries
+                 drug         12,299 entries
+                 dgroup        2,449 entries

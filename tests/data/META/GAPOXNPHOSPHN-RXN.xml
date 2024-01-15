@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:GAPOXNPHOSPHN-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:GAPOXNPHOSPHN-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:GAPOXNPHOSPHN-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID='META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
@@ -11,72 +11,12 @@
 <left><Compound resource='getxml?META:GAP' orgid='META' frameid='GAP'/></left>
 <left><Compound resource='getxml?META:Pi' orgid='META' frameid='Pi'/></left>
 <left><Compound resource='getxml?META:NAD' orgid='META' frameid='NAD'/></left>
-<enzymatic-reaction><Enzymatic-Reaction ID='META:GAPDH-A-ENZRXN' orgid='META' frameid='GAPDH-A-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:GAPDH-A-CPLX' orgid='META' frameid='GAPDH-A-CPLX'/></enzyme>
-<synonym datatype='string'>GAPDH</synonym>
-<synonym datatype='string'>triosephosphate dehydrogenase</synonym>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN66-2375' orgid='META' frameid='ENZRXN66-2375' detail='low'><enzyme><Protein resource='getxml?META:CPLX-8751' orgid='META' frameid='CPLX-8751'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN66-1758' orgid='META' frameid='ENZRXN66-1758' detail='low'><enzyme><Protein resource='getxml?META:CPLX-8377' orgid='META' frameid='CPLX-8377'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-19556' orgid='META' frameid='ENZRXN-19556' detail='low'><enzyme><Protein resource='getxml?META:CPLX-8356' orgid='META' frameid='CPLX-8356'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-14011' orgid='META' frameid='ENZRXN-14011' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7397' orgid='META' frameid='CPLX-7397'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-13946' orgid='META' frameid='ENZRXN-13946' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7360' orgid='META' frameid='CPLX-7360'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>NAD+-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-13909' orgid='META' frameid='ENZRXN-13909' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7330' orgid='META' frameid='CPLX-7330'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-13718' orgid='META' frameid='ENZRXN-13718' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7280' orgid='META' frameid='CPLX-7280'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde 3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-13707' orgid='META' frameid='ENZRXN-13707' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-12868' orgid='META' frameid='MONOMER-12868'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde 3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-13447' orgid='META' frameid='ENZRXN-13447' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7228' orgid='META' frameid='CPLX-7228'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde 3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-9326' orgid='META' frameid='ENZRXN-9326' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-9164' orgid='META' frameid='MONOMER-9164'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>NAD-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-9321' orgid='META' frameid='ENZRXN-9321' detail='low'><enzyme><Protein resource='getxml?META:CPLX-5561' orgid='META' frameid='CPLX-5561'/></enzyme>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>NAD-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-2867' orgid='META' frameid='ENZRXN-2867' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-548' orgid='META' frameid='MONOMER-548'/></enzyme>
-<synonym datatype='string'>GAPDH</synonym>
-<synonym datatype='string'>triosephosphate dehydrogenase</synonym>
-<synonym datatype='string'>D-glyceraldehyde-3-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (phosphorylating)</synonym>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-2721' orgid='META' frameid='ENZRXN-2721' detail='low'><enzyme><Protein resource='getxml?META:CPLX-1865' orgid='META' frameid='CPLX-1865'/></enzyme>
-<synonym datatype='string'>GAPDH</synonym>
-<synonym datatype='string'>D-glyceraldehyde-3-phosphate dehydrogenase</synonym>
-<synonym datatype='string'>triosephosphate dehydrogenase</synonym>
-<synonym datatype='string'>D-glyceraldehyde-3-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (phosphorylating)</synonym>
-<reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
-<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<ec-number>EC-1.2.1.12<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
+<right><Compound resource='getxml?META:DPG' orgid='META' frameid='DPG'/></right>
+<right><Compound resource='getxml?META:NADH' orgid='META' frameid='NADH'/></right>
+<reaction-direction>REVERSIBLE</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR100040</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -717,8 +657,7 @@
 <dblink-relationship>RELATED-TO</dblink-relationship>
 <dblink-URL>https://www.uniprot.org/uniprot/P54118</dblink-URL>
 </dblink>
-<ec-number>EC-1.2.1.12<official>T</official>
-</ec-number>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <gibbs-0 datatype='float' units='kcal/mol'>-15.19458<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -728,18 +667,79 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<reaction-direction>REVERSIBLE</reaction-direction>
+<in-pathway><Pathway resource='getxml?META:P124-PWY' orgid='META' frameid='P124-PWY'/><Pathway resource='getxml?META:PWY-8404' orgid='META' frameid='PWY-8404'/><Pathway resource='getxml?META:GLYCOLYSIS' orgid='META' frameid='GLYCOLYSIS'/><Pathway resource='getxml?META:SUCSYN-PWY' orgid='META' frameid='SUCSYN-PWY'/><Pathway resource='getxml?META:ANAGLYCOLYSIS-PWY' orgid='META' frameid='ANAGLYCOLYSIS-PWY'/><Pathway resource='getxml?META:PWY-5484' orgid='META' frameid='PWY-5484'/><Pathway resource='getxml?META:PWY-8004' orgid='META' frameid='PWY-8004'/><Pathway resource='getxml?META:GLUCONEO-PWY' orgid='META' frameid='GLUCONEO-PWY'/><Pathway resource='getxml?META:PWY-7003' orgid='META' frameid='PWY-7003'/><Pathway resource='getxml?META:P122-PWY' orgid='META' frameid='P122-PWY'/><Pathway resource='getxml?META:PWY-6901' orgid='META' frameid='PWY-6901'/><Pathway resource='getxml?META:PWY66-399' orgid='META' frameid='PWY66-399'/><Pathway resource='getxml?META:P185-PWY' orgid='META' frameid='P185-PWY'/><Pathway resource='getxml?META:PWY-1042' orgid='META' frameid='PWY-1042'/></in-pathway>
 <orphan>NO</orphan>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
-<right><Compound resource='getxml?META:DPG' orgid='META' frameid='DPG'/></right>
-<right><Compound resource='getxml?META:NADH' orgid='META' frameid='NADH'/></right>
-<in-pathway><Pathway resource='getxml?META:PWY-8404' orgid='META' frameid='PWY-8404'/><Pathway resource='getxml?META:GLYCOLYSIS' orgid='META' frameid='GLYCOLYSIS'/><Pathway resource='getxml?META:SUCSYN-PWY' orgid='META' frameid='SUCSYN-PWY'/><Pathway resource='getxml?META:ANAGLYCOLYSIS-PWY' orgid='META' frameid='ANAGLYCOLYSIS-PWY'/><Pathway resource='getxml?META:PWY-5484' orgid='META' frameid='PWY-5484'/><Pathway resource='getxml?META:PWY-8004' orgid='META' frameid='PWY-8004'/><Pathway resource='getxml?META:GLUCONEO-PWY' orgid='META' frameid='GLUCONEO-PWY'/><Pathway resource='getxml?META:PWY-7003' orgid='META' frameid='PWY-7003'/><Pathway resource='getxml?META:P124-PWY' orgid='META' frameid='P124-PWY'/><Pathway resource='getxml?META:P122-PWY' orgid='META' frameid='P122-PWY'/><Pathway resource='getxml?META:PWY-6901' orgid='META' frameid='PWY-6901'/><Pathway resource='getxml?META:PWY66-399' orgid='META' frameid='PWY66-399'/><Pathway resource='getxml?META:P185-PWY' orgid='META' frameid='P185-PWY'/><Pathway resource='getxml?META:PWY-1042' orgid='META' frameid='PWY-1042'/></in-pathway>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:GAPDH-A-ENZRXN' orgid='META' frameid='GAPDH-A-ENZRXN' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<synonym datatype='string'>GAPDH</synonym>
+<synonym datatype='string'>triosephosphate dehydrogenase</synonym>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:GAPDH-A-CPLX' orgid='META' frameid='GAPDH-A-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN66-2375' orgid='META' frameid='ENZRXN66-2375' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8751' orgid='META' frameid='CPLX-8751'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN66-1758' orgid='META' frameid='ENZRXN66-1758' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8377' orgid='META' frameid='CPLX-8377'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-19556' orgid='META' frameid='ENZRXN-19556' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8356' orgid='META' frameid='CPLX-8356'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-14011' orgid='META' frameid='ENZRXN-14011' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7397' orgid='META' frameid='CPLX-7397'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13946' orgid='META' frameid='ENZRXN-13946' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>NAD+-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7360' orgid='META' frameid='CPLX-7360'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13909' orgid='META' frameid='ENZRXN-13909' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7330' orgid='META' frameid='CPLX-7330'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13718' orgid='META' frameid='ENZRXN-13718' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde 3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7280' orgid='META' frameid='CPLX-7280'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13707' orgid='META' frameid='ENZRXN-13707' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde 3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-12868' orgid='META' frameid='MONOMER-12868'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13447' orgid='META' frameid='ENZRXN-13447' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>glyceraldehyde 3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7228' orgid='META' frameid='CPLX-7228'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-9326' orgid='META' frameid='ENZRXN-9326' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>NAD-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-9164' orgid='META' frameid='MONOMER-9164'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-9321' orgid='META' frameid='ENZRXN-9321' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<common-name datatype='string'>NAD-dependent glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-5561' orgid='META' frameid='CPLX-5561'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-2867' orgid='META' frameid='ENZRXN-2867' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<synonym datatype='string'>GAPDH</synonym>
+<synonym datatype='string'>triosephosphate dehydrogenase</synonym>
+<synonym datatype='string'>D-glyceraldehyde-3-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (phosphorylating)</synonym>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-548' orgid='META' frameid='MONOMER-548'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-2721' orgid='META' frameid='ENZRXN-2721' detail='low'><reaction><Reaction resource='#META:GAPOXNPHOSPHN-RXN' orgid='META' frameid='GAPOXNPHOSPHN-RXN'/></reaction>
+<synonym datatype='string'>GAPDH</synonym>
+<synonym datatype='string'>D-glyceraldehyde-3-phosphate dehydrogenase</synonym>
+<synonym datatype='string'>triosephosphate dehydrogenase</synonym>
+<synonym datatype='string'>D-glyceraldehyde-3-phosphate:NAD&lt;SUP&gt;+&lt;/SUP&gt; oxidoreductase (phosphorylating)</synonym>
+<common-name datatype='string'>glyceraldehyde-3-phosphate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-1865' orgid='META' frameid='CPLX-1865'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

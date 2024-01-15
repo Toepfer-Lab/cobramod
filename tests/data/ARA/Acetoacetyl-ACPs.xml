@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:Acetoacetyl-ACPs'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:Acetoacetyl-ACPs'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:Acetoacetyl-ACPs</query>
 <num_results>1</num_results>
@@ -8,14 +8,14 @@
 </PGDB>
 </metadata>
 <Protein ID='ARA:Acetoacetyl-ACPs' orgid='ARA' frameid='Acetoacetyl-ACPs' detail='full' class='true'><parent><Protein resource='getxml?ARA:Short-Chain-3-oxo-ACPs' orgid='ARA' frameid='Short-Chain-3-oxo-ACPs' class='true'/></parent>
-<common-name datatype='string'>an acetoacetyl-[acp]</common-name>
-<unmodified-form><Protein resource='getxml?ARA:ACP' orgid='ARA' frameid='ACP' class='true'/></unmodified-form>
 <synonym datatype='string'>acetoacetyl-S-ACP</synonym>
 <synonym datatype='string'>AcpP</synonym>
 <synonym datatype='string'>B1094</synonym>
 <synonym datatype='string'>acetoacetyl-ACP</synonym>
 <synonym datatype='string'>an acetoacetyl-[acyl-carrier-protein]</synonym>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-9514' orgid='ARA' frameid='RXN-9514'/><Reaction resource='getxml?ARA:RXN-12361' orgid='ARA' frameid='RXN-12361'/><Reaction resource='getxml?ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/><Reaction resource='getxml?ARA:3-OXOACYL-ACP-SYNTH-BASE-RXN' orgid='ARA' frameid='3-OXOACYL-ACP-SYNTH-BASE-RXN'/></appears-in-right-side-of>
+<unmodified-form><Protein resource='getxml?ARA:ACP' orgid='ARA' frameid='ACP' class='true'/></unmodified-form>
+<common-name datatype='string'>an acetoacetyl-[acp]</common-name>
 <dblink><dblink-db>UNIPROT</dblink-db>
 <dblink-oid>P02901</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECOLI:PYRUVATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECOLI:PYRUVATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECOLI:PYRUVATE</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -21,218 +21,216 @@
 </molecule>
 </cml>
 <regulates><Regulation ID='ECOLI:REG0-13271' orgid='ECOLI' frameid='REG0-13271' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Reactions' orgid='ECOLI' frameid='Regulation-of-Reactions' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 <regulated-entity><Reaction resource='getxml?ECOLI:RXN0-7039' orgid='ECOLI' frameid='RXN0-7039'/></regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-13270' orgid='ECOLI' frameid='REG0-13270' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Reactions' orgid='ECOLI' frameid='Regulation-of-Reactions' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 <regulated-entity><Reaction resource='getxml?ECOLI:RXN0-7326' orgid='ECOLI' frameid='RXN0-7326'/></regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-12560' orgid='ECOLI' frameid='REG0-12560' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:GLUC1PADENYLTRANS-ENZRXN' orgid='ECOLI' frameid='GLUC1PADENYLTRANS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:GLUC1PADENYLTRANS-RXN' orgid='ECOLI' frameid='GLUC1PADENYLTRANS-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GLUC1PADENYLTRANS-ENZRXN' orgid='ECOLI' frameid='GLUC1PADENYLTRANS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:GLUC1PADENYLTRANS-CPLX' orgid='ECOLI' frameid='GLUC1PADENYLTRANS-CPLX'/></enzyme>
 <synonym datatype='string'>ADP-glucose synthase</synonym>
 <synonym datatype='string'>ADP-glucose pyrophosphorylase</synonym>
 <synonym datatype='string'>ADP:&amp;alpha;-D-glucose-1-phosphate adenylyltransferase</synonym>
 <synonym datatype='string'>AGPase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:GLUC1PADENYLTRANS-CPLX' orgid='ECOLI' frameid='GLUC1PADENYLTRANS-CPLX'/></enzyme>
 <common-name datatype='string'>glucose-1-phosphate adenylyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:GLUC1PADENYLTRANS-RXN' orgid='ECOLI' frameid='GLUC1PADENYLTRANS-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-12383' orgid='ECOLI' frameid='REG0-12383' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALATESYN-ENZRXN' orgid='ECOLI' frameid='MALATESYN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:MALSYN-RXN' orgid='ECOLI' frameid='MALSYN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:MALATE-SYNTHASE' orgid='ECOLI' frameid='MALATE-SYNTHASE'/></enzyme>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALATESYN-ENZRXN' orgid='ECOLI' frameid='MALATESYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:MALATE-SYNTHASE' orgid='ECOLI' frameid='MALATE-SYNTHASE'/></enzyme>
 <common-name datatype='string'>malate synthase A</common-name>
+<reaction><Reaction resource='getxml?ECOLI:MALSYN-RXN' orgid='ECOLI' frameid='MALSYN-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-12132' orgid='ECOLI' frameid='REG0-12132' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:PFLACTENZ-ENZRXN' orgid='ECOLI' frameid='PFLACTENZ-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:1.97.1.4-A-RXN' orgid='ECOLI' frameid='1.97.1.4-A-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PFLACTENZ-ENZRXN' orgid='ECOLI' frameid='PFLACTENZ-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PFLACTENZ-MONOMER' orgid='ECOLI' frameid='PFLACTENZ-MONOMER'/></enzyme>
 <synonym datatype='string'>activase</synonym>
 <synonym datatype='string'>PFL-activating enzyme</synonym>
-<enzyme><Protein resource='getxml?ECOLI:PFLACTENZ-MONOMER' orgid='ECOLI' frameid='PFLACTENZ-MONOMER'/></enzyme>
 <common-name datatype='string'>pyruvate formate-lyase activating enzyme</common-name>
+<reaction><Reaction resource='getxml?ECOLI:1.97.1.4-A-RXN' orgid='ECOLI' frameid='1.97.1.4-A-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-11787' orgid='ECOLI' frameid='REG0-11787' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' orgid='ECOLI' frameid='3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:2.5.1.19-RXN' orgid='ECOLI' frameid='2.5.1.19-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' orgid='ECOLI' frameid='3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:AROA-MONOMER' orgid='ECOLI' frameid='AROA-MONOMER'/></enzyme>
 <synonym datatype='string'>5-enol-pyruvylshikimate-3-phosphate synthase</synonym>
 <synonym datatype='string'>EPSP synthase</synonym>
 <synonym datatype='string'>phosphoenolpyruvate: 3-phosphoshikimate 1-carboxyvinyl transferase</synonym>
 <synonym datatype='string'>EPSPS</synonym>
-<enzyme><Protein resource='getxml?ECOLI:AROA-MONOMER' orgid='ECOLI' frameid='AROA-MONOMER'/></enzyme>
 <common-name datatype='string'>3-phosphoshikimate 1-carboxyvinyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:2.5.1.19-RXN' orgid='ECOLI' frameid='2.5.1.19-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-10866' orgid='ECOLI' frameid='REG0-10866' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:PHOSACETYLTRANS-ENZRXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PHOSACETYLTRANS-ENZRXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PHOSACETYLTRANS-CPLX' orgid='ECOLI' frameid='PHOSACETYLTRANS-CPLX'/></enzyme>
 <synonym datatype='string'>phosphotransacetylase</synonym>
 <synonym datatype='string'>phosphoacylase</synonym>
 <synonym datatype='string'>acetyl-CoA:orthophosphate acetyltransferase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:PHOSACETYLTRANS-CPLX' orgid='ECOLI' frameid='PHOSACETYLTRANS-CPLX'/></enzyme>
 <common-name datatype='string'>phosphate acetyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-10864' orgid='ECOLI' frameid='REG0-10864' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7425' orgid='ECOLI' frameid='ENZRXN0-7425' detail='low'><reaction><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7425' orgid='ECOLI' frameid='ENZRXN0-7425' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-7912' orgid='ECOLI' frameid='CPLX0-7912'/></enzyme>
 <synonym datatype='string'>phosphotransacetylase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:CPLX0-7912' orgid='ECOLI' frameid='CPLX0-7912'/></enzyme>
 <common-name datatype='string'>phosphate acetyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-9120' orgid='ECOLI' frameid='REG0-9120' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:THREDEHYDCAT-ENZRXN' orgid='ECOLI' frameid='THREDEHYDCAT-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:THREDEHYD-RXN' orgid='ECOLI' frameid='THREDEHYD-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:THREDEHYDCAT-ENZRXN' orgid='ECOLI' frameid='THREDEHYDCAT-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:THREDEHYDCAT-CPLX' orgid='ECOLI' frameid='THREDEHYDCAT-CPLX'/></enzyme>
 <synonym datatype='string'>threonine deaminase</synonym>
 <synonym datatype='string'>L-threonine hydro-lyase (deaminating)</synonym>
-<enzyme><Protein resource='getxml?ECOLI:THREDEHYDCAT-CPLX' orgid='ECOLI' frameid='THREDEHYDCAT-CPLX'/></enzyme>
 <common-name datatype='string'>threonine dehydratase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:THREDEHYD-RXN' orgid='ECOLI' frameid='THREDEHYD-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-9094' orgid='ECOLI' frameid='REG0-9094' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALSYNG-ENZRXN' orgid='ECOLI' frameid='MALSYNG-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:MALSYN-RXN' orgid='ECOLI' frameid='MALSYN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:MALSYNG-MONOMER' orgid='ECOLI' frameid='MALSYNG-MONOMER'/></enzyme>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALSYNG-ENZRXN' orgid='ECOLI' frameid='MALSYNG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:MALSYNG-MONOMER' orgid='ECOLI' frameid='MALSYNG-MONOMER'/></enzyme>
 <common-name datatype='string'>malate synthase G</common-name>
+<reaction><Reaction resource='getxml?ECOLI:MALSYN-RXN' orgid='ECOLI' frameid='MALSYN-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-8339' orgid='ECOLI' frameid='REG0-8339' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' orgid='ECOLI' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN' orgid='ECOLI' frameid='3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' orgid='ECOLI' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:3-METHYL-2-OXOBUT-OHCH3XFER-CPLX' orgid='ECOLI' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-CPLX'/></enzyme>
 <synonym datatype='string'>&amp;alpha;-ketoisovalerate hydroxymethyltransferase</synonym>
 <synonym datatype='string'>dehydropantoate hydroxymethyltransferase</synonym>
 <synonym datatype='string'>ketopantoate hydroxymethyltransferase</synonym>
 <synonym datatype='string'>KPHMT</synonym>
 <synonym datatype='string'>5,10-methylenetetrahydrofolate:3-methyl-2-oxobutanoate hydroxymethyltransferase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:3-METHYL-2-OXOBUT-OHCH3XFER-CPLX' orgid='ECOLI' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-CPLX'/></enzyme>
 <common-name datatype='string'>3-methyl-2-oxobutanoate hydroxymethyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN' orgid='ECOLI' frameid='3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-8228' orgid='ECOLI' frameid='REG0-8228' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-257' orgid='ECOLI' frameid='ENZRXN0-257' detail='low'><reaction><Reaction resource='getxml?ECOLI:RXN0-279' orgid='ECOLI' frameid='RXN0-279'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-257' orgid='ECOLI' frameid='ENZRXN0-257' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-7838' orgid='ECOLI' frameid='CPLX0-7838'/></enzyme>
 <synonym datatype='string'>L-cysteine desulfurase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:CPLX0-7838' orgid='ECOLI' frameid='CPLX0-7838'/></enzyme>
 <common-name datatype='string'>cysteine sulfinate desulfinase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-279' orgid='ECOLI' frameid='RXN0-279'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-8218' orgid='ECOLI' frameid='REG0-8218' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 <regulated-entity><Enzymatic-Reaction resource='#ECOLI:PHOSACETYLTRANS-ENZRXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-ENZRXN'/></regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-8057' orgid='ECOLI' frameid='REG0-8057' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:PROLDEHYDROG-ENZRXN' orgid='ECOLI' frameid='PROLDEHYDROG-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:RXN0-7008' orgid='ECOLI' frameid='RXN0-7008'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PROLDEHYDROG-ENZRXN' orgid='ECOLI' frameid='PROLDEHYDROG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PUTA-CPLX' orgid='ECOLI' frameid='PUTA-CPLX'/></enzyme>
 <synonym datatype='string'>proline oxidase</synonym>
 <synonym datatype='string'>L-proline:(acceptor) oxidoreductase</synonym>
 <synonym datatype='string'>PDH</synonym>
 <synonym datatype='string'>proline:ubiquinone oxidoreductase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:PUTA-CPLX' orgid='ECOLI' frameid='PUTA-CPLX'/></enzyme>
 <common-name datatype='string'>proline dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-7008' orgid='ECOLI' frameid='RXN0-7008'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-7693' orgid='ECOLI' frameid='REG0-7693' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ICITDEHKINASE-ENZRXN' orgid='ECOLI' frameid='ICITDEHKINASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PHOSICITDEHASE-RXN' orgid='ECOLI' frameid='PHOSICITDEHASE-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ICITDEHKINASE-ENZRXN' orgid='ECOLI' frameid='ICITDEHKINASE-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-230' orgid='ECOLI' frameid='CPLX0-230'/></enzyme>
 <synonym datatype='string'>ICDH kinase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:CPLX0-230' orgid='ECOLI' frameid='CPLX0-230'/></enzyme>
 <common-name datatype='string'>isocitrate dehydrogenase kinase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PHOSICITDEHASE-RXN' orgid='ECOLI' frameid='PHOSICITDEHASE-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-7600' orgid='ECOLI' frameid='REG0-7600' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ICITDEHDEPHOSPH-ENZRXN' orgid='ECOLI' frameid='ICITDEHDEPHOSPH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:DEPHOSICITDEHASE-RXN' orgid='ECOLI' frameid='DEPHOSICITDEHASE-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ICITDEHDEPHOSPH-ENZRXN' orgid='ECOLI' frameid='ICITDEHDEPHOSPH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-230' orgid='ECOLI' frameid='CPLX0-230'/></enzyme>
 <synonym datatype='string'>ICDH phosphatase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:CPLX0-230' orgid='ECOLI' frameid='CPLX0-230'/></enzyme>
 <common-name datatype='string'>isocitrate dehydrogenase phosphatase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:DEPHOSICITDEHASE-RXN' orgid='ECOLI' frameid='DEPHOSICITDEHASE-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-7541' orgid='ECOLI' frameid='REG0-7541' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ACNEULY-ENZRXN' orgid='ECOLI' frameid='ACNEULY-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:RXN0-7390' orgid='ECOLI' frameid='RXN0-7390'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ACNEULY-ENZRXN' orgid='ECOLI' frameid='ACNEULY-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ACNEULY-CPLX' orgid='ECOLI' frameid='ACNEULY-CPLX'/></enzyme>
 <synonym datatype='string'>N-acetylneuraminic acid aldolase</synonym>
 <synonym datatype='string'>NALase</synonym>
 <synonym datatype='string'>N-acetylneuraminate pyruvate-lyase</synonym>
 <synonym datatype='string'>NAL</synonym>
-<enzyme><Protein resource='getxml?ECOLI:ACNEULY-CPLX' orgid='ECOLI' frameid='ACNEULY-CPLX'/></enzyme>
 <common-name datatype='string'>&lt;i&gt;N&lt;/i&gt;-acetylneuraminate lyase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-7390' orgid='ECOLI' frameid='RXN0-7390'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-7315' orgid='ECOLI' frameid='REG0-7315' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:PFLDEACTIV-ENZRXN' orgid='ECOLI' frameid='PFLDEACTIV-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PFLDEACTIV-RXN' orgid='ECOLI' frameid='PFLDEACTIV-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PFLDEACTIV-ENZRXN' orgid='ECOLI' frameid='PFLDEACTIV-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ADHE-CPLX' orgid='ECOLI' frameid='ADHE-CPLX'/></enzyme>
 <synonym datatype='string'>PFL deactivating enzyme</synonym>
 <synonym datatype='string'>PFL-deactivase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:ADHE-CPLX' orgid='ECOLI' frameid='ADHE-CPLX'/></enzyme>
 <common-name datatype='string'>pyruvate formate-lyase deactivase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PFLDEACTIV-RXN' orgid='ECOLI' frameid='PFLDEACTIV-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-7196' orgid='ECOLI' frameid='REG0-7196' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:DLACTDEHYDROGNAD-ENZRXN' orgid='ECOLI' frameid='DLACTDEHYDROGNAD-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:DLACTDEHYDROGNAD-RXN' orgid='ECOLI' frameid='DLACTDEHYDROGNAD-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:DLACTDEHYDROGNAD-ENZRXN' orgid='ECOLI' frameid='DLACTDEHYDROGNAD-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-8158' orgid='ECOLI' frameid='CPLX0-8158'/></enzyme>
 <synonym datatype='string'>lactic acid dehydrogenase</synonym>
 <synonym datatype='string'>(R)-lactate:NAD+ oxidoreductase</synonym>
 <synonym datatype='string'>D-lactate dehydrogenase, fermentative</synonym>
-<enzyme><Protein resource='getxml?ECOLI:CPLX0-8158' orgid='ECOLI' frameid='CPLX0-8158'/></enzyme>
 <common-name datatype='string'>D-lactate dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:DLACTDEHYDROGNAD-RXN' orgid='ECOLI' frameid='DLACTDEHYDROGNAD-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>+</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-6996' orgid='ECOLI' frameid='REG0-6996' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:PYRUVATEDEH-ENZRXN' orgid='ECOLI' frameid='PYRUVATEDEH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:PYRUVDEH-RXN' orgid='ECOLI' frameid='PYRUVDEH-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PYRUVATEDEH-ENZRXN' orgid='ECOLI' frameid='PYRUVATEDEH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PYRUVATEDEH-CPLX' orgid='ECOLI' frameid='PYRUVATEDEH-CPLX'/></enzyme>
 <synonym datatype='string'>pyruvate dehydrogenase complex</synonym>
 <synonym datatype='string'>PDH complex</synonym>
-<enzyme><Protein resource='getxml?ECOLI:PYRUVATEDEH-CPLX' orgid='ECOLI' frameid='PYRUVATEDEH-CPLX'/></enzyme>
 <common-name datatype='string'>pyruvate dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PYRUVDEH-RXN' orgid='ECOLI' frameid='PYRUVDEH-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:PYRUVATE' orgid='ECOLI' frameid='PYRUVATE'/></regulator>
 </Regulation>
 </regulates>
-<inchi-key datatype='string'>InChIKey=LCTONWCANYUPML-UHFFFAOYSA-M</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>-82.398705</gibbs-0>
+<molecular-weight datatype='float' units='Daltons'>87.055</molecular-weight>
+<abbrev-name datatype='string'>pyruvate</abbrev-name>
 <component-of><Protein resource='getxml?ECOLI:CPLX0-8309' orgid='ECOLI' frameid='CPLX0-8309'/><Compound resource='getxml?ECOLI:CPD0-2431' orgid='ECOLI' frameid='CPD0-2431'/><Protein resource='getxml?ECOLI:CPLX0-7605' orgid='ECOLI' frameid='CPLX0-7605'/><Protein resource='getxml?ECOLI:MONOMER-59' orgid='ECOLI' frameid='MONOMER-59'/></component-of>
-<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7350' orgid='ECOLI' frameid='RXN0-7350'/><Reaction resource='getxml?ECOLI:RXN-6161' orgid='ECOLI' frameid='RXN-6161'/><Reaction resource='getxml?ECOLI:TRANS-RXN-335' orgid='ECOLI' frameid='TRANS-RXN-335'/><Reaction resource='getxml?ECOLI:PEPDEPHOS-RXN' orgid='ECOLI' frameid='PEPDEPHOS-RXN'/><Reaction resource='getxml?ECOLI:RXN-3482' orgid='ECOLI' frameid='RXN-3482'/><Reaction resource='getxml?ECOLI:PYRUVATEDECARB-RXN' orgid='ECOLI' frameid='PYRUVATEDECARB-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5238' orgid='ECOLI' frameid='RXN0-5238'/><Reaction resource='getxml?ECOLI:RXN0-291' orgid='ECOLI' frameid='RXN0-291'/><Reaction resource='getxml?ECOLI:PYFLAVOXRE-RXN' orgid='ECOLI' frameid='PYFLAVOXRE-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-570' orgid='ECOLI' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?ECOLI:PYRUFLAVREDUCT-RXN' orgid='ECOLI' frameid='PYRUFLAVREDUCT-RXN'/><Reaction resource='getxml?ECOLI:PYRUVDEH-RXN' orgid='ECOLI' frameid='PYRUVDEH-RXN'/><Reaction resource='getxml?ECOLI:RXN-12583' orgid='ECOLI' frameid='RXN-12583'/><Reaction resource='getxml?ECOLI:RXN0-6684' orgid='ECOLI' frameid='RXN0-6684'/><Reaction resource='getxml?ECOLI:RXN0-1134' orgid='ECOLI' frameid='RXN0-1134'/><Reaction resource='getxml?ECOLI:RXN-11496' orgid='ECOLI' frameid='RXN-11496'/><Reaction resource='getxml?ECOLI:DXS-RXN' orgid='ECOLI' frameid='DXS-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5269' orgid='ECOLI' frameid='RXN0-5269'/><Reaction resource='getxml?ECOLI:RXN0-5261' orgid='ECOLI' frameid='RXN0-5261'/><Reaction resource='getxml?ECOLI:RXN0-2022' orgid='ECOLI' frameid='RXN0-2022'/><Reaction resource='getxml?ECOLI:DIHYDRODIPICSYN-RXN' orgid='ECOLI' frameid='DIHYDRODIPICSYN-RXN'/><Reaction resource='getxml?ECOLI:ACETOOHBUTSYN-RXN' orgid='ECOLI' frameid='ACETOOHBUTSYN-RXN'/><Reaction resource='getxml?ECOLI:ACETOLACTSYN-RXN' orgid='ECOLI' frameid='ACETOLACTSYN-RXN'/><Reaction resource='getxml?ECOLI:PEPSYNTH-RXN' orgid='ECOLI' frameid='PEPSYNTH-RXN'/><Reaction resource='getxml?ECOLI:VALINE-PYRUVATE-AMINOTRANSFER-RXN' orgid='ECOLI' frameid='VALINE-PYRUVATE-AMINOTRANSFER-RXN'/></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction resource='getxml?ECOLI:KDGALDOL-RXN' orgid='ECOLI' frameid='KDGALDOL-RXN'/><Reaction resource='getxml?ECOLI:RXN-22729' orgid='ECOLI' frameid='RXN-22729'/><Reaction resource='getxml?ECOLI:RXN0-7390' orgid='ECOLI' frameid='RXN0-7390'/><Reaction resource='getxml?ECOLI:RXN-21080' orgid='ECOLI' frameid='RXN-21080'/><Reaction resource='getxml?ECOLI:TRANS-RXN-335' orgid='ECOLI' frameid='TRANS-RXN-335'/><Reaction resource='getxml?ECOLI:RXN0-7166' orgid='ECOLI' frameid='RXN0-7166'/><Reaction resource='getxml?ECOLI:RXN-18702' orgid='ECOLI' frameid='RXN-18702'/><Reaction resource='getxml?ECOLI:MERCAPYSTRANS-RXN' orgid='ECOLI' frameid='MERCAPYSTRANS-RXN'/><Reaction resource='getxml?ECOLI:L-LACTDEHYDROGFMN-RXN' orgid='ECOLI' frameid='L-LACTDEHYDROGFMN-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5433' orgid='ECOLI' frameid='RXN0-5433'/><Reaction resource='getxml?ECOLI:2.7.3.9-RXN' orgid='ECOLI' frameid='2.7.3.9-RXN'/><Reaction resource='getxml?ECOLI:RXN-17354' orgid='ECOLI' frameid='RXN-17354'/><Reaction resource='getxml?ECOLI:RXN0-6717' orgid='ECOLI' frameid='RXN0-6717'/><Reaction resource='getxml?ECOLI:4.3.1.15-RXN' orgid='ECOLI' frameid='4.3.1.15-RXN'/><Reaction resource='getxml?ECOLI:DLACTDEHYDROGFAD-RXN' orgid='ECOLI' frameid='DLACTDEHYDROGFAD-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7047' orgid='ECOLI' frameid='RXN0-7047'/><Reaction resource='getxml?ECOLI:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN' orgid='ECOLI' frameid='PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:DCYSDESULF-RXN' orgid='ECOLI' frameid='DCYSDESULF-RXN'/><Reaction resource='getxml?ECOLI:ACNEULY-RXN' orgid='ECOLI' frameid='ACNEULY-RXN'/><Reaction resource='getxml?ECOLI:RXN-8899' orgid='ECOLI' frameid='RXN-8899'/><Reaction resource='getxml?ECOLI:RXN-15127' orgid='ECOLI' frameid='RXN-15127'/><Reaction resource='getxml?ECOLI:4.1.2.28-RXN' orgid='ECOLI' frameid='4.1.2.28-RXN'/><Reaction resource='getxml?ECOLI:4.3.1.17-RXN' orgid='ECOLI' frameid='4.3.1.17-RXN'/><Reaction resource='getxml?ECOLI:CYSTATHIONINE-BETA-LYASE-RXN' orgid='ECOLI' frameid='CYSTATHIONINE-BETA-LYASE-RXN'/><Reaction resource='getxml?ECOLI:LCYSDESULF-RXN' orgid='ECOLI' frameid='LCYSDESULF-RXN'/><Reaction resource='getxml?ECOLI:TRYPTOPHAN-RXN' orgid='ECOLI' frameid='TRYPTOPHAN-RXN'/><Reaction resource='getxml?ECOLI:DSERDEAM-RXN' orgid='ECOLI' frameid='DSERDEAM-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-570' orgid='ECOLI' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?ECOLI:RXN-13990' orgid='ECOLI' frameid='RXN-13990'/><Reaction resource='getxml?ECOLI:RXN-9310' orgid='ECOLI' frameid='RXN-9310'/><Reaction resource='getxml?ECOLI:DHDOGALDOL-RXN' orgid='ECOLI' frameid='DHDOGALDOL-RXN'/><Reaction resource='getxml?ECOLI:DLACTDEHYDROGNAD-RXN' orgid='ECOLI' frameid='DLACTDEHYDROGNAD-RXN'/><Reaction resource='getxml?ECOLI:DALADEHYDROG-RXN' orgid='ECOLI' frameid='DALADEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6375' orgid='ECOLI' frameid='RXN0-6375'/><Reaction resource='getxml?ECOLI:RXN0-5240' orgid='ECOLI' frameid='RXN0-5240'/><Reaction resource='getxml?ECOLI:1.1.1.83-RXN' orgid='ECOLI' frameid='1.1.1.83-RXN'/><Reaction resource='getxml?ECOLI:2.7.1.121-RXN' orgid='ECOLI' frameid='2.7.1.121-RXN'/><Reaction resource='getxml?ECOLI:ALANINE-AMINOTRANSFERASE-RXN' orgid='ECOLI' frameid='ALANINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ECOLI:PYRUVFORMLY-RXN' orgid='ECOLI' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?ECOLI:METHYLISOCITRATE-LYASE-RXN' orgid='ECOLI' frameid='METHYLISOCITRATE-LYASE-RXN'/><Reaction resource='getxml?ECOLI:ISOCHORMAT-RXN' orgid='ECOLI' frameid='ISOCHORMAT-RXN'/><Reaction resource='getxml?ECOLI:MHPELY-RXN' orgid='ECOLI' frameid='MHPELY-RXN'/><Reaction resource='getxml?ECOLI:OXALODECARB-RXN' orgid='ECOLI' frameid='OXALODECARB-RXN'/><Reaction resource='getxml?ECOLI:ADCLY-RXN' orgid='ECOLI' frameid='ADCLY-RXN'/><Reaction resource='getxml?ECOLI:CHORPYRLY-RXN' orgid='ECOLI' frameid='CHORPYRLY-RXN'/><Reaction resource='getxml?ECOLI:DEHYDDEOXPHOSGALACT-ALDOL-RXN' orgid='ECOLI' frameid='DEHYDDEOXPHOSGALACT-ALDOL-RXN'/><Reaction resource='getxml?ECOLI:KDPGALDOL-RXN' orgid='ECOLI' frameid='KDPGALDOL-RXN'/><Reaction resource='getxml?ECOLI:ANTHRANSYN-RXN' orgid='ECOLI' frameid='ANTHRANSYN-RXN'/><Reaction resource='getxml?ECOLI:1.1.1.39-RXN' orgid='ECOLI' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?ECOLI:MALIC-NADP-RXN' orgid='ECOLI' frameid='MALIC-NADP-RXN'/></appears-in-right-side-of>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000001532517</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -308,7 +306,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0159</dblink-URL>
 </dblink>
-<abbrev-name datatype='string'>pyruvate</abbrev-name>
 <synonym datatype='string'>alpha-ketopropionic acid</synonym>
 <synonym datatype='string'>BTS</synonym>
 <synonym datatype='string'>&amp;alpha;-ketopropionic acid</synonym>
@@ -318,9 +315,12 @@
 <synonym datatype='string'>pyruvic acid</synonym>
 <synonym datatype='string'>2-oxopropanoate</synonym>
 <synonym datatype='string'>2-oxo-propionic acid</synonym>
+<inchi-key datatype='string'>InChIKey=LCTONWCANYUPML-UHFFFAOYSA-M</inchi-key>
 <monoisotopic-mw datatype='float' units='Daltons'>88.016045</monoisotopic-mw>
-<molecular-weight datatype='float' units='Daltons'>87.055</molecular-weight>
 <inchi datatype='string'>InChI=1S/C3H4O3/c1-2(4)3(5)6/h1H3,(H,5,6)/p-1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:KDGALDOL-RXN' orgid='ECOLI' frameid='KDGALDOL-RXN'/><Reaction resource='getxml?ECOLI:RXN-22729' orgid='ECOLI' frameid='RXN-22729'/><Reaction resource='getxml?ECOLI:RXN0-7390' orgid='ECOLI' frameid='RXN0-7390'/><Reaction resource='getxml?ECOLI:RXN-21080' orgid='ECOLI' frameid='RXN-21080'/><Reaction resource='getxml?ECOLI:TRANS-RXN-335' orgid='ECOLI' frameid='TRANS-RXN-335'/><Reaction resource='getxml?ECOLI:RXN0-7166' orgid='ECOLI' frameid='RXN0-7166'/><Reaction resource='getxml?ECOLI:RXN-18702' orgid='ECOLI' frameid='RXN-18702'/><Reaction resource='getxml?ECOLI:MERCAPYSTRANS-RXN' orgid='ECOLI' frameid='MERCAPYSTRANS-RXN'/><Reaction resource='getxml?ECOLI:L-LACTDEHYDROGFMN-RXN' orgid='ECOLI' frameid='L-LACTDEHYDROGFMN-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5433' orgid='ECOLI' frameid='RXN0-5433'/><Reaction resource='getxml?ECOLI:2.7.3.9-RXN' orgid='ECOLI' frameid='2.7.3.9-RXN'/><Reaction resource='getxml?ECOLI:RXN-17354' orgid='ECOLI' frameid='RXN-17354'/><Reaction resource='getxml?ECOLI:RXN0-6717' orgid='ECOLI' frameid='RXN0-6717'/><Reaction resource='getxml?ECOLI:4.3.1.15-RXN' orgid='ECOLI' frameid='4.3.1.15-RXN'/><Reaction resource='getxml?ECOLI:DLACTDEHYDROGFAD-RXN' orgid='ECOLI' frameid='DLACTDEHYDROGFAD-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7047' orgid='ECOLI' frameid='RXN0-7047'/><Reaction resource='getxml?ECOLI:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN' orgid='ECOLI' frameid='PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:DCYSDESULF-RXN' orgid='ECOLI' frameid='DCYSDESULF-RXN'/><Reaction resource='getxml?ECOLI:ACNEULY-RXN' orgid='ECOLI' frameid='ACNEULY-RXN'/><Reaction resource='getxml?ECOLI:RXN-8899' orgid='ECOLI' frameid='RXN-8899'/><Reaction resource='getxml?ECOLI:RXN-15127' orgid='ECOLI' frameid='RXN-15127'/><Reaction resource='getxml?ECOLI:4.1.2.28-RXN' orgid='ECOLI' frameid='4.1.2.28-RXN'/><Reaction resource='getxml?ECOLI:4.3.1.17-RXN' orgid='ECOLI' frameid='4.3.1.17-RXN'/><Reaction resource='getxml?ECOLI:CYSTATHIONINE-BETA-LYASE-RXN' orgid='ECOLI' frameid='CYSTATHIONINE-BETA-LYASE-RXN'/><Reaction resource='getxml?ECOLI:LCYSDESULF-RXN' orgid='ECOLI' frameid='LCYSDESULF-RXN'/><Reaction resource='getxml?ECOLI:TRYPTOPHAN-RXN' orgid='ECOLI' frameid='TRYPTOPHAN-RXN'/><Reaction resource='getxml?ECOLI:DSERDEAM-RXN' orgid='ECOLI' frameid='DSERDEAM-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-570' orgid='ECOLI' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?ECOLI:RXN-13990' orgid='ECOLI' frameid='RXN-13990'/><Reaction resource='getxml?ECOLI:RXN-9310' orgid='ECOLI' frameid='RXN-9310'/><Reaction resource='getxml?ECOLI:DHDOGALDOL-RXN' orgid='ECOLI' frameid='DHDOGALDOL-RXN'/><Reaction resource='getxml?ECOLI:DLACTDEHYDROGNAD-RXN' orgid='ECOLI' frameid='DLACTDEHYDROGNAD-RXN'/><Reaction resource='getxml?ECOLI:DALADEHYDROG-RXN' orgid='ECOLI' frameid='DALADEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6375' orgid='ECOLI' frameid='RXN0-6375'/><Reaction resource='getxml?ECOLI:RXN0-5240' orgid='ECOLI' frameid='RXN0-5240'/><Reaction resource='getxml?ECOLI:1.1.1.83-RXN' orgid='ECOLI' frameid='1.1.1.83-RXN'/><Reaction resource='getxml?ECOLI:2.7.1.121-RXN' orgid='ECOLI' frameid='2.7.1.121-RXN'/><Reaction resource='getxml?ECOLI:ALANINE-AMINOTRANSFERASE-RXN' orgid='ECOLI' frameid='ALANINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ECOLI:PYRUVFORMLY-RXN' orgid='ECOLI' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?ECOLI:METHYLISOCITRATE-LYASE-RXN' orgid='ECOLI' frameid='METHYLISOCITRATE-LYASE-RXN'/><Reaction resource='getxml?ECOLI:ISOCHORMAT-RXN' orgid='ECOLI' frameid='ISOCHORMAT-RXN'/><Reaction resource='getxml?ECOLI:MHPELY-RXN' orgid='ECOLI' frameid='MHPELY-RXN'/><Reaction resource='getxml?ECOLI:OXALODECARB-RXN' orgid='ECOLI' frameid='OXALODECARB-RXN'/><Reaction resource='getxml?ECOLI:ADCLY-RXN' orgid='ECOLI' frameid='ADCLY-RXN'/><Reaction resource='getxml?ECOLI:CHORPYRLY-RXN' orgid='ECOLI' frameid='CHORPYRLY-RXN'/><Reaction resource='getxml?ECOLI:DEHYDDEOXPHOSGALACT-ALDOL-RXN' orgid='ECOLI' frameid='DEHYDDEOXPHOSGALACT-ALDOL-RXN'/><Reaction resource='getxml?ECOLI:KDPGALDOL-RXN' orgid='ECOLI' frameid='KDPGALDOL-RXN'/><Reaction resource='getxml?ECOLI:ANTHRANSYN-RXN' orgid='ECOLI' frameid='ANTHRANSYN-RXN'/><Reaction resource='getxml?ECOLI:1.1.1.39-RXN' orgid='ECOLI' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?ECOLI:MALIC-NADP-RXN' orgid='ECOLI' frameid='MALIC-NADP-RXN'/></appears-in-right-side-of>
 <common-name datatype='string'>pyruvate</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7350' orgid='ECOLI' frameid='RXN0-7350'/><Reaction resource='getxml?ECOLI:RXN-6161' orgid='ECOLI' frameid='RXN-6161'/><Reaction resource='getxml?ECOLI:TRANS-RXN-335' orgid='ECOLI' frameid='TRANS-RXN-335'/><Reaction resource='getxml?ECOLI:PEPDEPHOS-RXN' orgid='ECOLI' frameid='PEPDEPHOS-RXN'/><Reaction resource='getxml?ECOLI:RXN-3482' orgid='ECOLI' frameid='RXN-3482'/><Reaction resource='getxml?ECOLI:PYRUVATEDECARB-RXN' orgid='ECOLI' frameid='PYRUVATEDECARB-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5238' orgid='ECOLI' frameid='RXN0-5238'/><Reaction resource='getxml?ECOLI:RXN0-291' orgid='ECOLI' frameid='RXN0-291'/><Reaction resource='getxml?ECOLI:PYFLAVOXRE-RXN' orgid='ECOLI' frameid='PYFLAVOXRE-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-570' orgid='ECOLI' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?ECOLI:PYRUFLAVREDUCT-RXN' orgid='ECOLI' frameid='PYRUFLAVREDUCT-RXN'/><Reaction resource='getxml?ECOLI:PYRUVDEH-RXN' orgid='ECOLI' frameid='PYRUVDEH-RXN'/><Reaction resource='getxml?ECOLI:RXN-12583' orgid='ECOLI' frameid='RXN-12583'/><Reaction resource='getxml?ECOLI:RXN0-6684' orgid='ECOLI' frameid='RXN0-6684'/><Reaction resource='getxml?ECOLI:RXN0-1134' orgid='ECOLI' frameid='RXN0-1134'/><Reaction resource='getxml?ECOLI:RXN-11496' orgid='ECOLI' frameid='RXN-11496'/><Reaction resource='getxml?ECOLI:DXS-RXN' orgid='ECOLI' frameid='DXS-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5269' orgid='ECOLI' frameid='RXN0-5269'/><Reaction resource='getxml?ECOLI:RXN0-5261' orgid='ECOLI' frameid='RXN0-5261'/><Reaction resource='getxml?ECOLI:RXN0-2022' orgid='ECOLI' frameid='RXN0-2022'/><Reaction resource='getxml?ECOLI:DIHYDRODIPICSYN-RXN' orgid='ECOLI' frameid='DIHYDRODIPICSYN-RXN'/><Reaction resource='getxml?ECOLI:ACETOOHBUTSYN-RXN' orgid='ECOLI' frameid='ACETOOHBUTSYN-RXN'/><Reaction resource='getxml?ECOLI:ACETOLACTSYN-RXN' orgid='ECOLI' frameid='ACETOLACTSYN-RXN'/><Reaction resource='getxml?ECOLI:PEPSYNTH-RXN' orgid='ECOLI' frameid='PEPSYNTH-RXN'/><Reaction resource='getxml?ECOLI:VALINE-PYRUVATE-AMINOTRANSFER-RXN' orgid='ECOLI' frameid='VALINE-PYRUVATE-AMINOTRANSFER-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-82.398705</gibbs-0>
 </Compound>
 </ptools-xml>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD1F-133'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD1F-133'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD1F-133</query>
 <num_results>1</num_results>
@@ -14,16 +14,16 @@
 <string title='smiles'>CC(/C=C/C=C(C)/C=C/[C@]12(C(C)(C)C[C@H](O)C[C@](O1)(C)2))=C\C=C\C=C(C)\C=C\C=C(C)\C=C\[C@]34(C(C)(C)C[C@H](O)C[C@](O3)(C)4)</string>
 </molecule>
 </cml>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
-<common-name datatype='string'>violaxanthin</common-name>
-<inchi datatype='string'>InChI=1S/C40H56O4/c1-29(17-13-19-31(3)21-23-39-35(5,6)25-33(41)27-37(39,9)43-39)15-11-12-16-30(2)18-14-20-32(4)22-24-40-36(7,8)26-34(42)28-38(40,10)44-40/h11-24,33-34,41-42H,25-28H2,1-10H3/b12-11+,17-13+,18-14+,23-21+,24-22+,29-15+,30-16+,31-19+,32-20+/t33-,34-,37+,38+,39-,40-/m0/s1</inchi>
-<inchi-key datatype='string'>InChIKey=SZCBXWMUOPQSOX-WVJDLNGLSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-13185' orgid='ARA' frameid='RXN-13185'/><Reaction resource='getxml?ARA:RXN-7984' orgid='ARA' frameid='RXN-7984'/><Reaction resource='getxml?ARA:RXN-7886' orgid='ARA' frameid='RXN-7886'/><Reaction resource='getxml?ARA:RXN1F-155' orgid='ARA' frameid='RXN1F-155'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>635.9027</gibbs-0>
 <synonym datatype='string'>5,6,5',6'-diepoxy-5,6,5',6'-tetrahydro-&amp;beta;,&amp;beta;-carotene-3,3'-diol</synonym>
+<inchi-key datatype='string'>InChIKey=SZCBXWMUOPQSOX-WVJDLNGLSA-N</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
 <molecular-weight datatype='float' units='Daltons'>600.88</molecular-weight>
+<inchi datatype='string'>InChI=1S/C40H56O4/c1-29(17-13-19-31(3)21-23-39-35(5,6)25-33(41)27-37(39,9)43-39)15-11-12-16-30(2)18-14-20-32(4)22-24-40-36(7,8)26-34(42)28-38(40,10)44-40/h11-24,33-34,41-42H,25-28H2,1-10H3/b12-11+,17-13+,18-14+,23-21+,24-22+,29-15+,30-16+,31-19+,32-20+/t33-,34-,37+,38+,39-,40-/m0/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-7979' orgid='ARA' frameid='RXN-7979'/><Reaction resource='getxml?ARA:RXN-13193' orgid='ARA' frameid='RXN-13193'/><Reaction resource='getxml?ARA:RXN1F-154' orgid='ARA' frameid='RXN1F-154'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-13185' orgid='ARA' frameid='RXN-13185'/><Reaction resource='getxml?ARA:RXN-7984' orgid='ARA' frameid='RXN-7984'/><Reaction resource='getxml?ARA:RXN-7886' orgid='ARA' frameid='RXN-7886'/><Reaction resource='getxml?ARA:RXN1F-155' orgid='ARA' frameid='RXN1F-155'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>600.41785</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>635.9027</gibbs-0>
+<common-name datatype='string'>violaxanthin</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000008221270</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

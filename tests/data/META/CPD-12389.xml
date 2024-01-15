@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:CPD-12389'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:CPD-12389'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-12389</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:CPD-12389' orgid='META' frameid='CPD-12389' detail='full'><parent><Compound resource='getxml?META:CPD-19473' orgid='META' frameid='CPD-19473' class='true'/></parent>
@@ -13,11 +13,14 @@
 <string title='smiles'>CSCCCC=[N+](O)[O-]</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-11414' orgid='META' frameid='RXN-11414'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-11422' orgid='META' frameid='RXN-11422'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
-<synonym datatype='string'>4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
 <molecular-weight datatype='float' units='Daltons'>149.207</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-11414' orgid='META' frameid='RXN-11414'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>151.0667</monoisotopic-mw>
+<synonym datatype='string'>4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
+<common-name datatype='string'>1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
+<inchi-key datatype='string'>InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000062238402</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -33,8 +36,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=123131522</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
-<common-name datatype='string'>1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>61.462326<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -44,26 +45,25 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
 <credits><created><date datatype='date'>2010-04-26</date>
 <Person ID='META:zhang' orgid='META' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
+<comment datatype='string'>Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
 <affiliations><Organization ID='META:PMN' orgid='META' frameid='PMN' detail='full'><url datatype='string'>http://plantcyc.org</url>
 <common-name datatype='string'>Carnegie Institution for Science</common-name>
 <abbrev-name datatype='string'>PMN</abbrev-name>
 </Organization>
 </affiliations>
-<comment datatype='string'>Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
 </Person>
 <Organization ID='META:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='META' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
 <abbrev-name datatype='string'>TAIR</abbrev-name>
 </Organization>
 </created>
 </credits>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-11422' orgid='META' frameid='RXN-11422'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

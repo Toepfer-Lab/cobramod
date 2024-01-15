@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GLUTATHIONE-SYN-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GLUTATHIONE-SYN-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -19,14 +19,13 @@
     <product>
       <Protein resource="getxml?ARA:AT5G27380-MONOMER" orgid="ARA" frameid="AT5G27380-MONOMER" />
     </product>
-    <common-name datatype="string">GSH2</common-name>
-    <centisome-position datatype="float" units="CENTISOMES">35.81696</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT5G27380</accession-1>
     <synonym datatype="string">GSHB</synonym>
     <synonym datatype="string">AT5G27380</synonym>
+    <centisome-position datatype="float" units="CENTISOMES">35.81696</centisome-position>
     <right-end-position datatype="integer">9670965</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">9667974</left-end-position>
+    <common-name datatype="string">GSH2</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G27380</dblink-oid>
@@ -39,5 +38,6 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/U22359</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT5G27380</accession-1>
   </Gene>
 </ptools-xml>

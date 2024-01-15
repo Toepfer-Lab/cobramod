@@ -1,5 +1,5 @@
 ENTRY       R02189                      Reaction
-NAME        Polyphosphate:D-glucose 6-phosphotransferase
+NAME        polyphosphate:D-glucose 6-phosphotransferase
 DEFINITION  Polyphosphate + alpha-D-Glucose <=> Polyphosphate + alpha-D-Glucose 6-phosphate
 EQUATION    C00404 + C00267 <=> C00404 + C00668
 RCLASS      RC00017  C00267_C00668
@@ -13,5 +13,16 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
             rn01250  Biosynthesis of nucleotide sugars
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00549  Nucleotide sugar biosynthesis, glucose => UDP-glucose
+BRITE       Enzymatic reactions [BR:br08201]
+             2. Transferase reactions
+              2.7  Transferring phosphorus-containing groups
+               2.7.1  Phosphotransferases with an alcohol group as acceptor
+                2.7.1.63
+                 R02189  Polyphosphate + alpha-D-Glucose <=> Polyphosphate + alpha-D-Glucose 6-phosphate
+            IUBMB reaction hierarchy [BR:br08202]
+             2. Transferase reactions
+              2.7.1.63
+               R02185  D-Glucose <=> D-Glucose 6-phosphate
+                R02189  alpha-D-Glucose <=> alpha-D-Glucose 6-phosphate
 ORTHOLOGY   K00886  polyphosphate glucokinase [EC:2.7.1.63]
 ///

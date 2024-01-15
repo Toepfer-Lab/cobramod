@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:CPD-17447'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:CPD-17447'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-17447</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:CPD-17447' orgid='META' frameid='CPD-17447' detail='full'><parent><Compound resource='getxml?META:S-Substituted-Glutamyl-Cysteine' orgid='META' frameid='S-Substituted-Glutamyl-Cysteine' class='true'/></parent>
@@ -13,10 +13,25 @@
 <string title='smiles'>CSC[C@@H](C([O-])=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-16202' orgid='META' frameid='RXN-16202'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-16201' orgid='META' frameid='RXN-16201'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C9H16N2O5S/c1-17-4-6(9(15)16)11-7(12)3-2-5(10)8(13)14/h5-6H,2-4,10H2,1H3,(H,11,12)(H,13,14)(H,15,16)/p-1/t5-,6-/m0/s1</inchi>
 <molecular-weight datatype='float' units='Daltons'>263.288</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-16202' orgid='META' frameid='RXN-16202'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>264.078</monoisotopic-mw>
+<common-name datatype='string'>&amp;gamma;-L-glutamyl-(&lt;i&gt;S&lt;/i&gt;)-methyl-L-cysteine</common-name>
+<citation><Publication ID='META:PUB-15652575' orgid='META' frameid='PUB-15652575' detail='full'><year datatype='integer'>2005</year>
+<pubmed-id datatype='string'>15652575</pubmed-id>
+<author datatype='string'>Hughes J</author>
+<author datatype='string'>Tregova A</author>
+<author datatype='string'>Tomsett AB</author>
+<author datatype='string'>Jones MG</author>
+<author datatype='string'>Cosstick R</author>
+<author datatype='string'>Collin HA</author>
+<title datatype='string'>Synthesis of the flavour precursor, alliin, in garlic tissue cultures.</title>
+<source datatype='string'>Phytochemistry 66(2);187-94</source>
+</Publication>
+</citation>
+<inchi-key datatype='string'>InChIKey=UPCDLBPYWXOCOK-WDSKDSINSA-M</inchi-key>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM125851</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -27,8 +42,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=91820011</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=UPCDLBPYWXOCOK-WDSKDSINSA-M</inchi-key>
-<common-name datatype='string'>&amp;gamma;-L-glutamyl-(&lt;i&gt;S&lt;/i&gt;)-methyl-L-cysteine</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-30.755255<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -38,40 +51,26 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
 <credits><created><date datatype='date'>2014-12-09</date>
 <Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
-<email datatype='string'>caspi@ai.sri.com</email>
-<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-</Organization>
-</affiliations>
 <comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
-</comment>
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
 </credits>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-16201' orgid='META' frameid='RXN-16201'/></appears-in-left-side-of>
-<citation><Publication ID='META:PUB-15652575' orgid='META' frameid='PUB-15652575' detail='full'><year datatype='integer'>2005</year>
-<source datatype='string'>Phytochemistry 66(2);187-94</source>
-<pubmed-id datatype='string'>15652575</pubmed-id>
-<author datatype='string'>Hughes J</author>
-<author datatype='string'>Tregova A</author>
-<author datatype='string'>Tomsett AB</author>
-<author datatype='string'>Jones MG</author>
-<author datatype='string'>Cosstick R</author>
-<author datatype='string'>Collin HA</author>
-<title datatype='string'>Synthesis of the flavour precursor, alliin, in garlic tissue cultures.</title>
-</Publication>
-</citation>
 </Compound>
 </ptools-xml>

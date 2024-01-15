@@ -1,27 +1,73 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:MALTOSE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:MALTOSE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:MALTOSE</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID='META:MALTOSE' orgid='META' frameid='MALTOSE' detail='full' class='true'><parent><Compound resource='getxml?META:Carbohydrates' orgid='META' frameid='Carbohydrates' class='true'/></parent>
-<parent><Compound resource='getxml?META:Disaccharides' orgid='META' frameid='Disaccharides' class='true'/></parent>
+<Compound ID='META:MALTOSE' orgid='META' frameid='MALTOSE' detail='full' class='true'><parent><Compound resource='getxml?META:Disaccharides' orgid='META' frameid='Disaccharides' class='true'/></parent>
 <parent><Compound resource='getxml?META:Linear-Malto-Oligosaccharides' orgid='META' frameid='Linear-Malto-Oligosaccharides' class='true'/></parent>
-<instance><Compound resource='getxml?META:ALPHA-MALTOSE' orgid='META' frameid='ALPHA-MALTOSE'/></instance>
+<parent><Compound resource='getxml?META:Sweetening-Agent' orgid='META' frameid='Sweetening-Agent' class='true'/></parent>
 <instance><Compound resource='getxml?META:CPD-15717' orgid='META' frameid='CPD-15717'/></instance>
+<instance><Compound resource='getxml?META:ALPHA-MALTOSE' orgid='META' frameid='ALPHA-MALTOSE'/></instance>
 <cml><molecule id='MALTOSE' title='maltose' formalCharge='0'><atomArray><atom id='MALTOSE-atom1' elementType='C' x2='-502270.0' y2='42500.0'/><atom id='MALTOSE-atom2' elementType='C' x2='-216480.0' y2='-122500.0'/><atom id='MALTOSE-atom3' elementType='C' x2='-430820.0' y2='83750.0'/><atom id='MALTOSE-atom4' elementType='C' x2='-145030.0' y2='-81250.0'/><atom id='MALTOSE-atom5' elementType='C' x2='-430820.0' y2='166250.0'/><atom id='MALTOSE-atom6' elementType='C' x2='-359380.0' y2='207500.0'/><atom id='MALTOSE-atom7' elementType='C' x2='-73590.0' y2='42500.0'/><atom id='MALTOSE-atom8' elementType='C' x2='-2140.0' y2='1250.0'/><atom id='MALTOSE-atom9' elementType='C' x2='-287930.0' y2='166250.0'/><atom id='MALTOSE-atom10' elementType='C' x2='-145030.0' y2='1250.0'/><atom id='MALTOSE-atom11' elementType='C' x2='-2140.0' y2='-81250.0'/><atom id='MALTOSE-atom12' elementType='C' x2='-287930.0' y2='83750.0'/><atom id='MALTOSE-atom13' elementType='O' x2='-573720.0' y2='83750.0'/><atom id='MALTOSE-atom14' elementType='O' x2='-287930.0' y2='-81250.0'/><atom id='MALTOSE-atom15' elementType='O' x2='-502270.0' y2='207500.0'/><atom id='MALTOSE-atom16' elementType='O' x2='-359380.0' y2='290000.0'/><atom id='MALTOSE-atom17' elementType='O' x2='-73590.0' y2='125000.0'/><atom id='MALTOSE-atom18' elementType='O' x2='69310.0' y2='42500.0'/><atom id='MALTOSE-atom19' elementType='O' x2='-216480.0' y2='207500.0'/><atom id='MALTOSE-atom20' elementType='O' x2='69310.0' y2='-122500.0'/><atom id='MALTOSE-atom21' elementType='O' x2='-73590.0' y2='-122500.0'/><atom id='MALTOSE-atom22' elementType='O' x2='-359380.0' y2='42500.0'/><atom id='MALTOSE-atom23' elementType='O' x2='-216480.0' y2='42500.0'/></atomArray>
 <bondArray><bond id='MALTOSE-bond1' atomRefs='MALTOSE-atom11 MALTOSE-atom20' order='1'/><bond id='MALTOSE-bond2' atomRefs='MALTOSE-atom8 MALTOSE-atom18' order='1'/><bond id='MALTOSE-bond3' atomRefs='MALTOSE-atom7 MALTOSE-atom17' order='1'/><bond id='MALTOSE-bond4' atomRefs='MALTOSE-atom2 MALTOSE-atom14' order='1'/><bond id='MALTOSE-bond5' atomRefs='MALTOSE-atom4 MALTOSE-atom2' order='1'/><bond id='MALTOSE-bond6' atomRefs='MALTOSE-atom8 MALTOSE-atom11' order='1'/><bond id='MALTOSE-bond7' atomRefs='MALTOSE-atom7 MALTOSE-atom8' order='1'/><bond id='MALTOSE-bond8' atomRefs='MALTOSE-atom21 MALTOSE-atom11' order='1'/><bond id='MALTOSE-bond9' atomRefs='MALTOSE-atom21 MALTOSE-atom4' order='1'/><bond id='MALTOSE-bond10' atomRefs='MALTOSE-atom10 MALTOSE-atom7' order='1'/><bond id='MALTOSE-bond11' atomRefs='MALTOSE-atom4 MALTOSE-atom10' order='1'/><bond id='MALTOSE-bond12' atomRefs='MALTOSE-atom10 MALTOSE-atom23' order='1'/><bond id='MALTOSE-bond13' atomRefs='MALTOSE-atom12 MALTOSE-atom23' order='1'/><bond id='MALTOSE-bond14' atomRefs='MALTOSE-atom9 MALTOSE-atom19' order='1'/><bond id='MALTOSE-bond15' atomRefs='MALTOSE-atom6 MALTOSE-atom16' order='1'/><bond id='MALTOSE-bond16' atomRefs='MALTOSE-atom5 MALTOSE-atom15' order='1'/><bond id='MALTOSE-bond17' atomRefs='MALTOSE-atom1 MALTOSE-atom13' order='1'/><bond id='MALTOSE-bond18' atomRefs='MALTOSE-atom3 MALTOSE-atom1' order='1'/><bond id='MALTOSE-bond19' atomRefs='MALTOSE-atom9 MALTOSE-atom12' order='1'/><bond id='MALTOSE-bond20' atomRefs='MALTOSE-atom6 MALTOSE-atom9' order='1'/><bond id='MALTOSE-bond21' atomRefs='MALTOSE-atom5 MALTOSE-atom6' order='1'/><bond id='MALTOSE-bond22' atomRefs='MALTOSE-atom3 MALTOSE-atom5' order='1'/><bond id='MALTOSE-bond23' atomRefs='MALTOSE-atom22 MALTOSE-atom12' order='1'/><bond id='MALTOSE-bond24' atomRefs='MALTOSE-atom22 MALTOSE-atom3' order='1'/></bondArray>
 <formula concise='C 12 H 22 O 11'/><float title='molecularWeight' units='g/mol'>342.299</float>
 <string title='smiles'>C([C@H]1(O[C@@H]([C@@H]([C@H]([C@@H]1O)O)O)O[C@@H]2([C@H](OC([C@@H]([C@H]2O)O)O)CO)))O</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-14475' orgid='META' frameid='RXN-14475'/><Reaction resource='getxml?META:TRANS-RXN-239' orgid='META' frameid='TRANS-RXN-239'/><Reaction resource='getxml?META:ABC-16-RXN' orgid='META' frameid='ABC-16-RXN'/><Reaction resource='getxml?META:RXN-14354' orgid='META' frameid='RXN-14354'/><Reaction resource='getxml?META:RXN-14261' orgid='META' frameid='RXN-14261'/><Reaction resource='getxml?META:RXN-14260' orgid='META' frameid='RXN-14260'/><Reaction resource='getxml?META:RXN-12193' orgid='META' frameid='RXN-12193'/><Reaction resource='getxml?META:AMYLOMALT-RXN' orgid='META' frameid='AMYLOMALT-RXN'/><Reaction resource='getxml?META:RXN-12188' orgid='META' frameid='RXN-12188'/><Reaction resource='getxml?META:RXN-12190' orgid='META' frameid='RXN-12190'/><Reaction resource='getxml?META:RXN0-5183' orgid='META' frameid='RXN0-5183'/><Reaction resource='getxml?META:3.2.1.1-RXN' orgid='META' frameid='3.2.1.1-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-575' orgid='META' frameid='TRANS-RXN0-575'/><Reaction resource='getxml?META:RXN0-1741' orgid='META' frameid='RXN0-1741'/><Reaction resource='getxml?META:TRANS-RXN-245' orgid='META' frameid='TRANS-RXN-245'/><Reaction resource='getxml?META:MALTOSE-SYNTHASE-RXN' orgid='META' frameid='MALTOSE-SYNTHASE-RXN'/><Reaction resource='getxml?META:RXN-12384' orgid='META' frameid='RXN-12384'/><Reaction resource='getxml?META:RXN-12278' orgid='META' frameid='RXN-12278'/><Reaction resource='getxml?META:RXN-12279' orgid='META' frameid='RXN-12279'/><Reaction resource='getxml?META:RXN-14351' orgid='META' frameid='RXN-14351'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-23250' orgid='META' frameid='RXN-23250'/><Reaction resource='getxml?META:RXN-23249' orgid='META' frameid='RXN-23249'/><Reaction resource='getxml?META:MALTOSE-PHOSPHORYLASE-RXN' orgid='META' frameid='MALTOSE-PHOSPHORYLASE-RXN'/><Reaction resource='getxml?META:RXN-22810' orgid='META' frameid='RXN-22810'/><Reaction resource='getxml?META:RXN-22803' orgid='META' frameid='RXN-22803'/><Reaction resource='getxml?META:RXN-15092' orgid='META' frameid='RXN-15092'/><Reaction resource='getxml?META:RXN0-7347' orgid='META' frameid='RXN0-7347'/><Reaction resource='getxml?META:TRANS-RXN-239' orgid='META' frameid='TRANS-RXN-239'/><Reaction resource='getxml?META:ABC-16-RXN' orgid='META' frameid='ABC-16-RXN'/><Reaction resource='getxml?META:RXN-18914' orgid='META' frameid='RXN-18914'/><Reaction resource='getxml?META:RXN-15910' orgid='META' frameid='RXN-15910'/><Reaction resource='getxml?META:MALTODEG-RXN' orgid='META' frameid='MALTODEG-RXN'/><Reaction resource='getxml?META:MALTACETYLTRAN-RXN' orgid='META' frameid='MALTACETYLTRAN-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-575' orgid='META' frameid='TRANS-RXN0-575'/><Reaction resource='getxml?META:RXN0-1741' orgid='META' frameid='RXN0-1741'/><Reaction resource='getxml?META:TRANS-RXN-245' orgid='META' frameid='TRANS-RXN-245'/><Reaction resource='getxml?META:RXN-14351' orgid='META' frameid='RXN-14351'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C12H22O11/c13-1-3-5(15)6(16)9(19)12(22-3)23-10-4(2-14)21-11(20)8(18)7(10)17/h3-20H,1-2H2/t3-,4-,5-,6+,7-,8-,9-,10-,11?,12-/m1/s1</inchi>
-<synonym datatype='string'>&amp;alpha;-D-glucopyranose-(1&amp;rarr;4)-D-glucopyranose</synonym>
 <molecular-weight datatype='float' units='Daltons'>342.299</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-14475' orgid='META' frameid='RXN-14475'/><Reaction resource='getxml?META:TRANS-RXN-239' orgid='META' frameid='TRANS-RXN-239'/><Reaction resource='getxml?META:ABC-16-RXN' orgid='META' frameid='ABC-16-RXN'/><Reaction resource='getxml?META:RXN-14354' orgid='META' frameid='RXN-14354'/><Reaction resource='getxml?META:RXN-14261' orgid='META' frameid='RXN-14261'/><Reaction resource='getxml?META:RXN-14260' orgid='META' frameid='RXN-14260'/><Reaction resource='getxml?META:RXN-12193' orgid='META' frameid='RXN-12193'/><Reaction resource='getxml?META:AMYLOMALT-RXN' orgid='META' frameid='AMYLOMALT-RXN'/><Reaction resource='getxml?META:RXN-12188' orgid='META' frameid='RXN-12188'/><Reaction resource='getxml?META:RXN-12190' orgid='META' frameid='RXN-12190'/><Reaction resource='getxml?META:RXN0-5183' orgid='META' frameid='RXN0-5183'/><Reaction resource='getxml?META:3.2.1.1-RXN' orgid='META' frameid='3.2.1.1-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-575' orgid='META' frameid='TRANS-RXN0-575'/><Reaction resource='getxml?META:RXN0-1741' orgid='META' frameid='RXN0-1741'/><Reaction resource='getxml?META:TRANS-RXN-245' orgid='META' frameid='TRANS-RXN-245'/><Reaction resource='getxml?META:MALTOSE-SYNTHASE-RXN' orgid='META' frameid='MALTOSE-SYNTHASE-RXN'/><Reaction resource='getxml?META:RXN-12384' orgid='META' frameid='RXN-12384'/><Reaction resource='getxml?META:RXN-12278' orgid='META' frameid='RXN-12278'/><Reaction resource='getxml?META:RXN-12279' orgid='META' frameid='RXN-12279'/><Reaction resource='getxml?META:RXN-14351' orgid='META' frameid='RXN-14351'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>342.1162</monoisotopic-mw>
+<synonym datatype='string'>&amp;alpha;-D-glucopyranose-(1&amp;rarr;4)-D-glucopyranose</synonym>
+<common-name datatype='string'>maltose</common-name>
+<regulates><Regulation ID='META:REG-14464' orgid='META' frameid='REG-14464' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22161' orgid='META' frameid='ENZRXN-22161' detail='low'><reaction><Reaction resource='getxml?META:TRANS-RXN-244' orgid='META' frameid='TRANS-RXN-244'/></reaction>
+<common-name datatype='string'>sucrose transporter</common-name>
+<enzyme><Protein resource='getxml?META:AT1G71880-MONOMER' orgid='META' frameid='AT1G71880-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-14463' orgid='META' frameid='REG-14463' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22157' orgid='META' frameid='ENZRXN-22157' detail='low'><reaction><Reaction resource='getxml?META:TRANS-RXN-244' orgid='META' frameid='TRANS-RXN-244'/></reaction>
+<common-name datatype='string'>sucrose transporter</common-name>
+<enzyme><Protein resource='getxml?META:AT1G22710-MONOMER' orgid='META' frameid='AT1G22710-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7122' orgid='META' frameid='REG-7122' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12144' orgid='META' frameid='ENZRXN-12144' detail='low'><reaction><Reaction resource='getxml?META:RXN-7667' orgid='META' frameid='RXN-7667'/></reaction>
+<common-name datatype='string'>UDP-&amp;alpha;-D-glucose:glucosyl-glycogenin &amp;alpha;-D-glucosyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6977' orgid='META' frameid='CPLX-6977'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7127' orgid='META' frameid='REG-7127' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12145' orgid='META' frameid='ENZRXN-12145' detail='low'><reaction><Reaction resource='getxml?META:GLYCOGENIN-GLUCOSYLTRANSFERASE-RXN' orgid='META' frameid='GLYCOGENIN-GLUCOSYLTRANSFERASE-RXN'/></reaction>
+<common-name datatype='string'>UDP-&amp;alpha;-D-glucose:glycogenin &amp;alpha;-D-glucosyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6977' orgid='META' frameid='CPLX-6977'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<citation><Publication ID='META:PUB-STRYER88' orgid='META' frameid='PUB-STRYER88' detail='full'><author datatype='string'>Stryer L</author>
+<title datatype='string'>Biochemistry</title>
+<source datatype='string'>WH Freeman and Co., 3rd edition, New York, 1988</source>
+</Publication>
+</citation>
+<comment datatype='string'>Maltose is composed of two glucose molecules linked by an &amp;alpha; 1,4-glycosidic linkage. Maltose is produced by the hydrolysis of starch and similar compounds, and can be hydrolyzed to glucose by the enzyme maltase.</comment>
+<inchi-key datatype='string'>InChIKey=GUBGYTABKSRVRQ-PICCSMPSSA-N</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004095762</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -62,8 +108,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.chemspider.com/6019</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=GUBGYTABKSRVRQ-PICCSMPSSA-N</inchi-key>
-<common-name datatype='string'>maltose</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-150.79538<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -73,71 +117,26 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG-14464' orgid='META' frameid='REG-14464' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22161' orgid='META' frameid='ENZRXN-22161' detail='low'><enzyme><Protein resource='getxml?META:AT1G71880-MONOMER' orgid='META' frameid='AT1G71880-MONOMER'/></enzyme>
-<reaction><Reaction resource='getxml?META:TRANS-RXN-244' orgid='META' frameid='TRANS-RXN-244'/></reaction>
-<common-name datatype='string'>sucrose transporter</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-14463' orgid='META' frameid='REG-14463' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22157' orgid='META' frameid='ENZRXN-22157' detail='low'><enzyme><Protein resource='getxml?META:AT1G22710-MONOMER' orgid='META' frameid='AT1G22710-MONOMER'/></enzyme>
-<reaction><Reaction resource='getxml?META:TRANS-RXN-244' orgid='META' frameid='TRANS-RXN-244'/></reaction>
-<common-name datatype='string'>sucrose transporter</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7122' orgid='META' frameid='REG-7122' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12144' orgid='META' frameid='ENZRXN-12144' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6977' orgid='META' frameid='CPLX-6977'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-7667' orgid='META' frameid='RXN-7667'/></reaction>
-<common-name datatype='string'>UDP-&amp;alpha;-D-glucose:glucosyl-glycogenin &amp;alpha;-D-glucosyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7127' orgid='META' frameid='REG-7127' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:MALTOSE' orgid='META' frameid='MALTOSE' class='true'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12145' orgid='META' frameid='ENZRXN-12145' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6977' orgid='META' frameid='CPLX-6977'/></enzyme>
-<reaction><Reaction resource='getxml?META:GLYCOGENIN-GLUCOSYLTRANSFERASE-RXN' orgid='META' frameid='GLYCOGENIN-GLUCOSYLTRANSFERASE-RXN'/></reaction>
-<common-name datatype='string'>UDP-&amp;alpha;-D-glucose:glycogenin &amp;alpha;-D-glucosyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
 <credits><created><date datatype='date'>2012-09-29</date>
 <Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
-<email datatype='string'>caspi@ai.sri.com</email>
-<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-</Organization>
-</affiliations>
 <comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
-</comment>
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
 </credits>
-<comment datatype='string'>Maltose is composed of two glucose molecules linked by an &amp;alpha; 1,4-glycosidic linkage. Maltose is produced by the hydrolysis of starch and similar compounds, and can be hydrolyzed to glucose by the enzyme maltase.</comment>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-23250' orgid='META' frameid='RXN-23250'/><Reaction resource='getxml?META:RXN-23249' orgid='META' frameid='RXN-23249'/><Reaction resource='getxml?META:MALTOSE-PHOSPHORYLASE-RXN' orgid='META' frameid='MALTOSE-PHOSPHORYLASE-RXN'/><Reaction resource='getxml?META:RXN-22810' orgid='META' frameid='RXN-22810'/><Reaction resource='getxml?META:RXN-22803' orgid='META' frameid='RXN-22803'/><Reaction resource='getxml?META:RXN-15092' orgid='META' frameid='RXN-15092'/><Reaction resource='getxml?META:RXN0-7347' orgid='META' frameid='RXN0-7347'/><Reaction resource='getxml?META:TRANS-RXN-239' orgid='META' frameid='TRANS-RXN-239'/><Reaction resource='getxml?META:ABC-16-RXN' orgid='META' frameid='ABC-16-RXN'/><Reaction resource='getxml?META:RXN-18914' orgid='META' frameid='RXN-18914'/><Reaction resource='getxml?META:RXN-15910' orgid='META' frameid='RXN-15910'/><Reaction resource='getxml?META:MALTODEG-RXN' orgid='META' frameid='MALTODEG-RXN'/><Reaction resource='getxml?META:MALTACETYLTRAN-RXN' orgid='META' frameid='MALTACETYLTRAN-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-575' orgid='META' frameid='TRANS-RXN0-575'/><Reaction resource='getxml?META:RXN0-1741' orgid='META' frameid='RXN0-1741'/><Reaction resource='getxml?META:TRANS-RXN-245' orgid='META' frameid='TRANS-RXN-245'/><Reaction resource='getxml?META:RXN-14351' orgid='META' frameid='RXN-14351'/></appears-in-left-side-of>
-<citation><Publication ID='META:PUB-STRYER88' orgid='META' frameid='PUB-STRYER88' detail='full'><source datatype='string'>WH Freeman and Co., 3rd edition, New York, 1988</source>
-<author datatype='string'>Stryer L</author>
-<title datatype='string'>Biochemistry</title>
-</Publication>
-</citation>
 </Compound>
 </ptools-xml>

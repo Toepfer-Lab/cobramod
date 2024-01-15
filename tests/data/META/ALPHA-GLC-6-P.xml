@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:ALPHA-GLC-6-P'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ALPHA-GLC-6-P'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ALPHA-GLC-6-P</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:ALPHA-GLC-6-P' orgid='META' frameid='ALPHA-GLC-6-P' detail='full'><parent><Compound resource='getxml?META:D-glucopyranose-6-phosphate' orgid='META' frameid='D-glucopyranose-6-phosphate' class='true'/></parent>
@@ -13,11 +13,14 @@
 <string title='smiles'>C(OP(=O)([O-])[O-])[C@H]1(O[C@H](O)[C@H](O)[C@@H](O)[C@H](O)1)</string>
 </molecule>
 </cml>
+<appears-in-left-side-of><Reaction resource='getxml?META:PGLUCISOM-RXN' orgid='META' frameid='PGLUCISOM-RXN'/><Reaction resource='getxml?META:2.4.1.36-RXN' orgid='META' frameid='2.4.1.36-RXN'/><Reaction resource='getxml?META:RXN-15312' orgid='META' frameid='RXN-15312'/><Reaction resource='getxml?META:GLUCOSE-6-PHOSPHATE-1-EPIMERASE-RXN' orgid='META' frameid='GLUCOSE-6-PHOSPHATE-1-EPIMERASE-RXN'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C6H13O9P/c7-3-2(1-14-16(11,12)13)15-6(10)5(9)4(3)8/h2-10H,1H2,(H2,11,12,13)/p-2/t2-,3-,4+,5-,6+/m1/s1</inchi>
-<synonym datatype='string'>&amp;alpha;-glucose 6-phosphate</synonym>
-<synonym datatype='string'>&amp;alpha;-D-glucose-6-P</synonym>
 <molecular-weight datatype='float' units='Daltons'>258.121</molecular-weight>
 <monoisotopic-mw datatype='float' units='Daltons'>260.02972</monoisotopic-mw>
+<synonym datatype='string'>&amp;alpha;-glucose 6-phosphate</synonym>
+<synonym datatype='string'>&amp;alpha;-D-glucose-6-P</synonym>
+<common-name datatype='string'>&amp;alpha;-D-glucose 6-phosphate</common-name>
+<inchi-key datatype='string'>InChIKey=NBSCHQHZLSJFNQ-DVKNGEFBSA-L</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000003875375</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -53,8 +56,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00668</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=NBSCHQHZLSJFNQ-DVKNGEFBSA-L</inchi-key>
-<common-name datatype='string'>&amp;alpha;-D-glucose 6-phosphate</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-319.04593<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -64,12 +65,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<appears-in-left-side-of><Reaction resource='getxml?META:PGLUCISOM-RXN' orgid='META' frameid='PGLUCISOM-RXN'/><Reaction resource='getxml?META:2.4.1.36-RXN' orgid='META' frameid='2.4.1.36-RXN'/><Reaction resource='getxml?META:RXN-15312' orgid='META' frameid='RXN-15312'/><Reaction resource='getxml?META:GLUCOSE-6-PHOSPHATE-1-EPIMERASE-RXN' orgid='META' frameid='GLUCOSE-6-PHOSPHATE-1-EPIMERASE-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:INOSINE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:INOSINE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:INOSINE</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:INOSINE' orgid='META' frameid='INOSINE' detail='full'><parent><Compound resource='getxml?META:Nucleosides' orgid='META' frameid='Nucleosides' class='true'/></parent>
@@ -14,14 +14,38 @@
 <string title='smiles'>C(O)[C@H]3(O[C@@H](N1(C2(\N=C/NC(=O)C(\N=C/1)=2)))[C@H](O)[C@H](O)3)</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-20698' orgid='META' frameid='RXN-20698'/><Reaction resource='getxml?META:RXN0-18' orgid='META' frameid='RXN0-18'/><Reaction resource='getxml?META:TRANS-RXN-108G' orgid='META' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/><Reaction resource='getxml?META:RXN-7607' orgid='META' frameid='RXN-7607'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:INOPHOSPHOR-RXN' orgid='META' frameid='INOPHOSPHOR-RXN'/><Reaction resource='getxml?META:RXN-22629' orgid='META' frameid='RXN-22629'/><Reaction resource='getxml?META:RXN-22628' orgid='META' frameid='RXN-22628'/><Reaction resource='getxml?META:RXN-22626' orgid='META' frameid='RXN-22626'/><Reaction resource='getxml?META:RXN0-18' orgid='META' frameid='RXN0-18'/><Reaction resource='getxml?META:TRANS-RXN-108G' orgid='META' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?META:INOSINE-NUCLEOSIDASE-RXN' orgid='META' frameid='INOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?META:NUCLEOSIDE-OXIDASE-RXN' orgid='META' frameid='NUCLEOSIDE-OXIDASE-RXN'/><Reaction resource='getxml?META:INOSINEKIN-RXN' orgid='META' frameid='INOSINEKIN-RXN'/><Reaction resource='getxml?META:RXN-7802' orgid='META' frameid='RXN-7802'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C10H12N4O5/c15-1-4-6(16)7(17)10(19-4)14-3-13-5-8(14)11-2-12-9(5)18/h2-4,6-7,10,15-17H,1H2,(H,11,12,18)/t4-,6-,7-,10-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>268.229</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-20698' orgid='META' frameid='RXN-20698'/><Reaction resource='getxml?META:RXN0-18' orgid='META' frameid='RXN0-18'/><Reaction resource='getxml?META:TRANS-RXN-108G' orgid='META' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/><Reaction resource='getxml?META:RXN-7607' orgid='META' frameid='RXN-7607'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>268.08078</monoisotopic-mw>
 <synonym datatype='string'>hypoxanthine-ribose</synonym>
 <synonym datatype='string'>iso-prinosine</synonym>
 <synonym datatype='string'>riboxine</synonym>
 <synonym datatype='string'>hypoxanthine riboside</synonym>
-<molecular-weight datatype='float' units='Daltons'>268.229</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>268.08078</monoisotopic-mw>
+<common-name datatype='string'>inosine</common-name>
+<regulates><Regulation ID='META:REG-7188' orgid='META' frameid='REG-7188' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:INOSINE' orgid='META' frameid='INOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12187' orgid='META' frameid='ENZRXN-12187' detail='low'><reaction><Reaction resource='getxml?META:GUANOSINEKIN-RXN' orgid='META' frameid='GUANOSINEKIN-RXN'/></reaction>
+<synonym datatype='string'>inosine-guanosine kinase</synonym>
+<common-name datatype='string'>guanosine kinase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-11773' orgid='META' frameid='MONOMER-11773'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7131' orgid='META' frameid='REG-7131' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:INOSINE' orgid='META' frameid='INOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12143' orgid='META' frameid='ENZRXN-12143' detail='low'><reaction><Reaction resource='getxml?META:ADENOSYLHOMOCYSTEINASE-RXN' orgid='META' frameid='ADENOSYLHOMOCYSTEINASE-RXN'/></reaction>
+<synonym datatype='string'>adenosylhomocysteinase</synonym>
+<common-name datatype='string'>S-adenosylhomocysteine hydrolase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6976' orgid='META' frameid='CPLX-6976'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=UGQMRVRMYYASKQ-KQYNXXCUSA-N</inchi-key>
 <dblink><dblink-db>PUBCHEM</dblink-db>
 <dblink-oid>6021</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -92,8 +116,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-63-9</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=UGQMRVRMYYASKQ-KQYNXXCUSA-N</inchi-key>
-<common-name datatype='string'>inosine</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-20.28556<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -103,33 +125,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG-7188' orgid='META' frameid='REG-7188' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:INOSINE' orgid='META' frameid='INOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12187' orgid='META' frameid='ENZRXN-12187' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-11773' orgid='META' frameid='MONOMER-11773'/></enzyme>
-<synonym datatype='string'>inosine-guanosine kinase</synonym>
-<reaction><Reaction resource='getxml?META:GUANOSINEKIN-RXN' orgid='META' frameid='GUANOSINEKIN-RXN'/></reaction>
-<common-name datatype='string'>guanosine kinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7131' orgid='META' frameid='REG-7131' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:INOSINE' orgid='META' frameid='INOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12143' orgid='META' frameid='ENZRXN-12143' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6976' orgid='META' frameid='CPLX-6976'/></enzyme>
-<synonym datatype='string'>adenosylhomocysteinase</synonym>
-<reaction><Reaction resource='getxml?META:ADENOSYLHOMOCYSTEINASE-RXN' orgid='META' frameid='ADENOSYLHOMOCYSTEINASE-RXN'/></reaction>
-<common-name datatype='string'>S-adenosylhomocysteine hydrolase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<appears-in-left-side-of><Reaction resource='getxml?META:INOPHOSPHOR-RXN' orgid='META' frameid='INOPHOSPHOR-RXN'/><Reaction resource='getxml?META:RXN-22629' orgid='META' frameid='RXN-22629'/><Reaction resource='getxml?META:RXN-22628' orgid='META' frameid='RXN-22628'/><Reaction resource='getxml?META:RXN-22626' orgid='META' frameid='RXN-22626'/><Reaction resource='getxml?META:RXN0-18' orgid='META' frameid='RXN0-18'/><Reaction resource='getxml?META:TRANS-RXN-108G' orgid='META' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?META:INOSINE-NUCLEOSIDASE-RXN' orgid='META' frameid='INOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?META:NUCLEOSIDE-OXIDASE-RXN' orgid='META' frameid='NUCLEOSIDE-OXIDASE-RXN'/><Reaction resource='getxml?META:INOSINEKIN-RXN' orgid='META' frameid='INOSINEKIN-RXN'/><Reaction resource='getxml?META:RXN-7802' orgid='META' frameid='RXN-7802'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

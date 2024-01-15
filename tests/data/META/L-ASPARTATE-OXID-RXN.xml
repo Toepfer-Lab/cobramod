@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:L-ASPARTATE-OXID-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:L-ASPARTATE-OXID-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:L-ASPARTATE-OXID-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID='META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
 <left><Compound resource='getxml?META:L-ASPARTATE' orgid='META' frameid='L-ASPARTATE'/></left>
 <left><Compound resource='getxml?META:OXYGEN-MOLECULE' orgid='META' frameid='OXYGEN-MOLECULE'/></left>
-<enzymatic-reaction><Enzymatic-Reaction ID='META:L-ASPARTATE-OXID-ENZRXN' orgid='META' frameid='L-ASPARTATE-OXID-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:L-ASPARTATE-OXID-MONOMER' orgid='META' frameid='L-ASPARTATE-OXID-MONOMER'/></enzyme>
-<synonym datatype='string'>quinolinate synthetase B</synonym>
-<synonym datatype='string'>L-aspartate:oxygen oxidoreductase (deaminating)</synonym>
-<synonym datatype='string'>L-aspartate:oxygen transhydrogenase</synonym>
-<synonym datatype='string'>LASPO</synonym>
-<reaction><Reaction resource='#META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/></reaction>
-<common-name datatype='string'>L-aspartate oxidase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-13364' orgid='META' frameid='ENZRXN-13364' detail='low'><enzyme><Protein resource='getxml?META:AT5G14760-MONOMER' orgid='META' frameid='AT5G14760-MONOMER'/></enzyme>
-<reaction><Reaction resource='#META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/></reaction>
-<common-name datatype='string'>L-aspartate oxidase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-13362' orgid='META' frameid='ENZRXN-13362' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-12626' orgid='META' frameid='MONOMER-12626'/></enzyme>
-<reaction><Reaction resource='#META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/></reaction>
-<common-name datatype='string'>L-aspartate oxidase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<ec-number>EC-1.4.3.16<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
+<right><Compound resource='getxml?META:IMINOASPARTATE' orgid='META' frameid='IMINOASPARTATE'/></right>
+<right><Compound resource='getxml?META:HYDROGEN-PEROXIDE' orgid='META' frameid='HYDROGEN-PEROXIDE'/></right>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR96094</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -42,8 +31,7 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R00481</dblink-URL>
 </dblink>
-<ec-number>EC-1.4.3.16<official>T</official>
-</ec-number>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <gibbs-0 datatype='float' units='kcal/mol'>-53.19825<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -53,18 +41,30 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<orphan>NO</orphan>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
-<right><Compound resource='getxml?META:IMINOASPARTATE' orgid='META' frameid='IMINOASPARTATE'/></right>
-<right><Compound resource='getxml?META:HYDROGEN-PEROXIDE' orgid='META' frameid='HYDROGEN-PEROXIDE'/></right>
 <in-pathway><Pathway resource='getxml?META:PWY-5316' orgid='META' frameid='PWY-5316'/><Pathway resource='getxml?META:PWY-7342' orgid='META' frameid='PWY-7342'/><Pathway resource='getxml?META:PYRIDNUCSYN-PWY' orgid='META' frameid='PYRIDNUCSYN-PWY'/></in-pathway>
+<orphan>NO</orphan>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:L-ASPARTATE-OXID-ENZRXN' orgid='META' frameid='L-ASPARTATE-OXID-ENZRXN' detail='low'><reaction><Reaction resource='#META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/></reaction>
+<synonym datatype='string'>quinolinate synthetase B</synonym>
+<synonym datatype='string'>L-aspartate:oxygen oxidoreductase (deaminating)</synonym>
+<synonym datatype='string'>L-aspartate:oxygen transhydrogenase</synonym>
+<synonym datatype='string'>LASPO</synonym>
+<common-name datatype='string'>L-aspartate oxidase</common-name>
+<enzyme><Protein resource='getxml?META:L-ASPARTATE-OXID-MONOMER' orgid='META' frameid='L-ASPARTATE-OXID-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13364' orgid='META' frameid='ENZRXN-13364' detail='low'><reaction><Reaction resource='#META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/></reaction>
+<common-name datatype='string'>L-aspartate oxidase</common-name>
+<enzyme><Protein resource='getxml?META:AT5G14760-MONOMER' orgid='META' frameid='AT5G14760-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13362' orgid='META' frameid='ENZRXN-13362' detail='low'><reaction><Reaction resource='#META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/></reaction>
+<common-name datatype='string'>L-aspartate oxidase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-12626' orgid='META' frameid='MONOMER-12626'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

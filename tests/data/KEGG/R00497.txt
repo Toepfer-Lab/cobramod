@@ -10,6 +10,12 @@ PATHWAY     rn00480  Glutathione metabolism
             rn01100  Metabolic pathways
             rn01240  Biosynthesis of cofactors
 MODULE      M00118  Glutathione biosynthesis, glutamate => glutathione
+BRITE       Enzymatic reactions [BR:br08201]
+             6. Ligase reactions
+              6.3  Forming carbon-nitrogen bonds
+               6.3.2  Acid-D-amino-acid ligases (peptide synthases)
+                6.3.2.3
+                 R00497  ATP + gamma-L-Glutamyl-L-cysteine + Glycine <=> ADP + Orthophosphate + Glutathione
 ORTHOLOGY   K01920  glutathione synthase [EC:6.3.2.3]
             K21456  glutathione synthase [EC:6.3.2.3]
 DBLINKS     RHEA: 13560

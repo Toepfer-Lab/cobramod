@@ -4,7 +4,7 @@ FORMULA     C6H13O9P
 EXACT_MASS  260.0297
 MOL_WEIGHT  260.1358
 REACTION    R00959 R01786 R01788 R02189 R02737 R02738 R02739 R02740 
-            R06102 R06226 R09085
+            R06102 R06226 R09085 R13199
 PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00030  Pentose phosphate pathway
             map00052  Galactose metabolism

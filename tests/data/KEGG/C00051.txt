@@ -50,14 +50,14 @@ BRITE       Compounds with biological roles [BR:br08001]
               Cofactors
                Coenzymes
                 C00051  Glutathione
-            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303]
+            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303(D00014)]
              V VARIOUS
               V03 ALL OTHER THERAPEUTIC PRODUCTS
                V03A ALL OTHER THERAPEUTIC PRODUCTS
                 V03AB Antidotes
                  V03AB32 Glutathione
                   D00014  Glutathione (JP18) &lt;JP&gt;
-            Therapeutic category of drugs in Japan [BR:br08301]
+            Therapeutic category of drugs in Japan [BR:br08301(D00014)]
              1  Agents affecting nervous system and sensory organs
               13  Agents affecting sensory organs
                131  Ophthalmic agents
@@ -73,7 +73,7 @@ BRITE       Compounds with biological roles [BR:br08001]
               967  Agents for liver disease and antidotes
                9676  Other amino acid and preparations
                 C00051  Glutathione
-            Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
+            Drugs listed in the Japanese Pharmacopoeia [BR:br08311(D00014)]
              Chemicals
               D00014  Glutathione
 DBLINKS     CAS: 70-18-8

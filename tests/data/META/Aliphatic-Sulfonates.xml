@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:Aliphatic-Sulfonates'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:Aliphatic-Sulfonates'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:Aliphatic-Sulfonates</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:Aliphatic-Sulfonates' orgid='META' frameid='Aliphatic-Sulfonates' detail='full' class='true'><parent><Compound resource='getxml?META:SULFONATES' orgid='META' frameid='SULFONATES' class='true'/></parent>
 <subclass><Compound resource='getxml?META:RS-3-Sulfolactate' orgid='META' frameid='RS-3-Sulfolactate' class='true'/></subclass>
-<subclass><Compound resource='getxml?META:2-3-dihydroxypropane-1-sulfonate' orgid='META' frameid='2-3-dihydroxypropane-1-sulfonate' class='true'/></subclass>
 <subclass><Compound resource='getxml?META:Alkanesulfonates' orgid='META' frameid='Alkanesulfonates' class='true'/></subclass>
+<subclass><Compound resource='getxml?META:2-3-dihydroxypropane-1-sulfonate' orgid='META' frameid='2-3-dihydroxypropane-1-sulfonate' class='true'/></subclass>
 <instance><Compound resource='getxml?META:CPD-10246' orgid='META' frameid='CPD-10246'/></instance>
 <instance><Compound resource='getxml?META:CPD-11725' orgid='META' frameid='CPD-11725'/></instance>
 <instance><Compound resource='getxml?META:CPD-19111' orgid='META' frameid='CPD-19111'/></instance>
@@ -18,7 +18,10 @@
 <formula concise=''/><string title='smiles'>C([R])S([O-])(=O)=O</string>
 </molecule>
 </cml>
+<appears-in-left-side-of><Reaction resource='getxml?META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN'/></appears-in-left-side-of>
 <appears-in-right-side-of><Reaction resource='getxml?META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>an aliphatic sulfonate</common-name>
+<comment datatype='string'>This compound class stands for generic and unspecified aliphatic sulfonate compounds.</comment>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd28694</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -29,8 +32,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/chem_info/MNXM148895</dblink-URL>
 </dblink>
-<common-name datatype='string'>an aliphatic sulfonate</common-name>
-<comment datatype='string'>This compound class stands for generic and unspecified aliphatic sulfonate compounds.</comment>
-<appears-in-left-side-of><Reaction resource='getxml?META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

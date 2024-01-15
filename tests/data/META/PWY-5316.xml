@@ -1,24 +1,51 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:PWY-5316'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:PWY-5316'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PWY-5316</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Pathway ID='META:PWY-5316' orgid='META' frameid='PWY-5316' detail='full'><parent><Pathway resource='getxml?META:PYRROLIDINE-ALKALOIDS' orgid='META' frameid='PYRROLIDINE-ALKALOIDS' class='true'/></parent>
-<taxonomic-range><Organism ID='META:TAX-4070' orgid='META' frameid='TAX-4070' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4069' orgid='META' frameid='TAX-4069' class='true'/></parent>
-<synonym datatype='string'>Nolanaceae</synonym>
-<synonym datatype='string'>nightshade family</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>4070</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4070</dblink-URL>
-</dblink>
-<common-name datatype='string'>Solanaceae</common-name>
-<rank>family</rank>
-</Organism>
-</taxonomic-range>
+<super-pathways><Pathway resource='getxml?META:PWY-7342' orgid='META' frameid='PWY-7342'/></super-pathways>
+<common-name datatype='string'>nicotine biosynthesis</common-name>
+<citation><Publication ID='META:PUB-15604745' orgid='META' frameid='PUB-15604745' detail='full'><year datatype='integer'>2004</year>
+<pubmed-id datatype='string'>15604745</pubmed-id>
+<author datatype='string'>Heim WG</author>
+<author datatype='string'>Jelesko JG</author>
+<title datatype='string'>Association of diamine oxidase and S-adenosylhomocysteine hydrolase in Nicotiana tabacum extracts.</title>
+<source datatype='string'>Plant Mol Biol 56(2);299-308</source>
+</Publication>
+</citation>
+<citation><Publication ID='META:PUB-16192354' orgid='META' frameid='PUB-16192354' detail='full'><year datatype='integer'>2005</year>
+<pubmed-id datatype='string'>16192354</pubmed-id>
+<author datatype='string'>Siminszky B</author>
+<author datatype='string'>Gavilano L</author>
+<author datatype='string'>Bowen SW</author>
+<author datatype='string'>Dewey RE</author>
+<title datatype='string'>Conversion of nicotine to nornicotine in Nicotiana tabacum is mediated by CYP82E4, a cytochrome P450 monooxygenase.</title>
+<source datatype='string'>Proc Natl Acad Sci U S A 102(41);14919-24</source>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID='META:EV-EXP' orgid='META' frameid='EV-EXP' detail='full' class='true'><common-name datatype='string'>Inferred from experiment</common-name>
+<comment datatype='string'>Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+</Evidence-Code>
+<Publication ID='META:PUB-FRIESEN90' orgid='META' frameid='PUB-FRIESEN90' detail='full'><year datatype='integer'>1990</year>
+<author datatype='string'>Friesen, Brent</author>
+<author datatype='string'>Leete, Edward</author>
+<title datatype='string'>Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
+<source datatype='string'>Tetrahedron Letters, 31(44):6295-6298</source>
+</Publication>
+</evidence>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINE&quot;&gt;Nicotine&lt;/a&gt; is the principal alkaloid in the leaves of commercially used tobacco (&lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4097&quot;&gt;&lt;i&gt;Nicotiana tabacum&lt;/i&gt;&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4093&quot;&gt;&lt;i&gt;Nicotiana rustica&lt;/i&gt;&lt;/a&gt;) [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSchmeltz77%5d&quot;&gt;Schmeltz77&lt;/a&gt;], where it functions as a defense compound. In the plant tissue nicotine is mostly present in the &lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINE&quot;&gt;(&lt;i&gt;S&lt;/i&gt;)-nicotine&lt;/a&gt; isomeric form [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bArmstrong98%5d&quot;&gt;Armstrong98&lt;/a&gt;], although tobacco smoke contains up to 10% of &lt;a href=&quot;/compound?orgid=META&amp;id=R-NICOTINE&quot;&gt;(&lt;i&gt;R&lt;/i&gt;)-nicotine&lt;/a&gt;, probably due to racemization during combustion (in [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15734728&quot;&gt;Hukkanen05&lt;/a&gt;]).
+&lt;p&gt;
+Nicotine is composed of a pyridine ring joined with an &lt;i&gt;N&lt;/i&gt;-methylpyrrolidine ring. The pyridine ring is derived from an intermediate in NAD biosynthesis, most likely &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt; [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bDawson56%5d&quot;&gt;Dawson56&lt;/a&gt;]. The pyrrolidine ring is derived from &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-7994&quot;&gt;1-methylpyrrolinium&lt;/a&gt;, a common intermediate for the tropane alkaloids that is derived from &lt;a href=&quot;/compound?orgid=META&amp;id=PUTRESCINE&quot;&gt;putrescine&lt;/a&gt; [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bLeete67%5d&quot;&gt;Leete67&lt;/a&gt;] (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5315&quot;&gt;1-methylpyrrolinium biosynthesis&lt;/a&gt;).
+Somewhat surprisingly, the condensation of the two rings to form nicotine is largely uncharacterized at this time. A pathway has been proposed based on several observations, for example, that a hydrogen is lost from C-6 of nicotinate when it is incorporated into nicotine, while all the other hydrogens remain intact [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bFriesen90%5d&quot;&gt;Friesen90&lt;/a&gt;]. However, the individual steps in the pathway have not been characterized, and no enzymes have been purified. A generic &quot;nicotine synthase&quot; activity was detected in a crude enzyme preparation from &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4097&quot;&gt;&lt;i&gt;Nicotiana tabacum&lt;/i&gt;&lt;/a&gt; supplemented with &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt; and N-methyl-delta1-pyrrolinium chloride [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bFriesen90%5d&quot;&gt;Friesen90&lt;/a&gt;].
+&lt;p&gt;
+Once formed, nicotine may be demethylated to &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-2748&quot;&gt;(S)-nornicotine&lt;/a&gt; by a cytochrome P450 monooxygenase. Nornicotine formation in tobacco is undesired because it serves as a precursor of the carcinogen N'-nitrosonornicotine during the curing and processing of tobacco [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16192354&quot;&gt;Siminszky05&lt;/a&gt;].</comment>
+<reaction-list><Reaction resource='getxml?META:RXN-8444' orgid='META' frameid='RXN-8444'/><Reaction resource='getxml?META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHA-RXN' orgid='META' frameid='QUINOLINATE-SYNTHA-RXN'/><Reaction resource='getxml?META:QUINOPRIBOTRANS-RXN' orgid='META' frameid='QUINOPRIBOTRANS-RXN'/><Reaction resource='getxml?META:RXN-13060' orgid='META' frameid='RXN-13060'/><Reaction resource='getxml?META:RXN-13059' orgid='META' frameid='RXN-13059'/><Reaction resource='getxml?META:RXN-13058' orgid='META' frameid='RXN-13058'/><Reaction resource='getxml?META:RXN-13057' orgid='META' frameid='RXN-13057'/><Reaction resource='getxml?META:RXN-8248' orgid='META' frameid='RXN-8248'/></reaction-list>
 <reaction-ordering><Reaction resource='getxml?META:QUINOLINATE-SYNTHA-RXN' orgid='META' frameid='QUINOLINATE-SYNTHA-RXN'/><predecessor-reactions><Reaction resource='getxml?META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/></predecessor-reactions>
 </reaction-ordering>
 <reaction-ordering><Reaction resource='getxml?META:QUINOPRIBOTRANS-RXN' orgid='META' frameid='QUINOPRIBOTRANS-RXN'/><predecessor-reactions><Reaction resource='getxml?META:QUINOLINATE-SYNTHA-RXN' orgid='META' frameid='QUINOLINATE-SYNTHA-RXN'/></predecessor-reactions>
@@ -35,17 +62,29 @@
 </reaction-ordering>
 <reaction-ordering><Reaction resource='getxml?META:RXN-13058' orgid='META' frameid='RXN-13058'/><predecessor-reactions><Reaction resource='getxml?META:RXN-13057' orgid='META' frameid='RXN-13057'/></predecessor-reactions>
 </reaction-ordering>
+<taxonomic-range><Organism ID='META:TAX-4070' orgid='META' frameid='TAX-4070' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4069' orgid='META' frameid='TAX-4069' class='true'/></parent>
+<synonym datatype='string'>Nolanaceae</synonym>
+<synonym datatype='string'>nightshade family</synonym>
+<common-name datatype='string'>Solanaceae</common-name>
+<rank>family</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>4070</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4070</dblink-URL>
+</dblink>
+</Organism>
+</taxonomic-range>
 <species><Organism ID='META:TAX-4097' orgid='META' frameid='TAX-4097' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4085' orgid='META' frameid='TAX-4085' class='true'/></parent>
 <synonym datatype='string'>tobacco</synonym>
 <synonym datatype='string'>common tobacco</synonym>
 <synonym datatype='string'>American tobacco</synonym>
+<common-name datatype='string'>Nicotiana tabacum</common-name>
+<rank>species</rank>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>4097</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4097</dblink-URL>
 </dblink>
-<common-name datatype='string'>Nicotiana tabacum</common-name>
-<rank>species</rank>
 </Organism>
 </species>
 <reaction-layout><Reaction resource='getxml?META:RXN-8444' orgid='META' frameid='RXN-8444'/><direction>L2R</direction>
@@ -84,16 +123,15 @@
 <left-primaries><Compound resource='getxml?META:NICOTINE' orgid='META' frameid='NICOTINE'/></left-primaries>
 <right-primaries><Compound resource='getxml?META:CPD-2748' orgid='META' frameid='CPD-2748'/></right-primaries>
 </reaction-layout>
-<common-name datatype='string'>nicotine biosynthesis</common-name>
-<reaction-list><Reaction resource='getxml?META:RXN-8444' orgid='META' frameid='RXN-8444'/><Reaction resource='getxml?META:L-ASPARTATE-OXID-RXN' orgid='META' frameid='L-ASPARTATE-OXID-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHA-RXN' orgid='META' frameid='QUINOLINATE-SYNTHA-RXN'/><Reaction resource='getxml?META:QUINOPRIBOTRANS-RXN' orgid='META' frameid='QUINOPRIBOTRANS-RXN'/><Reaction resource='getxml?META:RXN-13060' orgid='META' frameid='RXN-13060'/><Reaction resource='getxml?META:RXN-13059' orgid='META' frameid='RXN-13059'/><Reaction resource='getxml?META:RXN-13058' orgid='META' frameid='RXN-13058'/><Reaction resource='getxml?META:RXN-13057' orgid='META' frameid='RXN-13057'/><Reaction resource='getxml?META:RXN-8248' orgid='META' frameid='RXN-8248'/></reaction-list>
+<in-pathway><Pathway resource='getxml?META:PWY-7342' orgid='META' frameid='PWY-7342'/></in-pathway>
 <credits><created><date datatype='date'>2006-09-07</date>
 <Person ID='META:zhang' orgid='META' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
+<comment datatype='string'>Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
 <affiliations><Organization ID='META:PMN' orgid='META' frameid='PMN' detail='full'><url datatype='string'>http://plantcyc.org</url>
 <common-name datatype='string'>Carnegie Institution for Science</common-name>
 <abbrev-name datatype='string'>PMN</abbrev-name>
 </Organization>
 </affiliations>
-<comment datatype='string'>Peifen Zhang was a curator of the AraCyc database and the PMN database collection at the Plant Biology Department of the Carnegie Institution for Science.</comment>
 </Person>
 <Organization ID='META:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='META' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
 <abbrev-name datatype='string'>TAIR</abbrev-name>
@@ -101,61 +139,22 @@
 </created>
 <revised><date datatype='date'>2012-02-07</date>
 <Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
-<email datatype='string'>caspi@ai.sri.com</email>
-<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-</Organization>
-</affiliations>
 <comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
-</comment>
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
 </credits>
-<comment datatype='string'>&lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINE&quot;&gt;Nicotine&lt;/a&gt; is the principal alkaloid in the leaves of commercially used tobacco (&lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4097&quot;&gt;&lt;i&gt;Nicotiana tabacum&lt;/i&gt;&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4093&quot;&gt;&lt;i&gt;Nicotiana rustica&lt;/i&gt;&lt;/a&gt;) [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bSchmeltz77%5d&quot;&gt;Schmeltz77&lt;/a&gt;], where it functions as a defense compound. In the plant tissue nicotine is mostly present in the &lt;a href=&quot;/compound?orgid=META&amp;id=NICOTINE&quot;&gt;(&lt;i&gt;S&lt;/i&gt;)-nicotine&lt;/a&gt; isomeric form [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bArmstrong98%5d&quot;&gt;Armstrong98&lt;/a&gt;], although tobacco smoke contains up to 10% of &lt;a href=&quot;/compound?orgid=META&amp;id=R-NICOTINE&quot;&gt;(&lt;i&gt;R&lt;/i&gt;)-nicotine&lt;/a&gt;, probably due to racemization during combustion (in [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15734728&quot;&gt;Hukkanen05&lt;/a&gt;]).
-&lt;p&gt;
-Nicotine is composed of a pyridine ring joined with an &lt;i&gt;N&lt;/i&gt;-methylpyrrolidine ring. The pyridine ring is derived from an intermediate in NAD biosynthesis, most likely &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt; [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bDawson56%5d&quot;&gt;Dawson56&lt;/a&gt;]. The pyrrolidine ring is derived from &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-7994&quot;&gt;1-methylpyrrolinium&lt;/a&gt;, a common intermediate for the tropane alkaloids that is derived from &lt;a href=&quot;/compound?orgid=META&amp;id=PUTRESCINE&quot;&gt;putrescine&lt;/a&gt; [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bLeete67%5d&quot;&gt;Leete67&lt;/a&gt;] (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5315&quot;&gt;1-methylpyrrolinium biosynthesis&lt;/a&gt;).
-Somewhat surprisingly, the condensation of the two rings to form nicotine is largely uncharacterized at this time. A pathway has been proposed based on several observations, for example, that a hydrogen is lost from C-6 of nicotinate when it is incorporated into nicotine, while all the other hydrogens remain intact [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bFriesen90%5d&quot;&gt;Friesen90&lt;/a&gt;]. However, the individual steps in the pathway have not been characterized, and no enzymes have been purified. A generic &quot;nicotine synthase&quot; activity was detected in a crude enzyme preparation from &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4097&quot;&gt;&lt;i&gt;Nicotiana tabacum&lt;/i&gt;&lt;/a&gt; supplemented with &lt;a href=&quot;/compound?orgid=META&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt; and N-methyl-delta1-pyrrolinium chloride [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bFriesen90%5d&quot;&gt;Friesen90&lt;/a&gt;].
-&lt;p&gt;
-Once formed, nicotine may be demethylated to &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-2748&quot;&gt;(S)-nornicotine&lt;/a&gt; by a cytochrome P450 monooxygenase. Nornicotine formation in tobacco is undesired because it serves as a precursor of the carcinogen N'-nitrosonornicotine during the curing and processing of tobacco [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16192354&quot;&gt;Siminszky05&lt;/a&gt;].</comment>
 <pathway-link><Compound resource='getxml?META:CPD-7994' orgid='META' frameid='CPD-7994'/><link-target><Pathway resource='getxml?META:PWY-5315' orgid='META' frameid='PWY-5315'/></link-target>
 </pathway-link>
 <pathway-link><Compound resource='getxml?META:L-ASPARTATE' orgid='META' frameid='L-ASPARTATE'/><link-target><Pathway resource='getxml?META:ASPARTATESYN-PWY' orgid='META' frameid='ASPARTATESYN-PWY'/></link-target>
 </pathway-link>
-<super-pathways><Pathway resource='getxml?META:PWY-7342' orgid='META' frameid='PWY-7342'/></super-pathways>
-<in-pathway><Pathway resource='getxml?META:PWY-7342' orgid='META' frameid='PWY-7342'/></in-pathway>
-<citation><Publication ID='META:PUB-15604745' orgid='META' frameid='PUB-15604745' detail='full'><year datatype='integer'>2004</year>
-<source datatype='string'>Plant Mol Biol 56(2);299-308</source>
-<pubmed-id datatype='string'>15604745</pubmed-id>
-<author datatype='string'>Heim WG</author>
-<author datatype='string'>Jelesko JG</author>
-<title datatype='string'>Association of diamine oxidase and S-adenosylhomocysteine hydrolase in Nicotiana tabacum extracts.</title>
-</Publication>
-</citation>
-<citation><Publication ID='META:PUB-16192354' orgid='META' frameid='PUB-16192354' detail='full'><year datatype='integer'>2005</year>
-<source datatype='string'>Proc Natl Acad Sci U S A 102(41);14919-24</source>
-<pubmed-id datatype='string'>16192354</pubmed-id>
-<author datatype='string'>Siminszky B</author>
-<author datatype='string'>Gavilano L</author>
-<author datatype='string'>Bowen SW</author>
-<author datatype='string'>Dewey RE</author>
-<title datatype='string'>Conversion of nicotine to nornicotine in Nicotiana tabacum is mediated by CYP82E4, a cytochrome P450 monooxygenase.</title>
-</Publication>
-</citation>
-<evidence><Evidence-Code ID='META:EV-EXP' orgid='META' frameid='EV-EXP' detail='full' class='true'><common-name datatype='string'>Inferred from experiment</common-name>
-<comment datatype='string'>Inferred from experiment.  The evidence for an assertion comes from a
-wet-lab experiment of some type.
-</comment>
-</Evidence-Code>
-<Publication ID='META:PUB-FRIESEN90' orgid='META' frameid='PUB-FRIESEN90' detail='full'><year datatype='integer'>1990</year>
-<source datatype='string'>Tetrahedron Letters, 31(44):6295-6298</source>
-<author datatype='string'>Friesen, Brent</author>
-<author datatype='string'>Leete, Edward</author>
-<title datatype='string'>Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
-</Publication>
-</evidence>
 </Pathway>
 </ptools-xml>

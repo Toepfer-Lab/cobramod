@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="26.0" xml:base="http://pmn.plantcyc.org/apixml?fn=genes-of-reaction%26id=CORN:RXN-11501%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://localhost:1555/apixml?fn=genes-of-reaction%26id=CORN:RXN-11501%26detail=FULL">
   <metadata>
-    <url>http://pmn.plantcyc.org/</url>
+    <url>http://localhost:1555/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=CORN:RXN-11501&amp;detail=FULL</query>
     <num_results>3</num_results>
-    <PGDB orgid="CORN" version="11.1.0">
+    <PGDB orgid="CORN" version="27.0">
       <species datatype="string">Zea mays</species>
       <subspecies datatype="string">mays</subspecies>
       <dblink>
@@ -22,14 +22,14 @@
     <product>
       <Protein resource="getxml?CORN:ZM00001EB033890_P001" orgid="CORN" frameid="ZM00001EB033890_P001" />
     </product>
+    <accession-1 datatype="string">Zm00001eb033890</accession-1>
     <common-name datatype="string">Zm00001eb033890</common-name>
     <dblink>
       <dblink-db>ENSEMBL</dblink-db>
       <dblink-oid>Zm00001eb033890</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>https://plants.ensembl.org/Zea_mays/Gene/Summary?g=Zm00001eb033890</dblink-URL>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=Zm00001eb033890</dblink-URL>
     </dblink>
-    <accession-1 datatype="string">Zm00001eb033890</accession-1>
   </Gene>
   <Gene ID="CORN:ZM00001EB033880" orgid="CORN" frameid="ZM00001EB033880" detail="full">
     <parent>
@@ -38,14 +38,14 @@
     <product>
       <Protein resource="getxml?CORN:ZM00001EB033880_P001" orgid="CORN" frameid="ZM00001EB033880_P001" />
     </product>
+    <accession-1 datatype="string">Zm00001eb033880</accession-1>
     <common-name datatype="string">Zm00001eb033880</common-name>
     <dblink>
       <dblink-db>ENSEMBL</dblink-db>
       <dblink-oid>Zm00001eb033880</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>https://plants.ensembl.org/Zea_mays/Gene/Summary?g=Zm00001eb033880</dblink-URL>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=Zm00001eb033880</dblink-URL>
     </dblink>
-    <accession-1 datatype="string">Zm00001eb033880</accession-1>
   </Gene>
   <Gene ID="CORN:ZM00001EB033870" orgid="CORN" frameid="ZM00001EB033870" detail="full">
     <parent>
@@ -57,13 +57,13 @@
       <Protein resource="getxml?CORN:ZM00001EB033870_P003" orgid="CORN" frameid="ZM00001EB033870_P003" />
       <Protein resource="getxml?CORN:ZM00001EB033870_P004" orgid="CORN" frameid="ZM00001EB033870_P004" />
     </product>
+    <accession-1 datatype="string">Zm00001eb033870</accession-1>
     <common-name datatype="string">Zm00001eb033870</common-name>
     <dblink>
       <dblink-db>ENSEMBL</dblink-db>
       <dblink-oid>Zm00001eb033870</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
-      <dblink-URL>https://plants.ensembl.org/Zea_mays/Gene/Summary?g=Zm00001eb033870</dblink-URL>
+      <dblink-URL>http://www.ensembl.org/Homo_sapiens/Gene/Summary?g=Zm00001eb033870</dblink-URL>
     </dblink>
-    <accession-1 datatype="string">Zm00001eb033870</accession-1>
   </Gene>
 </ptools-xml>

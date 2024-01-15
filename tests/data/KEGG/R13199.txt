@@ -1,0 +1,32 @@
+ENTRY       R13199                      Reaction
+NAME        alpha-D-glucose-6-phosphate aldose-ketose-isomerase
+DEFINITION  alpha-D-Glucose 6-phosphate <=> D-Fructose 6-phosphate
+EQUATION    C00668 <=> C00085
+RCLASS      RC00376  C00085_C00668
+ENZYME      5.3.1.9
+PATHWAY     rn00010  Glycolysis / Gluconeogenesis
+            rn00030  Pentose phosphate pathway
+            rn00520  Amino sugar and nucleotide sugar metabolism
+            rn01100  Metabolic pathways
+            rn01110  Biosynthesis of secondary metabolites
+            rn01120  Microbial metabolism in diverse environments
+            rn01200  Carbon metabolism
+            rn01250  Biosynthesis of nucleotide sugars
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+            M00004  Pentose phosphate pathway (Pentose phosphate cycle)
+            M00892  UDP-N-acetyl-D-glucosamine biosynthesis, eukaryotes, glucose => UDP-GlcNAc
+            M00909  UDP-N-acetyl-D-glucosamine biosynthesis, prokaryotes, glucose => UDP-GlcNAc
+BRITE       Enzymatic reactions [BR:br08201]
+             5. Isomerase reactions
+              5.3  Intramolecular oxidoreductases
+               5.3.1  Interconverting aldoses and ketoses, and related compounds
+                5.3.1.9
+                 R13199  alpha-D-Glucose 6-phosphate <=> D-Fructose 6-phosphate
+            Overall reaction [br08210.html]
+             Oxygenic photosynthesis
+              R13199
+ORTHOLOGY   K01810  glucose-6-phosphate isomerase [EC:5.3.1.9]
+            K06859  glucose-6-phosphate isomerase, archaeal [EC:5.3.1.9]
+            K13810  transaldolase / glucose-6-phosphate isomerase [EC:2.2.1.2 5.3.1.9]
+            K15916  glucose/mannose-6-phosphate isomerase [EC:5.3.1.9 5.3.1.8]
+///

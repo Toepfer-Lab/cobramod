@@ -17,7 +17,8 @@ PATHWAY     map00600  Sphingolipid metabolism
             map00604(G00092)  Glycosphingolipid biosynthesis - ganglio series
             map01100  Metabolic pathways
 MODULE      M00066  Lactosylceramide biosynthesis
-NETWORK     nt06014  Sphingolipid degradation
+NETWORK     nt06014(G00092)  Sphingolipid degradation
+            nt06035(G00092)  Blood group carbohydrate antigen biosynthesis
 ENZYME      2.4.1.92        2.4.1.206       2.4.1.228       2.4.1.274       
             2.4.3.1         2.4.3.9         2.8.2.11        3.1.6.8         
             3.2.1.18        3.2.1.22        3.2.1.23        3.2.1.52
@@ -26,6 +27,11 @@ BRITE       Compounds with biological roles [BR:br08001]
               Glycolipids
                Glycosphingolipids
                 C01290  Lactosylceramide
+            Lipids [BR:br08002(G00092)]
+             SP  Sphingolipids
+              SP05 Neutral glycosphingolipids
+               SP0501 Simple Glc series
+                G00092  Gal-beta1->4Glc-beta1->1'Cer (LacCer)
 DBLINKS     PubChem: 4509
             ChEBI: 17950
 ATOM        46

@@ -30,6 +30,7 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
+            M00165  Reductive pentose phosphate cycle (Calvin cycle)
             M00344  Formaldehyde assimilation, xylulose monophosphate pathway
             M00968  Pentose bisphosphate pathway (nucleoside degradation), archaea, nucleoside/NMP => 3-PGA/glycerone phosphate
 ENZYME      1.1.1.8         1.1.1.94        1.1.1.261       1.1.1.408       

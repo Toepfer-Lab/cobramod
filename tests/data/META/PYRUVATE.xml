@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:PYRUVATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:PYRUVATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PYRUVATE</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:PYRUVATE' orgid='META' frameid='PYRUVATE' detail='full'><parent><Compound resource='getxml?META:2-Oxo-carboxylates' orgid='META' frameid='2-Oxo-carboxylates' class='true'/></parent>
@@ -14,8 +14,11 @@
 <string title='smiles'>CC(=O)C(=O)[O-]</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:D-LYSOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='D-LYSOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-23849' orgid='META' frameid='RXN-23849'/><Reaction resource='getxml?META:RXN-23812' orgid='META' frameid='RXN-23812'/><Reaction resource='getxml?META:RXN-23811' orgid='META' frameid='RXN-23811'/><Reaction resource='getxml?META:RXN-23810' orgid='META' frameid='RXN-23810'/><Reaction resource='getxml?META:RXN-23808' orgid='META' frameid='RXN-23808'/><Reaction resource='getxml?META:4.1.2.20-RXN' orgid='META' frameid='4.1.2.20-RXN'/><Reaction resource='getxml?META:KDGALDOL-RXN' orgid='META' frameid='KDGALDOL-RXN'/><Reaction resource='getxml?META:1.1.1.83-RXN' orgid='META' frameid='1.1.1.83-RXN'/><Reaction resource='getxml?META:RXN-23667' orgid='META' frameid='RXN-23667'/><Reaction resource='getxml?META:MIMOSINASE-RXN' orgid='META' frameid='MIMOSINASE-RXN'/><Reaction resource='getxml?META:RXN-23647' orgid='META' frameid='RXN-23647'/><Reaction resource='getxml?META:RXN-23594' orgid='META' frameid='RXN-23594'/><Reaction resource='getxml?META:N-METHYLALANINE-DEHYDROGENASE-RXN' orgid='META' frameid='N-METHYLALANINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:1.1.2.5-RXN' orgid='META' frameid='1.1.2.5-RXN'/><Reaction resource='getxml?META:L-LACTDEHYDROGFMN-RXN' orgid='META' frameid='L-LACTDEHYDROGFMN-RXN'/><Reaction resource='getxml?META:D-ALANINE-AMINOTRANSFERASE-RXN' orgid='META' frameid='D-ALANINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:2.6.1.18-RXN' orgid='META' frameid='2.6.1.18-RXN'/><Reaction resource='getxml?META:ALANINE-AMINOTRANSFERASE-RXN' orgid='META' frameid='ALANINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:RXN-22927' orgid='META' frameid='RXN-22927'/><Reaction resource='getxml?META:RXN-22815' orgid='META' frameid='RXN-22815'/><Reaction resource='getxml?META:RXN-15127' orgid='META' frameid='RXN-15127'/><Reaction resource='getxml?META:ANTHRANSYN-RXN' orgid='META' frameid='ANTHRANSYN-RXN'/><Reaction resource='getxml?META:RXN-22729' orgid='META' frameid='RXN-22729'/><Reaction resource='getxml?META:RXN-22515' orgid='META' frameid='RXN-22515'/><Reaction resource='getxml?META:RXN0-7390' orgid='META' frameid='RXN0-7390'/><Reaction resource='getxml?META:LACTATE-MALATE-TRANSHYDROGENASE-RXN' orgid='META' frameid='LACTATE-MALATE-TRANSHYDROGENASE-RXN'/><Reaction resource='getxml?META:MALIC-NADP-RXN' orgid='META' frameid='MALIC-NADP-RXN'/><Reaction resource='getxml?META:DLACTDEHYDROGNAD-RXN' orgid='META' frameid='DLACTDEHYDROGNAD-RXN'/><Reaction resource='getxml?META:RXN-16836' orgid='META' frameid='RXN-16836'/><Reaction resource='getxml?META:ALANINE-DEHYDROGENASE-RXN' orgid='META' frameid='ALANINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-21579' orgid='META' frameid='RXN-21579'/><Reaction resource='getxml?META:CHORPYRLY-RXN' orgid='META' frameid='CHORPYRLY-RXN'/><Reaction resource='getxml?META:RXN-14940' orgid='META' frameid='RXN-14940'/><Reaction resource='getxml?META:RXN-11063' orgid='META' frameid='RXN-11063'/><Reaction resource='getxml?META:RXN-12729' orgid='META' frameid='RXN-12729'/><Reaction resource='getxml?META:MERCAPYSTRANS-RXN' orgid='META' frameid='MERCAPYSTRANS-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-570' orgid='META' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?META:RXN-21383' orgid='META' frameid='RXN-21383'/><Reaction resource='getxml?META:4.1.1.78-RXN' orgid='META' frameid='4.1.1.78-RXN'/><Reaction resource='getxml?META:RXN-21175' orgid='META' frameid='RXN-21175'/><Reaction resource='getxml?META:2.7.1.121-RXN' orgid='META' frameid='2.7.1.121-RXN'/><Reaction resource='getxml?META:RXN-21080' orgid='META' frameid='RXN-21080'/><Reaction resource='getxml?META:L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:4OH2OXOGLUTARALDOL-RXN' orgid='META' frameid='4OH2OXOGLUTARALDOL-RXN'/><Reaction resource='getxml?META:RXN-8925' orgid='META' frameid='RXN-8925'/><Reaction resource='getxml?META:RXN-6763' orgid='META' frameid='RXN-6763'/><Reaction resource='getxml?META:RXN-2464' orgid='META' frameid='RXN-2464'/><Reaction resource='getxml?META:TYROSINE-PHENOL-LYASE-RXN' orgid='META' frameid='TYROSINE-PHENOL-LYASE-RXN'/><Reaction resource='getxml?META:DLACTDEHYDROGFAD-RXN' orgid='META' frameid='DLACTDEHYDROGFAD-RXN'/><Reaction resource='getxml?META:RXN-20917' orgid='META' frameid='RXN-20917'/><Reaction resource='getxml?META:RXN-12096' orgid='META' frameid='RXN-12096'/><Reaction resource='getxml?META:L-LACTATE-DEHYDROGENASE-RXN' orgid='META' frameid='L-LACTATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:KDPGALDOL-RXN' orgid='META' frameid='KDPGALDOL-RXN'/><Reaction resource='getxml?META:RXN-12074' orgid='META' frameid='RXN-12074'/><Reaction resource='getxml?META:4.1.3.17-RXN' orgid='META' frameid='4.1.3.17-RXN'/><Reaction resource='getxml?META:RXN-15848' orgid='META' frameid='RXN-15848'/><Reaction resource='getxml?META:RXN-19826' orgid='META' frameid='RXN-19826'/><Reaction resource='getxml?META:1.5.1.28-RXN' orgid='META' frameid='1.5.1.28-RXN'/><Reaction resource='getxml?META:RXN-19816' orgid='META' frameid='RXN-19816'/><Reaction resource='getxml?META:RXN-14860' orgid='META' frameid='RXN-14860'/><Reaction resource='getxml?META:1.5.1.24-RXN' orgid='META' frameid='1.5.1.24-RXN'/><Reaction resource='getxml?META:TRANS-RXN-335' orgid='META' frameid='TRANS-RXN-335'/><Reaction resource='getxml?META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?META:OXALODECARB-RXN' orgid='META' frameid='OXALODECARB-RXN'/><Reaction resource='getxml?META:RXN-19748' orgid='META' frameid='RXN-19748'/><Reaction resource='getxml?META:RXN-19736' orgid='META' frameid='RXN-19736'/><Reaction resource='getxml?META:RXN-14939' orgid='META' frameid='RXN-14939'/><Reaction resource='getxml?META:S-ALKYLCYSTEINE-LYASE-RXN' orgid='META' frameid='S-ALKYLCYSTEINE-LYASE-RXN'/><Reaction resource='getxml?META:RXN-19596' orgid='META' frameid='RXN-19596'/><Reaction resource='getxml?META:RXN-8052' orgid='META' frameid='RXN-8052'/><Reaction resource='getxml?META:RXN-19586' orgid='META' frameid='RXN-19586'/><Reaction resource='getxml?META:RXNQT-4320' orgid='META' frameid='RXNQT-4320'/><Reaction resource='getxml?META:RXNQT-4319' orgid='META' frameid='RXNQT-4319'/><Reaction resource='getxml?META:RXN-8054' orgid='META' frameid='RXN-8054'/><Reaction resource='getxml?META:RXNQT-4323' orgid='META' frameid='RXNQT-4323'/><Reaction resource='getxml?META:RXNQT-4322' orgid='META' frameid='RXNQT-4322'/><Reaction resource='getxml?META:RXNQT-4321' orgid='META' frameid='RXNQT-4321'/><Reaction resource='getxml?META:RXN-19583' orgid='META' frameid='RXN-19583'/><Reaction resource='getxml?META:RXN-18212' orgid='META' frameid='RXN-18212'/><Reaction resource='getxml?META:CYSTATHIONINE-BETA-LYASE-RXN' orgid='META' frameid='CYSTATHIONINE-BETA-LYASE-RXN'/><Reaction resource='getxml?META:RXN-19554' orgid='META' frameid='RXN-19554'/><Reaction resource='getxml?META:RXN-19560' orgid='META' frameid='RXN-19560'/><Reaction resource='getxml?META:RXN-19550' orgid='META' frameid='RXN-19550'/><Reaction resource='getxml?META:RXN-19556' orgid='META' frameid='RXN-19556'/><Reaction resource='getxml?META:RXN-19562' orgid='META' frameid='RXN-19562'/><Reaction resource='getxml?META:RXN-19552' orgid='META' frameid='RXN-19552'/><Reaction resource='getxml?META:RXN-19558' orgid='META' frameid='RXN-19558'/><Reaction resource='getxml?META:RXN-19544' orgid='META' frameid='RXN-19544'/><Reaction resource='getxml?META:RXN-19547' orgid='META' frameid='RXN-19547'/><Reaction resource='getxml?META:LACTATE-2-MONOOXYGENASE-RXN' orgid='META' frameid='LACTATE-2-MONOOXYGENASE-RXN'/><Reaction resource='getxml?META:DCYSDESULF-RXN' orgid='META' frameid='DCYSDESULF-RXN'/><Reaction resource='getxml?META:CARBAMOYL-SERINE-AMMONIA-LYASE-RXN' orgid='META' frameid='CARBAMOYL-SERINE-AMMONIA-LYASE-RXN'/><Reaction resource='getxml?META:ACYLPYRUVATE-HYDROLASE-RXN' orgid='META' frameid='ACYLPYRUVATE-HYDROLASE-RXN'/><Reaction resource='getxml?META:RXN-13372' orgid='META' frameid='RXN-13372'/><Reaction resource='getxml?META:RXN-19086' orgid='META' frameid='RXN-19086'/><Reaction resource='getxml?META:RXN-8899' orgid='META' frameid='RXN-8899'/><Reaction resource='getxml?META:RXN-18702' orgid='META' frameid='RXN-18702'/><Reaction resource='getxml?META:D-2-HYDROXY-ACID-DEHYDROGENASE-RXN' orgid='META' frameid='D-2-HYDROXY-ACID-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:CYSTHIOCYS-RXN' orgid='META' frameid='CYSTHIOCYS-RXN'/><Reaction resource='getxml?META:RXN-17510' orgid='META' frameid='RXN-17510'/><Reaction resource='getxml?META:RXN-17965' orgid='META' frameid='RXN-17965'/><Reaction resource='getxml?META:RXN-14428' orgid='META' frameid='RXN-14428'/><Reaction resource='getxml?META:RXN-18088' orgid='META' frameid='RXN-18088'/><Reaction resource='getxml?META:RXN-15683' orgid='META' frameid='RXN-15683'/><Reaction resource='getxml?META:4.1.2.28-RXN' orgid='META' frameid='4.1.2.28-RXN'/><Reaction resource='getxml?META:RXN-13990' orgid='META' frameid='RXN-13990'/><Reaction resource='getxml?META:RXN0-5433' orgid='META' frameid='RXN0-5433'/><Reaction resource='getxml?META:TRYPTOPHAN-RXN' orgid='META' frameid='TRYPTOPHAN-RXN'/><Reaction resource='getxml?META:DHDOGALDOL-RXN' orgid='META' frameid='DHDOGALDOL-RXN'/><Reaction resource='getxml?META:RXN-17354' orgid='META' frameid='RXN-17354'/><Reaction resource='getxml?META:DSERDEAM-RXN' orgid='META' frameid='DSERDEAM-RXN'/><Reaction resource='getxml?META:RXN-9030' orgid='META' frameid='RXN-9030'/><Reaction resource='getxml?META:ACETYLPYRUVATE-HYDROLASE-RXN' orgid='META' frameid='ACETYLPYRUVATE-HYDROLASE-RXN'/><Reaction resource='getxml?META:RXN-17394' orgid='META' frameid='RXN-17394'/><Reaction resource='getxml?META:2.7.3.9-RXN' orgid='META' frameid='2.7.3.9-RXN'/><Reaction resource='getxml?META:RXN-17098' orgid='META' frameid='RXN-17098'/><Reaction resource='getxml?META:RXN-8824' orgid='META' frameid='RXN-8824'/><Reaction resource='getxml?META:4.3.1.15-RXN' orgid='META' frameid='4.3.1.15-RXN'/><Reaction resource='getxml?META:RXN-10447' orgid='META' frameid='RXN-10447'/><Reaction resource='getxml?META:RXN-16948' orgid='META' frameid='RXN-16948'/><Reaction resource='getxml?META:RXN-16946' orgid='META' frameid='RXN-16946'/><Reaction resource='getxml?META:4.1.2.23-RXN' orgid='META' frameid='4.1.2.23-RXN'/><Reaction resource='getxml?META:4.4.1.25-RXN' orgid='META' frameid='4.4.1.25-RXN'/><Reaction resource='getxml?META:RXN-11691' orgid='META' frameid='RXN-11691'/><Reaction resource='getxml?META:RXN-8119' orgid='META' frameid='RXN-8119'/><Reaction resource='getxml?META:LCYSDESULF-RXN' orgid='META' frameid='LCYSDESULF-RXN'/><Reaction resource='getxml?META:3-CHLORO-D-ALANINE-DEHYDROCHLORINASE-RXN' orgid='META' frameid='3-CHLORO-D-ALANINE-DEHYDROCHLORINASE-RXN'/><Reaction resource='getxml?META:3-SULFINYL-PYRUVATE-SPON-RXN' orgid='META' frameid='3-SULFINYL-PYRUVATE-SPON-RXN'/><Reaction resource='getxml?META:1.5.1.11-RXN' orgid='META' frameid='1.5.1.11-RXN'/><Reaction resource='getxml?META:ALANOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='ALANOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-13523' orgid='META' frameid='RXN-13523'/><Reaction resource='getxml?META:4.3.1.17-RXN' orgid='META' frameid='4.3.1.17-RXN'/><Reaction resource='getxml?META:RXN-15142' orgid='META' frameid='RXN-15142'/><Reaction resource='getxml?META:RXN-13231' orgid='META' frameid='RXN-13231'/><Reaction resource='getxml?META:RXN-8672' orgid='META' frameid='RXN-8672'/><Reaction resource='getxml?META:R234-RXN' orgid='META' frameid='R234-RXN'/><Reaction resource='getxml?META:SERINE-SULFATE-AMMONIA-LYASE-RXN' orgid='META' frameid='SERINE-SULFATE-AMMONIA-LYASE-RXN'/><Reaction resource='getxml?META:RXN-11381' orgid='META' frameid='RXN-11381'/><Reaction resource='getxml?META:RXN-14823' orgid='META' frameid='RXN-14823'/><Reaction resource='getxml?META:RXN-14821' orgid='META' frameid='RXN-14821'/><Reaction resource='getxml?META:BETA-ALANOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='BETA-ALANOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-14822' orgid='META' frameid='RXN-14822'/><Reaction resource='getxml?META:RXN-14820' orgid='META' frameid='RXN-14820'/><Reaction resource='getxml?META:D-OCTOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='D-OCTOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:4-HYDROXY-2-KETOPIMELATE-LYSIS-RXN' orgid='META' frameid='4-HYDROXY-2-KETOPIMELATE-LYSIS-RXN'/><Reaction resource='getxml?META:RXN-12735' orgid='META' frameid='RXN-12735'/><Reaction resource='getxml?META:DEHYDDEOXPHOSGALACT-ALDOL-RXN' orgid='META' frameid='DEHYDDEOXPHOSGALACT-ALDOL-RXN'/><Reaction resource='getxml?META:RXN-14146' orgid='META' frameid='RXN-14146'/><Reaction resource='getxml?META:CITRAMALYL-COA-LYASE-RXN' orgid='META' frameid='CITRAMALYL-COA-LYASE-RXN'/><Reaction resource='getxml?META:RXN-14265' orgid='META' frameid='RXN-14265'/><Reaction resource='getxml?META:RXN-14037' orgid='META' frameid='RXN-14037'/><Reaction resource='getxml?META:RXN-10445' orgid='META' frameid='RXN-10445'/><Reaction resource='getxml?META:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN' orgid='META' frameid='PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?META:RXN-13670' orgid='META' frameid='RXN-13670'/><Reaction resource='getxml?META:D-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='D-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:4.1.2.34-RXN' orgid='META' frameid='4.1.2.34-RXN'/><Reaction resource='getxml?META:DALADEHYDROG-RXN' orgid='META' frameid='DALADEHYDROG-RXN'/><Reaction resource='getxml?META:MHPELY-RXN' orgid='META' frameid='MHPELY-RXN'/><Reaction resource='getxml?META:23-DIMETHYLMALATE-LYASE-RXN' orgid='META' frameid='23-DIMETHYLMALATE-LYASE-RXN'/><Reaction resource='getxml?META:RXN0-6375' orgid='META' frameid='RXN0-6375'/><Reaction resource='getxml?META:RXN-9175' orgid='META' frameid='RXN-9175'/><Reaction resource='getxml?META:RXN-9310' orgid='META' frameid='RXN-9310'/><Reaction resource='getxml?META:3.11.1.3-RXN' orgid='META' frameid='3.11.1.3-RXN'/><Reaction resource='getxml?META:RXN0-5240' orgid='META' frameid='RXN0-5240'/><Reaction resource='getxml?META:RXN-8639' orgid='META' frameid='RXN-8639'/><Reaction resource='getxml?META:RXN-8615' orgid='META' frameid='RXN-8615'/><Reaction resource='getxml?META:RXN-3483' orgid='META' frameid='RXN-3483'/><Reaction resource='getxml?META:2.6.1.47-RXN' orgid='META' frameid='2.6.1.47-RXN'/><Reaction resource='getxml?META:RXN-1981' orgid='META' frameid='RXN-1981'/><Reaction resource='getxml?META:PYRUVFORMLY-RXN' orgid='META' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?META:METHYL-GLYOXAL-DEHYDROG-RXN' orgid='META' frameid='METHYL-GLYOXAL-DEHYDROG-RXN'/><Reaction resource='getxml?META:TAUROPINE-DEHYDROGENASE-RXN' orgid='META' frameid='TAUROPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:STROMBINE-DEHYDROGENASE-RXN' orgid='META' frameid='STROMBINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:ALANINE--OXO-ACID-AMINOTRANSFERASE-RXN' orgid='META' frameid='ALANINE--OXO-ACID-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:OXIMINOTRANSFERASE-RXN' orgid='META' frameid='OXIMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:METHYLISOCITRATE-LYASE-RXN' orgid='META' frameid='METHYLISOCITRATE-LYASE-RXN'/><Reaction resource='getxml?META:CITRAMALATE-LYASE-RXN' orgid='META' frameid='CITRAMALATE-LYASE-RXN'/><Reaction resource='getxml?META:4.1.2.18-RXN' orgid='META' frameid='4.1.2.18-RXN'/><Reaction resource='getxml?META:ISOCHORMAT-RXN' orgid='META' frameid='ISOCHORMAT-RXN'/><Reaction resource='getxml?META:ADCLY-RXN' orgid='META' frameid='ADCLY-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-23201' orgid='META' frameid='RXN-23201'/><Reaction resource='getxml?META:2.6.1.40-RXN' orgid='META' frameid='2.6.1.40-RXN'/><Reaction resource='getxml?META:2.6.1.37-RXN' orgid='META' frameid='2.6.1.37-RXN'/><Reaction resource='getxml?META:2.6.1.30-RXN' orgid='META' frameid='2.6.1.30-RXN'/><Reaction resource='getxml?META:RXN-13698' orgid='META' frameid='RXN-13698'/><Reaction resource='getxml?META:RXN-22998' orgid='META' frameid='RXN-22998'/><Reaction resource='getxml?META:4.1.1.64-RXN' orgid='META' frameid='4.1.1.64-RXN'/><Reaction resource='getxml?META:RXN-22853' orgid='META' frameid='RXN-22853'/><Reaction resource='getxml?META:RXN-22851' orgid='META' frameid='RXN-22851'/><Reaction resource='getxml?META:TRANS-RXN0-570' orgid='META' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?META:RXN-10139' orgid='META' frameid='RXN-10139'/><Reaction resource='getxml?META:RXN-6161' orgid='META' frameid='RXN-6161'/><Reaction resource='getxml?META:RXN0-2022' orgid='META' frameid='RXN0-2022'/><Reaction resource='getxml?META:PEPSYNTH-RXN' orgid='META' frameid='PEPSYNTH-RXN'/><Reaction resource='getxml?META:TRANS-RXN-335' orgid='META' frameid='TRANS-RXN-335'/><Reaction resource='getxml?META:RXN-11496-YEAST' orgid='META' frameid='RXN-11496-YEAST'/><Reaction resource='getxml?META:PYRUVDEH-RXN' orgid='META' frameid='PYRUVDEH-RXN'/><Reaction resource='getxml?META:PEPDEPHOS-RXN' orgid='META' frameid='PEPDEPHOS-RXN'/><Reaction resource='getxml?META:RXN-11305' orgid='META' frameid='RXN-11305'/><Reaction resource='getxml?META:PYRUVATEORTHOPHOSPHATE-DIKINASE-RXN' orgid='META' frameid='PYRUVATEORTHOPHOSPHATE-DIKINASE-RXN'/><Reaction resource='getxml?META:RXN-18664' orgid='META' frameid='RXN-18664'/><Reaction resource='getxml?META:RXN-18638' orgid='META' frameid='RXN-18638'/><Reaction resource='getxml?META:RXN-18432' orgid='META' frameid='RXN-18432'/><Reaction resource='getxml?META:2.6.1.46-RXN' orgid='META' frameid='2.6.1.46-RXN'/><Reaction resource='getxml?META:RXN-8' orgid='META' frameid='RXN-8'/><Reaction resource='getxml?META:RXN-14207' orgid='META' frameid='RXN-14207'/><Reaction resource='getxml?META:RXN-14117' orgid='META' frameid='RXN-14117'/><Reaction resource='getxml?META:RXN-14192' orgid='META' frameid='RXN-14192'/><Reaction resource='getxml?META:PYFLAVOXRE-RXN' orgid='META' frameid='PYFLAVOXRE-RXN'/><Reaction resource='getxml?META:RXN-8688' orgid='META' frameid='RXN-8688'/><Reaction resource='getxml?META:RXN0-1134' orgid='META' frameid='RXN0-1134'/><Reaction resource='getxml?META:RXN-12583' orgid='META' frameid='RXN-12583'/><Reaction resource='getxml?META:RXN-15774' orgid='META' frameid='RXN-15774'/><Reaction resource='getxml?META:RXN-15768' orgid='META' frameid='RXN-15768'/><Reaction resource='getxml?META:RXN-15767' orgid='META' frameid='RXN-15767'/><Reaction resource='getxml?META:RXN-15766' orgid='META' frameid='RXN-15766'/><Reaction resource='getxml?META:RXN-15769' orgid='META' frameid='RXN-15769'/><Reaction resource='getxml?META:RXN-15773' orgid='META' frameid='RXN-15773'/><Reaction resource='getxml?META:RXN-15772' orgid='META' frameid='RXN-15772'/><Reaction resource='getxml?META:RXN-15771' orgid='META' frameid='RXN-15771'/><Reaction resource='getxml?META:RXN-15770' orgid='META' frameid='RXN-15770'/><Reaction resource='getxml?META:PYRUFLAVREDUCT-RXN' orgid='META' frameid='PYRUFLAVREDUCT-RXN'/><Reaction resource='getxml?META:RXN-14907' orgid='META' frameid='RXN-14907'/><Reaction resource='getxml?META:RXN-14516' orgid='META' frameid='RXN-14516'/><Reaction resource='getxml?META:RXN-14467' orgid='META' frameid='RXN-14467'/><Reaction resource='getxml?META:ACETOLACTSYN-RXN' orgid='META' frameid='ACETOLACTSYN-RXN'/><Reaction resource='getxml?META:DIHYDRODIPICSYN-RXN' orgid='META' frameid='DIHYDRODIPICSYN-RXN'/><Reaction resource='getxml?META:RXN-6902' orgid='META' frameid='RXN-6902'/><Reaction resource='getxml?META:2.6.1.58-RXN' orgid='META' frameid='2.6.1.58-RXN'/><Reaction resource='getxml?META:GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:PYRUVATE-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='PYRUVATE-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:2.1.3.1-RXN' orgid='META' frameid='2.1.3.1-RXN'/><Reaction resource='getxml?META:RXN3O-4157' orgid='META' frameid='RXN3O-4157'/><Reaction resource='getxml?META:RXN0-6684' orgid='META' frameid='RXN0-6684'/><Reaction resource='getxml?META:RXN-12266' orgid='META' frameid='RXN-12266'/><Reaction resource='getxml?META:RXN-11496' orgid='META' frameid='RXN-11496'/><Reaction resource='getxml?META:PYRUVATE-CARBOXYLASE-RXN' orgid='META' frameid='PYRUVATE-CARBOXYLASE-RXN'/><Reaction resource='getxml?META:RXN-10065' orgid='META' frameid='RXN-10065'/><Reaction resource='getxml?META:RXN-7743' orgid='META' frameid='RXN-7743'/><Reaction resource='getxml?META:RXN-9337' orgid='META' frameid='RXN-9337'/><Reaction resource='getxml?META:RXN-8956' orgid='META' frameid='RXN-8956'/><Reaction resource='getxml?META:RXN0-5269' orgid='META' frameid='RXN0-5269'/><Reaction resource='getxml?META:RXN0-5261' orgid='META' frameid='RXN0-5261'/><Reaction resource='getxml?META:RXN-7571' orgid='META' frameid='RXN-7571'/><Reaction resource='getxml?META:RXN-3482' orgid='META' frameid='RXN-3482'/><Reaction resource='getxml?META:DXS-RXN' orgid='META' frameid='DXS-RXN'/><Reaction resource='getxml?META:TAURINE-AMINOTRANSFERASE-RXN' orgid='META' frameid='TAURINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:ACETOOHBUTSYN-RXN' orgid='META' frameid='ACETOOHBUTSYN-RXN'/><Reaction resource='getxml?META:PYRUVATE-OXIDASE-COA-ACETYLATING-RXN' orgid='META' frameid='PYRUVATE-OXIDASE-COA-ACETYLATING-RXN'/><Reaction resource='getxml?META:1.2.3.3-RXN' orgid='META' frameid='1.2.3.3-RXN'/><Reaction resource='getxml?META:SERINE--PYRUVATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='SERINE--PYRUVATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:LYSINE--PYRUVATE-6-AMINOTRANSFERASE-RXN' orgid='META' frameid='LYSINE--PYRUVATE-6-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:2.6.1.41-RXN' orgid='META' frameid='2.6.1.41-RXN'/><Reaction resource='getxml?META:2.6.1.56-RXN' orgid='META' frameid='2.6.1.56-RXN'/><Reaction resource='getxml?META:AMINOLEVULINATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='AMINOLEVULINATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:VALINE-PYRUVATE-AMINOTRANSFER-RXN' orgid='META' frameid='VALINE-PYRUVATE-AMINOTRANSFER-RXN'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C3H4O3/c1-2(4)3(5)6/h1H3,(H,5,6)/p-1</inchi>
+<molecular-weight datatype='float' units='Daltons'>87.055</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:PYRUVFORMLY-RXN' orgid='META' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?META:D-LYSOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='D-LYSOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-23849' orgid='META' frameid='RXN-23849'/><Reaction resource='getxml?META:RXN-23812' orgid='META' frameid='RXN-23812'/><Reaction resource='getxml?META:RXN-23811' orgid='META' frameid='RXN-23811'/><Reaction resource='getxml?META:RXN-23810' orgid='META' frameid='RXN-23810'/><Reaction resource='getxml?META:RXN-23808' orgid='META' frameid='RXN-23808'/><Reaction resource='getxml?META:4.1.2.20-RXN' orgid='META' frameid='4.1.2.20-RXN'/><Reaction resource='getxml?META:KDGALDOL-RXN' orgid='META' frameid='KDGALDOL-RXN'/><Reaction resource='getxml?META:1.1.1.83-RXN' orgid='META' frameid='1.1.1.83-RXN'/><Reaction resource='getxml?META:RXN-23667' orgid='META' frameid='RXN-23667'/><Reaction resource='getxml?META:MIMOSINASE-RXN' orgid='META' frameid='MIMOSINASE-RXN'/><Reaction resource='getxml?META:RXN-23647' orgid='META' frameid='RXN-23647'/><Reaction resource='getxml?META:RXN-23594' orgid='META' frameid='RXN-23594'/><Reaction resource='getxml?META:N-METHYLALANINE-DEHYDROGENASE-RXN' orgid='META' frameid='N-METHYLALANINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:1.1.2.5-RXN' orgid='META' frameid='1.1.2.5-RXN'/><Reaction resource='getxml?META:L-LACTDEHYDROGFMN-RXN' orgid='META' frameid='L-LACTDEHYDROGFMN-RXN'/><Reaction resource='getxml?META:D-ALANINE-AMINOTRANSFERASE-RXN' orgid='META' frameid='D-ALANINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:2.6.1.18-RXN' orgid='META' frameid='2.6.1.18-RXN'/><Reaction resource='getxml?META:ALANINE-AMINOTRANSFERASE-RXN' orgid='META' frameid='ALANINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:RXN-22927' orgid='META' frameid='RXN-22927'/><Reaction resource='getxml?META:RXN-22815' orgid='META' frameid='RXN-22815'/><Reaction resource='getxml?META:RXN-15127' orgid='META' frameid='RXN-15127'/><Reaction resource='getxml?META:ANTHRANSYN-RXN' orgid='META' frameid='ANTHRANSYN-RXN'/><Reaction resource='getxml?META:RXN-22729' orgid='META' frameid='RXN-22729'/><Reaction resource='getxml?META:RXN-22515' orgid='META' frameid='RXN-22515'/><Reaction resource='getxml?META:RXN0-7390' orgid='META' frameid='RXN0-7390'/><Reaction resource='getxml?META:LACTATE-MALATE-TRANSHYDROGENASE-RXN' orgid='META' frameid='LACTATE-MALATE-TRANSHYDROGENASE-RXN'/><Reaction resource='getxml?META:MALIC-NADP-RXN' orgid='META' frameid='MALIC-NADP-RXN'/><Reaction resource='getxml?META:DLACTDEHYDROGNAD-RXN' orgid='META' frameid='DLACTDEHYDROGNAD-RXN'/><Reaction resource='getxml?META:RXN-16836' orgid='META' frameid='RXN-16836'/><Reaction resource='getxml?META:ALANINE-DEHYDROGENASE-RXN' orgid='META' frameid='ALANINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-21579' orgid='META' frameid='RXN-21579'/><Reaction resource='getxml?META:CHORPYRLY-RXN' orgid='META' frameid='CHORPYRLY-RXN'/><Reaction resource='getxml?META:RXN-14940' orgid='META' frameid='RXN-14940'/><Reaction resource='getxml?META:RXN-11063' orgid='META' frameid='RXN-11063'/><Reaction resource='getxml?META:RXN-12729' orgid='META' frameid='RXN-12729'/><Reaction resource='getxml?META:MERCAPYSTRANS-RXN' orgid='META' frameid='MERCAPYSTRANS-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-570' orgid='META' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?META:RXN-21383' orgid='META' frameid='RXN-21383'/><Reaction resource='getxml?META:4.1.1.78-RXN' orgid='META' frameid='4.1.1.78-RXN'/><Reaction resource='getxml?META:RXN-21175' orgid='META' frameid='RXN-21175'/><Reaction resource='getxml?META:2.7.1.121-RXN' orgid='META' frameid='2.7.1.121-RXN'/><Reaction resource='getxml?META:RXN-21080' orgid='META' frameid='RXN-21080'/><Reaction resource='getxml?META:L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='L-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:4OH2OXOGLUTARALDOL-RXN' orgid='META' frameid='4OH2OXOGLUTARALDOL-RXN'/><Reaction resource='getxml?META:RXN-8925' orgid='META' frameid='RXN-8925'/><Reaction resource='getxml?META:RXN-6763' orgid='META' frameid='RXN-6763'/><Reaction resource='getxml?META:RXN-2464' orgid='META' frameid='RXN-2464'/><Reaction resource='getxml?META:TYROSINE-PHENOL-LYASE-RXN' orgid='META' frameid='TYROSINE-PHENOL-LYASE-RXN'/><Reaction resource='getxml?META:DLACTDEHYDROGFAD-RXN' orgid='META' frameid='DLACTDEHYDROGFAD-RXN'/><Reaction resource='getxml?META:RXN-20917' orgid='META' frameid='RXN-20917'/><Reaction resource='getxml?META:RXN-12096' orgid='META' frameid='RXN-12096'/><Reaction resource='getxml?META:L-LACTATE-DEHYDROGENASE-RXN' orgid='META' frameid='L-LACTATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:KDPGALDOL-RXN' orgid='META' frameid='KDPGALDOL-RXN'/><Reaction resource='getxml?META:RXN-12074' orgid='META' frameid='RXN-12074'/><Reaction resource='getxml?META:4.1.3.17-RXN' orgid='META' frameid='4.1.3.17-RXN'/><Reaction resource='getxml?META:RXN-15848' orgid='META' frameid='RXN-15848'/><Reaction resource='getxml?META:RXN-19826' orgid='META' frameid='RXN-19826'/><Reaction resource='getxml?META:1.5.1.28-RXN' orgid='META' frameid='1.5.1.28-RXN'/><Reaction resource='getxml?META:RXN-19816' orgid='META' frameid='RXN-19816'/><Reaction resource='getxml?META:RXN-14860' orgid='META' frameid='RXN-14860'/><Reaction resource='getxml?META:1.5.1.24-RXN' orgid='META' frameid='1.5.1.24-RXN'/><Reaction resource='getxml?META:TRANS-RXN-335' orgid='META' frameid='TRANS-RXN-335'/><Reaction resource='getxml?META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?META:OXALODECARB-RXN' orgid='META' frameid='OXALODECARB-RXN'/><Reaction resource='getxml?META:RXN-19748' orgid='META' frameid='RXN-19748'/><Reaction resource='getxml?META:RXN-19736' orgid='META' frameid='RXN-19736'/><Reaction resource='getxml?META:RXN-14939' orgid='META' frameid='RXN-14939'/><Reaction resource='getxml?META:S-ALKYLCYSTEINE-LYASE-RXN' orgid='META' frameid='S-ALKYLCYSTEINE-LYASE-RXN'/><Reaction resource='getxml?META:RXN-19596' orgid='META' frameid='RXN-19596'/><Reaction resource='getxml?META:RXN-8052' orgid='META' frameid='RXN-8052'/><Reaction resource='getxml?META:RXN-19586' orgid='META' frameid='RXN-19586'/><Reaction resource='getxml?META:RXNQT-4320' orgid='META' frameid='RXNQT-4320'/><Reaction resource='getxml?META:RXNQT-4319' orgid='META' frameid='RXNQT-4319'/><Reaction resource='getxml?META:RXN-8054' orgid='META' frameid='RXN-8054'/><Reaction resource='getxml?META:RXNQT-4323' orgid='META' frameid='RXNQT-4323'/><Reaction resource='getxml?META:RXNQT-4322' orgid='META' frameid='RXNQT-4322'/><Reaction resource='getxml?META:RXNQT-4321' orgid='META' frameid='RXNQT-4321'/><Reaction resource='getxml?META:RXN-19583' orgid='META' frameid='RXN-19583'/><Reaction resource='getxml?META:RXN-18212' orgid='META' frameid='RXN-18212'/><Reaction resource='getxml?META:CYSTATHIONINE-BETA-LYASE-RXN' orgid='META' frameid='CYSTATHIONINE-BETA-LYASE-RXN'/><Reaction resource='getxml?META:RXN-19554' orgid='META' frameid='RXN-19554'/><Reaction resource='getxml?META:RXN-19560' orgid='META' frameid='RXN-19560'/><Reaction resource='getxml?META:RXN-19550' orgid='META' frameid='RXN-19550'/><Reaction resource='getxml?META:RXN-19556' orgid='META' frameid='RXN-19556'/><Reaction resource='getxml?META:RXN-19562' orgid='META' frameid='RXN-19562'/><Reaction resource='getxml?META:RXN-19552' orgid='META' frameid='RXN-19552'/><Reaction resource='getxml?META:RXN-19558' orgid='META' frameid='RXN-19558'/><Reaction resource='getxml?META:RXN-19544' orgid='META' frameid='RXN-19544'/><Reaction resource='getxml?META:RXN-19547' orgid='META' frameid='RXN-19547'/><Reaction resource='getxml?META:LACTATE-2-MONOOXYGENASE-RXN' orgid='META' frameid='LACTATE-2-MONOOXYGENASE-RXN'/><Reaction resource='getxml?META:DCYSDESULF-RXN' orgid='META' frameid='DCYSDESULF-RXN'/><Reaction resource='getxml?META:CARBAMOYL-SERINE-AMMONIA-LYASE-RXN' orgid='META' frameid='CARBAMOYL-SERINE-AMMONIA-LYASE-RXN'/><Reaction resource='getxml?META:ACYLPYRUVATE-HYDROLASE-RXN' orgid='META' frameid='ACYLPYRUVATE-HYDROLASE-RXN'/><Reaction resource='getxml?META:RXN-13372' orgid='META' frameid='RXN-13372'/><Reaction resource='getxml?META:RXN-19086' orgid='META' frameid='RXN-19086'/><Reaction resource='getxml?META:RXN-8899' orgid='META' frameid='RXN-8899'/><Reaction resource='getxml?META:RXN-18702' orgid='META' frameid='RXN-18702'/><Reaction resource='getxml?META:D-2-HYDROXY-ACID-DEHYDROGENASE-RXN' orgid='META' frameid='D-2-HYDROXY-ACID-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:CYSTHIOCYS-RXN' orgid='META' frameid='CYSTHIOCYS-RXN'/><Reaction resource='getxml?META:RXN-17510' orgid='META' frameid='RXN-17510'/><Reaction resource='getxml?META:RXN-17965' orgid='META' frameid='RXN-17965'/><Reaction resource='getxml?META:RXN-14428' orgid='META' frameid='RXN-14428'/><Reaction resource='getxml?META:RXN-18088' orgid='META' frameid='RXN-18088'/><Reaction resource='getxml?META:RXN-15683' orgid='META' frameid='RXN-15683'/><Reaction resource='getxml?META:4.1.2.28-RXN' orgid='META' frameid='4.1.2.28-RXN'/><Reaction resource='getxml?META:RXN-13990' orgid='META' frameid='RXN-13990'/><Reaction resource='getxml?META:RXN0-5433' orgid='META' frameid='RXN0-5433'/><Reaction resource='getxml?META:TRYPTOPHAN-RXN' orgid='META' frameid='TRYPTOPHAN-RXN'/><Reaction resource='getxml?META:DHDOGALDOL-RXN' orgid='META' frameid='DHDOGALDOL-RXN'/><Reaction resource='getxml?META:RXN-17354' orgid='META' frameid='RXN-17354'/><Reaction resource='getxml?META:DSERDEAM-RXN' orgid='META' frameid='DSERDEAM-RXN'/><Reaction resource='getxml?META:RXN-9030' orgid='META' frameid='RXN-9030'/><Reaction resource='getxml?META:ACETYLPYRUVATE-HYDROLASE-RXN' orgid='META' frameid='ACETYLPYRUVATE-HYDROLASE-RXN'/><Reaction resource='getxml?META:RXN-17394' orgid='META' frameid='RXN-17394'/><Reaction resource='getxml?META:2.7.3.9-RXN' orgid='META' frameid='2.7.3.9-RXN'/><Reaction resource='getxml?META:RXN-17098' orgid='META' frameid='RXN-17098'/><Reaction resource='getxml?META:RXN-8824' orgid='META' frameid='RXN-8824'/><Reaction resource='getxml?META:4.3.1.15-RXN' orgid='META' frameid='4.3.1.15-RXN'/><Reaction resource='getxml?META:RXN-10447' orgid='META' frameid='RXN-10447'/><Reaction resource='getxml?META:RXN-16948' orgid='META' frameid='RXN-16948'/><Reaction resource='getxml?META:RXN-16946' orgid='META' frameid='RXN-16946'/><Reaction resource='getxml?META:4.1.2.23-RXN' orgid='META' frameid='4.1.2.23-RXN'/><Reaction resource='getxml?META:4.4.1.25-RXN' orgid='META' frameid='4.4.1.25-RXN'/><Reaction resource='getxml?META:RXN-11691' orgid='META' frameid='RXN-11691'/><Reaction resource='getxml?META:RXN-8119' orgid='META' frameid='RXN-8119'/><Reaction resource='getxml?META:LCYSDESULF-RXN' orgid='META' frameid='LCYSDESULF-RXN'/><Reaction resource='getxml?META:3-CHLORO-D-ALANINE-DEHYDROCHLORINASE-RXN' orgid='META' frameid='3-CHLORO-D-ALANINE-DEHYDROCHLORINASE-RXN'/><Reaction resource='getxml?META:3-SULFINYL-PYRUVATE-SPON-RXN' orgid='META' frameid='3-SULFINYL-PYRUVATE-SPON-RXN'/><Reaction resource='getxml?META:1.5.1.11-RXN' orgid='META' frameid='1.5.1.11-RXN'/><Reaction resource='getxml?META:ALANOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='ALANOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-13523' orgid='META' frameid='RXN-13523'/><Reaction resource='getxml?META:4.3.1.17-RXN' orgid='META' frameid='4.3.1.17-RXN'/><Reaction resource='getxml?META:RXN-15142' orgid='META' frameid='RXN-15142'/><Reaction resource='getxml?META:RXN-13231' orgid='META' frameid='RXN-13231'/><Reaction resource='getxml?META:RXN-8672' orgid='META' frameid='RXN-8672'/><Reaction resource='getxml?META:R234-RXN' orgid='META' frameid='R234-RXN'/><Reaction resource='getxml?META:SERINE-SULFATE-AMMONIA-LYASE-RXN' orgid='META' frameid='SERINE-SULFATE-AMMONIA-LYASE-RXN'/><Reaction resource='getxml?META:RXN-11381' orgid='META' frameid='RXN-11381'/><Reaction resource='getxml?META:RXN-14823' orgid='META' frameid='RXN-14823'/><Reaction resource='getxml?META:RXN-14821' orgid='META' frameid='RXN-14821'/><Reaction resource='getxml?META:BETA-ALANOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='BETA-ALANOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-14822' orgid='META' frameid='RXN-14822'/><Reaction resource='getxml?META:RXN-14820' orgid='META' frameid='RXN-14820'/><Reaction resource='getxml?META:D-OCTOPINE-DEHYDROGENASE-RXN' orgid='META' frameid='D-OCTOPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:4-HYDROXY-2-KETOPIMELATE-LYSIS-RXN' orgid='META' frameid='4-HYDROXY-2-KETOPIMELATE-LYSIS-RXN'/><Reaction resource='getxml?META:RXN-12735' orgid='META' frameid='RXN-12735'/><Reaction resource='getxml?META:DEHYDDEOXPHOSGALACT-ALDOL-RXN' orgid='META' frameid='DEHYDDEOXPHOSGALACT-ALDOL-RXN'/><Reaction resource='getxml?META:RXN-14146' orgid='META' frameid='RXN-14146'/><Reaction resource='getxml?META:CITRAMALYL-COA-LYASE-RXN' orgid='META' frameid='CITRAMALYL-COA-LYASE-RXN'/><Reaction resource='getxml?META:RXN-14265' orgid='META' frameid='RXN-14265'/><Reaction resource='getxml?META:RXN-14037' orgid='META' frameid='RXN-14037'/><Reaction resource='getxml?META:RXN-10445' orgid='META' frameid='RXN-10445'/><Reaction resource='getxml?META:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN' orgid='META' frameid='PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?META:RXN-13670' orgid='META' frameid='RXN-13670'/><Reaction resource='getxml?META:D-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='D-LACTATE-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:4.1.2.34-RXN' orgid='META' frameid='4.1.2.34-RXN'/><Reaction resource='getxml?META:DALADEHYDROG-RXN' orgid='META' frameid='DALADEHYDROG-RXN'/><Reaction resource='getxml?META:MHPELY-RXN' orgid='META' frameid='MHPELY-RXN'/><Reaction resource='getxml?META:23-DIMETHYLMALATE-LYASE-RXN' orgid='META' frameid='23-DIMETHYLMALATE-LYASE-RXN'/><Reaction resource='getxml?META:RXN0-6375' orgid='META' frameid='RXN0-6375'/><Reaction resource='getxml?META:RXN-9175' orgid='META' frameid='RXN-9175'/><Reaction resource='getxml?META:RXN-9310' orgid='META' frameid='RXN-9310'/><Reaction resource='getxml?META:3.11.1.3-RXN' orgid='META' frameid='3.11.1.3-RXN'/><Reaction resource='getxml?META:RXN0-5240' orgid='META' frameid='RXN0-5240'/><Reaction resource='getxml?META:RXN-8639' orgid='META' frameid='RXN-8639'/><Reaction resource='getxml?META:RXN-8615' orgid='META' frameid='RXN-8615'/><Reaction resource='getxml?META:RXN-3483' orgid='META' frameid='RXN-3483'/><Reaction resource='getxml?META:2.6.1.47-RXN' orgid='META' frameid='2.6.1.47-RXN'/><Reaction resource='getxml?META:RXN-1981' orgid='META' frameid='RXN-1981'/><Reaction resource='getxml?META:METHYL-GLYOXAL-DEHYDROG-RXN' orgid='META' frameid='METHYL-GLYOXAL-DEHYDROG-RXN'/><Reaction resource='getxml?META:TAUROPINE-DEHYDROGENASE-RXN' orgid='META' frameid='TAUROPINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:STROMBINE-DEHYDROGENASE-RXN' orgid='META' frameid='STROMBINE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:ALANINE--OXO-ACID-AMINOTRANSFERASE-RXN' orgid='META' frameid='ALANINE--OXO-ACID-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:OXIMINOTRANSFERASE-RXN' orgid='META' frameid='OXIMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:METHYLISOCITRATE-LYASE-RXN' orgid='META' frameid='METHYLISOCITRATE-LYASE-RXN'/><Reaction resource='getxml?META:CITRAMALATE-LYASE-RXN' orgid='META' frameid='CITRAMALATE-LYASE-RXN'/><Reaction resource='getxml?META:4.1.2.18-RXN' orgid='META' frameid='4.1.2.18-RXN'/><Reaction resource='getxml?META:ISOCHORMAT-RXN' orgid='META' frameid='ISOCHORMAT-RXN'/><Reaction resource='getxml?META:ADCLY-RXN' orgid='META' frameid='ADCLY-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>88.016045</monoisotopic-mw>
 <synonym datatype='string'>alpha-ketopropionic acid</synonym>
 <synonym datatype='string'>BTS</synonym>
 <synonym datatype='string'>&amp;alpha;-ketopropionic acid</synonym>
@@ -25,9 +28,313 @@
 <synonym datatype='string'>pyruvic acid</synonym>
 <synonym datatype='string'>2-oxopropanoate</synonym>
 <synonym datatype='string'>2-oxo-propionic acid</synonym>
-<molecular-weight datatype='float' units='Daltons'>87.055</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>88.016045</monoisotopic-mw>
+<common-name datatype='string'>pyruvate</common-name>
+<abbrev-name datatype='string'>pyruvate</abbrev-name>
 <component-of><Compound resource='getxml?META:CPD0-2431' orgid='META' frameid='CPD0-2431'/></component-of>
+<regulates><Regulation ID='META:REG0-11787' orgid='META' frameid='REG0-11787' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' orgid='META' frameid='3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:2.5.1.19-RXN' orgid='META' frameid='2.5.1.19-RXN'/></reaction>
+<synonym datatype='string'>5-enol-pyruvylshikimate-3-phosphate synthase</synonym>
+<synonym datatype='string'>EPSP synthase</synonym>
+<synonym datatype='string'>phosphoenolpyruvate: 3-phosphoshikimate 1-carboxyvinyl transferase</synonym>
+<synonym datatype='string'>EPSPS</synonym>
+<common-name datatype='string'>3-phosphoshikimate 1-carboxyvinyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:AROA-MONOMER' orgid='META' frameid='AROA-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-12383' orgid='META' frameid='REG0-12383' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:MALATESYN-ENZRXN' orgid='META' frameid='MALATESYN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:MALSYN-RXN' orgid='META' frameid='MALSYN-RXN'/></reaction>
+<common-name datatype='string'>malate synthase A</common-name>
+<enzyme><Protein resource='getxml?META:MALATE-SYNTHASE' orgid='META' frameid='MALATE-SYNTHASE'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-9094' orgid='META' frameid='REG0-9094' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:MALSYNG-ENZRXN' orgid='META' frameid='MALSYNG-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:MALSYN-RXN' orgid='META' frameid='MALSYN-RXN'/></reaction>
+<common-name datatype='string'>malate synthase G</common-name>
+<enzyme><Protein resource='getxml?META:MALSYNG-MONOMER' orgid='META' frameid='MALSYNG-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8339' orgid='META' frameid='REG0-8339' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' orgid='META' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN' orgid='META' frameid='3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN'/></reaction>
+<synonym datatype='string'>&amp;alpha;-ketoisovalerate hydroxymethyltransferase</synonym>
+<synonym datatype='string'>dehydropantoate hydroxymethyltransferase</synonym>
+<synonym datatype='string'>ketopantoate hydroxymethyltransferase</synonym>
+<synonym datatype='string'>KPHMT</synonym>
+<synonym datatype='string'>5,10-methylenetetrahydrofolate:3-methyl-2-oxobutanoate hydroxymethyltransferase</synonym>
+<common-name datatype='string'>3-methyl-2-oxobutanoate hydroxymethyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:3-METHYL-2-OXOBUT-OHCH3XFER-CPLX' orgid='META' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8218' orgid='META' frameid='REG0-8218' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:PHOSACETYLTRANS-ENZRXN' orgid='META' frameid='PHOSACETYLTRANS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:PHOSACETYLTRANS-RXN' orgid='META' frameid='PHOSACETYLTRANS-RXN'/></reaction>
+<synonym datatype='string'>phosphotransacetylase</synonym>
+<synonym datatype='string'>phosphoacylase</synonym>
+<synonym datatype='string'>acetyl-CoA:orthophosphate acetyltransferase</synonym>
+<common-name datatype='string'>phosphate acetyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:PHOSACETYLTRANS-CPLX' orgid='META' frameid='PHOSACETYLTRANS-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-10866' orgid='META' frameid='REG0-10866' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction resource='#META:PHOSACETYLTRANS-ENZRXN' orgid='META' frameid='PHOSACETYLTRANS-ENZRXN'/></regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-10864' orgid='META' frameid='REG0-10864' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-7425' orgid='META' frameid='ENZRXN0-7425' detail='low'><reaction><Reaction resource='getxml?META:PHOSACETYLTRANS-RXN' orgid='META' frameid='PHOSACETYLTRANS-RXN'/></reaction>
+<synonym datatype='string'>phosphotransacetylase</synonym>
+<common-name datatype='string'>phosphate acetyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX0-7912' orgid='META' frameid='CPLX0-7912'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7196' orgid='META' frameid='REG0-7196' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:DLACTDEHYDROGNAD-ENZRXN' orgid='META' frameid='DLACTDEHYDROGNAD-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:DLACTDEHYDROGNAD-RXN' orgid='META' frameid='DLACTDEHYDROGNAD-RXN'/></reaction>
+<synonym datatype='string'>lactic acid dehydrogenase</synonym>
+<synonym datatype='string'>(R)-lactate:NAD+ oxidoreductase</synonym>
+<synonym datatype='string'>D-lactate dehydrogenase, fermentative</synonym>
+<common-name datatype='string'>D-lactate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX0-8158' orgid='META' frameid='CPLX0-8158'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7541' orgid='META' frameid='REG0-7541' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ACNEULY-ENZRXN' orgid='META' frameid='ACNEULY-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:RXN0-7390' orgid='META' frameid='RXN0-7390'/></reaction>
+<synonym datatype='string'>N-acetylneuraminic acid aldolase</synonym>
+<synonym datatype='string'>NALase</synonym>
+<synonym datatype='string'>N-acetylneuraminate pyruvate-lyase</synonym>
+<synonym datatype='string'>NAL</synonym>
+<common-name datatype='string'>&lt;i&gt;N&lt;/i&gt;-acetylneuraminate lyase</common-name>
+<enzyme><Protein resource='getxml?META:ACNEULY-CPLX' orgid='META' frameid='ACNEULY-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-12560' orgid='META' frameid='REG0-12560' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:GLUC1PADENYLTRANS-ENZRXN' orgid='META' frameid='GLUC1PADENYLTRANS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:GLUC1PADENYLTRANS-RXN' orgid='META' frameid='GLUC1PADENYLTRANS-RXN'/></reaction>
+<synonym datatype='string'>ADP-glucose synthase</synonym>
+<synonym datatype='string'>ADP-glucose pyrophosphorylase</synonym>
+<synonym datatype='string'>ADP:&amp;alpha;-D-glucose-1-phosphate adenylyltransferase</synonym>
+<synonym datatype='string'>AGPase</synonym>
+<common-name datatype='string'>glucose-1-phosphate adenylyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:GLUC1PADENYLTRANS-CPLX' orgid='META' frameid='GLUC1PADENYLTRANS-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8057' orgid='META' frameid='REG0-8057' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:PROLDEHYDROG-ENZRXN' orgid='META' frameid='PROLDEHYDROG-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:RXN0-7008' orgid='META' frameid='RXN0-7008'/></reaction>
+<synonym datatype='string'>proline oxidase</synonym>
+<synonym datatype='string'>L-proline:(acceptor) oxidoreductase</synonym>
+<synonym datatype='string'>PDH</synonym>
+<synonym datatype='string'>proline:ubiquinone oxidoreductase</synonym>
+<common-name datatype='string'>proline dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:PUTA-CPLX' orgid='META' frameid='PUTA-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-9120' orgid='META' frameid='REG0-9120' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:THREDEHYDCAT-ENZRXN' orgid='META' frameid='THREDEHYDCAT-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:THREDEHYD-RXN' orgid='META' frameid='THREDEHYD-RXN'/></reaction>
+<synonym datatype='string'>threonine deaminase</synonym>
+<synonym datatype='string'>L-threonine hydro-lyase (deaminating)</synonym>
+<common-name datatype='string'>threonine dehydratase</common-name>
+<enzyme><Protein resource='getxml?META:THREDEHYDCAT-CPLX' orgid='META' frameid='THREDEHYDCAT-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8228' orgid='META' frameid='REG0-8228' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-257' orgid='META' frameid='ENZRXN0-257' detail='low'><reaction><Reaction resource='getxml?META:RXN0-279' orgid='META' frameid='RXN0-279'/></reaction>
+<synonym datatype='string'>L-cysteine desulfurase</synonym>
+<common-name datatype='string'>cysteine sulfinate desulfinase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX0-7838' orgid='META' frameid='CPLX0-7838'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7600' orgid='META' frameid='REG0-7600' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ICITDEHDEPHOSPH-ENZRXN' orgid='META' frameid='ICITDEHDEPHOSPH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:DEPHOSICITDEHASE-RXN' orgid='META' frameid='DEPHOSICITDEHASE-RXN'/></reaction>
+<synonym datatype='string'>ICDH phosphatase</synonym>
+<common-name datatype='string'>isocitrate dehydrogenase phosphatase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX0-230' orgid='META' frameid='CPLX0-230'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7693' orgid='META' frameid='REG0-7693' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ICITDEHKINASE-ENZRXN' orgid='META' frameid='ICITDEHKINASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:PHOSICITDEHASE-RXN' orgid='META' frameid='PHOSICITDEHASE-RXN'/></reaction>
+<synonym datatype='string'>ICDH kinase</synonym>
+<common-name datatype='string'>isocitrate dehydrogenase kinase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX0-230' orgid='META' frameid='CPLX0-230'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-6996' orgid='META' frameid='REG0-6996' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:PYRUVATEDEH-ENZRXN' orgid='META' frameid='PYRUVATEDEH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:PYRUVDEH-RXN' orgid='META' frameid='PYRUVDEH-RXN'/></reaction>
+<synonym datatype='string'>pyruvate dehydrogenase complex</synonym>
+<synonym datatype='string'>PDH complex</synonym>
+<common-name datatype='string'>pyruvate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:PYRUVATEDEH-CPLX' orgid='META' frameid='PYRUVATEDEH-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-14438' orgid='META' frameid='REG-14438' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-20890' orgid='META' frameid='ENZRXN-20890' detail='low'><reaction><Reaction resource='getxml?META:1.5.1.11-RXN' orgid='META' frameid='1.5.1.11-RXN'/></reaction>
+<synonym datatype='string'>octopine synthase</synonym>
+<common-name datatype='string'>D-octopine synthase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-17683' orgid='META' frameid='MONOMER-17683'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-14320' orgid='META' frameid='REG-14320' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12696' orgid='META' frameid='ENZRXN-12696' detail='low'><reaction><Reaction resource='getxml?META:3.5.4.22-RXN' orgid='META' frameid='3.5.4.22-RXN'/></reaction>
+<synonym datatype='string'>1-pyrroline-4-hydroxy-2-carboxylate deaminase</synonym>
+<common-name datatype='string'>&amp;Delta;&lt;sup&gt;1&lt;/sup&gt;-pyrroline-4-hydroxy-2-carboxylate deaminase</common-name>
+<enzyme><Protein resource='getxml?META:G1G01-1344-MONOMER' orgid='META' frameid='G1G01-1344-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-13774' orgid='META' frameid='REG-13774' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-20598' orgid='META' frameid='ENZRXN-20598' detail='low'><reaction><Reaction resource='getxml?META:RXN-13523' orgid='META' frameid='RXN-13523'/></reaction>
+<common-name datatype='string'>L-alanine:5-ketooctanal aminotransferase A</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-17488' orgid='META' frameid='MONOMER-17488'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-12008' orgid='META' frameid='REG-12008' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-121' orgid='META' frameid='ENZRXN-121' detail='low'><reaction><Reaction resource='getxml?META:ACETOACETYL-COA-TRANSFER-RXN' orgid='META' frameid='ACETOACETYL-COA-TRANSFER-RXN'/></reaction>
+<synonym datatype='string'>COAT</synonym>
+<synonym datatype='string'>acetoacetyl-CoA:acetate/butyrate:coenzyme A transferase</synonym>
+<synonym datatype='string'>butanoyl-CoA:acetoacetate CoA transferase</synonym>
+<common-name datatype='string'>acetate-acetoacetate CoA-transferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-161' orgid='META' frameid='CPLX-161'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-11999' orgid='META' frameid='REG-11999' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-121B' orgid='META' frameid='ENZRXN-121B' detail='low'><reaction><Reaction resource='getxml?META:2.8.3.9-RXN' orgid='META' frameid='2.8.3.9-RXN'/></reaction>
+<synonym datatype='string'>COAT</synonym>
+<synonym datatype='string'>acetoacetyl-CoA:acetate/butyrate:coenzyme A transferase</synonym>
+<synonym datatype='string'>butanoyl-CoA:acetoacetate CoA transferase</synonym>
+<common-name datatype='string'>butyrate-acetoacetate CoA-transferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-161' orgid='META' frameid='CPLX-161'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-11762' orgid='META' frameid='REG-11762' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-14220' orgid='META' frameid='ENZRXN-14220' detail='low'><reaction><Reaction resource='getxml?META:1.21.3.1-RXN' orgid='META' frameid='1.21.3.1-RXN'/></reaction>
+<common-name datatype='string'>isopenicillin N synthase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-13365' orgid='META' frameid='MONOMER-13365'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-10422' orgid='META' frameid='REG-10422' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-961' orgid='META' frameid='ENZRXN-961' detail='low'><reaction><Reaction resource='getxml?META:RXN-18499' orgid='META' frameid='RXN-18499'/></reaction>
+<synonym datatype='string'>2,4-diaminopentanoic acid C&lt;SUB&gt;4&lt;/SUB&gt; dehydrogenase</synonym>
+<common-name datatype='string'>2,4-diaminopentanoate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-821' orgid='META' frameid='CPLX-821'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-9991' orgid='META' frameid='REG-9991' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-7921' orgid='META' frameid='ENZRXN-7921' detail='low'><reaction><Reaction resource='getxml?META:4.1.1.74-RXN' orgid='META' frameid='4.1.1.74-RXN'/></reaction>
+<synonym datatype='string'>indole-3-pyruvare decarboxylase</synonym>
+<common-name datatype='string'>indolepyruvate decarboxylase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-4741' orgid='META' frameid='CPLX-4741'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-9813' orgid='META' frameid='REG-9813' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-1647' orgid='META' frameid='ENZRXN-1647' detail='low'><reaction><Reaction resource='getxml?META:ACETYLPYRUVATE-HYDROLASE-RXN' orgid='META' frameid='ACETYLPYRUVATE-HYDROLASE-RXN'/></reaction>
+<common-name datatype='string'>acetylpyruvate hydrolase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-1486' orgid='META' frameid='MONOMER-1486'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8747' orgid='META' frameid='REG-8747' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-10521' orgid='META' frameid='ENZRXN-10521' detail='low'><reaction><Reaction resource='getxml?META:RXN-6883' orgid='META' frameid='RXN-6883'/></reaction>
+<common-name datatype='string'>ubiquinol:oxygen oxidoreductase</common-name>
+<enzyme><Protein resource='getxml?META:AT3G22370-MONOMER' orgid='META' frameid='AT3G22370-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7159' orgid='META' frameid='REG-7159' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12180' orgid='META' frameid='ENZRXN-12180' detail='low'><reaction><Reaction resource='getxml?META:RXN-7632' orgid='META' frameid='RXN-7632'/></reaction>
+<common-name datatype='string'>R(+)-3,4-dihydroxyphenyllactate:NADP+ oxidoreductase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-11763' orgid='META' frameid='MONOMER-11763'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7142' orgid='META' frameid='REG-7142' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12172' orgid='META' frameid='ENZRXN-12172' detail='low'><reaction><Reaction resource='getxml?META:1.1.1.222-RXN' orgid='META' frameid='1.1.1.222-RXN'/></reaction>
+<common-name datatype='string'>(R+)-3-(4-hydroxyphenyl)lactate:NADP+ oxidoreductase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-11763' orgid='META' frameid='MONOMER-11763'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6881' orgid='META' frameid='REG-6881' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12689' orgid='META' frameid='ENZRXN-12689' detail='low'><reaction><Reaction resource='getxml?META:4OH2OXOGLUTARALDOL-RXN' orgid='META' frameid='4OH2OXOGLUTARALDOL-RXN'/></reaction>
+<synonym datatype='string'>4-hydroxy-2-oxoglutarate aldolase</synonym>
+<synonym datatype='string'>2-keto-4-hydroxyglutarate aldolase</synonym>
+<common-name datatype='string'>4-hydroxy-2-ketoglutarate aldolase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-12109' orgid='META' frameid='MONOMER-12109'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=LCTONWCANYUPML-UHFFFAOYSA-M</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000001532517</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -103,8 +410,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://eawag-bbd.ethz.ch/servlets/pageservlet?ptype=c&amp;compID=c0159</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=LCTONWCANYUPML-UHFFFAOYSA-M</inchi-key>
-<common-name datatype='string'>pyruvate</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-82.398705<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -114,316 +419,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG0-11787' orgid='META' frameid='REG0-11787' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' orgid='META' frameid='3-P-SHIK-1-CARBOXYVINYLXFERASE-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:AROA-MONOMER' orgid='META' frameid='AROA-MONOMER'/></enzyme>
-<synonym datatype='string'>5-enol-pyruvylshikimate-3-phosphate synthase</synonym>
-<synonym datatype='string'>EPSP synthase</synonym>
-<synonym datatype='string'>phosphoenolpyruvate: 3-phosphoshikimate 1-carboxyvinyl transferase</synonym>
-<synonym datatype='string'>EPSPS</synonym>
-<reaction><Reaction resource='getxml?META:2.5.1.19-RXN' orgid='META' frameid='2.5.1.19-RXN'/></reaction>
-<common-name datatype='string'>3-phosphoshikimate 1-carboxyvinyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-10864' orgid='META' frameid='REG0-10864' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-7425' orgid='META' frameid='ENZRXN0-7425' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-7912' orgid='META' frameid='CPLX0-7912'/></enzyme>
-<synonym datatype='string'>phosphotransacetylase</synonym>
-<reaction><Reaction resource='getxml?META:PHOSACETYLTRANS-RXN' orgid='META' frameid='PHOSACETYLTRANS-RXN'/></reaction>
-<common-name datatype='string'>phosphate acetyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG0-7196' orgid='META' frameid='REG0-7196' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:DLACTDEHYDROGNAD-ENZRXN' orgid='META' frameid='DLACTDEHYDROGNAD-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-8158' orgid='META' frameid='CPLX0-8158'/></enzyme>
-<synonym datatype='string'>lactic acid dehydrogenase</synonym>
-<synonym datatype='string'>(R)-lactate:NAD+ oxidoreductase</synonym>
-<synonym datatype='string'>D-lactate dehydrogenase, fermentative</synonym>
-<reaction><Reaction resource='getxml?META:DLACTDEHYDROGNAD-RXN' orgid='META' frameid='DLACTDEHYDROGNAD-RXN'/></reaction>
-<common-name datatype='string'>D-lactate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG0-12560' orgid='META' frameid='REG0-12560' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:GLUC1PADENYLTRANS-ENZRXN' orgid='META' frameid='GLUC1PADENYLTRANS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:GLUC1PADENYLTRANS-CPLX' orgid='META' frameid='GLUC1PADENYLTRANS-CPLX'/></enzyme>
-<synonym datatype='string'>ADP-glucose synthase</synonym>
-<synonym datatype='string'>ADP-glucose pyrophosphorylase</synonym>
-<synonym datatype='string'>ADP:&amp;alpha;-D-glucose-1-phosphate adenylyltransferase</synonym>
-<synonym datatype='string'>AGPase</synonym>
-<reaction><Reaction resource='getxml?META:GLUC1PADENYLTRANS-RXN' orgid='META' frameid='GLUC1PADENYLTRANS-RXN'/></reaction>
-<common-name datatype='string'>glucose-1-phosphate adenylyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG0-8339' orgid='META' frameid='REG0-8339' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' orgid='META' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:3-METHYL-2-OXOBUT-OHCH3XFER-CPLX' orgid='META' frameid='3-METHYL-2-OXOBUT-OHCH3XFER-CPLX'/></enzyme>
-<synonym datatype='string'>&amp;alpha;-ketoisovalerate hydroxymethyltransferase</synonym>
-<synonym datatype='string'>dehydropantoate hydroxymethyltransferase</synonym>
-<synonym datatype='string'>ketopantoate hydroxymethyltransferase</synonym>
-<synonym datatype='string'>KPHMT</synonym>
-<synonym datatype='string'>5,10-methylenetetrahydrofolate:3-methyl-2-oxobutanoate hydroxymethyltransferase</synonym>
-<reaction><Reaction resource='getxml?META:3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN' orgid='META' frameid='3-CH3-2-OXOBUTANOATE-OH-CH3-XFER-RXN'/></reaction>
-<common-name datatype='string'>3-methyl-2-oxobutanoate hydroxymethyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-12383' orgid='META' frameid='REG0-12383' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:MALATESYN-ENZRXN' orgid='META' frameid='MALATESYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:MALATE-SYNTHASE' orgid='META' frameid='MALATE-SYNTHASE'/></enzyme>
-<reaction><Reaction resource='getxml?META:MALSYN-RXN' orgid='META' frameid='MALSYN-RXN'/></reaction>
-<common-name datatype='string'>malate synthase A</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-9094' orgid='META' frameid='REG0-9094' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:MALSYNG-ENZRXN' orgid='META' frameid='MALSYNG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:MALSYNG-MONOMER' orgid='META' frameid='MALSYNG-MONOMER'/></enzyme>
-<reaction><Reaction resource='getxml?META:MALSYN-RXN' orgid='META' frameid='MALSYN-RXN'/></reaction>
-<common-name datatype='string'>malate synthase G</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-7541' orgid='META' frameid='REG0-7541' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ACNEULY-ENZRXN' orgid='META' frameid='ACNEULY-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:ACNEULY-CPLX' orgid='META' frameid='ACNEULY-CPLX'/></enzyme>
-<synonym datatype='string'>N-acetylneuraminic acid aldolase</synonym>
-<synonym datatype='string'>NALase</synonym>
-<synonym datatype='string'>N-acetylneuraminate pyruvate-lyase</synonym>
-<synonym datatype='string'>NAL</synonym>
-<reaction><Reaction resource='getxml?META:RXN0-7390' orgid='META' frameid='RXN0-7390'/></reaction>
-<common-name datatype='string'>&lt;i&gt;N&lt;/i&gt;-acetylneuraminate lyase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-8057' orgid='META' frameid='REG0-8057' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:PROLDEHYDROG-ENZRXN' orgid='META' frameid='PROLDEHYDROG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:PUTA-CPLX' orgid='META' frameid='PUTA-CPLX'/></enzyme>
-<synonym datatype='string'>proline oxidase</synonym>
-<synonym datatype='string'>L-proline:(acceptor) oxidoreductase</synonym>
-<synonym datatype='string'>PDH</synonym>
-<synonym datatype='string'>proline:ubiquinone oxidoreductase</synonym>
-<reaction><Reaction resource='getxml?META:RXN0-7008' orgid='META' frameid='RXN0-7008'/></reaction>
-<common-name datatype='string'>proline dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-8218' orgid='META' frameid='REG0-8218' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:PHOSACETYLTRANS-ENZRXN' orgid='META' frameid='PHOSACETYLTRANS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:PHOSACETYLTRANS-CPLX' orgid='META' frameid='PHOSACETYLTRANS-CPLX'/></enzyme>
-<synonym datatype='string'>phosphotransacetylase</synonym>
-<synonym datatype='string'>phosphoacylase</synonym>
-<synonym datatype='string'>acetyl-CoA:orthophosphate acetyltransferase</synonym>
-<reaction><Reaction resource='getxml?META:PHOSACETYLTRANS-RXN' orgid='META' frameid='PHOSACETYLTRANS-RXN'/></reaction>
-<common-name datatype='string'>phosphate acetyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG0-10866' orgid='META' frameid='REG0-10866' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction resource='#META:PHOSACETYLTRANS-ENZRXN' orgid='META' frameid='PHOSACETYLTRANS-ENZRXN'/></regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-8228' orgid='META' frameid='REG0-8228' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-257' orgid='META' frameid='ENZRXN0-257' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-7838' orgid='META' frameid='CPLX0-7838'/></enzyme>
-<synonym datatype='string'>L-cysteine desulfurase</synonym>
-<reaction><Reaction resource='getxml?META:RXN0-279' orgid='META' frameid='RXN0-279'/></reaction>
-<common-name datatype='string'>cysteine sulfinate desulfinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG0-9120' orgid='META' frameid='REG0-9120' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:THREDEHYDCAT-ENZRXN' orgid='META' frameid='THREDEHYDCAT-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:THREDEHYDCAT-CPLX' orgid='META' frameid='THREDEHYDCAT-CPLX'/></enzyme>
-<synonym datatype='string'>threonine deaminase</synonym>
-<synonym datatype='string'>L-threonine hydro-lyase (deaminating)</synonym>
-<reaction><Reaction resource='getxml?META:THREDEHYD-RXN' orgid='META' frameid='THREDEHYD-RXN'/></reaction>
-<common-name datatype='string'>threonine dehydratase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-7600' orgid='META' frameid='REG0-7600' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ICITDEHDEPHOSPH-ENZRXN' orgid='META' frameid='ICITDEHDEPHOSPH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-230' orgid='META' frameid='CPLX0-230'/></enzyme>
-<synonym datatype='string'>ICDH phosphatase</synonym>
-<reaction><Reaction resource='getxml?META:DEPHOSICITDEHASE-RXN' orgid='META' frameid='DEPHOSICITDEHASE-RXN'/></reaction>
-<common-name datatype='string'>isocitrate dehydrogenase phosphatase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG0-7693' orgid='META' frameid='REG0-7693' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ICITDEHKINASE-ENZRXN' orgid='META' frameid='ICITDEHKINASE-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-230' orgid='META' frameid='CPLX0-230'/></enzyme>
-<synonym datatype='string'>ICDH kinase</synonym>
-<reaction><Reaction resource='getxml?META:PHOSICITDEHASE-RXN' orgid='META' frameid='PHOSICITDEHASE-RXN'/></reaction>
-<common-name datatype='string'>isocitrate dehydrogenase kinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-6996' orgid='META' frameid='REG0-6996' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:PYRUVATEDEH-ENZRXN' orgid='META' frameid='PYRUVATEDEH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:PYRUVATEDEH-CPLX' orgid='META' frameid='PYRUVATEDEH-CPLX'/></enzyme>
-<synonym datatype='string'>pyruvate dehydrogenase complex</synonym>
-<synonym datatype='string'>PDH complex</synonym>
-<reaction><Reaction resource='getxml?META:PYRUVDEH-RXN' orgid='META' frameid='PYRUVDEH-RXN'/></reaction>
-<common-name datatype='string'>pyruvate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-14438' orgid='META' frameid='REG-14438' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-20890' orgid='META' frameid='ENZRXN-20890' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-17683' orgid='META' frameid='MONOMER-17683'/></enzyme>
-<synonym datatype='string'>octopine synthase</synonym>
-<reaction><Reaction resource='getxml?META:1.5.1.11-RXN' orgid='META' frameid='1.5.1.11-RXN'/></reaction>
-<common-name datatype='string'>D-octopine synthase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-14320' orgid='META' frameid='REG-14320' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12696' orgid='META' frameid='ENZRXN-12696' detail='low'><enzyme><Protein resource='getxml?META:G1G01-1344-MONOMER' orgid='META' frameid='G1G01-1344-MONOMER'/></enzyme>
-<synonym datatype='string'>1-pyrroline-4-hydroxy-2-carboxylate deaminase</synonym>
-<reaction><Reaction resource='getxml?META:3.5.4.22-RXN' orgid='META' frameid='3.5.4.22-RXN'/></reaction>
-<common-name datatype='string'>&amp;Delta;&lt;sup&gt;1&lt;/sup&gt;-pyrroline-4-hydroxy-2-carboxylate deaminase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-13774' orgid='META' frameid='REG-13774' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-20598' orgid='META' frameid='ENZRXN-20598' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-17488' orgid='META' frameid='MONOMER-17488'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-13523' orgid='META' frameid='RXN-13523'/></reaction>
-<common-name datatype='string'>L-alanine:5-ketooctanal aminotransferase A</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-12008' orgid='META' frameid='REG-12008' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-121' orgid='META' frameid='ENZRXN-121' detail='low'><enzyme><Protein resource='getxml?META:CPLX-161' orgid='META' frameid='CPLX-161'/></enzyme>
-<synonym datatype='string'>COAT</synonym>
-<synonym datatype='string'>acetoacetyl-CoA:acetate/butyrate:coenzyme A transferase</synonym>
-<synonym datatype='string'>butanoyl-CoA:acetoacetate CoA transferase</synonym>
-<reaction><Reaction resource='getxml?META:ACETOACETYL-COA-TRANSFER-RXN' orgid='META' frameid='ACETOACETYL-COA-TRANSFER-RXN'/></reaction>
-<common-name datatype='string'>acetate-acetoacetate CoA-transferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-</Regulation>
-<Regulation ID='META:REG-11999' orgid='META' frameid='REG-11999' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-121B' orgid='META' frameid='ENZRXN-121B' detail='low'><enzyme><Protein resource='getxml?META:CPLX-161' orgid='META' frameid='CPLX-161'/></enzyme>
-<synonym datatype='string'>COAT</synonym>
-<synonym datatype='string'>acetoacetyl-CoA:acetate/butyrate:coenzyme A transferase</synonym>
-<synonym datatype='string'>butanoyl-CoA:acetoacetate CoA transferase</synonym>
-<reaction><Reaction resource='getxml?META:2.8.3.9-RXN' orgid='META' frameid='2.8.3.9-RXN'/></reaction>
-<common-name datatype='string'>butyrate-acetoacetate CoA-transferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-</Regulation>
-<Regulation ID='META:REG-11762' orgid='META' frameid='REG-11762' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-14220' orgid='META' frameid='ENZRXN-14220' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-13365' orgid='META' frameid='MONOMER-13365'/></enzyme>
-<reaction><Reaction resource='getxml?META:1.21.3.1-RXN' orgid='META' frameid='1.21.3.1-RXN'/></reaction>
-<common-name datatype='string'>isopenicillin N synthase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-10422' orgid='META' frameid='REG-10422' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-961' orgid='META' frameid='ENZRXN-961' detail='low'><enzyme><Protein resource='getxml?META:CPLX-821' orgid='META' frameid='CPLX-821'/></enzyme>
-<synonym datatype='string'>2,4-diaminopentanoic acid C&lt;SUB&gt;4&lt;/SUB&gt; dehydrogenase</synonym>
-<reaction><Reaction resource='getxml?META:RXN-18499' orgid='META' frameid='RXN-18499'/></reaction>
-<common-name datatype='string'>2,4-diaminopentanoate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-9991' orgid='META' frameid='REG-9991' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-7921' orgid='META' frameid='ENZRXN-7921' detail='low'><enzyme><Protein resource='getxml?META:CPLX-4741' orgid='META' frameid='CPLX-4741'/></enzyme>
-<synonym datatype='string'>indole-3-pyruvare decarboxylase</synonym>
-<reaction><Reaction resource='getxml?META:4.1.1.74-RXN' orgid='META' frameid='4.1.1.74-RXN'/></reaction>
-<common-name datatype='string'>indolepyruvate decarboxylase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-9813' orgid='META' frameid='REG-9813' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-1647' orgid='META' frameid='ENZRXN-1647' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-1486' orgid='META' frameid='MONOMER-1486'/></enzyme>
-<reaction><Reaction resource='getxml?META:ACETYLPYRUVATE-HYDROLASE-RXN' orgid='META' frameid='ACETYLPYRUVATE-HYDROLASE-RXN'/></reaction>
-<common-name datatype='string'>acetylpyruvate hydrolase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-8747' orgid='META' frameid='REG-8747' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-10521' orgid='META' frameid='ENZRXN-10521' detail='low'><enzyme><Protein resource='getxml?META:AT3G22370-MONOMER' orgid='META' frameid='AT3G22370-MONOMER'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-6883' orgid='META' frameid='RXN-6883'/></reaction>
-<common-name datatype='string'>ubiquinol:oxygen oxidoreductase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='META:REG-7159' orgid='META' frameid='REG-7159' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12180' orgid='META' frameid='ENZRXN-12180' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-11763' orgid='META' frameid='MONOMER-11763'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-7632' orgid='META' frameid='RXN-7632'/></reaction>
-<common-name datatype='string'>R(+)-3,4-dihydroxyphenyllactate:NADP+ oxidoreductase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7142' orgid='META' frameid='REG-7142' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12172' orgid='META' frameid='ENZRXN-12172' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-11763' orgid='META' frameid='MONOMER-11763'/></enzyme>
-<reaction><Reaction resource='getxml?META:1.1.1.222-RXN' orgid='META' frameid='1.1.1.222-RXN'/></reaction>
-<common-name datatype='string'>(R+)-3-(4-hydroxyphenyl)lactate:NADP+ oxidoreductase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-6881' orgid='META' frameid='REG-6881' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12689' orgid='META' frameid='ENZRXN-12689' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-12109' orgid='META' frameid='MONOMER-12109'/></enzyme>
-<synonym datatype='string'>4-hydroxy-2-oxoglutarate aldolase</synonym>
-<synonym datatype='string'>2-keto-4-hydroxyglutarate aldolase</synonym>
-<reaction><Reaction resource='getxml?META:4OH2OXOGLUTARALDOL-RXN' orgid='META' frameid='4OH2OXOGLUTARALDOL-RXN'/></reaction>
-<common-name datatype='string'>4-hydroxy-2-ketoglutarate aldolase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-23201' orgid='META' frameid='RXN-23201'/><Reaction resource='getxml?META:2.6.1.40-RXN' orgid='META' frameid='2.6.1.40-RXN'/><Reaction resource='getxml?META:2.6.1.37-RXN' orgid='META' frameid='2.6.1.37-RXN'/><Reaction resource='getxml?META:2.6.1.30-RXN' orgid='META' frameid='2.6.1.30-RXN'/><Reaction resource='getxml?META:RXN-13698' orgid='META' frameid='RXN-13698'/><Reaction resource='getxml?META:RXN-22998' orgid='META' frameid='RXN-22998'/><Reaction resource='getxml?META:4.1.1.64-RXN' orgid='META' frameid='4.1.1.64-RXN'/><Reaction resource='getxml?META:RXN-22853' orgid='META' frameid='RXN-22853'/><Reaction resource='getxml?META:RXN-22851' orgid='META' frameid='RXN-22851'/><Reaction resource='getxml?META:TRANS-RXN0-570' orgid='META' frameid='TRANS-RXN0-570'/><Reaction resource='getxml?META:RXN-10139' orgid='META' frameid='RXN-10139'/><Reaction resource='getxml?META:RXN-6161' orgid='META' frameid='RXN-6161'/><Reaction resource='getxml?META:RXN0-2022' orgid='META' frameid='RXN0-2022'/><Reaction resource='getxml?META:PEPSYNTH-RXN' orgid='META' frameid='PEPSYNTH-RXN'/><Reaction resource='getxml?META:TRANS-RXN-335' orgid='META' frameid='TRANS-RXN-335'/><Reaction resource='getxml?META:RXN-11496-YEAST' orgid='META' frameid='RXN-11496-YEAST'/><Reaction resource='getxml?META:PYRUVDEH-RXN' orgid='META' frameid='PYRUVDEH-RXN'/><Reaction resource='getxml?META:PEPDEPHOS-RXN' orgid='META' frameid='PEPDEPHOS-RXN'/><Reaction resource='getxml?META:RXN-11305' orgid='META' frameid='RXN-11305'/><Reaction resource='getxml?META:PYRUVATEORTHOPHOSPHATE-DIKINASE-RXN' orgid='META' frameid='PYRUVATEORTHOPHOSPHATE-DIKINASE-RXN'/><Reaction resource='getxml?META:RXN-18664' orgid='META' frameid='RXN-18664'/><Reaction resource='getxml?META:RXN-18638' orgid='META' frameid='RXN-18638'/><Reaction resource='getxml?META:RXN-18432' orgid='META' frameid='RXN-18432'/><Reaction resource='getxml?META:2.6.1.46-RXN' orgid='META' frameid='2.6.1.46-RXN'/><Reaction resource='getxml?META:RXN-8' orgid='META' frameid='RXN-8'/><Reaction resource='getxml?META:RXN-14207' orgid='META' frameid='RXN-14207'/><Reaction resource='getxml?META:RXN-14117' orgid='META' frameid='RXN-14117'/><Reaction resource='getxml?META:RXN-14192' orgid='META' frameid='RXN-14192'/><Reaction resource='getxml?META:PYFLAVOXRE-RXN' orgid='META' frameid='PYFLAVOXRE-RXN'/><Reaction resource='getxml?META:RXN-8688' orgid='META' frameid='RXN-8688'/><Reaction resource='getxml?META:RXN0-1134' orgid='META' frameid='RXN0-1134'/><Reaction resource='getxml?META:RXN-12583' orgid='META' frameid='RXN-12583'/><Reaction resource='getxml?META:RXN-15774' orgid='META' frameid='RXN-15774'/><Reaction resource='getxml?META:RXN-15768' orgid='META' frameid='RXN-15768'/><Reaction resource='getxml?META:RXN-15767' orgid='META' frameid='RXN-15767'/><Reaction resource='getxml?META:RXN-15766' orgid='META' frameid='RXN-15766'/><Reaction resource='getxml?META:RXN-15769' orgid='META' frameid='RXN-15769'/><Reaction resource='getxml?META:RXN-15773' orgid='META' frameid='RXN-15773'/><Reaction resource='getxml?META:RXN-15772' orgid='META' frameid='RXN-15772'/><Reaction resource='getxml?META:RXN-15771' orgid='META' frameid='RXN-15771'/><Reaction resource='getxml?META:RXN-15770' orgid='META' frameid='RXN-15770'/><Reaction resource='getxml?META:PYRUFLAVREDUCT-RXN' orgid='META' frameid='PYRUFLAVREDUCT-RXN'/><Reaction resource='getxml?META:RXN-14907' orgid='META' frameid='RXN-14907'/><Reaction resource='getxml?META:RXN-14516' orgid='META' frameid='RXN-14516'/><Reaction resource='getxml?META:RXN-14467' orgid='META' frameid='RXN-14467'/><Reaction resource='getxml?META:ACETOLACTSYN-RXN' orgid='META' frameid='ACETOLACTSYN-RXN'/><Reaction resource='getxml?META:DIHYDRODIPICSYN-RXN' orgid='META' frameid='DIHYDRODIPICSYN-RXN'/><Reaction resource='getxml?META:RXN-6902' orgid='META' frameid='RXN-6902'/><Reaction resource='getxml?META:2.6.1.58-RXN' orgid='META' frameid='2.6.1.58-RXN'/><Reaction resource='getxml?META:GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='GLUTAMINE--PYRUVATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:PYRUVATE-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='PYRUVATE-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:2.1.3.1-RXN' orgid='META' frameid='2.1.3.1-RXN'/><Reaction resource='getxml?META:RXN3O-4157' orgid='META' frameid='RXN3O-4157'/><Reaction resource='getxml?META:RXN0-6684' orgid='META' frameid='RXN0-6684'/><Reaction resource='getxml?META:RXN-12266' orgid='META' frameid='RXN-12266'/><Reaction resource='getxml?META:RXN-11496' orgid='META' frameid='RXN-11496'/><Reaction resource='getxml?META:PYRUVATE-CARBOXYLASE-RXN' orgid='META' frameid='PYRUVATE-CARBOXYLASE-RXN'/><Reaction resource='getxml?META:RXN-10065' orgid='META' frameid='RXN-10065'/><Reaction resource='getxml?META:RXN-7743' orgid='META' frameid='RXN-7743'/><Reaction resource='getxml?META:RXN-9337' orgid='META' frameid='RXN-9337'/><Reaction resource='getxml?META:RXN-8956' orgid='META' frameid='RXN-8956'/><Reaction resource='getxml?META:RXN0-5269' orgid='META' frameid='RXN0-5269'/><Reaction resource='getxml?META:RXN0-5261' orgid='META' frameid='RXN0-5261'/><Reaction resource='getxml?META:RXN-7571' orgid='META' frameid='RXN-7571'/><Reaction resource='getxml?META:RXN-3482' orgid='META' frameid='RXN-3482'/><Reaction resource='getxml?META:DXS-RXN' orgid='META' frameid='DXS-RXN'/><Reaction resource='getxml?META:TAURINE-AMINOTRANSFERASE-RXN' orgid='META' frameid='TAURINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:ACETOOHBUTSYN-RXN' orgid='META' frameid='ACETOOHBUTSYN-RXN'/><Reaction resource='getxml?META:PYRUVATE-OXIDASE-COA-ACETYLATING-RXN' orgid='META' frameid='PYRUVATE-OXIDASE-COA-ACETYLATING-RXN'/><Reaction resource='getxml?META:1.2.3.3-RXN' orgid='META' frameid='1.2.3.3-RXN'/><Reaction resource='getxml?META:SERINE--PYRUVATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='SERINE--PYRUVATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:LYSINE--PYRUVATE-6-AMINOTRANSFERASE-RXN' orgid='META' frameid='LYSINE--PYRUVATE-6-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:2.6.1.41-RXN' orgid='META' frameid='2.6.1.41-RXN'/><Reaction resource='getxml?META:2.6.1.56-RXN' orgid='META' frameid='2.6.1.56-RXN'/><Reaction resource='getxml?META:AMINOLEVULINATE-AMINOTRANSFERASE-RXN' orgid='META' frameid='AMINOLEVULINATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?META:VALINE-PYRUVATE-AMINOTRANSFER-RXN' orgid='META' frameid='VALINE-PYRUVATE-AMINOTRANSFER-RXN'/></appears-in-left-side-of>
-<abbrev-name datatype='string'>pyruvate</abbrev-name>
 </Compound>
 </ptools-xml>

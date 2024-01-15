@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:ABC-56-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ABC-56-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ABC-56-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID='META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN' detail='full'><parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
@@ -14,18 +14,23 @@
 </left>
 <left><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
 </left>
-<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN0-6365' orgid='META' frameid='ENZRXN0-6365' detail='low'><enzyme><Protein resource='getxml?META:ABC-56-CPLX' orgid='META' frameid='ABC-56-CPLX'/></enzyme>
-<reaction><Reaction resource='#META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN'/></reaction>
-<common-name datatype='string'>transport of an aliphatic sulfonate</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<ec-number>EC-7.6.2.14<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:Aliphatic-Sulfonates' orgid='META' frameid='Aliphatic-Sulfonates' class='true'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</right>
+<right><Compound resource='getxml?META:ADP' orgid='META' frameid='ADP'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</right>
+<right><Compound resource='getxml?META:Pi' orgid='META' frameid='Pi'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</right>
+<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
+</right>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR115655</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/equa_info/MNXR115655</dblink-URL>
 </dblink>
-<ec-number>EC-7.6.2.14<official>T</official>
-</ec-number>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <gibbs-0 datatype='float' units='kcal/mol'>-7.598877<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -35,35 +40,30 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<orphan>NO</orphan>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<right><Compound resource='getxml?META:Aliphatic-Sulfonates' orgid='META' frameid='Aliphatic-Sulfonates' class='true'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
-</right>
-<right><Compound resource='getxml?META:ADP' orgid='META' frameid='ADP'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
-</right>
-<right><Compound resource='getxml?META:Pi' orgid='META' frameid='Pi'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
-</right>
-<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/><compartment><cco resource='getxml?META:CCO-IN' orgid='META' frameid='CCO-IN'/></compartment>
-</right>
 <credits><imported-from-ecoli><date datatype='date'>2013-12-18</date>
 <Person ID='META:paley' orgid='META' frameid='paley' detail='full'><common-name datatype='string'>Suzanne Paley</common-name>
-<email datatype='string'>paley@ai.sri.com</email>
+<comment datatype='string'>Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
 <affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
 <common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
 <abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
 </Organization>
 </affiliations>
-<comment datatype='string'>Suzanne Paley is a software developer that works on the Pathway Tools software at SRI International. She has written much of the software.</comment>
+<email datatype='string'>paley@ai.sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></imported-from-ecoli>
 </credits>
+<orphan>NO</orphan>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN0-6365' orgid='META' frameid='ENZRXN0-6365' detail='low'><reaction><Reaction resource='#META:ABC-56-RXN' orgid='META' frameid='ABC-56-RXN'/></reaction>
+<common-name datatype='string'>transport of an aliphatic sulfonate</common-name>
+<enzyme><Protein resource='getxml?META:ABC-56-CPLX' orgid='META' frameid='ABC-56-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

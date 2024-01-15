@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-7546'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-7546'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-7546</query>
 <num_results>1</num_results>
@@ -13,14 +13,14 @@
 <string title='smiles'>CSCCCC(\SC[C@H]([NH3+])C(=O)[O-])=N\O</string>
 </molecule>
 </cml>
-<common-name datatype='string'>(&lt;i&gt;Z&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine</common-name>
-<inchi datatype='string'>InChI=1S/C8H16N2O3S2/c1-14-4-2-3-7(10-13)15-5-6(9)8(11)12/h6,13H,2-5,9H2,1H3,(H,11,12)/b10-7-/t6-/m0/s1</inchi>
 <inchi-key datatype='string'>InChIKey=RHJXZAWQBJGJJP-FQUWQITNSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-8052' orgid='ARA' frameid='RXN-8052'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>74.63794</gibbs-0>
 <molecular-weight datatype='float' units='Daltons'>252.346</molecular-weight>
+<inchi datatype='string'>InChI=1S/C8H16N2O3S2/c1-14-4-2-3-7(10-13)15-5-6(9)8(11)12/h6,13H,2-5,9H2,1H3,(H,11,12)/b10-7-/t6-/m0/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-19589' orgid='ARA' frameid='RXN-19589'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-8052' orgid='ARA' frameid='RXN-8052'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>252.06023</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>74.63794</gibbs-0>
+<common-name datatype='string'>(&lt;i&gt;Z&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000056874465</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

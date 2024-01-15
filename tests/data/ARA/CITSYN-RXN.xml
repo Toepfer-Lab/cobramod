@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CITSYN-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CITSYN-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CITSYN-RXN</query>
 <num_results>1</num_results>
@@ -9,31 +9,30 @@
 </metadata>
 <Reaction ID='ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<comment datatype='string'>The EC number for this reaction has been modified from 4.1.3.7 to 2.3.3.1 in 2002.</comment>
+<left><Compound resource='getxml?ARA:OXALACETIC_ACID' orgid='ARA' frameid='OXALACETIC_ACID'/></left>
+<left><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left>
+<left><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/></left>
+<synonym datatype='string'>citrate synthesis</synonym>
+<synonym datatype='string'>Condensing enzyme</synonym>
+<synonym datatype='string'>Citrate condensing enzyme</synonym>
+<synonym datatype='string'>Citrogenase</synonym>
+<synonym datatype='string'>Oxaloacetate transacetase</synonym>
 <ec-number>EC-2.3.3.3<official>T</official>
 </ec-number>
 <ec-number>EC-2.3.3.16<official>T</official>
 </ec-number>
 <ec-number>EC-2.3.3.1<official>T</official>
 </ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-6549' orgid='ARA' frameid='PWY-6549'/><Pathway resource='getxml?ARA:PWY-5690' orgid='ARA' frameid='PWY-5690'/><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/></in-pathway>
-<left><Compound resource='getxml?ARA:OXALACETIC_ACID' orgid='ARA' frameid='OXALACETIC_ACID'/></left>
-<left><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left>
-<left><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-10.515259</gibbs-0>
+<comment datatype='string'>The EC number for this reaction has been modified from 4.1.3.7 to 2.3.3.1 in 2002.</comment>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
 <right><Compound resource='getxml?ARA:CIT' orgid='ARA' frameid='CIT'/></right>
 <right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
-<synonym datatype='string'>citrate synthesis</synonym>
-<synonym datatype='string'>Condensing enzyme</synonym>
-<synonym datatype='string'>Citrate condensing enzyme</synonym>
-<synonym datatype='string'>Citrogenase</synonym>
-<synonym datatype='string'>Oxaloacetate transacetase</synonym>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-18103' orgid='ARA' frameid='ENZRXN-18103' detail='low'><common-name datatype='string'>citrate synthase</common-name>
+<gibbs-0 datatype='float' units='kcal/mol'>-10.515259</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-18103' orgid='ARA' frameid='ENZRXN-18103' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G44350-MONOMER' orgid='ARA' frameid='AT2G44350-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G44350-MONOMER' orgid='ARA' frameid='AT2G44350-MONOMER'/></enzyme>
+<common-name datatype='string'>citrate synthase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <dblink><dblink-db>UNIPROT</dblink-db>
@@ -476,5 +475,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A43936</dblink-URL>
 </dblink>
+<in-pathway><Pathway resource='getxml?ARA:PWY-6549' orgid='ARA' frameid='PWY-6549'/><Pathway resource='getxml?ARA:PWY-5690' orgid='ARA' frameid='PWY-5690'/><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/></in-pathway>
 </Reaction>
 </ptools-xml>

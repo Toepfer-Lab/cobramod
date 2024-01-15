@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="26.0" xml:base="http://pmn.plantcyc.org/apixml?fn=genes-of-reaction%26id=SOY:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.0" xml:base="http://localhost:1555/apixml?fn=genes-of-reaction%26id=SOY:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
   <metadata>
-    <url>http://pmn.plantcyc.org/</url>
+    <url>http://localhost:1555/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=SOY:GTP-CYCLOHYDRO-II-RXN&amp;detail=FULL</query>
     <num_results>8</num_results>
-    <PGDB orgid="SOY" version="10.0.2">
+    <PGDB orgid="SOY" version="27.0">
       <species datatype="string">Glycine max</species>
       <dblink>
         <dblink-db>NCBI-TAXONOMY-DB</dblink-db>
@@ -31,8 +31,8 @@
       <Protein resource="getxml?SOY:MONOMERN7V-48746" orgid="SOY" frameid="MONOMERN7V-48746" />
       <Protein resource="getxml?SOY:GLYMA.05G175500-MONOMER" orgid="SOY" frameid="GLYMA.05G175500-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.05G175500</accession-1>
     <common-name datatype="string">Glyma.05G175500</common-name>
+    <accession-1 datatype="string">Glyma.05G175500</accession-1>
   </Gene>
   <Gene ID="SOY:GLYMA.13G332567" orgid="SOY" frameid="GLYMA.13G332567" detail="full">
     <parent>
@@ -44,8 +44,8 @@
     <product>
       <Protein resource="getxml?SOY:GLYMA.13G332567-MONOMER" orgid="SOY" frameid="GLYMA.13G332567-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.13G332567</accession-1>
     <common-name datatype="string">Glyma.13G332567</common-name>
+    <accession-1 datatype="string">Glyma.13G332567</accession-1>
   </Gene>
   <Gene ID="SOY:GLYMA.13G332633" orgid="SOY" frameid="GLYMA.13G332633" detail="full">
     <parent>
@@ -57,8 +57,8 @@
     <product>
       <Protein resource="getxml?SOY:GLYMA.13G332633-MONOMER" orgid="SOY" frameid="GLYMA.13G332633-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.13G332633</accession-1>
     <common-name datatype="string">Glyma.13G332633</common-name>
+    <accession-1 datatype="string">Glyma.13G332633</accession-1>
   </Gene>
   <Gene ID="SOY:GLYMA.15G041600" orgid="SOY" frameid="GLYMA.15G041600" detail="full">
     <parent>
@@ -74,8 +74,8 @@
       <Protein resource="getxml?SOY:MONOMERN7V-51035" orgid="SOY" frameid="MONOMERN7V-51035" />
       <Protein resource="getxml?SOY:GLYMA.15G041600-MONOMER" orgid="SOY" frameid="GLYMA.15G041600-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.15G041600</accession-1>
     <common-name datatype="string">Glyma.15G041600</common-name>
+    <accession-1 datatype="string">Glyma.15G041600</accession-1>
   </Gene>
   <Gene ID="SOY:GLYMA.15G055700" orgid="SOY" frameid="GLYMA.15G055700" detail="full">
     <parent>
@@ -88,8 +88,8 @@
       <Protein resource="getxml?SOY:MONOMERN7V-51065" orgid="SOY" frameid="MONOMERN7V-51065" />
       <Protein resource="getxml?SOY:GLYMA.15G055700-MONOMER" orgid="SOY" frameid="GLYMA.15G055700-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.15G055700</accession-1>
     <common-name datatype="string">Glyma.15G055700</common-name>
+    <accession-1 datatype="string">Glyma.15G055700</accession-1>
   </Gene>
   <Gene ID="SOY:GLYMA.08G070400" orgid="SOY" frameid="GLYMA.08G070400" detail="full">
     <parent>
@@ -101,8 +101,8 @@
     <product>
       <Protein resource="getxml?SOY:GLYMA.08G070400-MONOMER" orgid="SOY" frameid="GLYMA.08G070400-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.08G070400</accession-1>
     <common-name datatype="string">Glyma.08G070400</common-name>
+    <accession-1 datatype="string">Glyma.08G070400</accession-1>
   </Gene>
   <Gene ID="SOY:GLYMA.08G177300" orgid="SOY" frameid="GLYMA.08G177300" detail="full">
     <parent>
@@ -114,8 +114,8 @@
     <product>
       <Protein resource="getxml?SOY:GLYMA.08G177300-MONOMER" orgid="SOY" frameid="GLYMA.08G177300-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.08G177300</accession-1>
     <common-name datatype="string">Glyma.08G177300</common-name>
+    <accession-1 datatype="string">Glyma.08G177300</accession-1>
   </Gene>
   <Gene ID="SOY:GLYMA.08G132700" orgid="SOY" frameid="GLYMA.08G132700" detail="full">
     <parent>
@@ -128,7 +128,7 @@
       <Protein resource="getxml?SOY:MONOMERN7V-51890" orgid="SOY" frameid="MONOMERN7V-51890" />
       <Protein resource="getxml?SOY:GLYMA.08G132700-MONOMER" orgid="SOY" frameid="GLYMA.08G132700-MONOMER" />
     </product>
-    <accession-1 datatype="string">Glyma.08G132700</accession-1>
     <common-name datatype="string">Glyma.08G132700</common-name>
+    <accession-1 datatype="string">Glyma.08G132700</accession-1>
   </Gene>
 </ptools-xml>

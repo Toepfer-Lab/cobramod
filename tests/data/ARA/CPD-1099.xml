@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-1099'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-1099'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-1099</query>
 <num_results>1</num_results>
@@ -14,12 +14,6 @@
 <string title='smiles'>C(O)[C@H]3(O[C@](O[C@H]2(O[C@H](CO[C@@H]1([C@@H]([C@H]([C@H]([C@@H](CO)O1)O)O)O))[C@@H](O)[C@H](O)[C@@H](O)2))(CO)[C@H]([C@@H]3O)O)</string>
 </molecule>
 </cml>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/18269577&quot;&gt;Fiehn08&lt;/a&gt;] &lt;A href=&quot; http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download&quot;&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href=&quot;http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp&quot;&gt;SetupX&lt;/a&gt; (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>raffinose</common-name>
-<inchi datatype='string'>InChI=1S/C18H32O16/c19-1-5-8(22)11(25)13(27)16(31-5)30-3-7-9(23)12(26)14(28)17(32-7)34-18(4-21)15(29)10(24)6(2-20)33-18/h5-17,19-29H,1-4H2/t5-,6-,7-,8+,9-,10-,11+,12+,13-,14-,15+,16+,17-,18+/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=MUPFEKGTMRGPLJ-ZQSKZDJDSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-11502' orgid='ARA' frameid='RXN-11502'/><Reaction resource='getxml?ARA:2.4.1.67-RXN' orgid='ARA' frameid='2.4.1.67-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-207.45416</gibbs-0>
 <synonym datatype='string'>D-raffinose</synonym>
 <synonym datatype='string'>&amp;alpha;-D-galactopyranosyl-(1-&gt;6)-&amp;alpha;-D-glucopyranosyl-(1-&gt;2)-&amp;beta;-D-fructofuranoside</synonym>
 <synonym datatype='string'>&amp;alpha;-D-Galp-(1-&gt;6)-&amp;alpha;-D-Glcp-(1-&gt;2)-&amp;beta;-D-Fruf</synonym>
@@ -28,9 +22,15 @@
 <synonym datatype='string'>gossypose</synonym>
 <synonym datatype='string'>6G-&amp;alpha;-D-galactosylsucrose</synonym>
 <synonym datatype='string'>(2S,3R,4S,5S,6R)-2-[[(2R,3R,4S,5R,6R)-6-[(2S,3S,4R,5S)-3,4-dihydroxy-2,5-&lt;i&gt;bis&lt;/i&gt;(hydroxymethyl)oxolan-2-yl]oxy-3,4,5-trihydroxy-oxan-2-yl]methoxy]-6-(hydroxymethyl)oxane-3,4,5-triol</synonym>
+<inchi-key datatype='string'>InChIKey=MUPFEKGTMRGPLJ-ZQSKZDJDSA-N</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/18269577&quot;&gt;Fiehn08&lt;/a&gt;] &lt;A href=&quot; http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download&quot;&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href=&quot;http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp&quot;&gt;SetupX&lt;/a&gt; (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
 <molecular-weight datatype='float' units='Daltons'>504.441</molecular-weight>
+<inchi datatype='string'>InChI=1S/C18H32O16/c19-1-5-8(22)11(25)13(27)16(31-5)30-3-7-9(23)12(26)14(28)17(32-7)34-18(4-21)15(29)10(24)6(2-20)33-18/h5-17,19-29H,1-4H2/t5-,6-,7-,8+,9-,10-,11+,12+,13-,14-,15+,16+,17-,18+/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-11501' orgid='ARA' frameid='RXN-11501'/><Reaction resource='getxml?ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-11502' orgid='ARA' frameid='RXN-11502'/><Reaction resource='getxml?ARA:2.4.1.67-RXN' orgid='ARA' frameid='2.4.1.67-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>504.16904</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-207.45416</gibbs-0>
+<common-name datatype='string'>raffinose</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000006920405</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

@@ -9,7 +9,7 @@ REACTION    R00845 R01015 R01058 R01059 R01061 R01063 R01064 R01066
             R01067 R01068 R01069 R01070 R01440 R01621 R01641 R01827 
             R01830 R02340 R02721 R02722 R05465 R05605 R05636 R06861 
             R07159 R07456 R08575 R10049 R10088 R10089 R10349 R10860 
-            R10935 R12668 R12731 R12785 R13000 R13001
+            R10935 R12668 R12731 R12785 R13000 R13001 R13205
 PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00030  Pentose phosphate pathway
             map00051  Fructose and mannose metabolism
@@ -45,8 +45,6 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00061  D-Glucuronate degradation, D-glucuronate => pyruvate + D-glyceraldehyde 3P
             M00096  C5 isoprenoid biosynthesis, non-mevalonate pathway
             M00165  Reductive pentose phosphate cycle (Calvin cycle)
-            M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
-            M00167  Reductive pentose phosphate cycle, glyceraldehyde-3P => ribulose-5P
             M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
             M00345  Formaldehyde assimilation, ribulose monophosphate pathway
             M00552  D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:ACETALD-DEHYDROG-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:ACETALD-DEHYDROG-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:ACETALD-DEHYDROG-RXN</query>
 <num_results>1</num_results>
@@ -9,18 +9,17 @@
 </metadata>
 <Reaction ID='ARA:ACETALD-DEHYDROG-RXN' orgid='ARA' frameid='ACETALD-DEHYDROG-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<ec-number>EC-1.2.1.10<official>T</official>
-</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:ETOH-ACETYLCOA-ANA-PWY' orgid='ARA' frameid='ETOH-ACETYLCOA-ANA-PWY'/></in-pathway>
 <left><Compound resource='getxml?ARA:NAD' orgid='ARA' frameid='NAD'/></left>
 <left><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></left>
 <left><Compound resource='getxml?ARA:ACETALD' orgid='ARA' frameid='ACETALD'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-7.378174</gibbs-0>
+<ec-number>EC-1.2.1.10<official>T</official>
+</ec-number>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
 <right><Compound resource='getxml?ARA:NADH' orgid='ARA' frameid='NADH'/></right>
 <right><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-7.378174</gibbs-0>
 <dblink><dblink-db>PIR</dblink-db>
 <dblink-oid>B55511</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -61,5 +60,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T31270</dblink-URL>
 </dblink>
+<in-pathway><Pathway resource='getxml?ARA:ETOH-ACETYLCOA-ANA-PWY' orgid='ARA' frameid='ETOH-ACETYLCOA-ANA-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

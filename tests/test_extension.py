@@ -454,9 +454,8 @@ class AddingPathways(unittest.TestCase):
             database="KEGG",
             directory=dir_data,
             compartment="c",
-            # This reaction has problem
-            ignore_list=["C00008_c", "R09084_c"],
-            avoid_list=[""],
+            ignore_list=[],
+            avoid_list=[],
             show_imbalance=False,
             genome="hsa",
         )
@@ -466,7 +465,7 @@ class AddingPathways(unittest.TestCase):
             container=[reaction.id for reaction in test_model.reactions],
         )
         self.assertIn(
-            member="R09084_c",
+            member="R01518_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
         # CASE: Check for translations in pathways

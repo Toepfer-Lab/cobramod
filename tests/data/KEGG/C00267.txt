@@ -6,7 +6,8 @@ MOL_WEIGHT  180.1559
 COMMENT     D-Glucose [CPD:C00031]
 REACTION    R00307 R00802 R00878 R00947 R01602 R01678 R01718 R01786 
             R01787 R01788 R02109 R02189 R03115 R06078 R06080 R06084 
-            R06088 R06098 R06158 R06199 R07265 R09085 R11620 R13126
+            R06088 R06098 R06158 R06199 R07265 R09085 R11620 R13126 
+            R13204
 PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00051  Fructose and mannose metabolism
             map00052  Galactose metabolism
@@ -31,10 +32,10 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00909  UDP-N-acetyl-D-glucosamine biosynthesis, prokaryotes, glucose => UDP-GlcNAc
 ENZYME      1.1.1.21        1.1.3.41        2.4.1.231       2.7.1.1         
             2.7.1.2         2.7.1.63        2.7.1.147       3.1.3.9         
-            3.1.3.10        3.1.6.3         3.2.1.3         3.2.1.10        
-            3.2.1.20        3.2.1.23        3.2.1.26        3.2.1.33        
-            3.2.1.48        3.2.1.58        3.2.1.108       3.2.1.219       
-            5.1.3.3         5.3.1.5
+            3.1.3.10        3.2.1.3         3.2.1.10        3.2.1.20        
+            3.2.1.23        3.2.1.26        3.2.1.33        3.2.1.48        
+            3.2.1.58        3.2.1.108       3.2.1.219       5.1.3.3         
+            5.3.1.5
 DBLINKS     CAS: 492-62-6
             PubChem: 3565
             ChEBI: 17925

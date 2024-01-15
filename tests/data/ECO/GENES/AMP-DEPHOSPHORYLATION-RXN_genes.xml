@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECO:AMP-DEPHOSPHORYLATION-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECO:AMP-DEPHOSPHORYLATION-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=ECO:AMP-DEPHOSPHORYLATION-RXN&amp;detail=FULL</query>
     <num_results>1</num_results>
-    <PGDB orgid="ECOLI" version="27.0">
+    <PGDB orgid="ECOLI" version="27.5">
       <species datatype="string">Escherichia coli</species>
       <strain datatype="string">K-12 substr. MG1655</strain>
       <dblink>
@@ -70,36 +70,22 @@
     <product>
       <Protein resource="getxml?ECOLI:ALKAPHOSPHA-MONOMER" orgid="ECOLI" frameid="ALKAPHOSPHA-MONOMER" />
     </product>
+    <accession-1 datatype="string">b0383</accession-1>
     <citation>
       <Publication ID="ECOLI:PUB-6273802" orgid="ECOLI" frameid="PUB-6273802" detail="full">
-        <year datatype="integer">1981</year>
-        <source datatype="string">Nucleic Acids Res 9(21);5671-8</source>
-        <title datatype="string">The nucleotide sequence of the promoter and the amino-terminal region of alkaline phosphatase structural gene (phoA) of Escherichia coli.</title>
         <pubmed-id datatype="string">6273802</pubmed-id>
+        <year datatype="integer">1981</year>
+        <title datatype="string">The nucleotide sequence of the promoter and the amino-terminal region of alkaline phosphatase structural gene (phoA) of Escherichia coli.</title>
         <author datatype="string">Kikuchi Y</author>
         <author datatype="string">Yoda K</author>
         <author datatype="string">Yamasaki M</author>
         <author datatype="string">Tamura G</author>
+        <source datatype="string">Nucleic Acids Res 9(21);5671-8</source>
       </Publication>
     </citation>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU00052" orgid="ECOLI" frameid="TU00052" />
     </component-of>
-    <accession-1 datatype="string">b0383</accession-1>
-    <regulated-by>
-      <Regulation ID="ECOLI:REG0-15526" orgid="ECOLI" frameid="REG0-15526" detail="low">
-        <parent>
-          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
-        </parent>
-        <regulated-entity>
-          <Gene resource="#ECOLI:EG10727" orgid="ECOLI" frameid="EG10727" />
-        </regulated-entity>
-        <mode datatype="string">+</mode>
-        <regulator>
-          <Protein resource="getxml?ECOLI:PD00353" orgid="ECOLI" frameid="PD00353" />
-        </regulator>
-      </Regulation>
-    </regulated-by>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b0383</dblink-oid>
@@ -136,11 +122,25 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=398</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">401747</left-end-position>
-    <right-end-position datatype="integer">403162</right-end-position>
     <synonym datatype="string">psiA</synonym>
+    <common-name datatype="string">phoA</common-name>
     <accession-2 datatype="string">ECK0378</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">8.655259</centisome-position>
-    <common-name datatype="string">phoA</common-name>
+    <right-end-position datatype="integer">403162</right-end-position>
+    <regulated-by>
+      <Regulation ID="ECOLI:REG0-15526" orgid="ECOLI" frameid="REG0-15526" detail="low">
+        <parent>
+          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
+        </parent>
+        <regulator>
+          <Protein resource="getxml?ECOLI:PD00353" orgid="ECOLI" frameid="PD00353" />
+        </regulator>
+        <regulated-entity>
+          <Gene resource="#ECOLI:EG10727" orgid="ECOLI" frameid="EG10727" />
+        </regulated-entity>
+        <mode datatype="string">+</mode>
+      </Regulation>
+    </regulated-by>
+    <left-end-position datatype="integer">401747</left-end-position>
   </Gene>
 </ptools-xml>

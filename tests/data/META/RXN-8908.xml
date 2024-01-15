@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:RXN-8908'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:RXN-8908'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RXN-8908</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID='META:RXN-8908' orgid='META' frameid='RXN-8908' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
@@ -11,11 +11,15 @@
 <left><Compound resource='getxml?META:S-METHYL-L-CYSTEINE' orgid='META' frameid='S-METHYL-L-CYSTEINE'/></left>
 <left><Compound resource='getxml?META:OXYGEN-MOLECULE' orgid='META' frameid='OXYGEN-MOLECULE'/></left>
 <left><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/></left>
+<right><Compound resource='getxml?META:CPD-9277' orgid='META' frameid='CPD-9277'/></right>
+<right><Compound resource='getxml?META:HYDROGEN-PEROXIDE' orgid='META' frameid='HYDROGEN-PEROXIDE'/></right>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR122541</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/equa_info/MNXR122541</dblink-URL>
 </dblink>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <gibbs-0 datatype='float' units='kcal/mol'>-20.803009<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -25,17 +29,13 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<orphan>YES-PUTATIVE</orphan>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<right><Compound resource='getxml?META:CPD-9277' orgid='META' frameid='CPD-9277'/></right>
-<right><Compound resource='getxml?META:HYDROGEN-PEROXIDE' orgid='META' frameid='HYDROGEN-PEROXIDE'/></right>
 <in-pathway><Pathway resource='getxml?META:PWY-7614' orgid='META' frameid='PWY-7614'/></in-pathway>
+<orphan>YES-PUTATIVE</orphan>
 </Reaction>
 </ptools-xml>

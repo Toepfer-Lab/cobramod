@@ -17,6 +17,22 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00549  Nucleotide sugar biosynthesis, glucose => UDP-glucose
             M00892  UDP-N-acetyl-D-glucosamine biosynthesis, eukaryotes, glucose => UDP-GlcNAc
             M00909  UDP-N-acetyl-D-glucosamine biosynthesis, prokaryotes, glucose => UDP-GlcNAc
+BRITE       Enzymatic reactions [BR:br08201]
+             2. Transferase reactions
+              2.7  Transferring phosphorus-containing groups
+               2.7.1  Phosphotransferases with an alcohol group as acceptor
+                2.7.1.1
+                 R01786  ATP + alpha-D-Glucose <=> ADP + alpha-D-Glucose 6-phosphate
+                2.7.1.2
+                 R01786  ATP + alpha-D-Glucose <=> ADP + alpha-D-Glucose 6-phosphate
+            IUBMB reaction hierarchy [BR:br08202]
+             2. Transferase reactions
+              2.7.1.1
+               R02848  D-Hexose <=> D-Hexose 6-phosphate
+                R01786  alpha-D-Glucose <=> alpha-D-Glucose 6-phosphate
+              2.7.1.2
+               R00299  D-Glucose <=> D-Glucose 6-phosphate
+                R01786  alpha-D-Glucose <=> alpha-D-Glucose 6-phosphate
 ORTHOLOGY   K00844  hexokinase [EC:2.7.1.1]
             K00845  glucokinase [EC:2.7.1.2]
             K12407  glucokinase [EC:2.7.1.2]

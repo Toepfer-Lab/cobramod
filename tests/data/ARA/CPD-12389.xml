@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-12389'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-12389'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-12389</query>
 <num_results>1</num_results>
@@ -14,28 +14,28 @@
 <string title='smiles'>CSCCCC=[N+](O)[O-]</string>
 </molecule>
 </cml>
-<common-name datatype='string'>1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
-<inchi datatype='string'>InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
-<inchi-key datatype='string'>InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-11422' orgid='ARA' frameid='RXN-11422'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>61.462326</gibbs-0>
 <synonym datatype='string'>4-(methylsulfanyl)butan-1-ylideneazinate</synonym>
-<molecular-weight datatype='float' units='Daltons'>149.207</molecular-weight>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-11414' orgid='ARA' frameid='RXN-11414'/></appears-in-right-side-of>
+<inchi-key datatype='string'>InChIKey=KZCTZQMFYMYSGR-UHFFFAOYSA-N</inchi-key>
 <credits><created><date datatype='date'>2010-04-26</date>
-<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
-<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
-<abbrev-name datatype='string'>PMN</abbrev-name>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
 <url datatype='string'>http://plantcyc.org</url>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
 </Organization>
-<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
-<abbrev-name datatype='string'>TAIR</abbrev-name>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
 </Organization>
 </affiliations>
+<common-name datatype='string'>Peifen Zhang</common-name>
 </Person>
 <Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></created>
 </credits>
+<molecular-weight datatype='float' units='Daltons'>149.207</molecular-weight>
+<inchi datatype='string'>InChI=1S/C5H11NO2S/c1-9-5-3-2-4-6(7)8/h4H,2-3,5H2,1H3,(H,7,8)</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-11414' orgid='ARA' frameid='RXN-11414'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-11422' orgid='ARA' frameid='RXN-11422'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>151.0667</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>61.462326</gibbs-0>
+<common-name datatype='string'>1-(methylsulfanyl)-4-&lt;i&gt;aci&lt;/i&gt;-nitrobutane</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000062238402</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

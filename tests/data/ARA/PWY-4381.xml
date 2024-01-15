@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:PWY-4381'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:PWY-4381'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:PWY-4381</query>
 <num_results>1</num_results>
@@ -8,8 +8,43 @@
 </PGDB>
 </metadata>
 <Pathway ID='ARA:PWY-4381' orgid='ARA' frameid='PWY-4381' detail='full'><parent><Pathway resource='getxml?ARA:Fatty-Acid-Biosyn-Initiation' orgid='ARA' frameid='Fatty-Acid-Biosyn-Initiation' class='true'/></parent>
-<pathway-link><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/><link-target><Pathway resource='getxml?ARA:PYRUVDEHYD-PWY' orgid='ARA' frameid='PYRUVDEHYD-PWY'/></link-target>
-</pathway-link>
+<reaction-layout><Reaction resource='getxml?ARA:RXN0-5055' orgid='ARA' frameid='RXN0-5055'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:MALONYL-COA' orgid='ARA' frameid='MALONYL-COA'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/><direction>L2R</direction>
+<left-primaries><Protein resource='getxml?ARA:MALONYL-ACP' orgid='ARA' frameid='MALONYL-ACP' class='true'/><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left-primaries>
+<right-primaries><Protein resource='getxml?ARA:Acetoacetyl-ACPs' orgid='ARA' frameid='Acetoacetyl-ACPs' class='true'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:MALONYL-COA' orgid='ARA' frameid='MALONYL-COA'/></left-primaries>
+<right-primaries><Protein resource='getxml?ARA:MALONYL-ACP' orgid='ARA' frameid='MALONYL-ACP' class='true'/></right-primaries>
+</reaction-layout>
+<synonym datatype='string'>de novo fatty acid biosynthesis, initial reactions</synonym>
+<credits><created><date datatype='date'>2005-08-19</date>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
+<url datatype='string'>http://plantcyc.org</url>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
+</Organization>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
+</Organization>
+</affiliations>
+<common-name datatype='string'>Peifen Zhang</common-name>
+</Person>
+<Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></created>
+<revised><date datatype='date'>2008-07-07</date>
+<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><abbrev-name datatype='string'>SRI International</abbrev-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<common-name datatype='string'>SRI International</common-name>
+</Organization>
+</affiliations>
+<email datatype='string'>caspi@ai.sri.com</email>
+<common-name datatype='string'>Ron Caspi</common-name>
+</Person>
+<Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></revised>
+</credits>
 <comment datatype='string'>&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: This pathway is on the list of Common Viridiplantae Pathways (CVP) generated for the COMET project, which includes pathways that are thought to be present in all or most Viridiplantae species including algae. All UPP pathways are automatically imported into databases regardless of Pathologic predictions. &lt;A href=&quot;http://www.plantcyc.org/about/savi_pipeline&quot;&gt;[more info]&lt;/A&gt;
 &lt;p&gt;
 &lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
@@ -31,72 +66,29 @@ reactions condensing HCO3- with acetyl-CoA to yield malonyl-CoA:
 Plants generally have two isoforms of acetyl-CoA carboxylase, the heteromeric form and the homomeric form[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12781773&quot;&gt;Nikolau03&lt;/a&gt;]. 
 The heteromeric form is plastid-localized and involves in fatty acid biosynthesis. The homomeric form is 
 cytosolic and involves in very-long-chain fatty acid biosynthesis and synthesis of flavonoids. </comment>
-<in-pathway><Pathway resource='getxml?ARA:PWY-5156' orgid='ARA' frameid='PWY-5156'/></in-pathway>
-<reaction-layout><Reaction resource='getxml?ARA:RXN0-5055' orgid='ARA' frameid='RXN0-5055'/><direction>L2R</direction>
-<left-primaries><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left-primaries>
-<right-primaries><Compound resource='getxml?ARA:MALONYL-COA' orgid='ARA' frameid='MALONYL-COA'/></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction resource='getxml?ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/><direction>L2R</direction>
-<left-primaries><Protein resource='getxml?ARA:MALONYL-ACP' orgid='ARA' frameid='MALONYL-ACP' class='true'/><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left-primaries>
-<right-primaries><Protein resource='getxml?ARA:Acetoacetyl-ACPs' orgid='ARA' frameid='Acetoacetyl-ACPs' class='true'/></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/><direction>L2R</direction>
-<left-primaries><Compound resource='getxml?ARA:MALONYL-COA' orgid='ARA' frameid='MALONYL-COA'/></left-primaries>
-<right-primaries><Protein resource='getxml?ARA:MALONYL-ACP' orgid='ARA' frameid='MALONYL-ACP' class='true'/></right-primaries>
-</reaction-layout>
-<common-name datatype='string'>fatty acid biosynthesis initiation I</common-name>
-<reaction-ordering><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:RXN0-5055' orgid='ARA' frameid='RXN0-5055'/></predecessor-reactions>
-</reaction-ordering>
-<reaction-ordering><Reaction resource='getxml?ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/></predecessor-reactions>
-</reaction-ordering>
-<synonym datatype='string'>de novo fatty acid biosynthesis, initial reactions</synonym>
-<reaction-list><Reaction resource='getxml?ARA:RXN0-5055' orgid='ARA' frameid='RXN0-5055'/><Reaction resource='getxml?ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/></reaction-list>
-<credits><created><date datatype='date'>2005-08-19</date>
-<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
-<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
-<abbrev-name datatype='string'>PMN</abbrev-name>
-<url datatype='string'>http://plantcyc.org</url>
-</Organization>
-<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
-<abbrev-name datatype='string'>TAIR</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></created>
-<revised><date datatype='date'>2008-07-07</date>
-<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
-<common-name datatype='string'>Ron Caspi</common-name>
-<affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
-<common-name datatype='string'>SRI International</common-name>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-</Organization>
-</affiliations>
-</Person>
-<Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></revised>
-</credits>
 <evidence><Evidence-Code ID='ARA:EV-COMP-HINF' orgid='ARA' frameid='EV-COMP-HINF' detail='full' class='true'><parent><Evidence-Code resource='getxml?ARA:EV-COMP' orgid='ARA' frameid='EV-COMP' class='true'/></parent>
 <comment datatype='string'>Human inference.  A curator or author inferred this assertion after review of one or more possible types 
 of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
 When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
 <common-name datatype='string'>Inferred by a human based on computational evidence</common-name>
 </Evidence-Code>
-<Publication ID='ARA:PUB-PMNCVP2019' orgid='ARA' frameid='PUB-PMNCVP2019' detail='full'><title datatype='string'>This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Common Viridiplantae Pathways (CVP version 5.0).</title>
+<Publication ID='ARA:PUB-PMNCVP2019' orgid='ARA' frameid='PUB-PMNCVP2019' detail='full'><url datatype='string'>https://www.plantcyc.org/about/savi-pipeline</url>
 <year datatype='integer'>2019</year>
-<url datatype='string'>https://www.plantcyc.org/about/savi-pipeline</url>
+<title datatype='string'>This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Common Viridiplantae Pathways (CVP version 5.0).</title>
 </Publication>
 </evidence>
-<citation><Publication ID='ARA:PUB-15215578' orgid='ARA' frameid='PUB-15215578' detail='full'><source datatype='string'>Biosci Biotechnol Biochem 68(6);1175-84</source>
+<citation><Publication ID='ARA:PUB-15215578' orgid='ARA' frameid='PUB-15215578' detail='full'><year datatype='integer'>2004</year>
 <title datatype='string'>Plant acetyl-CoA carboxylase: structure, biosynthesis, regulation, and gene manipulation for plant breeding.</title>
-<year datatype='integer'>2004</year>
+<source datatype='string'>Biosci Biotechnol Biochem 68(6);1175-84</source>
+<pubmed-id datatype='string'>15215578</pubmed-id>
 <author datatype='string'>Sasaki Y</author>
 <author datatype='string'>Nagano Y</author>
-<pubmed-id datatype='string'>15215578</pubmed-id>
 </Publication>
 </citation>
-<citation><Publication ID='ARA:PUB-12624762' orgid='ARA' frameid='PUB-12624762' detail='full'><source datatype='string'>Planta 216(5);752-61</source>
+<citation><Publication ID='ARA:PUB-12624762' orgid='ARA' frameid='PUB-12624762' detail='full'><year datatype='integer'>2003</year>
 <title datatype='string'>Beta-ketoacyl-acyl carrier protein synthase III from pea (Pisum sativum L.): properties, inhibition by a novel thiolactomycin analogue and isolation of a cDNA clone encoding the enzyme.</title>
-<year datatype='integer'>2003</year>
+<source datatype='string'>Planta 216(5);752-61</source>
+<pubmed-id datatype='string'>12624762</pubmed-id>
 <author datatype='string'>Jones AL</author>
 <author datatype='string'>Gane AM</author>
 <author datatype='string'>Herbert D</author>
@@ -105,54 +97,53 @@ When the inference was made by a computer in an automated fashion, use EV-AINF.<
 <author datatype='string'>Kille P</author>
 <author datatype='string'>Dancer JE</author>
 <author datatype='string'>Harwood JL</author>
-<pubmed-id datatype='string'>12624762</pubmed-id>
 </Publication>
 </citation>
-<citation><Publication ID='ARA:PUB-1328217' orgid='ARA' frameid='PUB-1328217' detail='full'><source datatype='string'>J Biol Chem 267(29);20992-8</source>
+<citation><Publication ID='ARA:PUB-1328217' orgid='ARA' frameid='PUB-1328217' detail='full'><year datatype='integer'>1992</year>
 <title datatype='string'>Purification and characterization of 3-ketoacyl-acyl carrier protein synthase III from spinach. A condensing enzyme utilizing acetyl-coenzyme A to initiate fatty acid synthesis.</title>
-<year datatype='integer'>1992</year>
+<source datatype='string'>J Biol Chem 267(29);20992-8</source>
+<pubmed-id datatype='string'>1328217</pubmed-id>
 <author datatype='string'>Clough RC</author>
 <author datatype='string'>Matthis AL</author>
 <author datatype='string'>Barnum SR</author>
 <author datatype='string'>Jaworski JG</author>
-<pubmed-id datatype='string'>1328217</pubmed-id>
 </Publication>
 </citation>
-<citation><Publication ID='ARA:PUB-14660674' orgid='ARA' frameid='PUB-14660674' detail='full'><source datatype='string'>J Biol Chem 279(9);8242-51</source>
+<citation><Publication ID='ARA:PUB-14660674' orgid='ARA' frameid='PUB-14660674' detail='full'><year datatype='integer'>2004</year>
 <title datatype='string'>Identification and molecular characterization of the beta-ketoacyl-[acyl carrier protein] synthase component of the Arabidopsis mitochondrial fatty acid synthase.</title>
-<year datatype='integer'>2004</year>
+<source datatype='string'>J Biol Chem 279(9);8242-51</source>
+<pubmed-id datatype='string'>14660674</pubmed-id>
 <author datatype='string'>Yasuno R</author>
 <author datatype='string'>von Wettstein-Knowles P</author>
 <author datatype='string'>Wada H</author>
-<pubmed-id datatype='string'>14660674</pubmed-id>
 </Publication>
 </citation>
-<citation><Publication ID='ARA:PUB-PLANTBIOCHEMISTRY97' orgid='ARA' frameid='PUB-PLANTBIOCHEMISTRY97' detail='full'><source datatype='string'>Academic Press Inc., San Diego, USA</source>
+<citation><Publication ID='ARA:PUB-PLANTBIOCHEMISTRY97' orgid='ARA' frameid='PUB-PLANTBIOCHEMISTRY97' detail='full'><year datatype='integer'>1997</year>
 <title datatype='string'>Plant Biochemistry</title>
-<year datatype='integer'>1997</year>
+<source datatype='string'>Academic Press Inc., San Diego, USA</source>
 <author datatype='string'>Dey, P.M.</author>
 <author datatype='string'>Harborne, J.B.</author>
 </Publication>
 </citation>
-<citation><Publication ID='ARA:PUB-12781773' orgid='ARA' frameid='PUB-12781773' detail='full'><source datatype='string'>Arch Biochem Biophys 414(2);211-22</source>
+<citation><Publication ID='ARA:PUB-12781773' orgid='ARA' frameid='PUB-12781773' detail='full'><year datatype='integer'>2003</year>
 <title datatype='string'>Plant biotin-containing carboxylases.</title>
-<year datatype='integer'>2003</year>
+<source datatype='string'>Arch Biochem Biophys 414(2);211-22</source>
+<pubmed-id datatype='string'>12781773</pubmed-id>
 <author datatype='string'>Nikolau BJ</author>
 <author datatype='string'>Ohlrogge JB</author>
 <author datatype='string'>Wurtele ES</author>
-<pubmed-id datatype='string'>12781773</pubmed-id>
 </Publication>
 </citation>
-<citation><Publication ID='ARA:PUB-LI10' orgid='ARA' frameid='PUB-LI10' detail='full'><source datatype='string'>:June 11, 2010. The Arabidopsis Book. Rockville, MD: American Society of Plant Biologists. doi: 10.1199/tab.0133, http://www.aspb.org/publications/arabidopsis/</source>
-<title datatype='string'>Acyl-Lipid Metabolism</title>
+<citation><Publication ID='ARA:PUB-LI10' orgid='ARA' frameid='PUB-LI10' detail='full'><url datatype='string'>http://www.bioone.org/doi/full/10.1199/tab.0133</url>
 <year datatype='integer'>2010</year>
+<title datatype='string'>Acyl-Lipid Metabolism</title>
+<source datatype='string'>:June 11, 2010. The Arabidopsis Book. Rockville, MD: American Society of Plant Biologists. doi: 10.1199/tab.0133, http://www.aspb.org/publications/arabidopsis/</source>
 <author datatype='string'>Li, Yonghua</author>
 <author datatype='string'>Shorrosh, Basil</author>
 <author datatype='string'>Beisson, Fred</author>
 <author datatype='string'>Andersson, Mats</author>
 <author datatype='string'>Arondel, Vincent</author>
 <author datatype='string'>Bates, Philip</author>
-<url datatype='string'>http://www.bioone.org/doi/full/10.1199/tab.0133</url>
 </Publication>
 </citation>
 <evidence><Evidence-Code ID='ARA:EV-EXP-TAS' orgid='ARA' frameid='EV-EXP-TAS' detail='full' class='true'><parent><Evidence-Code resource='getxml?ARA:EV-EXP' orgid='ARA' frameid='EV-EXP' class='true'/></parent>
@@ -175,6 +166,10 @@ wet-lab experiment of some type.
 </Evidence-Code>
 </evidence>
 <super-pathways><Pathway resource='getxml?ARA:PWY-5156' orgid='ARA' frameid='PWY-5156'/></super-pathways>
+<reaction-list><Reaction resource='getxml?ARA:RXN0-5055' orgid='ARA' frameid='RXN0-5055'/><Reaction resource='getxml?ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/></reaction-list>
+<pathway-link><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/><link-target><Pathway resource='getxml?ARA:PYRUVDEHYD-PWY' orgid='ARA' frameid='PYRUVDEHYD-PWY'/></link-target>
+</pathway-link>
+<common-name datatype='string'>fatty acid biosynthesis initiation I</common-name>
 <dblink><dblink-db>PLANTCYC</dblink-db>
 <dblink-oid>PWY-4381</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -185,6 +180,11 @@ wet-lab experiment of some type.
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://biocyc.org/META/new-image?object=PWY-4381</dblink-URL>
 </dblink>
+<reaction-ordering><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:RXN0-5055' orgid='ARA' frameid='RXN0-5055'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/></predecessor-reactions>
+</reaction-ordering>
 <enzymes-not-used><Protein resource='getxml?ARA:AT1G36160-MONOMER' orgid='ARA' frameid='AT1G36160-MONOMER'/></enzymes-not-used>
+<in-pathway><Pathway resource='getxml?ARA:PWY-5156' orgid='ARA' frameid='PWY-5156'/></in-pathway>
 </Pathway>
 </ptools-xml>

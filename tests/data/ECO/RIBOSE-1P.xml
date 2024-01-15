@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:RIBOSE-1P'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:RIBOSE-1P'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:RIBOSE-1P</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -20,33 +20,30 @@
 </molecule>
 </cml>
 <regulates><Regulation ID='ECOLI:REG0-8540' orgid='ECOLI' frameid='REG0-8540' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:URPHOS-ENZRXN' orgid='ECOLI' frameid='URPHOS-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:URPHOS-ENZRXN' orgid='ECOLI' frameid='URPHOS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:URPHOS-CPLX' orgid='ECOLI' frameid='URPHOS-CPLX'/></enzyme>
 <synonym datatype='string'>pyrimidine phosphorylase</synonym>
 <synonym datatype='string'>uridine:orthophosphate &amp;alpha;-D-ribosyltransferase</synonym>
 <synonym datatype='string'>UPase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:URPHOS-CPLX' orgid='ECOLI' frameid='URPHOS-CPLX'/></enzyme>
 <common-name datatype='string'>uridine phosphorylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-7766' orgid='ECOLI' frameid='REG0-7766' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:THYM-PHOSPH-ENZRXN' orgid='ECOLI' frameid='THYM-PHOSPH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?ECOLI:THYM-PHOSPH-RXN' orgid='ECOLI' frameid='THYM-PHOSPH-RXN'/></reaction>
+<regulator><Compound resource='#ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:THYM-PHOSPH-ENZRXN' orgid='ECOLI' frameid='THYM-PHOSPH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:DEOA-CPLX' orgid='ECOLI' frameid='DEOA-CPLX'/></enzyme>
 <synonym datatype='string'>pyrimidine phosphorylase</synonym>
 <synonym datatype='string'>thymidine:orthophosphate deoxy-D-ribosyltransferase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:DEOA-CPLX' orgid='ECOLI' frameid='DEOA-CPLX'/></enzyme>
 <common-name datatype='string'>thymidine phosphorylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:THYM-PHOSPH-RXN' orgid='ECOLI' frameid='THYM-PHOSPH-RXN'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P'/></regulator>
 </Regulation>
 </regulates>
-<inchi-key datatype='string'>InChIKey=YXJDFQJKERBOBM-TXICZTDVSA-L</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>-294.24817</gibbs-0>
-<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7092' orgid='ECOLI' frameid='RXN0-7092'/><Reaction resource='getxml?ECOLI:PPENTOMUT-RXN' orgid='ECOLI' frameid='PPENTOMUT-RXN'/></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction resource='getxml?ECOLI:PNP-RXN' orgid='ECOLI' frameid='PNP-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5199' orgid='ECOLI' frameid='RXN0-5199'/><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:ADENPHOSPHOR-RXN' orgid='ECOLI' frameid='ADENPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-RXN' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-RXN'/></appears-in-right-side-of>
+<molecular-weight datatype='float' units='Daltons'>228.095</molecular-weight>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004228268</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -121,9 +118,12 @@
 <synonym datatype='string'>&amp;alpha;-D-ribose-1P</synonym>
 <synonym datatype='string'>&amp;alpha;-D-ribofuranose 1-phosphate</synonym>
 <synonym datatype='string'>ribose-1-phosphate</synonym>
+<inchi-key datatype='string'>InChIKey=YXJDFQJKERBOBM-TXICZTDVSA-L</inchi-key>
 <monoisotopic-mw datatype='float' units='Daltons'>230.01915</monoisotopic-mw>
-<molecular-weight datatype='float' units='Daltons'>228.095</molecular-weight>
 <inchi datatype='string'>InChI=1S/C5H11O8P/c6-1-2-3(7)4(8)5(12-2)13-14(9,10)11/h2-8H,1H2,(H2,9,10,11)/p-2/t2-,3-,4-,5-/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:PNP-RXN' orgid='ECOLI' frameid='PNP-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5199' orgid='ECOLI' frameid='RXN0-5199'/><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:ADENPHOSPHOR-RXN' orgid='ECOLI' frameid='ADENPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-RXN' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-RXN'/></appears-in-right-side-of>
 <common-name datatype='string'>&amp;alpha;-D-ribose-1-phosphate</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7092' orgid='ECOLI' frameid='RXN0-7092'/><Reaction resource='getxml?ECOLI:PPENTOMUT-RXN' orgid='ECOLI' frameid='PPENTOMUT-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-294.24817</gibbs-0>
 </Compound>
 </ptools-xml>

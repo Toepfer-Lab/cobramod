@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:XANTHINE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:XANTHINE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:XANTHINE</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -20,20 +20,17 @@
 </molecule>
 </cml>
 <regulates><Regulation ID='ECOLI:REG0-12860' orgid='ECOLI' frameid='REG0-12860' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7829' orgid='ECOLI' frameid='ENZRXN0-7829' detail='low'><reaction><Reaction resource='getxml?ECOLI:TRANS-RXN-132' orgid='ECOLI' frameid='TRANS-RXN-132'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:B1006-MONOMER' orgid='ECOLI' frameid='B1006-MONOMER'/></enzyme>
+<regulator><Compound resource='#ECOLI:XANTHINE' orgid='ECOLI' frameid='XANTHINE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7829' orgid='ECOLI' frameid='ENZRXN0-7829' detail='low'><enzyme><Protein resource='getxml?ECOLI:B1006-MONOMER' orgid='ECOLI' frameid='B1006-MONOMER'/></enzyme>
 <common-name datatype='string'>uracil:H&lt;sup&gt;+&lt;/sup&gt; symporter</common-name>
+<reaction><Reaction resource='getxml?ECOLI:TRANS-RXN-132' orgid='ECOLI' frameid='TRANS-RXN-132'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:XANTHINE' orgid='ECOLI' frameid='XANTHINE'/></regulator>
 </Regulation>
 </regulates>
-<inchi-key datatype='string'>InChIKey=LRFVTYWOQMYALW-UHFFFAOYSA-N</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>-25.574516</gibbs-0>
+<molecular-weight datatype='float' units='Daltons'>152.112</molecular-weight>
 <systematic-name datatype='string'>1-H-purine-2,6-dione, 3,7-dihydro(9CI)</systematic-name>
-<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN-5076' orgid='ECOLI' frameid='RXN-5076'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-561' orgid='ECOLI' frameid='TRANS-RXN0-561'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction resource='getxml?ECOLI:RXN-5076' orgid='ECOLI' frameid='RXN-5076'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-561' orgid='ECOLI' frameid='TRANS-RXN0-561'/><Reaction resource='getxml?ECOLI:GUANINE-DEAMINASE-RXN' orgid='ECOLI' frameid='GUANINE-DEAMINASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6708' orgid='ECOLI' frameid='RXN0-6708'/><Reaction resource='getxml?ECOLI:RXN0-363' orgid='ECOLI' frameid='RXN0-363'/><Reaction resource='getxml?ECOLI:XANPRIBOSYLTRAN-RXN' orgid='ECOLI' frameid='XANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/><Reaction resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-RXN' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-RXN'/></appears-in-right-side-of>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000013517187</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -110,9 +107,12 @@
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=69-89-6</dblink-URL>
 </dblink>
 <synonym datatype='string'>2,6-dioxopurine</synonym>
+<inchi-key datatype='string'>InChIKey=LRFVTYWOQMYALW-UHFFFAOYSA-N</inchi-key>
 <monoisotopic-mw datatype='float' units='Daltons'>152.03343</monoisotopic-mw>
-<molecular-weight datatype='float' units='Daltons'>152.112</molecular-weight>
 <inchi datatype='string'>InChI=1S/C5H4N4O2/c10-4-2-3(7-1-6-2)8-5(11)9-4/h1H,(H3,6,7,8,9,10,11)</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:RXN-5076' orgid='ECOLI' frameid='RXN-5076'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-561' orgid='ECOLI' frameid='TRANS-RXN0-561'/><Reaction resource='getxml?ECOLI:GUANINE-DEAMINASE-RXN' orgid='ECOLI' frameid='GUANINE-DEAMINASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6708' orgid='ECOLI' frameid='RXN0-6708'/><Reaction resource='getxml?ECOLI:RXN0-363' orgid='ECOLI' frameid='RXN0-363'/><Reaction resource='getxml?ECOLI:XANPRIBOSYLTRAN-RXN' orgid='ECOLI' frameid='XANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/><Reaction resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-RXN' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-RXN'/></appears-in-right-side-of>
 <common-name datatype='string'>xanthine</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN-5076' orgid='ECOLI' frameid='RXN-5076'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-561' orgid='ECOLI' frameid='TRANS-RXN0-561'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-25.574516</gibbs-0>
 </Compound>
 </ptools-xml>

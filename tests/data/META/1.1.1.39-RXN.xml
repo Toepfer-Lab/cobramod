@@ -1,48 +1,22 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:1.1.1.39-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:1.1.1.39-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:1.1.1.39-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID='META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN' detail='full'><parent><Reaction resource='getxml?META:Composite-Reactions' orgid='META' frameid='Composite-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
 <left><Compound resource='getxml?META:MAL' orgid='META' frameid='MAL'/></left>
 <left><Compound resource='getxml?META:NAD' orgid='META' frameid='NAD'/></left>
-<enzymatic-reaction><Enzymatic-Reaction ID='META:MALIC-NAD-ENZRXN' orgid='META' frameid='MALIC-NAD-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:MALIC-NAD-CPLX' orgid='META' frameid='MALIC-NAD-CPLX'/></enzyme>
-<synonym datatype='string'>pyruvic-malic carboxylase</synonym>
-<synonym datatype='string'>(S)-malate:NAD+ oxdireductase (oxaloacetate decarboxylating)</synonym>
-<synonym datatype='string'>malic enzyme, NAD-linked</synonym>
-<synonym datatype='string'>malate dehydrogenase, NAD-requiring</synonym>
-<reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
-<common-name datatype='string'>malate dehydrogenase (oxaloacetate-decarboxylating)</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-23983' orgid='META' frameid='ENZRXN-23983' detail='low'><enzyme><Protein resource='getxml?META:CPLX-9003' orgid='META' frameid='CPLX-9003'/></enzyme>
-<reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
-<common-name datatype='string'>malate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-22250' orgid='META' frameid='ENZRXN-22250' detail='low'><enzyme><Protein resource='getxml?META:CPLX-8768' orgid='META' frameid='CPLX-8768'/></enzyme>
-<reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
-<common-name datatype='string'>NAD&lt;sup&gt;+&lt;/sup&gt;-dependent malate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-21746' orgid='META' frameid='ENZRXN-21746' detail='low'><enzyme><Protein resource='getxml?META:YKL029C-MONOMER' orgid='META' frameid='YKL029C-MONOMER'/></enzyme>
-<reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
-<common-name datatype='string'>malate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-20882' orgid='META' frameid='ENZRXN-20882' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-17679' orgid='META' frameid='MONOMER-17679'/></enzyme>
-<reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
-<common-name datatype='string'>malic enzyme (NAD)</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-20874' orgid='META' frameid='ENZRXN-20874' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-17673' orgid='META' frameid='MONOMER-17673'/></enzyme>
-<reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
-<common-name datatype='string'>malic enzyme (NAD)</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN-20873' orgid='META' frameid='ENZRXN-20873' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-17672' orgid='META' frameid='MONOMER-17672'/></enzyme>
-<reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
-<common-name datatype='string'>malic enzyme (NAD)</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<ec-number>EC-1.1.1.38<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></right>
+<right><Compound resource='getxml?META:CARBON-DIOXIDE' orgid='META' frameid='CARBON-DIOXIDE'/></right>
+<right><Compound resource='getxml?META:NADH' orgid='META' frameid='NADH'/></right>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<reaction-list><Reaction resource='getxml?META:MALATE-DEH-RXN' orgid='META' frameid='MALATE-DEH-RXN'/><Reaction resource='getxml?META:OXALODECARB-RXN' orgid='META' frameid='OXALODECARB-RXN'/></reaction-list>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR101446</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -118,9 +92,7 @@
 <dblink-relationship>RELATED-TO</dblink-relationship>
 <dblink-URL>https://www.uniprot.org/uniprot/Q9M162</dblink-URL>
 </dblink>
-<ec-number>EC-1.1.1.38<official>T</official>
-</ec-number>
-<reaction-list><Reaction resource='getxml?META:MALATE-DEH-RXN' orgid='META' frameid='MALATE-DEH-RXN'/><Reaction resource='getxml?META:OXALODECARB-RXN' orgid='META' frameid='OXALODECARB-RXN'/></reaction-list>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <gibbs-0 datatype='float' units='kcal/mol'>-0.3199463<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -130,34 +102,61 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<orphan>NO</orphan>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<right><Compound resource='getxml?META:PYRUVATE' orgid='META' frameid='PYRUVATE'/></right>
-<right><Compound resource='getxml?META:CARBON-DIOXIDE' orgid='META' frameid='CARBON-DIOXIDE'/></right>
-<right><Compound resource='getxml?META:NADH' orgid='META' frameid='NADH'/></right>
+<in-pathway><Pathway resource='getxml?META:PWY-7115' orgid='META' frameid='PWY-7115'/><Pathway resource='getxml?META:PWY-7118' orgid='META' frameid='PWY-7118'/><Pathway resource='getxml?META:GLUCONEO-PWY' orgid='META' frameid='GLUCONEO-PWY'/><Pathway resource='getxml?META:PWY-7686' orgid='META' frameid='PWY-7686'/><Pathway resource='getxml?META:PWY-3641' orgid='META' frameid='PWY-3641'/><Pathway resource='getxml?META:PWY-7384' orgid='META' frameid='PWY-7384'/></in-pathway>
 <credits><revised><date datatype='date'>2012-09-29</date>
 <Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
-<email datatype='string'>caspi@ai.sri.com</email>
-<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-</Organization>
-</affiliations>
 <comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
-</comment>
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
 </credits>
-<in-pathway><Pathway resource='getxml?META:PWY-7115' orgid='META' frameid='PWY-7115'/><Pathway resource='getxml?META:PWY-7118' orgid='META' frameid='PWY-7118'/><Pathway resource='getxml?META:GLUCONEO-PWY' orgid='META' frameid='GLUCONEO-PWY'/><Pathway resource='getxml?META:PWY-7686' orgid='META' frameid='PWY-7686'/><Pathway resource='getxml?META:PWY-3641' orgid='META' frameid='PWY-3641'/><Pathway resource='getxml?META:PWY-7384' orgid='META' frameid='PWY-7384'/></in-pathway>
+<orphan>NO</orphan>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:MALIC-NAD-ENZRXN' orgid='META' frameid='MALIC-NAD-ENZRXN' detail='low'><reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
+<synonym datatype='string'>pyruvic-malic carboxylase</synonym>
+<synonym datatype='string'>(S)-malate:NAD+ oxdireductase (oxaloacetate decarboxylating)</synonym>
+<synonym datatype='string'>malic enzyme, NAD-linked</synonym>
+<synonym datatype='string'>malate dehydrogenase, NAD-requiring</synonym>
+<common-name datatype='string'>malate dehydrogenase (oxaloacetate-decarboxylating)</common-name>
+<enzyme><Protein resource='getxml?META:MALIC-NAD-CPLX' orgid='META' frameid='MALIC-NAD-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-23983' orgid='META' frameid='ENZRXN-23983' detail='low'><reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-9003' orgid='META' frameid='CPLX-9003'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-22250' orgid='META' frameid='ENZRXN-22250' detail='low'><reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
+<common-name datatype='string'>NAD&lt;sup&gt;+&lt;/sup&gt;-dependent malate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8768' orgid='META' frameid='CPLX-8768'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-21746' orgid='META' frameid='ENZRXN-21746' detail='low'><reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:YKL029C-MONOMER' orgid='META' frameid='YKL029C-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-20882' orgid='META' frameid='ENZRXN-20882' detail='low'><reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
+<common-name datatype='string'>malic enzyme (NAD)</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-17679' orgid='META' frameid='MONOMER-17679'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-20874' orgid='META' frameid='ENZRXN-20874' detail='low'><reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
+<common-name datatype='string'>malic enzyme (NAD)</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-17673' orgid='META' frameid='MONOMER-17673'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-20873' orgid='META' frameid='ENZRXN-20873' detail='low'><reaction><Reaction resource='#META:1.1.1.39-RXN' orgid='META' frameid='1.1.1.39-RXN'/></reaction>
+<common-name datatype='string'>malic enzyme (NAD)</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-17672' orgid='META' frameid='MONOMER-17672'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

@@ -40,7 +40,6 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
             M00020  Serine biosynthesis, glycerate-3P => serine
             M00165  Reductive pentose phosphate cycle (Calvin cycle)
-            M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
             M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
             M00532  Photorespiration
             M00552  D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P

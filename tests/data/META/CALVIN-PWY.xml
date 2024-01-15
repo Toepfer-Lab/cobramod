@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:CALVIN-PWY'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:CALVIN-PWY'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CALVIN-PWY</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Pathway ID='META:CALVIN-PWY' orgid='META' frameid='CALVIN-PWY' detail='full'><parent><Pathway resource='getxml?META:Autotrophic-CO2-Fixation' orgid='META' frameid='Autotrophic-CO2-Fixation' class='true'/></parent>
 <parent><Pathway resource='getxml?META:CARBO-BIOSYNTHESIS' orgid='META' frameid='CARBO-BIOSYNTHESIS' class='true'/></parent>
+<super-pathways><Pathway resource='getxml?META:PWY-7218' orgid='META' frameid='PWY-7218'/><Pathway resource='getxml?META:PWY-6886' orgid='META' frameid='PWY-6886'/><Pathway resource='getxml?META:PHOTOALL-PWY' orgid='META' frameid='PHOTOALL-PWY'/></super-pathways>
 <synonym datatype='string'>photosynthetic dark reactions</synonym>
 <synonym datatype='string'>photosynthetic CO&lt;SUB&gt;2&lt;/SUB&gt; fixation</synonym>
 <synonym datatype='string'>reductive pentose phosphate pathway</synonym>
@@ -16,257 +17,66 @@
 <synonym datatype='string'>carbon fixation</synonym>
 <synonym datatype='string'>Calvin-Benson cycle</synonym>
 <enzymes-not-used><Protein resource='getxml?META:AT1G43670-MONOMER' orgid='META' frameid='AT1G43670-MONOMER'/><Protein resource='getxml?META:AT3G55440-MONOMER' orgid='META' frameid='AT3G55440-MONOMER'/></enzymes-not-used>
-<taxonomic-range><Organism ID='META:TAX-1117' orgid='META' frameid='TAX-1117' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-1798711' orgid='META' frameid='TAX-1798711' class='true'/></parent>
-<synonym datatype='string'>Oxyphotobacteria</synonym>
-<synonym datatype='string'>Oxygenic photosynthetic bacteria</synonym>
-<synonym datatype='string'>cyanophytes</synonym>
-<synonym datatype='string'>Cyanophyta</synonym>
-<synonym datatype='string'>Cyanophycota</synonym>
-<synonym datatype='string'>Cyanobacteria</synonym>
-<synonym datatype='string'>blue-green bacteria</synonym>
-<synonym datatype='string'>blue-green algae</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>1117</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1117</dblink-URL>
-</dblink>
-<common-name datatype='string'>Cyanobacteriota</common-name>
-<rank>phylum</rank>
-</Organism>
-<Organism ID='META:TAX-39119' orgid='META' frameid='TAX-39119' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
-<synonym datatype='string'>silicoflagellates</synonym>
-<synonym datatype='string'>Silicoflagellata</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>39119</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=39119</dblink-URL>
-</dblink>
-<common-name datatype='string'>Dictyochophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-38254' orgid='META' frameid='TAX-38254' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
-<synonym datatype='string'>Glaucophyta</synonym>
-<synonym datatype='string'>Glaucophyceae</synonym>
-<synonym datatype='string'>glaucocystophytes</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>38254</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=38254</dblink-URL>
-</dblink>
-<common-name datatype='string'>Glaucocystophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-29197' orgid='META' frameid='TAX-29197' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-136419' orgid='META' frameid='TAX-136419' class='true'/></parent>
-<synonym datatype='string'>chlorarachniophytes</synonym>
-<synonym datatype='string'>Chlorarachniophyta</synonym>
-<synonym datatype='string'>Chlorarachnida</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>29197</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=29197</dblink-URL>
-</dblink>
-<common-name datatype='string'>Chlorarachniophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-38410' orgid='META' frameid='TAX-38410' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
-<synonym datatype='string'>raphidophytes</synonym>
-<synonym datatype='string'>Raphidophyta</synonym>
-<synonym datatype='string'>Chloromonadophyceae</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>38410</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=38410</dblink-URL>
-</dblink>
-<common-name datatype='string'>Raphidophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-5747' orgid='META' frameid='TAX-5747' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
-<synonym datatype='string'>eustigmatophytes</synonym>
-<synonym datatype='string'>Eustigmatophyta</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>5747</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5747</dblink-URL>
-</dblink>
-<common-name datatype='string'>Eustigmatophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-2864' orgid='META' frameid='TAX-2864' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33630' orgid='META' frameid='TAX-33630' class='true'/></parent>
-<synonym datatype='string'>Pyrrophyta</synonym>
-<synonym datatype='string'>Pyrrhophyta</synonym>
-<synonym datatype='string'>dinophytes</synonym>
-<synonym datatype='string'>Dinophyta</synonym>
-<synonym datatype='string'>Dinophycidae</synonym>
-<synonym datatype='string'>dinoflagellates &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>dinoflagellates</synonym>
-<synonym datatype='string'>Dinoflagellata</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2864</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2864</dblink-URL>
-</dblink>
-<common-name datatype='string'>Dinophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-877183' orgid='META' frameid='TAX-877183' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33630' orgid='META' frameid='TAX-33630' class='true'/></parent>
-<synonym datatype='string'>Chromerida</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>877183</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=877183</dblink-URL>
-</dblink>
-<common-name datatype='string'>Colpodellida</common-name>
-<rank>clade</rank>
-</Organism>
-<Organism ID='META:TAX-2836' orgid='META' frameid='TAX-2836' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
-<synonym datatype='string'>diatoms &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>diatoms</synonym>
-<synonym datatype='string'>Diatomophyceae</synonym>
-<synonym datatype='string'>Diatomea</synonym>
-<synonym datatype='string'>Diatomeae</synonym>
-<synonym datatype='string'>bacillariophytes</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2836</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2836</dblink-URL>
-</dblink>
-<common-name datatype='string'>Bacillariophyta</common-name>
-<rank>phylum</rank>
-</Organism>
-<Organism ID='META:TAX-3027' orgid='META' frameid='TAX-3027' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
-<synonym datatype='string'>cryptophytes</synonym>
-<synonym datatype='string'>Cryptophyta</synonym>
-<synonym datatype='string'>cryptomonads &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>cryptomonads</synonym>
-<synonym datatype='string'>Cryptomonadida</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3027</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3027</dblink-URL>
-</dblink>
-<common-name datatype='string'>Cryptophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-2830' orgid='META' frameid='TAX-2830' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2608109' orgid='META' frameid='TAX-2608109' class='true'/></parent>
-<synonym datatype='string'>Prymnesiophyta</synonym>
-<synonym datatype='string'>Haptophyceae</synonym>
-<synonym datatype='string'>coccolithophorids</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2830</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2830</dblink-URL>
-</dblink>
-<common-name datatype='string'>Haptophyta</common-name>
-<rank>phylum</rank>
-</Organism>
-<Organism ID='META:TAX-2833' orgid='META' frameid='TAX-2833' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-569578' orgid='META' frameid='TAX-569578' class='true'/></parent>
-<synonym datatype='string'>yellow-green algae &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>yellow-green algae</synonym>
-<synonym datatype='string'>Xanthophyta</synonym>
-<synonym datatype='string'>Tribophyceae</synonym>
-<synonym datatype='string'>Heterocontae</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2833</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2833</dblink-URL>
-</dblink>
-<common-name datatype='string'>Xanthophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-3041' orgid='META' frameid='TAX-3041' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33090' orgid='META' frameid='TAX-33090' class='true'/></parent>
-<synonym datatype='string'>green algae &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>green algae</synonym>
-<synonym datatype='string'>Chlorophyta sensu Bremer 1985</synonym>
-<synonym datatype='string'>Chlorophycota</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3041</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3041</dblink-URL>
-</dblink>
-<common-name datatype='string'>Chlorophyta</common-name>
-<rank>phylum</rank>
-</Organism>
-<Organism ID='META:TAX-33682' orgid='META' frameid='TAX-33682' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2611352' orgid='META' frameid='TAX-2611352' class='true'/></parent>
-<synonym datatype='string'>Euglenozoans</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>33682</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33682</dblink-URL>
-</dblink>
-<common-name datatype='string'>Euglenozoa</common-name>
-<rank>phylum</rank>
-</Organism>
-<Organism ID='META:TAX-2763' orgid='META' frameid='TAX-2763' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
-<synonym datatype='string'>rhodophytes</synonym>
-<synonym datatype='string'>Rhodophycota</synonym>
-<synonym datatype='string'>Rhodophyceae</synonym>
-<synonym datatype='string'>red algae &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>red algae</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2763</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2763</dblink-URL>
-</dblink>
-<common-name datatype='string'>Rhodophyta</common-name>
-<rank>phylum</rank>
-</Organism>
-<Organism ID='META:TAX-2870' orgid='META' frameid='TAX-2870' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-569578' orgid='META' frameid='TAX-569578' class='true'/></parent>
-<synonym datatype='string'>Phaeophyta</synonym>
-<synonym datatype='string'>Fucophyceae</synonym>
-<synonym datatype='string'>Chromophycota</synonym>
-<synonym datatype='string'>brown algae &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>brown algae</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2870</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2870</dblink-URL>
-</dblink>
-<common-name datatype='string'>Phaeophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-2825' orgid='META' frameid='TAX-2825' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
-<synonym datatype='string'>golden algae &lt;genbank common name&gt;</synonym>
-<synonym datatype='string'>golden algae</synonym>
-<synonym datatype='string'>chrysophytes</synonym>
-<synonym datatype='string'>Chrysophyta</synonym>
-<synonym datatype='string'>chrysomonads</synonym>
-<synonym datatype='string'>Chrysomonadida</synonym>
-<synonym datatype='string'>Chrysomonada</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2825</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2825</dblink-URL>
-</dblink>
-<common-name datatype='string'>Chrysophyceae</common-name>
-<rank>class</rank>
-</Organism>
-<Organism ID='META:TAX-2' orgid='META' frameid='TAX-2' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
-<synonym datatype='string'>eubacteria</synonym>
-<synonym datatype='string'>Bacteria</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
-</dblink>
-<common-name datatype='string'>Bacteria &lt;bacteria&gt;</common-name>
-<rank>superkingdom</rank>
-</Organism>
-<Organism ID='META:TAX-33090' orgid='META' frameid='TAX-33090' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
-<synonym datatype='string'>green plants &lt;common name&gt;</synonym>
-<synonym datatype='string'>green plants</synonym>
-<synonym datatype='string'>Chloroplastida</synonym>
-<synonym datatype='string'>chlorophyte/embryophyte group</synonym>
-<synonym datatype='string'>Chlorophyta/Embryophyta group</synonym>
-<synonym datatype='string'>Chlorobionta</synonym>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>33090</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33090</dblink-URL>
-</dblink>
-<common-name datatype='string'>Viridiplantae</common-name>
-<rank>kingdom</rank>
-</Organism>
-</taxonomic-range>
+<common-name datatype='string'>Calvin-Benson-Bassham cycle</common-name>
+<citation><Publication ID='META:PUB-MATTHEWSVANHOLDEII' orgid='META' frameid='PUB-MATTHEWSVANHOLDEII' detail='full'><year datatype='integer'>1995</year>
+<author datatype='string'>Mathews CK</author>
+<author datatype='string'>van Holde KE</author>
+<title datatype='string'>Biochemistry, Second edition</title>
+<source datatype='string'>The Benjamin/Cummings Publishing Company Menlo Park, CA</source>
+</Publication>
+</citation>
+<citation><Publication ID='META:PUB-STEWART' orgid='META' frameid='PUB-STEWART' detail='full'><year datatype='integer'>1974</year>
+<author datatype='string'>Stewart WDP, editor</author>
+<title datatype='string'>Botanical Monographs Volume 10: Algal Physiology and Biochemistry</title>
+<source datatype='string'>University of California Presss, Berkeley and Los Angeles</source>
+</Publication>
+</citation>
+<citation><Publication ID='META:PUB-STITT91' orgid='META' frameid='PUB-STITT91' detail='full'><year datatype='integer'>1991</year>
+<author datatype='string'>Sitt, M</author>
+<author datatype='string'>Quick, WP</author>
+<author datatype='string'>Schurr U</author>
+<author datatype='string'>Schulze ED</author>
+<author datatype='string'>Rodermel SR</author>
+<author datatype='string'>Bogorad L</author>
+<title datatype='string'>Decreased ribulose-1,5-bisphosphate carboxylase-oxygenase in transgenic tobacco transformed with 'antisense' rbcS II. Flux-control coefficients for photosynthesis in varying light, CO2, and air humidity</title>
+<source datatype='string'>Planta, 183:555-566</source>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID='META:EV-EXP-TAS' orgid='META' frameid='EV-EXP-TAS' detail='full' class='true'><parent><Evidence-Code resource='getxml?META:EV-EXP' orgid='META' frameid='EV-EXP' class='true'/></parent>
+<common-name datatype='string'>Traceable author statement to experimental support</common-name>
+<comment datatype='string'>Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
+in another database -- that itself did not describe an experiment supporting the
+assertion.  However, the statement did reference another publication describing an experiment 
+that supports the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
+is that the former code is used when it is certain that experimental evidence supports the
+assertion, and the latter code is used when there is a possibility that an experiment was
+not done to support the assertion.
+In general, references to the primary literature are preferred,
+but this code can be used when the original article is difficult to locate.</comment>
+</Evidence-Code>
+<Publication ID='META:PUB-WHITE95' orgid='META' frameid='PUB-WHITE95' detail='full'><year datatype='integer'>1995</year>
+<author datatype='string'>White, D.</author>
+<title datatype='string'>The physiology and biochemistry of prokaryotes</title>
+<source datatype='string'>Oxford University Press.</source>
+</Publication>
+</evidence>
+<comment datatype='string'>The Calvin cycle is the major &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; fixation pathway, found in all in green plants and many autotrophic bacteria.
+&lt;p&gt;
+In this cycle, one &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; molecule at a time is added to the acceptor molecule &lt;a href=&quot;/compound?orgid=META&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt; (RuBP) generating two molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;. The &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt; is then passed through a cyclic series of reactions in which the acceptor molecule (RuBP) is regenerated. Out of the six carbons present in two molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, five are recycled and only one remains available for biosynthesis. Since in each turn of the cycle only one carbon atom is assimilated, the cycle must go through three turns to produce one molecule of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, or six turns to produce one molecule of a hexose sugar.
+&lt;p&gt;
+The Calvin cycle can be divided into three stages: fixation, reduction and regeneration.
+&lt;p&gt;
+In the first stage the reductive carboxylation of &lt;a href=&quot;/compound?orgid=META&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt; (RuBP) is catalyzed by the the enzyme &lt;a href=&quot;/META/NEW-IMAGE?type=ENZYME&amp;object=CPLX2PN3-59&quot;&gt;ribulose bisphosphate carboxylase/oxygenase&lt;/a&gt; (RubisCO), forming 2 molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;. 
+&lt;p&gt;
+In the second stage these two molecules are phosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=DPG&quot;&gt;3-phospho-D-glyceroyl phosphate&lt;/a&gt; and then reductively dephosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt;. The process requires reducing power, in the form of NADPH, for the activity of &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-1.2.1.13&quot;&gt;EC 1.2.1.13, glyceraldehyde-3-phosphate dehydrogenase (NADP&lt;small&gt;&lt;sup&gt;+&lt;/sup&gt;&lt;/small&gt;) (phosphorylating)&lt;/a&gt;. The reducing power is provided by the &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-101&quot;&gt;photosynthesis light reactions I (plastocyanin)&lt;/a&gt;.
+In three turns of the cycle 3 molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; are fixed, and 6 molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; are formed. Out of these, one is diverted to biosynthetic pathways, while the other 5 are used up in the next stage.
+&lt;p&gt;
+The third stage is the most complicated one. It consists of a series of rearrangements that eventually regenerate RuBP.
+Some of the &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; molecules are converted to &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt;. &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt; are then condensed into &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-16-DIPHOSPHATE&quot;&gt;&amp;beta;-D-fructofuranose 1,6-bisphosphate&lt;/a&gt; which is dephosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt;. &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; is then combined with another &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; molecule and cleaved into &lt;a href=&quot;/compound?orgid=META&amp;id=XYLULOSE-5-PHOSPHATE&quot;&gt;D-xylulose 5-phosphate&lt;/a&gt; (X5P) and &lt;a href=&quot;/compound?orgid=META&amp;id=ERYTHROSE-4P&quot;&gt;D-erythrose 4-phosphate&lt;/a&gt;. The later is combined with &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt; forming &lt;a href=&quot;/compound?orgid=META&amp;id=D-SEDOHEPTULOSE-1-7-P2&quot;&gt;D-sedoheptulose 1,7-bisphosphate&lt;/a&gt;, which is dephosphorylated to &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P&quot; title=&quot;&lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P''&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is an intermediate molecule of primary glucose metabolism.&quot;&gt;D-sedoheptulose 7-phosphate&lt;/a&gt;. 
+&lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P&quot; title=&quot;&lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P''&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is an intermediate molecule of primary glucose metabolism.&quot;&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is combined with &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; and is cleaved into a second &lt;a href=&quot;/compound?orgid=META&amp;id=XYLULOSE-5-PHOSPHATE&quot;&gt;D-xylulose 5-phosphate&lt;/a&gt; and a &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=RIBOSE-5P&quot; title=&quot;Please note that the structure shown here is that of &lt;a href=''/compound?orgid=META&amp;id=CPD-15895''&gt;&lt;i&gt;aldehydo&lt;/i&gt;-D-ribose 5-phosphate&lt;/a&gt;, and is not accurate for this generic class, which also contains the furanose forms of D-ribose 5-phosphate.&quot;&gt;D-ribose 5-phosphate&lt;/a&gt; (R5P). Both of these are converted into &lt;a href=&quot;/compound?orgid=META&amp;id=RIBULOSE-5P&quot;&gt;D-ribulose 5-phosphate&lt;/a&gt;, which is finally phosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt;, regenerating the key &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt;-acceptor molecule.
+&lt;p&gt;
+During this cycle, especially during the day, &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt;, or &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; can be siphoned off and sent out to the cytosol via the triose phosphates transporter for &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=SUCSYN-PWY&quot;&gt;sucrose biosynthesis I (from photosynthesis)&lt;/a&gt;. Plants need to carefully control the carbon flux between this and competeing pathways to make sure that the Calvin cycle can proceed [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/19325167&quot;&gt;Serrato09&lt;/a&gt;].</comment>
+<reaction-list><Reaction resource='getxml?META:RIB5PISOM-RXN' orgid='META' frameid='RIB5PISOM-RXN'/><Reaction resource='getxml?META:PHOSPHORIBULOKINASE-RXN' orgid='META' frameid='PHOSPHORIBULOKINASE-RXN'/><Reaction resource='getxml?META:RIBULP3EPIM-RXN' orgid='META' frameid='RIBULP3EPIM-RXN'/><Reaction resource='getxml?META:SEDOHEPTULOSE-BISPHOSPHATASE-RXN' orgid='META' frameid='SEDOHEPTULOSE-BISPHOSPHATASE-RXN'/><Reaction resource='getxml?META:2TRANSKETO-RXN' orgid='META' frameid='2TRANSKETO-RXN'/><Reaction resource='getxml?META:1TRANSKETO-RXN' orgid='META' frameid='1TRANSKETO-RXN'/><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/><Reaction resource='getxml?META:SEDOBISALDOL-RXN' orgid='META' frameid='SEDOBISALDOL-RXN'/><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/><Reaction resource='getxml?META:1.2.1.13-RXN' orgid='META' frameid='1.2.1.13-RXN'/><Reaction resource='getxml?META:PHOSGLYPHOS-RXN' orgid='META' frameid='PHOSGLYPHOS-RXN'/><Reaction resource='getxml?META:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN' orgid='META' frameid='RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN'/></reaction-list>
 <reaction-ordering><Reaction resource='getxml?META:RIB5PISOM-RXN' orgid='META' frameid='RIB5PISOM-RXN'/><predecessor-reactions><Reaction resource='getxml?META:1TRANSKETO-RXN' orgid='META' frameid='1TRANSKETO-RXN'/></predecessor-reactions>
 </reaction-ordering>
 <reaction-ordering><Reaction resource='getxml?META:PHOSPHORIBULOKINASE-RXN' orgid='META' frameid='PHOSPHORIBULOKINASE-RXN'/><predecessor-reactions><Reaction resource='getxml?META:RIBULP3EPIM-RXN' orgid='META' frameid='RIBULP3EPIM-RXN'/></predecessor-reactions>
@@ -297,32 +107,284 @@
 </reaction-ordering>
 <reaction-ordering><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/><predecessor-reactions><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/></predecessor-reactions>
 </reaction-ordering>
+<taxonomic-range><Organism ID='META:TAX-1117' orgid='META' frameid='TAX-1117' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-1798711' orgid='META' frameid='TAX-1798711' class='true'/></parent>
+<synonym datatype='string'>Oxyphotobacteria</synonym>
+<synonym datatype='string'>Oxygenic photosynthetic bacteria</synonym>
+<synonym datatype='string'>cyanophytes</synonym>
+<synonym datatype='string'>Cyanophyta</synonym>
+<synonym datatype='string'>Cyanophycota</synonym>
+<synonym datatype='string'>Cyanobacteria</synonym>
+<synonym datatype='string'>blue-green bacteria</synonym>
+<synonym datatype='string'>blue-green algae</synonym>
+<common-name datatype='string'>Cyanobacteriota</common-name>
+<rank>phylum</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>1117</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1117</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-39119' orgid='META' frameid='TAX-39119' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
+<synonym datatype='string'>silicoflagellates</synonym>
+<synonym datatype='string'>Silicoflagellata</synonym>
+<common-name datatype='string'>Dictyochophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>39119</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=39119</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-38254' orgid='META' frameid='TAX-38254' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
+<synonym datatype='string'>Glaucophyta</synonym>
+<synonym datatype='string'>Glaucophyceae</synonym>
+<synonym datatype='string'>glaucocystophytes</synonym>
+<common-name datatype='string'>Glaucocystophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>38254</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=38254</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-29197' orgid='META' frameid='TAX-29197' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-136419' orgid='META' frameid='TAX-136419' class='true'/></parent>
+<synonym datatype='string'>chlorarachniophytes</synonym>
+<synonym datatype='string'>Chlorarachniophyta</synonym>
+<synonym datatype='string'>Chlorarachnida</synonym>
+<common-name datatype='string'>Chlorarachniophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>29197</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=29197</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-38410' orgid='META' frameid='TAX-38410' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
+<synonym datatype='string'>raphidophytes</synonym>
+<synonym datatype='string'>Raphidophyta</synonym>
+<synonym datatype='string'>Chloromonadophyceae</synonym>
+<common-name datatype='string'>Raphidophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>38410</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=38410</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-5747' orgid='META' frameid='TAX-5747' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
+<synonym datatype='string'>eustigmatophytes</synonym>
+<synonym datatype='string'>Eustigmatophyta</synonym>
+<common-name datatype='string'>Eustigmatophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>5747</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=5747</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2864' orgid='META' frameid='TAX-2864' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33630' orgid='META' frameid='TAX-33630' class='true'/></parent>
+<synonym datatype='string'>Pyrrophyta</synonym>
+<synonym datatype='string'>Pyrrhophyta</synonym>
+<synonym datatype='string'>dinophytes</synonym>
+<synonym datatype='string'>Dinophyta</synonym>
+<synonym datatype='string'>Dinophycidae</synonym>
+<synonym datatype='string'>dinoflagellates &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>dinoflagellates</synonym>
+<synonym datatype='string'>Dinoflagellata</synonym>
+<common-name datatype='string'>Dinophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2864</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2864</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-877183' orgid='META' frameid='TAX-877183' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33630' orgid='META' frameid='TAX-33630' class='true'/></parent>
+<synonym datatype='string'>Chromerida</synonym>
+<common-name datatype='string'>Colpodellida</common-name>
+<rank>clade</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>877183</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=877183</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2836' orgid='META' frameid='TAX-2836' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
+<synonym datatype='string'>diatoms &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>diatoms</synonym>
+<synonym datatype='string'>Diatomophyceae</synonym>
+<synonym datatype='string'>Diatomea</synonym>
+<synonym datatype='string'>Diatomeae</synonym>
+<synonym datatype='string'>bacillariophytes</synonym>
+<common-name datatype='string'>Bacillariophyta</common-name>
+<rank>phylum</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2836</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2836</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-3027' orgid='META' frameid='TAX-3027' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
+<synonym datatype='string'>cryptophytes</synonym>
+<synonym datatype='string'>Cryptophyta</synonym>
+<synonym datatype='string'>cryptomonads &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>cryptomonads</synonym>
+<synonym datatype='string'>Cryptomonadida</synonym>
+<common-name datatype='string'>Cryptophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3027</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3027</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2830' orgid='META' frameid='TAX-2830' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2608109' orgid='META' frameid='TAX-2608109' class='true'/></parent>
+<synonym datatype='string'>Prymnesiophyta</synonym>
+<synonym datatype='string'>Haptophyceae</synonym>
+<synonym datatype='string'>coccolithophorids</synonym>
+<common-name datatype='string'>Haptophyta</common-name>
+<rank>phylum</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2830</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2830</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2833' orgid='META' frameid='TAX-2833' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-569578' orgid='META' frameid='TAX-569578' class='true'/></parent>
+<synonym datatype='string'>yellow-green algae &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>yellow-green algae</synonym>
+<synonym datatype='string'>Xanthophyta</synonym>
+<synonym datatype='string'>Tribophyceae</synonym>
+<synonym datatype='string'>Heterocontae</synonym>
+<common-name datatype='string'>Xanthophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2833</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2833</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-3041' orgid='META' frameid='TAX-3041' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-33090' orgid='META' frameid='TAX-33090' class='true'/></parent>
+<synonym datatype='string'>green algae &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>green algae</synonym>
+<synonym datatype='string'>Chlorophyta sensu Bremer 1985</synonym>
+<synonym datatype='string'>Chlorophycota</synonym>
+<common-name datatype='string'>Chlorophyta</common-name>
+<rank>phylum</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3041</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3041</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-33682' orgid='META' frameid='TAX-33682' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2611352' orgid='META' frameid='TAX-2611352' class='true'/></parent>
+<synonym datatype='string'>Euglenozoans</synonym>
+<common-name datatype='string'>Euglenozoa</common-name>
+<rank>phylum</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>33682</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33682</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2763' orgid='META' frameid='TAX-2763' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
+<synonym datatype='string'>rhodophytes</synonym>
+<synonym datatype='string'>Rhodophycota</synonym>
+<synonym datatype='string'>Rhodophyceae</synonym>
+<synonym datatype='string'>red algae &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>red algae</synonym>
+<common-name datatype='string'>Rhodophyta</common-name>
+<rank>phylum</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2763</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2763</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2870' orgid='META' frameid='TAX-2870' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-569578' orgid='META' frameid='TAX-569578' class='true'/></parent>
+<synonym datatype='string'>Phaeophyta</synonym>
+<synonym datatype='string'>Fucophyceae</synonym>
+<synonym datatype='string'>Chromophycota</synonym>
+<synonym datatype='string'>brown algae &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>brown algae</synonym>
+<common-name datatype='string'>Phaeophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2870</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2870</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2825' orgid='META' frameid='TAX-2825' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2696291' orgid='META' frameid='TAX-2696291' class='true'/></parent>
+<synonym datatype='string'>golden algae &lt;genbank common name&gt;</synonym>
+<synonym datatype='string'>golden algae</synonym>
+<synonym datatype='string'>chrysophytes</synonym>
+<synonym datatype='string'>Chrysophyta</synonym>
+<synonym datatype='string'>chrysomonads</synonym>
+<synonym datatype='string'>Chrysomonadida</synonym>
+<synonym datatype='string'>Chrysomonada</synonym>
+<common-name datatype='string'>Chrysophyceae</common-name>
+<rank>class</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2825</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2825</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2' orgid='META' frameid='TAX-2' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<synonym datatype='string'>eubacteria</synonym>
+<synonym datatype='string'>Bacteria</synonym>
+<common-name datatype='string'>Bacteria &lt;bacteria&gt;</common-name>
+<rank>superkingdom</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-33090' orgid='META' frameid='TAX-33090' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2759' orgid='META' frameid='TAX-2759' class='true'/></parent>
+<synonym datatype='string'>green plants &lt;common name&gt;</synonym>
+<synonym datatype='string'>green plants</synonym>
+<synonym datatype='string'>Chloroplastida</synonym>
+<synonym datatype='string'>chlorophyte/embryophyte group</synonym>
+<synonym datatype='string'>Chlorophyta/Embryophyta group</synonym>
+<synonym datatype='string'>Chlorobionta</synonym>
+<common-name datatype='string'>Viridiplantae</common-name>
+<rank>kingdom</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>33090</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=33090</dblink-URL>
+</dblink>
+</Organism>
+</taxonomic-range>
 <species><Organism ID='META:TAX-3055' orgid='META' frameid='TAX-3055' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3052' orgid='META' frameid='TAX-3052' class='true'/></parent>
 <synonym datatype='string'>Chlamydomonas smithii</synonym>
 <synonym datatype='string'>Chlamydomonas reinhardtii strain CC-1373</synonym>
+<common-name datatype='string'>Chlamydomonas reinhardtii</common-name>
+<rank>species</rank>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>3055</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3055</dblink-URL>
 </dblink>
-<common-name datatype='string'>Chlamydomonas reinhardtii</common-name>
-<rank>species</rank>
 </Organism>
 </species>
 <species><Organism ID='META:TAX-4097' orgid='META' frameid='TAX-4097' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-4085' orgid='META' frameid='TAX-4085' class='true'/></parent>
 <synonym datatype='string'>tobacco</synonym>
 <synonym datatype='string'>common tobacco</synonym>
 <synonym datatype='string'>American tobacco</synonym>
+<common-name datatype='string'>Nicotiana tabacum</common-name>
+<rank>species</rank>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>4097</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=4097</dblink-URL>
 </dblink>
-<common-name datatype='string'>Nicotiana tabacum</common-name>
-<rank>species</rank>
 </Organism>
 </species>
 <species><Organism ID='META:TAX-1140' orgid='META' frameid='TAX-1140' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-32046' orgid='META' frameid='TAX-32046' class='true'/></parent>
+<strain-name datatype='string'>PCC 7942 = FACHB-805</strain-name>
 <synonym datatype='string'>Synechococcus elongatus PCC 7942</synonym>
 <synonym datatype='string'>Synechococcus elongatus PCC 7942 = FACHB-805</synonym>
 <synonym datatype='string'>Synechococcus sp. PCC 7942</synonym>
@@ -332,14 +394,13 @@
 <synonym datatype='string'>Synechococcus leopoliensis strain PCC 7942</synonym>
 <synonym datatype='string'>Synechococcus elongatus PCC7942</synonym>
 <synonym datatype='string'>Anacystis nidulans R2</synonym>
-<strain-name datatype='string'>PCC 7942 = FACHB-805</strain-name>
+<common-name datatype='string'>Synechococcus elongatus</common-name>
+<rank>strain</rank>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>1140</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1140</dblink-URL>
 </dblink>
-<common-name datatype='string'>Synechococcus elongatus</common-name>
-<rank>strain</rank>
 </Organism>
 </species>
 <species><Organism ID='META:TAX-1148' orgid='META' frameid='TAX-1148' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-2640012' orgid='META' frameid='TAX-2640012' class='true'/></parent>
@@ -352,18 +413,18 @@
 <synonym datatype='string'>Synechocystis sp. (ATCC 27184)</synonym>
 <synonym datatype='string'>Aphanocapsa sp. (strain N-1)</synonym>
 <synonym datatype='string'>Aphanocapsa sp. N-1</synonym>
+<common-name datatype='string'>Synechocystis sp. PCC 6803</common-name>
+<rank>species</rank>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>1148</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1148</dblink-URL>
 </dblink>
-<common-name datatype='string'>Synechocystis sp. PCC 6803</common-name>
-<rank>species</rank>
 </Organism>
 </species>
 <species><Organism ID='META:ORG-5993' orgid='META' frameid='ORG-5993' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3702' orgid='META' frameid='TAX-3702' class='true'/></parent>
-<synonym datatype='string'>Arabidopsis thaliana col</synonym>
 <strain-name datatype='string'>col</strain-name>
+<synonym datatype='string'>Arabidopsis thaliana col</synonym>
 <common-name datatype='string'>Arabidopsis thaliana</common-name>
 <rank>strain</rank>
 </Organism>
@@ -371,12 +432,8 @@
 <species><Organism ID='META:ORG4FS-2' orgid='META' frameid='ORG4FS-2' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3702' orgid='META' frameid='TAX-3702' class='true'/></parent>
 <synonym datatype='string'>Arabidopsis thaliana Ws</synonym>
 <synonym datatype='string'>Arabidopsis thaliana Wassilewskija</synonym>
-<subspecies-name datatype='string'>Ws</subspecies-name>
 <common-name datatype='string'>Arabidopsis thaliana</common-name>
-<rank>subspecies</rank>
-<comment datatype='string'>The Ws (Wassilewskija) ecotype was originally collected in Wassilewskija, Russia. Links to information about Ws &lt;A href=&quot;http://&quot;http://www.arabidopsis.org/servlets/Search?action=new_search&amp;type=ecotype&gt;seed stocks&lt;/A&gt; are available at TAIR. </comment>
 <citation><Publication ID='META:PUB-20463089' orgid='META' frameid='PUB-20463089' detail='full'><year datatype='integer'>2010</year>
-<source datatype='string'>Plant Physiol 153(3);1293-310</source>
 <pubmed-id datatype='string'>20463089</pubmed-id>
 <author datatype='string'>Huang M</author>
 <author datatype='string'>Abel C</author>
@@ -387,10 +444,10 @@
 <author datatype='string'>Gershenzon J</author>
 <author datatype='string'>Tholl D</author>
 <title datatype='string'>Variation of herbivore-induced volatile terpenes among arabidopsis ecotypes depends on allelic differences and subcellular targeting of two terpene synthases, TPS02 and TPS03.</title>
+<source datatype='string'>Plant Physiol 153(3);1293-310</source>
 </Publication>
 </citation>
 <citation><Publication ID='META:PUB-12694277' orgid='META' frameid='PUB-12694277' detail='full'><year datatype='integer'>2003</year>
-<source datatype='string'>Mol Ecol 12(5);1125-35</source>
 <pubmed-id datatype='string'>12694277</pubmed-id>
 <author datatype='string'>Traw MB</author>
 <author datatype='string'>Kim J</author>
@@ -398,10 +455,10 @@
 <author datatype='string'>Cipollini DF</author>
 <author datatype='string'>Bergelson J</author>
 <title datatype='string'>Negative cross-talk between salicylate- and jasmonate-mediated pathways in the Wassilewskija ecotype of Arabidopsis thaliana.</title>
+<source datatype='string'>Mol Ecol 12(5);1125-35</source>
 </Publication>
 </citation>
 <citation><Publication ID='META:PUB-9286109' orgid='META' frameid='PUB-9286109' detail='full'><year datatype='integer'>1997</year>
-<source datatype='string'>Plant Cell 9(8);1317-26</source>
 <pubmed-id datatype='string'>9286109</pubmed-id>
 <author datatype='string'>Aukerman MJ</author>
 <author datatype='string'>Hirschfeld M</author>
@@ -411,8 +468,12 @@
 <author datatype='string'>Amasino RM</author>
 <author datatype='string'>Sharrock RA</author>
 <title datatype='string'>A deletion in the PHYD gene of the Arabidopsis Wassilewskija ecotype defines a role for phytochrome D in red/far-red light sensing.</title>
+<source datatype='string'>Plant Cell 9(8);1317-26</source>
 </Publication>
 </citation>
+<comment datatype='string'>The Ws (Wassilewskija) ecotype was originally collected in Wassilewskija, Russia. Links to information about Ws &lt;A href=&quot;http://&quot;http://www.arabidopsis.org/servlets/Search?action=new_search&amp;type=ecotype&gt;seed stocks&lt;/A&gt; are available at TAIR. </comment>
+<rank>subspecies</rank>
+<subspecies-name datatype='string'>Ws</subspecies-name>
 </Organism>
 </species>
 <reaction-layout><Reaction resource='getxml?META:RIB5PISOM-RXN' orgid='META' frameid='RIB5PISOM-RXN'/><direction>L2R</direction>
@@ -477,48 +538,30 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pmn.plantcyc.org/ARA/NEW-IMAGE?type=PATHWAY&amp;object=CALVIN-PWY</dblink-URL>
 </dblink>
-<common-name datatype='string'>Calvin-Benson-Bassham cycle</common-name>
-<reaction-list><Reaction resource='getxml?META:RIB5PISOM-RXN' orgid='META' frameid='RIB5PISOM-RXN'/><Reaction resource='getxml?META:PHOSPHORIBULOKINASE-RXN' orgid='META' frameid='PHOSPHORIBULOKINASE-RXN'/><Reaction resource='getxml?META:RIBULP3EPIM-RXN' orgid='META' frameid='RIBULP3EPIM-RXN'/><Reaction resource='getxml?META:SEDOHEPTULOSE-BISPHOSPHATASE-RXN' orgid='META' frameid='SEDOHEPTULOSE-BISPHOSPHATASE-RXN'/><Reaction resource='getxml?META:2TRANSKETO-RXN' orgid='META' frameid='2TRANSKETO-RXN'/><Reaction resource='getxml?META:1TRANSKETO-RXN' orgid='META' frameid='1TRANSKETO-RXN'/><Reaction resource='getxml?META:F16BDEPHOS-RXN' orgid='META' frameid='F16BDEPHOS-RXN'/><Reaction resource='getxml?META:SEDOBISALDOL-RXN' orgid='META' frameid='SEDOBISALDOL-RXN'/><Reaction resource='getxml?META:F16ALDOLASE-RXN' orgid='META' frameid='F16ALDOLASE-RXN'/><Reaction resource='getxml?META:TRIOSEPISOMERIZATION-RXN' orgid='META' frameid='TRIOSEPISOMERIZATION-RXN'/><Reaction resource='getxml?META:1.2.1.13-RXN' orgid='META' frameid='1.2.1.13-RXN'/><Reaction resource='getxml?META:PHOSGLYPHOS-RXN' orgid='META' frameid='PHOSGLYPHOS-RXN'/><Reaction resource='getxml?META:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN' orgid='META' frameid='RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN'/></reaction-list>
+<in-pathway><Pathway resource='getxml?META:PWY-7218' orgid='META' frameid='PWY-7218'/><Pathway resource='getxml?META:PWY-6886' orgid='META' frameid='PWY-6886'/><Pathway resource='getxml?META:PHOTOALL-PWY' orgid='META' frameid='PHOTOALL-PWY'/></in-pathway>
 <credits><created><date datatype='date'>1999-01-12</date>
 <Person ID='META:pellegrini-toole' orgid='META' frameid='pellegrini-toole' detail='full'><common-name datatype='string'>Alida Pellegrini-Toole</common-name>
+<comment datatype='string'>Alida Pellegrini-Toole was a curator of the MetaCyc database at the Marine Biological Laboratory (MBL) at Woods Hole, where she worked with &lt;a href=&quot;/META/NEW-IMAGE?type=People&amp;object=riley&quot;&gt;Monica Riley&lt;/a&gt;.</comment>
 <affiliations><Organization ID='META:O-18' orgid='META' frameid='O-18' detail='full'><common-name datatype='string'>Marine Biological Laboratory</common-name>
 </Organization>
 </affiliations>
-<comment datatype='string'>Alida Pellegrini-Toole was a curator of the MetaCyc database at the Marine Biological Laboratory (MBL) at Woods Hole, where she worked with &lt;a href=&quot;/META/NEW-IMAGE?type=People&amp;object=riley&quot;&gt;Monica Riley&lt;/a&gt;.</comment>
 </Person>
 <Organization resource='#META:O-18' orgid='META' frameid='O-18'/></created>
 <revised><date datatype='date'>2006-11-09</date>
 <Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
-<email datatype='string'>caspi@ai.sri.com</email>
-<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-</Organization>
-</affiliations>
 <comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
-</comment>
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
 </credits>
-<comment datatype='string'>The Calvin cycle is the major &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; fixation pathway, found in all in green plants and many autotrophic bacteria.
-&lt;p&gt;
-In this cycle, one &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; molecule at a time is added to the acceptor molecule &lt;a href=&quot;/compound?orgid=META&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt; (RuBP) generating two molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;. The &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt; is then passed through a cyclic series of reactions in which the acceptor molecule (RuBP) is regenerated. Out of the six carbons present in two molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, five are recycled and only one remains available for biosynthesis. Since in each turn of the cycle only one carbon atom is assimilated, the cycle must go through three turns to produce one molecule of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, or six turns to produce one molecule of a hexose sugar.
-&lt;p&gt;
-The Calvin cycle can be divided into three stages: fixation, reduction and regeneration.
-&lt;p&gt;
-In the first stage the reductive carboxylation of &lt;a href=&quot;/compound?orgid=META&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt; (RuBP) is catalyzed by the the enzyme &lt;a href=&quot;/META/NEW-IMAGE?type=ENZYME&amp;object=CPLX-105&quot;&gt;ribulose bisphosphate carboxylase/oxygenase&lt;/a&gt; (RubisCO), forming 2 molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;. 
-&lt;p&gt;
-In the second stage these two molecules are phosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=DPG&quot;&gt;3-phospho-D-glyceroyl phosphate&lt;/a&gt; and then reductively dephosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt;. The process requires reducing power, in the form of NADPH, for the activity of &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-1.2.1.13&quot;&gt;EC 1.2.1.13, glyceraldehyde-3-phosphate dehydrogenase (NADP&lt;small&gt;&lt;sup&gt;+&lt;/sup&gt;&lt;/small&gt;) (phosphorylating)&lt;/a&gt;. The reducing power is provided by the &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-101&quot;&gt;photosynthesis light reactions&lt;/a&gt;.
-In three turns of the cycle 3 molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; are fixed, and 6 molecules of &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; are formed. Out of these, one is diverted to biosynthetic pathways, while the other 5 are used up in the next stage.
-&lt;p&gt;
-The third stage is the most complicated one. It consists of a series of rearrangements that eventually regenerate RuBP.
-Some of the &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; molecules are converted to &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt;. &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt; are then condensed into &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-16-DIPHOSPHATE&quot;&gt;&amp;beta;-D-fructofuranose 1,6-bisphosphate&lt;/a&gt; which is dephosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt;. &lt;a href=&quot;/compound?orgid=META&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; is then combined with another &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; molecule and cleaved into &lt;a href=&quot;/compound?orgid=META&amp;id=XYLULOSE-5-PHOSPHATE&quot;&gt;D-xylulose 5-phosphate&lt;/a&gt; (X5P) and &lt;a href=&quot;/compound?orgid=META&amp;id=ERYTHROSE-4P&quot;&gt;D-erythrose 4-phosphate&lt;/a&gt;. The later is combined with &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt; forming &lt;a href=&quot;/compound?orgid=META&amp;id=D-SEDOHEPTULOSE-1-7-P2&quot;&gt;D-sedoheptulose 1,7-bisphosphate&lt;/a&gt;, which is dephosphorylated to &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P&quot; title=&quot;&lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P''&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is an intermediate molecule of primary glucose metabolism.&quot;&gt;D-sedoheptulose 7-phosphate&lt;/a&gt;. 
-&lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P&quot; title=&quot;&lt;a href=''/META/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P''&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is an intermediate molecule of primary glucose metabolism.&quot;&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is combined with &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; and is cleaved into a second &lt;a href=&quot;/compound?orgid=META&amp;id=XYLULOSE-5-PHOSPHATE&quot;&gt;D-xylulose 5-phosphate&lt;/a&gt; and a &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=RIBOSE-5P&quot; title=&quot;Please note that the structure shown here is that of &lt;a href=''/compound?orgid=META&amp;id=CPD-15895''&gt;&lt;i&gt;aldehydo&lt;/i&gt;-D-ribose 5-phosphate&lt;/a&gt;, and is not accurate for this generic class, which also contains the furanose forms of D-ribose 5-phosphate.&quot;&gt;D-ribose 5-phosphate&lt;/a&gt; (R5P). Both of these are converted into &lt;a href=&quot;/compound?orgid=META&amp;id=RIBULOSE-5P&quot;&gt;D-ribulose 5-phosphate&lt;/a&gt;, which is finally phosphorylated to &lt;a href=&quot;/compound?orgid=META&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt;, regenerating the key &lt;a href=&quot;/compound?orgid=META&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt;-acceptor molecule.
-&lt;p&gt;
-During this cycle, especially during the day, &lt;a href=&quot;/compound?orgid=META&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt;, or &lt;a href=&quot;/compound?orgid=META&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; can be siphoned off and sent out to the cytosol via the triose phosphates transporter for &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=SUCSYN-PWY&quot;&gt;sucrose biosynthesis I (from photosynthesis)&lt;/a&gt;. Plants need to carefully control the carbon flux between this and competeing pathways to make sure that the Calvin cycle can proceed [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/19325167&quot;&gt;Serrato09&lt;/a&gt;].</comment>
 <pathway-link><Compound resource='getxml?META:CARBON-DIOXIDE' orgid='META' frameid='CARBON-DIOXIDE'/><incoming-link-target datatype='string'>input to the pathway</incoming-link-target>
 </pathway-link>
 <pathway-link><Compound resource='getxml?META:G3P' orgid='META' frameid='G3P'/><link-target><Pathway resource='getxml?META:SUCSYN-PWY' orgid='META' frameid='SUCSYN-PWY'/></link-target>
@@ -527,49 +570,5 @@ During this cycle, especially during the day, &lt;a href=&quot;/compound?orgid=M
 </pathway-link>
 <pathway-link><Compound resource='getxml?META:DIHYDROXY-ACETONE-PHOSPHATE' orgid='META' frameid='DIHYDROXY-ACETONE-PHOSPHATE'/><link-target><Pathway resource='getxml?META:SUCSYN-PWY' orgid='META' frameid='SUCSYN-PWY'/></link-target>
 </pathway-link>
-<super-pathways><Pathway resource='getxml?META:PWY-7218' orgid='META' frameid='PWY-7218'/><Pathway resource='getxml?META:PWY-6886' orgid='META' frameid='PWY-6886'/><Pathway resource='getxml?META:PHOTOALL-PWY' orgid='META' frameid='PHOTOALL-PWY'/></super-pathways>
-<in-pathway><Pathway resource='getxml?META:PWY-7218' orgid='META' frameid='PWY-7218'/><Pathway resource='getxml?META:PWY-6886' orgid='META' frameid='PWY-6886'/><Pathway resource='getxml?META:PHOTOALL-PWY' orgid='META' frameid='PHOTOALL-PWY'/></in-pathway>
-<citation><Publication ID='META:PUB-MATTHEWSVANHOLDEII' orgid='META' frameid='PUB-MATTHEWSVANHOLDEII' detail='full'><year datatype='integer'>1995</year>
-<source datatype='string'>The Benjamin/Cummings Publishing Company Menlo Park, CA</source>
-<author datatype='string'>Mathews CK</author>
-<author datatype='string'>van Holde KE</author>
-<title datatype='string'>Biochemistry, Second edition</title>
-</Publication>
-</citation>
-<citation><Publication ID='META:PUB-STEWART' orgid='META' frameid='PUB-STEWART' detail='full'><year datatype='integer'>1974</year>
-<source datatype='string'>University of California Presss, Berkeley and Los Angeles</source>
-<author datatype='string'>Stewart WDP, editor</author>
-<title datatype='string'>Botanical Monographs Volume 10: Algal Physiology and Biochemistry</title>
-</Publication>
-</citation>
-<citation><Publication ID='META:PUB-STITT91' orgid='META' frameid='PUB-STITT91' detail='full'><year datatype='integer'>1991</year>
-<source datatype='string'>Planta, 183:555-566</source>
-<author datatype='string'>Sitt, M</author>
-<author datatype='string'>Quick, WP</author>
-<author datatype='string'>Schurr U</author>
-<author datatype='string'>Schulze ED</author>
-<author datatype='string'>Rodermel SR</author>
-<author datatype='string'>Bogorad L</author>
-<title datatype='string'>Decreased ribulose-1,5-bisphosphate carboxylase-oxygenase in transgenic tobacco transformed with 'antisense' rbcS II. Flux-control coefficients for photosynthesis in varying light, CO2, and air humidity</title>
-</Publication>
-</citation>
-<evidence><Evidence-Code ID='META:EV-EXP-TAS' orgid='META' frameid='EV-EXP-TAS' detail='full' class='true'><parent><Evidence-Code resource='getxml?META:EV-EXP' orgid='META' frameid='EV-EXP' class='true'/></parent>
-<common-name datatype='string'>Traceable author statement to experimental support</common-name>
-<comment datatype='string'>Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
-in another database -- that itself did not describe an experiment supporting the
-assertion.  However, the statement did reference another publication describing an experiment 
-that supports the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
-is that the former code is used when it is certain that experimental evidence supports the
-assertion, and the latter code is used when there is a possibility that an experiment was
-not done to support the assertion.
-In general, references to the primary literature are preferred,
-but this code can be used when the original article is difficult to locate.</comment>
-</Evidence-Code>
-<Publication ID='META:PUB-WHITE95' orgid='META' frameid='PUB-WHITE95' detail='full'><year datatype='integer'>1995</year>
-<source datatype='string'>Oxford University Press.</source>
-<author datatype='string'>White, D.</author>
-<title datatype='string'>The physiology and biochemistry of prokaryotes</title>
-</Publication>
-</evidence>
 </Pathway>
 </ptools-xml>

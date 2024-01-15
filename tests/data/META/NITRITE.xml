@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:NITRITE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:NITRITE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:NITRITE</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:NITRITE' orgid='META' frameid='NITRITE' detail='full'><parent><Compound resource='getxml?META:Inorganic-Anions' orgid='META' frameid='Inorganic-Anions' class='true'/></parent>
@@ -13,13 +13,88 @@
 <string title='smiles'>N([O-])=O</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-23850' orgid='META' frameid='RXN-23850'/><Reaction resource='getxml?META:RXN-16471' orgid='META' frameid='RXN-16471'/><Reaction resource='getxml?META:R201-RXN' orgid='META' frameid='R201-RXN'/><Reaction resource='getxml?META:RXN-15256' orgid='META' frameid='RXN-15256'/><Reaction resource='getxml?META:R204-RXN' orgid='META' frameid='R204-RXN'/><Reaction resource='getxml?META:RXN-15252' orgid='META' frameid='RXN-15252'/><Reaction resource='getxml?META:R203-RXN' orgid='META' frameid='R203-RXN'/><Reaction resource='getxml?META:R202-RXN' orgid='META' frameid='R202-RXN'/><Reaction resource='getxml?META:RXN-15257' orgid='META' frameid='RXN-15257'/><Reaction resource='getxml?META:RXN-22527' orgid='META' frameid='RXN-22527'/><Reaction resource='getxml?META:RXN-11236' orgid='META' frameid='RXN-11236'/><Reaction resource='getxml?META:RXN-21815' orgid='META' frameid='RXN-21815'/><Reaction resource='getxml?META:NITRITE-REDUCTASE-CYTOCHROME-RXN' orgid='META' frameid='NITRITE-REDUCTASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:RXN-16803' orgid='META' frameid='RXN-16803'/><Reaction resource='getxml?META:RXN-16802' orgid='META' frameid='RXN-16802'/><Reaction resource='getxml?META:RXN-16801' orgid='META' frameid='RXN-16801'/><Reaction resource='getxml?META:RXN-16800' orgid='META' frameid='RXN-16800'/><Reaction resource='getxml?META:RXN-16799' orgid='META' frameid='RXN-16799'/><Reaction resource='getxml?META:RXN-16797' orgid='META' frameid='RXN-16797'/><Reaction resource='getxml?META:RXN-16798' orgid='META' frameid='RXN-16798'/><Reaction resource='getxml?META:RXN-16794' orgid='META' frameid='RXN-16794'/><Reaction resource='getxml?META:RXN-16795' orgid='META' frameid='RXN-16795'/><Reaction resource='getxml?META:RXN-16796' orgid='META' frameid='RXN-16796'/><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-239' orgid='META' frameid='TRANS-RXN0-239'/><Reaction resource='getxml?META:TRANS-RXN-26' orgid='META' frameid='TRANS-RXN-26'/><Reaction resource='getxml?META:3-ACI-NITROPROPANOATE-OXIDASE-RXN' orgid='META' frameid='3-ACI-NITROPROPANOATE-OXIDASE-RXN'/><Reaction resource='getxml?META:RXN-16306' orgid='META' frameid='RXN-16306'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-CYTOCHROME-RXN' orgid='META' frameid='NITRATE-REDUCTASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:RXN-8821' orgid='META' frameid='RXN-8821'/><Reaction resource='getxml?META:RXN-16805' orgid='META' frameid='RXN-16805'/><Reaction resource='getxml?META:RXN-8819' orgid='META' frameid='RXN-8819'/><Reaction resource='getxml?META:RXN-8825' orgid='META' frameid='RXN-8825'/><Reaction resource='getxml?META:RXN-8814' orgid='META' frameid='RXN-8814'/><Reaction resource='getxml?META:RXN-3661' orgid='META' frameid='RXN-3661'/><Reaction resource='getxml?META:RXN-16792' orgid='META' frameid='RXN-16792'/><Reaction resource='getxml?META:RXN0-6369' orgid='META' frameid='RXN0-6369'/><Reaction resource='getxml?META:RXN0-3501' orgid='META' frameid='RXN0-3501'/><Reaction resource='getxml?META:RXN-16322' orgid='META' frameid='RXN-16322'/><Reaction resource='getxml?META:RXN-16319' orgid='META' frameid='RXN-16319'/><Reaction resource='getxml?META:RXN-13595' orgid='META' frameid='RXN-13595'/><Reaction resource='getxml?META:TRANS-RXN-137' orgid='META' frameid='TRANS-RXN-137'/><Reaction resource='getxml?META:RXN-16307' orgid='META' frameid='RXN-16307'/><Reaction resource='getxml?META:RXN0-7124' orgid='META' frameid='RXN0-7124'/><Reaction resource='getxml?META:RXN-8820' orgid='META' frameid='RXN-8820'/><Reaction resource='getxml?META:2-NITROPHENOL-2-MONOOXYGENASE-RXN' orgid='META' frameid='2-NITROPHENOL-2-MONOOXYGENASE-RXN'/><Reaction resource='getxml?META:HAONITRO-RXN' orgid='META' frameid='HAONITRO-RXN'/><Reaction resource='getxml?META:R247-RXN' orgid='META' frameid='R247-RXN'/><Reaction resource='getxml?META:RXN-13854' orgid='META' frameid='RXN-13854'/><Reaction resource='getxml?META:FERREDOXIN--NITRITE-REDUCTASE-RXN' orgid='META' frameid='FERREDOXIN--NITRITE-REDUCTASE-RXN'/><Reaction resource='getxml?META:RXN-13370' orgid='META' frameid='RXN-13370'/><Reaction resource='getxml?META:RXN-14254' orgid='META' frameid='RXN-14254'/><Reaction resource='getxml?META:RXN0-6377' orgid='META' frameid='RXN0-6377'/><Reaction resource='getxml?META:RXN-8739' orgid='META' frameid='RXN-8739'/><Reaction resource='getxml?META:RXN-11965' orgid='META' frameid='RXN-11965'/><Reaction resource='getxml?META:RXN-13558' orgid='META' frameid='RXN-13558'/><Reaction resource='getxml?META:RXN0-5242' orgid='META' frameid='RXN0-5242'/><Reaction resource='getxml?META:RXN-11045' orgid='META' frameid='RXN-11045'/><Reaction resource='getxml?META:NITROETHANE-OXIDASE-RXN' orgid='META' frameid='NITROETHANE-OXIDASE-RXN'/><Reaction resource='getxml?META:RXN0-6370' orgid='META' frameid='RXN0-6370'/><Reaction resource='getxml?META:RXN-3483' orgid='META' frameid='RXN-3483'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-24105' orgid='META' frameid='RXN-24105'/><Reaction resource='getxml?META:RXN-24103' orgid='META' frameid='RXN-24103'/><Reaction resource='getxml?META:RXN-22524' orgid='META' frameid='RXN-22524'/><Reaction resource='getxml?META:RXN-22533' orgid='META' frameid='RXN-22533'/><Reaction resource='getxml?META:RXN-22090' orgid='META' frameid='RXN-22090'/><Reaction resource='getxml?META:1.7.7.2-RXN' orgid='META' frameid='1.7.7.2-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-239' orgid='META' frameid='TRANS-RXN0-239'/><Reaction resource='getxml?META:TRANS-RXN-26' orgid='META' frameid='TRANS-RXN-26'/><Reaction resource='getxml?META:RXN-18605' orgid='META' frameid='RXN-18605'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-NADPORNOPH-RXN' orgid='META' frameid='NITRATE-REDUCTASE-NADPORNOPH-RXN'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-NADPH-RXN' orgid='META' frameid='NITRATE-REDUCTASE-NADPH-RXN'/><Reaction resource='getxml?META:1.7.2.2-RXN' orgid='META' frameid='1.7.2.2-RXN'/><Reaction resource='getxml?META:RXN-13578' orgid='META' frameid='RXN-13578'/><Reaction resource='getxml?META:TRANS-RXN-137' orgid='META' frameid='TRANS-RXN-137'/><Reaction resource='getxml?META:RXN-3462' orgid='META' frameid='RXN-3462'/><Reaction resource='getxml?META:RXN0-6954' orgid='META' frameid='RXN0-6954'/><Reaction resource='getxml?META:RXN-15838' orgid='META' frameid='RXN-15838'/><Reaction resource='getxml?META:RXN-13576' orgid='META' frameid='RXN-13576'/><Reaction resource='getxml?META:RXN-13583' orgid='META' frameid='RXN-13583'/><Reaction resource='getxml?META:RXN-12316' orgid='META' frameid='RXN-12316'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-NADH-RXN' orgid='META' frameid='NITRATE-REDUCTASE-NADH-RXN'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/HNO2/c2-1-3/h(H,2,3)/p-1</inchi>
+<molecular-weight datatype='float' units='Daltons'>46.005</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-23850' orgid='META' frameid='RXN-23850'/><Reaction resource='getxml?META:RXN-16471' orgid='META' frameid='RXN-16471'/><Reaction resource='getxml?META:R201-RXN' orgid='META' frameid='R201-RXN'/><Reaction resource='getxml?META:RXN-15256' orgid='META' frameid='RXN-15256'/><Reaction resource='getxml?META:R204-RXN' orgid='META' frameid='R204-RXN'/><Reaction resource='getxml?META:RXN-15252' orgid='META' frameid='RXN-15252'/><Reaction resource='getxml?META:R203-RXN' orgid='META' frameid='R203-RXN'/><Reaction resource='getxml?META:R202-RXN' orgid='META' frameid='R202-RXN'/><Reaction resource='getxml?META:RXN-15257' orgid='META' frameid='RXN-15257'/><Reaction resource='getxml?META:RXN-22527' orgid='META' frameid='RXN-22527'/><Reaction resource='getxml?META:RXN-11236' orgid='META' frameid='RXN-11236'/><Reaction resource='getxml?META:RXN-21815' orgid='META' frameid='RXN-21815'/><Reaction resource='getxml?META:NITRITE-REDUCTASE-CYTOCHROME-RXN' orgid='META' frameid='NITRITE-REDUCTASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:RXN-16803' orgid='META' frameid='RXN-16803'/><Reaction resource='getxml?META:RXN-16802' orgid='META' frameid='RXN-16802'/><Reaction resource='getxml?META:RXN-16801' orgid='META' frameid='RXN-16801'/><Reaction resource='getxml?META:RXN-16800' orgid='META' frameid='RXN-16800'/><Reaction resource='getxml?META:RXN-16799' orgid='META' frameid='RXN-16799'/><Reaction resource='getxml?META:RXN-16797' orgid='META' frameid='RXN-16797'/><Reaction resource='getxml?META:RXN-16798' orgid='META' frameid='RXN-16798'/><Reaction resource='getxml?META:RXN-16794' orgid='META' frameid='RXN-16794'/><Reaction resource='getxml?META:RXN-16795' orgid='META' frameid='RXN-16795'/><Reaction resource='getxml?META:RXN-16796' orgid='META' frameid='RXN-16796'/><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-239' orgid='META' frameid='TRANS-RXN0-239'/><Reaction resource='getxml?META:TRANS-RXN-26' orgid='META' frameid='TRANS-RXN-26'/><Reaction resource='getxml?META:3-ACI-NITROPROPANOATE-OXIDASE-RXN' orgid='META' frameid='3-ACI-NITROPROPANOATE-OXIDASE-RXN'/><Reaction resource='getxml?META:RXN-16306' orgid='META' frameid='RXN-16306'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-CYTOCHROME-RXN' orgid='META' frameid='NITRATE-REDUCTASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:RXN-8821' orgid='META' frameid='RXN-8821'/><Reaction resource='getxml?META:RXN-16805' orgid='META' frameid='RXN-16805'/><Reaction resource='getxml?META:RXN-8819' orgid='META' frameid='RXN-8819'/><Reaction resource='getxml?META:RXN-8825' orgid='META' frameid='RXN-8825'/><Reaction resource='getxml?META:RXN-8814' orgid='META' frameid='RXN-8814'/><Reaction resource='getxml?META:RXN-3661' orgid='META' frameid='RXN-3661'/><Reaction resource='getxml?META:RXN-16792' orgid='META' frameid='RXN-16792'/><Reaction resource='getxml?META:RXN0-6369' orgid='META' frameid='RXN0-6369'/><Reaction resource='getxml?META:RXN0-3501' orgid='META' frameid='RXN0-3501'/><Reaction resource='getxml?META:RXN-16322' orgid='META' frameid='RXN-16322'/><Reaction resource='getxml?META:RXN-16319' orgid='META' frameid='RXN-16319'/><Reaction resource='getxml?META:RXN-13595' orgid='META' frameid='RXN-13595'/><Reaction resource='getxml?META:TRANS-RXN-137' orgid='META' frameid='TRANS-RXN-137'/><Reaction resource='getxml?META:RXN-16307' orgid='META' frameid='RXN-16307'/><Reaction resource='getxml?META:RXN0-7124' orgid='META' frameid='RXN0-7124'/><Reaction resource='getxml?META:RXN-8820' orgid='META' frameid='RXN-8820'/><Reaction resource='getxml?META:2-NITROPHENOL-2-MONOOXYGENASE-RXN' orgid='META' frameid='2-NITROPHENOL-2-MONOOXYGENASE-RXN'/><Reaction resource='getxml?META:HAONITRO-RXN' orgid='META' frameid='HAONITRO-RXN'/><Reaction resource='getxml?META:R247-RXN' orgid='META' frameid='R247-RXN'/><Reaction resource='getxml?META:RXN-13854' orgid='META' frameid='RXN-13854'/><Reaction resource='getxml?META:FERREDOXIN--NITRITE-REDUCTASE-RXN' orgid='META' frameid='FERREDOXIN--NITRITE-REDUCTASE-RXN'/><Reaction resource='getxml?META:RXN-13370' orgid='META' frameid='RXN-13370'/><Reaction resource='getxml?META:RXN-14254' orgid='META' frameid='RXN-14254'/><Reaction resource='getxml?META:RXN0-6377' orgid='META' frameid='RXN0-6377'/><Reaction resource='getxml?META:RXN-8739' orgid='META' frameid='RXN-8739'/><Reaction resource='getxml?META:RXN-11965' orgid='META' frameid='RXN-11965'/><Reaction resource='getxml?META:RXN-13558' orgid='META' frameid='RXN-13558'/><Reaction resource='getxml?META:RXN0-5242' orgid='META' frameid='RXN0-5242'/><Reaction resource='getxml?META:RXN-11045' orgid='META' frameid='RXN-11045'/><Reaction resource='getxml?META:NITROETHANE-OXIDASE-RXN' orgid='META' frameid='NITROETHANE-OXIDASE-RXN'/><Reaction resource='getxml?META:RXN0-6370' orgid='META' frameid='RXN0-6370'/><Reaction resource='getxml?META:RXN-3483' orgid='META' frameid='RXN-3483'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>47.00073</monoisotopic-mw>
 <synonym datatype='string'>NO&lt;sub&gt;2&lt;/sub&gt;</synonym>
 <synonym datatype='string'>NO&lt;sub&gt;2&lt;/sub&gt;&lt;sup&gt;-&lt;/sup&gt;</synonym>
 <synonym datatype='string'>nitrous acid</synonym>
-<molecular-weight datatype='float' units='Daltons'>46.005</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>47.00073</monoisotopic-mw>
+<common-name datatype='string'>nitrite</common-name>
+<regulates><Regulation ID='META:REG0-7827' orgid='META' frameid='REG0-7827' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:CYANLY-ENZRXN' orgid='META' frameid='CYANLY-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:R524-RXN' orgid='META' frameid='R524-RXN'/></reaction>
+<synonym datatype='string'>cyanate hydrolase</synonym>
+<synonym datatype='string'>cyanate C-N-lyase</synonym>
+<synonym datatype='string'>cyanate aminohydrolase</synonym>
+<synonym datatype='string'>cyanate lyase</synonym>
+<synonym datatype='string'>cyanate hydratase</synonym>
+<common-name datatype='string'>cyanase</common-name>
+<enzyme><Protein resource='getxml?META:CYANLY-CPLX' orgid='META' frameid='CYANLY-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7819' orgid='META' frameid='REG0-7819' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-4521' orgid='META' frameid='ENZRXN0-4521' detail='low'><reaction><Reaction resource='getxml?META:RXN0-3281' orgid='META' frameid='RXN0-3281'/></reaction>
+<common-name datatype='string'>formate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:FORMATEDEHYDROGH-MONOMER' orgid='META' frameid='FORMATEDEHYDROGH-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-16150' orgid='META' frameid='REG0-16150' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction resource='#META:ENZRXN0-4521' orgid='META' frameid='ENZRXN0-4521'/></regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15376' orgid='META' frameid='REG-15376' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-2743' orgid='META' frameid='ENZRXN-2743' detail='low'><reaction><Reaction resource='getxml?META:PYRUFLAVREDUCT-RXN' orgid='META' frameid='PYRUFLAVREDUCT-RXN'/></reaction>
+<synonym datatype='string'>POR</synonym>
+<synonym datatype='string'>pyruvate synthase</synonym>
+<synonym datatype='string'>pyruvate oxidoreductase</synonym>
+<synonym datatype='string'>pyruvic-ferredoxin oxidoreductase</synonym>
+<synonym datatype='string'>pyruvate:ferredoxin 2-oxidoreductase (CoA-acetylating)</synonym>
+<common-name datatype='string'>pyruvate:ferredoxin oxidoreductase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-1868' orgid='META' frameid='CPLX-1868'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-12954' orgid='META' frameid='REG-12954' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13236' orgid='META' frameid='ENZRXN-13236' detail='low'><reaction><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/></reaction>
+<common-name datatype='string'>ethylnitronate monooxygenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7182' orgid='META' frameid='CPLX-7182'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8532' orgid='META' frameid='REG-8532' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-202' orgid='META' frameid='ENZRXN-202' detail='low'><reaction><Reaction resource='getxml?META:NITROGENASE-RXN' orgid='META' frameid='NITROGENASE-RXN'/></reaction>
+<synonym datatype='string'>reduced ferredoxin:dinitrogen oxidoreductase (ATP-hydrolyzing)</synonym>
+<common-name datatype='string'>nitrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-186' orgid='META' frameid='CPLX-186'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8366' orgid='META' frameid='REG-8366' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-4282' orgid='META' frameid='ENZRXN-4282' detail='low'><reaction><Reaction resource='getxml?META:1.2.1.2-RXN' orgid='META' frameid='1.2.1.2-RXN'/></reaction>
+<common-name datatype='string'>NAD-dependent formate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-3482' orgid='META' frameid='CPLX-3482'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<comment datatype='string'>Nitrous acid exists at physiological pH as the charged anion nitrite. pKa = 3.3 at 18 &amp;deg;C</comment>
+<inchi-key datatype='string'>InChIKey=IOVCWXUNBOPUCH-UHFFFAOYSA-M</inchi-key>
 <dblink><dblink-db>REACTOME-CPD</dblink-db>
 <dblink-oid>1222379</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -80,8 +155,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=14797-65-0</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=IOVCWXUNBOPUCH-UHFFFAOYSA-M</inchi-key>
-<common-name datatype='string'>nitrite</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-65.91206<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -91,84 +164,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG0-7827' orgid='META' frameid='REG0-7827' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:CYANLY-ENZRXN' orgid='META' frameid='CYANLY-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:CYANLY-CPLX' orgid='META' frameid='CYANLY-CPLX'/></enzyme>
-<synonym datatype='string'>cyanate hydrolase</synonym>
-<synonym datatype='string'>cyanate C-N-lyase</synonym>
-<synonym datatype='string'>cyanate aminohydrolase</synonym>
-<synonym datatype='string'>cyanate lyase</synonym>
-<synonym datatype='string'>cyanate hydratase</synonym>
-<reaction><Reaction resource='getxml?META:R524-RXN' orgid='META' frameid='R524-RXN'/></reaction>
-<common-name datatype='string'>cyanase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-7819' orgid='META' frameid='REG0-7819' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-4521' orgid='META' frameid='ENZRXN0-4521' detail='low'><enzyme><Protein resource='getxml?META:FORMATEDEHYDROGH-MONOMER' orgid='META' frameid='FORMATEDEHYDROGH-MONOMER'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN0-3281' orgid='META' frameid='RXN0-3281'/></reaction>
-<common-name datatype='string'>formate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-16150' orgid='META' frameid='REG0-16150' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
-<regulated-entity><Enzymatic-Reaction resource='#META:ENZRXN0-4521' orgid='META' frameid='ENZRXN0-4521'/></regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-15376' orgid='META' frameid='REG-15376' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-2743' orgid='META' frameid='ENZRXN-2743' detail='low'><enzyme><Protein resource='getxml?META:CPLX-1868' orgid='META' frameid='CPLX-1868'/></enzyme>
-<synonym datatype='string'>POR</synonym>
-<synonym datatype='string'>pyruvate synthase</synonym>
-<synonym datatype='string'>pyruvate oxidoreductase</synonym>
-<synonym datatype='string'>pyruvic-ferredoxin oxidoreductase</synonym>
-<synonym datatype='string'>pyruvate:ferredoxin 2-oxidoreductase (CoA-acetylating)</synonym>
-<reaction><Reaction resource='getxml?META:PYRUFLAVREDUCT-RXN' orgid='META' frameid='PYRUFLAVREDUCT-RXN'/></reaction>
-<common-name datatype='string'>pyruvate:ferredoxin oxidoreductase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-12954' orgid='META' frameid='REG-12954' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13236' orgid='META' frameid='ENZRXN-13236' detail='low'><enzyme><Protein resource='getxml?META:CPLX-7182' orgid='META' frameid='CPLX-7182'/></enzyme>
-<reaction><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/></reaction>
-<common-name datatype='string'>ethylnitronate monooxygenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-8532' orgid='META' frameid='REG-8532' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-202' orgid='META' frameid='ENZRXN-202' detail='low'><enzyme><Protein resource='getxml?META:CPLX-186' orgid='META' frameid='CPLX-186'/></enzyme>
-<synonym datatype='string'>reduced ferredoxin:dinitrogen oxidoreductase (ATP-hydrolyzing)</synonym>
-<reaction><Reaction resource='getxml?META:NITROGENASE-RXN' orgid='META' frameid='NITROGENASE-RXN'/></reaction>
-<common-name datatype='string'>nitrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-8366' orgid='META' frameid='REG-8366' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:NITRITE' orgid='META' frameid='NITRITE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-4282' orgid='META' frameid='ENZRXN-4282' detail='low'><enzyme><Protein resource='getxml?META:CPLX-3482' orgid='META' frameid='CPLX-3482'/></enzyme>
-<reaction><Reaction resource='getxml?META:1.2.1.2-RXN' orgid='META' frameid='1.2.1.2-RXN'/></reaction>
-<common-name datatype='string'>NAD-dependent formate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<comment datatype='string'>Nitrous acid exists at physiological pH as the charged anion nitrite. pKa = 3.3 at 18 &amp;deg;C</comment>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-22524' orgid='META' frameid='RXN-22524'/><Reaction resource='getxml?META:RXN-22533' orgid='META' frameid='RXN-22533'/><Reaction resource='getxml?META:RXN-22090' orgid='META' frameid='RXN-22090'/><Reaction resource='getxml?META:1.7.7.2-RXN' orgid='META' frameid='1.7.7.2-RXN'/><Reaction resource='getxml?META:TRANS-RXN0-239' orgid='META' frameid='TRANS-RXN0-239'/><Reaction resource='getxml?META:TRANS-RXN-26' orgid='META' frameid='TRANS-RXN-26'/><Reaction resource='getxml?META:RXN-18605' orgid='META' frameid='RXN-18605'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-NADPORNOPH-RXN' orgid='META' frameid='NITRATE-REDUCTASE-NADPORNOPH-RXN'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-NADPH-RXN' orgid='META' frameid='NITRATE-REDUCTASE-NADPH-RXN'/><Reaction resource='getxml?META:1.7.2.2-RXN' orgid='META' frameid='1.7.2.2-RXN'/><Reaction resource='getxml?META:RXN-13578' orgid='META' frameid='RXN-13578'/><Reaction resource='getxml?META:TRANS-RXN-137' orgid='META' frameid='TRANS-RXN-137'/><Reaction resource='getxml?META:RXN-3462' orgid='META' frameid='RXN-3462'/><Reaction resource='getxml?META:RXN0-6954' orgid='META' frameid='RXN0-6954'/><Reaction resource='getxml?META:RXN-15838' orgid='META' frameid='RXN-15838'/><Reaction resource='getxml?META:RXN-13576' orgid='META' frameid='RXN-13576'/><Reaction resource='getxml?META:RXN-13583' orgid='META' frameid='RXN-13583'/><Reaction resource='getxml?META:RXN-12316' orgid='META' frameid='RXN-12316'/><Reaction resource='getxml?META:NITRATE-REDUCTASE-NADH-RXN' orgid='META' frameid='NITRATE-REDUCTASE-NADH-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

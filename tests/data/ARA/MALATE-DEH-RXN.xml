@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:MALATE-DEH-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:MALATE-DEH-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:MALATE-DEH-RXN</query>
 <num_results>1</num_results>
@@ -9,141 +9,140 @@
 </metadata>
 <Reaction ID='ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<ec-number>EC-1.1.1.37<official>T</official>
-</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-561' orgid='ARA' frameid='PWY-561'/><Reaction resource='getxml?ARA:1.1.1.39-RXN' orgid='ARA' frameid='1.1.1.39-RXN'/><Pathway resource='getxml?ARA:GLUCONEO-PWY' orgid='ARA' frameid='GLUCONEO-PWY'/><Pathway resource='getxml?ARA:PWY-5690' orgid='ARA' frameid='PWY-5690'/><Pathway resource='getxml?ARA:PWY-7048' orgid='ARA' frameid='PWY-7048'/><Pathway resource='getxml?ARA:PWY-7047' orgid='ARA' frameid='PWY-7047'/><Pathway resource='getxml?ARA:PWY66-399' orgid='ARA' frameid='PWY66-399'/><Pathway resource='getxml?ARA:MALATE-ASPARTATE-SHUTTLE-PWY' orgid='ARA' frameid='MALATE-ASPARTATE-SHUTTLE-PWY'/><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/></in-pathway>
 <left><Compound resource='getxml?ARA:MAL' orgid='ARA' frameid='MAL'/></left>
 <left><Compound resource='getxml?ARA:NAD' orgid='ARA' frameid='NAD'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>4.4617615</gibbs-0>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
-<right><Compound resource='getxml?ARA:OXALACETIC_ACID' orgid='ARA' frameid='OXALACETIC_ACID'/></right>
-<right><Compound resource='getxml?ARA:NADH' orgid='ARA' frameid='NADH'/></right>
 <synonym datatype='string'>malate dehydrogenation</synonym>
 <synonym datatype='string'>Malic dehydrogenase</synonym>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-12043' orgid='ARA' frameid='ENZRXNQT-12043' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G53910-MONOMER' orgid='ARA' frameid='AT3G53910-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT0315-204' orgid='ARA' frameid='ENZRXNQT0315-204' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G09660-MONOMER' orgid='ARA' frameid='AT5G09660-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT0315-287' orgid='ARA' frameid='ENZRXNQT0315-287' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT0315-151' orgid='ARA' frameid='ENZRXNQT0315-151' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-9430' orgid='ARA' frameid='ENZRXNQT-9430' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXN-20427' orgid='ARA' frameid='ENZRXN-20427' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-2113' orgid='ARA' frameid='ENZRXNQT-2113' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G56720-MONOMER' orgid='ARA' frameid='AT5G56720-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-2208' orgid='ARA' frameid='ENZRXNQT-2208' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G04410-MONOMER' orgid='ARA' frameid='AT1G04410-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-2317' orgid='ARA' frameid='ENZRXNQT-2317' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G43330-MONOMER' orgid='ARA' frameid='AT5G43330-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-2513' orgid='ARA' frameid='ENZRXNQT-2513' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G53240-MONOMER' orgid='ARA' frameid='AT1G53240-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-2760' orgid='ARA' frameid='ENZRXNQT-2760' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G15020-MONOMER' orgid='ARA' frameid='AT3G15020-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-3208' orgid='ARA' frameid='ENZRXNQT-3208' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G09660-MONOMER' orgid='ARA' frameid='AT5G09660-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-3221' orgid='ARA' frameid='ENZRXNQT-3221' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-3345' orgid='ARA' frameid='ENZRXNQT-3345' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-26647' orgid='ARA' frameid='ENZRXNQT-26647' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G43330-MONOMER' orgid='ARA' frameid='AT5G43330-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-26108' orgid='ARA' frameid='ENZRXNQT-26108' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G04410-MONOMER' orgid='ARA' frameid='AT1G04410-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-25399' orgid='ARA' frameid='ENZRXNQT-25399' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G56720-MONOMER' orgid='ARA' frameid='AT5G56720-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-7084' orgid='ARA' frameid='ENZRXNQT-7084' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G53240-MONOMER' orgid='ARA' frameid='AT1G53240-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-7082' orgid='ARA' frameid='ENZRXNQT-7082' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-7080' orgid='ARA' frameid='ENZRXNQT-7080' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G15020-MONOMER' orgid='ARA' frameid='AT3G15020-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-7078' orgid='ARA' frameid='ENZRXNQT-7078' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-7074' orgid='ARA' frameid='ENZRXNQT-7074' detail='low'><common-name datatype='string'>malate dehydrogenase</common-name>
-<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G09660-MONOMER' orgid='ARA' frameid='AT5G09660-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<orphan>NO</orphan>
+<ec-number>EC-1.1.1.37<official>T</official>
+</ec-number>
 <credits><created><date datatype='date'>2013-03-06</date>
-<Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
-<common-name datatype='string'>SRI International</common-name>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
+<Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><abbrev-name datatype='string'>SRI International</abbrev-name>
 <url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<common-name datatype='string'>SRI International</common-name>
 </Organization>
-<Person ID='ARA:brito' orgid='ARA' frameid='brito' detail='full'><email datatype='string'>brito@ai.sri.com</email>
-<affiliations><Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></affiliations>
-<credits><imported-from-meta><date datatype='date'>2011-12-15</date>
-<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
-<affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
-<abbrev-name datatype='string'>PMN</abbrev-name>
+<Person ID='ARA:brito' orgid='ARA' frameid='brito' detail='full'><credits><imported-from-meta><date datatype='date'>2011-12-15</date>
+<Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
 <url datatype='string'>http://plantcyc.org</url>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
 </Organization>
-<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><common-name datatype='string'>The Arabidopsis Information Resource</common-name>
-<abbrev-name datatype='string'>TAIR</abbrev-name>
+<Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
 </Organization>
 </affiliations>
+<common-name datatype='string'>Peifen Zhang</common-name>
 </Person>
 <Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/></imported-from-meta>
 </credits>
+<affiliations><Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></affiliations>
+<email datatype='string'>brito@ai.sri.com</email>
 </Person>
 </created>
 <imported-from-human><date datatype='date'>2013-03-18</date>
-<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
+<Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><affiliations><Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></affiliations>
+<email datatype='string'>caspi@ai.sri.com</email>
 <common-name datatype='string'>Ron Caspi</common-name>
-<affiliations><Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></affiliations>
 </Person>
 <Organization resource='#ARA:SRI' orgid='ARA' frameid='SRI'/></imported-from-human>
 <imported-from-meta><date datatype='date'>2014-07-17</date>
 <Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/><Person resource='#ARA:zhang' orgid='ARA' frameid='zhang'/></imported-from-meta>
 </credits>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
+<right><Compound resource='getxml?ARA:OXALACETIC_ACID' orgid='ARA' frameid='OXALACETIC_ACID'/></right>
+<right><Compound resource='getxml?ARA:NADH' orgid='ARA' frameid='NADH'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<orphan>NO</orphan>
+<gibbs-0 datatype='float' units='kcal/mol'>4.4617615</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-12043' orgid='ARA' frameid='ENZRXNQT-12043' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G53910-MONOMER' orgid='ARA' frameid='AT3G53910-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT0315-204' orgid='ARA' frameid='ENZRXNQT0315-204' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G09660-MONOMER' orgid='ARA' frameid='AT5G09660-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT0315-287' orgid='ARA' frameid='ENZRXNQT0315-287' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT0315-151' orgid='ARA' frameid='ENZRXNQT0315-151' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-9430' orgid='ARA' frameid='ENZRXNQT-9430' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXN-20427' orgid='ARA' frameid='ENZRXN-20427' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-2113' orgid='ARA' frameid='ENZRXNQT-2113' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G56720-MONOMER' orgid='ARA' frameid='AT5G56720-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-2208' orgid='ARA' frameid='ENZRXNQT-2208' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G04410-MONOMER' orgid='ARA' frameid='AT1G04410-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-2317' orgid='ARA' frameid='ENZRXNQT-2317' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G43330-MONOMER' orgid='ARA' frameid='AT5G43330-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-2513' orgid='ARA' frameid='ENZRXNQT-2513' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G53240-MONOMER' orgid='ARA' frameid='AT1G53240-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-2760' orgid='ARA' frameid='ENZRXNQT-2760' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G15020-MONOMER' orgid='ARA' frameid='AT3G15020-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-3208' orgid='ARA' frameid='ENZRXNQT-3208' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G09660-MONOMER' orgid='ARA' frameid='AT5G09660-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-3221' orgid='ARA' frameid='ENZRXNQT-3221' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-3345' orgid='ARA' frameid='ENZRXNQT-3345' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-26647' orgid='ARA' frameid='ENZRXNQT-26647' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G43330-MONOMER' orgid='ARA' frameid='AT5G43330-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-26108' orgid='ARA' frameid='ENZRXNQT-26108' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G04410-MONOMER' orgid='ARA' frameid='AT1G04410-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-25399' orgid='ARA' frameid='ENZRXNQT-25399' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G56720-MONOMER' orgid='ARA' frameid='AT5G56720-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-7084' orgid='ARA' frameid='ENZRXNQT-7084' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G53240-MONOMER' orgid='ARA' frameid='AT1G53240-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-7082' orgid='ARA' frameid='ENZRXNQT-7082' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G22780-MONOMER' orgid='ARA' frameid='AT2G22780-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-7080' orgid='ARA' frameid='ENZRXNQT-7080' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G15020-MONOMER' orgid='ARA' frameid='AT3G15020-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-7078' orgid='ARA' frameid='ENZRXNQT-7078' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G47520-MONOMER' orgid='ARA' frameid='AT3G47520-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-7074' orgid='ARA' frameid='ENZRXNQT-7074' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G09660-MONOMER' orgid='ARA' frameid='AT5G09660-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>RHEA</dblink-db>
 <dblink-oid>21435</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -1009,5 +1008,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A32472</dblink-URL>
 </dblink>
+<in-pathway><Pathway resource='getxml?ARA:PWY-561' orgid='ARA' frameid='PWY-561'/><Reaction resource='getxml?ARA:1.1.1.39-RXN' orgid='ARA' frameid='1.1.1.39-RXN'/><Pathway resource='getxml?ARA:GLUCONEO-PWY' orgid='ARA' frameid='GLUCONEO-PWY'/><Pathway resource='getxml?ARA:PWY-5690' orgid='ARA' frameid='PWY-5690'/><Pathway resource='getxml?ARA:PWY-7048' orgid='ARA' frameid='PWY-7048'/><Pathway resource='getxml?ARA:PWY-7047' orgid='ARA' frameid='PWY-7047'/><Pathway resource='getxml?ARA:PWY66-399' orgid='ARA' frameid='PWY66-399'/><Pathway resource='getxml?ARA:MALATE-ASPARTATE-SHUTTLE-PWY' orgid='ARA' frameid='MALATE-ASPARTATE-SHUTTLE-PWY'/><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/></in-pathway>
 </Reaction>
 </ptools-xml>

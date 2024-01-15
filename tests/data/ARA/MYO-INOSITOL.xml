@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:MYO-INOSITOL'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:MYO-INOSITOL'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:MYO-INOSITOL</query>
 <num_results>1</num_results>
@@ -14,21 +14,21 @@
 <string title='smiles'>[C@H]1([C@@H]([C@H]([C@@H]([C@H]([C@H]1O)O)O)O)O)O</string>
 </molecule>
 </cml>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Nikolau-CuticleWax,Fiehn,Shulaev-LCMS (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>&lt;I&gt;myo&lt;/I&gt;-inositol</common-name>
-<inchi datatype='string'>InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-</inchi>
-<inchi-key datatype='string'>InChIKey=CDAISMWEOUEBRE-GPIVLXJGSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:2.3.1.72-RXN' orgid='ARA' frameid='2.3.1.72-RXN'/><Reaction resource='getxml?ARA:MYO-INOSITOL-2-DEHYDROGENASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:2.4.1.123-RXN' orgid='ARA' frameid='2.4.1.123-RXN'/><Reaction resource='getxml?ARA:MYO-INOSITOL-OXYGENASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-OXYGENASE-RXN'/><Reaction resource='getxml?ARA:MYO-INOSITOL-1-KINASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-1-KINASE-RXN'/><Reaction resource='getxml?ARA:2.7.8.11-RXN' orgid='ARA' frameid='2.7.8.11-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-96.706566</gibbs-0>
 <synonym datatype='string'>&lt;i&gt;cis&lt;/i&gt;-1,2,3,5-trans-4,6-cyclohexanehexol</synonym>
 <synonym datatype='string'>dambose</synonym>
 <synonym datatype='string'>mesoinositol</synonym>
 <synonym datatype='string'>&lt;i&gt;meso&lt;/i&gt;-inositol</synonym>
 <synonym datatype='string'>M-inositol</synonym>
 <synonym datatype='string'>1,2,3,5/4,6 inositol</synonym>
+<inchi-key datatype='string'>InChIKey=CDAISMWEOUEBRE-GPIVLXJGSA-N</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Nikolau-CuticleWax,Fiehn,Shulaev-LCMS (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
 <molecular-weight datatype='float' units='Daltons'>180.157</molecular-weight>
+<inchi datatype='string'>InChI=1S/C6H12O6/c7-1-2(8)4(10)6(12)5(11)3(1)9/h1-12H/t1-,2-,3-,4+,5-,6-</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-8288' orgid='ARA' frameid='RXN-8288'/><Reaction resource='getxml?ARA:RXN-10952' orgid='ARA' frameid='RXN-10952'/><Reaction resource='getxml?ARA:RXN0-5408' orgid='ARA' frameid='RXN0-5408'/><Reaction resource='getxml?ARA:MYO-INOSITOL-1OR-4-MONOPHOSPHATASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-1OR-4-MONOPHOSPHATASE-RXN'/><Reaction resource='getxml?ARA:RXN-8284' orgid='ARA' frameid='RXN-8284'/><Reaction resource='getxml?ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/><Reaction resource='getxml?ARA:2.4.1.67-RXN' orgid='ARA' frameid='2.4.1.67-RXN'/><Reaction resource='getxml?ARA:RXN-7253' orgid='ARA' frameid='RXN-7253'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:2.3.1.72-RXN' orgid='ARA' frameid='2.3.1.72-RXN'/><Reaction resource='getxml?ARA:MYO-INOSITOL-2-DEHYDROGENASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:2.4.1.123-RXN' orgid='ARA' frameid='2.4.1.123-RXN'/><Reaction resource='getxml?ARA:MYO-INOSITOL-OXYGENASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-OXYGENASE-RXN'/><Reaction resource='getxml?ARA:MYO-INOSITOL-1-KINASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-1-KINASE-RXN'/><Reaction resource='getxml?ARA:2.7.8.11-RXN' orgid='ARA' frameid='2.7.8.11-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>180.06339</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-96.706566</gibbs-0>
+<common-name datatype='string'>&lt;I&gt;myo&lt;/I&gt;-inositol</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000100018867</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

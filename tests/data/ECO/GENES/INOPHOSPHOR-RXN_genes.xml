@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECO:INOPHOSPHOR-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECO:INOPHOSPHOR-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=ECO:INOPHOSPHOR-RXN&amp;detail=FULL</query>
     <num_results>4</num_results>
-    <PGDB orgid="ECOLI" version="27.0">
+    <PGDB orgid="ECOLI" version="27.5">
       <species datatype="string">Escherichia coli</species>
       <strain datatype="string">K-12 substr. MG1655</strain>
       <dblink>
@@ -63,10 +63,10 @@
       <Protein resource="getxml?ECOLI:EG12097-MONOMER" orgid="ECOLI" frameid="EG12097-MONOMER" />
     </product>
     <transcription-direction datatype="string">-</transcription-direction>
+    <accession-1 datatype="string">b2593</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-13675" orgid="ECOLI" frameid="TU0-13675" />
     </component-of>
-    <accession-1 datatype="string">b2593</accession-1>
     <dblink>
       <dblink-db>MIM</dblink-db>
       <dblink-oid>604302</dblink-oid>
@@ -103,12 +103,12 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b2593</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">2734303</left-end-position>
-    <right-end-position datatype="integer">2735034</right-end-position>
     <synonym datatype="string">pgeF</synonym>
+    <common-name datatype="string">yfiH</common-name>
     <accession-2 datatype="string">ECK2591</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">58.907967</centisome-position>
-    <common-name datatype="string">yfiH</common-name>
+    <right-end-position datatype="integer">2735034</right-end-position>
+    <left-end-position datatype="integer">2734303</left-end-position>
   </Gene>
   <Gene ID="ECOLI:EG10222" orgid="ECOLI" frameid="EG10222" detail="full">
     <parent>
@@ -138,13 +138,13 @@
     <product>
       <Protein resource="getxml?ECOLI:DEOD-MONOMER" orgid="ECOLI" frameid="DEOD-MONOMER" />
     </product>
+    <accession-1 datatype="string">b4384</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-14537" orgid="ECOLI" frameid="TU0-14537" />
       <Transcription-Unit resource="getxml?ECOLI:TU0-6646" orgid="ECOLI" frameid="TU0-6646" />
       <Transcription-Unit resource="getxml?ECOLI:TU00018" orgid="ECOLI" frameid="TU00018" />
       <Transcription-Unit resource="getxml?ECOLI:TU00017" orgid="ECOLI" frameid="TU00017" />
     </component-of>
-    <accession-1 datatype="string">b4384</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b4384</dblink-oid>
@@ -187,12 +187,12 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=865</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">4620883</left-end-position>
-    <right-end-position datatype="integer">4621602</right-end-position>
     <synonym datatype="string">pup</synonym>
+    <common-name datatype="string">deoD</common-name>
     <accession-2 datatype="string">ECK4376</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">99.55255</centisome-position>
-    <common-name datatype="string">deoD</common-name>
+    <right-end-position datatype="integer">4621602</right-end-position>
+    <left-end-position datatype="integer">4620883</left-end-position>
   </Gene>
   <Gene ID="ECOLI:G85" orgid="ECOLI" frameid="G85" detail="full">
     <parent>
@@ -213,11 +213,11 @@
     <product>
       <Protein resource="getxml?ECOLI:XANTHOSINEPHOSPHORY-MONOMER" orgid="ECOLI" frameid="XANTHOSINEPHOSPHORY-MONOMER" />
     </product>
+    <accession-1 datatype="string">b2407</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-45226" orgid="ECOLI" frameid="TU0-45226" />
       <Transcription-Unit resource="getxml?ECOLI:TU301" orgid="ECOLI" frameid="TU301" />
     </component-of>
-    <accession-1 datatype="string">b2407</accession-1>
     <dblink>
       <dblink-db>MIM</dblink-db>
       <dblink-oid>613179</dblink-oid>
@@ -266,12 +266,12 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=9</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">2524045</left-end-position>
-    <right-end-position datatype="integer">2524878</right-end-position>
     <synonym datatype="string">pndA</synonym>
+    <common-name datatype="string">xapA</common-name>
     <accession-2 datatype="string">ECK2401</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">54.378162</centisome-position>
-    <common-name datatype="string">xapA</common-name>
+    <right-end-position datatype="integer">2524878</right-end-position>
+    <left-end-position datatype="integer">2524045</left-end-position>
   </Gene>
   <Gene ID="ECOLI:EG12159" orgid="ECOLI" frameid="EG12159" detail="full">
     <parent>
@@ -291,10 +291,10 @@
       <Protein resource="getxml?ECOLI:EG12159-MONOMER" orgid="ECOLI" frameid="EG12159-MONOMER" />
     </product>
     <transcription-direction datatype="string">+</transcription-direction>
+    <accession-1 datatype="string">b0391</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-12915" orgid="ECOLI" frameid="TU0-12915" />
     </component-of>
-    <accession-1 datatype="string">b0391</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b0391</dblink-oid>
@@ -325,11 +325,11 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>https://genexpdb.okstate.edu/databases/genexpdb/?query=b0391</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">408177</left-end-position>
-    <right-end-position datatype="integer">408461</right-end-position>
     <synonym datatype="string">yaiE</synonym>
+    <common-name datatype="string">ppnP</common-name>
     <accession-2 datatype="string">ECK0386</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">8.793787</centisome-position>
-    <common-name datatype="string">ppnP</common-name>
+    <right-end-position datatype="integer">408461</right-end-position>
+    <left-end-position datatype="integer">408177</left-end-position>
   </Gene>
 </ptools-xml>

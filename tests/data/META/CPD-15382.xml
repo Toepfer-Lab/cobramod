@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:CPD-15382'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:CPD-15382'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-15382</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:CPD-15382' orgid='META' frameid='CPD-15382' detail='full'><parent><Compound resource='getxml?META:FRU' orgid='META' frameid='FRU' class='true'/></parent>
@@ -13,10 +13,13 @@
 <string title='smiles'>C(O)C(=O)[C@@H](O)[C@H](O)[C@H](O)CO</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:RXN-14365' orgid='META' frameid='RXN-14365'/><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:MANNOSE-ISOMERASE-RXN' orgid='META' frameid='MANNOSE-ISOMERASE-RXN'/><Reaction resource='getxml?META:RXN-7644' orgid='META' frameid='RXN-7644'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:FRUCTOSE-5-DEHYDROGENASE-RXN' orgid='META' frameid='FRUCTOSE-5-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-20900' orgid='META' frameid='RXN-20900'/><Reaction resource='getxml?META:RXN-15150' orgid='META' frameid='RXN-15150'/><Reaction resource='getxml?META:1.1.99.28-RXN' orgid='META' frameid='1.1.99.28-RXN'/><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C6H12O6/c7-1-3(9)5(11)6(12)4(10)2-8/h3,5-9,11-12H,1-2H2/t3-,5-,6-/m1/s1</inchi>
 <molecular-weight datatype='float' units='Daltons'>180.157</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN' orgid='META' frameid='MANNITOL-DEHYDROGENASE-CYTOCHROME-RXN'/><Reaction resource='getxml?META:RXN-14365' orgid='META' frameid='RXN-14365'/><Reaction resource='getxml?META:MANNITOL-2-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='MANNITOL-2-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:MANNOSE-ISOMERASE-RXN' orgid='META' frameid='MANNOSE-ISOMERASE-RXN'/><Reaction resource='getxml?META:RXN-7644' orgid='META' frameid='RXN-7644'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>180.06339</monoisotopic-mw>
+<common-name datatype='string'>&lt;i&gt;keto&lt;/i&gt;-D-fructose</common-name>
+<inchi-key datatype='string'>InChIKey=BJHIKXHVCXFQLS-UYFOZJQFSA-N</inchi-key>
 <dblink><dblink-db>LIGAND-CPD</dblink-db>
 <dblink-oid>C10906</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -42,8 +45,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:48095</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=BJHIKXHVCXFQLS-UYFOZJQFSA-N</inchi-key>
-<common-name datatype='string'>&lt;i&gt;keto&lt;/i&gt;-D-fructose</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-94.166565<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -53,28 +54,26 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
 <credits><created><date datatype='date'>2013-05-29</date>
 <Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
-<email datatype='string'>caspi@ai.sri.com</email>
-<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-</Organization>
-</affiliations>
 <comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
-</comment>
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
 </credits>
-<appears-in-left-side-of><Reaction resource='getxml?META:FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN' orgid='META' frameid='FRUCTOSE-5-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?META:FRUCTOSE-5-DEHYDROGENASE-RXN' orgid='META' frameid='FRUCTOSE-5-DEHYDROGENASE-RXN'/><Reaction resource='getxml?META:RXN-20900' orgid='META' frameid='RXN-20900'/><Reaction resource='getxml?META:RXN-15150' orgid='META' frameid='RXN-15150'/><Reaction resource='getxml?META:1.1.99.28-RXN' orgid='META' frameid='1.1.99.28-RXN'/><Reaction resource='getxml?META:RXN-14515' orgid='META' frameid='RXN-14515'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:CPD-14076'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:CPD-14076'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-14076</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:CPD-14076' orgid='META' frameid='CPD-14076' detail='full'><parent><Compound resource='getxml?META:ALKALOID' orgid='META' frameid='ALKALOID' class='true'/></parent>
@@ -13,10 +13,20 @@
 <string title='smiles'>C[NH+]1([C@@H](CCC1)C2(\C=N/C\C=C/2))</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-13059' orgid='META' frameid='RXN-13059'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-13060' orgid='META' frameid='RXN-13060'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C10H16N2/c1-12-7-3-5-10(12)9-4-2-6-11-8-9/h2,4,8-10H,3,5-7H2,1H3/p+1/t9?,10-/m0/s1</inchi>
 <molecular-weight datatype='float' units='Daltons'>165.258</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-13059' orgid='META' frameid='RXN-13059'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>164.13135</monoisotopic-mw>
+<common-name datatype='string'>3,6-dihydronicotine</common-name>
+<citation><Publication ID='META:PUB-FRIESEN90' orgid='META' frameid='PUB-FRIESEN90' detail='full'><year datatype='integer'>1990</year>
+<author datatype='string'>Friesen, Brent</author>
+<author datatype='string'>Leete, Edward</author>
+<title datatype='string'>Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
+<source datatype='string'>Tetrahedron Letters, 31(44):6295-6298</source>
+</Publication>
+</citation>
+<inchi-key datatype='string'>InChIKey=FHQCTCOXKBQXGN-AXDSSHIGSA-O</inchi-key>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd24161</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -32,8 +42,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=90658036</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=FHQCTCOXKBQXGN-AXDSSHIGSA-O</inchi-key>
-<common-name datatype='string'>3,6-dihydronicotine</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>222.597<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -43,35 +51,26 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
 <credits><created><date datatype='date'>2012-02-07</date>
 <Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
-<email datatype='string'>caspi@ai.sri.com</email>
-<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-</Organization>
-</affiliations>
 <comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
-</comment>
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
 </Person>
 <Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
 </credits>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-13060' orgid='META' frameid='RXN-13060'/></appears-in-left-side-of>
-<citation><Publication ID='META:PUB-FRIESEN90' orgid='META' frameid='PUB-FRIESEN90' detail='full'><year datatype='integer'>1990</year>
-<source datatype='string'>Tetrahedron Letters, 31(44):6295-6298</source>
-<author datatype='string'>Friesen, Brent</author>
-<author datatype='string'>Leete, Edward</author>
-<title datatype='string'>Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
-</Publication>
-</citation>
 </Compound>
 </ptools-xml>

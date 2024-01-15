@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:RXN-2206%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:RXN-2206%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -19,22 +19,22 @@
     <product>
       <Protein resource="getxml?ARA:AT1G16410-MONOMER" orgid="ARA" frameid="AT1G16410-MONOMER" />
     </product>
-    <common-name datatype="string">AT1G16410</common-name>
-    <centisome-position datatype="float" units="CENTISOMES">18.430262</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT1G16410</accession-1>
     <synonym datatype="string">SPS1</synonym>
     <synonym datatype="string">BUS1</synonym>
     <synonym datatype="string">G-1882</synonym>
     <synonym datatype="string">CYP79F1</synonym>
+    <centisome-position datatype="float" units="CENTISOMES">18.430262</centisome-position>
     <right-end-position datatype="integer">5611420</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">5608801</left-end-position>
+    <common-name datatype="string">AT1G16410</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT1G16410</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G16410</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT1G16410</accession-1>
   </Gene>
   <Gene ID="ARA:AT1G16400" orgid="ARA" frameid="AT1G16400" detail="full">
     <parent>
@@ -46,19 +46,19 @@
     <product>
       <Protein resource="getxml?ARA:AT1G16400-MONOMER" orgid="ARA" frameid="AT1G16400-MONOMER" />
     </product>
-    <common-name datatype="string">AT1G16400</common-name>
-    <centisome-position datatype="float" units="CENTISOMES">18.418274</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT1G16400</accession-1>
     <synonym datatype="string">G-1883</synonym>
     <synonym datatype="string">CYP79F2</synonym>
+    <centisome-position datatype="float" units="CENTISOMES">18.418274</centisome-position>
     <right-end-position datatype="integer">5607467</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">5605153</left-end-position>
+    <common-name datatype="string">AT1G16400</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT1G16400</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G16400</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT1G16400</accession-1>
   </Gene>
 </ptools-xml>

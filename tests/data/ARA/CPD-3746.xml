@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-3746'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-3746'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-3746</query>
 <num_results>1</num_results>
@@ -14,20 +14,20 @@
 <string title='smiles'>CS(=O)(=O)[O-]</string>
 </molecule>
 </cml>
+<synonym datatype='string'>methylsulfonate</synonym>
+<synonym datatype='string'>MSA</synonym>
+<synonym datatype='string'>methanesulfonic acid</synonym>
+<inchi-key datatype='string'>InChIKey=AFVFQIVMOAPDHO-UHFFFAOYSA-M</inchi-key>
 <comment datatype='string'>Methanesulfonate is a very stable strong acid and a key intermediate in the biogeochemical cycling
 of sulfur. It is formed in megatonne quantities in the atmosphere from the chemical oxidation of
 atmospheric &lt;a href=&quot;/compound?orgid=ARA&amp;id=CPD-7670&quot;&gt;dimethyl sulfide&lt;/a&gt; and deposited on the Earth by rain and snow, and by dry deposition
 [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10591843&quot;&gt;Kelly99&lt;/a&gt;].</comment>
-<common-name datatype='string'>methanesulfonate</common-name>
-<inchi datatype='string'>InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)/p-1</inchi>
-<inchi-key datatype='string'>InChIKey=AFVFQIVMOAPDHO-UHFFFAOYSA-M</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>-71.5487</gibbs-0>
-<synonym datatype='string'>methylsulfonate</synonym>
-<synonym datatype='string'>MSA</synonym>
-<synonym datatype='string'>methanesulfonic acid</synonym>
 <molecular-weight datatype='float' units='Daltons'>95.093</molecular-weight>
+<inchi datatype='string'>InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)/p-1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-18181' orgid='ARA' frameid='RXN-18181'/><Reaction resource='getxml?ARA:RXN-2223' orgid='ARA' frameid='RXN-2223'/><Reaction resource='getxml?ARA:RXNQT-4344' orgid='ARA' frameid='RXNQT-4344'/><Reaction resource='getxml?ARA:RXN-2222' orgid='ARA' frameid='RXN-2222'/><Reaction resource='getxml?ARA:RXNQT-4341' orgid='ARA' frameid='RXNQT-4341'/></appears-in-right-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>95.98811</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-71.5487</gibbs-0>
+<common-name datatype='string'>methanesulfonate</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000008418524</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

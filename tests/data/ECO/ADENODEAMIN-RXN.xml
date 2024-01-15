@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:ADENODEAMIN-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:ADENODEAMIN-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:ADENODEAMIN-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -14,27 +14,27 @@
 </metadata>
 <Reaction ID='ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN' detail='full'><parent><Reaction resource='getxml?ECOLI:Chemical-Reactions' orgid='ECOLI' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ECOLI:Small-Molecule-Reactions' orgid='ECOLI' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<comment datatype='string'>This reaction is part of nucleotide metabolism.</comment>
-<gibbs-0 datatype='float' units='kcal/mol'>-49.792007</gibbs-0>
-<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ADENODEAMIN-ENZRXN' orgid='ECOLI' frameid='ADENODEAMIN-ENZRXN' detail='low'><reaction><Reaction resource='#ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></reaction>
-<synonym datatype='string'>adenosine aminohydrolase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:ADENODEAMIN-MONOMER' orgid='ECOLI' frameid='ADENODEAMIN-MONOMER'/></enzyme>
-<common-name datatype='string'>adenosine deaminase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ECOLI:ENZRXN0-12593' orgid='ECOLI' frameid='ENZRXN0-12593' detail='low'><reaction><Reaction resource='#ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:EG12097-MONOMER' orgid='ECOLI' frameid='EG12097-MONOMER'/></enzyme>
-<common-name datatype='string'>adenosine deaminase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <left><Compound resource='getxml?ECOLI:PROTON' orgid='ECOLI' frameid='PROTON'/></left>
 <left><Compound resource='getxml?ECOLI:WATER' orgid='ECOLI' frameid='WATER'/></left>
 <left><Compound resource='getxml?ECOLI:ADENOSINE' orgid='ECOLI' frameid='ADENOSINE'/></left>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<ec-number>EC-3.5.4.4<official>T</official>
-</ec-number>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ADENODEAMIN-ENZRXN' orgid='ECOLI' frameid='ADENODEAMIN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ADENODEAMIN-MONOMER' orgid='ECOLI' frameid='ADENODEAMIN-MONOMER'/></enzyme>
+<synonym datatype='string'>adenosine aminohydrolase</synonym>
+<common-name datatype='string'>adenosine deaminase</common-name>
+<reaction><Reaction resource='#ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ECOLI:ENZRXN0-12593' orgid='ECOLI' frameid='ENZRXN0-12593' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG12097-MONOMER' orgid='ECOLI' frameid='EG12097-MONOMER'/></enzyme>
+<common-name datatype='string'>adenosine deaminase</common-name>
+<reaction><Reaction resource='#ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <right><Compound resource='getxml?ECOLI:AMMONIUM' orgid='ECOLI' frameid='AMMONIUM'/></right>
 <right><Compound resource='getxml?ECOLI:INOSINE' orgid='ECOLI' frameid='INOSINE'/></right>
 <in-pathway><Pathway resource='getxml?ECOLI:PWY0-1296' orgid='ECOLI' frameid='PWY0-1296'/><Pathway resource='getxml?ECOLI:PWY-6611' orgid='ECOLI' frameid='PWY-6611'/><Pathway resource='getxml?ECOLI:PWY-6609' orgid='ECOLI' frameid='PWY-6609'/><Pathway resource='getxml?ECOLI:SALVADEHYPOX-PWY' orgid='ECOLI' frameid='SALVADEHYPOX-PWY'/></in-pathway>
+<comment datatype='string'>This reaction is part of nucleotide metabolism.</comment>
+<gibbs-0 datatype='float' units='kcal/mol'>-49.792007</gibbs-0>
+<ec-number>EC-3.5.4.4<official>T</official>
+</ec-number>
 </Reaction>
 </ptools-xml>

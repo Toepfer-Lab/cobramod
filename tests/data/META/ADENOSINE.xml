@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:ADENOSINE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ADENOSINE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ADENOSINE</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:ADENOSINE' orgid='META' frameid='ADENOSINE' detail='full'><parent><Compound resource='getxml?META:Nucleosides' orgid='META' frameid='Nucleosides' class='true'/></parent>
@@ -15,14 +15,173 @@
 <string title='systematicName'>(2R,3R,4S,5R)-2-(6-aminopurin-9-yl)-5-(hydroxymethyl)oxolane-3,4-diol</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN2G6Z-16' orgid='META' frameid='RXN2G6Z-16'/><Reaction resource='getxml?META:RXN-19155' orgid='META' frameid='RXN-19155'/><Reaction resource='getxml?META:RXN-22628' orgid='META' frameid='RXN-22628'/><Reaction resource='getxml?META:RXN-22470' orgid='META' frameid='RXN-22470'/><Reaction resource='getxml?META:RXN-14513' orgid='META' frameid='RXN-14513'/><Reaction resource='getxml?META:TRANS-RXN-108A' orgid='META' frameid='TRANS-RXN-108A'/><Reaction resource='getxml?META:ADENOSYLHOMOCYSTEINASE-RXN' orgid='META' frameid='ADENOSYLHOMOCYSTEINASE-RXN'/><Reaction resource='getxml?META:AMP-DEPHOSPHORYLATION-RXN' orgid='META' frameid='AMP-DEPHOSPHORYLATION-RXN'/><Reaction resource='getxml?META:RXN-14126' orgid='META' frameid='RXN-14126'/><Reaction resource='getxml?META:RXN-4641' orgid='META' frameid='RXN-4641'/><Reaction resource='getxml?META:RXN-4681' orgid='META' frameid='RXN-4681'/><Reaction resource='getxml?META:TRANS-RXN-203' orgid='META' frameid='TRANS-RXN-203'/><Reaction resource='getxml?META:AMP--THYMIDINE-KINASE-RXN' orgid='META' frameid='AMP--THYMIDINE-KINASE-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:ADENPHOSPHOR-RXN' orgid='META' frameid='ADENPHOSPHOR-RXN'/><Reaction resource='getxml?META:RXN-21420' orgid='META' frameid='RXN-21420'/><Reaction resource='getxml?META:TRANS-RXN-108A' orgid='META' frameid='TRANS-RXN-108A'/><Reaction resource='getxml?META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/><Reaction resource='getxml?META:ADENOSINE-NUCLEOSIDASE-RXN' orgid='META' frameid='ADENOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?META:1.1.3.39-RXN' orgid='META' frameid='1.1.3.39-RXN'/><Reaction resource='getxml?META:RXN-11786' orgid='META' frameid='RXN-11786'/><Reaction resource='getxml?META:TRANS-RXN-203' orgid='META' frameid='TRANS-RXN-203'/><Reaction resource='getxml?META:ADENOSINE-KINASE-RXN' orgid='META' frameid='ADENOSINE-KINASE-RXN'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C10H13N5O4/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(18)6(17)4(1-16)19-10/h2-4,6-7,10,16-18H,1H2,(H2,11,12,13)/t4-,6-,7-,10-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>267.244</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN2G6Z-16' orgid='META' frameid='RXN2G6Z-16'/><Reaction resource='getxml?META:RXN-19155' orgid='META' frameid='RXN-19155'/><Reaction resource='getxml?META:RXN-22628' orgid='META' frameid='RXN-22628'/><Reaction resource='getxml?META:RXN-22470' orgid='META' frameid='RXN-22470'/><Reaction resource='getxml?META:RXN-14513' orgid='META' frameid='RXN-14513'/><Reaction resource='getxml?META:TRANS-RXN-108A' orgid='META' frameid='TRANS-RXN-108A'/><Reaction resource='getxml?META:ADENOSYLHOMOCYSTEINASE-RXN' orgid='META' frameid='ADENOSYLHOMOCYSTEINASE-RXN'/><Reaction resource='getxml?META:AMP-DEPHOSPHORYLATION-RXN' orgid='META' frameid='AMP-DEPHOSPHORYLATION-RXN'/><Reaction resource='getxml?META:RXN-14126' orgid='META' frameid='RXN-14126'/><Reaction resource='getxml?META:RXN-4641' orgid='META' frameid='RXN-4641'/><Reaction resource='getxml?META:RXN-4681' orgid='META' frameid='RXN-4681'/><Reaction resource='getxml?META:TRANS-RXN-203' orgid='META' frameid='TRANS-RXN-203'/><Reaction resource='getxml?META:AMP--THYMIDINE-KINASE-RXN' orgid='META' frameid='AMP--THYMIDINE-KINASE-RXN'/></appears-in-right-side-of>
+<systematic-name datatype='string'>(2R,3R,4S,5R)-2-(6-aminopurin-9-yl)-5-(hydroxymethyl)oxolane-3,4-diol</systematic-name>
+<monoisotopic-mw datatype='float' units='Daltons'>267.09674</monoisotopic-mw>
 <synonym datatype='string'>adenine-D-ribose</synonym>
 <synonym datatype='string'>9-&amp;beta;-D-ribofuranosyl-9H-purin-6-amine</synonym>
 <synonym datatype='string'>9-&amp;beta;-D-ribofuranosidoadenine</synonym>
 <synonym datatype='string'>adenine riboside</synonym>
-<molecular-weight datatype='float' units='Daltons'>267.244</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>267.09674</monoisotopic-mw>
+<common-name datatype='string'>adenosine</common-name>
+<regulates><Regulation ID='META:REG0-8272' orgid='META' frameid='REG0-8272' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:DAPASYN-ENZRXN' orgid='META' frameid='DAPASYN-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:DAPASYN-RXN' orgid='META' frameid='DAPASYN-RXN'/></reaction>
+<synonym datatype='string'>7,8-diamino-pelargonic acid aminotransferase</synonym>
+<synonym datatype='string'>DAPA aminotransferase</synonym>
+<synonym datatype='string'>7,8-diaminonanoate transaminase</synonym>
+<synonym datatype='string'>DAPA transaminase</synonym>
+<synonym datatype='string'>S-adenosyl-L-methionine:8-amino-7-oxononanoate aminotransferase</synonym>
+<synonym datatype='string'>DAPA synthetase</synonym>
+<synonym datatype='string'>DAPA synthase</synonym>
+<synonym datatype='string'>adenosylmethionine-8-amino-7-oxononanoate aminotransferase</synonym>
+<common-name datatype='string'>7,8-diaminopelargonic acid synthase</common-name>
+<enzyme><Protein resource='getxml?META:DAPASYN-CPLX' orgid='META' frameid='DAPASYN-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7540' orgid='META' frameid='REG0-7540' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:GMP-SYN-NH3-ENZRXN' orgid='META' frameid='GMP-SYN-NH3-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:GMP-SYN-NH3-RXN' orgid='META' frameid='GMP-SYN-NH3-RXN'/></reaction>
+<synonym datatype='string'>xanthosine-5'-phosphate ammonia ligase</synonym>
+<synonym datatype='string'>GMP synthetase</synonym>
+<synonym datatype='string'>XMP aminase</synonym>
+<synonym datatype='string'>GMP synthetase (ammonia dependent)</synonym>
+<synonym datatype='string'>xanthosine 5'-phosphate aminase</synonym>
+<common-name datatype='string'>xanthosine-5'-phosphate:ammonia ligase (AMP-forming)</common-name>
+<enzyme><Protein resource='getxml?META:GMP-SYN-CPLX' orgid='META' frameid='GMP-SYN-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-12186' orgid='META' frameid='REG0-12186' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-7912' orgid='META' frameid='ENZRXN0-7912' detail='low'><reaction><Reaction resource='getxml?META:RXN-16165' orgid='META' frameid='RXN-16165'/></reaction>
+<synonym datatype='string'>methionyl-tRNA synthetase</synonym>
+<common-name datatype='string'>methionine&amp;mdash;tRNA ligase</common-name>
+<enzyme><Protein resource='getxml?META:METG-CPLX' orgid='META' frameid='METG-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-11691' orgid='META' frameid='REG0-11691' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-6184' orgid='META' frameid='ENZRXN0-6184' detail='low'><reaction><Reaction resource='getxml?META:RXN-12458' orgid='META' frameid='RXN-12458'/></reaction>
+<synonym datatype='string'>tRNA (guanine-N1-)-methyltransferase</synonym>
+<common-name datatype='string'>tRNA m&lt;sup&gt;1&lt;/sup&gt;G37 methyltransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX0-3950' orgid='META' frameid='CPLX0-3950'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8066' orgid='META' frameid='REG0-8066' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:DEOXYGUANPHOSPHOR-ENZRXN' orgid='META' frameid='DEOXYGUANPHOSPHOR-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:DEOXYGUANPHOSPHOR-RXN' orgid='META' frameid='DEOXYGUANPHOSPHOR-RXN'/></reaction>
+<common-name datatype='string'>deoxyguanosine phosphorylase</common-name>
+<enzyme><Protein resource='getxml?META:DEOD-CPLX' orgid='META' frameid='DEOD-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-14610' orgid='META' frameid='REG-14610' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22478' orgid='META' frameid='ENZRXN-22478' detail='low'><reaction><Reaction resource='getxml?META:RXN-15261' orgid='META' frameid='RXN-15261'/></reaction>
+<common-name datatype='string'>7,8-dihydropterin deaminase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-18459' orgid='META' frameid='MONOMER-18459'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-14609' orgid='META' frameid='REG-14609' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22479' orgid='META' frameid='ENZRXN-22479' detail='low'><reaction><Reaction resource='getxml?META:GUANINE-DEAMINASE-RXN' orgid='META' frameid='GUANINE-DEAMINASE-RXN'/></reaction>
+<common-name datatype='string'>guanine deaminase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-18459' orgid='META' frameid='MONOMER-18459'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-13080' orgid='META' frameid='REG-13080' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-17753' orgid='META' frameid='ENZRXN-17753' detail='low'><reaction><Reaction resource='getxml?META:URONATE-DEHYDROGENASE-RXN' orgid='META' frameid='URONATE-DEHYDROGENASE-RXN'/></reaction>
+<common-name datatype='string'>D-galacturonate dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8051' orgid='META' frameid='CPLX-8051'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-12859' orgid='META' frameid='REG-12859' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN66-3375' orgid='META' frameid='ENZRXN66-3375' detail='low'><reaction><Reaction resource='getxml?META:1-PHOSPHATIDYLINOSITOL-KINASE-RXN' orgid='META' frameid='1-PHOSPHATIDYLINOSITOL-KINASE-RXN'/></reaction>
+<common-name datatype='string'>phosphatidylinositol 4-kinase</common-name>
+<enzyme><Protein resource='getxml?META:HS00573-MONOMER' orgid='META' frameid='HS00573-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-12279' orgid='META' frameid='REG-12279' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-15036' orgid='META' frameid='ENZRXN-15036' detail='low'><reaction><Reaction resource='getxml?META:STREPTOMYCIN-6-KINASE-RXN' orgid='META' frameid='STREPTOMYCIN-6-KINASE-RXN'/></reaction>
+<synonym datatype='string'>streptomycin-6-phosphotransferase</synonym>
+<synonym datatype='string'>streptomycin 6-kinase (phosphorylating)</synonym>
+<synonym datatype='string'>streptomycin 6-&lt;i&gt;O&lt;/i&gt;-phosphotransferase</synonym>
+<common-name datatype='string'>streptomycin 6-kinase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-14016' orgid='META' frameid='MONOMER-14016'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7210' orgid='META' frameid='REG-7210' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12209' orgid='META' frameid='ENZRXN-12209' detail='low'><reaction><Reaction resource='getxml?META:ADENOSINE-KINASE-RXN' orgid='META' frameid='ADENOSINE-KINASE-RXN'/></reaction>
+<common-name datatype='string'>adenosine kinase</common-name>
+<enzyme><Protein resource='getxml?META:AT5G03300-MONOMER' orgid='META' frameid='AT5G03300-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7181' orgid='META' frameid='REG-7181' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12184' orgid='META' frameid='ENZRXN-12184' detail='low'><reaction><Reaction resource='getxml?META:RXN-7607' orgid='META' frameid='RXN-7607'/></reaction>
+<common-name datatype='string'>inosine-5'-phosphate nucleotidase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6982' orgid='META' frameid='CPLX-6982'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7175' orgid='META' frameid='REG-7175' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12183' orgid='META' frameid='ENZRXN-12183' detail='low'><reaction><Reaction resource='getxml?META:AMP-DEPHOSPHORYLATION-RXN' orgid='META' frameid='AMP-DEPHOSPHORYLATION-RXN'/></reaction>
+<common-name datatype='string'>5'-AMP nucleotidase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6982' orgid='META' frameid='CPLX-6982'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7167' orgid='META' frameid='REG-7167' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12182' orgid='META' frameid='ENZRXN-12182' detail='low'><reaction><Reaction resource='getxml?META:RXN-7609' orgid='META' frameid='RXN-7609'/></reaction>
+<common-name datatype='string'>5'-GMP-nucleotidase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6982' orgid='META' frameid='CPLX-6982'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-7132' orgid='META' frameid='REG-7132' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12143' orgid='META' frameid='ENZRXN-12143' detail='low'><reaction><Reaction resource='getxml?META:ADENOSYLHOMOCYSTEINASE-RXN' orgid='META' frameid='ADENOSYLHOMOCYSTEINASE-RXN'/></reaction>
+<synonym datatype='string'>adenosylhomocysteinase</synonym>
+<common-name datatype='string'>S-adenosylhomocysteine hydrolase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6976' orgid='META' frameid='CPLX-6976'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=OIRDTQYFTABQOQ-KQYNXXCUSA-N</inchi-key>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000002169830</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -88,9 +247,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-61-7</dblink-URL>
 </dblink>
-<systematic-name datatype='string'>(2R,3R,4S,5R)-2-(6-aminopurin-9-yl)-5-(hydroxymethyl)oxolane-3,4-diol</systematic-name>
-<inchi-key datatype='string'>InChIKey=OIRDTQYFTABQOQ-KQYNXXCUSA-N</inchi-key>
-<common-name datatype='string'>adenosine</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>87.03457<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -100,167 +256,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG0-12186' orgid='META' frameid='REG0-12186' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-7912' orgid='META' frameid='ENZRXN0-7912' detail='low'><enzyme><Protein resource='getxml?META:METG-CPLX' orgid='META' frameid='METG-CPLX'/></enzyme>
-<synonym datatype='string'>methionyl-tRNA synthetase</synonym>
-<reaction><Reaction resource='getxml?META:RXN-16165' orgid='META' frameid='RXN-16165'/></reaction>
-<common-name datatype='string'>methionine&amp;mdash;tRNA ligase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-8272' orgid='META' frameid='REG0-8272' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:DAPASYN-ENZRXN' orgid='META' frameid='DAPASYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:DAPASYN-CPLX' orgid='META' frameid='DAPASYN-CPLX'/></enzyme>
-<synonym datatype='string'>7,8-diamino-pelargonic acid aminotransferase</synonym>
-<synonym datatype='string'>DAPA aminotransferase</synonym>
-<synonym datatype='string'>7,8-diaminonanoate transaminase</synonym>
-<synonym datatype='string'>DAPA transaminase</synonym>
-<synonym datatype='string'>S-adenosyl-L-methionine:8-amino-7-oxononanoate aminotransferase</synonym>
-<synonym datatype='string'>DAPA synthetase</synonym>
-<synonym datatype='string'>DAPA synthase</synonym>
-<synonym datatype='string'>adenosylmethionine-8-amino-7-oxononanoate aminotransferase</synonym>
-<reaction><Reaction resource='getxml?META:DAPASYN-RXN' orgid='META' frameid='DAPASYN-RXN'/></reaction>
-<common-name datatype='string'>7,8-diaminopelargonic acid synthase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-7540' orgid='META' frameid='REG0-7540' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:GMP-SYN-NH3-ENZRXN' orgid='META' frameid='GMP-SYN-NH3-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:GMP-SYN-CPLX' orgid='META' frameid='GMP-SYN-CPLX'/></enzyme>
-<synonym datatype='string'>xanthosine-5'-phosphate ammonia ligase</synonym>
-<synonym datatype='string'>GMP synthetase</synonym>
-<synonym datatype='string'>XMP aminase</synonym>
-<synonym datatype='string'>GMP synthetase (ammonia dependent)</synonym>
-<synonym datatype='string'>xanthosine 5'-phosphate aminase</synonym>
-<reaction><Reaction resource='getxml?META:GMP-SYN-NH3-RXN' orgid='META' frameid='GMP-SYN-NH3-RXN'/></reaction>
-<common-name datatype='string'>xanthosine-5'-phosphate:ammonia ligase (AMP-forming)</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-8066' orgid='META' frameid='REG0-8066' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:DEOXYGUANPHOSPHOR-ENZRXN' orgid='META' frameid='DEOXYGUANPHOSPHOR-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:DEOD-CPLX' orgid='META' frameid='DEOD-CPLX'/></enzyme>
-<reaction><Reaction resource='getxml?META:DEOXYGUANPHOSPHOR-RXN' orgid='META' frameid='DEOXYGUANPHOSPHOR-RXN'/></reaction>
-<common-name datatype='string'>deoxyguanosine phosphorylase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-11691' orgid='META' frameid='REG0-11691' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN0-6184' orgid='META' frameid='ENZRXN0-6184' detail='low'><enzyme><Protein resource='getxml?META:CPLX0-3950' orgid='META' frameid='CPLX0-3950'/></enzyme>
-<synonym datatype='string'>tRNA (guanine-N1-)-methyltransferase</synonym>
-<reaction><Reaction resource='getxml?META:RXN-12458' orgid='META' frameid='RXN-12458'/></reaction>
-<common-name datatype='string'>tRNA m&lt;sup&gt;1&lt;/sup&gt;G37 methyltransferase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-14610' orgid='META' frameid='REG-14610' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22478' orgid='META' frameid='ENZRXN-22478' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-18459' orgid='META' frameid='MONOMER-18459'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-15261' orgid='META' frameid='RXN-15261'/></reaction>
-<common-name datatype='string'>7,8-dihydropterin deaminase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-14609' orgid='META' frameid='REG-14609' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-22479' orgid='META' frameid='ENZRXN-22479' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-18459' orgid='META' frameid='MONOMER-18459'/></enzyme>
-<reaction><Reaction resource='getxml?META:GUANINE-DEAMINASE-RXN' orgid='META' frameid='GUANINE-DEAMINASE-RXN'/></reaction>
-<common-name datatype='string'>guanine deaminase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-13080' orgid='META' frameid='REG-13080' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-17753' orgid='META' frameid='ENZRXN-17753' detail='low'><enzyme><Protein resource='getxml?META:CPLX-8051' orgid='META' frameid='CPLX-8051'/></enzyme>
-<reaction><Reaction resource='getxml?META:URONATE-DEHYDROGENASE-RXN' orgid='META' frameid='URONATE-DEHYDROGENASE-RXN'/></reaction>
-<common-name datatype='string'>D-galacturonate dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-12859' orgid='META' frameid='REG-12859' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN66-3375' orgid='META' frameid='ENZRXN66-3375' detail='low'><enzyme><Protein resource='getxml?META:HS00573-MONOMER' orgid='META' frameid='HS00573-MONOMER'/></enzyme>
-<reaction><Reaction resource='getxml?META:1-PHOSPHATIDYLINOSITOL-KINASE-RXN' orgid='META' frameid='1-PHOSPHATIDYLINOSITOL-KINASE-RXN'/></reaction>
-<common-name datatype='string'>phosphatidylinositol 4-kinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-12279' orgid='META' frameid='REG-12279' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-15036' orgid='META' frameid='ENZRXN-15036' detail='low'><enzyme><Protein resource='getxml?META:MONOMER-14016' orgid='META' frameid='MONOMER-14016'/></enzyme>
-<synonym datatype='string'>streptomycin-6-phosphotransferase</synonym>
-<synonym datatype='string'>streptomycin 6-kinase (phosphorylating)</synonym>
-<synonym datatype='string'>streptomycin 6-&lt;i&gt;O&lt;/i&gt;-phosphotransferase</synonym>
-<reaction><Reaction resource='getxml?META:STREPTOMYCIN-6-KINASE-RXN' orgid='META' frameid='STREPTOMYCIN-6-KINASE-RXN'/></reaction>
-<common-name datatype='string'>streptomycin 6-kinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7210' orgid='META' frameid='REG-7210' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12209' orgid='META' frameid='ENZRXN-12209' detail='low'><enzyme><Protein resource='getxml?META:AT5G03300-MONOMER' orgid='META' frameid='AT5G03300-MONOMER'/></enzyme>
-<reaction><Reaction resource='getxml?META:ADENOSINE-KINASE-RXN' orgid='META' frameid='ADENOSINE-KINASE-RXN'/></reaction>
-<common-name datatype='string'>adenosine kinase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7181' orgid='META' frameid='REG-7181' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12184' orgid='META' frameid='ENZRXN-12184' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6982' orgid='META' frameid='CPLX-6982'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-7607' orgid='META' frameid='RXN-7607'/></reaction>
-<common-name datatype='string'>inosine-5'-phosphate nucleotidase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7175' orgid='META' frameid='REG-7175' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12183' orgid='META' frameid='ENZRXN-12183' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6982' orgid='META' frameid='CPLX-6982'/></enzyme>
-<reaction><Reaction resource='getxml?META:AMP-DEPHOSPHORYLATION-RXN' orgid='META' frameid='AMP-DEPHOSPHORYLATION-RXN'/></reaction>
-<common-name datatype='string'>5'-AMP nucleotidase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7167' orgid='META' frameid='REG-7167' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12182' orgid='META' frameid='ENZRXN-12182' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6982' orgid='META' frameid='CPLX-6982'/></enzyme>
-<reaction><Reaction resource='getxml?META:RXN-7609' orgid='META' frameid='RXN-7609'/></reaction>
-<common-name datatype='string'>5'-GMP-nucleotidase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-7132' orgid='META' frameid='REG-7132' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-12143' orgid='META' frameid='ENZRXN-12143' detail='low'><enzyme><Protein resource='getxml?META:CPLX-6976' orgid='META' frameid='CPLX-6976'/></enzyme>
-<synonym datatype='string'>adenosylhomocysteinase</synonym>
-<reaction><Reaction resource='getxml?META:ADENOSYLHOMOCYSTEINASE-RXN' orgid='META' frameid='ADENOSYLHOMOCYSTEINASE-RXN'/></reaction>
-<common-name datatype='string'>S-adenosylhomocysteine hydrolase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<appears-in-left-side-of><Reaction resource='getxml?META:ADENPHOSPHOR-RXN' orgid='META' frameid='ADENPHOSPHOR-RXN'/><Reaction resource='getxml?META:RXN-21420' orgid='META' frameid='RXN-21420'/><Reaction resource='getxml?META:TRANS-RXN-108A' orgid='META' frameid='TRANS-RXN-108A'/><Reaction resource='getxml?META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/><Reaction resource='getxml?META:ADENOSINE-NUCLEOSIDASE-RXN' orgid='META' frameid='ADENOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?META:1.1.3.39-RXN' orgid='META' frameid='1.1.3.39-RXN'/><Reaction resource='getxml?META:RXN-11786' orgid='META' frameid='RXN-11786'/><Reaction resource='getxml?META:TRANS-RXN-203' orgid='META' frameid='TRANS-RXN-203'/><Reaction resource='getxml?META:ADENOSINE-KINASE-RXN' orgid='META' frameid='ADENOSINE-KINASE-RXN'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

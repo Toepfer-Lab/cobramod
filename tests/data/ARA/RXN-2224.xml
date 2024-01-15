@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:RXN-2224'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:RXN-2224'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-2224</query>
 <num_results>1</num_results>
@@ -9,13 +9,13 @@
 </metadata>
 <Reaction ID='ARA:RXN-2224' orgid='ARA' frameid='RXN-2224' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 <left><Compound resource='getxml?ARA:3-HYDROXYPROPYL-GLUCOSINOLATE' orgid='ARA' frameid='3-HYDROXYPROPYL-GLUCOSINOLATE'/></left>
 <left><Compound resource='getxml?ARA:BENZOYLCOA' orgid='ARA' frameid='BENZOYLCOA'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-3.6101074</gibbs-0>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?ARA:3-BENZOYLOXYPROPYL-GLUCOSINOLATE' orgid='ARA' frameid='3-BENZOYLOXYPROPYL-GLUCOSINOLATE'/></right>
 <right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-3.6101074</gibbs-0>
+<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 </Reaction>
 </ptools-xml>

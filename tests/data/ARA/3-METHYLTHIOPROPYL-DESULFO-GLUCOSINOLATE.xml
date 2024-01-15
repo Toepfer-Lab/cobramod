@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE</query>
 <num_results>1</num_results>
@@ -14,15 +14,15 @@
 <string title='smiles'>CSCCCC(\S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\O</string>
 </molecule>
 </cml>
-<common-name datatype='string'>3-(methylsulfanyl)propyl-desulfoglucosinolate</common-name>
-<inchi datatype='string'>InChI=1S/C11H21NO6S2/c1-19-4-2-3-7(12-17)20-11-10(16)9(15)8(14)6(5-13)18-11/h6,8-11,13-17H,2-5H2,1H3/b12-7-/t6-,8-,9+,10-,11+/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=OYTRJEKRRFSKHF-IIPHORNXSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2209' orgid='ARA' frameid='RXN-2209'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>31.86354</gibbs-0>
 <synonym datatype='string'>3-(methylthio)propyl-desulfoglucosinolate</synonym>
+<inchi-key datatype='string'>InChIKey=OYTRJEKRRFSKHF-IIPHORNXSA-N</inchi-key>
 <molecular-weight datatype='float' units='Daltons'>327.41</molecular-weight>
+<inchi datatype='string'>InChI=1S/C11H21NO6S2/c1-19-4-2-3-7(12-17)20-11-10(16)9(15)8(14)6(5-13)18-11/h6,8-11,13-17H,2-5H2,1H3/b12-7-/t6-,8-,9+,10-,11+/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-2208' orgid='ARA' frameid='RXN-2208'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2209' orgid='ARA' frameid='RXN-2209'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>327.08102</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>31.86354</gibbs-0>
+<common-name datatype='string'>3-(methylsulfanyl)propyl-desulfoglucosinolate</common-name>
 <dblink><dblink-db>CHEBI</dblink-db>
 <dblink-oid>136425</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

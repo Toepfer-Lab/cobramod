@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:ACONITATEHYDR-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:ACONITATEHYDR-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:ACONITATEHYDR-RXN</query>
 <num_results>1</num_results>
@@ -9,41 +9,41 @@
 </metadata>
 <Reaction ID='ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<in-pathway><Pathway resource='getxml?ARA:PWY-6549' orgid='ARA' frameid='PWY-6549'/><Pathway resource='getxml?ARA:PWY-5690' orgid='ARA' frameid='PWY-5690'/><Reaction resource='getxml?ARA:RXN-14047' orgid='ARA' frameid='RXN-14047'/><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/></in-pathway>
-<common-name datatype='string'>cis-aconitate hydratase</common-name>
 <left><Compound resource='getxml?ARA:CIS-ACONITATE' orgid='ARA' frameid='CIS-ACONITATE'/></left>
 <left><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-3.1329956</gibbs-0>
 <reaction-direction>REVERSIBLE</reaction-direction>
 <right><Compound resource='getxml?ARA:THREO-DS-ISO-CITRATE' orgid='ARA' frameid='THREO-DS-ISO-CITRATE'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-10689' orgid='ARA' frameid='ENZRXNQT-10689' detail='low'><common-name datatype='string'>cis-aconitate hydratase</common-name>
+<gibbs-0 datatype='float' units='kcal/mol'>-3.1329956</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-10689' orgid='ARA' frameid='ENZRXNQT-10689' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G54950-MONOMER' orgid='ARA' frameid='AT5G54950-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT5G54950-MONOMER' orgid='ARA' frameid='AT5G54950-MONOMER'/></enzyme>
+<common-name datatype='string'>cis-aconitate hydratase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNT9-2104' orgid='ARA' frameid='ENZRXNT9-2104' detail='low'><common-name datatype='string'>cis-aconitate hydratase</common-name>
-<reaction><Reaction resource='#ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/></reaction>
-<synonym datatype='string'>aconitate hydratase</synonym>
+<Enzymatic-Reaction ID='ARA:ENZRXNT9-2104' orgid='ARA' frameid='ENZRXNT9-2104' detail='low'><synonym datatype='string'>aconitate hydratase</synonym>
 <synonym datatype='string'>isocitrate hydrolyase (cis-aconitate-forming)</synonym>
 <enzyme><Protein resource='getxml?ARA:AT4G35830-MONOMER' orgid='ARA' frameid='AT4G35830-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNT9-491' orgid='ARA' frameid='ENZRXNT9-491' detail='low'><common-name datatype='string'>cis-aconitate hydratase</common-name>
 <reaction><Reaction resource='#ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/></reaction>
-<synonym datatype='string'>aconitate hydratase</synonym>
+<common-name datatype='string'>cis-aconitate hydratase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNT9-491' orgid='ARA' frameid='ENZRXNT9-491' detail='low'><synonym datatype='string'>aconitate hydratase</synonym>
 <synonym datatype='string'>isocitrate hydrolyase (cis-aconitate-forming)</synonym>
 <enzyme><Protein resource='getxml?ARA:AT4G26970-MONOMER' orgid='ARA' frameid='AT4G26970-MONOMER'/></enzyme>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ARA:ENZRXNQT-10603' orgid='ARA' frameid='ENZRXNQT-10603' detail='low'><common-name datatype='string'>cis-aconitate hydratase</common-name>
 <reaction><Reaction resource='#ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/></reaction>
-<synonym datatype='string'>aconitate hydratase</synonym>
+<common-name datatype='string'>cis-aconitate hydratase</common-name>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-10603' orgid='ARA' frameid='ENZRXNQT-10603' detail='low'><synonym datatype='string'>aconitate hydratase</synonym>
 <synonym datatype='string'>isocitrate hydrolyase (cis-aconitate-forming)</synonym>
 <enzyme><Protein resource='getxml?ARA:AT2G05710-MONOMER' orgid='ARA' frameid='AT2G05710-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:ACONITATEHYDR-RXN' orgid='ARA' frameid='ACONITATEHYDR-RXN'/></reaction>
+<common-name datatype='string'>cis-aconitate hydratase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
+<common-name datatype='string'>cis-aconitate hydratase</common-name>
 <dblink><dblink-db>LIGAND-RXN</dblink-db>
 <dblink-oid>R01900</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R01900</dblink-URL>
 </dblink>
+<in-pathway><Pathway resource='getxml?ARA:PWY-6549' orgid='ARA' frameid='PWY-6549'/><Pathway resource='getxml?ARA:PWY-5690' orgid='ARA' frameid='PWY-5690'/><Reaction resource='getxml?ARA:RXN-14047' orgid='ARA' frameid='RXN-14047'/><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/></in-pathway>
 </Reaction>
 </ptools-xml>

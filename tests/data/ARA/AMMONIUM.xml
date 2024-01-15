@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:AMMONIUM'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:AMMONIUM'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:AMMONIUM</query>
 <num_results>1</num_results>
@@ -14,17 +14,20 @@
 <string title='smiles'>[NH4+]</string>
 </molecule>
 </cml>
+<synonym datatype='string'>NH&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;+&lt;/SUP&gt;</synonym>
+<inchi-key datatype='string'>InChIKey=QGZKDVFQNNGYKY-UHFFFAOYSA-O</inchi-key>
+<molecular-weight datatype='float' units='Daltons'>18.038</molecular-weight>
 <regulates><Regulation ID='ARA:REG0-6780' orgid='ARA' frameid='REG0-6780' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG-14198' orgid='ARA' frameid='REG-14198' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-21300' orgid='ARA' frameid='ENZRXN-21300' detail='low'><common-name datatype='string'>deoxycytidine deaminase</common-name>
+<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-21300' orgid='ARA' frameid='ENZRXN-21300' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-8106' orgid='ARA' frameid='CPLX-8106'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:CYTIDEAM-RXN' orgid='ARA' frameid='CYTIDEAM-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-8106' orgid='ARA' frameid='CPLX-8106'/></enzyme>
+<common-name datatype='string'>deoxycytidine deaminase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG0-8381' orgid='ARA' frameid='REG0-8381' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
@@ -52,21 +55,21 @@
 <mode datatype='string'>+</mode>
 </Regulation>
 <Regulation ID='ARA:REG-13167' orgid='ARA' frameid='REG-13167' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-18003' orgid='ARA' frameid='ENZRXN-18003' detail='low'><common-name datatype='string'>cytidine deaminase</common-name>
+<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-18003' orgid='ARA' frameid='ENZRXN-18003' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-8106' orgid='ARA' frameid='CPLX-8106'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:CYTIDEAM2-RXN' orgid='ARA' frameid='CYTIDEAM2-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-8106' orgid='ARA' frameid='CPLX-8106'/></enzyme>
+<common-name datatype='string'>cytidine deaminase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG-13071' orgid='ARA' frameid='REG-13071' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-17707' orgid='ARA' frameid='ENZRXN-17707' detail='low'><common-name datatype='string'>GA9 carboxyl methyltransferase</common-name>
+<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-17707' orgid='ARA' frameid='ENZRXN-17707' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G26420-MONOMER' orgid='ARA' frameid='AT4G26420-MONOMER'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:RXN-11358' orgid='ARA' frameid='RXN-11358'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT4G26420-MONOMER' orgid='ARA' frameid='AT4G26420-MONOMER'/></enzyme>
+<common-name datatype='string'>GA9 carboxyl methyltransferase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
 <mode datatype='string'>+</mode>
 </Regulation>
 <Regulation ID='ARA:REG0-7382' orgid='ARA' frameid='REG0-7382' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
@@ -74,25 +77,22 @@
 <mode datatype='string'>+</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-273' orgid='ARA' frameid='REGQT-273' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9471' orgid='ARA' frameid='ENZRXNQT-9471' detail='low'><common-name datatype='string'>threonine deaminase</common-name>
+<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9471' orgid='ARA' frameid='ENZRXNQT-9471' detail='low'><enzyme><Protein resource='getxml?ARA:CPLXQT-4' orgid='ARA' frameid='CPLXQT-4'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:THREDEHYD-RXN' orgid='ARA' frameid='THREDEHYD-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLXQT-4' orgid='ARA' frameid='CPLXQT-4'/></enzyme>
+<common-name datatype='string'>threonine deaminase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></regulator>
 <mode datatype='string'>+</mode>
 </Regulation>
 </regulates>
-<common-name datatype='string'>ammonium</common-name>
-<inchi datatype='string'>InChI=1S/H3N/h1H3/p+1</inchi>
-<inchi-key datatype='string'>InChIKey=QGZKDVFQNNGYKY-UHFFFAOYSA-O</inchi-key>
 <component-of><Compound resource='getxml?ARA:NH4CL' orgid='ARA' frameid='NH4CL'/></component-of>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:CARBAMATE-KINASE-RXN' orgid='ARA' frameid='CARBAMATE-KINASE-RXN'/><Reaction resource='getxml?ARA:RXN-16910' orgid='ARA' frameid='RXN-16910'/><Reaction resource='getxml?ARA:NAD-SYNTH-NH3-RXN' orgid='ARA' frameid='NAD-SYNTH-NH3-RXN'/><Reaction resource='getxml?ARA:ASNSYNA-RXN' orgid='ARA' frameid='ASNSYNA-RXN'/><Reaction resource='getxml?ARA:RXN-13202' orgid='ARA' frameid='RXN-13202'/><Reaction resource='getxml?ARA:GLUTAMINESYN-RXN' orgid='ARA' frameid='GLUTAMINESYN-RXN'/><Reaction resource='getxml?ARA:DIPHTINE--AMMONIA-LIGASE-RXN' orgid='ARA' frameid='DIPHTINE--AMMONIA-LIGASE-RXN'/><Reaction resource='getxml?ARA:FERREDOXIN--NITRITE-REDUCTASE-RXN' orgid='ARA' frameid='FERREDOXIN--NITRITE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:RXN-9615' orgid='ARA' frameid='RXN-9615'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>21.812426</gibbs-0>
-<synonym datatype='string'>NH&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;+&lt;/SUP&gt;</synonym>
-<molecular-weight datatype='float' units='Daltons'>18.038</molecular-weight>
+<inchi datatype='string'>InChI=1S/H3N/h1H3/p+1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-11063' orgid='ARA' frameid='RXN-11063'/><Reaction resource='getxml?ARA:ARGININE-DEIMINASE-RXN' orgid='ARA' frameid='ARGININE-DEIMINASE-RXN'/><Reaction resource='getxml?ARA:RXN-8899' orgid='ARA' frameid='RXN-8899'/><Reaction resource='getxml?ARA:RXN0-6452' orgid='ARA' frameid='RXN0-6452'/><Reaction resource='getxml?ARA:RXN-11811' orgid='ARA' frameid='RXN-11811'/><Reaction resource='getxml?ARA:RXN-21524' orgid='ARA' frameid='RXN-21524'/><Reaction resource='getxml?ARA:RXN-21523' orgid='ARA' frameid='RXN-21523'/><Reaction resource='getxml?ARA:RXN-21527' orgid='ARA' frameid='RXN-21527'/><Reaction resource='getxml?ARA:RXN-21526' orgid='ARA' frameid='RXN-21526'/><Reaction resource='getxml?ARA:RXN-12894' orgid='ARA' frameid='RXN-12894'/><Reaction resource='getxml?ARA:RXN-12895' orgid='ARA' frameid='RXN-12895'/><Reaction resource='getxml?ARA:RXN-11064' orgid='ARA' frameid='RXN-11064'/><Reaction resource='getxml?ARA:RXN-12732' orgid='ARA' frameid='RXN-12732'/><Reaction resource='getxml?ARA:RXN-18212' orgid='ARA' frameid='RXN-18212'/><Reaction resource='getxml?ARA:RXN-19583' orgid='ARA' frameid='RXN-19583'/><Reaction resource='getxml?ARA:3.5.5.7-RXN' orgid='ARA' frameid='3.5.5.7-RXN'/><Reaction resource='getxml?ARA:RXN-19596' orgid='ARA' frameid='RXN-19596'/><Reaction resource='getxml?ARA:RXN-18229' orgid='ARA' frameid='RXN-18229'/><Reaction resource='getxml?ARA:RXN-17879' orgid='ARA' frameid='RXN-17879'/><Reaction resource='getxml?ARA:RXN-17849' orgid='ARA' frameid='RXN-17849'/><Reaction resource='getxml?ARA:RXN-19659' orgid='ARA' frameid='RXN-19659'/><Reaction resource='getxml?ARA:RXN-19586' orgid='ARA' frameid='RXN-19586'/><Reaction resource='getxml?ARA:RXN-8054' orgid='ARA' frameid='RXN-8054'/><Reaction resource='getxml?ARA:DCTP-DEAM-RXN' orgid='ARA' frameid='DCTP-DEAM-RXN'/><Reaction resource='getxml?ARA:RXN-19145' orgid='ARA' frameid='RXN-19145'/><Reaction resource='getxml?ARA:RXN-6381' orgid='ARA' frameid='RXN-6381'/><Reaction resource='getxml?ARA:RXN-13072' orgid='ARA' frameid='RXN-13072'/><Reaction resource='getxml?ARA:GUANOSINE-DEAMINASE-RXN' orgid='ARA' frameid='GUANOSINE-DEAMINASE-RXN'/><Reaction resource='getxml?ARA:RXN-9697' orgid='ARA' frameid='RXN-9697'/><Reaction resource='getxml?ARA:RXN-14987' orgid='ARA' frameid='RXN-14987'/><Reaction resource='getxml?ARA:RXN-8163' orgid='ARA' frameid='RXN-8163'/><Reaction resource='getxml?ARA:RXN-1401' orgid='ARA' frameid='RXN-1401'/><Reaction resource='getxml?ARA:RXN-11210' orgid='ARA' frameid='RXN-11210'/><Reaction resource='getxml?ARA:RXN-5821' orgid='ARA' frameid='RXN-5821'/><Reaction resource='getxml?ARA:RXN-15130' orgid='ARA' frameid='RXN-15130'/><Reaction resource='getxml?ARA:4.1.99.4-RXN' orgid='ARA' frameid='4.1.99.4-RXN'/><Reaction resource='getxml?ARA:RXN-12613' orgid='ARA' frameid='RXN-12613'/><Reaction resource='getxml?ARA:D-AMINO-ACID-OXIDASE-RXN' orgid='ARA' frameid='D-AMINO-ACID-OXIDASE-RXN'/><Reaction resource='getxml?ARA:RXN-15123' orgid='ARA' frameid='RXN-15123'/><Reaction resource='getxml?ARA:RXN-15127' orgid='ARA' frameid='RXN-15127'/><Reaction resource='getxml?ARA:GCVMULTI-RXN' orgid='ARA' frameid='GCVMULTI-RXN'/><Reaction resource='getxml?ARA:RXN-12729' orgid='ARA' frameid='RXN-12729'/><Reaction resource='getxml?ARA:GCVT-RXN' orgid='ARA' frameid='GCVT-RXN'/><Reaction resource='getxml?ARA:THREDEHYD-RXN' orgid='ARA' frameid='THREDEHYD-RXN'/><Reaction resource='getxml?ARA:RXN-12893' orgid='ARA' frameid='RXN-12893'/><Reaction resource='getxml?ARA:GLUTDEHYD-RXN' orgid='ARA' frameid='GLUTDEHYD-RXN'/><Reaction resource='getxml?ARA:METHIONINE-GAMMA-LYASE-RXN' orgid='ARA' frameid='METHIONINE-GAMMA-LYASE-RXN'/><Reaction resource='getxml?ARA:RIBOFLAVINSYNDEAM-RXN' orgid='ARA' frameid='RIBOFLAVINSYNDEAM-RXN'/><Reaction resource='getxml?ARA:RXNQT-4321' orgid='ARA' frameid='RXNQT-4321'/><Reaction resource='getxml?ARA:RXN-9597' orgid='ARA' frameid='RXN-9597'/><Reaction resource='getxml?ARA:BETA-UREIDOPROPIONASE-RXN' orgid='ARA' frameid='BETA-UREIDOPROPIONASE-RXN'/><Reaction resource='getxml?ARA:RXN-6763' orgid='ARA' frameid='RXN-6763'/><Reaction resource='getxml?ARA:4.3.1.17-RXN' orgid='ARA' frameid='4.3.1.17-RXN'/><Reaction resource='getxml?ARA:RXNQT-4323' orgid='ARA' frameid='RXNQT-4323'/><Reaction resource='getxml?ARA:OMEGA-AMIDASE-RXN' orgid='ARA' frameid='OMEGA-AMIDASE-RXN'/><Reaction resource='getxml?ARA:GUANINE-DEAMINASE-RXN' orgid='ARA' frameid='GUANINE-DEAMINASE-RXN'/><Reaction resource='getxml?ARA:UREIDOGLYCOLATE-HYDROLASE-RXN' orgid='ARA' frameid='UREIDOGLYCOLATE-HYDROLASE-RXN'/><Reaction resource='getxml?ARA:DSERDEAM-RXN' orgid='ARA' frameid='DSERDEAM-RXN'/><Reaction resource='getxml?ARA:RXN-1404' orgid='ARA' frameid='RXN-1404'/><Reaction resource='getxml?ARA:ADENODEAMIN-RXN' orgid='ARA' frameid='ADENODEAMIN-RXN'/><Reaction resource='getxml?ARA:DCMP-DEAMINASE-RXN' orgid='ARA' frameid='DCMP-DEAMINASE-RXN'/><Reaction resource='getxml?ARA:CYTIDEAM-RXN' orgid='ARA' frameid='CYTIDEAM-RXN'/><Reaction resource='getxml?ARA:CYTIDEAM2-RXN' orgid='ARA' frameid='CYTIDEAM2-RXN'/><Reaction resource='getxml?ARA:RXN-8052' orgid='ARA' frameid='RXN-8052'/><Reaction resource='getxml?ARA:N-CARBAMOYLPUTRESCINE-AMIDASE-RXN' orgid='ARA' frameid='N-CARBAMOYLPUTRESCINE-AMIDASE-RXN'/><Reaction resource='getxml?ARA:URUR-RXN' orgid='ARA' frameid='URUR-RXN'/><Reaction resource='getxml?ARA:NICOTINAMID-RXN' orgid='ARA' frameid='NICOTINAMID-RXN'/><Reaction resource='getxml?ARA:RXN0-5222' orgid='ARA' frameid='RXN0-5222'/><Reaction resource='getxml?ARA:DCYSDESULF-RXN' orgid='ARA' frameid='DCYSDESULF-RXN'/><Reaction resource='getxml?ARA:PMPOXI-RXN' orgid='ARA' frameid='PMPOXI-RXN'/><Reaction resource='getxml?ARA:RXNQT-4322' orgid='ARA' frameid='RXNQT-4322'/><Reaction resource='getxml?ARA:PUTRESCINE-OXIDASE-RXN' orgid='ARA' frameid='PUTRESCINE-OXIDASE-RXN'/><Reaction resource='getxml?ARA:FORMAMIDASE-RXN' orgid='ARA' frameid='FORMAMIDASE-RXN'/><Reaction resource='getxml?ARA:RXNN-404' orgid='ARA' frameid='RXNN-404'/><Reaction resource='getxml?ARA:ALLANTOATE-DEIMINASE-RXN' orgid='ARA' frameid='ALLANTOATE-DEIMINASE-RXN'/><Reaction resource='getxml?ARA:OHMETHYLBILANESYN-RXN' orgid='ARA' frameid='OHMETHYLBILANESYN-RXN'/><Reaction resource='getxml?ARA:CYSTATHIONINE-BETA-LYASE-RXN' orgid='ARA' frameid='CYSTATHIONINE-BETA-LYASE-RXN'/><Reaction resource='getxml?ARA:RXNQT-4319' orgid='ARA' frameid='RXNQT-4319'/><Reaction resource='getxml?ARA:3.5.5.1-RXN' orgid='ARA' frameid='3.5.5.1-RXN'/><Reaction resource='getxml?ARA:ASPARAGHYD-RXN' orgid='ARA' frameid='ASPARAGHYD-RXN'/><Reaction resource='getxml?ARA:3.5.5.4-RXN' orgid='ARA' frameid='3.5.5.4-RXN'/><Reaction resource='getxml?ARA:GLUTAMATE-DEHYDROGENASE-NADP+-RXN' orgid='ARA' frameid='GLUTAMATE-DEHYDROGENASE-NADP+-RXN'/><Reaction resource='getxml?ARA:GLUTAMATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='GLUTAMATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:RXNQT-4320' orgid='ARA' frameid='RXNQT-4320'/><Reaction resource='getxml?ARA:AMIDASE-RXN' orgid='ARA' frameid='AMIDASE-RXN'/><Reaction resource='getxml?ARA:AMP-DEAMINASE-RXN' orgid='ARA' frameid='AMP-DEAMINASE-RXN'/><Reaction resource='getxml?ARA:AGMATINE-DEIMINASE-RXN' orgid='ARA' frameid='AGMATINE-DEIMINASE-RXN'/><Reaction resource='getxml?ARA:UREASE-RXN' orgid='ARA' frameid='UREASE-RXN'/><Reaction resource='getxml?ARA:PHENYLALANINE-AMMONIA-LYASE-RXN' orgid='ARA' frameid='PHENYLALANINE-AMMONIA-LYASE-RXN'/><Reaction resource='getxml?ARA:GUANIDINOBUTANAMIDE-NH3-RXN' orgid='ARA' frameid='GUANIDINOBUTANAMIDE-NH3-RXN'/><Reaction resource='getxml?ARA:RXN-10032' orgid='ARA' frameid='RXN-10032'/><Reaction resource='getxml?ARA:RXN-9615' orgid='ARA' frameid='RXN-9615'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:CARBAMATE-KINASE-RXN' orgid='ARA' frameid='CARBAMATE-KINASE-RXN'/><Reaction resource='getxml?ARA:RXN-16910' orgid='ARA' frameid='RXN-16910'/><Reaction resource='getxml?ARA:NAD-SYNTH-NH3-RXN' orgid='ARA' frameid='NAD-SYNTH-NH3-RXN'/><Reaction resource='getxml?ARA:ASNSYNA-RXN' orgid='ARA' frameid='ASNSYNA-RXN'/><Reaction resource='getxml?ARA:RXN-13202' orgid='ARA' frameid='RXN-13202'/><Reaction resource='getxml?ARA:GLUTAMINESYN-RXN' orgid='ARA' frameid='GLUTAMINESYN-RXN'/><Reaction resource='getxml?ARA:DIPHTINE--AMMONIA-LIGASE-RXN' orgid='ARA' frameid='DIPHTINE--AMMONIA-LIGASE-RXN'/><Reaction resource='getxml?ARA:FERREDOXIN--NITRITE-REDUCTASE-RXN' orgid='ARA' frameid='FERREDOXIN--NITRITE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:RXN-9615' orgid='ARA' frameid='RXN-9615'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>18.034374</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>21.812426</gibbs-0>
+<common-name datatype='string'>ammonium</common-name>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/1211/</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

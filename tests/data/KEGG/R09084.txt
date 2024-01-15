@@ -5,13 +5,16 @@ EQUATION    C05345 + C00008 <=> C05378 + C00020
 RCLASS      RC00002  C00008_C00020
             RC00017  C05345_C05378
 ENZYME      2.7.1.146
-PATHWAY     rn00010  Glycolysis / Gluconeogenesis
-            rn00030  Pentose phosphate pathway
-            rn01100  Metabolic pathways
-            rn01110  Biosynthesis of secondary metabolites
-            rn01120  Microbial metabolism in diverse environments
-            rn01200  Carbon metabolism
-            rn01230  Biosynthesis of amino acids
-MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+BRITE       Enzymatic reactions [BR:br08201]
+             2. Transferase reactions
+              2.7  Transferring phosphorus-containing groups
+               2.7.1  Phosphotransferases with an alcohol group as acceptor
+                2.7.1.146
+                 R09084  beta-D-Fructose 6-phosphate + ADP <=> beta-D-Fructose 1,6-bisphosphate + AMP
+            IUBMB reaction hierarchy [BR:br08202]
+             2. Transferase reactions
+              2.7.1.146
+               R05805  D-Fructose 6-phosphate <=> D-Fructose 1,6-bisphosphate
+                R09084  beta-D-Fructose 6-phosphate <=> beta-D-Fructose 1,6-bisphosphate
 ORTHOLOGY   K00918  ADP-dependent phosphofructokinase/glucokinase [EC:2.7.1.146 2.7.1.147]
 ///

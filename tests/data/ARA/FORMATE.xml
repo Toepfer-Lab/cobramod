@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:FORMATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:FORMATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:FORMATE</query>
 <num_results>1</num_results>
@@ -14,6 +14,9 @@
 <string title='smiles'>C([O-])=O</string>
 </molecule>
 </cml>
+<synonym datatype='string'>formic acid</synonym>
+<inchi-key datatype='string'>InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
+<molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
 <regulates><Regulation ID='ARA:REG-6186' orgid='ARA' frameid='REG-6186' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:FORMATE' orgid='ARA' frameid='FORMATE'/></regulator>
 <mode datatype='string'>-</mode>
@@ -23,15 +26,12 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 </regulates>
-<common-name datatype='string'>formate</common-name>
 <inchi datatype='string'>InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
-<inchi-key datatype='string'>InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN0-724' orgid='ARA' frameid='RXN0-724'/><Reaction resource='getxml?ARA:RXN0-723' orgid='ARA' frameid='RXN0-723'/><Reaction resource='getxml?ARA:FORMATETHFLIG-RXN' orgid='ARA' frameid='FORMATETHFLIG-RXN'/><Reaction resource='getxml?ARA:1.2.1.2-RXN' orgid='ARA' frameid='1.2.1.2-RXN'/><Reaction resource='getxml?ARA:GARTRANSFORMYL2-RXN' orgid='ARA' frameid='GARTRANSFORMYL2-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-73.93095</gibbs-0>
-<synonym datatype='string'>formic acid</synonym>
-<molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?ARA:RXN-21167' orgid='ARA' frameid='RXN-21167'/><Reaction resource='getxml?ARA:FORMYL-COA-HYDROLASE-RXN' orgid='ARA' frameid='FORMYL-COA-HYDROLASE-RXN'/><Reaction resource='getxml?ARA:RXN-19833' orgid='ARA' frameid='RXN-19833'/><Reaction resource='getxml?ARA:1.14.13.70-RXN' orgid='ARA' frameid='1.14.13.70-RXN'/><Reaction resource='getxml?ARA:RXN-11881' orgid='ARA' frameid='RXN-11881'/><Reaction resource='getxml?ARA:3.7.1.9-RXN' orgid='ARA' frameid='3.7.1.9-RXN'/><Reaction resource='getxml?ARA:RXN-12087' orgid='ARA' frameid='RXN-12087'/><Reaction resource='getxml?ARA:ARYLFORMAMIDASE-RXN' orgid='ARA' frameid='ARYLFORMAMIDASE-RXN'/><Reaction resource='getxml?ARA:FORMYLTHFDEFORMYL-RXN' orgid='ARA' frameid='FORMYLTHFDEFORMYL-RXN'/><Reaction resource='getxml?ARA:FORMAMIDASE-RXN' orgid='ARA' frameid='FORMAMIDASE-RXN'/><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-I-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?ARA:PYRIMSYN1-RXN' orgid='ARA' frameid='PYRIMSYN1-RXN'/><Reaction resource='getxml?ARA:R147-RXN' orgid='ARA' frameid='R147-RXN'/><Reaction resource='getxml?ARA:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='ARA' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?ARA:DIOHBUTANONEPSYN-RXN' orgid='ARA' frameid='DIOHBUTANONEPSYN-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN0-724' orgid='ARA' frameid='RXN0-724'/><Reaction resource='getxml?ARA:RXN0-723' orgid='ARA' frameid='RXN0-723'/><Reaction resource='getxml?ARA:FORMATETHFLIG-RXN' orgid='ARA' frameid='FORMATETHFLIG-RXN'/><Reaction resource='getxml?ARA:1.2.1.2-RXN' orgid='ARA' frameid='1.2.1.2-RXN'/><Reaction resource='getxml?ARA:GARTRANSFORMYL2-RXN' orgid='ARA' frameid='GARTRANSFORMYL2-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-73.93095</gibbs-0>
+<common-name datatype='string'>formate</common-name>
 <dblink><dblink-db>REFMET</dblink-db>
 <dblink-oid>Formic acid</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

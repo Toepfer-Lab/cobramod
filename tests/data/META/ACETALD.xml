@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:ACETALD'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ACETALD'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ACETALD</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Compound ID='META:ACETALD' orgid='META' frameid='ACETALD' detail='full'><parent><Compound resource='getxml?META:Toxins' orgid='META' frameid='Toxins' class='true'/></parent>
@@ -14,14 +14,63 @@
 <string title='smiles'>CC=O</string>
 </molecule>
 </cml>
-<appears-in-right-side-of><Reaction resource='getxml?META:RXN-21079' orgid='META' frameid='RXN-21079'/><Reaction resource='getxml?META:RXN-23542' orgid='META' frameid='RXN-23542'/><Reaction resource='getxml?META:RXN-23543' orgid='META' frameid='RXN-23543'/><Reaction resource='getxml?META:RXN0-5507' orgid='META' frameid='RXN0-5507'/><Reaction resource='getxml?META:RXN66-1' orgid='META' frameid='RXN66-1'/><Reaction resource='getxml?META:RXN-12484' orgid='META' frameid='RXN-12484'/><Reaction resource='getxml?META:RXN-22435' orgid='META' frameid='RXN-22435'/><Reaction resource='getxml?META:RXN-9718' orgid='META' frameid='RXN-9718'/><Reaction resource='getxml?META:RXN-11039' orgid='META' frameid='RXN-11039'/><Reaction resource='getxml?META:RXN-16013' orgid='META' frameid='RXN-16013'/><Reaction resource='getxml?META:RXN-21316' orgid='META' frameid='RXN-21316'/><Reaction resource='getxml?META:RXN0-986' orgid='META' frameid='RXN0-986'/><Reaction resource='getxml?META:FUCOSTEROL-EPOXIDE-LYASE-RXN' orgid='META' frameid='FUCOSTEROL-EPOXIDE-LYASE-RXN'/><Reaction resource='getxml?META:DEOXYRIBOSE-P-ALD-RXN' orgid='META' frameid='DEOXYRIBOSE-P-ALD-RXN'/><Reaction resource='getxml?META:LACTATE-ALDOLASE-RXN' orgid='META' frameid='LACTATE-ALDOLASE-RXN'/><Reaction resource='getxml?META:RXN-11454' orgid='META' frameid='RXN-11454'/><Reaction resource='getxml?META:RXN-21246' orgid='META' frameid='RXN-21246'/><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/><Reaction resource='getxml?META:LTAA-RXN' orgid='META' frameid='LTAA-RXN'/><Reaction resource='getxml?META:THREONINE-ALDOLASE-RXN' orgid='META' frameid='THREONINE-ALDOLASE-RXN'/><Reaction resource='getxml?META:RXN-20702' orgid='META' frameid='RXN-20702'/><Reaction resource='getxml?META:RXN-6161' orgid='META' frameid='RXN-6161'/><Reaction resource='getxml?META:RXN-20092' orgid='META' frameid='RXN-20092'/><Reaction resource='getxml?META:RXN66-597' orgid='META' frameid='RXN66-597'/><Reaction resource='getxml?META:RXN-19035' orgid='META' frameid='RXN-19035'/><Reaction resource='getxml?META:RXN66-2' orgid='META' frameid='RXN66-2'/><Reaction resource='getxml?META:RXN-13593' orgid='META' frameid='RXN-13593'/><Reaction resource='getxml?META:RXN0-5234' orgid='META' frameid='RXN0-5234'/><Reaction resource='getxml?META:R461-RXN' orgid='META' frameid='R461-RXN'/><Reaction resource='getxml?META:RXN-12573' orgid='META' frameid='RXN-12573'/><Reaction resource='getxml?META:RXN-12491' orgid='META' frameid='RXN-12491'/><Reaction resource='getxml?META:RXN-8935' orgid='META' frameid='RXN-8935'/><Reaction resource='getxml?META:RXN-14908' orgid='META' frameid='RXN-14908'/><Reaction resource='getxml?META:RXN-13592' orgid='META' frameid='RXN-13592'/><Reaction resource='getxml?META:ETHANOLAMINE-PHOSPHATE-PHOSPHO-LYASE-RXN' orgid='META' frameid='ETHANOLAMINE-PHOSPHATE-PHOSPHO-LYASE-RXN'/><Reaction resource='getxml?META:ETHAMLY-RXN' orgid='META' frameid='ETHAMLY-RXN'/><Reaction resource='getxml?META:RXN-13946' orgid='META' frameid='RXN-13946'/><Reaction resource='getxml?META:ALCOHOL-DEHYDROG-RXN' orgid='META' frameid='ALCOHOL-DEHYDROG-RXN'/><Reaction resource='getxml?META:RXN-13594' orgid='META' frameid='RXN-13594'/><Reaction resource='getxml?META:MHPELY-RXN' orgid='META' frameid='MHPELY-RXN'/><Reaction resource='getxml?META:RXN-11972' orgid='META' frameid='RXN-11972'/><Reaction resource='getxml?META:RXN-11971' orgid='META' frameid='RXN-11971'/><Reaction resource='getxml?META:RXN-11747' orgid='META' frameid='RXN-11747'/><Reaction resource='getxml?META:NITROETHANE-OXIDASE-RXN' orgid='META' frameid='NITROETHANE-OXIDASE-RXN'/><Reaction resource='getxml?META:RXN-8763' orgid='META' frameid='RXN-8763'/><Reaction resource='getxml?META:RXN-9702' orgid='META' frameid='RXN-9702'/><Reaction resource='getxml?META:4.1.2.42-RXN' orgid='META' frameid='4.1.2.42-RXN'/><Reaction resource='getxml?META:2.2.1.4-RXN' orgid='META' frameid='2.2.1.4-RXN'/><Reaction resource='getxml?META:R141-RXN' orgid='META' frameid='R141-RXN'/><Reaction resource='getxml?META:PHOSPHONOACETALDEHYDE-HYDROLASE-RXN' orgid='META' frameid='PHOSPHONOACETALDEHYDE-HYDROLASE-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-22021' orgid='META' frameid='RXN-22021'/><Reaction resource='getxml?META:RXN-21603' orgid='META' frameid='RXN-21603'/><Reaction resource='getxml?META:RXN0-2022' orgid='META' frameid='RXN0-2022'/><Reaction resource='getxml?META:RXN-9560' orgid='META' frameid='RXN-9560'/><Reaction resource='getxml?META:RXN66-3' orgid='META' frameid='RXN66-3'/><Reaction resource='getxml?META:RXN0-3962' orgid='META' frameid='RXN0-3962'/><Reaction resource='getxml?META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/><Reaction resource='getxml?META:RXN3O-470' orgid='META' frameid='RXN3O-470'/><Reaction resource='getxml?META:RXN-8092' orgid='META' frameid='RXN-8092'/></appears-in-left-side-of>
 <inchi datatype='string'>InChI=1S/C2H4O/c1-2-3/h2H,1H3</inchi>
+<molecular-weight datatype='float' units='Daltons'>44.053</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-21079' orgid='META' frameid='RXN-21079'/><Reaction resource='getxml?META:RXN-23542' orgid='META' frameid='RXN-23542'/><Reaction resource='getxml?META:RXN-23543' orgid='META' frameid='RXN-23543'/><Reaction resource='getxml?META:RXN0-5507' orgid='META' frameid='RXN0-5507'/><Reaction resource='getxml?META:RXN66-1' orgid='META' frameid='RXN66-1'/><Reaction resource='getxml?META:RXN-12484' orgid='META' frameid='RXN-12484'/><Reaction resource='getxml?META:RXN-22435' orgid='META' frameid='RXN-22435'/><Reaction resource='getxml?META:RXN-9718' orgid='META' frameid='RXN-9718'/><Reaction resource='getxml?META:RXN-11039' orgid='META' frameid='RXN-11039'/><Reaction resource='getxml?META:RXN-16013' orgid='META' frameid='RXN-16013'/><Reaction resource='getxml?META:RXN-21316' orgid='META' frameid='RXN-21316'/><Reaction resource='getxml?META:RXN0-986' orgid='META' frameid='RXN0-986'/><Reaction resource='getxml?META:FUCOSTEROL-EPOXIDE-LYASE-RXN' orgid='META' frameid='FUCOSTEROL-EPOXIDE-LYASE-RXN'/><Reaction resource='getxml?META:DEOXYRIBOSE-P-ALD-RXN' orgid='META' frameid='DEOXYRIBOSE-P-ALD-RXN'/><Reaction resource='getxml?META:LACTATE-ALDOLASE-RXN' orgid='META' frameid='LACTATE-ALDOLASE-RXN'/><Reaction resource='getxml?META:RXN-11454' orgid='META' frameid='RXN-11454'/><Reaction resource='getxml?META:RXN-21246' orgid='META' frameid='RXN-21246'/><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/><Reaction resource='getxml?META:LTAA-RXN' orgid='META' frameid='LTAA-RXN'/><Reaction resource='getxml?META:THREONINE-ALDOLASE-RXN' orgid='META' frameid='THREONINE-ALDOLASE-RXN'/><Reaction resource='getxml?META:RXN-20702' orgid='META' frameid='RXN-20702'/><Reaction resource='getxml?META:RXN-6161' orgid='META' frameid='RXN-6161'/><Reaction resource='getxml?META:RXN-20092' orgid='META' frameid='RXN-20092'/><Reaction resource='getxml?META:RXN66-597' orgid='META' frameid='RXN66-597'/><Reaction resource='getxml?META:RXN-19035' orgid='META' frameid='RXN-19035'/><Reaction resource='getxml?META:RXN66-2' orgid='META' frameid='RXN66-2'/><Reaction resource='getxml?META:RXN-13593' orgid='META' frameid='RXN-13593'/><Reaction resource='getxml?META:RXN0-5234' orgid='META' frameid='RXN0-5234'/><Reaction resource='getxml?META:R461-RXN' orgid='META' frameid='R461-RXN'/><Reaction resource='getxml?META:RXN-12573' orgid='META' frameid='RXN-12573'/><Reaction resource='getxml?META:RXN-12491' orgid='META' frameid='RXN-12491'/><Reaction resource='getxml?META:RXN-8935' orgid='META' frameid='RXN-8935'/><Reaction resource='getxml?META:RXN-14908' orgid='META' frameid='RXN-14908'/><Reaction resource='getxml?META:RXN-13592' orgid='META' frameid='RXN-13592'/><Reaction resource='getxml?META:ETHANOLAMINE-PHOSPHATE-PHOSPHO-LYASE-RXN' orgid='META' frameid='ETHANOLAMINE-PHOSPHATE-PHOSPHO-LYASE-RXN'/><Reaction resource='getxml?META:ETHAMLY-RXN' orgid='META' frameid='ETHAMLY-RXN'/><Reaction resource='getxml?META:RXN-13946' orgid='META' frameid='RXN-13946'/><Reaction resource='getxml?META:ALCOHOL-DEHYDROG-RXN' orgid='META' frameid='ALCOHOL-DEHYDROG-RXN'/><Reaction resource='getxml?META:RXN-13594' orgid='META' frameid='RXN-13594'/><Reaction resource='getxml?META:MHPELY-RXN' orgid='META' frameid='MHPELY-RXN'/><Reaction resource='getxml?META:RXN-11972' orgid='META' frameid='RXN-11972'/><Reaction resource='getxml?META:RXN-11971' orgid='META' frameid='RXN-11971'/><Reaction resource='getxml?META:RXN-11747' orgid='META' frameid='RXN-11747'/><Reaction resource='getxml?META:NITROETHANE-OXIDASE-RXN' orgid='META' frameid='NITROETHANE-OXIDASE-RXN'/><Reaction resource='getxml?META:RXN-8763' orgid='META' frameid='RXN-8763'/><Reaction resource='getxml?META:RXN-9702' orgid='META' frameid='RXN-9702'/><Reaction resource='getxml?META:4.1.2.42-RXN' orgid='META' frameid='4.1.2.42-RXN'/><Reaction resource='getxml?META:2.2.1.4-RXN' orgid='META' frameid='2.2.1.4-RXN'/><Reaction resource='getxml?META:R141-RXN' orgid='META' frameid='R141-RXN'/><Reaction resource='getxml?META:PHOSPHONOACETALDEHYDE-HYDROLASE-RXN' orgid='META' frameid='PHOSPHONOACETALDEHYDE-HYDROLASE-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>44.026215</monoisotopic-mw>
 <synonym datatype='string'>acetic aldehyde</synonym>
 <synonym datatype='string'>ethanal</synonym>
 <synonym datatype='string'>aldehyde</synonym>
 <synonym datatype='string'>ethyl aldehyde</synonym>
-<molecular-weight datatype='float' units='Daltons'>44.053</molecular-weight>
-<monoisotopic-mw datatype='float' units='Daltons'>44.026215</monoisotopic-mw>
+<common-name datatype='string'>acetaldehyde</common-name>
+<regulates><Regulation ID='META:REG0-13116' orgid='META' frameid='REG0-13116' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:MHPF-ENZRXN' orgid='META' frameid='MHPF-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
+<synonym datatype='string'>acetaldehyde:NAD+ oxidoreductase (CoA-acetylating)</synonym>
+<common-name datatype='string'>acetaldehyde dehydrogenase (acetylating)</common-name>
+<enzyme><Protein resource='getxml?META:MHPF-MONOMER' orgid='META' frameid='MHPF-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-10198' orgid='META' frameid='REG0-10198' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:BADH-ENZRXN' orgid='META' frameid='BADH-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:BADH-RXN' orgid='META' frameid='BADH-RXN'/></reaction>
+<synonym datatype='string'>BADH</synonym>
+<synonym datatype='string'>betaine aldehyde:NAD+ oxidoreductase</synonym>
+<common-name datatype='string'>betaine aldehyde dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:BADH-CPLX' orgid='META' frameid='BADH-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8864' orgid='META' frameid='REG0-8864' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:4OH2OXOGLUTARALDOL-ENZRXN' orgid='META' frameid='4OH2OXOGLUTARALDOL-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:RXN-13990' orgid='META' frameid='RXN-13990'/></reaction>
+<synonym datatype='string'>4-hydroxy-2-oxoglutarate glyoxylate-lyase</synonym>
+<synonym datatype='string'>KHG-aldolase</synonym>
+<synonym datatype='string'>2-oxo-4-hydroxyglutarate aldolase</synonym>
+<synonym datatype='string'>4-hydroxy-2-oxoglutarate aldolase</synonym>
+<synonym datatype='string'>(4&lt;i&gt;S&lt;/i&gt;)-4-hydroxy-2-oxoglutarate aldolase</synonym>
+<common-name datatype='string'>2-keto-4-hydroxyglutarate aldolase</common-name>
+<enzyme><Protein resource='getxml?META:KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX' orgid='META' frameid='KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-13095' orgid='META' frameid='REG-13095' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-17820' orgid='META' frameid='ENZRXN-17820' detail='low'><reaction><Reaction resource='getxml?META:RXN-11454' orgid='META' frameid='RXN-11454'/></reaction>
+<synonym datatype='string'>NDMA-dependent alcohol dehydrogenase</synonym>
+<common-name datatype='string'>ethanol:mycofactocin oxidoreductase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8061' orgid='META' frameid='CPLX-8061'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=IKHGUXGNUITLKF-UHFFFAOYSA-N</inchi-key>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00071</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -82,8 +131,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=75-07-0</dblink-URL>
 </dblink>
-<inchi-key datatype='string'>InChIKey=IKHGUXGNUITLKF-UHFFFAOYSA-N</inchi-key>
-<common-name datatype='string'>acetaldehyde</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>7.6844816<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -93,58 +140,11 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<regulates><Regulation ID='META:REG0-13116' orgid='META' frameid='REG0-13116' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:MHPF-ENZRXN' orgid='META' frameid='MHPF-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:MHPF-MONOMER' orgid='META' frameid='MHPF-MONOMER'/></enzyme>
-<synonym datatype='string'>acetaldehyde:NAD+ oxidoreductase (CoA-acetylating)</synonym>
-<reaction><Reaction resource='getxml?META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/></reaction>
-<common-name datatype='string'>acetaldehyde dehydrogenase (acetylating)</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-10198' orgid='META' frameid='REG0-10198' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:BADH-ENZRXN' orgid='META' frameid='BADH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:BADH-CPLX' orgid='META' frameid='BADH-CPLX'/></enzyme>
-<synonym datatype='string'>BADH</synonym>
-<synonym datatype='string'>betaine aldehyde:NAD+ oxidoreductase</synonym>
-<reaction><Reaction resource='getxml?META:BADH-RXN' orgid='META' frameid='BADH-RXN'/></reaction>
-<common-name datatype='string'>betaine aldehyde dehydrogenase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG0-8864' orgid='META' frameid='REG0-8864' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:4OH2OXOGLUTARALDOL-ENZRXN' orgid='META' frameid='4OH2OXOGLUTARALDOL-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX' orgid='META' frameid='KDPGALDOL-4OH2OXOGLUTARALDOL-CPLX'/></enzyme>
-<synonym datatype='string'>4-hydroxy-2-oxoglutarate glyoxylate-lyase</synonym>
-<synonym datatype='string'>KHG-aldolase</synonym>
-<synonym datatype='string'>2-oxo-4-hydroxyglutarate aldolase</synonym>
-<synonym datatype='string'>4-hydroxy-2-oxoglutarate aldolase</synonym>
-<synonym datatype='string'>(4&lt;i&gt;S&lt;/i&gt;)-4-hydroxy-2-oxoglutarate aldolase</synonym>
-<reaction><Reaction resource='getxml?META:RXN-13990' orgid='META' frameid='RXN-13990'/></reaction>
-<common-name datatype='string'>2-keto-4-hydroxyglutarate aldolase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='META:REG-13095' orgid='META' frameid='REG-13095' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#META:ACETALD' orgid='META' frameid='ACETALD'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-17820' orgid='META' frameid='ENZRXN-17820' detail='low'><enzyme><Protein resource='getxml?META:CPLX-8061' orgid='META' frameid='CPLX-8061'/></enzyme>
-<synonym datatype='string'>NDMA-dependent alcohol dehydrogenase</synonym>
-<reaction><Reaction resource='getxml?META:RXN-11454' orgid='META' frameid='RXN-11454'/></reaction>
-<common-name datatype='string'>ethanol:mycofactocin oxidoreductase</common-name>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<appears-in-left-side-of><Reaction resource='getxml?META:RXN-22021' orgid='META' frameid='RXN-22021'/><Reaction resource='getxml?META:RXN-21603' orgid='META' frameid='RXN-21603'/><Reaction resource='getxml?META:RXN0-2022' orgid='META' frameid='RXN0-2022'/><Reaction resource='getxml?META:RXN-9560' orgid='META' frameid='RXN-9560'/><Reaction resource='getxml?META:RXN66-3' orgid='META' frameid='RXN66-3'/><Reaction resource='getxml?META:RXN0-3962' orgid='META' frameid='RXN0-3962'/><Reaction resource='getxml?META:ACETALD-DEHYDROG-RXN' orgid='META' frameid='ACETALD-DEHYDROG-RXN'/><Reaction resource='getxml?META:RXN3O-470' orgid='META' frameid='RXN3O-470'/><Reaction resource='getxml?META:RXN-8092' orgid='META' frameid='RXN-8092'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

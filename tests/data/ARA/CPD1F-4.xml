@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD1F-4'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD1F-4'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD1F-4</query>
 <num_results>1</num_results>
@@ -14,22 +14,22 @@
 <string title='smiles'>CC(/C=C/C=C(C)/C=C=C1([C@@](O)(C)CC(O)CC(C)(C)1))=C\C=C\C=C(C)\C=O</string>
 </molecule>
 </cml>
-<common-name datatype='string'>(3&lt;i&gt;S&lt;/i&gt;,5&lt;i&gt;R&lt;/i&gt;,6&lt;i&gt;R&lt;/i&gt;)-3,5-dihydroxy-6,7-didehydro-5,6-dihydro-12'-apo-&amp;beta;-caroten-12'-al</common-name>
-<inchi datatype='string'>InChI=1S/C25H34O3/c1-19(10-7-8-11-21(3)18-26)12-9-13-20(2)14-15-23-24(4,5)16-22(27)17-25(23,6)28/h7-14,18,22,27-28H,16-17H2,1-6H3/b8-7+,12-9+,19-10+,20-13+,21-11+/t15?,22?,25-/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=MFDUGTOOXGORRX-ORGLZDQCSA-N</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>375.00812</gibbs-0>
 <synonym datatype='string'>C25-allenic-apo-aldehyde</synonym>
-<molecular-weight datatype='float' units='Daltons'>382.542</molecular-weight>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></appears-in-right-side-of>
-<monoisotopic-mw datatype='float' units='Daltons'>382.2508</monoisotopic-mw>
-<citation><Publication ID='ARA:PUB-10982448' orgid='ARA' frameid='PUB-10982448' detail='full'><source datatype='string'>Plant Physiol 124(1);343-53</source>
+<inchi-key datatype='string'>InChIKey=MFDUGTOOXGORRX-ORGLZDQCSA-N</inchi-key>
+<citation><Publication ID='ARA:PUB-10982448' orgid='ARA' frameid='PUB-10982448' detail='full'><year datatype='integer'>2000</year>
 <title datatype='string'>Characterization of the 9-cis-epoxycarotenoid dioxygenase gene family and the regulation of abscisic acid biosynthesis in avocado.</title>
-<year datatype='integer'>2000</year>
+<source datatype='string'>Plant Physiol 124(1);343-53</source>
+<pubmed-id datatype='string'>10982448</pubmed-id>
 <author datatype='string'>Chernys JT</author>
 <author datatype='string'>Zeevaart JA</author>
-<pubmed-id datatype='string'>10982448</pubmed-id>
 </Publication>
 </citation>
+<molecular-weight datatype='float' units='Daltons'>382.542</molecular-weight>
+<inchi datatype='string'>InChI=1S/C25H34O3/c1-19(10-7-8-11-21(3)18-26)12-9-13-20(2)14-15-23-24(4,5)16-22(27)17-25(23,6)28/h7-14,18,22,27-28H,16-17H2,1-6H3/b8-7+,12-9+,19-10+,20-13+,21-11+/t15?,22?,25-/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>382.2508</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>375.00812</gibbs-0>
+<common-name datatype='string'>(3&lt;i&gt;S&lt;/i&gt;,5&lt;i&gt;R&lt;/i&gt;,6&lt;i&gt;R&lt;/i&gt;)-3,5-dihydroxy-6,7-didehydro-5,6-dihydro-12'-apo-&amp;beta;-caroten-12'-al</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004654993</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

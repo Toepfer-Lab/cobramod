@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:INOPHOSPHOR-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:INOPHOSPHOR-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:INOPHOSPHOR-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -14,32 +14,32 @@
 </metadata>
 <Reaction ID='ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN' detail='full'><parent><Reaction resource='getxml?ECOLI:Chemical-Reactions' orgid='ECOLI' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ECOLI:Small-Molecule-Reactions' orgid='ECOLI' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<gibbs-0 datatype='float' units='kcal/mol'>41.468994</gibbs-0>
-<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ENZRXN0-8336' orgid='ECOLI' frameid='ENZRXN0-8336' detail='low'><reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:CPLX0-8619' orgid='ECOLI' frameid='CPLX0-8619'/></enzyme>
-<common-name datatype='string'>inosine phosphorylase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ECOLI:ENZRXN0-7335' orgid='ECOLI' frameid='ENZRXN0-7335' detail='low'><reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
-<synonym datatype='string'>purine nucleoside phosphorylase</synonym>
-<enzyme><Protein resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-CPLX' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-CPLX'/></enzyme>
-<common-name datatype='string'>inosine phosphorylase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ECOLI:INOPHOSPHOR-ENZRXN' orgid='ECOLI' frameid='INOPHOSPHOR-ENZRXN' detail='low'><reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:DEOD-CPLX' orgid='ECOLI' frameid='DEOD-CPLX'/></enzyme>
-<common-name datatype='string'>inosine phosphorylase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='ECOLI:ENZRXN0-12592' orgid='ECOLI' frameid='ENZRXN0-12592' detail='low'><reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:EG12097-MONOMER' orgid='ECOLI' frameid='EG12097-MONOMER'/></enzyme>
-<common-name datatype='string'>inosine phosphorylase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <left><Compound resource='getxml?ECOLI:INOSINE' orgid='ECOLI' frameid='INOSINE'/></left>
 <left><Compound resource='getxml?ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></left>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<ec-number>EC-2.4.2.1</ec-number>
+<reaction-direction>REVERSIBLE</reaction-direction>
+<enzymatic-reaction><Enzymatic-Reaction ID='ECOLI:ENZRXN0-8336' orgid='ECOLI' frameid='ENZRXN0-8336' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-8619' orgid='ECOLI' frameid='CPLX0-8619'/></enzyme>
+<common-name datatype='string'>inosine phosphorylase</common-name>
+<reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ECOLI:ENZRXN0-7335' orgid='ECOLI' frameid='ENZRXN0-7335' detail='low'><enzyme><Protein resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-CPLX' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-CPLX'/></enzyme>
+<synonym datatype='string'>purine nucleoside phosphorylase</synonym>
+<common-name datatype='string'>inosine phosphorylase</common-name>
+<reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ECOLI:INOPHOSPHOR-ENZRXN' orgid='ECOLI' frameid='INOPHOSPHOR-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:DEOD-CPLX' orgid='ECOLI' frameid='DEOD-CPLX'/></enzyme>
+<common-name datatype='string'>inosine phosphorylase</common-name>
+<reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ECOLI:ENZRXN0-12592' orgid='ECOLI' frameid='ENZRXN0-12592' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG12097-MONOMER' orgid='ECOLI' frameid='EG12097-MONOMER'/></enzyme>
+<common-name datatype='string'>inosine phosphorylase</common-name>
+<reaction><Reaction resource='#ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <right><Compound resource='getxml?ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P'/></right>
 <right><Compound resource='getxml?ECOLI:HYPOXANTHINE' orgid='ECOLI' frameid='HYPOXANTHINE'/></right>
 <in-pathway><Pathway resource='getxml?ECOLI:PWY0-1296' orgid='ECOLI' frameid='PWY0-1296'/><Pathway resource='getxml?ECOLI:PWY-6609' orgid='ECOLI' frameid='PWY-6609'/><Pathway resource='getxml?ECOLI:SALVADEHYPOX-PWY' orgid='ECOLI' frameid='SALVADEHYPOX-PWY'/></in-pathway>
+<gibbs-0 datatype='float' units='kcal/mol'>41.468994</gibbs-0>
+<ec-number>EC-2.4.2.1</ec-number>
 </Reaction>
 </ptools-xml>

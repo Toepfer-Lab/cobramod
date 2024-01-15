@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-693'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-693'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-693</query>
 <num_results>1</num_results>
@@ -14,22 +14,6 @@
 <string title='smiles'>CC(\C=C\[C@@]1(C(C)(C)CC(=O)\C=C(C)/1)O)=C\C(=O)[O-]</string>
 </molecule>
 </cml>
-<comment datatype='string'>&lt;a href=&quot;/compound?orgid=ARA&amp;id=CPD-693&quot;&gt;Abscisic acid&lt;/a&gt; (ABA) is an isoprenoid plant hormone that was initially thought to be a signaling molecule whose accumulation induces the abscission of leaves (abscission is the process by which a plant drops one or more of its parts, such as a leaf, fruit, flower or seed), hence its name. Now, however, it is known that abscission is usually regulated by ethylene, and abscisic acid is involved in the process only in a small number of plants.
-
-In most plants the accumulation of ABA appears to be a signal for other processes.
-
-In seeds, ABA plays a dual role in embryo growth during developmen. In early embryogenesis ABA prevents seed abortion and promotes embryo growth [&lt;a href=&quot;/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5b12417697%5d&quot;&gt;a&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/14716564&quot;&gt;Frey04&lt;/a&gt;]. In contrast, during late embryogenesis, when the hormone level increases, ABA blocks the embryo growth by counteracting the action of gibberellin to promote germination [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10759503&quot;&gt;White00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11124119&quot;&gt;Raz01&lt;/a&gt;].
-
-In other tissues ABA-mediated signalling plays an important part in plant responses to environmental stress and plant pathogens, such as development of desiccation tolerance [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10611388&quot;&gt;Qin99&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11842158&quot;&gt;Qin02&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11779861&quot;&gt;Xiong02&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12221975&quot;&gt;Zhu02&lt;/a&gt;], suppression of vivipary [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10753527&quot;&gt;Nambara00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11124119&quot;&gt;Raz01&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15363412&quot;&gt;Gazzarrini04&lt;/a&gt;], and water stress-induced closure of stomata [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11559734&quot;&gt;Sauter01&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12834401&quot;&gt;Tan03&lt;/a&gt;].
-
-In plants, abscisic acid is synthesized from C40 carotenoids. The C15 backbone of ABA is formed after the oxidative cleavage of &lt;a href=&quot;/compound?orgid=ARA&amp;id=CPD1F-135&quot;&gt;&lt;i&gt;trans&lt;/i&gt;-neoxanthin&lt;/a&gt;, and the final molecule is formed by two additional reactions, a dehydrogenase and an oxidoreductase, as described in this pathway [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12692318&quot;&gt;Schwartz03&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15862093&quot;&gt;Nambara05&lt;/a&gt;].
-
-In some plant pathogenic fungi ABA is synthesized a different biosynthetic route that involves the direct cyclization of C15 terpenoid (sesquiterpene) [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10945263&quot;&gt;Hirai00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11129578&quot;&gt;Yamamoto00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15618629&quot;&gt;Inomata04&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15464154&quot;&gt;Inomata04a&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15240257&quot;&gt;Siewers04&lt;/a&gt;].</comment>
-<common-name datatype='string'>2-&lt;i&gt;cis&lt;/i&gt;-abscisate</common-name>
-<inchi datatype='string'>InChI=1S/C15H20O4/c1-10(7-13(17)18)5-6-15(19)11(2)8-12(16)9-14(15,3)4/h5-8,19H,9H2,1-4H3,(H,17,18)/p-1/b6-5+,10-7-/t15-/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=JLIDBLDQVAYHNE-YKALOCIXSA-M</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-16460' orgid='ARA' frameid='RXN-16460'/><Reaction resource='getxml?ARA:1.14.13.93-RXN' orgid='ARA' frameid='1.14.13.93-RXN'/><Reaction resource='getxml?ARA:RXN-8155' orgid='ARA' frameid='RXN-8155'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>97.69923</gibbs-0>
 <synonym datatype='string'>abscisic acid</synonym>
 <synonym datatype='string'>ABA</synonym>
 <synonym datatype='string'>abscisate</synonym>
@@ -40,9 +24,25 @@ In some plant pathogenic fungi ABA is synthesized a different biosynthetic route
 <synonym datatype='string'>(+)-abscisate</synonym>
 <synonym datatype='string'>2-&lt;i&gt;cis&lt;/i&gt;-abscisic acid</synonym>
 <synonym datatype='string'>(7E,9Z)-(6S)-6-hydroxy-3-oxo-11-apo-&amp;epsilon;-caroten-11-oate</synonym>
+<inchi-key datatype='string'>InChIKey=JLIDBLDQVAYHNE-YKALOCIXSA-M</inchi-key>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=ARA&amp;id=CPD-693&quot;&gt;Abscisic acid&lt;/a&gt; (ABA) is an isoprenoid plant hormone that was initially thought to be a signaling molecule whose accumulation induces the abscission of leaves (abscission is the process by which a plant drops one or more of its parts, such as a leaf, fruit, flower or seed), hence its name. Now, however, it is known that abscission is usually regulated by ethylene, and abscisic acid is involved in the process only in a small number of plants.
+
+In most plants the accumulation of ABA appears to be a signal for other processes.
+
+In seeds, ABA plays a dual role in embryo growth during developmen. In early embryogenesis ABA prevents seed abortion and promotes embryo growth [&lt;a href=&quot;/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5b12417697%5d&quot;&gt;b&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/14716564&quot;&gt;Frey04&lt;/a&gt;]. In contrast, during late embryogenesis, when the hormone level increases, ABA blocks the embryo growth by counteracting the action of gibberellin to promote germination [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10759503&quot;&gt;White00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11124119&quot;&gt;Raz01&lt;/a&gt;].
+
+In other tissues ABA-mediated signalling plays an important part in plant responses to environmental stress and plant pathogens, such as development of desiccation tolerance [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10611388&quot;&gt;Qin99a&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11842158&quot;&gt;Qin02&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11779861&quot;&gt;Xiong02&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12221975&quot;&gt;Zhu02&lt;/a&gt;], suppression of vivipary [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10753527&quot;&gt;Nambara00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11124119&quot;&gt;Raz01&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15363412&quot;&gt;Gazzarrini04&lt;/a&gt;], and water stress-induced closure of stomata [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11559734&quot;&gt;Sauter01&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12834401&quot;&gt;Tan03&lt;/a&gt;].
+
+In plants, abscisic acid is synthesized from C40 carotenoids. The C15 backbone of ABA is formed after the oxidative cleavage of &lt;a href=&quot;/compound?orgid=ARA&amp;id=CPD1F-135&quot;&gt;&lt;i&gt;trans&lt;/i&gt;-neoxanthin&lt;/a&gt;, and the final molecule is formed by two additional reactions, a dehydrogenase and an oxidoreductase, as described in this pathway [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12692318&quot;&gt;Schwartz03&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15862093&quot;&gt;Nambara05&lt;/a&gt;].
+
+In some plant pathogenic fungi ABA is synthesized a different biosynthetic route that involves the direct cyclization of C15 terpenoid (sesquiterpene) [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/10945263&quot;&gt;Hirai00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11129578&quot;&gt;Yamamoto00&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15618629&quot;&gt;Inomata04&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15464154&quot;&gt;Inomata04a&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15240257&quot;&gt;Siewers04&lt;/a&gt;].</comment>
 <molecular-weight datatype='float' units='Daltons'>263.313</molecular-weight>
+<inchi datatype='string'>InChI=1S/C15H20O4/c1-10(7-13(17)18)5-6-15(19)11(2)8-12(16)9-14(15,3)4/h5-8,19H,9H2,1-4H3,(H,17,18)/p-1/b6-5+,10-7-/t15-/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-11469' orgid='ARA' frameid='RXN-11469'/><Reaction resource='getxml?ARA:1.2.3.14-RXN' orgid='ARA' frameid='1.2.3.14-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-16460' orgid='ARA' frameid='RXN-16460'/><Reaction resource='getxml?ARA:1.14.13.93-RXN' orgid='ARA' frameid='1.14.13.93-RXN'/><Reaction resource='getxml?ARA:RXN-8155' orgid='ARA' frameid='RXN-8155'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>264.13617</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>97.69923</gibbs-0>
+<common-name datatype='string'>2-&lt;i&gt;cis&lt;/i&gt;-abscisate</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004492870</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

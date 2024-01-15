@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-7279'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-7279'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-7279</query>
 <num_results>1</num_results>
@@ -13,15 +13,15 @@
 <string title='smiles'>CC(\C=C\[C@@]12(C(C)(C)C[C@@H](C[C@@]1(C)O2)O))=C\C=O</string>
 </molecule>
 </cml>
-<common-name datatype='string'>2-&lt;i&gt;cis&lt;/i&gt;,4-&lt;i&gt;trans&lt;/i&gt;-xanthoxin</common-name>
-<inchi datatype='string'>InChI=1S/C15H22O3/c1-11(6-8-16)5-7-15-13(2,3)9-12(17)10-14(15,4)18-15/h5-8,12,17H,9-10H2,1-4H3/b7-5+,11-6-/t12-,14+,15-/m0/s1</inchi>
-<inchi-key datatype='string'>InChIKey=ZTALKMXOHWQNIA-TVBSHJCBSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-699' orgid='ARA' frameid='RXN-699'/><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>183.30464</gibbs-0>
 <synonym datatype='string'>xanthoxin</synonym>
+<inchi-key datatype='string'>InChIKey=ZTALKMXOHWQNIA-TVBSHJCBSA-N</inchi-key>
 <molecular-weight datatype='float' units='Daltons'>250.337</molecular-weight>
+<inchi datatype='string'>InChI=1S/C15H22O3/c1-11(6-8-16)5-7-15-13(2,3)9-12(17)10-14(15,4)18-15/h5-8,12,17H,9-10H2,1-4H3/b7-5+,11-6-/t12-,14+,15-/m0/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-7974' orgid='ARA' frameid='RXN-7974'/><Reaction resource='getxml?ARA:RXN-7973' orgid='ARA' frameid='RXN-7973'/><Reaction resource='getxml?ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-699' orgid='ARA' frameid='RXN-699'/><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>250.15689</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>183.30464</gibbs-0>
+<common-name datatype='string'>2-&lt;i&gt;cis&lt;/i&gt;,4-&lt;i&gt;trans&lt;/i&gt;-xanthoxin</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004654848</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

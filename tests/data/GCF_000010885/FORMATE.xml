@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?GCF_000010885:FORMATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?GCF_000010885:FORMATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>GCF_000010885:FORMATE</query>
 <num_results>1</num_results>
-<PGDB orgid='GCF_000010885' version='27.0'><species datatype='string'>Acetobacter pasteurianus</species>
+<PGDB orgid='GCF_000010885' version='27.5'><species datatype='string'>Acetobacter pasteurianus</species>
 <subspecies datatype='string'>pasteurianus</subspecies>
 <strain datatype='string'>IFO 3283-22</strain>
 <sequence-source datatype='string'>GCF_000010885</sequence-source>
@@ -21,23 +21,21 @@
 <string title='smiles'>C([O-])=O</string>
 </molecule>
 </cml>
+<gibbs-0 datatype='float' units='kcal/mol'>-73.93095</gibbs-0>
 <inchi-key datatype='string'>InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
-<inchi datatype='string'>InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
-<monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
-<appears-in-right-side-of><Reaction resource='getxml?GCF_000010885:RXN-7592' orgid='GCF_000010885' frameid='RXN-7592'/><Reaction resource='getxml?GCF_000010885:RXN-7593' orgid='GCF_000010885' frameid='RXN-7593'/><Reaction resource='getxml?GCF_000010885:KETOBUTFORMLY-RXN' orgid='GCF_000010885' frameid='KETOBUTFORMLY-RXN'/><Reaction resource='getxml?GCF_000010885:R147-RXN' orgid='GCF_000010885' frameid='R147-RXN'/><Reaction resource='getxml?GCF_000010885:FORMYLTHFDEFORMYL-RXN' orgid='GCF_000010885' frameid='FORMYLTHFDEFORMYL-RXN'/><Reaction resource='getxml?GCF_000010885:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='GCF_000010885' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?GCF_000010885:RXN0-5253' orgid='GCF_000010885' frameid='RXN0-5253'/><Reaction resource='getxml?GCF_000010885:3.5.1.88-RXN' orgid='GCF_000010885' frameid='3.5.1.88-RXN'/><Reaction resource='getxml?GCF_000010885:3.5.1.27-RXN' orgid='GCF_000010885' frameid='3.5.1.27-RXN'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-I-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?GCF_000010885:DIOHBUTANONEPSYN-RXN' orgid='GCF_000010885' frameid='DIOHBUTANONEPSYN-RXN'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?GCF_000010885:PYRIMSYN1-RXN' orgid='GCF_000010885' frameid='PYRIMSYN1-RXN'/><Reaction resource='getxml?GCF_000010885:FORMAMIDASE-RXN' orgid='GCF_000010885' frameid='FORMAMIDASE-RXN'/><Reaction resource='getxml?GCF_000010885:N-FORMYLGLUTAMATE-DEFORMYLASE-RXN' orgid='GCF_000010885' frameid='N-FORMYLGLUTAMATE-DEFORMYLASE-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>formate</common-name>
+<molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
 <credits><imported-from-meta><date datatype='date'>2019-02-06</date>
-<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><common-name datatype='string'>SRI International</common-name>
-<email datatype='string'>ptools-support@ai.sri.com</email>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
+<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
 <url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
 </Organization>
 </imported-from-meta>
 </credits>
-<common-name datatype='string'>formate</common-name>
-<appears-in-left-side-of><Reaction resource='getxml?GCF_000010885:GARTRANSFORMYL2-RXN' orgid='GCF_000010885' frameid='GARTRANSFORMYL2-RXN'/><Reaction resource='getxml?GCF_000010885:PYRUVFORMLY-RXN' orgid='GCF_000010885' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?GCF_000010885:FORMATETHFLIG-RXN' orgid='GCF_000010885' frameid='FORMATETHFLIG-RXN'/><Reaction resource='getxml?GCF_000010885:FORMATEDEHYDROG-RXN' orgid='GCF_000010885' frameid='FORMATEDEHYDROG-RXN'/><Reaction resource='getxml?GCF_000010885:RXN-11237' orgid='GCF_000010885' frameid='RXN-11237'/></appears-in-left-side-of>
-<molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
+<inchi datatype='string'>InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
 <synonym datatype='string'>formic acid</synonym>
-<gibbs-0 datatype='float' units='kcal/mol'>-73.93095</gibbs-0>
+<appears-in-right-side-of><Reaction resource='getxml?GCF_000010885:RXN-7592' orgid='GCF_000010885' frameid='RXN-7592'/><Reaction resource='getxml?GCF_000010885:RXN-7593' orgid='GCF_000010885' frameid='RXN-7593'/><Reaction resource='getxml?GCF_000010885:KETOBUTFORMLY-RXN' orgid='GCF_000010885' frameid='KETOBUTFORMLY-RXN'/><Reaction resource='getxml?GCF_000010885:R147-RXN' orgid='GCF_000010885' frameid='R147-RXN'/><Reaction resource='getxml?GCF_000010885:FORMYLTHFDEFORMYL-RXN' orgid='GCF_000010885' frameid='FORMYLTHFDEFORMYL-RXN'/><Reaction resource='getxml?GCF_000010885:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='GCF_000010885' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?GCF_000010885:RXN0-5253' orgid='GCF_000010885' frameid='RXN0-5253'/><Reaction resource='getxml?GCF_000010885:3.5.1.88-RXN' orgid='GCF_000010885' frameid='3.5.1.88-RXN'/><Reaction resource='getxml?GCF_000010885:3.5.1.27-RXN' orgid='GCF_000010885' frameid='3.5.1.27-RXN'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-I-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?GCF_000010885:DIOHBUTANONEPSYN-RXN' orgid='GCF_000010885' frameid='DIOHBUTANONEPSYN-RXN'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?GCF_000010885:PYRIMSYN1-RXN' orgid='GCF_000010885' frameid='PYRIMSYN1-RXN'/><Reaction resource='getxml?GCF_000010885:FORMAMIDASE-RXN' orgid='GCF_000010885' frameid='FORMAMIDASE-RXN'/><Reaction resource='getxml?GCF_000010885:N-FORMYLGLUTAMATE-DEFORMYLASE-RXN' orgid='GCF_000010885' frameid='N-FORMYLGLUTAMATE-DEFORMYLASE-RXN'/></appears-in-right-side-of>
 <dblink><dblink-db>REFMET</dblink-db>
 <dblink-oid>Formic acid</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -83,5 +81,7 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=64-18-6</dblink-URL>
 </dblink>
+<monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
+<appears-in-left-side-of><Reaction resource='getxml?GCF_000010885:GARTRANSFORMYL2-RXN' orgid='GCF_000010885' frameid='GARTRANSFORMYL2-RXN'/><Reaction resource='getxml?GCF_000010885:PYRUVFORMLY-RXN' orgid='GCF_000010885' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?GCF_000010885:FORMATETHFLIG-RXN' orgid='GCF_000010885' frameid='FORMATETHFLIG-RXN'/><Reaction resource='getxml?GCF_000010885:FORMATEDEHYDROG-RXN' orgid='GCF_000010885' frameid='FORMATEDEHYDROG-RXN'/><Reaction resource='getxml?GCF_000010885:RXN-11237' orgid='GCF_000010885' frameid='RXN-11237'/></appears-in-left-side-of>
 </Compound>
 </ptools-xml>

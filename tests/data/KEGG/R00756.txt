@@ -1,0 +1,30 @@
+ENTRY       R00756                      Reaction
+NAME        ATP:D-fructose-6-phosphate 1-phosphotransferase
+DEFINITION  ATP + D-Fructose 6-phosphate <=> ADP + D-Fructose 1,6-bisphosphate
+EQUATION    C00002 + C00085 <=> C00008 + C00354
+RCLASS      RC00002  C00002_C00008
+            RC00017  C00085_C00354
+ENZYME      2.7.1.11
+PATHWAY     rn00010  Glycolysis / Gluconeogenesis
+            rn00030  Pentose phosphate pathway
+            rn00051  Fructose and mannose metabolism
+            rn00680  Methane metabolism
+            rn01100  Metabolic pathways
+            rn01110  Biosynthesis of secondary metabolites
+            rn01120  Microbial metabolism in diverse environments
+            rn01200  Carbon metabolism
+            rn01230  Biosynthesis of amino acids
+MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+            M00345  Formaldehyde assimilation, ribulose monophosphate pathway
+BRITE       Enzymatic reactions [BR:br08201]
+             2. Transferase reactions
+              2.7  Transferring phosphorus-containing groups
+               2.7.1  Phosphotransferases with an alcohol group as acceptor
+                2.7.1.11
+                 R00756  ATP + D-Fructose 6-phosphate <=> ADP + D-Fructose 1,6-bisphosphate
+ORTHOLOGY   K00850  6-phosphofructokinase 1 [EC:2.7.1.11]
+            K16370  6-phosphofructokinase 2 [EC:2.7.1.11]
+            K21071  ATP-dependent phosphofructokinase / diphosphate-dependent phosphofructokinase [EC:2.7.1.11 2.7.1.90]
+            K24182  6-phosphofructokinase [EC:2.7.1.11]
+DBLINKS     RHEA: 16112
+///

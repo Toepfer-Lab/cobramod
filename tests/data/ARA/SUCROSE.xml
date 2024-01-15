@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:SUCROSE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:SUCROSE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:SUCROSE</query>
 <num_results>1</num_results>
@@ -8,8 +8,8 @@
 </PGDB>
 </metadata>
 <Compound ID='ARA:SUCROSE' orgid='ARA' frameid='SUCROSE' detail='full'><parent><Compound resource='getxml?ARA:Beta-D-Fructofuranosides' orgid='ARA' frameid='Beta-D-Fructofuranosides' class='true'/></parent>
-<parent><Compound resource='getxml?ARA:Carbohydrates' orgid='ARA' frameid='Carbohydrates' class='true'/></parent>
 <parent><Compound resource='getxml?ARA:Disaccharides' orgid='ARA' frameid='Disaccharides' class='true'/></parent>
+<parent><Compound resource='getxml?ARA:Sweetening-Agent' orgid='ARA' frameid='Sweetening-Agent' class='true'/></parent>
 <cml><molecule id='SUCROSE' title='sucrose' formalCharge='0'><atomArray><atom id='SUCROSE-atom1' elementType='C' x2='715.0' y2='2475.0'/><atom id='SUCROSE-atom2' elementType='C' x2='5622.0' y2='2888.0'/><atom id='SUCROSE-atom3' elementType='C' x2='2858.0' y2='2888.0'/><atom id='SUCROSE-atom4' elementType='C' x2='1430.0' y2='2063.0'/><atom id='SUCROSE-atom5' elementType='C' x2='4908.0' y2='3300.0'/><atom id='SUCROSE-atom6' elementType='C' x2='1429.0' y2='1238.0'/><atom id='SUCROSE-atom7' elementType='C' x2='4652.0' y2='4085.0'/><atom id='SUCROSE-atom8' elementType='C' x2='2143.0' y2='825.0'/><atom id='SUCROSE-atom9' elementType='C' x2='2858.0' y2='1238.0'/><atom id='SUCROSE-atom10' elementType='C' x2='3828.0' y2='4085.0'/><atom id='SUCROSE-atom11' elementType='C' x2='2858.0' y2='2063.0'/><atom id='SUCROSE-atom12' elementType='C' x2='3573.0' y2='3300.0'/><atom id='SUCROSE-atom13' elementType='O' x2='0.0' y2='2063.0'/><atom id='SUCROSE-atom14' elementType='O' x2='6336.0' y2='3300.0'/><atom id='SUCROSE-atom15' elementType='O' x2='2144.0' y2='3300.0'/><atom id='SUCROSE-atom16' elementType='O' x2='715.0' y2='825.0'/><atom id='SUCROSE-atom17' elementType='O' x2='5138.0' y2='4752.0'/><atom id='SUCROSE-atom18' elementType='O' x2='2144.0' y2='0.0'/><atom id='SUCROSE-atom19' elementType='O' x2='3573.0' y2='825.0'/><atom id='SUCROSE-atom20' elementType='O' x2='3343.0' y2='4752.0'/><atom id='SUCROSE-atom21' elementType='O' x2='2143.0' y2='2475.0'/><atom id='SUCROSE-atom22' elementType='O' x2='4241.0' y2='2815.0'/><atom id='SUCROSE-atom23' elementType='O' x2='3573.0' y2='2475.0'/></atomArray>
 <bondArray><bond id='SUCROSE-bond1' atomRefs='SUCROSE-atom10 SUCROSE-atom12' order='1'/><bond id='SUCROSE-bond2' atomRefs='SUCROSE-atom22 SUCROSE-atom12' order='1'/><bond id='SUCROSE-bond3' atomRefs='SUCROSE-atom10 SUCROSE-atom20' order='1'/><bond id='SUCROSE-bond4' atomRefs='SUCROSE-atom7 SUCROSE-atom10' order='1'/><bond id='SUCROSE-bond5' atomRefs='SUCROSE-atom7 SUCROSE-atom17' order='1'/><bond id='SUCROSE-bond6' atomRefs='SUCROSE-atom5 SUCROSE-atom7' order='1'/><bond id='SUCROSE-bond7' atomRefs='SUCROSE-atom22 SUCROSE-atom5' order='1'/><bond id='SUCROSE-bond8' atomRefs='SUCROSE-atom9 SUCROSE-atom11' order='1'/><bond id='SUCROSE-bond9' atomRefs='SUCROSE-atom11 SUCROSE-atom21' order='1'/><bond id='SUCROSE-bond10' atomRefs='SUCROSE-atom4 SUCROSE-atom6' order='1'/><bond id='SUCROSE-bond11' atomRefs='SUCROSE-atom6 SUCROSE-atom8' order='1'/><bond id='SUCROSE-bond12' atomRefs='SUCROSE-atom8 SUCROSE-atom9' order='1'/><bond id='SUCROSE-bond13' atomRefs='SUCROSE-atom4 SUCROSE-atom21' order='1'/><bond id='SUCROSE-bond14' atomRefs='SUCROSE-atom9 SUCROSE-atom19' order='1'/><bond id='SUCROSE-bond15' atomRefs='SUCROSE-atom6 SUCROSE-atom16' order='1'/><bond id='SUCROSE-bond16' atomRefs='SUCROSE-atom4 SUCROSE-atom1' order='1'/><bond id='SUCROSE-bond17' atomRefs='SUCROSE-atom8 SUCROSE-atom18' order='1'/><bond id='SUCROSE-bond18' atomRefs='SUCROSE-atom1 SUCROSE-atom13' order='1'/><bond id='SUCROSE-bond19' atomRefs='SUCROSE-atom12 SUCROSE-atom3' order='1'/><bond id='SUCROSE-bond20' atomRefs='SUCROSE-atom3 SUCROSE-atom15' order='1'/><bond id='SUCROSE-bond21' atomRefs='SUCROSE-atom12 SUCROSE-atom23' order='1'/><bond id='SUCROSE-bond22' atomRefs='SUCROSE-atom11 SUCROSE-atom23' order='1'/><bond id='SUCROSE-bond23' atomRefs='SUCROSE-atom5 SUCROSE-atom2' order='1'/><bond id='SUCROSE-bond24' atomRefs='SUCROSE-atom2 SUCROSE-atom14' order='1'/></bondArray>
 <formula concise='C 12 H 22 O 11'/><float title='molecularWeight' units='g/mol'>342.299</float>
@@ -17,26 +17,26 @@
 <string title='systematicName'>beta-D-fructofuranosyl alpha-D-glucopyranoside</string>
 </molecule>
 </cml>
-<regulates><Regulation ID='ARA:REG-8536' orgid='ARA' frameid='REG-8536' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:SUCROSE' orgid='ARA' frameid='SUCROSE'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/18269577&quot;&gt;Fiehn08&lt;/a&gt;] &lt;A href=&quot; http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download&quot;&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href=&quot;http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp&quot;&gt;SetupX&lt;/a&gt; (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>sucrose</common-name>
-<inchi datatype='string'>InChI=1S/C12H22O11/c13-1-4-6(16)8(18)9(19)11(21-4)23-12(3-15)10(20)7(17)5(2-14)22-12/h4-11,13-20H,1-3H2/t4-,5-,6-,7-,8+,9-,10+,11-,12+/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=CZMRCDWAGMRECN-UGDNZRGBSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:TRANS-RXN-244' orgid='ARA' frameid='TRANS-RXN-244'/><Reaction resource='getxml?ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/><Reaction resource='getxml?ARA:3.2.1.48-RXN' orgid='ARA' frameid='3.2.1.48-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-148.00539</gibbs-0>
-<systematic-name datatype='string'>&amp;beta;-D-fructofuranosyl &amp;alpha;-D-glucopyranoside</systematic-name>
 <synonym datatype='string'>saccharose</synonym>
 <synonym datatype='string'>Glc(&amp;alpha;1-&gt;2&amp;beta;)Fru</synonym>
 <synonym datatype='string'>&amp;beta;-D-fructofuranosyl-(2&amp;harr;1)-&amp;alpha;-D-glucopyranoside</synonym>
 <synonym datatype='string'>&amp;beta;-D-Fruf-(2&amp;rarr;1)-&amp;alpha;-D-Glcp</synonym>
 <synonym datatype='string'>1-&amp;alpha;-D-Glucopyranosyl-2-&amp;beta;-D-fructofuranoside</synonym>
+<inchi-key datatype='string'>InChIKey=CZMRCDWAGMRECN-UGDNZRGBSA-N</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/18269577&quot;&gt;Fiehn08&lt;/a&gt;] &lt;A href=&quot; http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download&quot;&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href=&quot;http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp&quot;&gt;SetupX&lt;/a&gt; (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
 <molecular-weight datatype='float' units='Daltons'>342.299</molecular-weight>
+<regulates><Regulation ID='ARA:REG-8536' orgid='ARA' frameid='REG-8536' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:SUCROSE' orgid='ARA' frameid='SUCROSE'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<inchi datatype='string'>InChI=1S/C12H22O11/c13-1-4-6(16)8(18)9(19)11(21-4)23-12(3-15)10(20)7(17)5(2-14)22-12/h4-11,13-20H,1-3H2/t4-,5-,6-,7-,8+,9-,10+,11-,12+/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:TRANS-RXN-244' orgid='ARA' frameid='TRANS-RXN-244'/><Reaction resource='getxml?ARA:RXN-1841' orgid='ARA' frameid='RXN-1841'/><Reaction resource='getxml?ARA:SUCROSE-SYNTHASE-RXN' orgid='ARA' frameid='SUCROSE-SYNTHASE-RXN'/><Reaction resource='getxml?ARA:RXN-11502' orgid='ARA' frameid='RXN-11502'/><Reaction resource='getxml?ARA:SUCROSE-PHOSPHATASE-RXN' orgid='ARA' frameid='SUCROSE-PHOSPHATASE-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:TRANS-RXN-244' orgid='ARA' frameid='TRANS-RXN-244'/><Reaction resource='getxml?ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/><Reaction resource='getxml?ARA:3.2.1.48-RXN' orgid='ARA' frameid='3.2.1.48-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>342.1162</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-148.00539</gibbs-0>
+<systematic-name datatype='string'>&amp;beta;-D-fructofuranosyl &amp;alpha;-D-glucopyranoside</systematic-name>
+<common-name datatype='string'>sucrose</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004217475</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

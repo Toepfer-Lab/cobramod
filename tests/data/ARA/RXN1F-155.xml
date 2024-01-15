@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:RXN1F-155'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:RXN1F-155'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN1F-155</query>
 <num_results>1</num_results>
@@ -9,24 +9,24 @@
 </metadata>
 <Reaction ID='ARA:RXN1F-155' orgid='ARA' frameid='RXN1F-155' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:CPD1F-133' orgid='ARA' frameid='CPD1F-133'/></left>
 <ec-number>EC-5.3.99.9<official>T</official>
 </ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-6809' orgid='ARA' frameid='PWY-6809'/><Pathway resource='getxml?ARA:PWY-695' orgid='ARA' frameid='PWY-695'/></in-pathway>
-<left><Compound resource='getxml?ARA:CPD1F-133' orgid='ARA' frameid='CPD1F-133'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-5.449951</gibbs-0>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?ARA:CPD1F-135' orgid='ARA' frameid='CPD1F-135'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-17743' orgid='ARA' frameid='ENZRXN-17743' detail='low'><common-name datatype='string'>neoxanthin synthase</common-name>
+<orphan>NO</orphan>
+<gibbs-0 datatype='float' units='kcal/mol'>-5.449951</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-17743' orgid='ARA' frameid='ENZRXN-17743' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G67080-MONOMER' orgid='ARA' frameid='AT1G67080-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:RXN1F-155' orgid='ARA' frameid='RXN1F-155'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G67080-MONOMER' orgid='ARA' frameid='AT1G67080-MONOMER'/></enzyme>
+<common-name datatype='string'>neoxanthin synthase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<orphan>NO</orphan>
 <dblink><dblink-db>LIGAND-RXN</dblink-db>
 <dblink-oid>R06948</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R06948</dblink-URL>
 </dblink>
+<in-pathway><Pathway resource='getxml?ARA:PWY-6809' orgid='ARA' frameid='PWY-6809'/><Pathway resource='getxml?ARA:PWY-695' orgid='ARA' frameid='PWY-695'/></in-pathway>
 </Reaction>
 </ptools-xml>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:2.3.1.180-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:2.3.1.180-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:2.3.1.180-RXN</query>
 <num_results>1</num_results>
@@ -8,23 +8,23 @@
 </PGDB>
 </metadata>
 <Reaction ID='ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Protein-Modification-Reactions' orgid='ARA' frameid='Protein-Modification-Reactions' class='true'/></parent>
-<ec-number>EC-2.3.1.180<official>T</official>
-</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-4381' orgid='ARA' frameid='PWY-4381'/></in-pathway>
 <left><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left>
 <left><Protein resource='getxml?ARA:MALONYL-ACP' orgid='ARA' frameid='MALONYL-ACP' class='true'/></left>
 <left><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-27.40509</gibbs-0>
+<ec-number>EC-2.3.1.180<official>T</official>
+</ec-number>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <right><Protein resource='getxml?ARA:Acetoacetyl-ACPs' orgid='ARA' frameid='Acetoacetyl-ACPs' class='true'/></right>
 <right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
 <right><Compound resource='getxml?ARA:CARBON-DIOXIDE' orgid='ARA' frameid='CARBON-DIOXIDE'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-7662' orgid='ARA' frameid='ENZRXNQT-7662' detail='low'><common-name datatype='string'>&amp;beta;-ketoacyl-ACP synthase</common-name>
+<orphan>NO</orphan>
+<gibbs-0 datatype='float' units='kcal/mol'>-27.40509</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-7662' orgid='ARA' frameid='ENZRXNQT-7662' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G62640-MONOMER' orgid='ARA' frameid='AT1G62640-MONOMER'/></enzyme>
 <reaction><Reaction resource='#ARA:2.3.1.180-RXN' orgid='ARA' frameid='2.3.1.180-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:AT1G62640-MONOMER' orgid='ARA' frameid='AT1G62640-MONOMER'/></enzyme>
+<common-name datatype='string'>&amp;beta;-ketoacyl-ACP synthase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<orphan>NO</orphan>
+<in-pathway><Pathway resource='getxml?ARA:PWY-4381' orgid='ARA' frameid='PWY-4381'/></in-pathway>
 </Reaction>
 </ptools-xml>

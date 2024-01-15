@@ -53,6 +53,8 @@ MODULE      M00346  Formaldehyde assimilation, serine pathway
             M00896  Thiamine biosynthesis, archaea, AIR (+ NAD+) => TMP/TPP
             M00897  Thiamine biosynthesis, plants, AIR (+ NAD+) => TMP/thiamine/TPP
             M00898  Thiamine biosynthesis, pyridoxal-5P => TMP/thiamine/TPP
+            M00974  Betaine metabolism, animals, betaine => glycine
+            M00975  Betaine degradation, bacteria, betaine => pyruvate
 NETWORK     nt06011  Heme biosynthesis
             nt06032  Lipoic acid metabolism
             nt06033  Glycine, serine and arginine metabolism
@@ -82,19 +84,19 @@ BRITE       Compounds with biological roles [BR:br08001]
               Neurotransmitters
                Amino acids
                 C00037  Glycine
-            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303]
+            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303(D00011)]
              B BLOOD AND BLOOD FORMING ORGANS
               B05 BLOOD SUBSTITUTES AND PERFUSION SOLUTIONS
                B05C IRRIGATING SOLUTIONS
                 B05CX Other irrigating solutions
                  B05CX03 Glycine
                   D00011  Glycine (JP18/USP) &lt;US&gt;
-            Risk category of Japanese OTC drugs [BR:br08312]
+            Risk category of Japanese OTC drugs [BR:br08312(D00011)]
              Third-class OTC drugs
               Inorganic and organic chemicals
                Glycine
                 D00011  Glycine (JP18/USP)
-            Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
+            Drugs listed in the Japanese Pharmacopoeia [BR:br08311(D00011)]
              Chemicals
               D00011  Glycine
 DBLINKS     CAS: 56-40-6

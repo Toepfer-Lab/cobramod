@@ -23,7 +23,6 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
             M00165  Reductive pentose phosphate cycle (Calvin cycle)
-            M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
             M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
             M00552  D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P
 ENZYME      1.2.1.12        1.2.1.13        1.2.1.59        2.7.1.106       

@@ -1,10 +1,10 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECOLI:PEPDEPHOS-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ECOLI:PEPDEPHOS-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
     <query>fn=genes-of-reaction&amp;id=ECOLI:PEPDEPHOS-RXN&amp;detail=FULL</query>
     <num_results>2</num_results>
-    <PGDB orgid="ECOLI" version="27.0">
+    <PGDB orgid="ECOLI" version="27.5">
       <species datatype="string">Escherichia coli</species>
       <strain datatype="string">K-12 substr. MG1655</strain>
       <dblink>
@@ -73,39 +73,13 @@
     <product>
       <Protein resource="getxml?ECOLI:PKII-MONOMER" orgid="ECOLI" frameid="PKII-MONOMER" />
     </product>
+    <accession-1 datatype="string">b1854</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-45220" orgid="ECOLI" frameid="TU0-45220" />
       <Transcription-Unit resource="getxml?ECOLI:TU0-45175" orgid="ECOLI" frameid="TU0-45175" />
       <Transcription-Unit resource="getxml?ECOLI:TU0-14633" orgid="ECOLI" frameid="TU0-14633" />
       <Transcription-Unit resource="getxml?ECOLI:TU0-13440" orgid="ECOLI" frameid="TU0-13440" />
     </component-of>
-    <accession-1 datatype="string">b1854</accession-1>
-    <regulated-by>
-      <Regulation ID="ECOLI:REG0-14353" orgid="ECOLI" frameid="REG0-14353" detail="low">
-        <parent>
-          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
-        </parent>
-        <regulated-entity>
-          <Gene resource="#ECOLI:EG10803" orgid="ECOLI" frameid="EG10803" />
-        </regulated-entity>
-        <mode datatype="string">+</mode>
-        <regulator>
-          <Protein resource="getxml?ECOLI:CPLX0-7797" orgid="ECOLI" frameid="CPLX0-7797" />
-        </regulator>
-      </Regulation>
-      <Regulation ID="ECOLI:REG0-12624" orgid="ECOLI" frameid="REG0-12624" detail="low">
-        <parent>
-          <Regulation resource="getxml?ECOLI:RNA-Mediated-Translation-Regulation" orgid="ECOLI" frameid="RNA-Mediated-Translation-Regulation" class="true" />
-        </parent>
-        <regulated-entity>
-          <Gene resource="#ECOLI:EG10803" orgid="ECOLI" frameid="EG10803" />
-        </regulated-entity>
-        <mode datatype="string">-</mode>
-        <regulator>
-          <RNA resource="getxml?ECOLI:DICF-RNA" orgid="ECOLI" frameid="DICF-RNA" />
-        </regulator>
-      </Regulation>
-    </regulated-by>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b1854</dblink-oid>
@@ -142,11 +116,37 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=32363</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">1937649</left-end-position>
-    <right-end-position datatype="integer">1939091</right-end-position>
+    <common-name datatype="string">pykA</common-name>
     <accession-2 datatype="string">ECK1855</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">41.744812</centisome-position>
-    <common-name datatype="string">pykA</common-name>
+    <right-end-position datatype="integer">1939091</right-end-position>
+    <regulated-by>
+      <Regulation ID="ECOLI:REG0-14353" orgid="ECOLI" frameid="REG0-14353" detail="low">
+        <parent>
+          <Regulation resource="getxml?ECOLI:Transcription-Factor-Binding" orgid="ECOLI" frameid="Transcription-Factor-Binding" class="true" />
+        </parent>
+        <regulator>
+          <Protein resource="getxml?ECOLI:CPLX0-7797" orgid="ECOLI" frameid="CPLX0-7797" />
+        </regulator>
+        <regulated-entity>
+          <Gene resource="#ECOLI:EG10803" orgid="ECOLI" frameid="EG10803" />
+        </regulated-entity>
+        <mode datatype="string">+</mode>
+      </Regulation>
+      <Regulation ID="ECOLI:REG0-12624" orgid="ECOLI" frameid="REG0-12624" detail="low">
+        <parent>
+          <Regulation resource="getxml?ECOLI:RNA-Mediated-Translation-Regulation" orgid="ECOLI" frameid="RNA-Mediated-Translation-Regulation" class="true" />
+        </parent>
+        <regulator>
+          <RNA resource="getxml?ECOLI:DICF-RNA" orgid="ECOLI" frameid="DICF-RNA" />
+        </regulator>
+        <regulated-entity>
+          <Gene resource="#ECOLI:EG10803" orgid="ECOLI" frameid="EG10803" />
+        </regulated-entity>
+        <mode datatype="string">-</mode>
+      </Regulation>
+    </regulated-by>
+    <left-end-position datatype="integer">1937649</left-end-position>
   </Gene>
   <Gene ID="ECOLI:EG10804" orgid="ECOLI" frameid="EG10804" detail="full">
     <parent>
@@ -170,6 +170,7 @@
     <product>
       <Protein resource="getxml?ECOLI:PKI-MONOMER" orgid="ECOLI" frameid="PKI-MONOMER" />
     </product>
+    <accession-1 datatype="string">b1676</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?ECOLI:TU0-45244" orgid="ECOLI" frameid="TU0-45244" />
       <Transcription-Unit resource="getxml?ECOLI:TU0-45163" orgid="ECOLI" frameid="TU0-45163" />
@@ -178,7 +179,6 @@
       <Transcription-Unit resource="getxml?ECOLI:TU0-14630" orgid="ECOLI" frameid="TU0-14630" />
       <Transcription-Unit resource="getxml?ECOLI:TU00527" orgid="ECOLI" frameid="TU00527" />
     </component-of>
-    <accession-1 datatype="string">b1676</accession-1>
     <dblink>
       <dblink-db>REGULONDB</dblink-db>
       <dblink-oid>b1676</dblink-oid>
@@ -215,10 +215,10 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://cgsc.biology.yale.edu/Site.php?ID=17620</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">1755698</left-end-position>
-    <right-end-position datatype="integer">1757110</right-end-position>
+    <common-name datatype="string">pykF</common-name>
     <accession-2 datatype="string">ECK1672</accession-2>
     <centisome-position datatype="float" units="CENTISOMES">37.824852</centisome-position>
-    <common-name datatype="string">pykF</common-name>
+    <right-end-position datatype="integer">1757110</right-end-position>
+    <left-end-position datatype="integer">1755698</left-end-position>
   </Gene>
 </ptools-xml>

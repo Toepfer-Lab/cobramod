@@ -1,19 +1,32 @@
 """
-This Test checks that the directory data is located in a correct path.
-Not all installations will be located at in the directory of cobramod. This
-ensure that all installation can use the same data
+Check if models are available
 """
 import unittest
 from pathlib import Path
 
-from cobramod.test import data_dir
+import pkg_resources
 
 
 class ModuleTest(unittest.TestCase):
     def test_directory(self):
-        self.assertIn(
-            member=str(Path().joinpath("cobramod").joinpath("data")),
-            container=str(data_dir),
+        self.assertTrue(
+            Path(
+                pkg_resources.resource_filename("cobra", "data/textbook.xml.gz")
+            ).exists()
+        )
+        self.assertTrue(
+            Path(
+                pkg_resources.resource_filename(
+                    "cobramod", "data/textbook_biocyc.sbml"
+                )
+            ).exists()
+        )
+        self.assertTrue(
+            Path(
+                pkg_resources.resource_filename(
+                    "cobramod", "data/textbook_kegg.sbml"
+                )
+            ).exists()
         )
 
 

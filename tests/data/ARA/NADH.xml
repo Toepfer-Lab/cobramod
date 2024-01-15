@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:NADH'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:NADH'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:NADH</query>
 <num_results>1</num_results>
@@ -14,6 +14,34 @@
 <string title='smiles'>C1(/N(\C=C/CC(/C(N)=O)=1)[C@@H]5(O[C@H](COP(OP(OC[C@H]4(O[C@@H](N2(C3(\C(\N=C/2)=C(N)/N=C\N=3)))[C@H](O)[C@H](O)4))(=O)[O-])(=O)[O-])[C@@H](O)[C@@H](O)5))</string>
 </molecule>
 </cml>
+<synonym datatype='string'>NADH&lt;sub&gt;2&lt;/sub&gt;</synonym>
+<synonym datatype='string'>NADH2</synonym>
+<synonym datatype='string'>dihydrodiphosphopyridine nucleotide</synonym>
+<synonym datatype='string'>diphosphopyridine nucleotide reduced</synonym>
+<synonym datatype='string'>dihydronicotinamide adenine dinucleotide</synonym>
+<synonym datatype='string'>nicotinamide adenine dinucleotide reduced</synonym>
+<synonym datatype='string'>NAD-reduced</synonym>
+<synonym datatype='string'>NADH+H+</synonym>
+<synonym datatype='string'>DPNH</synonym>
+<synonym datatype='string'>&amp;beta;-NADH</synonym>
+<inchi-key datatype='string'>InChIKey=BOPGDPNILDQYTO-NNYOXOHSSA-L</inchi-key>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=ARA&amp;id=NAD&quot;&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=ARA&amp;id=NADP&quot;&gt;NADP&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; are two forms of &lt;a href=&quot;/compound?orgid=ARA&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt;.
+These molecules are the biological carriers of reductive equivalents (i.e. high potential electrons).
+They are often referred to as coenzymes, although in most of their reactions they function as
+cosubstrates rather than true coenzymes.
+&lt;p&gt;
+The most common function of NAD+ is to accept two electrons and a proton (a hidride ion) from a
+substrate that is being oxidized. This reduction converts NAD+ to &lt;a href=&quot;/compound?orgid=ARA&amp;id=NADH&quot;&gt;NADH&lt;/a&gt;, the reduced form.
+NADH then diffuses or is being transported to a terminal oxidase, where the electrons are passed on,
+regenerating the oxidized form.
+&lt;p&gt;
+&lt;a href=&quot;/compound?orgid=ARA&amp;id=NADPH&quot;&gt;NADPH&lt;/a&gt;, on the other hand, is mostly involved in biosynthetic reactions, where it serves as an
+electron donor. NADPH is formed by reduction of NADP+, which occurs by different mechanisms in
+different types of organisms. In photosynthetic organisms NADP+ is reduced by &lt;a href=&quot;http://biocyc.org/META/new-image?object=CPLX-84&quot;&gt;photosystem I&lt;/a&gt;.
+In heterotrophic organisms NADP+ is reduced by central metabolism processes such as the
+pentose phosphate pathway (see &lt;a href=&quot;/ARA/NEW-IMAGE?type=PATHWAY&amp;object=OXIDATIVEPENT-PWY&quot;&gt;pentose phosphate pathway (oxidative branch) I&lt;/a&gt;).
+</comment>
+<molecular-weight datatype='float' units='Daltons'>663.43</molecular-weight>
 <regulates><Regulation ID='ARA:REG-9631' orgid='ARA' frameid='REG-9631' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
@@ -47,12 +75,12 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG-9463' orgid='ARA' frameid='REG-9463' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-9141' orgid='ARA' frameid='ENZRXN-9141' detail='low'><common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
+<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-9141' orgid='ARA' frameid='ENZRXN-9141' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-7084' orgid='ARA' frameid='CPLX-7084'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-7084' orgid='ARA' frameid='CPLX-7084'/></enzyme>
+<common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG0-8745' orgid='ARA' frameid='REG0-8745' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
@@ -64,13 +92,13 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-540' orgid='ARA' frameid='REGQT-540' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-12854' orgid='ARA' frameid='ENZRXNQT-12854' detail='low'><common-name datatype='string'>malate dehydrogenase, NAD-requiring</common-name>
-<reaction><Reaction resource='getxml?ARA:1.1.1.39-RXN' orgid='ARA' frameid='1.1.1.39-RXN'/></reaction>
-<synonym datatype='string'>NAD-dependent malic enzyme</synonym>
+<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-12854' orgid='ARA' frameid='ENZRXNQT-12854' detail='low'><synonym datatype='string'>NAD-dependent malic enzyme</synonym>
 <enzyme><Protein resource='getxml?ARA:CPLXQT-53' orgid='ARA' frameid='CPLXQT-53'/></enzyme>
+<reaction><Reaction resource='getxml?ARA:1.1.1.39-RXN' orgid='ARA' frameid='1.1.1.39-RXN'/></reaction>
+<common-name datatype='string'>malate dehydrogenase, NAD-requiring</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG-6521' orgid='ARA' frameid='REG-6521' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
@@ -82,85 +110,57 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REG-7366' orgid='ARA' frameid='REG-7366' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-12451' orgid='ARA' frameid='ENZRXN-12451' detail='low'><common-name datatype='string'>GDP-D-mannose-5&quot;-epimerase</common-name>
+<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-12451' orgid='ARA' frameid='ENZRXN-12451' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-2043' orgid='ARA' frameid='CPLX-2043'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:RXN-7771' orgid='ARA' frameid='RXN-7771'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-2043' orgid='ARA' frameid='CPLX-2043'/></enzyme>
+<common-name datatype='string'>GDP-D-mannose-5&quot;-epimerase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-467' orgid='ARA' frameid='REGQT-467' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-12444' orgid='ARA' frameid='ENZRXN-12444' detail='low'><common-name datatype='string'>UDP-D-apiose synthase</common-name>
+<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-12444' orgid='ARA' frameid='ENZRXN-12444' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-7037' orgid='ARA' frameid='CPLX-7037'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:RXN-7770' orgid='ARA' frameid='RXN-7770'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-7037' orgid='ARA' frameid='CPLX-7037'/></enzyme>
+<common-name datatype='string'>UDP-D-apiose synthase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-438' orgid='ARA' frameid='REGQT-438' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-10564' orgid='ARA' frameid='ENZRXN-10564' detail='low'><common-name datatype='string'>succinate semialdehyde dehydrogenase (NAD&lt;sup&gt;+&lt;/sup&gt;)</common-name>
+<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-10564' orgid='ARA' frameid='ENZRXN-10564' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-6121' orgid='ARA' frameid='CPLX-6121'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN' orgid='ARA' frameid='SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLX-6121' orgid='ARA' frameid='CPLX-6121'/></enzyme>
+<common-name datatype='string'>succinate semialdehyde dehydrogenase (NAD&lt;sup&gt;+&lt;/sup&gt;)</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-306' orgid='ARA' frameid='REGQT-306' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9536' orgid='ARA' frameid='ENZRXNQT-9536' detail='low'><common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
+<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9536' orgid='ARA' frameid='ENZRXNQT-9536' detail='low'><enzyme><Protein resource='getxml?ARA:CPLXQT-17' orgid='ARA' frameid='CPLXQT-17'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLXQT-17' orgid='ARA' frameid='CPLXQT-17'/></enzyme>
+<common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 <Regulation ID='ARA:REGQT-299' orgid='ARA' frameid='REGQT-299' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9535' orgid='ARA' frameid='ENZRXNQT-9535' detail='low'><common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
+<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9535' orgid='ARA' frameid='ENZRXNQT-9535' detail='low'><enzyme><Protein resource='getxml?ARA:CPLXQT-16' orgid='ARA' frameid='CPLXQT-16'/></enzyme>
 <reaction><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/></reaction>
-<enzyme><Protein resource='getxml?ARA:CPLXQT-16' orgid='ARA' frameid='CPLXQT-16'/></enzyme>
+<common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
 </Enzymatic-Reaction>
 </regulated-entity>
-<regulator><Compound resource='#ARA:NADH' orgid='ARA' frameid='NADH'/></regulator>
 <mode datatype='string'>-</mode>
 </Regulation>
 </regulates>
-<comment datatype='string'>&lt;a href=&quot;/compound?orgid=ARA&amp;id=NAD&quot;&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=ARA&amp;id=NADP&quot;&gt;NADP&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; are two forms of &lt;a href=&quot;/compound?orgid=ARA&amp;id=NIACINE&quot;&gt;nicotinate&lt;/a&gt;.
-These molecules are the biological carriers of reductive equivalents (i.e. high potential electrons).
-They are often referred to as coenzymes, although in most of their reactions they function as
-cosubstrates rather than true coenzymes.
-&lt;p&gt;
-The most common function of NAD+ is to accept two electrons and a proton (a hidride ion) from a
-substrate that is being oxidized. This reduction converts NAD+ to &lt;a href=&quot;/compound?orgid=ARA&amp;id=NADH&quot;&gt;NADH&lt;/a&gt;, the reduced form.
-NADH then diffuses or is being transported to a terminal oxidase, where the electrons are passed on,
-regenerating the oxidized form.
-&lt;p&gt;
-&lt;a href=&quot;/compound?orgid=ARA&amp;id=NADPH&quot;&gt;NADPH&lt;/a&gt;, on the other hand, is mostly involved in biosynthetic reactions, where it serves as an
-electron donor. NADPH is formed by reduction of NADP+, which occurs by different mechanisms in
-different types of organisms. In photosynthetic organisms NADP+ is reduced by &lt;a href=&quot;http://biocyc.org/META/new-image?object=CPLX-84&quot;&gt;photosystem I&lt;/a&gt;.
-In heterotrophic organisms NADP+ is reduced by central metabolism processes such as the
-pentose phosphate pathway (see &lt;a href=&quot;/ARA/NEW-IMAGE?type=PATHWAY&amp;object=OXIDATIVEPENT-PWY&quot;&gt;pentose phosphate pathway (oxidative branch) I&lt;/a&gt;).
-</comment>
-<common-name datatype='string'>NADH</common-name>
 <inchi datatype='string'>InChI=1S/C21H29N7O14P2/c22-17-12-19(25-7-24-17)28(8-26-12)21-16(32)14(30)11(41-21)6-39-44(36,37)42-43(34,35)38-5-10-13(29)15(31)20(40-10)27-3-1-2-9(4-27)18(23)33/h1,3-4,7-8,10-11,13-16,20-21,29-32H,2,5-6H2,(H2,23,33)(H,34,35)(H,36,37)(H2,22,24,25)/p-2/t10-,11-,13-,14-,15-,16-,20-,21-/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=BOPGDPNILDQYTO-NNYOXOHSSA-L</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-21030' orgid='ARA' frameid='RXN-21030'/><Reaction resource='getxml?ARA:1.14.13.10-RXN' orgid='ARA' frameid='1.14.13.10-RXN'/><Reaction resource='getxml?ARA:RXN-7573' orgid='ARA' frameid='RXN-7573'/><Reaction resource='getxml?ARA:RXN-9767' orgid='ARA' frameid='RXN-9767'/><Reaction resource='getxml?ARA:RXN-17568' orgid='ARA' frameid='RXN-17568'/><Reaction resource='getxml?ARA:RXN-8819' orgid='ARA' frameid='RXN-8819'/><Reaction resource='getxml?ARA:RXN-11506' orgid='ARA' frameid='RXN-11506'/><Reaction resource='getxml?ARA:RXN-17175' orgid='ARA' frameid='RXN-17175'/><Reaction resource='getxml?ARA:RXN-11186' orgid='ARA' frameid='RXN-11186'/><Reaction resource='getxml?ARA:RXN0-5330-YEAST' orgid='ARA' frameid='RXN0-5330-YEAST'/><Reaction resource='getxml?ARA:RXN-3661' orgid='ARA' frameid='RXN-3661'/><Reaction resource='getxml?ARA:1.2.1.42-RXN' orgid='ARA' frameid='1.2.1.42-RXN'/><Reaction resource='getxml?ARA:RXN-11898' orgid='ARA' frameid='RXN-11898'/><Reaction resource='getxml?ARA:RXN-12754' orgid='ARA' frameid='RXN-12754'/><Reaction resource='getxml?ARA:RXN-12753' orgid='ARA' frameid='RXN-12753'/><Reaction resource='getxml?ARA:1.6.99.5-RXN' orgid='ARA' frameid='1.6.99.5-RXN'/><Reaction resource='getxml?ARA:RXN-10446' orgid='ARA' frameid='RXN-10446'/><Reaction resource='getxml?ARA:RXN-13417' orgid='ARA' frameid='RXN-13417'/><Reaction resource='getxml?ARA:1.6.5.4-RXN' orgid='ARA' frameid='1.6.5.4-RXN'/><Reaction resource='getxml?ARA:NADH-DEHYDROG-A-RXN' orgid='ARA' frameid='NADH-DEHYDROG-A-RXN'/><Reaction resource='getxml?ARA:RXN0-4401' orgid='ARA' frameid='RXN0-4401'/><Reaction resource='getxml?ARA:RXN0-5330' orgid='ARA' frameid='RXN0-5330'/><Reaction resource='getxml?ARA:CYTOCHROME-B5-REDUCTASE-RXN' orgid='ARA' frameid='CYTOCHROME-B5-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:NADH-KINASE-RXN' orgid='ARA' frameid='NADH-KINASE-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-325.20697</gibbs-0>
-<synonym datatype='string'>NADH&lt;sub&gt;2&lt;/sub&gt;</synonym>
-<synonym datatype='string'>NADH2</synonym>
-<synonym datatype='string'>dihydrodiphosphopyridine nucleotide</synonym>
-<synonym datatype='string'>diphosphopyridine nucleotide reduced</synonym>
-<synonym datatype='string'>dihydronicotinamide adenine dinucleotide</synonym>
-<synonym datatype='string'>nicotinamide adenine dinucleotide reduced</synonym>
-<synonym datatype='string'>NAD-reduced</synonym>
-<synonym datatype='string'>NADH+H+</synonym>
-<synonym datatype='string'>DPNH</synonym>
-<synonym datatype='string'>&amp;beta;-NADH</synonym>
-<molecular-weight datatype='float' units='Daltons'>663.43</molecular-weight>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-22438' orgid='ARA' frameid='RXN-22438'/><Reaction resource='getxml?ARA:RXN-14102' orgid='ARA' frameid='RXN-14102'/><Reaction resource='getxml?ARA:RXN-2003' orgid='ARA' frameid='RXN-2003'/><Reaction resource='getxml?ARA:RXN-18356' orgid='ARA' frameid='RXN-18356'/><Reaction resource='getxml?ARA:RXN-20768' orgid='ARA' frameid='RXN-20768'/><Reaction resource='getxml?ARA:ACETALD-DEHYDROG-RXN' orgid='ARA' frameid='ACETALD-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:GLYCOLATE-REDUCTASE-RXN' orgid='ARA' frameid='GLYCOLATE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:L-RHAMNOSE-1-DEHYDROGENASE-RXN' orgid='ARA' frameid='L-RHAMNOSE-1-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-13637' orgid='ARA' frameid='RXN-13637'/><Reaction resource='getxml?ARA:ISOPIPERITENOL-DEHYDROGENASE-RXN' orgid='ARA' frameid='ISOPIPERITENOL-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-18590' orgid='ARA' frameid='RXN-18590'/><Reaction resource='getxml?ARA:RXN-7970' orgid='ARA' frameid='RXN-7970'/><Reaction resource='getxml?ARA:RXN-19748' orgid='ARA' frameid='RXN-19748'/><Reaction resource='getxml?ARA:RXN0-6727' orgid='ARA' frameid='RXN0-6727'/><Reaction resource='getxml?ARA:RXN-16702' orgid='ARA' frameid='RXN-16702'/><Reaction resource='getxml?ARA:RXN-11968' orgid='ARA' frameid='RXN-11968'/><Reaction resource='getxml?ARA:RXN-18206' orgid='ARA' frameid='RXN-18206'/><Reaction resource='getxml?ARA:RXN-18202' orgid='ARA' frameid='RXN-18202'/><Reaction resource='getxml?ARA:RXN-18204' orgid='ARA' frameid='RXN-18204'/><Reaction resource='getxml?ARA:RXN-18200' orgid='ARA' frameid='RXN-18200'/><Reaction resource='getxml?ARA:RXN-18208' orgid='ARA' frameid='RXN-18208'/><Reaction resource='getxml?ARA:RXN-4466' orgid='ARA' frameid='RXN-4466'/><Reaction resource='getxml?ARA:RXN-9558' orgid='ARA' frameid='RXN-9558'/><Reaction resource='getxml?ARA:RXN-2204' orgid='ARA' frameid='RXN-2204'/><Reaction resource='getxml?ARA:RXN4FS-10' orgid='ARA' frameid='RXN4FS-10'/><Reaction resource='getxml?ARA:RXN-7700' orgid='ARA' frameid='RXN-7700'/><Reaction resource='getxml?ARA:3-HYDROXYPROPIONATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='3-HYDROXYPROPIONATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-161' orgid='ARA' frameid='RXN-161'/><Reaction resource='getxml?ARA:RIBITOL-2-DEHYDROGENASE-RXN' orgid='ARA' frameid='RIBITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-11825' orgid='ARA' frameid='RXN-11825'/><Reaction resource='getxml?ARA:4-HYDROXYBUTYRATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='4-HYDROXYBUTYRATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:4.2.1.93-RXN' orgid='ARA' frameid='4.2.1.93-RXN'/><Reaction resource='getxml?ARA:RXN-13748' orgid='ARA' frameid='RXN-13748'/><Reaction resource='getxml?ARA:MYO-INOSITOL-2-DEHYDROGENASE-RXN' orgid='ARA' frameid='MYO-INOSITOL-2-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-4142' orgid='ARA' frameid='RXN-4142'/><Reaction resource='getxml?ARA:GCVMULTI-RXN' orgid='ARA' frameid='GCVMULTI-RXN'/><Reaction resource='getxml?ARA:FERRIC-CHELATE-REDUCTASE-RXN' orgid='ARA' frameid='FERRIC-CHELATE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:RXN-8162' orgid='ARA' frameid='RXN-8162'/><Reaction resource='getxml?ARA:RXN-7644' orgid='ARA' frameid='RXN-7644'/><Reaction resource='getxml?ARA:GLUTAMATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='GLUTAMATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:RXN-14116' orgid='ARA' frameid='RXN-14116'/><Reaction resource='getxml?ARA:ENZRXN-161-RXN' orgid='ARA' frameid='ENZRXN-161-RXN'/><Reaction resource='getxml?ARA:1.1.1.255-RXN' orgid='ARA' frameid='1.1.1.255-RXN'/><Reaction resource='getxml?ARA:RXN66-478' orgid='ARA' frameid='RXN66-478'/><Reaction resource='getxml?ARA:RXN-8632' orgid='ARA' frameid='RXN-8632'/><Reaction resource='getxml?ARA:RXN-8681' orgid='ARA' frameid='RXN-8681'/><Reaction resource='getxml?ARA:RXN-8680' orgid='ARA' frameid='RXN-8680'/><Reaction resource='getxml?ARA:RXN-10032' orgid='ARA' frameid='RXN-10032'/><Reaction resource='getxml?ARA:RXN-12490' orgid='ARA' frameid='RXN-12490'/><Reaction resource='getxml?ARA:RXN-13158' orgid='ARA' frameid='RXN-13158'/><Reaction resource='getxml?ARA:RXN-13198' orgid='ARA' frameid='RXN-13198'/><Reaction resource='getxml?ARA:RXN-13414' orgid='ARA' frameid='RXN-13414'/><Reaction resource='getxml?ARA:RXN-710' orgid='ARA' frameid='RXN-710'/><Reaction resource='getxml?ARA:1.8.1.4-RXN' orgid='ARA' frameid='1.8.1.4-RXN'/><Reaction resource='getxml?ARA:RXN-9657' orgid='ARA' frameid='RXN-9657'/><Reaction resource='getxml?ARA:RXN3O-4113' orgid='ARA' frameid='RXN3O-4113'/><Reaction resource='getxml?ARA:ALCOHOL-DEHYDROG-GENERIC-RXN' orgid='ARA' frameid='ALCOHOL-DEHYDROG-GENERIC-RXN'/><Reaction resource='getxml?ARA:RXN-11662' orgid='ARA' frameid='RXN-11662'/><Reaction resource='getxml?ARA:RXN-12570' orgid='ARA' frameid='RXN-12570'/><Reaction resource='getxml?ARA:RXN-11213' orgid='ARA' frameid='RXN-11213'/><Reaction resource='getxml?ARA:RXN-12448' orgid='ARA' frameid='RXN-12448'/><Reaction resource='getxml?ARA:RXN0-5289' orgid='ARA' frameid='RXN0-5289'/><Reaction resource='getxml?ARA:RXN-1347' orgid='ARA' frameid='RXN-1347'/><Reaction resource='getxml?ARA:BHBDCLOS-RXN' orgid='ARA' frameid='BHBDCLOS-RXN'/><Reaction resource='getxml?ARA:GLYCERATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='GLYCERATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:OHACYL-COA-DEHYDROG-RXN' orgid='ARA' frameid='OHACYL-COA-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:ALLYSINE-DEHYDROG-RXN' orgid='ARA' frameid='ALLYSINE-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:1.5.1.7-RXN' orgid='ARA' frameid='1.5.1.7-RXN'/><Reaction resource='getxml?ARA:1.5.1.9-RXN' orgid='ARA' frameid='1.5.1.9-RXN'/><Reaction resource='getxml?ARA:RXN-12641' orgid='ARA' frameid='RXN-12641'/><Reaction resource='getxml?ARA:RXN-11928' orgid='ARA' frameid='RXN-11928'/><Reaction resource='getxml?ARA:RXN-11933' orgid='ARA' frameid='RXN-11933'/><Reaction resource='getxml?ARA:RXN-11938' orgid='ARA' frameid='RXN-11938'/><Reaction resource='getxml?ARA:RXN-11949' orgid='ARA' frameid='RXN-11949'/><Reaction resource='getxml?ARA:RXN-11959' orgid='ARA' frameid='RXN-11959'/><Reaction resource='getxml?ARA:AMINOBUTDEHYDROG-RXN' orgid='ARA' frameid='AMINOBUTDEHYDROG-RXN'/><Reaction resource='getxml?ARA:BENZALDEHYDE-DEHYDROGENASE-NAD+-RXN' orgid='ARA' frameid='BENZALDEHYDE-DEHYDROGENASE-NAD+-RXN'/><Reaction resource='getxml?ARA:RXN-10698' orgid='ARA' frameid='RXN-10698'/><Reaction resource='getxml?ARA:RXN-10702' orgid='ARA' frameid='RXN-10702'/><Reaction resource='getxml?ARA:RXN-10703' orgid='ARA' frameid='RXN-10703'/><Reaction resource='getxml?ARA:1.1.1.178-RXN' orgid='ARA' frameid='1.1.1.178-RXN'/><Reaction resource='getxml?ARA:3-HYDROXYISOBUTYRATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='3-HYDROXYISOBUTYRATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:ALCOHOL-DEHYDROG-RXN' orgid='ARA' frameid='ALCOHOL-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:DLACTDEHYDROGNAD-RXN' orgid='ARA' frameid='DLACTDEHYDROGNAD-RXN'/><Reaction resource='getxml?ARA:HISTALDEHYD-RXN' orgid='ARA' frameid='HISTALDEHYD-RXN'/><Reaction resource='getxml?ARA:HISTOLDEHYD-RXN' orgid='ARA' frameid='HISTOLDEHYD-RXN'/><Reaction resource='getxml?ARA:IMP-DEHYDROG-RXN' orgid='ARA' frameid='IMP-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:L-LACTATE-DEHYDROGENASE-RXN' orgid='ARA' frameid='L-LACTATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:MALATE-DEH-RXN' orgid='ARA' frameid='MALATE-DEH-RXN'/><Reaction resource='getxml?ARA:PGLYCDEHYDROG-RXN' orgid='ARA' frameid='PGLYCDEHYDROG-RXN'/><Reaction resource='getxml?ARA:RXN-1884' orgid='ARA' frameid='RXN-1884'/><Reaction resource='getxml?ARA:RXN-8001' orgid='ARA' frameid='RXN-8001'/><Reaction resource='getxml?ARA:UGD-RXN' orgid='ARA' frameid='UGD-RXN'/><Reaction resource='getxml?ARA:1.2.1.25-RXN' orgid='ARA' frameid='1.2.1.25-RXN'/><Reaction resource='getxml?ARA:BADH-RXN' orgid='ARA' frameid='BADH-RXN'/><Reaction resource='getxml?ARA:GAPOXNPHOSPHN-RXN' orgid='ARA' frameid='GAPOXNPHOSPHN-RXN'/><Reaction resource='getxml?ARA:RXN66-3' orgid='ARA' frameid='RXN66-3'/><Reaction resource='getxml?ARA:SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN' orgid='ARA' frameid='SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ARA:DIMETHUROPORDEHYDROG-RXN' orgid='ARA' frameid='DIMETHUROPORDEHYDROG-RXN'/><Reaction resource='getxml?ARA:ENOYL-ACP-REDUCT-NADH-RXN' orgid='ARA' frameid='ENOYL-ACP-REDUCT-NADH-RXN'/><Reaction resource='getxml?ARA:GLUTAMATE-SYNTHASE-NADH-RXN' orgid='ARA' frameid='GLUTAMATE-SYNTHASE-NADH-RXN'/><Reaction resource='getxml?ARA:PYRROLINECARBDEHYDROG-RXN' orgid='ARA' frameid='PYRROLINECARBDEHYDROG-RXN'/><Reaction resource='getxml?ARA:NITRATE-REDUCTASE-NADH-RXN' orgid='ARA' frameid='NITRATE-REDUCTASE-NADH-RXN'/><Reaction resource='getxml?ARA:PYRUVDEH-RXN' orgid='ARA' frameid='PYRUVDEH-RXN'/><Reaction resource='getxml?ARA:1.2.1.2-RXN' orgid='ARA' frameid='1.2.1.2-RXN'/><Reaction resource='getxml?ARA:RXN-9658' orgid='ARA' frameid='RXN-9658'/><Reaction resource='getxml?ARA:RXN-9659' orgid='ARA' frameid='RXN-9659'/><Reaction resource='getxml?ARA:RXN-9660' orgid='ARA' frameid='RXN-9660'/><Reaction resource='getxml?ARA:RXN-9661' orgid='ARA' frameid='RXN-9661'/><Reaction resource='getxml?ARA:RXN-9662' orgid='ARA' frameid='RXN-9662'/><Reaction resource='getxml?ARA:RXN-9663' orgid='ARA' frameid='RXN-9663'/><Reaction resource='getxml?ARA:RXN0-5248' orgid='ARA' frameid='RXN0-5248'/><Reaction resource='getxml?ARA:RXN-9635' orgid='ARA' frameid='RXN-9635'/><Reaction resource='getxml?ARA:1.2.1.27-RXN' orgid='ARA' frameid='1.2.1.27-RXN'/><Reaction resource='getxml?ARA:RXN-8629' orgid='ARA' frameid='RXN-8629'/><Reaction resource='getxml?ARA:RXN-7719' orgid='ARA' frameid='RXN-7719'/><Reaction resource='getxml?ARA:RXN-7716' orgid='ARA' frameid='RXN-7716'/><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/><Reaction resource='getxml?ARA:3-ISOPROPYLMALDEHYDROG-RXN' orgid='ARA' frameid='3-ISOPROPYLMALDEHYDROG-RXN'/><Reaction resource='getxml?ARA:RXN0-901' orgid='ARA' frameid='RXN0-901'/><Reaction resource='getxml?ARA:RXN0-1132' orgid='ARA' frameid='RXN0-1132'/><Reaction resource='getxml?ARA:RXN-7682' orgid='ARA' frameid='RXN-7682'/><Reaction resource='getxml?ARA:PYRNUTRANSHYDROGEN-RXN' orgid='ARA' frameid='PYRNUTRANSHYDROGEN-RXN'/><Reaction resource='getxml?ARA:RXN-7703' orgid='ARA' frameid='RXN-7703'/><Reaction resource='getxml?ARA:1.1.1.145-RXN' orgid='ARA' frameid='1.1.1.145-RXN'/><Reaction resource='getxml?ARA:1.1.1.8-RXN' orgid='ARA' frameid='1.1.1.8-RXN'/><Reaction resource='getxml?ARA:RXN-4262' orgid='ARA' frameid='RXN-4262'/><Reaction resource='getxml?ARA:2-KETO-ADIPATE-DEHYDROG-RXN' orgid='ARA' frameid='2-KETO-ADIPATE-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:2KETO-4METHYL-PENTANOATE-DEHYDROG-RXN' orgid='ARA' frameid='2KETO-4METHYL-PENTANOATE-DEHYDROG-RXN'/><Reaction resource='getxml?ARA:1.1.1.39-RXN' orgid='ARA' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?ARA:2KETO-3METHYLVALERATE-RXN' orgid='ARA' frameid='2KETO-3METHYLVALERATE-RXN'/><Reaction resource='getxml?ARA:2OXOGLUTARATEDEH-RXN' orgid='ARA' frameid='2OXOGLUTARATEDEH-RXN'/><Reaction resource='getxml?ARA:ISOCITRATE-DEHYDROGENASE-NAD+-RXN' orgid='ARA' frameid='ISOCITRATE-DEHYDROGENASE-NAD+-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-21030' orgid='ARA' frameid='RXN-21030'/><Reaction resource='getxml?ARA:1.14.13.10-RXN' orgid='ARA' frameid='1.14.13.10-RXN'/><Reaction resource='getxml?ARA:RXN-7573' orgid='ARA' frameid='RXN-7573'/><Reaction resource='getxml?ARA:RXN-9767' orgid='ARA' frameid='RXN-9767'/><Reaction resource='getxml?ARA:RXN-17568' orgid='ARA' frameid='RXN-17568'/><Reaction resource='getxml?ARA:RXN-8819' orgid='ARA' frameid='RXN-8819'/><Reaction resource='getxml?ARA:RXN-11506' orgid='ARA' frameid='RXN-11506'/><Reaction resource='getxml?ARA:RXN-17175' orgid='ARA' frameid='RXN-17175'/><Reaction resource='getxml?ARA:RXN-11186' orgid='ARA' frameid='RXN-11186'/><Reaction resource='getxml?ARA:RXN0-5330-YEAST' orgid='ARA' frameid='RXN0-5330-YEAST'/><Reaction resource='getxml?ARA:RXN-3661' orgid='ARA' frameid='RXN-3661'/><Reaction resource='getxml?ARA:1.2.1.42-RXN' orgid='ARA' frameid='1.2.1.42-RXN'/><Reaction resource='getxml?ARA:RXN-11898' orgid='ARA' frameid='RXN-11898'/><Reaction resource='getxml?ARA:RXN-12754' orgid='ARA' frameid='RXN-12754'/><Reaction resource='getxml?ARA:RXN-12753' orgid='ARA' frameid='RXN-12753'/><Reaction resource='getxml?ARA:1.6.99.5-RXN' orgid='ARA' frameid='1.6.99.5-RXN'/><Reaction resource='getxml?ARA:RXN-10446' orgid='ARA' frameid='RXN-10446'/><Reaction resource='getxml?ARA:RXN-13417' orgid='ARA' frameid='RXN-13417'/><Reaction resource='getxml?ARA:1.6.5.4-RXN' orgid='ARA' frameid='1.6.5.4-RXN'/><Reaction resource='getxml?ARA:NADH-DEHYDROG-A-RXN' orgid='ARA' frameid='NADH-DEHYDROG-A-RXN'/><Reaction resource='getxml?ARA:RXN0-4401' orgid='ARA' frameid='RXN0-4401'/><Reaction resource='getxml?ARA:RXN0-5330' orgid='ARA' frameid='RXN0-5330'/><Reaction resource='getxml?ARA:CYTOCHROME-B5-REDUCTASE-RXN' orgid='ARA' frameid='CYTOCHROME-B5-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:NADH-KINASE-RXN' orgid='ARA' frameid='NADH-KINASE-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>665.12476</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-325.20697</gibbs-0>
+<common-name datatype='string'>NADH</common-name>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00004</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

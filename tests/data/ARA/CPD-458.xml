@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CPD-458'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CPD-458'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CPD-458</query>
 <num_results>1</num_results>
@@ -15,18 +15,18 @@
 <string title='smiles'>C([C@H]1(O[C@@H]([C@@H]([C@H]([C@H]1O)O)O)O[C@@H]2([C@H]([C@@H]([C@H]([C@H]([C@H]2O)O)O)O)O)))O</string>
 </molecule>
 </cml>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/18269577&quot;&gt;Fiehn08&lt;/a&gt;] &lt;A href=&quot; http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download&quot;&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href=&quot;http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp&quot;&gt;SetupX&lt;/a&gt; (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>galactinol</common-name>
-<inchi datatype='string'>InChI=1S/C12H22O11/c13-1-2-3(14)4(15)10(21)12(22-2)23-11-8(19)6(17)5(16)7(18)9(11)20/h2-21H,1H2/t2-,3+,4+,5-,6-,7-,8+,9-,10-,11-,12-/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=VCWMRQDBPZKXKG-XIDCDEPRSA-N</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-8288' orgid='ARA' frameid='RXN-8288'/><Reaction resource='getxml?ARA:RXN-8284' orgid='ARA' frameid='RXN-8284'/><Reaction resource='getxml?ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/><Reaction resource='getxml?ARA:2.4.1.67-RXN' orgid='ARA' frameid='2.4.1.67-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-152.47537</gibbs-0>
 <synonym datatype='string'>1-O-&amp;alpha;-D-galactosyl-D-&lt;i&gt;myo&lt;/i&gt;-inositol</synonym>
 <synonym datatype='string'>1-&amp;alpha;-D-galactosyl-&lt;i&gt;myo&lt;/i&gt;-inositol</synonym>
 <synonym datatype='string'>&amp;alpha;-D-galactosyl-(1-&gt;3)-1D-&lt;i&gt;myo&lt;/i&gt;-inositol</synonym>
+<inchi-key datatype='string'>InChIKey=VCWMRQDBPZKXKG-XIDCDEPRSA-N</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Each compound has been assigned by the BinBase identifier numbers in the Fiehn lab, using RI and mass spectrum as the two most important identification criteria. Additional confidence criteria were given by mass spectral metadata, using the combination of unique ions, apex ions, peak purity and signal/noise ratios as given in data preprocessing. Every database entry in BinBase is routinely matched against the Fiehn mass spectral library [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/18269577&quot;&gt;Fiehn08&lt;/a&gt;] &lt;A href=&quot; http://binbase.fiehnlab.ucdavis.edu:8080/confluence/display/BinBase/download&quot;&gt;BinBase&lt;/a&gt; is an open-source DB. Public data can also be downloaded from the Fiehnlab website &lt;A href=&quot;http://fiehnlab.ucdavis.edu:8080/m1/main_public.jsp&quot;&gt;SetupX&lt;/a&gt; (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
 <molecular-weight datatype='float' units='Daltons'>342.299</molecular-weight>
+<inchi datatype='string'>InChI=1S/C12H22O11/c13-1-2-3(14)4(15)10(21)12(22-2)23-11-8(19)6(17)5(16)7(18)9(11)20/h2-21H,1H2/t2-,3+,4+,5-,6-,7-,8+,9-,10-,11-,12-/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:2.4.1.123-RXN' orgid='ARA' frameid='2.4.1.123-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-8288' orgid='ARA' frameid='RXN-8288'/><Reaction resource='getxml?ARA:RXN-8284' orgid='ARA' frameid='RXN-8284'/><Reaction resource='getxml?ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/><Reaction resource='getxml?ARA:2.4.1.67-RXN' orgid='ARA' frameid='2.4.1.67-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>342.1162</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-152.47537</gibbs-0>
+<common-name datatype='string'>galactinol</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000100199029</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

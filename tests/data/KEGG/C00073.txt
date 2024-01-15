@@ -15,7 +15,8 @@ REACTION    R00177 R00648 R00649 R00650 R00651 R00652 R00653 R00654
             R10649 R10650 R10652 R10653 R10667 R11063 R11112 R11274 
             R11275 R11293 R11294 R11484 R11700 R11710 R11919 R12002 
             R12055 R12098 R12161 R12162 R12238 R12239 R12423 R12424 
-            R12497 R12507 R12569 R12724 R12750 R12788 R13130 R13131
+            R12497 R12507 R12569 R12724 R12750 R12788 R13130 R13131 
+            R13180
 PATHWAY     map00270  Cysteine and methionine metabolism
             map00470  D-Amino acid metabolism
             map00966  Glucosinolate biosynthesis
@@ -29,6 +30,7 @@ PATHWAY     map00270  Cysteine and methionine metabolism
             map01230  Biosynthesis of amino acids
             map01240  Biosynthesis of cofactors
             map01523  Antifolate resistance
+            map04148  Efferocytosis
             map04974  Protein digestion and absorption
             map04978  Mineral absorption
             map05230  Central carbon metabolism in cancer
@@ -42,10 +44,10 @@ NETWORK     nt06030  Methionine metabolism
 ENZYME      1.1.98.7        1.1.99.38       1.3.98.3        1.3.98.6        
             1.3.98.7        1.4.3.2         1.8.4.11        1.8.4.13        
             1.8.4.14        1.17.98.2       1.21.98.1       1.21.98.3       
-            1.21.98.4       1.21.98.5       1.97.1.4        2.1.1.3         
-            2.1.1.5         2.1.1.10        2.1.1.12        2.1.1.13        
-            2.1.1.14        2.1.1.280       2.1.1.308       2.1.1.326       
-            2.1.1.342       2.1.1.350       2.1.1.379       2.1.1.-         
+            1.21.98.5       1.97.1.4        2.1.1.3         2.1.1.5         
+            2.1.1.10        2.1.1.12        2.1.1.13        2.1.1.14        
+            2.1.1.280       2.1.1.308       2.1.1.326       2.1.1.342       
+            2.1.1.350       2.1.1.379       2.1.1.390       2.1.1.-         
             2.4.99.17       2.5.1.6         2.5.1.49        2.5.1.63        
             2.5.1.94        2.5.1.120       2.5.1.147       2.6.1.5         
             2.6.1.57        2.6.1.73        2.6.1.88        2.6.1.117       
@@ -60,19 +62,19 @@ BRITE       Compounds with biological roles [BR:br08001]
               Amino acids
                Common amino acids
                 C00073  Methionine (Met)
-            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303]
+            Anatomical Therapeutic Chemical (ATC) classification [BR:br08303(D00019)]
              V VARIOUS
               V03 ALL OTHER THERAPEUTIC PRODUCTS
                V03A ALL OTHER THERAPEUTIC PRODUCTS
                 V03AB Antidotes
                  V03AB26 Methionine
                   D00019  Methionine (USP)
-            Risk category of Japanese OTC drugs [BR:br08312]
+            Risk category of Japanese OTC drugs [BR:br08312(D00019)]
              Third-class OTC drugs
               Inorganic and organic chemicals
                Methionine
                 D00019  Methionine (USP)
-            Drugs listed in the Japanese Pharmacopoeia [BR:br08311]
+            Drugs listed in the Japanese Pharmacopoeia [BR:br08311(D00019)]
              Chemicals
               D00019  L-Methionine
 DBLINKS     CAS: 63-68-3

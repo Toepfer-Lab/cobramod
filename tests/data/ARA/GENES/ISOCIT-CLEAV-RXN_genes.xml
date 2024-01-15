@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="27.0" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:ISOCIT-CLEAV-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:ISOCIT-CLEAV-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -19,20 +19,20 @@
     <product>
       <Protein resource="getxml?ARA:AT3G21720-MONOMER" orgid="ARA" frameid="AT3G21720-MONOMER" />
     </product>
-    <common-name datatype="string">AT3G21720</common-name>
-    <centisome-position datatype="float" units="CENTISOMES">32.604385</centisome-position>
-    <component-of />
-    <accession-1 datatype="string">AT3G21720</accession-1>
     <synonym datatype="string">ICL</synonym>
     <synonym datatype="string">icl</synonym>
     <synonym datatype="string">At3g21720</synonym>
+    <centisome-position datatype="float" units="CENTISOMES">32.604385</centisome-position>
     <right-end-position datatype="integer">7656018</right-end-position>
+    <component-of />
     <left-end-position datatype="integer">7652494</left-end-position>
+    <common-name datatype="string">AT3G21720</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G21720</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G21720</dblink-URL>
     </dblink>
+    <accession-1 datatype="string">AT3G21720</accession-1>
   </Gene>
 </ptools-xml>

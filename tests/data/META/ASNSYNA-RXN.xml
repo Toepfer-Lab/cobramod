@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?META:ASNSYNA-RXN'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ASNSYNA-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ASNSYNA-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
 <Reaction ID='META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
@@ -11,16 +11,13 @@
 <left><Compound resource='getxml?META:ATP' orgid='META' frameid='ATP'/></left>
 <left><Compound resource='getxml?META:L-ASPARTATE' orgid='META' frameid='L-ASPARTATE'/></left>
 <left><Compound resource='getxml?META:AMMONIUM' orgid='META' frameid='AMMONIUM'/></left>
-<enzymatic-reaction><Enzymatic-Reaction ID='META:ASNSYNA-ENZRXN' orgid='META' frameid='ASNSYNA-ENZRXN' detail='low'><enzyme><Protein resource='getxml?META:ASNSYNA-CPLX' orgid='META' frameid='ASNSYNA-CPLX'/></enzyme>
-<synonym datatype='string'>aspartate-ammonia ligase</synonym>
-<reaction><Reaction resource='#META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN'/></reaction>
-<common-name datatype='string'>asparagine synthetase</common-name>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID='META:ENZRXN0-6318' orgid='META' frameid='ENZRXN0-6318' detail='low'><enzyme><Protein resource='getxml?META:ASNSYNB-CPLX' orgid='META' frameid='ASNSYNB-CPLX'/></enzyme>
-<reaction><Reaction resource='#META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN'/></reaction>
-<common-name datatype='string'>L-aspartate:ammonia ligase (AMP-forming)</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<ec-number>EC-6.3.1.1<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:PPI' orgid='META' frameid='PPI'/></right>
+<right><Compound resource='getxml?META:AMP' orgid='META' frameid='AMP'/></right>
+<right><Compound resource='getxml?META:ASN' orgid='META' frameid='ASN'/></right>
+<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR96060</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -61,8 +58,7 @@
 <dblink-relationship>RELATED-TO</dblink-relationship>
 <dblink-URL>https://www.uniprot.org/uniprot/P54264</dblink-URL>
 </dblink>
-<ec-number>EC-6.3.1.1<official>T</official>
-</ec-number>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <gibbs-0 datatype='float' units='kcal/mol'>-14.791748<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
 <comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
@@ -72,19 +68,23 @@ manual interpretation of the computation occurred.
 </comment>
 </Evidence-Code>
 <Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
-<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
 <title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<orphan>NO</orphan>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<right><Compound resource='getxml?META:PPI' orgid='META' frameid='PPI'/></right>
-<right><Compound resource='getxml?META:AMP' orgid='META' frameid='AMP'/></right>
-<right><Compound resource='getxml?META:ASN' orgid='META' frameid='ASN'/></right>
-<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
 <in-pathway><Pathway resource='getxml?META:ASPARAGINESYN-PWY' orgid='META' frameid='ASPARAGINESYN-PWY'/></in-pathway>
+<orphan>NO</orphan>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ASNSYNA-ENZRXN' orgid='META' frameid='ASNSYNA-ENZRXN' detail='low'><reaction><Reaction resource='#META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN'/></reaction>
+<synonym datatype='string'>aspartate-ammonia ligase</synonym>
+<common-name datatype='string'>asparagine synthetase</common-name>
+<enzyme><Protein resource='getxml?META:ASNSYNA-CPLX' orgid='META' frameid='ASNSYNA-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN0-6318' orgid='META' frameid='ENZRXN0-6318' detail='low'><reaction><Reaction resource='#META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN'/></reaction>
+<common-name datatype='string'>L-aspartate:ammonia ligase (AMP-forming)</common-name>
+<enzyme><Protein resource='getxml?META:ASNSYNB-CPLX' orgid='META' frameid='ASNSYNB-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

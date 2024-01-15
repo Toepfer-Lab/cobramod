@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:GLYOX'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:GLYOX'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLYOX</query>
 <num_results>1</num_results>
@@ -14,6 +14,12 @@
 <string title='smiles'>C(C(=O)[O-])=O</string>
 </molecule>
 </cml>
+<synonym datatype='string'>glyoxalate</synonym>
+<synonym datatype='string'>glyox</synonym>
+<synonym datatype='string'>glyoxylic acid</synonym>
+<inchi-key datatype='string'>InChIKey=HHLFWLYXYJOTON-UHFFFAOYSA-M</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
+<molecular-weight datatype='float' units='Daltons'>73.028</molecular-weight>
 <regulates><Regulation ID='ARA:REG-6184' orgid='ARA' frameid='REG-6184' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></regulator>
 <mode datatype='string'>-</mode>
@@ -30,18 +36,12 @@
 <regulator><Compound resource='#ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></regulator>
 </Regulation>
 </regulates>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
-<common-name datatype='string'>glyoxylate</common-name>
 <inchi datatype='string'>InChI=1S/C2H2O3/c3-1-2(4)5/h1H,(H,4,5)/p-1</inchi>
-<inchi-key datatype='string'>InChIKey=HHLFWLYXYJOTON-UHFFFAOYSA-M</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-13328' orgid='ARA' frameid='RXN-13328'/><Reaction resource='getxml?ARA:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-102.04095</gibbs-0>
-<synonym datatype='string'>glyoxalate</synonym>
-<synonym datatype='string'>glyox</synonym>
-<synonym datatype='string'>glyoxylic acid</synonym>
-<molecular-weight datatype='float' units='Daltons'>73.028</molecular-weight>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:UREIDOGLYCOLATE-LYASE-RXN' orgid='ARA' frameid='UREIDOGLYCOLATE-LYASE-RXN'/><Reaction resource='getxml?ARA:GLYCOLATE-REDUCTASE-RXN' orgid='ARA' frameid='GLYCOLATE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:UREIDOGLYCOLATE-HYDROLASE-RXN' orgid='ARA' frameid='UREIDOGLYCOLATE-HYDROLASE-RXN'/><Reaction resource='getxml?ARA:GLYOXYLATE-REDUCTASE-NADP+-RXN' orgid='ARA' frameid='GLYOXYLATE-REDUCTASE-NADP+-RXN'/><Reaction resource='getxml?ARA:GLYCOLATEDEHYDRO-RXN' orgid='ARA' frameid='GLYCOLATEDEHYDRO-RXN'/><Reaction resource='getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='GLYCINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-969' orgid='ARA' frameid='RXN-969'/><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-13328' orgid='ARA' frameid='RXN-13328'/><Reaction resource='getxml?ARA:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>74.0004</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-102.04095</gibbs-0>
+<common-name datatype='string'>glyoxylate</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000004658554</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

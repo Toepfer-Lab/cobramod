@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:CIT'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:CIT'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:CIT</query>
 <num_results>1</num_results>
@@ -14,6 +14,14 @@
 <string title='smiles'>C(=O)([O-])CC(C(=O)[O-])(O)CC(=O)[O-]</string>
 </molecule>
 </cml>
+<pka1 datatype='float'>3.13</pka1>
+<synonym datatype='string'>citr</synonym>
+<synonym datatype='string'>cit</synonym>
+<synonym datatype='string'>citric acid</synonym>
+<synonym datatype='string'>2-hydroxy-1,2,3-propanetricarboxylic acid</synonym>
+<inchi-key datatype='string'>InChIKey=KRKNYBCHXYNGOX-UHFFFAOYSA-K</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Shulaev-LCMS,Fiehn (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
+<molecular-weight datatype='float' units='Daltons'>189.101</molecular-weight>
 <regulates><Regulation ID='ARA:REG-8647' orgid='ARA' frameid='REG-8647' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:CIT' orgid='ARA' frameid='CIT'/></regulator>
 <mode datatype='string'>-</mode>
@@ -43,22 +51,13 @@
 <mode datatype='string'>-</mode>
 </Regulation>
 </regulates>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). The metabolite was detected using the following platforms: Shulaev-LCMS,Fiehn (see &lt;A href=&quot;http://plantmetabolomics.org/tutorials/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>citrate</common-name>
-<inchi datatype='string'>InChI=1S/C6H8O7/c7-3(8)1-6(13,5(11)12)2-4(9)10/h13H,1-2H2,(H,7,8)(H,9,10)(H,11,12)/p-3</inchi>
-<inchi-key datatype='string'>InChIKey=KRKNYBCHXYNGOX-UHFFFAOYSA-K</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-14047' orgid='ARA' frameid='RXN-14047'/><Reaction resource='getxml?ARA:ACONITATEDEHYDR-RXN' orgid='ARA' frameid='ACONITATEDEHYDR-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-230.69292</gibbs-0>
-<synonym datatype='string'>citr</synonym>
-<synonym datatype='string'>cit</synonym>
-<synonym datatype='string'>citric acid</synonym>
-<synonym datatype='string'>2-hydroxy-1,2,3-propanetricarboxylic acid</synonym>
-<molecular-weight datatype='float' units='Daltons'>189.101</molecular-weight>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN'/><Reaction resource='getxml?ARA:ATP-CITRATE-PRO-S--LYASE-RXN' orgid='ARA' frameid='ATP-CITRATE-PRO-S--LYASE-RXN'/></appears-in-right-side-of>
-<pka1 datatype='float'>3.13</pka1>
-<monoisotopic-mw datatype='float' units='Daltons'>192.02701</monoisotopic-mw>
-<pka2 datatype='float'>4.76</pka2>
 <pka3 datatype='float'>6.39</pka3>
+<inchi datatype='string'>InChI=1S/C6H8O7/c7-3(8)1-6(13,5(11)12)2-4(9)10/h13H,1-2H2,(H,7,8)(H,9,10)(H,11,12)/p-3</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:CITSYN-RXN' orgid='ARA' frameid='CITSYN-RXN'/><Reaction resource='getxml?ARA:ATP-CITRATE-PRO-S--LYASE-RXN' orgid='ARA' frameid='ATP-CITRATE-PRO-S--LYASE-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-14047' orgid='ARA' frameid='RXN-14047'/><Reaction resource='getxml?ARA:ACONITATEDEHYDR-RXN' orgid='ARA' frameid='ACONITATEDEHYDR-RXN'/></appears-in-left-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>192.02701</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-230.69292</gibbs-0>
+<common-name datatype='string'>citrate</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000000895081</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -129,5 +128,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=77-92-9</dblink-URL>
 </dblink>
+<pka2 datatype='float'>4.76</pka2>
 </Compound>
 </ptools-xml>

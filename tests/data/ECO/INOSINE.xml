@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:INOSINE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:INOSINE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:INOSINE</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -20,10 +20,7 @@
 <string title='smiles'>C(O)[C@H]3(O[C@@H](N1(C2(\N=C/NC(=O)C(\N=C/1)=2)))[C@H](O)[C@H](O)3)</string>
 </molecule>
 </cml>
-<inchi-key datatype='string'>InChIKey=UGQMRVRMYYASKQ-KQYNXXCUSA-N</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>-20.28556</gibbs-0>
-<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-18' orgid='ECOLI' frameid='RXN0-18'/><Reaction resource='getxml?ECOLI:TRANS-RXN-108G' orgid='ECOLI' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?ECOLI:INOSINE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='INOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:INOSINEKIN-RXN' orgid='ECOLI' frameid='INOSINEKIN-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction resource='getxml?ECOLI:RXN0-18' orgid='ECOLI' frameid='RXN0-18'/><Reaction resource='getxml?ECOLI:TRANS-RXN-108G' orgid='ECOLI' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?ECOLI:RXN-7607' orgid='ECOLI' frameid='RXN-7607'/><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></appears-in-right-side-of>
+<molecular-weight datatype='float' units='Daltons'>268.229</molecular-weight>
 <dblink><dblink-db>PUBCHEM</dblink-db>
 <dblink-oid>6021</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -98,9 +95,12 @@
 <synonym datatype='string'>iso-prinosine</synonym>
 <synonym datatype='string'>riboxine</synonym>
 <synonym datatype='string'>hypoxanthine riboside</synonym>
+<inchi-key datatype='string'>InChIKey=UGQMRVRMYYASKQ-KQYNXXCUSA-N</inchi-key>
 <monoisotopic-mw datatype='float' units='Daltons'>268.08078</monoisotopic-mw>
-<molecular-weight datatype='float' units='Daltons'>268.229</molecular-weight>
 <inchi datatype='string'>InChI=1S/C10H12N4O5/c15-1-4-6(16)7(17)10(19-4)14-3-13-5-8(14)11-2-12-9(5)18/h2-4,6-7,10,15-17H,1H2,(H,11,12,18)/t4-,6-,7-,10-/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN-108G' orgid='ECOLI' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?ECOLI:RXN0-18' orgid='ECOLI' frameid='RXN0-18'/><Reaction resource='getxml?ECOLI:RXN-7607' orgid='ECOLI' frameid='RXN-7607'/><Reaction resource='getxml?ECOLI:ADENODEAMIN-RXN' orgid='ECOLI' frameid='ADENODEAMIN-RXN'/></appears-in-right-side-of>
 <common-name datatype='string'>inosine</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN-108G' orgid='ECOLI' frameid='TRANS-RXN-108G'/><Reaction resource='getxml?ECOLI:RXN0-18' orgid='ECOLI' frameid='RXN0-18'/><Reaction resource='getxml?ECOLI:INOSINE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='INOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:INOSINEKIN-RXN' orgid='ECOLI' frameid='INOSINEKIN-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-20.28556</gibbs-0>
 </Compound>
 </ptools-xml>

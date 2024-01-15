@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:3-HYDROXYPROPYL-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:3-HYDROXYPROPYL-GLUCOSINOLATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:3-HYDROXYPROPYL-GLUCOSINOLATE</query>
 <num_results>1</num_results>
@@ -14,15 +14,15 @@
 <string title='smiles'>C(O)CCC(\S[C@@H]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@@H](O)1))=N\OS(=O)(=O)[O-]</string>
 </molecule>
 </cml>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Unique ions and retention times were compiled to generate a composite list that was then manually curated to remove redundancy in the Sumner lab. Putative identifications were then assigned to individual composite list components based upon accurate mass and/or relative retention times yielding a final composite [&lt;a href=&quot;http://www.springerlink.com/content/k8v0632383j8111u/&quot;&gt;Sumner07&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/17156801&quot;&gt;Farag07&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15596476&quot;&gt;Broeckling05&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11830145&quot;&gt;Huhman02&lt;/a&gt;]. Quantitative data was extracted using the final composite list and MET-IDEA (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>3-hydroxypropyl-glucosinolate</common-name>
-<inchi datatype='string'>InChI=1S/C10H19NO10S2/c12-3-1-2-6(11-21-23(17,18)19)22-10-9(16)8(15)7(14)5(4-13)20-10/h5,7-10,12-16H,1-4H2,(H,17,18,19)/p-1/b11-6-/t5-,7-,8+,9-,10+/m1/s1</inchi>
 <inchi-key datatype='string'>InChIKey=WIGYSAIZPJAWDF-GLVDENFASA-M</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2224' orgid='ARA' frameid='RXN-2224'/><Reaction resource='getxml?ARA:RXN-11445' orgid='ARA' frameid='RXN-11445'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-125.98188</gibbs-0>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Unique ions and retention times were compiled to generate a composite list that was then manually curated to remove redundancy in the Sumner lab. Putative identifications were then assigned to individual composite list components based upon accurate mass and/or relative retention times yielding a final composite [&lt;a href=&quot;http://www.springerlink.com/content/k8v0632383j8111u/&quot;&gt;Sumner07&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/17156801&quot;&gt;Farag07&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15596476&quot;&gt;Broeckling05&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11830145&quot;&gt;Huhman02&lt;/a&gt;]. Quantitative data was extracted using the final composite list and MET-IDEA (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
 <molecular-weight datatype='float' units='Daltons'>376.373</molecular-weight>
+<inchi datatype='string'>InChI=1S/C10H19NO10S2/c12-3-1-2-6(11-21-23(17,18)19)22-10-9(16)8(15)7(14)5(4-13)20-10/h5,7-10,12-16H,1-4H2,(H,17,18,19)/p-1/b11-6-/t5-,7-,8+,9-,10+/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:RXN-2223' orgid='ARA' frameid='RXN-2223'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RXN-2224' orgid='ARA' frameid='RXN-2224'/><Reaction resource='getxml?ARA:RXN-11445' orgid='ARA' frameid='RXN-11445'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>377.04504</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-125.98188</gibbs-0>
+<common-name datatype='string'>3-hydroxypropyl-glucosinolate</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000059207438</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>

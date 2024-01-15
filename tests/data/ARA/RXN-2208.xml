@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:RXN-2208'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:RXN-2208'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-2208</query>
 <num_results>1</num_results>
@@ -9,20 +9,20 @@
 </metadata>
 <Reaction ID='ARA:RXN-2208' orgid='ARA' frameid='RXN-2208' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<ec-number>EC-2.4.1.195</ec-number>
-<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 <left><Compound resource='getxml?ARA:CPD-12575' orgid='ARA' frameid='CPD-12575'/></left>
 <left><Compound resource='getxml?ARA:3-METHYLTHIOPROPYLHYDROXAMIC-ACID' orgid='ARA' frameid='3-METHYLTHIOPROPYLHYDROXAMIC-ACID'/></left>
-<gibbs-0 datatype='float' units='kcal/mol'>-1.8923645</gibbs-0>
+<ec-number>EC-2.4.1.195</ec-number>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
 <right><Compound resource='getxml?ARA:3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE' orgid='ARA' frameid='3-METHYLTHIOPROPYL-DESULFO-GLUCOSINOLATE'/></right>
 <right><Compound resource='getxml?ARA:UDP' orgid='ARA' frameid='UDP'/></right>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-12786' orgid='ARA' frameid='ENZRXN-12786' detail='low'><common-name datatype='string'>UDP-glucose: 4-methylthiobutylhydroximate S-glucosyltransferase</common-name>
+<gibbs-0 datatype='float' units='kcal/mol'>-1.8923645</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-12786' orgid='ARA' frameid='ENZRXN-12786' detail='low'><enzyme><Protein resource='getxml?ARA:MONOMER-6102' orgid='ARA' frameid='MONOMER-6102'/></enzyme>
 <reaction><Reaction resource='#ARA:RXN-2208' orgid='ARA' frameid='RXN-2208'/></reaction>
-<enzyme><Protein resource='getxml?ARA:MONOMER-6102' orgid='ARA' frameid='MONOMER-6102'/></enzyme>
+<common-name datatype='string'>UDP-glucose: 4-methylthiobutylhydroximate S-glucosyltransferase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
+<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 </Reaction>
 </ptools-xml>

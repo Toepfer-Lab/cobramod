@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ARA:APS'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:APS'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:APS</query>
 <num_results>1</num_results>
@@ -13,19 +13,20 @@
 <string title='smiles'>C(OP([O-])(OS(=O)([O-])=O)=O)[C@H]3(O[C@@H](N1(C2(\C(\N=C/1)=C(N)/N=C\N=2)))[C@H](O)[C@H](O)3)</string>
 </molecule>
 </cml>
-<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to LC-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
-<common-name datatype='string'>adenosine 5'-phosphosulfate</common-name>
-<inchi datatype='string'>InChI=1S/C10H14N5O10PS/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(17)6(16)4(24-10)1-23-26(18,19)25-27(20,21)22/h2-4,6-7,10,16-17H,1H2,(H,18,19)(H2,11,12,13)(H,20,21,22)/p-2/t4-,6-,7-,10-/m1/s1</inchi>
-<inchi-key datatype='string'>InChIKey=IRLPACMLTUPBCL-KQYNXXCUSA-L</inchi-key>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:ADENYLYLSULFATASE-RXN' orgid='ARA' frameid='ADENYLYLSULFATASE-RXN'/><Reaction resource='getxml?ARA:ADENYLYLSULFKIN-RXN' orgid='ARA' frameid='ADENYLYLSULFKIN-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-279.50378</gibbs-0>
+<abbrev-name datatype='string'>APS</abbrev-name>
 <synonym datatype='string'>adenylyl-sulfate</synonym>
 <synonym datatype='string'>adenosine phosphosulfate</synonym>
 <synonym datatype='string'>adenosine 5'-sulphatophosphate</synonym>
 <synonym datatype='string'>APS</synonym>
+<inchi-key datatype='string'>InChIKey=IRLPACMLTUPBCL-KQYNXXCUSA-L</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana leaf tissue contains a metabolite that can be mapped to this compound (&lt;A href=&quot; http://www.plantmetabolomics.org &quot;&gt;NSF2010 Metabolomics&lt;/A&gt;). Samples were subjected to LC-MS analysis and compound identities were assigned in the Shulaev lab (see &lt;A href=&quot;http://lab.bcb.iastate.edu/projects/plantmetabolomics/General/protocols.php&quot;&gt;protocols &lt;/A&gt;).</comment>
 <molecular-weight datatype='float' units='Daltons'>425.266</molecular-weight>
+<inchi datatype='string'>InChI=1S/C10H14N5O10PS/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(17)6(16)4(24-10)1-23-26(18,19)25-27(20,21)22/h2-4,6-7,10,16-17H,1H2,(H,18,19)(H2,11,12,13)(H,20,21,22)/p-2/t4-,6-,7-,10-/m1/s1</inchi>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:SULFATE-ADENYLYLTRANSFERASE-ADP-RXN' orgid='ARA' frameid='SULFATE-ADENYLYLTRANSFERASE-ADP-RXN'/><Reaction resource='getxml?ARA:1.8.4.9-RXN' orgid='ARA' frameid='1.8.4.9-RXN'/><Reaction resource='getxml?ARA:ADENYLYLSULFATE-REDUCTASE-RXN' orgid='ARA' frameid='ADENYLYLSULFATE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:SULFATE-ADENYLYLTRANS-RXN' orgid='ARA' frameid='SULFATE-ADENYLYLTRANS-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:ADENYLYLSULFATASE-RXN' orgid='ARA' frameid='ADENYLYLSULFATASE-RXN'/><Reaction resource='getxml?ARA:ADENYLYLSULFKIN-RXN' orgid='ARA' frameid='ADENYLYLSULFKIN-RXN'/></appears-in-left-side-of>
 <monoisotopic-mw datatype='float' units='Daltons'>427.0199</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-279.50378</gibbs-0>
+<common-name datatype='string'>adenosine 5'-phosphosulfate</common-name>
 <dblink><dblink-db>ZINC</dblink-db>
 <dblink-oid>ZINC000059066813</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -86,6 +87,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=485-84-7</dblink-URL>
 </dblink>
-<abbrev-name datatype='string'>APS</abbrev-name>
 </Compound>
 </ptools-xml>

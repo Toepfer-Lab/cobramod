@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<ptools-xml ptools-version='27.0' xml:base='http://BioCyc.org/getxml?ECO:HYPOXANTHINE'><metadata><url>http://BioCyc.org/</url>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:HYPOXANTHINE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECO:HYPOXANTHINE</query>
 <num_results>1</num_results>
-<PGDB orgid='ECOLI' version='27.0'><species datatype='string'>Escherichia coli</species>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
 <strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
@@ -21,29 +21,26 @@
 </molecule>
 </cml>
 <regulates><Regulation ID='ECOLI:REG0-11920' orgid='ECOLI' frameid='REG0-11920' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7337' orgid='ECOLI' frameid='ENZRXN0-7337' detail='low'><reaction><Reaction resource='getxml?ECOLI:TRANS-RXN0-447' orgid='ECOLI' frameid='TRANS-RXN0-447'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:EG11724-MONOMER' orgid='ECOLI' frameid='EG11724-MONOMER'/></enzyme>
+<regulator><Compound resource='#ECOLI:HYPOXANTHINE' orgid='ECOLI' frameid='HYPOXANTHINE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7337' orgid='ECOLI' frameid='ENZRXN0-7337' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG11724-MONOMER' orgid='ECOLI' frameid='EG11724-MONOMER'/></enzyme>
 <common-name datatype='string'>transport of adenine</common-name>
+<reaction><Reaction resource='getxml?ECOLI:TRANS-RXN0-447' orgid='ECOLI' frameid='TRANS-RXN0-447'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:HYPOXANTHINE' orgid='ECOLI' frameid='HYPOXANTHINE'/></regulator>
 </Regulation>
 <Regulation ID='ECOLI:REG0-11919' orgid='ECOLI' frameid='REG0-11919' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7809' orgid='ECOLI' frameid='ENZRXN0-7809' detail='low'><reaction><Reaction resource='getxml?ECOLI:TRANS-RXN0-577' orgid='ECOLI' frameid='TRANS-RXN0-577'/></reaction>
-<enzyme><Protein resource='getxml?ECOLI:EG11691-MONOMER' orgid='ECOLI' frameid='EG11691-MONOMER'/></enzyme>
+<regulator><Compound resource='#ECOLI:HYPOXANTHINE' orgid='ECOLI' frameid='HYPOXANTHINE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7809' orgid='ECOLI' frameid='ENZRXN0-7809' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG11691-MONOMER' orgid='ECOLI' frameid='EG11691-MONOMER'/></enzyme>
 <common-name datatype='string'>adenine transporter</common-name>
+<reaction><Reaction resource='getxml?ECOLI:TRANS-RXN0-577' orgid='ECOLI' frameid='TRANS-RXN0-577'/></reaction>
 </Enzymatic-Reaction>
 </regulated-entity>
 <mode datatype='string'>-</mode>
-<regulator><Compound resource='#ECOLI:HYPOXANTHINE' orgid='ECOLI' frameid='HYPOXANTHINE'/></regulator>
 </Regulation>
 </regulates>
-<inchi-key datatype='string'>InChIKey=FDGQSTZJBFJUBT-UHFFFAOYSA-N</inchi-key>
-<gibbs-0 datatype='float' units='kcal/mol'>62.48449</gibbs-0>
+<molecular-weight datatype='float' units='Daltons'>136.113</molecular-weight>
 <component-of><Protein resource='getxml?ECOLI:CPLX-123' orgid='ECOLI' frameid='CPLX-123'/></component-of>
-<appears-in-left-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-562' orgid='ECOLI' frameid='TRANS-RXN0-562'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-579' orgid='ECOLI' frameid='TRANS-RXN0-579'/><Reaction resource='getxml?ECOLI:RXN0-284' orgid='ECOLI' frameid='RXN0-284'/><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-562' orgid='ECOLI' frameid='TRANS-RXN0-562'/><Reaction resource='getxml?ECOLI:INOSINATE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='INOSINATE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-579' orgid='ECOLI' frameid='TRANS-RXN0-579'/><Reaction resource='getxml?ECOLI:ADENINE-DEAMINASE-RXN' orgid='ECOLI' frameid='ADENINE-DEAMINASE-RXN'/><Reaction resource='getxml?ECOLI:INOSINE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='INOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:DEOXYINOPHOSPHOR-RXN' orgid='ECOLI' frameid='DEOXYINOPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:HYPOXANPRIBOSYLTRAN-RXN' orgid='ECOLI' frameid='HYPOXANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></appears-in-right-side-of>
 <dblink><dblink-db>PUBCHEM</dblink-db>
 <dblink-oid>135398638</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -94,9 +91,12 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=68-94-0</dblink-URL>
 </dblink>
+<inchi-key datatype='string'>InChIKey=FDGQSTZJBFJUBT-UHFFFAOYSA-N</inchi-key>
 <monoisotopic-mw datatype='float' units='Daltons'>136.03851</monoisotopic-mw>
-<molecular-weight datatype='float' units='Daltons'>136.113</molecular-weight>
 <inchi datatype='string'>InChI=1S/C5H4N4O/c10-5-3-4(7-1-6-3)8-2-9-5/h1-2H,(H2,6,7,8,9,10)</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-562' orgid='ECOLI' frameid='TRANS-RXN0-562'/><Reaction resource='getxml?ECOLI:INOSINATE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='INOSINATE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-579' orgid='ECOLI' frameid='TRANS-RXN0-579'/><Reaction resource='getxml?ECOLI:ADENINE-DEAMINASE-RXN' orgid='ECOLI' frameid='ADENINE-DEAMINASE-RXN'/><Reaction resource='getxml?ECOLI:INOSINE-NUCLEOSIDASE-RXN' orgid='ECOLI' frameid='INOSINE-NUCLEOSIDASE-RXN'/><Reaction resource='getxml?ECOLI:DEOXYINOPHOSPHOR-RXN' orgid='ECOLI' frameid='DEOXYINOPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:HYPOXANPRIBOSYLTRAN-RXN' orgid='ECOLI' frameid='HYPOXANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/></appears-in-right-side-of>
 <common-name datatype='string'>hypoxanthine</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:TRANS-RXN0-562' orgid='ECOLI' frameid='TRANS-RXN0-562'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-579' orgid='ECOLI' frameid='TRANS-RXN0-579'/><Reaction resource='getxml?ECOLI:RXN0-284' orgid='ECOLI' frameid='RXN0-284'/><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>62.48449</gibbs-0>
 </Compound>
 </ptools-xml>
