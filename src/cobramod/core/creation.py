@@ -807,29 +807,6 @@ def add_metabolites(
     cmod_utils.confirm_metabolite(model, metabolites)
 
 
-# def __add_reactions_check(model: Model, reactions: list[Reaction]):
-#     """
-#     Checks if given reactions are already in the model. If not, they will be
-#     added into the model.
-#
-#     Args:
-#         model (Model): Model to extend.
-#         reactions (List[Metabolites]): List with Reactions.
-#     """
-#     # A Loop in necessary to log the skipped metabolites.
-#     for member in reactions:
-#         if member.id not in [reaction.id for reaction in model.reactions]:
-#             model.add_reactions(reaction_list=[member])
-#             debug_log.info(f'Reaction "{member.id}" was added to model.')
-#             continue
-#         msg = (
-#             f'Reaction "{member.id}" is already present in the model. '
-#             "Skipping addition."
-#         )
-#         debug_log.warning(msg=msg)
-#         warn(message=msg, category=UserWarning)
-
-
 def find_replacements(
     identifier: str,
     obj_type: str,
@@ -1005,6 +982,10 @@ def add_reactions(
         )
 
     for reaction in reactions:
+        # add cross references only if reactions is non custom
+        if not database:
+            continue
+
         crossreferences.add_crossreferences(
             object=reaction,
             directory=directory,

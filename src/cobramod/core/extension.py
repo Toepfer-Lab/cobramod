@@ -72,19 +72,22 @@ def yield_reaction_from_list(
     # From given list (which could include None values), retrieve only Reaction
     # Objects.
     for identifier in sequence:
-        # Check if translation is available
-        obj = cmod_core_creation.create_object(
-            identifier=identifier,
-            directory=directory,
-            database=database,
-            compartment=compartment,
-            replacement=replacement,
-            show_imbalance=show_imbalance,
-            stop_imbalance=stop_imbalance,
-            model=model,
-            model_id=model_id,
-            genome=genome,
-        )
+        try:
+            obj = model.reactions.get_by_id(identifier)
+        except KeyError:
+            # Check if translation is available
+            obj = cmod_core_creation.create_object(
+                identifier=identifier,
+                directory=directory,
+                database=database,
+                compartment=compartment,
+                replacement=replacement,
+                show_imbalance=show_imbalance,
+                stop_imbalance=stop_imbalance,
+                model=model,
+                model_id=model_id,
+                genome=genome,
+            )
         if not isinstance(obj, cobra_core.Reaction):
             raise TypeError("Given object is not a valid COBRApy Reaction")
         yield obj
@@ -821,7 +824,7 @@ def add_pathway(
             identifier=pathway,
             database=database,
             model_id=model_id,
-            # genome=genome,
+            genome=genome,
         )
         if not database:
             raise AttributeError(
@@ -865,10 +868,10 @@ def add_pathway(
         if not group:
             group = "custom_group"
 
-        if not database:
-            raise AttributeError(
-                "Database argument cannot be empty. Specify the name"
-            )
+        # if not database:
+        #     raise AttributeError(
+        #         "Database argument cannot be empty. Specify the name"
+        #     )
 
         add_pathway_from_strings(
             model=model,
