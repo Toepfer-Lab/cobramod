@@ -9,7 +9,7 @@ authors = [
 maintainers = [
   { name="Nadine Töpfer", email="ntoepfer@uni-koeln.de" },
 ] 
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 dynamic = ["version", "readme"]
 classifiers = [
     "Intended Audience :: Science/Research",
@@ -19,12 +19,13 @@ classifiers = [
 keywords = [ "genome-scale metabolic model", "constraint-based modelling", "COBRApy", "Escher", "metabolic model curation" ]
 license= {file = "LICENSE"}
 dependencies = [
-    "cobra>=0.26.0",
-    "requests>=2.24.0",
-    "webcolors>=1.11.1",
+    "colorlog",
+    "cobra>=0.29.0",
+    "requests>=2.31.0",
     "tqdm>=4.62.3",
-    "pyarrow>=6.0.1",
-    "openpyxl>=3.0.10",
+    "openpyxl>=3.1.2",
+    "webcolors>=1.13",
+    "pyarrow>=14.0.2"
 ]
 
 [project.optional-dependencies]

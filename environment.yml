@@ -5,6 +5,7 @@ channels:
 - conda-forge
 - jasonb857
 dependencies:
+- colorlog
 - conda-forge::cobra
 - bioconda::escher
 - jasonb857::ipywidgets
@@ -16,12 +17,16 @@ dependencies:
 - python
 - ruff
 - pre-commit
+- tqdm
+- pyarrow
+- conda-forge::webcolors
+- conda-forge::openpyxl
+- conda-forge::tox
 - conda-forge::sphinx
 - conda-forge::nbsphinx
-- conda-forge::sphinx-autoapi
+- conda-forge::sphinx-autoapi==2.0
 - conda-forge::jupyter_contrib_nbextensions
 - pip:
   - sphinx-rtd-theme
   - sphinxcontrib-napoleon
   - sphinxcontrib-bibtex
-  - openpyxl
