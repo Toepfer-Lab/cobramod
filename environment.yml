@@ -1,11 +1,10 @@
-name: cobramod
+name: cobramod-dev
 channels:
 - defaults
 - bioconda
 - conda-forge
 - jasonb857
 dependencies:
-- black
 - conda-forge::cobra
 - bioconda::escher
 - jasonb857::ipywidgets
@@ -14,7 +13,6 @@ dependencies:
 - jupytext
 - matplotlib
 - mypy
-- pynvim
 - python
 - ruff
 - pre-commit
@@ -25,6 +23,5 @@ dependencies:
 - pip:
   - sphinx-rtd-theme
   - sphinxcontrib-napoleon
-  - doc8
   - sphinxcontrib-bibtex
   - openpyxl

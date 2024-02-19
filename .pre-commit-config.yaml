@@ -4,12 +4,9 @@ repos:
     hooks:
     -   id: no-commit-to-branch
         args: [-b master]
--   repo: https://github.com/psf/black
-    rev: 23.3.0
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.13
     hooks:
-    -   id: black
-        args: [--config=./pyproject.toml, --check, --diff]
--   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 'v0.0.262'
-    hooks:
-    -   id: ruff
+        - id: ruff
+        - id: ruff-format
+          args: [--config=pyproject.toml, --check]

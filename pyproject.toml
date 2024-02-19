@@ -39,5 +39,5 @@ bugtracker = "https://github.com/Toepfer-Lab/cobramod/issues"
 version = {attr = "cobramod.__version__"}
 readme = {file = "README.md", content-type = "text/markdown"}
 
-[tool.black]
+[tool.ruff]
 line-length = 80
