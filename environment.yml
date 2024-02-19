@@ -3,13 +3,9 @@ channels:
 - defaults
 - bioconda
 - conda-forge
-- jasonb857
 dependencies:
 - colorlog
 - conda-forge::cobra
-- bioconda::escher
-- jasonb857::ipywidgets
-- jasonb857::jinja2
 - jupyter
 - jupytext
 - matplotlib
@@ -24,9 +20,9 @@ dependencies:
 - conda-forge::tox
 - conda-forge::sphinx
 - conda-forge::nbsphinx
-- conda-forge::sphinx-autoapi==2.0
 - conda-forge::jupyter_contrib_nbextensions
 - pip:
+  - escher-legacy
   - sphinx-rtd-theme
   - sphinxcontrib-napoleon
   - sphinxcontrib-bibtex
