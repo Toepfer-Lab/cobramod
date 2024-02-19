@@ -451,7 +451,7 @@
 </regulated-entity>
 </Regulation>
 </regulates>
-<comment datatype='string'>Coenzyme A (CoA) is a ubiquitous compound found in archaea, bacteria, plants, and animals. It is a common acyl carrier in prokaryotic and eukaryotic cells, and is required for a multitude of reactions for both biosynthetic and degradative pathways, including  the oxidation of fatty acids, carbohydrates, and amino acids [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16415216&quot;&gt;Rubio et al., 2006&lt;/a&gt;].
+<comment datatype='string'>Coenzyme A (CoA) is a ubiquitous compound found in archaea, bacteria, plants, and animals. It is a common acyl carrier in prokaryotic and eukaryotic cells, and is required for a multitude of reactions for both biosynthetic and degradative pathways, including  the oxidation of fatty acids, carbohydrates, and amino acids [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16415216&quot;&gt;Rubio06&lt;/a&gt;].
 &lt;p&gt;
 While the name &quot;coenzyme A&quot; is well established, the correct name for the function of the compound in enzymatic reactions is &quot;cosubstrate&quot;.</comment>
 <inchi-key datatype='string'>InChIKey=RGJOEKWQDUBAIZ-IBOSZNHHSA-J</inchi-key>

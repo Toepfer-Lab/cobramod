@@ -203,7 +203,8 @@ class TestGroup(unittest.TestCase):
             raise TypeError("Escher was not loaded")
 
         self.assertEqual(
-            first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
+            first=len(loads(test_builder.map_json)[1]["reactions"]),
+            second=5,  # type: ignore
         )
         # CASE: Members after initialization.
         test_model = cmod_test.textbook.copy()
@@ -215,14 +216,16 @@ class TestGroup(unittest.TestCase):
 
             test_group.add_members(new_members=[reaction])
         self.assertEqual(
-            first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
+            first=len(loads(test_builder.map_json)[1]["reactions"]),
+            second=5,  # type: ignore
         )
         # CASE: From copy of model.
         test_model.add_groups(group_list=[test_group])
         test_model_copy = test_model.copy()
         test_group = test_model_copy.groups.get_by_id("test_group")
         self.assertEqual(
-            first=len(loads(test_builder.map_json)[1]["reactions"]), second=5
+            first=len(loads(test_builder.map_json)[1]["reactions"]),
+            second=5,  # type: ignore
         )
         # CASE: Regular Biocyc
         test_model = cmod_test.textbook_biocyc.copy()
@@ -405,12 +408,9 @@ class TestGroup(unittest.TestCase):
         test_group.modify_graph(
             reaction="RXN_11430_c", next_reaction="RXN_11438_c"
         )
-        self.assertDictContainsSubset(
-            {"RXN_11430_c": "RXN_11438_c"}, test_group.graph
-        )
-        self.assertDictContainsSubset(
-            {"RXN_11430_c": "RXN_11438_c"}, test_group.notes["ORDER"]
-        )
+        subset = {"RXN_11430_c": "RXN_11438_c"}
+        self.assertEqual(test_group.graph, test_group.graph | subset)
+        self.assertEqual(test_group.graph, test_group.notes["ORDER"] | subset)
         test_group.visualize()
         sleep(1)
 
@@ -428,10 +428,12 @@ class TestGroup(unittest.TestCase):
             next_reaction="RXN_11438_c",
         )
         # CASE: Using None
+
+        subset = {"RXN_11430_c": None}
         test_group.modify_graph(reaction="RXN_11430_c", next_reaction=None)
-        self.assertDictContainsSubset({"RXN_11430_c": None}, test_group.graph)
-        self.assertDictContainsSubset(
-            {"RXN_11430_c": None}, test_group.notes["ORDER"]
+        self.assertEqual(test_group.graph, test_group.graph | subset)
+        self.assertEqual(
+            test_group.notes["ORDER"], test_group.notes["ORDER"] | subset
         )
 
 

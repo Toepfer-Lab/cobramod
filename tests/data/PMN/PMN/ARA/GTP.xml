@@ -15,6 +15,114 @@
 <string title='smiles'>C(OP([O-])(=O)OP(=O)([O-])OP([O-])(=O)[O-])[C@H]1(O[C@H]([C@H](O)[C@H](O)1)N2(\C=N/C3(C(=O)NC(/N)=N/C2=3)))</string>
 </molecule>
 </cml>
+<monoisotopic-mw datatype='float' units='Daltons'>522.99066</monoisotopic-mw>
+<inchi-key datatype='string'>InChIKey=XKMLYUALXHKNFT-UUOKFMHZSA-J</inchi-key>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:GDPKIN-RXN' orgid='ARA' frameid='GDPKIN-RXN'/><Reaction resource='getxml?ARA:3.6.1.17-RXN' orgid='ARA' frameid='3.6.1.17-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:2.7.7.34-RXN' orgid='ARA' frameid='2.7.7.34-RXN'/><Reaction resource='getxml?ARA:RXN0-5462' orgid='ARA' frameid='RXN0-5462'/><Reaction resource='getxml?ARA:RXN-8340' orgid='ARA' frameid='RXN-8340'/><Reaction resource='getxml?ARA:RXN0-7068' orgid='ARA' frameid='RXN0-7068'/><Reaction resource='getxml?ARA:RXN-11409' orgid='ARA' frameid='RXN-11409'/><Reaction resource='getxml?ARA:4.1.1.32-RXN' orgid='ARA' frameid='4.1.1.32-RXN'/><Reaction resource='getxml?ARA:RXN-14140' orgid='ARA' frameid='RXN-14140'/><Reaction resource='getxml?ARA:RXN-14201' orgid='ARA' frameid='RXN-14201'/><Reaction resource='getxml?ARA:GUANYLCYC-RXN' orgid='ARA' frameid='GUANYLCYC-RXN'/><Reaction resource='getxml?ARA:2.7.7.13-RXN' orgid='ARA' frameid='2.7.7.13-RXN'/><Reaction resource='getxml?ARA:2.7.7.30-RXN' orgid='ARA' frameid='2.7.7.30-RXN'/><Reaction resource='getxml?ARA:GTPPYPHOSKIN-RXN' orgid='ARA' frameid='GTPPYPHOSKIN-RXN'/><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-I-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?ARA:URKI-RXN' orgid='ARA' frameid='URKI-RXN'/><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?ARA:ADENYLOSUCCINATE-SYNTHASE-RXN' orgid='ARA' frameid='ADENYLOSUCCINATE-SYNTHASE-RXN'/><Reaction resource='getxml?ARA:RXN0-1021' orgid='ARA' frameid='RXN0-1021'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-553.3185</gibbs-0>
+<inchi datatype='string'>InChI=1S/C10H16N5O14P3/c11-10-13-7-4(8(18)14-10)12-2-15(7)9-6(17)5(16)3(27-9)1-26-31(22,23)29-32(24,25)28-30(19,20)21/h2-3,5-6,9,16-17H,1H2,(H,22,23)(H,24,25)(H2,19,20,21)(H3,11,13,14,18)/p-4/t3-,5-,6-,9-/m1/s1</inchi>
+<synonym datatype='string'>guanylyl imidodiphosphate</synonym>
+<synonym datatype='string'>guanosine 5'-triphosphate</synonym>
+<synonym datatype='string'>guanosine-triphosphate</synonym>
+<regulates><Regulation ID='ARA:REG-9558' orgid='ARA' frameid='REG-9558' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG-10693' orgid='ARA' frameid='REG-10693' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7019' orgid='ARA' frameid='REG0-7019' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7491' orgid='ARA' frameid='REG0-7491' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-8376' orgid='ARA' frameid='REG0-8376' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-8481' orgid='ARA' frameid='REG0-8481' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-8482' orgid='ARA' frameid='REG0-8482' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7804' orgid='ARA' frameid='REG0-7804' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7411' orgid='ARA' frameid='REG0-7411' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-11743' orgid='ARA' frameid='REG0-11743' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-8778' orgid='ARA' frameid='REG0-8778' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG-10988' orgid='ARA' frameid='REG-10988' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG-7211' orgid='ARA' frameid='REG-7211' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG-12893' orgid='ARA' frameid='REG-12893' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG-7185' orgid='ARA' frameid='REG-7185' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-8825' orgid='ARA' frameid='REG0-8825' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7073' orgid='ARA' frameid='REG0-7073' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7089' orgid='ARA' frameid='REG0-7089' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG-12491' orgid='ARA' frameid='REG-12491' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REG0-7275' orgid='ARA' frameid='REG0-7275' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REGQT-464' orgid='ARA' frameid='REGQT-464' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-12423' orgid='ARA' frameid='ENZRXN-12423' detail='low'><reaction><Reaction resource='getxml?ARA:RXN-7763' orgid='ARA' frameid='RXN-7763'/></reaction>
+<common-name datatype='string'>phytyl monophosphate kinase</common-name>
+<enzyme><Protein resource='getxml?ARA:MONOMER-11913' orgid='ARA' frameid='MONOMER-11913'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+<Regulation ID='ARA:REGQT-305' orgid='ARA' frameid='REGQT-305' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9536' orgid='ARA' frameid='ENZRXNQT-9536' detail='low'><reaction><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/></reaction>
+<common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
+<enzyme><Protein resource='getxml?ARA:CPLXQT-17' orgid='ARA' frameid='CPLXQT-17'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
+</Regulation>
+</regulates>
 <molecular-weight datatype='float' units='Daltons'>519.151</molecular-weight>
 <common-name datatype='string'>GTP</common-name>
 <dblink><dblink-db>PUBCHEM</dblink-db>
@@ -77,113 +185,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=86-01-1</dblink-URL>
 </dblink>
-<monoisotopic-mw datatype='float' units='Daltons'>522.99066</monoisotopic-mw>
-<inchi-key datatype='string'>InChIKey=XKMLYUALXHKNFT-UUOKFMHZSA-J</inchi-key>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:GDPKIN-RXN' orgid='ARA' frameid='GDPKIN-RXN'/><Reaction resource='getxml?ARA:3.6.1.17-RXN' orgid='ARA' frameid='3.6.1.17-RXN'/></appears-in-right-side-of>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:2.7.7.34-RXN' orgid='ARA' frameid='2.7.7.34-RXN'/><Reaction resource='getxml?ARA:RXN0-5462' orgid='ARA' frameid='RXN0-5462'/><Reaction resource='getxml?ARA:RXN-8340' orgid='ARA' frameid='RXN-8340'/><Reaction resource='getxml?ARA:RXN0-7068' orgid='ARA' frameid='RXN0-7068'/><Reaction resource='getxml?ARA:RXN-11409' orgid='ARA' frameid='RXN-11409'/><Reaction resource='getxml?ARA:4.1.1.32-RXN' orgid='ARA' frameid='4.1.1.32-RXN'/><Reaction resource='getxml?ARA:RXN-14140' orgid='ARA' frameid='RXN-14140'/><Reaction resource='getxml?ARA:RXN-14201' orgid='ARA' frameid='RXN-14201'/><Reaction resource='getxml?ARA:GUANYLCYC-RXN' orgid='ARA' frameid='GUANYLCYC-RXN'/><Reaction resource='getxml?ARA:2.7.7.13-RXN' orgid='ARA' frameid='2.7.7.13-RXN'/><Reaction resource='getxml?ARA:2.7.7.30-RXN' orgid='ARA' frameid='2.7.7.30-RXN'/><Reaction resource='getxml?ARA:GTPPYPHOSKIN-RXN' orgid='ARA' frameid='GTPPYPHOSKIN-RXN'/><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-I-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?ARA:URKI-RXN' orgid='ARA' frameid='URKI-RXN'/><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?ARA:ADENYLOSUCCINATE-SYNTHASE-RXN' orgid='ARA' frameid='ADENYLOSUCCINATE-SYNTHASE-RXN'/><Reaction resource='getxml?ARA:RXN0-1021' orgid='ARA' frameid='RXN0-1021'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-553.3185</gibbs-0>
-<inchi datatype='string'>InChI=1S/C10H16N5O14P3/c11-10-13-7-4(8(18)14-10)12-2-15(7)9-6(17)5(16)3(27-9)1-26-31(22,23)29-32(24,25)28-30(19,20)21/h2-3,5-6,9,16-17H,1H2,(H,22,23)(H,24,25)(H2,19,20,21)(H3,11,13,14,18)/p-4/t3-,5-,6-,9-/m1/s1</inchi>
-<synonym datatype='string'>guanylyl imidodiphosphate</synonym>
-<synonym datatype='string'>guanosine 5'-triphosphate</synonym>
-<synonym datatype='string'>guanosine-triphosphate</synonym>
-<regulates><Regulation ID='ARA:REG-9558' orgid='ARA' frameid='REG-9558' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG-10693' orgid='ARA' frameid='REG-10693' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-7019' orgid='ARA' frameid='REG0-7019' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-7491' orgid='ARA' frameid='REG0-7491' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-8376' orgid='ARA' frameid='REG0-8376' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-8481' orgid='ARA' frameid='REG0-8481' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-8482' orgid='ARA' frameid='REG0-8482' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-7804' orgid='ARA' frameid='REG0-7804' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-7411' orgid='ARA' frameid='REG0-7411' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-11743' orgid='ARA' frameid='REG0-11743' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-8778' orgid='ARA' frameid='REG0-8778' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REG-10988' orgid='ARA' frameid='REG-10988' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG-7211' orgid='ARA' frameid='REG-7211' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG-12893' orgid='ARA' frameid='REG-12893' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REG-7185' orgid='ARA' frameid='REG-7185' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-8825' orgid='ARA' frameid='REG0-8825' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-7073' orgid='ARA' frameid='REG0-7073' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-7089' orgid='ARA' frameid='REG0-7089' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REG-12491' orgid='ARA' frameid='REG-12491' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>-</mode>
-</Regulation>
-<Regulation ID='ARA:REG0-7275' orgid='ARA' frameid='REG0-7275' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REGQT-464' orgid='ARA' frameid='REGQT-464' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXN-12423' orgid='ARA' frameid='ENZRXN-12423' detail='low'><reaction><Reaction resource='getxml?ARA:RXN-7763' orgid='ARA' frameid='RXN-7763'/></reaction>
-<common-name datatype='string'>phytyl monophosphate kinase</common-name>
-<enzyme><Protein resource='getxml?ARA:MONOMER-11913' orgid='ARA' frameid='MONOMER-11913'/></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>+</mode>
-</Regulation>
-<Regulation ID='ARA:REGQT-305' orgid='ARA' frameid='REGQT-305' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
-<regulator><Compound resource='#ARA:GTP' orgid='ARA' frameid='GTP'/></regulator>
-<regulated-entity><Enzymatic-Reaction ID='ARA:ENZRXNQT-9536' orgid='ARA' frameid='ENZRXNQT-9536' detail='low'><reaction><Reaction resource='getxml?ARA:UDPGLUCEPIM-RXN' orgid='ARA' frameid='UDPGLUCEPIM-RXN'/></reaction>
-<common-name datatype='string'>UDP-glucose 4-epimerase</common-name>
-<enzyme><Protein resource='getxml?ARA:CPLXQT-17' orgid='ARA' frameid='CPLXQT-17'/></enzyme>
-</Enzymatic-Reaction>
-</regulated-entity>
-<mode datatype='string'>-</mode>
-</Regulation>
-</regulates>
 </Compound>
 </ptools-xml>

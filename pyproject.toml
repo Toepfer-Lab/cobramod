@@ -17,7 +17,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 keywords = [ "genome-scale metabolic model", "constraint-based modelling", "COBRApy", "Escher", "metabolic model curation" ]
-license= {file = "LICENSE"}
+license= { file = "LICENSE" }
 dependencies = [
     "colorlog",
     "cobra>=0.29.0",
@@ -30,6 +30,10 @@ dependencies = [
 
 [project.optional-dependencies]
 escher = ["escher-legacy>=1.7.4"]
+dev = [
+	"ruff",
+	"tox"
+]
 
 [project.urls]
 homepage = "https://github.com/Toepfer-Lab/cobramod"

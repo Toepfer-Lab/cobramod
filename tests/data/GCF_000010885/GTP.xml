@@ -22,23 +22,8 @@
 <string title='smiles'>C(OP([O-])(=O)OP(=O)([O-])OP([O-])(=O)[O-])[C@H]1(O[C@H]([C@H](O)[C@H](O)1)N2(\C=N/C3(C(=O)NC(/N)=N/C2=3)))</string>
 </molecule>
 </cml>
-<gibbs-0 datatype='float' units='kcal/mol'>-553.3185</gibbs-0>
-<inchi-key datatype='string'>InChIKey=XKMLYUALXHKNFT-UUOKFMHZSA-J</inchi-key>
-<common-name datatype='string'>GTP</common-name>
-<molecular-weight datatype='float' units='Daltons'>519.151</molecular-weight>
-<credits><imported-from-meta><date datatype='date'>2019-02-06</date>
-<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
-<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-<common-name datatype='string'>SRI International</common-name>
-</Organization>
-</imported-from-meta>
-</credits>
 <inchi datatype='string'>InChI=1S/C10H16N5O14P3/c11-10-13-7-4(8(18)14-10)12-2-15(7)9-6(17)5(16)3(27-9)1-26-31(22,23)29-32(24,25)28-30(19,20)21/h2-3,5-6,9,16-17H,1H2,(H,22,23)(H,24,25)(H2,19,20,21)(H3,11,13,14,18)/p-4/t3-,5-,6-,9-/m1/s1</inchi>
-<synonym datatype='string'>guanylyl imidodiphosphate</synonym>
-<synonym datatype='string'>guanosine 5'-triphosphate</synonym>
-<synonym datatype='string'>guanosine-triphosphate</synonym>
-<appears-in-right-side-of><Reaction resource='getxml?GCF_000010885:RXN0-6427' orgid='GCF_000010885' frameid='RXN0-6427'/><Reaction resource='getxml?GCF_000010885:GDPKIN-RXN' orgid='GCF_000010885' frameid='GDPKIN-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?GCF_000010885:RXN-11409' orgid='GCF_000010885' frameid='RXN-11409'/><Reaction resource='getxml?GCF_000010885:RXN-14117' orgid='GCF_000010885' frameid='RXN-14117'/><Reaction resource='getxml?GCF_000010885:GTPPYPHOSKIN-RXN' orgid='GCF_000010885' frameid='GTPPYPHOSKIN-RXN'/><Reaction resource='getxml?GCF_000010885:RXN-8340' orgid='GCF_000010885' frameid='RXN-8340'/><Reaction resource='getxml?GCF_000010885:RXN-16456' orgid='GCF_000010885' frameid='RXN-16456'/><Reaction resource='getxml?GCF_000010885:RXN0-262' orgid='GCF_000010885' frameid='RXN0-262'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-I-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?GCF_000010885:RXN0-5462' orgid='GCF_000010885' frameid='RXN0-5462'/><Reaction resource='getxml?GCF_000010885:RXN-14063' orgid='GCF_000010885' frameid='RXN-14063'/><Reaction resource='getxml?GCF_000010885:COBINPGUANYLYLTRANS-RXN' orgid='GCF_000010885' frameid='COBINPGUANYLYLTRANS-RXN'/><Reaction resource='getxml?GCF_000010885:ADENYLOSUCCINATE-SYNTHASE-RXN' orgid='GCF_000010885' frameid='ADENYLOSUCCINATE-SYNTHASE-RXN'/></appears-in-left-side-of>
 <dblink><dblink-db>REFMET</dblink-db>
 <dblink-oid>GTP</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -85,6 +70,21 @@
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=86-01-1</dblink-URL>
 </dblink>
 <monoisotopic-mw datatype='float' units='Daltons'>522.99066</monoisotopic-mw>
-<appears-in-left-side-of><Reaction resource='getxml?GCF_000010885:RXN-11409' orgid='GCF_000010885' frameid='RXN-11409'/><Reaction resource='getxml?GCF_000010885:RXN-14117' orgid='GCF_000010885' frameid='RXN-14117'/><Reaction resource='getxml?GCF_000010885:GTPPYPHOSKIN-RXN' orgid='GCF_000010885' frameid='GTPPYPHOSKIN-RXN'/><Reaction resource='getxml?GCF_000010885:RXN-8340' orgid='GCF_000010885' frameid='RXN-8340'/><Reaction resource='getxml?GCF_000010885:RXN-16456' orgid='GCF_000010885' frameid='RXN-16456'/><Reaction resource='getxml?GCF_000010885:RXN0-262' orgid='GCF_000010885' frameid='RXN0-262'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-I-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?GCF_000010885:RXN0-5462' orgid='GCF_000010885' frameid='RXN0-5462'/><Reaction resource='getxml?GCF_000010885:RXN-14063' orgid='GCF_000010885' frameid='RXN-14063'/><Reaction resource='getxml?GCF_000010885:COBINPGUANYLYLTRANS-RXN' orgid='GCF_000010885' frameid='COBINPGUANYLYLTRANS-RXN'/><Reaction resource='getxml?GCF_000010885:ADENYLOSUCCINATE-SYNTHASE-RXN' orgid='GCF_000010885' frameid='ADENYLOSUCCINATE-SYNTHASE-RXN'/></appears-in-left-side-of>
+<credits><imported-from-meta><date datatype='date'>2019-02-06</date>
+<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</imported-from-meta>
+</credits>
+<molecular-weight datatype='float' units='Daltons'>519.151</molecular-weight>
+<common-name datatype='string'>GTP</common-name>
+<appears-in-right-side-of><Reaction resource='getxml?GCF_000010885:RXN0-6427' orgid='GCF_000010885' frameid='RXN0-6427'/><Reaction resource='getxml?GCF_000010885:GDPKIN-RXN' orgid='GCF_000010885' frameid='GDPKIN-RXN'/></appears-in-right-side-of>
+<synonym datatype='string'>guanylyl imidodiphosphate</synonym>
+<synonym datatype='string'>guanosine 5'-triphosphate</synonym>
+<synonym datatype='string'>guanosine-triphosphate</synonym>
+<inchi-key datatype='string'>InChIKey=XKMLYUALXHKNFT-UUOKFMHZSA-J</inchi-key>
+<gibbs-0 datatype='float' units='kcal/mol'>-553.3185</gibbs-0>
 </Compound>
 </ptools-xml>

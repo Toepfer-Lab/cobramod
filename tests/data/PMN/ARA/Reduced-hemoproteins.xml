@@ -8,8 +8,8 @@
 </PGDB>
 </metadata>
 <Protein ID='ARA:Reduced-hemoproteins' orgid='ARA' frameid='Reduced-hemoproteins' detail='full' class='true'><parent><Protein resource='getxml?ARA:Hemoproteins' orgid='ARA' frameid='Hemoproteins' class='true'/></parent>
-<common-name datatype='string'>a reduced hemoprotein</common-name>
 <appears-in-right-side-of><Reaction resource='getxml?ARA:NADPH--FERRIHEMOPROTEIN-REDUCTASE-RXN' orgid='ARA' frameid='NADPH--FERRIHEMOPROTEIN-REDUCTASE-RXN'/></appears-in-right-side-of>
 <n-name datatype='string'>reduced hemoproteins</n-name>
+<common-name datatype='string'>a reduced hemoprotein</common-name>
 </Protein>
 </ptools-xml>

@@ -42,7 +42,7 @@
 2. Galactose entry into glycolysis
 &lt;p&gt;
 3. It has been suggested that UDP-D-glucose can act as an extracellular signaling molecule
-[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12695547&quot;&gt;Lazarowski et al., 2003&lt;/a&gt;].
+[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12695547&quot;&gt;Lazarowski03&lt;/a&gt;].
 UDP-glucose participates in a variety of enzymatic reactions, including:
 
 1. Metabolism of polysaccharaides (glycogen, starch, laminarin and cellulose), disaccharides (sucrose, trehalose),
@@ -51,7 +51,7 @@ UDP-glucose participates in a variety of enzymatic reactions, including:
 2. Galactose entry into glycolysis
 
 3. It has been suggested that UDP-D-glucose can act as an extracellular signaling molecule
-[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12695547&quot;&gt;Lazarowski et al., 2003&lt;/a&gt;].</comment>
+[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12695547&quot;&gt;Lazarowski03&lt;/a&gt;].</comment>
 <molecular-weight datatype='float' units='Daltons'>564.289</molecular-weight>
 <regulates><Regulation ID='ARA:REGQT-451' orgid='ARA' frameid='REGQT-451' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
 <regulator><Compound resource='#ARA:CPD-12575' orgid='ARA' frameid='CPD-12575'/></regulator>

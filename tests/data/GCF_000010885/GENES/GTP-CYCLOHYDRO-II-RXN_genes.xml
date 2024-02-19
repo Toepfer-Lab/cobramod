@@ -28,14 +28,14 @@
       <Protein resource="getxml?GCF_000010885:APA22_RS09400-MONOMER" orgid="GCF_000010885" frameid="APA22_RS09400-MONOMER" />
     </product>
     <transcription-direction datatype="string">-</transcription-direction>
+    <left-end-position datatype="integer">2016108</left-end-position>
+    <centisome-position datatype="float" units="CENTISOMES">69.34719</centisome-position>
+    <accession-2 datatype="string">APA22_18560</accession-2>
+    <synonym datatype="string">RS09400</synonym>
+    <accession-1 datatype="string">APA22_RS09400</accession-1>
     <component-of>
       <Transcription-Unit resource="getxml?GCF_000010885:TU1SO3-1096" orgid="GCF_000010885" frameid="TU1SO3-1096" />
     </component-of>
     <right-end-position datatype="integer">2017421</right-end-position>
-    <accession-1 datatype="string">APA22_RS09400</accession-1>
-    <synonym datatype="string">RS09400</synonym>
-    <centisome-position datatype="float" units="CENTISOMES">69.34719</centisome-position>
-    <left-end-position datatype="integer">2016108</left-end-position>
-    <accession-2 datatype="string">APA22_18560</accession-2>
   </Gene>
 </ptools-xml>

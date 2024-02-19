@@ -13,6 +13,17 @@
 <string title='smiles'>C([C@@H]2([C@@H](O)[C@@H](O)[C@H](NC1(/N=C(N)\NC(=O)C(/N)=1))O2))OP(=O)([O-])[O-]</string>
 </molecule>
 </cml>
+<monoisotopic-mw datatype='float' units='Daltons'>353.07364</monoisotopic-mw>
+<inchi-key datatype='string'>InChIKey=OCLCLRXKNJCOJD-UMMCILCDSA-L</inchi-key>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:RIBOFLAVINSYNDEAM-RXN' orgid='ARA' frameid='RIBOFLAVINSYNDEAM-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-212.19257</gibbs-0>
+<inchi datatype='string'>InChI=1S/C9H16N5O8P/c10-3-6(13-9(11)14-7(3)17)12-8-5(16)4(15)2(22-8)1-21-23(18,19)20/h2,4-5,8,15-16H,1,10H2,(H2,18,19,20)(H4,11,12,13,14,17)/p-2/t2-,4-,5-,8-/m1/s1</inchi>
+<synonym datatype='string'>2,5-diamino-6-hydroxy-4-(5-phosphoribosylamino)pyrimidine</synonym>
+<synonym datatype='string'>DARP</synonym>
+<synonym datatype='string'>2,5-diamino-6-(1-D-ribosylamino)pyrimidin-4(3H)-one 5'-phosphate</synonym>
+<synonym datatype='string'>2,5-diamino-6-(ribosylamino)-4-(3H)-pyrimidinone 5'-phosphate</synonym>
+<synonym datatype='string'>2,5-diamino-6-(D-ribosylamino)pyrimidin-4(3H)-one 5'-phosphate</synonym>
 <molecular-weight datatype='float' units='Daltons'>351.212</molecular-weight>
 <common-name datatype='string'>2,5-diamino-6-(5-phospho-D-ribosylamino)pyrimidin-4(3H)-one</common-name>
 <dblink><dblink-db>PUBCHEM</dblink-db>
@@ -55,16 +66,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C01304</dblink-URL>
 </dblink>
-<monoisotopic-mw datatype='float' units='Daltons'>353.07364</monoisotopic-mw>
-<inchi-key datatype='string'>InChIKey=OCLCLRXKNJCOJD-UMMCILCDSA-L</inchi-key>
-<appears-in-right-side-of><Reaction resource='getxml?ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/></appears-in-right-side-of>
-<appears-in-left-side-of><Reaction resource='getxml?ARA:RIBOFLAVINSYNDEAM-RXN' orgid='ARA' frameid='RIBOFLAVINSYNDEAM-RXN'/></appears-in-left-side-of>
-<gibbs-0 datatype='float' units='kcal/mol'>-212.19257</gibbs-0>
-<inchi datatype='string'>InChI=1S/C9H16N5O8P/c10-3-6(13-9(11)14-7(3)17)12-8-5(16)4(15)2(22-8)1-21-23(18,19)20/h2,4-5,8,15-16H,1,10H2,(H2,18,19,20)(H4,11,12,13,14,17)/p-2/t2-,4-,5-,8-/m1/s1</inchi>
-<synonym datatype='string'>2,5-diamino-6-hydroxy-4-(5-phosphoribosylamino)pyrimidine</synonym>
-<synonym datatype='string'>DARP</synonym>
-<synonym datatype='string'>2,5-diamino-6-(1-D-ribosylamino)pyrimidin-4(3H)-one 5'-phosphate</synonym>
-<synonym datatype='string'>2,5-diamino-6-(ribosylamino)-4-(3H)-pyrimidinone 5'-phosphate</synonym>
-<synonym datatype='string'>2,5-diamino-6-(D-ribosylamino)pyrimidin-4(3H)-one 5'-phosphate</synonym>
 </Compound>
 </ptools-xml>

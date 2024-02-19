@@ -98,7 +98,7 @@ homomethione-derived (example here is a C3 glucosinolate; C3 referring to the nu
 in the side chain). It should be noted that chain-elongated methiones are converted to their corresponding
 glucosinolates in a similar fashion.
 
-The conversion of aldoxime to thiohydroximate in glucosinolate biosynthesis involves the incorporation of reduced sulfur. Cysteine was previously suggested to be the sulfur-donor. Recent evidence indicates, however, glutathione is more likely to be the sulfur-donating molecule [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/19483696&quot;&gt;Geu-Flores et al., 2009&lt;/a&gt;].</comment>
+The conversion of aldoxime to thiohydroximate in glucosinolate biosynthesis involves the incorporation of reduced sulfur. Cysteine was previously suggested to be the sulfur-donor. Recent evidence indicates, however, glutathione is more likely to be the sulfur-donating molecule [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/19483696&quot;&gt;GeuFlores09&lt;/a&gt;].</comment>
 <evidence><Evidence-Code ID='ARA:EV-COMP-HINF' orgid='ARA' frameid='EV-COMP-HINF' detail='full' class='true'><parent><Evidence-Code resource='getxml?ARA:EV-COMP' orgid='ARA' frameid='EV-COMP' class='true'/></parent>
 <comment datatype='string'>Human inference.  A curator or author inferred this assertion after review of one or more possible types 
 of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  

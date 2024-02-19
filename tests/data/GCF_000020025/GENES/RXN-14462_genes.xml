@@ -27,16 +27,16 @@
     <product>
       <Protein resource="getxml?GCF_000020025:NPUN_RS12370-MONOMER" orgid="GCF_000020025" frameid="NPUN_RS12370-MONOMER" />
     </product>
-    <accession-1 datatype="string">Npun_F2464</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">37.37703</centisome-position>
+    <common-name datatype="string">hphA</common-name>
+    <left-end-position datatype="integer">3077745</left-end-position>
     <component-of>
       <Transcription-Unit resource="getxml?GCF_000020025:TU220G-1945" orgid="GCF_000020025" frameid="TU220G-1945" />
     </component-of>
-    <left-end-position datatype="integer">3077745</left-end-position>
+    <accession-1 datatype="string">Npun_F2464</accession-1>
+    <centisome-position datatype="float" units="CENTISOMES">37.37703</centisome-position>
+    <accession-2 datatype="string">NPUN_RS12370</accession-2>
     <synonym datatype="string">F2464</synonym>
     <synonym datatype="string">RS12370</synonym>
-    <accession-2 datatype="string">NPUN_RS12370</accession-2>
-    <common-name datatype="string">hphA</common-name>
     <right-end-position datatype="integer">3078923</right-end-position>
   </Gene>
 </ptools-xml>

@@ -16,32 +16,32 @@
 </metadata>
 <Reaction ID='GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN' detail='full'><parent><Reaction resource='getxml?GCF_000010885:Chemical-Reactions' orgid='GCF_000010885' frameid='Chemical-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?GCF_000010885:Small-Molecule-Reactions' orgid='GCF_000010885' frameid='Small-Molecule-Reactions' class='true'/></parent>
-<in-pathway><Pathway resource='getxml?GCF_000010885:RIBOSYN2-PWY' orgid='GCF_000010885' frameid='RIBOSYN2-PWY'/></in-pathway>
-<gibbs-0 datatype='float' units='kcal/mol'>-96.9801</gibbs-0>
-<enzymatic-reaction><Enzymatic-Reaction ID='GCF_000010885:ENZRXN1SO3-707' orgid='GCF_000010885' frameid='ENZRXN1SO3-707' detail='low'><reaction><Reaction resource='#GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
-<common-name datatype='string'>bifunctional 3,4-dihydroxy-2-butanone-4-phosphate synthase/GTP cyclohydrolase II</common-name>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<enzymatic-reaction><Enzymatic-Reaction ID='GCF_000010885:ENZRXN1SO3-707' orgid='GCF_000010885' frameid='ENZRXN1SO3-707' detail='low'><common-name datatype='string'>bifunctional 3,4-dihydroxy-2-butanone-4-phosphate synthase/GTP cyclohydrolase II</common-name>
 <enzyme><Protein resource='getxml?GCF_000010885:APA22_RS09400-MONOMER' orgid='GCF_000010885' frameid='APA22_RS09400-MONOMER'/></enzyme>
+<reaction><Reaction resource='#GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<credits><imported-from-meta><date datatype='date'>2019-02-06</date>
+<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</imported-from-meta>
+</credits>
+<in-pathway><Pathway resource='getxml?GCF_000010885:RIBOSYN2-PWY' orgid='GCF_000010885' frameid='RIBOSYN2-PWY'/></in-pathway>
 <left><Compound resource='getxml?GCF_000010885:WATER' orgid='GCF_000010885' frameid='WATER'/><coefficient datatype='integer'>3</coefficient>
 </left>
 <left><Compound resource='getxml?GCF_000010885:GTP' orgid='GCF_000010885' frameid='GTP'/></left>
-<orphan>NO</orphan>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <right><Compound resource='getxml?GCF_000010885:PROTON' orgid='GCF_000010885' frameid='PROTON'/><coefficient datatype='integer'>2</coefficient>
 </right>
 <right><Compound resource='getxml?GCF_000010885:PPI' orgid='GCF_000010885' frameid='PPI'/></right>
 <right><Compound resource='getxml?GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR' orgid='GCF_000010885' frameid='DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR'/></right>
 <right><Compound resource='getxml?GCF_000010885:FORMATE' orgid='GCF_000010885' frameid='FORMATE'/></right>
-<credits><imported-from-meta><date datatype='date'>2019-02-06</date>
-<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
-<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype='string'>SRI International</abbrev-name>
-<common-name datatype='string'>SRI International</common-name>
-</Organization>
-</imported-from-meta>
-</credits>
+<gibbs-0 datatype='float' units='kcal/mol'>-96.9801</gibbs-0>
 <ec-number>EC-3.5.4.25<official>T</official>
 </ec-number>
 </Reaction>

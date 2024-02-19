@@ -19,6 +19,10 @@
     <product>
       <Protein resource="getxml?ARA:AT5G64300-MONOMER" orgid="ARA" frameid="AT5G64300-MONOMER" />
     </product>
+    <right-end-position datatype="integer">25738388</right-end-position>
+    <synonym datatype="string">RFD1</synonym>
+    <synonym datatype="string">RIBA1</synonym>
+    <synonym datatype="string">GCH</synonym>
     <common-name datatype="string">AT5G64300</common-name>
     <left-end-position datatype="integer">25735630</left-end-position>
     <dblink>
@@ -30,10 +34,6 @@
     <accession-1 datatype="string">AT5G64300</accession-1>
     <component-of />
     <centisome-position datatype="float" units="CENTISOMES">95.34283</centisome-position>
-    <right-end-position datatype="integer">25738388</right-end-position>
-    <synonym datatype="string">RFD1</synonym>
-    <synonym datatype="string">RIBA1</synonym>
-    <synonym datatype="string">GCH</synonym>
   </Gene>
   <Gene ID="ARA:AT5G59750" orgid="ARA" frameid="AT5G59750" detail="full">
     <parent>
@@ -45,6 +45,7 @@
     <product>
       <Protein resource="getxml?ARA:AT5G59750-MONOMER" orgid="ARA" frameid="AT5G59750-MONOMER" />
     </product>
+    <right-end-position datatype="integer">24092768</right-end-position>
     <common-name datatype="string">AT5G59750</common-name>
     <left-end-position datatype="integer">24090515</left-end-position>
     <dblink>
@@ -56,6 +57,5 @@
     <accession-1 datatype="string">AT5G59750</accession-1>
     <component-of />
     <centisome-position datatype="float" units="CENTISOMES">89.24817</centisome-position>
-    <right-end-position datatype="integer">24092768</right-end-position>
   </Gene>
 </ptools-xml>

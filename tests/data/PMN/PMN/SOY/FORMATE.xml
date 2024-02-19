@@ -18,6 +18,8 @@
 <string title='smiles'>C([O-])=O</string>
 </molecule>
 </cml>
+<monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
+<synonym datatype='string'>formic acid</synonym>
 <common-name datatype='string'>formate</common-name>
 <gibbs-0 datatype='float' units='kcal/mol'>-73.93095</gibbs-0>
 <inchi datatype='string'>InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
@@ -91,7 +93,5 @@
 <appears-in-right-side-of><Reaction resource='getxml?SOY:FORMYL-COA-HYDROLASE-RXN' orgid='SOY' frameid='FORMYL-COA-HYDROLASE-RXN'/><Reaction resource='getxml?SOY:RXN-19833' orgid='SOY' frameid='RXN-19833'/><Reaction resource='getxml?SOY:RXN-19830' orgid='SOY' frameid='RXN-19830'/><Reaction resource='getxml?SOY:RXN-11881' orgid='SOY' frameid='RXN-11881'/><Reaction resource='getxml?SOY:RXN66-305' orgid='SOY' frameid='RXN66-305'/><Reaction resource='getxml?SOY:RXN-13707' orgid='SOY' frameid='RXN-13707'/><Reaction resource='getxml?SOY:RXN3O-130' orgid='SOY' frameid='RXN3O-130'/><Reaction resource='getxml?SOY:1.14.13.70-RXN' orgid='SOY' frameid='1.14.13.70-RXN'/><Reaction resource='getxml?SOY:RXN66-13' orgid='SOY' frameid='RXN66-13'/><Reaction resource='getxml?SOY:RXN-13961' orgid='SOY' frameid='RXN-13961'/><Reaction resource='getxml?SOY:3.7.1.9-RXN' orgid='SOY' frameid='3.7.1.9-RXN'/><Reaction resource='getxml?SOY:FORMALDEHYDE-DEHYDROGENASE-RXN' orgid='SOY' frameid='FORMALDEHYDE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?SOY:RXN-12087' orgid='SOY' frameid='RXN-12087'/><Reaction resource='getxml?SOY:ARYLFORMAMIDASE-RXN' orgid='SOY' frameid='ARYLFORMAMIDASE-RXN'/><Reaction resource='getxml?SOY:FORMYLTHFDEFORMYL-RXN' orgid='SOY' frameid='FORMYLTHFDEFORMYL-RXN'/><Reaction resource='getxml?SOY:FORMAMIDASE-RXN' orgid='SOY' frameid='FORMAMIDASE-RXN'/><Reaction resource='getxml?SOY:GTP-CYCLOHYDRO-I-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?SOY:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='SOY' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?SOY:DIOHBUTANONEPSYN-RXN' orgid='SOY' frameid='DIOHBUTANONEPSYN-RXN'/><Reaction resource='getxml?SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?SOY:R146-RXN' orgid='SOY' frameid='R146-RXN'/><Reaction resource='getxml?SOY:R147-RXN' orgid='SOY' frameid='R147-RXN'/><Reaction resource='getxml?SOY:PYRIMSYN1-RXN' orgid='SOY' frameid='PYRIMSYN1-RXN'/></appears-in-right-side-of>
 <molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
 <appears-in-left-side-of><Reaction resource='getxml?SOY:RXN0-724' orgid='SOY' frameid='RXN0-724'/><Reaction resource='getxml?SOY:RXN0-723' orgid='SOY' frameid='RXN0-723'/><Reaction resource='getxml?SOY:FORMATETHFLIG-RXN' orgid='SOY' frameid='FORMATETHFLIG-RXN'/><Reaction resource='getxml?SOY:1.2.1.2-RXN' orgid='SOY' frameid='1.2.1.2-RXN'/></appears-in-left-side-of>
-<monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
-<synonym datatype='string'>formic acid</synonym>
 </Compound>
 </ptools-xml>

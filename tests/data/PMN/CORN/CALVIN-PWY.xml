@@ -101,15 +101,15 @@ When the inference was made by a computer in an automated fashion, use EV-AINF.<
 </Person>
 <Organization resource='#CORN:O-18' orgid='CORN' frameid='O-18'/></created>
 <revised><date datatype='date'>2006-11-09</date>
-<Person ID='CORN:caspi' orgid='CORN' frameid='caspi' detail='full'><comment datatype='string'>Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<Person ID='CORN:caspi' orgid='CORN' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
+<comment datatype='string'>Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
 <common-name datatype='string'>Ron Caspi</common-name>
-<affiliations><Organization ID='CORN:SRI' orgid='CORN' frameid='SRI' detail='full'><abbrev-name datatype='string'>SRI International</abbrev-name>
+<affiliations><Organization ID='CORN:SRI' orgid='CORN' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
 <common-name datatype='string'>SRI International</common-name>
 <url datatype='string'>http://bioinformatics.ai.sri.com/</url>
-<email datatype='string'>ptools-support@ai.sri.com</email>
 </Organization>
 </affiliations>
-<email datatype='string'>caspi@ai.sri.com</email>
 </Person>
 <Organization resource='#CORN:SRI' orgid='CORN' frameid='SRI'/></revised>
 </credits>

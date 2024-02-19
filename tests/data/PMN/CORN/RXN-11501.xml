@@ -14,6 +14,8 @@
 </metadata>
 <Reaction ID='CORN:RXN-11501' orgid='CORN' frameid='RXN-11501' detail='full'><parent><Reaction resource='getxml?CORN:Small-Molecule-Reactions' orgid='CORN' frameid='Small-Molecule-Reactions' class='true'/></parent>
 <parent><Reaction resource='getxml?CORN:Chemical-Reactions' orgid='CORN' frameid='Chemical-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?CORN:CPD-170' orgid='CORN' frameid='CPD-170'/></left>
+<left><Compound resource='getxml?CORN:WATER' orgid='CORN' frameid='WATER'/></left>
 <orphan>NO</orphan>
 <in-pathway><Pathway resource='getxml?CORN:PWY-6527' orgid='CORN' frameid='PWY-6527'/></in-pathway>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
@@ -32,21 +34,19 @@
 </Enzymatic-Reaction>
 </enzymatic-reaction>
 <credits><created><date datatype='date'>2010-06-15</date>
-<Person ID='CORN:pujar' orgid='CORN' frameid='pujar' detail='full'><common-name datatype='string'>Anurdha Pujar</common-name>
+<Person ID='CORN:pujar' orgid='CORN' frameid='pujar' detail='full'><email datatype='string'>ap343@cornell.edu</email>
+<common-name datatype='string'>Anurdha Pujar</common-name>
 <affiliations><Organization ID='CORN:O-28' orgid='CORN' frameid='O-28' detail='full'><abbrev-name datatype='string'>Boyce Thompson Institute</abbrev-name>
 <common-name datatype='string'>Boyce Thompson Institute for Plant Research</common-name>
 <url datatype='string'>http://bti.cornell.edu/</url>
 </Organization>
 </affiliations>
-<email datatype='string'>ap343@cornell.edu</email>
 </Person>
 <Organization resource='#CORN:O-28' orgid='CORN' frameid='O-28'/></created>
 </credits>
+<ec-number>EC-3.2.1.22</ec-number>
 <right><Compound resource='getxml?CORN:CPD-1099' orgid='CORN' frameid='CPD-1099'/></right>
 <right><Compound resource='getxml?CORN:ALPHA-D-GALACTOSE' orgid='CORN' frameid='ALPHA-D-GALACTOSE'/></right>
-<ec-number>EC-3.2.1.22</ec-number>
 <physiologically-relevant datatype='boolean'>true</physiologically-relevant>
-<left><Compound resource='getxml?CORN:CPD-170' orgid='CORN' frameid='CPD-170'/></left>
-<left><Compound resource='getxml?CORN:WATER' orgid='CORN' frameid='WATER'/></left>
 </Reaction>
 </ptools-xml>

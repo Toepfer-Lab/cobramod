@@ -32,6 +32,7 @@ db_configuration = cmod_db.DataVersionConfigurator()
 BIOCYC = "https://websvc.biocyc.org/getxml?id="
 PMN = "https://pmn.plantcyc.org/getxml?id="
 KEGG = "https://rest.kegg.jp/get/"
+# NOTE: deprecation for v2
 SOLCYC = "https://solcyc.sgn.cornell.edu/getxml?id="
 
 EXTENSIONS = [".xml", ".txt", ".json"]
@@ -45,7 +46,7 @@ class Databases:
     def __init__(self):
         self.msg = (
             "CobraMod supports BioCyc, the Plant Metabolic Network (PMN), "
-            "Sol Genomics Network (SolCyc), KEGG and BiGG Models repository. "
+            "KEGG and BiGG Models repository. "
             "BioCyc includes around 18.000 sub-databases. A complete list "
             "for BioCyc can be found at: "
             "'https://biocyc.org/biocyc-pgdb-list.shtml'.\n"
@@ -70,9 +71,6 @@ class Databases:
             "\n"
             "PMN:META       Plantcyc, subdatabase META\n"
             "PMN:ARA        Plantcyc, subdatabase ARA\n"
-            "\n"
-            "SOL:META       SolCyc, subdatabase META\n"
-            "SOL:LYCO       SolCyc, subdatabase LYCO\n"
             "This applies for all subdatabases from SolCyc, BioCyc and Plantcyc\n"
         )
 
@@ -83,34 +81,52 @@ class Databases:
         Returns a HTML string about the definition of "identifier" and where
         to obtain them.
         """
-        return """<p>CobraMod supports BioCyc, the Plant Metabolic Network
-    (PMN), Sol Genomics Network (SolCyc), KEGG and BiGG Models repository.
-    BioCyc includes around 18.000 sub-databases. A complete list for BioCyc can
-    be found at: 'https://biocyc.org/biocyc-pgdb-list.shtml'.<br />The
-    database-specific identifiers can be found in the URL of the respective
-    data.CobraMod uses abbreviations to represent the databases or
-    sub-databases:</p> <table style="width: 50%; border-collapse: collapse;"
-    border="1"> <tbody> <tr> <td style="width:
-        50%;"><strong>Abbreviation</strong></td> <td style="width:
-            50%;"><strong>Database name</strong></td> </tr> <tr> <td
-            style="width: 50%;">META</td> <td style="width: 50%;">Biocyc,
-            subdatabase MetaCyc</td> </tr> <tr> <td style="width:
-                50%;">ARA</td> <td style="width: 50%;">Biocyc, subdatabase
-                AraCyc</td> </tr> <tr> <td style="width: 50%;">KEGG</td> <td
-                style="width: 50%;">Kyoto encyclopedia of Genes and
-                Genomes</td> </tr> <tr> <td style="width: 50%;">BIGG</td> <td
-                style="width: 50%;">BiGG Models</td> </tr> <tr> <td
-                style="width: 50%;">PMN:META</td> <td style="width:
-                    50%;">PlantCyc, subdatabase META</td> </tr> <tr> <td
-                    style="width: 50%;">PMN:ARA</td> <td style="width:
-                        50%;">PlantCyc, subdatabase ARA</td> </tr> <tr> <td
-                        style="width: 50%;">SOL:META</td> <td style="width:
-                            50%;">SolCyc, subdatabase META</td> </tr> <tr> <td
-                            style="width: 50%;">SOL:LYCO</td> <td style="width:
-                                50%;">SolCyc. subdatabase Meta</td> </tr>
-                                </tbody> </table> <p>This applies for all
-                                subdatabases from SolCyc, BioCyc and
-                                Plantcyc</p>"""
+        return """
+<p>CobraMod supports BioCyc, the Plant Metabolic Network (PMN), KEGG and BiGG Models repository. BioCyc includes around 18.000 sub-databases. A complete list for BioCyc can be found at: 'https://biocyc.org/biocyc-pgdb-list.shtml'.<br
+    />The database-specific identifiers can be found in the URL of the respective data.CobraMod uses abbreviations to represent the databases or sub-databases:
+</p>
+<table style="width: 50%; border-collapse: collapse;" border="1">
+    <tbody>
+        <tr>
+            <td style="width:
+        50%;"><strong>Abbreviation</strong></td>
+            <td style="width:
+            50%;"><strong>Database name</strong></td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">META</td>
+            <td style="width: 50%;">Biocyc, subdatabase MetaCyc</td>
+        </tr>
+        <tr>
+            <td style="width:
+                50%;">ARA</td>
+            <td style="width: 50%;">Biocyc, subdatabase AraCyc
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">KEGG</td>
+            <td style="width: 50%;">Kyoto encyclopedia of Genes and Genomes
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">BIGG</td>
+            <td style="width: 50%;">BiGG Models</td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">PMN:META</td>
+            <td style="width:
+                    50%;">PlantCyc, subdatabase META</td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">PMN:ARA</td>
+            <td style="width:
+                        50%;">PlantCyc, subdatabase ARA</td>
+        </tr>
+    </tbody>
+</table>
+<p>This applies for all subdatabases from BioCyc and Plantcyc
+</p>
+        """
 
 
 available_databases = Databases()
@@ -490,8 +506,15 @@ def file_to_Data_class(
         return Data.from_json(identifier, json.loads(text), extra_dir, filename)
 
     elif suffix == ".xml":
-        if extra_dir == "PMN" or extra_dir == "SOL":
+        if extra_dir == "PMN":
             parent = f"{extra_dir}:{parent}"
+        # NOTE: Remove for v2.0.0
+        elif extra_dir == "SOL":
+            parent = f"{extra_dir}:{parent}"
+            warn(
+                "Database Solcyc is being deprecated for next version",
+                DeprecationWarning,
+            )
         return Data.from_xml(identifier, et.fromstring(text), parent, filename)
 
     elif suffix == ".txt":
@@ -645,7 +668,12 @@ def get_data(
                     plantcyc.retrieve_gene_information(
                         directory, identifier, database
                     )
+                # NOTE: Deprecation for 2.0.0
                 elif family == "SOL":
+                    warn(
+                        "Database Solcyc is being deprecated for next version",
+                        DeprecationWarning,
+                    )
                     solcyc.retrieve_gene_information(
                         directory, identifier, database
                     )

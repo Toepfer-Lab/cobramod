@@ -241,20 +241,6 @@ class RetrievalTesting(unittest.TestCase):
             ).exists(),
         )
 
-        # Retrieval from SolCyc
-        test_data = cmod_retrieval.get_data(
-            directory=dir_data, database="sol:LYCO", identifier="RXN-2221"
-        )
-        self.assertEqual(
-            test_data.path, dir_data.joinpath("SOL", "LYCO", "RXN-2221.xml")
-        )
-        self.assertTrue(test_data.path.exists())
-        self.assertTrue(
-            dir_data.joinpath(
-                "SOL", "LYCO", "GENES", "RXN-2221_genes.xml"
-            ).exists(),
-        )
-
 
 if __name__ == "__main__":
     print(f"CobraMod version: {cmod_version}")
