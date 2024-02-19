@@ -27,7 +27,7 @@ def genes_to_reaction(reaction: cobra_core.Reaction, data_dict: dict[str, Any]):
         if not gene.name:
             gene.name = gene.id
 
-        debug_log.info(
+        debug_log.debug(
             f'Gene "{gene.id}" was added with gene name "{gene.name}" to '
             f'reaction "{reaction.id}".'
         )

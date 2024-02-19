@@ -174,7 +174,7 @@ def recursive_flux_test(
     """
 
     if times == 0:
-        debug_log.info(
+        debug_log.debug(
             f'Test to carry non-zero flux for "{identifier}" started.'
         )
     # run
@@ -213,7 +213,7 @@ def recursive_flux_test(
     if times == 0:
         if abs(value) > cobra_tolerance:
             debug_log.info(
-                f"Non-zero flux test for reaction {identifier} passed."
+                f"Non-zero flux test for reaction '{identifier}' passed."
             )
 
         else:

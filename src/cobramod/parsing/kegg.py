@@ -299,7 +299,7 @@ def parse_genes(
         rule = " or ".join(genes.keys())
         debug_log.warning(
             f'Gene-reaction rule for reaction "{identifier}" from KEGG '
-            + ' set to "OR".'
+            'set to "OR".'
         )
     return {"genes": genes, "rule": rule}
 

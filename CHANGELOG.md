@@ -4,12 +4,12 @@
 
 ### Planned
 
-- Parallelization of downloads
+- Parallelization of downloads and cross-references
 - Visualization with other tools than Escher
 - Deprecation of SolCyc
 - Deprecation of PairDictionary
 
-## [1.2.0-dev]
+## [1.2.0]
 
 ### Added
 

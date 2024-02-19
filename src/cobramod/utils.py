@@ -83,7 +83,7 @@ def check_imbalance(
     if dict_balance != {}:
         msg = (
             f'Reaction "{reaction.id}" unbalanced. Following atoms are '
-            + f"affected. Please verify:\n{dict_balance}"
+            + f"affected. Please verify: {dict_balance}"
         )
         if stop_imbalance:
             raise cmod_error.UnbalancedReaction(

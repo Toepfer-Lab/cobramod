@@ -35,6 +35,7 @@ dev = [
 	"tox",
   "sphinx",
   "nbsphinx",
+  "sphinx-autoapi",
   "jupyter-contrib-nbextensions",
   "sphinx-rtd-theme",
   "sphinxcontrib-napoleon",
