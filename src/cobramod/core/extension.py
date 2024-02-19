@@ -13,7 +13,6 @@ from __future__ import annotations
 from contextlib import suppress
 from pathlib import Path
 from typing import Generator, Optional, Union
-from warnings import warn
 
 import cobra.core as cobra_core
 import cobra.exceptions as cobra_exceptions
@@ -208,7 +207,6 @@ def recursive_flux_test(
                 "simulate their synthesis."
             )
             debug_log.warning(msg)
-            warn(msg)
             value = model.slim_optimize()
 
     # Raise only if manual intervention is necessary
@@ -366,7 +364,6 @@ def remove_avoid_reactions(
                 + " will not be added to the model."
             )
             debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
             continue
 
         new_sequence.append(item)

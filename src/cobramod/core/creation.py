@@ -10,7 +10,6 @@ from __future__ import annotations
 from contextlib import suppress
 from pathlib import Path
 from typing import Optional, Union
-from warnings import warn
 
 import cobra.core as cobra_core
 import requests
@@ -309,7 +308,6 @@ def get_reaction(
             "a specie-specific sub-database from BioCyc."
         )
         debug_log.warning(msg)
-        warn(message=msg, category=UserWarning)
 
     xref = cmod_utils.find_intersection(
         dictlist=model.reactions,

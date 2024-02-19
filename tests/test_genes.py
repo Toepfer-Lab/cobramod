@@ -4,6 +4,7 @@
 In this module, the creation of genes for multiple function and their behavior
 are checked
 """
+import logging
 import unittest
 from pathlib import Path
 
@@ -12,7 +13,6 @@ from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
 from cobramod.core.creation import create_object
 from cobramod.debug import change_to_debug
-from cobramod.error import AbbreviationWarning
 from cobramod.parsing.db_version import DataVersionConfigurator
 
 change_to_debug()
@@ -28,16 +28,19 @@ if not dir_data.exists():
 
 class TestComplexGenes(unittest.TestCase):
     def test_KEGG_genome(self):
-        # CASE: catch FalseAbbreviation
-        self.assertWarns(
-            AbbreviationWarning,
-            create_object,
-            identifier="R02736",
-            directory=dir_data,
-            compartment="c",
-            database="KEGG",
-            genome="fake",
-        )
+        # CASE: catch warning logs
+        with self.assertLogs(level=logging.DEBUG) as cm:
+            create_object(
+                identifier="R02736",
+                directory=dir_data,
+                compartment="c",
+                database="KEGG",
+                genome="fake",
+            )
+            self.assertIn(
+                "abbreviation as a specie. No genes will be added.",
+                cm.output[0],
+            )
         test_reaction = create_object(
             identifier="R02736",
             directory=dir_data,
@@ -50,15 +53,18 @@ class TestComplexGenes(unittest.TestCase):
 
         self.assertEqual(first=len(test_reaction.genes), second=0)
 
-        # CASE: catch regular UserWarning. No genome and thus, no genes
-        self.assertWarns(
-            UserWarning,
-            create_object,
-            identifier="R02736",
-            directory=dir_data,
-            compartment="c",
-            database="KEGG",
-        )
+        # CASE: catch warning. No genome and thus, no genes
+        with self.assertLogs(level=logging.DEBUG) as cm:
+            create_object(
+                identifier="R02736",
+                directory=dir_data,
+                compartment="c",
+                database="KEGG",
+            )
+            self.assertIn(
+                "Nothing was specified in argument ",
+                cm.output[-1],
+            )
         test_reaction = create_object(
             identifier="R02736",
             directory=dir_data,

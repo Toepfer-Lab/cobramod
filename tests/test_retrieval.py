@@ -3,6 +3,7 @@
 Unit-test for data retrieval and Data version configuration. It checks that
 the files are loaded and saved properly
 """
+import logging
 import shutil
 import tempfile
 import unittest
@@ -105,13 +106,12 @@ class DataVersion(unittest.TestCase):
 
         # database with incorrect version (with user input)
         with patch("builtins.input", return_value="y") as mock:
-            with self.assertWarnsRegex(
-                UserWarning,
-                r"Versions of .* do not match. Remote has version .* "
-                r"and local version is .*\.",
-            ):
+            with self.assertLogs(level=logging.DEBUG) as cm:
                 data_conf.check_database_version(
                     Path(self.directory), "bigg", "2.0.0"
+                )
+                self.assertIn(
+                    "do not match. Remote has version 2.0.0", cm.output[0]
                 )
 
             args, _ = mock.call_args
@@ -122,13 +122,12 @@ class DataVersion(unittest.TestCase):
 
         # database with incorrect version (without user input)
         data_conf.ignore_db_versions = True
-        with self.assertWarnsRegex(
-            UserWarning,
-            r"Versions of .* do not match. Remote has version .* "
-            r"and local version is .*\.",
-        ):
+        with self.assertLogs(level=logging.DEBUG) as cm:
             data_conf.check_database_version(
                 Path(self.directory), "bigg", "2.0.0"
+            )
+            self.assertIn(
+                "do not match. Remote has version 2.0.0", cm.output[0]
             )
 
         database = data_conf.get_database_version(self.directory)

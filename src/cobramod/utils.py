@@ -10,7 +10,6 @@ import io
 from pathlib import Path
 from re import match
 from typing import Any, Generator, Iterable, Iterator, Optional, TextIO
-from warnings import warn
 
 import cobra.core as cobra_core
 from cobra import DictList, Reaction
@@ -92,7 +91,6 @@ def check_imbalance(
             )
         if show_imbalance:
             debug_log.warning(msg)
-            warn(message=msg, category=UserWarning)
 
 
 def get_key_dict(dictionary: dict, pattern: str) -> str:
@@ -268,7 +266,6 @@ def confirm_metabolite(
             "Skipping addition."
         )
         debug_log.warning(msg=msg)
-        warn(message=msg, category=UserWarning)
 
 
 def confirm_sink(model: cobra_core.Model, identifier: str):
@@ -308,7 +305,6 @@ def add_reactions_to_model(
                 "Skipping additions."
             )
             debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
             continue
 
         model.add_reactions([member])
@@ -351,7 +347,6 @@ def inform_new_sinks(model: cobra_core.Model, previous_sinks: set[str]):
                 "metabolite."
             )
             debug_log.warning(msg=msg)
-            warn(message=msg, category=UserWarning)
 
 
 def get_credentials(file: Path) -> tuple[str, str]:
@@ -372,5 +367,5 @@ def kegg_info_to_version(info: str) -> str:
         "Error determining the kegg version. "
         'Instead, "Undefined" is used as version.'
     )
-    warn(message=msg, category=UserWarning)
+    debug_log.warning(msg)
     return "Undefined"

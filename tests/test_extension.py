@@ -10,6 +10,7 @@ sequences and their corresponding flux test.
 - AddingPathways: Functions, that manage the addition of Pathways into the
 metabolic models.
 """
+import logging
 import unittest
 from pathlib import Path
 
@@ -88,7 +89,9 @@ class CreatingSequences(unittest.TestCase):
             genome=None,
         )
         # RXN-11414 is unbalanced
-        self.assertWarns(UserWarning, next, generator)
+        with self.assertLogs(level=logging.DEBUG) as cm:
+            next(generator)
+            self.assertIn("unbalanced", cm.output[-1])
 
         # CASE: Stopping when unbalanced
         generator = ex.yield_reaction_from_list(

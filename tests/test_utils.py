@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import logging
 import unittest
 from contextlib import suppress
 from pathlib import Path
@@ -37,13 +38,14 @@ class UtilsTesting(unittest.TestCase):
             raise TypeError("Not a valid COBRApy Reaction")
 
         # CASE: Showing imbalance
-        self.assertWarns(
-            UserWarning,
-            ui.check_imbalance,
-            reaction=test_reaction,
-            show_imbalance=True,
-            stop_imbalance=False,
-        )
+        with self.assertLogs(level=logging.DEBUG) as cm:
+            ui.check_imbalance(
+                reaction=test_reaction,
+                show_imbalance=True,
+                stop_imbalance=False,
+            )
+            self.assertIn("unbalanced", cm.output[-1])
+
         # CASE: Stopping at imbalance
         self.assertRaises(
             cmod_error.UnbalancedReaction,

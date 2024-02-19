@@ -8,12 +8,12 @@ COBRApy
 """
 from pathlib import Path
 from typing import Optional, Union
-from warnings import warn
 
 import pandas as pd
 from cobra.core.singleton import Singleton
 
 import cobramod.error as cmod_error
+from cobramod.debug import debug_log
 
 
 class DataVersionConfigurator(metaclass=Singleton):
@@ -96,10 +96,7 @@ class DataVersionConfigurator(metaclass=Singleton):
                     database, version, expected_version
                 )
             )
-            warn(
-                message=msg,
-                category=UserWarning,
-            )
+            debug_log.warning(msg)
 
             if self.ignore_db_versions:
                 return

@@ -109,15 +109,6 @@ class NoGeneInformation(Exception):
     pass
 
 
-class AbbreviationWarning(Warning):
-    """
-    Simple Warning that should be raised when given abbreviation does not
-    exists.
-    """
-
-    pass
-
-
 class SuperpathwayException(Exception):
     """
     Simple Warning that should be raised if a pathway is identified as a

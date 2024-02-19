@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Any, Optional, Union
-from warnings import warn
+import warnings
 
 import cobra.core as cobra_core
 
@@ -311,7 +311,7 @@ class Pathway(cobra_core.Group):
                 n_steps=self.color_n_steps,
             )
         else:
-            warn(
+            warnings.warn(
                 "Package Escher was not found. No visualization in available. "
                 "You can install this extra-dependency from cobramod with pip."
             )

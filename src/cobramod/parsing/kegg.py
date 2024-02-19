@@ -14,13 +14,12 @@ from contextlib import suppress
 from itertools import chain
 from pathlib import Path
 from typing import Any, Generator, Optional
-from warnings import warn
 
 import requests
 
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
-from cobramod.error import AbbreviationWarning, WrongParserError
+from cobramod.error import WrongParserError
 
 KO_LINK = "http://rest.kegg.jp/link/ko/"
 
@@ -216,14 +215,12 @@ def parse_ko_to_genes(
                 f'Reaction "{reaction}" does not have a "{genome}" '
                 + "abbreviation as a specie. No genes will be added."
             )
-            warn(message=msg, category=AbbreviationWarning)
             debug_log.warning(msg=msg)
             return []
     msg = (
         f'Nothing was specified in argument "genome". Reaction "{reaction}"'
         " will not include genes. Please modify if necessary."
     )
-    warn(message=msg, category=UserWarning)
     debug_log.warning(msg=msg)
     return []
 

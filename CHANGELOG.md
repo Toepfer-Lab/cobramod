@@ -4,7 +4,10 @@
 
 ### Planned
 
+- Parallelization of downloads
+- Visualization with other tools than Escher
 - Deprecation of SolCyc
+- Deprecation of PairDictionary
 
 ## [1.2.0-dev]
 

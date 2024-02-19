@@ -190,11 +190,11 @@ def format_matrix(matrix: List[list], max_length: int) -> List[list]:
         # Check if non-zero values can be appended above
         previous = {
             index_i
-            for index_i, item, in enumerate(matrix[index_j - 1])
+            for index_i, item in enumerate(matrix[index_j - 1])
             if item != 0
         }
         # check if all positions above are non-zero
-        positions = {index_i for index_i, item, in enumerate(row) if item != 0}
+        positions = {index_i for index_i, item in enumerate(row) if item != 0}
         # if position is in previous then there is no space
         if positions.issubset(previous):
             # new_matrix.append(row)

@@ -13,10 +13,10 @@ from __future__ import annotations
 
 import json
 import urllib.parse
+import warnings
 import xml.etree.ElementTree as et
 from pathlib import Path
 from typing import Any, Literal, Optional, Union
-from warnings import warn
 
 import cobra.core as cobra_core
 import requests
@@ -383,7 +383,6 @@ class Data:
                         "reaction if necessary."
                     )
                     debug_log.warning(msg=msg)
-                    warn(message=msg, category=UserWarning)
 
                 directory = self.path.parents[1]
 
@@ -511,7 +510,7 @@ def file_to_Data_class(
         # NOTE: Remove for v2.0.0
         elif extra_dir == "SOL":
             parent = f"{extra_dir}:{parent}"
-            warn(
+            warnings.warn(
                 "Database Solcyc is being deprecated for next version",
                 DeprecationWarning,
             )
@@ -670,7 +669,7 @@ def get_data(
                     )
                 # NOTE: Deprecation for 2.0.0
                 elif family == "SOL":
-                    warn(
+                    warnings.warn(
                         "Database Solcyc is being deprecated for next version",
                         DeprecationWarning,
                     )

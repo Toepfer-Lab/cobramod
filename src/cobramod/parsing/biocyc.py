@@ -14,7 +14,6 @@ import xml.etree.ElementTree as et
 from contextlib import suppress
 from pathlib import Path
 from typing import Any
-from warnings import warn
 
 import requests
 
@@ -310,7 +309,6 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
             "Skipping retrieval of gene information."
         )
         debug_log.warning(msg)
-        warn(message=msg, category=UserWarning)
 
         return
 

@@ -33,8 +33,8 @@ quality-checks them while adding them to the model. This includes testing for:
 -   available cross-references
 
 CobraMod offers user-friendly tracking of the curation process with summary
-output and log files and customized pathway and flux visualization with [Escher]
-(https://escher.github.io/).
+output and log files and customized pathway and flux visualization with
+[Escher](https://escher.github.io/).
 
 Installation
 ------------
