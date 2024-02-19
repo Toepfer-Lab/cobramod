@@ -23,6 +23,7 @@ visualizations.
 - visualize: Saves Escher visualization as a HTML and return the Escher
 Builder.
 """
+import fileinput
 import math
 from collections import UserDict, namedtuple
 from contextlib import suppress
@@ -30,7 +31,6 @@ from itertools import cycle
 from json import dumps
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Union
-from warnings import catch_warnings, simplefilter
 
 import numpy as np
 import webcolors
@@ -40,24 +40,12 @@ try:
 except ImportError:
     # NOTE: there might be a better way
     pass
-from IPython.core.getipython import get_ipython
-from numpy import ndarray
 
 from cobramod.visualization.debug import debug_log
 from cobramod.visualization.items import Node, Reaction
 from cobramod.visualization.mapping import get_mapping, transpose
 
 Position = namedtuple("Position", ["row", "column"])
-
-
-def _in_notebook() -> bool:
-    """
-    Returns true if code is being executed through the IPython kernel ZMQ.
-    """
-    try:
-        return get_ipython().__class__.__name__ == "ZMQInteractiveShell"
-    except NameError:
-        return False
 
 
 def _convert_string(string: str) -> dict:
@@ -99,7 +87,7 @@ def _convert_string(string: str) -> dict:
     return metabolites
 
 
-def _color2np_rgb(color: Union[str, List[int], None]) -> ndarray:
+def _color2np_rgb(color: Union[str, List[int], None]) -> np.ndarray:
     """
     This function translates the rgb or string representation into a numpy
     array. The string representation must follow the css standard.
@@ -853,7 +841,7 @@ class JsonDictionary(UserDict):
         if n_steps is not None:
             steps = math.floor(n_steps / 2)
 
-        flux_values: ndarray
+        flux_values: np.ndarray
 
         try:
             if quantile:
@@ -1053,13 +1041,17 @@ class JsonDictionary(UserDict):
             builder.reaction_data = self.flux_solution
         builder.save_html(filepath=filepath)
 
+        # FIXME: temporal solution to https://github.com/Toepfer-Lab/escher-legacy/pull/6
+        f = fileinput.FileInput(filepath, inplace=True)
+        for line in f:
+            if f.lineno() == 6:
+                print(line.replace("1.7.4", "1.7.3"), end="")
+            else:
+                print(line, end="")
+        f.close()
+
         debug_log.info(f'Visualization saved in "{filepath}"')
 
-        # If in Jupyter, launch embedded widget
-        if not _in_notebook():
-            # The context manager removes the ResourceWarning
-            with catch_warnings():
-                simplefilter(action="ignore", category=ResourceWarning)
         # Cleaning Up
         self._reset()
         return builder
