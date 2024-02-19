@@ -23,6 +23,7 @@
 - Pre-hooks uses now ruff instead of flake8 and black. This is reflected also
 in the dev-environment
 - Jupyter files for the documentation reflect current changes
+- Behaviour to open files if escher is not installed changed to not open browsers
 - Dropped support for python 3.8 and 3.9
 - Logging format is more human-friendly
 - Dropped support of mypy. Black is replaced with ruff

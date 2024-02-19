@@ -8,9 +8,9 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 """
 from __future__ import annotations
 
+import warnings
 from pathlib import Path
 from typing import Any, Optional, Union
-import warnings
 
 import cobra.core as cobra_core
 
@@ -301,7 +301,7 @@ class Pathway(cobra_core.Group):
         json_dict.reaction_strings = reactions
 
         if _has_escher:
-            return json_dict.visualize(
+            builder = json_dict.visualize(
                 filepath=filename,
                 vertical=self.vertical,
                 color=[self.color_positive, self.color_negative],
@@ -310,10 +310,13 @@ class Pathway(cobra_core.Group):
                 max_steps=self.color_max_steps,
                 n_steps=self.color_n_steps,
             )
+            debug_log.info(f'Visualization saved in "{filename}"')
+            return builder
         else:
             warnings.warn(
                 "Package Escher was not found. No visualization in available. "
-                "You can install this extra-dependency from cobramod with pip."
+                "You can install this extra-dependency running "
+                "'pip install cobramod[escher]'"
             )
             return
 

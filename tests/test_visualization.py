@@ -10,6 +10,7 @@ import unittest
 from contextlib import suppress
 from pathlib import Path
 from time import sleep
+from webbrowser import open as web_open
 
 import cobramod.visualization.mapping as mp
 from cobramod.error import FoundInPairError
@@ -640,7 +641,8 @@ class TestJsonDictionary(unittest.TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         self.assertEqual(first=test_builder.reaction_data, second=None)
         self.assertTrue(expr=test_path.exists())
         # CASE 2: visualization with Data
@@ -653,7 +655,8 @@ class TestJsonDictionary(unittest.TestCase):
         test_flux = {"R1": 2, "R2": -1}
         test_class.flux_solution = test_flux
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         self.assertEqual(first=test_builder.reaction_data["R1"], second=2)
         self.assertTrue(expr=test_path.exists())
         # CASE 3: Unrelated reactions without data
@@ -668,7 +671,8 @@ class TestJsonDictionary(unittest.TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 4: regular lineal visualization without data
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
@@ -680,7 +684,8 @@ class TestJsonDictionary(unittest.TestCase):
             "R3": "C00009_c + C00228_c--> C00004_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 5: Simple Branch
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
@@ -700,7 +705,8 @@ class TestJsonDictionary(unittest.TestCase):
             "R5": "2 C00228_c --> 4 C00021_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 3a: Complex Lineal
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
@@ -738,7 +744,8 @@ class TestJsonDictionary(unittest.TestCase):
             "R14": "C10001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 4: Module from KEGG
         test_path = Path.cwd().joinpath("test_map.html")
         test_class = JsonDictionary()
@@ -779,7 +786,8 @@ class TestJsonDictionary(unittest.TestCase):
             "R14": "C13001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         with suppress(FileNotFoundError):
             test_path.unlink()
         # with color
@@ -803,7 +811,8 @@ class TestJsonDictionary(unittest.TestCase):
         test_builder = test_class.visualize(
             filepath=test_path, color=["orange", "green"]
         )
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
 
     def test_visualize_vertical(self):
         test_path = Path.cwd().joinpath("test_map.html")
@@ -819,7 +828,8 @@ class TestJsonDictionary(unittest.TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_class.visualize(filepath=test_path, vertical=True)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
 
         # Color test
         with suppress(FileNotFoundError):
@@ -828,7 +838,8 @@ class TestJsonDictionary(unittest.TestCase):
         test_class.visualize(
             filepath=test_path, vertical=True, color=["orange", "green"]
         )
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 2: Complex Lineal
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):

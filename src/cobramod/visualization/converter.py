@@ -24,30 +24,27 @@ visualizations.
 Builder.
 """
 import math
-
-import webcolors
 from collections import UserDict, namedtuple
 from contextlib import suppress
 from itertools import cycle
 from json import dumps
-from typing import Dict, Optional, List, Union, Tuple
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple, Union
 from warnings import catch_warnings, simplefilter
-from webbrowser import open as web_open
 
 import numpy as np
+import webcolors
 
 try:
     import escher
 except ImportError:
+    # NOTE: there might be a better way
     pass
 from IPython.core.getipython import get_ipython
-
-# from cobramod.visualization.pair import PairDictionary
 from numpy import ndarray
 
-from cobramod.visualization.items import Reaction, Node
 from cobramod.visualization.debug import debug_log
+from cobramod.visualization.items import Node, Reaction
 from cobramod.visualization.mapping import get_mapping, transpose
 
 Position = namedtuple("Position", ["row", "column"])
@@ -1055,14 +1052,14 @@ class JsonDictionary(UserDict):
         if self.flux_solution:
             builder.reaction_data = self.flux_solution
         builder.save_html(filepath=filepath)
-        # builder.reaction_styles = ["color"]
-        debug_log.info(f'Visualization located in "{filepath}"')
-        # If in Jupyter, launch embedded widget. Otherwise, launch web-browser
+
+        debug_log.info(f'Visualization saved in "{filepath}"')
+
+        # If in Jupyter, launch embedded widget
         if not _in_notebook():
             # The context manager removes the ResourceWarning
             with catch_warnings():
                 simplefilter(action="ignore", category=ResourceWarning)
-                web_open("file://" + str(filepath))
         # Cleaning Up
         self._reset()
         return builder

@@ -11,6 +11,7 @@ from pathlib import Path
 from random import randint
 from tempfile import TemporaryDirectory
 from time import sleep
+from webbrowser import open as web_open
 
 import cobra.core as cobra_core
 import cobra.io as cobra_io
@@ -195,6 +196,7 @@ class TestGroup(unittest.TestCase):
         }
         test_builder = test_group.visualize()
 
+        web_open("pathway.html")
         sleep(1)
         test_group.vertical = True
         test_builder = test_group.visualize()
@@ -202,8 +204,8 @@ class TestGroup(unittest.TestCase):
             raise TypeError("Escher was not loaded")
 
         self.assertEqual(
-            first=len(loads(test_builder.map_json)[1]["reactions"]),
-            second=5,  # type: ignore
+            first=len(loads(test_builder.map_json)[1]["reactions"]),  # type: ignore
+            second=5,
         )
         # CASE: Members after initialization.
         test_model = cmod_test.textbook.copy()
@@ -215,16 +217,16 @@ class TestGroup(unittest.TestCase):
 
             test_group.add_members(new_members=[reaction])
         self.assertEqual(
-            first=len(loads(test_builder.map_json)[1]["reactions"]),
-            second=5,  # type: ignore
+            first=len(loads(test_builder.map_json)[1]["reactions"]),  # type: ignore
+            second=5,
         )
         # CASE: From copy of model.
         test_model.add_groups(group_list=[test_group])
         test_model_copy = test_model.copy()
         test_group = test_model_copy.groups.get_by_id("test_group")
         self.assertEqual(
-            first=len(loads(test_builder.map_json)[1]["reactions"]),
-            second=5,  # type: ignore
+            first=len(loads(test_builder.map_json)[1]["reactions"]),  # type: ignore
+            second=5,
         )
         # CASE: Regular Biocyc
         test_model = cmod_test.textbook_biocyc.copy()
@@ -249,10 +251,12 @@ class TestGroup(unittest.TestCase):
         test_pathway.color_negative = "red"
         test_pathway.color_positive = "green"
         test_pathway.visualize(solution_fluxes=test_solution)
+        web_open("pathway.html")
         sleep(1)
 
         test_pathway.vertical = True
         test_pathway.visualize(solution_fluxes=test_solution)
+        web_open("pathway.html")
         sleep(1)
 
         # CASE: Regular Biocyc
@@ -278,6 +282,7 @@ class TestGroup(unittest.TestCase):
         test_pathway.color_negative = "purple"
         test_pathway.color_positive = "blue"
         test_pathway.visualize(solution_fluxes=test_solution)
+        web_open("pathway.html")
         sleep(1)
         test_pathway.vertical = True
         test_pathway.visualize(solution_fluxes=test_solution)
@@ -307,6 +312,7 @@ class TestGroup(unittest.TestCase):
         if not isinstance(test_pathway, pt.Pathway):
             raise TypeError("Not a valid CobraMod Pathway")
         test_pathway.visualize()
+        web_open("pathway.html")
         sleep(1)
 
         # CASE: Regular Model
@@ -321,6 +327,7 @@ class TestGroup(unittest.TestCase):
             raise TypeError("Not a valid CobraMod Pathway")
 
         test_pathway.visualize()
+        web_open("pathway.html")
         sleep(1)
 
         # CASE: using add_pathway
@@ -357,6 +364,7 @@ class TestGroup(unittest.TestCase):
         self.assertDictEqual(d1=test_graph, d2=test_pathway.notes["ORDER"])
         self.assertDictEqual(d1=test_graph, d2=test_pathway.graph)
         test_pathway.visualize()
+        web_open("pathway.html")
         sleep(1)
 
         # CASE: Using a Group
@@ -375,7 +383,7 @@ class TestGroup(unittest.TestCase):
 
         test_pathway.vertical = True
         test_pathway.visualize()
-        sleep(1)
+        web_open("pathway.html")
 
     def test_modify_graph(self):
         test_model = cmod_test.textbook_kegg.copy()
@@ -411,6 +419,7 @@ class TestGroup(unittest.TestCase):
         self.assertEqual(test_group.graph, test_group.graph | subset)
         self.assertEqual(test_group.graph, test_group.notes["ORDER"] | subset)
         test_group.visualize()
+        web_open("pathway.html")
         sleep(1)
 
         # CASE: Keys do not exists
