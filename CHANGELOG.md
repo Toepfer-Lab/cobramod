@@ -11,7 +11,8 @@
 ### Added
 
 - Memote example files added to docs
-- curation logs are now separated by date
+- Curation and visualization logs are now separated by date in a 'logs' dir
+- Usage of credentials for Biocyc database
 
 ### Changed
 
@@ -29,4 +30,4 @@ in the dev-environment
 
 - Deprecated config files
 - Deprecated guide
-- Deprecation of SolCyc. Database is not responding
+- Deprecation of SolCyc. Database appears to be shutdown

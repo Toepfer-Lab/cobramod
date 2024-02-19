@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import unittest
 from contextlib import suppress
-from logging import DEBUG
 from pathlib import Path
 
 import cobra.core as cobra_core
@@ -10,10 +9,10 @@ import cobramod.error as cmod_error
 import cobramod.utils as ui
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.test import textbook_kegg
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")

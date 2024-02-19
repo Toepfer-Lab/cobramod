@@ -818,13 +818,14 @@ class TestJsonDictionary(unittest.TestCase):
         }
         with suppress(FileNotFoundError):
             test_path.unlink()
-        test_builder = test_class.visualize(filepath=test_path, vertical=True)
+        test_class.visualize(filepath=test_path, vertical=True)
         sleep(1)
+
         # Color test
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_class.flux_solution = {"R1": -4, "R2": -2, "R3": 0}
-        test_builder = test_class.visualize(
+        test_class.visualize(
             filepath=test_path, vertical=True, color=["orange", "green"]
         )
         sleep(1)
@@ -864,8 +865,7 @@ class TestJsonDictionary(unittest.TestCase):
             "R13": "C11001_c --> C13001_c",
             "R14": "C10001_c --> C14001_c",
         }
-        test_builder = test_class.visualize(filepath=test_path, vertical=True)
-        test_builder
+        test_class.visualize(filepath=test_path, vertical=True)
 
 
 class TestMapping(unittest.TestCase):

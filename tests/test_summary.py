@@ -5,19 +5,17 @@ This modules checks functions responsable for the creation of txt, csv and xlsx
 files.
 """
 import tempfile
-from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
 
 import numpy
 import pandas
 from cobra import Model
-
 from cobramod.core.summary import DataModel, summary
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.test import textbook
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 
 
 class TestSummary(TestCase):

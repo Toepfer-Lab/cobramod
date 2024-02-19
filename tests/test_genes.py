@@ -5,18 +5,17 @@ In this module, the creation of genes for multiple function and their behavior
 are checked
 """
 import unittest
-from logging import DEBUG
 from pathlib import Path
 
 import cobra.core as cobra_core
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
 from cobramod.core.creation import create_object
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.error import AbbreviationWarning
 from cobramod.parsing.db_version import DataVersionConfigurator
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 data_conf = DataVersionConfigurator()
 data_conf.force_same_version = True
 

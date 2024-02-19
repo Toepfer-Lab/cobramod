@@ -5,18 +5,17 @@ In this modules, the new algorithm is tested. The TestCase GraphTesting checks
 that the behavior of all important functions works as intended
 """
 import unittest
-from logging import DEBUG
 from pathlib import Path
 from typing import Any
 
 import cobramod.core.graph as gr
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.error import GraphKeyError
 
 # Debug must be set in level DEBUG for the test
-debug_log.setLevel(DEBUG)
+change_to_debug()
 # Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 # If data is missing, then do not test. Data should always be the same

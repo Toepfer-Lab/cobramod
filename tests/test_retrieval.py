@@ -7,7 +7,6 @@ import shutil
 import tempfile
 import unittest
 import warnings
-from logging import DEBUG
 from pathlib import Path
 from unittest.mock import patch
 
@@ -15,11 +14,11 @@ import cobramod.retrieval as cmod_retrieval
 import pandas as pd
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.parsing.db_version import DataVersionConfigurator
 from pandas._testing import assert_frame_equal, assert_series_equal
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 data_conf = DataVersionConfigurator()
 
 dir_data = Path(__file__).resolve().parent.joinpath("data")

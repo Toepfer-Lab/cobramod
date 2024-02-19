@@ -7,7 +7,6 @@ to use Escher for its visualizations.
 """
 import unittest
 from json import loads
-from logging import DEBUG
 from pathlib import Path
 from random import randint
 from tempfile import TemporaryDirectory
@@ -23,9 +22,9 @@ from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
 from cobramod.core import pathway as pt
 from cobramod.core.extension import add_pathway
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")

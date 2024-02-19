@@ -11,7 +11,6 @@ the different databases. The module is separated according to the databases:
 - TestSolcyc: For SolCyc
 """
 import unittest
-from logging import DEBUG
 from pathlib import Path
 
 import cobra.core as cobra_core
@@ -20,13 +19,13 @@ import cobramod.retrieval as cmod_retrieval
 import requests
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.parsing import bigg as bi
 from cobramod.parsing.db_version import DataVersionConfigurator
 
-debug_log.setLevel(DEBUG)
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 
+change_to_debug()
 data_conf = DataVersionConfigurator()
 
 # If data is missing, then do not test. Data should always be the same

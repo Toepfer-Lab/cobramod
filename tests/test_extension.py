@@ -11,7 +11,6 @@ sequences and their corresponding flux test.
 metabolic models.
 """
 import unittest
-from logging import DEBUG
 from pathlib import Path
 
 import cobra.core as cobra_core
@@ -23,13 +22,13 @@ from cobramod import __version__ as cmod_version
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions
 from cobramod.core.pathway import Pathway
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.parsing.db_version import DataVersionConfigurator
 from cobramod.test import textbook, textbook_biocyc, textbook_kegg
 
 NAME = "test_model"
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 data_conf = DataVersionConfigurator()
 data_conf.force_same_version = True
 
@@ -182,7 +181,8 @@ class AddingPathways(unittest.TestCase):
             ignore_list=["WATER_c", "OXYGEN_MOLECULE_c"],
         )
         self.assertGreater(
-            abs(test_model.slim_optimize(error_value=0)), 0  # type: ignore
+            abs(test_model.slim_optimize(error_value=0)),
+            0,  # type: ignore
         )
         self.assertEqual(len(test_group.members), 3)
 

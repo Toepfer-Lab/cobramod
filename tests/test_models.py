@@ -8,7 +8,6 @@ examples should simulate real cases. There are two test:
 - LargeModel: Uses a real GEM
 """
 import unittest
-from logging import DEBUG
 from pathlib import Path
 
 import cobra.core as cobra_core
@@ -18,11 +17,11 @@ from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
 from cobramod.core import extension as ex
 from cobramod.core.creation import add_reactions
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.parsing.db_version import DataVersionConfigurator
 from cobramod.test import textbook_biocyc
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 
 data_conf = DataVersionConfigurator()
