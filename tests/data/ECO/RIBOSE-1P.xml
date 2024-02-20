@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:RIBOSE-1P'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:RIBOSE-1P</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P' detail='full'><parent><Compound resource='getxml?ECOLI:PENTOSE-1-PHOSPHATES' orgid='ECOLI' frameid='PENTOSE-1-PHOSPHATES' class='true'/></parent>
+<cml><molecule id='RIBOSE-1P' title='alpha-D-ribose-1-phosphate' formalCharge='-2'><atomArray><atom id='RIBOSE-1P-atom1' elementType='C' x2='714.0' y2='825.0'/><atom id='RIBOSE-1P-atom2' elementType='C' x2='1429.0' y2='1237.0'/><atom id='RIBOSE-1P-atom3' elementType='C' x2='1684.0' y2='2022.0'/><atom id='RIBOSE-1P-atom4' elementType='C' x2='2508.0' y2='2022.0'/><atom id='RIBOSE-1P-atom5' elementType='C' x2='2763.0' y2='1237.0'/><atom id='RIBOSE-1P-atom6' elementType='O' x2='0.0' y2='1237.0'/><atom id='RIBOSE-1P-atom7' elementType='O' x2='1101.0' y2='2605.0'/><atom id='RIBOSE-1P-atom8' elementType='O' x2='3091.0' y2='2605.0'/><atom id='RIBOSE-1P-atom9' elementType='O' x2='5127.0' y2='825.0' formalCharge='-1'/><atom id='RIBOSE-1P-atom10' elementType='O' x2='4302.0' y2='1650.0'/><atom id='RIBOSE-1P-atom11' elementType='O' x2='4302.0' y2='0.0' formalCharge='-1'/><atom id='RIBOSE-1P-atom12' elementType='O' x2='2096.0' y2='752.0'/><atom id='RIBOSE-1P-atom13' elementType='O' x2='3477.0' y2='825.0'/><atom id='RIBOSE-1P-atom14' elementType='P' x2='4302.0' y2='825.0'/></atomArray>
+<bondArray><bond id='RIBOSE-1P-bond1' atomRefs='RIBOSE-1P-atom3 RIBOSE-1P-atom2' order='1'/><bond id='RIBOSE-1P-bond2' atomRefs='RIBOSE-1P-atom12 RIBOSE-1P-atom2' order='1'/><bond id='RIBOSE-1P-bond3' atomRefs='RIBOSE-1P-atom12 RIBOSE-1P-atom5' order='1'/><bond id='RIBOSE-1P-bond4' atomRefs='RIBOSE-1P-atom4 RIBOSE-1P-atom5' order='1'/><bond id='RIBOSE-1P-bond5' atomRefs='RIBOSE-1P-atom4 RIBOSE-1P-atom3' order='1'/><bond id='RIBOSE-1P-bond6' atomRefs='RIBOSE-1P-atom2 RIBOSE-1P-atom1' order='1'/><bond id='RIBOSE-1P-bond7' atomRefs='RIBOSE-1P-atom1 RIBOSE-1P-atom6' order='1'/><bond id='RIBOSE-1P-bond8' atomRefs='RIBOSE-1P-atom5 RIBOSE-1P-atom13' order='1'/><bond id='RIBOSE-1P-bond9' atomRefs='RIBOSE-1P-atom13 RIBOSE-1P-atom14' order='1'/><bond id='RIBOSE-1P-bond10' atomRefs='RIBOSE-1P-atom14 RIBOSE-1P-atom9' order='1'/><bond id='RIBOSE-1P-bond11' atomRefs='RIBOSE-1P-atom14 RIBOSE-1P-atom10' order='2'/><bond id='RIBOSE-1P-bond12' atomRefs='RIBOSE-1P-atom14 RIBOSE-1P-atom11' order='1'/><bond id='RIBOSE-1P-bond13' atomRefs='RIBOSE-1P-atom4 RIBOSE-1P-atom8' order='1'/><bond id='RIBOSE-1P-bond14' atomRefs='RIBOSE-1P-atom3 RIBOSE-1P-atom7' order='1'/></bondArray>
+<formula concise='C 5 H 9 O 8 P 1'/><float title='molecularWeight' units='g/mol'>228.095</float>
+<string title='smiles'>C(O)[C@H]1(O[C@H](OP([O-])(=O)[O-])[C@H](O)[C@H](O)1)</string>
+</molecule>
+</cml>
+<regulates><Regulation ID='ECOLI:REG0-8540' orgid='ECOLI' frameid='REG0-8540' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:URPHOS-ENZRXN' orgid='ECOLI' frameid='URPHOS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:URPHOS-CPLX' orgid='ECOLI' frameid='URPHOS-CPLX'/></enzyme>
+<synonym datatype='string'>pyrimidine phosphorylase</synonym>
+<synonym datatype='string'>uridine:orthophosphate &amp;alpha;-D-ribosyltransferase</synonym>
+<synonym datatype='string'>UPase</synonym>
+<common-name datatype='string'>uridine phosphorylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7766' orgid='ECOLI' frameid='REG0-7766' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:RIBOSE-1P' orgid='ECOLI' frameid='RIBOSE-1P'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:THYM-PHOSPH-ENZRXN' orgid='ECOLI' frameid='THYM-PHOSPH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:DEOA-CPLX' orgid='ECOLI' frameid='DEOA-CPLX'/></enzyme>
+<synonym datatype='string'>pyrimidine phosphorylase</synonym>
+<synonym datatype='string'>thymidine:orthophosphate deoxy-D-ribosyltransferase</synonym>
+<common-name datatype='string'>thymidine phosphorylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:THYM-PHOSPH-RXN' orgid='ECOLI' frameid='THYM-PHOSPH-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<molecular-weight datatype='float' units='Daltons'>228.095</molecular-weight>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000004228268</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000004228268</dblink-URL>
+</dblink>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>112016</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=112016</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00475</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00475</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM295</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM295</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Ribose-1-phosphate</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Ribose-1-phosphate</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>r1p</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/r1p</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC57720</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC57720</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01489</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01489</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>19951495</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/19951495</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>57720</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57720</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>23615443</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=23615443</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00620</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00620</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>58459-37-3</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58459-37-3</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>14075-00-4</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=14075-00-4</dblink-URL>
+</dblink>
+<synonym datatype='string'>D-ribose-1-phosphate</synonym>
+<synonym datatype='string'>&amp;alpha;-D-ribose-1P</synonym>
+<synonym datatype='string'>&amp;alpha;-D-ribofuranose 1-phosphate</synonym>
+<synonym datatype='string'>ribose-1-phosphate</synonym>
+<inchi-key datatype='string'>InChIKey=YXJDFQJKERBOBM-TXICZTDVSA-L</inchi-key>
+<monoisotopic-mw datatype='float' units='Daltons'>230.01915</monoisotopic-mw>
+<inchi datatype='string'>InChI=1S/C5H11O8P/c6-1-2-3(7)4(8)5(12-2)13-14(9,10)11/h2-8H,1H2,(H2,9,10,11)/p-2/t2-,3-,4-,5-/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:PNP-RXN' orgid='ECOLI' frameid='PNP-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5199' orgid='ECOLI' frameid='RXN0-5199'/><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:ADENPHOSPHOR-RXN' orgid='ECOLI' frameid='ADENPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-RXN' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>&amp;alpha;-D-ribose-1-phosphate</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7092' orgid='ECOLI' frameid='RXN0-7092'/><Reaction resource='getxml?ECOLI:PPENTOMUT-RXN' orgid='ECOLI' frameid='PPENTOMUT-RXN'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-294.24817</gibbs-0>
+</Compound>
+</ptools-xml>

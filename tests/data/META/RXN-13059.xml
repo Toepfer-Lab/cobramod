@@ -1,59 +1,63 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:RXN-13059"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:RXN-13059'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:RXN-13059</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:RXN-13059" detail="full" frameid="RXN-13059" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
-<citation><Publication ID="META:PUB-FRIESEN90" detail="full" frameid="PUB-FRIESEN90" orgid="META"><author datatype="string">Friesen, Brent</author>
-<author datatype="string">Leete, Edward</author>
-<source datatype="string">Tetrahedron Letters, 31(44):6295-6298</source>
-<title datatype="string">Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
-<year datatype="integer">1990</year>
+<Reaction ID='META:RXN-13059' orgid='META' frameid='RXN-13059' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:CPD-14075' orgid='META' frameid='CPD-14075'/></left>
+<left><Compound resource='getxml?META:CPD-7994' orgid='META' frameid='CPD-7994'/></left>
+<common-name datatype='string'>3,6-dihydroxynicotinate synthase</common-name>
+<right><Compound resource='getxml?META:CPD-14076' orgid='META' frameid='CPD-14076'/></right>
+<right><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></right>
+<citation><Publication ID='META:PUB-FRIESEN90' orgid='META' frameid='PUB-FRIESEN90' detail='full'><year datatype='integer'>1990</year>
+<author datatype='string'>Friesen, Brent</author>
+<author datatype='string'>Leete, Edward</author>
+<title datatype='string'>Nicotine synthase - an enzyme from Nicotiana species which catalyzes the formation of (S)-nicotine from nicotinic acid and 1-methyl-delta1-pyrrolinium chloride</title>
+<source datatype='string'>Tetrahedron Letters, 31(44):6295-6298</source>
 </Publication>
 </citation>
-<common-name datatype="string">3,6-dihydroxynicotinate synthase</common-name>
-<credits><created><date datatype="date">2012-02-07</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
-</credits>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR117886</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/equa_info/MNXR117886</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-34.700012<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-34.700012<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY-5316" orgid="META" resource="getxml?META:PWY-5316" /><Pathway frameid="PWY-7342" orgid="META" resource="getxml?META:PWY-7342" /></in-pathway>
-<left><Compound frameid="CPD-14075" orgid="META" resource="getxml?META:CPD-14075" /></left>
-<left><Compound frameid="CPD-7994" orgid="META" resource="getxml?META:CPD-7994" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CPD-14076" orgid="META" resource="getxml?META:CPD-14076" /></right>
-<right><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></right>
+<in-pathway><Pathway resource='getxml?META:PWY-5316' orgid='META' frameid='PWY-5316'/><Pathway resource='getxml?META:PWY-7342' orgid='META' frameid='PWY-7342'/></in-pathway>
+<credits><created><date datatype='date'>2012-02-07</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
+</credits>
+<orphan>YES-PUTATIVE</orphan>
 </Reaction>
 </ptools-xml>

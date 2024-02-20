@@ -1,57 +1,435 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:GLUTATHIONE"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:GLUTATHIONE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:GLUTATHIONE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:GLUTATHIONE" detail="full" frameid="GLUTATHIONE" orgid="META"><parent><Compound class="true" frameid="All-Glutathiones" orgid="META" resource="getxml?META:All-Glutathiones" /></parent>
-<parent><Compound class="true" frameid="Thiols" orgid="META" resource="getxml?META:Thiols" /></parent>
-<cml><molecule formalCharge="-1" id="GLUTATHIONE" title="glutathione"><atomArray><atom elementType="C" id="GLUTATHIONE-atom1" x2="16915.0" y2="10798.0" /><atom elementType="C" id="GLUTATHIONE-atom2" x2="24060.0" y2="6672.0" /><atom elementType="C" id="GLUTATHIONE-atom3" x2="59783.0" y2="-5703.0" /><atom elementType="C" id="GLUTATHIONE-atom4" x2="38350.0" y2="6673.0" /><atom elementType="C" id="GLUTATHIONE-atom5" x2="16915.0" y2="19046.0" /><atom elementType="C" id="GLUTATHIONE-atom6" x2="38350.0" y2="-1577.0" /><atom elementType="C" id="GLUTATHIONE-atom7" x2="24060.0" y2="-1577.0" /><atom elementType="C" id="GLUTATHIONE-atom8" x2="66928.0" y2="-1578.0" /><atom elementType="C" id="GLUTATHIONE-atom9" x2="45495.0" y2="-5703.0" /><atom elementType="C" id="GLUTATHIONE-atom10" x2="24060.0" y2="23171.0" /><atom elementType="N" formalCharge="1" id="GLUTATHIONE-atom11" x2="9772.0" y2="23172.0" /><atom elementType="N" id="GLUTATHIONE-atom12" x2="52638.0" y2="-1578.0" /><atom elementType="N" id="GLUTATHIONE-atom13" x2="31205.0" y2="-5702.0" /><atom elementType="O" id="GLUTATHIONE-atom14" x2="16915.0" y2="-5702.0" /><atom elementType="O" id="GLUTATHIONE-atom15" x2="66928.0" y2="6672.0" /><atom elementType="O" formalCharge="-1" id="GLUTATHIONE-atom16" x2="74073.0" y2="-5703.0" /><atom elementType="O" id="GLUTATHIONE-atom17" x2="45494.0" y2="-13953.0" /><atom elementType="O" id="GLUTATHIONE-atom18" x2="24059.0" y2="31421.0" /><atom elementType="O" formalCharge="-1" id="GLUTATHIONE-atom19" x2="31205.0" y2="19046.0" /><atom elementType="S" id="GLUTATHIONE-atom20" x2="45495.0" y2="10799.0" /></atomArray>
-<bondArray><bond atomRefs="GLUTATHIONE-atom13 GLUTATHIONE-atom7" id="GLUTATHIONE-bond1" order="1" /><bond atomRefs="GLUTATHIONE-atom7 GLUTATHIONE-atom2" id="GLUTATHIONE-bond2" order="1" /><bond atomRefs="GLUTATHIONE-atom2 GLUTATHIONE-atom1" id="GLUTATHIONE-bond3" order="1" /><bond atomRefs="GLUTATHIONE-atom1 GLUTATHIONE-atom5" id="GLUTATHIONE-bond4" order="1" /><bond atomRefs="GLUTATHIONE-atom5 GLUTATHIONE-atom10" id="GLUTATHIONE-bond5" order="1" /><bond atomRefs="GLUTATHIONE-atom10 GLUTATHIONE-atom18" id="GLUTATHIONE-bond6" order="2" /><bond atomRefs="GLUTATHIONE-atom10 GLUTATHIONE-atom19" id="GLUTATHIONE-bond7" order="1" /><bond atomRefs="GLUTATHIONE-atom5 GLUTATHIONE-atom11" id="GLUTATHIONE-bond8" order="1" /><bond atomRefs="GLUTATHIONE-atom7 GLUTATHIONE-atom14" id="GLUTATHIONE-bond9" order="2" /><bond atomRefs="GLUTATHIONE-atom6 GLUTATHIONE-atom13" id="GLUTATHIONE-bond10" order="1" /><bond atomRefs="GLUTATHIONE-atom6 GLUTATHIONE-atom9" id="GLUTATHIONE-bond11" order="1" /><bond atomRefs="GLUTATHIONE-atom6 GLUTATHIONE-atom4" id="GLUTATHIONE-bond12" order="1" /><bond atomRefs="GLUTATHIONE-atom9 GLUTATHIONE-atom17" id="GLUTATHIONE-bond13" order="2" /><bond atomRefs="GLUTATHIONE-atom9 GLUTATHIONE-atom12" id="GLUTATHIONE-bond14" order="1" /><bond atomRefs="GLUTATHIONE-atom4 GLUTATHIONE-atom20" id="GLUTATHIONE-bond15" order="1" /><bond atomRefs="GLUTATHIONE-atom12 GLUTATHIONE-atom3" id="GLUTATHIONE-bond16" order="1" /><bond atomRefs="GLUTATHIONE-atom3 GLUTATHIONE-atom8" id="GLUTATHIONE-bond17" order="1" /><bond atomRefs="GLUTATHIONE-atom8 GLUTATHIONE-atom15" id="GLUTATHIONE-bond18" order="2" /><bond atomRefs="GLUTATHIONE-atom8 GLUTATHIONE-atom16" id="GLUTATHIONE-bond19" order="1" /></bondArray>
-<formula concise="C 10 H 16 N 3 O 6 S 1" /><float title="molecularWeight" units="g/mol">306.313</float>
-<string title="smiles">C(S)[C@@H](C(NCC([O-])=O)=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
+<Compound ID='META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE' detail='full'><parent><Compound resource='getxml?META:All-Glutathiones' orgid='META' frameid='All-Glutathiones' class='true'/></parent>
+<parent><Compound resource='getxml?META:Cofactors' orgid='META' frameid='Cofactors' class='true'/></parent>
+<parent><Compound resource='getxml?META:TRIPEPTIDES' orgid='META' frameid='TRIPEPTIDES' class='true'/></parent>
+<parent><Compound resource='getxml?META:Thiols' orgid='META' frameid='Thiols' class='true'/></parent>
+<cml><molecule id='GLUTATHIONE' title='glutathione' formalCharge='-1'><atomArray><atom id='GLUTATHIONE-atom1' elementType='C' x2='16915.0' y2='10798.0'/><atom id='GLUTATHIONE-atom2' elementType='C' x2='24060.0' y2='6672.0'/><atom id='GLUTATHIONE-atom3' elementType='C' x2='59783.0' y2='-5703.0'/><atom id='GLUTATHIONE-atom4' elementType='C' x2='38350.0' y2='6673.0'/><atom id='GLUTATHIONE-atom5' elementType='C' x2='16915.0' y2='19046.0'/><atom id='GLUTATHIONE-atom6' elementType='C' x2='38350.0' y2='-1577.0'/><atom id='GLUTATHIONE-atom7' elementType='C' x2='24060.0' y2='-1577.0'/><atom id='GLUTATHIONE-atom8' elementType='C' x2='66928.0' y2='-1578.0'/><atom id='GLUTATHIONE-atom9' elementType='C' x2='45495.0' y2='-5703.0'/><atom id='GLUTATHIONE-atom10' elementType='C' x2='24060.0' y2='23171.0'/><atom id='GLUTATHIONE-atom11' elementType='N' x2='9772.0' y2='23172.0' formalCharge='1'/><atom id='GLUTATHIONE-atom12' elementType='N' x2='52638.0' y2='-1578.0'/><atom id='GLUTATHIONE-atom13' elementType='N' x2='31205.0' y2='-5702.0'/><atom id='GLUTATHIONE-atom14' elementType='O' x2='16915.0' y2='-5702.0'/><atom id='GLUTATHIONE-atom15' elementType='O' x2='66928.0' y2='6672.0'/><atom id='GLUTATHIONE-atom16' elementType='O' x2='74073.0' y2='-5703.0' formalCharge='-1'/><atom id='GLUTATHIONE-atom17' elementType='O' x2='45494.0' y2='-13953.0'/><atom id='GLUTATHIONE-atom18' elementType='O' x2='24059.0' y2='31421.0'/><atom id='GLUTATHIONE-atom19' elementType='O' x2='31205.0' y2='19046.0' formalCharge='-1'/><atom id='GLUTATHIONE-atom20' elementType='S' x2='45495.0' y2='10799.0'/></atomArray>
+<bondArray><bond id='GLUTATHIONE-bond1' atomRefs='GLUTATHIONE-atom13 GLUTATHIONE-atom7' order='1'/><bond id='GLUTATHIONE-bond2' atomRefs='GLUTATHIONE-atom7 GLUTATHIONE-atom2' order='1'/><bond id='GLUTATHIONE-bond3' atomRefs='GLUTATHIONE-atom2 GLUTATHIONE-atom1' order='1'/><bond id='GLUTATHIONE-bond4' atomRefs='GLUTATHIONE-atom1 GLUTATHIONE-atom5' order='1'/><bond id='GLUTATHIONE-bond5' atomRefs='GLUTATHIONE-atom5 GLUTATHIONE-atom10' order='1'/><bond id='GLUTATHIONE-bond6' atomRefs='GLUTATHIONE-atom10 GLUTATHIONE-atom18' order='2'/><bond id='GLUTATHIONE-bond7' atomRefs='GLUTATHIONE-atom10 GLUTATHIONE-atom19' order='1'/><bond id='GLUTATHIONE-bond8' atomRefs='GLUTATHIONE-atom5 GLUTATHIONE-atom11' order='1'/><bond id='GLUTATHIONE-bond9' atomRefs='GLUTATHIONE-atom7 GLUTATHIONE-atom14' order='2'/><bond id='GLUTATHIONE-bond10' atomRefs='GLUTATHIONE-atom6 GLUTATHIONE-atom13' order='1'/><bond id='GLUTATHIONE-bond11' atomRefs='GLUTATHIONE-atom6 GLUTATHIONE-atom9' order='1'/><bond id='GLUTATHIONE-bond12' atomRefs='GLUTATHIONE-atom6 GLUTATHIONE-atom4' order='1'/><bond id='GLUTATHIONE-bond13' atomRefs='GLUTATHIONE-atom9 GLUTATHIONE-atom17' order='2'/><bond id='GLUTATHIONE-bond14' atomRefs='GLUTATHIONE-atom9 GLUTATHIONE-atom12' order='1'/><bond id='GLUTATHIONE-bond15' atomRefs='GLUTATHIONE-atom4 GLUTATHIONE-atom20' order='1'/><bond id='GLUTATHIONE-bond16' atomRefs='GLUTATHIONE-atom12 GLUTATHIONE-atom3' order='1'/><bond id='GLUTATHIONE-bond17' atomRefs='GLUTATHIONE-atom3 GLUTATHIONE-atom8' order='1'/><bond id='GLUTATHIONE-bond18' atomRefs='GLUTATHIONE-atom8 GLUTATHIONE-atom15' order='2'/><bond id='GLUTATHIONE-bond19' atomRefs='GLUTATHIONE-atom8 GLUTATHIONE-atom16' order='1'/></bondArray>
+<formula concise='C 10 H 16 N 3 O 6 S 1'/><float title='molecularWeight' units='g/mol'>306.313</float>
+<string title='smiles'>C(S)[C@@H](C(NCC([O-])=O)=O)NC(=O)CC[C@H]([NH3+])C([O-])=O</string>
 </molecule>
 </cml>
-<cofactors-of><Enzymatic-Reaction ID="META:ENZRXN-16399" detail="low" frameid="ENZRXN-16399" orgid="META"><common-name datatype="string">maleylpyruvate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-14770" orgid="META" resource="getxml?META:MONOMER-14770" /></enzyme>
-<reaction><Reaction frameid="MALEYLPYRUVATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEYLPYRUVATE-ISOMERASE-RXN" /></reaction>
+<appears-in-left-side-of><Reaction resource='getxml?META:GSPSYN-RXN' orgid='META' frameid='GSPSYN-RXN'/><Reaction resource='getxml?META:RXN-23506' orgid='META' frameid='RXN-23506'/><Reaction resource='getxml?META:RXN-23503' orgid='META' frameid='RXN-23503'/><Reaction resource='getxml?META:RXN-23504' orgid='META' frameid='RXN-23504'/><Reaction resource='getxml?META:RXN-23395' orgid='META' frameid='RXN-23395'/><Reaction resource='getxml?META:RXN-23477' orgid='META' frameid='RXN-23477'/><Reaction resource='getxml?META:RXN-23476' orgid='META' frameid='RXN-23476'/><Reaction resource='getxml?META:RXN-23474' orgid='META' frameid='RXN-23474'/><Reaction resource='getxml?META:RXN-23471' orgid='META' frameid='RXN-23471'/><Reaction resource='getxml?META:RXN-23469' orgid='META' frameid='RXN-23469'/><Reaction resource='getxml?META:RXN-23463' orgid='META' frameid='RXN-23463'/><Reaction resource='getxml?META:RXN-23460' orgid='META' frameid='RXN-23460'/><Reaction resource='getxml?META:RXN-23443' orgid='META' frameid='RXN-23443'/><Reaction resource='getxml?META:RXN-23433' orgid='META' frameid='RXN-23433'/><Reaction resource='getxml?META:RXN-23030' orgid='META' frameid='RXN-23030'/><Reaction resource='getxml?META:RXN-23028' orgid='META' frameid='RXN-23028'/><Reaction resource='getxml?META:RXN-23021' orgid='META' frameid='RXN-23021'/><Reaction resource='getxml?META:RXN-16206' orgid='META' frameid='RXN-16206'/><Reaction resource='getxml?META:RXN66-490' orgid='META' frameid='RXN66-490'/><Reaction resource='getxml?META:RXN-20570' orgid='META' frameid='RXN-20570'/><Reaction resource='getxml?META:RXN-20569' orgid='META' frameid='RXN-20569'/><Reaction resource='getxml?META:RXN-22643' orgid='META' frameid='RXN-22643'/><Reaction resource='getxml?META:RXN-18092' orgid='META' frameid='RXN-18092'/><Reaction resource='getxml?META:RXN-22552' orgid='META' frameid='RXN-22552'/><Reaction resource='getxml?META:RXN-19370' orgid='META' frameid='RXN-19370'/><Reaction resource='getxml?META:RXN-22467' orgid='META' frameid='RXN-22467'/><Reaction resource='getxml?META:RXN-22466' orgid='META' frameid='RXN-22466'/><Reaction resource='getxml?META:RXN-22465' orgid='META' frameid='RXN-22465'/><Reaction resource='getxml?META:2.3.2.15-RXN' orgid='META' frameid='2.3.2.15-RXN'/><Reaction resource='getxml?META:RXN-21019' orgid='META' frameid='RXN-21019'/><Reaction resource='getxml?META:RXN-982' orgid='META' frameid='RXN-982'/><Reaction resource='getxml?META:RXN-22362' orgid='META' frameid='RXN-22362'/><Reaction resource='getxml?META:RXN-22359' orgid='META' frameid='RXN-22359'/><Reaction resource='getxml?META:RXN-22324' orgid='META' frameid='RXN-22324'/><Reaction resource='getxml?META:RXN-22323' orgid='META' frameid='RXN-22323'/><Reaction resource='getxml?META:RXN-21584' orgid='META' frameid='RXN-21584'/><Reaction resource='getxml?META:1.8.5.1-RXN' orgid='META' frameid='1.8.5.1-RXN'/><Reaction resource='getxml?META:RXN-21334' orgid='META' frameid='RXN-21334'/><Reaction resource='getxml?META:RXN-21333' orgid='META' frameid='RXN-21333'/><Reaction resource='getxml?META:RXN-21025' orgid='META' frameid='RXN-21025'/><Reaction resource='getxml?META:1.20.4.2-RXN' orgid='META' frameid='1.20.4.2-RXN'/><Reaction resource='getxml?META:RXN-20697' orgid='META' frameid='RXN-20697'/><Reaction resource='getxml?META:RXN-20693' orgid='META' frameid='RXN-20693'/><Reaction resource='getxml?META:RXN-20696' orgid='META' frameid='RXN-20696'/><Reaction resource='getxml?META:PRODISULFREDUCT-RXN' orgid='META' frameid='PRODISULFREDUCT-RXN'/><Reaction resource='getxml?META:RXN-19922' orgid='META' frameid='RXN-19922'/><Reaction resource='getxml?META:RXN-11663' orgid='META' frameid='RXN-11663'/><Reaction resource='getxml?META:RXN0-11' orgid='META' frameid='RXN0-11'/><Reaction resource='getxml?META:RXN-8174' orgid='META' frameid='RXN-8174'/><Reaction resource='getxml?META:SULFUR-DIOXYGENASE-RXN' orgid='META' frameid='SULFUR-DIOXYGENASE-RXN'/><Reaction resource='getxml?META:RXN-19629' orgid='META' frameid='RXN-19629'/><Reaction resource='getxml?META:RXN-19626' orgid='META' frameid='RXN-19626'/><Reaction resource='getxml?META:RXN-9157' orgid='META' frameid='RXN-9157'/><Reaction resource='getxml?META:RXN-13673' orgid='META' frameid='RXN-13673'/><Reaction resource='getxml?META:RXN-18407' orgid='META' frameid='RXN-18407'/><Reaction resource='getxml?META:RXN-18405' orgid='META' frameid='RXN-18405'/><Reaction resource='getxml?META:RXN-19611' orgid='META' frameid='RXN-19611'/><Reaction resource='getxml?META:RXN-19610' orgid='META' frameid='RXN-19610'/><Reaction resource='getxml?META:RXN-19601' orgid='META' frameid='RXN-19601'/><Reaction resource='getxml?META:RXN-19600' orgid='META' frameid='RXN-19600'/><Reaction resource='getxml?META:RXN-19585' orgid='META' frameid='RXN-19585'/><Reaction resource='getxml?META:RXN-6601' orgid='META' frameid='RXN-6601'/><Reaction resource='getxml?META:RXNQT-4363' orgid='META' frameid='RXNQT-4363'/><Reaction resource='getxml?META:RXN-19573' orgid='META' frameid='RXN-19573'/><Reaction resource='getxml?META:RXN0-7010' orgid='META' frameid='RXN0-7010'/><Reaction resource='getxml?META:RXN-18695' orgid='META' frameid='RXN-18695'/><Reaction resource='getxml?META:RXN-12618' orgid='META' frameid='RXN-12618'/><Reaction resource='getxml?META:RXN-19036' orgid='META' frameid='RXN-19036'/><Reaction resource='getxml?META:RXN-19033' orgid='META' frameid='RXN-19033'/><Reaction resource='getxml?META:THIOSULFATE--THIOL-SULFURTRANSFERASE-RXN' orgid='META' frameid='THIOSULFATE--THIOL-SULFURTRANSFERASE-RXN'/><Reaction resource='getxml?META:RXN-15348' orgid='META' frameid='RXN-15348'/><Reaction resource='getxml?META:RXN-19024' orgid='META' frameid='RXN-19024'/><Reaction resource='getxml?META:RXN0-21' orgid='META' frameid='RXN0-21'/><Reaction resource='getxml?META:RXN-18758' orgid='META' frameid='RXN-18758'/><Reaction resource='getxml?META:RXN-18757' orgid='META' frameid='RXN-18757'/><Reaction resource='getxml?META:RXN-17886' orgid='META' frameid='RXN-17886'/><Reaction resource='getxml?META:RXN-18158' orgid='META' frameid='RXN-18158'/><Reaction resource='getxml?META:RXN-18406' orgid='META' frameid='RXN-18406'/><Reaction resource='getxml?META:RXN-18403' orgid='META' frameid='RXN-18403'/><Reaction resource='getxml?META:RXN-18402' orgid='META' frameid='RXN-18402'/><Reaction resource='getxml?META:RXN-12865' orgid='META' frameid='RXN-12865'/><Reaction resource='getxml?META:RXN-12867' orgid='META' frameid='RXN-12867'/><Reaction resource='getxml?META:RXNQT-4361' orgid='META' frameid='RXNQT-4361'/><Reaction resource='getxml?META:RXN-18171' orgid='META' frameid='RXN-18171'/><Reaction resource='getxml?META:RXN-18170' orgid='META' frameid='RXN-18170'/><Reaction resource='getxml?META:RXN-18165' orgid='META' frameid='RXN-18165'/><Reaction resource='getxml?META:RXN-11423' orgid='META' frameid='RXN-11423'/><Reaction resource='getxml?META:RXN-18164' orgid='META' frameid='RXN-18164'/><Reaction resource='getxml?META:RXN-11424' orgid='META' frameid='RXN-11424'/><Reaction resource='getxml?META:RXN-18163' orgid='META' frameid='RXN-18163'/><Reaction resource='getxml?META:RXN-11426' orgid='META' frameid='RXN-11426'/><Reaction resource='getxml?META:RXN-11427' orgid='META' frameid='RXN-11427'/><Reaction resource='getxml?META:RXN-18162' orgid='META' frameid='RXN-18162'/><Reaction resource='getxml?META:RXN-11422' orgid='META' frameid='RXN-11422'/><Reaction resource='getxml?META:RXN-18161' orgid='META' frameid='RXN-18161'/><Reaction resource='getxml?META:RXN-11420' orgid='META' frameid='RXN-11420'/><Reaction resource='getxml?META:RXN-11421' orgid='META' frameid='RXN-11421'/><Reaction resource='getxml?META:RXN-11425' orgid='META' frameid='RXN-11425'/><Reaction resource='getxml?META:RXN-18160' orgid='META' frameid='RXN-18160'/><Reaction resource='getxml?META:RXN-18159' orgid='META' frameid='RXN-18159'/><Reaction resource='getxml?META:RXN-17887' orgid='META' frameid='RXN-17887'/><Reaction resource='getxml?META:RXN0-6256' orgid='META' frameid='RXN0-6256'/><Reaction resource='getxml?META:RXN0-6549' orgid='META' frameid='RXN0-6549'/><Reaction resource='getxml?META:RXN-14497' orgid='META' frameid='RXN-14497'/><Reaction resource='getxml?META:1.8.4.4-RXN' orgid='META' frameid='1.8.4.4-RXN'/><Reaction resource='getxml?META:R129-RXN' orgid='META' frameid='R129-RXN'/><Reaction resource='getxml?META:1.11.1.12-RXN' orgid='META' frameid='1.11.1.12-RXN'/><Reaction resource='getxml?META:GSCYSSYN-RXN' orgid='META' frameid='GSCYSSYN-RXN'/><Reaction resource='getxml?META:RXN-16203' orgid='META' frameid='RXN-16203'/><Reaction resource='getxml?META:RXN-16193' orgid='META' frameid='RXN-16193'/><Reaction resource='getxml?META:GLUTATHIONE-PEROXIDASE-RXN' orgid='META' frameid='GLUTATHIONE-PEROXIDASE-RXN'/><Reaction resource='getxml?META:RXN-15680' orgid='META' frameid='RXN-15680'/><Reaction resource='getxml?META:PRODISULFREDUCT-A-RXN' orgid='META' frameid='PRODISULFREDUCT-A-RXN'/><Reaction resource='getxml?META:GSHTRAN-RXN' orgid='META' frameid='GSHTRAN-RXN'/><Reaction resource='getxml?META:RXN-12864' orgid='META' frameid='RXN-12864'/><Reaction resource='getxml?META:RXN-12529' orgid='META' frameid='RXN-12529'/><Reaction resource='getxml?META:RXN-12528' orgid='META' frameid='RXN-12528'/><Reaction resource='getxml?META:RXN-10905' orgid='META' frameid='RXN-10905'/><Reaction resource='getxml?META:RXN-10904' orgid='META' frameid='RXN-10904'/><Reaction resource='getxml?META:RXN-10903' orgid='META' frameid='RXN-10903'/><Reaction resource='getxml?META:RXN-10902' orgid='META' frameid='RXN-10902'/><Reaction resource='getxml?META:RXNQT-4356' orgid='META' frameid='RXNQT-4356'/><Reaction resource='getxml?META:GLUTATHIONE-REDUCT-NADPH-RXN' orgid='META' frameid='GLUTATHIONE-REDUCT-NADPH-RXN'/><Reaction resource='getxml?META:GST-RXN' orgid='META' frameid='GST-RXN'/><Reaction resource='getxml?META:COA-GLUTATHIONE-REDUCTASE-NADPH-RXN' orgid='META' frameid='COA-GLUTATHIONE-REDUCTASE-NADPH-RXN'/><Reaction resource='getxml?META:LIND-RXN' orgid='META' frameid='LIND-RXN'/><Reaction resource='getxml?META:6.3.1.9-RXN' orgid='META' frameid='6.3.1.9-RXN'/><Reaction resource='getxml?META:GLUTATHIONE-OXIDASE-RXN' orgid='META' frameid='GLUTATHIONE-OXIDASE-RXN'/><Reaction resource='getxml?META:1.8.4.1-RXN' orgid='META' frameid='1.8.4.1-RXN'/></appears-in-left-side-of>
+<inchi datatype='string'>InChI=1S/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>306.313</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:GLYOXI-RXN' orgid='META' frameid='GLYOXI-RXN'/><Reaction resource='getxml?META:RXN-24129' orgid='META' frameid='RXN-24129'/><Reaction resource='getxml?META:RXN-23016' orgid='META' frameid='RXN-23016'/><Reaction resource='getxml?META:RXN-23004' orgid='META' frameid='RXN-23004'/><Reaction resource='getxml?META:RXN-23003' orgid='META' frameid='RXN-23003'/><Reaction resource='getxml?META:RXN-22403' orgid='META' frameid='RXN-22403'/><Reaction resource='getxml?META:RXN-22401' orgid='META' frameid='RXN-22401'/><Reaction resource='getxml?META:RXN-22365' orgid='META' frameid='RXN-22365'/><Reaction resource='getxml?META:RXN-22363' orgid='META' frameid='RXN-22363'/><Reaction resource='getxml?META:RXN-22358' orgid='META' frameid='RXN-22358'/><Reaction resource='getxml?META:RXN-21028' orgid='META' frameid='RXN-21028'/><Reaction resource='getxml?META:2.1.1.137-RXN' orgid='META' frameid='2.1.1.137-RXN'/><Reaction resource='getxml?META:RXN-22330' orgid='META' frameid='RXN-22330'/><Reaction resource='getxml?META:RXN-22332' orgid='META' frameid='RXN-22332'/><Reaction resource='getxml?META:RXN-12721' orgid='META' frameid='RXN-12721'/><Reaction resource='getxml?META:1.8.4.7-RXN' orgid='META' frameid='1.8.4.7-RXN'/><Reaction resource='getxml?META:RXN-20884' orgid='META' frameid='RXN-20884'/><Reaction resource='getxml?META:GLUTATHIONE-SYN-RXN' orgid='META' frameid='GLUTATHIONE-SYN-RXN'/><Reaction resource='getxml?META:RXN0-11' orgid='META' frameid='RXN0-11'/><Reaction resource='getxml?META:TECH2REDHAL-RXN' orgid='META' frameid='TECH2REDHAL-RXN'/><Reaction resource='getxml?META:TECH1REDHAL-RXN' orgid='META' frameid='TECH1REDHAL-RXN'/><Reaction resource='getxml?META:RXN-7919' orgid='META' frameid='RXN-7919'/><Reaction resource='getxml?META:RXN-19612' orgid='META' frameid='RXN-19612'/><Reaction resource='getxml?META:GLUTATHIONE-THIOESTERASE-RXN' orgid='META' frameid='GLUTATHIONE-THIOESTERASE-RXN'/><Reaction resource='getxml?META:RXN-2961' orgid='META' frameid='RXN-2961'/><Reaction resource='getxml?META:RXN-19040' orgid='META' frameid='RXN-19040'/><Reaction resource='getxml?META:RXN0-21' orgid='META' frameid='RXN0-21'/><Reaction resource='getxml?META:RXN-17592' orgid='META' frameid='RXN-17592'/><Reaction resource='getxml?META:RXN-17595' orgid='META' frameid='RXN-17595'/><Reaction resource='getxml?META:RXN-16574' orgid='META' frameid='RXN-16574'/><Reaction resource='getxml?META:RXN-13161' orgid='META' frameid='RXN-13161'/><Reaction resource='getxml?META:1.5.4.1-RXN' orgid='META' frameid='1.5.4.1-RXN'/><Reaction resource='getxml?META:RXN-12506' orgid='META' frameid='RXN-12506'/><Reaction resource='getxml?META:SULFFEOXIDO-RXN' orgid='META' frameid='SULFFEOXIDO-RXN'/><Reaction resource='getxml?META:1.8.4.9-RXN' orgid='META' frameid='1.8.4.9-RXN'/><Reaction resource='getxml?META:LEUKOTRIENE-C4-SYNTHASE-RXN' orgid='META' frameid='LEUKOTRIENE-C4-SYNTHASE-RXN'/><Reaction resource='getxml?META:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='META' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?META:GSCYSDEG-RXN' orgid='META' frameid='GSCYSDEG-RXN'/><Reaction resource='getxml?META:1.8.4.3-RXN' orgid='META' frameid='1.8.4.3-RXN'/><Reaction resource='getxml?META:S-SUCCINYLGLUTATHIONE-HYDROLASE-RXN' orgid='META' frameid='S-SUCCINYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?META:GSPAMID-RXN' orgid='META' frameid='GSPAMID-RXN'/><Reaction resource='getxml?META:GLYOXII-RXN' orgid='META' frameid='GLYOXII-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>307.0838</monoisotopic-mw>
+<synonym datatype='string'>L-&amp;gamma;-glutamyl-L-cysteinylglycine</synonym>
+<synonym datatype='string'>GSH</synonym>
+<synonym datatype='string'>reduced glutathione</synonym>
+<synonym datatype='string'>glutathionate</synonym>
+<synonym datatype='string'>glutathione reduced</synonym>
+<common-name datatype='string'>glutathione</common-name>
+<cofactors-of><Enzymatic-Reaction ID='META:ENZRXN-30534' orgid='META' frameid='ENZRXN-30534' detail='low'><reaction><Reaction resource='getxml?META:RXN-13747' orgid='META' frameid='RXN-13747'/></reaction>
+<common-name datatype='string'>4-carboxy-2-hydroxyhexa-2,4-dienedioate &lt;i&gt;cis-trans&lt;/i&gt; isomerase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-21876' orgid='META' frameid='MONOMER-21876'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13631" detail="low" frameid="ENZRXN-13631" orgid="META"><common-name datatype="string">2-hydroxychromene-2-carboxylate isomerase</common-name>
-<enzyme><Protein frameid="CPLX-7995" orgid="META" resource="getxml?META:CPLX-7995" /></enzyme>
-<reaction><Reaction frameid="RXNN-386" orgid="META" resource="getxml?META:RXNN-386" /></reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-16399' orgid='META' frameid='ENZRXN-16399' detail='low'><reaction><Reaction resource='getxml?META:MALEYLPYRUVATE-ISOMERASE-RXN' orgid='META' frameid='MALEYLPYRUVATE-ISOMERASE-RXN'/></reaction>
+<common-name datatype='string'>maleylpyruvate isomerase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-14770' orgid='META' frameid='MONOMER-14770'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12633" detail="low" frameid="ENZRXN-12633" orgid="META"><common-name datatype="string">&lt;i&gt;p&lt;/i&gt;-hydroxyphenylpyruvate oxidase</common-name>
-<enzyme><Protein frameid="MONOMER-12071" orgid="META" resource="getxml?META:MONOMER-12071" /></enzyme>
-<reaction><Reaction frameid="1.2.3.13-RXN" orgid="META" resource="getxml?META:1.2.3.13-RXN" /></reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13631' orgid='META' frameid='ENZRXN-13631' detail='low'><reaction><Reaction resource='getxml?META:RXNN-386' orgid='META' frameid='RXNN-386'/></reaction>
+<common-name datatype='string'>2-hydroxychromene-2-carboxylate isomerase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7995' orgid='META' frameid='CPLX-7995'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12574" detail="low" frameid="ENZRXN-12574" orgid="META"><common-name datatype="string">maleylacetoacetate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-12046" orgid="META" resource="getxml?META:MONOMER-12046" /></enzyme>
-<reaction><Reaction frameid="MALEYLACETOACETATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN" /></reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-12633' orgid='META' frameid='ENZRXN-12633' detail='low'><reaction><Reaction resource='getxml?META:1.2.3.13-RXN' orgid='META' frameid='1.2.3.13-RXN'/></reaction>
+<common-name datatype='string'>&lt;i&gt;p&lt;/i&gt;-hydroxyphenylpyruvate oxidase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-12071' orgid='META' frameid='MONOMER-12071'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12573" detail="low" frameid="ENZRXN-12573" orgid="META"><common-name datatype="string">maleylacetoacetate isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-12045" orgid="META" resource="getxml?META:MONOMER-12045" /></enzyme>
-<reaction><Reaction frameid="MALEYLACETOACETATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN" /></reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-12574' orgid='META' frameid='ENZRXN-12574' detail='low'><reaction><Reaction resource='getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN' orgid='META' frameid='MALEYLACETOACETATE-ISOMERASE-RXN'/></reaction>
+<common-name datatype='string'>maleylacetoacetate isomerase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-12046' orgid='META' frameid='MONOMER-12046'/></enzyme>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-12572" detail="low" frameid="ENZRXN-12572" orgid="META"><common-name datatype="string">maleylacetoacetate isomerase</common-name>
-<enzyme><Protein frameid="CPLX-7060" orgid="META" resource="getxml?META:CPLX-7060" /></enzyme>
-<reaction><Reaction frameid="MALEYLACETOACETATE-ISOMERASE-RXN" orgid="META" resource="getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN" /></reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-12573' orgid='META' frameid='ENZRXN-12573' detail='low'><reaction><Reaction resource='getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN' orgid='META' frameid='MALEYLACETOACETATE-ISOMERASE-RXN'/></reaction>
+<common-name datatype='string'>maleylacetoacetate isomerase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-12045' orgid='META' frameid='MONOMER-12045'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-12572' orgid='META' frameid='ENZRXN-12572' detail='low'><reaction><Reaction resource='getxml?META:MALEYLACETOACETATE-ISOMERASE-RXN' orgid='META' frameid='MALEYLACETOACETATE-ISOMERASE-RXN'/></reaction>
+<common-name datatype='string'>maleylacetoacetate isomerase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7060' orgid='META' frameid='CPLX-7060'/></enzyme>
 </Enzymatic-Reaction>
 </cofactors-of>
-<common-name datatype="string">glutathione</common-name>
-<credits><revised><date datatype="date">2012-03-12</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
-</credits>
+<regulates><Regulation ID='META:REG0-6691' orgid='META' frameid='REG0-6691' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:AKBLIG-ENZRXN' orgid='META' frameid='AKBLIG-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:AKBLIG-RXN' orgid='META' frameid='AKBLIG-RXN'/></reaction>
+<synonym datatype='string'>glycine C-acetyltransferase</synonym>
+<synonym datatype='string'>AKB ligase</synonym>
+<synonym datatype='string'>aminoacetone synthase</synonym>
+<synonym datatype='string'>aminoacetone synthetase</synonym>
+<synonym datatype='string'>acetyl-CoA:glycine C-acetyltransferase</synonym>
+<common-name datatype='string'>2-amino-3-ketobutyrate CoA ligase</common-name>
+<enzyme><Protein resource='getxml?META:AKBLIG-CPLX' orgid='META' frameid='AKBLIG-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-9055' orgid='META' frameid='REG0-9055' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ASP-SEMIALDEHYDE-DEHYDROGENASE-ENZRXN' orgid='META' frameid='ASP-SEMIALDEHYDE-DEHYDROGENASE-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:ASPARTATE-SEMIALDEHYDE-DEHYDROGENASE-RXN' orgid='META' frameid='ASPARTATE-SEMIALDEHYDE-DEHYDROGENASE-RXN'/></reaction>
+<synonym datatype='string'>L-Aspartate-4-semialdehyde:NADP+ oxidoreductase (phosphorylating)</synonym>
+<synonym datatype='string'>Aspartate-&amp;beta;-semialdehyde dehydrogenase</synonym>
+<synonym datatype='string'>ASA-dehydrogenase</synonym>
+<common-name datatype='string'>aspartate-semialdehyde dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:ASP-SEMIALDEHYDE-DEHYDROGENASE-CPLX' orgid='META' frameid='ASP-SEMIALDEHYDE-DEHYDROGENASE-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8184' orgid='META' frameid='REG0-8184' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:METHYLGLYREDUCT-ENZRXN' orgid='META' frameid='METHYLGLYREDUCT-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:1.1.1.283-RXN' orgid='META' frameid='1.1.1.283-RXN'/></reaction>
+<common-name datatype='string'>methylglyoxal reductase (NADPH-dependent)</common-name>
+<enzyme><Protein resource='getxml?META:METHYLGLYREDUCT-MONOMER' orgid='META' frameid='METHYLGLYREDUCT-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8090' orgid='META' frameid='REG0-8090' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ACETYLORNDEACET-ENZRXN' orgid='META' frameid='ACETYLORNDEACET-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:ACETYLORNDEACET-RXN' orgid='META' frameid='ACETYLORNDEACET-RXN'/></reaction>
+<synonym datatype='string'>acetylornithinase</synonym>
+<synonym datatype='string'>N-acetylornithinase</synonym>
+<synonym datatype='string'>AO</synonym>
+<synonym datatype='string'>NAO</synonym>
+<synonym datatype='string'>N(2)-acetyl-L-ornithine amidohydrolase</synonym>
+<common-name datatype='string'>acetylornithine deacetylase</common-name>
+<enzyme><Protein resource='getxml?META:ACETYLORNDEACET-CPLX' orgid='META' frameid='ACETYLORNDEACET-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-8323' orgid='META' frameid='REG0-8323' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:GLUTCYSLIG-ENZRXN' orgid='META' frameid='GLUTCYSLIG-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:GLUTCYSLIG-RXN' orgid='META' frameid='GLUTCYSLIG-RXN'/></reaction>
+<synonym datatype='string'>&amp;gamma;-glutamylcysteine synthetase</synonym>
+<synonym datatype='string'>L-glutamate:L-cysteine &amp;gamma;-ligase (ADP-forming)</synonym>
+<synonym datatype='string'>&amp;gamma;GCS</synonym>
+<common-name datatype='string'>glutamate&amp;mdash;cysteine ligase</common-name>
+<enzyme><Protein resource='getxml?META:GLUTCYSLIG-MONOMER' orgid='META' frameid='GLUTCYSLIG-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG0-7579' orgid='META' frameid='REG0-7579' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:LYXK-ENZRXN' orgid='META' frameid='LYXK-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:LYXK-RXN' orgid='META' frameid='LYXK-RXN'/></reaction>
+<synonym datatype='string'>L-xylulokinase</synonym>
+<synonym datatype='string'>ATP:L-xylulose 5-phosphotransferase</synonym>
+<common-name datatype='string'>L-xylulose kinase</common-name>
+<enzyme><Protein resource='getxml?META:LYXK-CPLX' orgid='META' frameid='LYXK-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15825' orgid='META' frameid='REG-15825' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-30134' orgid='META' frameid='ENZRXN-30134' detail='low'><reaction><Reaction resource='getxml?META:RXN-22381' orgid='META' frameid='RXN-22381'/></reaction>
+<common-name datatype='string'>rnitarsone(III) nitroreductase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-21687' orgid='META' frameid='MONOMER-21687'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15824' orgid='META' frameid='REG-15824' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-30133' orgid='META' frameid='ENZRXN-30133' detail='low'><reaction><Reaction resource='getxml?META:RXN-22380' orgid='META' frameid='RXN-22380'/></reaction>
+<common-name datatype='string'>roxarsone(III) nitroreductase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-21687' orgid='META' frameid='MONOMER-21687'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15823' orgid='META' frameid='REG-15823' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-30121' orgid='META' frameid='ENZRXN-30121' detail='low'><reaction><Reaction resource='getxml?META:RXN-22367' orgid='META' frameid='RXN-22367'/></reaction>
+<common-name datatype='string'>roxarsone(V) nitroreductase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-21687' orgid='META' frameid='MONOMER-21687'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15822' orgid='META' frameid='REG-15822' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-30122' orgid='META' frameid='ENZRXN-30122' detail='low'><reaction><Reaction resource='getxml?META:RXN-22373' orgid='META' frameid='RXN-22373'/></reaction>
+<common-name datatype='string'>rnitarsone(V) nitroreductase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-21687' orgid='META' frameid='MONOMER-21687'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15703' orgid='META' frameid='REG-15703' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-27083' orgid='META' frameid='ENZRXN-27083' detail='low'><reaction><Reaction resource='getxml?META:RXN-1602' orgid='META' frameid='RXN-1602'/></reaction>
+<common-name datatype='string'>diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
+<enzyme><Protein resource='getxml?META:ENSG00000164535-MONOMER' orgid='META' frameid='ENSG00000164535-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15701' orgid='META' frameid='REG-15701' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-27082' orgid='META' frameid='ENZRXN-27082' detail='low'><reaction><Reaction resource='getxml?META:RXN-1602' orgid='META' frameid='RXN-1602'/></reaction>
+<common-name datatype='string'>diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
+<enzyme><Protein resource='getxml?META:ENSG00000134780-MONOMER' orgid='META' frameid='ENSG00000134780-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15698' orgid='META' frameid='REG-15698' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-27078' orgid='META' frameid='ENZRXN-27078' detail='low'><reaction><Reaction resource='getxml?META:RXN-20522' orgid='META' frameid='RXN-20522'/></reaction>
+<common-name datatype='string'>2-arachidonoyl-diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
+<enzyme><Protein resource='getxml?META:ENSG00000164535-MONOMER' orgid='META' frameid='ENSG00000164535-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15693' orgid='META' frameid='REG-15693' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-27077' orgid='META' frameid='ENZRXN-27077' detail='low'><reaction><Reaction resource='getxml?META:RXN-20522' orgid='META' frameid='RXN-20522'/></reaction>
+<common-name datatype='string'>2-arachidonoyl-diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
+<enzyme><Protein resource='getxml?META:ENSG00000134780-MONOMER' orgid='META' frameid='ENSG00000134780-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15686' orgid='META' frameid='REG-15686' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-26981' orgid='META' frameid='ENZRXN-26981' detail='low'><reaction><Reaction resource='getxml?META:RXN-20406' orgid='META' frameid='RXN-20406'/></reaction>
+<common-name datatype='string'>glutamate--alanine ligase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX66-16' orgid='META' frameid='CPLX66-16'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-15680' orgid='META' frameid='REG-15680' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-26980' orgid='META' frameid='ENZRXN-26980' detail='low'><reaction><Reaction resource='getxml?META:RXN-20400' orgid='META' frameid='RXN-20400'/></reaction>
+<common-name datatype='string'>glutamate--2-aminobutanoate ligase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX66-16' orgid='META' frameid='CPLX66-16'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REGQT-328' orgid='META' frameid='REGQT-328' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13420' orgid='META' frameid='ENZRXN-13420' detail='low'><reaction><Reaction resource='getxml?META:GLUTCYSLIG-RXN' orgid='META' frameid='GLUTCYSLIG-RXN'/></reaction>
+<synonym datatype='string'>gamma-glutamylcysteine synthetase activity</synonym>
+<common-name datatype='string'>glutamate-cysteine ligase</common-name>
+<enzyme><Protein resource='getxml?META:AT4G23100-MONOMER' orgid='META' frameid='AT4G23100-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-14237' orgid='META' frameid='REG-14237' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-21533' orgid='META' frameid='ENZRXN-21533' detail='low'><reaction><Reaction resource='getxml?META:MYO-INOSOSE-2-DEHYDRATASE-RXN' orgid='META' frameid='MYO-INOSOSE-2-DEHYDRATASE-RXN'/></reaction>
+<common-name datatype='string'>&lt;i&gt;scyllo&lt;/i&gt;-inosose dehydratase</common-name>
+<enzyme><Protein resource='getxml?META:BSU39720-MONOMER' orgid='META' frameid='BSU39720-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-13348' orgid='META' frameid='REG-13348' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-18831' orgid='META' frameid='ENZRXN-18831' detail='low'><reaction><Reaction resource='getxml?META:SEQUOYITOL-DEHYDROGENASE-RXN' orgid='META' frameid='SEQUOYITOL-DEHYDROGENASE-RXN'/></reaction>
+<synonym datatype='string'>sequoyitol:NAD oxidoreductase</synonym>
+<synonym datatype='string'>NAD-specific sequoyitol dehydrogenase</synonym>
+<common-name datatype='string'>sequoyitol dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-16308' orgid='META' frameid='MONOMER-16308'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-12719' orgid='META' frameid='REG-12719' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-16498' orgid='META' frameid='ENZRXN-16498' detail='low'><reaction><Reaction resource='getxml?META:RXN-10469' orgid='META' frameid='RXN-10469'/></reaction>
+<common-name datatype='string'>[thyroglobulin]-3,5-diiodotyrosine synthase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-14809' orgid='META' frameid='MONOMER-14809'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-12350' orgid='META' frameid='REG-12350' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-15404' orgid='META' frameid='ENZRXN-15404' detail='low'><reaction><Reaction resource='getxml?META:DIMETHYLPROPIOTHETIN-DETHIOMETHYLASE-RXN' orgid='META' frameid='DIMETHYLPROPIOTHETIN-DETHIOMETHYLASE-RXN'/></reaction>
+<synonym datatype='string'>dimethylsulfoniopropionate dethiomethylase</synonym>
+<synonym datatype='string'>dimethylpropiothetin dethiomethylase</synonym>
+<common-name datatype='string'>dimethylsulfoniopropionate lyase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-14221' orgid='META' frameid='MONOMER-14221'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-11867' orgid='META' frameid='REG-11867' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-14272' orgid='META' frameid='ENZRXN-14272' detail='low'><reaction><Reaction resource='getxml?META:1.14.11.26-RXN' orgid='META' frameid='1.14.11.26-RXN'/></reaction>
+<synonym datatype='string'>deacetylcephalosporin C synthase</synonym>
+<common-name datatype='string'>deacetoxycephalosporin C hydroxylase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-13408' orgid='META' frameid='MONOMER-13408'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-11808' orgid='META' frameid='REG-11808' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-14219' orgid='META' frameid='ENZRXN-14219' detail='low'><reaction><Reaction resource='getxml?META:1.21.3.1-RXN' orgid='META' frameid='1.21.3.1-RXN'/></reaction>
+<synonym datatype='string'>isopenicillin-N synthase</synonym>
+<synonym datatype='string'>isopenicillin N synthetase</synonym>
+<common-name datatype='string'>isopenicillin N synthase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-13364' orgid='META' frameid='MONOMER-13364'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-11420' orgid='META' frameid='REG-11420' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-4221' orgid='META' frameid='ENZRXN-4221' detail='low'><reaction><Reaction resource='getxml?META:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='META' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/></reaction>
+<common-name datatype='string'>S-formylglutathione hydrolase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-3421' orgid='META' frameid='CPLX-3421'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-11226' orgid='META' frameid='REG-11226' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-601' orgid='META' frameid='ENZRXN-601' detail='low'><reaction><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/></reaction>
+<common-name datatype='string'>ethylnitronate monooxygenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-482' orgid='META' frameid='CPLX-482'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-10974' orgid='META' frameid='REG-10974' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-10143' orgid='META' frameid='ENZRXN-10143' detail='low'><reaction><Reaction resource='getxml?META:GLUTCYSLIG-RXN' orgid='META' frameid='GLUTCYSLIG-RXN'/></reaction>
+<common-name datatype='string'>glutamate--cysteine ligase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-5963' orgid='META' frameid='CPLX-5963'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-10766' orgid='META' frameid='REG-10766' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-10161' orgid='META' frameid='ENZRXN-10161' detail='low'><reaction><Reaction resource='getxml?META:GLUTCYSLIG-RXN' orgid='META' frameid='GLUTCYSLIG-RXN'/></reaction>
+<synonym datatype='string'>&amp;gamma;-glutamylcysteine synthetase</synonym>
+<common-name datatype='string'>glutamate--cysteine ligase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX66-16' orgid='META' frameid='CPLX66-16'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-9829' orgid='META' frameid='REG-9829' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN66-1484' orgid='META' frameid='ENZRXN66-1484' detail='low'><reaction><Reaction resource='getxml?META:DOPAMINE-BETA-MONOOXYGENASE-RXN' orgid='META' frameid='DOPAMINE-BETA-MONOOXYGENASE-RXN'/></reaction>
+<common-name datatype='string'>dopamine &amp;beta;-monooxygenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX66-141' orgid='META' frameid='CPLX66-141'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-8766' orgid='META' frameid='REG-8766' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-10241' orgid='META' frameid='ENZRXN-10241' detail='low'><reaction><Reaction resource='getxml?META:RXN-6601' orgid='META' frameid='RXN-6601'/></reaction>
+<common-name datatype='string'>&amp;gamma;-glutamyl transpeptidase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-6041' orgid='META' frameid='CPLX-6041'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6585' orgid='META' frameid='REG-6585' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13725' orgid='META' frameid='ENZRXN-13725' detail='low'><reaction><Reaction resource='getxml?META:1.3.1.19-RXN' orgid='META' frameid='1.3.1.19-RXN'/></reaction>
+<common-name datatype='string'>&lt;i&gt;cis&lt;/i&gt;-benzene glycol dehydrogenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7284' orgid='META' frameid='CPLX-7284'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6268' orgid='META' frameid='REG-6268' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>+</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13926' orgid='META' frameid='ENZRXN-13926' detail='low'><reaction><Reaction resource='getxml?META:ASPARAGHYD-RXN' orgid='META' frameid='ASPARAGHYD-RXN'/></reaction>
+<common-name datatype='string'>L-asparaginase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7341' orgid='META' frameid='CPLX-7341'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6243' orgid='META' frameid='REG-6243' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13856' orgid='META' frameid='ENZRXN-13856' detail='low'><reaction><Reaction resource='getxml?META:RXN-8720' orgid='META' frameid='RXN-8720'/></reaction>
+<common-name datatype='string'>tellimagrandin II: O2 oxidoreductase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7312' orgid='META' frameid='CPLX-7312'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6168' orgid='META' frameid='REG-6168' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13855' orgid='META' frameid='ENZRXN-13855' detail='low'><reaction><Reaction resource='getxml?META:RXN-8719' orgid='META' frameid='RXN-8719'/></reaction>
+<common-name datatype='string'>pentagalloylglucose: O&lt;sub&gt;2&lt;/sub&gt; oxidoreductase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-13001' orgid='META' frameid='MONOMER-13001'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-6048' orgid='META' frameid='REG-6048' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13236' orgid='META' frameid='ENZRXN-13236' detail='low'><reaction><Reaction resource='getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN' orgid='META' frameid='2-NITROPROPANE-DIOXYGENASE-RXN'/></reaction>
+<common-name datatype='string'>ethylnitronate monooxygenase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7182' orgid='META' frameid='CPLX-7182'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-5958' orgid='META' frameid='REG-5958' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13423' orgid='META' frameid='ENZRXN-13423' detail='low'><reaction><Reaction resource='getxml?META:GLUTATHIONE-SYN-RXN' orgid='META' frameid='GLUTATHIONE-SYN-RXN'/></reaction>
+<common-name datatype='string'>glutathione synthetase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7214' orgid='META' frameid='CPLX-7214'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-5948' orgid='META' frameid='REG-5948' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLUTATHIONE' orgid='META' frameid='GLUTATHIONE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-13441' orgid='META' frameid='ENZRXN-13441' detail='low'><reaction><Reaction resource='getxml?META:RXN-8458' orgid='META' frameid='RXN-8458'/></reaction>
+<common-name datatype='string'>benzalacetone synthase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7226' orgid='META' frameid='CPLX-7226'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<citation><Publication ID='META:PUB-31969596' orgid='META' frameid='PUB-31969596' detail='full'><year datatype='integer'>2020</year>
+<pubmed-id datatype='string'>31969596</pubmed-id>
+<author datatype='string'>Ahmad M</author>
+<author datatype='string'>Anjum NA</author>
+<author datatype='string'>Asif A</author>
+<author datatype='string'>Ahmad A</author>
+<title datatype='string'>Real-time monitoring of glutathione in living cells using genetically encoded FRET-based ratiometric nanosensor.</title>
+<source datatype='string'>Sci Rep 10(1);992</source>
+</Publication>
+</citation>
+<comment datatype='string'>Thiols play a major role in the detoxification of stress-inducing factors such as reactive oxygen species, free radicals, peroxides, lipid peroxides, and heavy metals. In mammals, the major thiol is the tripeptide &lt;a href=&quot;/compound?orgid=META&amp;id=GLUTATHIONE&quot;&gt;glutathione&lt;/a&gt; (&amp;gamma;-Glu-Cys-Gly, known as GSH). Toxins are conjugated to GSH in the liver by a dedicated enzyme, resulting in a &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=S-Substituted-L-Cysteines&quot;&gt;cysteine-toxin conjugate&lt;/a&gt;. The conjugate is acetylated in the kidney to form &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=Mercapturates&quot; title=&quot;Mercapturic acids are S-conjugates of &lt;a href=''/compound?orgid=META&amp;id=CPD-9175''&gt;&lt;i&gt;N&lt;/i&gt;-acetyl-L-cysteine&lt;/a&gt;, which are formed in the liver and excreted in the urine.&amp;#10;&amp;#10;In the process of generating a mercapturic acid, a compound is first conjugated with glutathione. This is followed by loss of the glutamate and glycine portions, followed by acetylation of the L-cysteine nitrogen to form the mercapturic acid.&quot;&gt;a mercapturate&lt;/a&gt;, and is then excreted [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/8145281&quot;&gt;Hinchman94&lt;/a&gt;] (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-4061&quot;&gt;glutathione-mediated detoxification I&lt;/a&gt;).
+In addition to oxidative stress management, low molecular weight thiols have been found to be involved in critical cellular processes including DNA synthesis and formaldehyde reduction [&lt;a href=&quot;/META/reference.html?type=CITATION-REFERENCE&amp;object=%5bPatel98%5d&quot;&gt;Patel98&lt;/a&gt;].
+&lt;p&gt;
+Gluathione is the major thiol not only in eukaryotic organisms but also in Gram negative bacteria and in the majority of Gram positive bacteria. Pathogenic bacteria live in a particularly hostile environment, in which the host deliberately generates toxins, including reactive oxygen species, to destroy the invading organism, thus thiols are particularly important for the survival of these organisms. 
+&lt;p&gt;
+Despite the ubiquity of GSH, it is not universal. In many organisms, including some eukaryotes, other thiols have taken its role. Some of these thiols are &lt;a href=&quot;/compound?orgid=META&amp;id=CoM&quot;&gt;coenzyme M&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=TRYPANOTHIONE&quot;&gt;trypanothione&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=Ergothioneine&quot;&gt;ergothioneine&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD1G-2&quot;&gt;mycothiol&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-17028&quot;&gt;ovothiol&lt;/a&gt;.</comment>
+<inchi-key datatype='string'>InChIKey=RWSXRVCMGQZWBV-WDSKDSINSA-M</inchi-key>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000003830891</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000003830891</dblink-URL>
+</dblink>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/51/</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -117,346 +495,35 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=70-18-8</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-56.924126<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-56.924126<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C10H17N3O6S/c11-5(10(18)19)1-2-7(14)13-6(4-20)9(17)12-3-8(15)16/h5-6,20H,1-4,11H2,(H,12,17)(H,13,14)(H,15,16)(H,18,19)/p-1/t5-,6-/m0/s1</inchi>
-<inchi-key datatype="string">InChIKey=RWSXRVCMGQZWBV-WDSKDSINSA-M</inchi-key>
-<molecular-weight datatype="float" units="Daltons">306.313</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">307.0838</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-8090" detail="low" frameid="REG0-8090" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ACETYLORNDEACET-ENZRXN" detail="low" frameid="ACETYLORNDEACET-ENZRXN" orgid="META"><common-name datatype="string">acetylornithine deacetylase</common-name>
-<enzyme><Protein frameid="ACETYLORNDEACET-CPLX" orgid="META" resource="getxml?META:ACETYLORNDEACET-CPLX" /></enzyme>
-<reaction><Reaction frameid="ACETYLORNDEACET-RXN" orgid="META" resource="getxml?META:ACETYLORNDEACET-RXN" /></reaction>
-<synonym datatype="string">acetylornithinase</synonym>
-<synonym datatype="string">N-acetylornithinase</synonym>
-<synonym datatype="string">AO</synonym>
-<synonym datatype="string">NAO</synonym>
-<synonym datatype="string">N(2)-acetyl-L-ornithine amidohydrolase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-6691" detail="low" frameid="REG0-6691" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:AKBLIG-ENZRXN" detail="low" frameid="AKBLIG-ENZRXN" orgid="META"><common-name datatype="string">2-amino-3-ketobutyrate CoA ligase</common-name>
-<enzyme><Protein frameid="AKBLIG-CPLX" orgid="META" resource="getxml?META:AKBLIG-CPLX" /></enzyme>
-<reaction><Reaction frameid="AKBLIG-RXN" orgid="META" resource="getxml?META:AKBLIG-RXN" /></reaction>
-<synonym datatype="string">glycine C-acetyltransferase</synonym>
-<synonym datatype="string">AKB ligase</synonym>
-<synonym datatype="string">aminoacetone synthase</synonym>
-<synonym datatype="string">aminoacetone synthetase</synonym>
-<synonym datatype="string">acetyl-CoA:glycine C-acetyltransferase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-9055" detail="low" frameid="REG0-9055" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ASP-SEMIALDEHYDE-DEHYDROGENASE-ENZRXN" detail="low" frameid="ASP-SEMIALDEHYDE-DEHYDROGENASE-ENZRXN" orgid="META"><common-name datatype="string">aspartate-semialdehyde dehydrogenase</common-name>
-<enzyme><Protein frameid="ASP-SEMIALDEHYDE-DEHYDROGENASE-CPLX" orgid="META" resource="getxml?META:ASP-SEMIALDEHYDE-DEHYDROGENASE-CPLX" /></enzyme>
-<reaction><Reaction frameid="ASPARTATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:ASPARTATE-SEMIALDEHYDE-DEHYDROGENASE-RXN" /></reaction>
-<synonym datatype="string">L-Aspartate-4-semialdehyde:NADP+ oxidoreductase (phosphorylating)</synonym>
-<synonym datatype="string">Aspartate-&amp;beta;-semialdehyde dehydrogenase</synonym>
-<synonym datatype="string">ASA-dehydrogenase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-8184" detail="low" frameid="REG0-8184" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:METHYLGLYREDUCT-ENZRXN" detail="low" frameid="METHYLGLYREDUCT-ENZRXN" orgid="META"><common-name datatype="string">methylglyoxal reductase (NADPH-dependent)</common-name>
-<enzyme><Protein frameid="METHYLGLYREDUCT-MONOMER" orgid="META" resource="getxml?META:METHYLGLYREDUCT-MONOMER" /></enzyme>
-<reaction><Reaction frameid="1.1.1.283-RXN" orgid="META" resource="getxml?META:1.1.1.283-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-8323" detail="low" frameid="REG0-8323" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GLUTCYSLIG-ENZRXN" detail="low" frameid="GLUTCYSLIG-ENZRXN" orgid="META"><common-name datatype="string">glutamate&amp;mdash;cysteine ligase</common-name>
-<enzyme><Protein frameid="GLUTCYSLIG-MONOMER" orgid="META" resource="getxml?META:GLUTCYSLIG-MONOMER" /></enzyme>
-<reaction><Reaction frameid="GLUTCYSLIG-RXN" orgid="META" resource="getxml?META:GLUTCYSLIG-RXN" /></reaction>
-<synonym datatype="string">&amp;gamma;-glutamylcysteine synthetase</synonym>
-<synonym datatype="string">L-glutamate:L-cysteine &amp;gamma;-ligase (ADP-forming)</synonym>
-<synonym datatype="string">&amp;gamma;GCS</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG0-7579" detail="low" frameid="REG0-7579" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:LYXK-ENZRXN" detail="low" frameid="LYXK-ENZRXN" orgid="META"><common-name datatype="string">L-xylulose kinase</common-name>
-<enzyme><Protein frameid="LYXK-CPLX" orgid="META" resource="getxml?META:LYXK-CPLX" /></enzyme>
-<reaction><Reaction frameid="LYXK-RXN" orgid="META" resource="getxml?META:LYXK-RXN" /></reaction>
-<synonym datatype="string">L-xylulokinase</synonym>
-<synonym datatype="string">ATP:L-xylulose 5-phosphotransferase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15703" detail="low" frameid="REG-15703" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-27083" detail="low" frameid="ENZRXN-27083" orgid="META"><common-name datatype="string">diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
-<enzyme><Protein frameid="ENSG00000164535-MONOMER" orgid="META" resource="getxml?META:ENSG00000164535-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-1602" orgid="META" resource="getxml?META:RXN-1602" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15701" detail="low" frameid="REG-15701" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-27082" detail="low" frameid="ENZRXN-27082" orgid="META"><common-name datatype="string">diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
-<enzyme><Protein frameid="ENSG00000134780-MONOMER" orgid="META" resource="getxml?META:ENSG00000134780-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-1602" orgid="META" resource="getxml?META:RXN-1602" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15698" detail="low" frameid="REG-15698" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-27078" detail="low" frameid="ENZRXN-27078" orgid="META"><common-name datatype="string">2-arachidonoyl-diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
-<enzyme><Protein frameid="ENSG00000164535-MONOMER" orgid="META" resource="getxml?META:ENSG00000164535-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-20522" orgid="META" resource="getxml?META:RXN-20522" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15693" detail="low" frameid="REG-15693" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-27077" detail="low" frameid="ENZRXN-27077" orgid="META"><common-name datatype="string">2-arachidonoyl-diacylglycerol &lt;i&gt;sn&lt;/i&gt;-1 acylhydrolase</common-name>
-<enzyme><Protein frameid="ENSG00000134780-MONOMER" orgid="META" resource="getxml?META:ENSG00000134780-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-20522" orgid="META" resource="getxml?META:RXN-20522" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15686" detail="low" frameid="REG-15686" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-26981" detail="low" frameid="ENZRXN-26981" orgid="META"><common-name datatype="string">glutamate--alanine ligase</common-name>
-<enzyme><Protein frameid="CPLX66-16" orgid="META" resource="getxml?META:CPLX66-16" /></enzyme>
-<reaction><Reaction frameid="RXN-20406" orgid="META" resource="getxml?META:RXN-20406" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-15680" detail="low" frameid="REG-15680" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-26980" detail="low" frameid="ENZRXN-26980" orgid="META"><common-name datatype="string">glutamate--2-aminobutanoate ligase</common-name>
-<enzyme><Protein frameid="CPLX66-16" orgid="META" resource="getxml?META:CPLX66-16" /></enzyme>
-<reaction><Reaction frameid="RXN-20400" orgid="META" resource="getxml?META:RXN-20400" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REGQT-328" detail="low" frameid="REGQT-328" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13420" detail="low" frameid="ENZRXN-13420" orgid="META"><common-name datatype="string">glutamate-cysteine ligase</common-name>
-<enzyme><Protein frameid="AT4G23100-MONOMER" orgid="META" resource="getxml?META:AT4G23100-MONOMER" /></enzyme>
-<reaction><Reaction frameid="GLUTCYSLIG-RXN" orgid="META" resource="getxml?META:GLUTCYSLIG-RXN" /></reaction>
-<synonym datatype="string">gamma-glutamylcysteine synthetase activity</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-14237" detail="low" frameid="REG-14237" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-21533" detail="low" frameid="ENZRXN-21533" orgid="META"><common-name datatype="string">&lt;i&gt;scyllo&lt;/i&gt;-inosose dehydratase</common-name>
-<enzyme><Protein frameid="BSU39720-MONOMER" orgid="META" resource="getxml?META:BSU39720-MONOMER" /></enzyme>
-<reaction><Reaction frameid="MYO-INOSOSE-2-DEHYDRATASE-RXN" orgid="META" resource="getxml?META:MYO-INOSOSE-2-DEHYDRATASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-13348" detail="low" frameid="REG-13348" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-18831" detail="low" frameid="ENZRXN-18831" orgid="META"><common-name datatype="string">sequoyitol dehydrogenase</common-name>
-<enzyme><Protein frameid="MONOMER-16308" orgid="META" resource="getxml?META:MONOMER-16308" /></enzyme>
-<reaction><Reaction frameid="SEQUOYITOL-DEHYDROGENASE-RXN" orgid="META" resource="getxml?META:SEQUOYITOL-DEHYDROGENASE-RXN" /></reaction>
-<synonym datatype="string">sequoyitol:NAD oxidoreductase</synonym>
-<synonym datatype="string">NAD-specific sequoyitol dehydrogenase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-12719" detail="low" frameid="REG-12719" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-16498" detail="low" frameid="ENZRXN-16498" orgid="META"><common-name datatype="string">[thyroglobulin]-3,5-diiodotyrosine synthase</common-name>
-<enzyme><Protein frameid="MONOMER-14809" orgid="META" resource="getxml?META:MONOMER-14809" /></enzyme>
-<reaction><Reaction frameid="RXN-10469" orgid="META" resource="getxml?META:RXN-10469" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-12350" detail="low" frameid="REG-12350" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-15404" detail="low" frameid="ENZRXN-15404" orgid="META"><common-name datatype="string">dimethylsulfoniopropionate lyase</common-name>
-<enzyme><Protein frameid="MONOMER-14221" orgid="META" resource="getxml?META:MONOMER-14221" /></enzyme>
-<reaction><Reaction frameid="DIMETHYLPROPIOTHETIN-DETHIOMETHYLASE-RXN" orgid="META" resource="getxml?META:DIMETHYLPROPIOTHETIN-DETHIOMETHYLASE-RXN" /></reaction>
-<synonym datatype="string">dimethylsulfoniopropionate dethiomethylase</synonym>
-<synonym datatype="string">dimethylpropiothetin dethiomethylase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-11867" detail="low" frameid="REG-11867" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14272" detail="low" frameid="ENZRXN-14272" orgid="META"><common-name datatype="string">deacetoxycephalosporin C hydroxylase</common-name>
-<enzyme><Protein frameid="MONOMER-13408" orgid="META" resource="getxml?META:MONOMER-13408" /></enzyme>
-<reaction><Reaction frameid="1.14.11.26-RXN" orgid="META" resource="getxml?META:1.14.11.26-RXN" /></reaction>
-<synonym datatype="string">deacetylcephalosporin C synthase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-11808" detail="low" frameid="REG-11808" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-14219" detail="low" frameid="ENZRXN-14219" orgid="META"><common-name datatype="string">isopenicillin N synthase</common-name>
-<enzyme><Protein frameid="MONOMER-13364" orgid="META" resource="getxml?META:MONOMER-13364" /></enzyme>
-<reaction><Reaction frameid="1.21.3.1-RXN" orgid="META" resource="getxml?META:1.21.3.1-RXN" /></reaction>
-<synonym datatype="string">isopenicillin-N synthase</synonym>
-<synonym datatype="string">isopenicillin N synthetase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-11420" detail="low" frameid="REG-11420" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-4221" detail="low" frameid="ENZRXN-4221" orgid="META"><common-name datatype="string">S-formylglutathione hydrolase</common-name>
-<enzyme><Protein frameid="CPLX-3421" orgid="META" resource="getxml?META:CPLX-3421" /></enzyme>
-<reaction><Reaction frameid="S-FORMYLGLUTATHIONE-HYDROLASE-RXN" orgid="META" resource="getxml?META:S-FORMYLGLUTATHIONE-HYDROLASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-11226" detail="low" frameid="REG-11226" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-601" detail="low" frameid="ENZRXN-601" orgid="META"><common-name datatype="string">ethylnitronate monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX-482" orgid="META" resource="getxml?META:CPLX-482" /></enzyme>
-<reaction><Reaction frameid="2-NITROPROPANE-DIOXYGENASE-RXN" orgid="META" resource="getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10974" detail="low" frameid="REG-10974" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-10143" detail="low" frameid="ENZRXN-10143" orgid="META"><common-name datatype="string">glutamate--cysteine ligase</common-name>
-<enzyme><Protein frameid="CPLX-5963" orgid="META" resource="getxml?META:CPLX-5963" /></enzyme>
-<reaction><Reaction frameid="GLUTCYSLIG-RXN" orgid="META" resource="getxml?META:GLUTCYSLIG-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10766" detail="low" frameid="REG-10766" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-10161" detail="low" frameid="ENZRXN-10161" orgid="META"><common-name datatype="string">glutamate--cysteine ligase</common-name>
-<enzyme><Protein frameid="CPLX66-16" orgid="META" resource="getxml?META:CPLX66-16" /></enzyme>
-<reaction><Reaction frameid="GLUTCYSLIG-RXN" orgid="META" resource="getxml?META:GLUTCYSLIG-RXN" /></reaction>
-<synonym datatype="string">&amp;gamma;-glutamylcysteine synthetase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-9829" detail="low" frameid="REG-9829" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN66-1484" detail="low" frameid="ENZRXN66-1484" orgid="META"><common-name datatype="string">dopamine &amp;beta;-monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX66-141" orgid="META" resource="getxml?META:CPLX66-141" /></enzyme>
-<reaction><Reaction frameid="DOPAMINE-BETA-MONOOXYGENASE-RXN" orgid="META" resource="getxml?META:DOPAMINE-BETA-MONOOXYGENASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-8766" detail="low" frameid="REG-8766" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-10241" detail="low" frameid="ENZRXN-10241" orgid="META"><common-name datatype="string">&amp;gamma;-glutamyl transpeptidase</common-name>
-<enzyme><Protein frameid="CPLX-6041" orgid="META" resource="getxml?META:CPLX-6041" /></enzyme>
-<reaction><Reaction frameid="RXN-6601" orgid="META" resource="getxml?META:RXN-6601" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6585" detail="low" frameid="REG-6585" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13725" detail="low" frameid="ENZRXN-13725" orgid="META"><common-name datatype="string">&lt;i&gt;cis&lt;/i&gt;-benzene glycol dehydrogenase</common-name>
-<enzyme><Protein frameid="CPLX-7284" orgid="META" resource="getxml?META:CPLX-7284" /></enzyme>
-<reaction><Reaction frameid="1.3.1.19-RXN" orgid="META" resource="getxml?META:1.3.1.19-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6268" detail="low" frameid="REG-6268" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">+</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13926" detail="low" frameid="ENZRXN-13926" orgid="META"><common-name datatype="string">L-asparaginase</common-name>
-<enzyme><Protein frameid="CPLX-7341" orgid="META" resource="getxml?META:CPLX-7341" /></enzyme>
-<reaction><Reaction frameid="ASPARAGHYD-RXN" orgid="META" resource="getxml?META:ASPARAGHYD-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6243" detail="low" frameid="REG-6243" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13856" detail="low" frameid="ENZRXN-13856" orgid="META"><common-name datatype="string">tellimagrandin II: O2 oxidoreductase</common-name>
-<enzyme><Protein frameid="CPLX-7312" orgid="META" resource="getxml?META:CPLX-7312" /></enzyme>
-<reaction><Reaction frameid="RXN-8720" orgid="META" resource="getxml?META:RXN-8720" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6168" detail="low" frameid="REG-6168" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13855" detail="low" frameid="ENZRXN-13855" orgid="META"><common-name datatype="string">pentagalloylglucose: O&lt;sub&gt;2&lt;/sub&gt; oxidoreductase</common-name>
-<enzyme><Protein frameid="MONOMER-13001" orgid="META" resource="getxml?META:MONOMER-13001" /></enzyme>
-<reaction><Reaction frameid="RXN-8719" orgid="META" resource="getxml?META:RXN-8719" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-6048" detail="low" frameid="REG-6048" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13236" detail="low" frameid="ENZRXN-13236" orgid="META"><common-name datatype="string">ethylnitronate monooxygenase</common-name>
-<enzyme><Protein frameid="CPLX-7182" orgid="META" resource="getxml?META:CPLX-7182" /></enzyme>
-<reaction><Reaction frameid="2-NITROPROPANE-DIOXYGENASE-RXN" orgid="META" resource="getxml?META:2-NITROPROPANE-DIOXYGENASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-5958" detail="low" frameid="REG-5958" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13423" detail="low" frameid="ENZRXN-13423" orgid="META"><common-name datatype="string">glutathione synthetase</common-name>
-<enzyme><Protein frameid="CPLX-7214" orgid="META" resource="getxml?META:CPLX-7214" /></enzyme>
-<reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-SYN-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-5948" detail="low" frameid="REG-5948" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-13441" detail="low" frameid="ENZRXN-13441" orgid="META"><common-name datatype="string">benzalacetone synthase</common-name>
-<enzyme><Protein frameid="CPLX-7226" orgid="META" resource="getxml?META:CPLX-7226" /></enzyme>
-<reaction><Reaction frameid="RXN-8458" orgid="META" resource="getxml?META:RXN-8458" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLUTATHIONE" orgid="META" resource="#META:GLUTATHIONE" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">L-&amp;gamma;-glutamyl-L-cysteinylglycine</synonym>
-<synonym datatype="string">GSH</synonym>
-<synonym datatype="string">reduced glutathione</synonym>
-<synonym datatype="string">glutathionate</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-21584" orgid="META" resource="getxml?META:RXN-21584" /><Reaction frameid="1.8.5.1-RXN" orgid="META" resource="getxml?META:1.8.5.1-RXN" /><Reaction frameid="RXN-21334" orgid="META" resource="getxml?META:RXN-21334" /><Reaction frameid="RXN-21333" orgid="META" resource="getxml?META:RXN-21333" /><Reaction frameid="RXN-982" orgid="META" resource="getxml?META:RXN-982" /><Reaction frameid="RXN-21025" orgid="META" resource="getxml?META:RXN-21025" /><Reaction frameid="RXN-21019" orgid="META" resource="getxml?META:RXN-21019" /><Reaction frameid="1.20.4.2-RXN" orgid="META" resource="getxml?META:1.20.4.2-RXN" /><Reaction frameid="RXN-20697" orgid="META" resource="getxml?META:RXN-20697" /><Reaction frameid="RXN-20693" orgid="META" resource="getxml?META:RXN-20693" /><Reaction frameid="RXN-20696" orgid="META" resource="getxml?META:RXN-20696" /><Reaction frameid="PRODISULFREDUCT-RXN" orgid="META" resource="getxml?META:PRODISULFREDUCT-RXN" /><Reaction frameid="RXN-19922" orgid="META" resource="getxml?META:RXN-19922" /><Reaction frameid="RXN-11663" orgid="META" resource="getxml?META:RXN-11663" /><Reaction frameid="RXN0-11" orgid="META" resource="getxml?META:RXN0-11" /><Reaction frameid="RXN-8174" orgid="META" resource="getxml?META:RXN-8174" /><Reaction frameid="SULFUR-DIOXYGENASE-RXN" orgid="META" resource="getxml?META:SULFUR-DIOXYGENASE-RXN" /><Reaction frameid="RXN-19629" orgid="META" resource="getxml?META:RXN-19629" /><Reaction frameid="RXN-19626" orgid="META" resource="getxml?META:RXN-19626" /><Reaction frameid="RXN-9157" orgid="META" resource="getxml?META:RXN-9157" /><Reaction frameid="RXN-13673" orgid="META" resource="getxml?META:RXN-13673" /><Reaction frameid="RXN-18407" orgid="META" resource="getxml?META:RXN-18407" /><Reaction frameid="RXN-18405" orgid="META" resource="getxml?META:RXN-18405" /><Reaction frameid="RXN-19611" orgid="META" resource="getxml?META:RXN-19611" /><Reaction frameid="RXN-19610" orgid="META" resource="getxml?META:RXN-19610" /><Reaction frameid="RXN-19601" orgid="META" resource="getxml?META:RXN-19601" /><Reaction frameid="RXN-19600" orgid="META" resource="getxml?META:RXN-19600" /><Reaction frameid="RXN-19585" orgid="META" resource="getxml?META:RXN-19585" /><Reaction frameid="RXN-6601" orgid="META" resource="getxml?META:RXN-6601" /><Reaction frameid="RXNQT-4363" orgid="META" resource="getxml?META:RXNQT-4363" /><Reaction frameid="RXN-19573" orgid="META" resource="getxml?META:RXN-19573" /><Reaction frameid="RXN0-7010" orgid="META" resource="getxml?META:RXN0-7010" /><Reaction frameid="RXN-18695" orgid="META" resource="getxml?META:RXN-18695" /><Reaction frameid="RXN-19370" orgid="META" resource="getxml?META:RXN-19370" /><Reaction frameid="RXN-12618" orgid="META" resource="getxml?META:RXN-12618" /><Reaction frameid="RXN-19036" orgid="META" resource="getxml?META:RXN-19036" /><Reaction frameid="RXN-19033" orgid="META" resource="getxml?META:RXN-19033" /><Reaction frameid="THIOSULFATE--THIOL-SULFURTRANSFERASE-RXN" orgid="META" resource="getxml?META:THIOSULFATE--THIOL-SULFURTRANSFERASE-RXN" /><Reaction frameid="RXN-15348" orgid="META" resource="getxml?META:RXN-15348" /><Reaction frameid="RXN-19024" orgid="META" resource="getxml?META:RXN-19024" /><Reaction frameid="RXN0-21" orgid="META" resource="getxml?META:RXN0-21" /><Reaction frameid="RXN-18758" orgid="META" resource="getxml?META:RXN-18758" /><Reaction frameid="RXN-18757" orgid="META" resource="getxml?META:RXN-18757" /><Reaction frameid="RXN-17886" orgid="META" resource="getxml?META:RXN-17886" /><Reaction frameid="RXN-18158" orgid="META" resource="getxml?META:RXN-18158" /><Reaction frameid="RXN-18406" orgid="META" resource="getxml?META:RXN-18406" /><Reaction frameid="RXN-18403" orgid="META" resource="getxml?META:RXN-18403" /><Reaction frameid="RXN-18402" orgid="META" resource="getxml?META:RXN-18402" /><Reaction frameid="RXN-12865" orgid="META" resource="getxml?META:RXN-12865" /><Reaction frameid="RXN-12867" orgid="META" resource="getxml?META:RXN-12867" /><Reaction frameid="RXNQT-4361" orgid="META" resource="getxml?META:RXNQT-4361" /><Reaction frameid="RXN-18171" orgid="META" resource="getxml?META:RXN-18171" /><Reaction frameid="RXN-18170" orgid="META" resource="getxml?META:RXN-18170" /><Reaction frameid="RXN-18165" orgid="META" resource="getxml?META:RXN-18165" /><Reaction frameid="RXN-11423" orgid="META" resource="getxml?META:RXN-11423" /><Reaction frameid="RXN-18164" orgid="META" resource="getxml?META:RXN-18164" /><Reaction frameid="RXN-11424" orgid="META" resource="getxml?META:RXN-11424" /><Reaction frameid="RXN-18163" orgid="META" resource="getxml?META:RXN-18163" /><Reaction frameid="RXN-11426" orgid="META" resource="getxml?META:RXN-11426" /><Reaction frameid="RXN-11427" orgid="META" resource="getxml?META:RXN-11427" /><Reaction frameid="RXN-18162" orgid="META" resource="getxml?META:RXN-18162" /><Reaction frameid="RXN-11422" orgid="META" resource="getxml?META:RXN-11422" /><Reaction frameid="RXN-18161" orgid="META" resource="getxml?META:RXN-18161" /><Reaction frameid="RXN-11420" orgid="META" resource="getxml?META:RXN-11420" /><Reaction frameid="RXN-11421" orgid="META" resource="getxml?META:RXN-11421" /><Reaction frameid="RXN-11425" orgid="META" resource="getxml?META:RXN-11425" /><Reaction frameid="RXN-18160" orgid="META" resource="getxml?META:RXN-18160" /><Reaction frameid="RXN-18159" orgid="META" resource="getxml?META:RXN-18159" /><Reaction frameid="RXN-18092" orgid="META" resource="getxml?META:RXN-18092" /><Reaction frameid="RXN-17887" orgid="META" resource="getxml?META:RXN-17887" /><Reaction frameid="RXN0-6256" orgid="META" resource="getxml?META:RXN0-6256" /><Reaction frameid="RXN0-6549" orgid="META" resource="getxml?META:RXN0-6549" /><Reaction frameid="RXN-14497" orgid="META" resource="getxml?META:RXN-14497" /><Reaction frameid="1.8.4.4-RXN" orgid="META" resource="getxml?META:1.8.4.4-RXN" /><Reaction frameid="R129-RXN" orgid="META" resource="getxml?META:R129-RXN" /><Reaction frameid="1.11.1.12-RXN" orgid="META" resource="getxml?META:1.11.1.12-RXN" /><Reaction frameid="GSCYSSYN-RXN" orgid="META" resource="getxml?META:GSCYSSYN-RXN" /><Reaction frameid="RXN-16203" orgid="META" resource="getxml?META:RXN-16203" /><Reaction frameid="RXN-16193" orgid="META" resource="getxml?META:RXN-16193" /><Reaction frameid="GLUTATHIONE-PEROXIDASE-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-PEROXIDASE-RXN" /><Reaction frameid="RXN-15680" orgid="META" resource="getxml?META:RXN-15680" /><Reaction frameid="GSPSYN-RXN" orgid="META" resource="getxml?META:GSPSYN-RXN" /><Reaction frameid="PRODISULFREDUCT-A-RXN" orgid="META" resource="getxml?META:PRODISULFREDUCT-A-RXN" /><Reaction frameid="GSHTRAN-RXN" orgid="META" resource="getxml?META:GSHTRAN-RXN" /><Reaction frameid="RXN-12864" orgid="META" resource="getxml?META:RXN-12864" /><Reaction frameid="RXN-12529" orgid="META" resource="getxml?META:RXN-12529" /><Reaction frameid="RXN-12528" orgid="META" resource="getxml?META:RXN-12528" /><Reaction frameid="RXN-10905" orgid="META" resource="getxml?META:RXN-10905" /><Reaction frameid="RXN-10904" orgid="META" resource="getxml?META:RXN-10904" /><Reaction frameid="RXN-10903" orgid="META" resource="getxml?META:RXN-10903" /><Reaction frameid="RXN-10902" orgid="META" resource="getxml?META:RXN-10902" /><Reaction frameid="RXNQT-4356" orgid="META" resource="getxml?META:RXNQT-4356" /><Reaction frameid="2.3.2.15-RXN" orgid="META" resource="getxml?META:2.3.2.15-RXN" /><Reaction frameid="GLUTATHIONE-REDUCT-NADPH-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-REDUCT-NADPH-RXN" /><Reaction frameid="GST-RXN" orgid="META" resource="getxml?META:GST-RXN" /><Reaction frameid="COA-GLUTATHIONE-REDUCTASE-NADPH-RXN" orgid="META" resource="getxml?META:COA-GLUTATHIONE-REDUCTASE-NADPH-RXN" /><Reaction frameid="LIND-RXN" orgid="META" resource="getxml?META:LIND-RXN" /><Reaction frameid="6.3.1.9-RXN" orgid="META" resource="getxml?META:6.3.1.9-RXN" /><Reaction frameid="GLUTATHIONE-OXIDASE-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-OXIDASE-RXN" /><Reaction frameid="1.8.4.1-RXN" orgid="META" resource="getxml?META:1.8.4.1-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-12721" orgid="META" resource="getxml?META:RXN-12721" /><Reaction frameid="1.8.4.7-RXN" orgid="META" resource="getxml?META:1.8.4.7-RXN" /><Reaction frameid="2.1.1.137-RXN" orgid="META" resource="getxml?META:2.1.1.137-RXN" /><Reaction frameid="RXN-20884" orgid="META" resource="getxml?META:RXN-20884" /><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-SYN-RXN" /><Reaction frameid="RXN0-11" orgid="META" resource="getxml?META:RXN0-11" /><Reaction frameid="TECH2REDHAL-RXN" orgid="META" resource="getxml?META:TECH2REDHAL-RXN" /><Reaction frameid="TECH1REDHAL-RXN" orgid="META" resource="getxml?META:TECH1REDHAL-RXN" /><Reaction frameid="RXN-7919" orgid="META" resource="getxml?META:RXN-7919" /><Reaction frameid="RXN-19612" orgid="META" resource="getxml?META:RXN-19612" /><Reaction frameid="GLUTATHIONE-THIOESTERASE-RXN" orgid="META" resource="getxml?META:GLUTATHIONE-THIOESTERASE-RXN" /><Reaction frameid="RXN-2961" orgid="META" resource="getxml?META:RXN-2961" /><Reaction frameid="RXN-19040" orgid="META" resource="getxml?META:RXN-19040" /><Reaction frameid="RXN0-21" orgid="META" resource="getxml?META:RXN0-21" /><Reaction frameid="RXN-17592" orgid="META" resource="getxml?META:RXN-17592" /><Reaction frameid="RXN-17595" orgid="META" resource="getxml?META:RXN-17595" /><Reaction frameid="RXN-16574" orgid="META" resource="getxml?META:RXN-16574" /><Reaction frameid="RXN-13161" orgid="META" resource="getxml?META:RXN-13161" /><Reaction frameid="1.5.4.1-RXN" orgid="META" resource="getxml?META:1.5.4.1-RXN" /><Reaction frameid="GLYOXI-RXN" orgid="META" resource="getxml?META:GLYOXI-RXN" /><Reaction frameid="RXN-12506" orgid="META" resource="getxml?META:RXN-12506" /><Reaction frameid="SULFFEOXIDO-RXN" orgid="META" resource="getxml?META:SULFFEOXIDO-RXN" /><Reaction frameid="1.8.4.9-RXN" orgid="META" resource="getxml?META:1.8.4.9-RXN" /><Reaction frameid="LEUKOTRIENE-C4-SYNTHASE-RXN" orgid="META" resource="getxml?META:LEUKOTRIENE-C4-SYNTHASE-RXN" /><Reaction frameid="S-FORMYLGLUTATHIONE-HYDROLASE-RXN" orgid="META" resource="getxml?META:S-FORMYLGLUTATHIONE-HYDROLASE-RXN" /><Reaction frameid="GSCYSDEG-RXN" orgid="META" resource="getxml?META:GSCYSDEG-RXN" /><Reaction frameid="1.8.4.3-RXN" orgid="META" resource="getxml?META:1.8.4.3-RXN" /><Reaction frameid="S-SUCCINYLGLUTATHIONE-HYDROLASE-RXN" orgid="META" resource="getxml?META:S-SUCCINYLGLUTATHIONE-HYDROLASE-RXN" /><Reaction frameid="GSPAMID-RXN" orgid="META" resource="getxml?META:GSPAMID-RXN" /><Reaction frameid="GLYOXII-RXN" orgid="META" resource="getxml?META:GLYOXII-RXN" /></appears-in-right-side-of>
+<credits><revised><date datatype='date'>2012-03-12</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
+</credits>
 </Compound>
 </ptools-xml>

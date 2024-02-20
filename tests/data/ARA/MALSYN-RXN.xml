@@ -1,13 +1,35 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:MALSYN-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:MALSYN-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:MALSYN-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:MALSYN-RXN" detail="full" frameid="MALSYN-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:ACETYL-COA' orgid='ARA' frameid='ACETYL-COA'/></left>
+<left><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/></left>
+<left><Compound resource='getxml?ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></left>
+<synonym datatype='string'>glyoxylate-acetate condensation</synonym>
+<synonym datatype='string'>glyoxylate transacetylation</synonym>
+<synonym datatype='string'>Malate synthetase</synonym>
+<synonym datatype='string'>Malate condensing enzyme</synonym>
+<synonym datatype='string'>Glyoxylate transacetylase</synonym>
+<ec-number>EC-2.3.3.9<official>T</official>
+</ec-number>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
+<right><Compound resource='getxml?ARA:MAL' orgid='ARA' frameid='MAL'/></right>
+<right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-9.251221</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-6306' orgid='ARA' frameid='ENZRXNQT-6306' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G03860-MONOMER' orgid='ARA' frameid='AT5G03860-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/></reaction>
+<common-name datatype='string'>malate synthase A</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>UNIPROT</dblink-db>
 <dblink-oid>O32913</dblink-oid>
 <dblink-relationship>RELATED-TO</dblink-relationship>
@@ -198,27 +220,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=I40715</dblink-URL>
 </dblink>
-<ec-number>EC-2.3.3.9<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-6306" detail="low" frameid="ENZRXNQT-6306" orgid="ARA"><enzyme><Protein frameid="AT5G03860-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G03860-MONOMER" /></enzyme>
-<reaction><Reaction frameid="MALSYN-RXN" orgid="ARA" resource="#ARA:MALSYN-RXN" /></reaction>
-<common-name datatype="string">malate synthase A</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<synonym datatype="string">glyoxylate-acetate condensation</synonym>
-<synonym datatype="string">glyoxylate transacetylation</synonym>
-<synonym datatype="string">Malate synthetase</synonym>
-<synonym datatype="string">Malate condensing enzyme</synonym>
-<synonym datatype="string">Glyoxylate transacetylase</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-9.251221</gibbs-0>
-<in-pathway><Pathway frameid="GLYOXYLATE-BYPASS" orgid="ARA" resource="getxml?ARA:GLYOXYLATE-BYPASS" /><Pathway frameid="GLYOXDEG-PWY" orgid="ARA" resource="getxml?ARA:GLYOXDEG-PWY" /></in-pathway>
-<left><Compound frameid="ACETYL-COA" orgid="ARA" resource="getxml?ARA:ACETYL-COA" /></left>
-<left><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></left>
-<left><Compound frameid="GLYOX" orgid="ARA" resource="getxml?ARA:GLYOX" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
-<right><Compound frameid="MAL" orgid="ARA" resource="getxml?ARA:MAL" /></right>
-<right><Compound frameid="CO-A" orgid="ARA" resource="getxml?ARA:CO-A" /></right>
+<in-pathway><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/><Pathway resource='getxml?ARA:GLYOXDEG-PWY' orgid='ARA' frameid='GLYOXDEG-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

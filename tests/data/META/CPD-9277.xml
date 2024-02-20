@@ -1,18 +1,36 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:CPD-9277"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:CPD-9277'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:CPD-9277</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:CPD-9277" detail="full" frameid="CPD-9277" orgid="META"><parent><Compound class="true" frameid="S-Alkyl-L-Cysteine-S-Oxides" orgid="META" resource="getxml?META:S-Alkyl-L-Cysteine-S-Oxides" /></parent>
-<cml><molecule formalCharge="0" id="CPD-9277" title="methiin"><atomArray><atom elementType="C" id="CPD-9277-atom1" x2="-1812.0" y2="-2819.0" /><atom elementType="C" id="CPD-9277-atom2" x2="-2526.0" y2="-1581.0" /><atom elementType="C" id="CPD-9277-atom3" x2="-2526.0" y2="-756.0" /><atom elementType="C" id="CPD-9277-atom4" x2="-1812.0" y2="-344.0" /><atom elementType="N" formalCharge="1" id="CPD-9277-atom5" x2="-3229.0" y2="-354.0" /><atom elementType="O" id="CPD-9277-atom6" x2="-1812.0" y2="482.0" /><atom elementType="O" formalCharge="-1" id="CPD-9277-atom7" x2="-1097.0" y2="-756.0" /><atom elementType="O" id="CPD-9277-atom8" x2="-1098.0" y2="-1581.0" /><atom elementType="S" id="CPD-9277-atom9" x2="-1812.0" y2="-1994.0" /></atomArray>
-<bondArray><bond atomRefs="CPD-9277-atom1 CPD-9277-atom9" id="CPD-9277-bond1" order="1" /><bond atomRefs="CPD-9277-atom9 CPD-9277-atom2" id="CPD-9277-bond2" order="1" /><bond atomRefs="CPD-9277-atom2 CPD-9277-atom3" id="CPD-9277-bond3" order="1" /><bond atomRefs="CPD-9277-atom3 CPD-9277-atom4" id="CPD-9277-bond4" order="1" /><bond atomRefs="CPD-9277-atom9 CPD-9277-atom8" id="CPD-9277-bond5" order="2" /><bond atomRefs="CPD-9277-atom3 CPD-9277-atom5" id="CPD-9277-bond6" order="1" /><bond atomRefs="CPD-9277-atom4 CPD-9277-atom7" id="CPD-9277-bond7" order="1" /><bond atomRefs="CPD-9277-atom4 CPD-9277-atom6" id="CPD-9277-bond8" order="2" /></bondArray>
-<formula concise="C 4 H 9 N 1 O 3 S 1" /><float title="molecularWeight" units="g/mol">151.18</float>
-<string title="smiles">C(=O)([O-])[C@@H]([NH3+])CS(=O)C</string>
+<Compound ID='META:CPD-9277' orgid='META' frameid='CPD-9277' detail='full'><parent><Compound resource='getxml?META:S-Alkyl-L-Cysteine-S-Oxides' orgid='META' frameid='S-Alkyl-L-Cysteine-S-Oxides' class='true'/></parent>
+<cml><molecule id='CPD-9277' title='methiin' formalCharge='0'><atomArray><atom id='CPD-9277-atom1' elementType='C' x2='-1812.0' y2='-2819.0'/><atom id='CPD-9277-atom2' elementType='C' x2='-2526.0' y2='-1581.0'/><atom id='CPD-9277-atom3' elementType='C' x2='-2526.0' y2='-756.0'/><atom id='CPD-9277-atom4' elementType='C' x2='-1812.0' y2='-344.0'/><atom id='CPD-9277-atom5' elementType='N' x2='-3229.0' y2='-354.0' formalCharge='1'/><atom id='CPD-9277-atom6' elementType='O' x2='-1812.0' y2='482.0'/><atom id='CPD-9277-atom7' elementType='O' x2='-1097.0' y2='-756.0' formalCharge='-1'/><atom id='CPD-9277-atom8' elementType='O' x2='-1098.0' y2='-1581.0'/><atom id='CPD-9277-atom9' elementType='S' x2='-1812.0' y2='-1994.0'/></atomArray>
+<bondArray><bond id='CPD-9277-bond1' atomRefs='CPD-9277-atom1 CPD-9277-atom9' order='1'/><bond id='CPD-9277-bond2' atomRefs='CPD-9277-atom9 CPD-9277-atom2' order='1'/><bond id='CPD-9277-bond3' atomRefs='CPD-9277-atom2 CPD-9277-atom3' order='1'/><bond id='CPD-9277-bond4' atomRefs='CPD-9277-atom3 CPD-9277-atom4' order='1'/><bond id='CPD-9277-bond5' atomRefs='CPD-9277-atom9 CPD-9277-atom8' order='2'/><bond id='CPD-9277-bond6' atomRefs='CPD-9277-atom3 CPD-9277-atom5' order='1'/><bond id='CPD-9277-bond7' atomRefs='CPD-9277-atom4 CPD-9277-atom7' order='1'/><bond id='CPD-9277-bond8' atomRefs='CPD-9277-atom4 CPD-9277-atom6' order='2'/></bondArray>
+<formula concise='C 4 H 9 N 1 O 3 S 1'/><float title='molecularWeight' units='g/mol'>151.18</float>
+<string title='smiles'>C(=O)([O-])[C@@H]([NH3+])CS(=O)C</string>
 </molecule>
 </cml>
-<common-name datatype="string">methiin</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-16176' orgid='META' frameid='RXN-16176'/></appears-in-left-side-of>
+<inchi datatype='string'>InChI=1S/C4H9NO3S/c1-9(8)2-3(5)4(6)7/h3H,2,5H2,1H3,(H,6,7)/t3-,9?/m0/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>151.18</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-8908' orgid='META' frameid='RXN-8908'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>151.03032</monoisotopic-mw>
+<synonym datatype='string'>S-methyl-L-cycteine sulfoxide</synonym>
+<synonym datatype='string'>Kale anemia factor</synonym>
+<synonym datatype='string'>S-methylcysteine sulfoxide</synonym>
+<synonym datatype='string'>S-methyl-L-cysteine sulfoxide</synonym>
+<synonym datatype='string'>3-methylsulfinyl-L-alanine</synonym>
+<synonym datatype='string'>MCSO</synonym>
+<common-name datatype='string'>methiin</common-name>
+<inchi-key datatype='string'>InChIKey=ZZLHPCSGGOGHFW-BUKSALPDSA-N</inchi-key>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000005339227</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000005339227</dblink-URL>
+</dblink>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd25622</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -28,32 +46,20 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=90659041</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-26.659908<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-26.659908<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C4H9NO3S/c1-9(8)2-3(5)4(6)7/h3H,2,5H2,1H3,(H,6,7)/t3-,9?/m0/s1</inchi>
-<inchi-key datatype="string">InChIKey=ZZLHPCSGGOGHFW-BUKSALPDSA-N</inchi-key>
-<molecular-weight datatype="float" units="Daltons">151.18</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">151.03032</monoisotopic-mw>
-<synonym datatype="string">S-methyl-L-cycteine sulfoxide</synonym>
-<synonym datatype="string">Kale anemia factor</synonym>
-<synonym datatype="string">S-methylcysteine sulfoxide</synonym>
-<synonym datatype="string">S-methyl-L-cysteine sulfoxide</synonym>
-<synonym datatype="string">3-methylsulfinyl-L-alanine</synonym>
-<synonym datatype="string">MCSO</synonym>
-<appears-in-left-side-of><Reaction frameid="RXN-16176" orgid="META" resource="getxml?META:RXN-16176" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-8908" orgid="META" resource="getxml?META:RXN-8908" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

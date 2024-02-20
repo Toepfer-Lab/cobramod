@@ -1,18 +1,52 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLYOX"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:GLYOX'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLYOX</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Compound ID="ARA:GLYOX" detail="full" frameid="GLYOX" orgid="ARA"><parent><Compound class="true" frameid="2-Oxo-carboxylates" orgid="ARA" resource="getxml?ARA:2-Oxo-carboxylates" /></parent>
-<cml><molecule formalCharge="-1" id="GLYOX" title="glyoxylate"><atomArray><atom elementType="C" id="GLYOX-atom1" x2="1386.0" y2="8534.0" /><atom elementType="C" id="GLYOX-atom2" x2="-5758.0" y2="4409.0" /><atom elementType="O" id="GLYOX-atom3" x2="1386.0" y2="16783.0" /><atom elementType="O" id="GLYOX-atom4" x2="-5758.0" y2="-3841.0" /><atom elementType="O" formalCharge="-1" id="GLYOX-atom5" x2="-12903.0" y2="8534.0" /><atom elementType="H" id="GLYOX-atom6" x2="8530.0" y2="4409.0" /></atomArray>
-<bondArray><bond atomRefs="GLYOX-atom5 GLYOX-atom2" id="GLYOX-bond1" order="1" /><bond atomRefs="GLYOX-atom3 GLYOX-atom1" id="GLYOX-bond2" order="2" /><bond atomRefs="GLYOX-atom4 GLYOX-atom2" id="GLYOX-bond3" order="2" /><bond atomRefs="GLYOX-atom1 GLYOX-atom2" id="GLYOX-bond4" order="1" /><bond atomRefs="GLYOX-atom1 GLYOX-atom6" id="GLYOX-bond5" order="1" /></bondArray>
-<formula concise="C 2 H 1 O 3" /><float title="molecularWeight" units="g/mol">73.028</float>
-<string title="smiles">C(C(=O)[O-])=O</string>
+<Compound ID='ARA:GLYOX' orgid='ARA' frameid='GLYOX' detail='full'><parent><Compound resource='getxml?ARA:2-Oxo-carboxylates' orgid='ARA' frameid='2-Oxo-carboxylates' class='true'/></parent>
+<cml><molecule id='GLYOX' title='glyoxylate' formalCharge='-1'><atomArray><atom id='GLYOX-atom1' elementType='C' x2='1386.0' y2='8534.0'/><atom id='GLYOX-atom2' elementType='C' x2='-5758.0' y2='4409.0'/><atom id='GLYOX-atom3' elementType='O' x2='1386.0' y2='16783.0'/><atom id='GLYOX-atom4' elementType='O' x2='-5758.0' y2='-3841.0'/><atom id='GLYOX-atom5' elementType='O' x2='-12903.0' y2='8534.0' formalCharge='-1'/><atom id='GLYOX-atom6' elementType='H' x2='8530.0' y2='4409.0'/></atomArray>
+<bondArray><bond id='GLYOX-bond1' atomRefs='GLYOX-atom5 GLYOX-atom2' order='1'/><bond id='GLYOX-bond2' atomRefs='GLYOX-atom3 GLYOX-atom1' order='2'/><bond id='GLYOX-bond3' atomRefs='GLYOX-atom4 GLYOX-atom2' order='2'/><bond id='GLYOX-bond4' atomRefs='GLYOX-atom1 GLYOX-atom2' order='1'/><bond id='GLYOX-bond5' atomRefs='GLYOX-atom1 GLYOX-atom6' order='1'/></bondArray>
+<formula concise='C 2 H 1 O 3'/><float title='molecularWeight' units='g/mol'>73.028</float>
+<string title='smiles'>C(C(=O)[O-])=O</string>
 </molecule>
 </cml>
+<synonym datatype='string'>glyoxalate</synonym>
+<synonym datatype='string'>glyox</synonym>
+<synonym datatype='string'>glyoxylic acid</synonym>
+<inchi-key datatype='string'>InChIKey=HHLFWLYXYJOTON-UHFFFAOYSA-M</inchi-key>
+<comment datatype='string'>Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
+<molecular-weight datatype='float' units='Daltons'>73.028</molecular-weight>
+<regulates><Regulation ID='ARA:REG-6184' orgid='ARA' frameid='REG-6184' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG-11977' orgid='ARA' frameid='REG-11977' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG0-6923' orgid='ARA' frameid='REG0-6923' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></regulator>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ARA:REG-12098' orgid='ARA' frameid='REG-12098' detail='low'><parent><Regulation resource='getxml?ARA:Regulation-of-Enzyme-Activity' orgid='ARA' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></regulator>
+</Regulation>
+</regulates>
+<inchi datatype='string'>InChI=1S/C2H2O3/c3-1-2(4)5/h1H,(H,4,5)/p-1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ARA:UREIDOGLYCOLATE-LYASE-RXN' orgid='ARA' frameid='UREIDOGLYCOLATE-LYASE-RXN'/><Reaction resource='getxml?ARA:GLYCOLATE-REDUCTASE-RXN' orgid='ARA' frameid='GLYCOLATE-REDUCTASE-RXN'/><Reaction resource='getxml?ARA:SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:UREIDOGLYCOLATE-HYDROLASE-RXN' orgid='ARA' frameid='UREIDOGLYCOLATE-HYDROLASE-RXN'/><Reaction resource='getxml?ARA:GLYOXYLATE-REDUCTASE-NADP+-RXN' orgid='ARA' frameid='GLYOXYLATE-REDUCTASE-NADP+-RXN'/><Reaction resource='getxml?ARA:GLYCOLATEDEHYDRO-RXN' orgid='ARA' frameid='GLYCOLATEDEHYDRO-RXN'/><Reaction resource='getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='GLYCINE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-969' orgid='ARA' frameid='RXN-969'/><Reaction resource='getxml?ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/></appears-in-right-side-of>
+<appears-in-left-side-of><Reaction resource='getxml?ARA:SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:RXN-13328' orgid='ARA' frameid='RXN-13328'/><Reaction resource='getxml?ARA:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN' orgid='ARA' frameid='ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN'/><Reaction resource='getxml?ARA:MALSYN-RXN' orgid='ARA' frameid='MALSYN-RXN'/></appears-in-left-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>74.0004</monoisotopic-mw>
+<gibbs-0 datatype='float' units='kcal/mol'>-102.04095</gibbs-0>
+<common-name datatype='string'>glyoxylate</common-name>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000004658554</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000004658554</dblink-URL>
+</dblink>
 <dblink><dblink-db>SEED</dblink-db>
 <dblink-oid>cpd00040</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -68,33 +102,5 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=298-12-4</dblink-URL>
 </dblink>
-<synonym datatype="string">glyoxalate</synonym>
-<synonym datatype="string">glyox</synonym>
-<synonym datatype="string">glyoxylic acid</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-102.04095</gibbs-0>
-<inchi datatype="string">InChI=1S/C2H2O3/c3-1-2(4)5/h1H,(H,4,5)/p-1</inchi>
-<inchi-key datatype="string">InChIKey=HHLFWLYXYJOTON-UHFFFAOYSA-M</inchi-key>
-<molecular-weight datatype="float" units="Daltons">73.028</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">74.0004</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:SERINE--GLYOXYLATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="RXN-13328" orgid="ARA" resource="getxml?ARA:RXN-13328" /><Reaction frameid="ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:ALANINE--GLYOXYLATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="MALSYN-RXN" orgid="ARA" resource="getxml?ARA:MALSYN-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="GLYCOLATE-REDUCTASE-RXN" orgid="ARA" resource="getxml?ARA:GLYCOLATE-REDUCTASE-RXN" /><Reaction frameid="SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:SERINE-GLYOXYLATE-AMINOTRANSFERASE-RXN" /><Reaction frameid="UREIDOGLYCOLATE-HYDROLASE-RXN" orgid="ARA" resource="getxml?ARA:UREIDOGLYCOLATE-HYDROLASE-RXN" /><Reaction frameid="GLYOXYLATE-REDUCTASE-NADP+-RXN" orgid="ARA" resource="getxml?ARA:GLYOXYLATE-REDUCTASE-NADP+-RXN" /><Reaction frameid="GLYCOLATEDEHYDRO-RXN" orgid="ARA" resource="getxml?ARA:GLYCOLATEDEHYDRO-RXN" /><Reaction frameid="GLYCINE-AMINOTRANSFERASE-RXN" orgid="ARA" resource="getxml?ARA:GLYCINE-AMINOTRANSFERASE-RXN" /><Reaction frameid="RXN-969" orgid="ARA" resource="getxml?ARA:RXN-969" /><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ARA" resource="getxml?ARA:ISOCIT-CLEAV-RXN" /></appears-in-right-side-of>
-<regulates><Regulation ID="ARA:REG-6184" detail="low" frameid="REG-6184" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLYOX" orgid="ARA" resource="#ARA:GLYOX" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG-11977" detail="low" frameid="REG-11977" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLYOX" orgid="ARA" resource="#ARA:GLYOX" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG0-6923" detail="low" frameid="REG0-6923" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulator><Compound frameid="GLYOX" orgid="ARA" resource="#ARA:GLYOX" /></regulator>
-</Regulation>
-<Regulation ID="ARA:REG-12098" detail="low" frameid="REG-12098" orgid="ARA"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ARA" resource="getxml?ARA:Regulation-of-Enzyme-Activity" /></parent>
-<regulator><Compound frameid="GLYOX" orgid="ARA" resource="#ARA:GLYOX" /></regulator>
-</Regulation>
-</regulates>
-<comment datatype="string">Metabolite profiling provides evidence that Arabidopsis thaliana contains a metabolite that can be mapped to this compound.</comment>
-<common-name datatype="string">glyoxylate</common-name>
 </Compound>
 </ptools-xml>

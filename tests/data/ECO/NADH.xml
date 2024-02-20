@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:NADH'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:NADH</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:NADH' orgid='ECOLI' frameid='NADH' detail='full'><parent><Compound resource='getxml?ECOLI:NADH-P-OR-NOP' orgid='ECOLI' frameid='NADH-P-OR-NOP' class='true'/></parent>
+<cml><molecule id='NADH' title='NADH' formalCharge='-2'><atomArray><atom id='NADH-atom1' elementType='C' x2='4000.0' y2='2.4752002e+7'/><atom id='NADH-atom2' elementType='C' x2='2000.0' y2='1.6504e+7'/><atom id='NADH-atom3' elementType='C' x2='7147000.0' y2='2.8881002e+7'/><atom id='NADH-atom4' elementType='C' x2='1.4292001e+7' y2='1.6502e+7'/><atom id='NADH-atom5' elementType='C' x2='4.1919004e+7' y2='2.4731002e+7'/><atom id='NADH-atom6' elementType='C' x2='8.818999e+7' y2='2.5208002e+7'/><atom id='NADH-atom7' elementType='C' x2='1.19107e+8' y2='2870000.0'/><atom id='NADH-atom8' elementType='C' x2='1.2322699e+8' y2='2.9858e+7'/><atom id='NADH-atom9' elementType='C' x2='7145000.0' y2='1.238e+7'/><atom id='NADH-atom10' elementType='C' x2='3.4789e+7' y2='2.8882e+7'/><atom id='NADH-atom11' elementType='C' x2='9.5329e+7' y2='2.9338002e+7'/><atom id='NADH-atom12' elementType='C' x2='1.27357e+8' y2='1.7169e+7'/><atom id='NADH-atom13' elementType='C' x2='3.2240998e+7' y2='3.6725e+7'/><atom id='NADH-atom14' elementType='C' x2='9.7929e+7' y2='3.7168004e+7'/><atom id='NADH-atom15' elementType='C' x2='2.3990998e+7' y2='3.6725e+7'/><atom id='NADH-atom16' elementType='C' x2='1.0625899e+8' y2='3.7168004e+7'/><atom id='NADH-atom17' elementType='C' x2='1.3147699e+8' y2='1.002e+7'/><atom id='NADH-atom18' elementType='C' x2='7146000.0' y2='4125000.0'/><atom id='NADH-atom19' elementType='C' x2='1.19107e+8' y2='1.7169e+7'/><atom id='NADH-atom20' elementType='C' x2='2.1436e+7' y2='2.8882e+7'/><atom id='NADH-atom21' elementType='C' x2='1.09409e+8' y2='2.9128e+7'/><atom id='NADH-atom22' elementType='N' x2='1.39726e+8' y2='1.002e+7'/><atom id='NADH-atom23' elementType='N' x2='0.0' y2='3000.0'/><atom id='NADH-atom24' elementType='N' x2='1.27357e+8' y2='2870000.0'/><atom id='NADH-atom25' elementType='N' x2='1.14977e+8' y2='1.002e+7'/><atom id='NADH-atom26' elementType='N' x2='1.29907e+8' y2='2.5008002e+7'/><atom id='NADH-atom27' elementType='N' x2='1.4292001e+7' y2='2.4757002e+7'/><atom id='NADH-atom28' elementType='N' x2='1.16557e+8' y2='2.5008002e+7'/><atom id='NADH-atom29' elementType='O' x2='3.7091e+7' y2='4.3402e+7'/><atom id='NADH-atom30' elementType='O' x2='9.3229e+7' y2='4.3877e+7'/><atom id='NADH-atom31' elementType='O' x2='1.9139e+7' y2='4.3402e+7'/><atom id='NADH-atom32' elementType='O' x2='1.10379e+8' y2='4.4307e+7'/><atom id='NADH-atom33' elementType='O' x2='1.4291e+7' y2='0.0'/><atom id='NADH-atom34' elementType='O' x2='5.7330004e+7' y2='3.7078e+7'/><atom id='NADH-atom35' elementType='O' x2='5.7330004e+7' y2='2.0578e+7' formalCharge='-1'/><atom id='NADH-atom36' elementType='O' x2='7.383e+7' y2='3.7078e+7'/><atom id='NADH-atom37' elementType='O' x2='7.383e+7' y2='2.0578e+7' formalCharge='-1'/><atom id='NADH-atom38' elementType='O' x2='4.908e+7' y2='2.8828002e+7'/><atom id='NADH-atom39' elementType='O' x2='8.207999e+7' y2='2.8828002e+7'/><atom id='NADH-atom40' elementType='O' x2='2.8113e+7' y2='2.4031e+7'/><atom id='NADH-atom41' elementType='O' x2='1.02009e+8' y2='2.4548002e+7'/><atom id='NADH-atom42' elementType='O' x2='6.558e+7' y2='2.8828002e+7'/><atom id='NADH-atom43' elementType='P' x2='5.7330004e+7' y2='2.8828002e+7'/><atom id='NADH-atom44' elementType='P' x2='7.383e+7' y2='2.8828002e+7'/></atomArray>
+<bondArray><bond id='NADH-bond1' atomRefs='NADH-atom15 NADH-atom20' order='1'/><bond id='NADH-bond2' atomRefs='NADH-atom13 NADH-atom10' order='1'/><bond id='NADH-bond3' atomRefs='NADH-atom13 NADH-atom15' order='1'/><bond id='NADH-bond4' atomRefs='NADH-atom18 NADH-atom9' order='1'/><bond id='NADH-bond5' atomRefs='NADH-atom40 NADH-atom20' order='1'/><bond id='NADH-bond6' atomRefs='NADH-atom40 NADH-atom10' order='1'/><bond id='NADH-bond7' atomRefs='NADH-atom10 NADH-atom5' order='1'/><bond id='NADH-bond8' atomRefs='NADH-atom9 NADH-atom4' order='2'/><bond id='NADH-bond9' atomRefs='NADH-atom2 NADH-atom9' order='1'/><bond id='NADH-bond10' atomRefs='NADH-atom3 NADH-atom1' order='2'/><bond id='NADH-bond11' atomRefs='NADH-atom1 NADH-atom2' order='1'/><bond id='NADH-bond12' atomRefs='NADH-atom15 NADH-atom31' order='1'/><bond id='NADH-bond13' atomRefs='NADH-atom13 NADH-atom29' order='1'/><bond id='NADH-bond14' atomRefs='NADH-atom33 NADH-atom18' order='2'/><bond id='NADH-bond15' atomRefs='NADH-atom23 NADH-atom18' order='1'/><bond id='NADH-bond16' atomRefs='NADH-atom16 NADH-atom21' order='1'/><bond id='NADH-bond17' atomRefs='NADH-atom14 NADH-atom11' order='1'/><bond id='NADH-bond18' atomRefs='NADH-atom14 NADH-atom16' order='1'/><bond id='NADH-bond19' atomRefs='NADH-atom41 NADH-atom21' order='1'/><bond id='NADH-bond20' atomRefs='NADH-atom41 NADH-atom11' order='1'/><bond id='NADH-bond21' atomRefs='NADH-atom14 NADH-atom30' order='1'/><bond id='NADH-bond22' atomRefs='NADH-atom11 NADH-atom6' order='1'/><bond id='NADH-bond23' atomRefs='NADH-atom21 NADH-atom28' order='1'/><bond id='NADH-bond24' atomRefs='NADH-atom24 NADH-atom7' order='2'/><bond id='NADH-bond25' atomRefs='NADH-atom7 NADH-atom25' order='1'/><bond id='NADH-bond26' atomRefs='NADH-atom25 NADH-atom19' order='2'/><bond id='NADH-bond27' atomRefs='NADH-atom19 NADH-atom12' order='1'/><bond id='NADH-bond28' atomRefs='NADH-atom12 NADH-atom17' order='2'/><bond id='NADH-bond29' atomRefs='NADH-atom24 NADH-atom17' order='1'/><bond id='NADH-bond30' atomRefs='NADH-atom8 NADH-atom26' order='2'/><bond id='NADH-bond31' atomRefs='NADH-atom12 NADH-atom26' order='1'/><bond id='NADH-bond32' atomRefs='NADH-atom17 NADH-atom22' order='1'/><bond id='NADH-bond33' atomRefs='NADH-atom8 NADH-atom28' order='1'/><bond id='NADH-bond34' atomRefs='NADH-atom28 NADH-atom19' order='1'/><bond id='NADH-bond35' atomRefs='NADH-atom16 NADH-atom32' order='1'/><bond id='NADH-bond36' atomRefs='NADH-atom6 NADH-atom39' order='1'/><bond id='NADH-bond37' atomRefs='NADH-atom20 NADH-atom27' order='1'/><bond id='NADH-bond38' atomRefs='NADH-atom4 NADH-atom27' order='1'/><bond id='NADH-bond39' atomRefs='NADH-atom27 NADH-atom3' order='1'/><bond id='NADH-bond40' atomRefs='NADH-atom42 NADH-atom44' order='1'/><bond id='NADH-bond41' atomRefs='NADH-atom37 NADH-atom44' order='1'/><bond id='NADH-bond42' atomRefs='NADH-atom36 NADH-atom44' order='2'/><bond id='NADH-bond43' atomRefs='NADH-atom39 NADH-atom44' order='1'/><bond id='NADH-bond44' atomRefs='NADH-atom38 NADH-atom43' order='1'/><bond id='NADH-bond45' atomRefs='NADH-atom35 NADH-atom43' order='1'/><bond id='NADH-bond46' atomRefs='NADH-atom34 NADH-atom43' order='2'/><bond id='NADH-bond47' atomRefs='NADH-atom42 NADH-atom43' order='1'/><bond id='NADH-bond48' atomRefs='NADH-atom5 NADH-atom38' order='1'/></bondArray>
+<formula concise='C 21 H 27 N 7 O 14 P 2'/><float title='molecularWeight' units='g/mol'>663.43</float>
+<string title='smiles'>C1(/N(\C=C/CC(/C(N)=O)=1)[C@@H]5(O[C@H](COP(OP(OC[C@H]4(O[C@@H](N2(C3(\C(\N=C/2)=C(N)/N=C\N=3)))[C@H](O)[C@H](O)4))(=O)[O-])(=O)[O-])[C@@H](O)[C@@H](O)5))</string>
+</molecule>
+</cml>
+<regulates><Regulation ID='ECOLI:REG0-12926' orgid='ECOLI' frameid='REG0-12926' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:CTPSYN-ENZRXN' orgid='ECOLI' frameid='CTPSYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CTPSYN-CPLX' orgid='ECOLI' frameid='CTPSYN-CPLX'/></enzyme>
+<synonym datatype='string'>CTP synthase</synonym>
+<synonym datatype='string'>UTP-ammonia ligase</synonym>
+<synonym datatype='string'>UTP:ammonia ligase (ADP-forming)</synonym>
+<synonym datatype='string'>CtpS</synonym>
+<common-name datatype='string'>CTP synthetase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:CTPSYN-RXN' orgid='ECOLI' frameid='CTPSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11850' orgid='ECOLI' frameid='REG0-11850' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:UGD-ENZRXN' orgid='ECOLI' frameid='UGD-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-8098' orgid='ECOLI' frameid='CPLX0-8098'/></enzyme>
+<synonym datatype='string'>UDPglucose:NAD+ 6-oxidoreductase</synonym>
+<synonym datatype='string'>UDP-Glc dehydrogenase</synonym>
+<common-name datatype='string'>UDP-glucose 6-dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:UGD-RXN' orgid='ECOLI' frameid='UGD-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11562' orgid='ECOLI' frameid='REG0-11562' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PYRUVATEDEH-ENZRXN' orgid='ECOLI' frameid='PYRUVATEDEH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PYRUVATEDEH-CPLX' orgid='ECOLI' frameid='PYRUVATEDEH-CPLX'/></enzyme>
+<synonym datatype='string'>pyruvate dehydrogenase complex</synonym>
+<synonym datatype='string'>PDH complex</synonym>
+<common-name datatype='string'>pyruvate dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PYRUVDEH-RXN' orgid='ECOLI' frameid='PYRUVDEH-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11560' orgid='ECOLI' frameid='REG0-11560' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-1304' orgid='ECOLI' frameid='ENZRXN0-1304' detail='low'><enzyme><Protein resource='getxml?ECOLI:E3-CPLX' orgid='ECOLI' frameid='E3-CPLX'/></enzyme>
+<synonym datatype='string'>E3 component of  2-oxoglutarate dehydrogenase complex</synonym>
+<common-name datatype='string'>dihydrolipoate dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN-7716' orgid='ECOLI' frameid='RXN-7716'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11559' orgid='ECOLI' frameid='REG0-11559' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-1306' orgid='ECOLI' frameid='ENZRXN0-1306' detail='low'><enzyme><Protein resource='getxml?ECOLI:E3-CPLX' orgid='ECOLI' frameid='E3-CPLX'/></enzyme>
+<common-name datatype='string'>lipoate acetyltransferase &lt;i&gt;N&lt;sup&gt;6&lt;/sup&gt;&lt;/i&gt;-(dihydrolipoyl)lysine:NAD+ oxidoreductase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-1132' orgid='ECOLI' frameid='RXN0-1132'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11312' orgid='ECOLI' frameid='REG0-11312' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:MALIC-NADP-ENZRXN' orgid='ECOLI' frameid='MALIC-NADP-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:MALIC-NADP-CPLX' orgid='ECOLI' frameid='MALIC-NADP-CPLX'/></enzyme>
+<synonym datatype='string'>malic enzyme</synonym>
+<synonym datatype='string'>malate dehydrogenase, NADP+-linked</synonym>
+<synonym datatype='string'>pyruvic-malic carboxylase</synonym>
+<synonym datatype='string'>(S)-malate:NADP+ oxidoreductase (oxaloacetate-decarboxylating)</synonym>
+<common-name datatype='string'>malate dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:MALIC-NADP-RXN' orgid='ECOLI' frameid='MALIC-NADP-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11314' orgid='ECOLI' frameid='REG0-11314' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PFLDEACTIV-ENZRXN' orgid='ECOLI' frameid='PFLDEACTIV-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ADHE-CPLX' orgid='ECOLI' frameid='ADHE-CPLX'/></enzyme>
+<synonym datatype='string'>PFL deactivating enzyme</synonym>
+<synonym datatype='string'>PFL-deactivase</synonym>
+<common-name datatype='string'>pyruvate formate-lyase deactivase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PFLDEACTIV-RXN' orgid='ECOLI' frameid='PFLDEACTIV-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-9214' orgid='ECOLI' frameid='REG0-9214' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:LACTALDDEHYDROG-ENZRXN' orgid='ECOLI' frameid='LACTALDDEHYDROG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ALD-CPLX' orgid='ECOLI' frameid='ALD-CPLX'/></enzyme>
+<synonym datatype='string'>(S)-lactaldehyde:NAD+ oxidoreductase</synonym>
+<common-name datatype='string'>lactaldehyde dehydrogenase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:LACTALDDEHYDROG-RXN' orgid='ECOLI' frameid='LACTALDDEHYDROG-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8209' orgid='ECOLI' frameid='REG0-8209' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PHOSACETYLTRANS-ENZRXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PHOSACETYLTRANS-CPLX' orgid='ECOLI' frameid='PHOSACETYLTRANS-CPLX'/></enzyme>
+<synonym datatype='string'>phosphotransacetylase</synonym>
+<synonym datatype='string'>phosphoacylase</synonym>
+<synonym datatype='string'>acetyl-CoA:orthophosphate acetyltransferase</synonym>
+<common-name datatype='string'>phosphate acetyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7644' orgid='ECOLI' frameid='REG0-7644' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:NAD-KIN-ENZRXN' orgid='ECOLI' frameid='NAD-KIN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-682' orgid='ECOLI' frameid='CPLX0-682'/></enzyme>
+<synonym datatype='string'>ATP:NAD+ 2'-phosphotransferase</synonym>
+<synonym datatype='string'>ATP-NAD kinase</synonym>
+<common-name datatype='string'>NAD kinase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:NAD-KIN-RXN' orgid='ECOLI' frameid='NAD-KIN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7207' orgid='ECOLI' frameid='REG0-7207' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:DIENOYLCOAREDUCT-ENZRXN' orgid='ECOLI' frameid='DIENOYLCOAREDUCT-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:DIENOYLCOAREDUCT-MONOMER' orgid='ECOLI' frameid='DIENOYLCOAREDUCT-MONOMER'/></enzyme>
+<synonym datatype='string'>2,4-dienoyl-CoA reductase (NADPH)</synonym>
+<synonym datatype='string'>4-enoyl-CoA reductase (NADPH)</synonym>
+<synonym datatype='string'>trans-2,3-didehydroacyl-CoA:NADP+ 4-oxidoreductase</synonym>
+<synonym datatype='string'>DCR</synonym>
+<common-name datatype='string'>2,4-dienoyl-CoA reductase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:DIENOYLCOAREDUCT-RXN' orgid='ECOLI' frameid='DIENOYLCOAREDUCT-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6738' orgid='ECOLI' frameid='REG0-6738' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:NADH' orgid='ECOLI' frameid='NADH'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:CITSYN-ENZRXN' orgid='ECOLI' frameid='CITSYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CITRATE-SI-SYNTHASE' orgid='ECOLI' frameid='CITRATE-SI-SYNTHASE'/></enzyme>
+<synonym datatype='string'>condensing enzyme</synonym>
+<synonym datatype='string'>citrogenase</synonym>
+<synonym datatype='string'>oxalaoacetate  transacetylase</synonym>
+<common-name datatype='string'>citrate synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:CITSYN-RXN' orgid='ECOLI' frameid='CITSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<molecular-weight datatype='float' units='Daltons'>663.43</molecular-weight>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00004</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00004</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM10</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM10</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>NADH</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=NADH</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>nadh</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/nadh</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC57945</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC57945</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB01487</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB01487</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>10239197</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/10239197</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>57945</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:57945</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>21604869</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=21604869</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>58-68-4</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=58-68-4</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00004</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00004</dblink-URL>
+</dblink>
+<synonym datatype='string'>NADH&lt;sub&gt;2&lt;/sub&gt;</synonym>
+<synonym datatype='string'>NADH2</synonym>
+<synonym datatype='string'>dihydrodiphosphopyridine nucleotide</synonym>
+<synonym datatype='string'>diphosphopyridine nucleotide reduced</synonym>
+<synonym datatype='string'>dihydronicotinamide adenine dinucleotide</synonym>
+<synonym datatype='string'>nicotinamide adenine dinucleotide reduced</synonym>
+<synonym datatype='string'>NAD-reduced</synonym>
+<synonym datatype='string'>NADH+H+</synonym>
+<synonym datatype='string'>DPNH</synonym>
+<synonym datatype='string'>&amp;beta;-NADH</synonym>
+<synonym datatype='string'>&amp;beta;-nicotinamide adenine dinucleotide, reduced</synonym>
+<inchi-key datatype='string'>InChIKey=BOPGDPNILDQYTO-NNYOXOHSSA-L</inchi-key>
+<monoisotopic-mw datatype='float' units='Daltons'>665.12476</monoisotopic-mw>
+<inchi datatype='string'>InChI=1S/C21H29N7O14P2/c22-17-12-19(25-7-24-17)28(8-26-12)21-16(32)14(30)11(41-21)6-39-44(36,37)42-43(34,35)38-5-10-13(29)15(31)20(40-10)27-3-1-2-9(4-27)18(23)33/h1,3-4,7-8,10-11,13-16,20-21,29-32H,2,5-6H2,(H2,23,33)(H,34,35)(H,36,37)(H2,22,24,25)/p-2/t10-,11-,13-,14-,15-,16-,20-,21-/m1/s1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:RXN-23715' orgid='ECOLI' frameid='RXN-23715'/><Reaction resource='getxml?ECOLI:RXN0-5289' orgid='ECOLI' frameid='RXN0-5289'/><Reaction resource='getxml?ECOLI:RXN-14023' orgid='ECOLI' frameid='RXN-14023'/><Reaction resource='getxml?ECOLI:RXN-17790' orgid='ECOLI' frameid='RXN-17790'/><Reaction resource='getxml?ECOLI:RXN-17781' orgid='ECOLI' frameid='RXN-17781'/><Reaction resource='getxml?ECOLI:RXN-17794' orgid='ECOLI' frameid='RXN-17794'/><Reaction resource='getxml?ECOLI:RXN-17798' orgid='ECOLI' frameid='RXN-17798'/><Reaction resource='getxml?ECOLI:RXN-17786' orgid='ECOLI' frameid='RXN-17786'/><Reaction resource='getxml?ECOLI:RXN-22438' orgid='ECOLI' frameid='RXN-22438'/><Reaction resource='getxml?ECOLI:RXN-15299' orgid='ECOLI' frameid='RXN-15299'/><Reaction resource='getxml?ECOLI:RXN-22001' orgid='ECOLI' frameid='RXN-22001'/><Reaction resource='getxml?ECOLI:RXN-9510' orgid='ECOLI' frameid='RXN-9510'/><Reaction resource='getxml?ECOLI:RXN-20706' orgid='ECOLI' frameid='RXN-20706'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-277' orgid='ECOLI' frameid='TRANS-RXN0-277'/><Reaction resource='getxml?ECOLI:RXN-11032' orgid='ECOLI' frameid='RXN-11032'/><Reaction resource='getxml?ECOLI:RXN-20682' orgid='ECOLI' frameid='RXN-20682'/><Reaction resource='getxml?ECOLI:RXN-20680' orgid='ECOLI' frameid='RXN-20680'/><Reaction resource='getxml?ECOLI:RXN-20676' orgid='ECOLI' frameid='RXN-20676'/><Reaction resource='getxml?ECOLI:RXN-12490' orgid='ECOLI' frameid='RXN-12490'/><Reaction resource='getxml?ECOLI:RXN-20679' orgid='ECOLI' frameid='RXN-20679'/><Reaction resource='getxml?ECOLI:RXN-12570' orgid='ECOLI' frameid='RXN-12570'/><Reaction resource='getxml?ECOLI:RXN-11662' orgid='ECOLI' frameid='RXN-11662'/><Reaction resource='getxml?ECOLI:RXN0-7318' orgid='ECOLI' frameid='RXN0-7318'/><Reaction resource='getxml?ECOLI:RXN0-5375' orgid='ECOLI' frameid='RXN0-5375'/><Reaction resource='getxml?ECOLI:RXN0-307' orgid='ECOLI' frameid='RXN0-307'/><Reaction resource='getxml?ECOLI:RXN-10657' orgid='ECOLI' frameid='RXN-10657'/><Reaction resource='getxml?ECOLI:1.3.1.9-RXN' orgid='ECOLI' frameid='1.3.1.9-RXN'/><Reaction resource='getxml?ECOLI:1.1.1.251-RXN' orgid='ECOLI' frameid='1.1.1.251-RXN'/><Reaction resource='getxml?ECOLI:RXN-17777' orgid='ECOLI' frameid='RXN-17777'/><Reaction resource='getxml?ECOLI:RXN-12107' orgid='ECOLI' frameid='RXN-12107'/><Reaction resource='getxml?ECOLI:4-HYDROXYBUTYRATE-DEHYDROGENASE-RXN' orgid='ECOLI' frameid='4-HYDROXYBUTYRATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-9661' orgid='ECOLI' frameid='RXN-9661'/><Reaction resource='getxml?ECOLI:RXN-10661' orgid='ECOLI' frameid='RXN-10661'/><Reaction resource='getxml?ECOLI:RXN-9658' orgid='ECOLI' frameid='RXN-9658'/><Reaction resource='getxml?ECOLI:THREODEHYD-RXN' orgid='ECOLI' frameid='THREODEHYD-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7101' orgid='ECOLI' frameid='RXN0-7101'/><Reaction resource='getxml?ECOLI:RXN-8632' orgid='ECOLI' frameid='RXN-8632'/><Reaction resource='getxml?ECOLI:RXN-14249' orgid='ECOLI' frameid='RXN-14249'/><Reaction resource='getxml?ECOLI:RXN-13179' orgid='ECOLI' frameid='RXN-13179'/><Reaction resource='getxml?ECOLI:RXN-13158' orgid='ECOLI' frameid='RXN-13158'/><Reaction resource='getxml?ECOLI:RXN-8001' orgid='ECOLI' frameid='RXN-8001'/><Reaction resource='getxml?ECOLI:RXN-9558' orgid='ECOLI' frameid='RXN-9558'/><Reaction resource='getxml?ECOLI:KETOGLUTREDUCT-RXN' orgid='ECOLI' frameid='KETOGLUTREDUCT-RXN'/><Reaction resource='getxml?ECOLI:RXN-16701' orgid='ECOLI' frameid='RXN-16701'/><Reaction resource='getxml?ECOLI:RXN-8506' orgid='ECOLI' frameid='RXN-8506'/><Reaction resource='getxml?ECOLI:TARTRATE-DEHYDROGENASE-RXN' orgid='ECOLI' frameid='TARTRATE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ECOLI:GCVMULTI-RXN' orgid='ECOLI' frameid='GCVMULTI-RXN'/><Reaction resource='getxml?ECOLI:1.1.1.127-RXN' orgid='ECOLI' frameid='1.1.1.127-RXN'/><Reaction resource='getxml?ECOLI:PYRROLINECARBDEHYDROG-RXN' orgid='ECOLI' frameid='PYRROLINECARBDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN-13854' orgid='ECOLI' frameid='RXN-13854'/><Reaction resource='getxml?ECOLI:SORB6PDEHYDROG-RXN' orgid='ECOLI' frameid='SORB6PDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN-14116' orgid='ECOLI' frameid='RXN-14116'/><Reaction resource='getxml?ECOLI:RXN-11478' orgid='ECOLI' frameid='RXN-11478'/><Reaction resource='getxml?ECOLI:RXN-11482' orgid='ECOLI' frameid='RXN-11482'/><Reaction resource='getxml?ECOLI:RXN0-2145' orgid='ECOLI' frameid='RXN0-2145'/><Reaction resource='getxml?ECOLI:RXN-14393' orgid='ECOLI' frameid='RXN-14393'/><Reaction resource='getxml?ECOLI:AMINOPROPDEHYDROG-RXN' orgid='ECOLI' frameid='AMINOPROPDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7024' orgid='ECOLI' frameid='RXN0-7024'/><Reaction resource='getxml?ECOLI:LACTALDREDUCT-RXN' orgid='ECOLI' frameid='LACTALDREDUCT-RXN'/><Reaction resource='getxml?ECOLI:RXN-9657' orgid='ECOLI' frameid='RXN-9657'/><Reaction resource='getxml?ECOLI:1.8.1.4-RXN' orgid='ECOLI' frameid='1.8.1.4-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6727' orgid='ECOLI' frameid='RXN0-6727'/><Reaction resource='getxml?ECOLI:PYRUVDEH-RXN' orgid='ECOLI' frameid='PYRUVDEH-RXN'/><Reaction resource='getxml?ECOLI:RXN0-703' orgid='ECOLI' frameid='RXN0-703'/><Reaction resource='getxml?ECOLI:ALCOHOL-DEHYDROG-GENERIC-RXN' orgid='ECOLI' frameid='ALCOHOL-DEHYDROG-GENERIC-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6565' orgid='ECOLI' frameid='RXN0-6565'/><Reaction resource='getxml?ECOLI:DLACTDEHYDROGNAD-RXN' orgid='ECOLI' frameid='DLACTDEHYDROGNAD-RXN'/><Reaction resource='getxml?ECOLI:FERREDOXIN--NAD+-REDUCTASE-RXN' orgid='ECOLI' frameid='FERREDOXIN--NAD+-REDUCTASE-RXN'/><Reaction resource='getxml?ECOLI:GLYCDEH-RXN' orgid='ECOLI' frameid='GLYCDEH-RXN'/><Reaction resource='getxml?ECOLI:RXN-12071' orgid='ECOLI' frameid='RXN-12071'/><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/><Reaction resource='getxml?ECOLI:RXN0-2044' orgid='ECOLI' frameid='RXN0-2044'/><Reaction resource='getxml?ECOLI:OHACYL-COA-DEHYDROG-RXN' orgid='ECOLI' frameid='OHACYL-COA-DEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:ALCOHOL-DEHYDROG-RXN' orgid='ECOLI' frameid='ALCOHOL-DEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN-9659' orgid='ECOLI' frameid='RXN-9659'/><Reaction resource='getxml?ECOLI:RXN-9660' orgid='ECOLI' frameid='RXN-9660'/><Reaction resource='getxml?ECOLI:RXN-9662' orgid='ECOLI' frameid='RXN-9662'/><Reaction resource='getxml?ECOLI:RXN-9663' orgid='ECOLI' frameid='RXN-9663'/><Reaction resource='getxml?ECOLI:BADH-RXN' orgid='ECOLI' frameid='BADH-RXN'/><Reaction resource='getxml?ECOLI:UDPMANNACADEHYDROG-RXN' orgid='ECOLI' frameid='UDPMANNACADEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:ENOYL-ACP-REDUCT-NADH-RXN' orgid='ECOLI' frameid='ENOYL-ACP-REDUCT-NADH-RXN'/><Reaction resource='getxml?ECOLI:RXN-7716' orgid='ECOLI' frameid='RXN-7716'/><Reaction resource='getxml?ECOLI:RXN0-5248' orgid='ECOLI' frameid='RXN0-5248'/><Reaction resource='getxml?ECOLI:SUCCGLUALDDEHYD-RXN' orgid='ECOLI' frameid='SUCCGLUALDDEHYD-RXN'/><Reaction resource='getxml?ECOLI:ERYTHRON4PDEHYDROG-RXN' orgid='ECOLI' frameid='ERYTHRON4PDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5229' orgid='ECOLI' frameid='RXN0-5229'/><Reaction resource='getxml?ECOLI:RXN-8629' orgid='ECOLI' frameid='RXN-8629'/><Reaction resource='getxml?ECOLI:DIHYDROURACIL-DEHYDROGENASE-NAD+-RXN' orgid='ECOLI' frameid='DIHYDROURACIL-DEHYDROGENASE-NAD+-RXN'/><Reaction resource='getxml?ECOLI:1.1.1.83-RXN' orgid='ECOLI' frameid='1.1.1.83-RXN'/><Reaction resource='getxml?ECOLI:ERYTH4PDEHYDROG-RXN' orgid='ECOLI' frameid='ERYTH4PDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:AMINOBUTDEHYDROG-RXN' orgid='ECOLI' frameid='AMINOBUTDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:RXN0-1132' orgid='ECOLI' frameid='RXN0-1132'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/><Reaction resource='getxml?ECOLI:RXN0-1861' orgid='ECOLI' frameid='RXN0-1861'/><Reaction resource='getxml?ECOLI:3-ISOPROPYLMALDEHYDROG-RXN' orgid='ECOLI' frameid='3-ISOPROPYLMALDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:HISTALDEHYD-RXN' orgid='ECOLI' frameid='HISTALDEHYD-RXN'/><Reaction resource='getxml?ECOLI:HISTOLDEHYD-RXN' orgid='ECOLI' frameid='HISTOLDEHYD-RXN'/><Reaction resource='getxml?ECOLI:MALATE-DEH-RXN' orgid='ECOLI' frameid='MALATE-DEH-RXN'/><Reaction resource='getxml?ECOLI:GAPOXNPHOSPHN-RXN' orgid='ECOLI' frameid='GAPOXNPHOSPHN-RXN'/><Reaction resource='getxml?ECOLI:2OXOGLUTARATEDEH-RXN' orgid='ECOLI' frameid='2OXOGLUTARATEDEH-RXN'/><Reaction resource='getxml?ECOLI:7-ALPHA-HYDROXYSTEROID-DEH-RXN' orgid='ECOLI' frameid='7-ALPHA-HYDROXYSTEROID-DEH-RXN'/><Reaction resource='getxml?ECOLI:ACETALD-DEHYDROG-RXN' orgid='ECOLI' frameid='ACETALD-DEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:ALTRO-OXIDOREDUCT-RXN' orgid='ECOLI' frameid='ALTRO-OXIDOREDUCT-RXN'/><Reaction resource='getxml?ECOLI:MANNONOXIDOREDUCT-RXN' orgid='ECOLI' frameid='MANNONOXIDOREDUCT-RXN'/><Reaction resource='getxml?ECOLI:SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN' orgid='ECOLI' frameid='SUCCINATE-SEMIALDEHYDE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ECOLI:KDUD-RXN' orgid='ECOLI' frameid='KDUD-RXN'/><Reaction resource='getxml?ECOLI:UGD-RXN' orgid='ECOLI' frameid='UGD-RXN'/><Reaction resource='getxml?ECOLI:DHBDEHYD-RXN' orgid='ECOLI' frameid='DHBDEHYD-RXN'/><Reaction resource='getxml?ECOLI:PHENDEHYD-RXN' orgid='ECOLI' frameid='PHENDEHYD-RXN'/><Reaction resource='getxml?ECOLI:PHENPRODIOLDEHYDROG-RXN' orgid='ECOLI' frameid='PHENPRODIOLDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:MANNPDEHYDROG-RXN' orgid='ECOLI' frameid='MANNPDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:GLYCOLALD-DEHYDROG-RXN' orgid='ECOLI' frameid='GLYCOLALD-DEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:GLYCOLALDREDUCT-RXN' orgid='ECOLI' frameid='GLYCOLALDREDUCT-RXN'/><Reaction resource='getxml?ECOLI:DIMETHUROPORDEHYDROG-RXN' orgid='ECOLI' frameid='DIMETHUROPORDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:IMP-DEHYDROG-RXN' orgid='ECOLI' frameid='IMP-DEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:LACTALDDEHYDROG-RXN' orgid='ECOLI' frameid='LACTALDDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:PYRNUTRANSHYDROGEN-RXN' orgid='ECOLI' frameid='PYRNUTRANSHYDROGEN-RXN'/><Reaction resource='getxml?ECOLI:PREPHENATEDEHYDROG-RXN' orgid='ECOLI' frameid='PREPHENATEDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:1.1.1.39-RXN' orgid='ECOLI' frameid='1.1.1.39-RXN'/><Reaction resource='getxml?ECOLI:PGLYCDEHYDROG-RXN' orgid='ECOLI' frameid='PGLYCDEHYDROG-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>NADH</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN0-7363' orgid='ECOLI' frameid='RXN0-7363'/><Reaction resource='getxml?ECOLI:RXN-20691' orgid='ECOLI' frameid='RXN-20691'/><Reaction resource='getxml?ECOLI:R4-RXN' orgid='ECOLI' frameid='R4-RXN'/><Reaction resource='getxml?ECOLI:RXN-12886' orgid='ECOLI' frameid='RXN-12886'/><Reaction resource='getxml?ECOLI:RXN0-6444' orgid='ECOLI' frameid='RXN0-6444'/><Reaction resource='getxml?ECOLI:R170-RXN' orgid='ECOLI' frameid='R170-RXN'/><Reaction resource='getxml?ECOLI:RXN-15607' orgid='ECOLI' frameid='RXN-15607'/><Reaction resource='getxml?ECOLI:NADH-DEHYDROGENASE-QUINONE-RXN' orgid='ECOLI' frameid='NADH-DEHYDROGENASE-QUINONE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6722' orgid='ECOLI' frameid='RXN0-6722'/><Reaction resource='getxml?ECOLI:RXN0-7123' orgid='ECOLI' frameid='RXN0-7123'/><Reaction resource='getxml?ECOLI:RXN0-5330' orgid='ECOLI' frameid='RXN0-5330'/><Reaction resource='getxml?ECOLI:NADH-DEHYDROG-A-RXN' orgid='ECOLI' frameid='NADH-DEHYDROG-A-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5388' orgid='ECOLI' frameid='RXN0-5388'/><Reaction resource='getxml?ECOLI:RXN-12754' orgid='ECOLI' frameid='RXN-12754'/><Reaction resource='getxml?ECOLI:RXN-12753' orgid='ECOLI' frameid='RXN-12753'/><Reaction resource='getxml?ECOLI:RXN-12072' orgid='ECOLI' frameid='RXN-12072'/><Reaction resource='getxml?ECOLI:RXN-10040' orgid='ECOLI' frameid='RXN-10040'/><Reaction resource='getxml?ECOLI:RXN0-6450' orgid='ECOLI' frameid='RXN0-6450'/><Reaction resource='getxml?ECOLI:RXN0-5213' orgid='ECOLI' frameid='RXN0-5213'/><Reaction resource='getxml?ECOLI:HCAMULTI-RXN' orgid='ECOLI' frameid='HCAMULTI-RXN'/><Reaction resource='getxml?ECOLI:RXN0-4401' orgid='ECOLI' frameid='RXN0-4401'/><Reaction resource='getxml?ECOLI:MHPHYDROXY-RXN' orgid='ECOLI' frameid='MHPHYDROXY-RXN'/></appears-in-left-side-of>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NAD&quot;&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NADP&quot;&gt;NADP&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; are dinucleotides containing one &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NIACINAMIDE&quot;&gt;nicotinamide&lt;/a&gt; base and one &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=ADENINE&quot;&gt;adenine&lt;/a&gt; base. Each nucleotide is connected to a ribose sugar at position 1, and the two riboses are connected at their 5 position via a diphosphate. The only difference between the two is that in NADP there is an additional phosphate group at the 2' position of the ribose that carries the adenine moiety.
+&lt;p&gt;
+These molecules are biological carriers of reductive equivalents (i.e. high potential electrons). Most of the time they function as cosubstrates, and in some cases they function as &lt;a href=&quot;/ECOLI/NEW-IMAGE?type=COMPOUND&amp;object=Cofactors&quot; title=&quot;An enzyme cofactor is a non-protein chemical compound that is required by an enzyme for catalysis of a chemical reaction. Cofactors associate with inactive &lt;i&gt;apo&lt;/i&gt;-enzymes, resulting in formation of active &lt;i&gt;holo&lt;/i&gt;-enzymes.&amp;#10;Unlike cosubstrates, the cofactors are restored to their original state at the end of the catalytic cycle and are thus not included in the reaction equation.&amp;#10;&amp;#10;Cofactors can be inorganic ions (e.g. Ca&lt;sup&gt;2+&lt;/sup&gt;), inorganic molecules (e.g. &lt;a href=''/ECOLI/NEW-IMAGE?type=COMPOUND&amp;object=FeS-Centers''&gt;an iron-sulfur cluster&lt;/a&gt;) or organic molecules (e.g. &lt;a href=''/compound?orgid=ECOLI&amp;id=PYRIDOXAL_PHOSPHATE''&gt;pyridoxal 5'-phosphate&lt;/a&gt;). Some compounds may act as cofactors for a particular enzyme and a cosubstrate for a different enzyme, depending on whether they are restored to their active state at the end of the reaction. &amp;#10;Cofactors that are tightly bound to an enzyme have often been referred to as prosthetic groups. It should be noted that the degree of tightness required for this definition has not been defined, and that the same cofactor may bind differently to different enzymes, making this term imprecise. Thus, it is recommended not to use it. Organic cofactors that are loosely bound to the enzyme have been often referred to as coenzymes. However, that term is also imprecise, and it is recommended not to use it either.&quot;&gt;cofactors&lt;/a&gt;.  They are often referred to by the obsolete term &quot;coenzymes&quot;.
+&lt;p&gt;
+The most common function of &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NAD&quot;&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; is to accept two electrons and a proton (a hydride ion) from a substrate that is being oxidized. This reduction converts &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NAD&quot;&gt;NAD&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; to &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NADH&quot;&gt;NADH&lt;/a&gt;, the reduced form. NADH then diffuses or is transported to a terminal oxidase, where the electrons are passed on, regenerating the oxidized form.
+&lt;p&gt;
+&lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NADPH&quot;&gt;NADPH&lt;/a&gt;, on the other hand, is mostly involved in biosynthetic reactions, where it serves as an electron donor. NADPH is formed by reduction of &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NADP&quot;&gt;NADP&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt;, which occurs by different mechanisms in different types of organisms. In photosynthetic organisms &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=NADP&quot;&gt;NADP&lt;sup&gt;+&lt;/sup&gt;&lt;/a&gt; is reduced by &lt;a href=&quot;http://biocyc.org/META/new-image?object=CPLX-84&quot;&gt;photosystem I&lt;/a&gt;. In heterotrophic organisms it is reduced by central metabolism processes such as the pentose phosphate pathway (see &lt;a href=&quot;/ECOLI/NEW-IMAGE?type=PATHWAY&amp;object=OXIDATIVEPENT-PWY&quot;&gt;pentose phosphate pathway (oxidative branch) I&lt;/a&gt;).</comment>
+<cofactors-of><Enzymatic-Reaction ID='ECOLI:THIC-ENZRXN' orgid='ECOLI' frameid='THIC-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:THIC-MONOMER' orgid='ECOLI' frameid='THIC-MONOMER'/></enzyme>
+<synonym datatype='string'>4-amino-5-hydroxylmethyl-2-methylpyrimidine phosphate synthase</synonym>
+<synonym datatype='string'>HMP-P synthase</synonym>
+<common-name datatype='string'>phosphomethylpyrimidine synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PYRIMSYN1-RXN' orgid='ECOLI' frameid='PYRIMSYN1-RXN'/></reaction>
+</Enzymatic-Reaction>
+</cofactors-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-325.20697</gibbs-0>
+</Compound>
+</ptools-xml>

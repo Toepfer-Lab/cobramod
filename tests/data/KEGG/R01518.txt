@@ -15,6 +15,14 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
+BRITE       Enzymatic reactions [BR:br08201]
+             5. Isomerase reactions
+              5.4  Intramolecular transferases
+               5.4.2  Phosphotransferases (phosphomutases)
+                5.4.2.11
+                 R01518  2-Phospho-D-glycerate <=> 3-Phospho-D-glycerate
+                5.4.2.12
+                 R01518  2-Phospho-D-glycerate <=> 3-Phospho-D-glycerate
 ORTHOLOGY   K01834  2,3-bisphosphoglycerate-dependent phosphoglycerate mutase [EC:5.4.2.11]
             K01837  bisphosphoglycerate/phosphoglycerate mutase [EC:5.4.2.4 5.4.2.11]
             K15633  2,3-bisphosphoglycerate-independent phosphoglycerate mutase [EC:5.4.2.12]

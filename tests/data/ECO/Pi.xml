@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:Pi'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:Pi</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:Pi' orgid='ECOLI' frameid='Pi' detail='full'><parent><Compound resource='getxml?ECOLI:Phosphates' orgid='ECOLI' frameid='Phosphates' class='true'/></parent>
+<cml><molecule id='Pi' title='phosphate' formalCharge='-2'><atomArray><atom id='Pi-atom1' elementType='O' x2='823600.0' y2='-1400.0' formalCharge='-1'/><atom id='Pi-atom2' elementType='O' x2='-1400.0' y2='823600.0'/><atom id='Pi-atom3' elementType='O' x2='-1400.0' y2='-826400.0'/><atom id='Pi-atom4' elementType='O' x2='-826400.0' y2='-1400.0' formalCharge='-1'/><atom id='Pi-atom5' elementType='P' x2='-1400.0' y2='-1400.0'/></atomArray>
+<bondArray><bond id='Pi-bond1' atomRefs='Pi-atom4 Pi-atom5' order='1'/><bond id='Pi-bond2' atomRefs='Pi-atom3 Pi-atom5' order='1'/><bond id='Pi-bond3' atomRefs='Pi-atom2 Pi-atom5' order='2'/><bond id='Pi-bond4' atomRefs='Pi-atom1 Pi-atom5' order='1'/></bondArray>
+<formula concise='H 1 O 4 P 1'/><float title='molecularWeight' units='g/mol'>95.979</float>
+<string title='smiles'>[O-]P(=O)(O)[O-]</string>
+</molecule>
+</cml>
+<regulates><Regulation ID='ECOLI:REG0-13371' orgid='ECOLI' frameid='REG0-13371' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:DCTP-DEAM-ENZRXN' orgid='ECOLI' frameid='DCTP-DEAM-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:DCTP-DEAM-CPLX' orgid='ECOLI' frameid='DCTP-DEAM-CPLX'/></enzyme>
+<synonym datatype='string'>deoxycytidine triphosphate deaminase</synonym>
+<synonym datatype='string'>dCTP aminohydrolase</synonym>
+<common-name datatype='string'>dCTP deaminase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:DCTP-DEAM-RXN' orgid='ECOLI' frameid='DCTP-DEAM-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-12807' orgid='ECOLI' frameid='REG0-12807' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:3PGAREARR-ENZRXN' orgid='ECOLI' frameid='3PGAREARR-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PHOSGLYCMUTASE' orgid='ECOLI' frameid='PHOSGLYCMUTASE'/></enzyme>
+<synonym datatype='string'>D-phosphoglycerate 2,3-phosphomutase</synonym>
+<synonym datatype='string'>phosphoglycerate phosphomutase</synonym>
+<synonym datatype='string'>phosphoglyceromutase</synonym>
+<common-name datatype='string'>phosphoglycerate mutase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN-15513' orgid='ECOLI' frameid='RXN-15513'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11972' orgid='ECOLI' frameid='REG0-11972' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PEPDEPHOSII-ENZRXN' orgid='ECOLI' frameid='PEPDEPHOSII-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PKII-CPLX' orgid='ECOLI' frameid='PKII-CPLX'/></enzyme>
+<common-name datatype='string'>pyruvate kinase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PEPDEPHOS-RXN' orgid='ECOLI' frameid='PEPDEPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11839' orgid='ECOLI' frameid='REG0-11839' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PRPPSYN-ENZRXN' orgid='ECOLI' frameid='PRPPSYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-8299' orgid='ECOLI' frameid='CPLX0-8299'/></enzyme>
+<synonym datatype='string'>ribose phosphate pyrophosphokinase</synonym>
+<synonym datatype='string'>ATP: D-ribose-5-phosphate pyrophosphotransferase</synonym>
+<synonym datatype='string'>PRS</synonym>
+<synonym datatype='string'>PRPP synthase</synonym>
+<synonym datatype='string'>phosphoribosylpyrophosphate synthase</synonym>
+<synonym datatype='string'>PRPP synthetase</synonym>
+<common-name datatype='string'>ribose-phosphate diphosphokinase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PRPPSYN-RXN' orgid='ECOLI' frameid='PRPPSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11779' orgid='ECOLI' frameid='REG0-11779' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:DAHPSYNTYR-ENZRXN' orgid='ECOLI' frameid='DAHPSYNTYR-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:AROF-CPLX' orgid='ECOLI' frameid='AROF-CPLX'/></enzyme>
+<synonym datatype='string'>Phospho-2-keto-3-deoxyheptonate aldolase</synonym>
+<synonym datatype='string'>DHAP synthase</synonym>
+<synonym datatype='string'>DHAPS</synonym>
+<synonym datatype='string'>KDPH synthetase</synonym>
+<synonym datatype='string'>tyrosine sensitive 3-deoxy-D-arabino-heptulosonate 7-phosphate synthase</synonym>
+<synonym datatype='string'>3-deoxy-D-arabinoheptulosonate-7-phosphate synthetase (tyr)</synonym>
+<synonym datatype='string'>2-dehydro-3-deoxyphosphoheptonate aldolase</synonym>
+<common-name datatype='string'>3-deoxy-7-phosphoheptulonate synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:DAHPSYN-RXN' orgid='ECOLI' frameid='DAHPSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11765' orgid='ECOLI' frameid='REG0-11765' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7757' orgid='ECOLI' frameid='ENZRXN0-7757' detail='low'><enzyme><Protein resource='getxml?ECOLI:ALKAPHOSPHA-CPLX' orgid='ECOLI' frameid='ALKAPHOSPHA-CPLX'/></enzyme>
+<synonym datatype='string'>APase</synonym>
+<synonym datatype='string'>AP</synonym>
+<synonym datatype='string'>alkaline phosphomonesterase</synonym>
+<synonym datatype='string'>glycerophosphatase</synonym>
+<synonym datatype='string'>orthophosphoric-monoester phosphohydrolase (alkaline optimum)</synonym>
+<common-name datatype='string'>alkaline phosphatase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:ALKAPHOSPHA-RXN' orgid='ECOLI' frameid='ALKAPHOSPHA-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11596' orgid='ECOLI' frameid='REG0-11596' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:CARDIOLIPSYN-ENZRXN' orgid='ECOLI' frameid='CARDIOLIPSYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CARDIOLIPSYN-MONOMER' orgid='ECOLI' frameid='CARDIOLIPSYN-MONOMER'/></enzyme>
+<synonym datatype='string'>cardiolipin synthetase</synonym>
+<common-name datatype='string'>cardiolipin synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:CARDIOLIPSYN-RXN' orgid='ECOLI' frameid='CARDIOLIPSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11331' orgid='ECOLI' frameid='REG0-11331' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-1461' orgid='ECOLI' frameid='ENZRXN0-1461' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG10780-MONOMER' orgid='ECOLI' frameid='EG10780-MONOMER'/></enzyme>
+<synonym datatype='string'>rhodanase</synonym>
+<synonym datatype='string'>thiosulfate cyanide transsulfurase</synonym>
+<synonym datatype='string'>thiosulfate thiotransferase</synonym>
+<synonym datatype='string'>thiosulfate:cyanide sulfurtransferase</synonym>
+<common-name datatype='string'>thiosulfate sulfurtransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:THIOSULFATE-SULFURTRANSFERASE-RXN' orgid='ECOLI' frameid='THIOSULFATE-SULFURTRANSFERASE-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-11039' orgid='ECOLI' frameid='REG0-11039' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GTP-CYCLOHYDRO-I-ENZRXN' orgid='ECOLI' frameid='GTP-CYCLOHYDRO-I-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:FOLE-CPLX' orgid='ECOLI' frameid='FOLE-CPLX'/></enzyme>
+<synonym datatype='string'>GTP 7,8-8,9-dihydrolase</synonym>
+<common-name datatype='string'>GTP cyclohydrolase I</common-name>
+<reaction><Reaction resource='getxml?ECOLI:GTP-CYCLOHYDRO-I-RXN' orgid='ECOLI' frameid='GTP-CYCLOHYDRO-I-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10873' orgid='ECOLI' frameid='REG0-10873' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7431' orgid='ECOLI' frameid='ENZRXN0-7431' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG11371-MONOMER' orgid='ECOLI' frameid='EG11371-MONOMER'/></enzyme>
+<synonym datatype='string'>phosphatidylglycerophosphate phosphohydrolase</synonym>
+<common-name datatype='string'>phosphatidylglycerophosphatase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PGPPHOSPHA-RXN' orgid='ECOLI' frameid='PGPPHOSPHA-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10872' orgid='ECOLI' frameid='REG0-10872' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-6155' orgid='ECOLI' frameid='ENZRXN0-6155' detail='low'><enzyme><Protein resource='getxml?ECOLI:G7579-MONOMER' orgid='ECOLI' frameid='G7579-MONOMER'/></enzyme>
+<synonym datatype='string'>cyclic AMP phosphodiesterase</synonym>
+<synonym datatype='string'>cyclic 3',5'-adenosine monophosphate phosphodiesterase</synonym>
+<common-name datatype='string'>cAMP phosphodiesterase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-5038' orgid='ECOLI' frameid='RXN0-5038'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10704' orgid='ECOLI' frameid='REG0-10704' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ORNCARBAMTRANSFERI-ENZRXN' orgid='ECOLI' frameid='ORNCARBAMTRANSFERI-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ORNCARBAMTRANSFERI-CPLX' orgid='ECOLI' frameid='ORNCARBAMTRANSFERI-CPLX'/></enzyme>
+<synonym datatype='string'>ornithine transcarbamylase</synonym>
+<synonym datatype='string'>citrulline phosphorylase</synonym>
+<synonym datatype='string'>OTC</synonym>
+<common-name datatype='string'>ornithine carbamoyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:ORNCARBAMTRANSFER-RXN' orgid='ECOLI' frameid='ORNCARBAMTRANSFER-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10227' orgid='ECOLI' frameid='REG0-10227' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-6614' orgid='ECOLI' frameid='ENZRXN0-6614' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-7776' orgid='ECOLI' frameid='CPLX0-7776'/></enzyme>
+<common-name datatype='string'>fructose-1,6-bisphosphatase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:F16BDEPHOS-RXN' orgid='ECOLI' frameid='F16BDEPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-10226' orgid='ECOLI' frameid='REG0-10226' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-402' orgid='ECOLI' frameid='ENZRXN0-402' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-303' orgid='ECOLI' frameid='CPLX0-303'/></enzyme>
+<common-name datatype='string'>fructose-1,6-bisphosphatase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:F16BDEPHOS-RXN' orgid='ECOLI' frameid='F16BDEPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-9976' orgid='ECOLI' frameid='REG0-9976' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:S-ADENMETSYN-ENZRXN' orgid='ECOLI' frameid='S-ADENMETSYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:S-ADENMETSYN-CPLX' orgid='ECOLI' frameid='S-ADENMETSYN-CPLX'/></enzyme>
+<synonym datatype='string'>S-adenosylmethionine synthetase</synonym>
+<synonym datatype='string'>ATP:L-methionine S-adenosyltransferase</synonym>
+<synonym datatype='string'>MAT</synonym>
+<common-name datatype='string'>methionine adenosyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:S-ADENMETSYN-RXN' orgid='ECOLI' frameid='S-ADENMETSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-9501' orgid='ECOLI' frameid='REG0-9501' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-2801' orgid='ECOLI' frameid='ENZRXN0-2801' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-7695' orgid='ECOLI' frameid='CPLX0-7695'/></enzyme>
+<common-name datatype='string'>glutaminase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:GLUTAMIN-RXN' orgid='ECOLI' frameid='GLUTAMIN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-9498' orgid='ECOLI' frameid='REG0-9498' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-2802' orgid='ECOLI' frameid='ENZRXN0-2802' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-7694' orgid='ECOLI' frameid='CPLX0-7694'/></enzyme>
+<common-name datatype='string'>glutaminase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:GLUTAMIN-RXN' orgid='ECOLI' frameid='GLUTAMIN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-9220' orgid='ECOLI' frameid='REG0-9220' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:RIBOKIN-ENZRXN' orgid='ECOLI' frameid='RIBOKIN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-7647' orgid='ECOLI' frameid='CPLX0-7647'/></enzyme>
+<synonym datatype='string'>ATP:D-ribose 5-phosphotransferase</synonym>
+<common-name datatype='string'>ribokinase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RIBOKIN-RXN' orgid='ECOLI' frameid='RIBOKIN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8817' orgid='ECOLI' frameid='REG0-8817' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:D-PPENTOMUT' orgid='ECOLI' frameid='D-PPENTOMUT' detail='low'><enzyme><Protein resource='getxml?ECOLI:PPENTOMUT-MONOMER' orgid='ECOLI' frameid='PPENTOMUT-MONOMER'/></enzyme>
+<synonym datatype='string'>phosphodeoxyribomutase</synonym>
+<synonym datatype='string'>deoxyribomutase</synonym>
+<synonym datatype='string'>phosphopentomutase</synonym>
+<common-name datatype='string'>deoxyribose 1,5-phosphomutase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:D-PPENTOMUT-RXN' orgid='ECOLI' frameid='D-PPENTOMUT-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8677' orgid='ECOLI' frameid='REG0-8677' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:UDP-NACMURALGLDAPLIG-ENZRXN' orgid='ECOLI' frameid='UDP-NACMURALGLDAPLIG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:UDP-NACMURALGLDAPLIG-MONOMER' orgid='ECOLI' frameid='UDP-NACMURALGLDAPLIG-MONOMER'/></enzyme>
+<synonym datatype='string'>UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimelate synthetase</synonym>
+<synonym datatype='string'>UDP-N-acetylmuramyl-tripeptide synthetase</synonym>
+<synonym datatype='string'>meso-2,6-diaminopimelate-adding enzyme</synonym>
+<synonym datatype='string'>UDP-N-acetylmuramoyl-L-alanyl-D-glutamate:meso-2,6-diaminoheptanedioate ligase (ADP-forming)</synonym>
+<synonym datatype='string'>UDP-MurNac-tripeptide synthetase</synonym>
+<synonym datatype='string'>UDP-&lt;i&gt;N&lt;/i&gt;-acetylmuramoylalanyl-D-glutamate&amp;mdash;2,6-diaminopimelate ligase</synonym>
+<common-name datatype='string'>UDP-&lt;i&gt;N&lt;/i&gt;-acetylmuramoyl-L-alanyl-D-glutamate&amp;mdash;2,6-diaminopimelate ligase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:UDP-NACMURALGLDAPLIG-RXN' orgid='ECOLI' frameid='UDP-NACMURALGLDAPLIG-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8546' orgid='ECOLI' frameid='REG0-8546' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:URPHOS-ENZRXN' orgid='ECOLI' frameid='URPHOS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:URPHOS-CPLX' orgid='ECOLI' frameid='URPHOS-CPLX'/></enzyme>
+<synonym datatype='string'>pyrimidine phosphorylase</synonym>
+<synonym datatype='string'>uridine:orthophosphate &amp;alpha;-D-ribosyltransferase</synonym>
+<synonym datatype='string'>UPase</synonym>
+<common-name datatype='string'>uridine phosphorylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8543' orgid='ECOLI' frameid='REG0-8543' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction resource='#ECOLI:URPHOS-ENZRXN' orgid='ECOLI' frameid='URPHOS-ENZRXN'/></regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8513' orgid='ECOLI' frameid='REG0-8513' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:KDO-8PSYNTH-ENZRXN' orgid='ECOLI' frameid='KDO-8PSYNTH-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:KDO-8PSYNTH-CPLX' orgid='ECOLI' frameid='KDO-8PSYNTH-CPLX'/></enzyme>
+<synonym datatype='string'>2-dehydro-3-deoxyphosphooctonate aldolase</synonym>
+<synonym datatype='string'>phospho-2-dehydro-3-deoxyoctonate aldolase</synonym>
+<synonym datatype='string'>phospho-2-keto-3-deoxyoctonate aldolase</synonym>
+<synonym datatype='string'>3-deoxy-D-&lt;i&gt;manno&lt;/i&gt;-octulosonic acid 8-phosphate synthetase</synonym>
+<synonym datatype='string'>KDO  8-phosphate synthase</synonym>
+<synonym datatype='string'>2-dehydro-3-deoxy-D-octonate-8-phosphate D-arabinose-5-phosphate-lyase (pyruvate-phosphorylating)</synonym>
+<common-name datatype='string'>3-deoxy-D-&lt;i&gt;manno&lt;/i&gt;-octulosonate 8-phosphate synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:KDO-8PSYNTH-RXN' orgid='ECOLI' frameid='KDO-8PSYNTH-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8415' orgid='ECOLI' frameid='REG0-8415' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:AMP-NUCLEOSID-ENZRXN' orgid='ECOLI' frameid='AMP-NUCLEOSID-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:AMP-NUCLEOSID-CPLX' orgid='ECOLI' frameid='AMP-NUCLEOSID-CPLX'/></enzyme>
+<synonym datatype='string'>AMP phosphoribohydrolase</synonym>
+<synonym datatype='string'>adenosine monophosphate nucleosidase</synonym>
+<common-name datatype='string'>AMP nucleosidase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:AMP-NUCLEOSID-RXN' orgid='ECOLI' frameid='AMP-NUCLEOSID-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8316' orgid='ECOLI' frameid='REG0-8316' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:UDP-NACMURALA-GLU-LIG-ENZRXN' orgid='ECOLI' frameid='UDP-NACMURALA-GLU-LIG-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:UDP-NACMURALA-GLU-LIG-MONOMER' orgid='ECOLI' frameid='UDP-NACMURALA-GLU-LIG-MONOMER'/></enzyme>
+<synonym datatype='string'>UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase</synonym>
+<synonym datatype='string'>UDP-N-acetylmuramoylalanine-D-glutamate ligase</synonym>
+<synonym datatype='string'>D-glutamate-adding enzyme</synonym>
+<synonym datatype='string'>UDP-&lt;i&gt;N&lt;/i&gt;-acetylmuramoyl-L-alanine:D-glutamate ligase</synonym>
+<common-name datatype='string'>UDP-&lt;i&gt;N&lt;/i&gt;-acetylmuramoyl-L-alanine&amp;mdash;D-glutamate ligase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:UDP-NACMURALA-GLU-LIG-RXN' orgid='ECOLI' frameid='UDP-NACMURALA-GLU-LIG-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8091' orgid='ECOLI' frameid='REG0-8091' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ACETYLORNDEACET-ENZRXN' orgid='ECOLI' frameid='ACETYLORNDEACET-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:ACETYLORNDEACET-CPLX' orgid='ECOLI' frameid='ACETYLORNDEACET-CPLX'/></enzyme>
+<synonym datatype='string'>acetylornithinase</synonym>
+<synonym datatype='string'>N-acetylornithinase</synonym>
+<synonym datatype='string'>AO</synonym>
+<synonym datatype='string'>NAO</synonym>
+<synonym datatype='string'>N(2)-acetyl-L-ornithine amidohydrolase</synonym>
+<common-name datatype='string'>acetylornithine deacetylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:ACETYLORNDEACET-RXN' orgid='ECOLI' frameid='ACETYLORNDEACET-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-8013' orgid='ECOLI' frameid='REG0-8013' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:APHA-ENZRXN' orgid='ECOLI' frameid='APHA-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:APHA-CPLX' orgid='ECOLI' frameid='APHA-CPLX'/></enzyme>
+<synonym datatype='string'>class B acid phosphatase/phosphotransferase</synonym>
+<synonym datatype='string'>acid phosphatase</synonym>
+<synonym datatype='string'>non-specific acid phosphatase</synonym>
+<synonym datatype='string'>NAP</synonym>
+<synonym datatype='string'>acid phosphomonoesterase</synonym>
+<synonym datatype='string'>phosphomonoesterase</synonym>
+<synonym datatype='string'>glycerophosphatase</synonym>
+<synonym datatype='string'>orthophosphoric-monoester phosphohydrolase (acid optimum)</synonym>
+<common-name datatype='string'>acid phosphatase / phosphotransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:ACID-PHOSPHATASE-RXN' orgid='ECOLI' frameid='ACID-PHOSPHATASE-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7729' orgid='ECOLI' frameid='REG0-7729' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GSDEADENYLATION-ENZRXN' orgid='ECOLI' frameid='GSDEADENYLATION-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:GLNE-MONOMER' orgid='ECOLI' frameid='GLNE-MONOMER'/></enzyme>
+<synonym datatype='string'>ATd</synonym>
+<synonym datatype='string'>adenylyl-[glutamate-ammonia ligase] hydrolase</synonym>
+<synonym datatype='string'>adenylyl-[L-glutamate:ammonia ligase (ADP-forming)] adenylylhydrolyase</synonym>
+<common-name datatype='string'>glutamine synthetase deadenylase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:GSDEADENYLATION-RXN' orgid='ECOLI' frameid='GSDEADENYLATION-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7573' orgid='ECOLI' frameid='REG0-7573' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:IMIDPHOSDEHYD-ENZRXN' orgid='ECOLI' frameid='IMIDPHOSDEHYD-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:IMIDHISTID-CPLX' orgid='ECOLI' frameid='IMIDHISTID-CPLX'/></enzyme>
+<synonym datatype='string'>D-erythro imidazoleglycerol-phosphate dehydratase-histidinol phosphate phosphatase</synonym>
+<common-name datatype='string'>imidazoleglycerol-phosphate dehydratase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:IMIDPHOSDEHYD-RXN' orgid='ECOLI' frameid='IMIDPHOSDEHYD-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7450' orgid='ECOLI' frameid='REG0-7450' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PYROXALTRANSAM-ENZRXN' orgid='ECOLI' frameid='PYROXALTRANSAM-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PYROXALTRANSAM-MONOMER' orgid='ECOLI' frameid='PYROXALTRANSAM-MONOMER'/></enzyme>
+<synonym datatype='string'>pyridoxamine:oxaloacetate aminotransferase</synonym>
+<common-name datatype='string'>pyridoxamine-oxaloacetate transaminase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:PYROXALTRANSAM-RXN' orgid='ECOLI' frameid='PYROXALTRANSAM-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7425' orgid='ECOLI' frameid='REG0-7425' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:TRANSALDOLB-ENZRXN' orgid='ECOLI' frameid='TRANSALDOLB-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:TRANSALDOLB-CPLX' orgid='ECOLI' frameid='TRANSALDOLB-CPLX'/></enzyme>
+<synonym datatype='string'>dehydroxyacetonetransferase</synonym>
+<synonym datatype='string'>glycerone transferase</synonym>
+<synonym datatype='string'>sedoheptulose-7-phosphate:D-glyceraldehyde-3-phosphate glyceronetransferase</synonym>
+<common-name datatype='string'>transaldolase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:TRANSALDOL-RXN' orgid='ECOLI' frameid='TRANSALDOL-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7210' orgid='ECOLI' frameid='REG0-7210' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GLYCEROL-3-P-ACYLTRANSFER-ENZRXN' orgid='ECOLI' frameid='GLYCEROL-3-P-ACYLTRANSFER-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:GLYCEROL-3-P-ACYLTRANSFER-MONOMER' orgid='ECOLI' frameid='GLYCEROL-3-P-ACYLTRANSFER-MONOMER'/></enzyme>
+<common-name datatype='string'>acyl-CoA:&lt;i&gt;sn&lt;/i&gt;-glycerol-3-phosphate 1-&lt;i&gt;O&lt;/i&gt;-acyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN-1381' orgid='ECOLI' frameid='RXN-1381'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7104' orgid='ECOLI' frameid='REG0-7104' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PPX-ENZRXN' orgid='ECOLI' frameid='PPX-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:PPX-CPLX' orgid='ECOLI' frameid='PPX-CPLX'/></enzyme>
+<synonym datatype='string'>metaphosphatase</synonym>
+<synonym datatype='string'>polyphosphate phosphohydrolase</synonym>
+<common-name datatype='string'>exopolyphosphatase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:EXOPOLYPHOSPHATASE-RXN' orgid='ECOLI' frameid='EXOPOLYPHOSPHATASE-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7059' orgid='ECOLI' frameid='REG0-7059' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:AIRS-ENZRXN' orgid='ECOLI' frameid='AIRS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:AIRS-CPLX' orgid='ECOLI' frameid='AIRS-CPLX'/></enzyme>
+<synonym datatype='string'>AIR synthetase</synonym>
+<synonym datatype='string'>AIRS</synonym>
+<synonym datatype='string'>AIR synthase</synonym>
+<synonym datatype='string'>phosphoribosyl-aminoimidazole synthetase</synonym>
+<synonym datatype='string'>5'-Phosphoribosyl-5-aminoimidazole synthetase</synonym>
+<synonym datatype='string'>aminoimidazole ribonucleotide synthetase</synonym>
+<common-name datatype='string'>phosphoribosylformylglycinamide cyclo-ligase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:AIRS-RXN' orgid='ECOLI' frameid='AIRS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6968' orgid='ECOLI' frameid='REG0-6968' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:PFRUCTPHOS-ENZRXN' orgid='ECOLI' frameid='PFRUCTPHOS-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:6PFK-2-CPX' orgid='ECOLI' frameid='6PFK-2-CPX'/></enzyme>
+<synonym datatype='string'>fructose-6-p-1-kinase</synonym>
+<synonym datatype='string'>fructose-6-phosphate-1-phosphotransferase</synonym>
+<common-name datatype='string'>6-phosphofructokinase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:6PFRUCTPHOS-RXN' orgid='ECOLI' frameid='6PFRUCTPHOS-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6938' orgid='ECOLI' frameid='REG0-6938' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:METHGLYSYN-ENZRXN' orgid='ECOLI' frameid='METHGLYSYN-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:METHGLYSYN-CPLX' orgid='ECOLI' frameid='METHGLYSYN-CPLX'/></enzyme>
+<synonym datatype='string'>glycerone-phosphate phospho-lyase</synonym>
+<common-name datatype='string'>methylglyoxal synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:METHGLYSYN-RXN' orgid='ECOLI' frameid='METHGLYSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6896' orgid='ECOLI' frameid='REG0-6896' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:GSADENYLATION-ENZRXN' orgid='ECOLI' frameid='GSADENYLATION-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:GLNE-MONOMER' orgid='ECOLI' frameid='GLNE-MONOMER'/></enzyme>
+<synonym datatype='string'>glutamate-ammonia-ligase adenylyltransferase</synonym>
+<synonym datatype='string'>ATP:[L-glutamate:ammonia ligase(ADP-forming)] adenylyltransferase</synonym>
+<common-name datatype='string'>glutamine synthetase adenylyltransferase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:GSADENYLATION-RXN' orgid='ECOLI' frameid='GSADENYLATION-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6832' orgid='ECOLI' frameid='REG0-6832' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-285' orgid='ECOLI' frameid='ENZRXN0-285' detail='low'><enzyme><Protein resource='getxml?ECOLI:CPLX0-201' orgid='ECOLI' frameid='CPLX0-201'/></enzyme>
+<common-name datatype='string'>fructose-6-phosphate aldolase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-313' orgid='ECOLI' frameid='RXN0-313'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6824' orgid='ECOLI' frameid='REG0-6824' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-266' orgid='ECOLI' frameid='ENZRXN0-266' detail='low'><enzyme><Protein resource='getxml?ECOLI:G6406-MONOMER' orgid='ECOLI' frameid='G6406-MONOMER'/></enzyme>
+<synonym datatype='string'>CL synthase</synonym>
+<common-name datatype='string'>cardiolipin synthase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:CARDIOLIPSYN-RXN' orgid='ECOLI' frameid='CARDIOLIPSYN-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>+</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-6631' orgid='ECOLI' frameid='REG0-6631' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:Pi' orgid='ECOLI' frameid='Pi'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-6314' orgid='ECOLI' frameid='ENZRXN0-6314' detail='low'><enzyme><Protein resource='getxml?ECOLI:G6502-MONOMER' orgid='ECOLI' frameid='G6502-MONOMER'/></enzyme>
+<synonym datatype='string'>AcP</synonym>
+<common-name datatype='string'>acylphosphatase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:ACYLPHOSPHATASE-RXN' orgid='ECOLI' frameid='ACYLPHOSPHATASE-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<molecular-weight datatype='float' units='Daltons'>95.979</molecular-weight>
+<component-of><Compound resource='getxml?ECOLI:CPD0-2622' orgid='ECOLI' frameid='CPD0-2622'/><Compound resource='getxml?ECOLI:CPD-18499' orgid='ECOLI' frameid='CPD-18499'/><Compound resource='getxml?ECOLI:CPD-18500' orgid='ECOLI' frameid='CPD-18500'/><Compound resource='getxml?ECOLI:CPD-18501' orgid='ECOLI' frameid='CPD-18501'/><Compound resource='getxml?ECOLI:CPD0-2503' orgid='ECOLI' frameid='CPD0-2503'/><Compound resource='getxml?ECOLI:CPD0-2412' orgid='ECOLI' frameid='CPD0-2412'/><Compound resource='getxml?ECOLI:CPD0-2433' orgid='ECOLI' frameid='CPD0-2433'/><Compound resource='getxml?ECOLI:CPD0-2389' orgid='ECOLI' frameid='CPD0-2389'/></component-of>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Phosphoric acid</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Phosphoric acid</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>pi</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/pi</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>3681305</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=3681305</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>43474</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:43474</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC43474</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC43474</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00973</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00973</dblink-URL>
+</dblink>
+<dblink><dblink-db>KNAPSACK</dblink-db>
+<dblink-oid>C00007408</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.knapsackfamily.com/knapsack_core/information.jsp?word=C00007408</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>14265-44-2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=14265-44-2</dblink-URL>
+</dblink>
+<synonym datatype='string'>inorganic phosphate</synonym>
+<synonym datatype='string'>phosphate-inorganic</synonym>
+<synonym datatype='string'>Pi</synonym>
+<synonym datatype='string'>orthophosphate</synonym>
+<synonym datatype='string'>PO&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;3-&lt;/SUP&gt;</synonym>
+<synonym datatype='string'>HPO&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;2-&lt;/SUP&gt;</synonym>
+<synonym datatype='string'>HPO&lt;SUB&gt;4&lt;/SUB&gt;&lt;SUP&gt;-2&lt;/SUP&gt;</synonym>
+<synonym datatype='string'>hydrogenphosphate</synonym>
+<inchi-key datatype='string'>InChIKey=NBIIXXVUZAFLBC-UHFFFAOYSA-L</inchi-key>
+<monoisotopic-mw datatype='float' units='Daltons'>97.9769</monoisotopic-mw>
+<inchi datatype='string'>InChI=1S/H3O4P/c1-5(2,3)4/h(H3,1,2,3,4)/p-2</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:3.1.21.3-RXN' orgid='ECOLI' frameid='3.1.21.3-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-1540' orgid='ECOLI' frameid='TRANS-RXN-1540'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-162' orgid='ECOLI' frameid='TRANS-RXN0-162'/><Reaction resource='getxml?ECOLI:TRANS-RXN-510' orgid='ECOLI' frameid='TRANS-RXN-510'/><Reaction resource='getxml?ECOLI:RXN0-7068' orgid='ECOLI' frameid='RXN0-7068'/><Reaction resource='getxml?ECOLI:RXN-18710' orgid='ECOLI' frameid='RXN-18710'/><Reaction resource='getxml?ECOLI:RXN0-7444' orgid='ECOLI' frameid='RXN0-7444'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-630' orgid='ECOLI' frameid='TRANS-RXN0-630'/><Reaction resource='getxml?ECOLI:RXN-24020' orgid='ECOLI' frameid='RXN-24020'/><Reaction resource='getxml?ECOLI:RXN-22326' orgid='ECOLI' frameid='RXN-22326'/><Reaction resource='getxml?ECOLI:3.4.21.53-RXN' orgid='ECOLI' frameid='3.4.21.53-RXN'/><Reaction resource='getxml?ECOLI:TRIPHOSPHATASE-RXN' orgid='ECOLI' frameid='TRIPHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-22735' orgid='ECOLI' frameid='RXN-22735'/><Reaction resource='getxml?ECOLI:RXN-22736' orgid='ECOLI' frameid='RXN-22736'/><Reaction resource='getxml?ECOLI:RXN-22956' orgid='ECOLI' frameid='RXN-22956'/><Reaction resource='getxml?ECOLI:TRANS-RXN-498' orgid='ECOLI' frameid='TRANS-RXN-498'/><Reaction resource='getxml?ECOLI:TRANS-RXN-237' orgid='ECOLI' frameid='TRANS-RXN-237'/><Reaction resource='getxml?ECOLI:TRANS-RXN-296' orgid='ECOLI' frameid='TRANS-RXN-296'/><Reaction resource='getxml?ECOLI:RXN-22647' orgid='ECOLI' frameid='RXN-22647'/><Reaction resource='getxml?ECOLI:RXN0-6435' orgid='ECOLI' frameid='RXN0-6435'/><Reaction resource='getxml?ECOLI:GTP-CYCLOHYDRO-II-RXN' orgid='ECOLI' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7395' orgid='ECOLI' frameid='RXN0-7395'/><Reaction resource='getxml?ECOLI:RXN-22427' orgid='ECOLI' frameid='RXN-22427'/><Reaction resource='getxml?ECOLI:RXN185E-10' orgid='ECOLI' frameid='RXN185E-10'/><Reaction resource='getxml?ECOLI:RXN0-7388' orgid='ECOLI' frameid='RXN0-7388'/><Reaction resource='getxml?ECOLI:RXN-22388' orgid='ECOLI' frameid='RXN-22388'/><Reaction resource='getxml?ECOLI:RXN-22214' orgid='ECOLI' frameid='RXN-22214'/><Reaction resource='getxml?ECOLI:TRANS-RXN-452' orgid='ECOLI' frameid='TRANS-RXN-452'/><Reaction resource='getxml?ECOLI:3.6.3.3-RXN' orgid='ECOLI' frameid='3.6.3.3-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-424' orgid='ECOLI' frameid='TRANS-RXN-424'/><Reaction resource='getxml?ECOLI:RXN-14455' orgid='ECOLI' frameid='RXN-14455'/><Reaction resource='getxml?ECOLI:ABC-11-RXN' orgid='ECOLI' frameid='ABC-11-RXN'/><Reaction resource='getxml?ECOLI:RXN-21408' orgid='ECOLI' frameid='RXN-21408'/><Reaction resource='getxml?ECOLI:3.4.21.92-RXN' orgid='ECOLI' frameid='3.4.21.92-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7115' orgid='ECOLI' frameid='RXN0-7115'/><Reaction resource='getxml?ECOLI:RXN0-7291' orgid='ECOLI' frameid='RXN0-7291'/><Reaction resource='getxml?ECOLI:RXN1ZN3-10' orgid='ECOLI' frameid='RXN1ZN3-10'/><Reaction resource='getxml?ECOLI:RXN-21299' orgid='ECOLI' frameid='RXN-21299'/><Reaction resource='getxml?ECOLI:RXN-17330' orgid='ECOLI' frameid='RXN-17330'/><Reaction resource='getxml?ECOLI:RXN0-7362' orgid='ECOLI' frameid='RXN0-7362'/><Reaction resource='getxml?ECOLI:RXN-21067' orgid='ECOLI' frameid='RXN-21067'/><Reaction resource='getxml?ECOLI:RXN0-2941' orgid='ECOLI' frameid='RXN0-2941'/><Reaction resource='getxml?ECOLI:RXN-20927' orgid='ECOLI' frameid='RXN-20927'/><Reaction resource='getxml?ECOLI:RXN-20757' orgid='ECOLI' frameid='RXN-20757'/><Reaction resource='getxml?ECOLI:RXN-20674' orgid='ECOLI' frameid='RXN-20674'/><Reaction resource='getxml?ECOLI:RXN0-2281' orgid='ECOLI' frameid='RXN0-2281'/><Reaction resource='getxml?ECOLI:RXN-17104' orgid='ECOLI' frameid='RXN-17104'/><Reaction resource='getxml?ECOLI:RXN0-1061' orgid='ECOLI' frameid='RXN0-1061'/><Reaction resource='getxml?ECOLI:RXN0-7299' orgid='ECOLI' frameid='RXN0-7299'/><Reaction resource='getxml?ECOLI:RXN0-7348' orgid='ECOLI' frameid='RXN0-7348'/><Reaction resource='getxml?ECOLI:RXN0-7339' orgid='ECOLI' frameid='RXN0-7339'/><Reaction resource='getxml?ECOLI:RXN0-7337' orgid='ECOLI' frameid='RXN0-7337'/><Reaction resource='getxml?ECOLI:RXN0-7332' orgid='ECOLI' frameid='RXN0-7332'/><Reaction resource='getxml?ECOLI:RXN0-312' orgid='ECOLI' frameid='RXN0-312'/><Reaction resource='getxml?ECOLI:CHEYDEPHOS-RXN' orgid='ECOLI' frameid='CHEYDEPHOS-RXN'/><Reaction resource='getxml?ECOLI:RXN-19780' orgid='ECOLI' frameid='RXN-19780'/><Reaction resource='getxml?ECOLI:RXN0-7329' orgid='ECOLI' frameid='RXN0-7329'/><Reaction resource='getxml?ECOLI:RXN0-7297' orgid='ECOLI' frameid='RXN0-7297'/><Reaction resource='getxml?ECOLI:RXN-20426' orgid='ECOLI' frameid='RXN-20426'/><Reaction resource='getxml?ECOLI:TRANS-RXN-383' orgid='ECOLI' frameid='TRANS-RXN-383'/><Reaction resource='getxml?ECOLI:3.6.3.39-RXN' orgid='ECOLI' frameid='3.6.3.39-RXN'/><Reaction resource='getxml?ECOLI:ABC-33-RXN' orgid='ECOLI' frameid='ABC-33-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7309' orgid='ECOLI' frameid='RXN0-7309'/><Reaction resource='getxml?ECOLI:ATPSYN-RXN' orgid='ECOLI' frameid='ATPSYN-RXN'/><Reaction resource='getxml?ECOLI:RXN0-4261' orgid='ECOLI' frameid='RXN0-4261'/><Reaction resource='getxml?ECOLI:RXN-11135' orgid='ECOLI' frameid='RXN-11135'/><Reaction resource='getxml?ECOLI:CHEBDEP-RXN' orgid='ECOLI' frameid='CHEBDEP-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-377' orgid='ECOLI' frameid='TRANS-RXN-377'/><Reaction resource='getxml?ECOLI:TRANS-RXN-378' orgid='ECOLI' frameid='TRANS-RXN-378'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-224' orgid='ECOLI' frameid='TRANS-RXN0-224'/><Reaction resource='getxml?ECOLI:TRANS-RXN-372' orgid='ECOLI' frameid='TRANS-RXN-372'/><Reaction resource='getxml?ECOLI:TRANS-RXN-371' orgid='ECOLI' frameid='TRANS-RXN-371'/><Reaction resource='getxml?ECOLI:TRANS-RXN-114' orgid='ECOLI' frameid='TRANS-RXN-114'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-534' orgid='ECOLI' frameid='TRANS-RXN0-534'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-502' orgid='ECOLI' frameid='TRANS-RXN0-502'/><Reaction resource='getxml?ECOLI:TRANS-RXN-33' orgid='ECOLI' frameid='TRANS-RXN-33'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-501' orgid='ECOLI' frameid='TRANS-RXN0-501'/><Reaction resource='getxml?ECOLI:TRANS-RXN-22' orgid='ECOLI' frameid='TRANS-RXN-22'/><Reaction resource='getxml?ECOLI:TRANS-RXN-236' orgid='ECOLI' frameid='TRANS-RXN-236'/><Reaction resource='getxml?ECOLI:TRANS-RXN-366' orgid='ECOLI' frameid='TRANS-RXN-366'/><Reaction resource='getxml?ECOLI:GUANOSINE-DIPHOSPHATASE-RXN' orgid='ECOLI' frameid='GUANOSINE-DIPHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:NUCLEOSIDE-DIPHOSPHATASE-RXN' orgid='ECOLI' frameid='NUCLEOSIDE-DIPHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-19022' orgid='ECOLI' frameid='RXN-19022'/><Reaction resource='getxml?ECOLI:5-OXOPROLINASE-ATP-HYDROLYSING-RXN' orgid='ECOLI' frameid='5-OXOPROLINASE-ATP-HYDROLYSING-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7283' orgid='ECOLI' frameid='RXN0-7283'/><Reaction resource='getxml?ECOLI:RXN-19004' orgid='ECOLI' frameid='RXN-19004'/><Reaction resource='getxml?ECOLI:ABC-8-RXN' orgid='ECOLI' frameid='ABC-8-RXN'/><Reaction resource='getxml?ECOLI:ABC-56-RXN' orgid='ECOLI' frameid='ABC-56-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-202' orgid='ECOLI' frameid='TRANS-RXN0-202'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-508' orgid='ECOLI' frameid='TRANS-RXN0-508'/><Reaction resource='getxml?ECOLI:RXN0-11' orgid='ECOLI' frameid='RXN0-11'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-268' orgid='ECOLI' frameid='TRANS-RXN0-268'/><Reaction resource='getxml?ECOLI:ABC-15-RXN' orgid='ECOLI' frameid='ABC-15-RXN'/><Reaction resource='getxml?ECOLI:RXN0-4522' orgid='ECOLI' frameid='RXN0-4522'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-511' orgid='ECOLI' frameid='TRANS-RXN0-511'/><Reaction resource='getxml?ECOLI:ABC-26-RXN' orgid='ECOLI' frameid='ABC-26-RXN'/><Reaction resource='getxml?ECOLI:ABC-36-RXN' orgid='ECOLI' frameid='ABC-36-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-510' orgid='ECOLI' frameid='TRANS-RXN0-510'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-478' orgid='ECOLI' frameid='TRANS-RXN0-478'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-479' orgid='ECOLI' frameid='TRANS-RXN0-479'/><Reaction resource='getxml?ECOLI:ABC-32-RXN' orgid='ECOLI' frameid='ABC-32-RXN'/><Reaction resource='getxml?ECOLI:ABC-63-RXN' orgid='ECOLI' frameid='ABC-63-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-238' orgid='ECOLI' frameid='TRANS-RXN-238'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-504' orgid='ECOLI' frameid='TRANS-RXN0-504'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-503' orgid='ECOLI' frameid='TRANS-RXN0-503'/><Reaction resource='getxml?ECOLI:ABC-23-RXN' orgid='ECOLI' frameid='ABC-23-RXN'/><Reaction resource='getxml?ECOLI:RXN0-21' orgid='ECOLI' frameid='RXN0-21'/><Reaction resource='getxml?ECOLI:RXN0-3' orgid='ECOLI' frameid='RXN0-3'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-492' orgid='ECOLI' frameid='TRANS-RXN0-492'/><Reaction resource='getxml?ECOLI:ABC-42-RXN' orgid='ECOLI' frameid='ABC-42-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-491' orgid='ECOLI' frameid='TRANS-RXN0-491'/><Reaction resource='getxml?ECOLI:MANNITOL-1-PHOSPHATASE-RXN' orgid='ECOLI' frameid='MANNITOL-1-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:SORBITOL-6-PHOSPHATASE-RXN' orgid='ECOLI' frameid='SORBITOL-6-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-328' orgid='ECOLI' frameid='TRANS-RXN-328'/><Reaction resource='getxml?ECOLI:ABC-22-RXN' orgid='ECOLI' frameid='ABC-22-RXN'/><Reaction resource='getxml?ECOLI:3.6.3.23-RXN' orgid='ECOLI' frameid='3.6.3.23-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-324' orgid='ECOLI' frameid='TRANS-RXN-324'/><Reaction resource='getxml?ECOLI:RXN-18241' orgid='ECOLI' frameid='RXN-18241'/><Reaction resource='getxml?ECOLI:PDXJ-RXN' orgid='ECOLI' frameid='PDXJ-RXN'/><Reaction resource='getxml?ECOLI:3-NUCLEOTID-RXN' orgid='ECOLI' frameid='3-NUCLEOTID-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-320' orgid='ECOLI' frameid='TRANS-RXN-320'/><Reaction resource='getxml?ECOLI:TRANS-RXN-312' orgid='ECOLI' frameid='TRANS-RXN-312'/><Reaction resource='getxml?ECOLI:RXN-17943' orgid='ECOLI' frameid='RXN-17943'/><Reaction resource='getxml?ECOLI:RXN0-7251' orgid='ECOLI' frameid='RXN0-7251'/><Reaction resource='getxml?ECOLI:RXN0-7250' orgid='ECOLI' frameid='RXN0-7250'/><Reaction resource='getxml?ECOLI:RXN0-7249' orgid='ECOLI' frameid='RXN0-7249'/><Reaction resource='getxml?ECOLI:RXN-7253' orgid='ECOLI' frameid='RXN-7253'/><Reaction resource='getxml?ECOLI:PHOSPHOAMIDASE-RXN' orgid='ECOLI' frameid='PHOSPHOAMIDASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-17753' orgid='ECOLI' frameid='RXN-17753'/><Reaction resource='getxml?ECOLI:3.1.3.68-RXN' orgid='ECOLI' frameid='3.1.3.68-RXN'/><Reaction resource='getxml?ECOLI:GPH-RXN' orgid='ECOLI' frameid='GPH-RXN'/><Reaction resource='getxml?ECOLI:3-PHOSPHOGLYCERATE-PHOSPHATASE-RXN' orgid='ECOLI' frameid='3-PHOSPHOGLYCERATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-17745' orgid='ECOLI' frameid='RXN-17745'/><Reaction resource='getxml?ECOLI:RXN-17724' orgid='ECOLI' frameid='RXN-17724'/><Reaction resource='getxml?ECOLI:RXN-17725' orgid='ECOLI' frameid='RXN-17725'/><Reaction resource='getxml?ECOLI:RXN0-7186' orgid='ECOLI' frameid='RXN0-7186'/><Reaction resource='getxml?ECOLI:RXN0-7185' orgid='ECOLI' frameid='RXN0-7185'/><Reaction resource='getxml?ECOLI:RXN-14483' orgid='ECOLI' frameid='RXN-14483'/><Reaction resource='getxml?ECOLI:TRANS-RXN-298' orgid='ECOLI' frameid='TRANS-RXN-298'/><Reaction resource='getxml?ECOLI:TRANS-RXN-297' orgid='ECOLI' frameid='TRANS-RXN-297'/><Reaction resource='getxml?ECOLI:RXN-17495' orgid='ECOLI' frameid='RXN-17495'/><Reaction resource='getxml?ECOLI:RXN-17493' orgid='ECOLI' frameid='RXN-17493'/><Reaction resource='getxml?ECOLI:RXN-17490' orgid='ECOLI' frameid='RXN-17490'/><Reaction resource='getxml?ECOLI:RXN-17489' orgid='ECOLI' frameid='RXN-17489'/><Reaction resource='getxml?ECOLI:TRANS-RXN-290' orgid='ECOLI' frameid='TRANS-RXN-290'/><Reaction resource='getxml?ECOLI:TRANS-RXN-291' orgid='ECOLI' frameid='TRANS-RXN-291'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-617' orgid='ECOLI' frameid='TRANS-RXN0-617'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-513' orgid='ECOLI' frameid='TRANS-RXN0-513'/><Reaction resource='getxml?ECOLI:RXN-11776' orgid='ECOLI' frameid='RXN-11776'/><Reaction resource='getxml?ECOLI:ABC-18-RXN' orgid='ECOLI' frameid='ABC-18-RXN'/><Reaction resource='getxml?ECOLI:ABC-28-RXN' orgid='ECOLI' frameid='ABC-28-RXN'/><Reaction resource='getxml?ECOLI:RXN66-526' orgid='ECOLI' frameid='RXN66-526'/><Reaction resource='getxml?ECOLI:GLUCOSE-1-PHOSPHAT-RXN' orgid='ECOLI' frameid='GLUCOSE-1-PHOSPHAT-RXN'/><Reaction resource='getxml?ECOLI:RXN-16910' orgid='ECOLI' frameid='RXN-16910'/><Reaction resource='getxml?ECOLI:TRANS-RXN-283' orgid='ECOLI' frameid='TRANS-RXN-283'/><Reaction resource='getxml?ECOLI:3.6.3.53-RXN' orgid='ECOLI' frameid='3.6.3.53-RXN'/><Reaction resource='getxml?ECOLI:RXN-16937' orgid='ECOLI' frameid='RXN-16937'/><Reaction resource='getxml?ECOLI:RXN-16009' orgid='ECOLI' frameid='RXN-16009'/><Reaction resource='getxml?ECOLI:ATPASE-RXN' orgid='ECOLI' frameid='ATPASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-11109' orgid='ECOLI' frameid='RXN-11109'/><Reaction resource='getxml?ECOLI:RXN-14552' orgid='ECOLI' frameid='RXN-14552'/><Reaction resource='getxml?ECOLI:2.9.1.1-RXN' orgid='ECOLI' frameid='2.9.1.1-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5418' orgid='ECOLI' frameid='RXN0-5418'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-593' orgid='ECOLI' frameid='TRANS-RXN0-593'/><Reaction resource='getxml?ECOLI:RXN0-7083' orgid='ECOLI' frameid='RXN0-7083'/><Reaction resource='getxml?ECOLI:5-FORMYL-THF-CYCLO-LIGASE-RXN' orgid='ECOLI' frameid='5-FORMYL-THF-CYCLO-LIGASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7092' orgid='ECOLI' frameid='RXN0-7092'/><Reaction resource='getxml?ECOLI:RXN-15312' orgid='ECOLI' frameid='RXN-15312'/><Reaction resource='getxml?ECOLI:GLUCOSE-6-PHOSPHATASE-RXN' orgid='ECOLI' frameid='GLUCOSE-6-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-7948' orgid='ECOLI' frameid='RXN-7948'/><Reaction resource='getxml?ECOLI:RXN-5647' orgid='ECOLI' frameid='RXN-5647'/><Reaction resource='getxml?ECOLI:RXN-14514' orgid='ECOLI' frameid='RXN-14514'/><Reaction resource='getxml?ECOLI:4-NITROPHENYLPHOSPHATASE-RXN' orgid='ECOLI' frameid='4-NITROPHENYLPHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:3.1.3.74-RXN' orgid='ECOLI' frameid='3.1.3.74-RXN'/><Reaction resource='getxml?ECOLI:RXN-14181' orgid='ECOLI' frameid='RXN-14181'/><Reaction resource='getxml?ECOLI:RXN-7607' orgid='ECOLI' frameid='RXN-7607'/><Reaction resource='getxml?ECOLI:RXN-14510' orgid='ECOLI' frameid='RXN-14510'/><Reaction resource='getxml?ECOLI:RXN-14026' orgid='ECOLI' frameid='RXN-14026'/><Reaction resource='getxml?ECOLI:RXN-14511' orgid='ECOLI' frameid='RXN-14511'/><Reaction resource='getxml?ECOLI:RXN-14512' orgid='ECOLI' frameid='RXN-14512'/><Reaction resource='getxml?ECOLI:RXN-14513' orgid='ECOLI' frameid='RXN-14513'/><Reaction resource='getxml?ECOLI:PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN' orgid='ECOLI' frameid='PHOSPHOENOLPYRUVATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:HISTIDPHOS-RXN' orgid='ECOLI' frameid='HISTIDPHOS-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5187' orgid='ECOLI' frameid='RXN0-5187'/><Reaction resource='getxml?ECOLI:RXN-5822' orgid='ECOLI' frameid='RXN-5822'/><Reaction resource='getxml?ECOLI:PHOSPHOGLYCERATE-PHOSPHATASE-RXN' orgid='ECOLI' frameid='PHOSPHOGLYCERATE-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-14509' orgid='ECOLI' frameid='RXN-14509'/><Reaction resource='getxml?ECOLI:INORGPYROPHOSPHAT-RXN' orgid='ECOLI' frameid='INORGPYROPHOSPHAT-RXN'/><Reaction resource='getxml?ECOLI:RXN-14534' orgid='ECOLI' frameid='RXN-14534'/><Reaction resource='getxml?ECOLI:RXN0-5114' orgid='ECOLI' frameid='RXN0-5114'/><Reaction resource='getxml?ECOLI:RXN-14505' orgid='ECOLI' frameid='RXN-14505'/><Reaction resource='getxml?ECOLI:RXN-14521' orgid='ECOLI' frameid='RXN-14521'/><Reaction resource='getxml?ECOLI:RXN-14522' orgid='ECOLI' frameid='RXN-14522'/><Reaction resource='getxml?ECOLI:RXN-14523' orgid='ECOLI' frameid='RXN-14523'/><Reaction resource='getxml?ECOLI:RXN-14525' orgid='ECOLI' frameid='RXN-14525'/><Reaction resource='getxml?ECOLI:RXN-14524' orgid='ECOLI' frameid='RXN-14524'/><Reaction resource='getxml?ECOLI:DEOXYNUCLEOTIDE-3-PHOSPHATASE-RXN' orgid='ECOLI' frameid='DEOXYNUCLEOTIDE-3-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-14115' orgid='ECOLI' frameid='RXN-14115'/><Reaction resource='getxml?ECOLI:RXN-14124' orgid='ECOLI' frameid='RXN-14124'/><Reaction resource='getxml?ECOLI:RXN0-5292' orgid='ECOLI' frameid='RXN0-5292'/><Reaction resource='getxml?ECOLI:RXN-14143' orgid='ECOLI' frameid='RXN-14143'/><Reaction resource='getxml?ECOLI:RXN-14161' orgid='ECOLI' frameid='RXN-14161'/><Reaction resource='getxml?ECOLI:RXN0-3741' orgid='ECOLI' frameid='RXN0-3741'/><Reaction resource='getxml?ECOLI:RXN-14090' orgid='ECOLI' frameid='RXN-14090'/><Reaction resource='getxml?ECOLI:RXN-14126' orgid='ECOLI' frameid='RXN-14126'/><Reaction resource='getxml?ECOLI:RXN-14025' orgid='ECOLI' frameid='RXN-14025'/><Reaction resource='getxml?ECOLI:THYMIDYLATE-5-PHOSPHATASE-RXN' orgid='ECOLI' frameid='THYMIDYLATE-5-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-14473' orgid='ECOLI' frameid='RXN-14473'/><Reaction resource='getxml?ECOLI:RXN-14142' orgid='ECOLI' frameid='RXN-14142'/><Reaction resource='getxml?ECOLI:RXN-7609' orgid='ECOLI' frameid='RXN-7609'/><Reaction resource='getxml?ECOLI:AMP-DEPHOSPHORYLATION-RXN' orgid='ECOLI' frameid='AMP-DEPHOSPHORYLATION-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-573' orgid='ECOLI' frameid='TRANS-RXN0-573'/><Reaction resource='getxml?ECOLI:GLUTAMINESYN-RXN' orgid='ECOLI' frameid='GLUTAMINESYN-RXN'/><Reaction resource='getxml?ECOLI:RXN-12093' orgid='ECOLI' frameid='RXN-12093'/><Reaction resource='getxml?ECOLI:RXN-13202' orgid='ECOLI' frameid='RXN-13202'/><Reaction resource='getxml?ECOLI:RXN-14325' orgid='ECOLI' frameid='RXN-14325'/><Reaction resource='getxml?ECOLI:RXN0-5186' orgid='ECOLI' frameid='RXN0-5186'/><Reaction resource='getxml?ECOLI:3.1.3.16-RXN' orgid='ECOLI' frameid='3.1.3.16-RXN'/><Reaction resource='getxml?ECOLI:NICOTINATEPRIBOSYLTRANS-RXN' orgid='ECOLI' frameid='NICOTINATEPRIBOSYLTRANS-RXN'/><Reaction resource='getxml?ECOLI:ABC-2-RXN' orgid='ECOLI' frameid='ABC-2-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6726' orgid='ECOLI' frameid='RXN0-6726'/><Reaction resource='getxml?ECOLI:RXN-12816' orgid='ECOLI' frameid='RXN-12816'/><Reaction resource='getxml?ECOLI:RXN-14002' orgid='ECOLI' frameid='RXN-14002'/><Reaction resource='getxml?ECOLI:RXN0-3542' orgid='ECOLI' frameid='RXN0-3542'/><Reaction resource='getxml?ECOLI:RXN0-5291' orgid='ECOLI' frameid='RXN0-5291'/><Reaction resource='getxml?ECOLI:RXN-12195' orgid='ECOLI' frameid='RXN-12195'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-541' orgid='ECOLI' frameid='TRANS-RXN0-541'/><Reaction resource='getxml?ECOLI:RXN0-7022' orgid='ECOLI' frameid='RXN0-7022'/><Reaction resource='getxml?ECOLI:RXN-8770' orgid='ECOLI' frameid='RXN-8770'/><Reaction resource='getxml?ECOLI:5-NUCLEOTID-RXN' orgid='ECOLI' frameid='5-NUCLEOTID-RXN'/><Reaction resource='getxml?ECOLI:RXN-13141' orgid='ECOLI' frameid='RXN-13141'/><Reaction resource='getxml?ECOLI:GLYCEROL-1-PHOSPHATASE-RXN' orgid='ECOLI' frameid='GLYCEROL-1-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5205' orgid='ECOLI' frameid='RXN0-5205'/><Reaction resource='getxml?ECOLI:RXN-16788' orgid='ECOLI' frameid='RXN-16788'/><Reaction resource='getxml?ECOLI:GLYCEROL-2-PHOSPHATASE-RXN' orgid='ECOLI' frameid='GLYCEROL-2-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5408' orgid='ECOLI' frameid='RXN0-5408'/><Reaction resource='getxml?ECOLI:325-BISPHOSPHATE-NUCLEOTIDASE-RXN' orgid='ECOLI' frameid='325-BISPHOSPHATE-NUCLEOTIDASE-RXN'/><Reaction resource='getxml?ECOLI:RXN-10940' orgid='ECOLI' frameid='RXN-10940'/><Reaction resource='getxml?ECOLI:RXN0-6727' orgid='ECOLI' frameid='RXN0-6727'/><Reaction resource='getxml?ECOLI:5.99.1.3-RXN' orgid='ECOLI' frameid='5.99.1.3-RXN'/><Reaction resource='getxml?ECOLI:BIOTIN-CARBOXYL-RXN' orgid='ECOLI' frameid='BIOTIN-CARBOXYL-RXN'/><Reaction resource='getxml?ECOLI:RXN-8638' orgid='ECOLI' frameid='RXN-8638'/><Reaction resource='getxml?ECOLI:ABC-10-RXN' orgid='ECOLI' frameid='ABC-10-RXN'/><Reaction resource='getxml?ECOLI:ABC-12-RXN' orgid='ECOLI' frameid='ABC-12-RXN'/><Reaction resource='getxml?ECOLI:ABC-13-RXN' orgid='ECOLI' frameid='ABC-13-RXN'/><Reaction resource='getxml?ECOLI:ABC-14-RXN' orgid='ECOLI' frameid='ABC-14-RXN'/><Reaction resource='getxml?ECOLI:ABC-16-RXN' orgid='ECOLI' frameid='ABC-16-RXN'/><Reaction resource='getxml?ECOLI:ABC-19-RXN' orgid='ECOLI' frameid='ABC-19-RXN'/><Reaction resource='getxml?ECOLI:ABC-20-RXN' orgid='ECOLI' frameid='ABC-20-RXN'/><Reaction resource='getxml?ECOLI:ABC-24-RXN' orgid='ECOLI' frameid='ABC-24-RXN'/><Reaction resource='getxml?ECOLI:ABC-25-RXN' orgid='ECOLI' frameid='ABC-25-RXN'/><Reaction resource='getxml?ECOLI:ABC-27-RXN' orgid='ECOLI' frameid='ABC-27-RXN'/><Reaction resource='getxml?ECOLI:ABC-3-RXN' orgid='ECOLI' frameid='ABC-3-RXN'/><Reaction resource='getxml?ECOLI:ABC-34-RXN' orgid='ECOLI' frameid='ABC-34-RXN'/><Reaction resource='getxml?ECOLI:ABC-37-RXN' orgid='ECOLI' frameid='ABC-37-RXN'/><Reaction resource='getxml?ECOLI:ABC-4-RXN' orgid='ECOLI' frameid='ABC-4-RXN'/><Reaction resource='getxml?ECOLI:ABC-5-RXN' orgid='ECOLI' frameid='ABC-5-RXN'/><Reaction resource='getxml?ECOLI:ABC-7-RXN' orgid='ECOLI' frameid='ABC-7-RXN'/><Reaction resource='getxml?ECOLI:ABC-9-RXN' orgid='ECOLI' frameid='ABC-9-RXN'/><Reaction resource='getxml?ECOLI:ABC-64-RXN' orgid='ECOLI' frameid='ABC-64-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-250' orgid='ECOLI' frameid='TRANS-RXN-250'/><Reaction resource='getxml?ECOLI:TRANS-RXN-2' orgid='ECOLI' frameid='TRANS-RXN-2'/><Reaction resource='getxml?ECOLI:ABC-70-RXN' orgid='ECOLI' frameid='ABC-70-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-222' orgid='ECOLI' frameid='TRANS-RXN0-222'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-454' orgid='ECOLI' frameid='TRANS-RXN0-454'/><Reaction resource='getxml?ECOLI:RXN-11277' orgid='ECOLI' frameid='RXN-11277'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-470' orgid='ECOLI' frameid='TRANS-RXN0-470'/><Reaction resource='getxml?ECOLI:RXN0-6562' orgid='ECOLI' frameid='RXN0-6562'/><Reaction resource='getxml?ECOLI:RXN0-5073' orgid='ECOLI' frameid='RXN0-5073'/><Reaction resource='getxml?ECOLI:ACYLPHOSPHATASE-RXN' orgid='ECOLI' frameid='ACYLPHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6368' orgid='ECOLI' frameid='RXN0-6368'/><Reaction resource='getxml?ECOLI:RXN0-5074' orgid='ECOLI' frameid='RXN0-5074'/><Reaction resource='getxml?ECOLI:RXN0-5462' orgid='ECOLI' frameid='RXN0-5462'/><Reaction resource='getxml?ECOLI:RXN0-1001' orgid='ECOLI' frameid='RXN0-1001'/><Reaction resource='getxml?ECOLI:UNDECAPRENYL-DIPHOSPHATASE-RXN' orgid='ECOLI' frameid='UNDECAPRENYL-DIPHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:UDP-NACMURALGLDAPAALIG-RXN' orgid='ECOLI' frameid='UDP-NACMURALGLDAPAALIG-RXN'/><Reaction resource='getxml?ECOLI:OXAMATE-CARBAMOYLTRANSFERASE-RXN' orgid='ECOLI' frameid='OXAMATE-CARBAMOYLTRANSFERASE-RXN'/><Reaction resource='getxml?ECOLI:CTPSYN-RXN' orgid='ECOLI' frameid='CTPSYN-RXN'/><Reaction resource='getxml?ECOLI:RXN0-3543' orgid='ECOLI' frameid='RXN0-3543'/><Reaction resource='getxml?ECOLI:RXN0-5185' orgid='ECOLI' frameid='RXN0-5185'/><Reaction resource='getxml?ECOLI:KDO-8PSYNTH-RXN' orgid='ECOLI' frameid='KDO-8PSYNTH-RXN'/><Reaction resource='getxml?ECOLI:DAHPSYN-RXN' orgid='ECOLI' frameid='DAHPSYN-RXN'/><Reaction resource='getxml?ECOLI:EXOPOLYPHOSPHATASE-RXN' orgid='ECOLI' frameid='EXOPOLYPHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:DEPHOSICITDEHASE-RXN' orgid='ECOLI' frameid='DEPHOSICITDEHASE-RXN'/><Reaction resource='getxml?ECOLI:SUGAR-PHOSPHATASE-RXN' orgid='ECOLI' frameid='SUGAR-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-4361' orgid='ECOLI' frameid='RXN0-4361'/><Reaction resource='getxml?ECOLI:RXN0-3901' orgid='ECOLI' frameid='RXN0-3901'/><Reaction resource='getxml?ECOLI:LUMAZINESYN-RXN' orgid='ECOLI' frameid='LUMAZINESYN-RXN'/><Reaction resource='getxml?ECOLI:RXN0-2921' orgid='ECOLI' frameid='RXN0-2921'/><Reaction resource='getxml?ECOLI:FOLYLPOLYGLUTAMATESYNTH-RXN' orgid='ECOLI' frameid='FOLYLPOLYGLUTAMATESYNTH-RXN'/><Reaction resource='getxml?ECOLI:RXN0-2361' orgid='ECOLI' frameid='RXN0-2361'/><Reaction resource='getxml?ECOLI:ACID-PHOSPHATASE-RXN' orgid='ECOLI' frameid='ACID-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:2.7.9.3-RXN' orgid='ECOLI' frameid='2.7.9.3-RXN'/><Reaction resource='getxml?ECOLI:RXN0-742' orgid='ECOLI' frameid='RXN0-742'/><Reaction resource='getxml?ECOLI:CARBPSYN-RXN' orgid='ECOLI' frameid='CARBPSYN-RXN'/><Reaction resource='getxml?ECOLI:FORMYLTHFGLUSYNTH-RXN' orgid='ECOLI' frameid='FORMYLTHFGLUSYNTH-RXN'/><Reaction resource='getxml?ECOLI:GARTRANSFORMYL2-RXN' orgid='ECOLI' frameid='GARTRANSFORMYL2-RXN'/><Reaction resource='getxml?ECOLI:PROTEIN-TYROSINE-PHOSPHATASE-RXN' orgid='ECOLI' frameid='PROTEIN-TYROSINE-PHOSPHATASE-RXN'/><Reaction resource='getxml?ECOLI:ABC-35-RXN' orgid='ECOLI' frameid='ABC-35-RXN'/><Reaction resource='getxml?ECOLI:TREHALOSEPHOSPHA-RXN' orgid='ECOLI' frameid='TREHALOSEPHOSPHA-RXN'/><Reaction resource='getxml?ECOLI:GSPSYN-RXN' orgid='ECOLI' frameid='GSPSYN-RXN'/><Reaction resource='getxml?ECOLI:METHGLYSYN-RXN' orgid='ECOLI' frameid='METHGLYSYN-RXN'/><Reaction resource='getxml?ECOLI:ALKAPHOSPHA-RXN' orgid='ECOLI' frameid='ALKAPHOSPHA-RXN'/><Reaction resource='getxml?ECOLI:PGPPHOSPHA-RXN' orgid='ECOLI' frameid='PGPPHOSPHA-RXN'/><Reaction resource='getxml?ECOLI:RIBOPHOSPHAT-RXN' orgid='ECOLI' frameid='RIBOPHOSPHAT-RXN'/><Reaction resource='getxml?ECOLI:PPPGPPHYDRO-RXN' orgid='ECOLI' frameid='PPPGPPHYDRO-RXN'/><Reaction resource='getxml?ECOLI:DALADALALIG-RXN' orgid='ECOLI' frameid='DALADALALIG-RXN'/><Reaction resource='getxml?ECOLI:UDP-NACMURALGLDAPLIG-RXN' orgid='ECOLI' frameid='UDP-NACMURALGLDAPLIG-RXN'/><Reaction resource='getxml?ECOLI:UDP-NACMURALA-GLU-LIG-RXN' orgid='ECOLI' frameid='UDP-NACMURALA-GLU-LIG-RXN'/><Reaction resource='getxml?ECOLI:UDP-NACMUR-ALA-LIG-RXN' orgid='ECOLI' frameid='UDP-NACMUR-ALA-LIG-RXN'/><Reaction resource='getxml?ECOLI:UDPNACETYLGLUCOSAMENOLPYRTRANS-RXN' orgid='ECOLI' frameid='UDPNACETYLGLUCOSAMENOLPYRTRANS-RXN'/><Reaction resource='getxml?ECOLI:KDO-8PPHOSPHAT-RXN' orgid='ECOLI' frameid='KDO-8PPHOSPHAT-RXN'/><Reaction resource='getxml?ECOLI:PROPIONYL-COA-CARBOXY-RXN' orgid='ECOLI' frameid='PROPIONYL-COA-CARBOXY-RXN'/><Reaction resource='getxml?ECOLI:CHORISMATE-SYNTHASE-RXN' orgid='ECOLI' frameid='CHORISMATE-SYNTHASE-RXN'/><Reaction resource='getxml?ECOLI:3-DEHYDROQUINATE-SYNTHASE-RXN' orgid='ECOLI' frameid='3-DEHYDROQUINATE-SYNTHASE-RXN'/><Reaction resource='getxml?ECOLI:THRESYN-RXN' orgid='ECOLI' frameid='THRESYN-RXN'/><Reaction resource='getxml?ECOLI:F16BDEPHOS-RXN' orgid='ECOLI' frameid='F16BDEPHOS-RXN'/><Reaction resource='getxml?ECOLI:ASPCARBTRANS-RXN' orgid='ECOLI' frameid='ASPCARBTRANS-RXN'/><Reaction resource='getxml?ECOLI:ORNCARBAMTRANSFER-RXN' orgid='ECOLI' frameid='ORNCARBAMTRANSFER-RXN'/><Reaction resource='getxml?ECOLI:S-ADENMETSYN-RXN' orgid='ECOLI' frameid='S-ADENMETSYN-RXN'/><Reaction resource='getxml?ECOLI:2.5.1.19-RXN' orgid='ECOLI' frameid='2.5.1.19-RXN'/><Reaction resource='getxml?ECOLI:PEPSYNTH-RXN' orgid='ECOLI' frameid='PEPSYNTH-RXN'/><Reaction resource='getxml?ECOLI:DIHYDRONEOPTERIN-MONO-P-DEPHOS-RXN' orgid='ECOLI' frameid='DIHYDRONEOPTERIN-MONO-P-DEPHOS-RXN'/><Reaction resource='getxml?ECOLI:QUINOLINATE-SYNTHA-RXN' orgid='ECOLI' frameid='QUINOLINATE-SYNTHA-RXN'/><Reaction resource='getxml?ECOLI:SUCCCOASYN-RXN' orgid='ECOLI' frameid='SUCCCOASYN-RXN'/><Reaction resource='getxml?ECOLI:SAICARSYN-RXN' orgid='ECOLI' frameid='SAICARSYN-RXN'/><Reaction resource='getxml?ECOLI:DIHYDROFOLATESYNTH-RXN' orgid='ECOLI' frameid='DIHYDROFOLATESYNTH-RXN'/><Reaction resource='getxml?ECOLI:GLUTATHIONE-SYN-RXN' orgid='ECOLI' frameid='GLUTATHIONE-SYN-RXN'/><Reaction resource='getxml?ECOLI:GLUTCYSLIG-RXN' orgid='ECOLI' frameid='GLUTCYSLIG-RXN'/><Reaction resource='getxml?ECOLI:ADENYLOSUCCINATE-SYNTHASE-RXN' orgid='ECOLI' frameid='ADENYLOSUCCINATE-SYNTHASE-RXN'/><Reaction resource='getxml?ECOLI:GLYRIBONUCSYN-RXN' orgid='ECOLI' frameid='GLYRIBONUCSYN-RXN'/><Reaction resource='getxml?ECOLI:AIRS-RXN' orgid='ECOLI' frameid='AIRS-RXN'/><Reaction resource='getxml?ECOLI:DETHIOBIOTIN-SYN-RXN' orgid='ECOLI' frameid='DETHIOBIOTIN-SYN-RXN'/><Reaction resource='getxml?ECOLI:FGAMSYN-RXN' orgid='ECOLI' frameid='FGAMSYN-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>phosphate</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN-9590' orgid='ECOLI' frameid='RXN-9590'/><Reaction resource='getxml?ECOLI:5-METHYLTHIOADENOSINE-PHOSPHORYLASE-RXN' orgid='ECOLI' frameid='5-METHYLTHIOADENOSINE-PHOSPHORYLASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-7387' orgid='ECOLI' frameid='RXN0-7387'/><Reaction resource='getxml?ECOLI:RXN0-7370' orgid='ECOLI' frameid='RXN0-7370'/><Reaction resource='getxml?ECOLI:RXN-21092' orgid='ECOLI' frameid='RXN-21092'/><Reaction resource='getxml?ECOLI:GLYCOPHOSPHORYL-RXN' orgid='ECOLI' frameid='GLYCOPHOSPHORYL-RXN'/><Reaction resource='getxml?ECOLI:2.4.1.230-RXN' orgid='ECOLI' frameid='2.4.1.230-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-114' orgid='ECOLI' frameid='TRANS-RXN-114'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-534' orgid='ECOLI' frameid='TRANS-RXN0-534'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-502' orgid='ECOLI' frameid='TRANS-RXN0-502'/><Reaction resource='getxml?ECOLI:TRANS-RXN-33' orgid='ECOLI' frameid='TRANS-RXN-33'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-501' orgid='ECOLI' frameid='TRANS-RXN0-501'/><Reaction resource='getxml?ECOLI:TRANS-RXN-22' orgid='ECOLI' frameid='TRANS-RXN-22'/><Reaction resource='getxml?ECOLI:RXN-18999' orgid='ECOLI' frameid='RXN-18999'/><Reaction resource='getxml?ECOLI:RXN0-7041' orgid='ECOLI' frameid='RXN0-7041'/><Reaction resource='getxml?ECOLI:PEPCARBOX-RXN' orgid='ECOLI' frameid='PEPCARBOX-RXN'/><Reaction resource='getxml?ECOLI:GSDEADENYLATION-RXN' orgid='ECOLI' frameid='GSDEADENYLATION-RXN'/><Reaction resource='getxml?ECOLI:RXN-14286' orgid='ECOLI' frameid='RXN-14286'/><Reaction resource='getxml?ECOLI:RXN-14285' orgid='ECOLI' frameid='RXN-14285'/><Reaction resource='getxml?ECOLI:RXN-14284' orgid='ECOLI' frameid='RXN-14284'/><Reaction resource='getxml?ECOLI:2.7.7.8-RXN' orgid='ECOLI' frameid='2.7.7.8-RXN'/><Reaction resource='getxml?ECOLI:ABC-27-RXN' orgid='ECOLI' frameid='ABC-27-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-470' orgid='ECOLI' frameid='TRANS-RXN0-470'/><Reaction resource='getxml?ECOLI:TRNA-NUCLEOTIDYLTRANSFERASE-RXN' orgid='ECOLI' frameid='TRNA-NUCLEOTIDYLTRANSFERASE-RXN'/><Reaction resource='getxml?ECOLI:DEOXYADENPHOSPHOR-RXN' orgid='ECOLI' frameid='DEOXYADENPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6482' orgid='ECOLI' frameid='RXN0-6482'/><Reaction resource='getxml?ECOLI:RXN0-6481' orgid='ECOLI' frameid='RXN0-6481'/><Reaction resource='getxml?ECOLI:DEOXYGUANPHOSPHOR-RXN' orgid='ECOLI' frameid='DEOXYGUANPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:DEOXYINOPHOSPHOR-RXN' orgid='ECOLI' frameid='DEOXYINOPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:PNP-RXN' orgid='ECOLI' frameid='PNP-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5199' orgid='ECOLI' frameid='RXN0-5199'/><Reaction resource='getxml?ECOLI:RXN0-5184' orgid='ECOLI' frameid='RXN0-5184'/><Reaction resource='getxml?ECOLI:RXN0-5182' orgid='ECOLI' frameid='RXN0-5182'/><Reaction resource='getxml?ECOLI:N-ACETYLGLUTPREDUCT-RXN' orgid='ECOLI' frameid='N-ACETYLGLUTPREDUCT-RXN'/><Reaction resource='getxml?ECOLI:URA-PHOSPH-RXN' orgid='ECOLI' frameid='URA-PHOSPH-RXN'/><Reaction resource='getxml?ECOLI:THYM-PHOSPH-RXN' orgid='ECOLI' frameid='THYM-PHOSPH-RXN'/><Reaction resource='getxml?ECOLI:GLUTSEMIALDEHYDROG-RXN' orgid='ECOLI' frameid='GLUTSEMIALDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:PTAALT-RXN' orgid='ECOLI' frameid='PTAALT-RXN'/><Reaction resource='getxml?ECOLI:GAPOXNPHOSPHN-RXN' orgid='ECOLI' frameid='GAPOXNPHOSPHN-RXN'/><Reaction resource='getxml?ECOLI:ASPARTATE-SEMIALDEHYDE-DEHYDROGENASE-RXN' orgid='ECOLI' frameid='ASPARTATE-SEMIALDEHYDE-DEHYDROGENASE-RXN'/><Reaction resource='getxml?ECOLI:PHOSACETYLTRANS-RXN' orgid='ECOLI' frameid='PHOSACETYLTRANS-RXN'/><Reaction resource='getxml?ECOLI:URPHOS-RXN' orgid='ECOLI' frameid='URPHOS-RXN'/><Reaction resource='getxml?ECOLI:INOPHOSPHOR-RXN' orgid='ECOLI' frameid='INOPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:ADENPHOSPHOR-RXN' orgid='ECOLI' frameid='ADENPHOSPHOR-RXN'/><Reaction resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-RXN' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-RXN'/></appears-in-left-side-of>
+<comment datatype='string'>The most abundant form of the phosphate ion at pH 7.3 is hydrogenphosphate. To simplify the presentation of reactions taking place at physiological pH, MetaCyc does not distinguish between the two forms, and uses the name &quot;phosphate&quot; even though the structure shown is that of hydrogenphosphate.</comment>
+<cofactors-of><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7371' orgid='ECOLI' frameid='ENZRXN0-7371' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG10863-MONOMER' orgid='ECOLI' frameid='EG10863-MONOMER'/></enzyme>
+<common-name datatype='string'>phosphate-dependent exonuclease</common-name>
+<reaction><Reaction resource='getxml?ECOLI:RXN0-6482' orgid='ECOLI' frameid='RXN0-6482'/></reaction>
+</Enzymatic-Reaction>
+</cofactors-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-252.94714</gibbs-0>
+</Compound>
+</ptools-xml>

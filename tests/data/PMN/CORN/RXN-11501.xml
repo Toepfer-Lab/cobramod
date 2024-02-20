@@ -1,9 +1,10 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/getxml?CORN:RXN-11501"><metadata><url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://localhost:1555/getxml?CORN:RXN-11501'><metadata><url>http://localhost:1555/</url>
 <service_name>getxml</service_name>
 <query>CORN:RXN-11501</query>
 <num_results>1</num_results>
-<PGDB orgid="CORN" version="10.1.0"><species datatype="string">Zea mays</species>
-<subspecies datatype="string">mays</subspecies>
+<PGDB orgid='CORN' version='27.0'><species datatype='string'>Zea mays</species>
+<subspecies datatype='string'>mays</subspecies>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>381124</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -11,41 +12,41 @@
 </dblink>
 </PGDB>
 </metadata>
-<Reaction ID="CORN:RXN-11501" detail="full" frameid="RXN-11501" orgid="CORN"><parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="CORN" resource="getxml?CORN:Small-Molecule-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Chemical-Reactions" orgid="CORN" resource="getxml?CORN:Chemical-Reactions" /></parent>
-<enzymatic-reaction><Enzymatic-Reaction ID="CORN:ENZRXNDQC-37982" detail="low" frameid="ENZRXNDQC-37982" orgid="CORN"><common-name datatype="string">alkaline &amp;alpha;- galactosidase</common-name>
-<reaction><Reaction frameid="RXN-11501" orgid="CORN" resource="#CORN:RXN-11501" /></reaction>
-<enzyme><Protein frameid="ZM00001D003279-MONOMER" orgid="CORN" resource="getxml?CORN:ZM00001D003279-MONOMER" /></enzyme>
+<Reaction ID='CORN:RXN-11501' orgid='CORN' frameid='RXN-11501' detail='full'><parent><Reaction resource='getxml?CORN:Small-Molecule-Reactions' orgid='CORN' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?CORN:Chemical-Reactions' orgid='CORN' frameid='Chemical-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?CORN:CPD-170' orgid='CORN' frameid='CPD-170'/></left>
+<left><Compound resource='getxml?CORN:WATER' orgid='CORN' frameid='WATER'/></left>
+<orphan>NO</orphan>
+<in-pathway><Pathway resource='getxml?CORN:PWY-6527' orgid='CORN' frameid='PWY-6527'/></in-pathway>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<gibbs-0 datatype='float' units='kcal/mol'>-3.112976</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='CORN:ENZRXNDQC-52715' orgid='CORN' frameid='ENZRXNDQC-52715' detail='low'><common-name datatype='string'>alkaline &amp;alpha;- galactosidase</common-name>
+<enzyme><Protein resource='getxml?CORN:ZM00001EB033870_P001' orgid='CORN' frameid='ZM00001EB033870_P001'/></enzyme>
+<reaction><Reaction resource='#CORN:RXN-11501' orgid='CORN' frameid='RXN-11501'/></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="CORN:ENZRXNDQC-35160" detail="low" frameid="ENZRXNDQC-35160" orgid="CORN"><common-name datatype="string">alkaline &amp;alpha;- galactosidase</common-name>
-<reaction><Reaction frameid="RXN-11501" orgid="CORN" resource="#CORN:RXN-11501" /></reaction>
-<enzyme><Protein frameid="MONOMERDQC-51076" orgid="CORN" resource="getxml?CORN:MONOMERDQC-51076" /></enzyme>
+<Enzymatic-Reaction ID='CORN:ENZRXNDQC-52714' orgid='CORN' frameid='ENZRXNDQC-52714' detail='low'><common-name datatype='string'>alkaline &amp;alpha;- galactosidase</common-name>
+<enzyme><Protein resource='getxml?CORN:ZM00001EB033880_P001' orgid='CORN' frameid='ZM00001EB033880_P001'/></enzyme>
+<reaction><Reaction resource='#CORN:RXN-11501' orgid='CORN' frameid='RXN-11501'/></reaction>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="CORN:ENZRXNDQC-32166" detail="low" frameid="ENZRXNDQC-32166" orgid="CORN"><common-name datatype="string">alkaline &amp;alpha;- galactosidase</common-name>
-<reaction><Reaction frameid="RXN-11501" orgid="CORN" resource="#CORN:RXN-11501" /></reaction>
-<enzyme><Protein frameid="MONOMERDQC-46690" orgid="CORN" resource="getxml?CORN:MONOMERDQC-46690" /></enzyme>
+<Enzymatic-Reaction ID='CORN:ENZRXNDQC-52713' orgid='CORN' frameid='ENZRXNDQC-52713' detail='low'><common-name datatype='string'>alkaline &amp;alpha;- galactosidase</common-name>
+<enzyme><Protein resource='getxml?CORN:ZM00001EB033890_P001' orgid='CORN' frameid='ZM00001EB033890_P001'/></enzyme>
+<reaction><Reaction resource='#CORN:RXN-11501' orgid='CORN' frameid='RXN-11501'/></reaction>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<left><Compound frameid="CPD-170" orgid="CORN" resource="getxml?CORN:CPD-170" /></left>
-<left><Compound frameid="WATER" orgid="CORN" resource="getxml?CORN:WATER" /></left>
-<in-pathway><Pathway frameid="PWY-6527" orgid="CORN" resource="getxml?CORN:PWY-6527" /></in-pathway>
-<ec-number>EC-3.2.1.22</ec-number>
-<gibbs-0 datatype="float" units="kcal/mol">-3.112976</gibbs-0>
-<credits><created><date datatype="date">2010-06-15</date>
-<Person ID="CORN:pujar" detail="full" frameid="pujar" orgid="CORN"><common-name datatype="string">Anurdha Pujar</common-name>
-<email datatype="string">ap343@cornell.edu</email>
-<affiliations><Organization ID="CORN:O-28" detail="full" frameid="O-28" orgid="CORN"><abbrev-name datatype="string">Boyce Thompson Institute</abbrev-name>
-<common-name datatype="string">Boyce Thompson Institute for Plant Research</common-name>
-<url datatype="string">http://bti.cornell.edu/</url>
+<credits><created><date datatype='date'>2010-06-15</date>
+<Person ID='CORN:pujar' orgid='CORN' frameid='pujar' detail='full'><email datatype='string'>ap343@cornell.edu</email>
+<common-name datatype='string'>Anurdha Pujar</common-name>
+<affiliations><Organization ID='CORN:O-28' orgid='CORN' frameid='O-28' detail='full'><abbrev-name datatype='string'>Boyce Thompson Institute</abbrev-name>
+<common-name datatype='string'>Boyce Thompson Institute for Plant Research</common-name>
+<url datatype='string'>http://bti.cornell.edu/</url>
 </Organization>
 </affiliations>
 </Person>
-<Organization frameid="O-28" orgid="CORN" resource="#CORN:O-28" /></created>
+<Organization resource='#CORN:O-28' orgid='CORN' frameid='O-28'/></created>
 </credits>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<right><Compound frameid="CPD-1099" orgid="CORN" resource="getxml?CORN:CPD-1099" /></right>
-<right><Compound frameid="ALPHA-D-GALACTOSE" orgid="CORN" resource="getxml?CORN:ALPHA-D-GALACTOSE" /></right>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<orphan>NO</orphan>
+<ec-number>EC-3.2.1.22</ec-number>
+<right><Compound resource='getxml?CORN:CPD-1099' orgid='CORN' frameid='CPD-1099'/></right>
+<right><Compound resource='getxml?CORN:ALPHA-D-GALACTOSE' orgid='CORN' frameid='ALPHA-D-GALACTOSE'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 </Reaction>
 </ptools-xml>

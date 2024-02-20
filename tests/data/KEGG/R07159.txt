@@ -11,6 +11,12 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
             rn01230  Biosynthesis of amino acids
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
+BRITE       Enzymatic reactions [BR:br08201]
+             1. Oxidoreductase reactions
+              1.2  Acting on the aldehyde or oxo group of donors
+               1.2.7  With an iron-sulfur protein as acceptor
+                1.2.7.6
+                 R07159  D-Glyceraldehyde 3-phosphate + H2O + 2 Oxidized ferredoxin <=> 3-Phospho-D-glycerate + 2 H+ + 2 Reduced ferredoxin
 ORTHOLOGY   K11389  glyceraldehyde-3-phosphate dehydrogenase (ferredoxin) [EC:1.2.7.6]
 DBLINKS     RHEA: 24151
 ///

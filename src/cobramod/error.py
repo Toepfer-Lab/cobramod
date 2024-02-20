@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Errors for CobraMod
 
 This module creates special errors for CobraMod. Read each error for their
@@ -110,16 +109,7 @@ class NoGeneInformation(Exception):
     pass
 
 
-class AbbreviationWarning(Warning):
-    """
-    Simple Warning that should be raised when given abbreviation does not
-    exists.
-    """
-
-    pass
-
-
-class SuperpathwayWarning(Warning):
+class SuperpathwayException(Exception):
     """
     Simple Warning that should be raised if a pathway is identified as a
     Superpathway
@@ -140,7 +130,7 @@ class UnbalancedReaction(Exception):
         """
         msg = (
             f'Reaction "{identifier}" unbalanced. Following atoms are '
-            + f"affected. Please verify:\n{dict_balance}"
+            + f"affected. Please verify: {dict_balance}"
         )
         debug_log.critical(msg)
         super().__init__(msg)

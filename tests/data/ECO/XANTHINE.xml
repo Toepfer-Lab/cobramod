@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECO:XANTHINE'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>ECO:XANTHINE</query>
+<num_results>1</num_results>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Compound ID='ECOLI:XANTHINE' orgid='ECOLI' frameid='XANTHINE' detail='full'><cml><molecule id='XANTHINE' title='xanthine' formalCharge='0'><atomArray><atom id='XANTHINE-atom1' elementType='C' x2='1984.0' y2='0.0'/><atom id='XANTHINE-atom2' elementType='C' x2='714.0' y2='-412.0'/><atom id='XANTHINE-atom3' elementType='C' x2='714.0' y2='412.0'/><atom id='XANTHINE-atom4' elementType='C' x2='0.0' y2='-825.0'/><atom id='XANTHINE-atom5' elementType='C' x2='-714.0' y2='412.0'/><atom id='XANTHINE-atom6' elementType='N' x2='1499.0' y2='-667.0'/><atom id='XANTHINE-atom7' elementType='N' x2='1499.0' y2='667.0'/><atom id='XANTHINE-atom8' elementType='N' x2='0.0' y2='825.0'/><atom id='XANTHINE-atom9' elementType='N' x2='-714.0' y2='-412.0'/><atom id='XANTHINE-atom10' elementType='O' x2='0.0' y2='-1650.0'/><atom id='XANTHINE-atom11' elementType='O' x2='-1429.0' y2='825.0'/></atomArray>
+<bondArray><bond id='XANTHINE-bond1' atomRefs='XANTHINE-atom4 XANTHINE-atom10' order='2'/><bond id='XANTHINE-bond2' atomRefs='XANTHINE-atom4 XANTHINE-atom9' order='1'/><bond id='XANTHINE-bond3' atomRefs='XANTHINE-atom2 XANTHINE-atom4' order='1'/><bond id='XANTHINE-bond4' atomRefs='XANTHINE-atom2 XANTHINE-atom6' order='1'/><bond id='XANTHINE-bond5' atomRefs='XANTHINE-atom2 XANTHINE-atom3' order='2'/><bond id='XANTHINE-bond6' atomRefs='XANTHINE-atom3 XANTHINE-atom7' order='1'/><bond id='XANTHINE-bond7' atomRefs='XANTHINE-atom9 XANTHINE-atom5' order='1'/><bond id='XANTHINE-bond8' atomRefs='XANTHINE-atom5 XANTHINE-atom11' order='2'/><bond id='XANTHINE-bond9' atomRefs='XANTHINE-atom8 XANTHINE-atom5' order='1'/><bond id='XANTHINE-bond10' atomRefs='XANTHINE-atom3 XANTHINE-atom8' order='1'/><bond id='XANTHINE-bond11' atomRefs='XANTHINE-atom6 XANTHINE-atom1' order='2'/><bond id='XANTHINE-bond12' atomRefs='XANTHINE-atom7 XANTHINE-atom1' order='1'/></bondArray>
+<formula concise='C 5 H 4 N 4 O 2'/><float title='molecularWeight' units='g/mol'>152.112</float>
+<string title='smiles'>C12(NC(=O)NC(C(\N=C/N1)=2)=O)</string>
+<string title='systematicName'>1-H-purine-2,6-dione, 3,7-dihydro(9CI)</string>
+</molecule>
+</cml>
+<regulates><Regulation ID='ECOLI:REG0-12860' orgid='ECOLI' frameid='REG0-12860' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:XANTHINE' orgid='ECOLI' frameid='XANTHINE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7829' orgid='ECOLI' frameid='ENZRXN0-7829' detail='low'><enzyme><Protein resource='getxml?ECOLI:B1006-MONOMER' orgid='ECOLI' frameid='B1006-MONOMER'/></enzyme>
+<common-name datatype='string'>uracil:H&lt;sup&gt;+&lt;/sup&gt; symporter</common-name>
+<reaction><Reaction resource='getxml?ECOLI:TRANS-RXN-132' orgid='ECOLI' frameid='TRANS-RXN-132'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<molecular-weight datatype='float' units='Daltons'>152.112</molecular-weight>
+<systematic-name datatype='string'>1-H-purine-2,6-dione, 3,7-dihydro(9CI)</systematic-name>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000013517187</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000013517187</dblink-URL>
+</dblink>
+<dblink><dblink-db>MEDIADB</dblink-db>
+<dblink-oid>compounds/368/</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://mediadb.systemsbiology.net/defined_media/compounds/368/</dblink-URL>
+</dblink>
+<dblink><dblink-db>REACTOME-CPD</dblink-db>
+<dblink-oid>30064</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://reactome.org/content/query?cluster=true&amp;q=30064</dblink-URL>
+</dblink>
+<dblink><dblink-db>SEED</dblink-db>
+<dblink-oid>cpd00309</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://modelseed.org/biochem/compounds/cpd00309</dblink-URL>
+</dblink>
+<dblink><dblink-db>METANETX</dblink-db>
+<dblink-oid>MNXM174</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metanetx.org/chem_info/MNXM174</dblink-URL>
+</dblink>
+<dblink><dblink-db>REFMET</dblink-db>
+<dblink-oid>Xanthine</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://www.metabolomicsworkbench.org/databases/refmet/refmet_details.php?REFMET_NAME=Xanthine</dblink-URL>
+</dblink>
+<dblink><dblink-db>BIGG</dblink-db>
+<dblink-oid>xan</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/xan</dblink-URL>
+</dblink>
+<dblink><dblink-db>DRUGBANK</dblink-db>
+<dblink-oid>DB02134</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.drugbank.ca/drugs/DB02134</dblink-URL>
+</dblink>
+<dblink><dblink-db>METABOLIGHTS</dblink-db>
+<dblink-oid>MTBLC17712</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/metabolights/MTBLC17712</dblink-URL>
+</dblink>
+<dblink><dblink-db>HMDB</dblink-db>
+<dblink-oid>HMDB00292</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.hmdb.ca/metabolites/HMDB00292</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEMSPIDER</dblink-db>
+<dblink-oid>1151</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.chemspider.com/1151</dblink-URL>
+</dblink>
+<dblink><dblink-db>PUBCHEM</dblink-db>
+<dblink-oid>1188</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=1188</dblink-URL>
+</dblink>
+<dblink><dblink-db>CHEBI</dblink-db>
+<dblink-oid>17712</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17712</dblink-URL>
+</dblink>
+<dblink><dblink-db>LIGAND-CPD</dblink-db>
+<dblink-oid>C00385</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.genome.ad.jp/dbget-bin/www_bget?C00385</dblink-URL>
+</dblink>
+<dblink><dblink-db>CAS</dblink-db>
+<dblink-oid>69-89-6</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=69-89-6</dblink-URL>
+</dblink>
+<synonym datatype='string'>2,6-dioxopurine</synonym>
+<inchi-key datatype='string'>InChIKey=LRFVTYWOQMYALW-UHFFFAOYSA-N</inchi-key>
+<monoisotopic-mw datatype='float' units='Daltons'>152.03343</monoisotopic-mw>
+<inchi datatype='string'>InChI=1S/C5H4N4O2/c10-4-2-3(7-1-6-2)8-5(11)9-4/h1H,(H3,6,7,8,9,10,11)</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:RXN-5076' orgid='ECOLI' frameid='RXN-5076'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-561' orgid='ECOLI' frameid='TRANS-RXN0-561'/><Reaction resource='getxml?ECOLI:GUANINE-DEAMINASE-RXN' orgid='ECOLI' frameid='GUANINE-DEAMINASE-RXN'/><Reaction resource='getxml?ECOLI:RXN0-6708' orgid='ECOLI' frameid='RXN0-6708'/><Reaction resource='getxml?ECOLI:RXN0-363' orgid='ECOLI' frameid='RXN0-363'/><Reaction resource='getxml?ECOLI:XANPRIBOSYLTRAN-RXN' orgid='ECOLI' frameid='XANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?ECOLI:RXN-7682' orgid='ECOLI' frameid='RXN-7682'/><Reaction resource='getxml?ECOLI:XANTHOSINEPHOSPHORY-RXN' orgid='ECOLI' frameid='XANTHOSINEPHOSPHORY-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>xanthine</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:RXN-5076' orgid='ECOLI' frameid='RXN-5076'/><Reaction resource='getxml?ECOLI:TRANS-RXN0-561' orgid='ECOLI' frameid='TRANS-RXN0-561'/><Reaction resource='getxml?ECOLI:RXN0-901' orgid='ECOLI' frameid='RXN0-901'/></appears-in-left-side-of>
+<gibbs-0 datatype='float' units='kcal/mol'>-25.574516</gibbs-0>
+</Compound>
+</ptools-xml>

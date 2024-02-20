@@ -1,0 +1,32 @@
+ENTRY       C00151                      Compound
+NAME        L-Amino acid;
+            L-2-Amino acid
+FORMULA     C2H4NO2R
+COMMENT     Generic compound in reaction hierarchy
+REACTION    R01258 R01259 R01260 R01261 R01262 R01263 R01264 R01265 
+            R01343 R01346 R03749 R05782 R07642 R08618 R08622 R08626 
+            R08630 R08638 R08643 R08647 R10499 R10503 R11085 R11622 
+            R11950
+PATHWAY     map00480  Glutathione metabolism
+            map02010  ABC transporters
+ENZYME      1.4.1.5         1.4.3.2         1.5.3.2         1.14.13.-       
+            2.3.2.2         2.6.1.12        2.6.1.13        2.6.1.14        
+            2.6.1.88        2.6.1.-         3.5.1.14        3.5.1.87        
+            3.5.1.127       4.3.2.9         5.1.1.10        6.3.2.48        
+            6.3.2.52
+DBLINKS     PubChem: 3451
+            ChEBI: 15705
+ATOM        6
+            1   C1c C    24.2200  -17.1500
+            2   C6a C    25.4100  -17.8500
+            3   N1a N    23.1000  -17.8500
+            4   R   R    24.2200  -15.7500
+            5   O6a O    25.4100  -19.3200
+            6   O6a O    26.6000  -17.1500
+BOND        5
+            1     1   2 1
+            2     1   3 1
+            3     1   4 1 #Up
+            4     2   5 2
+            5     2   6 1
+///

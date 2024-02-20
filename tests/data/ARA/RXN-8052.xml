@@ -1,39 +1,40 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-8052"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:RXN-8052'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-8052</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:RXN-8052" detail="full" frameid="RXN-8052" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:RXN-8052' orgid='ARA' frameid='RXN-8052' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:CPD-7546' orgid='ARA' frameid='CPD-7546'/></left>
+<left><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/></left>
 <ec-number>EC-4.4.1.13</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-9315" detail="low" frameid="ENZRXNQT-9315" orgid="ARA"><enzyme><Protein frameid="AT4G28420-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G28420-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-8052" orgid="ARA" resource="#ARA:RXN-8052" /></reaction>
-<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:3-METHYLTHIOPROPYLHYDROXAMIC-ACID' orgid='ARA' frameid='3-METHYLTHIOPROPYLHYDROXAMIC-ACID'/></right>
+<right><Compound resource='getxml?ARA:PYRUVATE' orgid='ARA' frameid='PYRUVATE'/></right>
+<right><Compound resource='getxml?ARA:AMMONIUM' orgid='ARA' frameid='AMMONIUM'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-2.6571465</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-9315' orgid='ARA' frameid='ENZRXNQT-9315' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G28420-MONOMER' orgid='ARA' frameid='AT4G28420-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-8052' orgid='ARA' frameid='RXN-8052'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-9122" detail="low" frameid="ENZRXNQT-9122" orgid="ARA"><enzyme><Protein frameid="AT4G28410-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G28410-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-8052" orgid="ARA" resource="#ARA:RXN-8052" /></reaction>
-<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-9122' orgid='ARA' frameid='ENZRXNQT-9122' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G28410-MONOMER' orgid='ARA' frameid='AT4G28410-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-8052' orgid='ARA' frameid='RXN-8052'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-9027" detail="low" frameid="ENZRXNQT-9027" orgid="ARA"><enzyme><Protein frameid="AT2G24850-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G24850-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-8052" orgid="ARA" resource="#ARA:RXN-8052" /></reaction>
-<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-9027' orgid='ARA' frameid='ENZRXNQT-9027' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G24850-MONOMER' orgid='ARA' frameid='AT2G24850-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-8052' orgid='ARA' frameid='RXN-8052'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN-12791" detail="low" frameid="ENZRXN-12791" orgid="ARA"><enzyme><Protein frameid="AT2G20610-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G20610-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-8052" orgid="ARA" resource="#ARA:RXN-8052" /></reaction>
-<common-name datatype="string">(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXN-12791' orgid='ARA' frameid='ENZRXN-12791' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G20610-MONOMER' orgid='ARA' frameid='AT2G20610-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-8052' orgid='ARA' frameid='RXN-8052'/></reaction>
+<common-name datatype='string'>(&lt;i&gt;E&lt;/i&gt;)-1-(L-cystein-&lt;i&gt;S&lt;/i&gt;-yl)-&lt;i&gt;N&lt;/i&gt;-hydroxy-&amp;omega;-(methylsulfanyl)butan-1-imine C-S lyase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-2.6571465</gibbs-0>
-<in-pathway><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></in-pathway>
-<left><Compound frameid="CPD-7546" orgid="ARA" resource="getxml?ARA:CPD-7546" /></left>
-<left><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="3-METHYLTHIOPROPYLHYDROXAMIC-ACID" orgid="ARA" resource="getxml?ARA:3-METHYLTHIOPROPYLHYDROXAMIC-ACID" /></right>
-<right><Compound frameid="PYRUVATE" orgid="ARA" resource="getxml?ARA:PYRUVATE" /></right>
-<right><Compound frameid="AMMONIUM" orgid="ARA" resource="getxml?ARA:AMMONIUM" /></right>
+<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 </Reaction>
 </ptools-xml>

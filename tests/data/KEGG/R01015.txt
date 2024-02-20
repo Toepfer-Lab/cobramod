@@ -16,6 +16,18 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
+            M00165  Reductive pentose phosphate cycle (Calvin cycle)
+BRITE       Enzymatic reactions [BR:br08201]
+             5. Isomerase reactions
+              5.3  Intramolecular oxidoreductases
+               5.3.1  Interconverting aldoses and ketoses, and related compounds
+                5.3.1.1
+                 R01015  D-Glyceraldehyde 3-phosphate <=> Glycerone phosphate
+            Overall reaction [br08210.html]
+             Oxygenic photosynthesis
+              R01015
+             Carbon fixation
+              R01015
 ORTHOLOGY   K01803  triosephosphate isomerase (TIM) [EC:5.3.1.1]
 DBLINKS     RHEA: 18588
 ///

@@ -1,34 +1,29 @@
-name: cobramod
+name: cobramod-dev
 channels:
-  - conda-forge
-  - defaults
+- defaults
+- bioconda
+- conda-forge
 dependencies:
-  - python=3.7.4
-  - pip=20.2.2
-  - wheel=0.34.2=py37_0
-  - virtualenv=20.0.34=py37_0
-  - pre_commit=2.7.1=1
-  - pandoc=2.12
-  - pip:
-    - black>=19.10b0
-    - cobra>=0.18.1
-    - flake8>=3.8.3
-    - mypy>=0.782
-    - mypy-extensions>=0.4.3
-    - numpy>=1.19.1
-    - pyflakes>=2.2.0
-    - requests>=2.24.0
-    - sympy>=1.6.1
-    - toml>=0.10.1
-    - Jinja2==3.0.3
-    - Sphinx==3.2.1
-    - sphinx-rtd-theme>=0.5.2
-    - sphinxcontrib-napoleon>=0.7
-    - doc8>=0.8.1
-    - Escher>=1.7.3
-    - openpyxl>=3.0.7
-    - nbsphinx>=0.8.6
-    - webcolors>=1.11.1
-    - sphinx-autoapi>=1.8.1
-    - sphinxcontrib-bibtex>=2.4.1
-
+- colorlog
+- conda-forge::cobra
+- jupyter
+- jupytext
+- matplotlib
+- mypy
+- python
+- ruff
+- pre-commit
+- tqdm
+- pyarrow
+- conda-forge::webcolors
+- conda-forge::openpyxl
+- conda-forge::tox
+- conda-forge::sphinx
+- conda-forge::nbsphinx
+- conda-forge::sphinx-autoapi
+- conda-forge::jupyter_contrib_nbextensions
+- pip:
+  - escher-legacy
+  - sphinx-rtd-theme
+  - sphinxcontrib-napoleon
+  - sphinxcontrib-bibtex

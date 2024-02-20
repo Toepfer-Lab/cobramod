@@ -1,13 +1,274 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLUTATHIONESYN-PWY"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:GLUTATHIONESYN-PWY'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLUTATHIONESYN-PWY</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Pathway ID="ARA:GLUTATHIONESYN-PWY" detail="full" frameid="GLUTATHIONESYN-PWY" orgid="ARA"><parent><Pathway class="true" frameid="Enzyme-Cofactor-Biosynthesis" orgid="ARA" resource="getxml?ARA:Enzyme-Cofactor-Biosynthesis" /></parent>
-<parent><Pathway class="true" frameid="Reductants" orgid="ARA" resource="getxml?ARA:Reductants" /></parent>
+<Pathway ID='ARA:GLUTATHIONESYN-PWY' orgid='ARA' frameid='GLUTATHIONESYN-PWY' detail='full'><parent><Pathway resource='getxml?ARA:Reductants' orgid='ARA' frameid='Reductants' class='true'/></parent>
+<reaction-layout><Reaction resource='getxml?ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE' orgid='ARA' frameid='L-GAMMA-GLUTAMYLCYSTEINE'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:GLUTATHIONE' orgid='ARA' frameid='GLUTATHIONE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:GLT' orgid='ARA' frameid='GLT'/><Compound resource='getxml?ARA:CYS' orgid='ARA' frameid='CYS'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE' orgid='ARA' frameid='L-GAMMA-GLUTAMYLCYSTEINE'/></right-primaries>
+</reaction-layout>
+<credits><reviewed><date datatype='date'>2007-04-17</date>
+<Person ID='ARA:hartmut' orgid='ARA' frameid='hartmut' detail='full'><affiliations><Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
+</Organization>
+</affiliations>
+</Person>
+</reviewed>
+</credits>
+<comment datatype='string'>&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: This pathway is on the list of Common Viridiplantae Pathways (CVP) generated for the COMET project, which includes pathways that are thought to be present in all or most Viridiplantae species including algae. All UPP pathways are automatically imported into databases regardless of Pathologic predictions. &lt;A href=&quot;http://www.plantcyc.org/about/savi_pipeline&quot;&gt;[more info]&lt;/A&gt;
+&lt;p&gt;
+&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
+&lt;p&gt;
+&lt;b&gt;General background&lt;/b&gt;: The tripeptide thiol glutathione (GSH; L-&amp;gamma;-glutamyl-L-cysteinylglycine) 
+is ubiquitous in the vast majority of organisms. It is considered the most abundant low-molecular weight plant 
+thiol reaching concentrations up to 2-3 mM in the cytoplasm [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11489184&quot;&gt;Meyer01&lt;/a&gt;]. In plants glutathione is linked 
+to many processes, particularly to such involved in protection against a variety of environmental stresses [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/1530873&quot;&gt;Metroka&lt;/a&gt;]. 
+&lt;p&gt;
+Glutathione is an antioxidant that counteracts reactive oxygen species thus reducing oxidative stress [&lt;a href=&quot;/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bNOCTOR98%5d&quot;&gt;Noctor98&lt;/a&gt;]. 
+It is recognized as a major player in detoxifying xenobiotics [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16665956&quot;&gt;Matringe88&lt;/a&gt;] by forming less reactive or storage 
+conjugates catalyzed by GHS S-transferases [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15012285&quot;&gt;Marrs96&lt;/a&gt;]. Glutathione has also been reported to detoxify 
+air pollutants such as ozone and sulfur dioxide [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16668420&quot;&gt;Madamanchi91&lt;/a&gt;]. GHS is discussed as important storage form 
+of reduced sulfur regulating inter-organ sulfur allocation and its biosynthesis seems to be coupled with the sulfate 
+assimilation pathway (see &lt;a href=&quot;/ARA/NEW-IMAGE?type=PATHWAY&amp;object=SULFMETII-PWY&quot;&gt;assimilatory sulfate reduction II&lt;/a&gt;) [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/12481075&quot;&gt;Meyer02&lt;/a&gt;]. 
+&lt;p&gt;
+Moreover, glutathione appears to act as signaling compound and its homeostasis is crucial for various pathways 
+involved in cellular defense and sulfur metabolism [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11997376&quot;&gt;Noctor02&lt;/a&gt;]. Another main function of glutathione is to 
+dispose supra-optimal concentrations of heavy metals such as cadmium that might affect enzyme functions and 
+metabolic networks in plants. As a precursor for phytochelatin, the principal metal-binding agent in plants, glutathione 
+is considered a vital component for the detoxification of heavy metals [&lt;a href=&quot;/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bGRILL85%5d&quot;&gt;Grill&lt;/a&gt;] [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/16594069&quot;&gt;Grill89&lt;/a&gt;] 
+[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/11402187&quot;&gt;Xiang01&lt;/a&gt;].
+&lt;p&gt;
+&lt;b&gt;About the pathway:&lt;/b&gt; The biosynthesis of glutathione is universally catalyzed in all organisms by two enzymes, 
+glutamate-cysteine ligase [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/7937837&quot;&gt;May94&lt;/a&gt;] [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15180996&quot;&gt;Jez04&lt;/a&gt;] regarded as the rate-limiting step of the pathway 
+[&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/1112810&quot;&gt;Richman75&lt;/a&gt;] and glutathione synthetase [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/8612643&quot;&gt;Ullmann96&lt;/a&gt;] [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/8914526&quot;&gt;Wang96&lt;/a&gt;] [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15302873&quot;&gt;Jez04a&lt;/a&gt;]. Those two 
+steps comprise the conversion of L- glutamate, L-cysteine, glycine and 2 ATP to glutathione.
+&lt;p&gt;
+The regulation of the plant enzymes is unlike those reported from other eucaryotes. For the glutamate-cysteine ligase 
+a conformational change has been observed as means to modify enzyme activities in response to redox conditions. 
+That differs from mammalian enzymes that regulate activity through a regulatory subunit of the enzyme [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/15180996&quot;&gt;Jez04&lt;/a&gt;]. </comment>
+<evidence><Evidence-Code ID='ARA:EV-EXP' orgid='ARA' frameid='EV-EXP' detail='full' class='true'><comment datatype='string'>Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+<common-name datatype='string'>Inferred from experiment</common-name>
+</Evidence-Code>
+<Publication ID='ARA:PUB-11402187' orgid='ARA' frameid='PUB-11402187' detail='full'><year datatype='integer'>2001</year>
+<title datatype='string'>The biological functions of glutathione revisited in arabidopsis transgenic plants with altered glutathione levels.</title>
+<source datatype='string'>Plant Physiol 126(2);564-74</source>
+<pubmed-id datatype='string'>11402187</pubmed-id>
+<author datatype='string'>Xiang C</author>
+<author datatype='string'>Werner BL</author>
+<author datatype='string'>Christensen EM</author>
+<author datatype='string'>Oliver DJ</author>
+</Publication>
+</evidence>
+<evidence><Evidence-Code ID='ARA:EV-COMP-HINF' orgid='ARA' frameid='EV-COMP-HINF' detail='full' class='true'><parent><Evidence-Code resource='getxml?ARA:EV-COMP' orgid='ARA' frameid='EV-COMP' class='true'/></parent>
+<comment datatype='string'>Human inference.  A curator or author inferred this assertion after review of one or more possible types 
+of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
+When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
+<common-name datatype='string'>Inferred by a human based on computational evidence</common-name>
+</Evidence-Code>
+<Publication ID='ARA:PUB-PMNCVP2019' orgid='ARA' frameid='PUB-PMNCVP2019' detail='full'><url datatype='string'>https://www.plantcyc.org/about/savi-pipeline</url>
+<year datatype='integer'>2019</year>
+<title datatype='string'>This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Common Viridiplantae Pathways (CVP version 5.0).</title>
+</Publication>
+</evidence>
+<citation><Publication ID='ARA:PUB-NOCTOR98' orgid='ARA' frameid='PUB-NOCTOR98' detail='full'><year datatype='integer'>1998</year>
+<title datatype='string'>Glutathione: biosynthesis, metabolism and relationship to stress tolerance explored in transformed plants</title>
+<source datatype='string'>Journal of Experimental Botany, 49(321), 623-647</source>
+<author datatype='string'>Noctor G</author>
+<author datatype='string'>Arisi A-CM</author>
+<author datatype='string'>Jouanin L</author>
+<author datatype='string'>Kunert KJ</author>
+<author datatype='string'>Rennenberg H</author>
+<author datatype='string'>Foyer CH</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-16665956' orgid='ARA' frameid='PUB-16665956' detail='full'><year datatype='integer'>1988</year>
+<title datatype='string'>Studies on the Mode of Action of Acifluorfen-Methyl in Nonchlorophyllous Soybean Cells : Accumulation of Tetrapyrroles.</title>
+<source datatype='string'>Plant Physiol 86(2);619-622</source>
+<pubmed-id datatype='string'>16665956</pubmed-id>
+<author datatype='string'>Matringe M</author>
+<author datatype='string'>Scalla R</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-15012285' orgid='ARA' frameid='PUB-15012285' detail='full'><year datatype='integer'>1996</year>
+<title datatype='string'>The functions and regulation of glutathione S-transferases in plants</title>
+<source datatype='string'>Annu Rev Plant Physiol Plant Mol Biol 47;127-158</source>
+<pubmed-id datatype='string'>15012285</pubmed-id>
+<author datatype='string'>Marrs KA</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-16668420' orgid='ARA' frameid='PUB-16668420' detail='full'><year datatype='integer'>1991</year>
+<title datatype='string'>Metabolic Bases for Differences in Sensitivity of Two Pea Cultivars to Sulfur Dioxide.</title>
+<source datatype='string'>Plant Physiol 97(1);88-93</source>
+<pubmed-id datatype='string'>16668420</pubmed-id>
+<author datatype='string'>Madamanchi NR</author>
+<author datatype='string'>Alscher RG</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-12481075' orgid='ARA' frameid='PUB-12481075' detail='full'><year datatype='integer'>2002</year>
+<title datatype='string'>Control of demand-driven biosynthesis of glutathione in green Arabidopsis suspension culture cells.</title>
+<source datatype='string'>Plant Physiol 130(4);1927-37</source>
+<pubmed-id datatype='string'>12481075</pubmed-id>
+<author datatype='string'>Meyer AJ</author>
+<author datatype='string'>Fricker MD</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-GRILL85' orgid='ARA' frameid='PUB-GRILL85' detail='full'><title datatype='string'>Phytochelatins: The Principal Heavy-Metal Complexing Peptides of Higher Plants</title>
+<source datatype='string'>Science,  230(4726), 674 - 676</source>
+<author datatype='string'>Grill E</author>
+<author datatype='string'>Winnacker E-L</author>
+<author datatype='string'>Zenk MH</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-16594069' orgid='ARA' frameid='PUB-16594069' detail='full'><year datatype='integer'>1989</year>
+<title datatype='string'>Phytochelatins, the heavy-metal-binding peptides of plants, are synthesized from glutathione by a specific gamma-glutamylcysteine dipeptidyl transpeptidase (phytochelatin synthase).</title>
+<source datatype='string'>Proc Natl Acad Sci U S A 86(18);6838-6842</source>
+<pubmed-id datatype='string'>16594069</pubmed-id>
+<author datatype='string'>Grill E</author>
+<author datatype='string'>Loffler S</author>
+<author datatype='string'>Winnacker EL</author>
+<author datatype='string'>Zenk MH</author>
+</Publication>
+</citation>
+<citation><Publication resource='#ARA:PUB-11402187' orgid='ARA' frameid='PUB-11402187'/></citation>
+<citation><Publication ID='ARA:PUB-MAY94' orgid='ARA' frameid='PUB-MAY94' detail='full'><year datatype='integer'>1994</year>
+<title datatype='string'>&lt;i&gt;Arabidopsis thaliana&lt;/i&gt; &amp;gamma;-glutamylcysteine synthetase is structurally unrelated to mammalian, yeast, and &lt;i&gt;Escherichia coli&lt;/i&gt; homologs</title>
+<source datatype='string'>Proc. Natl. Acad. Sci. USA, 91, 10059-10063</source>
+<pubmed-id datatype='string'>7937837</pubmed-id>
+<author datatype='string'>May MJ</author>
+<author datatype='string'>Leaver CL</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-15180996' orgid='ARA' frameid='PUB-15180996' detail='full'><year datatype='integer'>2004</year>
+<title datatype='string'>Arabidopsis thaliana glutamate-cysteine ligase: functional properties, kinetic mechanism, and regulation of activity.</title>
+<source datatype='string'>J Biol Chem 279(32);33463-70</source>
+<pubmed-id datatype='string'>15180996</pubmed-id>
+<author datatype='string'>Jez JM</author>
+<author datatype='string'>Cahoon RE</author>
+<author datatype='string'>Chen S</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-1112810' orgid='ARA' frameid='PUB-1112810' detail='full'><year datatype='integer'>1975</year>
+<title datatype='string'>Regulation of gamma-glutamyl-cysteine synthetase by nonallosteric feedback inhibition by glutathione.</title>
+<source datatype='string'>J Biol Chem 250(4);1422-6</source>
+<pubmed-id datatype='string'>1112810</pubmed-id>
+<author datatype='string'>Richman PG</author>
+<author datatype='string'>Meister A</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-8612643' orgid='ARA' frameid='PUB-8612643' detail='full'><year datatype='integer'>1996</year>
+<title datatype='string'>Cloning of Arabidopsis thaliana glutathione synthetase (GSH2) by functional complementation of a yeast gsh2 mutant.</title>
+<source datatype='string'>Eur J Biochem 236(2);662-9</source>
+<pubmed-id datatype='string'>8612643</pubmed-id>
+<author datatype='string'>Ullmann P</author>
+<author datatype='string'>Gondet L</author>
+<author datatype='string'>Potier S</author>
+<author datatype='string'>Bach TJ</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-8914526' orgid='ARA' frameid='PUB-8914526' detail='full'><year datatype='integer'>1996</year>
+<title datatype='string'>Cloning of the cDNA and genomic clones for glutathione synthetase from Arabidopsis thaliana and complementation of a gsh2 mutant in fission yeast.</title>
+<source datatype='string'>Plant Mol Biol 31(6);1093-104</source>
+<pubmed-id datatype='string'>8914526</pubmed-id>
+<author datatype='string'>Wang CL</author>
+<author datatype='string'>Oliver DJ</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-15302873' orgid='ARA' frameid='PUB-15302873' detail='full'><year datatype='integer'>2004</year>
+<title datatype='string'>Kinetic mechanism of glutathione synthetase from Arabidopsis thaliana.</title>
+<source datatype='string'>J Biol Chem 279(41);42726-31</source>
+<pubmed-id datatype='string'>15302873</pubmed-id>
+<author datatype='string'>Jez JM</author>
+<author datatype='string'>Cahoon RE</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-11997376' orgid='ARA' frameid='PUB-11997376' detail='full'><year datatype='integer'>2002</year>
+<title datatype='string'>Interactions between biosynthesis, compartmentation and transport in the control of glutathione homeostasis and signalling.</title>
+<source datatype='string'>J Exp Bot 53(372);1283-304</source>
+<pubmed-id datatype='string'>11997376</pubmed-id>
+<author datatype='string'>Noctor G</author>
+<author datatype='string'>Gomez L</author>
+<author datatype='string'>Vanacker H</author>
+<author datatype='string'>Foyer CH</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-11489184' orgid='ARA' frameid='PUB-11489184' detail='full'><year datatype='integer'>2001</year>
+<title datatype='string'>Quantitative in vivo measurement of glutathione in Arabidopsis cells.</title>
+<source datatype='string'>Plant J 27(1);67-78</source>
+<pubmed-id datatype='string'>11489184</pubmed-id>
+<author datatype='string'>Meyer AJ</author>
+<author datatype='string'>May MJ</author>
+<author datatype='string'>Fricker M</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-1530873' orgid='ARA' frameid='PUB-1530873' detail='full'><title datatype='string'>Desensitization to dapsone in HIV-positive patients.</title>
+<source datatype='string'>JAMA 267(4);512</source>
+<pubmed-id datatype='string'>1530873</pubmed-id>
+<author datatype='string'>Metroka CE</author>
+<author datatype='string'>Lewis NJ</author>
+<author datatype='string'>Jacobus DP</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-NOCTOR11' orgid='ARA' frameid='PUB-NOCTOR11' detail='full'><url datatype='string'>http://www.bioone.org/doi/full/10.1199/tab.0142</url>
+<year datatype='integer'>2011</year>
+<title datatype='string'>Glutathione</title>
+<source datatype='string'>The Arabidopsis Book 9: e0142. doi:10.1199/tab.0142</source>
+<author datatype='string'>Noctor, Graham</author>
+<author datatype='string'>Queval, Guillaume</author>
+<author datatype='string'>Mhamdi, Amna</author>
+<author datatype='string'>Chaouch, Sejir</author>
+<author datatype='string'>Foyer, Christine H.</author>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID='ARA:EV-EXP-TAS' orgid='ARA' frameid='EV-EXP-TAS' detail='full' class='true'><parent><Evidence-Code resource='#ARA:EV-EXP' orgid='ARA' frameid='EV-EXP' class='true'/></parent>
+<comment datatype='string'>Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
+in another database -- that itself did not describe an experiment supporting the
+assertion.  However, the statement did reference another publication describing an experiment 
+that supports the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
+is that the former code is used when it is certain that experimental evidence supports the
+assertion, and the latter code is used when there is a possibility that an experiment was
+not done to support the assertion.
+In general, references to the primary literature are preferred,
+but this code can be used when the original article is difficult to locate.</comment>
+<common-name datatype='string'>Traceable author statement to experimental support</common-name>
+</Evidence-Code>
+<Publication resource='#ARA:PUB-NOCTOR98' orgid='ARA' frameid='PUB-NOCTOR98'/></evidence>
+<evidence><Evidence-Code ID='ARA:EV-EXP-IDA' orgid='ARA' frameid='EV-EXP-IDA' detail='full' class='true'><parent><Evidence-Code resource='#ARA:EV-EXP' orgid='ARA' frameid='EV-EXP' class='true'/></parent>
+<comment datatype='string'>IDA inferred from direct assay.
+
+&lt;br&gt;
+The assertion was inferred from a direct experimental assay such as
+&lt;ul&gt;
+    &lt;li&gt; Enzyme assays
+    &lt;li&gt; In vitro reconstitution (e.g. transcription)
+    &lt;li&gt; Immunofluorescence
+    &lt;li&gt; Cell fractionation
+&lt;/ul&gt;</comment>
+<common-name datatype='string'>Inferred from direct assay</common-name>
+</Evidence-Code>
+<Publication resource='#ARA:PUB-MAY94' orgid='ARA' frameid='PUB-MAY94'/></evidence>
+<evidence><Evidence-Code resource='#ARA:EV-EXP-IDA' orgid='ARA' frameid='EV-EXP-IDA' class='true'/><Publication resource='#ARA:PUB-15180996' orgid='ARA' frameid='PUB-15180996'/></evidence>
+<evidence><Evidence-Code resource='#ARA:EV-EXP-IDA' orgid='ARA' frameid='EV-EXP-IDA' class='true'/><Publication resource='#ARA:PUB-8612643' orgid='ARA' frameid='PUB-8612643'/></evidence>
+<evidence><Evidence-Code resource='#ARA:EV-EXP-IDA' orgid='ARA' frameid='EV-EXP-IDA' class='true'/><Publication resource='#ARA:PUB-8914526' orgid='ARA' frameid='PUB-8914526'/></evidence>
+<evidence><Evidence-Code resource='#ARA:EV-EXP-IDA' orgid='ARA' frameid='EV-EXP-IDA' class='true'/><Publication resource='#ARA:PUB-15302873' orgid='ARA' frameid='PUB-15302873'/></evidence>
+<evidence><Evidence-Code resource='#ARA:EV-EXP-IDA' orgid='ARA' frameid='EV-EXP-IDA' class='true'/><Publication resource='#ARA:PUB-11489184' orgid='ARA' frameid='PUB-11489184'/></evidence>
+<super-pathways><Pathway resource='getxml?ARA:PWY-4041' orgid='ARA' frameid='PWY-4041'/></super-pathways>
+<reaction-list><Reaction resource='getxml?ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN'/><Reaction resource='getxml?ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN'/></reaction-list>
+<pathway-link><Compound resource='getxml?ARA:GLUTATHIONE' orgid='ARA' frameid='GLUTATHIONE'/><link-target><Pathway resource='getxml?ARA:PWYQT-4470' orgid='ARA' frameid='PWYQT-4470'/></link-target>
+<link-target><Pathway resource='getxml?ARA:PWY-4081' orgid='ARA' frameid='PWY-4081'/></link-target>
+<link-target><Pathway resource='getxml?ARA:PWY-4041' orgid='ARA' frameid='PWY-4041'/></link-target>
+</pathway-link>
+<common-name datatype='string'>glutathione biosynthesis</common-name>
 <dblink><dblink-db>PLANTCYC</dblink-db>
 <dblink-oid>GLUTATHIONESYN-PWY</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -18,270 +279,8 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://biocyc.org/META/new-image?object=GLUTATHIONESYN-PWY</dblink-URL>
 </dblink>
-<super-pathways><Pathway frameid="PWY-4041" orgid="ARA" resource="getxml?ARA:PWY-4041" /></super-pathways>
-<in-pathway><Pathway frameid="PWY-4041" orgid="ARA" resource="getxml?ARA:PWY-4041" /></in-pathway>
-<pathway-link><Compound frameid="GLUTATHIONE" orgid="ARA" resource="getxml?ARA:GLUTATHIONE" /><link-target><Pathway frameid="PWYQT-4470" orgid="ARA" resource="getxml?ARA:PWYQT-4470" /></link-target>
-<link-target><Pathway frameid="PWY-4081" orgid="ARA" resource="getxml?ARA:PWY-4081" /></link-target>
-<link-target><Pathway frameid="PWY-4041" orgid="ARA" resource="getxml?ARA:PWY-4041" /></link-target>
-<link-target><Pathway frameid="PWYQT-4432" orgid="ARA" resource="getxml?ARA:PWYQT-4432" /></link-target>
-</pathway-link>
-<reaction-ordering><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-SYN-RXN" /><predecessor-reactions><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="getxml?ARA:GLUTCYSLIG-RXN" /></predecessor-reactions>
+<reaction-ordering><Reaction resource='getxml?ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN'/></predecessor-reactions>
 </reaction-ordering>
-<reaction-layout><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-SYN-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="ARA" resource="getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE" /></left-primaries>
-<right-primaries><Compound frameid="GLUTATHIONE" orgid="ARA" resource="getxml?ARA:GLUTATHIONE" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="getxml?ARA:GLUTCYSLIG-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="GLT" orgid="ARA" resource="getxml?ARA:GLT" /><Compound frameid="CYS" orgid="ARA" resource="getxml?ARA:CYS" /></left-primaries>
-<right-primaries><Compound frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="ARA" resource="getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE" /></right-primaries>
-</reaction-layout>
-<reaction-list><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="getxml?ARA:GLUTATHIONE-SYN-RXN" /><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="getxml?ARA:GLUTCYSLIG-RXN" /></reaction-list>
-<evidence><Evidence-Code ID="ARA:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="ARA"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
-wet-lab experiment of some type.
-</comment>
-<common-name datatype="string">Inferred from experiment</common-name>
-</Evidence-Code>
-<Publication ID="ARA:PUB-11402187" detail="full" frameid="PUB-11402187" orgid="ARA"><title datatype="string">The biological functions of glutathione revisited in arabidopsis transgenic plants with altered glutathione levels.</title>
-<year datatype="integer">2001</year>
-<pubmed-id datatype="string">11402187</pubmed-id>
-<author datatype="string">Xiang C</author>
-<author datatype="string">Werner BL</author>
-<author datatype="string">Christensen EM</author>
-<author datatype="string">Oliver DJ</author>
-<source datatype="string">Plant Physiol 126(2);564-74</source>
-</Publication>
-</evidence>
-<evidence><Evidence-Code ID="ARA:EV-COMP-HINF" class="true" detail="full" frameid="EV-COMP-HINF" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-COMP" orgid="ARA" resource="getxml?ARA:EV-COMP" /></parent>
-<comment datatype="string">Human inference.  A curator or author inferred this assertion after review of one or more possible types 
-of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
-When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
-<common-name datatype="string">Inferred by a human based on computational evidence</common-name>
-</Evidence-Code>
-<Publication ID="ARA:PUB-PMNCVP2019" detail="full" frameid="PUB-PMNCVP2019" orgid="ARA"><title datatype="string">This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Common Viridiplantae Pathways (CVP version 5.0).</title>
-<url datatype="string">https://www.plantcyc.org/about/savi-pipeline</url>
-<year datatype="integer">2019</year>
-</Publication>
-</evidence>
-<citation><Publication ID="ARA:PUB-NOCTOR98" detail="full" frameid="PUB-NOCTOR98" orgid="ARA"><title datatype="string">Glutathione: biosynthesis, metabolism and relationship to stress tolerance explored in transformed plants</title>
-<year datatype="integer">1998</year>
-<author datatype="string">Noctor G</author>
-<author datatype="string">Arisi A-CM</author>
-<author datatype="string">Jouanin L</author>
-<author datatype="string">Kunert KJ</author>
-<author datatype="string">Rennenberg H</author>
-<author datatype="string">Foyer CH</author>
-<source datatype="string">Journal of Experimental Botany, 49(321), 623-647</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-16665956" detail="full" frameid="PUB-16665956" orgid="ARA"><title datatype="string">Studies on the Mode of Action of Acifluorfen-Methyl in Nonchlorophyllous Soybean Cells : Accumulation of Tetrapyrroles.</title>
-<year datatype="integer">1988</year>
-<pubmed-id datatype="string">16665956</pubmed-id>
-<author datatype="string">Matringe M</author>
-<author datatype="string">Scalla R</author>
-<source datatype="string">Plant Physiol 86(2);619-622</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-15012285" detail="full" frameid="PUB-15012285" orgid="ARA"><title datatype="string">The functions and regulation of glutathione S-transferases in plants</title>
-<year datatype="integer">1996</year>
-<pubmed-id datatype="string">15012285</pubmed-id>
-<author datatype="string">Marrs KA</author>
-<source datatype="string">Annu Rev Plant Physiol Plant Mol Biol 47;127-158</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-16668420" detail="full" frameid="PUB-16668420" orgid="ARA"><title datatype="string">Metabolic Bases for Differences in Sensitivity of Two Pea Cultivars to Sulfur Dioxide.</title>
-<year datatype="integer">1991</year>
-<pubmed-id datatype="string">16668420</pubmed-id>
-<author datatype="string">Madamanchi NR</author>
-<author datatype="string">Alscher RG</author>
-<source datatype="string">Plant Physiol 97(1);88-93</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-12481075" detail="full" frameid="PUB-12481075" orgid="ARA"><title datatype="string">Control of demand-driven biosynthesis of glutathione in green Arabidopsis suspension culture cells.</title>
-<year datatype="integer">2002</year>
-<pubmed-id datatype="string">12481075</pubmed-id>
-<author datatype="string">Meyer AJ</author>
-<author datatype="string">Fricker MD</author>
-<source datatype="string">Plant Physiol 130(4);1927-37</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-GRILL85" detail="full" frameid="PUB-GRILL85" orgid="ARA"><title datatype="string">Phytochelatins: The Principal Heavy-Metal Complexing Peptides of Higher Plants</title>
-<author datatype="string">Grill E</author>
-<author datatype="string">Winnacker E-L</author>
-<author datatype="string">Zenk MH</author>
-<source datatype="string">Science,  230(4726), 674 - 676</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-16594069" detail="full" frameid="PUB-16594069" orgid="ARA"><title datatype="string">Phytochelatins, the heavy-metal-binding peptides of plants, are synthesized from glutathione by a specific gamma-glutamylcysteine dipeptidyl transpeptidase (phytochelatin synthase).</title>
-<year datatype="integer">1989</year>
-<pubmed-id datatype="string">16594069</pubmed-id>
-<author datatype="string">Grill E</author>
-<author datatype="string">Loffler S</author>
-<author datatype="string">Winnacker EL</author>
-<author datatype="string">Zenk MH</author>
-<source datatype="string">Proc Natl Acad Sci U S A 86(18);6838-6842</source>
-</Publication>
-</citation>
-<citation><Publication frameid="PUB-11402187" orgid="ARA" resource="#ARA:PUB-11402187" /></citation>
-<citation><Publication ID="ARA:PUB-MAY94" detail="full" frameid="PUB-MAY94" orgid="ARA"><title datatype="string">&lt;i&gt;Arabidopsis thaliana&lt;/i&gt; &amp;gamma;-glutamylcysteine synthetase is structurally unrelated to mammalian, yeast, and &lt;i&gt;Escherichia coli&lt;/i&gt; homologs</title>
-<year datatype="integer">1994</year>
-<pubmed-id datatype="string">7937837</pubmed-id>
-<author datatype="string">May MJ</author>
-<author datatype="string">Leaver CL</author>
-<source datatype="string">Proc. Natl. Acad. Sci. USA, 91, 10059-10063</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-15180996" detail="full" frameid="PUB-15180996" orgid="ARA"><title datatype="string">Arabidopsis thaliana glutamate-cysteine ligase: functional properties, kinetic mechanism, and regulation of activity.</title>
-<year datatype="integer">2004</year>
-<pubmed-id datatype="string">15180996</pubmed-id>
-<author datatype="string">Jez JM</author>
-<author datatype="string">Cahoon RE</author>
-<author datatype="string">Chen S</author>
-<source datatype="string">J Biol Chem 279(32);33463-70</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-1112810" detail="full" frameid="PUB-1112810" orgid="ARA"><title datatype="string">Regulation of gamma-glutamyl-cysteine synthetase by nonallosteric feedback inhibition by glutathione.</title>
-<year datatype="integer">1975</year>
-<pubmed-id datatype="string">1112810</pubmed-id>
-<author datatype="string">Richman PG</author>
-<author datatype="string">Meister A</author>
-<source datatype="string">J Biol Chem 250(4);1422-6</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-8612643" detail="full" frameid="PUB-8612643" orgid="ARA"><title datatype="string">Cloning of Arabidopsis thaliana glutathione synthetase (GSH2) by functional complementation of a yeast gsh2 mutant.</title>
-<year datatype="integer">1996</year>
-<pubmed-id datatype="string">8612643</pubmed-id>
-<author datatype="string">Ullmann P</author>
-<author datatype="string">Gondet L</author>
-<author datatype="string">Potier S</author>
-<author datatype="string">Bach TJ</author>
-<source datatype="string">Eur J Biochem 236(2);662-9</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-8914526" detail="full" frameid="PUB-8914526" orgid="ARA"><title datatype="string">Cloning of the cDNA and genomic clones for glutathione synthetase from Arabidopsis thaliana and complementation of a gsh2 mutant in fission yeast.</title>
-<year datatype="integer">1996</year>
-<pubmed-id datatype="string">8914526</pubmed-id>
-<author datatype="string">Wang CL</author>
-<author datatype="string">Oliver DJ</author>
-<source datatype="string">Plant Mol Biol 31(6);1093-104</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-15302873" detail="full" frameid="PUB-15302873" orgid="ARA"><title datatype="string">Kinetic mechanism of glutathione synthetase from Arabidopsis thaliana.</title>
-<year datatype="integer">2004</year>
-<pubmed-id datatype="string">15302873</pubmed-id>
-<author datatype="string">Jez JM</author>
-<author datatype="string">Cahoon RE</author>
-<source datatype="string">J Biol Chem 279(41);42726-31</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-11997376" detail="full" frameid="PUB-11997376" orgid="ARA"><title datatype="string">Interactions between biosynthesis, compartmentation and transport in the control of glutathione homeostasis and signalling.</title>
-<year datatype="integer">2002</year>
-<pubmed-id datatype="string">11997376</pubmed-id>
-<author datatype="string">Noctor G</author>
-<author datatype="string">Gomez L</author>
-<author datatype="string">Vanacker H</author>
-<author datatype="string">Foyer CH</author>
-<source datatype="string">J Exp Bot 53(372);1283-304</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-11489184" detail="full" frameid="PUB-11489184" orgid="ARA"><title datatype="string">Quantitative in vivo measurement of glutathione in Arabidopsis cells.</title>
-<year datatype="integer">2001</year>
-<pubmed-id datatype="string">11489184</pubmed-id>
-<author datatype="string">Meyer AJ</author>
-<author datatype="string">May MJ</author>
-<author datatype="string">Fricker M</author>
-<source datatype="string">Plant J 27(1);67-78</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-1530873" detail="full" frameid="PUB-1530873" orgid="ARA"><title datatype="string">Desensitization to dapsone in HIV-positive patients.</title>
-<pubmed-id datatype="string">1530873</pubmed-id>
-<author datatype="string">Metroka CE</author>
-<author datatype="string">Lewis NJ</author>
-<author datatype="string">Jacobus DP</author>
-<source datatype="string">JAMA 267(4);512</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-NOCTOR11" detail="full" frameid="PUB-NOCTOR11" orgid="ARA"><title datatype="string">Glutathione</title>
-<url datatype="string">http://www.bioone.org/doi/full/10.1199/tab.0142</url>
-<year datatype="integer">2011</year>
-<author datatype="string">Noctor, Graham</author>
-<author datatype="string">Queval, Guillaume</author>
-<author datatype="string">Mhamdi, Amna</author>
-<author datatype="string">Chaouch, Sejir</author>
-<author datatype="string">Foyer, Christine H.</author>
-<source datatype="string">The Arabidopsis Book 9: e0142. doi:10.1199/tab.0142</source>
-</Publication>
-</citation>
-<evidence><Evidence-Code ID="ARA:EV-EXP-TAS" class="true" detail="full" frameid="EV-EXP-TAS" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="ARA" resource="#ARA:EV-EXP" /></parent>
-<comment datatype="string">Traceable author statement to experimental support.  The assertion was made in a publication -- such as a review or 
-in another database -- that itself did not describe an experiment supporting the
-assertion.  However, the statement did reference another publication describing an experiment 
-that supports the assertion.  The difference between the codes EV-EXP-TAS and EV-AS-TAS 
-is that the former code is used when it is certain that experimental evidence supports the
-assertion, and the latter code is used when there is a possibility that an experiment was
-not done to support the assertion.
-In general, references to the primary literature are preferred,
-but this code can be used when the original article is difficult to locate.</comment>
-<common-name datatype="string">Traceable author statement to experimental support</common-name>
-</Evidence-Code>
-<Publication frameid="PUB-NOCTOR98" orgid="ARA" resource="#ARA:PUB-NOCTOR98" /></evidence>
-<evidence><Evidence-Code ID="ARA:EV-EXP-IDA" class="true" detail="full" frameid="EV-EXP-IDA" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="ARA" resource="#ARA:EV-EXP" /></parent>
-<comment datatype="string">IDA inferred from direct assay.
-
-&lt;br&gt;
-The assertion was inferred from a direct experimental assay such as
-&lt;ul&gt;
-    &lt;li&gt; Enzyme assays
-    &lt;li&gt; In vitro reconstitution (e.g. transcription)
-    &lt;li&gt; Immunofluorescence
-    &lt;li&gt; Cell fractionation
-&lt;/ul&gt;</comment>
-<common-name datatype="string">Inferred from direct assay</common-name>
-</Evidence-Code>
-<Publication frameid="PUB-MAY94" orgid="ARA" resource="#ARA:PUB-MAY94" /></evidence>
-<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-15180996" orgid="ARA" resource="#ARA:PUB-15180996" /></evidence>
-<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-8612643" orgid="ARA" resource="#ARA:PUB-8612643" /></evidence>
-<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-8914526" orgid="ARA" resource="#ARA:PUB-8914526" /></evidence>
-<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-15302873" orgid="ARA" resource="#ARA:PUB-15302873" /></evidence>
-<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="ARA" resource="#ARA:EV-EXP-IDA" /><Publication frameid="PUB-11489184" orgid="ARA" resource="#ARA:PUB-11489184" /></evidence>
-<comment datatype="string">&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: This pathway is on the list of Common Viridiplantae Pathways (CVP) generated for the COMET project, which includes pathways that are thought to be present in all or most Viridiplantae species including algae. All UPP pathways are automatically imported into databases regardless of Pathologic predictions. &lt;A href="http://www.plantcyc.org/about/savi_pipeline"&gt;[more info]&lt;/A&gt;
-&lt;p&gt;
-&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
-&lt;p&gt;
-&lt;b&gt;General background&lt;/b&gt;: The tripeptide thiol glutathione (GSH; L-&amp;gamma;-glutamyl-L-cysteinylglycine) 
-is ubiquitous in the vast majority of organisms. It is considered the most abundant low-molecular weight plant 
-thiol reaching concentrations up to 2-3 mM in the cytoplasm [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11489184"&gt;Meyer01&lt;/a&gt;]. In plants glutathione is linked 
-to many processes, particularly to such involved in protection against a variety of environmental stresses [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/1530873"&gt;Metroka&lt;/a&gt;]. 
-&lt;p&gt;
-Glutathione is an antioxidant that counteracts reactive oxygen species thus reducing oxidative stress [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bNOCTOR98%5d"&gt;Noctor98&lt;/a&gt;]. 
-It is recognized as a major player in detoxifying xenobiotics [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16665956"&gt;Matringe88&lt;/a&gt;] by forming less reactive or storage 
-conjugates catalyzed by GHS S-transferases [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15012285"&gt;Marrs96&lt;/a&gt;]. Glutathione has also been reported to detoxify 
-air pollutants such as ozone and sulfur dioxide [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16668420"&gt;Madamanchi91&lt;/a&gt;]. GHS is discussed as important storage form 
-of reduced sulfur regulating inter-organ sulfur allocation and its biosynthesis seems to be coupled with the sulfate 
-assimilation pathway (see &lt;a href="/ARA/NEW-IMAGE?type=PATHWAY&amp;object=SULFMETII-PWY"&gt;assimilatory sulfate reduction II&lt;/a&gt;) [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/12481075"&gt;Meyer02&lt;/a&gt;]. 
-&lt;p&gt;
-Moreover, glutathione appears to act as signaling compound and its homeostasis is crucial for various pathways 
-involved in cellular defense and sulfur metabolism [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11997376"&gt;Noctor02&lt;/a&gt;]. Another main function of glutathione is to 
-dispose supra-optimal concentrations of heavy metals such as cadmium that might affect enzyme functions and 
-metabolic networks in plants. As a precursor for phytochelatin, the principal metal-binding agent in plants, glutathione 
-is considered a vital component for the detoxification of heavy metals [&lt;a href="/ARA/reference.html?type=CITATION-REFERENCE&amp;object=%5bGRILL85%5d"&gt;Grill&lt;/a&gt;] [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/16594069"&gt;Grill89&lt;/a&gt;] 
-[&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/11402187"&gt;Xiang01&lt;/a&gt;].
-&lt;p&gt;
-&lt;b&gt;About the pathway:&lt;/b&gt; The biosynthesis of glutathione is universally catalyzed in all organisms by two enzymes, 
-glutamate-cysteine ligase [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/7937837"&gt;May94&lt;/a&gt;] [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15180996"&gt;Jez04&lt;/a&gt;] regarded as the rate-limiting step of the pathway 
-[&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/1112810"&gt;Richman75&lt;/a&gt;] and glutathione synthetase [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/8612643"&gt;Ullmann96&lt;/a&gt;] [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/8914526"&gt;Wang96c&lt;/a&gt;] [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15302873"&gt;Jez04a&lt;/a&gt;]. Those two 
-steps comprise the conversion of L- glutamate, L-cysteine, glycine and 2 ATP to glutathione.
-&lt;p&gt;
-The regulation of the plant enzymes is unlike those reported from other eucaryotes. For the glutamate-cysteine ligase 
-a conformational change has been observed as means to modify enzyme activities in response to redox conditions. 
-That differs from mammalian enzymes that regulate activity through a regulatory subunit of the enzyme [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/15180996"&gt;Jez04&lt;/a&gt;]. </comment>
-<common-name datatype="string">glutathione biosynthesis</common-name>
-<credits><reviewed><date datatype="date">2007-04-17</date>
-<Person ID="ARA:hartmut" detail="full" frameid="hartmut" orgid="ARA"><affiliations><Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
-<common-name datatype="string">The Arabidopsis Information Resource</common-name>
-</Organization>
-</affiliations>
-</Person>
-</reviewed>
-</credits>
+<in-pathway><Pathway resource='getxml?ARA:PWY-4041' orgid='ARA' frameid='PWY-4041'/></in-pathway>
 </Pathway>
 </ptools-xml>

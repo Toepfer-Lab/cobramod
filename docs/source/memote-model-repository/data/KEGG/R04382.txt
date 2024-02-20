@@ -1,0 +1,24 @@
+ENTRY       R04382                      Reaction
+NAME        4-(4-deoxy-alpha-D-galact-4-enuronosyl)-D-galacturonate lyase
+DEFINITION  4-(4-Deoxy-alpha-D-gluc-4-enuronosyl)-D-galacturonate <=> 2 5-Dehydro-4-deoxy-D-glucuronate
+EQUATION    C06118 <=> 2 C04053
+REMARK      Same as: R06249
+RCLASS      RC02124  C04053_C06118
+            RC02427  C04053_C06118
+ENZYME      4.2.2.6
+PATHWAY     rn00040  Pentose and glucuronate interconversions
+            rn01100  Metabolic pathways
+BRITE       Enzymatic reactions [BR:br08201]
+             4. Lyase reactions
+              4.2  Carbon-oxygen lyases
+               4.2.2  Acting on polysaccharides
+                4.2.2.6
+                 R04382  4-(4-Deoxy-alpha-D-gluc-4-enuronosyl)-D-galacturonate <=> 2 5-Dehydro-4-deoxy-D-glucuronate
+ORTHOLOGY   K01730  oligogalacturonide lyase [EC:4.2.2.6]
+REFERENCE   1  [PMID:5671040]
+  AUTHORS   Moran F, Nasuno S, Starr MP.
+  TITLE     Oligogalacturonide trans-eliminase of Erwinia carotovora.
+  JOURNAL   Arch Biochem Biophys 125:734-41 (1968)
+            DOI:10.1016/0003-9861(68)90508-0
+DBLINKS     RHEA: 20272
+///

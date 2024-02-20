@@ -1,9 +1,10 @@
-<ptools-xml ptools-version="25.0" xml:base="http://BioCyc.org/getxml?ECOLI:FORMATE"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ECOLI:FORMATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ECOLI:FORMATE</query>
 <num_results>1</num_results>
-<PGDB orgid="ECOLI" version="25.0"><species datatype="string">Escherichia coli</species>
-<strain datatype="string">K-12 substr. MG1655</strain>
+<PGDB orgid='ECOLI' version='27.5'><species datatype='string'>Escherichia coli</species>
+<strain datatype='string'>K-12 substr. MG1655</strain>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>511145</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -11,15 +12,39 @@
 </dblink>
 </PGDB>
 </metadata>
-<Compound ID="ECOLI:FORMATE" detail="full" frameid="FORMATE" orgid="ECOLI"><parent><Compound class="true" frameid="Short-Chain-Carboxylates" orgid="ECOLI" resource="getxml?ECOLI:Short-Chain-Carboxylates" /></parent>
-<cml><molecule formalCharge="-1" id="FORMATE" title="formate"><atomArray><atom elementType="C" id="FORMATE-atom1" x2="-856.0" y2="-1611.0" /><atom elementType="O" id="FORMATE-atom2" x2="-856.0" y2="-9861.0" /><atom elementType="O" formalCharge="-1" id="FORMATE-atom3" x2="-8000.0" y2="2514.0" /><atom elementType="H" id="FORMATE-atom4" x2="6289.0" y2="2514.0" /></atomArray>
-<bondArray><bond atomRefs="FORMATE-atom2 FORMATE-atom1" id="FORMATE-bond1" order="2" /><bond atomRefs="FORMATE-atom3 FORMATE-atom1" id="FORMATE-bond2" order="1" /><bond atomRefs="FORMATE-atom1 FORMATE-atom4" id="FORMATE-bond3" order="1" /></bondArray>
-<formula concise="C 1 H 1 O 2" /><float title="molecularWeight" units="g/mol">45.018</float>
-<string title="smiles">C([O-])=O</string>
+<Compound ID='ECOLI:FORMATE' orgid='ECOLI' frameid='FORMATE' detail='full'><parent><Compound resource='getxml?ECOLI:Short-Chain-Carboxylates' orgid='ECOLI' frameid='Short-Chain-Carboxylates' class='true'/></parent>
+<cml><molecule id='FORMATE' title='formate' formalCharge='-1'><atomArray><atom id='FORMATE-atom1' elementType='C' x2='-856.0' y2='-1611.0'/><atom id='FORMATE-atom2' elementType='O' x2='-856.0' y2='-9861.0'/><atom id='FORMATE-atom3' elementType='O' x2='-8000.0' y2='2514.0' formalCharge='-1'/><atom id='FORMATE-atom4' elementType='H' x2='6289.0' y2='2514.0'/></atomArray>
+<bondArray><bond id='FORMATE-bond1' atomRefs='FORMATE-atom2 FORMATE-atom1' order='2'/><bond id='FORMATE-bond2' atomRefs='FORMATE-atom3 FORMATE-atom1' order='1'/><bond id='FORMATE-bond3' atomRefs='FORMATE-atom1 FORMATE-atom4' order='1'/></bondArray>
+<formula concise='C 1 H 1 O 2'/><float title='molecularWeight' units='g/mol'>45.018</float>
+<string title='smiles'>C([O-])=O</string>
 </molecule>
 </cml>
-<common-name datatype="string">formate</common-name>
-<component-of><Protein frameid="MONOMER0-183" orgid="ECOLI" resource="getxml?ECOLI:MONOMER0-183" /></component-of>
+<regulates><Regulation ID='ECOLI:REG0-11830' orgid='ECOLI' frameid='REG0-11830' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:FORMATE' orgid='ECOLI' frameid='FORMATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:ENZRXN0-7782' orgid='ECOLI' frameid='ENZRXN0-7782' detail='low'><enzyme><Protein resource='getxml?ECOLI:EG11512-MONOMER' orgid='ECOLI' frameid='EG11512-MONOMER'/></enzyme>
+<common-name datatype='string'>acetate:H&lt;sup&gt;+&lt;/sup&gt; symporter</common-name>
+<reaction><Reaction resource='getxml?ECOLI:TRANS-RXN0-571' orgid='ECOLI' frameid='TRANS-RXN0-571'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+<Regulation ID='ECOLI:REG0-7828' orgid='ECOLI' frameid='REG0-7828' detail='low'><parent><Regulation resource='getxml?ECOLI:Regulation-of-Enzyme-Activity' orgid='ECOLI' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#ECOLI:FORMATE' orgid='ECOLI' frameid='FORMATE'/></regulator>
+<regulated-entity><Enzymatic-Reaction ID='ECOLI:CYANLY-ENZRXN' orgid='ECOLI' frameid='CYANLY-ENZRXN' detail='low'><enzyme><Protein resource='getxml?ECOLI:CYANLY-CPLX' orgid='ECOLI' frameid='CYANLY-CPLX'/></enzyme>
+<synonym datatype='string'>cyanate hydrolase</synonym>
+<synonym datatype='string'>cyanate C-N-lyase</synonym>
+<synonym datatype='string'>cyanate aminohydrolase</synonym>
+<synonym datatype='string'>cyanate lyase</synonym>
+<synonym datatype='string'>cyanate hydratase</synonym>
+<common-name datatype='string'>cyanase</common-name>
+<reaction><Reaction resource='getxml?ECOLI:R524-RXN' orgid='ECOLI' frameid='R524-RXN'/></reaction>
+</Enzymatic-Reaction>
+</regulated-entity>
+<mode datatype='string'>-</mode>
+</Regulation>
+</regulates>
+<molecular-weight datatype='float' units='Daltons'>45.018</molecular-weight>
+<component-of><Protein resource='getxml?ECOLI:MONOMER0-183' orgid='ECOLI' frameid='MONOMER0-183'/></component-of>
 <dblink><dblink-db>REFMET</dblink-db>
 <dblink-oid>Formic acid</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -65,37 +90,21 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=64-18-6</dblink-URL>
 </dblink>
-<synonym datatype="string">formic acid</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-73.93095</gibbs-0>
-<inchi datatype="string">InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
-<inchi-key datatype="string">InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
-<molecular-weight datatype="float" units="Daltons">45.018</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">46.005478</monoisotopic-mw>
-<appears-in-left-side-of><Reaction frameid="RXN0-3281" orgid="ECOLI" resource="getxml?ECOLI:RXN0-3281" /><Reaction frameid="RXN-12274" orgid="ECOLI" resource="getxml?ECOLI:RXN-12274" /><Reaction frameid="RXN0-746" orgid="ECOLI" resource="getxml?ECOLI:RXN0-746" /><Reaction frameid="RXN0-723" orgid="ECOLI" resource="getxml?ECOLI:RXN0-723" /><Reaction frameid="RXN0-724" orgid="ECOLI" resource="getxml?ECOLI:RXN0-724" /><Reaction frameid="RIBONUCLEOSIDE-TRIP-REDUCT-RXN" orgid="ECOLI" resource="getxml?ECOLI:RIBONUCLEOSIDE-TRIP-REDUCT-RXN" /><Reaction frameid="RXN0-745" orgid="ECOLI" resource="getxml?ECOLI:RXN0-745" /><Reaction frameid="RXN0-443" orgid="ECOLI" resource="getxml?ECOLI:RXN0-443" /><Reaction frameid="TRANS-RXN-1" orgid="ECOLI" resource="getxml?ECOLI:TRANS-RXN-1" /><Reaction frameid="FORMATEDEHYDROG-RXN" orgid="ECOLI" resource="getxml?ECOLI:FORMATEDEHYDROG-RXN" /><Reaction frameid="PYRUVFORMLY-RXN" orgid="ECOLI" resource="getxml?ECOLI:PYRUVFORMLY-RXN" /><Reaction frameid="GARTRANSFORMYL2-RXN" orgid="ECOLI" resource="getxml?ECOLI:GARTRANSFORMYL2-RXN" /><Reaction frameid="FHLMULTI-RXN" orgid="ECOLI" resource="getxml?ECOLI:FHLMULTI-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="TRANS-RXN-1" orgid="ECOLI" resource="getxml?ECOLI:TRANS-RXN-1" /><Reaction frameid="FORMYLTHFDEFORMYL-RXN" orgid="ECOLI" resource="getxml?ECOLI:FORMYLTHFDEFORMYL-RXN" /><Reaction frameid="3.5.1.88-RXN" orgid="ECOLI" resource="getxml?ECOLI:3.5.1.88-RXN" /><Reaction frameid="PYRIMSYN1-RXN" orgid="ECOLI" resource="getxml?ECOLI:PYRIMSYN1-RXN" /><Reaction frameid="RXN0-5409" orgid="ECOLI" resource="getxml?ECOLI:RXN0-5409" /><Reaction frameid="GTP-CYCLOHYDRO-I-RXN" orgid="ECOLI" resource="getxml?ECOLI:GTP-CYCLOHYDRO-I-RXN" /><Reaction frameid="RXN0-5253" orgid="ECOLI" resource="getxml?ECOLI:RXN0-5253" /><Reaction frameid="RXN0-1382" orgid="ECOLI" resource="getxml?ECOLI:RXN0-1382" /><Reaction frameid="S-FORMYLGLUTATHIONE-HYDROLASE-RXN" orgid="ECOLI" resource="getxml?ECOLI:S-FORMYLGLUTATHIONE-HYDROLASE-RXN" /><Reaction frameid="DIOHBUTANONEPSYN-RXN" orgid="ECOLI" resource="getxml?ECOLI:DIOHBUTANONEPSYN-RXN" /><Reaction frameid="KETOBUTFORMLY-RXN" orgid="ECOLI" resource="getxml?ECOLI:KETOBUTFORMLY-RXN" /><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="ECOLI" resource="getxml?ECOLI:GTP-CYCLOHYDRO-II-RXN" /></appears-in-right-side-of>
-<regulates><Regulation ID="ECOLI:REG0-11830" detail="low" frameid="REG0-11830" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:ENZRXN0-7782" detail="low" frameid="ENZRXN0-7782" orgid="ECOLI"><common-name datatype="string">acetate:H&lt;sup&gt;+&lt;/sup&gt; symporter</common-name>
-<enzyme><Protein frameid="EG11512-MONOMER" orgid="ECOLI" resource="getxml?ECOLI:EG11512-MONOMER" /></enzyme>
-<reaction><Reaction frameid="TRANS-RXN0-571" orgid="ECOLI" resource="getxml?ECOLI:TRANS-RXN0-571" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FORMATE" orgid="ECOLI" resource="#ECOLI:FORMATE" /></regulator>
-</Regulation>
-<Regulation ID="ECOLI:REG0-7828" detail="low" frameid="REG0-7828" orgid="ECOLI"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="ECOLI" resource="getxml?ECOLI:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="ECOLI:CYANLY-ENZRXN" detail="low" frameid="CYANLY-ENZRXN" orgid="ECOLI"><common-name datatype="string">cyanase</common-name>
-<synonym datatype="string">cyanate hydrolase</synonym>
-<synonym datatype="string">cyanate C-N-lyase</synonym>
-<synonym datatype="string">cyanate aminohydrolase</synonym>
-<synonym datatype="string">cyanate lyase</synonym>
-<synonym datatype="string">cyanate hydratase</synonym>
-<enzyme><Protein frameid="CYANLY-CPLX" orgid="ECOLI" resource="getxml?ECOLI:CYANLY-CPLX" /></enzyme>
-<reaction><Reaction frameid="R524-RXN" orgid="ECOLI" resource="getxml?ECOLI:R524-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="FORMATE" orgid="ECOLI" resource="#ECOLI:FORMATE" /></regulator>
-</Regulation>
-</regulates>
+<synonym datatype='string'>formic acid</synonym>
+<synonym datatype='string'>methanoate</synonym>
+<inchi-key datatype='string'>InChIKey=BDAGIHXWWSANSR-UHFFFAOYSA-M</inchi-key>
+<monoisotopic-mw datatype='float' units='Daltons'>46.005478</monoisotopic-mw>
+<inchi datatype='string'>InChI=1S/CH2O2/c2-1-3/h1H,(H,2,3)/p-1</inchi>
+<appears-in-right-side-of><Reaction resource='getxml?ECOLI:GTP-CYCLOHYDRO-II-RXN' orgid='ECOLI' frameid='GTP-CYCLOHYDRO-II-RXN'/><Reaction resource='getxml?ECOLI:TRANS-RXN-1' orgid='ECOLI' frameid='TRANS-RXN-1'/><Reaction resource='getxml?ECOLI:FORMYLTHFDEFORMYL-RXN' orgid='ECOLI' frameid='FORMYLTHFDEFORMYL-RXN'/><Reaction resource='getxml?ECOLI:3.5.1.88-RXN' orgid='ECOLI' frameid='3.5.1.88-RXN'/><Reaction resource='getxml?ECOLI:PYRIMSYN1-RXN' orgid='ECOLI' frameid='PYRIMSYN1-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5409' orgid='ECOLI' frameid='RXN0-5409'/><Reaction resource='getxml?ECOLI:GTP-CYCLOHYDRO-I-RXN' orgid='ECOLI' frameid='GTP-CYCLOHYDRO-I-RXN'/><Reaction resource='getxml?ECOLI:RXN0-5253' orgid='ECOLI' frameid='RXN0-5253'/><Reaction resource='getxml?ECOLI:RXN0-1382' orgid='ECOLI' frameid='RXN0-1382'/><Reaction resource='getxml?ECOLI:S-FORMYLGLUTATHIONE-HYDROLASE-RXN' orgid='ECOLI' frameid='S-FORMYLGLUTATHIONE-HYDROLASE-RXN'/><Reaction resource='getxml?ECOLI:DIOHBUTANONEPSYN-RXN' orgid='ECOLI' frameid='DIOHBUTANONEPSYN-RXN'/></appears-in-right-side-of>
+<common-name datatype='string'>formate</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?ECOLI:KETOBUTFORMLY-RXN' orgid='ECOLI' frameid='KETOBUTFORMLY-RXN'/><Reaction resource='getxml?ECOLI:RXN0-3281' orgid='ECOLI' frameid='RXN0-3281'/><Reaction resource='getxml?ECOLI:RXN-12274' orgid='ECOLI' frameid='RXN-12274'/><Reaction resource='getxml?ECOLI:RXN0-746' orgid='ECOLI' frameid='RXN0-746'/><Reaction resource='getxml?ECOLI:RXN0-723' orgid='ECOLI' frameid='RXN0-723'/><Reaction resource='getxml?ECOLI:RXN0-724' orgid='ECOLI' frameid='RXN0-724'/><Reaction resource='getxml?ECOLI:RIBONUCLEOSIDE-TRIP-REDUCT-RXN' orgid='ECOLI' frameid='RIBONUCLEOSIDE-TRIP-REDUCT-RXN'/><Reaction resource='getxml?ECOLI:RXN0-745' orgid='ECOLI' frameid='RXN0-745'/><Reaction resource='getxml?ECOLI:RXN0-443' orgid='ECOLI' frameid='RXN0-443'/><Reaction resource='getxml?ECOLI:TRANS-RXN-1' orgid='ECOLI' frameid='TRANS-RXN-1'/><Reaction resource='getxml?ECOLI:FORMATEDEHYDROG-RXN' orgid='ECOLI' frameid='FORMATEDEHYDROG-RXN'/><Reaction resource='getxml?ECOLI:PYRUVFORMLY-RXN' orgid='ECOLI' frameid='PYRUVFORMLY-RXN'/><Reaction resource='getxml?ECOLI:GARTRANSFORMYL2-RXN' orgid='ECOLI' frameid='GARTRANSFORMYL2-RXN'/><Reaction resource='getxml?ECOLI:FHLMULTI-RXN' orgid='ECOLI' frameid='FHLMULTI-RXN'/></appears-in-left-side-of>
+<comment datatype='string'>Formate is a one-carbon molecule that was first isolated from distillation of ant bodies, and it was subsequently named using the Latin word for ant, formica [&lt;a href=&quot;/ECOLI/reference.html?type=CITATION-REFERENCE&amp;object=%5bStumper21%5d&quot;&gt;Stumper21&lt;/a&gt;]. Ants and other insects accumulate formate in secretory glands and release their content as a mechanism of defense.
+&lt;p&gt;
+Formate serves as an intermediate in one-carbon (1C) metabolism in all organisms. It is also a key metabolite for many bacterial and archaeal species. Depending on the physiological conditions, formate serves various roles, such as to act as a reductant in anaerobic respiration, be oxidized aerobically, be secreted, or be converted to hydrogen and CO&lt;sub&gt;2&lt;/sub&gt;.
+&lt;p&gt;
+Formate is particularly common in anaerobic habitats, produced as a fermentation product of some species and used as a growth substrate for others. It is crucial compound in many syntrophic associations, in which organisms live close to the thermodynamic limit (for example, sulfate-reducing bacteria and methanogens) [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/18708519&quot;&gt;Dolfing08&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/20844539&quot;&gt;Kim10c&lt;/a&gt;]. Its redox potential is low (around -420 mV), which allows it to donate an electron for the reduction of fumarate.
+&lt;p&gt;
+In eukaryotes formate is produced from a variety of nutrients, and can be fed into a number of biosynthetic pathways. A common source of formate is the catabolism of serine or glycine (via tetrahydrofolate). Another important source is formaldehyde, which is formed by many demethylation enzymes and as a degradation product of methanol. Formate is also produced during sterol synthesis, polyamine synthesis, and tryptophan degradation, and is used during purine synthesis, thymidylate synthesis, and as the source of carbon for methylation reactions via folate and methionine (formate can be assimilated into folate by &lt;a href=&quot;/ECOLI/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-6.3.4.3&quot;&gt;EC 6.3.4.3, formate&amp;mdash;tetrahydrofolate ligase&lt;/a&gt; and its carbon transferred to methionine by &lt;a href=&quot;/ECOLI/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.1.1.13&quot;&gt;EC 2.1.1.13, methionine synthase&lt;/a&gt;. Methionine is then converted to &lt;a href=&quot;/compound?orgid=ECOLI&amp;id=S-ADENOSYLMETHIONINE&quot;&gt;&lt;i&gt;S&lt;/i&gt;-adenosyl-L-methionine&lt;/a&gt;, the most common methyl group donor) [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/31402327&quot;&gt;Pietzke20&lt;/a&gt;].</comment>
+<gibbs-0 datatype='float' units='kcal/mol'>-73.93095</gibbs-0>
 </Compound>
 </ptools-xml>

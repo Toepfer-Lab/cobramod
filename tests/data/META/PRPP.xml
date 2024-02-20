@@ -1,36 +1,46 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:PRPP"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:PRPP'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:PRPP</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:PRPP" detail="full" frameid="PRPP" orgid="META"><parent><Compound class="true" frameid="Sugar-Phosphate" orgid="META" resource="getxml?META:Sugar-Phosphate" /></parent>
-<cml><molecule formalCharge="-5" id="PRPP" title="5-phospho-alpha-D-ribose+1-diphosphate"><atomArray><atom elementType="C" id="PRPP-atom1" x2="23645.0" y2="8799.0" /><atom elementType="C" id="PRPP-atom2" x2="30789.0" y2="12924.0" /><atom elementType="C" id="PRPP-atom3" x2="33339.0" y2="20770.0" /><atom elementType="C" id="PRPP-atom4" x2="41589.0" y2="20770.0" /><atom elementType="C" id="PRPP-atom5" x2="44138.0" y2="12924.0" /><atom elementType="O" id="PRPP-atom6" x2="29214.0" y2="27914.0" /><atom elementType="O" id="PRPP-atom7" x2="45714.0" y2="27914.0" /><atom elementType="O" id="PRPP-atom8" x2="8250.0" y2="21174.0" /><atom elementType="O" formalCharge="-1" id="PRPP-atom9" x2="8250.0" y2="4674.0" /><atom elementType="O" formalCharge="-1" id="PRPP-atom10" x2="0.0" y2="12924.0" /><atom elementType="O" formalCharge="-1" id="PRPP-atom11" x2="86400.0" y2="8799.0" /><atom elementType="O" id="PRPP-atom12" x2="78150.0" y2="17049.0" /><atom elementType="O" formalCharge="-1" id="PRPP-atom13" x2="78150.0" y2="549.0" /><atom elementType="O" id="PRPP-atom14" x2="60078.0" y2="17593.0" /><atom elementType="O" formalCharge="-1" id="PRPP-atom15" x2="60078.0" y2="0.0" /><atom elementType="O" id="PRPP-atom16" x2="16500.0" y2="12924.0" /><atom elementType="O" id="PRPP-atom17" x2="37464.0" y2="8075.0" /><atom elementType="O" id="PRPP-atom18" x2="51283.0" y2="8799.0" /><atom elementType="O" id="PRPP-atom19" x2="69900.0" y2="8799.0" /><atom elementType="P" id="PRPP-atom20" x2="8250.0" y2="12924.0" /><atom elementType="P" id="PRPP-atom21" x2="78150.0" y2="8799.0" /><atom elementType="P" id="PRPP-atom22" x2="60078.0" y2="8799.0" /></atomArray>
-<bondArray><bond atomRefs="PRPP-atom18 PRPP-atom22" id="PRPP-bond1" order="1" /><bond atomRefs="PRPP-atom14 PRPP-atom22" id="PRPP-bond2" order="2" /><bond atomRefs="PRPP-atom15 PRPP-atom22" id="PRPP-bond3" order="1" /><bond atomRefs="PRPP-atom19 PRPP-atom22" id="PRPP-bond4" order="1" /><bond atomRefs="PRPP-atom5 PRPP-atom18" id="PRPP-bond5" order="1" /><bond atomRefs="PRPP-atom4 PRPP-atom5" id="PRPP-bond6" order="1" /><bond atomRefs="PRPP-atom17 PRPP-atom5" id="PRPP-bond7" order="1" /><bond atomRefs="PRPP-atom17 PRPP-atom2" id="PRPP-bond8" order="1" /><bond atomRefs="PRPP-atom2 PRPP-atom3" id="PRPP-bond9" order="1" /><bond atomRefs="PRPP-atom3 PRPP-atom4" id="PRPP-bond10" order="1" /><bond atomRefs="PRPP-atom4 PRPP-atom7" id="PRPP-bond11" order="1" /><bond atomRefs="PRPP-atom3 PRPP-atom6" id="PRPP-bond12" order="1" /><bond atomRefs="PRPP-atom2 PRPP-atom1" id="PRPP-bond13" order="1" /><bond atomRefs="PRPP-atom1 PRPP-atom16" id="PRPP-bond14" order="1" /><bond atomRefs="PRPP-atom10 PRPP-atom20" id="PRPP-bond15" order="1" /><bond atomRefs="PRPP-atom9 PRPP-atom20" id="PRPP-bond16" order="1" /><bond atomRefs="PRPP-atom8 PRPP-atom20" id="PRPP-bond17" order="2" /><bond atomRefs="PRPP-atom16 PRPP-atom20" id="PRPP-bond18" order="1" /><bond atomRefs="PRPP-atom13 PRPP-atom21" id="PRPP-bond19" order="1" /><bond atomRefs="PRPP-atom12 PRPP-atom21" id="PRPP-bond20" order="2" /><bond atomRefs="PRPP-atom11 PRPP-atom21" id="PRPP-bond21" order="1" /><bond atomRefs="PRPP-atom19 PRPP-atom21" id="PRPP-bond22" order="1" /></bondArray>
-<formula concise="C 5 H 8 O 14 P 3" /><float title="molecularWeight" units="g/mol">385.031</float>
-<string title="smiles">C(OP(=O)([O-])[O-])[C@@H]1([C@@H](O)[C@@H](O)[C@H](O1)OP(OP([O-])(=O)[O-])([O-])=O)</string>
+<Compound ID='META:PRPP' orgid='META' frameid='PRPP' detail='full'><parent><Compound resource='getxml?META:Sugar-Phosphate' orgid='META' frameid='Sugar-Phosphate' class='true'/></parent>
+<cml><molecule id='PRPP' title='5-phospho-alpha-D-ribose+1-diphosphate' formalCharge='-5'><atomArray><atom id='PRPP-atom1' elementType='C' x2='23645.0' y2='8799.0'/><atom id='PRPP-atom2' elementType='C' x2='30789.0' y2='12924.0'/><atom id='PRPP-atom3' elementType='C' x2='33339.0' y2='20770.0'/><atom id='PRPP-atom4' elementType='C' x2='41589.0' y2='20770.0'/><atom id='PRPP-atom5' elementType='C' x2='44138.0' y2='12924.0'/><atom id='PRPP-atom6' elementType='O' x2='29214.0' y2='27914.0'/><atom id='PRPP-atom7' elementType='O' x2='45714.0' y2='27914.0'/><atom id='PRPP-atom8' elementType='O' x2='8250.0' y2='21174.0'/><atom id='PRPP-atom9' elementType='O' x2='8250.0' y2='4674.0' formalCharge='-1'/><atom id='PRPP-atom10' elementType='O' x2='0.0' y2='12924.0' formalCharge='-1'/><atom id='PRPP-atom11' elementType='O' x2='86400.0' y2='8799.0' formalCharge='-1'/><atom id='PRPP-atom12' elementType='O' x2='78150.0' y2='17049.0'/><atom id='PRPP-atom13' elementType='O' x2='78150.0' y2='549.0' formalCharge='-1'/><atom id='PRPP-atom14' elementType='O' x2='60078.0' y2='17593.0'/><atom id='PRPP-atom15' elementType='O' x2='60078.0' y2='0.0' formalCharge='-1'/><atom id='PRPP-atom16' elementType='O' x2='16500.0' y2='12924.0'/><atom id='PRPP-atom17' elementType='O' x2='37464.0' y2='8075.0'/><atom id='PRPP-atom18' elementType='O' x2='51283.0' y2='8799.0'/><atom id='PRPP-atom19' elementType='O' x2='69900.0' y2='8799.0'/><atom id='PRPP-atom20' elementType='P' x2='8250.0' y2='12924.0'/><atom id='PRPP-atom21' elementType='P' x2='78150.0' y2='8799.0'/><atom id='PRPP-atom22' elementType='P' x2='60078.0' y2='8799.0'/></atomArray>
+<bondArray><bond id='PRPP-bond1' atomRefs='PRPP-atom18 PRPP-atom22' order='1'/><bond id='PRPP-bond2' atomRefs='PRPP-atom14 PRPP-atom22' order='2'/><bond id='PRPP-bond3' atomRefs='PRPP-atom15 PRPP-atom22' order='1'/><bond id='PRPP-bond4' atomRefs='PRPP-atom19 PRPP-atom22' order='1'/><bond id='PRPP-bond5' atomRefs='PRPP-atom5 PRPP-atom18' order='1'/><bond id='PRPP-bond6' atomRefs='PRPP-atom4 PRPP-atom5' order='1'/><bond id='PRPP-bond7' atomRefs='PRPP-atom17 PRPP-atom5' order='1'/><bond id='PRPP-bond8' atomRefs='PRPP-atom17 PRPP-atom2' order='1'/><bond id='PRPP-bond9' atomRefs='PRPP-atom2 PRPP-atom3' order='1'/><bond id='PRPP-bond10' atomRefs='PRPP-atom3 PRPP-atom4' order='1'/><bond id='PRPP-bond11' atomRefs='PRPP-atom4 PRPP-atom7' order='1'/><bond id='PRPP-bond12' atomRefs='PRPP-atom3 PRPP-atom6' order='1'/><bond id='PRPP-bond13' atomRefs='PRPP-atom2 PRPP-atom1' order='1'/><bond id='PRPP-bond14' atomRefs='PRPP-atom1 PRPP-atom16' order='1'/><bond id='PRPP-bond15' atomRefs='PRPP-atom10 PRPP-atom20' order='1'/><bond id='PRPP-bond16' atomRefs='PRPP-atom9 PRPP-atom20' order='1'/><bond id='PRPP-bond17' atomRefs='PRPP-atom8 PRPP-atom20' order='2'/><bond id='PRPP-bond18' atomRefs='PRPP-atom16 PRPP-atom20' order='1'/><bond id='PRPP-bond19' atomRefs='PRPP-atom13 PRPP-atom21' order='1'/><bond id='PRPP-bond20' atomRefs='PRPP-atom12 PRPP-atom21' order='2'/><bond id='PRPP-bond21' atomRefs='PRPP-atom11 PRPP-atom21' order='1'/><bond id='PRPP-bond22' atomRefs='PRPP-atom19 PRPP-atom21' order='1'/></bondArray>
+<formula concise='C 5 H 8 O 14 P 3'/><float title='molecularWeight' units='g/mol'>385.031</float>
+<string title='smiles'>C(OP(=O)([O-])[O-])[C@@H]1([C@@H](O)[C@@H](O)[C@H](O1)OP(OP([O-])(=O)[O-])([O-])=O)</string>
 </molecule>
 </cml>
-<comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=PRPP"&gt;5-Phospho-&amp;alpha;-D-ribose 1-diphosphate&lt;/a&gt; (PRPP) is an important metabolite required in the biosynthesis of purine and pyrimidine nucleotides, the amino acids &lt;a href="/compound?orgid=META&amp;id=HIS"&gt;L-histidine&lt;/a&gt; and &lt;a href="/compound?orgid=META&amp;id=TRP"&gt;L-tryptophan&lt;/a&gt;, and the cofactors NAD and NADP. It is utilized in the biosynthesis of &lt;a href="/compound?orgid=META&amp;id=THMPT"&gt;tetrahydromethanopterin&lt;/a&gt; in certain archaeal species and in the biosynthesis of &lt;a href="/META/NEW-IMAGE?type=COMPOUND&amp;object=CPD1G-1531"&gt;mycolyl-arabinogalactan-peptidoglycan complex&lt;/a&gt; in &lt;a href="/META/NEW-IMAGE?object=TAX-1773"&gt;&lt;i&gt;Mycobacterium tuberculosis&lt;/i&gt;&lt;/a&gt;.
+<appears-in-left-side-of><Reaction resource='getxml?META:RXN-22578' orgid='META' frameid='RXN-22578'/><Reaction resource='getxml?META:6.3.4.8-RXN' orgid='META' frameid='6.3.4.8-RXN'/><Reaction resource='getxml?META:RXN-19537' orgid='META' frameid='RXN-19537'/><Reaction resource='getxml?META:RXN-10969' orgid='META' frameid='RXN-10969'/><Reaction resource='getxml?META:RXN-8124' orgid='META' frameid='RXN-8124'/><Reaction resource='getxml?META:NICOTINATEPRIBOSYLTRANS-RXN' orgid='META' frameid='NICOTINATEPRIBOSYLTRANS-RXN'/><Reaction resource='getxml?META:RXN-13203' orgid='META' frameid='RXN-13203'/><Reaction resource='getxml?META:RXN-11078' orgid='META' frameid='RXN-11078'/><Reaction resource='getxml?META:RXN-13207' orgid='META' frameid='RXN-13207'/><Reaction resource='getxml?META:RXN-10012' orgid='META' frameid='RXN-10012'/></appears-in-left-side-of>
+<inchi datatype='string'>InChI=1S/C5H13O14P3/c6-3-2(1-16-20(8,9)10)17-5(4(3)7)18-22(14,15)19-21(11,12)13/h2-7H,1H2,(H,14,15)(H2,8,9,10)(H2,11,12,13)/p-5/t2-,3-,4-,5-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>385.031</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:ATPPHOSPHORIBOSYLTRANS-RXN' orgid='META' frameid='ATPPHOSPHORIBOSYLTRANS-RXN'/><Reaction resource='getxml?META:ADENPRIBOSYLTRAN-RXN' orgid='META' frameid='ADENPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?META:RXN-14270' orgid='META' frameid='RXN-14270'/><Reaction resource='getxml?META:QUINOPRIBOTRANS-RXN' orgid='META' frameid='QUINOPRIBOTRANS-RXN'/><Reaction resource='getxml?META:XANPRIBOSYLTRAN-RXN' orgid='META' frameid='XANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?META:HYPOXANPRIBOSYLTRAN-RXN' orgid='META' frameid='HYPOXANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?META:RXN-12150' orgid='META' frameid='RXN-12150'/><Reaction resource='getxml?META:RXN0-1401' orgid='META' frameid='RXN0-1401'/><Reaction resource='getxml?META:GUANPRIBOSYLTRAN-RXN' orgid='META' frameid='GUANPRIBOSYLTRAN-RXN'/><Reaction resource='getxml?META:2.4.2.12-RXN' orgid='META' frameid='2.4.2.12-RXN'/><Reaction resource='getxml?META:PRTRANS-RXN' orgid='META' frameid='PRTRANS-RXN'/><Reaction resource='getxml?META:PRPPAMIDOTRANS-RXN' orgid='META' frameid='PRPPAMIDOTRANS-RXN'/><Reaction resource='getxml?META:2.4.2.20-RXN' orgid='META' frameid='2.4.2.20-RXN'/><Reaction resource='getxml?META:OROPRIBTRANS-RXN' orgid='META' frameid='OROPRIBTRANS-RXN'/><Reaction resource='getxml?META:PRPPSYN-RXN' orgid='META' frameid='PRPPSYN-RXN'/><Reaction resource='getxml?META:URACIL-PRIBOSYLTRANS-RXN' orgid='META' frameid='URACIL-PRIBOSYLTRANS-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>389.9518</monoisotopic-mw>
+<synonym datatype='string'>5-phosphoribosyl 1-pyrophosphate</synonym>
+<synonym datatype='string'>5-phosphoribosyl diphosphate</synonym>
+<synonym datatype='string'>5-phosphoribosyl-1-PP</synonym>
+<synonym datatype='string'>5-phosphoribosyl-PP</synonym>
+<synonym datatype='string'>5-phosphoribosyl-1-pyrophosphate</synonym>
+<synonym datatype='string'>5-phosphoribosylpyrophosphate</synonym>
+<synonym datatype='string'>phosphoribosylpyrophosphate</synonym>
+<synonym datatype='string'>5-phospho-ribosyl-pyrophosphate</synonym>
+<synonym datatype='string'>&amp;alpha;-D-5-phosphoribosylPP</synonym>
+<synonym datatype='string'>&amp;alpha;-D-5-P-RibosylPP</synonym>
+<common-name datatype='string'>5-phospho-&amp;alpha;-D-ribose 1-diphosphate</common-name>
+<abbrev-name datatype='string'>PRPP</abbrev-name>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=META&amp;id=PRPP&quot;&gt;5-Phospho-&amp;alpha;-D-ribose 1-diphosphate&lt;/a&gt; (PRPP) is an important metabolite required in the biosynthesis of purine and pyrimidine nucleotides, the amino acids &lt;a href=&quot;/compound?orgid=META&amp;id=HIS&quot;&gt;L-histidine&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=META&amp;id=TRP&quot;&gt;L-tryptophan&lt;/a&gt;, and the cofactors NAD and NADP. It is utilized in the biosynthesis of &lt;a href=&quot;/compound?orgid=META&amp;id=THMPT&quot;&gt;tetrahydromethanopterin&lt;/a&gt; in certain archaeal species and in the biosynthesis of &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=CPD1G-1531&quot;&gt;mycolyl-arabinogalactan-peptidoglycan complex&lt;/a&gt; in &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-1773&quot;&gt;&lt;i&gt;Mycobacterium tuberculosis&lt;/i&gt;&lt;/a&gt;.
 &lt;p&gt;
-PRPP was discovered in the mid-1950s while searching for an enzyme that converted &lt;a href="/compound?orgid=META&amp;id=OROTATE"&gt;orotate&lt;/a&gt; to &lt;a href="/compound?orgid=META&amp;id=UMP"&gt;UMP&lt;/a&gt; [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/14392173"&gt;Kornberg55&lt;/a&gt;, &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/13525411"&gt;Khorana58&lt;/a&gt;].
+PRPP was discovered in the mid-1950s while searching for an enzyme that converted &lt;a href=&quot;/compound?orgid=META&amp;id=OROTATE&quot;&gt;orotate&lt;/a&gt; to &lt;a href=&quot;/compound?orgid=META&amp;id=UMP&quot;&gt;UMP&lt;/a&gt; [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/14392173&quot;&gt;Kornberg55&lt;/a&gt;, &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/13525411&quot;&gt;Khorana58&lt;/a&gt;].
 &lt;p&gt;
-The enzyme catalyzing the synthesis of PRPP, &lt;a href="/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.7.6.1"&gt;EC 2.7.6.1, ribose-phosphate diphosphokinase&lt;/a&gt;, is ubiquitous among free-living organisms. So far, only certain obligate intracellular parasites such as some &lt;a href="/META/NEW-IMAGE?object=TAX-810"&gt;&lt;i&gt;Chlamydia&lt;/i&gt;&lt;/a&gt; and &lt;a href="/META/NEW-IMAGE?object=TAX-780"&gt;&lt;i&gt;Rickettsia&lt;/i&gt;&lt;/a&gt; species are known to lack the gene encoding it. Mammals contain three PRPP synthase-encoding genes, the yeast &lt;a href="/META/NEW-IMAGE?object=TAX-4932"&gt;&lt;i&gt;Saccharomyces cerevisiae&lt;/i&gt;&lt;/a&gt; contains five, and the plant &lt;a href="/META/NEW-IMAGE?object=TAX-3702"&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt; contains five genes as well [&lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/28031352"&gt;HoveJensen17&lt;/a&gt;].</comment>
-<common-name datatype="string">5-phospho-&amp;alpha;-D-ribose 1-diphosphate</common-name>
-<credits><revised><date datatype="date">2018-02-05</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
-</credits>
+The enzyme catalyzing the synthesis of PRPP, &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-2.7.6.1&quot;&gt;EC 2.7.6.1, ribose-phosphate diphosphokinase&lt;/a&gt;, is ubiquitous among free-living organisms. So far, only certain obligate intracellular parasites such as some &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-810&quot;&gt;&lt;i&gt;Chlamydia&lt;/i&gt;&lt;/a&gt; and &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-780&quot;&gt;&lt;i&gt;Rickettsia&lt;/i&gt;&lt;/a&gt; species are known to lack the gene encoding it. Mammals contain three PRPP synthase-encoding genes, the yeast &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-4932&quot;&gt;&lt;i&gt;Saccharomyces cerevisiae&lt;/i&gt;&lt;/a&gt; contains five, and the plant &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-3702&quot;&gt;&lt;i&gt;Arabidopsis thaliana&lt;/i&gt;&lt;/a&gt; contains five genes as well [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/28031352&quot;&gt;HoveJensen17&lt;/a&gt;].</comment>
+<inchi-key datatype='string'>InChIKey=PQGCEDQWHSBAJP-TXICZTDVSA-I</inchi-key>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000008215630</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000008215630</dblink-URL>
+</dblink>
 <dblink><dblink-db>REACTOME-CPD</dblink-db>
 <dblink-oid>73566</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -91,37 +101,35 @@ The enzyme catalyzing the synthesis of PRPP, &lt;a href="/META/NEW-IMAGE?type=EC
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=13270-65-0</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-740.25256<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-740.25256<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C5H13O14P3/c6-3-2(1-16-20(8,9)10)17-5(4(3)7)18-22(14,15)19-21(11,12)13/h2-7H,1H2,(H,14,15)(H2,8,9,10)(H2,11,12,13)/p-5/t2-,3-,4-,5-/m1/s1</inchi>
-<inchi-key datatype="string">InChIKey=PQGCEDQWHSBAJP-TXICZTDVSA-I</inchi-key>
-<molecular-weight datatype="float" units="Daltons">385.031</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">389.9518</monoisotopic-mw>
-<synonym datatype="string">5-phosphoribosyl 1-pyrophosphate</synonym>
-<synonym datatype="string">5-phosphoribosyl diphosphate</synonym>
-<synonym datatype="string">5-phosphoribosyl-1-PP</synonym>
-<synonym datatype="string">5-phosphoribosyl-PP</synonym>
-<synonym datatype="string">5-phosphoribosyl-1-pyrophosphate</synonym>
-<synonym datatype="string">5-phosphoribosylpyrophosphate</synonym>
-<synonym datatype="string">phosphoribosylpyrophosphate</synonym>
-<synonym datatype="string">5-phospho-ribosyl-pyrophosphate</synonym>
-<synonym datatype="string">&amp;alpha;-D-5-phosphoribosylPP</synonym>
-<synonym datatype="string">&amp;alpha;-D-5-P-RibosylPP</synonym>
-<abbrev-name datatype="string">PRPP</abbrev-name>
-<appears-in-left-side-of><Reaction frameid="6.3.4.8-RXN" orgid="META" resource="getxml?META:6.3.4.8-RXN" /><Reaction frameid="RXN-19537" orgid="META" resource="getxml?META:RXN-19537" /><Reaction frameid="RXN-10969" orgid="META" resource="getxml?META:RXN-10969" /><Reaction frameid="RXN-8124" orgid="META" resource="getxml?META:RXN-8124" /><Reaction frameid="NICOTINATEPRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:NICOTINATEPRIBOSYLTRANS-RXN" /><Reaction frameid="RXN-13203" orgid="META" resource="getxml?META:RXN-13203" /><Reaction frameid="RXN-11078" orgid="META" resource="getxml?META:RXN-11078" /><Reaction frameid="RXN-13207" orgid="META" resource="getxml?META:RXN-13207" /><Reaction frameid="RXN-10012" orgid="META" resource="getxml?META:RXN-10012" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="ATPPHOSPHORIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:ATPPHOSPHORIBOSYLTRANS-RXN" /><Reaction frameid="ADENPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:ADENPRIBOSYLTRAN-RXN" /><Reaction frameid="RXN-14270" orgid="META" resource="getxml?META:RXN-14270" /><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /><Reaction frameid="XANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:XANPRIBOSYLTRAN-RXN" /><Reaction frameid="HYPOXANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:HYPOXANPRIBOSYLTRAN-RXN" /><Reaction frameid="RXN-12150" orgid="META" resource="getxml?META:RXN-12150" /><Reaction frameid="RXN0-1401" orgid="META" resource="getxml?META:RXN0-1401" /><Reaction frameid="GUANPRIBOSYLTRAN-RXN" orgid="META" resource="getxml?META:GUANPRIBOSYLTRAN-RXN" /><Reaction frameid="2.4.2.12-RXN" orgid="META" resource="getxml?META:2.4.2.12-RXN" /><Reaction frameid="PRTRANS-RXN" orgid="META" resource="getxml?META:PRTRANS-RXN" /><Reaction frameid="PRPPAMIDOTRANS-RXN" orgid="META" resource="getxml?META:PRPPAMIDOTRANS-RXN" /><Reaction frameid="2.4.2.20-RXN" orgid="META" resource="getxml?META:2.4.2.20-RXN" /><Reaction frameid="OROPRIBTRANS-RXN" orgid="META" resource="getxml?META:OROPRIBTRANS-RXN" /><Reaction frameid="PRPPSYN-RXN" orgid="META" resource="getxml?META:PRPPSYN-RXN" /><Reaction frameid="URACIL-PRIBOSYLTRANS-RXN" orgid="META" resource="getxml?META:URACIL-PRIBOSYLTRANS-RXN" /></appears-in-right-side-of>
+<credits><revised><date datatype='date'>2018-02-05</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
+</credits>
 </Compound>
 </ptools-xml>

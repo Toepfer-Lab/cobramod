@@ -5,17 +5,19 @@ EQUATION    C05378 <=> C00111 + C00118
 RCLASS      RC00438  C00111_C05378
             RC00439  C00118_C05378
 ENZYME      4.1.2.13
-PATHWAY     rn00010  Glycolysis / Gluconeogenesis
-            rn00030  Pentose phosphate pathway
-            rn00051  Fructose and mannose metabolism
-            rn01100  Metabolic pathways
-            rn01110  Biosynthesis of secondary metabolites
-            rn01120  Microbial metabolism in diverse environments
-            rn01200  Carbon metabolism
-            rn01230  Biosynthesis of amino acids
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
-            M00345  Formaldehyde assimilation, ribulose monophosphate pathway
+BRITE       Enzymatic reactions [BR:br08201]
+             4. Lyase reactions
+              4.1  Carbon-carbon lyases
+               4.1.2  Aldehyde-lyases
+                4.1.2.13
+                 R01070  beta-D-Fructose 1,6-bisphosphate <=> Glycerone phosphate + D-Glyceraldehyde 3-phosphate
+            IUBMB reaction hierarchy [BR:br08202]
+             4. Lyase reactions
+              4.1.2.13
+               R01068  D-Fructose 1,6-bisphosphate
+                R01070  beta-D-Fructose 1,6-bisphosphate
 ORTHOLOGY   K01622  fructose 1,6-bisphosphate aldolase/phosphatase [EC:4.1.2.13 3.1.3.11]
             K01623  fructose-bisphosphate aldolase, class I [EC:4.1.2.13]
             K01624  fructose-bisphosphate aldolase, class II [EC:4.1.2.13]

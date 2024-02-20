@@ -15,6 +15,12 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
             M00346  Formaldehyde assimilation, serine pathway
+BRITE       Enzymatic reactions [BR:br08201]
+             4. Lyase reactions
+              4.2  Carbon-oxygen lyases
+               4.2.1  Hydro-lyases
+                4.2.1.11
+                 R00658  2-Phospho-D-glycerate <=> Phosphoenolpyruvate + H2O
 ORTHOLOGY   K01689  enolase [EC:4.2.1.11]
 DBLINKS     RHEA: 10167
 ///

@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:GTP-CYCLOHYDRO-II-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,53 +9,53 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT5G64300" detail="full" frameid="AT5G64300" orgid="ARA">
+  <Gene ID="ARA:AT5G64300" orgid="ARA" frameid="AT5G64300" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-5" orgid="ARA" frameid="CHROMOSOME-5" />
     </replicon>
     <product>
-      <Protein frameid="AT5G64300-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G64300-MONOMER" />
+      <Protein resource="getxml?ARA:AT5G64300-MONOMER" orgid="ARA" frameid="AT5G64300-MONOMER" />
     </product>
+    <synonym datatype="string">RFD1</synonym>
+    <synonym datatype="string">RIBA1</synonym>
+    <synonym datatype="string">GCH</synonym>
+    <centisome-position datatype="float" units="CENTISOMES">95.34283</centisome-position>
+    <right-end-position datatype="integer">25738388</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">25735630</left-end-position>
+    <common-name datatype="string">AT5G64300</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G64300</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G64300</dblink-URL>
     </dblink>
-    <synonym datatype="string">RFD1</synonym>
-    <synonym datatype="string">RIBA1</synonym>
-    <synonym datatype="string">GCH</synonym>
-    <left-end-position datatype="integer">25735630</left-end-position>
     <accession-1 datatype="string">AT5G64300</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">95.34283</centisome-position>
-    <right-end-position datatype="integer">25738388</right-end-position>
-    <common-name datatype="string">AT5G64300</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT5G59750" detail="full" frameid="AT5G59750" orgid="ARA">
+  <Gene ID="ARA:AT5G59750" orgid="ARA" frameid="AT5G59750" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-5" orgid="ARA" frameid="CHROMOSOME-5" />
     </replicon>
     <product>
-      <Protein frameid="AT5G59750-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G59750-MONOMER" />
+      <Protein resource="getxml?ARA:AT5G59750-MONOMER" orgid="ARA" frameid="AT5G59750-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">89.24817</centisome-position>
+    <right-end-position datatype="integer">24092768</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">24090515</left-end-position>
+    <common-name datatype="string">AT5G59750</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G59750</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G59750</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">24090515</left-end-position>
     <accession-1 datatype="string">AT5G59750</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">89.24817</centisome-position>
-    <right-end-position datatype="integer">24092768</right-end-position>
-    <common-name datatype="string">AT5G59750</common-name>
-    <component-of />
   </Gene>
 </ptools-xml>

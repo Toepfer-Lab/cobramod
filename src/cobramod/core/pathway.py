@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """COBRApy Group-child class extension
 
 The new class :class:`cobramod.pathway.Pathway" is child derived from
@@ -7,23 +6,29 @@ The new class :class:`cobramod.pathway.Pathway" is child derived from
 - solution: Obtain the solution for the specific members.
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
-from pathlib import Path
-from typing import Any, Dict, List, Union, Optional
+from __future__ import annotations
 
-from escher import Builder
-from cobra.core.group import Group
-from cobra.core.model import Model
-from cobra.core.solution import Solution
-from cobra.core.reaction import Reaction
-from cobra.core.dictlist import DictList
-from pandas import Series
+import warnings
+from pathlib import Path
+from typing import Any, Optional, Union
+
+import cobra.core as cobra_core
+
+try:
+    import escher
+
+    _has_escher = True
+except ImportError:
+    _has_escher = False
+
+import pandas as pd
 
 from cobramod.debug import debug_log
 from cobramod.error import GraphKeyError
 from cobramod.visualization.converter import JsonDictionary
 
 
-class Pathway(Group):
+class Pathway(cobra_core.Group):
     """
     A Sub-class from the original COBRApy :class:`cobra.Group`, which inherits
     all attributes and adds the method solution, to get a Solution for the
@@ -66,8 +71,8 @@ class Pathway(Group):
         self,
         id: str,
         name: str = "",
-        members: DictList = DictList(),
-        kind: str = None,
+        members: Optional[set[cobra_core.Object]] = None,
+        kind: Optional[str] = None,
     ):
         """
         Regular __init__ of the class. It maintains the same attributes as its
@@ -77,7 +82,7 @@ class Pathway(Group):
         Args:
             id (str): Identifier of the pathway.
             name (str): Name for the pathway.
-            members (DictList): Includes the members for the pathway. It should
+            members (set): Includes the members for the pathway. It should
                 include only :class:`cobra.core.reaction.Reaction`. Defaults to
                 None.
             kind (str): The kind of group, as specified for the Groups feature
@@ -87,40 +92,49 @@ class Pathway(Group):
                 specification to ensure you are using the proper value for
                 kind. (Text extracted from parent.)
         """
-        super().__init__(id=id, name=name, kind=kind)
+        super().__init__(
+            id=id,
+            name=name,
+            kind=kind,
+        )
+
         # Loop has to be after __init__, otherwise, behavior of class changes.
-        self.graph: dict = dict()
-        self.notes: Dict[str, Any] = {"ORDER": dict()}
-        for member in members:
-            # Remove no Reactions
-            if not isinstance(member, Reaction):
-                debug_log.debug(
-                    f'Member "{member.id}" is not a Reaction. This object will'
-                    f'not be included in the pathway "{self.id}".'
-                )
-                continue
-            super().add_members(new_members=[member])
+        self.graph = dict()
+        self.notes: dict[str, Any] = {"ORDER": dict()}
+
+        if members:
+            for member in members:
+                # Remove no Reactions
+                if not isinstance(member, cobra_core.Reaction):
+                    debug_log.debug(
+                        f'Member "{member.id}" is not a Reaction. This object will'
+                        f'not be included in the pathway "{self.id}".'
+                    )
+                    continue
+                super().add_members(new_members=[member])
 
         # Attributes that can be used for the customization of the
         # visualization
-        self.color_negative: Optional[Union[str, List[int]]] = None
-        self.color_positive: Optional[Union[str, List[int]]] = None
-        self.color_min_max: Optional[List[float]] = None
+        self.color_negative: Optional[Union[str, list[int]]] = None
+        self.color_positive: Optional[Union[str, list[int]]] = None
+        self.color_min_max: Optional[list[float]] = None
         self.color_max_steps: int = 100
         self.color_n_steps: Optional[int] = None
         self.color_quantile: bool = False
         self.vertical: bool = False
 
-    def _filter(self, solution: Solution, attribute: str) -> Series:
+    def _filter(
+        self, solution: cobra_core.Solution, attribute: str
+    ) -> pd.Series:
         """
         Filters given attribute of Solution. Only members of the Pathway will
         appear.
         """
-        return getattr(solution, "fluxes").filter(
+        return getattr(solution, attribute).filter(
             items=[member.id for member in self.members], axis="index"
         )
 
-    def add_members(self, new_members: List[Reaction]):
+    def add_members(self, new_members: list[cobra_core.Reaction]):
         """
         Add given list of :class:`cobra.core.reaction.Reaction` into the
         Pathway.
@@ -131,10 +145,11 @@ class Pathway(Group):
         Raises:
             TypeError: If not all members are proper Reaction objects.
         """
-        if not all([isinstance(member, Reaction) for member in new_members]):
+        if not all(
+            [isinstance(member, cobra_core.Reaction) for member in new_members]
+        ):
             raise TypeError("Not all given members are Reactions.")
 
-        # self.__check_copy()
         super().add_members(new_members=new_members)
         for member in new_members:
             try:
@@ -144,7 +159,7 @@ class Pathway(Group):
             except KeyError:
                 self.notes["ORDER"][member.id] = None
 
-    def solution(self, solution: Solution) -> Solution:
+    def solution(self, solution: cobra_core.Solution) -> cobra_core.Solution:
         """
         Returns a :class:`cobra.Solution` with only the members of the pathway.
 
@@ -155,7 +170,7 @@ class Pathway(Group):
             Solution: Filtered solution containing only members of the Pathway
                 class.
         """
-        return Solution(
+        return cobra_core.Solution(
             objective_value=solution.objective_value,
             status=solution.status,
             fluxes=self._filter(solution=solution, attribute="fluxes"),
@@ -168,7 +183,7 @@ class Pathway(Group):
         )
 
     @classmethod
-    def _transform(cls, obj: Group) -> "Pathway":
+    def _transform(cls, obj: cobra_core.Group) -> "Pathway":
         """
         Transform given :class:`cobra.Group` into a proper cobramod Pathway
         object.
@@ -176,6 +191,7 @@ class Pathway(Group):
         pathway = cls(
             id=obj.id, name=obj.name, members=obj.members, kind=obj.kind
         )
+        pathway._model = obj._model
         # Add directly from the notes or create a quick order
         try:
             # When loading model, COBRApy will modify the string
@@ -188,7 +204,9 @@ class Pathway(Group):
         except KeyError:
             # Check only Reactions
             reactions = [
-                rxn for rxn in obj.members if isinstance(rxn, Reaction)
+                rxn
+                for rxn in obj.members
+                if isinstance(rxn, cobra_core.Reaction)
             ]
             order = {}
             for value, reaction in enumerate(reactions):
@@ -250,9 +268,11 @@ class Pathway(Group):
 
     def visualize(
         self,
-        solution_fluxes: Union[Solution, Dict[str, float]] = None,
-        filename: Path = None,
-    ) -> Builder:
+        solution_fluxes: Optional[
+            Union[cobra_core.Solution, dict[str, float]]
+        ] = None,
+        filename: Optional[Union[str, Path]] = None,
+    ) -> Optional[escher.Builder]:
         """
         Returns a :class:`escher.Builder`, which can be used to create visual
         representations of the pathway.
@@ -261,32 +281,44 @@ class Pathway(Group):
             solution_fluxes (Solution, dict): Series or Dictionary with fluxes.
                 The values will be then showed in the Builder.
                 Defaults to None.
-            filename (Path): Path for the HTML. Defaults to "pathway.html" in
-                the current working directory.
+            filename (str, Path): Path for the HTML. Defaults to
+                "pathway.html" in the current working directory.
         """
         json_dict = JsonDictionary()
+        if filename is None:
+            filename = "pathway.html"
+
         # Define solution. If None, nothing will be added. Either dict or
         # regular solution
         if solution_fluxes is not None:
-            if isinstance(solution_fluxes, Solution):
+            if isinstance(solution_fluxes, cobra_core.Solution):
                 solution_fluxes = solution_fluxes.fluxes.to_dict()
             json_dict.flux_solution = solution_fluxes
+
         # Get graph and add to json_dict
         json_dict.graph = self.graph.copy()
-        json_dict.reaction_strings = {
-            reaction: self.members.get_by_id(reaction).reaction
-            for reaction in json_dict.graph.keys()
-        }
+        reactions: dict[str, str] = {m.id: m.reaction for m in self.members}
+        json_dict.reaction_strings = reactions
 
-        return json_dict.visualize(
-            filepath=filename,
-            vertical=self.vertical,
-            color=[self.color_positive, self.color_negative],
-            min_max=self.color_min_max,
-            quantile=self.color_quantile,
-            max_steps=self.color_max_steps,
-            n_steps=self.color_n_steps,
-        )
+        if _has_escher:
+            builder = json_dict.visualize(
+                filepath=filename,
+                vertical=self.vertical,
+                color=[self.color_positive, self.color_negative],
+                min_max=self.color_min_max,
+                quantile=self.color_quantile,
+                max_steps=self.color_max_steps,
+                n_steps=self.color_n_steps,
+            )
+            debug_log.info(f'Visualization saved in "{filename}"')
+            return builder
+        else:
+            warnings.warn(
+                "Package Escher was not found. No visualization in available. "
+                "You can install this extra-dependency running "
+                "'pip install cobramod[escher]'"
+            )
+            return
 
     def _repr_html_(self):
         """
@@ -303,11 +335,10 @@ rxn in self.members for gene in rxn.genes])}</p> </td> </tr> <tr>
 <td><strong>Visualization attributes</strong></td> <td> <ul> <li>vertical =
 {self.vertical}</li> <li>color_negative = {self.color_negative}</li>
 <li>color_positive = {self.color_positive}</li> <li>color_quantile =
-{self.color_quantile}</li> </ul> </td> </tr> </tbody> </table> <p>&nbsp;</p>
-"""
+{self.color_quantile}</li> </ul> </td> </tr> </tbody> </table> <p>&nbsp;</p>"""
 
 
-def model_convert(model: Model):
+def model_convert(model: cobra_core.Model):
     """
     Converts all Group objects in the given model to proper cobramod
     :class:`cobramod.pathway.Pathway`

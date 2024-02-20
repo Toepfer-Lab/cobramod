@@ -11,6 +11,17 @@ PATHWAY     rn00010  Glycolysis / Gluconeogenesis
             rn01120  Microbial metabolism in diverse environments
             rn01200  Carbon metabolism
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
+BRITE       Enzymatic reactions [BR:br08201]
+             2. Transferase reactions
+              2.7  Transferring phosphorus-containing groups
+               2.7.1  Phosphotransferases with an alcohol group as acceptor
+                2.7.1.147
+                 R09085  alpha-D-Glucose + ADP <=> alpha-D-Glucose 6-phosphate + AMP
+            IUBMB reaction hierarchy [BR:br08202]
+             2. Transferase reactions
+              2.7.1.147
+               R05804  D-Glucose <=> D-Glucose 6-phosphate
+                R09085  alpha-D-Glucose <=> alpha-D-Glucose 6-phosphate
 ORTHOLOGY   K00918  ADP-dependent phosphofructokinase/glucokinase [EC:2.7.1.146 2.7.1.147]
             K08074  ADP-dependent glucokinase [EC:2.7.1.147]
 ///

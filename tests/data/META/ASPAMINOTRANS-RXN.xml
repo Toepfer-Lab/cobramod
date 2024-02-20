@@ -1,12 +1,20 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ASPAMINOTRANS-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ASPAMINOTRANS-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ASPAMINOTRANS-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:ASPAMINOTRANS-RXN" detail="full" frameid="ASPAMINOTRANS-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<Reaction ID='META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:L-ASPARTATE' orgid='META' frameid='L-ASPARTATE'/></left>
+<left><Compound resource='getxml?META:2-KETOGLUTARATE' orgid='META' frameid='2-KETOGLUTARATE'/></left>
+<ec-number>EC-2.6.1.1<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:OXALACETIC_ACID' orgid='META' frameid='OXALACETIC_ACID'/></right>
+<right><Compound resource='getxml?META:GLT' orgid='META' frameid='GLT'/></right>
+<reaction-direction>REVERSIBLE</reaction-direction>
 <dblink><dblink-db>RHEA</dblink-db>
 <dblink-oid>21827</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -422,104 +430,97 @@
 <dblink-relationship>RELATED-TO</dblink-relationship>
 <dblink-URL>https://www.uniprot.org/uniprot/P26563</dblink-URL>
 </dblink>
-<ec-number>EC-2.6.1.1<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ASPAMINOTRANS-ENZRXN" detail="low" frameid="ASPAMINOTRANS-ENZRXN" orgid="META"><common-name datatype="string">aspartate transaminase</common-name>
-<enzyme><Protein frameid="ASPAMINOTRANS-DIMER" orgid="META" resource="getxml?META:ASPAMINOTRANS-DIMER" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">aspartate aminotransferase</synonym>
-<synonym datatype="string">transaminase A (sic)</synonym>
-<synonym datatype="string">glutamic-oxoaloacetic transaminase</synonym>
-<synonym datatype="string">glutamic-aspartic transaminase</synonym>
-<synonym datatype="string">tyrosine non-repressible aspartate aminotransferase</synonym>
-<synonym datatype="string">AspAT</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-22202" detail="low" frameid="ENZRXN-22202" orgid="META"><common-name datatype="string">aspartate transaminase</common-name>
-<enzyme><Protein frameid="MONOMER-18269" orgid="META" resource="getxml?META:MONOMER-18269" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">glutamate oxaloacetate transaminase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20879" detail="low" frameid="ENZRXN-20879" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="CPLX-8566" orgid="META" resource="getxml?META:CPLX-8566" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-20871" detail="low" frameid="ENZRXN-20871" orgid="META"><common-name datatype="string">aspartate transaminase</common-name>
-<enzyme><Protein frameid="MONOMER-17670" orgid="META" resource="getxml?META:MONOMER-17670" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-18240" detail="low" frameid="ENZRXN-18240" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="CPLX-8158" orgid="META" resource="getxml?META:CPLX-8158" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13889" detail="low" frameid="ENZRXN-13889" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="CPLX66-371" orgid="META" resource="getxml?META:CPLX66-371" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">glutamic-oxaloacetic transaminase</synonym>
-<synonym datatype="string">aspartate transaminase</synonym>
-<synonym datatype="string">glutamate-aspartate transaminase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13888" detail="low" frameid="ENZRXN-13888" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="CPLX-7321" orgid="META" resource="getxml?META:CPLX-7321" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">glutamate-aspartate transaminase</synonym>
-<synonym datatype="string">aspartate transaminase</synonym>
-<synonym datatype="string">glutamic-oxaloacetic transaminase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13869" detail="low" frameid="ENZRXN-13869" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="CPLX-7316" orgid="META" resource="getxml?META:CPLX-7316" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">aspartate:2-oxoglutarate aminotransferase</synonym>
-<synonym datatype="string">aspartate transaminase</synonym>
-<synonym datatype="string">glutamic-oxaloacetic transaminase</synonym>
-<synonym datatype="string">AspAT</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13868" detail="low" frameid="ENZRXN-13868" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="MONOMER-13012" orgid="META" resource="getxml?META:MONOMER-13012" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">AspAT</synonym>
-<synonym datatype="string">aspartate transaminase</synonym>
-<synonym datatype="string">glutamic-oxaloacetic transaminase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13865" detail="low" frameid="ENZRXN-13865" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="CPLX-7315" orgid="META" resource="getxml?META:CPLX-7315" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">aspartate transaminase</synonym>
-<synonym datatype="string">glutamic-oxaloacetic transaminase</synonym>
-<synonym datatype="string">AspAT</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13864" detail="low" frameid="ENZRXN-13864" orgid="META"><common-name datatype="string">aspartate aminotransferase</common-name>
-<enzyme><Protein frameid="CPLX-7314" orgid="META" resource="getxml?META:CPLX-7314" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-<synonym datatype="string">aspartate transaminase</synonym>
-<synonym datatype="string">glutamic-oxaloacetic transaminase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-13124" detail="low" frameid="ENZRXN-13124" orgid="META"><common-name datatype="string">aspartate transaminase</common-name>
-<enzyme><Protein frameid="CPLX-5342" orgid="META" resource="getxml?META:CPLX-5342" /></enzyme>
-<reaction><Reaction frameid="ASPAMINOTRANS-RXN" orgid="META" resource="#META:ASPAMINOTRANS-RXN" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">2.9700012<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>2.9700012<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY-7117" orgid="META" resource="getxml?META:PWY-7117" /><Pathway frameid="PWY-7115" orgid="META" resource="getxml?META:PWY-7115" /><Pathway frameid="ASPARTATE-DEG1-PWY" orgid="META" resource="getxml?META:ASPARTATE-DEG1-PWY" /><Pathway frameid="ASPARAGINE-DEG1-PWY-1" orgid="META" resource="getxml?META:ASPARAGINE-DEG1-PWY-1" /><Pathway frameid="PWY-7383" orgid="META" resource="getxml?META:PWY-7383" /><Pathway frameid="ASPARTATESYN-PWY" orgid="META" resource="getxml?META:ASPARTATESYN-PWY" /><Pathway frameid="GLUTDEG-PWY" orgid="META" resource="getxml?META:GLUTDEG-PWY" /><Pathway frameid="MALATE-ASPARTATE-SHUTTLE-PWY" orgid="META" resource="getxml?META:MALATE-ASPARTATE-SHUTTLE-PWY" /></in-pathway>
-<left><Compound frameid="L-ASPARTATE" orgid="META" resource="getxml?META:L-ASPARTATE" /></left>
-<left><Compound frameid="2-KETOGLUTARATE" orgid="META" resource="getxml?META:2-KETOGLUTARATE" /></left>
+<in-pathway><Pathway resource='getxml?META:PWY-7383' orgid='META' frameid='PWY-7383'/><Pathway resource='getxml?META:TCA-1' orgid='META' frameid='TCA-1'/><Pathway resource='getxml?META:PWY-7117' orgid='META' frameid='PWY-7117'/><Pathway resource='getxml?META:PWY-7115' orgid='META' frameid='PWY-7115'/><Pathway resource='getxml?META:ASPARTATE-DEG1-PWY' orgid='META' frameid='ASPARTATE-DEG1-PWY'/><Pathway resource='getxml?META:ASPARTATESYN-PWY' orgid='META' frameid='ASPARTATESYN-PWY'/><Pathway resource='getxml?META:GLUTDEG-PWY' orgid='META' frameid='GLUTDEG-PWY'/><Pathway resource='getxml?META:MALATE-ASPARTATE-SHUTTLE-PWY' orgid='META' frameid='MALATE-ASPARTATE-SHUTTLE-PWY'/></in-pathway>
 <orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>REVERSIBLE</reaction-direction>
-<right><Compound frameid="OXALACETIC_ACID" orgid="META" resource="getxml?META:OXALACETIC_ACID" /></right>
-<right><Compound frameid="GLT" orgid="META" resource="getxml?META:GLT" /></right>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ASPAMINOTRANS-ENZRXN' orgid='META' frameid='ASPAMINOTRANS-ENZRXN' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>aspartate aminotransferase</synonym>
+<synonym datatype='string'>transaminase A (sic)</synonym>
+<synonym datatype='string'>glutamic-oxoaloacetic transaminase</synonym>
+<synonym datatype='string'>glutamic-aspartic transaminase</synonym>
+<synonym datatype='string'>tyrosine non-repressible aspartate aminotransferase</synonym>
+<synonym datatype='string'>AspAT</synonym>
+<common-name datatype='string'>aspartate transaminase</common-name>
+<enzyme><Protein resource='getxml?META:ASPAMINOTRANS-DIMER' orgid='META' frameid='ASPAMINOTRANS-DIMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-22202' orgid='META' frameid='ENZRXN-22202' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>glutamate oxaloacetate transaminase</synonym>
+<common-name datatype='string'>aspartate transaminase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-18269' orgid='META' frameid='MONOMER-18269'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-20879' orgid='META' frameid='ENZRXN-20879' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8566' orgid='META' frameid='CPLX-8566'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-20871' orgid='META' frameid='ENZRXN-20871' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<common-name datatype='string'>aspartate transaminase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-17670' orgid='META' frameid='MONOMER-17670'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-18240' orgid='META' frameid='ENZRXN-18240' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8158' orgid='META' frameid='CPLX-8158'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13889' orgid='META' frameid='ENZRXN-13889' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>glutamic-oxaloacetic transaminase</synonym>
+<synonym datatype='string'>aspartate transaminase</synonym>
+<synonym datatype='string'>glutamate-aspartate transaminase</synonym>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX66-371' orgid='META' frameid='CPLX66-371'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13888' orgid='META' frameid='ENZRXN-13888' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>glutamate-aspartate transaminase</synonym>
+<synonym datatype='string'>aspartate transaminase</synonym>
+<synonym datatype='string'>glutamic-oxaloacetic transaminase</synonym>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7321' orgid='META' frameid='CPLX-7321'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13869' orgid='META' frameid='ENZRXN-13869' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>aspartate:2-oxoglutarate aminotransferase</synonym>
+<synonym datatype='string'>aspartate transaminase</synonym>
+<synonym datatype='string'>glutamic-oxaloacetic transaminase</synonym>
+<synonym datatype='string'>AspAT</synonym>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7316' orgid='META' frameid='CPLX-7316'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13868' orgid='META' frameid='ENZRXN-13868' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>AspAT</synonym>
+<synonym datatype='string'>aspartate transaminase</synonym>
+<synonym datatype='string'>glutamic-oxaloacetic transaminase</synonym>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-13012' orgid='META' frameid='MONOMER-13012'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13865' orgid='META' frameid='ENZRXN-13865' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>aspartate transaminase</synonym>
+<synonym datatype='string'>glutamic-oxaloacetic transaminase</synonym>
+<synonym datatype='string'>AspAT</synonym>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7315' orgid='META' frameid='CPLX-7315'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13864' orgid='META' frameid='ENZRXN-13864' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<synonym datatype='string'>aspartate transaminase</synonym>
+<synonym datatype='string'>glutamic-oxaloacetic transaminase</synonym>
+<common-name datatype='string'>aspartate aminotransferase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-7314' orgid='META' frameid='CPLX-7314'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-13124' orgid='META' frameid='ENZRXN-13124' detail='low'><reaction><Reaction resource='#META:ASPAMINOTRANS-RXN' orgid='META' frameid='ASPAMINOTRANS-RXN'/></reaction>
+<common-name datatype='string'>aspartate transaminase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-5342' orgid='META' frameid='CPLX-5342'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

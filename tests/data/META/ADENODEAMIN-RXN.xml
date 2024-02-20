@@ -1,12 +1,21 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:ADENODEAMIN-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ADENODEAMIN-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:ADENODEAMIN-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:ADENODEAMIN-RXN" detail="full" frameid="ADENODEAMIN-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<Reaction ID='META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:ADENOSINE' orgid='META' frameid='ADENOSINE'/></left>
+<left><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/></left>
+<left><Compound resource='getxml?META:PROTON' orgid='META' frameid='PROTON'/></left>
+<ec-number>EC-3.5.4.4<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:INOSINE' orgid='META' frameid='INOSINE'/></right>
+<right><Compound resource='getxml?META:AMMONIUM' orgid='META' frameid='AMMONIUM'/></right>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR95432</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -52,47 +61,47 @@
 <dblink-relationship>RELATED-TO</dblink-relationship>
 <dblink-URL>https://www.uniprot.org/uniprot/P53984</dblink-URL>
 </dblink>
-<ec-number>EC-3.5.4.4<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ADENODEAMIN-ENZRXN" detail="low" frameid="ADENODEAMIN-ENZRXN" orgid="META"><common-name datatype="string">adenosine deaminase</common-name>
-<enzyme><Protein frameid="ADENODEAMIN-MONOMER" orgid="META" resource="getxml?META:ADENODEAMIN-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
-<synonym datatype="string">adenosine aminohydrolase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-17063" detail="low" frameid="ENZRXN-17063" orgid="META"><common-name datatype="string">adenosine deaminase</common-name>
-<enzyme><Protein frameid="HS02191-MONOMER" orgid="META" resource="getxml?META:HS02191-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
-<synonym datatype="string">adenosine aminohydrolase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-3161" detail="low" frameid="ENZRXN-3161" orgid="META"><common-name datatype="string">adenosine deaminase</common-name>
-<enzyme><Protein frameid="MONOMER-841" orgid="META" resource="getxml?META:MONOMER-841" /></enzyme>
-<reaction><Reaction frameid="ADENODEAMIN-RXN" orgid="META" resource="#META:ADENODEAMIN-RXN" /></reaction>
-<synonym datatype="string">adenosine aminohydrolase</synonym>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-49.792007<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-49.792007<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY0-1296" orgid="META" resource="getxml?META:PWY0-1296" /><Pathway frameid="SALVADEHYPOX-PWY" orgid="META" resource="getxml?META:SALVADEHYPOX-PWY" /><Pathway frameid="PWY-6609" orgid="META" resource="getxml?META:PWY-6609" /><Pathway frameid="PWY-6611" orgid="META" resource="getxml?META:PWY-6611" /></in-pathway>
-<left><Compound frameid="ADENOSINE" orgid="META" resource="getxml?META:ADENOSINE" /></left>
-<left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
-<left><Compound frameid="PROTON" orgid="META" resource="getxml?META:PROTON" /></left>
+<in-pathway><Pathway resource='getxml?META:PWY0-1296' orgid='META' frameid='PWY0-1296'/><Pathway resource='getxml?META:SALVADEHYPOX-PWY' orgid='META' frameid='SALVADEHYPOX-PWY'/><Pathway resource='getxml?META:PWY-6609' orgid='META' frameid='PWY-6609'/><Pathway resource='getxml?META:PWY-6611' orgid='META' frameid='PWY-6611'/></in-pathway>
 <orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="INOSINE" orgid="META" resource="getxml?META:INOSINE" /></right>
-<right><Compound frameid="AMMONIUM" orgid="META" resource="getxml?META:AMMONIUM" /></right>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ADENODEAMIN-ENZRXN' orgid='META' frameid='ADENODEAMIN-ENZRXN' detail='low'><reaction><Reaction resource='#META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/></reaction>
+<synonym datatype='string'>adenosine aminohydrolase</synonym>
+<common-name datatype='string'>adenosine deaminase</common-name>
+<enzyme><Protein resource='getxml?META:ADENODEAMIN-MONOMER' orgid='META' frameid='ADENODEAMIN-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN0-12593' orgid='META' frameid='ENZRXN0-12593' detail='low'><reaction><Reaction resource='#META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/></reaction>
+<common-name datatype='string'>adenosine deaminase</common-name>
+<enzyme><Protein resource='getxml?META:EG12097-MONOMER' orgid='META' frameid='EG12097-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN2OBG-976' orgid='META' frameid='ENZRXN2OBG-976' detail='low'><reaction><Reaction resource='#META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/></reaction>
+<common-name datatype='string'>adenosine deaminase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX2OBG-50' orgid='META' frameid='CPLX2OBG-50'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-17063' orgid='META' frameid='ENZRXN-17063' detail='low'><reaction><Reaction resource='#META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/></reaction>
+<synonym datatype='string'>adenosine aminohydrolase</synonym>
+<common-name datatype='string'>adenosine deaminase</common-name>
+<enzyme><Protein resource='getxml?META:HS02191-MONOMER' orgid='META' frameid='HS02191-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-3161' orgid='META' frameid='ENZRXN-3161' detail='low'><reaction><Reaction resource='#META:ADENODEAMIN-RXN' orgid='META' frameid='ADENODEAMIN-RXN'/></reaction>
+<synonym datatype='string'>adenosine aminohydrolase</synonym>
+<common-name datatype='string'>adenosine deaminase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-841' orgid='META' frameid='MONOMER-841'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

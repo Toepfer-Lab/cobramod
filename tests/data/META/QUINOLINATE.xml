@@ -1,17 +1,47 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:QUINOLINATE"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:QUINOLINATE'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:QUINOLINATE</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:QUINOLINATE" detail="full" frameid="QUINOLINATE" orgid="META"><cml><molecule formalCharge="-2" id="QUINOLINATE" title="quinolinate"><atomArray><atom elementType="C" id="QUINOLINATE-atom1" x2="-31754.0" y2="-715.0" /><atom elementType="C" id="QUINOLINATE-atom2" x2="-24609.0" y2="3410.0" /><atom elementType="C" id="QUINOLINATE-atom3" x2="-31754.0" y2="-8965.0" /><atom elementType="C" id="QUINOLINATE-atom4" x2="-17464.0" y2="-715.0" /><atom elementType="C" id="QUINOLINATE-atom5" x2="-17464.0" y2="-8965.0" /><atom elementType="C" id="QUINOLINATE-atom6" x2="-10320.0" y2="3410.0" /><atom elementType="C" id="QUINOLINATE-atom7" x2="-10320.0" y2="-13090.0" /><atom elementType="N" id="QUINOLINATE-atom8" x2="-24609.0" y2="-13090.0" /><atom elementType="O" formalCharge="-1" id="QUINOLINATE-atom9" x2="-3175.0" y2="-715.0" /><atom elementType="O" id="QUINOLINATE-atom10" x2="-10320.0" y2="11660.0" /><atom elementType="O" formalCharge="-1" id="QUINOLINATE-atom11" x2="-3175.0" y2="-8965.0" /><atom elementType="O" id="QUINOLINATE-atom12" x2="-10320.0" y2="-21340.0" /></atomArray>
-<bondArray><bond atomRefs="QUINOLINATE-atom3 QUINOLINATE-atom8" id="QUINOLINATE-bond1" order="1" /><bond atomRefs="QUINOLINATE-atom8 QUINOLINATE-atom5" id="QUINOLINATE-bond2" order="2" /><bond atomRefs="QUINOLINATE-atom1 QUINOLINATE-atom3" id="QUINOLINATE-bond3" order="2" /><bond atomRefs="QUINOLINATE-atom2 QUINOLINATE-atom1" id="QUINOLINATE-bond4" order="1" /><bond atomRefs="QUINOLINATE-atom6 QUINOLINATE-atom4" id="QUINOLINATE-bond5" order="1" /><bond atomRefs="QUINOLINATE-atom12 QUINOLINATE-atom7" id="QUINOLINATE-bond6" order="2" /><bond atomRefs="QUINOLINATE-atom4 QUINOLINATE-atom2" id="QUINOLINATE-bond7" order="2" /><bond atomRefs="QUINOLINATE-atom5 QUINOLINATE-atom4" id="QUINOLINATE-bond8" order="1" /><bond atomRefs="QUINOLINATE-atom7 QUINOLINATE-atom5" id="QUINOLINATE-bond9" order="1" /><bond atomRefs="QUINOLINATE-atom10 QUINOLINATE-atom6" id="QUINOLINATE-bond10" order="2" /><bond atomRefs="QUINOLINATE-atom11 QUINOLINATE-atom7" id="QUINOLINATE-bond11" order="1" /><bond atomRefs="QUINOLINATE-atom9 QUINOLINATE-atom6" id="QUINOLINATE-bond12" order="1" /></bondArray>
-<formula concise="C 7 H 3 N 1 O 4" /><float title="molecularWeight" units="g/mol">165.105</float>
-<string title="smiles">C1(\N=C(C(/C([O-])=O)=C\C=1)\C([O-])=O)</string>
+<Compound ID='META:QUINOLINATE' orgid='META' frameid='QUINOLINATE' detail='full'><cml><molecule id='QUINOLINATE' title='quinolinate' formalCharge='-2'><atomArray><atom id='QUINOLINATE-atom1' elementType='C' x2='-31754.0' y2='-715.0'/><atom id='QUINOLINATE-atom2' elementType='C' x2='-24609.0' y2='3410.0'/><atom id='QUINOLINATE-atom3' elementType='C' x2='-31754.0' y2='-8965.0'/><atom id='QUINOLINATE-atom4' elementType='C' x2='-17464.0' y2='-715.0'/><atom id='QUINOLINATE-atom5' elementType='C' x2='-17464.0' y2='-8965.0'/><atom id='QUINOLINATE-atom6' elementType='C' x2='-10320.0' y2='3410.0'/><atom id='QUINOLINATE-atom7' elementType='C' x2='-10320.0' y2='-13090.0'/><atom id='QUINOLINATE-atom8' elementType='N' x2='-24609.0' y2='-13090.0'/><atom id='QUINOLINATE-atom9' elementType='O' x2='-3175.0' y2='-715.0' formalCharge='-1'/><atom id='QUINOLINATE-atom10' elementType='O' x2='-10320.0' y2='11660.0'/><atom id='QUINOLINATE-atom11' elementType='O' x2='-3175.0' y2='-8965.0' formalCharge='-1'/><atom id='QUINOLINATE-atom12' elementType='O' x2='-10320.0' y2='-21340.0'/></atomArray>
+<bondArray><bond id='QUINOLINATE-bond1' atomRefs='QUINOLINATE-atom3 QUINOLINATE-atom8' order='1'/><bond id='QUINOLINATE-bond2' atomRefs='QUINOLINATE-atom8 QUINOLINATE-atom5' order='2'/><bond id='QUINOLINATE-bond3' atomRefs='QUINOLINATE-atom1 QUINOLINATE-atom3' order='2'/><bond id='QUINOLINATE-bond4' atomRefs='QUINOLINATE-atom2 QUINOLINATE-atom1' order='1'/><bond id='QUINOLINATE-bond5' atomRefs='QUINOLINATE-atom6 QUINOLINATE-atom4' order='1'/><bond id='QUINOLINATE-bond6' atomRefs='QUINOLINATE-atom12 QUINOLINATE-atom7' order='2'/><bond id='QUINOLINATE-bond7' atomRefs='QUINOLINATE-atom4 QUINOLINATE-atom2' order='2'/><bond id='QUINOLINATE-bond8' atomRefs='QUINOLINATE-atom5 QUINOLINATE-atom4' order='1'/><bond id='QUINOLINATE-bond9' atomRefs='QUINOLINATE-atom7 QUINOLINATE-atom5' order='1'/><bond id='QUINOLINATE-bond10' atomRefs='QUINOLINATE-atom10 QUINOLINATE-atom6' order='2'/><bond id='QUINOLINATE-bond11' atomRefs='QUINOLINATE-atom11 QUINOLINATE-atom7' order='1'/><bond id='QUINOLINATE-bond12' atomRefs='QUINOLINATE-atom9 QUINOLINATE-atom6' order='1'/></bondArray>
+<formula concise='C 7 H 3 N 1 O 4'/><float title='molecularWeight' units='g/mol'>165.105</float>
+<string title='smiles'>C1(\N=C(C(/C([O-])=O)=C\C=1)\C([O-])=O)</string>
 </molecule>
 </cml>
-<common-name datatype="string">quinolinate</common-name>
+<inchi datatype='string'>InChI=1S/C7H5NO4/c9-6(10)4-2-1-3-8-5(4)7(11)12/h1-3H,(H,9,10)(H,11,12)/p-2</inchi>
+<molecular-weight datatype='float' units='Daltons'>165.105</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-5721' orgid='META' frameid='RXN-5721'/><Reaction resource='getxml?META:QUINOPRIBOTRANS-RXN' orgid='META' frameid='QUINOPRIBOTRANS-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHE-MULTI-RXN' orgid='META' frameid='QUINOLINATE-SYNTHE-MULTI-RXN'/><Reaction resource='getxml?META:QUINOLINATE-SYNTHA-RXN' orgid='META' frameid='QUINOLINATE-SYNTHA-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>167.02185</monoisotopic-mw>
+<synonym datatype='string'>2,3-pyridinedicarboxylic acid</synonym>
+<synonym datatype='string'>2,3-pyridinedicarboxylate</synonym>
+<synonym datatype='string'>quinolinic acid</synonym>
+<synonym datatype='string'>pyridine-2,3-dicarboxylic acid</synonym>
+<synonym datatype='string'>pyridine-2,3-dicarboxylate</synonym>
+<common-name datatype='string'>quinolinate</common-name>
+<regulates><Regulation ID='META:REG-12795' orgid='META' frameid='REG-12795' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:QUINOLINATE' orgid='META' frameid='QUINOLINATE'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-16791' orgid='META' frameid='ENZRXN-16791' detail='low'><reaction><Reaction resource='getxml?META:AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN' orgid='META' frameid='AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN'/></reaction>
+<synonym datatype='string'>picolinic acid carboxylase</synonym>
+<synonym datatype='string'>aminocarboxymuconate-semialdehyde decarboxylase</synonym>
+<synonym datatype='string'>&amp;alpha;-amino &amp;beta;-carboxymuconate &amp;epsilon;-semialdehyde decarboxylase</synonym>
+<synonym datatype='string'>picolinic carboxylase</synonym>
+<common-name datatype='string'>2-amino 3-carboxymuconate 6-semialdehyde decarboxylase</common-name>
+<enzyme><Protein resource='getxml?META:HS14455-MONOMER' orgid='META' frameid='HS14455-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=GJAWHXHKYYXBSV-UHFFFAOYSA-L</inchi-key>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000000331671</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000000331671</dblink-URL>
+</dblink>
 <dblink><dblink-db>REACTOME-CPD</dblink-db>
 <dblink-oid>197238</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -72,44 +102,20 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=89-00-9</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-110.29488<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-110.29488<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C7H5NO4/c9-6(10)4-2-1-3-8-5(4)7(11)12/h1-3H,(H,9,10)(H,11,12)/p-2</inchi>
-<inchi-key datatype="string">InChIKey=GJAWHXHKYYXBSV-UHFFFAOYSA-L</inchi-key>
-<molecular-weight datatype="float" units="Daltons">165.105</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">167.02185</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-12795" detail="low" frameid="REG-12795" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-16791" detail="low" frameid="ENZRXN-16791" orgid="META"><common-name datatype="string">2-amino 3-carboxymuconate 6-semialdehyde decarboxylase</common-name>
-<enzyme><Protein frameid="HS14455-MONOMER" orgid="META" resource="getxml?META:HS14455-MONOMER" /></enzyme>
-<reaction><Reaction frameid="AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN" orgid="META" resource="getxml?META:AMINO-CARBOXYMUCONATE-SEMIALDEHYDE-RXN" /></reaction>
-<synonym datatype="string">picolinic acid carboxylase</synonym>
-<synonym datatype="string">aminocarboxymuconate-semialdehyde decarboxylase</synonym>
-<synonym datatype="string">&amp;alpha;-amino &amp;beta;-carboxymuconate &amp;epsilon;-semialdehyde decarboxylase</synonym>
-<synonym datatype="string">picolinic carboxylase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="QUINOLINATE" orgid="META" resource="#META:QUINOLINATE" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">2,3-pyridinedicarboxylic acid</synonym>
-<synonym datatype="string">2,3-pyridinedicarboxylate</synonym>
-<synonym datatype="string">quinolinic acid</synonym>
-<synonym datatype="string">pyridine-2,3-dicarboxylic acid</synonym>
-<synonym datatype="string">pyridine-2,3-dicarboxylate</synonym>
-<appears-in-right-side-of><Reaction frameid="RXN-5721" orgid="META" resource="getxml?META:RXN-5721" /><Reaction frameid="QUINOPRIBOTRANS-RXN" orgid="META" resource="getxml?META:QUINOPRIBOTRANS-RXN" /><Reaction frameid="QUINOLINATE-SYNTHE-MULTI-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHE-MULTI-RXN" /><Reaction frameid="QUINOLINATE-SYNTHA-RXN" orgid="META" resource="getxml?META:QUINOLINATE-SYNTHA-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

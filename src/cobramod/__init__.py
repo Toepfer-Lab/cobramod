@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """CobraMod Package
 
 CobraMod is a tool for pathway-centric metabolic network curation and extension
@@ -38,9 +37,9 @@ from cobramod.core.creation import (
     create_object,
 )
 from cobramod.core.crossreferences import add_crossreferences
-from cobramod.core.extension import add_pathway, test_non_zero_flux
+from cobramod.core.extension import test_non_zero_flux, add_pathway
 from cobramod.core.pathway import Pathway, model_convert
-from cobramod.core.retrieval import available_databases, get_data
+from cobramod.retrieval import get_data
 
 __all__ = [
     "get_data",
@@ -51,8 +50,7 @@ __all__ = [
     "test_non_zero_flux",
     "Pathway",
     "model_convert",
-    "available_databases",
     "add_crossreferences",
 ]
 
-__version__ = "1.1.1"
+__version__ = "1.2.0"

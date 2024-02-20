@@ -8,9 +8,9 @@ NAME        Polyphosphate;
 FORMULA     H4P2O7(HPO3)n
 COMMENT     Generic compound in reaction hierarchy
 REACTION    R00001 R02184 R02185 R02186 R02187 R02188 R02189 R03042 
-            R12633
+            R12633 R12747
 ENZYME      2.7.1.63        2.7.4.1         2.7.4.17        2.7.4.20        
-            2.7.4.33        3.6.1.10        3.6.1.11
+            2.7.4.33        2.7.4.34        3.6.1.10        3.6.1.11
 DBLINKS     PubChem: 3694
             ChEBI: 16838
 ATOM        13

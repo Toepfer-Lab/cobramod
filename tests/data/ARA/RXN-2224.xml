@@ -1,20 +1,21 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-2224"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:RXN-2224'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-2224</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:RXN-2224" detail="full" frameid="RXN-2224" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
-<gibbs-0 datatype="float" units="kcal/mol">-3.6101074</gibbs-0>
-<in-pathway><Pathway frameid="PWY-1187" orgid="ARA" resource="getxml?ARA:PWY-1187" /></in-pathway>
-<left><Compound frameid="3-HYDROXYPROPYL-GLUCOSINOLATE" orgid="ARA" resource="getxml?ARA:3-HYDROXYPROPYL-GLUCOSINOLATE" /></left>
-<left><Compound frameid="BENZOYLCOA" orgid="ARA" resource="getxml?ARA:BENZOYLCOA" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
+<Reaction ID='ARA:RXN-2224' orgid='ARA' frameid='RXN-2224' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:3-HYDROXYPROPYL-GLUCOSINOLATE' orgid='ARA' frameid='3-HYDROXYPROPYL-GLUCOSINOLATE'/></left>
+<left><Compound resource='getxml?ARA:BENZOYLCOA' orgid='ARA' frameid='BENZOYLCOA'/></left>
 <reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="3-BENZOYLOXYPROPYL-GLUCOSINOLATE" orgid="ARA" resource="getxml?ARA:3-BENZOYLOXYPROPYL-GLUCOSINOLATE" /></right>
-<right><Compound frameid="CO-A" orgid="ARA" resource="getxml?ARA:CO-A" /></right>
+<right><Compound resource='getxml?ARA:3-BENZOYLOXYPROPYL-GLUCOSINOLATE' orgid='ARA' frameid='3-BENZOYLOXYPROPYL-GLUCOSINOLATE'/></right>
+<right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-3.6101074</gibbs-0>
+<in-pathway><Pathway resource='getxml?ARA:PWY-1187' orgid='ARA' frameid='PWY-1187'/></in-pathway>
 </Reaction>
 </ptools-xml>

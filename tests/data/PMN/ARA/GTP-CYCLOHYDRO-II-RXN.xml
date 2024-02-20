@@ -1,35 +1,36 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/getxml?ARA:GTP-CYCLOHYDRO-II-RXN"><metadata><url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://localhost:1555/getxml?ARA:GTP-CYCLOHYDRO-II-RXN'><metadata><url>http://localhost:1555/</url>
 <service_name>getxml</service_name>
 <query>ARA:GTP-CYCLOHYDRO-II-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='27.0'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:GTP-CYCLOHYDRO-II-RXN" detail="full" frameid="GTP-CYCLOHYDRO-II-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
-<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /><coefficient datatype="integer">2</coefficient>
-</right>
-<right><Compound frameid="PPI" orgid="ARA" resource="getxml?ARA:PPI" /></right>
-<right><Compound frameid="DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" orgid="ARA" resource="getxml?ARA:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" /></right>
-<right><Compound frameid="FORMATE" orgid="ARA" resource="getxml?ARA:FORMATE" /></right>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-7406" detail="low" frameid="ENZRXNQT-7406" orgid="ARA"><enzyme><Protein frameid="AT5G59750-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G59750-MONOMER" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="ARA" resource="#ARA:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-6423" detail="low" frameid="ENZRXNQT-6423" orgid="ARA"><enzyme><Protein frameid="AT5G64300-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G64300-MONOMER" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="ARA" resource="#ARA:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
+<Reaction ID='ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
 <ec-number>EC-3.5.4.25<official>T</official>
 </ec-number>
-<gibbs-0 datatype="float" units="kcal/mol">-96.9801</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-7406' orgid='ARA' frameid='ENZRXNQT-7406' detail='low'><reaction><Reaction resource='#ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+<common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?ARA:AT5G59750-MONOMER' orgid='ARA' frameid='AT5G59750-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-6423' orgid='ARA' frameid='ENZRXNQT-6423' detail='low'><reaction><Reaction resource='#ARA:GTP-CYCLOHYDRO-II-RXN' orgid='ARA' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+<common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?ARA:AT5G64300-MONOMER' orgid='ARA' frameid='AT5G64300-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
 <reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<in-pathway><Pathway frameid="RIBOSYN2-PWY" orgid="ARA" resource="getxml?ARA:RIBOSYN2-PWY" /></in-pathway>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<left><Compound frameid="WATER" orgid="ARA" resource="getxml?ARA:WATER" /><coefficient datatype="integer">3</coefficient>
+<gibbs-0 datatype='float' units='kcal/mol'>-96.9801</gibbs-0>
+<right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/><coefficient datatype='integer'>2</coefficient>
+</right>
+<right><Compound resource='getxml?ARA:PPI' orgid='ARA' frameid='PPI'/></right>
+<right><Compound resource='getxml?ARA:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR' orgid='ARA' frameid='DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR'/></right>
+<right><Compound resource='getxml?ARA:FORMATE' orgid='ARA' frameid='FORMATE'/></right>
+<left><Compound resource='getxml?ARA:WATER' orgid='ARA' frameid='WATER'/><coefficient datatype='integer'>3</coefficient>
 </left>
-<left><Compound frameid="GTP" orgid="ARA" resource="getxml?ARA:GTP" /></left>
+<left><Compound resource='getxml?ARA:GTP' orgid='ARA' frameid='GTP'/></left>
+<in-pathway><Pathway resource='getxml?ARA:RIBOSYN2-PWY' orgid='ARA' frameid='RIBOSYN2-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

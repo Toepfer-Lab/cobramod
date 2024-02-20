@@ -1,24 +1,33 @@
-#!/usr/bin/env python3
-"""Debugging configuration for sub-package visualization.
+"""
+Debugging configuration for sub-package visualization.
 
-Configures the debug logging tool. The format follows the syntax:
-`(asctime) (levelname) (message)`.
-
-The FileHandler is set to 'visualization.log' with the mode "+a".
-The default level is set to DEBUG.
+Configures the debug logging tool. The format follows the syntax: `(asctime)
+(levelname) (message)`. The logs are saved in the logs directory and includes
+'visualization' in the file and its date. The default level is set to DEBUG.
 
 The name of logger variable is `visualization`
-
 """
-from logging import Formatter, FileHandler, getLogger, DEBUG
+import datetime as dt
+import logging
+from pathlib import Path
+
+
+debug_log = logging.getLogger("visualization")
+debug_log.setLevel(logging.DEBUG)
+
+FORMAT_STR = "[%(asctime)s] %(levelname)s %(message)s"
+TIME_STR = "%H:%M:%S"
 
 # Format
-debug_formatter = Formatter("%(asctime)s %(levelname)s %(message)s")
-# Handler
-debug_handler = FileHandler("visualization.log", mode="a+")
+debug_formatter = logging.Formatter(FORMAT_STR, TIME_STR)
+
+log_dir = Path("logs").absolute()
+log_dir.mkdir(exist_ok=True)
+
+log_path = log_dir.joinpath(
+    f"visualization_{dt.date.today().strftime('%Y%m%d')}.log"
+)
+debug_handler = logging.FileHandler(log_path, mode="a+")
 debug_handler.setFormatter(debug_formatter)
-# Log
-debug_log = getLogger("visualization")
-debug_log.setLevel(DEBUG)
-# GenLog.ad
+
 debug_log.addHandler(debug_handler)

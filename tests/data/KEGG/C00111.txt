@@ -17,6 +17,7 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
             map00561  Glycerolipid metabolism
             map00562  Inositol phosphate metabolism
             map00564  Glycerophospholipid metabolism
+            map00630  Glyoxylate and dicarboxylate metabolism
             map00640  Propanoate metabolism
             map00680  Methane metabolism
             map00710  Carbon fixation in photosynthetic organisms
@@ -29,18 +30,20 @@ PATHWAY     map00010  Glycolysis / Gluconeogenesis
 MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
+            M00165  Reductive pentose phosphate cycle (Calvin cycle)
             M00344  Formaldehyde assimilation, xylulose monophosphate pathway
+            M00968  Pentose bisphosphate pathway (nucleoside degradation), archaea, nucleoside/NMP => 3-PGA/glycerone phosphate
 ENZYME      1.1.1.8         1.1.1.94        1.1.1.261       1.1.1.408       
             1.1.1.409       1.1.3.21        1.1.5.3         2.2.1.13        
             2.3.1.42        2.3.1.245       2.3.1.277       2.5.1.72        
             2.7.1.29        2.7.1.121       3.1.3.1         3.1.3.2         
             4.1.1.104       4.1.2.2         4.1.2.13        4.1.2.17        
             4.1.2.19        4.1.2.29        4.1.2.40        4.1.2.56        
-            4.1.2.57        4.1.2.62        4.2.3.3         5.3.1.1
+            4.1.2.57        4.1.2.62        4.1.2.-         4.2.3.3         
+            5.3.1.1
 DBLINKS     CAS: 57-04-5
             PubChem: 3411
             ChEBI: 16108
-            ChEMBL: CHEMBL1161998
             KNApSAcK: C00007560
             PDB-CCD: 13P
             3DMET: B00029

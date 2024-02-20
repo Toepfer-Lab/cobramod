@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://localhost:1555/getxml?CORN:CALVIN-PWY'><metadata><url>http://localhost:1555/</url>
+<service_name>getxml</service_name>
+<query>CORN:CALVIN-PWY</query>
+<num_results>1</num_results>
+<PGDB orgid='CORN' version='27.0'><species datatype='string'>Zea mays</species>
+<subspecies datatype='string'>mays</subspecies>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>381124</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=381124</dblink-URL>
+</dblink>
+</PGDB>
+</metadata>
+<Pathway ID='CORN:CALVIN-PWY' orgid='CORN' frameid='CALVIN-PWY' detail='full'><parent><Pathway resource='getxml?CORN:Autotrophic-CO2-Fixation' orgid='CORN' frameid='Autotrophic-CO2-Fixation' class='true'/></parent>
+<parent><Pathway resource='getxml?CORN:CARBO-BIOSYNTHESIS' orgid='CORN' frameid='CARBO-BIOSYNTHESIS' class='true'/></parent>
+<reaction-list><Reaction resource='getxml?CORN:RIB5PISOM-RXN' orgid='CORN' frameid='RIB5PISOM-RXN'/><Reaction resource='getxml?CORN:PHOSPHORIBULOKINASE-RXN' orgid='CORN' frameid='PHOSPHORIBULOKINASE-RXN'/><Reaction resource='getxml?CORN:RIBULP3EPIM-RXN' orgid='CORN' frameid='RIBULP3EPIM-RXN'/><Reaction resource='getxml?CORN:SEDOHEPTULOSE-BISPHOSPHATASE-RXN' orgid='CORN' frameid='SEDOHEPTULOSE-BISPHOSPHATASE-RXN'/><Reaction resource='getxml?CORN:2TRANSKETO-RXN' orgid='CORN' frameid='2TRANSKETO-RXN'/><Reaction resource='getxml?CORN:1TRANSKETO-RXN' orgid='CORN' frameid='1TRANSKETO-RXN'/><Reaction resource='getxml?CORN:F16BDEPHOS-RXN' orgid='CORN' frameid='F16BDEPHOS-RXN'/><Reaction resource='getxml?CORN:SEDOBISALDOL-RXN' orgid='CORN' frameid='SEDOBISALDOL-RXN'/><Reaction resource='getxml?CORN:F16ALDOLASE-RXN' orgid='CORN' frameid='F16ALDOLASE-RXN'/><Reaction resource='getxml?CORN:TRIOSEPISOMERIZATION-RXN' orgid='CORN' frameid='TRIOSEPISOMERIZATION-RXN'/><Reaction resource='getxml?CORN:1.2.1.13-RXN' orgid='CORN' frameid='1.2.1.13-RXN'/><Reaction resource='getxml?CORN:PHOSGLYPHOS-RXN' orgid='CORN' frameid='PHOSGLYPHOS-RXN'/><Reaction resource='getxml?CORN:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN' orgid='CORN' frameid='RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN'/></reaction-list>
+<super-pathways><Pathway resource='getxml?CORN:PHOTOALL-PWY' orgid='CORN' frameid='PHOTOALL-PWY'/></super-pathways>
+<comment datatype='string'>&lt;i&gt;Supporting evidence for this pathway in Zea mays mays&lt;/i&gt;: This pathway is on the list of Common Viridiplantae Pathways (CVP) generated for the COMET project, which includes pathways that are thought to be present in all or most Viridiplantae species including algae. All UPP pathways are automatically imported into databases regardless of Pathologic predictions. &lt;A href=&quot;http://www.plantcyc.org/about/savi-pipeline&quot;&gt;[more info]&lt;/A&gt;
+&lt;p&gt;
+&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
+&lt;p&gt;
+The Calvin cycle is the major &lt;a href=&quot;/compound?orgid=CORN&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; fixation pathway, found in all in green plants and many autotrophic bacteria.
+&lt;p&gt;
+In this cycle, one &lt;a href=&quot;/compound?orgid=CORN&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; molecule at a time is added to the acceptor molecule &lt;a href=&quot;/compound?orgid=CORN&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt; (RuBP) generating two molecules of &lt;a href=&quot;/compound?orgid=CORN&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;. The &lt;a href=&quot;/compound?orgid=CORN&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt; is then passed through a cyclic series of reactions in which the acceptor molecule (RuBP) is regenerated. Out of the six carbons present in two molecules of &lt;a href=&quot;/compound?orgid=CORN&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, five are recycled and only one remains available for biosynthesis. Since in each turn of the cycle only one carbon atom is assimilated, the cycle must go through three turns to produce one molecule of &lt;a href=&quot;/compound?orgid=CORN&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, or six turns to produce one molecule of a hexose sugar.
+&lt;p&gt;
+The Calvin cycle can be divided into three stages: fixation, reduction and regeneration.
+&lt;p&gt;
+In the first stage the reductive carboxylation of &lt;a href=&quot;/compound?orgid=CORN&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt; (RuBP) is catalyzed by the the enzyme &lt;a href=&quot;http://biocyc.org/META/new-image?object=CPLX-105&quot;&gt;ribulose bisphosphate carboxylase/oxygenase&lt;/a&gt; (RubisCO), forming 2 molecules of &lt;a href=&quot;/compound?orgid=CORN&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;. 
+&lt;p&gt;
+In the second stage these two molecules are phosphorylated to &lt;a href=&quot;/compound?orgid=CORN&amp;id=DPG&quot;&gt;3-phospho-D-glyceroyl phosphate&lt;/a&gt; and then reductively dephosphorylated to &lt;a href=&quot;/compound?orgid=CORN&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt;. In three turns of the cycle 3 molecules of &lt;a href=&quot;/compound?orgid=CORN&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt; are fixed, and 6 molecules of &lt;a href=&quot;/compound?orgid=CORN&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; are formed. Out of these, one is diverted to biosynthetic pathways, while the other 5 are used up in the next stage.
+&lt;p&gt;
+The third stage is the most complicated one. It consists of a series of rearrangements that eventually regenerate RuBP.
+Some of the &lt;a href=&quot;/compound?orgid=CORN&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; molecules are converted to &lt;a href=&quot;/compound?orgid=CORN&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt;. &lt;a href=&quot;/compound?orgid=CORN&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; and &lt;a href=&quot;/compound?orgid=CORN&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt; are then condensed into &lt;a href=&quot;/compound?orgid=CORN&amp;id=FRUCTOSE-16-DIPHOSPHATE&quot;&gt;&amp;beta;-D-fructofuranose 1,6-bisphosphate&lt;/a&gt; which is dephosphorylated to &lt;a href=&quot;/compound?orgid=CORN&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt;. &lt;a href=&quot;/compound?orgid=CORN&amp;id=FRUCTOSE-6P&quot;&gt;&amp;beta;-D-fructofuranose 6-phosphate&lt;/a&gt; is then combined with another &lt;a href=&quot;/compound?orgid=CORN&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; molecule and cleaved into &lt;a href=&quot;/compound?orgid=CORN&amp;id=XYLULOSE-5-PHOSPHATE&quot;&gt;D-xylulose 5-phosphate&lt;/a&gt; (X5P) and &lt;a href=&quot;/compound?orgid=CORN&amp;id=ERYTHROSE-4P&quot;&gt;D-erythrose 4-phosphate&lt;/a&gt;. The later is combined with &lt;a href=&quot;/compound?orgid=CORN&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt; forming &lt;a href=&quot;/compound?orgid=CORN&amp;id=D-SEDOHEPTULOSE-1-7-P2&quot;&gt;D-sedoheptulose 1,7-bisphosphate&lt;/a&gt;, which is dephosphorylated to &lt;a href=&quot;/CORN/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P&quot; title=&quot;&lt;a href=''/CORN/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P''&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is an intermediate molecule of primary glucose metabolism.&quot;&gt;D-sedoheptulose 7-phosphate&lt;/a&gt;. 
+&lt;a href=&quot;/CORN/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P&quot; title=&quot;&lt;a href=''/CORN/NEW-IMAGE?type=COMPOUND&amp;object=D-SEDOHEPTULOSE-7-P''&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is an intermediate molecule of primary glucose metabolism.&quot;&gt;D-sedoheptulose 7-phosphate&lt;/a&gt; is combined with &lt;a href=&quot;/compound?orgid=CORN&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; and is cleaved into a second &lt;a href=&quot;/compound?orgid=CORN&amp;id=XYLULOSE-5-PHOSPHATE&quot;&gt;D-xylulose 5-phosphate&lt;/a&gt; and a &lt;a href=&quot;/CORN/NEW-IMAGE?type=COMPOUND&amp;object=RIBOSE-5P&quot; title=&quot;Please note that the structure shown here is that of &lt;a href=''/compound?orgid=CORN&amp;id=CPD-15895''&gt;&lt;i&gt;aldehydo&lt;/i&gt;-D-ribose 5-phosphate&lt;/a&gt;, and is not accurate for this generic class, which also contains the furanose forms of D-ribose 5-phosphate.&quot;&gt;D-ribose 5-phosphate&lt;/a&gt; (R5P). Both of these are converted into &lt;a href=&quot;/compound?orgid=CORN&amp;id=RIBULOSE-5P&quot;&gt;D-ribulose 5-phosphate&lt;/a&gt;, which is finally phosphorylated to &lt;a href=&quot;/compound?orgid=CORN&amp;id=D-RIBULOSE-15-P2&quot;&gt;D-ribulose-1,5-bisphosphate&lt;/a&gt;, regenerating the key &lt;a href=&quot;/compound?orgid=CORN&amp;id=CARBON-DIOXIDE&quot;&gt;CO&lt;SUB&gt;2&lt;/SUB&gt;&lt;/a&gt;-acceptor molecule.
+&lt;p&gt;
+During this cycle, especially during the day, &lt;a href=&quot;/compound?orgid=CORN&amp;id=G3P&quot;&gt;3-phospho-D-glycerate&lt;/a&gt;, &lt;a href=&quot;/compound?orgid=CORN&amp;id=DIHYDROXY-ACETONE-PHOSPHATE&quot;&gt;glycerone phosphate&lt;/a&gt;, or &lt;a href=&quot;/compound?orgid=CORN&amp;id=GAP&quot;&gt;D-glyceraldehyde 3-phosphate&lt;/a&gt; can be siphoned off and sent out to the cytosol via the triose phosphates transporter for &lt;a href=&quot;/CORN/NEW-IMAGE?type=PATHWAY&amp;object=SUCSYN-PWY&quot;&gt;sucrose biosynthesis I (from photosynthesis)&lt;/a&gt;. Plants need to carefully control the carbon flux between this and competeing pathways to make sure that the Calvin cycle can proceed [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/19325167&quot;&gt;Serrato09&lt;/a&gt;].</comment>
+<reaction-ordering><Reaction resource='getxml?CORN:RIB5PISOM-RXN' orgid='CORN' frameid='RIB5PISOM-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:1TRANSKETO-RXN' orgid='CORN' frameid='1TRANSKETO-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:PHOSPHORIBULOKINASE-RXN' orgid='CORN' frameid='PHOSPHORIBULOKINASE-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:RIBULP3EPIM-RXN' orgid='CORN' frameid='RIBULP3EPIM-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:RIBULP3EPIM-RXN' orgid='CORN' frameid='RIBULP3EPIM-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:2TRANSKETO-RXN' orgid='CORN' frameid='2TRANSKETO-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:TRIOSEPISOMERIZATION-RXN' orgid='CORN' frameid='TRIOSEPISOMERIZATION-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:1.2.1.13-RXN' orgid='CORN' frameid='1.2.1.13-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:1.2.1.13-RXN' orgid='CORN' frameid='1.2.1.13-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:PHOSGLYPHOS-RXN' orgid='CORN' frameid='PHOSGLYPHOS-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:PHOSGLYPHOS-RXN' orgid='CORN' frameid='PHOSGLYPHOS-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN' orgid='CORN' frameid='RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:SEDOBISALDOL-RXN' orgid='CORN' frameid='SEDOBISALDOL-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:TRIOSEPISOMERIZATION-RXN' orgid='CORN' frameid='TRIOSEPISOMERIZATION-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:SEDOHEPTULOSE-BISPHOSPHATASE-RXN' orgid='CORN' frameid='SEDOHEPTULOSE-BISPHOSPHATASE-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:SEDOBISALDOL-RXN' orgid='CORN' frameid='SEDOBISALDOL-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:1TRANSKETO-RXN' orgid='CORN' frameid='1TRANSKETO-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:SEDOHEPTULOSE-BISPHOSPHATASE-RXN' orgid='CORN' frameid='SEDOHEPTULOSE-BISPHOSPHATASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:RIBULP3EPIM-RXN' orgid='CORN' frameid='RIBULP3EPIM-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:1TRANSKETO-RXN' orgid='CORN' frameid='1TRANSKETO-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN' orgid='CORN' frameid='RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:PHOSPHORIBULOKINASE-RXN' orgid='CORN' frameid='PHOSPHORIBULOKINASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:PHOSPHORIBULOKINASE-RXN' orgid='CORN' frameid='PHOSPHORIBULOKINASE-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:RIB5PISOM-RXN' orgid='CORN' frameid='RIB5PISOM-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:2TRANSKETO-RXN' orgid='CORN' frameid='2TRANSKETO-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:F16BDEPHOS-RXN' orgid='CORN' frameid='F16BDEPHOS-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:F16BDEPHOS-RXN' orgid='CORN' frameid='F16BDEPHOS-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:F16ALDOLASE-RXN' orgid='CORN' frameid='F16ALDOLASE-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<reaction-ordering><Reaction resource='getxml?CORN:F16ALDOLASE-RXN' orgid='CORN' frameid='F16ALDOLASE-RXN'/><predecessor-reactions><Reaction resource='getxml?CORN:TRIOSEPISOMERIZATION-RXN' orgid='CORN' frameid='TRIOSEPISOMERIZATION-RXN'/></predecessor-reactions>
+</reaction-ordering>
+<common-name datatype='string'>Calvin-Benson-Bassham cycle</common-name>
+<in-pathway><Pathway resource='getxml?CORN:PHOTOALL-PWY' orgid='CORN' frameid='PHOTOALL-PWY'/></in-pathway>
+<evidence><Evidence-Code ID='CORN:EV-COMP-HINF' orgid='CORN' frameid='EV-COMP-HINF' detail='full' class='true'><parent><Evidence-Code resource='getxml?CORN:EV-COMP' orgid='CORN' frameid='EV-COMP' class='true'/></parent>
+<comment datatype='string'>Human inference.  A curator or author inferred this assertion after review of one or more possible types 
+of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
+When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
+<common-name datatype='string'>Inferred by a human based on computational evidence</common-name>
+</Evidence-Code>
+</evidence>
+<credits><created><date datatype='date'>1999-01-12</date>
+<Person ID='CORN:pellegrini-toole' orgid='CORN' frameid='pellegrini-toole' detail='full'><common-name datatype='string'>Alida Pellegrini-Toole</common-name>
+<affiliations><Organization ID='CORN:O-18' orgid='CORN' frameid='O-18' detail='full'><common-name datatype='string'>Marine Biological Laboratory</common-name>
+<credits><imported-from-meta><date datatype='date'>2012-02-02</date>
+<Person ID='CORN:zhang' orgid='CORN' frameid='zhang' detail='full'><common-name datatype='string'>Peifen Zhang</common-name>
+<affiliations><Organization ID='CORN:PMN' orgid='CORN' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
+<credits><imported-from-meta><date datatype='date'>2012-02-01</date>
+<Person resource='#CORN:zhang' orgid='CORN' frameid='zhang'/><Organization ID='CORN:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='CORN' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
+</Organization>
+</imported-from-meta>
+</credits>
+<url datatype='string'>http://plantcyc.org</url>
+</Organization>
+</affiliations>
+</Person>
+<Organization resource='#CORN:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='CORN' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></imported-from-meta>
+</credits>
+</Organization>
+</affiliations>
+<credits><imported-from-meta><date datatype='date'>2012-07-13</date>
+<Person resource='#CORN:zhang' orgid='CORN' frameid='zhang'/><Organization resource='#CORN:PMN' orgid='CORN' frameid='PMN'/></imported-from-meta>
+</credits>
+</Person>
+<Organization resource='#CORN:O-18' orgid='CORN' frameid='O-18'/></created>
+<revised><date datatype='date'>2006-11-09</date>
+<Person ID='CORN:caspi' orgid='CORN' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
+<comment datatype='string'>Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
+<common-name datatype='string'>Ron Caspi</common-name>
+<affiliations><Organization ID='CORN:SRI' orgid='CORN' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+</Organization>
+</affiliations>
+</Person>
+<Organization resource='#CORN:SRI' orgid='CORN' frameid='SRI'/></revised>
+</credits>
+<synonym datatype='string'>photosynthetic dark reactions</synonym>
+<synonym datatype='string'>photosynthetic CO&lt;SUB&gt;2&lt;/SUB&gt; fixation</synonym>
+<synonym datatype='string'>reductive pentose phosphate pathway</synonym>
+<synonym datatype='string'>Calvin cycle</synonym>
+<synonym datatype='string'>photosynthesis - dark reaction</synonym>
+<synonym datatype='string'>carbon fixation</synonym>
+<synonym datatype='string'>Calvin-Benson cycle</synonym>
+<reaction-layout><Reaction resource='getxml?CORN:RIB5PISOM-RXN' orgid='CORN' frameid='RIB5PISOM-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?CORN:RIBOSE-5P' orgid='CORN' frameid='RIBOSE-5P' class='true'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:RIBULOSE-5P' orgid='CORN' frameid='RIBULOSE-5P'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:PHOSPHORIBULOKINASE-RXN' orgid='CORN' frameid='PHOSPHORIBULOKINASE-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?CORN:RIBULOSE-5P' orgid='CORN' frameid='RIBULOSE-5P'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:D-RIBULOSE-15-P2' orgid='CORN' frameid='D-RIBULOSE-15-P2'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:RIBULP3EPIM-RXN' orgid='CORN' frameid='RIBULP3EPIM-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?CORN:RIBULOSE-5P' orgid='CORN' frameid='RIBULOSE-5P'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:XYLULOSE-5-PHOSPHATE' orgid='CORN' frameid='XYLULOSE-5-PHOSPHATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:SEDOHEPTULOSE-BISPHOSPHATASE-RXN' orgid='CORN' frameid='SEDOHEPTULOSE-BISPHOSPHATASE-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?CORN:D-SEDOHEPTULOSE-1-7-P2' orgid='CORN' frameid='D-SEDOHEPTULOSE-1-7-P2'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:D-SEDOHEPTULOSE-7-P' orgid='CORN' frameid='D-SEDOHEPTULOSE-7-P' class='true'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:2TRANSKETO-RXN' orgid='CORN' frameid='2TRANSKETO-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?CORN:XYLULOSE-5-PHOSPHATE' orgid='CORN' frameid='XYLULOSE-5-PHOSPHATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:GAP' orgid='CORN' frameid='GAP'/><Compound resource='getxml?CORN:FRUCTOSE-6P' orgid='CORN' frameid='FRUCTOSE-6P'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:1TRANSKETO-RXN' orgid='CORN' frameid='1TRANSKETO-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?CORN:GAP' orgid='CORN' frameid='GAP'/><Compound resource='getxml?CORN:D-SEDOHEPTULOSE-7-P' orgid='CORN' frameid='D-SEDOHEPTULOSE-7-P' class='true'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:XYLULOSE-5-PHOSPHATE' orgid='CORN' frameid='XYLULOSE-5-PHOSPHATE'/><Compound resource='getxml?CORN:RIBOSE-5P' orgid='CORN' frameid='RIBOSE-5P' class='true'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:F16BDEPHOS-RXN' orgid='CORN' frameid='F16BDEPHOS-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?CORN:FRUCTOSE-16-DIPHOSPHATE' orgid='CORN' frameid='FRUCTOSE-16-DIPHOSPHATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:FRUCTOSE-6P' orgid='CORN' frameid='FRUCTOSE-6P'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:SEDOBISALDOL-RXN' orgid='CORN' frameid='SEDOBISALDOL-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?CORN:D-SEDOHEPTULOSE-1-7-P2' orgid='CORN' frameid='D-SEDOHEPTULOSE-1-7-P2'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:DIHYDROXY-ACETONE-PHOSPHATE' orgid='CORN' frameid='DIHYDROXY-ACETONE-PHOSPHATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:F16ALDOLASE-RXN' orgid='CORN' frameid='F16ALDOLASE-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?CORN:FRUCTOSE-16-DIPHOSPHATE' orgid='CORN' frameid='FRUCTOSE-16-DIPHOSPHATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:GAP' orgid='CORN' frameid='GAP'/><Compound resource='getxml?CORN:DIHYDROXY-ACETONE-PHOSPHATE' orgid='CORN' frameid='DIHYDROXY-ACETONE-PHOSPHATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:TRIOSEPISOMERIZATION-RXN' orgid='CORN' frameid='TRIOSEPISOMERIZATION-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?CORN:GAP' orgid='CORN' frameid='GAP'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:DIHYDROXY-ACETONE-PHOSPHATE' orgid='CORN' frameid='DIHYDROXY-ACETONE-PHOSPHATE'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:1.2.1.13-RXN' orgid='CORN' frameid='1.2.1.13-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?CORN:GAP' orgid='CORN' frameid='GAP'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:DPG' orgid='CORN' frameid='DPG'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:PHOSGLYPHOS-RXN' orgid='CORN' frameid='PHOSGLYPHOS-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?CORN:G3P' orgid='CORN' frameid='G3P'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:DPG' orgid='CORN' frameid='DPG'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?CORN:RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN' orgid='CORN' frameid='RIBULOSE-BISPHOSPHATE-CARBOXYLASE-RXN'/><direction>R2L</direction>
+<left-primaries><Compound resource='getxml?CORN:G3P' orgid='CORN' frameid='G3P'/></left-primaries>
+<right-primaries><Compound resource='getxml?CORN:CARBON-DIOXIDE' orgid='CORN' frameid='CARBON-DIOXIDE'/><Compound resource='getxml?CORN:D-RIBULOSE-15-P2' orgid='CORN' frameid='D-RIBULOSE-15-P2'/></right-primaries>
+</reaction-layout>
+<dblink><dblink-db>PLANTCYC</dblink-db>
+<dblink-oid>CALVIN-PWY</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://pmn.plantcyc.org/PLANT/new-image?object=CALVIN-PWY</dblink-URL>
+</dblink>
+<dblink><dblink-db>METACYC</dblink-db>
+<dblink-oid>CALVIN-PWY</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://biocyc.org/META/new-image?object=CALVIN-PWY</dblink-URL>
+</dblink>
+</Pathway>
+</ptools-xml>

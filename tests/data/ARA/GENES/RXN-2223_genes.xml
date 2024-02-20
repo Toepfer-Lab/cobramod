@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:RXN-2223%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:RXN-2223%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,21 +9,21 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT4G03050" detail="full" frameid="AT4G03050" orgid="ARA">
+  <Gene ID="ARA:AT4G03050" orgid="ARA" frameid="AT4G03050" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <product>
-      <Protein frameid="AT4G03050-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G03050-MONOMER" />
+      <Protein resource="getxml?ARA:AT4G03050-MONOMER" orgid="ARA" frameid="AT4G03050-MONOMER" />
     </product>
+    <synonym datatype="string">At4g03050</synonym>
+    <common-name datatype="string">AOP3</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT4G03050</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G03050</dblink-URL>
     </dblink>
-    <synonym datatype="string">At4g03050</synonym>
     <accession-1 datatype="string">AT4G03050</accession-1>
-    <common-name datatype="string">AOP3</common-name>
   </Gene>
 </ptools-xml>

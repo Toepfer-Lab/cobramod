@@ -1,18 +1,62 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:GLC"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:GLC'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:GLC</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:GLC" detail="full" frameid="GLC" orgid="META"><parent><Compound class="true" frameid="Glucopyranose" orgid="META" resource="getxml?META:Glucopyranose" /></parent>
-<cml><molecule formalCharge="0" id="GLC" title="beta-D-glucopyranose"><atomArray><atom elementType="C" id="GLC-atom1" x2="8252.0" y2="-24755.0" /><atom elementType="C" id="GLC-atom2" x2="15393.0" y2="-20624.0" /><atom elementType="C" id="GLC-atom3" x2="15393.0" y2="-12382.0" /><atom elementType="C" id="GLC-atom4" x2="22544.0" y2="-8252.0" /><atom elementType="C" id="GLC-atom5" x2="29686.0" y2="-12382.0" /><atom elementType="C" id="GLC-atom6" x2="29686.0" y2="-20624.0" /><atom elementType="O" id="GLC-atom7" x2="1107.0" y2="-20630.0" /><atom elementType="O" id="GLC-atom8" x2="8252.0" y2="-8252.0" /><atom elementType="O" id="GLC-atom9" x2="22544.0" y2="0.0" /><atom elementType="O" id="GLC-atom10" x2="36837.0" y2="-8252.0" /><atom elementType="O" id="GLC-atom11" x2="36837.0" y2="-24755.0" /><atom elementType="O" id="GLC-atom12" x2="22544.0" y2="-24755.0" /></atomArray>
-<bondArray><bond atomRefs="GLC-atom3 GLC-atom2" id="GLC-bond1" order="1" /><bond atomRefs="GLC-atom4 GLC-atom3" id="GLC-bond2" order="1" /><bond atomRefs="GLC-atom5 GLC-atom4" id="GLC-bond3" order="1" /><bond atomRefs="GLC-atom6 GLC-atom5" id="GLC-bond4" order="1" /><bond atomRefs="GLC-atom12 GLC-atom2" id="GLC-bond5" order="1" /><bond atomRefs="GLC-atom12 GLC-atom6" id="GLC-bond6" order="1" /><bond atomRefs="GLC-atom2 GLC-atom1" id="GLC-bond7" order="1" /><bond atomRefs="GLC-atom3 GLC-atom8" id="GLC-bond8" order="1" /><bond atomRefs="GLC-atom4 GLC-atom9" id="GLC-bond9" order="1" /><bond atomRefs="GLC-atom5 GLC-atom10" id="GLC-bond10" order="1" /><bond atomRefs="GLC-atom6 GLC-atom11" id="GLC-bond11" order="1" /><bond atomRefs="GLC-atom1 GLC-atom7" id="GLC-bond12" order="1" /></bondArray>
-<formula concise="C 6 H 12 O 6" /><float title="molecularWeight" units="g/mol">180.157</float>
-<string title="smiles">C(O)[C@H]1(O[C@@H](O)[C@H](O)[C@@H](O)[C@H](O)1)</string>
+<Compound ID='META:GLC' orgid='META' frameid='GLC' detail='full'><parent><Compound resource='getxml?META:Glucopyranose' orgid='META' frameid='Glucopyranose' class='true'/></parent>
+<cml><molecule id='GLC' title='beta-D-glucopyranose' formalCharge='0'><atomArray><atom id='GLC-atom1' elementType='C' x2='8252.0' y2='-24755.0'/><atom id='GLC-atom2' elementType='C' x2='15393.0' y2='-20624.0'/><atom id='GLC-atom3' elementType='C' x2='15393.0' y2='-12382.0'/><atom id='GLC-atom4' elementType='C' x2='22544.0' y2='-8252.0'/><atom id='GLC-atom5' elementType='C' x2='29686.0' y2='-12382.0'/><atom id='GLC-atom6' elementType='C' x2='29686.0' y2='-20624.0'/><atom id='GLC-atom7' elementType='O' x2='1107.0' y2='-20630.0'/><atom id='GLC-atom8' elementType='O' x2='8252.0' y2='-8252.0'/><atom id='GLC-atom9' elementType='O' x2='22544.0' y2='0.0'/><atom id='GLC-atom10' elementType='O' x2='36837.0' y2='-8252.0'/><atom id='GLC-atom11' elementType='O' x2='36837.0' y2='-24755.0'/><atom id='GLC-atom12' elementType='O' x2='22544.0' y2='-24755.0'/></atomArray>
+<bondArray><bond id='GLC-bond1' atomRefs='GLC-atom3 GLC-atom2' order='1'/><bond id='GLC-bond2' atomRefs='GLC-atom4 GLC-atom3' order='1'/><bond id='GLC-bond3' atomRefs='GLC-atom5 GLC-atom4' order='1'/><bond id='GLC-bond4' atomRefs='GLC-atom6 GLC-atom5' order='1'/><bond id='GLC-bond5' atomRefs='GLC-atom12 GLC-atom2' order='1'/><bond id='GLC-bond6' atomRefs='GLC-atom12 GLC-atom6' order='1'/><bond id='GLC-bond7' atomRefs='GLC-atom2 GLC-atom1' order='1'/><bond id='GLC-bond8' atomRefs='GLC-atom3 GLC-atom8' order='1'/><bond id='GLC-bond9' atomRefs='GLC-atom4 GLC-atom9' order='1'/><bond id='GLC-bond10' atomRefs='GLC-atom5 GLC-atom10' order='1'/><bond id='GLC-bond11' atomRefs='GLC-atom6 GLC-atom11' order='1'/><bond id='GLC-bond12' atomRefs='GLC-atom1 GLC-atom7' order='1'/></bondArray>
+<formula concise='C 6 H 12 O 6'/><float title='molecularWeight' units='g/mol'>180.157</float>
+<string title='smiles'>C(O)[C@H]1(O[C@@H](O)[C@H](O)[C@@H](O)[C@H](O)1)</string>
 </molecule>
 </cml>
-<common-name datatype="string">&amp;beta;-D-glucopyranose</common-name>
+<appears-in-left-side-of><Reaction resource='getxml?META:GLUCOSE-OXIDASE-RXN' orgid='META' frameid='GLUCOSE-OXIDASE-RXN'/></appears-in-left-side-of>
+<inchi datatype='string'>InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>180.157</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:RXN-22644' orgid='META' frameid='RXN-22644'/><Reaction resource='getxml?META:RXN-21855' orgid='META' frameid='RXN-21855'/><Reaction resource='getxml?META:RXN18C3-14' orgid='META' frameid='RXN18C3-14'/><Reaction resource='getxml?META:RXN18C3-17' orgid='META' frameid='RXN18C3-17'/><Reaction resource='getxml?META:RXN18C3-18' orgid='META' frameid='RXN18C3-18'/><Reaction resource='getxml?META:3.2.1.106-RXN' orgid='META' frameid='3.2.1.106-RXN'/><Reaction resource='getxml?META:RXN-18147' orgid='META' frameid='RXN-18147'/><Reaction resource='getxml?META:RXN-10691' orgid='META' frameid='RXN-10691'/><Reaction resource='getxml?META:ALDOSE-1-EPIMERASE-RXN' orgid='META' frameid='ALDOSE-1-EPIMERASE-RXN'/><Reaction resource='getxml?META:TREHALA-RXN' orgid='META' frameid='TREHALA-RXN'/></appears-in-right-side-of>
+<monoisotopic-mw datatype='float' units='Daltons'>180.06339</monoisotopic-mw>
+<synonym datatype='string'>&amp;beta;-D-glucose</synonym>
+<synonym datatype='string'>&amp;beta;-glucose</synonym>
+<common-name datatype='string'>&amp;beta;-D-glucopyranose</common-name>
+<regulates><Regulation ID='META:REG0-8440' orgid='META' frameid='REG0-8440' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLC' orgid='META' frameid='GLC'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:GLYCOPHOSPHORYL-ENZRXN' orgid='META' frameid='GLYCOPHOSPHORYL-ENZRXN' detail='low'><reaction><Reaction resource='getxml?META:GLYCOPHOSPHORYL-RXN' orgid='META' frameid='GLYCOPHOSPHORYL-RXN'/></reaction>
+<synonym datatype='string'>amylophosphorylase</synonym>
+<synonym datatype='string'>polyphosphorylase</synonym>
+<synonym datatype='string'>polyglucose phosphorylase</synonym>
+<synonym datatype='string'>1,4-&amp;alpha;-D-glucan:orthophosphate &amp;alpha;-D-glucosyltransferase</synonym>
+<common-name datatype='string'>glycogen phosphorylase</common-name>
+<enzyme><Protein resource='getxml?META:GLYCOPHOSPHORYL-CPLX' orgid='META' frameid='GLYCOPHOSPHORYL-CPLX'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-13370' orgid='META' frameid='REG-13370' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLC' orgid='META' frameid='GLC'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-19051' orgid='META' frameid='ENZRXN-19051' detail='low'><reaction><Reaction resource='getxml?META:3.2.1.91-RXN' orgid='META' frameid='3.2.1.91-RXN'/></reaction>
+<common-name datatype='string'>cellulose 1,4-&amp;beta;-cellobiohydrolase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-16500' orgid='META' frameid='MONOMER-16500'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+<Regulation ID='META:REG-10901' orgid='META' frameid='REG-10901' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:GLC' orgid='META' frameid='GLC'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-6091' orgid='META' frameid='ENZRXN-6091' detail='low'><reaction><Reaction resource='getxml?META:TRE6PHYDRO-RXN' orgid='META' frameid='TRE6PHYDRO-RXN'/></reaction>
+<synonym datatype='string'>phospho-&amp;alpha;(1,1)glucosidase</synonym>
+<synonym datatype='string'>7751281</synonym>
+<synonym datatype='string'>phosphotrehalase</synonym>
+<common-name datatype='string'>trehalose-6-phosphate hydrolase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-5946' orgid='META' frameid='MONOMER-5946'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<inchi-key datatype='string'>InChIKey=WQZGKKKJIJFFOK-VFUOTHLCSA-N</inchi-key>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/217/</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -27,11 +71,6 @@
 <dblink-oid>MNXM105</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>https://www.metanetx.org/chem_info/MNXM105</dblink-URL>
-</dblink>
-<dblink><dblink-db>BIGG</dblink-db>
-<dblink-oid>glc__D</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://bigg.ucsd.edu/universal/metabolites/glc__D</dblink-URL>
 </dblink>
 <dblink><dblink-db>METABOLIGHTS</dblink-db>
 <dblink-oid>MTBLC15903</dblink-oid>
@@ -73,63 +112,20 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=64689</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-95.02656<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-95.02656<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1</inchi>
-<inchi-key datatype="string">InChIKey=WQZGKKKJIJFFOK-VFUOTHLCSA-N</inchi-key>
-<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
-<regulates><Regulation ID="META:REG0-8440" detail="low" frameid="REG0-8440" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:GLYCOPHOSPHORYL-ENZRXN" detail="low" frameid="GLYCOPHOSPHORYL-ENZRXN" orgid="META"><common-name datatype="string">glycogen phosphorylase</common-name>
-<enzyme><Protein frameid="GLYCOPHOSPHORYL-CPLX" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-CPLX" /></enzyme>
-<reaction><Reaction frameid="GLYCOPHOSPHORYL-RXN" orgid="META" resource="getxml?META:GLYCOPHOSPHORYL-RXN" /></reaction>
-<synonym datatype="string">amylophosphorylase</synonym>
-<synonym datatype="string">polyphosphorylase</synonym>
-<synonym datatype="string">polyglucose phosphorylase</synonym>
-<synonym datatype="string">1,4-&amp;alpha;-D-glucan:orthophosphate &amp;alpha;-D-glucosyltransferase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-13370" detail="low" frameid="REG-13370" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-19051" detail="low" frameid="ENZRXN-19051" orgid="META"><common-name datatype="string">cellulose 1,4-&amp;beta;-cellobiohydrolase</common-name>
-<enzyme><Protein frameid="MONOMER-16500" orgid="META" resource="getxml?META:MONOMER-16500" /></enzyme>
-<reaction><Reaction frameid="3.2.1.91-RXN" orgid="META" resource="getxml?META:3.2.1.91-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
-</Regulation>
-<Regulation ID="META:REG-10901" detail="low" frameid="REG-10901" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-6091" detail="low" frameid="ENZRXN-6091" orgid="META"><common-name datatype="string">trehalose-6-phosphate hydrolase</common-name>
-<enzyme><Protein frameid="MONOMER-5946" orgid="META" resource="getxml?META:MONOMER-5946" /></enzyme>
-<reaction><Reaction frameid="TRE6PHYDRO-RXN" orgid="META" resource="getxml?META:TRE6PHYDRO-RXN" /></reaction>
-<synonym datatype="string">phospho-&amp;alpha;(1,1)glucosidase</synonym>
-<synonym datatype="string">7751281</synonym>
-<synonym datatype="string">phosphotrehalase</synonym>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="GLC" orgid="META" resource="#META:GLC" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">&amp;beta;-D-glucose</synonym>
-<synonym datatype="string">&amp;beta;-glucose</synonym>
-<appears-in-left-side-of><Reaction frameid="GLUCOSE-OXIDASE-RXN" orgid="META" resource="getxml?META:GLUCOSE-OXIDASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="RXN-21855" orgid="META" resource="getxml?META:RXN-21855" /><Reaction frameid="RXN18C3-14" orgid="META" resource="getxml?META:RXN18C3-14" /><Reaction frameid="RXN18C3-17" orgid="META" resource="getxml?META:RXN18C3-17" /><Reaction frameid="RXN18C3-18" orgid="META" resource="getxml?META:RXN18C3-18" /><Reaction frameid="3.2.1.106-RXN" orgid="META" resource="getxml?META:3.2.1.106-RXN" /><Reaction frameid="RXN-18147" orgid="META" resource="getxml?META:RXN-18147" /><Reaction frameid="RXN-10691" orgid="META" resource="getxml?META:RXN-10691" /><Reaction frameid="ALDOSE-1-EPIMERASE-RXN" orgid="META" resource="getxml?META:ALDOSE-1-EPIMERASE-RXN" /><Reaction frameid="TREHALA-RXN" orgid="META" resource="getxml?META:TREHALA-RXN" /></appears-in-right-side-of>
 </Compound>
 </ptools-xml>

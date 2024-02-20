@@ -16,6 +16,15 @@
 
 from ipywidgets.embed import DEFAULT_EMBED_REQUIREJS_URL
 
+import pybtex.plugin
+from pybtex.style.formatting.unsrt import Style as UnsrtStyle
+from pybtex.style.template import (
+    node,
+    FieldIsMissing,
+    join,
+    sentence,
+)  # ... and anything else needed
+
 # -- Project information -----------------------------------------------------
 
 project = "CobraMod"
@@ -32,39 +41,39 @@ extensions = [
     "autoapi.extension",
     "sphinx.ext.autodoc",
     # Google docstring
-    "sphinxcontrib.napoleon",
+    "sphinx.ext.napoleon",
     # ipynb support
     "nbsphinx",
     "sphinx.ext.intersphinx",
     "sphinxcontrib.bibtex",
 ]
 
-bibtex_bibfiles = ['biblio.bib']
-bibtex_default_style = 'mystyle'
-bibtex_reference_style = 'label'
+bibtex_bibfiles = ["biblio.bib"]
+bibtex_default_style = "mystyle"
+bibtex_reference_style = "label"
 
 html_css_files = [
-    'custom.css',
+    "custom.css",
 ]
 
-import pybtex.plugin
-from pybtex.style.formatting.unsrt import Style as UnsrtStyle
-from pybtex.style.template import node, FieldIsMissing, join, sentence  # ... and anything else needed
 
 # Adapted from pybtex to use the customized functions
 class MyStyle(UnsrtStyle):
     def format_names(self, role, as_sentence=True):
-        formatted_names = names(role, sep=' and ', sep2 = ' and ', last_sep=' and ')
+        formatted_names = names(
+            role, sep=" and ", sep2=" and ", last_sep=" and "
+        )
         if as_sentence:
-            return sentence [formatted_names]
+            return sentence[formatted_names]
         else:
             return formatted_names
 
 
 # Adapted from pybtex to get "," as separator instead of dots
 @node
-def sentence(children, data, capfirst=False, capitalize=False, add_period=True, sep=', '):
-
+def sentence(  # noqa: F811
+    children, data, capfirst=False, capitalize=False, add_period=True, sep=", "
+):
     text = join(sep)[children].format_data(data)
     if capfirst:
         text = text.capfirst()
@@ -74,6 +83,7 @@ def sentence(children, data, capfirst=False, capitalize=False, add_period=True, 
         text = text + ","
     return text
 
+
 # Adapted from pybtex to get a maximum of 3 authors or et al in the references.
 @node
 def names(children, context, role, **kwargs):
@@ -82,28 +92,34 @@ def names(children, context, role, **kwargs):
     assert not children
 
     try:
-        persons = context['entry'].persons[role]
+        persons = context["entry"].persons[role]
     except KeyError:
-        raise FieldIsMissing(role, context['entry'])
+        raise FieldIsMissing(role, context["entry"])
 
-    style = context['style']
+    style = context["style"]
     print(style)
 
     if len(persons) <= 3:
-        formatted_names = [style.format_name(person, style.abbreviate_names) for person in persons]
+        formatted_names = [
+            style.format_name(person, style.abbreviate_names)
+            for person in persons
+        ]
         print(persons)
     else:
-        formatted_names = [style.format_name(persons[0], style.abbreviate_names)," et al."]
+        formatted_names = [
+            style.format_name(persons[0], style.abbreviate_names),
+            " et al.",
+        ]
         try:
             kwargs["sep"] = " "
             kwargs["sep2"] = " "
         except KeyError:
             pass
 
-    return join(**kwargs) [formatted_names].format_data(context)
+    return join(**kwargs)[formatted_names].format_data(context)
 
 
-pybtex.plugin.register_plugin('pybtex.style.formatting', 'mystyle', MyStyle)
+pybtex.plugin.register_plugin("pybtex.style.formatting", "mystyle", MyStyle)
 
 # Extensions configuration
 intersphinx_mapping = {

@@ -1,13 +1,33 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:ISOCIT-CLEAV-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:ISOCIT-CLEAV-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:ISOCIT-CLEAV-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:ISOCIT-CLEAV-RXN" detail="full" frameid="ISOCIT-CLEAV-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:THREO-DS-ISO-CITRATE' orgid='ARA' frameid='THREO-DS-ISO-CITRATE'/></left>
+<synonym datatype='string'>glyoxylate-succinate condensation</synonym>
+<synonym datatype='string'>isocitrate cleavage</synonym>
+<synonym datatype='string'>Isocitrase</synonym>
+<synonym datatype='string'>Isocitritase</synonym>
+<synonym datatype='string'>Isocitratase</synonym>
+<synonym datatype='string'>ICL</synonym>
+<ec-number>EC-4.1.3.1<official>T</official>
+</ec-number>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:GLYOX' orgid='ARA' frameid='GLYOX'/></right>
+<right><Compound resource='getxml?ARA:SUC' orgid='ARA' frameid='SUC'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>3.2682343</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-1745' orgid='ARA' frameid='ENZRXN-1745' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-1402' orgid='ARA' frameid='CPLX-1402'/></enzyme>
+<reaction><Reaction resource='#ARA:ISOCIT-CLEAV-RXN' orgid='ARA' frameid='ISOCIT-CLEAV-RXN'/></reaction>
+<common-name datatype='string'>isocitrate lyase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>PIR</dblink-db>
 <dblink-oid>WZRPI</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -123,25 +143,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=A41338</dblink-URL>
 </dblink>
-<ec-number>EC-4.1.3.1<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-1745" detail="low" frameid="ENZRXN-1745" orgid="ARA"><enzyme><Protein frameid="CPLX-1402" orgid="ARA" resource="getxml?ARA:CPLX-1402" /><Protein frameid="AT3G21720-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G21720-MONOMER" /></enzyme>
-<reaction><Reaction frameid="ISOCIT-CLEAV-RXN" orgid="ARA" resource="#ARA:ISOCIT-CLEAV-RXN" /></reaction>
-<common-name datatype="string">isocitrate lyase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<synonym datatype="string">glyoxylate-succinate condensation</synonym>
-<synonym datatype="string">isocitrate cleavage</synonym>
-<synonym datatype="string">Isocitrase</synonym>
-<synonym datatype="string">Isocitritase</synonym>
-<synonym datatype="string">Isocitratase</synonym>
-<synonym datatype="string">ICL</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">3.2682343</gibbs-0>
-<in-pathway><Pathway frameid="GLYOXYLATE-BYPASS" orgid="ARA" resource="getxml?ARA:GLYOXYLATE-BYPASS" /></in-pathway>
-<left><Compound frameid="THREO-DS-ISO-CITRATE" orgid="ARA" resource="getxml?ARA:THREO-DS-ISO-CITRATE" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="GLYOX" orgid="ARA" resource="getxml?ARA:GLYOX" /></right>
-<right><Compound frameid="SUC" orgid="ARA" resource="getxml?ARA:SUC" /></right>
+<in-pathway><Pathway resource='getxml?ARA:GLYOXYLATE-BYPASS' orgid='ARA' frameid='GLYOXYLATE-BYPASS'/></in-pathway>
 </Reaction>
 </ptools-xml>

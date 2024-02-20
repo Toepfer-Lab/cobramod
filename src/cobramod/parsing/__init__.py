@@ -1,33 +1,12 @@
-#!/usr/bin/env python3
 """Sub-package parsing
 
-This package handles the download of data and transformation into dictionaries
-with can be later used for the creation of the corresponding COBRApy objects.
-Classes included in the sub-package:
+This sub-package takes care of gathering, storing and parsing the data from
+multiple servers
 
-- BaseParser: Abstract class to download and parse data
-- The corresponding child classes:
-    - BiocycParser
-    - PlantCycParser
-    - KeggParser
-    - BiggParser
-    - SolCycParser
-
-Read the corresponding documentation for each module and corresponding classes.
+- bigg: Parsing of BiGG information
+- biocyc: Parsing and retrieval of BioCyc families
+- db_version: Database versioning configurator
+- kegg: Parsing of KEGG information
+- plantcyc: Gene parsing for Plantcyc
+- solcyc: Gene parsing for SolCyc
 """
-from cobramod.parsing.base import BaseParser
-from cobramod.parsing.biocyc import BiocycParser
-from cobramod.parsing.plantcyc import PlantCycParser
-from cobramod.parsing.bigg import BiggParser
-from cobramod.parsing.kegg import KeggParser
-from cobramod.parsing.solcyc import SolCycParser
-
-
-__all__ = [
-    "BaseParser",
-    "BiocycParser",
-    "PlantCycParser",
-    "BiggParser",
-    "KeggParser",
-    "SolCycParser",
-]

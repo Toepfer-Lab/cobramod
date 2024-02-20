@@ -1,12 +1,27 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:MALONYL-COA-ACP-TRANSACYL-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:MALONYL-COA-ACP-TRANSACYL-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:MALONYL-COA-ACP-TRANSACYL-RXN" detail="full" frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Protein-Modification-Reactions" orgid="ARA" resource="getxml?ARA:Protein-Modification-Reactions" /></parent>
+<Reaction ID='ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Protein-Modification-Reactions' orgid='ARA' frameid='Protein-Modification-Reactions' class='true'/></parent>
+<left><Protein resource='getxml?ARA:ACP' orgid='ARA' frameid='ACP' class='true'/></left>
+<left><Compound resource='getxml?ARA:MALONYL-COA' orgid='ARA' frameid='MALONYL-COA'/></left>
+<ec-number>EC-2.3.1.39<official>T</official>
+</ec-number>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Protein resource='getxml?ARA:MALONYL-ACP' orgid='ARA' frameid='MALONYL-ACP' class='true'/></right>
+<right><Compound resource='getxml?ARA:CO-A' orgid='ARA' frameid='CO-A'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-8.398743</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-29219' orgid='ARA' frameid='ENZRXNQT-29219' detail='low'><enzyme><Protein resource='getxml?ARA:AT2G30200-MONOMER' orgid='ARA' frameid='AT2G30200-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:MALONYL-COA-ACP-TRANSACYL-RXN' orgid='ARA' frameid='MALONYL-COA-ACP-TRANSACYL-RXN'/></reaction>
+<common-name datatype='string'>[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>UNIPROT</dblink-db>
 <dblink-oid>P12785</dblink-oid>
 <dblink-relationship>RELATED-TO</dblink-relationship>
@@ -317,20 +332,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=XYRTFA</dblink-URL>
 </dblink>
-<ec-number>EC-2.3.1.39<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-29219" detail="low" frameid="ENZRXNQT-29219" orgid="ARA"><enzyme><Protein frameid="AT2G30200-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G30200-MONOMER" /></enzyme>
-<reaction><Reaction frameid="MALONYL-COA-ACP-TRANSACYL-RXN" orgid="ARA" resource="#ARA:MALONYL-COA-ACP-TRANSACYL-RXN" /></reaction>
-<common-name datatype="string">[acyl-carrier-protein] &lt;i&gt;S&lt;/i&gt;-malonyltransferase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-8.398743</gibbs-0>
-<in-pathway><Pathway frameid="PWY-4381" orgid="ARA" resource="getxml?ARA:PWY-4381" /><Pathway frameid="PWY-7388" orgid="ARA" resource="getxml?ARA:PWY-7388" /><Pathway frameid="PWY-6799" orgid="ARA" resource="getxml?ARA:PWY-6799" /></in-pathway>
-<left><Protein class="true" frameid="ACP" orgid="ARA" resource="getxml?ARA:ACP" /></left>
-<left><Compound frameid="MALONYL-COA" orgid="ARA" resource="getxml?ARA:MALONYL-COA" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Protein class="true" frameid="MALONYL-ACP" orgid="ARA" resource="getxml?ARA:MALONYL-ACP" /></right>
-<right><Compound frameid="CO-A" orgid="ARA" resource="getxml?ARA:CO-A" /></right>
+<in-pathway><Pathway resource='getxml?ARA:PWY-4381' orgid='ARA' frameid='PWY-4381'/><Pathway resource='getxml?ARA:PWY-7388' orgid='ARA' frameid='PWY-7388'/><Pathway resource='getxml?ARA:PWY-6799' orgid='ARA' frameid='PWY-6799'/></in-pathway>
 </Reaction>
 </ptools-xml>

@@ -1,33 +1,44 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:MANNITOL-1P"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:MANNITOL-1P'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:MANNITOL-1P</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Compound ID="META:MANNITOL-1P" detail="full" frameid="MANNITOL-1P" orgid="META"><parent><Compound class="true" frameid="Alditol-phosphates" orgid="META" resource="getxml?META:Alditol-phosphates" /></parent>
-<cml><molecule formalCharge="-2" id="MANNITOL-1P" title="D-mannitol+1-phosphate"><atomArray><atom elementType="C" id="MANNITOL-1P-atom1" x2="8768.0" y2="-16715.0" /><atom elementType="C" id="MANNITOL-1P-atom2" x2="-26955.0" y2="-12590.0" /><atom elementType="C" id="MANNITOL-1P-atom3" x2="1623.0" y2="-12590.0" /><atom elementType="C" id="MANNITOL-1P-atom4" x2="-19811.0" y2="-16715.0" /><atom elementType="C" id="MANNITOL-1P-atom5" x2="-5521.0" y2="-16715.0" /><atom elementType="C" id="MANNITOL-1P-atom6" x2="-12666.0" y2="-12590.0" /><atom elementType="O" id="MANNITOL-1P-atom7" x2="15912.0" y2="-12590.0" /><atom elementType="O" id="MANNITOL-1P-atom8" x2="1623.0" y2="-4341.0" /><atom elementType="O" id="MANNITOL-1P-atom9" x2="-19811.0" y2="-24965.0" /><atom elementType="O" id="MANNITOL-1P-atom10" x2="-5521.0" y2="-24965.0" /><atom elementType="O" id="MANNITOL-1P-atom11" x2="-12666.0" y2="-4341.0" /><atom elementType="O" formalCharge="-1" id="MANNITOL-1P-atom12" x2="-50599.0" y2="-16715.0" /><atom elementType="O" formalCharge="-1" id="MANNITOL-1P-atom13" x2="-42349.0" y2="-8465.0" /><atom elementType="O" id="MANNITOL-1P-atom14" x2="-42349.0" y2="-24965.0" /><atom elementType="O" id="MANNITOL-1P-atom15" x2="-34099.0" y2="-16715.0" /><atom elementType="P" id="MANNITOL-1P-atom16" x2="-42349.0" y2="-16715.0" /></atomArray>
-<bondArray><bond atomRefs="MANNITOL-1P-atom16 MANNITOL-1P-atom14" id="MANNITOL-1P-bond1" order="2" /><bond atomRefs="MANNITOL-1P-atom16 MANNITOL-1P-atom13" id="MANNITOL-1P-bond2" order="1" /><bond atomRefs="MANNITOL-1P-atom16 MANNITOL-1P-atom12" id="MANNITOL-1P-bond3" order="1" /><bond atomRefs="MANNITOL-1P-atom15 MANNITOL-1P-atom16" id="MANNITOL-1P-bond4" order="1" /><bond atomRefs="MANNITOL-1P-atom4 MANNITOL-1P-atom9" id="MANNITOL-1P-bond5" order="1" /><bond atomRefs="MANNITOL-1P-atom3 MANNITOL-1P-atom8" id="MANNITOL-1P-bond6" order="1" /><bond atomRefs="MANNITOL-1P-atom6 MANNITOL-1P-atom11" id="MANNITOL-1P-bond7" order="1" /><bond atomRefs="MANNITOL-1P-atom5 MANNITOL-1P-atom10" id="MANNITOL-1P-bond8" order="1" /><bond atomRefs="MANNITOL-1P-atom1 MANNITOL-1P-atom7" id="MANNITOL-1P-bond9" order="1" /><bond atomRefs="MANNITOL-1P-atom2 MANNITOL-1P-atom15" id="MANNITOL-1P-bond10" order="1" /><bond atomRefs="MANNITOL-1P-atom4 MANNITOL-1P-atom2" id="MANNITOL-1P-bond11" order="1" /><bond atomRefs="MANNITOL-1P-atom6 MANNITOL-1P-atom4" id="MANNITOL-1P-bond12" order="1" /><bond atomRefs="MANNITOL-1P-atom3 MANNITOL-1P-atom1" id="MANNITOL-1P-bond13" order="1" /><bond atomRefs="MANNITOL-1P-atom5 MANNITOL-1P-atom6" id="MANNITOL-1P-bond14" order="1" /><bond atomRefs="MANNITOL-1P-atom3 MANNITOL-1P-atom5" id="MANNITOL-1P-bond15" order="1" /></bondArray>
-<formula concise="C 6 H 13 O 9 P 1" /><float title="molecularWeight" units="g/mol">260.137</float>
-<string title="smiles">C([C@H]([C@H]([C@@H]([C@@H](COP([O-])([O-])=O)O)O)O)O)O</string>
-<string title="systematicName">D-mannitol, 1-(dihydrogenphosphate)</string>
+<Compound ID='META:MANNITOL-1P' orgid='META' frameid='MANNITOL-1P' detail='full'><parent><Compound resource='getxml?META:Alditol-phosphates' orgid='META' frameid='Alditol-phosphates' class='true'/></parent>
+<cml><molecule id='MANNITOL-1P' title='D-mannitol+1-phosphate' formalCharge='-2'><atomArray><atom id='MANNITOL-1P-atom1' elementType='C' x2='8768.0' y2='-16715.0'/><atom id='MANNITOL-1P-atom2' elementType='C' x2='-26955.0' y2='-12590.0'/><atom id='MANNITOL-1P-atom3' elementType='C' x2='1623.0' y2='-12590.0'/><atom id='MANNITOL-1P-atom4' elementType='C' x2='-19811.0' y2='-16715.0'/><atom id='MANNITOL-1P-atom5' elementType='C' x2='-5521.0' y2='-16715.0'/><atom id='MANNITOL-1P-atom6' elementType='C' x2='-12666.0' y2='-12590.0'/><atom id='MANNITOL-1P-atom7' elementType='O' x2='15912.0' y2='-12590.0'/><atom id='MANNITOL-1P-atom8' elementType='O' x2='1623.0' y2='-4341.0'/><atom id='MANNITOL-1P-atom9' elementType='O' x2='-19811.0' y2='-24965.0'/><atom id='MANNITOL-1P-atom10' elementType='O' x2='-5521.0' y2='-24965.0'/><atom id='MANNITOL-1P-atom11' elementType='O' x2='-12666.0' y2='-4341.0'/><atom id='MANNITOL-1P-atom12' elementType='O' x2='-50599.0' y2='-16715.0' formalCharge='-1'/><atom id='MANNITOL-1P-atom13' elementType='O' x2='-42349.0' y2='-8465.0' formalCharge='-1'/><atom id='MANNITOL-1P-atom14' elementType='O' x2='-42349.0' y2='-24965.0'/><atom id='MANNITOL-1P-atom15' elementType='O' x2='-34099.0' y2='-16715.0'/><atom id='MANNITOL-1P-atom16' elementType='P' x2='-42349.0' y2='-16715.0'/></atomArray>
+<bondArray><bond id='MANNITOL-1P-bond1' atomRefs='MANNITOL-1P-atom16 MANNITOL-1P-atom14' order='2'/><bond id='MANNITOL-1P-bond2' atomRefs='MANNITOL-1P-atom16 MANNITOL-1P-atom13' order='1'/><bond id='MANNITOL-1P-bond3' atomRefs='MANNITOL-1P-atom16 MANNITOL-1P-atom12' order='1'/><bond id='MANNITOL-1P-bond4' atomRefs='MANNITOL-1P-atom15 MANNITOL-1P-atom16' order='1'/><bond id='MANNITOL-1P-bond5' atomRefs='MANNITOL-1P-atom4 MANNITOL-1P-atom9' order='1'/><bond id='MANNITOL-1P-bond6' atomRefs='MANNITOL-1P-atom3 MANNITOL-1P-atom8' order='1'/><bond id='MANNITOL-1P-bond7' atomRefs='MANNITOL-1P-atom6 MANNITOL-1P-atom11' order='1'/><bond id='MANNITOL-1P-bond8' atomRefs='MANNITOL-1P-atom5 MANNITOL-1P-atom10' order='1'/><bond id='MANNITOL-1P-bond9' atomRefs='MANNITOL-1P-atom1 MANNITOL-1P-atom7' order='1'/><bond id='MANNITOL-1P-bond10' atomRefs='MANNITOL-1P-atom2 MANNITOL-1P-atom15' order='1'/><bond id='MANNITOL-1P-bond11' atomRefs='MANNITOL-1P-atom4 MANNITOL-1P-atom2' order='1'/><bond id='MANNITOL-1P-bond12' atomRefs='MANNITOL-1P-atom6 MANNITOL-1P-atom4' order='1'/><bond id='MANNITOL-1P-bond13' atomRefs='MANNITOL-1P-atom3 MANNITOL-1P-atom1' order='1'/><bond id='MANNITOL-1P-bond14' atomRefs='MANNITOL-1P-atom5 MANNITOL-1P-atom6' order='1'/><bond id='MANNITOL-1P-bond15' atomRefs='MANNITOL-1P-atom3 MANNITOL-1P-atom5' order='1'/></bondArray>
+<formula concise='C 6 H 13 O 9 P 1'/><float title='molecularWeight' units='g/mol'>260.137</float>
+<string title='smiles'>C([C@H]([C@H]([C@@H]([C@@H](COP([O-])([O-])=O)O)O)O)O)O</string>
+<string title='systematicName'>D-mannitol, 1-(dihydrogenphosphate)</string>
 </molecule>
 </cml>
-<comment datatype="string">Due to symmetry of the molecule, the phosphorylation of &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt; at either end produces the same molecule. When &lt;a href="/compound?orgid=META&amp;id=MANNITOL"&gt;D-mannitol&lt;/a&gt; is transported by a PTS system, it is phosphorylated at the 6 position, but the resulting molecule is named &lt;a href="/compound?orgid=META&amp;id=MANNITOL-1P"&gt;D-mannitol 1-phosphate&lt;/a&gt; by conventional nomenclature rules.</comment>
-<common-name datatype="string">D-mannitol 1-phosphate</common-name>
-<credits><revised><date datatype="date">2013-08-17</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-<affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-</Organization>
-</affiliations>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></revised>
-</credits>
+<appears-in-left-side-of><Reaction resource='getxml?META:MANNOSE-6-PHOSPHATE-6-REDUCTASE-RXN' orgid='META' frameid='MANNOSE-6-PHOSPHATE-6-REDUCTASE-RXN'/><Reaction resource='getxml?META:MANNPDEHYDROG-RXN' orgid='META' frameid='MANNPDEHYDROG-RXN'/><Reaction resource='getxml?META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></appears-in-left-side-of>
+<inchi datatype='string'>InChI=1S/C6H15O9P/c7-1-3(8)5(10)6(11)4(9)2-15-16(12,13)14/h3-11H,1-2H2,(H2,12,13,14)/p-2/t3-,4-,5-,6-/m1/s1</inchi>
+<molecular-weight datatype='float' units='Daltons'>260.137</molecular-weight>
+<appears-in-right-side-of><Reaction resource='getxml?META:TRANS-RXN-156' orgid='META' frameid='TRANS-RXN-156'/></appears-in-right-side-of>
+<systematic-name datatype='string'>D-mannitol, 1-(dihydrogenphosphate)</systematic-name>
+<monoisotopic-mw datatype='float' units='Daltons'>262.04538</monoisotopic-mw>
+<synonym datatype='string'>mannitol-1-P</synonym>
+<common-name datatype='string'>D-mannitol 1-phosphate</common-name>
+<regulates><Regulation ID='META:REG-9524' orgid='META' frameid='REG-9524' detail='low'><parent><Regulation resource='getxml?META:Regulation-of-Enzyme-Activity' orgid='META' frameid='Regulation-of-Enzyme-Activity' class='true'/></parent>
+<regulator><Compound resource='#META:MANNITOL-1P' orgid='META' frameid='MANNITOL-1P'/></regulator>
+<mode datatype='string'>-</mode>
+<regulated-entity><Enzymatic-Reaction ID='META:ENZRXN-9441' orgid='META' frameid='ENZRXN-9441' detail='low'><reaction><Reaction resource='getxml?META:MANNPISOM-RXN' orgid='META' frameid='MANNPISOM-RXN'/></reaction>
+<common-name datatype='string'>phosphomannose isomerase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-9281' orgid='META' frameid='MONOMER-9281'/></enzyme>
+</Enzymatic-Reaction>
+</regulated-entity>
+</Regulation>
+</regulates>
+<comment datatype='string'>Due to symmetry of the molecule, the phosphorylation of &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt; at either end produces the same molecule. When &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL&quot;&gt;D-mannitol&lt;/a&gt; is transported by a PTS system, it is phosphorylated at the 6 position, but the resulting molecule is named &lt;a href=&quot;/compound?orgid=META&amp;id=MANNITOL-1P&quot;&gt;D-mannitol 1-phosphate&lt;/a&gt; by conventional nomenclature rules.</comment>
+<inchi-key datatype='string'>InChIKey=GACTWZZMVMUKNG-KVTDHHQDSA-L</inchi-key>
+<dblink><dblink-db>ZINC</dblink-db>
+<dblink-oid>ZINC000003869812</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>https://zinc15.docking.org/substances/ZINC000003869812</dblink-URL>
+</dblink>
 <dblink><dblink-db>METANETX</dblink-db>
 <dblink-oid>MNXM90126</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -73,38 +84,35 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.commonchemistry.org/ChemicalDetail.aspx?ref=15806-48-1</dblink-URL>
 </dblink>
-<gibbs-0 datatype="float" units="kcal/mol">-305.6637<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-305.6637<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C6H15O9P/c7-1-3(8)5(10)6(11)4(9)2-15-16(12,13)14/h3-11H,1-2H2,(H2,12,13,14)/p-2/t3-,4-,5-,6-/m1/s1</inchi>
-<inchi-key datatype="string">InChIKey=GACTWZZMVMUKNG-KVTDHHQDSA-L</inchi-key>
-<molecular-weight datatype="float" units="Daltons">260.137</molecular-weight>
-<monoisotopic-mw datatype="float" units="Daltons">262.04538</monoisotopic-mw>
-<regulates><Regulation ID="META:REG-9524" detail="low" frameid="REG-9524" orgid="META"><parent><Regulation class="true" frameid="Regulation-of-Enzyme-Activity" orgid="META" resource="getxml?META:Regulation-of-Enzyme-Activity" /></parent>
-<mode datatype="string">-</mode>
-<regulated-entity><Enzymatic-Reaction ID="META:ENZRXN-9441" detail="low" frameid="ENZRXN-9441" orgid="META"><common-name datatype="string">phosphomannose isomerase</common-name>
-<enzyme><Protein frameid="MONOMER-9281" orgid="META" resource="getxml?META:MONOMER-9281" /></enzyme>
-<reaction><Reaction frameid="MANNPISOM-RXN" orgid="META" resource="getxml?META:MANNPISOM-RXN" /></reaction>
-</Enzymatic-Reaction>
-</regulated-entity>
-<regulator><Compound frameid="MANNITOL-1P" orgid="META" resource="#META:MANNITOL-1P" /></regulator>
-</Regulation>
-</regulates>
-<synonym datatype="string">mannitol-1-P</synonym>
-<systematic-name datatype="string">D-mannitol, 1-(dihydrogenphosphate)</systematic-name>
-<appears-in-left-side-of><Reaction frameid="MANNOSE-6-PHOSPHATE-6-REDUCTASE-RXN" orgid="META" resource="getxml?META:MANNOSE-6-PHOSPHATE-6-REDUCTASE-RXN" /><Reaction frameid="MANNPDEHYDROG-RXN" orgid="META" resource="getxml?META:MANNPDEHYDROG-RXN" /><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="getxml?META:MANNITOL-1-PHOSPHATASE-RXN" /></appears-in-left-side-of>
-<appears-in-right-side-of><Reaction frameid="TRANS-RXN-156" orgid="META" resource="getxml?META:TRANS-RXN-156" /></appears-in-right-side-of>
+<credits><revised><date datatype='date'>2013-08-17</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><common-name datatype='string'>Ron Caspi</common-name>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
+&lt;p&gt;
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.</comment>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+</Organization>
+</affiliations>
+<email datatype='string'>ron.caspi@sri.com</email>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></revised>
+</credits>
 </Compound>
 </ptools-xml>

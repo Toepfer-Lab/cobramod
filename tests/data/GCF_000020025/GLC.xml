@@ -1,10 +1,11 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?GCF_000020025:GLC"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?GCF_000020025:GLC'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>GCF_000020025:GLC</query>
 <num_results>1</num_results>
-<PGDB orgid="GCF_000020025" version="24.5"><species datatype="string">Nostoc punctiforme</species>
-<strain datatype="string">ATCC 29133; PCC 73102</strain>
-<sequence-source datatype="string">GCF_000020025.1</sequence-source>
+<PGDB orgid='GCF_000020025' version='27.5'><species datatype='string'>Nostoc punctiforme</species>
+<strain datatype='string'>ATCC 29133; PCC 73102</strain>
+<sequence-source datatype='string'>GCF_000020025.1</sequence-source>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>63737</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -12,31 +13,36 @@
 </dblink>
 </PGDB>
 </metadata>
-<Compound ID="GCF_000020025:GLC" detail="full" frameid="GLC" orgid="GCF_000020025"><parent><Compound class="true" frameid="Glucopyranose" orgid="GCF_000020025" resource="getxml?GCF_000020025:Glucopyranose" /></parent>
-<cml><molecule formalCharge="0" id="GLC" title="beta-D-glucopyranose"><atomArray><atom elementType="C" id="GLC-atom1" x2="8252.0" y2="-24755.0" /><atom elementType="C" id="GLC-atom2" x2="15393.0" y2="-20624.0" /><atom elementType="C" id="GLC-atom3" x2="15393.0" y2="-12382.0" /><atom elementType="C" id="GLC-atom4" x2="22544.0" y2="-8252.0" /><atom elementType="C" id="GLC-atom5" x2="29686.0" y2="-12382.0" /><atom elementType="C" id="GLC-atom6" x2="29686.0" y2="-20624.0" /><atom elementType="O" id="GLC-atom7" x2="1107.0" y2="-20630.0" /><atom elementType="O" id="GLC-atom8" x2="8252.0" y2="-8252.0" /><atom elementType="O" id="GLC-atom9" x2="22544.0" y2="0.0" /><atom elementType="O" id="GLC-atom10" x2="36837.0" y2="-8252.0" /><atom elementType="O" id="GLC-atom11" x2="36837.0" y2="-24755.0" /><atom elementType="O" id="GLC-atom12" x2="22544.0" y2="-24755.0" /></atomArray>
-<bondArray><bond atomRefs="GLC-atom3 GLC-atom2" id="GLC-bond1" order="1" /><bond atomRefs="GLC-atom4 GLC-atom3" id="GLC-bond2" order="1" /><bond atomRefs="GLC-atom5 GLC-atom4" id="GLC-bond3" order="1" /><bond atomRefs="GLC-atom6 GLC-atom5" id="GLC-bond4" order="1" /><bond atomRefs="GLC-atom12 GLC-atom2" id="GLC-bond5" order="1" /><bond atomRefs="GLC-atom12 GLC-atom6" id="GLC-bond6" order="1" /><bond atomRefs="GLC-atom2 GLC-atom1" id="GLC-bond7" order="1" /><bond atomRefs="GLC-atom3 GLC-atom8" id="GLC-bond8" order="1" /><bond atomRefs="GLC-atom4 GLC-atom9" id="GLC-bond9" order="1" /><bond atomRefs="GLC-atom5 GLC-atom10" id="GLC-bond10" order="1" /><bond atomRefs="GLC-atom6 GLC-atom11" id="GLC-bond11" order="1" /><bond atomRefs="GLC-atom1 GLC-atom7" id="GLC-bond12" order="1" /></bondArray>
-<formula concise="C 6 H 12 O 6" /><float title="molecularWeight" units="g/mol">180.157</float>
-<string title="smiles">C(O)[C@H]1(O[C@@H](O)[C@H](O)[C@@H](O)[C@H](O)1)</string>
+<Compound ID='GCF_000020025:GLC' orgid='GCF_000020025' frameid='GLC' detail='full'><parent><Compound resource='getxml?GCF_000020025:Glucopyranose' orgid='GCF_000020025' frameid='Glucopyranose' class='true'/></parent>
+<cml><molecule id='GLC' title='beta-D-glucopyranose' formalCharge='0'><atomArray><atom id='GLC-atom1' elementType='C' x2='8252.0' y2='-24755.0'/><atom id='GLC-atom2' elementType='C' x2='15393.0' y2='-20624.0'/><atom id='GLC-atom3' elementType='C' x2='15393.0' y2='-12382.0'/><atom id='GLC-atom4' elementType='C' x2='22544.0' y2='-8252.0'/><atom id='GLC-atom5' elementType='C' x2='29686.0' y2='-12382.0'/><atom id='GLC-atom6' elementType='C' x2='29686.0' y2='-20624.0'/><atom id='GLC-atom7' elementType='O' x2='1107.0' y2='-20630.0'/><atom id='GLC-atom8' elementType='O' x2='8252.0' y2='-8252.0'/><atom id='GLC-atom9' elementType='O' x2='22544.0' y2='0.0'/><atom id='GLC-atom10' elementType='O' x2='36837.0' y2='-8252.0'/><atom id='GLC-atom11' elementType='O' x2='36837.0' y2='-24755.0'/><atom id='GLC-atom12' elementType='O' x2='22544.0' y2='-24755.0'/></atomArray>
+<bondArray><bond id='GLC-bond1' atomRefs='GLC-atom3 GLC-atom2' order='1'/><bond id='GLC-bond2' atomRefs='GLC-atom4 GLC-atom3' order='1'/><bond id='GLC-bond3' atomRefs='GLC-atom5 GLC-atom4' order='1'/><bond id='GLC-bond4' atomRefs='GLC-atom6 GLC-atom5' order='1'/><bond id='GLC-bond5' atomRefs='GLC-atom12 GLC-atom2' order='1'/><bond id='GLC-bond6' atomRefs='GLC-atom12 GLC-atom6' order='1'/><bond id='GLC-bond7' atomRefs='GLC-atom2 GLC-atom1' order='1'/><bond id='GLC-bond8' atomRefs='GLC-atom3 GLC-atom8' order='1'/><bond id='GLC-bond9' atomRefs='GLC-atom4 GLC-atom9' order='1'/><bond id='GLC-bond10' atomRefs='GLC-atom5 GLC-atom10' order='1'/><bond id='GLC-bond11' atomRefs='GLC-atom6 GLC-atom11' order='1'/><bond id='GLC-bond12' atomRefs='GLC-atom1 GLC-atom7' order='1'/></bondArray>
+<formula concise='C 6 H 12 O 6'/><float title='molecularWeight' units='g/mol'>180.157</float>
+<string title='smiles'>C(O)[C@H]1(O[C@@H](O)[C@H](O)[C@@H](O)[C@H](O)1)</string>
 </molecule>
 </cml>
-<monoisotopic-mw datatype="float" units="Daltons">180.06339</monoisotopic-mw>
-<gibbs-0 datatype="float" units="kcal/mol">-95.02656<evidence><Evidence-Code ID="GCF_000020025:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="GCF_000020025"><common-name datatype="string">Inferred by computational analysis</common-name>
-<comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<gibbs-0 datatype='float' units='kcal/mol'>-95.02656<evidence><Evidence-Code ID='GCF_000020025:EV-COMP' orgid='GCF_000020025' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
 </Evidence-Code>
-<Publication ID="GCF_000020025:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="GCF_000020025"><year datatype="integer">2013</year>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<author datatype="string">Latendresse M.</author>
+<Publication ID='GCF_000020025:PUB-LATENDRESSE2013' orgid='GCF_000020025' frameid='PUB-LATENDRESSE2013' detail='full'><author datatype='string'>Latendresse M.</author>
+<year datatype='integer'>2013</year>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<inchi datatype="string">InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1</inchi>
-<molecular-weight datatype="float" units="Daltons">180.157</molecular-weight>
+<common-name datatype='string'>&amp;beta;-D-glucopyranose</common-name>
+<inchi datatype='string'>InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6-/m1/s1</inchi>
+<monoisotopic-mw datatype='float' units='Daltons'>180.06339</monoisotopic-mw>
+<molecular-weight datatype='float' units='Daltons'>180.157</molecular-weight>
+<inchi-key datatype='string'>InChIKey=WQZGKKKJIJFFOK-VFUOTHLCSA-N</inchi-key>
+<appears-in-right-side-of><Reaction resource='getxml?GCF_000020025:ALDOSE-1-EPIMERASE-RXN' orgid='GCF_000020025' frameid='ALDOSE-1-EPIMERASE-RXN'/><Reaction resource='getxml?GCF_000020025:TREHALA-RXN' orgid='GCF_000020025' frameid='TREHALA-RXN'/></appears-in-right-side-of>
+<synonym datatype='string'>&amp;beta;-D-glucose</synonym>
+<synonym datatype='string'>&amp;beta;-glucose</synonym>
 <dblink><dblink-db>MEDIADB</dblink-db>
 <dblink-oid>compounds/217/</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -97,23 +103,18 @@ manual interpretation of the computation occurred.
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=64689</dblink-URL>
 </dblink>
-<inchi-key datatype="string">InChIKey=WQZGKKKJIJFFOK-VFUOTHLCSA-N</inchi-key>
-<common-name datatype="string">&amp;beta;-D-glucopyranose</common-name>
-<synonym datatype="string">&amp;beta;-D-glucose</synonym>
-<synonym datatype="string">&amp;beta;-glucose</synonym>
-<appears-in-right-side-of><Reaction frameid="ALDOSE-1-EPIMERASE-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:ALDOSE-1-EPIMERASE-RXN" /><Reaction frameid="TREHALA-RXN" orgid="GCF_000020025" resource="getxml?GCF_000020025:TREHALA-RXN" /></appears-in-right-side-of>
-<credits><imported-from-meta><date datatype="date">2020-03-09</date>
-<Person ID="GCF_000020025:kothari" detail="full" frameid="kothari" orgid="GCF_000020025"><affiliations><Organization ID="GCF_000020025:SRI" detail="full" frameid="SRI" orgid="GCF_000020025"><url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<common-name datatype="string">SRI International</common-name>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
+<credits><imported-from-meta><date datatype='date'>2020-03-09</date>
+<Person ID='GCF_000020025:kothari' orgid='GCF_000020025' frameid='kothari' detail='full'><common-name datatype='string'>Anamika Kothari</common-name>
+<affiliations><Organization ID='GCF_000020025:SRI' orgid='GCF_000020025' frameid='SRI' detail='full'><common-name datatype='string'>SRI International</common-name>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<email datatype='string'>ptools-support@ai.sri.com</email>
 </Organization>
 </affiliations>
-<common-name datatype="string">Anamika Kothari</common-name>
-<comment datatype="string">Anamika Kothari is a software developer that works on the Pathway Tools software at SRI International. She has also curated of compounds and reactions in the MetaCyc database.</comment>
-<email datatype="string">kothari@ai.sri.com</email>
+<comment datatype='string'>Anamika Kothari is a software developer that works on the Pathway Tools software at SRI International. She has also curated of compounds and reactions in the MetaCyc database.</comment>
+<email datatype='string'>kothari@ai.sri.com</email>
 </Person>
-<Organization frameid="SRI" orgid="GCF_000020025" resource="#GCF_000020025:SRI" /></imported-from-meta>
+<Organization resource='#GCF_000020025:SRI' orgid='GCF_000020025' frameid='SRI'/></imported-from-meta>
 </credits>
 </Compound>
 </ptools-xml>

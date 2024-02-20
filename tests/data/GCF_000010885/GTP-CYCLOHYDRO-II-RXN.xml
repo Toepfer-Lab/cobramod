@@ -1,10 +1,12 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?GCF_000010885:GTP-CYCLOHYDRO-II-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>GCF_000010885:GTP-CYCLOHYDRO-II-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="GCF_000010885" version="24.5"><species datatype="string">Acetobacter pasteurianus</species>
-<subspecies datatype="string">pasteurianus</subspecies>
-<strain datatype="string">IFO 3283</strain>
+<PGDB orgid='GCF_000010885' version='27.5'><species datatype='string'>Acetobacter pasteurianus</species>
+<subspecies datatype='string'>pasteurianus</subspecies>
+<strain datatype='string'>IFO 3283-22</strain>
+<sequence-source datatype='string'>GCF_000010885</sequence-source>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>634455</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -12,35 +14,35 @@
 </dblink>
 </PGDB>
 </metadata>
-<Reaction ID="GCF_000010885:GTP-CYCLOHYDRO-II-RXN" detail="full" frameid="GTP-CYCLOHYDRO-II-RXN" orgid="GCF_000010885"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="GCF_000010885" resource="getxml?GCF_000010885:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="GCF_000010885" resource="getxml?GCF_000010885:Small-Molecule-Reactions" /></parent>
-<ec-number>EC-3.5.4.25<official>T</official>
-</ec-number>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="GCF_000010885" resource="getxml?GCF_000010885:PROTON" /><coefficient datatype="integer">2</coefficient>
-</right>
-<right><Compound frameid="PPI" orgid="GCF_000010885" resource="getxml?GCF_000010885:PPI" /></right>
-<right><Compound frameid="DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" orgid="GCF_000010885" resource="getxml?GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" /></right>
-<right><Compound frameid="FORMATE" orgid="GCF_000010885" resource="getxml?GCF_000010885:FORMATE" /></right>
-<credits><imported-from-meta><date datatype="date">2019-02-06</date>
-<Organization ID="GCF_000010885:SRI" detail="full" frameid="SRI" orgid="GCF_000010885"><email datatype="string">ptools-support@ai.sri.com</email>
-<common-name datatype="string">SRI International</common-name>
-<abbrev-name datatype="string">SRI International</abbrev-name>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
+<Reaction ID='GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN' detail='full'><parent><Reaction resource='getxml?GCF_000010885:Chemical-Reactions' orgid='GCF_000010885' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?GCF_000010885:Small-Molecule-Reactions' orgid='GCF_000010885' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<orphan>NO</orphan>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<enzymatic-reaction><Enzymatic-Reaction ID='GCF_000010885:ENZRXN1SO3-707' orgid='GCF_000010885' frameid='ENZRXN1SO3-707' detail='low'><common-name datatype='string'>bifunctional 3,4-dihydroxy-2-butanone-4-phosphate synthase/GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?GCF_000010885:APA22_RS09400-MONOMER' orgid='GCF_000010885' frameid='APA22_RS09400-MONOMER'/></enzyme>
+<reaction><Reaction resource='#GCF_000010885:GTP-CYCLOHYDRO-II-RXN' orgid='GCF_000010885' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<credits><imported-from-meta><date datatype='date'>2019-02-06</date>
+<Organization ID='GCF_000010885:SRI' orgid='GCF_000010885' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<common-name datatype='string'>SRI International</common-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
 </Organization>
 </imported-from-meta>
 </credits>
-<left><Compound frameid="WATER" orgid="GCF_000010885" resource="getxml?GCF_000010885:WATER" /><coefficient datatype="integer">3</coefficient>
+<in-pathway><Pathway resource='getxml?GCF_000010885:RIBOSYN2-PWY' orgid='GCF_000010885' frameid='RIBOSYN2-PWY'/></in-pathway>
+<left><Compound resource='getxml?GCF_000010885:WATER' orgid='GCF_000010885' frameid='WATER'/><coefficient datatype='integer'>3</coefficient>
 </left>
-<left><Compound frameid="GTP" orgid="GCF_000010885" resource="getxml?GCF_000010885:GTP" /></left>
-<in-pathway><Pathway frameid="RIBOSYN2-PWY" orgid="GCF_000010885" resource="getxml?GCF_000010885:RIBOSYN2-PWY" /></in-pathway>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<enzymatic-reaction><Enzymatic-Reaction ID="GCF_000010885:ENZRXN1SO3-707" detail="low" frameid="ENZRXN1SO3-707" orgid="GCF_000010885"><common-name datatype="string">bifunctional 3,4-dihydroxy-2-butanone-4-phosphate synthase/GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="GCF_000010885" resource="#GCF_000010885:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-<enzyme><Protein frameid="APA22_RS09400-MONOMER" orgid="GCF_000010885" resource="getxml?GCF_000010885:APA22_RS09400-MONOMER" /></enzyme>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<orphan>NO</orphan>
-<gibbs-0 datatype="float" units="kcal/mol">-96.9801</gibbs-0>
+<left><Compound resource='getxml?GCF_000010885:GTP' orgid='GCF_000010885' frameid='GTP'/></left>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?GCF_000010885:PROTON' orgid='GCF_000010885' frameid='PROTON'/><coefficient datatype='integer'>2</coefficient>
+</right>
+<right><Compound resource='getxml?GCF_000010885:PPI' orgid='GCF_000010885' frameid='PPI'/></right>
+<right><Compound resource='getxml?GCF_000010885:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR' orgid='GCF_000010885' frameid='DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR'/></right>
+<right><Compound resource='getxml?GCF_000010885:FORMATE' orgid='GCF_000010885' frameid='FORMATE'/></right>
+<gibbs-0 datatype='float' units='kcal/mol'>-96.9801</gibbs-0>
+<ec-number>EC-3.5.4.25<official>T</official>
+</ec-number>
 </Reaction>
 </ptools-xml>

@@ -1,57 +1,162 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:PWY-695"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:PWY-695'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:PWY-695</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Pathway ID="ARA:PWY-695" detail="full" frameid="PWY-695" orgid="ARA"><parent><Pathway class="true" frameid="Abscisic-Acid-Biosynthesis" orgid="ARA" resource="getxml?ARA:Abscisic-Acid-Biosynthesis" /></parent>
-<species><Organism ID="ARA:ARA" detail="full" frameid="ARA" orgid="ARA"><parent><Organism class="true" frameid="ORG-5993" orgid="ARA" resource="getxml?ARA:ORG-5993" /></parent>
-<strain-name datatype="string">col</strain-name>
-<synonym datatype="string">Arabidopsis thaliana col</synonym>
-<synonym datatype="string">A. thaliana</synonym>
-<genome><Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" /><Genetic-Element frameid="CHROMOSOME-2" orgid="ARA" resource="getxml?ARA:CHROMOSOME-2" /><Genetic-Element frameid="CHROMOSOME-3" orgid="ARA" resource="getxml?ARA:CHROMOSOME-3" /><Genetic-Element frameid="CHROMOSOME-4" orgid="ARA" resource="getxml?ARA:CHROMOSOME-4" /><Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" /><Genetic-Element frameid="MITOCHONDRIAL-GENOME" orgid="ARA" resource="getxml?ARA:MITOCHONDRIAL-GENOME" /><Genetic-Element frameid="CHLOROPLAST-GENOME" orgid="ARA" resource="getxml?ARA:CHLOROPLAST-GENOME" /></genome>
-<pgdb-author><Person ID="ARA:xue" detail="full" frameid="xue" orgid="ARA"><affiliations><Organization ID="ARA:PMN" detail="full" frameid="PMN" orgid="ARA"><url datatype="string">http://plantcyc.org</url>
-<abbrev-name datatype="string">PMN</abbrev-name>
-<common-name datatype="string">Carnegie Institution for Science</common-name>
-</Organization>
-</affiliations>
-</Person>
-</pgdb-author>
-<pgdb-author><Person ID="ARA:schlapfer" detail="full" frameid="schlapfer" orgid="ARA"><affiliations><Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></affiliations>
-</Person>
-</pgdb-author>
-<pgdb-author><Person ID="ARA:rhee" detail="full" frameid="rhee" orgid="ARA"><email datatype="string">rhee@acoma.stanford.edu</email>
-<middle-name datatype="string">Yon</middle-name>
-<affiliations><Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></affiliations>
-</Person>
-</pgdb-author>
-<pgdb-author><Person ID="ARA:zhang" detail="full" frameid="zhang" orgid="ARA"><affiliations><Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /><Organization ID="ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" detail="full" frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA"><abbrev-name datatype="string">TAIR</abbrev-name>
-<common-name datatype="string">The Arabidopsis Information Resource</common-name>
-</Organization>
-</affiliations>
-<common-name datatype="string">Peifen Zhang</common-name>
-</Person>
-</pgdb-author>
-<pgdb-author><Person ID="ARA:xu" detail="full" frameid="xu" orgid="ARA"><email datatype="string">axu@carnegiescience.edu</email>
-<affiliations><Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></affiliations>
-</Person>
-</pgdb-author>
-<pgdb-author><Person ID="ARA:hawkins" detail="full" frameid="hawkins" orgid="ARA"><email datatype="string">chawkins@carnegiescience.edu</email>
-<affiliations><Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></affiliations>
-</Person>
-</pgdb-author>
-<pgdb-author><Person ID="ARA:fryer" detail="full" frameid="fryer" orgid="ARA"><email datatype="string">efryer@carnegiescience.edu</email>
-<affiliations><Organization frameid="PMN" orgid="ARA" resource="#ARA:PMN" /></affiliations>
-</Person>
-</pgdb-author>
-<pgdb-home-page datatype="string">http://plantcyc.org</pgdb-home-page>
-<pgdb-tier datatype="integer">1</pgdb-tier>
+<Pathway ID='ARA:PWY-695' orgid='ARA' frameid='PWY-695' detail='full'><parent><Pathway resource='getxml?ARA:Abscisic-Acid-Biosynthesis' orgid='ARA' frameid='Abscisic-Acid-Biosynthesis' class='true'/></parent>
+<species><Organism ID='ARA:ARA' orgid='ARA' frameid='ARA' detail='full'><parent><Organism resource='getxml?ARA:ORG-5993' orgid='ARA' frameid='ORG-5993' class='true'/></parent>
+<synonym datatype='string'>Arabidopsis thaliana col</synonym>
+<synonym datatype='string'>A. thaliana</synonym>
+<strain-name datatype='string'>col</strain-name>
 <rank>strain</rank>
-<common-name datatype="string">Arabidopsis thaliana</common-name>
+<genome><Genetic-Element resource='getxml?ARA:CHROMOSOME-1' orgid='ARA' frameid='CHROMOSOME-1'/><Genetic-Element resource='getxml?ARA:CHROMOSOME-2' orgid='ARA' frameid='CHROMOSOME-2'/><Genetic-Element resource='getxml?ARA:CHROMOSOME-3' orgid='ARA' frameid='CHROMOSOME-3'/><Genetic-Element resource='getxml?ARA:CHROMOSOME-4' orgid='ARA' frameid='CHROMOSOME-4'/><Genetic-Element resource='getxml?ARA:CHROMOSOME-5' orgid='ARA' frameid='CHROMOSOME-5'/><Genetic-Element resource='getxml?ARA:MITOCHONDRIAL-GENOME' orgid='ARA' frameid='MITOCHONDRIAL-GENOME'/><Genetic-Element resource='getxml?ARA:CHLOROPLAST-GENOME' orgid='ARA' frameid='CHLOROPLAST-GENOME'/></genome>
+<pgdb-home-page datatype='string'>http://plantcyc.org</pgdb-home-page>
+<pgdb-tier datatype='integer'>1</pgdb-tier>
+<pgdb-author><Person ID='ARA:xue' orgid='ARA' frameid='xue' detail='full'><affiliations><Organization ID='ARA:PMN' orgid='ARA' frameid='PMN' detail='full'><abbrev-name datatype='string'>PMN</abbrev-name>
+<url datatype='string'>http://plantcyc.org</url>
+<common-name datatype='string'>Carnegie Institution for Science</common-name>
+</Organization>
+</affiliations>
+</Person>
+</pgdb-author>
+<pgdb-author><Person ID='ARA:schlapfer' orgid='ARA' frameid='schlapfer' detail='full'><affiliations><Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/></affiliations>
+</Person>
+</pgdb-author>
+<pgdb-author><Person ID='ARA:rhee' orgid='ARA' frameid='rhee' detail='full'><middle-name datatype='string'>Yon</middle-name>
+<affiliations><Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/></affiliations>
+<email datatype='string'>rhee@acoma.stanford.edu</email>
+</Person>
+</pgdb-author>
+<pgdb-author><Person ID='ARA:zhang' orgid='ARA' frameid='zhang' detail='full'><affiliations><Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/><Organization ID='ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE' detail='full'><abbrev-name datatype='string'>TAIR</abbrev-name>
+<common-name datatype='string'>The Arabidopsis Information Resource</common-name>
+</Organization>
+</affiliations>
+<common-name datatype='string'>Peifen Zhang</common-name>
+</Person>
+</pgdb-author>
+<pgdb-author><Person ID='ARA:xu' orgid='ARA' frameid='xu' detail='full'><affiliations><Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/></affiliations>
+<email datatype='string'>axu@carnegiescience.edu</email>
+</Person>
+</pgdb-author>
+<pgdb-author><Person ID='ARA:hawkins' orgid='ARA' frameid='hawkins' detail='full'><affiliations><Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/></affiliations>
+<email datatype='string'>chawkins@carnegiescience.edu</email>
+</Person>
+</pgdb-author>
+<pgdb-author><Person ID='ARA:fryer' orgid='ARA' frameid='fryer' detail='full'><affiliations><Organization resource='#ARA:PMN' orgid='ARA' frameid='PMN'/></affiliations>
+<email datatype='string'>efryer@carnegiescience.edu</email>
+</Person>
+</pgdb-author>
+<pgdb-author><Person ID='ARA:caspi' orgid='ARA' frameid='caspi' detail='full'><affiliations><Organization ID='ARA:SRI' orgid='ARA' frameid='SRI' detail='full'><abbrev-name datatype='string'>SRI International</abbrev-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<email datatype='string'>ptools-support@ai.sri.com</email>
+<common-name datatype='string'>SRI International</common-name>
+</Organization>
+</affiliations>
+<email datatype='string'>caspi@ai.sri.com</email>
+<common-name datatype='string'>Ron Caspi</common-name>
+</Person>
+</pgdb-author>
+<common-name datatype='string'>Arabidopsis thaliana</common-name>
 </Organism>
 </species>
+<reaction-layout><Reaction resource='getxml?ARA:RXN1F-155' orgid='ARA' frameid='RXN1F-155'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:CPD1F-133' orgid='ARA' frameid='CPD1F-133'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:CPD1F-135' orgid='ARA' frameid='CPD1F-135'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:RXN-8074' orgid='ARA' frameid='RXN-8074'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:CPD1F-135' orgid='ARA' frameid='CPD1F-135'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:CPD-7424' orgid='ARA' frameid='CPD-7424'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:RXN-698' orgid='ARA' frameid='RXN-698'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:CPD-7424' orgid='ARA' frameid='CPD-7424'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:CPD-7279' orgid='ARA' frameid='CPD-7279'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:1.2.3.14-RXN' orgid='ARA' frameid='1.2.3.14-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:CPD-692' orgid='ARA' frameid='CPD-692'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:CPD-693' orgid='ARA' frameid='CPD-693'/></right-primaries>
+</reaction-layout>
+<reaction-layout><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?ARA:CPD-7279' orgid='ARA' frameid='CPD-7279'/></left-primaries>
+<right-primaries><Compound resource='getxml?ARA:CPD-692' orgid='ARA' frameid='CPD-692'/></right-primaries>
+</reaction-layout>
+<synonym datatype='string'>ABA synthesis</synonym>
+<credits><revised><date datatype='date'>2006-07-28</date>
+<Person ID='ARA:tissier' orgid='ARA' frameid='tissier' detail='full'><affiliations><Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></affiliations>
+<email datatype='string'>tissier@aztec.stanford.edu</email>
+</Person>
+<Organization resource='#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE' orgid='ARA' frameid='THE-ARABIDOPSIS-INFORMATION-RESOURCE'/></revised>
+</credits>
+<comment datatype='string'>&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: This pathway is on the list of Ubiquitous Plant Pathways (UPP) that was generated for the COMET project, which includes pathways that are thought to be present in all or most land plants. All UPP pathways are automatically imported into databases regardless of Pathologic predictions. &lt;A href=&quot;https://www.plantcyc.org/about/savi-pipeline&quot;&gt;[more info]&lt;/A&gt;
+&lt;p&gt;
+&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
+&lt;p&gt;
+Abscisic acid was initially thought to induce abscission of leaves. Now, however, abscission is known to be regulated by ethylene. Accumulation of ABA during seed development has been associated with maturation of the seed, development of desiccation tolerance and suppression of vivipary. Rapid increases of ABA has also been linked to water stress-induced closure of stomata. (Buchanan et al, Biochemistry and Molecular Biology of Plants)
+In plants, abscisic acid is synthesized from neoxanthin by the action of a dioxygenase. In certain bacteria, it is synthesized as a C15 terpenoid (sesquiterpene). </comment>
+<evidence><Evidence-Code ID='ARA:EV-COMP-HINF' orgid='ARA' frameid='EV-COMP-HINF' detail='full' class='true'><parent><Evidence-Code resource='getxml?ARA:EV-COMP' orgid='ARA' frameid='EV-COMP' class='true'/></parent>
+<comment datatype='string'>Human inference.  A curator or author inferred this assertion after review of one or more possible types 
+of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
+When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
+<common-name datatype='string'>Inferred by a human based on computational evidence</common-name>
+</Evidence-Code>
+<Publication ID='ARA:PUB-PMNUPP2019' orgid='ARA' frameid='PUB-PMNUPP2019' detail='full'><url datatype='string'>https://www.plantcyc.org/about/savi-pipeline</url>
+<year datatype='integer'>2019</year>
+<title datatype='string'>This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Ubiquitous Land Plant Pathways (UPP version 9.0).</title>
+</Publication>
+</evidence>
+<citation><Publication ID='ARA:PUB-FINKELSTEIN02' orgid='ARA' frameid='PUB-FINKELSTEIN02' detail='full'><url datatype='string'>http://www.aspb.org/publications/arabidopsis/</url>
+<year datatype='integer'>2002</year>
+<title datatype='string'>Abscisic acid biosynthesis and response</title>
+<source datatype='string'>The Arabidopsis Book, Publisher:The American Society of Plant Biologists</source>
+<author datatype='string'>Finkelstein, R.R.</author>
+<author datatype='string'>Rock C.D.</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-15862093' orgid='ARA' frameid='PUB-15862093' detail='full'><year datatype='integer'>2005</year>
+<title datatype='string'>Abscisic acid biosynthesis and catabolism.</title>
+<source datatype='string'>Annu Rev Plant Biol 56;165-85</source>
+<pubmed-id datatype='string'>15862093</pubmed-id>
+<author datatype='string'>Nambara E</author>
+<author datatype='string'>Marion-Poll A</author>
+</Publication>
+</citation>
+<citation><Publication ID='ARA:PUB-12692318' orgid='ARA' frameid='PUB-12692318' detail='full'><year datatype='integer'>2003</year>
+<title datatype='string'>Elucidation of the indirect pathway of abscisic acid biosynthesis by mutants, genes, and enzymes.</title>
+<source datatype='string'>Plant Physiol 131(4);1591-601</source>
+<pubmed-id datatype='string'>12692318</pubmed-id>
+<author datatype='string'>Schwartz SH</author>
+<author datatype='string'>Qin X</author>
+<author datatype='string'>Zeevaart JA</author>
+</Publication>
+</citation>
+<evidence><Evidence-Code ID='ARA:EV-EXP' orgid='ARA' frameid='EV-EXP' detail='full' class='true'><comment datatype='string'>Inferred from experiment.  The evidence for an assertion comes from a
+wet-lab experiment of some type.
+</comment>
+<common-name datatype='string'>Inferred from experiment</common-name>
+</Evidence-Code>
+</evidence>
+<reaction-list><Reaction resource='getxml?ARA:RXN1F-155' orgid='ARA' frameid='RXN1F-155'/><Reaction resource='getxml?ARA:RXN-8074' orgid='ARA' frameid='RXN-8074'/><Reaction resource='getxml?ARA:RXN-698' orgid='ARA' frameid='RXN-698'/><Reaction resource='getxml?ARA:1.2.3.14-RXN' orgid='ARA' frameid='1.2.3.14-RXN'/><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></reaction-list>
+<taxonomic-range><Organism ID='ARA:TAX-3193' orgid='ARA' frameid='TAX-3193' detail='full' class='true'><parent><Organism resource='getxml?ARA:TAX-131221' orgid='ARA' frameid='TAX-131221' class='true'/></parent>
+<synonym datatype='string'>plants &lt;blast3193&gt;</synonym>
+<synonym datatype='string'>plants</synonym>
+<synonym datatype='string'>land plants</synonym>
+<synonym datatype='string'>higher plants</synonym>
+<rank>no rank</rank>
+<common-name datatype='string'>Embryophyta</common-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>3193</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3193</dblink-URL>
+</dblink>
+</Organism>
+</taxonomic-range>
+<pathway-link><Compound resource='getxml?ARA:CPD-693' orgid='ARA' frameid='CPD-693'/><link-target><Pathway resource='getxml?ARA:PWY-5271' orgid='ARA' frameid='PWY-5271'/></link-target>
+<link-target><Pathway resource='getxml?ARA:PWY-5272' orgid='ARA' frameid='PWY-5272'/></link-target>
+</pathway-link>
+<common-name datatype='string'>abscisic acid biosynthesis</common-name>
 <dblink><dblink-db>PLANTCYC</dblink-db>
 <dblink-oid>PWY-695</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -62,108 +167,13 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://biocyc.org/META/new-image?object=PWY-695</dblink-URL>
 </dblink>
-<synonym datatype="string">ABA synthesis</synonym>
-<taxonomic-range><Organism ID="ARA:TAX-3193" class="true" detail="full" frameid="TAX-3193" orgid="ARA"><parent><Organism class="true" frameid="TAX-131221" orgid="ARA" resource="getxml?ARA:TAX-131221" /></parent>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>3193</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=3193</dblink-URL>
-</dblink>
-<synonym datatype="string">plants &lt;blast3193&gt;</synonym>
-<synonym datatype="string">plants</synonym>
-<synonym datatype="string">land plants</synonym>
-<synonym datatype="string">higher plants</synonym>
-<rank>no rank</rank>
-<common-name datatype="string">Embryophyta</common-name>
-</Organism>
-</taxonomic-range>
-<pathway-link><Compound frameid="CPD-693" orgid="ARA" resource="getxml?ARA:CPD-693" /><link-target><Pathway frameid="PWY-5271" orgid="ARA" resource="getxml?ARA:PWY-5271" /></link-target>
-<link-target><Pathway frameid="PWY-5272" orgid="ARA" resource="getxml?ARA:PWY-5272" /></link-target>
-</pathway-link>
-<reaction-ordering><Reaction frameid="RXN-8074" orgid="ARA" resource="getxml?ARA:RXN-8074" /><predecessor-reactions><Reaction frameid="RXN1F-155" orgid="ARA" resource="getxml?ARA:RXN1F-155" /></predecessor-reactions>
+<reaction-ordering><Reaction resource='getxml?ARA:RXN-8074' orgid='ARA' frameid='RXN-8074'/><predecessor-reactions><Reaction resource='getxml?ARA:RXN1F-155' orgid='ARA' frameid='RXN1F-155'/></predecessor-reactions>
 </reaction-ordering>
-<reaction-ordering><Reaction frameid="1.2.3.14-RXN" orgid="ARA" resource="getxml?ARA:1.2.3.14-RXN" /><predecessor-reactions><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.288-RXN" /></predecessor-reactions>
+<reaction-ordering><Reaction resource='getxml?ARA:1.2.3.14-RXN' orgid='ARA' frameid='1.2.3.14-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/></predecessor-reactions>
 </reaction-ordering>
-<reaction-ordering><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.288-RXN" /><predecessor-reactions><Reaction frameid="RXN-698" orgid="ARA" resource="getxml?ARA:RXN-698" /></predecessor-reactions>
+<reaction-ordering><Reaction resource='getxml?ARA:1.1.1.288-RXN' orgid='ARA' frameid='1.1.1.288-RXN'/><predecessor-reactions><Reaction resource='getxml?ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></predecessor-reactions>
 </reaction-ordering>
-<reaction-ordering><Reaction frameid="RXN-698" orgid="ARA" resource="getxml?ARA:RXN-698" /><predecessor-reactions><Reaction frameid="RXN-8074" orgid="ARA" resource="getxml?ARA:RXN-8074" /></predecessor-reactions>
+<reaction-ordering><Reaction resource='getxml?ARA:RXN-698' orgid='ARA' frameid='RXN-698'/><predecessor-reactions><Reaction resource='getxml?ARA:RXN-8074' orgid='ARA' frameid='RXN-8074'/></predecessor-reactions>
 </reaction-ordering>
-<reaction-layout><Reaction frameid="RXN1F-155" orgid="ARA" resource="getxml?ARA:RXN1F-155" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CPD1F-133" orgid="ARA" resource="getxml?ARA:CPD1F-133" /></left-primaries>
-<right-primaries><Compound frameid="CPD1F-135" orgid="ARA" resource="getxml?ARA:CPD1F-135" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="RXN-8074" orgid="ARA" resource="getxml?ARA:RXN-8074" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CPD1F-135" orgid="ARA" resource="getxml?ARA:CPD1F-135" /></left-primaries>
-<right-primaries><Compound frameid="CPD-7424" orgid="ARA" resource="getxml?ARA:CPD-7424" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="RXN-698" orgid="ARA" resource="getxml?ARA:RXN-698" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CPD-7424" orgid="ARA" resource="getxml?ARA:CPD-7424" /></left-primaries>
-<right-primaries><Compound frameid="CPD-7279" orgid="ARA" resource="getxml?ARA:CPD-7279" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="1.2.3.14-RXN" orgid="ARA" resource="getxml?ARA:1.2.3.14-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CPD-692" orgid="ARA" resource="getxml?ARA:CPD-692" /></left-primaries>
-<right-primaries><Compound frameid="CPD-693" orgid="ARA" resource="getxml?ARA:CPD-693" /></right-primaries>
-</reaction-layout>
-<reaction-layout><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.288-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CPD-7279" orgid="ARA" resource="getxml?ARA:CPD-7279" /></left-primaries>
-<right-primaries><Compound frameid="CPD-692" orgid="ARA" resource="getxml?ARA:CPD-692" /></right-primaries>
-</reaction-layout>
-<reaction-list><Reaction frameid="RXN1F-155" orgid="ARA" resource="getxml?ARA:RXN1F-155" /><Reaction frameid="RXN-8074" orgid="ARA" resource="getxml?ARA:RXN-8074" /><Reaction frameid="RXN-698" orgid="ARA" resource="getxml?ARA:RXN-698" /><Reaction frameid="1.2.3.14-RXN" orgid="ARA" resource="getxml?ARA:1.2.3.14-RXN" /><Reaction frameid="1.1.1.288-RXN" orgid="ARA" resource="getxml?ARA:1.1.1.288-RXN" /></reaction-list>
-<evidence><Evidence-Code ID="ARA:EV-COMP-HINF" class="true" detail="full" frameid="EV-COMP-HINF" orgid="ARA"><parent><Evidence-Code class="true" frameid="EV-COMP" orgid="ARA" resource="getxml?ARA:EV-COMP" /></parent>
-<comment datatype="string">Human inference.  A curator or author inferred this assertion after review of one or more possible types 
-of computational evidence such as sequence similarity, recognized motifs or consensus sequence, etc.  
-When the inference was made by a computer in an automated fashion, use EV-AINF.</comment>
-<common-name datatype="string">Inferred by a human based on computational evidence</common-name>
-</Evidence-Code>
-<Publication ID="ARA:PUB-PMNUPP2019" detail="full" frameid="PUB-PMNUPP2019" orgid="ARA"><title datatype="string">This pathway was predicted to exist in this species using PathoLogic (version 23.0) and was accepted because it is a member of the set of Ubiquitous Land Plant Pathways (UPP version 9.0).</title>
-<url datatype="string">https://www.plantcyc.org/about/savi-pipeline</url>
-<year datatype="integer">2019</year>
-</Publication>
-</evidence>
-<citation><Publication ID="ARA:PUB-FINKELSTEIN02" detail="full" frameid="PUB-FINKELSTEIN02" orgid="ARA"><title datatype="string">Abscisic acid biosynthesis and response</title>
-<url datatype="string">http://www.aspb.org/publications/arabidopsis/</url>
-<year datatype="integer">2002</year>
-<author datatype="string">Finkelstein, R.R.</author>
-<author datatype="string">Rock C.D.</author>
-<source datatype="string">The Arabidopsis Book, Publisher:The American Society of Plant Biologists</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-15862093" detail="full" frameid="PUB-15862093" orgid="ARA"><title datatype="string">Abscisic acid biosynthesis and catabolism.</title>
-<year datatype="integer">2005</year>
-<pubmed-id datatype="string">15862093</pubmed-id>
-<author datatype="string">Nambara E</author>
-<author datatype="string">Marion-Poll A</author>
-<source datatype="string">Annu Rev Plant Biol 56;165-85</source>
-</Publication>
-</citation>
-<citation><Publication ID="ARA:PUB-12692318" detail="full" frameid="PUB-12692318" orgid="ARA"><title datatype="string">Elucidation of the indirect pathway of abscisic acid biosynthesis by mutants, genes, and enzymes.</title>
-<year datatype="integer">2003</year>
-<pubmed-id datatype="string">12692318</pubmed-id>
-<author datatype="string">Schwartz SH</author>
-<author datatype="string">Qin X</author>
-<author datatype="string">Zeevaart JA</author>
-<source datatype="string">Plant Physiol 131(4);1591-601</source>
-</Publication>
-</citation>
-<evidence><Evidence-Code ID="ARA:EV-EXP" class="true" detail="full" frameid="EV-EXP" orgid="ARA"><comment datatype="string">Inferred from experiment.  The evidence for an assertion comes from a
-wet-lab experiment of some type.
-</comment>
-<common-name datatype="string">Inferred from experiment</common-name>
-</Evidence-Code>
-</evidence>
-<comment datatype="string">&lt;i&gt;Supporting evidence for this pathway in Arabidopsis thaliana col&lt;/i&gt;: This pathway is on the list of Ubiquitous Plant Pathways (UPP) that was generated for the COMET project, which includes pathways that are thought to be present in all or most land plants. All UPP pathways are automatically imported into databases regardless of Pathologic predictions. &lt;A href="https://www.plantcyc.org/about/savi-pipeline"&gt;[more info]&lt;/A&gt;
-&lt;p&gt;
-&lt;i&gt;Summary from MetaCyc:&lt;/i&gt;
-&lt;p&gt;
-Abscisic acid was initially thought to induce abscission of leaves. Now, however, abscission is known to be regulated by ethylene. Accumulation of ABA during seed development has been associated with maturation of the seed, development of desiccation tolerance and suppression of vivipary. Rapid increases of ABA has also been linked to water stress-induced closure of stomata. (Buchanan et al, Biochemistry and Molecular Biology of Plants)
-In plants, abscisic acid is synthesized from neoxanthin by the action of a dioxygenase. In certain bacteria, it is synthesized as a C15 terpenoid (sesquiterpene). 
-</comment>
-<common-name datatype="string">abscisic acid biosynthesis</common-name>
-<credits><revised><date datatype="date">2006-07-28</date>
-<Person ID="ARA:tissier" detail="full" frameid="tissier" orgid="ARA"><email datatype="string">tissier@aztec.stanford.edu</email>
-<affiliations><Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></affiliations>
-</Person>
-<Organization frameid="THE-ARABIDOPSIS-INFORMATION-RESOURCE" orgid="ARA" resource="#ARA:THE-ARABIDOPSIS-INFORMATION-RESOURCE" /></revised>
-</credits>
 </Pathway>
 </ptools-xml>

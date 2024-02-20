@@ -1,185 +1,39 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/getxml?META:PWY-7344"><metadata><url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://localhost:1555/getxml?META:PWY-7344'><metadata><url>http://localhost:1555/</url>
 <service_name>getxml</service_name>
 <query>META:PWY-7344</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.0"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.0'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Pathway ID="META:PWY-7344" detail="full" frameid="PWY-7344" orgid="META"><parent><Pathway class="true" frameid="UDP-Sugar-Biosynthesis" orgid="META" resource="getxml?META:UDP-Sugar-Biosynthesis" /></parent>
-<pathway-link><Compound frameid="CPD-12575" orgid="META" resource="getxml?META:CPD-12575" /><link-target><Pathway frameid="PWY-7343" orgid="META" resource="getxml?META:PWY-7343" /></link-target>
-</pathway-link>
-<in-pathway><Pathway frameid="PWY-7622" orgid="META" resource="getxml?META:PWY-7622" /><Pathway frameid="PWY-5114" orgid="META" resource="getxml?META:PWY-5114" /><Pathway frameid="COLANSYN-PWY" orgid="META" resource="getxml?META:COLANSYN-PWY" /><Pathway frameid="PWY-7328" orgid="META" resource="getxml?META:PWY-7328" /></in-pathway>
-<taxonomic-range><Organism ID="META:TAX-2759" class="true" detail="full" frameid="TAX-2759" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
-<synonym datatype="string">eukaryotes &lt;common name&gt;</synonym>
-<synonym datatype="string">eukaryotes</synonym>
-<synonym datatype="string">Eukaryotae</synonym>
-<synonym datatype="string">Eukarya</synonym>
-<synonym datatype="string">eucaryotes</synonym>
-<synonym datatype="string">Eucaryotae</synonym>
-<synonym datatype="string">Eucarya</synonym>
-<common-name datatype="string">Eukaryota</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2759</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2759</dblink-URL>
-</dblink>
-<rank>superkingdom</rank>
-</Organism>
-<Organism ID="META:TAX-2" class="true" detail="full" frameid="TAX-2" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
-<synonym datatype="string">eubacteria</synonym>
-<synonym datatype="string">Bacteria</synonym>
-<common-name datatype="string">Bacteria &lt;bacteria&gt;</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
-</dblink>
-<rank>superkingdom</rank>
-</Organism>
-<Organism ID="META:TAX-2157" class="true" detail="full" frameid="TAX-2157" orgid="META"><parent><Organism class="true" frameid="TAX-131567" orgid="META" resource="getxml?META:TAX-131567" /></parent>
-<synonym datatype="string">Metabacteria</synonym>
-<synonym datatype="string">Mendosicutes</synonym>
-<synonym datatype="string">Archaebacteria</synonym>
-<common-name datatype="string">Archaea</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>2157</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2157</dblink-URL>
-</dblink>
-<rank>superkingdom</rank>
-</Organism>
-</taxonomic-range>
-<synonym datatype="string">UDP-D-galactose biosynthesis</synonym>
-<super-pathways><Pathway frameid="PWY-7622" orgid="META" resource="getxml?META:PWY-7622" /><Pathway frameid="PWY-5114" orgid="META" resource="getxml?META:PWY-5114" /><Pathway frameid="COLANSYN-PWY" orgid="META" resource="getxml?META:COLANSYN-PWY" /><Pathway frameid="PWY-7328" orgid="META" resource="getxml?META:PWY-7328" /></super-pathways>
-<species><Organism ID="META:TAX-1423" class="true" detail="full" frameid="TAX-1423" orgid="META"><parent><Organism class="true" frameid="TAX-653685" orgid="META" resource="getxml?META:TAX-653685" /></parent>
-<synonym datatype="string">Vibrio subtilis</synonym>
-<synonym datatype="string">Brevibacillus sp. BHR3P2B5-M</synonym>
-<synonym datatype="string">Bacillus uniflagellatus</synonym>
-<synonym datatype="string">Bacillus sp. UMX-03</synonym>
-<synonym datatype="string">Bacillus sp. SWI06</synonym>
-<synonym datatype="string">Bacillus sp. S2 BC-1</synonym>
-<synonym datatype="string">Bacillus sp. RSP-GLU</synonym>
-<synonym datatype="string">Bacillus sp. PW19</synonym>
-<synonym datatype="string">Bacillus sp. PW16b</synonym>
-<synonym datatype="string">Bacillus sp. LKM-BL</synonym>
-<synonym datatype="string">Bacillus sp. LB002</synonym>
-<synonym datatype="string">Bacillus sp. JKR21</synonym>
-<synonym datatype="string">Bacillus sp. HE08</synonym>
-<synonym datatype="string">Bacillus sp. BV5</synonym>
-<synonym datatype="string">Bacillus sp. BV3</synonym>
-<synonym datatype="string">Bacillus sp. BS9(2013)</synonym>
-<synonym datatype="string">Bacillus sp. BS4(2013)</synonym>
-<synonym datatype="string">Bacillus sp. AECSB14</synonym>
-<synonym datatype="string">Bacillus sp. AECSB13</synonym>
-<synonym datatype="string">Bacillus sp. AECSB12</synonym>
-<synonym datatype="string">Bacillus sp. AECSB08</synonym>
-<synonym datatype="string">Bacillus sp. AECSB07</synonym>
-<synonym datatype="string">Bacillus sp. AECSB06</synonym>
-<synonym datatype="string">Bacillus sp. AECSB05</synonym>
-<synonym datatype="string">Bacillus sp. AECSB04</synonym>
-<synonym datatype="string">Bacillus sp. AECSB01</synonym>
-<synonym datatype="string">Bacillus sp. 15:2</synonym>
-<synonym datatype="string">Bacillus sp. 10405</synonym>
-<synonym datatype="string">Bacillus natto</synonym>
-<synonym datatype="string">Arthrobacter sp. CHR2P1B1-M</synonym>
-<common-name datatype="string">Bacillus subtilis</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>1423</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1423</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-511145" class="true" detail="full" frameid="TAX-511145" orgid="META"><parent><Organism class="true" frameid="TAX-83333" orgid="META" resource="getxml?META:TAX-83333" /></parent>
-<synonym datatype="string">Escherichia coli str. K-12 substr. MG1655</synonym>
-<synonym datatype="string">Escherichia coli str. MG1655</synonym>
-<synonym datatype="string">Escherichia coli str. K12 substr. MG1655</synonym>
-<synonym datatype="string">Escherichia coli strain MG1655</synonym>
-<synonym datatype="string">Escherichia coli MG1655</synonym>
-<strain-name datatype="string">K-12 substr. MG1655</strain-name>
-<citation><Publication ID="META:PUB-23143106" detail="full" frameid="PUB-23143106" orgid="META"><year datatype="integer">2013</year>
-<title datatype="string">EcoCyc: fusing model organism databases with systems biology.</title>
-<author datatype="string">Keseler IM</author>
-<author datatype="string">Mackie A</author>
-<author datatype="string">Peralta-Gil M</author>
-<author datatype="string">Santos-Zavaleta A</author>
-<author datatype="string">Gama-Castro S</author>
-<author datatype="string">Bonavides-Martinez C</author>
-<author datatype="string">Fulcher C</author>
-<author datatype="string">Huerta AM</author>
-<author datatype="string">Kothari A</author>
-<author datatype="string">Krummenacker M</author>
-<author datatype="string">Latendresse M</author>
-<author datatype="string">Muniz-Rascado L</author>
-<author datatype="string">Ong Q</author>
-<author datatype="string">Paley S</author>
-<author datatype="string">Schroder I</author>
-<author datatype="string">Shearer AG</author>
-<author datatype="string">Subhraveti P</author>
-<author datatype="string">Travers M</author>
-<author datatype="string">Weerasinghe D</author>
-<author datatype="string">Weiss V</author>
-<author datatype="string">Collado-Vides J</author>
-<author datatype="string">Gunsalus RP</author>
-<author datatype="string">Paulsen I</author>
-<author datatype="string">Karp PD</author>
-<source datatype="string">Nucleic Acids Res 41(Database issue);D605-12</source>
-<pubmed-id datatype="string">23143106</pubmed-id>
-</Publication>
-</citation>
-<comment datatype="string">EcoCyc is a model-organism database for &lt;i&gt;Escherichia coli&lt;/i&gt; K-12 MG1655.  For more information, see URL EcoCyc.org.
+<Pathway ID='META:PWY-7344' orgid='META' frameid='PWY-7344' detail='full'><parent><Pathway resource='getxml?META:UDP-Sugar-Biosynthesis' orgid='META' frameid='UDP-Sugar-Biosynthesis' class='true'/></parent>
+<credits><created><date datatype='date'>2013-08-15</date>
+<Person ID='META:caspi' orgid='META' frameid='caspi' detail='full'><email datatype='string'>caspi@ai.sri.com</email>
+<affiliations><Organization ID='META:SRI' orgid='META' frameid='SRI' detail='full'><email datatype='string'>ptools-support@ai.sri.com</email>
+<abbrev-name datatype='string'>SRI International</abbrev-name>
+<url datatype='string'>http://bioinformatics.ai.sri.com/</url>
+<common-name datatype='string'>SRI International</common-name>
+</Organization>
+</affiliations>
+<comment datatype='string'>Ron Caspi received his PhD in Marine Microbiology in 1996 from the Scripps Institution of Oceanography in La Jolla, CA, under the guidance of Dr. Bradley Tebo and Dr. Margo Haygood. He completed his post-graduate education in 1999 with Dr. Donald Helinski at the Center for Molecular Genetics at UC San Diego. 
 &lt;p&gt;
-The &lt;i&gt;E. coli&lt;/i&gt; genome sequence used in EcoCyc is GenBank accession number U00096.2.  Despite the
-involvement of EcoCyc staff in ongoing updates to the U00096 record, some annotation differences may
-be found between U00096 and EcoCyc, such as due to recent updates to EcoCyc.
+After three years with Pangene Corporation, where he managed the automation and bioinformatics department, Ron joined SRI International in 2004, and has been the head curator of the MetaCyc database ever since.
 </comment>
-<common-name datatype="string">Escherichia coli</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>511145</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
-</dblink>
-<rank>strain</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-9606" class="true" detail="full" frameid="TAX-9606" orgid="META"><parent><Organism class="true" frameid="TAX-9605" orgid="META" resource="getxml?META:TAX-9605" /></parent>
-<synonym datatype="string">man</synonym>
-<synonym datatype="string">human</synonym>
-<comment datatype="string">The HumanCyc project is described at URL  http://HumanCyc.org/</comment>
-<common-name datatype="string">Homo sapiens</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>9606</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=9606</dblink-URL>
-</dblink>
-<rank>species</rank>
-</Organism>
-</species>
-<species><Organism ID="META:TAX-83332" class="true" detail="full" frameid="TAX-83332" orgid="META"><parent><Organism class="true" frameid="TAX-1773" orgid="META" resource="getxml?META:TAX-1773" /></parent>
-<synonym datatype="string">Mycobacterium tuberculosis H37Rv</synonym>
-<synonym datatype="string">Mycobacterium tuberculosis str. H37Rv</synonym>
-<synonym datatype="string">Mycobacterium tuberculosis strain H37Rv</synonym>
-<synonym datatype="string">Mycobacterium sp. H37Rv</synonym>
-<strain-name datatype="string">H37Rv</strain-name>
-<common-name datatype="string">Mycobacterium tuberculosis</common-name>
-<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
-<dblink-oid>83332</dblink-oid>
-<dblink-relationship>unification</dblink-relationship>
-<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=83332</dblink-URL>
-</dblink>
-<rank>strain</rank>
-</Organism>
-</species>
-<species><Organism ID="META:ORG-5993" class="true" detail="full" frameid="ORG-5993" orgid="META"><parent><Organism class="true" frameid="TAX-3702" orgid="META" resource="getxml?META:TAX-3702" /></parent>
-<synonym datatype="string">Arabidopsis thaliana col</synonym>
-<strain-name datatype="string">col</strain-name>
-<common-name datatype="string">Arabidopsis thaliana</common-name>
-<rank>strain</rank>
-</Organism>
-</species>
-<evidence><Evidence-Code ID="META:EV-EXP-IDA" class="true" detail="full" frameid="EV-EXP-IDA" orgid="META"><parent><Evidence-Code class="true" frameid="EV-EXP" orgid="META" resource="getxml?META:EV-EXP" /></parent>
-<comment datatype="string">IDA inferred from direct assay.
+<common-name datatype='string'>Ron Caspi</common-name>
+</Person>
+<Organization resource='#META:SRI' orgid='META' frameid='SRI'/></created>
+</credits>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=META&amp;id=CPD-14553&quot;&gt;UDP-&amp;alpha;-D-galactose&lt;/a&gt; is the activated form of &lt;a href=&quot;/META/NEW-IMAGE?type=COMPOUND&amp;object=D-galactopyranose&quot;&gt;D-galactopyranose&lt;/a&gt;. While it is often produced as an intermediate of galactose catabolism (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6317&quot;&gt;D-galactose degradation I (Leloir pathway)&lt;/a&gt;), this nucleotide sugar is also involved in the production of many types of polysaccharides, glycans, and glycoconjugates in both prokaryotes and eukaryotes.
+&lt;p&gt;
+In prokaryotes, &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-14553&quot;&gt;UDP-&amp;alpha;-D-galactose&lt;/a&gt; is a common precursor for O-antigens and S-layer polysaccharides (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-7328&quot;&gt;superpathway of UDP-glucose-derived O-antigen building blocks biosynthesis&lt;/a&gt;), protein glycosylation (see for example &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-7037&quot;&gt;protein &lt;i&gt;O&lt;/i&gt;-glycosylation (Neisseria)&lt;/a&gt;) and cell wall polymers (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6397&quot;&gt;mycolyl-arabinogalactan-peptidoglycan complex biosynthesis&lt;/a&gt;).
+&lt;p&gt;
+A few examples for eukaryotic polysaccharides whose biosynthesis requires &lt;a href=&quot;/compound?orgid=META&amp;id=CPD-14553&quot;&gt;UDP-&amp;alpha;-D-galactose&lt;/a&gt; include xyloglucans (&lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5936&quot;&gt;xyloglucan biosynthesis&lt;/a&gt;), glycolipids (&lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-401&quot;&gt;galactolipid biosynthesis I&lt;/a&gt;), glycosaminoglycans (&lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6557&quot;&gt;glycosaminoglycan-protein linkage region biosynthesis&lt;/a&gt;), glycoalkaloids (&lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5666&quot;&gt;&amp;alpha;-solanine/&amp;alpha;-chaconine biosynthesis&lt;/a&gt;), fagopyritols (&lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5380&quot;&gt;A series fagopyritols biosynthesis&lt;/a&gt;) and saponins (&lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5203&quot;&gt;soybean saponin I biosynthesis&lt;/a&gt;).</comment>
+<pathway-link><Compound resource='getxml?META:CPD-12575' orgid='META' frameid='CPD-12575'/><link-target><Pathway resource='getxml?META:PWY-7343' orgid='META' frameid='PWY-7343'/></link-target>
+</pathway-link>
+<super-pathways><Pathway resource='getxml?META:PWY-5114' orgid='META' frameid='PWY-5114'/><Pathway resource='getxml?META:PWY-7622' orgid='META' frameid='PWY-7622'/><Pathway resource='getxml?META:COLANSYN-PWY' orgid='META' frameid='COLANSYN-PWY'/><Pathway resource='getxml?META:PWY-7328' orgid='META' frameid='PWY-7328'/></super-pathways>
+<in-pathway><Pathway resource='getxml?META:PWY-5114' orgid='META' frameid='PWY-5114'/><Pathway resource='getxml?META:PWY-7622' orgid='META' frameid='PWY-7622'/><Pathway resource='getxml?META:COLANSYN-PWY' orgid='META' frameid='COLANSYN-PWY'/><Pathway resource='getxml?META:PWY-7328' orgid='META' frameid='PWY-7328'/></in-pathway>
+<evidence><Evidence-Code ID='META:EV-EXP-IDA' orgid='META' frameid='EV-EXP-IDA' detail='full' class='true'><parent><Evidence-Code resource='getxml?META:EV-EXP' orgid='META' frameid='EV-EXP' class='true'/></parent>
+<comment datatype='string'>IDA inferred from direct assay.
 
 &lt;br&gt;
 The assertion was inferred from a direct experimental assay such as
@@ -189,60 +43,209 @@ The assertion was inferred from a direct experimental assay such as
     &lt;li&gt; Immunofluorescence
     &lt;li&gt; Cell fractionation
 &lt;/ul&gt;</comment>
-<common-name datatype="string">Inferred from direct assay</common-name>
+<common-name datatype='string'>Inferred from direct assay</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-8615692" detail="full" frameid="PUB-8615692" orgid="META"><year datatype="integer">1996</year>
-<title datatype="string">Functional expression of uridine 5'-diphospho-glucose 4-epimerase (EC 5.1.3.2) from Arabidopsis thaliana in Saccharomyces cerevisiae and Escherichia coli.</title>
-<author datatype="string">Dormann P</author>
-<author datatype="string">Benning C</author>
-<source datatype="string">Arch Biochem Biophys 327(1);27-34</source>
-<pubmed-id datatype="string">8615692</pubmed-id>
+<Publication ID='META:PUB-8615692' orgid='META' frameid='PUB-8615692' detail='full'><source datatype='string'>Arch Biochem Biophys 327(1);27-34</source>
+<pubmed-id datatype='string'>8615692</pubmed-id>
+<author datatype='string'>Dormann P</author>
+<author datatype='string'>Benning C</author>
+<title datatype='string'>Functional expression of uridine 5'-diphospho-glucose 4-epimerase (EC 5.1.3.2) from Arabidopsis thaliana in Saccharomyces cerevisiae and Escherichia coli.</title>
+<year datatype='integer'>1996</year>
 </Publication>
 </evidence>
-<evidence><Evidence-Code class="true" frameid="EV-EXP-IDA" orgid="META" resource="#META:EV-EXP-IDA" /><Publication ID="META:PUB-9692181" detail="full" frameid="PUB-9692181" orgid="META"><year datatype="integer">1997</year>
-<title datatype="string">Biosynthetic origin of mycobacterial cell wall galactofuranosyl residues.</title>
-<author datatype="string">Weston A</author>
-<author datatype="string">Stern RJ</author>
-<author datatype="string">Lee RE</author>
-<author datatype="string">Nassau PM</author>
-<author datatype="string">Monsey D</author>
-<author datatype="string">Martin SL</author>
-<author datatype="string">Scherman MS</author>
-<author datatype="string">Besra GS</author>
-<author datatype="string">Duncan K</author>
-<author datatype="string">McNeil MR</author>
-<source datatype="string">Tuber Lung Dis 78(2);123-31</source>
-<pubmed-id datatype="string">9692181</pubmed-id>
+<evidence><Evidence-Code resource='#META:EV-EXP-IDA' orgid='META' frameid='EV-EXP-IDA' class='true'/><Publication ID='META:PUB-9692181' orgid='META' frameid='PUB-9692181' detail='full'><source datatype='string'>Tuber Lung Dis 78(2);123-31</source>
+<pubmed-id datatype='string'>9692181</pubmed-id>
+<author datatype='string'>Weston A</author>
+<author datatype='string'>Stern RJ</author>
+<author datatype='string'>Lee RE</author>
+<author datatype='string'>Nassau PM</author>
+<author datatype='string'>Monsey D</author>
+<author datatype='string'>Martin SL</author>
+<author datatype='string'>Scherman MS</author>
+<author datatype='string'>Besra GS</author>
+<author datatype='string'>Duncan K</author>
+<author datatype='string'>McNeil MR</author>
+<title datatype='string'>Biosynthetic origin of mycobacterial cell wall galactofuranosyl residues.</title>
+<year datatype='integer'>1997</year>
 </Publication>
 </evidence>
-<comment datatype="string">&lt;a href="/compound?orgid=META&amp;id=CPD-14553"&gt;UDP-&amp;alpha;-D-galactose&lt;/a&gt; is the activated form of &lt;a href="/META/NEW-IMAGE?type=COMPOUND&amp;object=D-galactopyranose"&gt;D-galactopyranose&lt;/a&gt;. While it is often produced as an intermediate of galactose catabolism (see &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6317"&gt;D-galactose degradation I (Leloir pathway)&lt;/a&gt;), this nucleotide sugar is also involved in the production of many types of polysaccharides, glycans, and glycoconjugates in both prokaryotes and eukaryotes.
+<synonym datatype='string'>UDP-D-galactose biosynthesis</synonym>
+<taxonomic-range><Organism ID='META:TAX-2759' orgid='META' frameid='TAX-2759' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<rank>superkingdom</rank>
+<synonym datatype='string'>eukaryotes &lt;common name&gt;</synonym>
+<synonym datatype='string'>eukaryotes</synonym>
+<synonym datatype='string'>Eukaryotae</synonym>
+<synonym datatype='string'>Eukarya</synonym>
+<synonym datatype='string'>eucaryotes</synonym>
+<synonym datatype='string'>Eucaryotae</synonym>
+<synonym datatype='string'>Eucarya</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2759</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2759</dblink-URL>
+</dblink>
+<common-name datatype='string'>Eukaryota</common-name>
+</Organism>
+<Organism ID='META:TAX-2' orgid='META' frameid='TAX-2' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<rank>superkingdom</rank>
+<synonym datatype='string'>eubacteria</synonym>
+<synonym datatype='string'>Bacteria</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
+</dblink>
+<common-name datatype='string'>Bacteria &lt;bacteria&gt;</common-name>
+</Organism>
+<Organism ID='META:TAX-2157' orgid='META' frameid='TAX-2157' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<rank>superkingdom</rank>
+<synonym datatype='string'>Metabacteria</synonym>
+<synonym datatype='string'>Mendosicutes</synonym>
+<synonym datatype='string'>Archaebacteria</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2157</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2157</dblink-URL>
+</dblink>
+<common-name datatype='string'>Archaea</common-name>
+</Organism>
+</taxonomic-range>
+<species><Organism ID='META:TAX-1423' orgid='META' frameid='TAX-1423' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-653685' orgid='META' frameid='TAX-653685' class='true'/></parent>
+<rank>species</rank>
+<synonym datatype='string'>Vibrio subtilis</synonym>
+<synonym datatype='string'>Brevibacillus sp. BHR3P2B5-M</synonym>
+<synonym datatype='string'>Bacillus uniflagellatus</synonym>
+<synonym datatype='string'>Bacillus sp. UMX-03</synonym>
+<synonym datatype='string'>Bacillus sp. SWI06</synonym>
+<synonym datatype='string'>Bacillus sp. S2 BC-1</synonym>
+<synonym datatype='string'>Bacillus sp. RSP-GLU</synonym>
+<synonym datatype='string'>Bacillus sp. PW19</synonym>
+<synonym datatype='string'>Bacillus sp. PW16b</synonym>
+<synonym datatype='string'>Bacillus sp. LKM-BL</synonym>
+<synonym datatype='string'>Bacillus sp. LB002</synonym>
+<synonym datatype='string'>Bacillus sp. JKR21</synonym>
+<synonym datatype='string'>Bacillus sp. HE08</synonym>
+<synonym datatype='string'>Bacillus sp. BV5</synonym>
+<synonym datatype='string'>Bacillus sp. BV3</synonym>
+<synonym datatype='string'>Bacillus sp. BS9(2013)</synonym>
+<synonym datatype='string'>Bacillus sp. BS4(2013)</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB14</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB13</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB12</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB08</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB07</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB06</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB05</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB04</synonym>
+<synonym datatype='string'>Bacillus sp. AECSB01</synonym>
+<synonym datatype='string'>Bacillus sp. 15:2</synonym>
+<synonym datatype='string'>Bacillus sp. 10405</synonym>
+<synonym datatype='string'>Bacillus natto</synonym>
+<synonym datatype='string'>Arthrobacter sp. CHR2P1B1-M</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>1423</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=1423</dblink-URL>
+</dblink>
+<common-name datatype='string'>Bacillus subtilis</common-name>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-511145' orgid='META' frameid='TAX-511145' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-83333' orgid='META' frameid='TAX-83333' class='true'/></parent>
+<rank>strain</rank>
+<comment datatype='string'>EcoCyc is a model-organism database for &lt;i&gt;Escherichia coli&lt;/i&gt; K-12 MG1655.  For more information, see URL EcoCyc.org.
 &lt;p&gt;
-In prokaryotes, &lt;a href="/compound?orgid=META&amp;id=CPD-14553"&gt;UDP-&amp;alpha;-D-galactose&lt;/a&gt; is a common precursor for O-antigens and S-layer polysaccharides (see &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-7328"&gt;superpathway of UDP-glucose-derived O-antigen building blocks biosynthesis&lt;/a&gt;), protein glycosylation (see for example &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-7037"&gt;protein &lt;i&gt;O&lt;/i&gt;-glycosylation (Neisseria)&lt;/a&gt;) and cell wall polymers (see &lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6397"&gt;mycolyl-arabinogalactan-peptidoglycan complex biosynthesis&lt;/a&gt;).
-&lt;p&gt;
-A few examples for eukaryotic polysaccharides whose biosynthesis requires &lt;a href="/compound?orgid=META&amp;id=CPD-14553"&gt;UDP-&amp;alpha;-D-galactose&lt;/a&gt; include xyloglucans (&lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5936"&gt;xyloglucan biosynthesis&lt;/a&gt;), glycolipids (&lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-401"&gt;galactolipid biosynthesis I&lt;/a&gt;), glycosaminoglycans (&lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-6557"&gt;glycosaminoglycan-protein linkage region biosynthesis&lt;/a&gt;), glycoalkaloids (&lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5666"&gt;&amp;alpha;-solanine/&amp;alpha;-chaconine biosynthesis&lt;/a&gt;), fagopyritols (&lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5380"&gt;A series fagopyritols biosynthesis&lt;/a&gt;) and saponins (&lt;a href="/META/NEW-IMAGE?type=PATHWAY&amp;object=PWY-5203"&gt;soybean saponin I biosynthesis&lt;/a&gt;).</comment>
-<common-name datatype="string">UDP-&amp;alpha;-D-galactose biosynthesis</common-name>
-<credits><created><date datatype="date">2013-08-15</date>
-<Person ID="META:caspi" detail="full" frameid="caspi" orgid="META"><affiliations><Organization ID="META:SRI" detail="full" frameid="SRI" orgid="META"><abbrev-name datatype="string">SRI International</abbrev-name>
-<url datatype="string">http://bioinformatics.ai.sri.com/</url>
-<common-name datatype="string">SRI International</common-name>
-<email datatype="string">ptools-support@ai.sri.com</email>
-</Organization>
-</affiliations>
-<comment datatype="string">Ron Caspi has been a curator of the MetaCyc database at SRI International since 2005.</comment>
-<common-name datatype="string">Ron Caspi</common-name>
-<email datatype="string">caspi@ai.sri.com</email>
-</Person>
-<Organization frameid="SRI" orgid="META" resource="#META:SRI" /></created>
-</credits>
+The &lt;i&gt;E. coli&lt;/i&gt; genome sequence used in EcoCyc is GenBank accession number U00096.2.  Despite the
+involvement of EcoCyc staff in ongoing updates to the U00096 record, some annotation differences may
+be found between U00096 and EcoCyc, such as due to recent updates to EcoCyc.
+</comment>
+<citation><Publication ID='META:PUB-23143106' orgid='META' frameid='PUB-23143106' detail='full'><source datatype='string'>Nucleic Acids Res 41(Database issue);D605-12</source>
+<pubmed-id datatype='string'>23143106</pubmed-id>
+<author datatype='string'>Keseler IM</author>
+<author datatype='string'>Mackie A</author>
+<author datatype='string'>Peralta-Gil M</author>
+<author datatype='string'>Santos-Zavaleta A</author>
+<author datatype='string'>Gama-Castro S</author>
+<author datatype='string'>Bonavides-Martinez C</author>
+<author datatype='string'>Fulcher C</author>
+<author datatype='string'>Huerta AM</author>
+<author datatype='string'>Kothari A</author>
+<author datatype='string'>Krummenacker M</author>
+<author datatype='string'>Latendresse M</author>
+<author datatype='string'>Muniz-Rascado L</author>
+<author datatype='string'>Ong Q</author>
+<author datatype='string'>Paley S</author>
+<author datatype='string'>Schroder I</author>
+<author datatype='string'>Shearer AG</author>
+<author datatype='string'>Subhraveti P</author>
+<author datatype='string'>Travers M</author>
+<author datatype='string'>Weerasinghe D</author>
+<author datatype='string'>Weiss V</author>
+<author datatype='string'>Collado-Vides J</author>
+<author datatype='string'>Gunsalus RP</author>
+<author datatype='string'>Paulsen I</author>
+<author datatype='string'>Karp PD</author>
+<title datatype='string'>EcoCyc: fusing model organism databases with systems biology.</title>
+<year datatype='integer'>2013</year>
+</Publication>
+</citation>
+<synonym datatype='string'>Escherichia coli str. K-12 substr. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli str. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli str. K12 substr. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli strain MG1655</synonym>
+<synonym datatype='string'>Escherichia coli MG1655</synonym>
+<strain-name datatype='string'>K-12 substr. MG1655</strain-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+<common-name datatype='string'>Escherichia coli</common-name>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-9606' orgid='META' frameid='TAX-9606' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-9605' orgid='META' frameid='TAX-9605' class='true'/></parent>
+<rank>species</rank>
+<comment datatype='string'>The HumanCyc project is described at URL  http://HumanCyc.org/</comment>
+<synonym datatype='string'>human</synonym>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>9606</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=9606</dblink-URL>
+</dblink>
+<common-name datatype='string'>Homo sapiens</common-name>
+</Organism>
+</species>
+<species><Organism ID='META:TAX-83332' orgid='META' frameid='TAX-83332' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-1773' orgid='META' frameid='TAX-1773' class='true'/></parent>
+<rank>strain</rank>
+<synonym datatype='string'>Mycobacterium tuberculosis H37Rv</synonym>
+<synonym datatype='string'>Mycobacterium tuberculosis str. H37Rv</synonym>
+<synonym datatype='string'>Mycobacterium tuberculosis strain H37Rv</synonym>
+<synonym datatype='string'>Mycobacterium sp. H37Rv</synonym>
+<strain-name datatype='string'>H37Rv</strain-name>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>83332</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=83332</dblink-URL>
+</dblink>
+<common-name datatype='string'>Mycobacterium tuberculosis</common-name>
+</Organism>
+</species>
+<species><Organism ID='META:ORG-5993' orgid='META' frameid='ORG-5993' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-3702' orgid='META' frameid='TAX-3702' class='true'/></parent>
+<rank>strain</rank>
+<synonym datatype='string'>Arabidopsis thaliana col</synonym>
+<strain-name datatype='string'>col</strain-name>
+<common-name datatype='string'>Arabidopsis thaliana</common-name>
+</Organism>
+</species>
+<reaction-layout><Reaction resource='getxml?META:UDPGLUCEPIM-RXN' orgid='META' frameid='UDPGLUCEPIM-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:CPD-12575' orgid='META' frameid='CPD-12575'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:CPD-14553' orgid='META' frameid='CPD-14553'/></right-primaries>
+</reaction-layout>
 <dblink><dblink-db>ECOCYC</dblink-db>
 <dblink-oid>PWY-7344</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://biocyc.org/ECOLI/new-image?object=PWY-7344</dblink-URL>
 </dblink>
-<reaction-list><Reaction frameid="UDPGLUCEPIM-RXN" orgid="META" resource="getxml?META:UDPGLUCEPIM-RXN" /></reaction-list>
-<reaction-layout><Reaction frameid="UDPGLUCEPIM-RXN" orgid="META" resource="getxml?META:UDPGLUCEPIM-RXN" /><direction>L2R</direction>
-<left-primaries><Compound frameid="CPD-12575" orgid="META" resource="getxml?META:CPD-12575" /></left-primaries>
-<right-primaries><Compound frameid="CPD-14553" orgid="META" resource="getxml?META:CPD-14553" /></right-primaries>
-</reaction-layout>
+<common-name datatype='string'>UDP-&amp;alpha;-D-galactose biosynthesis</common-name>
+<reaction-list><Reaction resource='getxml?META:UDPGLUCEPIM-RXN' orgid='META' frameid='UDPGLUCEPIM-RXN'/></reaction-list>
 </Pathway>
 </ptools-xml>

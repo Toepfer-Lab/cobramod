@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:ASPARAGINESYN-PWY'><metadata><url>http://BioCyc.org/</url>
+<service_name>getxml</service_name>
+<query>META:ASPARAGINESYN-PWY</query>
+<num_results>1</num_results>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
+</PGDB>
+</metadata>
+<Pathway ID='META:ASPARAGINESYN-PWY' orgid='META' frameid='ASPARAGINESYN-PWY' detail='full'><parent><Pathway resource='getxml?META:ASPARAGINE-SYN' orgid='META' frameid='ASPARAGINE-SYN' class='true'/></parent>
+<super-pathways><Pathway resource='getxml?META:ASPASN-PWY' orgid='META' frameid='ASPASN-PWY'/><Pathway resource='getxml?META:PWY0-1325' orgid='META' frameid='PWY0-1325'/></super-pathways>
+<synonym datatype='string'>L-asparagine - L-aspartate pathway</synonym>
+<common-name datatype='string'>L-asparagine biosynthesis II</common-name>
+<evidence><Evidence-Code ID='META:EV-EXP-IDA' orgid='META' frameid='EV-EXP-IDA' detail='full' class='true'><parent><Evidence-Code resource='getxml?META:EV-EXP' orgid='META' frameid='EV-EXP' class='true'/></parent>
+<common-name datatype='string'>Inferred from direct assay</common-name>
+<comment datatype='string'>IDA inferred from direct assay.
+
+&lt;br&gt;
+The assertion was inferred from a direct experimental assay such as
+&lt;ul&gt;
+    &lt;li&gt; Enzyme assays
+    &lt;li&gt; In vitro reconstitution (e.g. transcription)
+    &lt;li&gt; Immunofluorescence
+    &lt;li&gt; Cell fractionation
+&lt;/ul&gt;</comment>
+</Evidence-Code>
+<Publication ID='META:PUB-6102982' orgid='META' frameid='PUB-6102982' detail='full'><year datatype='integer'>1980</year>
+<pubmed-id datatype='string'>6102982</pubmed-id>
+<author datatype='string'>Humbert R</author>
+<author datatype='string'>Simoni RD</author>
+<title datatype='string'>Genetic and biomedical studies demonstrating a second gene coding for asparagine synthetase in Escherichia coli.</title>
+<source datatype='string'>J Bacteriol 142(1);212-20</source>
+</Publication>
+</evidence>
+<comment datatype='string'>&lt;a href=&quot;/compound?orgid=META&amp;id=ASN&quot;&gt;L-asparagine&lt;/a&gt;, one of the 21 co-translationally inserted amino acids that make up proteins, is known to be synthesized from &lt;a href=&quot;/compound?orgid=META&amp;id=L-ASPARTATE&quot;&gt;L-aspartate&lt;/a&gt; in an ATP-dependent amidation reaction.
+Two mechanistically distinct asparagine synthetases are known. &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-6.3.1.1&quot;&gt;EC 6.3.1.1, aspartate&amp;mdash;ammonia ligase&lt;/a&gt;, encoded by the &lt;a href=&quot;/gene?orgid=META&amp;id=EG10091&quot;&gt;asnA&lt;/a&gt; gene, utilizes ammonia as amide donor (as described in this pathway), whereas &lt;a href=&quot;/META/NEW-IMAGE?type=EC-NUMBER&amp;object=EC-6.3.5.4&quot;&gt;EC 6.3.5.4, asparagine synthase (glutamine-hydrolysing)&lt;/a&gt;, encoded by the &lt;a href=&quot;/gene?orgid=META&amp;id=EG10092&quot;&gt;asnB&lt;/a&gt; gene or related genes) works with glutamine (see &lt;a href=&quot;/META/NEW-IMAGE?type=PATHWAY&amp;object=ASPARAGINE-BIOSYNTHESIS&quot;&gt;L-asparagine biosynthesis I&lt;/a&gt;). These enzymes are present in organisms of all domains, the major one being the latter.
+&lt;p&gt;
+In addition, some organisms employ a tRNA-dependent transamidation mechanism for conversion of &lt;a href=&quot;/compound?orgid=META&amp;id=L-ASPARTATE&quot;&gt;L-aspartate&lt;/a&gt; to &lt;a href=&quot;/compound?orgid=META&amp;id=ASN&quot;&gt;L-asparagine&lt;/a&gt; [&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/9789001&quot;&gt;Curnow98&lt;/a&gt;].
+&lt;p&gt;
+In &lt;a href=&quot;/META/NEW-IMAGE?object=TAX-562&quot;&gt;&lt;i&gt;Escherichia coli&lt;/i&gt;&lt;/a&gt; null mutations in both &lt;a href=&quot;/gene?orgid=META&amp;id=EG10091&quot;&gt;asnA&lt;/a&gt; and &lt;a href=&quot;/gene?orgid=META&amp;id=EG10092&quot;&gt;asnB&lt;/a&gt; genes result in asparagine auxotrophy, as does a null mutation only in &lt;a href=&quot;/gene?orgid=META&amp;id=EG10092&quot;&gt;asnB&lt;/a&gt; under conditions of ammonia-limited growth. A null mutation only in &lt;a href=&quot;/gene?orgid=META&amp;id=EG10091&quot;&gt;asnA&lt;/a&gt; has no observable phenotype.</comment>
+<reaction-list><Reaction resource='getxml?META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN'/></reaction-list>
+<taxonomic-range><Organism ID='META:TAX-2759' orgid='META' frameid='TAX-2759' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<synonym datatype='string'>eukaryotes &lt;common name&gt;</synonym>
+<synonym datatype='string'>eukaryotes</synonym>
+<synonym datatype='string'>Eukaryotae</synonym>
+<synonym datatype='string'>Eukarya</synonym>
+<synonym datatype='string'>eucaryotes</synonym>
+<synonym datatype='string'>Eucaryotae</synonym>
+<synonym datatype='string'>Eucarya</synonym>
+<common-name datatype='string'>Eukaryota</common-name>
+<rank>superkingdom</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2759</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2759</dblink-URL>
+</dblink>
+</Organism>
+<Organism ID='META:TAX-2' orgid='META' frameid='TAX-2' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-131567' orgid='META' frameid='TAX-131567' class='true'/></parent>
+<synonym datatype='string'>eubacteria</synonym>
+<synonym datatype='string'>Bacteria</synonym>
+<common-name datatype='string'>Bacteria &lt;bacteria&gt;</common-name>
+<rank>superkingdom</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>2</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=2</dblink-URL>
+</dblink>
+</Organism>
+</taxonomic-range>
+<species><Organism ID='META:TAX-511145' orgid='META' frameid='TAX-511145' detail='full' class='true'><parent><Organism resource='getxml?META:TAX-83333' orgid='META' frameid='TAX-83333' class='true'/></parent>
+<strain-name datatype='string'>K-12 substr. MG1655</strain-name>
+<synonym datatype='string'>Escherichia coli str. K-12 substr. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli str. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli str. K12 substr. MG1655</synonym>
+<synonym datatype='string'>Escherichia coli strain MG1655</synonym>
+<synonym datatype='string'>Escherichia coli MG1655</synonym>
+<common-name datatype='string'>Escherichia coli</common-name>
+<citation><Publication ID='META:PUB-23143106' orgid='META' frameid='PUB-23143106' detail='full'><year datatype='integer'>2013</year>
+<pubmed-id datatype='string'>23143106</pubmed-id>
+<author datatype='string'>Keseler IM</author>
+<author datatype='string'>Mackie A</author>
+<author datatype='string'>Peralta-Gil M</author>
+<author datatype='string'>Santos-Zavaleta A</author>
+<author datatype='string'>Gama-Castro S</author>
+<author datatype='string'>Bonavides-Martinez C</author>
+<author datatype='string'>Fulcher C</author>
+<author datatype='string'>Huerta AM</author>
+<author datatype='string'>Kothari A</author>
+<author datatype='string'>Krummenacker M</author>
+<author datatype='string'>Latendresse M</author>
+<author datatype='string'>Muniz-Rascado L</author>
+<author datatype='string'>Ong Q</author>
+<author datatype='string'>Paley S</author>
+<author datatype='string'>Schroder I</author>
+<author datatype='string'>Shearer AG</author>
+<author datatype='string'>Subhraveti P</author>
+<author datatype='string'>Travers M</author>
+<author datatype='string'>Weerasinghe D</author>
+<author datatype='string'>Weiss V</author>
+<author datatype='string'>Collado-Vides J</author>
+<author datatype='string'>Gunsalus RP</author>
+<author datatype='string'>Paulsen I</author>
+<author datatype='string'>Karp PD</author>
+<title datatype='string'>EcoCyc: fusing model organism databases with systems biology.</title>
+<source datatype='string'>Nucleic Acids Res 41(Database issue);D605-12</source>
+</Publication>
+</citation>
+<comment datatype='string'>EcoCyc is a model-organism database for &lt;i&gt;Escherichia coli&lt;/i&gt; K-12 MG1655.  For more information, see URL EcoCyc.org.
+&lt;p&gt;
+The &lt;i&gt;E. coli&lt;/i&gt; genome sequence used in EcoCyc is GenBank accession number U00096.2.  Despite the
+involvement of EcoCyc staff in ongoing updates to the U00096 record, some annotation differences may
+be found between U00096 and EcoCyc, such as due to recent updates to EcoCyc.
+</comment>
+<rank>strain</rank>
+<dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
+<dblink-oid>511145</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=511145</dblink-URL>
+</dblink>
+</Organism>
+</species>
+<reaction-layout><Reaction resource='getxml?META:ASNSYNA-RXN' orgid='META' frameid='ASNSYNA-RXN'/><direction>L2R</direction>
+<left-primaries><Compound resource='getxml?META:L-ASPARTATE' orgid='META' frameid='L-ASPARTATE'/></left-primaries>
+<right-primaries><Compound resource='getxml?META:ASN' orgid='META' frameid='ASN'/></right-primaries>
+</reaction-layout>
+<dblink><dblink-db>ECOCYC</dblink-db>
+<dblink-oid>ASPARAGINESYN-PWY</dblink-oid>
+<dblink-relationship>unification</dblink-relationship>
+<dblink-URL>http://biocyc.org/ECOLI/new-image?object=ASPARAGINESYN-PWY</dblink-URL>
+</dblink>
+<in-pathway><Pathway resource='getxml?META:ASPASN-PWY' orgid='META' frameid='ASPASN-PWY'/><Pathway resource='getxml?META:PWY0-1325' orgid='META' frameid='PWY0-1325'/></in-pathway>
+<credits><created><date datatype='date'>1995-07-31</date>
+<Person ID='META:riley' orgid='META' frameid='riley' detail='full'><common-name datatype='string'>Monica Riley</common-name>
+<comment datatype='string'>Monica Riley (1926-2013) was a pioneer in the fields of molecular biology and microbial genome analysis. She was a co-founder of the EcoCyc database and curated a significant amount of material in its early days.</comment>
+<affiliations><Organization ID='META:O-18' orgid='META' frameid='O-18' detail='full'><common-name datatype='string'>Marine Biological Laboratory</common-name>
+</Organization>
+</affiliations>
+</Person>
+<Organization resource='#META:O-18' orgid='META' frameid='O-18'/></created>
+<revised><date datatype='date'>2006-05-09</date>
+<Person ID='META:ingraham' orgid='META' frameid='ingraham' detail='full'><middle-name datatype='string'>L</middle-name>
+<common-name datatype='string'>John L. Ingraham</common-name>
+<comment datatype='string'>John Ingraham is a professor emeritus at UC Davis. He has made many contributions to the conent of the EcoCyc database.</comment>
+<affiliations><Organization ID='META:O0-3' orgid='META' frameid='O0-3' detail='full'><common-name datatype='string'>University of California, Davis</common-name>
+<abbrev-name datatype='string'>UC Davis</abbrev-name>
+</Organization>
+</affiliations>
+<email datatype='string'>jingrah1@earthlink.net</email>
+</Person>
+<Organization resource='#META:O0-3' orgid='META' frameid='O0-3'/></revised>
+</credits>
+</Pathway>
+</ptools-xml>

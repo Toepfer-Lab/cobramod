@@ -9,244 +9,237 @@ separated in:
 - SimpleFunctions: Creation of objects
 - ComplexFunctions: Functions, that uses multiple simple functions.
 """
+import unittest
 from logging import DEBUG
 from pathlib import Path
-from unittest import main, TestCase
 
-from cobra import Metabolite, Reaction, Model, __version__
-from requests import HTTPError
-
+import cobra.core as cobra_core
+import cobramod.retrieval as cmod_retrieval
+import requests
+from cobra import __version__ as cobra_version
+from cobramod import __version__ as cmod_version
 from cobramod.core import creation as cr
-from cobramod.core.retrieval import get_data
 from cobramod.debug import debug_log
-from cobramod.error import WrongSyntax, NoDelimiter
-from cobramod.parsing import BaseParser
+from cobramod.error import NoDelimiter, WrongSyntax
+from cobramod.parsing.db_version import DataVersionConfigurator
 from cobramod.test import textbook_kegg
-from cobramod import __version__ as cobramod_version
 
-# Debug must be set in level DEBUG for the test
+NAME = "test_model"
+
 debug_log.setLevel(DEBUG)
-# Setting directory for datA
+data_conf = DataVersionConfigurator()
+data_conf.force_same_version = True
+
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
+
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
-print(f"CobraMod version: {cobramod_version}")
-print(f"COBRApy version: {__version__}")
 
 
-class SimpleFunctions(TestCase):
+class SimpleFunctions(unittest.TestCase):
     """
     Test for simple test such as creating metabolites from string or from
     files.
     """
 
-    def test__find_replacements(self):
+    def test_find_replacements(self):
         replace_dict = {
             "ACETALD-DEHYDROG-RXN": "R00228_c",
             "WATER_c": "C00001_c",
             "WATER_d": "C00001_d",
         }
-
-        # CASE 0: Nothing found
-        test_replacement = cr._find_replacements(
-            identifier=None,
-            obj_type="reactions",
-            model=textbook_kegg,
-            replace_dict=replace_dict,
-        )
-        self.assertIsNone(obj=test_replacement)
         # CASE 1: Reaction
-        test_replacement = cr._find_replacements(
+        test_replacement = cr.find_replacements(
             identifier="WATER_c",
             obj_type="metabolites",
             model=textbook_kegg,
             replace_dict=replace_dict,
         )
-        self.assertIsInstance(obj=test_replacement, cls=Metabolite)
-        # CASE 2a: String
-        test_replacement = cr._find_replacements(
+        self.assertIsInstance(obj=test_replacement, cls=cobra_core.Metabolite)
+        # CASE: String
+        test_replacement = cr.find_replacements(
             identifier="WATER_d",
             obj_type="metabolites",
             model=textbook_kegg,
             replace_dict=replace_dict,
         )
-        self.assertEqual(first=test_replacement, second="C00001_d")
-        # CASE 2a: String
-        test_replacement = cr._find_replacements(
+        self.assertIsNone(test_replacement)
+        # CASE : String
+        test_replacement = cr.find_replacements(
             identifier="ACETALD-DEHYDROG-RXN",
             obj_type="reactions",
             model=textbook_kegg,
             replace_dict=replace_dict,
         )
-        self.assertIsInstance(obj=test_replacement, cls=Reaction)
+        self.assertIsInstance(obj=test_replacement, cls=cobra_core.Reaction)
 
-    def test__metabolite_from_string(self):
+    def test_metabolite_from_string(self):
         # CASE 1: Correct input
         test_string = "MALTOSE_b, MALTOSE[b], b, C12H22O11, 0"
-        test_metabolite = cr._metabolite_from_string(
-            line_string=test_string, model=Model(0), replacement={}
+        test_metabolite = cr.metabolite_from_string(
+            line_string=test_string,
+            model=cobra_core.Model(NAME),
+            replacement={},
         )
         # Checking that new meta is in Model
-        self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
+        self.assertIsInstance(obj=test_metabolite, cls=cobra_core.Metabolite)
         self.assertEqual(first=test_metabolite.id, second="MALTOSE_b")
         self.assertEqual(first=test_metabolite.name, second="MALTOSE[b]")
         self.assertEqual(first=test_metabolite.charge, second=0)
-        self.assertDictEqual(
-            d1=test_metabolite.elements, d2={"C": 12, "H": 22, "O": 11}
-        )
+        self.assertEqual(first=test_metabolite.formula, second="C12H22O11")
 
-    def test__get_metabolite(self):
-        # CASE 1: regular META
-        test_dict = get_data(
+    def test_metabolite_from_data(self):
+        # CASE: regular META
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="HOMOMETHIONINE",
             database="META",
-            debug_level=10,
+            # debug_level=10,
         )
-        test_metabolite = cr._get_metabolite(
-            metabolite_dict=test_dict, compartment="c"
-        )
-        self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
+        test_metabolite = cr.metabolite_from_data(data, compartment="c")
+
+        self.assertIsInstance(obj=test_metabolite, cls=cobra_core.Metabolite)
         self.assertEqual(first=test_metabolite.id, second="HOMOMETHIONINE_c")
         self.assertEqual(first=test_metabolite.name, second="L-homomethionine")
         self.assertEqual(first=test_metabolite.formula, second="C6H13N1O2S1")
-        # CASE 2a: Find translation
-        test_dict = get_data(
+        # CASE: Find translation
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="WATER",
             database="META",
-            debug_level=10,
+            # debug_level=10,
         )
-        test_metabolite = cr._get_metabolite(
-            metabolite_dict=test_dict, compartment="c", model=textbook_kegg
+        test_metabolite = cr.metabolite_from_data(
+            data, compartment="c", model=textbook_kegg
         )
+
         self.assertEqual(first=test_metabolite.id, second="C00001_c")
-        # CASE 2b: Find translation (BIGG)
-        test_dict = get_data(
+        # CASE: Find translation (BIGG)
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="h2o",
             database="BIGG",
-            debug_level=10,
+            # debug_level=10,
             model_id="universal",
         )
-        test_metabolite = cr._get_metabolite(
-            metabolite_dict=test_dict, compartment="c", model=textbook_kegg
+        test_metabolite = cr.metabolite_from_data(
+            data, compartment="c", model=textbook_kegg
         )
         self.assertEqual(first=test_metabolite.id, second="C00001_c")
-        # TODO: add extra cases, ARA, KEGG
 
-    def test__convert_string_metabolite(self):
+    def test_convert_string_metabolite(self):
         # CASE 1: retrieval from META
-        test_metabolite = cr._convert_string_metabolite(
+        test_metabolite = cr.convert_string_metabolite(
             line="HOMOMETHIONINE, c",
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             directory=dir_data,
             database="META",
             replacement={},
+            model_id=None,
         )
-        self.assertIsInstance(obj=test_metabolite, cls=Metabolite)
+        self.assertIsInstance(obj=test_metabolite, cls=cobra_core.Metabolite)
         self.assertEqual(first=test_metabolite.id, second="HOMOMETHIONINE_c")
         self.assertEqual(first=test_metabolite.name, second="L-homomethionine")
         self.assertEqual(first=test_metabolite.formula, second="C6H13N1O2S1")
         self.assertEqual(first=test_metabolite.compartment, second="c")
-        # CASE 2: custom metabolite
-        test_metabolite = cr._convert_string_metabolite(
+        # CASE: custom metabolite
+        test_metabolite = cr.convert_string_metabolite(
             line="MALTOSE_b, MALTOSE[b], b, C12H22O11, 0",
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             replacement={},
             directory=dir_data,
+            database=None,
+            model_id=None,
         )
         self.assertEqual(first=test_metabolite.id, second="MALTOSE_b")
         self.assertEqual(first=test_metabolite.name, second="MALTOSE[b]")
         self.assertEqual(first=test_metabolite.charge, second=0)
-        self.assertDictEqual(
-            d1=test_metabolite.elements, d2={"C": 12, "H": 22, "O": 11}
-        )
-        # CASE 2: custom metabolite
-        test_metabolite = cr._convert_string_metabolite(
+        self.assertEqual(first=test_metabolite.formula, second="C12H22O11")
+        # CASE: custom metabolite with replacement
+        test_metabolite = cr.convert_string_metabolite(
             line="MALTOSE_b, MALTOSE[c], b, C12H22O11, 0",
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             replacement={"MALTOSE_b": "MALTOSE_c"},
             directory=dir_data,
+            database=None,
+            model_id=None,
         )
         self.assertEqual(first=test_metabolite.id, second="MALTOSE_c")
         self.assertEqual(first=test_metabolite.name, second="MALTOSE[c]")
         self.assertEqual(first=test_metabolite.charge, second=0)
-        self.assertDictEqual(
-            d1=test_metabolite.elements, d2={"C": 12, "H": 22, "O": 11}
-        )
+        self.assertEqual(first=test_metabolite.formula, second="C12H22O11")
 
-    def test__get_file_metabolites(self):
-        test_model = Model(0)
-        # CASE 0: Testing if file is not found
+    def test_get_file_metabolites(self):
+        test_model = cobra_core.Model(NAME)
+        # CASE: Testing if file is not found
         self.assertRaises(
             FileNotFoundError,
-            cr._get_file_metabolites,
+            cr.get_file_metabolites,
             test_model,
             Path.cwd().joinpath("no_file"),
             replacement={},
+            directory=dir_data,
+            database=None,
+            model_id=None,
         )
-        # CASE 1: Metabolite is not found (or misspelled)
+        # CASE: Metabolite is not found (or misspelled)
         self.assertRaises(
-            HTTPError,
-            cr._get_file_metabolites,
-            model=test_model,
-            filename=dir_input.joinpath("metabolites_02_misspelled.txt"),
-            # Directory to save / check for xml files
+            requests.HTTPError,
+            cr.get_file_metabolites,
+            test_model,
+            dir_input.joinpath("metabolites_02_misspelled.txt"),
+            replacement={},
             directory=dir_data,
             database="META",
-            replacement={},
+            model_id=None,
         )
-        # CASE 2: Bad format (e. g. charge is missing).
+        # CASE: Bad format (e. g. charge is missing).
         self.assertRaises(
             WrongSyntax,
-            cr._get_file_metabolites,
+            cr.get_file_metabolites,
             model=test_model,
             filename=dir_input.joinpath("metabolites_03_badFormat.txt"),
-            # Directory to save / check for xml files
             directory=dir_data,
             database="META",
             replacement={},
+            model_id=None,
         )
-        # CASE 3: Normal input
-        test_list = cr._get_file_metabolites(
+        # CASE: Normal input
+        test_list = cr.get_file_metabolites(
             model=test_model,
-            # File with Metabolites to add
             filename=dir_input.joinpath("metabolites_01_normal.txt"),
-            # Directory to save / check for xml files
             directory=dir_data,
             database="META",
             replacement={},
+            model_id=None,
         )
-        # Length should increase
         self.assertEqual(len(test_list), 2)
+
         # Both Names in metabolites
         test_names = ["HOMOMETHIONINE_c", "MALTOSE_b"]
         self.assertListEqual(
             list1=[member.id for member in test_list], list2=test_names
         )
 
-    def test__get_reaction(self):
-        # CASE 1: Regular Biocyc reaction
-        test_data = get_data(
+    def test_get_reaction(self):
+        # CASE: Regular Biocyc reaction
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="OXALODECARB-RXN",
             database="ARA",
-            debug_level=10,
+            # debug_level=10,
         )
-        test_reaction = cr._get_reaction(
-            data_dict=test_data,
+        test_reaction = cr.get_reaction(
+            data=data,
             compartment="c",
-            directory=dir_data,
-            database="ARA",
             replacement={},
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             show_imbalance=True,
             stop_imbalance=False,
         )
-        self.assertIsInstance(obj=test_reaction, cls=Reaction)
+        self.assertIsInstance(obj=test_reaction, cls=cobra_core.Reaction)
         self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(0, 1000))
         test_list = [
             "PYRUVATE_c",
@@ -254,30 +247,29 @@ class SimpleFunctions(TestCase):
             "OXALACETIC_ACID_c",
             "PROTON_c",
         ]
-        self.assertListEqual(
-            list1=sorted([meta.id for meta in test_reaction.metabolites]),
-            list2=sorted(test_list),
+        self.assertCountEqual(
+            [meta.id for meta in test_reaction.metabolites],
+            test_list,
         )
-        # CASE 2: Regular KEGG reaction in compartment "p". Irreversible
-        test_data = get_data(
+        # CASE: Regular KEGG reaction in compartment "p". Irreversible
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="R02736",
             database="KEGG",
-            debug_level=10,
-            genome="hsa",
+            # debug_level=10,
+            # genome="hsa",
         )
-        test_reaction = cr._get_reaction(
-            data_dict=test_data,
+        test_reaction = cr.get_reaction(
+            data=data,
             compartment="p",
-            directory=dir_data,
-            database="KEGG",
             replacement={},
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             show_imbalance=True,
             stop_imbalance=False,
         )
-        self.assertIsInstance(obj=test_reaction, cls=Reaction)
-        self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(0, 1000))
+        self.assertIsInstance(obj=test_reaction, cls=cobra_core.Reaction)
+        # NOTE: dropping support from comments
+        self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(-1000, 1000))
         test_list = [
             "C01172_p",
             "C00006_p",
@@ -285,32 +277,28 @@ class SimpleFunctions(TestCase):
             "C00005_p",
             "C00080_p",
         ]
-        self.assertListEqual(
-            list1=sorted([meta.id for meta in test_reaction.metabolites]),
-            list2=sorted(test_list),
+        self.assertCountEqual(
+            [meta.id for meta in test_reaction.metabolites],
+            test_list,
         )
-        # CASE 3: Reactions with different coefficients
-        test_data = get_data(
+        # CASE: Reactions with different coefficients
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="R00114",
             database="KEGG",
-            debug_level=10,
-            genome="eco",
+            # debug_level=10,
+            # genome="eco",
         )
-        test_reaction = cr._get_reaction(
-            data_dict=test_data,
+        test_reaction = cr.get_reaction(
+            data=data,
             compartment="p",
-            directory=dir_data,
-            database="KEGG",
             replacement={},
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             show_imbalance=True,
             stop_imbalance=False,
         )
-        self.assertIsInstance(obj=test_reaction, cls=Reaction)
-        self.assertTupleEqual(
-            tuple1=test_reaction.bounds, tuple2=(-1000, 1000)
-        )
+        self.assertIsInstance(obj=test_reaction, cls=cobra_core.Reaction)
+        self.assertTupleEqual(tuple1=test_reaction.bounds, tuple2=(-1000, 1000))
         test_list = [
             "C00025_p",
             "C00006_p",
@@ -326,20 +314,18 @@ class SimpleFunctions(TestCase):
         self.assertEqual(
             first=test_reaction.get_coefficient("C00025_p"), second=-2
         )
-        # CASE 4: transport reaction, simple
-        test_data = get_data(
+        # CASE: transport reaction, simple
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="TRANS-RXN0-574",
             database="META",
-            debug_level=10,
+            # debug_level=10,
         )
-        test_reaction = cr._get_reaction(
-            data_dict=test_data,
+        test_reaction = cr.get_reaction(
+            data=data,
             compartment="p",
-            directory=dir_data,
-            database="META",
             replacement={},
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             show_imbalance=True,
             stop_imbalance=False,
         )
@@ -351,20 +337,18 @@ class SimpleFunctions(TestCase):
             member="Glucopyranose_e",
             container=[item.id for item in test_reaction.metabolites],
         )
-        # CASE 5: transport reaction, complex
-        test_data = get_data(
+        # CASE: transport reaction, complex
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="ABC-56-RXN",
             database="META",
-            debug_level=10,
+            # debug_level=10,
         )
-        test_reaction = cr._get_reaction(
-            data_dict=test_data,
+        test_reaction = cr.get_reaction(
+            data=data,
             compartment="p",
-            directory=dir_data,
-            database="META",
             replacement={},
-            model=Model(0),
+            model=cobra_core.Model(NAME),
             show_imbalance=True,
             stop_imbalance=False,
         )
@@ -380,40 +364,34 @@ class SimpleFunctions(TestCase):
             first=test_reaction.get_coefficient("Aliphatic_Sulfonates_e"),
             second=-1,
         )
-        # CASE 6a: Retrieve reaction with translated equivalents
-        test_data = get_data(
+        # CASE: Retrieve reaction with translated equivalents
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="ACALD",
             database="BIGG",
-            debug_level=10,
+            # debug_level=10,
             model_id="e_coli_core",
         )
-        test_reaction = cr._get_reaction(
-            data_dict=test_data,
+        test_reaction = cr.get_reaction(
+            data=data,
             compartment="c",
-            directory=dir_data,
-            database="BIGG",
             replacement={},
             model=textbook_kegg,
-            model_id="universal",
             show_imbalance=True,
             stop_imbalance=False,
         )
         self.assertEqual(first=test_reaction.id, second="R00228_c")
-        # CASE 6b: Retrieve reaction with translated equivalents. Check for
+        # CASE: Retrieve reaction with translated equivalents. Check for
         # metabolites.
-        test_data = get_data(
+        data = cmod_retrieval.get_data(
             directory=dir_data,
             identifier="ADENODEAMIN-RXN",
             database="META",
-            debug_level=10,
+            # debug_level=10,
         )
-        # FIXME: find a solution for unformatted identifiers
-        test_reaction = cr._get_reaction(
-            data_dict=test_data,
+        test_reaction = cr.get_reaction(
+            data=data,
             compartment="c",
-            directory=dir_data,
-            database="META",
             replacement={},
             model=textbook_kegg,
             show_imbalance=True,
@@ -435,20 +413,23 @@ class SimpleFunctions(TestCase):
             ],
         )
 
-    def test__convert_string_reaction(self):
-        # CASE 1: using delimiter, compartment is cytosol
-        test_model = Model(0)
+    def test_convert_string_reaction(self):
+        # CASE: using delimiter, compartment is cytosol
+        test_model = cobra_core.Model(NAME)
         test_line = (
-            "RXN_17742_c, RXN_17742_c |"
+            "RXN_17742_c, RXN_17742_c | "
             "1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c "
         )
-        test_reaction = cr._convert_string_reaction(
+        test_reaction = cr.string_to_reaction(
             line=test_line,
             model=test_model,
             directory=dir_data,
             database="META",
             stop_imbalance=False,
             show_imbalance=True,
+            replacement={},
+            model_id=None,
+            genome=None,
         )
         self.assertEqual(first="RXN_17742_c", second=test_reaction.id)
         for metabolite in ["Oxidized_ferredoxins_c", "Reduced_ferredoxins_c"]:
@@ -456,55 +437,51 @@ class SimpleFunctions(TestCase):
                 member=metabolite,
                 container=[meta.id for meta in test_reaction.metabolites],
             )
-        # CASE 2: No delimiter
-        test_model = Model(0)
+        # CASE: No delimiter
+        test_model = cobra_core.Model(NAME)
         test_line = "RXN-14462, c"
-        test_reaction = cr._convert_string_reaction(
+        test_reaction = cr.string_to_reaction(
             line=test_line,
             model=test_model,
             directory=dir_data,
             database="META",
             stop_imbalance=False,
             show_imbalance=True,
+            replacement={},
+            model_id=None,
+            genome=None,
         )
         self.assertEqual(first="RXN_14462_c", second=test_reaction.id)
 
-        # CASE 2b: No delimiter, compartment p
-        test_model = Model(0)
+        # CASE: No delimiter, compartment p
+        test_model = cobra_core.Model(NAME)
         test_line = "RXN-14462, p"
-        test_reaction = cr._convert_string_reaction(
+        test_reaction = cr.string_to_reaction(
             line=test_line,
             model=test_model,
             directory=dir_data,
             database="GCF_000020025",
             stop_imbalance=False,
             show_imbalance=True,
+            replacement={},
+            model_id=None,
+            genome=None,
         )
         self.assertEqual(first="RXN_14462_p", second=test_reaction.id)
 
-        # CASE 2c: No delimiter, using reaction
-        test_model = textbook_kegg.copy()
-        test_line = "ACALDt"
-        test_reaction = cr._convert_string_reaction(
-            line=test_line,
-            model=test_model,
-            directory=dir_data,
-            database="META",
-            stop_imbalance=False,
-            show_imbalance=False,
-        )
-        self.assertEqual(first="ACALDt", second=test_reaction.id)
-
-        # CASE 3: 100% Custom metabolite
-        test_model = Model(0)
+        # CASE: 100% Custom metabolite
+        test_model = cobra_core.Model(NAME)
         test_line = "CUSTOM_rxn1_p, Custom_reaction | Meta_A_p --> Meta_B_p"
-        test_reaction = cr._convert_string_reaction(
+        test_reaction = cr.string_to_reaction(
             line=test_line,
             model=test_model,
             directory=dir_data,
             database="META",
             stop_imbalance=False,
             show_imbalance=True,
+            replacement={},
+            model_id=None,
+            genome=None,
         )
         self.assertEqual(first="CUSTOM_rxn1_p", second=test_reaction.id)
         for metabolite in ["Meta_A_p", "Meta_B_p"]:
@@ -513,102 +490,35 @@ class SimpleFunctions(TestCase):
                 container=[meta.id for meta in test_reaction.metabolites],
             )
 
-    def test__obtain_reaction(self):
-        # CASE 1: Regular META reaction
-        # Note VCHO does not exist in biocyc anymore
-        test_model = Model(0)
-        test_model.compartments = {"e": "extracellular", "p": "plastid"}
-        test_reaction = cr._obtain_reaction(
-            model=test_model,
-            directory=dir_data,
-            identifier="OXALODECARB-RXN",
-            database="VCHO",
-            compartment="p",
-            replacement={},
-            show_imbalance=True,
-            stop_imbalance=False,
-            genome=None,
-            model_id=None,
-        )
-        self.assertEqual(first="OXALODECARB_RXN_p", second=test_reaction.id)
-        self.assertCountEqual(
-            first=[gene.id for gene in test_reaction.genes],
-            second=["VC0550", "VC0551", "VC0792"],
-        )
-        # CASE 2: check for equivalent. (Similar to CASE 6b in _get_reaction)
-        test_model = textbook_kegg.copy()
-        test_reaction = cr._obtain_reaction(
-            model=test_model,
-            directory=dir_data,
-            compartment="c",
-            database="META",
-            replacement={},
-            identifier="ADENODEAMIN-RXN",
-            show_imbalance=True,
-            stop_imbalance=False,
-            genome=None,
-            model_id=None,
-        )
-        # WATER
-        self.assertIn(
-            member="C00001_c",
-            container=[
-                metabolite.id for metabolite in test_reaction.metabolites
-            ],
-        )
-        # PROTON
-        self.assertIn(
-            member="C00080_c",
-            container=[
-                metabolite.id for metabolite in test_reaction.metabolites
-            ],
-        )
-        # TODO: test more databases
-
-    def test__reaction_information(self):
-        # CASE 0: Missing compartment
-        self.assertRaises(
-            WrongSyntax, cr._reaction_information, string=["2 GLC_c <=> GLC"]
-        )
-        # CASE 1: Regular usage
-        test_tuple, test_dict = cr._reaction_information(
-            string="GLC_c --> GLC_b"
-        )
-        self.assertEqual(first=test_tuple, second=(0, 1000))
-        self.assertDictEqual(d1=test_dict, d2={"GLC_c": -1.0, "GLC_b": 1.0})
-        # CASE 2: Regular usage. One-sided
-        test_tuple, test_dict = cr._reaction_information(string="GLC_c -->")
-        self.assertEqual(first=test_tuple, second=(0, 1000))
-        self.assertDictEqual(d1=test_dict, d2={"GLC_c": -1.0})
-
-    def test__reaction_from_string(self):
-        # CASE 1: wrong format, no delimiter
+    def test_reaction_from_string(self):
+        # CASE: wrong format, no delimiter
         self.assertRaises(
             NoDelimiter,
-            cr._reaction_from_string,
+            cr.reaction_from_string,
             line_string="GLC_cb, GLC_cb GLC_c <-> GLC_b",
             directory=dir_data,
             database="META",
             stop_imbalance=False,
             show_imbalance=True,
+            model_id=None,
             replacement={},
         )
 
-        # CASE 2: Normal, ID and name differ
-        test_reaction = cr._reaction_from_string(
+        # CASE: Normal, ID and name differ
+        test_reaction = cr.reaction_from_string(
             line_string="GLC_cb, Glucose Transport| 2 GLC_c <=> GLC_b",
             directory=dir_data,
             database="META",
             stop_imbalance=False,
             show_imbalance=False,
             replacement={},
+            model_id=None,
         )
-        # Checking if ID, name and instance are correct.
         self.assertEqual(first=test_reaction.id, second="GLC_cb")
         self.assertEqual(first=test_reaction.name, second="Glucose Transport")
-        self.assertIsInstance(obj=test_reaction, cls=Reaction)
+        self.assertIsInstance(obj=test_reaction, cls=cobra_core.Reaction)
+
         test_list = ["GLC_c", "GLC_b"]
-        # All metabolites should be there
         for metabolite in test_list:
             self.assertIn(
                 member=metabolite,
@@ -617,11 +527,10 @@ class SimpleFunctions(TestCase):
         self.assertEqual(
             first=-2, second=test_reaction.get_coefficient("GLC_c")
         )
-        self.assertEqual(
-            first=1, second=test_reaction.get_coefficient("GLC_b")
-        )
-        # CASE 3: Larger reaction
-        test_reaction = cr._reaction_from_string(
+        self.assertEqual(first=1, second=test_reaction.get_coefficient("GLC_b"))
+
+        # CASE: Larger reaction
+        test_reaction = cr.reaction_from_string(
             line_string="GLC_cb, Glucose Transport|"
             + "4 GLT_c + 2 GLC_c <=> GLC_b + 2 GLT_b",
             directory=dir_data,
@@ -629,21 +538,23 @@ class SimpleFunctions(TestCase):
             stop_imbalance=False,
             show_imbalance=False,
             replacement={},
+            model_id=None,
         )
         self.assertEqual(
             first=-4, second=test_reaction.get_coefficient("GLT_c")
         )
-        self.assertEqual(
-            first=2, second=test_reaction.get_coefficient("GLT_b")
-        )
+        self.assertEqual(first=2, second=test_reaction.get_coefficient("GLT_b"))
 
-    def test__get_file_reactions(self):
-        test_model = Model(0)
-        test_list = cr._get_file_reactions(
+    def test_get_file_reactions(self):
+        test_model = cobra_core.Model(NAME)
+        test_list = cr.get_file_reactions(
             model=test_model,
             filename=dir_input.joinpath("reactions_normal.txt"),
             directory=dir_data,
             database="META",
+            replacement={},
+            model_id=None,
+            genome=None,
             stop_imbalance=False,
             show_imbalance=True,
         )
@@ -653,44 +564,42 @@ class SimpleFunctions(TestCase):
         )
 
 
-class ComplexFunctions(TestCase):
-    """
-    Test of functions for the API
-    """
-
-    @classmethod
-    def setUpClass(cls):
-        BaseParser.ignore_db_versions = True
+class ComplexFunctions(unittest.TestCase):
+    # @classmethod
+    # def setUpClass(cls):
+    #     BaseParser.ignore_db_versions = True
 
     def test_create_object(self):
-        # CASE 1a: metabolite from MetaCyc
+        # CASE: metabolite from MetaCyc
         test_object = cr.create_object(
             identifier="GLC",
             directory=dir_data,
             compartment="c",
             database="META",
         )
-        self.assertIsInstance(obj=test_object, cls=Metabolite)
-        self.assertEqual(first=test_object.compartment, second="c")
-        # CASE 1b: metabolite from KEGG
+        self.assertIsInstance(obj=test_object, cls=cobra_core.Metabolite)
+        self.assertEqual(first=getattr(test_object, "compartment"), second="c")
+        # CASE: metabolite from KEGG
         test_object = cr.create_object(
             identifier="C00026",
             directory=dir_data,
             compartment="p",
             database="KEGG",
         )
-        self.assertIsInstance(obj=test_object, cls=Metabolite)
-        self.assertEqual(first=test_object.compartment, second="p")
-        # CASE 2a: reaction from MetaCyc
+        self.assertIsInstance(obj=test_object, cls=cobra_core.Metabolite)
+        self.assertEqual(first=getattr(test_object, "compartment"), second="p")
+        # CASE: reaction from MetaCyc
         test_object = cr.create_object(
             identifier="2.6.1.58-RXN",
             directory=dir_data,
             compartment="p",
             database="META",
         )
-        self.assertIsInstance(obj=test_object, cls=Reaction)
-        self.assertIn(member="p", container=test_object.compartments)
-        # CASE 2b: reaction from KEGG
+        self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
+        self.assertIn(
+            member="p", container=getattr(test_object, "compartments")
+        )
+        # CASE: reaction from KEGG
         test_object = cr.create_object(
             identifier="R02736",
             directory=dir_data,
@@ -698,13 +607,16 @@ class ComplexFunctions(TestCase):
             database="KEGG",
             genome="hsa",
         )
-        self.assertIsInstance(obj=test_object, cls=Reaction)
-        self.assertIn(member="c", container=test_object.compartments)
+        self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
+        self.assertIn(
+            member="c", container=getattr(test_object, "compartments")
+        )
         self.assertCountEqual(
-            first=[gene.id for gene in test_object.genes],
+            first=[gene.id for gene in getattr(test_object, "genes")],
             second=["9563", "2539"],
         )
-        # CASE 2c: Reaction of Biocyc which could be a pathway as well
+
+        # CASE: Reaction of Biocyc which could be a pathway as well
         test_object = cr.create_object(
             identifier="AMONITRO-RXN",
             directory=dir_data,
@@ -712,32 +624,29 @@ class ComplexFunctions(TestCase):
             database="META",
             show_imbalance=False,
         )
-        self.assertIsInstance(obj=test_object, cls=Reaction)
-        # CASE 3a: pathway from MetaCyc
+        self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
+        # CASE: Metabolites has correct formula
         test_object = cr.create_object(
-            identifier="PWY-1187",
-            directory=dir_data,
-            compartment="c",
-            database="META",
-        )
-        self.assertIsInstance(obj=test_object, cls=dict)
-        self.assertEqual(first=test_object["ENTRY"], second="PWY-1187")
-        # CASE 3a: pathway from MetaCyc
-        test_object = cr.create_object(
-            identifier="M00001",
+            identifier="C00404",
             directory=dir_data,
             compartment="c",
             database="KEGG",
+            show_imbalance=False,
         )
-        self.assertIsInstance(obj=test_object, cls=dict)
-        self.assertEqual(first=test_object["ENTRY"], second="M00001")
+        if not isinstance(test_object, cobra_core.Metabolite):
+            raise TypeError("Not a valid COBRApy object")
+        if test_object.formula is None:
+            raise TypeError("Formula is empty!")
 
-        # CASE 4a: Replacing names (Metabolite)
+        self.assertEqual(test_object.formula.find("("), -1)
+
+        # CASE: Replacing names (Metabolite)
         test_replacement = {
             "GLC": "GLUCOSE",
             "AMONITRO-RXN": "monooxygenase",
-            "Donor-H2": "Donor_Water",
+            "Donor-H2": "Donor_new_name",
         }
+
         test_object = cr.create_object(
             identifier="GLC",
             directory=dir_data,
@@ -745,11 +654,11 @@ class ComplexFunctions(TestCase):
             database="META",
             replacement=test_replacement,
         )
-        self.assertIsInstance(obj=test_object, cls=Metabolite)
-        self.assertEqual(first=test_object.compartment, second="c")
-        self.assertEqual(first=test_object.id, second="GLUCOSE_c")
+        self.assertIsInstance(obj=test_object, cls=cobra_core.Metabolite)
+        self.assertEqual(first=getattr(test_object, "compartment"), second="c")
+        self.assertEqual(first=getattr(test_object, "id"), second="GLUCOSE_c")
 
-        # CASE 4b: Replacing names (Reaction)
+        # CASE: Replacing names (Reaction)
         test_object = cr.create_object(
             identifier="AMONITRO-RXN",
             directory=dir_data,
@@ -757,20 +666,31 @@ class ComplexFunctions(TestCase):
             database="META",
             replacement=test_replacement,
         )
-        self.assertIsInstance(obj=test_object, cls=Reaction)
-        self.assertCountEqual(first=test_object.compartments, second={"c"})
-        self.assertEqual(first=test_object.id, second="monooxygenase_c")
+        self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
+        self.assertCountEqual(
+            first=getattr(test_object, "compartments"), second={"c"}
+        )
+        self.assertEqual(
+            first=getattr(test_object, "id"), second="monooxygenase_c"
+        )
         self.assertIn(
-            member="Donor_Water_c",
-            container=[meta.id for meta in test_object.metabolites],
+            member="Donor_new_name_c",
+            container=[meta.id for meta in getattr(test_object, "metabolites")],
         )
 
     def test_add_metabolites(self):
-        # CASE 1: From path
-        test_model = Model(0)
+        # CASE: From path
+        test_model = cobra_core.Model(NAME)
         cr.add_metabolites(
             model=test_model,
             obj=dir_input.joinpath("metabolites_01_normal.txt"),
+            directory=dir_data,
+            database="META",
+        )
+        # CASE: path as str
+        cr.add_metabolites(
+            model=test_model,
+            obj=str(dir_input.joinpath("metabolites_01_normal.txt")),
             directory=dir_data,
             database="META",
         )
@@ -779,9 +699,9 @@ class ComplexFunctions(TestCase):
             list1=[member.id for member in test_model.metabolites],
             list2=test_names,
         )
-        # CASE 2: From string
-        test_model = Model(0)
-        test_string = "HOMOMETHIONINE, c"
+        # CASE: From string
+        test_model = cobra_core.Model(NAME)
+        test_string = ["HOMOMETHIONINE, c"]
         cr.add_metabolites(
             model=test_model,
             obj=test_string,
@@ -792,9 +712,9 @@ class ComplexFunctions(TestCase):
             member="HOMOMETHIONINE_c",
             container=[member.id for member in test_model.metabolites],
         )
-        # CASE 2: From string, Custom
-        test_model = Model(0)
-        test_string = "Custom_c, Custom metabolite, c, H20, 0 "
+        # CASE: From List, Custom
+        test_model = cobra_core.Model(NAME)
+        test_string = ["Custom_c, Custom metabolite, c, H20, 0 "]
         cr.add_metabolites(
             model=test_model,
             obj=test_string,
@@ -805,8 +725,8 @@ class ComplexFunctions(TestCase):
             member="Custom_c",
             container=[member.id for member in test_model.metabolites],
         )
-        # CASE 3: From List of strings
-        test_model = Model(0)
+        # CASE: multiple entries
+        test_model = cobra_core.Model(NAME)
         test_list = ["HOMOMETHIONINE, c", "MALTOSE, c"]
         cr.add_metabolites(
             model=test_model,
@@ -819,16 +739,8 @@ class ComplexFunctions(TestCase):
             list1=[member.id for member in test_model.metabolites],
             list2=test_names,
         )
-        # CASE 4: In case of single metabolite
-        test_model = Model(0)
-        test_metabolite = textbook_kegg.metabolites.get_by_id("C00001_c")
-        cr.add_metabolites(model=test_model, obj=test_metabolite)
-        self.assertIn(
-            member="C00001_c",
-            container=[member.id for member in test_model.metabolites],
-        )
-        # CASE 5: In case of multiple metabolites
-        test_model = Model(0)
+        # CASE: Multiple metabolites objects
+        test_model = cobra_core.Model(NAME)
         test_list = [
             textbook_kegg.metabolites.get_by_id(item)
             for item in ("C00001_c", "C00002_c", "C00003_c")
@@ -839,11 +751,11 @@ class ComplexFunctions(TestCase):
                 member=item,
                 container=[member.id for member in test_model.metabolites],
             )
-        # CASE 6: CASE BIGG
-        test_model = Model(0)
+        # CASE: BIGG database
+        test_model = cobra_core.Model(NAME)
         cr.add_metabolites(
             model=test_model,
-            obj="acald, c",
+            obj=["acald, c"],
             directory=dir_data,
             database="BIGG",
             model_id="universal",
@@ -852,8 +764,8 @@ class ComplexFunctions(TestCase):
             member="acald_c",
             container=[member.id for member in test_model.metabolites],
         )
-        # CASE 7: Using replacement dictionary
-        test_model = Model(0)
+        # CASE: Using replacement dictionary
+        test_model = cobra_core.Model(NAME)
         test_list = ["HOMOMETHIONINE, c", "MALTOSE, c"]
         cr.add_metabolites(
             model=test_model,
@@ -876,8 +788,21 @@ class ComplexFunctions(TestCase):
         )
 
     def test_add_reactions(self):
-        # CASE 1: From Path
-        test_model = Model(0)
+        # CASE: From str
+        test_model = cobra_core.Model(NAME)
+        cr.add_reactions(
+            model=test_model,
+            obj=str(dir_input.joinpath("reactions_normal.txt")),
+            directory=dir_data,
+            database="META",
+        )
+        for reaction in ("GLC_cb", "RXN_14462_p"):
+            self.assertIn(
+                member=reaction,
+                container=[reaction.id for reaction in test_model.reactions],
+            )
+        # CASE: From Path
+        test_model = cobra_core.Model(NAME)
         cr.add_reactions(
             model=test_model,
             obj=dir_input.joinpath("reactions_normal.txt"),
@@ -889,11 +814,11 @@ class ComplexFunctions(TestCase):
                 member=reaction,
                 container=[reaction.id for reaction in test_model.reactions],
             )
-        # CASE 2a: From string
-        test_model = Model(0)
+        # CASE: Custom reaction
+        test_model = cobra_core.Model(NAME)
         cr.add_reactions(
             model=test_model,
-            obj="GLC_cb, Glucose Transport|GLC_c <-> GLC_b",
+            obj=["GLC_cb, Glucose Transport|GLC_c <-> GLC_b"],
             directory=dir_data,
             database="META",
         )
@@ -901,11 +826,12 @@ class ComplexFunctions(TestCase):
             member="GLC_cb",
             container=[reaction.id for reaction in test_model.reactions],
         )
-        # CASE 2b: From string, custom metabolites
-        test_model = Model(0)
+
+        # CASE: From string, custom metabolites
+        test_model = cobra_core.Model(NAME)
         cr.add_reactions(
             model=test_model,
-            obj="Custom_cb, Custom reaction|Custom_c <=> Custom_b",
+            obj=["Custom_cb, Custom reaction|Custom_c <=> Custom_b"],
             directory=dir_data,
             database=None,
         )
@@ -918,11 +844,11 @@ class ComplexFunctions(TestCase):
                 member=metabolite,
                 container=[meta.id for meta in test_model.metabolites],
             )
-        # CASE 2c: From string, KEGG
-        test_model = Model(0)
+        # CASE: From string, KEGG
+        test_model = cobra_core.Model(NAME)
         cr.add_reactions(
             model=test_model,
-            obj="R02736, c",
+            obj=["R02736, c"],
             directory=dir_data,
             database="KEGG",
             genome="hsa",
@@ -931,8 +857,8 @@ class ComplexFunctions(TestCase):
             member="R02736_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
-        # CASE 3: From List of strings
-        test_model = Model(0)
+        # CASE: From List of strings
+        test_model = cobra_core.Model(NAME)
         test_list = [
             "GLC_cb, Glucose Transport|GLC_c <-> GLC_b",
             "RXN-14462, c",
@@ -953,19 +879,8 @@ class ComplexFunctions(TestCase):
             container=[gene.id for gene in test_model.genes],
         )
 
-        # CASE 4: In case of single reaction
-        test_model = Model(0)
-        test_reaction = textbook_kegg.reactions.get_by_id("ACALDt")
-        cr.add_reactions(
-            model=test_model, obj=test_reaction, directory=dir_data
-        )
-        self.assertIn(
-            member="ACALDt",
-            container=[reaction.id for reaction in test_model.reactions],
-        )
-
-        # CASE 5: In case of multiple reactions
-        test_model = Model(0)
+        # CASE: multiple reactions
+        test_model = cobra_core.Model(NAME)
         test_list = [
             textbook_kegg.reactions.get_by_id(reaction)
             for reaction in ("ACALDt", "ATPS4r", "ACt2r")
@@ -977,11 +892,11 @@ class ComplexFunctions(TestCase):
                 container=[reaction.id for reaction in test_model.reactions],
             )
 
-        # CASE 5: BIGG
-        test_model = Model(0)
+        # CASE: BIGG
+        test_model = cobra_core.Model(NAME)
         cr.add_reactions(
             model=test_model,
-            obj="ACALDt, c",
+            obj=["ACALDt, c"],
             directory=dir_data,
             database="BIGG",
             model_id="universal",
@@ -990,17 +905,17 @@ class ComplexFunctions(TestCase):
             member="ACALDt_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
-        # CASE 6: Duplicate element
+        # CASE: Duplicate element
         test_model = textbook_kegg
         cr.add_reactions(
             model=test_model,
-            obj="R08549, c",
+            obj=["R08549, c"],
             directory=dir_data,
             database="KEGG",
         )
         cr.add_reactions(
             model=test_model,
-            obj="AKGDH, c",
+            obj=["AKGDH, c"],
             directory=dir_data,
             database="BIGG",
             model_id="universal",
@@ -1009,8 +924,8 @@ class ComplexFunctions(TestCase):
             member="AKGDH_c",
             container=[reaction.id for reaction in test_model.reactions],
         )
-        # CASE 7: replacement dicts
-        test_model = Model(0)
+        # CASE: replacement dicts
+        test_model = cobra_core.Model(NAME)
         test_list = [
             "GLC_cb, Glucose Transport|Not_GLC_c <-> GLC_b",
             "RXN-14462, c",
@@ -1021,46 +936,53 @@ class ComplexFunctions(TestCase):
             model=test_model,
             obj=test_list,
             directory=dir_data,
-            database="GCF_000020025",
+            database="META",
             replacement={
                 "Not_GLC": "GLC",
                 "ACETALD-DEHYDROG-RXN": "ACETALD-DEHYDROG-RXN-NEW",
                 "Donor-H2": "Donor_Water",
             },
         )
-        self.assertIn(
-            member="GLC_cb",
-            container=[reaction.id for reaction in test_model.reactions],
+        self.assertTrue(
+            test_model.reactions.has_id("GLC_cb"),
         )
-        self.assertIn(
-            member="ACETALD_DEHYDROG_RXN_NEW_c",
-            container=[reaction.id for reaction in test_model.reactions],
+        self.assertTrue(
+            test_model.reactions.has_id("ACETALD_DEHYDROG_RXN_NEW_c"),
         )
-        self.assertNotIn(
-            member="Not_GLC_c",
-            container=[metabolite.id for metabolite in test_model.metabolites],
+        self.assertFalse(
+            test_model.reactions.has_id("Not_GLC_c"),
         )
         for metabolite in ("GLC_b", "GLC_c", "Donor_Water_c"):
-            self.assertIn(
-                member=metabolite,
-                container=[
-                    metabolite.id for metabolite in test_model.metabolites
-                ],
+            self.assertTrue(
+                test_model.metabolites.has_id(metabolite),
+                msg=f"{metabolite} not found",
             )
 
-        test_model = Model(0)
+        test_model = cobra_core.Model(NAME)
         test_list = [
             "GLC_cb, Glucose Transport| GLC_c <-> GLC_b",
             "RXN_17742_c, RXN_17742_c |"
             + "1 Oxidized-ferredoxins_c <-> 1 Reduced-ferredoxins_c ",
         ]
         cr.add_reactions(model=test_model, obj=test_list, directory=dir_data)
+
         for meta in ("GLC_cb", "RXN_17742_c"):
-            self.assertIn(
-                member=meta,
-                container=[reaction.id for reaction in test_model.reactions],
-            )
+            self.assertTrue(test_model.reactions.has_id(meta))
+
+        # CASE PMN:ARA
+        test_model = cobra_core.Model(NAME)
+        reaction_str = [
+            "PYR_MAL_pc, Pyruvate/Malate transporter |"
+            "PYRUVATE_p + MAL_c <-> PYRUVATE_c + MAL_p"
+        ]
+
+        cr.add_reactions(test_model, reaction_str, dir_data, "PMN:ARA")
+
+        self.assertTrue(test_model.reactions.has_id("PYR_MAL_pc"))
 
 
 if __name__ == "__main__":
-    main(verbosity=2)
+    print(f"CobraMod version: {cmod_version}")
+    print(f"COBRApy version: {cobra_version}")
+
+    unittest.main(verbosity=2, failfast=True)

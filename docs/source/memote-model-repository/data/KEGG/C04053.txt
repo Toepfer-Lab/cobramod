@@ -1,0 +1,43 @@
+ENTRY       C04053                      Compound
+NAME        5-Dehydro-4-deoxy-D-glucuronate;
+            4-Deoxy-L-threo-5-hexosulose uronate;
+            (4S,5R)-4,5-Dihydroxy-2,6-dioxohexanoate
+FORMULA     C6H8O6
+EXACT_MASS  176.0321
+MOL_WEIGHT  176.1241
+REACTION    R04382 R04383 R06249 R09831 R10867 R13196
+PATHWAY     map00040  Pentose and glucuronate interconversions
+            map01100  Metabolic pathways
+ENZYME      3.2.1.179       3.2.1.180       4.2.2.6         4.2.99.25       
+            5.3.1.17
+DBLINKS     PubChem: 6754
+            ChEBI: 17117 17782
+            PDB-CCD: D54
+            3DMET: B04924
+            NIKKAJI: J2.745.978A
+ATOM        12
+            1   C6a C    31.0926  -19.1965
+            2   C5a C    29.9016  -19.8971
+            3   C1b C    28.6405  -19.1965
+            4   C1c C    27.4495  -19.8971
+            5   C1c C    26.2585  -19.1965
+            6   C4a C    24.9974  -19.8971
+            7   O5a O    29.9016  -21.2983
+            8   O6a O    32.2836  -19.8971
+            9   O6a O    31.0926  -17.7953
+            10  O1a O    27.4495  -21.2983
+            11  O1a O    26.2585  -17.7953
+            12  O4a O    23.7837  -19.1695
+BOND        11
+            1     1   2 1
+            2     2   3 1
+            3     3   4 1
+            4     4   5 1
+            5     5   6 1
+            6     2   7 2
+            7     1   8 1
+            8     1   9 2
+            9     4  10 1 #Down
+            10    5  11 1 #Down
+            11    6  12 2
+///

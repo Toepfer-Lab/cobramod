@@ -6,24 +6,23 @@ This module includes two TestCases:
 - TestItems: Creation and behavior of JSON objects for the Escher-schema
 - TestJsonDictionary: Testing the methods inside the JsonDictionary
 """
+import unittest
 from contextlib import suppress
 from pathlib import Path
 from time import sleep
-from unittest import TestCase, main
+from webbrowser import open as web_open
 
-from escher import Builder
-
+import cobramod.visualization.mapping as mp
 from cobramod.error import FoundInPairError
-from cobramod.visualization.pair import PairDictionary
-from cobramod.visualization.items import Node, Segment, Reaction
 from cobramod.visualization.converter import (
     JsonDictionary,
-    _convert_string,
     Position,
+    _convert_string,
 )
-import cobramod.visualization.mapping as mp
+from cobramod.visualization.items import Node, Reaction, Segment
+from cobramod.visualization.pair import PairDictionary
+from escher import Builder
 
-# Setting directory for data
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
 # If data is missing, then do not test. Data should always be the same
@@ -31,7 +30,7 @@ if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
 
 
-class TestItems(TestCase):
+class TestItems(unittest.TestCase):
     """
     Behavior of JSON objects
     """
@@ -48,9 +47,7 @@ class TestItems(TestCase):
         self.assertEqual(first=test_dict["C00002_c"], second=-1)
         self.assertEqual(first=test_dict["C00227_c"], second=1)
         # CASE 3: Reaction with multiple coefficients.
-        test_string = (
-            "C00001_c + 2 C00002_c --> C00009_c + C00080_c + G11113_c"
-        )
+        test_string = "C00001_c + 2 C00002_c --> C00009_c + C00080_c + G11113_c"
         test_dict = _convert_string(string=test_string)
         self.assertEqual(first=test_dict["C00002_c"], second=-2)
         self.assertEqual(first=test_dict["C00080_c"], second=1)
@@ -143,9 +140,7 @@ class TestItems(TestCase):
             label_y=200,
             segments={"0": Segment(from_node_id="0", to_node_id="1")},
         )
-        self.assertIn(
-            member="b1", container=test_class["segments"]["0"].keys()
-        )
+        self.assertIn(member="b1", container=test_class["segments"]["0"].keys())
         # CASE 2: method add_metabolite
         test_class.add_metabolite(bigg_id="test_metabolite", coefficient=1)
         self.assertEqual(
@@ -154,7 +149,7 @@ class TestItems(TestCase):
         )
 
 
-class TestJsonDictionary(TestCase):
+class TestJsonDictionary(unittest.TestCase):
     """
     Methods for the JsonDictionary.
     """
@@ -199,9 +194,7 @@ class TestJsonDictionary(TestCase):
         test_class._overview["R6"] = {"position": Position(row=2, column=0)}
         test_class._overview["R7"] = {"position": Position(row=2, column=3)}
         # CASE 1: Retrieving columns
-        test_list = test_class._get_matrix_reactions(
-            vertical=False, position=1
-        )
+        test_list = test_class._get_matrix_reactions(vertical=False, position=1)
         self.assertCountEqual(first=["R1", "R2", "R4"], second=test_list)
         # CASE 2: Retrieving Row
         test_list = test_class._get_matrix_reactions(vertical=True, position=2)
@@ -648,7 +641,8 @@ class TestJsonDictionary(TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         self.assertEqual(first=test_builder.reaction_data, second=None)
         self.assertTrue(expr=test_path.exists())
         # CASE 2: visualization with Data
@@ -661,7 +655,8 @@ class TestJsonDictionary(TestCase):
         test_flux = {"R1": 2, "R2": -1}
         test_class.flux_solution = test_flux
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         self.assertEqual(first=test_builder.reaction_data["R1"], second=2)
         self.assertTrue(expr=test_path.exists())
         # CASE 3: Unrelated reactions without data
@@ -676,7 +671,8 @@ class TestJsonDictionary(TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 4: regular lineal visualization without data
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
@@ -688,7 +684,8 @@ class TestJsonDictionary(TestCase):
             "R3": "C00009_c + C00228_c--> C00004_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 5: Simple Branch
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
@@ -708,7 +705,8 @@ class TestJsonDictionary(TestCase):
             "R5": "2 C00228_c --> 4 C00021_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 3a: Complex Lineal
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
@@ -746,7 +744,8 @@ class TestJsonDictionary(TestCase):
             "R14": "C10001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 4: Module from KEGG
         test_path = Path.cwd().joinpath("test_map.html")
         test_class = JsonDictionary()
@@ -787,7 +786,8 @@ class TestJsonDictionary(TestCase):
             "R14": "C13001_c --> C14001_c",
         }
         test_builder = test_class.visualize(filepath=test_path)
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         with suppress(FileNotFoundError):
             test_path.unlink()
         # with color
@@ -811,7 +811,8 @@ class TestJsonDictionary(TestCase):
         test_builder = test_class.visualize(
             filepath=test_path, color=["orange", "green"]
         )
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
 
     def test_visualize_vertical(self):
         test_path = Path.cwd().joinpath("test_map.html")
@@ -826,16 +827,19 @@ class TestJsonDictionary(TestCase):
         }
         with suppress(FileNotFoundError):
             test_path.unlink()
-        test_builder = test_class.visualize(filepath=test_path, vertical=True)
-        sleep(1)
+        test_class.visualize(filepath=test_path, vertical=True)
+        web_open("pathway.html")
+        sleep(0.5)
+
         # Color test
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_class.flux_solution = {"R1": -4, "R2": -2, "R3": 0}
-        test_builder = test_class.visualize(
+        test_class.visualize(
             filepath=test_path, vertical=True, color=["orange", "green"]
         )
-        sleep(1)
+        web_open("pathway.html")
+        sleep(0.5)
         # CASE 2: Complex Lineal
         test_class = JsonDictionary()
         with suppress(FileNotFoundError):
@@ -872,11 +876,10 @@ class TestJsonDictionary(TestCase):
             "R13": "C11001_c --> C13001_c",
             "R14": "C10001_c --> C14001_c",
         }
-        test_builder = test_class.visualize(filepath=test_path, vertical=True)
-        test_builder
+        test_class.visualize(filepath=test_path, vertical=True)
 
 
-class TestMapping(TestCase):
+class TestMapping(unittest.TestCase):
     """
     This TestCase checks if the mapping for the visualization has a normal
     behavior
@@ -1100,9 +1103,7 @@ class TestMapping(TestCase):
         # CASE 0: Simple Matrix m*m
         test_matrix = [["R1", "R2"], ["R3", "R4"]]
         test_answer = mp.transpose(matrix=test_matrix)
-        self.assertEqual(
-            first=[["R1", "R3"], ["R2", "R4"]], second=test_answer
-        )
+        self.assertEqual(first=[["R1", "R3"], ["R2", "R4"]], second=test_answer)
         # CASE 1: Different dimensions m*n
         test_matrix = [["R1", "R2", "R3", "R4"], [0, 0, "R5", 0]]
         test_answer = mp.transpose(matrix=test_matrix)
@@ -1133,4 +1134,4 @@ class TestMapping(TestCase):
 
 
 if __name__ == "__main__":
-    main(verbosity=2)
+    unittest.main(verbosity=2)

@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:1.2.3.14-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:1.2.3.14-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,16 +9,37 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT2G27150" detail="full" frameid="AT2G27150" orgid="ARA">
+  <Gene ID="ARA:AT2G27150" orgid="ARA" frameid="AT2G27150" detail="full">
     <parent>
-      <Gene class="true" frameid="Genes" orgid="ARA" resource="getxml?ARA:Genes" />
+      <Gene resource="getxml?ARA:Genes" orgid="ARA" frameid="Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-2" orgid="ARA" resource="getxml?ARA:CHROMOSOME-2" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-2" orgid="ARA" frameid="CHROMOSOME-2" />
     </replicon>
     <product>
-      <Protein frameid="AT2G27150-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G27150-MONOMER" />
+      <Protein resource="getxml?ARA:AT2G27150-MONOMER" orgid="ARA" frameid="AT2G27150-MONOMER" />
     </product>
+    <synonym datatype="string">At-AO4</synonym>
+    <centisome-position datatype="float" units="CENTISOMES">58.912052</centisome-position>
+    <citation>
+      <Publication ID="ARA:PUB-10972874" orgid="ARA" frameid="PUB-10972874" detail="full">
+        <year datatype="integer">2000</year>
+        <title datatype="string">Abscisic aldehyde oxidase in leaves of Arabidopsis thaliana.</title>
+        <source datatype="string">Plant J 23(4);481-8</source>
+        <pubmed-id datatype="string">10972874</pubmed-id>
+        <author datatype="string">Seo M</author>
+        <author datatype="string">Koiwai H</author>
+        <author datatype="string">Akaba S</author>
+        <author datatype="string">Komano T</author>
+        <author datatype="string">Oritani T</author>
+        <author datatype="string">Kamiya Y</author>
+        <author datatype="string">Koshiba T</author>
+      </Publication>
+    </citation>
+    <right-end-position datatype="integer">11615528</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">11608832</left-end-position>
+    <common-name datatype="string">AAO3</common-name>
     <dblink>
       <dblink-db>STRING</dblink-db>
       <dblink-oid>3702.AT2G27150.1</dblink-oid>
@@ -49,27 +70,6 @@
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.ncbi.nlm.nih.gov/nuccore/AB016622</dblink-URL>
     </dblink>
-    <synonym datatype="string">At-AO4</synonym>
-    <left-end-position datatype="integer">11608832</left-end-position>
     <accession-1 datatype="string">AT2G27150</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">58.912052</centisome-position>
-    <citation>
-      <Publication ID="ARA:PUB-10972874" detail="full" frameid="PUB-10972874" orgid="ARA">
-        <title datatype="string">Abscisic aldehyde oxidase in leaves of Arabidopsis thaliana.</title>
-        <year datatype="integer">2000</year>
-        <pubmed-id datatype="string">10972874</pubmed-id>
-        <author datatype="string">Seo M</author>
-        <author datatype="string">Koiwai H</author>
-        <author datatype="string">Akaba S</author>
-        <author datatype="string">Komano T</author>
-        <author datatype="string">Oritani T</author>
-        <author datatype="string">Kamiya Y</author>
-        <author datatype="string">Koshiba T</author>
-        <source datatype="string">Plant J 23(4);481-8</source>
-      </Publication>
-    </citation>
-    <right-end-position datatype="integer">11615528</right-end-position>
-    <common-name datatype="string">AAO3</common-name>
-    <component-of />
   </Gene>
 </ptools-xml>

@@ -1,13 +1,35 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLUTCYSLIG-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:GLUTCYSLIG-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLUTCYSLIG-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:GLUTCYSLIG-RXN" detail="full" frameid="GLUTCYSLIG-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:CYS' orgid='ARA' frameid='CYS'/></left>
+<left><Compound resource='getxml?ARA:GLT' orgid='ARA' frameid='GLT'/></left>
+<left><Compound resource='getxml?ARA:ATP' orgid='ARA' frameid='ATP'/></left>
+<synonym datatype='string'>Gamma-glutamylcysteine synthetase</synonym>
+<synonym datatype='string'>Gamma-glutamyl-L-cysteine synthetase</synonym>
+<synonym datatype='string'>&amp;gamma;-glutamyl-L-cysteine synthetase</synonym>
+<ec-number>EC-6.3.2.2<official>T</official>
+</ec-number>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
+<right><Compound resource='getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE' orgid='ARA' frameid='L-GAMMA-GLUTAMYLCYSTEINE'/></right>
+<right><Compound resource='getxml?ARA:Pi' orgid='ARA' frameid='Pi'/></right>
+<right><Compound resource='getxml?ARA:ADP' orgid='ARA' frameid='ADP'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-9.315857</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-13420' orgid='ARA' frameid='ENZRXN-13420' detail='low'><synonym datatype='string'>gamma-glutamylcysteine synthetase activity</synonym>
+<enzyme><Protein resource='getxml?ARA:AT4G23100-MONOMER' orgid='ARA' frameid='AT4G23100-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:GLUTCYSLIG-RXN' orgid='ARA' frameid='GLUTCYSLIG-RXN'/></reaction>
+<common-name datatype='string'>glutamate&amp;mdash;cysteine ligase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>UNIPROT</dblink-db>
 <dblink-oid>Q09768</dblink-oid>
 <dblink-relationship>RELATED-TO</dblink-relationship>
@@ -138,27 +160,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T38181</dblink-URL>
 </dblink>
-<ec-number>EC-6.3.2.2<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-13420" detail="low" frameid="ENZRXN-13420" orgid="ARA"><enzyme><Protein frameid="AT4G23100-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G23100-MONOMER" /></enzyme>
-<synonym datatype="string">gamma-glutamylcysteine synthetase activity</synonym>
-<reaction><Reaction frameid="GLUTCYSLIG-RXN" orgid="ARA" resource="#ARA:GLUTCYSLIG-RXN" /></reaction>
-<common-name datatype="string">glutamate&amp;mdash;cysteine ligase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<synonym datatype="string">Gamma-glutamylcysteine synthetase</synonym>
-<synonym datatype="string">Gamma-glutamyl-L-cysteine synthetase</synonym>
-<synonym datatype="string">&amp;gamma;-glutamyl-L-cysteine synthetase</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-9.315857</gibbs-0>
-<in-pathway><Pathway frameid="PWYQT-4470" orgid="ARA" resource="getxml?ARA:PWYQT-4470" /><Pathway frameid="GLUTATHIONESYN-PWY" orgid="ARA" resource="getxml?ARA:GLUTATHIONESYN-PWY" /></in-pathway>
-<left><Compound frameid="CYS" orgid="ARA" resource="getxml?ARA:CYS" /></left>
-<left><Compound frameid="GLT" orgid="ARA" resource="getxml?ARA:GLT" /></left>
-<left><Compound frameid="ATP" orgid="ARA" resource="getxml?ARA:ATP" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
-<right><Compound frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="ARA" resource="getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE" /></right>
-<right><Compound frameid="Pi" orgid="ARA" resource="getxml?ARA:Pi" /></right>
-<right><Compound frameid="ADP" orgid="ARA" resource="getxml?ARA:ADP" /></right>
+<in-pathway><Pathway resource='getxml?ARA:PWYQT-4470' orgid='ARA' frameid='PWYQT-4470'/><Pathway resource='getxml?ARA:GLUTATHIONESYN-PWY' orgid='ARA' frameid='GLUTATHIONESYN-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

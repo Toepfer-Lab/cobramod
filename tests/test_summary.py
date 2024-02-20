@@ -5,19 +5,17 @@ This modules checks functions responsable for the creation of txt, csv and xlsx
 files.
 """
 import tempfile
-from logging import DEBUG
 from pathlib import Path
 from unittest import TestCase, main
 
 import numpy
 import pandas
 from cobra import Model
-
 from cobramod.core.summary import DataModel, summary
-from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 from cobramod.test import textbook
 
-debug_log.setLevel(DEBUG)
+change_to_debug()
 
 
 class TestSummary(TestCase):
@@ -27,7 +25,7 @@ class TestSummary(TestCase):
         self.assertIsInstance(obj=data_model, cls=DataModel)
 
         # Case 2 Empty cobra model
-        model = Model(0)
+        model = Model("0")
         data_model = DataModel.from_model(model=model)
         self.assertIsInstance(obj=data_model, cls=DataModel)
 
@@ -138,7 +136,7 @@ class TestSummary(TestCase):
         expected_dataframe = pandas.DataFrame(
             {
                 "Model identifier": ["e_coli_core", numpy.nan],
-                "Model name": ["", numpy.nan],
+                "Model name": ["None", numpy.nan],
                 "Reactions": ["ACALD", "ACONTa"],
                 "Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
                 "Demand": ["h2o_e", "lac__D_e"],
@@ -168,7 +166,7 @@ class TestSummary(TestCase):
         expected_dataframe = pandas.DataFrame(
             {
                 "Model identifier": ["e_coli_core", numpy.nan],
-                "Model name": ["", numpy.nan],
+                "Model name": ["None", numpy.nan],
                 "Reactions": ["ACALD", "ACONTa"],
                 "Exchange": ["EX_glc__D_e", "EX_lac__D_e"],
                 "Demand": ["h2o_e", "lac__D_e"],

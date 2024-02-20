@@ -16,9 +16,19 @@ MODULE      M00001  Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate
             M00002  Glycolysis, core module involving three-carbon compounds
             M00003  Gluconeogenesis, oxaloacetate => fructose-6P
             M00165  Reductive pentose phosphate cycle (Calvin cycle)
-            M00166  Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P
             M00308  Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P
             M00552  D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P
+BRITE       Enzymatic reactions [BR:br08201]
+             2. Transferase reactions
+              2.7  Transferring phosphorus-containing groups
+               2.7.2  Phosphotransferases with a carboxy group as acceptor
+                2.7.2.3
+                 R01512  ATP + 3-Phospho-D-glycerate <=> ADP + 3-Phospho-D-glyceroyl phosphate
+            Overall reaction [br08210.html]
+             Oxygenic photosynthesis
+              R01512
+             Carbon fixation
+              R01512
 ORTHOLOGY   K00927  phosphoglycerate kinase [EC:2.7.2.3]
 DBLINKS     RHEA: 14804
 ///

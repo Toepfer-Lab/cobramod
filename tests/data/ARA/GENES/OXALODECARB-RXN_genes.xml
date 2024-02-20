@@ -1,4 +1,4 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:OXALODECARB-RXN%26detail=FULL">
+<ptools-xml ptools-version="27.5" xml:base="http://BioCyc.org/apixml?fn=genes-of-reaction%26id=ARA:OXALODECARB-RXN%26detail=FULL">
   <metadata>
     <url>http://BioCyc.org/</url>
     <service_name>apixml</service_name>
@@ -9,200 +9,200 @@
       <strain datatype="string">col</strain>
     </PGDB>
   </metadata>
-  <Gene ID="ARA:AT1G79750" detail="full" frameid="AT1G79750" orgid="ARA">
+  <Gene ID="ARA:AT1G79750" orgid="ARA" frameid="AT1G79750" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-1" orgid="ARA" resource="getxml?ARA:CHROMOSOME-1" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-1" orgid="ARA" frameid="CHROMOSOME-1" />
     </replicon>
     <product>
-      <Protein frameid="AT1G79750-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G79750-MONOMER" />
+      <Protein resource="getxml?ARA:AT1G79750-MONOMER" orgid="ARA" frameid="AT1G79750-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">98.61877</centisome-position>
+    <right-end-position datatype="integer">30016282</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">30012219</left-end-position>
+    <common-name datatype="string">NADP-ME4</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT1G79750</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT1G79750</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">30012219</left-end-position>
     <accession-1 datatype="string">AT1G79750</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">98.61877</centisome-position>
-    <right-end-position datatype="integer">30016282</right-end-position>
-    <common-name datatype="string">NADP-ME4</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT2G19900" detail="full" frameid="AT2G19900" orgid="ARA">
+  <Gene ID="ARA:AT2G19900" orgid="ARA" frameid="AT2G19900" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-2" orgid="ARA" resource="getxml?ARA:CHROMOSOME-2" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-2" orgid="ARA" frameid="CHROMOSOME-2" />
     </replicon>
     <product>
-      <Protein frameid="AT2G19900-MONOMER" orgid="ARA" resource="getxml?ARA:AT2G19900-MONOMER" />
+      <Protein resource="getxml?ARA:AT2G19900-MONOMER" orgid="ARA" frameid="AT2G19900-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">43.637775</centisome-position>
+    <right-end-position datatype="integer">8602560</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">8598981</left-end-position>
+    <common-name datatype="string">NADP-ME1</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT2G19900</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT2G19900</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">8598981</left-end-position>
     <accession-1 datatype="string">AT2G19900</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">43.637775</centisome-position>
-    <right-end-position datatype="integer">8602560</right-end-position>
-    <common-name datatype="string">NADP-ME1</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT5G11670" detail="full" frameid="AT5G11670" orgid="ARA">
+  <Gene ID="ARA:AT5G11670" orgid="ARA" frameid="AT5G11670" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-5" orgid="ARA" frameid="CHROMOSOME-5" />
     </replicon>
     <product>
-      <Protein frameid="AT5G11670-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G11670-MONOMER" />
+      <Protein resource="getxml?ARA:AT5G11670-MONOMER" orgid="ARA" frameid="AT5G11670-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">13.908376</centisome-position>
+    <right-end-position datatype="integer">3758243</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">3754250</left-end-position>
+    <common-name datatype="string">NADP-ME2</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G11670</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G11670</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">3754250</left-end-position>
     <accession-1 datatype="string">AT5G11670</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">13.908376</centisome-position>
-    <right-end-position datatype="integer">3758243</right-end-position>
-    <common-name datatype="string">NADP-ME2</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT5G25880" detail="full" frameid="AT5G25880" orgid="ARA">
+  <Gene ID="ARA:AT5G25880" orgid="ARA" frameid="AT5G25880" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-5" orgid="ARA" frameid="CHROMOSOME-5" />
     </replicon>
     <product>
-      <Protein frameid="AT5G25880-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G25880-MONOMER" />
+      <Protein resource="getxml?ARA:AT5G25880-MONOMER" orgid="ARA" frameid="AT5G25880-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">33.43327</centisome-position>
+    <right-end-position datatype="integer">9028380</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">9024552</left-end-position>
+    <common-name datatype="string">NADP-ME3</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G25880</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G25880</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">9024552</left-end-position>
     <accession-1 datatype="string">AT5G25880</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">33.43327</centisome-position>
-    <right-end-position datatype="integer">9028380</right-end-position>
-    <common-name datatype="string">NADP-ME3</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT5G58330" detail="full" frameid="AT5G58330" orgid="ARA">
+  <Gene ID="ARA:AT5G58330" orgid="ARA" frameid="AT5G58330" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-5" orgid="ARA" resource="getxml?ARA:CHROMOSOME-5" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-5" orgid="ARA" frameid="CHROMOSOME-5" />
     </replicon>
     <product>
-      <Protein frameid="AT5G58330-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G58330-MONOMER" />
+      <Protein resource="getxml?ARA:AT5G58330-MONOMER" orgid="ARA" frameid="AT5G58330-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">87.41965</centisome-position>
+    <right-end-position datatype="integer">23599621</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">23596948</left-end-position>
+    <common-name datatype="string">AT5G58330</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT5G58330</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT5G58330</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">23596948</left-end-position>
     <accession-1 datatype="string">AT5G58330</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">87.41965</centisome-position>
-    <right-end-position datatype="integer">23599621</right-end-position>
-    <common-name datatype="string">AT5G58330</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT5G56260" detail="full" frameid="AT5G56260" orgid="ARA">
+  <Gene ID="ARA:AT5G56260" orgid="ARA" frameid="AT5G56260" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="ARA" resource="getxml?ARA:ORFs" />
+      <Gene resource="getxml?ARA:ORFs" orgid="ARA" frameid="ORFs" class="true" />
     </parent>
     <product>
-      <Protein frameid="MONOMERQT-7690" orgid="ARA" resource="getxml?ARA:MONOMERQT-7690" />
-      <Protein frameid="MONOMERQT-7689" orgid="ARA" resource="getxml?ARA:MONOMERQT-7689" />
-      <Protein frameid="MONOMERQT-7688" orgid="ARA" resource="getxml?ARA:MONOMERQT-7688" />
-      <Protein frameid="MONOMERQT-7687" orgid="ARA" resource="getxml?ARA:MONOMERQT-7687" />
-      <Protein frameid="AT5G56260-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G56260-MONOMER" />
+      <Protein resource="getxml?ARA:MONOMERQT-7690" orgid="ARA" frameid="MONOMERQT-7690" />
+      <Protein resource="getxml?ARA:MONOMERQT-7689" orgid="ARA" frameid="MONOMERQT-7689" />
+      <Protein resource="getxml?ARA:MONOMERQT-7688" orgid="ARA" frameid="MONOMERQT-7688" />
+      <Protein resource="getxml?ARA:MONOMERQT-7687" orgid="ARA" frameid="MONOMERQT-7687" />
+      <Protein resource="getxml?ARA:AT5G56260-MONOMER" orgid="ARA" frameid="AT5G56260-MONOMER" />
     </product>
-    <accession-1 datatype="string">AT5G56260</accession-1>
     <common-name datatype="string">AT5G56260</common-name>
+    <accession-1 datatype="string">AT5G56260</accession-1>
   </Gene>
-  <Gene ID="ARA:AT5G16450" detail="full" frameid="AT5G16450" orgid="ARA">
+  <Gene ID="ARA:AT5G16450" orgid="ARA" frameid="AT5G16450" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="ARA" resource="getxml?ARA:ORFs" />
+      <Gene resource="getxml?ARA:ORFs" orgid="ARA" frameid="ORFs" class="true" />
     </parent>
     <product>
-      <Protein frameid="MONOMERQT-7944" orgid="ARA" resource="getxml?ARA:MONOMERQT-7944" />
-      <Protein frameid="AT5G16450-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G16450-MONOMER" />
+      <Protein resource="getxml?ARA:MONOMERQT-7944" orgid="ARA" frameid="MONOMERQT-7944" />
+      <Protein resource="getxml?ARA:AT5G16450-MONOMER" orgid="ARA" frameid="AT5G16450-MONOMER" />
     </product>
-    <accession-1 datatype="string">AT5G16450</accession-1>
     <common-name datatype="string">AT5G16450</common-name>
+    <accession-1 datatype="string">AT5G16450</accession-1>
   </Gene>
-  <Gene ID="ARA:AT3G02770" detail="full" frameid="AT3G02770" orgid="ARA">
+  <Gene ID="ARA:AT3G02770" orgid="ARA" frameid="AT3G02770" detail="full">
     <parent>
-      <Gene class="true" frameid="ORFs" orgid="ARA" resource="getxml?ARA:ORFs" />
+      <Gene resource="getxml?ARA:ORFs" orgid="ARA" frameid="ORFs" class="true" />
     </parent>
     <product>
-      <Protein frameid="AT3G02770-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G02770-MONOMER" />
+      <Protein resource="getxml?ARA:AT3G02770-MONOMER" orgid="ARA" frameid="AT3G02770-MONOMER" />
     </product>
-    <accession-1 datatype="string">AT3G02770</accession-1>
     <common-name datatype="string">AT3G02770</common-name>
+    <accession-1 datatype="string">AT3G02770</accession-1>
   </Gene>
-  <Gene ID="ARA:AT3G16700" detail="full" frameid="AT3G16700" orgid="ARA">
+  <Gene ID="ARA:AT3G16700" orgid="ARA" frameid="AT3G16700" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-3" orgid="ARA" resource="getxml?ARA:CHROMOSOME-3" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-3" orgid="ARA" frameid="CHROMOSOME-3" />
     </replicon>
     <product>
-      <Protein frameid="AT3G16700-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G16700-MONOMER" />
+      <Protein resource="getxml?ARA:AT3G16700-MONOMER" orgid="ARA" frameid="AT3G16700-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">24.233202</centisome-position>
+    <right-end-position datatype="integer">5689725</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">5687727</left-end-position>
+    <common-name datatype="string">AT3G16700</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT3G16700</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT3G16700</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">5687727</left-end-position>
     <accession-1 datatype="string">AT3G16700</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">24.233202</centisome-position>
-    <right-end-position datatype="integer">5689725</right-end-position>
-    <common-name datatype="string">AT3G16700</common-name>
-    <component-of />
   </Gene>
-  <Gene ID="ARA:AT4G15940" detail="full" frameid="AT4G15940" orgid="ARA">
+  <Gene ID="ARA:AT4G15940" orgid="ARA" frameid="AT4G15940" detail="full">
     <parent>
-      <Gene class="true" frameid="Unclassified-Genes" orgid="ARA" resource="getxml?ARA:Unclassified-Genes" />
+      <Gene resource="getxml?ARA:Unclassified-Genes" orgid="ARA" frameid="Unclassified-Genes" class="true" />
     </parent>
     <replicon>
-      <Genetic-Element frameid="CHROMOSOME-4" orgid="ARA" resource="getxml?ARA:CHROMOSOME-4" />
+      <Genetic-Element resource="getxml?ARA:CHROMOSOME-4" orgid="ARA" frameid="CHROMOSOME-4" />
     </replicon>
     <product>
-      <Protein frameid="AT4G15940-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G15940-MONOMER" />
+      <Protein resource="getxml?ARA:AT4G15940-MONOMER" orgid="ARA" frameid="AT4G15940-MONOMER" />
     </product>
+    <centisome-position datatype="float" units="CENTISOMES">48.63214</centisome-position>
+    <right-end-position datatype="integer">9040758</right-end-position>
+    <component-of />
+    <left-end-position datatype="integer">9038304</left-end-position>
+    <common-name datatype="string">AT4G15940</common-name>
     <dblink>
       <dblink-db>TAIR</dblink-db>
       <dblink-oid>AT4G15940</dblink-oid>
       <dblink-relationship>unification</dblink-relationship>
       <dblink-URL>http://www.arabidopsis.org/servlets/TairObject?type=locus&amp;name=AT4G15940</dblink-URL>
     </dblink>
-    <left-end-position datatype="integer">9038304</left-end-position>
     <accession-1 datatype="string">AT4G15940</accession-1>
-    <centisome-position datatype="float" units="CENTISOMES">48.63214</centisome-position>
-    <right-end-position datatype="integer">9040758</right-end-position>
-    <common-name datatype="string">AT4G15940</common-name>
-    <component-of />
   </Gene>
 </ptools-xml>

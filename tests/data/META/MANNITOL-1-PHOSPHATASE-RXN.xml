@@ -1,12 +1,20 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?META:MANNITOL-1-PHOSPHATASE-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?META:MANNITOL-1-PHOSPHATASE-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>META:MANNITOL-1-PHOSPHATASE-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="META" version="24.5"><species datatype="string">MetaCyc</species>
+<PGDB orgid='META' version='27.5'><species datatype='string'>MetaCyc</species>
 </PGDB>
 </metadata>
-<Reaction ID="META:MANNITOL-1-PHOSPHATASE-RXN" detail="full" frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="META" resource="getxml?META:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="META" resource="getxml?META:Small-Molecule-Reactions" /></parent>
+<Reaction ID='META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN' detail='full'><parent><Reaction resource='getxml?META:Chemical-Reactions' orgid='META' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?META:Small-Molecule-Reactions' orgid='META' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?META:WATER' orgid='META' frameid='WATER'/></left>
+<left><Compound resource='getxml?META:MANNITOL-1P' orgid='META' frameid='MANNITOL-1P'/></left>
+<ec-number>EC-3.1.3.22<official>T</official>
+</ec-number>
+<right><Compound resource='getxml?META:Pi' orgid='META' frameid='Pi'/></right>
+<right><Compound resource='getxml?META:MANNITOL' orgid='META' frameid='MANNITOL'/></right>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <dblink><dblink-db>METANETX-RXN</dblink-db>
 <dblink-oid>MNXR107343</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -22,52 +30,45 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://www.genome.jp/dbget-bin/www_bget?rn:R02167</dblink-URL>
 </dblink>
-<ec-number>EC-3.1.3.22<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="META:ENZRXN0-8345" detail="low" frameid="ENZRXN0-8345" orgid="META"><common-name datatype="string">mannitol-1-phosphatase</common-name>
-<enzyme><Protein frameid="G7187-MONOMER" orgid="META" resource="getxml?META:G7187-MONOMER" /></enzyme>
-<reaction><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="#META:MANNITOL-1-PHOSPHATASE-RXN" /></reaction>
-<synonym datatype="string">mannitol-1-phosphate phosphatase</synonym>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN0-8347" detail="low" frameid="ENZRXN0-8347" orgid="META"><common-name datatype="string">mannitol-1-phosphatase</common-name>
-<enzyme><Protein frameid="G6932-MONOMER" orgid="META" resource="getxml?META:G6932-MONOMER" /></enzyme>
-<reaction><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="#META:MANNITOL-1-PHOSPHATASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-23709" detail="low" frameid="ENZRXN-23709" orgid="META"><common-name datatype="string">mannitol-1-phosphatase</common-name>
-<enzyme><Protein frameid="CPLX-8986" orgid="META" resource="getxml?META:CPLX-8986" /></enzyme>
-<reaction><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="#META:MANNITOL-1-PHOSPHATASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-17920" detail="low" frameid="ENZRXN-17920" orgid="META"><common-name datatype="string">mannitol-1-phosphatase</common-name>
-<enzyme><Protein frameid="MONOMER-15724" orgid="META" resource="getxml?META:MONOMER-15724" /></enzyme>
-<reaction><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="#META:MANNITOL-1-PHOSPHATASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="META:ENZRXN-9501" detail="low" frameid="ENZRXN-9501" orgid="META"><common-name datatype="string">mannose-1-phosphate phosphatase</common-name>
-<enzyme><Protein frameid="MONOMER-9341" orgid="META" resource="getxml?META:MONOMER-9341" /></enzyme>
-<reaction><Reaction frameid="MANNITOL-1-PHOSPHATASE-RXN" orgid="META" resource="#META:MANNITOL-1-PHOSPHATASE-RXN" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">7.2170105<evidence><Evidence-Code ID="META:EV-COMP" class="true" detail="full" frameid="EV-COMP" orgid="META"><comment datatype="string">Inferred from computation.  The evidence for an assertion comes from a
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>7.2170105<evidence><Evidence-Code ID='META:EV-COMP' orgid='META' frameid='EV-COMP' detail='full' class='true'><common-name datatype='string'>Inferred by computational analysis</common-name>
+<comment datatype='string'>Inferred from computation.  The evidence for an assertion comes from a
 computational analysis.  The assertion itself might have been made
 by a person or by a computer, that is, EV-COMP does not specify whether
 manual interpretation of the computation occurred.
 &lt;p&gt;
 </comment>
-<common-name datatype="string">Inferred by computational analysis</common-name>
 </Evidence-Code>
-<Publication ID="META:PUB-LATENDRESSE2013" detail="full" frameid="PUB-LATENDRESSE2013" orgid="META"><author datatype="string">Latendresse M.</author>
-<title datatype="string">Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
-<url datatype="string">http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
-<year datatype="integer">2013</year>
+<Publication ID='META:PUB-LATENDRESSE2013' orgid='META' frameid='PUB-LATENDRESSE2013' detail='full'><year datatype='integer'>2013</year>
+<author datatype='string'>Latendresse M.</author>
+<url datatype='string'>http://www.biocyc.org/PGDBConceptsGuide.shtml#gibbs</url>
+<title datatype='string'>Computing Gibbs Free Energy of Compounds and Reactions in MetaCyc.</title>
 </Publication>
 </evidence>
 </gibbs-0>
-<in-pathway><Pathway frameid="PWY-3881" orgid="META" resource="getxml?META:PWY-3881" /><Pathway frameid="PWY-6531" orgid="META" resource="getxml?META:PWY-6531" /></in-pathway>
-<left><Compound frameid="WATER" orgid="META" resource="getxml?META:WATER" /></left>
-<left><Compound frameid="MANNITOL-1P" orgid="META" resource="getxml?META:MANNITOL-1P" /></left>
+<in-pathway><Pathway resource='getxml?META:PWY-3881' orgid='META' frameid='PWY-3881'/><Pathway resource='getxml?META:PWY-6531' orgid='META' frameid='PWY-6531'/></in-pathway>
 <orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="Pi" orgid="META" resource="getxml?META:Pi" /></right>
-<right><Compound frameid="MANNITOL" orgid="META" resource="getxml?META:MANNITOL" /></right>
+<enzymatic-reaction><Enzymatic-Reaction ID='META:ENZRXN0-8345' orgid='META' frameid='ENZRXN0-8345' detail='low'><reaction><Reaction resource='#META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></reaction>
+<synonym datatype='string'>mannitol-1-phosphate phosphatase</synonym>
+<common-name datatype='string'>mannitol-1-phosphatase</common-name>
+<enzyme><Protein resource='getxml?META:G7187-MONOMER' orgid='META' frameid='G7187-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN0-8347' orgid='META' frameid='ENZRXN0-8347' detail='low'><reaction><Reaction resource='#META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></reaction>
+<common-name datatype='string'>mannitol-1-phosphatase</common-name>
+<enzyme><Protein resource='getxml?META:G6932-MONOMER' orgid='META' frameid='G6932-MONOMER'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-23709' orgid='META' frameid='ENZRXN-23709' detail='low'><reaction><Reaction resource='#META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></reaction>
+<common-name datatype='string'>mannitol-1-phosphatase</common-name>
+<enzyme><Protein resource='getxml?META:CPLX-8986' orgid='META' frameid='CPLX-8986'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-17920' orgid='META' frameid='ENZRXN-17920' detail='low'><reaction><Reaction resource='#META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></reaction>
+<common-name datatype='string'>mannitol-1-phosphatase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-15724' orgid='META' frameid='MONOMER-15724'/></enzyme>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='META:ENZRXN-9501' orgid='META' frameid='ENZRXN-9501' detail='low'><reaction><Reaction resource='#META:MANNITOL-1-PHOSPHATASE-RXN' orgid='META' frameid='MANNITOL-1-PHOSPHATASE-RXN'/></reaction>
+<common-name datatype='string'>mannose-1-phosphate phosphatase</common-name>
+<enzyme><Protein resource='getxml?META:MONOMER-9341' orgid='META' frameid='MONOMER-9341'/></enzyme>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 </Reaction>
 </ptools-xml>

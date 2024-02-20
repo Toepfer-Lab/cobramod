@@ -1,8 +1,9 @@
-<ptools-xml ptools-version="24.0" xml:base="http://pmn-prod.dpb.carnegiescience.edu/getxml?SOY:GTP-CYCLOHYDRO-II-RXN"><metadata><url>http://pmn-prod.dpb.carnegiescience.edu/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.0' xml:base='http://localhost:1555/getxml?SOY:GTP-CYCLOHYDRO-II-RXN'><metadata><url>http://localhost:1555/</url>
 <service_name>getxml</service_name>
 <query>SOY:GTP-CYCLOHYDRO-II-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="SOY" version="10.0.1"><species datatype="string">Glycine max</species>
+<PGDB orgid='SOY' version='27.0'><species datatype='string'>Glycine max</species>
 <dblink><dblink-db>NCBI-TAXONOMY-DB</dblink-db>
 <dblink-oid>3847</dblink-oid>
 <dblink-relationship>unification</dblink-relationship>
@@ -10,71 +11,71 @@
 </dblink>
 </PGDB>
 </metadata>
-<Reaction ID="SOY:GTP-CYCLOHYDRO-II-RXN" detail="full" frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="SOY" resource="getxml?SOY:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="SOY" resource="getxml?SOY:Small-Molecule-Reactions" /></parent>
-<right><Compound frameid="PROTON" orgid="SOY" resource="getxml?SOY:PROTON" /><coefficient datatype="integer">2</coefficient>
-</right>
-<right><Compound frameid="PPI" orgid="SOY" resource="getxml?SOY:PPI" /></right>
-<right><Compound frameid="DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" orgid="SOY" resource="getxml?SOY:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR" /></right>
-<right><Compound frameid="FORMATE" orgid="SOY" resource="getxml?SOY:FORMATE" /></right>
-<enzymatic-reaction><Enzymatic-Reaction ID="SOY:ENZRXNN7V-108844" detail="low" frameid="ENZRXNN7V-108844" orgid="SOY"><enzyme><Protein frameid="MONOMERN7V-51890" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51890" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="SOY:ENZRXNN7V-108316" detail="low" frameid="ENZRXNN7V-108316" orgid="SOY"><enzyme><Protein frameid="GLYMA.08G177300-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.08G177300-MONOMER" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="SOY:ENZRXNN7V-108050" detail="low" frameid="ENZRXNN7V-108050" orgid="SOY"><enzyme><Protein frameid="GLYMA.08G070400-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.08G070400-MONOMER" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="SOY:ENZRXNN7V-106657" detail="low" frameid="ENZRXNN7V-106657" orgid="SOY"><enzyme><Protein frameid="MONOMERN7V-51065" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51065" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="SOY:ENZRXNN7V-106596" detail="low" frameid="ENZRXNN7V-106596" orgid="SOY"><enzyme><Protein frameid="MONOMERN7V-51038" orgid="SOY" resource="getxml?SOY:MONOMERN7V-51038" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="SOY:ENZRXNN7V-102670" detail="low" frameid="ENZRXNN7V-102670" orgid="SOY"><enzyme><Protein frameid="GLYMA.13G332633-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.13G332633-MONOMER" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="SOY:ENZRXNN7V-102611" detail="low" frameid="ENZRXNN7V-102611" orgid="SOY"><enzyme><Protein frameid="GLYMA.13G332567-MONOMER" orgid="SOY" resource="getxml?SOY:GLYMA.13G332567-MONOMER" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-<Enzymatic-Reaction ID="SOY:ENZRXNN7V-101683" detail="low" frameid="ENZRXNN7V-101683" orgid="SOY"><enzyme><Protein frameid="MONOMERN7V-48752" orgid="SOY" resource="getxml?SOY:MONOMERN7V-48752" /></enzyme>
-<common-name datatype="string">GTP cyclohydrolase II</common-name>
-<reaction><Reaction frameid="GTP-CYCLOHYDRO-II-RXN" orgid="SOY" resource="#SOY:GTP-CYCLOHYDRO-II-RXN" /></reaction>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-96.9801</gibbs-0>
-<left><Compound frameid="WATER" orgid="SOY" resource="getxml?SOY:WATER" /><coefficient datatype="integer">3</coefficient>
-</left>
-<left><Compound frameid="GTP" orgid="SOY" resource="getxml?SOY:GTP" /></left>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<credits><imported-from-meta><date datatype="date">2013-05-02</date>
-<Person ID="SOY:nilo-poyanco" detail="full" frameid="nilo-poyanco" orgid="SOY"><affiliations><Organization ID="SOY:PMN" detail="full" frameid="PMN" orgid="SOY"><common-name datatype="string">Carnegie Institution for Science</common-name>
-<abbrev-name datatype="string">PMN</abbrev-name>
-<url datatype="string">http://plantcyc.org</url>
-<credits><imported-from-meta><date datatype="date">2013-05-02</date>
-<Person frameid="nilo-poyanco" orgid="SOY" resource="#SOY:nilo-poyanco" /><Organization frameid="PMN" orgid="SOY" resource="#SOY:PMN" /></imported-from-meta>
-</credits>
-</Organization>
-</affiliations>
-<credits><imported-from-meta><date datatype="date">2013-05-02</date>
-<Person frameid="nilo-poyanco" orgid="SOY" resource="#SOY:nilo-poyanco" /><Organization frameid="PMN" orgid="SOY" resource="#SOY:PMN" /></imported-from-meta>
-</credits>
-<email datatype="string">rnilo@stanford.edu</email>
-</Person>
-<Organization frameid="PMN" orgid="SOY" resource="#SOY:PMN" /></imported-from-meta>
-</credits>
-<in-pathway><Pathway frameid="RIBOSYN2-PWY" orgid="SOY" resource="getxml?SOY:RIBOSYN2-PWY" /></in-pathway>
+<Reaction ID='SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN' detail='full'><parent><Reaction resource='getxml?SOY:Chemical-Reactions' orgid='SOY' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?SOY:Small-Molecule-Reactions' orgid='SOY' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<gibbs-0 datatype='float' units='kcal/mol'>-96.9801</gibbs-0>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
 <ec-number>EC-3.5.4.25<official>T</official>
 </ec-number>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<credits><imported-from-meta><date datatype='date'>2013-05-02</date>
+<Person ID='SOY:nilo-poyanco' orgid='SOY' frameid='nilo-poyanco' detail='full'><credits><imported-from-meta><date datatype='date'>2013-05-02</date>
+<Person resource='#SOY:nilo-poyanco' orgid='SOY' frameid='nilo-poyanco'/><Organization ID='SOY:PMN' orgid='SOY' frameid='PMN' detail='full'><common-name datatype='string'>Carnegie Institution for Science</common-name>
+<credits><imported-from-meta><date datatype='date'>2013-05-02</date>
+<Person resource='#SOY:nilo-poyanco' orgid='SOY' frameid='nilo-poyanco'/><Organization resource='#SOY:PMN' orgid='SOY' frameid='PMN'/></imported-from-meta>
+</credits>
+<url datatype='string'>http://plantcyc.org</url>
+<abbrev-name datatype='string'>PMN</abbrev-name>
+</Organization>
+</imported-from-meta>
+</credits>
+<affiliations><Organization resource='#SOY:PMN' orgid='SOY' frameid='PMN'/></affiliations>
+<email datatype='string'>rnilo@stanford.edu</email>
+</Person>
+<Organization resource='#SOY:PMN' orgid='SOY' frameid='PMN'/></imported-from-meta>
+</credits>
+<in-pathway><Pathway resource='getxml?SOY:RIBOSYN2-PWY' orgid='SOY' frameid='RIBOSYN2-PWY'/></in-pathway>
+<orphan>NO</orphan>
+<left><Compound resource='getxml?SOY:WATER' orgid='SOY' frameid='WATER'/><coefficient datatype='integer'>3</coefficient>
+</left>
+<left><Compound resource='getxml?SOY:GTP' orgid='SOY' frameid='GTP'/></left>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<enzymatic-reaction><Enzymatic-Reaction ID='SOY:ENZRXNN7V-108844' orgid='SOY' frameid='ENZRXNN7V-108844' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:MONOMERN7V-51890' orgid='SOY' frameid='MONOMERN7V-51890'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='SOY:ENZRXNN7V-108316' orgid='SOY' frameid='ENZRXNN7V-108316' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:GLYMA.08G177300-MONOMER' orgid='SOY' frameid='GLYMA.08G177300-MONOMER'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='SOY:ENZRXNN7V-108050' orgid='SOY' frameid='ENZRXNN7V-108050' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:GLYMA.08G070400-MONOMER' orgid='SOY' frameid='GLYMA.08G070400-MONOMER'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='SOY:ENZRXNN7V-106657' orgid='SOY' frameid='ENZRXNN7V-106657' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:MONOMERN7V-51065' orgid='SOY' frameid='MONOMERN7V-51065'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='SOY:ENZRXNN7V-106596' orgid='SOY' frameid='ENZRXNN7V-106596' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:MONOMERN7V-51038' orgid='SOY' frameid='MONOMERN7V-51038'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='SOY:ENZRXNN7V-102670' orgid='SOY' frameid='ENZRXNN7V-102670' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:GLYMA.13G332633-MONOMER' orgid='SOY' frameid='GLYMA.13G332633-MONOMER'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='SOY:ENZRXNN7V-102611' orgid='SOY' frameid='ENZRXNN7V-102611' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:GLYMA.13G332567-MONOMER' orgid='SOY' frameid='GLYMA.13G332567-MONOMER'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+<Enzymatic-Reaction ID='SOY:ENZRXNN7V-101683' orgid='SOY' frameid='ENZRXNN7V-101683' detail='low'><common-name datatype='string'>GTP cyclohydrolase II</common-name>
+<enzyme><Protein resource='getxml?SOY:MONOMERN7V-48752' orgid='SOY' frameid='MONOMERN7V-48752'/></enzyme>
+<reaction><Reaction resource='#SOY:GTP-CYCLOHYDRO-II-RXN' orgid='SOY' frameid='GTP-CYCLOHYDRO-II-RXN'/></reaction>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
+<right><Compound resource='getxml?SOY:PROTON' orgid='SOY' frameid='PROTON'/><coefficient datatype='integer'>2</coefficient>
+</right>
+<right><Compound resource='getxml?SOY:PPI' orgid='SOY' frameid='PPI'/></right>
+<right><Compound resource='getxml?SOY:DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR' orgid='SOY' frameid='DIAMINO-OH-PHOSPHORIBOSYLAMINO-PYR'/></right>
+<right><Compound resource='getxml?SOY:FORMATE' orgid='SOY' frameid='FORMATE'/></right>
 </Reaction>
 </ptools-xml>

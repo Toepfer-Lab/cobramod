@@ -1,12 +1,11 @@
-#!/usr/bin/env python3
 """Summary
 
 This module is responsible for the short summary in the command
 line and for other summaries in different formats.
 """
-import warnings
+from __future__ import annotations
 from pathlib import Path
-from typing import Dict
+from typing import Union, Optional
 
 import pandas
 from cobra import Model
@@ -21,7 +20,7 @@ class DataModel:
     save them in multiple formats.
     """
 
-    def __init__(self, lists: Dict[str, list]):
+    def __init__(self, lists: dict[str, list]):
         self.metabolites = lists.get("metabolites", [])
         self.demands = lists.get("demands", [])
         self.exchanges = lists.get("exchanges", [])
@@ -215,15 +214,11 @@ class DataModel:
                 "Removed in Demand": pandas.Series(
                     additions.demands, dtype=dtype
                 ),
-                "Removed in Sinks": pandas.Series(
-                    additions.sinks, dtype=dtype
-                ),
+                "Removed in Sinks": pandas.Series(additions.sinks, dtype=dtype),
                 "Removed in Metabolites": pandas.Series(
                     additions.metabolites, dtype=dtype
                 ),
-                "Removed in Genes": pandas.Series(
-                    additions.genes, dtype=dtype
-                ),
+                "Removed in Genes": pandas.Series(additions.genes, dtype=dtype),
                 "Removed in Groups": pandas.Series(
                     additions.groups, dtype=dtype
                 ),
@@ -254,9 +249,7 @@ class DataModel:
         save = self._to_dataframe(model, additions, deletions)
         save.to_excel(path, index=False)
 
-    def to_csv(
-        self, path, model: Model = None, additions=None, deletions=None
-    ):
+    def to_csv(self, path, model: Model = None, additions=None, deletions=None):
         """
         Method to save a DataModel as a CSV file. Can also be used to save
         the changes between two points in time, as a CSV.
@@ -275,9 +268,7 @@ class DataModel:
         save = self._to_dataframe(model, additions, deletions)
         save.to_csv(path, index=False)
 
-    def to_txt(
-        self, path, model: Model = None, additions=None, deletions=None
-    ):
+    def to_txt(self, path, model: Model = None, additions=None, deletions=None):
         """
         Method to save a DataModel as a txt file. Can also be used to save
         the changes between two points in time, as a txt.
@@ -318,7 +309,9 @@ class DataModel:
             file.writelines(line + "\n" for line in output)
 
 
-def summary(model: Model, original: DataModel, filename: Path = None):
+def summary(
+    model: Model, original: DataModel, filename: Optional[Union[str, Path]]
+):
     """
     Produces the short summary and another one in the defined format.
 
@@ -350,7 +343,6 @@ def summary(model: Model, original: DataModel, filename: Path = None):
     if num_changes == 0:
         msg = "No changes in the model were detected!"
         debug_log.warning(msg)
-        warnings.warn(msg, UserWarning)
 
     # output a short summary
     print(
@@ -363,35 +355,28 @@ def summary(model: Model, original: DataModel, filename: Path = None):
         + "|"
         + ("=" * 19)
         + "*"
-        + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
             "Reactions", len(additions.reactions), len(deletions.reactions), ""
         )
-        + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
             "Metabolites",
             len(additions.metabolites),
             len(deletions.metabolites),
             "",
         )
-        + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
             "Exchange", len(additions.exchanges), len(deletions.exchanges), ""
         )
-        + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
             "Demand", len(additions.demands), len(deletions.demands), ""
         )
-        + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
             "Sinks", len(additions.sinks), len(deletions.sinks), ""
         )
-        + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
             "Genes", len(additions.genes), len(deletions.genes), ""
         )
-        + "\n"
-        "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
             "Groups", len(additions.groups), len(deletions.groups), ""
         )
         + "\n"

@@ -1,13 +1,32 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:GLUTATHIONE-SYN-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:GLUTATHIONE-SYN-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:GLUTATHIONE-SYN-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:GLUTATHIONE-SYN-RXN" detail="full" frameid="GLUTATHIONE-SYN-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:GLY' orgid='ARA' frameid='GLY'/></left>
+<left><Compound resource='getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE' orgid='ARA' frameid='L-GAMMA-GLUTAMYLCYSTEINE'/></left>
+<left><Compound resource='getxml?ARA:ATP' orgid='ARA' frameid='ATP'/></left>
+<synonym datatype='string'>Glutathione synthetase</synonym>
+<ec-number>EC-6.3.2.3<official>T</official>
+</ec-number>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:PROTON' orgid='ARA' frameid='PROTON'/></right>
+<right><Compound resource='getxml?ARA:GLUTATHIONE' orgid='ARA' frameid='GLUTATHIONE'/></right>
+<right><Compound resource='getxml?ARA:Pi' orgid='ARA' frameid='Pi'/></right>
+<right><Compound resource='getxml?ARA:ADP' orgid='ARA' frameid='ADP'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-6.265869</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXN-13423' orgid='ARA' frameid='ENZRXN-13423' detail='low'><enzyme><Protein resource='getxml?ARA:CPLX-7214' orgid='ARA' frameid='CPLX-7214'/></enzyme>
+<reaction><Reaction resource='#ARA:GLUTATHIONE-SYN-RXN' orgid='ARA' frameid='GLUTATHIONE-SYN-RXN'/></reaction>
+<common-name datatype='string'>glutathione synthetase</common-name>
+</Enzymatic-Reaction>
+</enzymatic-reaction>
 <dblink><dblink-db>UNIPROT</dblink-db>
 <dblink-oid>O22494</dblink-oid>
 <dblink-relationship>RELATED-TO</dblink-relationship>
@@ -153,24 +172,6 @@
 <dblink-relationship>unification</dblink-relationship>
 <dblink-URL>http://pir.georgetown.edu/cgi-bin/nbrfget?uid=T52565</dblink-URL>
 </dblink>
-<ec-number>EC-6.3.2.3<official>T</official>
-</ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXN-13423" detail="low" frameid="ENZRXN-13423" orgid="ARA"><enzyme><Protein frameid="CPLX-7214" orgid="ARA" resource="getxml?ARA:CPLX-7214" /></enzyme>
-<reaction><Reaction frameid="GLUTATHIONE-SYN-RXN" orgid="ARA" resource="#ARA:GLUTATHIONE-SYN-RXN" /></reaction>
-<common-name datatype="string">glutathione synthetase</common-name>
-</Enzymatic-Reaction>
-</enzymatic-reaction>
-<synonym datatype="string">Glutathione synthetase</synonym>
-<gibbs-0 datatype="float" units="kcal/mol">-6.265869</gibbs-0>
-<in-pathway><Pathway frameid="PWYQT-4470" orgid="ARA" resource="getxml?ARA:PWYQT-4470" /><Pathway frameid="GLUTATHIONESYN-PWY" orgid="ARA" resource="getxml?ARA:GLUTATHIONESYN-PWY" /></in-pathway>
-<left><Compound frameid="GLY" orgid="ARA" resource="getxml?ARA:GLY" /></left>
-<left><Compound frameid="L-GAMMA-GLUTAMYLCYSTEINE" orgid="ARA" resource="getxml?ARA:L-GAMMA-GLUTAMYLCYSTEINE" /></left>
-<left><Compound frameid="ATP" orgid="ARA" resource="getxml?ARA:ATP" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="PROTON" orgid="ARA" resource="getxml?ARA:PROTON" /></right>
-<right><Compound frameid="GLUTATHIONE" orgid="ARA" resource="getxml?ARA:GLUTATHIONE" /></right>
-<right><Compound frameid="Pi" orgid="ARA" resource="getxml?ARA:Pi" /></right>
-<right><Compound frameid="ADP" orgid="ARA" resource="getxml?ARA:ADP" /></right>
+<in-pathway><Pathway resource='getxml?ARA:PWYQT-4470' orgid='ARA' frameid='PWYQT-4470'/><Pathway resource='getxml?ARA:GLUTATHIONESYN-PWY' orgid='ARA' frameid='GLUTATHIONESYN-PWY'/></in-pathway>
 </Reaction>
 </ptools-xml>

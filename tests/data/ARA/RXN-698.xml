@@ -1,47 +1,48 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:RXN-698"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:RXN-698'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:RXN-698</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:RXN-698" detail="full" frameid="RXN-698" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:RXN-698' orgid='ARA' frameid='RXN-698' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:CPD-7424' orgid='ARA' frameid='CPD-7424'/></left>
+<left><Compound resource='getxml?ARA:OXYGEN-MOLECULE' orgid='ARA' frameid='OXYGEN-MOLECULE'/></left>
 <ec-number>EC-1.13.11.51<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-15659" detail="low" frameid="ENZRXNQT-15659" orgid="ARA"><enzyme><Protein frameid="AT4G19170-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G19170-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-698" orgid="ARA" resource="#ARA:RXN-698" /></reaction>
-<common-name datatype="string">9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
+<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:CPD-7279' orgid='ARA' frameid='CPD-7279'/></right>
+<right><Compound resource='getxml?ARA:CPD1F-4' orgid='ARA' frameid='CPD1F-4'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<gibbs-0 datatype='float' units='kcal/mol'>-76.06</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-15659' orgid='ARA' frameid='ENZRXNQT-15659' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G19170-MONOMER' orgid='ARA' frameid='AT4G19170-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></reaction>
+<common-name datatype='string'>9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN-12798" detail="low" frameid="ENZRXN-12798" orgid="ARA"><enzyme><Protein frameid="AT4G18350-MONOMER" orgid="ARA" resource="getxml?ARA:AT4G18350-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-698" orgid="ARA" resource="#ARA:RXN-698" /></reaction>
-<common-name datatype="string">9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXN-12798' orgid='ARA' frameid='ENZRXN-12798' detail='low'><enzyme><Protein resource='getxml?ARA:AT4G18350-MONOMER' orgid='ARA' frameid='AT4G18350-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></reaction>
+<common-name datatype='string'>9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN-12799" detail="low" frameid="ENZRXN-12799" orgid="ARA"><enzyme><Protein frameid="AT3G24220-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G24220-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-698" orgid="ARA" resource="#ARA:RXN-698" /></reaction>
-<common-name datatype="string">9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXN-12799' orgid='ARA' frameid='ENZRXN-12799' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G24220-MONOMER' orgid='ARA' frameid='AT3G24220-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></reaction>
+<common-name datatype='string'>9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN-12800" detail="low" frameid="ENZRXN-12800" orgid="ARA"><enzyme><Protein frameid="AT1G78390-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G78390-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-698" orgid="ARA" resource="#ARA:RXN-698" /></reaction>
-<common-name datatype="string">9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXN-12800' orgid='ARA' frameid='ENZRXN-12800' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G78390-MONOMER' orgid='ARA' frameid='AT1G78390-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></reaction>
+<common-name datatype='string'>9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN1F-59" detail="low" frameid="ENZRXN1F-59" orgid="ARA"><enzyme><Protein frameid="AT3G14440-MONOMER" orgid="ARA" resource="getxml?ARA:AT3G14440-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-698" orgid="ARA" resource="#ARA:RXN-698" /></reaction>
-<common-name datatype="string">9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXN1F-59' orgid='ARA' frameid='ENZRXN1F-59' detail='low'><enzyme><Protein resource='getxml?ARA:AT3G14440-MONOMER' orgid='ARA' frameid='AT3G14440-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></reaction>
+<common-name datatype='string'>9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXN1F-58" detail="low" frameid="ENZRXN1F-58" orgid="ARA"><enzyme><Protein frameid="AT1G30100-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G30100-MONOMER" /></enzyme>
-<reaction><Reaction frameid="RXN-698" orgid="ARA" resource="#ARA:RXN-698" /></reaction>
-<common-name datatype="string">9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXN1F-58' orgid='ARA' frameid='ENZRXN1F-58' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G30100-MONOMER' orgid='ARA' frameid='AT1G30100-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:RXN-698' orgid='ARA' frameid='RXN-698'/></reaction>
+<common-name datatype='string'>9-&lt;i&gt;cis&lt;/i&gt;-epoxycarotenoid dioxygenase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-76.06</gibbs-0>
-<in-pathway><Pathway frameid="PWY-695" orgid="ARA" resource="getxml?ARA:PWY-695" /></in-pathway>
-<left><Compound frameid="CPD-7424" orgid="ARA" resource="getxml?ARA:CPD-7424" /></left>
-<left><Compound frameid="OXYGEN-MOLECULE" orgid="ARA" resource="getxml?ARA:OXYGEN-MOLECULE" /></left>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>PHYSIOL-LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="CPD-7279" orgid="ARA" resource="getxml?ARA:CPD-7279" /></right>
-<right><Compound frameid="CPD1F-4" orgid="ARA" resource="getxml?ARA:CPD1F-4" /></right>
+<in-pathway><Pathway resource='getxml?ARA:PWY-695' orgid='ARA' frameid='PWY-695'/></in-pathway>
 </Reaction>
 </ptools-xml>

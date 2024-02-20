@@ -1,40 +1,41 @@
-<ptools-xml ptools-version="24.5" xml:base="http://BioCyc.org/getxml?ARA:2.4.1.82-RXN"><metadata><url>http://BioCyc.org/</url>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ptools-xml ptools-version='27.5' xml:base='http://BioCyc.org/getxml?ARA:2.4.1.82-RXN'><metadata><url>http://BioCyc.org/</url>
 <service_name>getxml</service_name>
 <query>ARA:2.4.1.82-RXN</query>
 <num_results>1</num_results>
-<PGDB orgid="ARA" version="17.1"><species datatype="string">Arabidopsis thaliana</species>
-<strain datatype="string">col</strain>
+<PGDB orgid='ARA' version='17.1'><species datatype='string'>Arabidopsis thaliana</species>
+<strain datatype='string'>col</strain>
 </PGDB>
 </metadata>
-<Reaction ID="ARA:2.4.1.82-RXN" detail="full" frameid="2.4.1.82-RXN" orgid="ARA"><parent><Reaction class="true" frameid="Chemical-Reactions" orgid="ARA" resource="getxml?ARA:Chemical-Reactions" /></parent>
-<parent><Reaction class="true" frameid="Small-Molecule-Reactions" orgid="ARA" resource="getxml?ARA:Small-Molecule-Reactions" /></parent>
+<Reaction ID='ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN' detail='full'><parent><Reaction resource='getxml?ARA:Chemical-Reactions' orgid='ARA' frameid='Chemical-Reactions' class='true'/></parent>
+<parent><Reaction resource='getxml?ARA:Small-Molecule-Reactions' orgid='ARA' frameid='Small-Molecule-Reactions' class='true'/></parent>
+<left><Compound resource='getxml?ARA:CPD-458' orgid='ARA' frameid='CPD-458'/></left>
+<left><Compound resource='getxml?ARA:SUCROSE' orgid='ARA' frameid='SUCROSE'/></left>
 <ec-number>EC-2.4.1.82<official>T</official>
 </ec-number>
-<enzymatic-reaction><Enzymatic-Reaction ID="ARA:ENZRXNQT-11892" detail="low" frameid="ENZRXNQT-11892" orgid="ARA"><enzyme><Protein frameid="MONOMERQT-8375" orgid="ARA" resource="getxml?ARA:MONOMERQT-8375" /></enzyme>
-<reaction><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="#ARA:2.4.1.82-RXN" /></reaction>
-<common-name datatype="string">raffinose synthase</common-name>
+<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
+<right><Compound resource='getxml?ARA:MYO-INOSITOL' orgid='ARA' frameid='MYO-INOSITOL'/></right>
+<right><Compound resource='getxml?ARA:CPD-1099' orgid='ARA' frameid='CPD-1099'/></right>
+<physiologically-relevant datatype='boolean'>true</physiologically-relevant>
+<orphan>NO</orphan>
+<gibbs-0 datatype='float' units='kcal/mol'>-3.6799927</gibbs-0>
+<enzymatic-reaction><Enzymatic-Reaction ID='ARA:ENZRXNQT-11892' orgid='ARA' frameid='ENZRXNQT-11892' detail='low'><enzyme><Protein resource='getxml?ARA:MONOMERQT-8375' orgid='ARA' frameid='MONOMERQT-8375'/></enzyme>
+<reaction><Reaction resource='#ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/></reaction>
+<common-name datatype='string'>raffinose synthase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-6580" detail="low" frameid="ENZRXNQT-6580" orgid="ARA"><enzyme><Protein frameid="AT5G20250-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G20250-MONOMER" /></enzyme>
-<reaction><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="#ARA:2.4.1.82-RXN" /></reaction>
-<common-name datatype="string">raffinose synthase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-6580' orgid='ARA' frameid='ENZRXNQT-6580' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G20250-MONOMER' orgid='ARA' frameid='AT5G20250-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/></reaction>
+<common-name datatype='string'>raffinose synthase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-6508" detail="low" frameid="ENZRXNQT-6508" orgid="ARA"><enzyme><Protein frameid="AT1G55740-MONOMER" orgid="ARA" resource="getxml?ARA:AT1G55740-MONOMER" /></enzyme>
-<reaction><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="#ARA:2.4.1.82-RXN" /></reaction>
-<common-name datatype="string">raffinose synthase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-6508' orgid='ARA' frameid='ENZRXNQT-6508' detail='low'><enzyme><Protein resource='getxml?ARA:AT1G55740-MONOMER' orgid='ARA' frameid='AT1G55740-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/></reaction>
+<common-name datatype='string'>raffinose synthase</common-name>
 </Enzymatic-Reaction>
-<Enzymatic-Reaction ID="ARA:ENZRXNQT-70" detail="low" frameid="ENZRXNQT-70" orgid="ARA"><enzyme><Protein frameid="AT5G40390-MONOMER" orgid="ARA" resource="getxml?ARA:AT5G40390-MONOMER" /></enzyme>
-<reaction><Reaction frameid="2.4.1.82-RXN" orgid="ARA" resource="#ARA:2.4.1.82-RXN" /></reaction>
-<common-name datatype="string">raffinose synthase</common-name>
+<Enzymatic-Reaction ID='ARA:ENZRXNQT-70' orgid='ARA' frameid='ENZRXNQT-70' detail='low'><enzyme><Protein resource='getxml?ARA:AT5G40390-MONOMER' orgid='ARA' frameid='AT5G40390-MONOMER'/></enzyme>
+<reaction><Reaction resource='#ARA:2.4.1.82-RXN' orgid='ARA' frameid='2.4.1.82-RXN'/></reaction>
+<common-name datatype='string'>raffinose synthase</common-name>
 </Enzymatic-Reaction>
 </enzymatic-reaction>
-<gibbs-0 datatype="float" units="kcal/mol">-3.6799927</gibbs-0>
-<in-pathway><Pathway frameid="PWY-5337" orgid="ARA" resource="getxml?ARA:PWY-5337" /></in-pathway>
-<left><Compound frameid="CPD-458" orgid="ARA" resource="getxml?ARA:CPD-458" /></left>
-<left><Compound frameid="SUCROSE" orgid="ARA" resource="getxml?ARA:SUCROSE" /></left>
-<orphan>NO</orphan>
-<physiologically-relevant datatype="boolean">true</physiologically-relevant>
-<reaction-direction>LEFT-TO-RIGHT</reaction-direction>
-<right><Compound frameid="MYO-INOSITOL" orgid="ARA" resource="getxml?ARA:MYO-INOSITOL" /></right>
-<right><Compound frameid="CPD-1099" orgid="ARA" resource="getxml?ARA:CPD-1099" /></right>
+<in-pathway><Pathway resource='getxml?ARA:PWY-5337' orgid='ARA' frameid='PWY-5337'/></in-pathway>
 </Reaction>
 </ptools-xml>

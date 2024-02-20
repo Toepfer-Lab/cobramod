@@ -1,0 +1,8 @@
+<ptools-xml ptools-version="27.0" xml:base="http://localhost:1555/apixml?fn=genes-of-reaction%26id=ARA:PYRUVATE%26detail=FULL">
+  <metadata>
+    <url>http://localhost:1555/</url>
+    <service_name>apixml</service_name>
+    <query>fn=genes-of-reaction&amp;id=ARA:PYRUVATE&amp;detail=FULL</query>
+    <num_results>0</num_results>
+  </metadata>
+</ptools-xml>

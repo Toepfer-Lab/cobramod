@@ -13,6 +13,12 @@ PATHWAY     rn00250  Alanine, aspartate and glutamate metabolism
             rn01110  Biosynthesis of secondary metabolites
             rn01120  Microbial metabolism in diverse environments
             rn01230  Biosynthesis of amino acids
+BRITE       Enzymatic reactions [BR:br08201]
+             1. Oxidoreductase reactions
+              1.4  Acting on the CH-NH2 group of donors
+               1.4.1  With NAD+ or NADP+ as acceptor
+                1.4.1.13
+                 R00114  2 L-Glutamate + NADP+ <=> L-Glutamine + 2-Oxoglutarate + NADPH + H+
 ORTHOLOGY   K00265  glutamate synthase (NADPH) large chain [EC:1.4.1.13]
             K00266  glutamate synthase (NADPH) small chain [EC:1.4.1.13]
 DBLINKS     RHEA: 15504
