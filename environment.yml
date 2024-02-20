@@ -15,6 +15,7 @@ dependencies:
 - pre-commit
 - tqdm
 - pyarrow
+- docutils
 - pandoc
 - conda-forge::webcolors
 - conda-forge::openpyxl
