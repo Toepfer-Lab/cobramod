@@ -17,8 +17,8 @@ genome-scale metabolic models (GEMs). It builds upon the [COBRApy toolbox]
 functions for semi-automated network extension, curation and visualization.
 CobraMod supports all databases from the [BioCyc collection](https://
 biocyc.org/), the [KEGG database](https://www.genome.jp/kegg/), and the [BiGG
-Models repository](http://bigg.ucsd.edu/) and can directly interact with Escher
-for pathway and flux visualization.
+Models repository](http://bigg.ucsd.edu/). It optionally can interact with
+Escher for pathway and flux visualization.
 
 This package converts pathway information into native COBRApy objects and
 quality-checks them while adding them to the model. This includes testing for:
@@ -33,7 +33,7 @@ quality-checks them while adding them to the model. This includes testing for:
 -   available cross-references
 
 CobraMod offers user-friendly tracking of the curation process with summary
-output and log files and customized pathway and flux visualization with
+output with log files and customized pathway and flux visualization with
 [Escher](https://escher.github.io/).
 
 Installation
@@ -48,8 +48,7 @@ Functions
 
 This package offers multiple functions for modifying and extending GEMs:
 
--   Retrieve metabolic pathway information from a database
-    `cobramod.get_data`
+-   Retrieve metabolic pathway information from a database `cobramod.get_data`
 -   Transform stored data into COBRApy objects `cobramod.create_object`
 -   Add metabolites from multiple sources `cobramod.add_metabolites`
 -   Add reactions from multiple sources `cobramod.add_reactions`
@@ -97,7 +96,7 @@ Development
 -----------
 
 You can contribute to CobraMod by cloning the repository and installing it in
-developer mode using pip :
+developer mode and using the `dev` dependency group via pip:
 
     pip install -e ".[dev]"
 
