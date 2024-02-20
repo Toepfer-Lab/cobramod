@@ -1,7 +1,7 @@
 ![Static Badge](https://img.shields.io/badge/python-3.10%7C3.11%7C3.12-%20blue)
 ![GitHub](https://img.shields.io/github/license/Toepfer-Lab/cobramod)
 ![Read the Docs (version)](https://img.shields.io/readthedocs/cobramod/latest)
-![Tests](https://img.shields.io/github/workflow/status/Toepfer-Lab/cobramod/Test%20build%20and%20publish%20Cobramod%20to%20PyPI?label=tests)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Toepfer-lab/cobramod/test-build-and-publish.yml)
 ![Version](https://img.shields.io/pypi/v/cobramod?label=version)
 [![Downloads](https://pepy.tech/badge/cobramod)](https://pepy.tech/project/cobramod)
 
