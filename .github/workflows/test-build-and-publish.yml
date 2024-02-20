@@ -34,6 +34,9 @@ jobs:
       - name: Setup test suite
         run: tox -vv --notest
 
+      - name: Credentials
+        run: echo "${{ secrets.BIOCYC_USER }}\n${{ secrets.BIOCYC_PASS }}" >> tests/credentials.txt
+
       - name: Run test suite
         run: tox --skip-pkg-install
 

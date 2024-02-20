@@ -47,6 +47,9 @@ homepage = "https://github.com/Toepfer-Lab/cobramod"
 Documentation = "https://cobramod.readthedocs.io/"
 bugtracker = "https://github.com/Toepfer-Lab/cobramod/issues"
 
+[tool.setuptools.package-data]
+"cobramod.data" = ["*.sbml"]
+
 [tool.setuptools.dynamic]
 version = {attr = "cobramod.__version__"}
 readme = {file = "README.md", content-type = "text/markdown"}
