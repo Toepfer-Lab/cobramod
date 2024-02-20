@@ -52,7 +52,12 @@ def build_metabolite(
         charge=charge,
         compartment=compartment,
     )
-    debug_log.debug(f'Manually curated metabolite "{identifier}" was created.')
+    debug_log.debug(f'Curated metabolite "{identifier}" was created.')
+    if not formula or formula.capitalize() == "X":
+        debug_log.warning(
+            f'Curated metabolite "{identifier} does not include a chemical '
+            "formula"
+        )
     return metabolite
 
 

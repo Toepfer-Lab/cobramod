@@ -1,18 +1,15 @@
 Requirements
 ============
 
-CobraMod requires  **Python 3.8 or higher** and  the following
-packages:
-
- - cobra >= 0.26.0
- - requests >= 2.24.0
- - webcolors >= 1.11.1
- - Escher >= 1.7.3
- - openpyxl >= 3.0.7
- 
-Optional:
-
- - escher-legacy >=1.7.4
+CobraMod supports  **Python 3.10 or higher**. Following dependencies are
+needed:
+ - colorlog
+ - cobra>=0.29.0
+ - requests>=2.31.0
+ - tqdm>=4.62.3
+ - openpyxl>=3.1.2
+ - webcolors>=1.13
+ - pyarrow>=14.0.2
 
 Installation
 ============
@@ -25,7 +22,7 @@ By default, required packages will be installed when installing CobraMod. We
 recommend using a virtual environment.
 
 To use the escher visualization tool with cobramod, you can install the optional
-dependencies. ::
+dependencies escher-legacy that needs to be used instead of *escher* ::
 
   pip install cobramod[escher]
 
