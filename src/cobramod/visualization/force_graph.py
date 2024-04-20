@@ -9,8 +9,10 @@ import webbrowser
 from dataclasses import dataclass, field
 from typing import Union, Literal, Type, Optional
 
+import anywidget
 from cobra import Metabolite, Reaction, Solution
 from cobra.core import Group
+from traitlets import traitlets
 
 
 @dataclass(frozen= True)
@@ -43,6 +45,10 @@ class GraphData:
         link_str = ",".join(x.to_json() for x in self.links)
 
         return f"""{{"nodes": [{node_str}],"links": [{link_str}]}}"""
+
+    def to_dict(self) -> dict:
+
+        return {"nodes": [self.nodes], "links": [self.links]}
 
 
 def _reac2dict(reaction: Reaction, flux: float = 1) -> GraphData:
@@ -89,7 +95,7 @@ def _reac2dict(reaction: Reaction, flux: float = 1) -> GraphData:
 
     return data
 
-def _group2dict(group:Group, solution: Solution = None) -> GraphData:
+def _group2dict(group:Group, solution: Union[Solution, dict] = None) -> GraphData:
 
     data : GraphData = GraphData()
 
@@ -132,6 +138,7 @@ class ForceGraphBuilder:
             self.data = _group2dict(obj, solution = solution)
 
         elif isinstance(obj, Reaction):
+
             self.data = _reac2dict(obj)
 
         else:
@@ -191,4 +198,89 @@ class ForceGraphBuilder:
         from IPython.display import IFrame
         IFrame(tmp.name, width=500, height=1000)
         webbrowser.open(tmp.name, new=0, autoraise=True)
+
+
+class ForceGraphIntegration(anywidget.AnyWidget):
+
+    _model: Union[Type[Group], Type[Reaction]] = None
+    _solution: dict = None
+    _model_rep: str = {"nodes": [],"links": []}
+
+    @property
+    def model(self):
+        return self._model
+
+    @model.setter
+    def model(self, value):
+        self._model = value
+        self._create_model_rep()
+
+    @property
+    def solution(self):
+        return self._solution
+
+    @solution.setter
+    def solution(self, value: Union[dict, Solution]):
+        if isinstance(value, Solution):
+            value = value.fluxes.to_dict()
+
+        self._solution = value
+        self._create_model_rep()
+
+    def _create_model_rep(self):
+        if self._model is None:
+            return
+
+        if isinstance(self._model, Group):
+            data = _group2dict(self._model, solution = self._solution)
+
+        elif isinstance(self._model, Reaction):
+            if self._solution is not None:
+                flux = self._solution.get(self._model.id, 1)
+            else:
+                flux = 1
+
+            data = _reac2dict(self._model, flux= flux)
+
+        else:
+            raise TypeError
+
+        self._model_rep = data.to_json()
+
+    _model_rep = traitlets.Unicode().tag(sync=True)
+
+    _esm = """
+    import * as force from "https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min";
+
+
+    function render({ model, el }) {
+    
+    let cell = el.getBoundingClientRect()
+    console.log(cell.width)
+
+      let elem = document.createElement("div");
+      el.appendChild(elem);
+        let graph_data = JSON.parse(model.get("_model_rep"))
+        const Graph = ForceGraph3D()(elem)
+          .graphData(graph_data)
+          .nodeLabel("id")
+          .linkOpacity(1)
+          .linkAutoColorBy("value")
+          .linkDirectionalParticles(1)
+          .linkDirectionalParticleSpeed(d => d.value * 0.001)
+          .linkDirectionalParticleWidth(4)
+          .warmupTicks(100)
+          .cooldownTicks(0)
+          .width(cell.width)
+          .height(cell.width/2)
+
+        model.on("change:_model_rep", () => {
+
+             Graph.graphData(JSON.parse(model.get("_model_rep")))
+
+        });
+    }
+
+    export default { render };
+    """
 
