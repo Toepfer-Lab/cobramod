@@ -87,6 +87,8 @@ CobraMod, load and print :obj:`cobramod.available_databases`.
    :caption: Table of content
 
    guides
+   visualization.rst
+   databases.rst
    installation.rst
    test_cases.ipynb
    API <module/cobramod/index>

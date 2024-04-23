@@ -15,7 +15,7 @@ from cobra.core import Group
 from traitlets import traitlets
 
 
-@dataclass(frozen= True)
+@dataclass(frozen=True)
 class Nodes:
     id: str
     group: Literal["metabolite", "reaction"]
@@ -24,11 +24,11 @@ class Nodes:
         return f"""{{"id":"{self.id}", "group":"{self.group}"}}"""
 
 
-@dataclass(unsafe_hash = True)
+@dataclass(unsafe_hash=True)
 class Links:
-    source: str = field(hash = True, compare = True)
-    target: str = field(hash = True, compare = True)
-    value: float = field(hash = False, compare = True)
+    source: str = field(hash=True, compare=True)
+    target: str = field(hash=True, compare=True)
+    value: float = field(hash=False, compare=True)
 
     def to_json(self) -> str:
         return f"""{{"source":"{self.source}","target":"{self.target}","value":{self.value}}}"""
@@ -36,77 +36,87 @@ class Links:
 
 @dataclass()
 class GraphData:
-    nodes: set[Optional[Nodes]] = field(default_factory= set)
-    links: set[Optional[Links]] = field(default_factory= set)
+    nodes: set[Optional[Nodes]] = field(default_factory=set)
+    links: set[Optional[Links]] = field(default_factory=set)
 
     def to_json(self) -> str:
-
         node_str = ",".join(x.to_json() for x in self.nodes)
         link_str = ",".join(x.to_json() for x in self.links)
 
         return f"""{{"nodes": [{node_str}],"links": [{link_str}]}}"""
 
     def to_dict(self) -> dict:
-
         return {"nodes": [self.nodes], "links": [self.links]}
 
 
 def _reac2dict(reaction: Reaction, flux: float = 1) -> GraphData:
+    """
+    Function that generates a :py:class:`GraphData` object from a Cobra.Reaction.
+
+    Args:
+        reaction: A :py:class:`cobra.Reaction` that is to be converted into a :py:class:`GraphData` object.
+        flux: The flux of this reaction.
+
+    Returns: A :py:class:`GraphData` object that contains the definition for the passed reaction.
+
+    """
+
     nodes: set[Nodes] = set()
     links: set[Links] = set()
 
-    nodes.add(
-        Nodes(
-            id = reaction.id,
-            group= "reaction"
-        )
-    )
+    nodes.add(Nodes(id=reaction.id, group="reaction"))
 
     for metabolite in reaction.metabolites:
-        nodes.add(
-            Nodes(
-                id = metabolite.id,
-                group = "metabolite"
-            )
-        )
+        nodes.add(Nodes(id=metabolite.id, group="metabolite"))
 
-        stoichiometry = reaction.get_coefficient(metabolite_id= metabolite.id)
+        stoichiometry = reaction.get_coefficient(metabolite_id=metabolite.id)
 
         if stoichiometry * flux < 0:
-            link:Links = Links(
-                source= metabolite.id,
-                target= reaction.id,
-                value= - stoichiometry * flux
+            link: Links = Links(
+                source=metabolite.id,
+                target=reaction.id,
+                value=-stoichiometry * flux,
             )
 
         else:
-            link:Links = Links(
-                source= reaction.id,
-                target= metabolite.id,
-                value= stoichiometry * flux
+            link: Links = Links(
+                source=reaction.id,
+                target=metabolite.id,
+                value=stoichiometry * flux,
             )
 
         links.add(link)
 
-    data:GraphData = GraphData(
-        nodes = nodes,
-        links= links
-    )
+    data: GraphData = GraphData(nodes=nodes, links=links)
 
     return data
 
-def _group2dict(group:Group, solution: Union[Solution, dict] = None) -> GraphData:
 
-    data : GraphData = GraphData()
+def _group2dict(
+    group: Group, solution: Union[Solution, dict] = None
+) -> GraphData:
+    """
+    Function that generates a :py:class:`GraphData` object from a :py:class:`cobra.Reaction`.
+
+    Args:
+        group: A :py:class:`cobra.Reaction` that is to be converted into a :py:class:`GraphData` object.
+        solution: The flux of this reaction.
+
+    Returns:
+        A :py:class:`GraphData` object that contains the definition for the passed reaction.
+
+    """
+
+
+    data: GraphData = GraphData()
 
     if solution is not None:
         if isinstance(solution, Solution):
             solution = solution.fluxes.to_dict()
 
     for member in group.members:
-
         if type(member) is Group:
-            result: GraphData = _group2dict(group= member, solution= solution)
+            result: GraphData = _group2dict(group=member, solution=solution)
 
         elif type(member) is Reaction:
             if solution is not None:
@@ -114,13 +124,13 @@ def _group2dict(group:Group, solution: Union[Solution, dict] = None) -> GraphDat
             else:
                 flux = 1
 
-            result: GraphData = _reac2dict(reaction= member, flux = flux)
+            result: GraphData = _reac2dict(reaction=member, flux=flux)
 
         elif type(member) is Metabolite:
             node = set()
-            node.add(Nodes(id= member.id, group="metabolite"))
+            node.add(Nodes(id=member.id, group="metabolite"))
 
-            result:GraphData = GraphData(nodes= node)
+            result: GraphData = GraphData(nodes=node)
         else:
             raise TypeError
 
@@ -130,97 +140,46 @@ def _group2dict(group:Group, solution: Union[Solution, dict] = None) -> GraphDat
     return data
 
 
-class ForceGraphBuilder:
-    def __init__(self, obj: Union[Type[Group], Type[Reaction]], solution: Solution = None):
-        self.data: GraphData
-
-        if isinstance(obj, Group):
-            self.data = _group2dict(obj, solution = solution)
-
-        elif isinstance(obj, Reaction):
-
-            self.data = _reac2dict(obj)
-
-        else:
-            raise TypeError
-
-    def _html(self) -> str:
-
-        html =f"""
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <script src="https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min.js"></script>
-            </head>
-            <body>
-            <div id="3d-graph">
-            </div>
-            <script>
-                let elem = document.getElementById("3d-graph")
-                let graph_data = {self.data.to_json()}
-                
-                var Graph = ForceGraph3D()(elem)
-                  .graphData(graph_data)
-                  .nodeLabel("id")
-                  .linkOpacity(1)
-                  .linkAutoColorBy("value")
-                  .linkDirectionalParticles(1)
-                  .linkDirectionalParticleSpeed(d => d.value * 0.001)
-                  .linkDirectionalParticleWidth(4)
-                  .warmupTicks(100)
-                  .cooldownTicks(0)
-    
-            </script>
-            </body>
-        </html>
-        """
-
-        return html
-
-    def _repr_html_(self):
-        return """
-        <script>
-        require.config({paths: {"3d-force-graph": "https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min.js"}});
-        console.log(3d-force-graph)
-        require(["3d-force-graph"], function(3d-force-graph) {
-          console.log(3d-force-graph.version);
-        });
-        </script>
-        """
-
-    def open_html(self):
-        html = self._html()
-
-        tmp = tempfile.NamedTemporaryFile(suffix=".html")
-        with open(tmp.name, 'w') as f:
-            f.write(html)
-
-        from IPython.display import IFrame
-        IFrame(tmp.name, width=500, height=1000)
-        webbrowser.open(tmp.name, new=0, autoraise=True)
-
-
 class ForceGraphIntegration(anywidget.AnyWidget):
+    """
+    Widget for displaying a :py:class:`cobra.group` or :py:class:`cobra.reaction` as a force directed graph.
+    """
 
     _model: Union[Type[Group], Type[Reaction]] = None
     _solution: dict = None
-    _model_rep: str = {"nodes": [],"links": []}
+
+    # _model_rep is the data basis for the widget
+    # Changes update the front end
+    _model_rep: str = {"nodes": [], "links": []}
+    _model_rep = traitlets.Unicode().tag(sync=True)
 
     @property
-    def model(self):
+    def model(self) -> Optional[Union[Type[Group], Type[Reaction]]]:
+        """
+        The Model to be represented. It can ether be a :py:class:`cobra.group` or :py:class:`cobra.Reaction`.
+        It is set to None upon initialization.
+        """
+
         return self._model
 
     @model.setter
-    def model(self, value):
+    def model(self, value: Union[Type[Group], Type[Reaction]]):
         self._model = value
         self._create_model_rep()
 
     @property
-    def solution(self):
+    def solution(self) -> Optional[Union[Type[Solution], dict[str,float]]]:
+        """
+        The flux values to be taken into account when creating the graph. These scale the stoichiometry of the
+        respective reaction. If a reaction is not found in this object, a flux of 1 is assumed. The flux values can
+        either be passed as cobra.Solution or as dict, where the key is the reaction ID and the value is the flux
+        value. It is set to None upon initialization.
+
+        """
         return self._solution
 
     @solution.setter
-    def solution(self, value: Union[dict, Solution]):
+    def solution(self, value: Union[dict[str,float], Solution]):
         if isinstance(value, Solution):
             value = value.fluxes.to_dict()
 
@@ -228,11 +187,17 @@ class ForceGraphIntegration(anywidget.AnyWidget):
         self._create_model_rep()
 
     def _create_model_rep(self):
+        """
+        Function to create a representation whenever a model and/or a solution are assigned.
+        This representation is used as a data basis for 3d-force-graph.
+        The representation is assigned to 'self._model_rep'.
+        """
+
         if self._model is None:
             return
 
         if isinstance(self._model, Group):
-            data = _group2dict(self._model, solution = self._solution)
+            data = _group2dict(self._model, solution=self._solution)
 
         elif isinstance(self._model, Reaction):
             if self._solution is not None:
@@ -240,23 +205,21 @@ class ForceGraphIntegration(anywidget.AnyWidget):
             else:
                 flux = 1
 
-            data = _reac2dict(self._model, flux= flux)
+            data = _reac2dict(self._model, flux=flux)
 
         else:
             raise TypeError
 
         self._model_rep = data.to_json()
 
-    _model_rep = traitlets.Unicode().tag(sync=True)
 
     _esm = """
-    import * as force from "https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min";
+    import "https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min";
 
 
     function render({ model, el }) {
     
     let cell = el.getBoundingClientRect()
-    console.log(cell.width)
 
       let elem = document.createElement("div");
       el.appendChild(elem);
