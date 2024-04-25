@@ -10,7 +10,7 @@ dependencies:
 - jupytext
 - matplotlib
 - mypy
-- python == 3.11
+- python
 - ruff
 - pre-commit
 - tqdm
@@ -29,3 +29,4 @@ dependencies:
   - sphinx-rtd-theme
   - sphinxcontrib-napoleon
   - sphinxcontrib-bibtex
+  - anywidget[dev]

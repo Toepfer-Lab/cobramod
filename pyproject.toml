@@ -31,15 +31,16 @@ dependencies = [
 [project.optional-dependencies]
 escher = ["escher-legacy>=1.7.4"]
 dev = [
-	"ruff",
-	"tox",
-  "sphinx",
-  "nbsphinx",
-  "sphinx-autoapi",
-  "jupyter-contrib-nbextensions",
-  "sphinx-rtd-theme",
-  "sphinxcontrib-napoleon",
-  "sphinxcontrib-bibtex"
+    "ruff",
+    "tox",
+    "sphinx",
+    "nbsphinx",
+    "sphinx-autoapi",
+    "jupyter-contrib-nbextensions",
+    "sphinx-rtd-theme",
+    "sphinxcontrib-napoleon",
+    "sphinxcontrib-bibtex",
+    "anywidget[dev]"
 ]
 
 [project.urls]

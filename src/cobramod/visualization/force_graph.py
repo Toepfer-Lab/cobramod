@@ -3,10 +3,9 @@ This module contains the logic to create a three-dimensional representation
 from a :py:class:`cobra.core.Group` or a :py:class:`cobra.Reaction`
 using `3d-force-graph <https://github.com/vasturiano/3d-force-graph>`_ .
 """
-
-import tempfile
-import webbrowser
+import csv
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Union, Literal, Type, Optional
 
 import anywidget
@@ -26,9 +25,30 @@ class Nodes:
 
 @dataclass(unsafe_hash=True)
 class Links:
-    source: str = field(hash=True, compare=True)
-    target: str = field(hash=True, compare=True)
+    __source: str = field(hash=True, compare=True)
+    __target: str = field(hash=True, compare=True)
     value: float = field(hash=False, compare=True)
+
+    def __init__(self, source: str, target: str, value: float):
+        self.__source = source
+        self.__target = target
+        self.value = value
+
+    @property
+    def source(self) -> str:
+        return self.__source
+
+    @source.setter
+    def source(self, value):
+        raise AttributeError("The source attribute is read only. ")
+
+    @property
+    def target(self) -> str:
+        return self.__target
+
+    @target.setter
+    def target(self, value):
+        raise AttributeError("The target attribute is read only. ")
 
     def to_json(self) -> str:
         return f"""{{"source":"{self.source}","target":"{self.target}","value":{self.value}}}"""
@@ -93,7 +113,7 @@ def _reac2dict(reaction: Reaction, flux: float = 1) -> GraphData:
 
 
 def _group2dict(
-    group: Group, solution: Union[Solution, dict] = None
+        group: Group, solution: Union[Solution, dict] = None
 ) -> GraphData:
     """
     Function that generates a :py:class:`GraphData` object from a :py:class:`cobra.Reaction`.
@@ -106,7 +126,6 @@ def _group2dict(
         A :py:class:`GraphData` object that contains the definition for the passed reaction.
 
     """
-
 
     data: GraphData = GraphData()
 
@@ -145,6 +164,10 @@ class ForceGraphIntegration(anywidget.AnyWidget):
     Widget for displaying a :py:class:`cobra.group` or :py:class:`cobra.reaction` as a force directed graph.
     """
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.on_msg(self._handle_custom_msg)
+
     _model: Union[Type[Group], Type[Reaction]] = None
     _solution: dict = None
 
@@ -168,7 +191,7 @@ class ForceGraphIntegration(anywidget.AnyWidget):
         self._create_model_rep()
 
     @property
-    def solution(self) -> Optional[Union[Type[Solution], dict[str,float]]]:
+    def solution(self) -> Optional[Union[Type[Solution], dict[str, float]]]:
         """
         The flux values to be taken into account when creating the graph. These scale the stoichiometry of the
         respective reaction. If a reaction is not found in this object, a flux of 1 is assumed. The flux values can
@@ -179,7 +202,7 @@ class ForceGraphIntegration(anywidget.AnyWidget):
         return self._solution
 
     @solution.setter
-    def solution(self, value: Union[dict[str,float], Solution]):
+    def solution(self, value: Union[dict[str, float], Solution]):
         if isinstance(value, Solution):
             value = value.fluxes.to_dict()
 
@@ -212,38 +235,43 @@ class ForceGraphIntegration(anywidget.AnyWidget):
 
         self._model_rep = data.to_json()
 
+    def save_layout(self, file: Union[str, Path]):
+        if isinstance(file, str):
+            file = Path(file)
 
-    _esm = """
-    import "https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min";
+        self.__csv_path = file
+        self.send({"type": "create_layout"})
 
+    def load_layout(self, file: Union[str, Path]):
+        if isinstance(file, str):
+            file = Path(file)
 
-    function render({ model, el }) {
-    
-    let cell = el.getBoundingClientRect()
+        with open(file) as file:
+            reader = csv.DictReader(file)
+            positions = {}
+            for row in reader:
+                key = row["ID"]
+                x = row["x"]
+                y = row["y"]
+                z = row["z"]
 
-      let elem = document.createElement("div");
-      el.appendChild(elem);
-        let graph_data = JSON.parse(model.get("_model_rep"))
-        const Graph = ForceGraph3D()(elem)
-          .graphData(graph_data)
-          .nodeLabel("id")
-          .linkOpacity(1)
-          .linkAutoColorBy("value")
-          .linkDirectionalParticles(1)
-          .linkDirectionalParticleSpeed(d => d.value * 0.001)
-          .linkDirectionalParticleWidth(4)
-          .warmupTicks(100)
-          .cooldownTicks(0)
-          .width(cell.width)
-          .height(cell.width/2)
+                positions[key] = {"x": x, "y": y, "z": z}
 
-        model.on("change:_model_rep", () => {
+        self.send({"type": "load_layout", "positions": positions})
 
-             Graph.graphData(JSON.parse(model.get("_model_rep")))
+    def _handle_custom_msg(self, data, buffers):
+        if data["type"] == "layout":
+            positions: dict[str, dict[float, float, float]] = data["positions"]
+            fieldnames = ["ID", "x", "y", "z"]
+            with open(self.__csv_path, "w") as file:
+                writer = csv.DictWriter(file, fieldnames=fieldnames)
+                writer.writeheader()
+                for key, value in positions.items():
+                    writer.writerow({
+                        "ID": key,
+                        "x": value.get("x", 0),
+                        "y": value.get("y", 0),
+                        "z": value.get("z", 0)["z"],
+                    })
 
-        });
-    }
-
-    export default { render };
-    """
-
+    _esm = Path(__file__).parent.parent / "static" / "force_graph.mjs"

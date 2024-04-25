@@ -12,3 +12,6 @@ docs/source/summary.txt
 
 # All non-essential files created/used by tox
 .tox
+
+# node_modules
+node_modules/
