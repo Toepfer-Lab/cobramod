@@ -14,6 +14,11 @@ textbook = read_sbml_model(
 textbook_biocyc = read_sbml_model(
     pkg_resources.resource_filename("cobramod", "data/textbook_biocyc.sbml")
 )
+
+textbook_biocyc_groups = read_sbml_model(
+    pkg_resources.resource_filename("cobramod", "data/textbook_biocyc_groups.sbml")
+)
+
 textbook_kegg = read_sbml_model(
     pkg_resources.resource_filename("cobramod", "data/textbook_kegg.sbml")
 )

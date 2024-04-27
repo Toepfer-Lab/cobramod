@@ -1,6 +1,6 @@
 import ForceGraph3D from '3d-force-graph';
 
-function render({ model, el }) {
+function render({ model, el }: { model: DOMWidgetModel; el: HTMLElement; }) {
 
     let cell = el.getBoundingClientRect()
 
@@ -13,7 +13,7 @@ function render({ model, el }) {
           .linkOpacity(1)
           .linkAutoColorBy("value")
           .linkDirectionalParticles(1)
-          .linkDirectionalParticleSpeed(d => d.value * 0.001)
+          .linkDirectionalParticleSpeed(d => d["value"] * 0.001)
           .linkDirectionalParticleWidth(4)
           .warmupTicks(100)
           .cooldownTicks(0)
@@ -37,7 +37,6 @@ function render({ model, el }) {
                 break;
           case "load_layout":
                 let positions = msg.positions;
-                window.Graph = Graph;
                 Graph.graphData().nodes.forEach((n) => {
                     let pos = positions[n.id];
                     n.fx = pos.x;

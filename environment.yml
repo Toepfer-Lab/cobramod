@@ -22,7 +22,7 @@ dependencies:
 - conda-forge::tox
 - conda-forge::sphinx
 - conda-forge::nbsphinx
-- conda-forge::sphinx-autoapi
+- conda-forge::sphinx-autoapi=3.1.0b0
 - conda-forge::jupyter_contrib_nbextensions
 - pip:
   - escher-legacy

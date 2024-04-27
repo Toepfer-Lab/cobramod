@@ -4,6 +4,12 @@ build:
   os: "ubuntu-22.04"
   tools:
     python: "mambaforge-22.9"
+    nodejs: "latest"
+  jobs:
+      pre_create_environment:
+        - npm install --global yarn
+        - yarn install
+        - yarn run vite build
 
 conda:
   environment: environment.yml

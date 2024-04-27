@@ -16,6 +16,7 @@ class EscherIntegration(anywidget.AnyWidget):
         map_json=None,
         reaction_scale=None,
         reaction_data=None,
+        never_ask_before_quit:bool = False,
         *args: Any,
         **kwargs: Any,
     ):
@@ -26,12 +27,14 @@ class EscherIntegration(anywidget.AnyWidget):
         self.map_json = map_json
         self.reaction_scale = reaction_scale
         self.reaction_data = reaction_data
+        self.never_ask_before_quit = never_ask_before_quit
 
     reaction_styles = traitlets.List(allow_none=True).tag(sync=True)
     map_name = traitlets.Unicode(allow_none=True).tag(sync=True)
     map_json = traitlets.Unicode(allow_none=True).tag(sync=True)
     reaction_scale = traitlets.Any(allow_none=True).tag(sync=True)
     reaction_data = traitlets.Dict(allow_none=True).tag(sync=True)
+    never_ask_before_quit = traitlets.Bool(allow_none=False).tag(sync=True)
 
     _esm = Path(__file__).parent.parent / "static" / "escher.mjs"
 

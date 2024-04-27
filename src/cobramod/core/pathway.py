@@ -1,6 +1,6 @@
 """COBRApy Group-child class extension
 
-The new class :class:`cobramod.pathway.Pathway" is child derived from
+The new class :class:`cobramod.pathway.Pathway` is child derived from
 :class:`cobra.core.group.Group`. It extends some functionalities such as:
 
 - solution: Obtain the solution for the specific members.
@@ -10,9 +10,11 @@ from __future__ import annotations
 
 import warnings
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, Literal
 
 import cobra.core as cobra_core
+
+from cobramod.visualization.force_graph import ForceGraphIntegration
 
 try:
     import escher
@@ -272,6 +274,8 @@ class Pathway(cobra_core.Group):
             Union[cobra_core.Solution, dict[str, float]]
         ] = None,
         filename: Optional[Union[str, Path]] = None,
+        vis: Literal["escher","escher-custom", "3d-force"] = "escher",
+        never_ask_before_quit: bool = False,
     ) -> Optional[escher.Builder]:
         """
         Returns a :class:`escher.Builder`, which can be used to create visual
@@ -284,6 +288,14 @@ class Pathway(cobra_core.Group):
             filename (str, Path): Path for the HTML. Defaults to
                 "pathway.html" in the current working directory.
         """
+
+        if vis == "3d-force":
+            widget = ForceGraphIntegration()
+            widget.model = self
+            widget.solution = solution_fluxes
+
+            return widget
+
         json_dict = JsonDictionary()
         if filename is None:
             filename = "pathway.html"
@@ -299,6 +311,20 @@ class Pathway(cobra_core.Group):
         json_dict.graph = self.graph.copy()
         reactions: dict[str, str] = {m.id: m.reaction for m in self.members}
         json_dict.reaction_strings = reactions
+
+        if vis == "escher-custom":
+            builder = json_dict.visualize(
+                filepath=filename,
+                vertical=self.vertical,
+                color=[self.color_positive, self.color_negative],
+                min_max=self.color_min_max,
+                quantile=self.color_quantile,
+                max_steps=self.color_max_steps,
+                n_steps=self.color_n_steps,
+                custom_integration= True,
+                never_ask_before_quit= never_ask_before_quit,
+            )
+            return builder
 
         if _has_escher:
             builder = json_dict.visualize(

@@ -8,7 +8,7 @@ export default defineConfig({
 		outDir: "./src/cobramod/static",
 		lib: {
 			entry: {
-                escher: "./js/escher.js",
+                escher: "./js/escher.ts",
                 force_graph: "./js/force_graph.ts"
             },
 			formats: ["es"],

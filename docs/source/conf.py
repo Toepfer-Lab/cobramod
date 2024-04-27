@@ -45,7 +45,8 @@ extensions = [
     # ipynb support
     "nbsphinx",
     "sphinx.ext.intersphinx",
-    "sphinxcontrib.bibtex",
+    #"sphinxcontrib.bibtex",
+    "jupyter_sphinx",
 ]
 
 bibtex_bibfiles = ["biblio.bib"]
@@ -158,7 +159,8 @@ templates_path = ["_templates"]
 # a list of builtin themes.
 #
 
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
+
 html_title = (
     "CobraMod: A pathway-centric curation tool for contraint-based "
     + "metabolic models"
@@ -177,7 +179,3 @@ html_theme_options = {"logo_only": True}
 nbsphinx_execute = "never"
 # This statement should avoid the creation of duplicates widgets
 nbsphinx_widgets_path = ""
-html_js_files = [
-    "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js",
-    DEFAULT_EMBED_REQUIREJS_URL,
-]

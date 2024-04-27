@@ -35,6 +35,8 @@ from typing import Dict, List, Optional, Tuple, Union
 import numpy as np
 import webcolors
 
+from cobramod.visualization.escher import EscherIntegration
+
 try:
     import escher
 except ImportError:
@@ -943,6 +945,8 @@ class JsonDictionary(UserDict):
         quantile: bool = False,
         max_steps: int = 100,
         n_steps: Optional[int] = None,
+        custom_integration: bool = False,
+        never_ask_before_quit: bool = False
     ):
         """
         Saves the visualization of the JsonDictionary in given path as a HTML.
@@ -1028,30 +1032,31 @@ class JsonDictionary(UserDict):
                 n_steps=n_steps,
             )
 
-        builder = escher.Builder(
-            # Check how reaction_styles behaves
-            reaction_styles=["color", "text"],
-            map_name=self.data["head"]["map_name"],
-            map_json=self.json_dump(),
-            reaction_scale=self.reaction_scale,
-        )
+        if not custom_integration:
+            builder = escher.Builder(
+                # Check how reaction_styles behaves
+                reaction_styles=["color", "text"],
+                map_name=self.data["head"]["map_name"],
+                map_json=self.json_dump(),
+                reaction_scale=self.reaction_scale,
+            )
+        else:
+            builder = EscherIntegration(
+                # Check how reaction_styles behaves
+                reaction_styles=["color", "text"],
+                map_name=self.data["head"]["map_name"],
+                map_json=self.json_dump(),
+                reaction_scale=self.reaction_scale,
+                reaction_data= self.flux_solution,
+                never_ask_before_quit = never_ask_before_quit,
+            )
+
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
-        if self.flux_solution:
-            builder.reaction_data = self.flux_solution
-        builder.save_html(filepath=filepath)
 
-        # FIXME: temporal solution to https://github.com/Toepfer-Lab/escher-legacy/pull/6
-        f = fileinput.FileInput(filepath, inplace=True)
-        for line in f:
-            if f.lineno() == 6:
-                print(line.replace("1.7.4", "1.7.3"), end="")
-            else:
-                print(line, end="")
-        f.close()
-
-        debug_log.info(f'Visualization saved in "{filepath}"')
 
         # Cleaning Up
         self._reset()
         return builder
+
+
