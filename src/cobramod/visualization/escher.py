@@ -1,11 +1,14 @@
 """
 This module contains an alternative Python integration for `Escher <https://github.com/zakandrewking/escher>`_ .
 """
+from importlib import resources
 from pathlib import Path
 from typing import Any
 
 import anywidget
 from traitlets import traitlets
+
+from cobramod import static
 
 
 class EscherIntegration(anywidget.AnyWidget):
@@ -36,5 +39,4 @@ class EscherIntegration(anywidget.AnyWidget):
     reaction_data = traitlets.Dict(allow_none=True).tag(sync=True)
     never_ask_before_quit = traitlets.Bool(allow_none=False).tag(sync=True)
 
-    _esm = Path(__file__).parent.parent / "static" / "escher.mjs"
-
+    _esm = resources.read_text(static, "escher.mjs")

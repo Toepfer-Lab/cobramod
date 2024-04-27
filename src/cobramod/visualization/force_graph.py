@@ -5,6 +5,7 @@ using `3d-force-graph <https://github.com/vasturiano/3d-force-graph>`_ .
 """
 import csv
 from dataclasses import dataclass, field
+from importlib import resources
 from pathlib import Path
 from typing import Union, Literal, Type, Optional
 
@@ -12,6 +13,8 @@ import anywidget
 from cobra import Metabolite, Reaction, Solution
 from cobra.core import Group
 from traitlets import traitlets
+
+from cobramod import static
 
 
 @dataclass(frozen=True)
@@ -274,4 +277,4 @@ class ForceGraphIntegration(anywidget.AnyWidget):
                         "z": value.get("z", 0)["z"],
                     })
 
-    _esm = Path(__file__).parent.parent / "static" / "force_graph.mjs"
+    _esm = resources.read_text(static, "force_graph.mjs")
