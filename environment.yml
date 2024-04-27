@@ -29,4 +29,4 @@ dependencies:
   - sphinxcontrib-napoleon
   - sphinxcontrib-bibtex
   - anywidget[dev]
-  - sphinx-autoapi=3.1.0b0
+  - sphinx-autoapi==3.1.0b0
