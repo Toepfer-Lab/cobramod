@@ -30,3 +30,4 @@ dependencies:
   - sphinxcontrib-bibtex
   - anywidget[dev]
   - sphinx-autoapi==3.1.0b0
+  - jupyter-sphinx
