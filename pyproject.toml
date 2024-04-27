@@ -50,6 +50,7 @@ bugtracker = "https://github.com/Toepfer-Lab/cobramod/issues"
 
 [tool.setuptools.package-data]
 "cobramod.data" = ["*.sbml"]
+"cobramod.static" = ["*"]
 
 [tool.setuptools.dynamic]
 version = {attr = "cobramod.__version__"}
