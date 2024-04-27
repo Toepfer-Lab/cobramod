@@ -58,6 +58,12 @@ The frontend is not restricted in its functionality, but the options that can be
         never_ask_before_quit= True,
     )
 
+.. autoclass:: cobramod.visualization.escher.EscherIntegration
+    :members:
+
+.. autoclass:: cobramod.visualization.escher.ReactionScale
+    :members:
+
 ----------------------
  Force-directed graph
 ----------------------
@@ -84,5 +90,10 @@ Last but not least, CobraMod offers an integration of 3d-force-directed-graph. T
     w
 
 .. autoclass:: cobramod.visualization.force_graph.ForceGraphIntegration
-    :members:
+
+    .. autoproperty:: model
+    .. autoproperty:: solution
+    .. automethod:: save_layout
+    .. automethod:: load_layout
+
 

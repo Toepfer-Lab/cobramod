@@ -139,6 +139,9 @@ autoapi_options = [
     "show-module-summary",
     "imported-members",
 ]
+
+autoclass_content = "both"
+
 napoleon_custom_sections = [
     ("Arguments for reactions", "params_style"),
     ("Special arguments for databases", "params_style"),

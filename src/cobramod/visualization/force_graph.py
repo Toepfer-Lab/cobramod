@@ -164,7 +164,7 @@ def _group2dict(
 
 class ForceGraphIntegration(anywidget.AnyWidget):
     """
-    Widget for displaying a :py:class:`cobra.group` or :py:class:`cobra.reaction` as a force directed graph.
+    Widget for displaying a :py:class:`cobra.core.group.Group` or :py:class:`cobra.Reaction` as a force directed graph.
     """
 
     def __init__(self, *args, **kwargs):
@@ -182,7 +182,7 @@ class ForceGraphIntegration(anywidget.AnyWidget):
     @property
     def model(self) -> Optional[Union[Type[Group], Type[Reaction]]]:
         """
-        The Model to be represented. It can ether be a :py:class:`cobra.group` or :py:class:`cobra.Reaction`.
+        The Model to be represented. It can ether be a :py:class:`cobra.core.group.Group` or :py:class:`cobra.Reaction`.
         It is set to None upon initialization.
         """
 
@@ -239,6 +239,15 @@ class ForceGraphIntegration(anywidget.AnyWidget):
         self._model_rep = data.to_json()
 
     def save_layout(self, file: Union[str, Path]):
+        """
+        Method to save the layout of the current display. The resulting file is a CSV containing the ID
+        of the metabolite and its X, Y and Z position in the other columns.
+
+        Args:
+            file: The path where the layout is to be saved.
+
+        """
+
         if isinstance(file, str):
             file = Path(file)
 
@@ -246,6 +255,14 @@ class ForceGraphIntegration(anywidget.AnyWidget):
         self.send({"type": "create_layout"})
 
     def load_layout(self, file: Union[str, Path]):
+        """
+        Method to restore the layout that was saved using
+        :py:meth:`cobramod.visualization.force_graph.ForceGraphIntegration.save_layout`.
+        Args:
+            file: Path to the file containing the saved layout.
+
+        """
+
         if isinstance(file, str):
             file = Path(file)
 

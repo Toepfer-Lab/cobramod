@@ -151,7 +151,7 @@ class Data:
     genome: str
     version: str
     """
-    CobraMod's Data object. This class is responsable for converting
+    CobraMod's Data object. This class is responsible for converting
     information into COBRApy objects
     """
 
