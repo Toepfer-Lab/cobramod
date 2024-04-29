@@ -8,6 +8,7 @@ Most important functions:
 - test_non_zero_flux: Checks that the given reaction in a model is active and
     gives a non-zero flux.
 """
+
 from __future__ import annotations
 
 from contextlib import suppress

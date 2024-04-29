@@ -23,6 +23,7 @@ visualizations.
 - visualize: Saves Escher visualization as a HTML and return the Escher
 Builder.
 """
+
 import fileinput
 import math
 from collections import UserDict, namedtuple

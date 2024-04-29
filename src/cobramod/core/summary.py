@@ -3,6 +3,7 @@
 This module is responsible for the short summary in the command
 line and for other summaries in different formats.
 """
+
 from __future__ import annotations
 from pathlib import Path
 from typing import Union, Optional

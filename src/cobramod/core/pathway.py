@@ -6,6 +6,7 @@ The new class :class:`cobramod.pathway.Pathway` is child derived from
 - solution: Obtain the solution for the specific members.
 - visualize: get a :class:`escher.Builder` for that specific Pathway.
 """
+
 from __future__ import annotations
 
 import warnings

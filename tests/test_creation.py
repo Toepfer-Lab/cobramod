@@ -9,6 +9,7 @@ separated in:
 - SimpleFunctions: Creation of objects
 - ComplexFunctions: Functions, that uses multiple simple functions.
 """
+
 import unittest
 from logging import DEBUG
 from pathlib import Path

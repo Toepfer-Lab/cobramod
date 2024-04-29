@@ -3,6 +3,7 @@
 This module is responsible for the creation of COBRApy Genes from the parsed
 data of the specific parsers.
 """
+
 from typing import Any
 
 import cobra.core as cobra_core

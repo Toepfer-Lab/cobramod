@@ -3,6 +3,7 @@
 This module creates special errors for CobraMod. Read each error for their
 explanation.
 """
+
 from cobramod.debug import debug_log
 
 

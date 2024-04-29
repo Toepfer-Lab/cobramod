@@ -3,6 +3,7 @@
 Unit-test for data retrieval and Data version configuration. It checks that
 the files are loaded and saved properly
 """
+
 import logging
 import shutil
 import tempfile

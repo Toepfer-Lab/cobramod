@@ -6,6 +6,7 @@ This module includes two TestCases:
 - TestItems: Creation and behavior of JSON objects for the Escher-schema
 - TestJsonDictionary: Testing the methods inside the JsonDictionary
 """
+
 import unittest
 from contextlib import suppress
 from pathlib import Path
