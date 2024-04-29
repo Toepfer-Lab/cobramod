@@ -1,8 +1,10 @@
 """
 This module contains an alternative Python integration for `Escher <https://github.com/zakandrewking/escher>`_ .
 """
+
 from importlib import resources
-from typing import Any, Optional, Dict, TypedDict, Literal, List
+from pathlib import Path
+from typing import Any, Optional, Dict, TypedDict, Literal, List, Union
 
 import anywidget
 from traitlets import traitlets
@@ -15,16 +17,17 @@ class ReactionScale(TypedDict):
     A Python class that represents the options available in Escher. It defines one point on the color scale.
 
     Args:
-        type: The type of definition. A specific value can be used here (value), by means of
+        type (Literal["min", "max", "mean", "median", "Q1", "Q3", "value"]): The type of definition. A specific value can be used here (value), by means of
             quantiles (“Q1” or “Q3”) or by means of minimum maximum median or mean.
-        value: It is only used to set the value if type value was used.
-        color: The color to be used for the specified area.
-        size: The width of the reactions covered by this definition.
+        value (Optional[float]): It is only used to set the value if type value was used.
+        color (str): The color to be used for the specified area.
+        size (int): The width of the reactions covered by this definition.
 
     Notes:
         ReactionScale should only be an orientation for the possible options in Python. For further explanations and
         examples, please refer to `Escher's JavaScript documentation for 'escher.Builder.options.reaction_scale'. <https://escher.readthedocs.io/en/latest/javascript_api.html#escher.Builder.options.reaction_scale>`_
     """
+
     type: Literal["min", "max", "mean", "median", "Q1", "Q3", "value"]
     value: Optional[float]
     color: str
@@ -38,15 +41,13 @@ class EscherIntegration(anywidget.AnyWidget):
     """
 
     def __init__(
-            self,
-            map_name: Optional[str] = None,
-            map_json: Optional[str] = None,
-            reaction_data: Optional[Dict[str, float]] = None,
-            reaction_scale: Optional[List[ReactionScale]] = None,
-            reaction_styles=None,
-            never_ask_before_quit: bool = False,
-            *args: Any,
-            **kwargs: Any,
+        self,
+        map_name: Optional[str] = None,
+        map_json: Optional[str] = None,
+        reaction_data: Optional[Dict[str, float]] = None,
+        reaction_scale: Optional[List[ReactionScale]] = None,
+        reaction_styles: List[Any] = None,
+        never_ask_before_quit: bool = False,
     ):
         """
 
@@ -58,14 +59,12 @@ class EscherIntegration(anywidget.AnyWidget):
                 `JSON schema <https://github.com/zakandrewking/escher/blob/master/jsonschema/1-0-0>`_.
             reaction_data: A dictionary of key-value pairs, where the keys are reaction IDs and the values are flux
                 values.
-            reaction_scale: A list consisting of ReactionScale.
+            reaction_scale: A list consisting of :py:class:`~cobramod.visualization.escher.ReactionScale`.
                 This list must consist of at least two ReactionScales when it is used.
             reaction_styles:
             never_ask_before_quit:
-            *args:
-            **kwargs:
         """
-        super().__init__(*args, **kwargs)
+        super().__init__()
 
         self.reaction_styles = reaction_styles
         self.map_name = map_name
@@ -82,3 +81,64 @@ class EscherIntegration(anywidget.AnyWidget):
     never_ask_before_quit = traitlets.Bool(allow_none=False).tag(sync=True)
 
     _esm = resources.read_text(static, "escher.mjs")
+
+    @property
+    def model_data(self):
+        return "null"
+
+    @property
+    def embedded_css(self):
+        return "null"
+
+    @property
+    def options(self):
+        return {
+            "reaction_styles": self.reaction_styles,
+            "reaction_data": self.reaction_data,
+            "reaction_scale": self.reaction_scale,
+            "never_ask_before_quit": "true"
+            if self.never_ask_before_quit
+            else "false",
+        }
+
+    def save_html(self, filepath: Union[str, Path]):
+        """
+        This method creates a standalone HTML file that contains all the data of the
+        Escher map and loads it automatically when it is opened.
+
+        Args:
+            filepath: The file in which the HTML file is to be saved.
+
+        """
+
+        html_rep = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <title>Escher</title>
+        
+            <script src="https://unpkg.com/escher@1.7.3/dist/escher.min.js"></script>
+        
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+          </head>
+          <body>
+            <div style="height: 100%; width: 100%;" id="map-container"></div>
+        
+            <script>
+             escher.Builder(
+                {self.map_json}, 
+                {self.model_data}, 
+                {self.embedded_css},
+                escher.libs.d3_select('#map-container'), 
+                {self.options},
+             );
+            </script>
+          </body>
+        </html>
+        """
+        if isinstance(filepath, str):
+            filepath = Path(filepath)
+
+        with open(filepath, "w") as f:
+            f.write(html_rep)

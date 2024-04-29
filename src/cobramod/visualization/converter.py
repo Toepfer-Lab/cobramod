@@ -24,7 +24,6 @@ visualizations.
 Builder.
 """
 
-import fileinput
 import math
 from collections import UserDict, namedtuple
 from contextlib import suppress
@@ -947,7 +946,7 @@ class JsonDictionary(UserDict):
         max_steps: int = 100,
         n_steps: Optional[int] = None,
         custom_integration: bool = False,
-        never_ask_before_quit: bool = False
+        never_ask_before_quit: bool = False,
     ):
         """
         Saves the visualization of the JsonDictionary in given path as a HTML.
@@ -1048,16 +1047,13 @@ class JsonDictionary(UserDict):
                 map_name=self.data["head"]["map_name"],
                 map_json=self.json_dump(),
                 reaction_scale=self.reaction_scale,
-                reaction_data= self.flux_solution,
-                never_ask_before_quit = never_ask_before_quit,
+                reaction_data=self.flux_solution,
+                never_ask_before_quit=never_ask_before_quit,
             )
 
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
 
-
         # Cleaning Up
         self._reset()
         return builder
-
-

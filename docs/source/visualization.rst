@@ -59,10 +59,13 @@ The frontend is not restricted in its functionality, but the options that can be
     )
 
 .. autoclass:: cobramod.visualization.escher.EscherIntegration
+    :show-inheritance:
     :members:
 
 .. autoclass:: cobramod.visualization.escher.ReactionScale
+    :show-inheritance:
     :members:
+
 
 ----------------------
  Force-directed graph

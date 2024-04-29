@@ -3,6 +3,7 @@ This module contains the logic to create a three-dimensional representation
 from a :py:class:`cobra.core.Group` or a :py:class:`cobra.Reaction`
 using `3d-force-graph <https://github.com/vasturiano/3d-force-graph>`_ .
 """
+
 import csv
 from dataclasses import dataclass, field
 from importlib import resources
@@ -116,7 +117,7 @@ def _reac2dict(reaction: Reaction, flux: float = 1) -> GraphData:
 
 
 def _group2dict(
-        group: Group, solution: Union[Solution, dict] = None
+    group: Group, solution: Union[Solution, dict] = None
 ) -> GraphData:
     """
     Function that generates a :py:class:`GraphData` object from a :py:class:`cobra.Reaction`.
@@ -167,8 +168,9 @@ class ForceGraphIntegration(anywidget.AnyWidget):
     Widget for displaying a :py:class:`cobra.core.group.Group` or :py:class:`cobra.Reaction` as a force directed graph.
     """
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self):
+        """ """
+        super().__init__()
         self.on_msg(self._handle_custom_msg)
 
     _model: Union[Type[Group], Type[Reaction]] = None
@@ -257,7 +259,8 @@ class ForceGraphIntegration(anywidget.AnyWidget):
     def load_layout(self, file: Union[str, Path]):
         """
         Method to restore the layout that was saved using
-        :py:meth:`cobramod.visualization.force_graph.ForceGraphIntegration.save_layout`.
+        :py:meth:`~cobramod.visualization.force_graph.ForceGraphIntegration.save_layout`.
+
         Args:
             file: Path to the file containing the saved layout.
 
@@ -287,11 +290,13 @@ class ForceGraphIntegration(anywidget.AnyWidget):
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
                 writer.writeheader()
                 for key, value in positions.items():
-                    writer.writerow({
-                        "ID": key,
-                        "x": value.get("x", 0),
-                        "y": value.get("y", 0),
-                        "z": value.get("z", 0)["z"],
-                    })
+                    writer.writerow(
+                        {
+                            "ID": key,
+                            "x": value.get("x", 0),
+                            "y": value.get("y", 0),
+                            "z": value.get("z", 0)["z"],
+                        }
+                    )
 
     _esm = resources.read_text(static, "force_graph.mjs")

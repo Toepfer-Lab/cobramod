@@ -25,7 +25,8 @@ dependencies = [
     "tqdm>=4.62.3",
     "openpyxl>=3.1.2",
     "webcolors>=1.13",
-    "pyarrow>=14.0.2"
+    "pyarrow>=14.0.2",
+    "anywidget>=0.9.9"
 ]
 
 [project.optional-dependencies]
@@ -40,13 +41,16 @@ dev = [
     "sphinx-rtd-theme",
     "sphinxcontrib-napoleon",
     "sphinxcontrib-bibtex",
-    "anywidget[dev]"
 ]
 
 [project.urls]
 homepage = "https://github.com/Toepfer-Lab/cobramod"
 Documentation = "https://cobramod.readthedocs.io/"
 bugtracker = "https://github.com/Toepfer-Lab/cobramod/issues"
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.package-data]
 "cobramod.data" = ["*.sbml"]

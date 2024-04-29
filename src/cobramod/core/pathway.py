@@ -275,7 +275,7 @@ class Pathway(cobra_core.Group):
             Union[cobra_core.Solution, dict[str, float]]
         ] = None,
         filename: Optional[Union[str, Path]] = None,
-        vis: Literal["escher","escher-custom", "3d-force"] = "escher",
+        vis: Literal["escher", "escher-custom", "3d-force"] = "escher",
         never_ask_before_quit: bool = False,
     ) -> Optional[escher.Builder]:
         """
@@ -322,8 +322,8 @@ class Pathway(cobra_core.Group):
                 quantile=self.color_quantile,
                 max_steps=self.color_max_steps,
                 n_steps=self.color_n_steps,
-                custom_integration= True,
-                never_ask_before_quit= never_ask_before_quit,
+                custom_integration=True,
+                never_ask_before_quit=never_ask_before_quit,
             )
             return builder
 

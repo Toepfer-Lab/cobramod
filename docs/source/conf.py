@@ -45,7 +45,7 @@ extensions = [
     # ipynb support
     "nbsphinx",
     "sphinx.ext.intersphinx",
-    #"sphinxcontrib.bibtex",
+    "sphinxcontrib.bibtex",
     "jupyter_sphinx",
 ]
 
@@ -129,9 +129,9 @@ intersphinx_mapping = {
     "escher": ("https://escher.readthedocs.io/en/latest/", None),
 }
 autoapi_dirs = ["../../src/cobramod"]
-autoapi_root = "module"
+autoapi_root = "autoapi"
 autoapi_generate_api_docs = True
-autoapi_add_toctree_entry = False
+autoapi_add_toctree_entry = True
 autoapi_options = [
     "members",
     "undoc-members",
@@ -141,11 +141,29 @@ autoapi_options = [
 ]
 
 autoclass_content = "both"
+autodoc_typehints = "description"
 
 napoleon_custom_sections = [
     ("Arguments for reactions", "params_style"),
     ("Special arguments for databases", "params_style"),
 ]
+
+# Napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+napoleon_include_init_with_doc = False
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = True
+napoleon_use_admonition_for_examples = False
+napoleon_use_admonition_for_notes = False
+napoleon_use_admonition_for_references = False
+napoleon_use_ivar = False
+napoleon_use_param = True
+napoleon_use_rtype = True
+napoleon_preprocess_types = False
+napoleon_type_aliases = None
+napoleon_attr_annotations = True
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
