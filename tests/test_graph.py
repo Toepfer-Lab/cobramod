@@ -4,6 +4,7 @@
 In this modules, the new algorithm is tested. The TestCase GraphTesting checks
 that the behavior of all important functions works as intended
 """
+
 import unittest
 from pathlib import Path
 from typing import Any

@@ -10,6 +10,7 @@ acquired
 
 They change identifiers depending on the model given. BiGG have multiple models
 """
+
 from __future__ import annotations
 
 from contextlib import suppress

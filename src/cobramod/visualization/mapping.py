@@ -6,6 +6,7 @@ used in Escher. The main function is
 is lineal and creates the representation in a matrix. In case of cyclic path,
 it will cut it.
 """
+
 from itertools import chain
 from typing import Dict, List
 

@@ -7,6 +7,7 @@ The possible type of data that can be downloaded:
 - Reactions: Can have the words "RXN" in the identifier. Enzymes can sometimes
 be used instead. The gene information for the reactions is included if found.
 """
+
 from __future__ import annotations
 
 import urllib.parse

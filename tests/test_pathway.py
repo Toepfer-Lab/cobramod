@@ -5,6 +5,7 @@ This module includes the TestCase TestGroup. This checks the behavior of the
 new child of :obj:`cobra.core.group.Group` "Pathway". This new class is able
 to use Escher for its visualizations.
 """
+
 import unittest
 from json import loads
 from pathlib import Path

@@ -9,6 +9,7 @@ build_graph: From given dictionary with Parent-reaction:children-reaction,
 return the corresponding non-cyclic directed graph.
 
 """
+
 from __future__ import annotations
 
 from collections import Counter

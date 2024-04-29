@@ -7,6 +7,7 @@ will results in different files. The default level is set to INFO.
 
 The name of logger variable is `debug_log`
 """
+
 import datetime as dt
 import logging
 from pathlib import Path
