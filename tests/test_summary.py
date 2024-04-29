@@ -4,6 +4,7 @@
 This modules checks functions responsable for the creation of txt, csv and xlsx
 files.
 """
+
 import tempfile
 from pathlib import Path
 from unittest import TestCase, main

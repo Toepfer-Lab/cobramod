@@ -3,6 +3,7 @@
 The main functions to parse Metabolites and Reactions are found in the module
 Biocyc
 """
+
 import urllib.parse
 import xml.etree.ElementTree as et
 from pathlib import Path

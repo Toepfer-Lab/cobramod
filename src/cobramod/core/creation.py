@@ -5,6 +5,7 @@ This module handles the creation of COBRApy's objects
 :class:`cobra.core.reaction.Reaction`. Dictionaries containing the data of a
 given database are used.
 """
+
 from __future__ import annotations
 
 from contextlib import suppress

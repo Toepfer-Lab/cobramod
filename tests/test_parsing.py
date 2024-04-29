@@ -10,6 +10,7 @@ the different databases. The module is separated according to the databases:
 - TestPlantCyc: For PlantCyc
 - TestSolcyc: For SolCyc
 """
+
 import unittest
 from pathlib import Path
 

@@ -8,6 +8,7 @@ The possible type of data that can be downloaded:
 gene information for reactions is also included if the specie is specified
 - Module Pathways: Identifiers that start with the letter M, e.g M00001
 """
+
 from __future__ import annotations
 
 from contextlib import suppress

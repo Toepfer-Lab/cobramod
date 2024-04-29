@@ -10,6 +10,7 @@ the position of all dots in the canvas.
 - Reaction: Represents a reaction. They contain the needed segments for the
 visualization of the pathway.
 """
+
 from contextlib import suppress
 from collections import UserDict
 from typing import Any

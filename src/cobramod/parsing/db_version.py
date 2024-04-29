@@ -6,6 +6,7 @@ obtaining and comparing the version from the obtained metabolic data.
 It uses the same structure of using a Singleton for the configuration in
 COBRApy
 """
+
 from pathlib import Path
 from typing import Optional, Union
 

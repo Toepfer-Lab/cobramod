@@ -9,6 +9,7 @@ Additionally, this package includes high level functions such as `get_data`,
 `file_to_Data_class` or `get_response` that handles the data retrieval or
 convertion
 """
+
 from __future__ import annotations
 
 import json
@@ -196,9 +197,11 @@ class Data:
             )
             info_response.raise_for_status()
 
-            with path.parents[1].joinpath("database_version").open(
-                mode="w+"
-            ) as f:
+            with (
+                path.parents[1]
+                .joinpath("database_version")
+                .open(mode="w+") as f
+            ):
                 f.write(info_response.text)
             version = info_response.json().get("bigg_models_version")
 

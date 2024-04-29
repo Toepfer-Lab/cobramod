@@ -7,6 +7,7 @@ Configures the debug logging tool. The format follows the syntax: `(asctime)
 
 The name of logger variable is `visualization`
 """
+
 import datetime as dt
 import logging
 from pathlib import Path

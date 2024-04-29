@@ -4,6 +4,7 @@ This module creates the textbook models for testing. These are based on the
 original model "e_coli_core" from BiGG database, which are also included in
 COBRApy.
 """
+
 import pkg_resources
 from cobra.io import read_sbml_model
 
