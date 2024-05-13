@@ -15,3 +15,7 @@ docs/source/summary.txt
 
 # node_modules
 node_modules/
+
+# ui test results
+ui-tests/playwright-report
+ui-tests/test-results

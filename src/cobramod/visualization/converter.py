@@ -24,6 +24,7 @@ visualizations.
 Builder.
 """
 
+import fileinput
 import math
 from collections import UserDict, namedtuple
 from contextlib import suppress
@@ -1040,6 +1041,20 @@ class JsonDictionary(UserDict):
                 map_json=self.json_dump(),
                 reaction_scale=self.reaction_scale,
             )
+
+            if self.flux_solution:
+                builder.reaction_data = self.flux_solution
+            builder.save_html(filepath=filepath)
+
+            f = fileinput.FileInput(filepath, inplace=True)
+            for line in f:
+                if f.lineno() == 6:
+                    print(line.replace("1.7.4", "1.7.3"), end="")
+                else:
+                    print(line, end="")
+            f.close()
+            debug_log.info(f'Visualization saved in "{filepath}"')
+
         else:
             builder = EscherIntegration(
                 # Check how reaction_styles behaves

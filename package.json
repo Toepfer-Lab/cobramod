@@ -7,7 +7,8 @@
     "test": "npx playwright test",
     "test:debug": "PWDEBUG=1 npx playwright test",
     "test:report": "http-server ./playwright-report -a localhost -o",
-    "test:update": "npx playwright test --update-snapshots"
+    "test:update": "npx playwright test --update-snapshots",
+    "build": "yarn run vite build"
   },
   "dependencies": {
     "3d-force-graph": "^1.73.3",
@@ -20,6 +21,7 @@
     "check-licenses": "^1.1.0",
     "esbuild": "0.20.2",
     "esbuild-plugin-license": "^1.2.2",
+    "http-server": "^14.1.1",
     "react": "^18.2.0",
     "rollup-plugin-license": "^3.3.1",
     "tldrlegal": "^1.0.11",

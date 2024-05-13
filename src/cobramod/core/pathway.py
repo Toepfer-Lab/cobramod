@@ -338,12 +338,22 @@ class Pathway(cobra_core.Group):
                 n_steps=self.color_n_steps,
             )
             debug_log.info(f'Visualization saved in "{filename}"')
+            warnings.warn(
+                "The use of Escher's own Python integration will be removed in a future CobraMod version to "
+                "avoid installation problems due to dependency incompatibilities. Instead, you can use "
+                "CobraMod's built-in Escher integration. To use it, simply pass 'escher-custom' as an "
+                "argument to 'vis'.",
+                category=DeprecationWarning,
+                stacklevel=2,
+            )
+
             return builder
         else:
             warnings.warn(
                 "Package Escher was not found. No visualization in available. "
                 "You can install this extra-dependency running "
-                "'pip install cobramod[escher]'"
+                "'pip install cobramod[escher]'. Alternatively, you can use CobraMod's own integration of Escher. "
+                "To use it, just specify 'escher-custom' for the 'vis' argument."
             )
             return
 

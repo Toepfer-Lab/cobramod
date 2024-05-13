@@ -3,6 +3,8 @@
     function render({ model, el }: { model: DOMWidgetModel; el: HTMLElement; }) {
 
         let elem = document.createElement("div");
+        let cell = el.getBoundingClientRect()
+
         el.appendChild(elem);
 
         let reaction_styles = model.get("reaction_styles");
@@ -11,6 +13,9 @@
         let reaction_data = model.get("reaction_data");
         let reaction_scale = model.get("reaction_scale");
         let never_ask_before_quit: boolean = model.get("never_ask_before_quit")
+
+        elem.style.width = cell.width.toString()+"px"
+        elem.style.height = cell.width.toString()+"px"
 
         let builder = Builder(
             JSON.parse(map_json),
