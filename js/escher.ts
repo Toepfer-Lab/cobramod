@@ -15,7 +15,10 @@
         let never_ask_before_quit: boolean = model.get("never_ask_before_quit")
 
         elem.style.width = cell.width.toString()+"px"
-        elem.style.height = cell.width.toString()+"px"
+
+        // The left toolbar has a height of 335px with a padding of 20% - 34px
+        let height = Math.max(cell.width/2, 350 + cell.width * 0.2 - 34)
+        elem.style.height = height.toString()+"px"
 
         let builder = Builder(
             JSON.parse(map_json),

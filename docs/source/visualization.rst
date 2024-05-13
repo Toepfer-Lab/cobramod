@@ -9,15 +9,11 @@ create a 2-dimensional representation and on the other hand using
 ----------
  Escher
 ----------
-
-.. admonition:: Deprecated
-   :class: caution
-
-    .. deprecated:: 1.4.0
-        The original Python integration of Escher will be removed in a future release due to dependency conflicts with
-        Jupyter. It is no longer listed as a dependency in CobraMod and is therefore not automatically installed or
-        tested as of version 1.4.0. It is only available to maintain compatibility with older environments.
-        The integration embedded in CobraMod will take its place in the future. (See `Escher-custom`_)
+.. deprecated:: 1.3.0
+    The original Python integration of Escher will be removed in a future release due to dependency conflicts with
+    Jupyter. It is no longer listed as a dependency in CobraMod and is therefore not automatically installed or
+    tested as of version 1.3.0. It is only available to maintain compatibility with older environments.
+    The integration embedded in CobraMod will take its place in the future. (See `Escher-custom`_)
 
 CobraMod uses Escher to visualize pathways and fluxes. Each CobraMod pathway includes a visualization method
 Pathway.visualize() which automatically generates pathway maps of the respective set of reactions. These
@@ -115,12 +111,10 @@ CobraMod pathway maps are saved as HTML files with the default name pathway.html
 
 .. automethod:: cobramod.core.pathway.Pathway.visualize
 
-testen
-
 ------------------
  Escher-custom
 ------------------
-.. versionadded:: 1.4.0
+.. versionadded:: 1.3.0
 
 Since the original Escher integration for Jupyter enforces dependencies that conflict with current versions of Jupyter Notebook and Jupyter Lab and can either be installed with significant additional effort or sometimes not at all, CobraMod offers its own integration for Escher.
 
@@ -162,7 +156,7 @@ The frontend is not restricted in its functionality, but the options that can be
 ----------------------
  Force-directed graph
 ----------------------
-.. versionadded:: 1.4.0
+.. versionadded:: 1.3.0
 
 Last but not least, CobraMod offers an integration of 3d-force-directed-graph. This enables a direct representation of a cobrapy group, reaction or cobraMod pathway object in a three-dimensional representation.
 

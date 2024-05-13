@@ -1,4 +1,6 @@
 """
+.. versionadded:: 1.3.0
+
 This module contains an alternative Python integration for `Escher <https://github.com/zakandrewking/escher>`_ .
 """
 

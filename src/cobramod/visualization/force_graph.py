@@ -1,4 +1,6 @@
 """
+.. versionadded:: 1.3.0
+
 This module contains the logic to create a three-dimensional representation
 from a :py:class:`cobra.core.Group` or a :py:class:`cobra.Reaction`
 using `3d-force-graph <https://github.com/vasturiano/3d-force-graph>`_ .
@@ -165,6 +167,8 @@ def _group2dict(
 
 class ForceGraphIntegration(anywidget.AnyWidget):
     """
+    .. versionadded:: 1.3.0
+
     Widget for displaying a :py:class:`cobra.core.group.Group` or :py:class:`cobra.Reaction` as a force directed graph.
     """
 
