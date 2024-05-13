@@ -1,15 +1,21 @@
+<div align="center">
+
 ![Static Badge](https://img.shields.io/badge/python-3.10%7C3.11%7C3.12-%20blue)
 ![GitHub](https://img.shields.io/github/license/Toepfer-Lab/cobramod)
+[![Downloads](https://img.shields.io/pepy/dt/cobramod
+)](https://pepy.tech/project/cobramod)
+
+![Version](https://img.shields.io/pypi/v/cobramod?label=version)
 ![Read the Docs (version)](https://img.shields.io/readthedocs/cobramod/latest)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Toepfer-lab/cobramod/test-build-and-publish.yml)
-![Version](https://img.shields.io/pypi/v/cobramod?label=version)
-[![Downloads](https://pepy.tech/badge/cobramod)](https://pepy.tech/project/cobramod)
-
+![Coverage Status](./docs/source/img/coverage.svg)
 
 CobraMod: A pathway-centric curation tool for constraint-based metabolic models
 ===============================================================================
 
+
 ![image](https://raw.githubusercontent.com/Toepfer-Lab/cobramod/master/docs/source/img/logo.png)
+</div>
 
 CobraMod is a Python 3 open-source package for pathway-centric curation of
 genome-scale metabolic models (GEMs). It builds upon the 
