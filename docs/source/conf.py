@@ -189,7 +189,7 @@ html_title = (
 html_short_titel = "CobraMod"
 html_static_path = ["_static"]
 html_logo = "logo_2.png"
-html_theme_options = {"logo_only": True}
+html_theme_options = {"sidebar_hide_name": True}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
