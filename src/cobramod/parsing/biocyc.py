@@ -115,9 +115,9 @@ def get_direction_from_xml(root: et.Element) -> str:
 def parse_reaction_attributes(
     root: et.Element, entry: str, gene_directory: Path
 ) -> dict[str, Any]:
-    name = root.find("*[@ID]/enzymatic-reaction/*/common-name")
-    if name is not None and name.text:
-        name = name.text
+    name_element = root.find("*[@ID]/enzymatic-reaction/*/common-name")
+    if name_element is not None and name_element.text:
+        name = name_element.text
     else:
         name = entry
     equation = reaction_str_from_xml(root)

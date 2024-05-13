@@ -617,7 +617,7 @@ def get_file_reactions(
 def create_object(
     identifier: str,
     directory: Union[Path, str],
-    database: str,
+    database: Optional[str],
     compartment: str,
     replacement: dict[str, str] = {},
     show_imbalance: bool = True,
@@ -635,7 +635,7 @@ def create_object(
     Args:
         identifier (str): Original identifier of the database.
         directory (Path): Path to directory where data is stored.
-        database (str): Name of database. Check
+        database (Optional[str]): Name of database. Check
             :obj:`cobramod.retrieval.available_databases` for a list of names.
         compartment (str): Location of the object. In case of reaction, all
             metabolites will be included in the same location.
@@ -771,13 +771,14 @@ def add_metabolites(
     if isinstance(obj, str):
         obj = Path(obj).absolute()
 
+    metabolites: list[cobra_core.Metabolite]
     if isinstance(obj, Path):
         metabolites = get_file_metabolites(
             model, obj, replacement, directory, database, model_id
         )
 
     elif isinstance(obj, list):
-        metabolites: list[cobra_core.Metabolite] = []
+        metabolites = []
 
         for item in obj:
             if isinstance(item, cobra_core.Metabolite):
@@ -939,6 +940,7 @@ def add_reactions(
         obj = Path(obj).absolute()
 
     # In case of a Path
+    reactions: list[cobra_core.Reaction]
     if isinstance(obj, Path):
         reactions = get_file_reactions(
             model=model,
@@ -953,7 +955,7 @@ def add_reactions(
         )
 
     elif isinstance(obj, list):
-        reactions: list[cobra_core.Reaction] = []
+        reactions = []
 
         for item in obj:
             if isinstance(item, str):

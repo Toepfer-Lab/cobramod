@@ -36,7 +36,7 @@ debug_log.addHandler(stream_handler)
 
 # File logs
 format_str = "[%(asctime)s] %(levelname)s %(message)s"
-formatter = logging.Formatter(format_str, TIME_STR)
+formatter_file = logging.Formatter(format_str, TIME_STR)
 
 log_dir = Path("logs").absolute()
 log_dir.mkdir(exist_ok=True)
@@ -45,7 +45,7 @@ log_path = log_dir.joinpath(
 )
 
 debug_handler = logging.FileHandler(log_path, mode="a+")
-debug_handler.setFormatter(formatter)
+debug_handler.setFormatter(formatter_file)
 
 debug_log.addHandler(debug_handler)
 

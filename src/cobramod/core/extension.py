@@ -35,7 +35,7 @@ def yield_reaction_from_list(
     sequence: list[str],
     compartment: str,
     directory: Path,
-    database: str,
+    database: Optional[str],
     show_imbalance: bool,
     stop_imbalance: bool,
     replacement: dict,
@@ -52,7 +52,7 @@ def yield_reaction_from_list(
     Args:
         sequence (list): Identifiers for the reactions.
         directory (Path): Path to directory where data is located.
-        database (str): Name of the database. Check
+        database (Optional[str]): Name of the database. Check
             :obj:`cobramod.available_databases` for a list of names.
         compartment (str): Location of the reaction.
         replacement (dict): Original identifiers to be replaced.
@@ -587,21 +587,21 @@ def add_pathway_from_data(
         previous: str = ""
         for i, reaction in enumerate(sequence):
             if i == len(sequence) - 1:
-                graph[reaction.id] = None
+                graph[reaction.id] = None  # type: ignore
 
             if previous:
                 value = graph.get(previous)
 
                 if not value:
-                    value = reaction.id
+                    value = reaction.id  # type: ignore
 
                 elif isinstance(value, tuple):
-                    a = list(value) + [reaction.id]
-                    value = tuple(a)
+                    a = list(value) + [reaction.id]  # type: ignore
+                    value = tuple(a)  # type: ignore
 
                 graph[previous] = value
 
-            previous = reaction.id
+            previous = reaction.id  # type: ignore
 
         # Add to model
         add_reactions_to_Pathway(
@@ -626,7 +626,7 @@ def add_pathway_from_strings(
     model: cobra_core.Model,
     identifier: str,
     sequence: list[str],
-    database: str,
+    database: Optional[str],
     compartment: str,
     directory: Path,
     avoid_list: list[str],
@@ -645,7 +645,7 @@ def add_pathway_from_strings(
         model (Model): Model to expand.
         identifier (str): Common :class:`cobramod.pathway.Pathway` identifier.
         sequence (list): List reaction identifiers.
-        database (str): Name of the database.
+        database (Optional[str]): Name of the database.
             Check :obj:`cobramod.available_databases` for a list of names.
         compartment: Location of the reactions.
         directory (Path): Path for directory to store and retrieve data.

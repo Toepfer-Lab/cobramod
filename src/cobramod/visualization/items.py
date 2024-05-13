@@ -13,7 +13,7 @@ visualization of the pathway.
 
 from contextlib import suppress
 from collections import UserDict
-from typing import Any
+from typing import Any, Optional
 
 from cobramod.error import NodeAttributeError
 from cobramod.visualization.pair import PairDictionary
@@ -34,8 +34,8 @@ class Node(UserDict):
         node_type: str,
         x: float,
         y: float,
-        label_x: float = None,
-        label_y: float = None,
+        label_x: Optional[float] = None,
+        label_y: Optional[float] = None,
         bigg_id: str = "",
         name: str = "",
         node_is_primary: bool = False,

@@ -102,7 +102,7 @@ class Pathway(cobra_core.Group):
         )
 
         # Loop has to be after __init__, otherwise, behavior of class changes.
-        self.graph = dict()
+        self.graph = dict()  # type: ignore
         self.notes: dict[str, Any] = {"ORDER": dict()}
 
         if members:
@@ -363,7 +363,7 @@ class Pathway(cobra_core.Group):
                 "'pip install cobramod[escher]'. Alternatively, you can use CobraMod's own integration of Escher. "
                 "To use it, just specify 'escher-custom' for the 'vis' argument."
             )
-            return
+            return None
 
     def _repr_html_(self):
         """

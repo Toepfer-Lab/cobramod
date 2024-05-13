@@ -264,7 +264,7 @@ class JsonDictionary(UserDict):
             "height": self.CANVAS_HEIGHT,
         }
 
-    def json_dump(self, indent: int = None) -> str:
+    def json_dump(self, indent: Optional[int] = None) -> str:
         """
         Returns a string that is the JSON representation of this class.
 
@@ -781,10 +781,10 @@ class JsonDictionary(UserDict):
     def color_grading(
         self,
         color: List[Union[str, List[int], None]],
-        min_max: List[float] = None,
+        min_max: Optional[List[float]] = None,
         quantile: bool = False,
         max_steps: int = 100,
-        n_steps: int = None,
+        n_steps: Optional[int] = None,
     ):
         """
         Function that creates a color scale between two predefined colors. The

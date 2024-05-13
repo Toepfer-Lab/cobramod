@@ -16,6 +16,8 @@ from cobramod import static
 
 class ReactionScale(TypedDict):
     """
+    .. versionadded:: 1.3.0
+
     A Python class that represents the options available in Escher. It defines one point on the color scale.
 
     Args:
@@ -38,6 +40,8 @@ class ReactionScale(TypedDict):
 
 class EscherIntegration(anywidget.AnyWidget):
     """
+    .. versionadded:: 1.3.0
+
     An alternative Python integration for `Escher <https://github.com/zakandrewking/escher>`_ .
 
     """
@@ -48,14 +52,14 @@ class EscherIntegration(anywidget.AnyWidget):
         map_json: Optional[str] = None,
         reaction_data: Optional[Dict[str, float]] = None,
         reaction_scale: Optional[List[ReactionScale]] = None,
-        reaction_styles: List[Any] = None,
+        reaction_styles: Optional[List[Any]] = None,
         never_ask_before_quit: bool = False,
     ):
         """
 
         Args:
             map_name: The name to be used by Escher for the map.
-            map_json: The data structure to be displayed is encoded in JSON. Please refer to
+            map_json: The data structure to be displayed encoded in JSON. Please refer to
                 `Escher's documentation <https://escher.readthedocs.io/en/latest/convert_maps.html>`_
                 for more information or to the
                 `JSON schema <https://github.com/zakandrewking/escher/blob/master/jsonschema/1-0-0>`_.
@@ -75,11 +79,15 @@ class EscherIntegration(anywidget.AnyWidget):
         self.reaction_data = reaction_data
         self.never_ask_before_quit = never_ask_before_quit
 
-    reaction_styles = traitlets.List(allow_none=True).tag(sync=True)
+    reaction_styles: Optional[List[Any]] = traitlets.List(allow_none=True).tag(
+        sync=True
+    )  # type: ignore
     map_name = traitlets.Unicode(allow_none=True).tag(sync=True)
     map_json = traitlets.Unicode(allow_none=True).tag(sync=True)
     reaction_scale = traitlets.Any(allow_none=True).tag(sync=True)
-    reaction_data = traitlets.Dict(allow_none=True).tag(sync=True)
+    reaction_data: Optional[Dict[str, float]] = traitlets.Dict(
+        allow_none=True
+    ).tag(sync=True)  # type: ignore
     never_ask_before_quit = traitlets.Bool(allow_none=False).tag(sync=True)
 
     _esm = resources.read_text(static, "escher.mjs")

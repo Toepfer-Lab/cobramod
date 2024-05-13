@@ -62,12 +62,18 @@ class Links:
 
 @dataclass()
 class GraphData:
-    nodes: set[Optional[Nodes]] = field(default_factory=set)
-    links: set[Optional[Links]] = field(default_factory=set)
+    nodes: set[Nodes] = field(default_factory=set)
+    links: set[Links] = field(default_factory=set)
 
     def to_json(self) -> str:
-        node_str = ",".join(x.to_json() for x in self.nodes)
-        link_str = ",".join(x.to_json() for x in self.links)
+        node_str: str = ""
+        link_str: str = ""
+
+        if len(self.nodes) > 0:
+            node_str = ",".join(x.to_json() for x in self.nodes)
+
+        if len(self.links) > 0:
+            link_str = ",".join(x.to_json() for x in self.links)
 
         return f"""{{"nodes": [{node_str}],"links": [{link_str}]}}"""
 
@@ -96,16 +102,17 @@ def _reac2dict(reaction: Reaction, flux: float = 1) -> GraphData:
         nodes.add(Nodes(id=metabolite.id, group="metabolite"))
 
         stoichiometry = reaction.get_coefficient(metabolite_id=metabolite.id)
+        link: Links
 
         if stoichiometry * flux < 0:
-            link: Links = Links(
+            link = Links(
                 source=metabolite.id,
                 target=reaction.id,
                 value=-stoichiometry * flux,
             )
 
         else:
-            link: Links = Links(
+            link = Links(
                 source=reaction.id,
                 target=metabolite.id,
                 value=stoichiometry * flux,
@@ -139,9 +146,11 @@ def _group2dict(
         if isinstance(solution, Solution):
             solution = solution.fluxes.to_dict()
 
+    result: GraphData
+
     for member in group.members:
         if type(member) is Group:
-            result: GraphData = _group2dict(group=member, solution=solution)
+            result = _group2dict(group=member, solution=solution)
 
         elif type(member) is Reaction:
             if solution is not None:
@@ -149,13 +158,13 @@ def _group2dict(
             else:
                 flux = 1
 
-            result: GraphData = _reac2dict(reaction=member, flux=flux)
+            result = _reac2dict(reaction=member, flux=flux)
 
         elif type(member) is Metabolite:
             node = set()
             node.add(Nodes(id=member.id, group="metabolite"))
 
-            result: GraphData = GraphData(nodes=node)
+            result = GraphData(nodes=node)
         else:
             raise TypeError
 
@@ -177,13 +186,13 @@ class ForceGraphIntegration(anywidget.AnyWidget):
         super().__init__()
         self.on_msg(self._handle_custom_msg)
 
-    _model: Union[Type[Group], Type[Reaction]] = None
-    _solution: dict = None
+    _model: Union[Type[Group], Type[Reaction], None] = None
+    _solution: Optional[dict] = None
 
     # _model_rep is the data basis for the widget
     # Changes update the front end
-    _model_rep: str = {"nodes": [], "links": []}
-    _model_rep = traitlets.Unicode().tag(sync=True)
+    _model_rep: str = """{"nodes": [], "links": []}"""
+    _model_rep = traitlets.Unicode().tag(sync=True)  # type: ignore
 
     @property
     def model(self) -> Optional[Union[Type[Group], Type[Reaction]]]:
@@ -273,8 +282,8 @@ class ForceGraphIntegration(anywidget.AnyWidget):
         if isinstance(file, str):
             file = Path(file)
 
-        with open(file) as file:
-            reader = csv.DictReader(file)
+        with open(file) as open_file:
+            reader = csv.DictReader(open_file)
             positions = {}
             for row in reader:
                 key = row["ID"]

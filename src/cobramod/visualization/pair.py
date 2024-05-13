@@ -1,5 +1,6 @@
 from collections import UserDict
 from contextlib import suppress
+from typing import Optional
 
 from cobramod.error import FoundInPairError
 
@@ -13,7 +14,7 @@ class PairDictionary(UserDict):
     for the dictionary.
     """
 
-    def __init__(self, pair: UserDict = None, **kwargs):
+    def __init__(self, pair: Optional[UserDict] = None, **kwargs):
         """
         Creates the regular dictionary and can set a pair dictionary if given.
         All keyword-arguments from a regular dictionary can be passed to this
