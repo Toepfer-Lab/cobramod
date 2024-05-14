@@ -11,8 +11,6 @@ import unittest
 from contextlib import suppress
 from pathlib import Path
 
-from escher import Builder
-
 import cobramod.visualization.mapping as mp
 from cobramod.error import FoundInPairError
 from cobramod.visualization.converter import (
@@ -20,6 +18,7 @@ from cobramod.visualization.converter import (
     Position,
     _convert_string,
 )
+from cobramod.visualization.escher import EscherIntegration
 from cobramod.visualization.items import Node, Reaction, Segment
 from cobramod.visualization.pair import PairDictionary
 
@@ -580,7 +579,7 @@ class TestJsonDictionary(unittest.TestCase):
         # CASE 1: Simple HTML and JSON with 4 reactions
         test_class = JsonDictionary()
         # Escher builder
-        test_builder = Builder()
+        test_builder = EscherIntegration()
         # Matrix 1x4
         test_class.add_reaction(
             string="C01001_c + C01002_c --> C01003_c + C01004_c",
@@ -622,6 +621,7 @@ class TestJsonDictionary(unittest.TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_builder.save_html(str(test_path))
+        # ToDo Check that html actually displays something
         self.assertTrue(expr=test_path.exists())
 
     def test_visualize(self):
@@ -640,7 +640,9 @@ class TestJsonDictionary(unittest.TestCase):
         test_class.reaction_strings = test_reactions
         with suppress(FileNotFoundError):
             test_path.unlink()
-        test_builder = test_class.visualize(filepath=test_path)
+        test_builder = test_class.visualize(
+            filepath=test_path, custom_integration=True
+        )
         self.assertEqual(first=test_builder.reaction_data, second=None)
         self.assertTrue(expr=test_path.exists())
         # CASE 2: visualization with Data
@@ -652,9 +654,12 @@ class TestJsonDictionary(unittest.TestCase):
         # Setting flux
         test_flux = {"R1": 2, "R2": -1}
         test_class.flux_solution = test_flux
-        test_builder = test_class.visualize(filepath=test_path)
+        test_builder = test_class.visualize(
+            filepath=test_path, custom_integration=True
+        )
         self.assertEqual(first=test_builder.reaction_data["R1"], second=2)
         self.assertTrue(expr=test_path.exists())
+
 
 class TestMapping(unittest.TestCase):
     """

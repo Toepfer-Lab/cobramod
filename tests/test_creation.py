@@ -28,8 +28,6 @@ from cobramod.test import textbook_kegg
 NAME = "test_model"
 
 debug_log.setLevel(DEBUG)
-data_conf = DataVersionConfigurator()
-data_conf.force_same_version = True
 
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
@@ -44,6 +42,12 @@ class SimpleFunctions(unittest.TestCase):
     Test for simple test such as creating metabolites from string or from
     files.
     """
+
+    @classmethod
+    def setUp(cls):
+        # ToDo Versioning should be tested in its own test class
+        data_conf = DataVersionConfigurator()
+        data_conf.ignore_db_versions = True
 
     def test_find_replacements(self):
         replace_dict = {
@@ -566,10 +570,6 @@ class SimpleFunctions(unittest.TestCase):
 
 
 class ComplexFunctions(unittest.TestCase):
-    # @classmethod
-    # def setUpClass(cls):
-    #     BaseParser.ignore_db_versions = True
-
     def test_create_object(self):
         # CASE: metabolite from MetaCyc
         test_object = cr.create_object(
