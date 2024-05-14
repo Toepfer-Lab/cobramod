@@ -2,23 +2,29 @@
 Visualization
 ================
 
-Cobramod provides two ways to visualization pathways. On the one hand using `Escher <https://github.com/zakandrewking/escher>`_ to
-create a 2-dimensional representation and on the other hand using
-`3d-force-directed-graph <https://github.com/vasturiano/3d-force-graph?tab=readme-ov-file>`_ to create an interactive three-dimensional representation using threejs and webgl.
+CobraMod provides users with two different options for visualizing pathways. The first option is
+`Escher <https://github.com/zakandrewking/escher>`_, which allows the creation of a 2-dimensional
+representation. The second option is
+'`3d-force-directed-graph <https://github.com/vasturiano/3d-force-graph?tab=readme-ov-file>`_',
+which enables the creation of an interactive three-dimensional representation using three.js and WebGL.
 
-----------
+CobraMod effortlessly combines both tools into the curation and retrieval process. Additionally, they can
+operate separately to provide visual representations of `CobraPy <https://opencobra.github.io/cobrapy/>`_ objects.
+
+-----------
  Escher
-----------
+-----------
 .. deprecated:: 1.3.0
-    The original Python integration of Escher will be removed in a future release due to dependency conflicts with
-    Jupyter. It is no longer listed as a dependency in CobraMod and is therefore not automatically installed or
-    tested as of version 1.3.0. It is only available to maintain compatibility with older environments.
-    The integration embedded in CobraMod will take its place in the future. (See `Escher-custom`_)
+    The original Python integration of Escher will be removed in an upcoming release due to dependency
+    conflicts with Jupyter. Starting with version 1.3.0 of CobraMod, it will no longer be included as
+    a dependency, nor will it be automatically installed or tested. It will only be accessible to ensure
+    compatibility with older environments. In the future, the integration incorporated within CobraMod
+    will replace it. (Refer to `Escher-custom`_ for more information.)
 
-CobraMod uses Escher to visualize pathways and fluxes. Each CobraMod pathway includes a visualization method
-Pathway.visualize() which automatically generates pathway maps of the respective set of reactions. These
-pathway maps can be easily customized to visualize flux distributions using default or user-defined
-colors and gradients (linear or quantile normalized).
+CobraMod leverages Escher for visualizing pathways and fluxes. Each CobraMod :py:class:`~cobramod.Pathway` comes equipped with the
+:py:meth:`~cobramod.Pathway.visualize` method, which seamlessly generates pathway maps for the corresponding set of reactions.
+These pathway maps offer effortless customization options for visualizing flux distributions, allowing users
+to utilize default or personalized color schemes and gradients, whether linear or quantile normalized.
 
 In the following example, we call the function visualize without any arguments.
 
@@ -185,5 +191,3 @@ Last but not least, CobraMod offers an integration of 3d-force-directed-graph. T
     .. autoproperty:: solution
     .. automethod:: save_layout
     .. automethod:: load_layout
-
-
