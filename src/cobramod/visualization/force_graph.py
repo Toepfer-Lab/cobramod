@@ -10,7 +10,7 @@ import csv
 from dataclasses import dataclass, field
 from importlib import resources
 from pathlib import Path
-from typing import Union, Literal, Type, Optional
+from typing import Union, Literal, Type, Optional, Any
 
 import anywidget
 from cobra import Metabolite, Reaction, Solution
@@ -295,9 +295,11 @@ class ForceGraphIntegration(anywidget.AnyWidget):
 
         self.send({"type": "load_layout", "positions": positions})
 
-    def _handle_custom_msg(self, data, buffers):
+    def _handle_custom_msg(self, data: dict, buffers: Any):
         if data["type"] == "layout":
-            positions: dict[str, dict[float, float, float]] = data["positions"]
+            positions: dict[str, dict[Literal["x", "y", "z"], float]] = data[
+                "positions"
+            ]
             fieldnames = ["ID", "x", "y", "z"]
             with open(self.__csv_path, "w") as file:
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -308,8 +310,8 @@ class ForceGraphIntegration(anywidget.AnyWidget):
                             "ID": key,
                             "x": value.get("x", 0),
                             "y": value.get("y", 0),
-                            "z": value.get("z", 0)["z"],
+                            "z": value.get("z", 0),
                         }
                     )
 
-    _esm = resources.read_text(static, "force_graph.mjs")
+    _esm = resources.files(static).joinpath("force_graph.mjs").read_text()

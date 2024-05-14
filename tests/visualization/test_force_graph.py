@@ -123,7 +123,7 @@ class TestGraphData(unittest.TestCase):
         self.assertIsInstance(data.links, set)
 
 
-class TestEscher(unittest.TestCase):
+class TestForceGraphIntegration(unittest.TestCase):
     def test_create(self):
         f_graph = ForceGraphIntegration()
         self.assertIsInstance(f_graph, ForceGraphIntegration)

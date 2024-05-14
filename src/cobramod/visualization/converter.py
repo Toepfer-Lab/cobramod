@@ -1066,6 +1066,8 @@ class JsonDictionary(UserDict):
                 never_ask_before_quit=never_ask_before_quit,
             )
 
+            builder.save_html(filepath=filepath)
+
         # This statement is needed, otherwise, all reactions labels will
         # appear with "(nd)".
 
