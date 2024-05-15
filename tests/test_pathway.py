@@ -248,12 +248,16 @@ class TestGroup(unittest.TestCase):
         }
         test_pathway.color_negative = "red"
         test_pathway.color_positive = "green"
-        test_pathway.visualize(solution_fluxes=test_solution, vis="escher-custom")
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
         web_open("pathway.html")
         sleep(1)
 
         test_pathway.vertical = True
-        test_pathway.visualize(solution_fluxes=test_solution, vis="escher-custom")
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
         web_open("pathway.html")
         sleep(1)
 
@@ -279,11 +283,15 @@ class TestGroup(unittest.TestCase):
         }
         test_pathway.color_negative = "purple"
         test_pathway.color_positive = "blue"
-        test_pathway.visualize(solution_fluxes=test_solution, vis="escher-custom")
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
         web_open("pathway.html")
         sleep(1)
         test_pathway.vertical = True
-        test_pathway.visualize(solution_fluxes=test_solution, vis="escher-custom")
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
 
     def test_model_convert(self):
         # CASE: regular conversion of Groups

@@ -279,6 +279,9 @@ class Pathway(cobra_core.Group):
         never_ask_before_quit: bool = False,
     ) -> Optional[escher.Builder]:
         """
+        .. versionchanged:: 1.3.0
+            The 'vis' parameter has been added. This allows one to choose between different visualization tools.
+
         Returns a :class:`escher.Builder`, which can be used to create visual
         representations of the pathway.
 
@@ -289,12 +292,14 @@ class Pathway(cobra_core.Group):
         :param vis:
             Parameter that determines the visualization tool used. It is possible to choose between the original
             Escher integration [escher], the one embedded in CobraMod [escher-custom] and a 3-dimensional
-            force directed graph visualisation [3d-force].
+            force directed graph visualization [3d-force].
 
             .. deprecated:: 1.3.0
                 The original python integration of Escher will be removed in a future version due to dependency
                 conflicts with Jupyter. The integration embedded in CobraMod will take its place in the future.
                 This can already be used by setting 'vis' to "escher-custom".
+
+            .. versionadded:: 1.3.0
 
         """
 

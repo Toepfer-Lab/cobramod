@@ -3,9 +3,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import cobra
-
-from cobramod.test import textbook_biocyc
 from cobramod.visualization.escher import EscherIntegration
 
 
