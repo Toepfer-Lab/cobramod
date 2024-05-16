@@ -1,6 +1,6 @@
 """COBRApy Group-child class extension
 
-The new class :class:`cobramod.pathway.Pathway" is child derived from
+The new class :class:`cobramod.pathway.Pathway` is child derived from
 :class:`cobra.core.group.Group`. It extends some functionalities such as:
 
 - solution: Obtain the solution for the specific members.
@@ -11,9 +11,12 @@ from __future__ import annotations
 
 import warnings
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, Literal
 
 import cobra.core as cobra_core
+
+from cobramod.visualization.escher import EscherIntegration
+from cobramod.visualization.force_graph import ForceGraphIntegration
 
 try:
     import escher
@@ -100,7 +103,7 @@ class Pathway(cobra_core.Group):
         )
 
         # Loop has to be after __init__, otherwise, behavior of class changes.
-        self.graph = dict()
+        self.graph = dict()  # type: ignore
         self.notes: dict[str, Any] = {"ORDER": dict()}
 
         if members:
@@ -273,18 +276,46 @@ class Pathway(cobra_core.Group):
             Union[cobra_core.Solution, dict[str, float]]
         ] = None,
         filename: Optional[Union[str, Path]] = None,
-    ) -> Optional[escher.Builder]:
+        vis: Literal["escher", "escher-custom", "3d-force"] = "escher",
+        never_ask_before_quit: bool = False,
+    ) -> Union[escher.Builder, EscherIntegration, ForceGraphIntegration, None]:
         """
+        .. versionchanged:: 1.3.0
+            The 'vis' parameter has been added. This allows one to choose between different visualization tools.
+
         Returns a :class:`escher.Builder`, which can be used to create visual
         representations of the pathway.
 
-        Args:
-            solution_fluxes (Solution, dict): Series or Dictionary with fluxes.
-                The values will be then showed in the Builder.
-                Defaults to None.
-            filename (str, Path): Path for the HTML. Defaults to
-                "pathway.html" in the current working directory.
+        :param solution_fluxes: Series or Dictionary with fluxes. The values will be then showed in the Builder. Defaults to None.
+
+        :param filename: Path for the HTML. Defaults to "pathway.html" in the current working directory.
+
+        :param vis:
+            .. versionadded:: 1.3.0
+            Parameter that determines the visualization tool used. It is possible to choose between the original
+            Escher integration [escher], the one embedded in CobraMod [escher-custom] and a 3-dimensional
+            force directed graph visualization [3d-force].
+
+            .. deprecated:: 1.3.0
+                The original python integration of Escher will be removed in a future version due to dependency
+                conflicts with Jupyter. The integration embedded in CobraMod will take its place in the future.
+                This can already be used by setting 'vis' to "escher-custom".
+
+        :param never_ask_before_quit:
+            .. versionadded:: 1.3.0
+
+            Option to control whether a warning dialog is displayed when the Escher Builder window is closed.
+            Only has an effect when using Escher for visualization.
+
         """
+
+        if vis == "3d-force":
+            widget = ForceGraphIntegration()
+            widget.model = self
+            widget.solution = solution_fluxes
+
+            return widget
+
         json_dict = JsonDictionary()
         if filename is None:
             filename = "pathway.html"
@@ -301,6 +332,20 @@ class Pathway(cobra_core.Group):
         reactions: dict[str, str] = {m.id: m.reaction for m in self.members}
         json_dict.reaction_strings = reactions
 
+        if vis == "escher-custom":
+            builder = json_dict.visualize(
+                filepath=filename,
+                vertical=self.vertical,
+                color=[self.color_positive, self.color_negative],
+                min_max=self.color_min_max,
+                quantile=self.color_quantile,
+                max_steps=self.color_max_steps,
+                n_steps=self.color_n_steps,
+                custom_integration=True,
+                never_ask_before_quit=never_ask_before_quit,
+            )
+            return builder
+
         if _has_escher:
             builder = json_dict.visualize(
                 filepath=filename,
@@ -312,14 +357,24 @@ class Pathway(cobra_core.Group):
                 n_steps=self.color_n_steps,
             )
             debug_log.info(f'Visualization saved in "{filename}"')
+            warnings.warn(
+                "The use of Escher's own Python integration will be removed in a future CobraMod version to "
+                "avoid installation problems due to dependency incompatibilities. Instead, you can use "
+                "CobraMod's built-in Escher integration. To use it, simply pass 'escher-custom' as an "
+                "argument to 'vis'.",
+                category=DeprecationWarning,
+                stacklevel=2,
+            )
+
             return builder
         else:
             warnings.warn(
                 "Package Escher was not found. No visualization in available. "
                 "You can install this extra-dependency running "
-                "'pip install cobramod[escher]'"
+                "'pip install cobramod[escher]'. Alternatively, you can use CobraMod's own integration of Escher. "
+                "To use it, just specify 'escher-custom' for the 'vis' argument."
             )
-            return
+            return None
 
     def _repr_html_(self):
         """

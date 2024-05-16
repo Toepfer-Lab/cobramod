@@ -3,31 +3,27 @@ Check if models are available
 """
 
 import unittest
-from pathlib import Path
+from importlib import resources
 
-import pkg_resources
+import cobra
+
+import cobramod
 
 
 class ModuleTest(unittest.TestCase):
     def test_directory(self):
         self.assertTrue(
-            Path(
-                pkg_resources.resource_filename("cobra", "data/textbook.xml.gz")
-            ).exists()
+            resources.files(cobra).joinpath("data/textbook.xml.gz").is_file()
         )
         self.assertTrue(
-            Path(
-                pkg_resources.resource_filename(
-                    "cobramod", "data/textbook_biocyc.sbml"
-                )
-            ).exists()
+            resources.files(cobramod)
+            .joinpath("data/textbook_biocyc.sbml")
+            .is_file()
         )
         self.assertTrue(
-            Path(
-                pkg_resources.resource_filename(
-                    "cobramod", "data/textbook_kegg.sbml"
-                )
-            ).exists()
+            resources.files(cobramod)
+            .joinpath("data/textbook_kegg.sbml")
+            .is_file()
         )
 
 

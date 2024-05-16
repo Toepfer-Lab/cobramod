@@ -46,6 +46,7 @@ extensions = [
     "nbsphinx",
     "sphinx.ext.intersphinx",
     "sphinxcontrib.bibtex",
+    "jupyter_sphinx",
 ]
 
 bibtex_bibfiles = ["biblio.bib"]
@@ -128,9 +129,9 @@ intersphinx_mapping = {
     "escher": ("https://escher.readthedocs.io/en/latest/", None),
 }
 autoapi_dirs = ["../../src/cobramod"]
-autoapi_root = "module"
+autoapi_root = "autoapi"
 autoapi_generate_api_docs = True
-autoapi_add_toctree_entry = False
+autoapi_add_toctree_entry = True
 autoapi_options = [
     "members",
     "undoc-members",
@@ -138,10 +139,31 @@ autoapi_options = [
     "show-module-summary",
     "imported-members",
 ]
+
+autoclass_content = "both"
+autodoc_typehints = "description"
+
 napoleon_custom_sections = [
     ("Arguments for reactions", "params_style"),
     ("Special arguments for databases", "params_style"),
 ]
+
+# Napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+napoleon_include_init_with_doc = False
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = True
+napoleon_use_admonition_for_examples = False
+napoleon_use_admonition_for_notes = False
+napoleon_use_admonition_for_references = False
+napoleon_use_ivar = False
+napoleon_use_param = True
+napoleon_use_rtype = True
+napoleon_preprocess_types = False
+napoleon_type_aliases = None
+napoleon_attr_annotations = True
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -158,7 +180,8 @@ templates_path = ["_templates"]
 # a list of builtin themes.
 #
 
-html_theme = "sphinx_rtd_theme"
+html_theme = "furo"
+
 html_title = (
     "CobraMod: A pathway-centric curation tool for contraint-based "
     + "metabolic models"
@@ -166,7 +189,7 @@ html_title = (
 html_short_titel = "CobraMod"
 html_static_path = ["_static"]
 html_logo = "logo_2.png"
-html_theme_options = {"logo_only": True}
+html_theme_options = {"sidebar_hide_name": True}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -177,7 +200,3 @@ html_theme_options = {"logo_only": True}
 nbsphinx_execute = "never"
 # This statement should avoid the creation of duplicates widgets
 nbsphinx_widgets_path = ""
-html_js_files = [
-    "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js",
-    DEFAULT_EMBED_REQUIREJS_URL,
-]

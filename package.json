@@ -1,0 +1,30 @@
+{
+  "name": "cobramod",
+  "version": "1.3.0",
+  "scripts": {
+    "start": "jupyter lab --config ./ui-tests/jupyter_server_config.py",
+    "start:detached": "jlpm start&",
+    "test": "npx playwright test",
+    "test:debug": "PWDEBUG=1 npx playwright test",
+    "test:report": "http-server ./playwright-report -a localhost -o",
+    "test:update": "npx playwright test --update-snapshots",
+    "build": "yarn run vite build"
+  },
+  "dependencies": {
+    "3d-force-graph": "^1.73.3",
+    "escher": "^1.7.3"
+  },
+  "devDependencies": {
+    "@anywidget/vite": "^0.1.2",
+    "@jupyterlab/galata": "^5.1.6",
+    "@playwright/test": "^1.43.1",
+    "check-licenses": "^1.1.0",
+    "esbuild": "0.20.2",
+    "esbuild-plugin-license": "^1.2.2",
+    "http-server": "^14.1.1",
+    "react": "^18.2.0",
+    "rollup-plugin-license": "^3.3.1",
+    "tldrlegal": "^1.0.11",
+    "vite": "^5.2.10"
+  }
+}

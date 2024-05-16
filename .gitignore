@@ -12,3 +12,10 @@ docs/source/summary.txt
 
 # All non-essential files created/used by tox
 .tox
+
+# node_modules
+node_modules/
+
+# ui test results
+ui-tests/playwright-report
+ui-tests/test-results

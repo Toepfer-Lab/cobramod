@@ -47,14 +47,13 @@ output with log files and customized pathway and flux visualization with
 
 This package offers multiple functions for modifying and extending GEMs:
 
-- Retrieve metabolic pathway information from a database `cobramod.get_data`
-- Transform stored data into COBRApy objects `cobramod.create_object`
-- Add metabolites from multiple sources `cobramod.add_metabolites`
-- Add reactions from multiple sources `cobramod.add_reactions`
-- Test reaction capability to carry a non-zero flux
-`cobramod.test_non_zero_flux`
-- Add pathway to a model `cobramod.add_pathway`
-- Automatic cross-references `cobramod.add_crossreferences`
+- Retrieve metabolic pathway information from a database :py:func:`cobramod.get_data`
+- Transform stored data into COBRApy objects :py:func:`cobramod.create_object`
+- Add metabolites from multiple sources :py:func:`cobramod.add_metabolites`
+- Add reactions from multiple sources :py:func:`cobramod.add_reactions`
+- Test reaction capability to carry a non-zero flux :py:func:`cobramod.test_non_zero_flux`
+- Add pathway to a model :py:func:`cobramod.add_pathway`
+- Automatic cross-references :py:func:`cobramod.add_crossreferences`
 - Testing for :doc:`Memote compliance <memote>`
 
 
@@ -67,15 +66,15 @@ Users can add the biochemical data through different methods:
 - Using a text file or string with user-defined metabolite,
   reaction information
 
-This packages includes the class :class:`cobramod.Pathway` which inherits all
-methods of the COBRApy :class:`cobra.core.group.Group` and additionally includes
-the method :func:`cobramod.Pathway.visualize` for visualizing flux maps.
+This packages includes the class :py:class:`~cobramod.Pathway` which inherits all
+methods of the COBRApy :py:class:`~cobra.core.group.Group` and additionally includes
+the method :py:meth:`~cobramod.Pathway.visualize` for visualizing flux maps.
 
 For more information see the docstrings of the respective functions using
 `help()` or read the :doc:`documentation <module/cobramod/index>`.
 
 To see all metabolic pathway databases that are currently supported by
-CobraMod, load and print :obj:`cobramod.available_databases`.
+CobraMod, load and print :obj:`cobramod.retrieval.available_databases`.
 
 .. note::
    The database SolCyc is planned to be deprecated for future version as it
@@ -87,6 +86,8 @@ CobraMod, load and print :obj:`cobramod.available_databases`.
    :caption: Table of content
 
    guides
+   visualization.rst
+   databases.rst
    installation.rst
    test_cases.ipynb
    API <module/cobramod/index>

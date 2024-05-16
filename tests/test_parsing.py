@@ -29,6 +29,7 @@ dir_data = Path(__file__).resolve().parent.joinpath("data")
 change_to_debug()
 data_conf = DataVersionConfigurator()
 
+
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")

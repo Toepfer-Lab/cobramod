@@ -3,7 +3,13 @@ version: 2
 build:
   os: "ubuntu-22.04"
   tools:
-    python: "miniconda3-4.7"
+    python: "mambaforge-22.9"
+    nodejs: "latest"
+  jobs:
+      pre_create_environment:
+        - npm install --global yarn
+        - yarn install
+        - yarn run vite build
 
 conda:
   environment: environment.yml

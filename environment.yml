@@ -22,10 +22,12 @@ dependencies:
 - conda-forge::tox
 - conda-forge::sphinx
 - conda-forge::nbsphinx
-- conda-forge::sphinx-autoapi
 - conda-forge::jupyter_contrib_nbextensions
+- conda-forge::sphinx-rtd-theme
+- conda-forge::sphinxcontrib-bibtex
+- conda-forge::anywidget
+- conda-forge::furo
+- conda-forge::jupyter-sphinx
 - pip:
   - escher-legacy
-  - sphinx-rtd-theme
-  - sphinxcontrib-napoleon
-  - sphinxcontrib-bibtex
+  - sphinx-autoapi==3.1.0b0

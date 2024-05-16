@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+title: CobraMod
+message: >-
+  If you use this software, please cite it as below.
+type: software
+authors:
+    - given-names: Stefano
+      family-names: Camborda La Cruz
+    - given-names: Jan-Niklas
+      family-names: Weder
+    - given-names: Nadine
+      family-names: Töpfer
+repository-code: 'https://github.com/Toepfer-Lab/cobramod'
+url: 'https://cobramod.readthedocs.io/en/latest/'
+license: GPL-3.0
+preferred-citation:
+    type: article
+    authors:
+      - given-names: Stefano
+        family-names: Camborda La Cruz
+      - given-names: Jan-Niklas
+        family-names: Weder
+      - given-names: Nadine
+        family-names: Töpfer
+    doi: "10.1093/bioinformatics/btac119"
+    journal: "Bioinformatics"
+    start: 2654
+    end: 2656
+    title: "CobraMod: a pathway-centric curation tool for constraint-based metabolic models"
+    url: "https://doi.org/10.1093/bioinformatics/btac119"
+    eprint: "https://academic.oup.com/bioinformatics/article-pdf/38/9/2654/43481008/btac119.pdf"
+    volume: 38
+    number: 9
+    issn: "1367-4803"
+    month: 02
+    year: 2022

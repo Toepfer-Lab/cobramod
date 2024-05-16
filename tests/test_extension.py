@@ -31,8 +31,6 @@ from cobramod.test import textbook, textbook_biocyc, textbook_kegg
 NAME = "test_model"
 
 change_to_debug()
-data_conf = DataVersionConfigurator()
-data_conf.force_same_version = True
 
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
@@ -43,6 +41,12 @@ if not dir_data.exists():
 
 
 class CreatingSequences(unittest.TestCase):
+    @classmethod
+    def setUp(cls):
+        # ToDo Versioning should be tested in its own test class
+        data_conf = DataVersionConfigurator()
+        data_conf.ignore_db_versions = True
+
     def test_create_reactions(self):
         # CASE: Simple Case Biocyc
         generator = ex.yield_reaction_from_list(

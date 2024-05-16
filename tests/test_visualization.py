@@ -10,8 +10,6 @@ This module includes two TestCases:
 import unittest
 from contextlib import suppress
 from pathlib import Path
-from time import sleep
-from webbrowser import open as web_open
 
 import cobramod.visualization.mapping as mp
 from cobramod.error import FoundInPairError
@@ -20,9 +18,9 @@ from cobramod.visualization.converter import (
     Position,
     _convert_string,
 )
+from cobramod.visualization.escher import EscherIntegration
 from cobramod.visualization.items import Node, Reaction, Segment
 from cobramod.visualization.pair import PairDictionary
-from escher import Builder
 
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 dir_input = Path(__file__).resolve().parent.joinpath("input")
@@ -581,7 +579,7 @@ class TestJsonDictionary(unittest.TestCase):
         # CASE 1: Simple HTML and JSON with 4 reactions
         test_class = JsonDictionary()
         # Escher builder
-        test_builder = Builder()
+        test_builder = EscherIntegration()
         # Matrix 1x4
         test_class.add_reaction(
             string="C01001_c + C01002_c --> C01003_c + C01004_c",
@@ -623,6 +621,7 @@ class TestJsonDictionary(unittest.TestCase):
         with suppress(FileNotFoundError):
             test_path.unlink()
         test_builder.save_html(str(test_path))
+        # ToDo Check that html actually displays something
         self.assertTrue(expr=test_path.exists())
 
     def test_visualize(self):
@@ -641,9 +640,9 @@ class TestJsonDictionary(unittest.TestCase):
         test_class.reaction_strings = test_reactions
         with suppress(FileNotFoundError):
             test_path.unlink()
-        test_builder = test_class.visualize(filepath=test_path)
-        web_open("pathway.html")
-        sleep(0.5)
+        test_builder = test_class.visualize(
+            filepath=test_path, custom_integration=True
+        )
         self.assertEqual(first=test_builder.reaction_data, second=None)
         self.assertTrue(expr=test_path.exists())
         # CASE 2: visualization with Data
@@ -655,229 +654,11 @@ class TestJsonDictionary(unittest.TestCase):
         # Setting flux
         test_flux = {"R1": 2, "R2": -1}
         test_class.flux_solution = test_flux
-        test_builder = test_class.visualize(filepath=test_path)
-        web_open("pathway.html")
-        sleep(0.5)
+        test_builder = test_class.visualize(
+            filepath=test_path, custom_integration=True
+        )
         self.assertEqual(first=test_builder.reaction_data["R1"], second=2)
         self.assertTrue(expr=test_path.exists())
-        # CASE 3: Unrelated reactions without data
-        test_class = JsonDictionary()
-        test_class.graph = {"R1": None, "R2": None, "R3": None}
-        # Metabolites need to be unrelated
-        test_class.reaction_strings = {
-            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
-            "R2": "C02003_c --> C02001_c",
-            "R3": "C03001_c + C03003_c--> C03002_c",
-        }
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_builder = test_class.visualize(filepath=test_path)
-        web_open("pathway.html")
-        sleep(0.5)
-        # CASE 4: regular lineal visualization without data
-        test_class = JsonDictionary()
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_class.graph = {"R1": "R2", "R2": "R3", "R3": None}
-        test_class.reaction_strings = {
-            "R1": "C00002_c + C00009_c --> C00227_c + C00003_c",
-            "R2": "C00003_c --> C00228_c",
-            "R3": "C00009_c + C00228_c--> C00004_c",
-        }
-        test_builder = test_class.visualize(filepath=test_path)
-        web_open("pathway.html")
-        sleep(0.5)
-        # CASE 5: Simple Branch
-        test_class = JsonDictionary()
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_class.graph = {
-            "R1": "R2",
-            "R2": ("R3", "R5"),
-            "R3": "R4",
-            "R4": None,
-            "R5": None,
-        }
-        test_class.reaction_strings = {
-            "R1": "C00002_c + C00009_c --> C00227_c + C00003_c",
-            "R2": "C00003_c --> C00228_c",
-            "R3": "C00009_c + C00228_c--> C00004_c",
-            "R4": "C00004_c + C00011_c --> C00001_c + C00200_c",
-            "R5": "2 C00228_c --> 4 C00021_c",
-        }
-        test_builder = test_class.visualize(filepath=test_path)
-        web_open("pathway.html")
-        sleep(0.5)
-        # CASE 3a: Complex Lineal
-        test_class = JsonDictionary()
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_class.graph = {
-            "R1": "R2",
-            "R2": ("R3", "R5", "R4"),
-            "R3": ("R6", "R8"),
-            "R4": None,
-            "R5": None,
-            "R6": "R7",
-            "R7": "R10",
-            "R8": ("R9", "R11"),
-            "R9": None,
-            "R10": "R14",
-            "R11": ("R12", "R13"),
-            "R12": None,
-            "R13": None,
-            "R14": None,
-        }
-        test_class.reaction_strings = {
-            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
-            "R2": "C01003_c --> C02001_c",
-            "R3": "C02001_c + C03001_c--> C03002_c",
-            "R4": "C02001_c+ C04001_c --> C04002_c + C04003_c",
-            "R5": "2 C02001_c --> 4 C05001_c",
-            "R6": "C03002_c --> C06001_c",
-            "R7": "3 C06001_c --> 6 C07001_c",
-            "R8": "C03002_c --> 4 C08001_c",
-            "R9": "2 C08001_c --> C09001_c",
-            "R10": "2 C07001_c --> 3 C10001_c",
-            "R11": "2 C08001_c --> 4 C11001_c",
-            "R12": "2 C11001_c --> C12001_c",
-            "R13": "C11001_c --> C13001_c",
-            "R14": "C10001_c --> C14001_c",
-        }
-        test_builder = test_class.visualize(filepath=test_path)
-        web_open("pathway.html")
-        sleep(0.5)
-        # CASE 4: Module from KEGG
-        test_path = Path.cwd().joinpath("test_map.html")
-        test_class = JsonDictionary()
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_class.graph = {
-            "R0": "R3",
-            "R1": None,
-            "R2": None,
-            "R3": ("R4", "R5"),
-            "R4": "R6",
-            "R5": None,
-            "R6": "R7",
-            "R7": ("R8", "R9"),
-            "R8": "R10",
-            "R9": None,
-            "R10": "R11",
-            "R11": "R12",
-            "R12": "R13",
-            "R13": "R14",
-            "R14": None,
-        }
-        test_class.reaction_strings = {
-            "R0": "C00001_c --> C00002_c",
-            "R1": "C01001_c + C01002_c --> C00002_c + C01004_c",
-            "R2": "C02001_c --> C00002_c",
-            "R3": "C00002_c + C03001_c--> C03002_c",
-            "R4": "C03002_c+ C04001_c --> C04002_c + C04003_c",
-            "R5": "2 C03002_c --> 4 C05001_c",
-            "R6": "C04002_c --> C06001_c",
-            "R7": "3 C06001_c --> 6 C07001_c",
-            "R8": "C07001_c --> 4 C08001_c",
-            "R9": "2 C07001_c --> C09001_c",
-            "R10": "2 C08001_c --> 3 C10001_c",
-            "R11": "2 C10001_c --> 4 C11001_c",
-            "R12": "2 C11001_c --> C12001_c",
-            "R13": "C12001_c --> C13001_c",
-            "R14": "C13001_c --> C14001_c",
-        }
-        test_builder = test_class.visualize(filepath=test_path)
-        web_open("pathway.html")
-        sleep(0.5)
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        # with color
-        test_class.flux_solution = {
-            "R0": 10,
-            "R1": 9,
-            "R2": 8,
-            "R3": 7,
-            "R4": 6,
-            "R5": 5,
-            "R6": 3,
-            "R7": 3,
-            "R8": 3,
-            "R9": 5,
-            "R10": 5,
-            "R11": 4,
-            "R12": 3,
-            "R13": 6,
-            "R14": 7,
-        }
-        test_builder = test_class.visualize(
-            filepath=test_path, color=["orange", "green"]
-        )
-        web_open("pathway.html")
-        sleep(0.5)
-
-    def test_visualize_vertical(self):
-        test_path = Path.cwd().joinpath("test_map.html")
-        # CASE 1: Unrelated reactions without data
-        test_class = JsonDictionary()
-        test_class.graph = {"R1": None, "R2": None, "R3": None}
-        # Metabolites need to be unrelated
-        test_class.reaction_strings = {
-            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
-            "R2": "C02003_c --> C02001_c",
-            "R3": "C03001_c + C03003_c--> C03002_c",
-        }
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_class.visualize(filepath=test_path, vertical=True)
-        web_open("pathway.html")
-        sleep(0.5)
-
-        # Color test
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_class.flux_solution = {"R1": -4, "R2": -2, "R3": 0}
-        test_class.visualize(
-            filepath=test_path, vertical=True, color=["orange", "green"]
-        )
-        web_open("pathway.html")
-        sleep(0.5)
-        # CASE 2: Complex Lineal
-        test_class = JsonDictionary()
-        with suppress(FileNotFoundError):
-            test_path.unlink()
-        test_class.graph = {
-            "R1": "R2",
-            "R2": ("R3", "R5", "R4"),
-            "R3": ("R6", "R8"),
-            "R4": None,
-            "R5": None,
-            "R6": "R7",
-            "R7": "R10",
-            "R8": ("R9", "R11"),
-            "R9": None,
-            "R10": "R14",
-            "R11": ("R12", "R13"),
-            "R12": None,
-            "R13": None,
-            "R14": None,
-        }
-        test_class.reaction_strings = {
-            "R1": "C01001_c + C01002_c --> C01003_c + C01004_c",
-            "R2": "C01003_c --> C02001_c",
-            "R3": "C02001_c + C03001_c--> C03002_c",
-            "R4": "C02001_c+ C04001_c --> C04002_c + C04003_c",
-            "R5": "2 C02001_c --> 4 C05001_c",
-            "R6": "C03002_c --> C06001_c",
-            "R7": "3 C06001_c --> 6 C07001_c",
-            "R8": "C03002_c --> 4 C08001_c",
-            "R9": "2 C08001_c --> C09001_c",
-            "R10": "2 C07001_c --> 3 C10001_c",
-            "R11": "2 C08001_c --> 4 C11001_c",
-            "R12": "2 C11001_c --> C12001_c",
-            "R13": "C11001_c --> C13001_c",
-            "R14": "C10001_c --> C14001_c",
-        }
-        test_class.visualize(filepath=test_path, vertical=True)
 
 
 class TestMapping(unittest.TestCase):

@@ -122,7 +122,7 @@ def unformatted_matrix(graph: dict) -> List[list]:
     if not relation:
         return mapping
     matrix = [[0] * len(longest)]
-    matrix[0] = longest
+    matrix[0] = longest  # type: ignore
     # dictionary for start positions
     start_position = {"0": 0}
     for index, keys in relation.items():
@@ -144,14 +144,14 @@ def unformatted_matrix(graph: dict) -> List[list]:
             # add 0's and extend
             start_position[item] = start + position_j + 1
             row = [0] * start_position[item]
-            row.extend(mapping[int(item)])
+            row.extend(mapping[int(item)])  # type: ignore
             matrix.append(row)
     # Add unrelated paths
     for index, line in enumerate(mapping):
         if str(index) not in relation.keys() and str(index) not in list(
             chain.from_iterable(relation.values())
         ):
-            matrix.append(line)
+            matrix.append(line)  # type: ignore
     return matrix
 
 

@@ -18,7 +18,6 @@ import cobra.core as cobra_core
 import cobra.io as cobra_io
 import cobramod.error as cmod_error
 import cobramod.test as cmod_test
-import escher
 import pandas as pd
 from cobra import __version__ as cobra_version
 from cobramod import __version__ as cmod_version
@@ -195,14 +194,12 @@ class TestGroup(unittest.TestCase):
             "PGL": "GND",
             "GND": None,
         }
-        test_builder = test_group.visualize()
+        test_builder = test_group.visualize(vis="escher-custom")
 
         web_open("pathway.html")
         sleep(1)
         test_group.vertical = True
-        test_builder = test_group.visualize()
-        if not isinstance(test_builder, escher.Builder):
-            raise TypeError("Escher was not loaded")
+        test_builder = test_group.visualize(vis="escher-custom")
 
         self.assertEqual(
             first=len(loads(test_builder.map_json)[1]["reactions"]),  # type: ignore
@@ -251,12 +248,16 @@ class TestGroup(unittest.TestCase):
         }
         test_pathway.color_negative = "red"
         test_pathway.color_positive = "green"
-        test_pathway.visualize(solution_fluxes=test_solution)
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
         web_open("pathway.html")
         sleep(1)
 
         test_pathway.vertical = True
-        test_pathway.visualize(solution_fluxes=test_solution)
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
         web_open("pathway.html")
         sleep(1)
 
@@ -282,11 +283,15 @@ class TestGroup(unittest.TestCase):
         }
         test_pathway.color_negative = "purple"
         test_pathway.color_positive = "blue"
-        test_pathway.visualize(solution_fluxes=test_solution)
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
         web_open("pathway.html")
         sleep(1)
         test_pathway.vertical = True
-        test_pathway.visualize(solution_fluxes=test_solution)
+        test_pathway.visualize(
+            solution_fluxes=test_solution, vis="escher-custom"
+        )
 
     def test_model_convert(self):
         # CASE: regular conversion of Groups

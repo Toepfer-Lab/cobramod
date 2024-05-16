@@ -315,7 +315,7 @@ def get_graph_dict(graph: dict[str, Union[str, tuple[str]]]) -> list[list[str]]:
         while cycles:
             # This is modify graph
             # TODO: check whether tuples are affected
-            cut_cycle(graph=graph, key=cycles[0][0])
+            cut_cycle(graph=graph, key=cycles[0][0])  # type: ignore
             cycles = return_cycles(graph=graph)
     # This would modify the graph. Use copy
     mapping = get_mapping(graph=graph.copy(), stop_list=[], new=[])

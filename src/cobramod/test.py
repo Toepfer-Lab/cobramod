@@ -5,16 +5,24 @@ original model "e_coli_core" from BiGG database, which are also included in
 COBRApy.
 """
 
-import pkg_resources
+from importlib import resources
+
+import cobra
 from cobra.io import read_sbml_model
 
-textbook = read_sbml_model(
-    pkg_resources.resource_filename("cobra", "data/textbook.xml.gz")
-)
+from cobramod import data
+
+with resources.as_file(
+    resources.files(cobra).joinpath("data").joinpath("textbook.xml.gz")
+) as textbook:
+    textbook = read_sbml_model(textbook)
 
 textbook_biocyc = read_sbml_model(
-    pkg_resources.resource_filename("cobramod", "data/textbook_biocyc.sbml")
+    resources.read_text(data, "textbook_biocyc.sbml")
 )
-textbook_kegg = read_sbml_model(
-    pkg_resources.resource_filename("cobramod", "data/textbook_kegg.sbml")
+
+textbook_biocyc_groups = read_sbml_model(
+    resources.read_text(data, "textbook_biocyc_groups.sbml")
 )
+
+textbook_kegg = read_sbml_model(resources.read_text(data, "textbook_kegg.sbml"))

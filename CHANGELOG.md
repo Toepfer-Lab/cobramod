@@ -8,6 +8,37 @@
 - Visualization with other tools than Escher
 - Deprecation of SolCyc
 - Deprecation of PairDictionary
+- Deprecation of Escher's official binding 
+
+## [1.3.0]
+
+### Added
+
+- A new Escher binding independent of the original one [Escher-custom]
+- A new Visualization option that displays cobra Objects as a Force Directed Graph
+- Introduced [Galata](https://github.com/jupyterlab/jupyterlab/tree/main/galata) as a new test suite
+  - Galata automates testing of visualisation as it can compare reference images with outpus created in Jupyter Notebooks
+
+### Changed
+
+- Type checks
+  - Reintroduced MyPy as Ruff does not check types according to [ruff's FAQ](https://docs.astral.sh/ruff/faq/#how-does-ruff-compare-to-mypy-or-pyright-or-pyre)
+- GitHub Actions
+  - GitHub Actions now run tests on Windows and macOS once again 
+  - New workflow for the creation of Galata reference images
+  - GitHub Action has been divided into smaller sections to provide a better overview of failed steps
+- Documentation
+  - Now uses [Furo](https://github.com/pradyunsg/furo?tab=readme-ov-file) as a theme
+  - Provides additional live examples of the new visualization options
+- Tests
+  - Tests no longer check for specific database versions, this is only done in a controlled manner for the db_version module
+  - Tests for visualization using Escher now use Escher-Custom
+  - Several visualization tests were replaced by an equivalent test using Galata
+- environment.yml
+  - Some dependencies now use their conda-forge package to reduce build time
+  - 'sphinx-autoapi' was set to a dev version to be able to create the documentation using python 3.12
+- Maintenance
+  - Several adjustments due to announced deprecations
 
 ## [1.2.0]
 

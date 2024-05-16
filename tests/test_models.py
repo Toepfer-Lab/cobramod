@@ -25,8 +25,6 @@ from cobramod.test import textbook_biocyc
 change_to_debug()
 dir_data = Path(__file__).resolve().parent.joinpath("data")
 
-data_conf = DataVersionConfigurator()
-
 # If data is missing, then do not test. Data should always be the same
 if not dir_data.exists():
     raise NotADirectoryError("Data for the test is missing")
@@ -40,6 +38,11 @@ main_model = cobra_io.read_sbml_model(
 
 
 class ShortModel(unittest.TestCase):
+    @classmethod
+    def setUp(cls):
+        data_conf = DataVersionConfigurator()
+        data_conf.ignore_db_versions = True
+
     def test_lineal_pathways(self):
         # For this test, Gluconeogenesis; L-aspartate and L-asparagine
         # biosynthesis, and Nicotine biosynthesis added to test for feasible

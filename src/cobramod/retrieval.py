@@ -152,7 +152,7 @@ class Data:
     genome: str
     version: str
     """
-    CobraMod's Data object. This class is responsable for converting
+    CobraMod's Data object. This class is responsible for converting
     information into COBRApy objects
     """
 
@@ -212,6 +212,7 @@ class Data:
         if model_id != "universal":
             entry = entry[: entry.find("_")]
 
+        mode: Literal["Pathway", "Reaction", "Metabolite"]
         if is_compound:
             mode = "Metabolite"
             attributes = bigg.parse_metabolite_attributes(data)
@@ -229,7 +230,7 @@ class Data:
         Creates an instance from plain text. Database: KEGG
         """
         data: dict[str, list[str]] = kegg.data_from_string(text)
-        mode = data["ENTRY"][0].split()[-1]
+        entry_mode = data["ENTRY"][0].split()[-1]
         gene_path = path.parent.joinpath("GENES")
 
         if path.parent.joinpath("database_version").exists():
@@ -246,20 +247,22 @@ class Data:
         if version is None:
             raise Exception("Version of the BIGG JSON cannot be empty!")
 
-        if mode == "Compound":
+        mode: Literal["Pathway", "Reaction", "Metabolite"]
+        if entry_mode == "Compound":
             mode = "Metabolite"
             attributes = kegg.parse_metabolite_attributes(data, entry)
 
-        elif mode == "Reaction":
+        elif entry_mode == "Reaction":
+            mode = "Reaction"
             attributes = kegg.parse_reaction_attributes(
                 data, entry, genome, gene_path
             )
 
-        elif mode == "Module":
+        elif entry_mode == "Module":
             mode = "Pathway"
             attributes = kegg.parse_pathway_attributes(data, entry)
         else:
-            raise AttributeError(f"Cannot parse type '{mode}'")
+            raise AttributeError(f"Cannot parse type '{entry_mode}'")
 
         obj = cls(entry, attributes, mode, database, path, "", version)
         obj.genome = genome
@@ -270,15 +273,16 @@ class Data:
         """
         Creates an instance from an XML file. Database: Biocyc families
         """
-        version = root.find("metadata/PGDB")
-        if version is not None:
-            version = version.attrib.get("version")
-
-        if version is None:
+        version_element = root.find("metadata/PGDB")
+        if version_element is not None:
+            version: Optional[str] = version_element.attrib.get("version")
+            assert version is not None
+        else:
             raise Exception("Version for the XML cannot be empty!")
 
         gene_path = path.parent.joinpath("GENES")
 
+        mode: Literal["Pathway", "Reaction", "Metabolite"]
         if (
             root.findall("Compound")
             or root.findall("Protein")
@@ -606,6 +610,7 @@ def get_data(
     if not directory.exists():
         directory.mkdir()
 
+    extra: Path
     # Try first locally and the query databases
     if not database:
         try:
@@ -616,7 +621,7 @@ def get_data(
             response_database, response = get_response(identifier)
 
             if response_database == "bigg":
-                extra: Path = getattr(response, "extra")
+                extra = getattr(response, "extra")
 
                 if not extra:
                     raise AttributeError(
@@ -681,7 +686,7 @@ def get_data(
                     )
 
             if response_database == "BIGG":
-                extra: Path = getattr(response, "extra")
+                extra = getattr(response, "extra")
 
                 if not extra:
                     raise AttributeError(
@@ -743,31 +748,32 @@ def build_reaction_from_str(
     compounds: dict[str, float] = {}
     # Reactants
     for pair in reaction_str[:position].rstrip().strip().split("+"):
+        coefficient: Union[str, float]
         try:
-            coefficient, metabolite = pair.rstrip().strip().split(" ")
+            coefficient, metabolite_str = pair.rstrip().strip().split(" ")
         except ValueError:
             coefficient = 1
-            metabolite = pair.rstrip().strip()
+            metabolite_str = pair.rstrip().strip()
 
             # Empty part
-            if metabolite == "":
+            if metabolite_str == "":
                 break
 
-        compounds[metabolite] = -1.0 * float(coefficient)
+        compounds[metabolite_str] = -1.0 * float(coefficient)
 
     # products
     for pair in reaction_str[position + 3 :].rstrip().strip().split("+"):
         try:
-            coefficient, metabolite = pair.rstrip().strip().split(" ")
+            coefficient, metabolite_str = pair.rstrip().strip().split(" ")
         except ValueError:
             coefficient = 1
-            metabolite = pair.rstrip().strip()
+            metabolite_str = pair.rstrip().strip()
 
             # Empty part
-            if metabolite == "":
+            if metabolite_str == "":
                 break
 
-        compounds[metabolite] = float(coefficient)
+        compounds[metabolite_str] = float(coefficient)
 
     # It must be a biocyc family
     # if database is not None and database.find(":") != -1:
@@ -779,6 +785,7 @@ def build_reaction_from_str(
         identifier = replacement.get(identifier[:-2], identifier[:-2])
         identifier = f"{identifier}_{compartment}"
 
+        metabolite: cobra_core.Metabolite
         try:
             data = get_data(identifier[:-2], directory, database, model_id)
             metabolite = creation.metabolite_from_data(data, compartment, model)
