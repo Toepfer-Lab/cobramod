@@ -74,7 +74,7 @@ jobs:
         run: python -m pip install .
 
       - name: Install tox
-        run: python -m pip install tox-gh>=1.2
+        run: python -m pip install tox
 
       - name: Setup test suite
         run: tox -vv --notest
@@ -83,11 +83,11 @@ jobs:
         run: echo "${{ secrets.BIOCYC_USER }}\n${{ secrets.BIOCYC_PASS }}" >> credentials.txt
 
       - name: Run test suite
-        run: tox --skip-pkg-install
+        run: tox --skip-pkg-install -e py
 
   build-publish:
     needs: [unittest]
-    name: Build and publish the package to TestPyPI
+    name: Build and publish the package to PyPI
     if: github.event.pull_request.merged == true && github.event_name != 'schedule'
     runs-on: ubuntu-latest
 
