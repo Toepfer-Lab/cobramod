@@ -96,11 +96,10 @@ jobs:
           name: cobramod-dist
       - name: Get file path
         id: path
-        run: |
-          file_path = $(find -name cobramod-*.whl)
-          echo "file-path=$file_path" >> "$GITHUB_OUTPUT"
-          echo $file_path
-          echo ${{ steps.path.outputs.file-path }}
+        run: echo "file-path=$(find -name cobramod-*.whl)" >> "$GITHUB_OUTPUT"
+
+      - name: print path
+        run: echo "${{ steps.path.outputs.file-path }}"
 
       - name: Install CobraMod & dependencies from wheel
         run: pip install ${{ steps.path.outputs.file-path }}
