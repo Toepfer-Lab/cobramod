@@ -100,7 +100,7 @@ jobs:
           echo "path=$(find -name cobramod-*.whl)" >> $GITHUB_OUTPUT
 
       - name: Install CobraMod & dependencies from wheel
-        run: pip install ${{ steps.path.outputs.path }}
+        run: echo "${{ steps.path.outputs.path }}" | pip install
 
       - name: Install tox
         run: python -m pip install tox
