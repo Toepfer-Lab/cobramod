@@ -25,6 +25,16 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
+      - name: Set up JS & build js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Build JS
+        run: yarn run vite build
+
       - name: Install dependencies
         run: python -m pip install .
 
