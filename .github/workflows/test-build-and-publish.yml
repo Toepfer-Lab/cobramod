@@ -135,7 +135,8 @@ jobs:
       with:
         name: cobramod-dist
         path: |
-          dist
+          dist 
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip setuptools wheel twine build
