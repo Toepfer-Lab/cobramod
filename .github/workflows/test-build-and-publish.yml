@@ -117,25 +117,25 @@ jobs:
       - name: Run test suite
         run: tox --skip-pkg-install
 
-  build-publish:
+  publish-to-pypi:
     needs: [unittest]
-    name: Build and publish the package to PyPI
+    name: >-
+      Publish Python 🐍 distribution 📦 to PyPI
     if: github.event.pull_request.merged == true && github.event_name != 'schedule'
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/cobramod
+    permissions:
+      id-token: write
 
     steps:
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.10"
-
-    - name: Download package as artifact
+    - name: Download all the dists
       uses: actions/download-artifact@v4
       with:
         name: cobramod-dist
         path: |
-          dist  
-
+          dist
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip setuptools wheel twine build
@@ -143,9 +143,5 @@ jobs:
     - name: Check the package
       run: twine check dist/*
 
-    - name: Publish to PyPI
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run:
-        twine upload --non-interactive dist/*
+    - name: Publish distribution 📦 to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
