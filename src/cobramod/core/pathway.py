@@ -15,6 +15,7 @@ from typing import Any, Optional, Union, Literal
 
 import cobra.core as cobra_core
 
+from cobramod.visualization.escher import EscherIntegration
 from cobramod.visualization.force_graph import ForceGraphIntegration
 
 try:
@@ -277,7 +278,7 @@ class Pathway(cobra_core.Group):
         filename: Optional[Union[str, Path]] = None,
         vis: Literal["escher", "escher-custom", "3d-force"] = "escher",
         never_ask_before_quit: bool = False,
-    ) -> Optional[escher.Builder]:
+    ) -> Union[escher.Builder, EscherIntegration, ForceGraphIntegration, None]:
         """
         .. versionchanged:: 1.3.0
             The 'vis' parameter has been added. This allows one to choose between different visualization tools.
@@ -290,6 +291,7 @@ class Pathway(cobra_core.Group):
         :param filename: Path for the HTML. Defaults to "pathway.html" in the current working directory.
 
         :param vis:
+            .. versionadded:: 1.3.0
             Parameter that determines the visualization tool used. It is possible to choose between the original
             Escher integration [escher], the one embedded in CobraMod [escher-custom] and a 3-dimensional
             force directed graph visualization [3d-force].
@@ -299,7 +301,11 @@ class Pathway(cobra_core.Group):
                 conflicts with Jupyter. The integration embedded in CobraMod will take its place in the future.
                 This can already be used by setting 'vis' to "escher-custom".
 
+        :param never_ask_before_quit:
             .. versionadded:: 1.3.0
+
+            Option to control whether a warning dialog is displayed when the Escher Builder window is closed.
+            Only has an effect when using Escher for visualization.
 
         """
 

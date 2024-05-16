@@ -67,16 +67,16 @@ class EscherIntegration(anywidget.AnyWidget):
                 values.
             reaction_scale: A list consisting of :py:class:`~cobramod.visualization.escher.ReactionScale`.
                 This list must consist of at least two ReactionScales when it is used.
-            reaction_styles:
-            never_ask_before_quit:
+            reaction_styles: Style options for the reactions see `Escher's JavaScript API <https://escher.readthedocs.io/en/latest/javascript_api.html#escher.Builder.options.reaction_styles>`_ for options and formatting.
+            never_ask_before_quit: Option to control whether a warning dialog is displayed when the Escher Builder window is closed. See `Escher's JavaScript API <https://escher.readthedocs.io/en/latest/javascript_api.html#escher.Builder.options.never_ask_before_quit>`_ for reference.
         """
         super().__init__()
 
-        self.reaction_styles = reaction_styles
         self.map_name = map_name
         self.map_json = map_json
         self.reaction_scale = reaction_scale
         self.reaction_data = reaction_data
+        self.reaction_styles = reaction_styles
         self.never_ask_before_quit = never_ask_before_quit
 
     reaction_styles: Optional[List[Any]] = traitlets.List(allow_none=True).tag(
