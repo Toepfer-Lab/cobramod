@@ -1,0 +1,62 @@
+: # Based on the action of jupyterlab team https://raw.githubusercontent.com/jupyterlab/jupyterlab/main/.github/workflows/galata-update.yml
+name: Update Playwright Snapshots
+
+on:
+  workflow_dispatch:
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-galata-snapshots:
+    name: Update Galata References
+    if: ${{ github.event.issue.pull_request && (contains(github.event.comment.body, 'please update galata snapshots') || contains(github.event.comment.body, 'please update snapshots')) }}
+    timeout-minutes: 80
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git to use https
+        run: git config --global hub.protocol https
+
+      - name: Checkout the branch from the PR that triggered the job
+        run: hub pr checkout ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up JS & build js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Build JS
+        run: yarn run vite build
+
+      - name: Install package
+        run: pip install .
+
+      - uses: jupyterlab/maintainer-tools/.github/actions/update-snapshots@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          start_server_script: start
+          server_url: http-get://localhost:8888/lab
+          test_folder: ui-tests
+          artifact_name: updated-galata-snapshots
+          report_name: update-galata-report
+
+      - name: Comment back on the PR
+        run: |
+          hub api repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments --raw-field 'body=Galata snapshots updated.'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
