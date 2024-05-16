@@ -35,7 +35,7 @@
   - Tests for visualization using Escher now use Escher-Custom
   - Several visualization tests were replaced by an equivalent test using Galata
 - environment.yml
-  - Some dependencies now use their conda-forge package to reduce build time.
+  - Some dependencies now use their conda-forge package to reduce build time
   - 'sphinx-autoapi' was set to a dev version to be able to create the documentation using python 3.12
 - Maintenance
   - Several adjustments due to announced deprecations
