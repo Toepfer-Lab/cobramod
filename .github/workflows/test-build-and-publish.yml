@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.7
       - name: Install dependencies
@@ -33,7 +33,7 @@ jobs:
         python-version: [ "3.10", "3.11", "3.12" ]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -41,16 +41,46 @@ jobs:
       - name: Run type-checking
         run: python -m tox -e types
 
+  build:
+    needs: [ types ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Set up JS & build js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel twine build
+          yarn install
+
+      - name: Build JS
+        run: yarn run vite build
+      - name: Build package
+        run: python -m build
+      - name: Archive package as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cobramod-dist
+          path: |
+            dist
+
+
   unittest:
-    needs: [lint-format, types]
+    needs: [build]
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
         python-version: [ "3.10", "3.11", "3.12" ]
     runs-on: ${{ matrix.os}}
     steps:
-      - uses: actions/checkout@v4
-
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -60,18 +90,15 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
-      - name: Set up JS & build js
-        uses: actions/setup-node@v4
+      - name: Download package as artifact
+        uses: actions/download-artifact@v4
         with:
-          node-version: 20
+          name: cobramod-dist
+          path: |
+            dist
 
-      - name: Install dependencies
-        run: yarn install
-      - name: Build JS
-        run: yarn run vite build
-
-      - name: Install dependencies
-        run: python -m pip install .
+      - name: Install CobraMod & dependencies from wheel
+        run: pip install ./dist/cobramod-*.whl
 
       - name: Install tox
         run: python -m pip install tox
@@ -92,30 +119,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: "3.10"
         cache: "pip"
 
-    - name: Set up JS & build js
-      uses: actions/setup-node@v4
+    - name: Download package as artifact
+      uses: actions/download-artifact@v4
       with:
-        node-version: 20
+        name: cobramod-dist
+        path: |
+          dist    
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip setuptools wheel twine build
-        yarn install
-
-    - name: Build JS
-      run: yarn run vite build
-    - name: Build package
-      run: python -m build
     - name: Check the package
       run: twine check dist/*
+
     - name: Publish to PyPI
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
