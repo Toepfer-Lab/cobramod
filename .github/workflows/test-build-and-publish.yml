@@ -11,8 +11,43 @@ on:
       - master
 
 jobs:
-  lint-format-unittest:
+  lint-format:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install dependencies
+        run: python -m pip install tox
+      - name: Linter
+        run: python -m tox -e lint
+      - name: Format
+        run: python -m tox -e format
+
+  types:
+    needs: [ lint-format ]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.10", "3.11", "3.12" ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: python -m pip install tox
+      - name: Run type-checking
+        run: python -m tox -e types
+
+  unittest:
+    needs: [lint-format, types]
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        python-version: [ "3.10", "3.11", "3.12" ]
+    runs-on: ${{ matrix.os}}
     steps:
       - uses: actions/checkout@v4
 
@@ -51,7 +86,7 @@ jobs:
         run: tox --skip-pkg-install
 
   build-publish:
-    needs: [lint-format-unittest]
+    needs: [unittest]
     name: Build and publish the package to TestPyPI
     if: github.event.pull_request.merged == true && github.event_name != 'schedule'
     runs-on: ubuntu-latest
