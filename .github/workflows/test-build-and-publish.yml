@@ -104,19 +104,11 @@ jobs:
         with:
           name: cobramod-dist
 
-      - name: print path
-        run: echo "${{ steps.path.outputs.file-path }}"
-      - name: print path2
-        run: echo "${{needs.build.outputs.file-path}}"
-
-      - name: Install CobraMod & dependencies from wheel
-        run: pip install ${{ needs.build.outputs.file-path }}
-
       - name: Install tox
         run: python -m pip install tox
 
       - name: Setup test suite
-        run: tox -vv --notest
+        run: tox -vv --notest --installpkg ${{ needs.build.outputs.file-path }}
 
       - name: Credentials
         run: echo "${{ secrets.BIOCYC_USER }}\n${{ secrets.BIOCYC_PASS }}" >> credentials.txt
