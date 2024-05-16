@@ -44,6 +44,8 @@ jobs:
   build:
     needs: [ types ]
     runs-on: ubuntu-latest
+    outputs:
+      file-path: ${{ steps.path.outputs.file-path }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -66,6 +68,11 @@ jobs:
         run: yarn run vite build
       - name: Build package
         run: python -m build
+
+      - name: Get file name
+        id: path
+        run: echo "file-path=$(find ./dist -type f -name cobramod-*.whl)" >> "$GITHUB_OUTPUT"
+
       - name: Archive package as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -94,15 +101,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: cobramod-dist
-      - name: Get file path
-        id: path
-        run: echo "file-path=$(find . -type f -name cobramod-*.whl)" >> "$GITHUB_OUTPUT"
 
       - name: print path
         run: echo "${{ steps.path.outputs.file-path }}"
+      - name: print path2
+        run: echo "${{needs.build.outputs.file-path}}"
 
       - name: Install CobraMod & dependencies from wheel
-        run: pip install ${{ steps.path.outputs.file-path }}
+        run: pip install ${{ needs.build.outputs.file-path }}
 
       - name: Install tox
         run: python -m pip install tox
