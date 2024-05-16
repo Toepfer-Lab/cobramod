@@ -96,7 +96,7 @@ jobs:
           name: cobramod-dist
       - name: Get file path
         id: path
-        run: echo "file-path=$(find -name cobramod-*.whl)" >> "$GITHUB_OUTPUT"
+        run: echo "file-path=$(find . -type f -name cobramod-*.whl)" >> "$GITHUB_OUTPUT"
 
       - name: print path
         run: echo "${{ steps.path.outputs.file-path }}"
