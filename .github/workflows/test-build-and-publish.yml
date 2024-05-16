@@ -71,7 +71,8 @@ jobs:
 
       - name: Get file name
         id: path
-        run: echo "file-path=$(find ./dist -type f -name cobramod-*.whl)" >> "$GITHUB_OUTPUT"
+
+        run: echo "file-path=$(cd dist && find . -type f -name cobramod-*.whl)" >> "$GITHUB_OUTPUT"
 
       - name: Archive package as artifact
         uses: actions/upload-artifact@v4
