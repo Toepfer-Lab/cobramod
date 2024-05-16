@@ -1,4 +1,4 @@
-: # Based on the action of jupyterlab team https://raw.githubusercontent.com/jupyterlab/jupyterlab/main/.github/workflows/galata-update.yml
+# Based on the action of jupyterlab team https://raw.githubusercontent.com/jupyterlab/jupyterlab/main/.github/workflows/galata-update.yml
 name: Update Playwright Snapshots
 
 on:
