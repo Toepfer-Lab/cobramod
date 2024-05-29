@@ -117,6 +117,12 @@ jobs:
       - name: Run test suite
         run: tox --skip-pkg-install
 
+      - name: Upload coverage reports to Codecov
+        if: matrix.python-version == "3.12"
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   publish-to-pypi:
     needs: [unittest]
     name: >-
