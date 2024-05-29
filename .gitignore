@@ -16,6 +16,11 @@ docs/source/summary.txt
 # node_modules
 node_modules/
 
+# JS Build Files
+src/cobramod/static/escher.mjs
+src/cobramod/static/force_graph.mjs
+src/cobramod/static/LICENSES.txt
+
 # ui test results
 ui-tests/playwright-report
 ui-tests/test-results
