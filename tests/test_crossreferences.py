@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest import TestCase
 from unittest.mock import patch
 
+import numpy as np
 import pandas as pd
 from cobra import Metabolite, Reaction
 from cobra import __version__ as cobra_version
@@ -21,7 +22,6 @@ from cobramod.core.crossreferences import (
 )
 from cobramod.debug import debug_log
 from cobramod.parsing.db_version import DataVersionConfigurator
-from numpy import NaN
 
 debug_log.setLevel(DEBUG)
 data_conf = DataVersionConfigurator()
@@ -166,7 +166,7 @@ class TestCrossReferences(TestCase):
                     "ID": ["test1", "test2"],
                     "mnx_equation": ["test1", "test2"],
                     "reference": ["test1", "test2"],
-                    "classifs": [NaN, "test2"],
+                    "classifs": [np.nan, "test2"],
                     "is_balanced": ["test1", "test2"],
                     "is_transport": ["test1", "test2"],
                 }

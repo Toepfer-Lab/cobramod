@@ -18,11 +18,13 @@ with resources.as_file(
     textbook = read_sbml_model(textbook)
 
 textbook_biocyc = read_sbml_model(
-    resources.read_text(data, "textbook_biocyc.sbml")
+    resources.files(data).joinpath("textbook_biocyc.sbml").read_text()
 )
 
 textbook_biocyc_groups = read_sbml_model(
-    resources.read_text(data, "textbook_biocyc_groups.sbml")
+    resources.files(data).joinpath("textbook_biocyc_groups.sbml").read_text()
 )
 
-textbook_kegg = read_sbml_model(resources.read_text(data, "textbook_kegg.sbml"))
+textbook_kegg = read_sbml_model(
+    resources.files(data).joinpath("textbook_kegg.sbml").read_text()
+)

@@ -90,7 +90,7 @@ class EscherIntegration(anywidget.AnyWidget):
     ).tag(sync=True)  # type: ignore
     never_ask_before_quit = traitlets.Bool(allow_none=False).tag(sync=True)
 
-    _esm = resources.read_text(static, "escher.mjs")
+    _esm = resources.files(static).joinpath("escher.mjs").read_text()
 
     @property
     def model_data(self):

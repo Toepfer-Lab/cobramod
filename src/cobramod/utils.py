@@ -143,7 +143,7 @@ def compare_type(first: Any, second: Any):
     """
     Returns True is both objects are the same type, else raise TypeError.
     """
-    if type(first) == type(second):
+    if type(first) is type(second):
         return True
     else:
         raise TypeError("Given objects are not the same type.")
