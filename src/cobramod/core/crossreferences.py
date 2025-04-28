@@ -1,7 +1,7 @@
 import re
 from functools import lru_cache
 from pathlib import Path
-from typing import Set, Union, List, Any
+from typing import Set, Union, List, Any, Literal
 
 import pandas as pd
 import requests
@@ -51,7 +51,12 @@ def inchikey2pubchem_cid(
 
     response = requests.get(url=url)
     response.raise_for_status()
+
     value = response.text.rstrip()
+
+    # PubChem returns one cid per line if multiple valid
+    if "\n" in value:
+        value = value.split("\n")
 
     # cache = cache.append({"ID": inchikey, "XRefs": value}, ignore_index=True)
     cache = pd.concat(
@@ -360,6 +365,7 @@ def add_crossreferences(  # noqa: C901
     directory: Union[Path, str],
     consider_sub_elements: bool = True,
     include_metanetx_specific_ec: bool = False,
+    validate: Literal["all", "only_new", "none"] = ["only_new"],
 ) -> None:
     """Extends the passed object by cross-references. Here, only the
     cross-references of reactions or metabolites are expanded. There
@@ -382,8 +388,18 @@ def add_crossreferences(  # noqa: C901
             EC numbers should be taken over. These are generally not found in
             other databases. Furthermore, this could result in non-existing
             Brenda IDs being created. The default value is False.
+        validate:
 
     """
+
+    validate_all = False
+    validate_new = False
+
+    if validate == "all":
+        validate = True
+    elif validate == "only_new":
+        validate_new = True
+
     if isinstance(directory, str):
         directory = Path(directory).absolute()
 
@@ -456,6 +472,8 @@ def add_crossreferences(  # noqa: C901
             id = "Undefined"
             ids = []
         xrefs = object.annotation
+        original_xrefs = object.annotation.copy()
+        new_xrefs = {}
         size = len(xrefs)
         total_found = 0
 
@@ -490,6 +508,9 @@ def add_crossreferences(  # noqa: C901
             total_found += 1
             xrefs = add2dict_unique(prefix, new_id, xrefs)
 
+            if validate_new:
+                new_xrefs = add2dict_unique(prefix, new_id, new_xrefs)
+
         # pubchem.compound
 
         try:
@@ -499,6 +520,11 @@ def add_crossreferences(  # noqa: C901
             pass
         else:
             xrefs = add2dict_unique("pubchem.compound", pubchem_compound, xrefs)
+
+            if validate_new:
+                new_xrefs = add2dict_unique(
+                    "pubchem.compound", pubchem_compound, new_xrefs
+                )
 
             if isinstance(pubchem_compound, str):
                 pubchem_compound = [pubchem_compound]
@@ -518,6 +544,9 @@ def add_crossreferences(  # noqa: C901
         else:
             xrefs = add2dict_unique("ec-code", ec_number, xrefs)
 
+            if validate_new:
+                new_xrefs = add2dict_unique("ec-code", ec_number, new_xrefs)
+
             if isinstance(ec_number, str):
                 ec_number = [ec_number]
 
@@ -530,6 +559,8 @@ def add_crossreferences(  # noqa: C901
             pass
         else:
             xrefs = add2dict_unique("brenda", ec_number, xrefs)
+            if validate_new:
+                new_xrefs = add2dict_unique("brenda", ec_number, new_xrefs)
 
             if isinstance(ec_number, str):
                 ec_number = [ec_number]
@@ -544,4 +575,63 @@ def add_crossreferences(  # noqa: C901
             f"were missing and have been added."
         )
 
-        object.annotation = xrefs
+        if validate_all:
+            object.annotation = validate_id_dict(xrefs=xrefs)
+
+        elif validate_new:
+            new_xrefs = validate_id_dict(xrefs=new_xrefs)
+
+            for prefix, identifier in original_xrefs.items():
+                xrefs = add2dict_unique(prefix, identifier, new_xrefs)
+
+            object.annotation = xrefs
+
+        else:
+            object.annotation = xrefs
+
+
+def validate_id_dict(
+    xrefs: dict[str, Union[str, list[str]]],
+) -> dict[str, Union[str, list[str]]]:
+    validated_xrefs = {}
+
+    for prefix, identifiers in xrefs.items():
+        if isinstance(identifiers, str):
+            if validate_id(f"{prefix}:{identifiers}"):
+                validated_xrefs[prefix] = identifiers
+        else:
+            valid_list = []
+            # Has to be list of identifiers
+            for identifier in identifiers:
+                if validate_id(f"{prefix}:{identifier}"):
+                    valid_list.append(identifier)
+
+            # if at least one entry remains add those either as list
+            # if more than one or as string if exactly one
+            if len(valid_list) > 1:
+                validated_xrefs[prefix] = valid_list
+            elif len(valid_list) == 1:
+                validated_xrefs[prefix] = valid_list[0]
+
+    return validated_xrefs
+
+
+def validate_id(identifier: str) -> bool:
+    if ":" not in identifier:
+        return False
+
+    prefix, ID = identifier.split(":")
+
+    url_idfentifiers = f"https://resolver.api.identifiers.org/" f"{prefix}:{ID}"
+
+    response = requests.get(url_idfentifiers)
+    response.raise_for_status()
+    answer = response.json()
+    valid = True if answer["errorMessage"] is None else False
+
+    debug_log.debug(
+        f"Validation request results in error message: {answer['errorMessage']}"
+    )
+    debug_log.debug(f"Identifier ({identifier}) is verified: {valid}")
+
+    return valid

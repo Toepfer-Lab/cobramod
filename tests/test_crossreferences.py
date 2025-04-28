@@ -16,7 +16,6 @@ from cobramod.core.crossreferences import (
     add_crossreferences,
     get_crossreferences,
     get_reac_prop_with_ec,
-    inchikey2pubchem_cid,
     load_cache_from_disk,
     metanetx2ec,
 )
@@ -29,24 +28,6 @@ data_conf.force_same_version = True
 
 
 class TestCrossReferences(TestCase):
-    @patch("requests.get")
-    def test_inchikey2pubchem_cid(self, mocked_post):
-        with tempfile.TemporaryDirectory() as directory:
-            directory = Path(directory)
-            mocked_post.return_value.status_code = 200
-            mocked_post.return_value.text = "154"
-
-            value = inchikey2pubchem_cid("Test_ID", directory)
-            self.assertEqual("154", value)
-
-            # check that the local cache is used
-            mocked_post.return_value.text = "155"
-            value = inchikey2pubchem_cid("Test_ID", directory)
-            self.assertEqual(value, "154")
-
-            value = inchikey2pubchem_cid(["Test_ID2", "Test_ID3"], directory)
-            self.assertEqual(["155", "155"], value)
-
     def test_load_cache_from_disk(self):
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
@@ -258,7 +239,7 @@ class TestCrossReferences(TestCase):
             }
         )
 
-        mock_get.return_value.text = "154"
+        mock_get.return_value.text = "154\n155"
 
         with tempfile.TemporaryDirectory() as directory:
             directory = Path(directory)
@@ -278,16 +259,18 @@ class TestCrossReferences(TestCase):
                 "inchikey": "LJQLQCAXBUHEAZ-UHFFFAOYSA-N",
                 "sabiork.compound": "29",
                 "chebi": "CHEBI:89363",
-                "pubchem.compound": "154",
+                "pubchem.compound": ["154", "155"],
             }
 
             add_crossreferences(metabolite, directory)
             # check keys
+            print(metabolite.annotation)
             self.assertCountEqual(expected_annotations, metabolite.annotation)
 
             for key, value in expected_annotations.items():
                 self.assertCountEqual(value, metabolite.annotation[key])
 
+            # ToDo test includes metabolite identifiers while it handles a reaction
             add_crossreferences(reaction, directory)
             expected_annotations = {
                 "hmdb": [
@@ -305,7 +288,7 @@ class TestCrossReferences(TestCase):
                 "c4-2(1-12-14(6,7)8)3(5)13-15(9,10)11/"
                 "h2,4H,1H2,(H2,6,7,8)(H2,9,10,11)",
                 "inchikey": "LJQLQCAXBUHEAZ-UHFFFAOYSA-N",
-                "pubchem.compound": "154",
+                "pubchem.compound": ["154", "155"],
                 "ec-code": "1.1.1.1",
                 "brenda": "1.1.1.1",
             }
