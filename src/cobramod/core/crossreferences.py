@@ -366,6 +366,7 @@ def add_crossreferences(  # noqa: C901
     consider_sub_elements: bool = True,
     include_metanetx_specific_ec: bool = False,
     validate: Literal["all", "only_new", "none"] = ["only_new"],
+    use_metanetx: bool = False,
 ) -> None:
     """Extends the passed object by cross-references. Here, only the
     cross-references of reactions or metabolites are expanded. There
@@ -464,52 +465,53 @@ def add_crossreferences(  # noqa: C901
             raise ValueError
 
         # metanetx
-
-        if object.id is not None:
-            id = object.id
-            ids = [object.id]
-        else:
-            id = "Undefined"
-            ids = []
-        xrefs = object.annotation
-        original_xrefs = object.annotation.copy()
-        new_xrefs = {}
-        size = len(xrefs)
-        total_found = 0
-
-        for key, value in object.annotation.items():
-            if isinstance(value, list):
-                for id in value:
-                    ids.append(key + ":" + id)
+        # metanetx can only be disabled for reactions
+        if use_metanetx is True or isinstance(object, Metabolite):
+            if object.id is not None:
+                id = object.id
+                ids = [object.id]
             else:
-                ids.append(key + ":" + value)
+                id = "Undefined"
+                ids = []
+            xrefs = object.annotation
+            original_xrefs = object.annotation.copy()
+            new_xrefs = {}
+            size = len(xrefs)
+            total_found = 0
 
-        potential_xrefs = get_crossreferences(sort, ids, directory)
+            for key, value in object.annotation.items():
+                if isinstance(value, list):
+                    for id in value:
+                        ids.append(key + ":" + id)
+                else:
+                    ids.append(key + ":" + value)
 
-        for potential_xref in potential_xrefs:
-            try:
-                prefix, new_id = potential_xref.split(":")
-            except ValueError:
-                continue
-            prefix = prefix.lower()
+            potential_xrefs = get_crossreferences(sort, ids, directory)
 
-            # MetaNetX does not provide correct CHEBI IDs. This is because
-            # they lack the correct prefix. "CHEBI:CHEBI:0000" is correct
-            # but "CHEBI:0000" is delivered. Therefore the following if
-            # statement is used. This will also work if this condition is
-            # fixed. (But then it is redundant)
-            if prefix == "chebi" and "CHEBI:" not in new_id:
-                new_id = "CHEBI:" + new_id
+            for potential_xref in potential_xrefs:
+                try:
+                    prefix, new_id = potential_xref.split(":")
+                except ValueError:
+                    continue
+                prefix = prefix.lower()
 
-            # obsolete ids are ignored
-            elif prefix == "deprecated":
-                continue
+                # MetaNetX does not provide correct CHEBI IDs. This is because
+                # they lack the correct prefix. "CHEBI:CHEBI:0000" is correct
+                # but "CHEBI:0000" is delivered. Therefore the following if
+                # statement is used. This will also work if this condition is
+                # fixed. (But then it is redundant)
+                if prefix == "chebi" and "CHEBI:" not in new_id:
+                    new_id = "CHEBI:" + new_id
 
-            total_found += 1
-            xrefs = add2dict_unique(prefix, new_id, xrefs)
+                # obsolete ids are ignored
+                elif prefix == "deprecated":
+                    continue
 
-            if validate_new:
-                new_xrefs = add2dict_unique(prefix, new_id, new_xrefs)
+                total_found += 1
+                xrefs = add2dict_unique(prefix, new_id, xrefs)
+
+                if validate_new:
+                    new_xrefs = add2dict_unique(prefix, new_id, new_xrefs)
 
         # pubchem.compound
 

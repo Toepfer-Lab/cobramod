@@ -916,6 +916,9 @@ def add_reactions(
             EC numbers should be taken over. These are generally not found in
             other databases. Furthermore, this could result in non-existing
             Brenda IDs being created. The default value is False.
+        use_metanetx: This parameter defines whether MetaNetX should be used
+            as the data source for adding cross-references. It only influences
+            the lookup behavior for Reactions. The default value is False.
 
     Raises:
         WrongSyntax (from str): If the syntax is not followed correctly as
@@ -932,6 +935,7 @@ def add_reactions(
     include_metanetx_specific_ec = kwargs.pop(
         "include_metanetx_specific_ec", False
     )
+    use_metanetx = kwargs.pop("include_metanetx_specific_ec", False)
 
     if isinstance(directory, str):
         directory = Path(directory).absolute()
@@ -992,6 +996,7 @@ def add_reactions(
             directory=directory,
             consider_sub_elements=consider_sub_elements,
             include_metanetx_specific_ec=include_metanetx_specific_ec,
+            use_metanetx=use_metanetx,
         )
 
     cmod_utils.add_reactions_to_model(model=model, reactions=reactions)
