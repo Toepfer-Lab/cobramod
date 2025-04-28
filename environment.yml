@@ -30,4 +30,4 @@ dependencies:
 - conda-forge::jupyter-sphinx
 - pip:
   - escher-legacy
-  - sphinx-autoapi==3.1.0b0
+  - sphinx-autoapi
