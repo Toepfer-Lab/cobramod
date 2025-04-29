@@ -28,7 +28,7 @@ from pybtex.style.template import (
 # -- Project information -----------------------------------------------------
 
 project = "CobraMod"
-copyright = "2021, Stefano Camborda, Jan-Niklas Weder"
+copyright = "2025, Stefano Camborda, Jan-Niklas Weder"
 author = "Stefano Camborda, Jan-Niklas Weder, Nadine Töpfer"
 
 
@@ -130,8 +130,8 @@ intersphinx_mapping = {
 }
 autoapi_dirs = ["../../src/cobramod"]
 autoapi_root = "autoapi"
-autoapi_generate_api_docs = True
-autoapi_add_toctree_entry = True
+autoapi_generate_api_docs = False
+autoapi_add_toctree_entry = False
 autoapi_options = [
     "members",
     "undoc-members",
