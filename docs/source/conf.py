@@ -130,8 +130,8 @@ intersphinx_mapping = {
 }
 autoapi_dirs = ["../../src/cobramod"]
 autoapi_root = "autoapi"
-autoapi_generate_api_docs = False
-autoapi_add_toctree_entry = False
+autoapi_generate_api_docs = True
+autoapi_add_toctree_entry = True
 autoapi_options = [
     "members",
     "undoc-members",
