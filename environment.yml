@@ -10,7 +10,7 @@ dependencies:
 - jupytext
 - matplotlib
 - mypy
-- python
+- python==3.12
 - ruff
 - pre-commit
 - tqdm
