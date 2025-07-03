@@ -103,7 +103,6 @@ class EscherIntegration(anywidget.AnyWidget):
 
     @property
     def options(self):
-
         #  numpy currently creates values that are incapsulated in an np.float(x)
         # this does not work with JS/Escher => cast them individually
 
@@ -123,8 +122,12 @@ class EscherIntegration(anywidget.AnyWidget):
                 reaction_scale.append(new_point)
 
         return {
-            "reaction_styles": self.reaction_styles if self.reaction_styles else "null",
-            "reaction_data": self.reaction_data if self.reaction_data else "null",
+            "reaction_styles": self.reaction_styles
+            if self.reaction_styles
+            else "null",
+            "reaction_data": self.reaction_data
+            if self.reaction_data
+            else "null",
             "reaction_scale": reaction_scale,
             "never_ask_before_quit": "true"
             if self.never_ask_before_quit
@@ -140,7 +143,6 @@ class EscherIntegration(anywidget.AnyWidget):
             filepath: The file in which the HTML file is to be saved.
 
         """
-
 
         html_rep = f"""
         <!DOCTYPE html>

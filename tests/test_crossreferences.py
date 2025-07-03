@@ -270,7 +270,9 @@ class TestCrossReferences(TestCase):
                 self.assertCountEqual(value, metabolite.annotation[key])
 
             # ToDo test includes metabolite identifiers while it handles a reaction
-            add_crossreferences(reaction, directory, use_metanetx= True, validate= False)
+            add_crossreferences(
+                reaction, directory, use_metanetx=True, validate=False
+            )
             expected_annotations = {
                 "hmdb": [
                     "HMDB0062758",

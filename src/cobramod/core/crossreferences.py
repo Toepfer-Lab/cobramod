@@ -13,9 +13,9 @@ from tqdm import tqdm
 
 from cobramod.debug import debug_log
 
+
 def findXRefs(id: str, cache: DataFrame) -> Optional[Union[List[str], str]]:
-    """
-    """
+    """ """
 
     value = cache.loc[cache["ID"] == id]["XRefs"]
 
@@ -30,7 +30,6 @@ def findXRefs(id: str, cache: DataFrame) -> Optional[Union[List[str], str]]:
         return value.iloc[0]
 
     return None
-
 
 
 def inchikey2pubchem_cid(
@@ -59,7 +58,7 @@ def inchikey2pubchem_cid(
 
     cache = load_cache_from_disk("pubchem", directory)
 
-    value = findXRefs(id =inchikey, cache=cache)
+    value = findXRefs(id=inchikey, cache=cache)
 
     if value is not None:
         return value
@@ -149,7 +148,7 @@ def get_crossreferences(  # noqa: C901
         for query in querys:
             result = cache.loc[cache["ID"] == query]["XRefs"]
 
-            result = findXRefs(id = query, cache=cache)
+            result = findXRefs(id=query, cache=cache)
 
             if result is not None:
                 all_querys.remove(query)
@@ -161,7 +160,7 @@ def get_crossreferences(  # noqa: C901
     else:
         all_querys = [querys]
 
-        result = findXRefs(id = querys, cache=cache)
+        result = findXRefs(id=querys, cache=cache)
         if result is not None:
             return set(result)
         query_list = querys
@@ -513,7 +512,6 @@ def add_crossreferences(  # noqa: C901
         # metanetx
         # metanetx can only be disabled for reactions
         if use_metanetx is True or isinstance(object, Metabolite):
-
             for key, value in object.annotation.items():
                 if isinstance(value, list):
                     for id in value:
@@ -659,7 +657,7 @@ def validate_id(identifier: str) -> bool:
 
     prefix, ID = identifier.split(":")
 
-    url_idfentifiers = f"https://resolver.api.identifiers.org/" f"{prefix}:{ID}"
+    url_idfentifiers = f"https://resolver.api.identifiers.org/{prefix}:{ID}"
 
     response = requests.get(url_idfentifiers)
     response.raise_for_status()
