@@ -1,16 +1,36 @@
 import re
 from functools import lru_cache
 from pathlib import Path
-from typing import Set, Union, List, Any, Literal
+from typing import Set, Union, List, Any, Literal, Optional
 
 import pandas as pd
 import requests
 from cobra import Model, Reaction, Metabolite
 from cobra.core import Group
+from pandas.core.interchange.dataframe_protocol import DataFrame
 from requests import HTTPError
 from tqdm import tqdm
 
 from cobramod.debug import debug_log
+
+def findXRefs(id: str, cache: DataFrame) -> Optional[Union[List[str], str]]:
+    """
+    """
+
+    value = cache.loc[cache["ID"] == id]["XRefs"]
+
+    if len(value) > 0:
+        element = value.iloc[0]
+
+        # single element return the containing str
+        if len(value.iloc[0]) == 1:
+            return value.iloc[0][0]
+
+        # return list of str
+        return value.iloc[0]
+
+    return None
+
 
 
 def inchikey2pubchem_cid(
@@ -38,10 +58,11 @@ def inchikey2pubchem_cid(
         return result
 
     cache = load_cache_from_disk("pubchem", directory)
-    value = cache.loc[cache["ID"] == inchikey]["XRefs"]
 
-    if len(value) > 0:
-        return value.iloc[0]
+    value = findXRefs(id =inchikey, cache=cache)
+
+    if value is not None:
+        return value
 
     url = (
         "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/"
@@ -65,6 +86,12 @@ def inchikey2pubchem_cid(
     )
     path = directory / "XRef" / str("pubchem" + ".feather")
     path.parent.mkdir(parents=True, exist_ok=True)
+
+    # create consistent content here list of str instead of lists[str] & str
+    cache["XRefs"] = cache["XRefs"].apply(
+        lambda x: [x] if isinstance(x, str) else x
+    )
+
     cache.to_feather(path)
     load_cache_from_disk.cache_clear()
     return value
@@ -77,7 +104,7 @@ def load_cache_from_disk(sort: str, directory: Path) -> pd.DataFrame:
     pandas DataFrame. If there is no cache file yet an empty DataFrame
     with columns 'ID' and 'XRefs' is returned.
     Args:
-        sort: Der cache Name.
+        sort: The cache name.
         directory: The directory for storing the data. This is where
             the cache is stored in a folder called XRef.
 
@@ -122,18 +149,21 @@ def get_crossreferences(  # noqa: C901
         for query in querys:
             result = cache.loc[cache["ID"] == query]["XRefs"]
 
-            if len(result) > 0:
+            result = findXRefs(id = query, cache=cache)
+
+            if result is not None:
                 all_querys.remove(query)
-                crossreferences.update(set(result.iloc[0]))
+                crossreferences.update(set(result))
 
         if len(all_querys) == 0:
             return crossreferences
         query_list = " ".join(all_querys)
     else:
         all_querys = [querys]
-        result = cache.loc[cache["ID"] == querys]["XRefs"]
-        if len(result) > 0:
-            return set(result.iloc[0])
+
+        result = findXRefs(id = querys, cache=cache)
+        if result is not None:
+            return set(result)
         query_list = querys
 
     url = "https://www.metanetx.org/cgi-bin/mnxweb/id-mapper"
@@ -197,6 +227,10 @@ def get_crossreferences(  # noqa: C901
         # cache = cache.append({"ID": query, "XRefs": xrefs}, ignore_index=True)
         path = directory / "XRef" / str(sort + ".feather")
         path.parent.mkdir(parents=True, exist_ok=True)
+
+        cache["XRefs"] = cache["XRefs"].apply(
+            lambda x: [x] if isinstance(x, str) else x
+        )
         cache.to_feather(path)
         load_cache_from_disk.cache_clear()
         crossreferences.update(xrefs)
@@ -397,7 +431,7 @@ def add_crossreferences(  # noqa: C901
     validate_new = False
 
     if validate == "all":
-        validate = True
+        validate_all = True
     elif validate == "only_new":
         validate_new = True
 
@@ -464,20 +498,21 @@ def add_crossreferences(  # noqa: C901
             )
             raise ValueError
 
+        if object.id is not None:
+            id = object.id
+            ids = [object.id]
+        else:
+            id = "Undefined"
+            ids = []
+        xrefs = object.annotation
+        original_xrefs = object.annotation.copy()
+        new_xrefs = {}
+        size = len(xrefs)
+        total_found = 0
+
         # metanetx
         # metanetx can only be disabled for reactions
         if use_metanetx is True or isinstance(object, Metabolite):
-            if object.id is not None:
-                id = object.id
-                ids = [object.id]
-            else:
-                id = "Undefined"
-                ids = []
-            xrefs = object.annotation
-            original_xrefs = object.annotation.copy()
-            new_xrefs = {}
-            size = len(xrefs)
-            total_found = 0
 
             for key, value in object.annotation.items():
                 if isinstance(value, list):

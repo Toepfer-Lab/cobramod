@@ -26,7 +26,8 @@ dependencies = [
     "openpyxl>=3.1.2",
     "webcolors>=1.13",
     "pyarrow>=14.0.2",
-    "anywidget>=0.9.9"
+    "anywidget>=0.9.9",
+    "numpy>=1.15.0"
 ]
 
 [project.optional-dependencies]

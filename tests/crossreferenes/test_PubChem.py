@@ -64,3 +64,21 @@ class TestCrossReferencesPubChem(TestCase):
 
             for key, value in expected_annotations.items():
                 self.assertCountEqual(value, metabolite.annotation[key])
+
+            # only a single pubchem id
+
+            mock_get.return_value.text = "2519"
+            metabolite = Metabolite()
+            metabolite.annotation = {"inchikey": "RYYVLZVUVIJVGH-UHFFFAOYSA-N"}
+            add_crossreferences(metabolite, directory)
+
+            expected_annotations = {
+                "inchikey": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
+                "pubchem.compound": "2519",
+            }
+
+            # check keys
+            self.assertCountEqual(expected_annotations, metabolite.annotation)
+
+            for key, value in expected_annotations.items():
+                self.assertCountEqual(value, metabolite.annotation[key])
