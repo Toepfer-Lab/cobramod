@@ -23,11 +23,11 @@ def findXRefs(id: str, cache: DataFrame) -> Optional[Union[List[str], str]]:
         element = value.iloc[0]
 
         # single element return the containing str
-        if len(value.iloc[0]) == 1:
-            return value.iloc[0][0]
+        if len(element) == 1:
+            return element[0]
 
         # return list of str
-        return value.iloc[0]
+        return element
 
     return None
 
@@ -398,7 +398,7 @@ def add_crossreferences(  # noqa: C901
     directory: Union[Path, str],
     consider_sub_elements: bool = True,
     include_metanetx_specific_ec: bool = False,
-    validate: Literal["all", "only_new", "none"] = ["only_new"],
+    validate: Literal["all", "only_new", "none"] = "only_new",
     use_metanetx: bool = False,
 ) -> None:
     """Extends the passed object by cross-references. Here, only the
@@ -505,7 +505,7 @@ def add_crossreferences(  # noqa: C901
             ids = []
         xrefs = object.annotation
         original_xrefs = object.annotation.copy()
-        new_xrefs = {}
+        new_xrefs: dict[str, Union[list[str], str]] = {}
         size = len(xrefs)
         total_found = 0
 
@@ -628,11 +628,14 @@ def add_crossreferences(  # noqa: C901
 def validate_id_dict(
     xrefs: dict[str, Union[str, list[str]]],
 ) -> dict[str, Union[str, list[str]]]:
-    validated_xrefs = {}
+    validated_xrefs: dict[str, Union[str, list[str]]] = {}
 
     for prefix, identifiers in xrefs.items():
         if isinstance(identifiers, str):
+            print(identifiers)
+            print(f"{prefix}:{identifiers}")
             if validate_id(f"{prefix}:{identifiers}"):
+                print(identifiers)
                 validated_xrefs[prefix] = identifiers
         else:
             valid_list = []
@@ -652,14 +655,27 @@ def validate_id_dict(
 
 
 def validate_id(identifier: str) -> bool:
+    debug_log.debug(f"Checking validity for identifier {identifier}")
     if ":" not in identifier:
         return False
+    # Chebi indetifier look like this: chebi:CHEBI:123456
+    # => for the look-up we need to remove one chebi
+    # both URLS need the capital variant
+    elif "CHEBI" in identifier:
+        provider, prefix, ID = identifier.split(":")
 
-    prefix, ID = identifier.split(":")
+        # capitalisation of provider is irrelevant
+        if provider.lower() != "chebi":
+            return False
 
-    url_idfentifiers = f"https://resolver.api.identifiers.org/{prefix}:{ID}"
+        actual_id = f"{prefix}:{ID}"
+    else:
+        prefix, ID = identifier.split(":")
+        actual_id = ID
 
-    response = requests.get(url_idfentifiers)
+    url_identifiers = f"https://resolver.api.identifiers.org/{prefix}:{ID}"
+
+    response = requests.get(url_identifiers)
     response.raise_for_status()
     answer = response.json()
     valid = True if answer["errorMessage"] is None else False
@@ -667,6 +683,13 @@ def validate_id(identifier: str) -> bool:
     debug_log.debug(
         f"Validation request results in error message: {answer['errorMessage']}"
     )
-    debug_log.debug(f"Identifier ({identifier}) is verified: {valid}")
+    debug_log.debug(f"Identifier ({identifier}) prefix & structure is verified: {valid}")
+
+
+    url_in_sbml = f"https://identifiers.org/{prefix}/{actual_id}"
+
+    response = requests.get(url_in_sbml)
+    response.raise_for_status()
+    print(response.text)
 
     return valid
