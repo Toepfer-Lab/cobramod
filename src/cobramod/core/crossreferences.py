@@ -683,13 +683,13 @@ def validate_id(identifier: str) -> bool:
     debug_log.debug(
         f"Validation request results in error message: {answer['errorMessage']}"
     )
-    debug_log.debug(f"Identifier ({identifier}) prefix & structure is verified: {valid}")
-
+    debug_log.debug(
+        f"Identifier ({identifier}) prefix & structure is verified: {valid}"
+    )
 
     url_in_sbml = f"https://identifiers.org/{prefix}/{actual_id}"
 
     response = requests.get(url_in_sbml)
     response.raise_for_status()
-    print(response.text)
 
     return valid
