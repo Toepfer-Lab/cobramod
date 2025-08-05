@@ -935,7 +935,7 @@ def add_reactions(
     include_metanetx_specific_ec = kwargs.pop(
         "include_metanetx_specific_ec", False
     )
-    use_metanetx = kwargs.pop("include_metanetx_specific_ec", False)
+    use_metanetx = kwargs.pop("use_metanetx", False)
 
     if isinstance(directory, str):
         directory = Path(directory).absolute()

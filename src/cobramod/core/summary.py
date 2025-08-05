@@ -356,28 +356,28 @@ def summary(
         + "|"
         + ("=" * 19)
         + "*"
-        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n{:13} {:^7} | {:^7} {:10}".format(
             "Reactions", len(additions.reactions), len(deletions.reactions), ""
         )
-        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n{:13} {:^7} | {:^7} {:10}".format(
             "Metabolites",
             len(additions.metabolites),
             len(deletions.metabolites),
             "",
         )
-        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n{:13} {:^7} | {:^7} {:10}".format(
             "Exchange", len(additions.exchanges), len(deletions.exchanges), ""
         )
-        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n{:13} {:^7} | {:^7} {:10}".format(
             "Demand", len(additions.demands), len(deletions.demands), ""
         )
-        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n{:13} {:^7} | {:^7} {:10}".format(
             "Sinks", len(additions.sinks), len(deletions.sinks), ""
         )
-        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n{:13} {:^7} | {:^7} {:10}".format(
             "Genes", len(additions.genes), len(deletions.genes), ""
         )
-        + "\n" "{:13} {:^7} | {:^7} {:10}".format(
+        + "\n{:13} {:^7} | {:^7} {:10}".format(
             "Groups", len(additions.groups), len(deletions.groups), ""
         )
         + "\n"

@@ -9,6 +9,9 @@ from cobramod.core.crossreferences import (
     inchikey2pubchem_cid,
     add_crossreferences,
 )
+from cobramod.debug import change_to_debug
+
+change_to_debug()
 
 
 class TestCrossReferencesPubChem(TestCase):
@@ -52,11 +55,48 @@ class TestCrossReferencesPubChem(TestCase):
 
             metabolite = Metabolite()
             metabolite.annotation = {"inchikey": "BBYWOYAFBUOUFP-JOCHJYFZSA-N"}
-            add_crossreferences(metabolite, directory)
+            add_crossreferences(metabolite, directory, validate="none")
 
             expected_annotations = {
                 "inchikey": "BBYWOYAFBUOUFP-JOCHJYFZSA-N",
                 "pubchem.compound": ["9547068", "46891690"],
+            }
+
+            # check keys
+            self.assertCountEqual(expected_annotations, metabolite.annotation)
+
+            for key, value in expected_annotations.items():
+                self.assertCountEqual(value, metabolite.annotation[key])
+
+            # only a single pubchem id
+
+            mock_get.return_value.text = "2519"
+            metabolite = Metabolite()
+            metabolite.annotation = {"inchikey": "RYYVLZVUVIJVGH-UHFFFAOYSA-N"}
+            add_crossreferences(metabolite, directory, validate="none")
+
+            expected_annotations = {
+                "inchikey": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
+                "pubchem.compound": "2519",
+            }
+
+            # check keys
+            self.assertCountEqual(expected_annotations, metabolite.annotation)
+
+            for key, value in expected_annotations.items():
+                self.assertCountEqual(value, metabolite.annotation[key])
+
+    def test_pubchem_life_validated(self):
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+
+            metabolite = Metabolite()
+            metabolite.annotation = {"inchikey": "RYYVLZVUVIJVGH-UHFFFAOYSA-N"}
+            add_crossreferences(metabolite, directory)
+
+            expected_annotations = {
+                "inchikey": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
+                "pubchem.compound": "2519",
             }
 
             # check keys

@@ -24,3 +24,6 @@ src/cobramod/static/LICENSES.txt
 # ui test results
 ui-tests/playwright-report
 ui-tests/test-results
+
+# exclude credentials file
+credentials.txt

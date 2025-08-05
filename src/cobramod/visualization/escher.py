@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Optional, Dict, TypedDict, Literal, List, Union
 
 import anywidget
+import numpy as np
 from traitlets import traitlets
 
 from cobramod import static
@@ -102,10 +103,32 @@ class EscherIntegration(anywidget.AnyWidget):
 
     @property
     def options(self):
+        #  numpy currently creates values that are incapsulated in an np.float(x)
+        # this does not work with JS/Escher => cast them individually
+
+        reaction_scale = "null"
+        if self.reaction_scale is not None:
+            reaction_scale = []
+            for reaction_scale_point in self.reaction_scale:
+                new_point = {}
+
+                if isinstance(reaction_scale_point["value"], np.float64):
+                    new_point["type"] = "value"
+                    new_point["value"] = reaction_scale_point["value"].item()
+                    new_point["color"] = reaction_scale_point["color"]
+                else:
+                    new_point = reaction_scale_point
+
+                reaction_scale.append(new_point)
+
         return {
-            "reaction_styles": self.reaction_styles,
-            "reaction_data": self.reaction_data,
-            "reaction_scale": self.reaction_scale,
+            "reaction_styles": self.reaction_styles
+            if self.reaction_styles
+            else "null",
+            "reaction_data": self.reaction_data
+            if self.reaction_data
+            else "null",
+            "reaction_scale": reaction_scale,
             "never_ask_before_quit": "true"
             if self.never_ask_before_quit
             else "false",
