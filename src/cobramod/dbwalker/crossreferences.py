@@ -63,6 +63,9 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                         continue
 
                 if query == identifier and identifiersORG_validation:
+                    logger.info(
+                        f"Found SMILES {biocyc_result.smiles} in BioCyc ({db}) for {metabolite.id}"
+                    )
                     verified_identifiers = add2dict_unique(
                         key= "smiles",
                         value= biocyc_result.smiles,
@@ -83,6 +86,10 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                         continue
 
                 if query == identifier and identifiersORG_validation:
+                    logger.info(
+                        f"Found InChI {biocyc_result.inchi} in BioCyc ({db}) for {metabolite.id}"
+                    )
+
                     verified_identifiers = add2dict_unique(
                         key="inchi",
                         value=biocyc_result.inchi,
@@ -98,6 +105,9 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                         logger.error(f"Please check the BioCyc ID ({ID}) and the present InChIKey ({present_identifiers['inchikey']}) for {metabolite.id}.")
                         continue
 
+                logger.info(
+                    f"Found unverified InChIKey {biocyc_result.inchi_key} in BioCyc ({db}) for {metabolite.id}"
+                )
                 nonverified_identifiers["inchikey"] = biocyc_result.inchi_key
 
     if "metacyc.compound" in annotations:
@@ -124,6 +134,10 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                         continue
 
                 if query == ID and identifiersORG_validation:
+                    logger.info(
+                        f"Found SMILES {biocyc_result.smiles} in BioCyc ({db}) for {metabolite.id}"
+                    )
+
                     verified_identifiers = add2dict_unique(
                         key="smiles",
                         value=biocyc_result.smiles,
@@ -144,11 +158,30 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                         continue
 
                 if query == ID and identifiersORG_validation:
+                    logger.info(
+                        f"Found InChI {biocyc_result.inchi} in BioCyc ({db}) for {metabolite.id}"
+                    )
+
                     verified_identifiers = add2dict_unique(
                         key="inchi",
                         value=biocyc_result.inchi,
                         dictionary=verified_identifiers
                     )
+
+            if biocyc_result.inchi_key is not None:
+                if present_identifiers.get("inchikey") is not None:
+                    if present_identifiers.get("inchikey") == biocyc_result.inchi_key:
+                        # If the InChIKey match, we can ignore it as it exists already
+                        continue
+                    else:
+                        logger.error(f"InChIKey identifier mismatch for {ID} in BioCyc: {biocyc_result.inchi_key} vs existing {present_identifiers['inchikey']}")
+                        logger.error(f"Please check the BioCyc ID ({ID}) and the present InChIKey ({present_identifiers['inchikey']}) for {metabolite.id}.")
+                        continue
+
+                logger.info(
+                    f"Found unverified InChIKey {biocyc_result.inchi_key} in BioCyc ({db}) for {metabolite.id}"
+                )
+                nonverified_identifiers["inchikey"] = biocyc_result.inchi_key
 
     if "chebi" in annotations:
         IDs = annotations["chebi"]
@@ -173,6 +206,10 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                 identifiersORG_validation = validate_id(f"chebi:{query}")
 
                 if query == ID and identifiersORG_validation:
+                    logger.info(
+                        f"Found SMILES {chebi_result.smiles} in ChEBI for {metabolite.id}"
+                    )
+
                     verified_identifiers = add2dict_unique(
                         key="smiles",
                         value=chebi_result.smiles,
@@ -192,6 +229,10 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                 identifiersORG_validation = validate_id(f"chebi:{query}")
 
                 if query == ID and identifiersORG_validation:
+                    logger.info(
+                        f"Found InChI {chebi_result.inchi} in ChEBI for {metabolite.id}"
+                    )
+
                     verified_identifiers = add2dict_unique(
                         key="inchi",
                         value=chebi_result.inchi,
@@ -212,6 +253,10 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                 identifiersORG_validation = validate_id(f"chebi:{query}")
 
                 if query == ID and identifiersORG_validation:
+                    logger.info(
+                        f"Found InChIKey {chebi_result.inchi_key} in ChEBI for {metabolite.id}"
+                    )
+
                     verified_identifiers = add2dict_unique(
                         key="inchikey",
                         value=chebi_result.inchi,
@@ -229,6 +274,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
             logger.error(
                 f"Multiple entries found for {key} in verified identifiers: {values}. "
                 f"But {key} should only have one entry. None of those entries will be added."
+                f"You can check where those entries originated in the log using the INFO level."
             )
             continue
 
@@ -236,7 +282,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
             key=key,
             value=value,
             dictionary=metabolite.annotation
-        )            
+        )
 
 
 
