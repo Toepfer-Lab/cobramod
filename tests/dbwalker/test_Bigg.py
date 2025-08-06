@@ -109,7 +109,7 @@ class TestBiggID2Identifier(TestCase):
     
     def test_live_api_call(self):
         """Test against the livebiggID2Identifier BiGG API (may fail if API is unavailable)."""
-        result = biggID2Identifier(' glc__D')
+        result = biggID2Identifier('glc__D')
         self.assertTrue(isinstance(result, GenerellIdentifiers)) 
 
         #assert result.inchi == 'InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6?/m1/s1'

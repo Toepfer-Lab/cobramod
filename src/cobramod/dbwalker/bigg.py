@@ -4,7 +4,7 @@ from typing import Optional, Dict, Any
 
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 
-logger = logging.getLogger("cobramod.DBWalker.BioCyc")
+logger = logging.getLogger("cobramod.DBWalker.Bigg")
 logger.propagate = True
 
 # Ensure console output
@@ -13,7 +13,6 @@ console_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
-logger.setLevel(logging.DEBUG)
 
 def biggID2Identifier(bigg_id: str) -> GenerellIdentifiers:
     """
