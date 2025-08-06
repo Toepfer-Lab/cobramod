@@ -1,3 +1,5 @@
+import urllib
+
 import requests
 from typing import Optional, Dict, Any
 
@@ -16,6 +18,8 @@ console_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
+
+biocycTier1DB = ["Meta","ECOLI", "HUMAN", "ARA", "YEAST"]
 
 def get_compound_info_by_biocyc_id(biocyc_id: str, db: str = "META") -> GenerellIdentifiers:
     """
@@ -51,6 +55,8 @@ def get_compound_info_by_biocyc_id(biocyc_id: str, db: str = "META") -> Generell
         session = cSettings._biocycSession
         response = session.get(url, params=params,headers=headers, timeout=30)
         response.raise_for_status()
+
+        cSettings._closeBiocycSession()
 
         logger.debug(f"Response status code: {response.status_code}")
 
@@ -96,3 +102,75 @@ def get_compound_info_by_biocyc_id(biocyc_id: str, db: str = "META") -> Generell
 
     logger.debug(f"Final result: {result}")
     return result
+
+def smiles2BioCyc(smiles: str, orgid: str = "META") -> str:
+    """
+    Convert SMILES to BioCyc identifiers.
+    
+    Args:
+        smiles: SMILES string of the compound
+        
+    Returns:
+        GenerellIdentifiers with BioCyc ID if found, otherwise empty
+    """
+    try:
+        encoded_smiles = urllib.parse.quote(smiles, safe='')
+        url = f"https://websvc.biocyc.org/{orgid}/smiles-search?smiles={encoded_smiles}&exact=T&fmt=json"
+        
+        logger.info(f"Requesting BioCyc for SMILES: {smiles}")
+        logger.debug(f"Request URL: {url}")
+
+        cSettings = cobramod.Settings()
+        session = cSettings._biocycSession
+
+        response = session.get(url, timeout=30)
+        response.raise_for_status()
+
+        cSettings._closeBiocycSession()
+        
+        data = response.json()
+
+        print(data)
+        biocycID = data["RESULTS"][0]["OBJECT-ID"]
+        return biocycID
+        
+        
+    except requests.RequestException as e:
+        logger.error(f"Error fetching data from BioCyc: {e}")
+        return None
+
+def InChI2BioCyc(inchi: str, orgid: str = "META") -> Optional[str]:
+    """
+    Convert InChI to BioCyc identifiers.
+    
+    Args:
+        inchi: InChI string of the compound
+        
+    Returns:
+        GenerellIdentifiers with BioCyc ID if found, otherwise empty
+    """
+    try:
+        url = f"https://websvc.biocyc.org/{orgid}/inchi-search?inchi={inchi}&exact=T&fmt=json"
+        
+        logger.info(f"Requesting BioCyc for InChI: {inchi}")
+
+        cSettings = cobramod.Settings()
+        session = cSettings._biocycSession
+
+        response = session.get(url, timeout=30)
+        response.raise_for_status()
+
+        cSettings._closeBiocycSession()
+        
+        data = response.json()
+
+        biocycID = data["RESULTS"][0]["OBJECT-ID"]
+        return biocycID
+        
+        
+    except requests.RequestException as e:
+        logger.error(f"Error fetching data from BioCyc: {e}")
+        return None
+
+#def Identifiers2BioCyc(identifier: str) -> GenerellIdentifiers:
+    

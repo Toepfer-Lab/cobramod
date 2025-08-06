@@ -16,7 +16,6 @@ console_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
-logger.setLevel(logging.DEBUG)
 
 
 def get_swisslipids_id(identifier: str, identifier_type: str = "auto") -> Optional[str]:

@@ -1,4 +1,5 @@
 import logging
+import os
 from pathlib import Path
 from threading import Lock
 from typing import Optional
@@ -35,12 +36,21 @@ class SingletonMeta(type):
 class Settings(metaclass=SingletonMeta):
 
     def __init__(self):
-        self.__setBioCycLoginFromFile()
+        self.__setBioCycLoginFromEnv()
+
+        if self.__biocyc_name is None or self.__biocyc_password is None:
+            self.__setBioCycLoginFromFile()
 
     __biocyc_password: Optional[str] = None
     __biocyc_name: Optional[str] = None
     __biocyc_session: Optional[requests.Session] = None
     __biocyc_login: bool = False
+    add_smiles_as_cross_reference: bool = False
+    """
+    SMILES strings are not registered in indentifiers.org therefore they are
+    not considered as valid identifiers and will not be added by default to metabolites.
+    If you want to add SMILES strings as cross-references, set this to True.
+    """
 
     def __set__biocyc_password(self, value: str):
         self.__biocyc_password = value
@@ -64,6 +74,15 @@ class Settings(metaclass=SingletonMeta):
                 self.SetBioCycLogin(Path.cwd().joinpath("credentials.txt"))
             except FileNotFoundError:
                 logger.debug("No credentials.txt found.")
+
+    def __setBioCycLoginFromEnv(self):
+        biocyc_name = os.getenv('BIOCYC_NAME')
+        biocyc_pwd = os.getenv('BIOCYC_PASSWORD')
+
+        if biocyc_name and biocyc_pwd:
+            self.__biocyc_name = biocyc_name
+            self.__biocyc_password = biocyc_pwd
+            logger.debug("BioCyc credentials set from environment variables.")
 
     @property
     def _biocycSession(self) -> requests.Session:
@@ -94,7 +113,7 @@ class Settings(metaclass=SingletonMeta):
         """
         return self.__biocyc_login
 
-    def __closeBiocycSession(self):
+    def _closeBiocycSession(self):
         if self.__biocyc_session:
             self.__biocyc_session.close()
             self.__biocyc_session = None
