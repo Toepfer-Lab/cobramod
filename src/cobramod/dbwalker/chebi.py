@@ -79,7 +79,13 @@ def get_chebi_compound_info(chebi_id: str) -> GenerellIdentifiers:
     response = zeep.helpers.serialize_object(response)
 
     inchi = response.get('inchi')
+    if inchi.startswith("InChI="):
+        inchi = inchi[6:]
+
     inchikey = response.get('inchiKey')
+    if inchikey.startswith("InChIKey="):
+        inchikey = inchikey[9:]
+
     smiles = response.get('smiles', None)
 
     return GenerellIdentifiers(inchi = inchi, inchi_key = inchikey, smiles = smiles)

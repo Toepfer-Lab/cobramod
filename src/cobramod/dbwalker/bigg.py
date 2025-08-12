@@ -33,9 +33,13 @@ def biggID2Identifier(bigg_id: str) -> GenerellIdentifiers:
     try:
         url = f"http://bigg.ucsd.edu/api/v2/universal/metabolites/{bigg_id}"
         
-        logging.info(
+        logger.info(
             f"Requesting data from Bigg for metabolite with id {bigg_id}"
         )
+        logger.debug(
+            f"Request URL: {url}"
+        )
+
         response = requests.get(url)
         response.raise_for_status()
     except requests.RequestException as e:

@@ -7,6 +7,7 @@ import cobramod
 from cobramod.core.crossreferences import validate_id, add2dict_unique
 from cobramod.dbwalker.BioCyc import get_compound_info_by_biocyc_id, smiles2BioCyc, InChI2BioCyc
 from cobramod.dbwalker.chebi import get_chebi_compound_info, getChebiID
+from cobramod.dbwalker.modelSeed import get_compound_info_by_modelseed_id, smiles2ModelSeed, inchikey2modelseed
 
 general_identifiers = ["inchikey", "inchi", "smiles"]
 
@@ -51,7 +52,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
 
             if biocyc_result.smiles is not None:
                 query = smiles2BioCyc(biocyc_result.smiles, orgid=db)
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{identifier}")
+                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("smiles") is not None:
                     if biocyc_result.smiles != present_identifiers["smiles"]:
@@ -74,7 +75,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
 
             if biocyc_result.inchi is not None:
                 query = InChI2BioCyc(biocyc_result.inchi, orgid=db)
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{identifier}")
+                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("inchi") is not None:
                     if biocyc_result.inchi != present_identifiers["inchi"]:
@@ -122,7 +123,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
 
             if biocyc_result.smiles is not None:
                 query = smiles2BioCyc(biocyc_result.smiles, orgid=db)
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{ID}")
+                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("smiles") is not None:
                     if biocyc_result.smiles != present_identifiers["smiles"]:
@@ -146,7 +147,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
 
             if biocyc_result.inchi is not None:
                 query = InChI2BioCyc(biocyc_result.inchi, orgid=db)
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{ID}")
+                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("inchi") is not None:
                     if biocyc_result.inchi != present_identifiers["inchi"]:
@@ -261,6 +262,61 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                         key="inchikey",
                         value=chebi_result.inchi,
                         dictionary=verified_identifiers
+                    )
+    if "seed.compound" in annotations:
+        IDs = annotations["modelseed.compound"]
+
+        if isinstance(IDs, str):
+            IDs = [IDs]
+
+        for ID in IDs:
+            modelseed_result = get_compound_info_by_modelseed_id(ID)
+
+            if modelseed_result.smiles is not None:
+                if present_identifiers.get("smiles") is not None:
+                    if modelseed_result.smiles != present_identifiers["smiles"]:
+                        logger.error(f"SMILES identifier mismatch for {ID} in ModelSEED: {modelseed_result.smiles} vs existing {present_identifiers['smiles']}")
+                        logger.error(f"Please check the ModelSEED ID ({ID}) and the present SMILES ({present_identifiers['smiles']}) for {metabolite.id}.")
+                        continue
+                    else:
+                        # If the SMILES match, we can ignore it as it exists already
+                        continue
+
+                query = smiles2ModelSeed(modelseed_result.smiles)
+                identifiersORG_validation = validate_id(f"seed.compound:{query}")
+
+                if query == ID and identifiersORG_validation:
+                    logger.info(
+                        f"Found SMILES {modelseed_result.smiles} in ModelSEED for {metabolite.id}"
+                    )
+
+                    verified_identifiers = add2dict_unique(
+                        key="smiles",
+                        value=modelseed_result.smiles,
+                        dictionary=verified_identifiers
+                    )
+            if modelseed_result.inchi_key is not None:
+                if present_identifiers.get("inchikey") is not None:
+                    if modelseed_result.inchi_key != present_identifiers["inchikey"]:
+                        logger.error(f"InChIKey identifier mismatch for {ID} in ModelSEED: {modelseed_result.inchi} vs existing {present_identifiers['inchikey']}")
+                        logger.error(f"Please check the ModelSEED ID ({ID}) and the present inchi ({present_identifiers['inchikey']}) for {metabolite.id}.")
+                        continue
+                    else:
+                        # If the InChIKey match, we can ignore it as it exists already
+                        continue
+
+                query = inchikey2modelseed(modelseed_result.inchi_key)
+                identifiersORG_validation = validate_id(f"seed.compound:{query}")
+
+                if query == ID and identifiersORG_validation:
+                    logger.info(
+                        f"Found InChIKey {modelseed_result.inchi_key} in ModelSEED for {metabolite.id}"
+                    )
+
+                    verified_identifiers = add2dict_unique(
+                        key="inchikey",
+                        value=modelseed_result.inchi_key,
+                        directory=verified_identifiers
                     )
 
 
