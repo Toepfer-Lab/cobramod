@@ -56,7 +56,8 @@ def get_compound_info_by_biocyc_id(biocyc_id: str, db: str = "META") -> Generell
         response = session.get(url, params=params,headers=headers, timeout=30)
         response.raise_for_status()
 
-        cSettings._closeBiocycSession()
+        if cSettings.autoOpenCloseBioCycSession:
+            cSettings._closeBiocycSession()
 
         logger.debug(f"Response status code: {response.status_code}")
 

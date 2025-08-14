@@ -260,11 +260,11 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
 
                     verified_identifiers = add2dict_unique(
                         key="inchikey",
-                        value=chebi_result.inchi,
+                        value=chebi_result.inchi_key,
                         dictionary=verified_identifiers
                     )
     if "seed.compound" in annotations:
-        IDs = annotations["modelseed.compound"]
+        IDs = annotations["seed.compound"]
 
         if isinstance(IDs, str):
             IDs = [IDs]
@@ -298,8 +298,8 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
             if modelseed_result.inchi_key is not None:
                 if present_identifiers.get("inchikey") is not None:
                     if modelseed_result.inchi_key != present_identifiers["inchikey"]:
-                        logger.error(f"InChIKey identifier mismatch for {ID} in ModelSEED: {modelseed_result.inchi} vs existing {present_identifiers['inchikey']}")
-                        logger.error(f"Please check the ModelSEED ID ({ID}) and the present inchi ({present_identifiers['inchikey']}) for {metabolite.id}.")
+                        logger.error(f"InChIKey identifier mismatch for {ID} in ModelSEED: {modelseed_result.inchi_key} vs existing {present_identifiers['inchikey']}")
+                        logger.error(f"Please check the ModelSEED ID ({ID}) and the present inchikey ({present_identifiers['inchikey']}) for {metabolite.id}.")
                         continue
                     else:
                         # If the InChIKey match, we can ignore it as it exists already
@@ -316,7 +316,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
                     verified_identifiers = add2dict_unique(
                         key="inchikey",
                         value=modelseed_result.inchi_key,
-                        directory=verified_identifiers
+                        dictionary=verified_identifiers
                     )
 
 
@@ -336,7 +336,7 @@ def add_crossreferences2metabolite(metabolite:Metabolite):
 
         metabolite.annotation = add2dict_unique(
             key=key,
-            value=value,
+            value=values,
             dictionary=metabolite.annotation
         )
 
@@ -351,6 +351,9 @@ def add_crossreferences(object: Union[Model,Reaction,Metabolite], consider_subob
         object (Union[Model, Reaction, Metabolite]): The COBRApy object to which
             cross-references should be added.
     """
+    autoOpenCloseBioCycSession = settings.autoOpenCloseBioCycSession
+    settings.autoOpenCloseBioCycSession = False
+
     if isinstance(object, Model):
         if not consider_subobjects:
             return
@@ -368,3 +371,7 @@ def add_crossreferences(object: Union[Model,Reaction,Metabolite], consider_subob
         add_crossreferences2metabolite(metabolite=object)
     else:
         raise TypeError("Object must be a Model, Reaction, or Metabolite.")
+
+    # close the session and restore original behaviour
+    settings._closeBiocycSession()
+    settings.autoOpenCloseBioCycSession = autoOpenCloseBioCycSession

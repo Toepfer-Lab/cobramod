@@ -32,7 +32,6 @@ class SingletonMeta(type):
                 cls._instances[cls] = instance
         return cls._instances[cls]
 
-
 class Settings(metaclass=SingletonMeta):
 
     def __init__(self):
@@ -51,6 +50,9 @@ class Settings(metaclass=SingletonMeta):
     not considered as valid identifiers and will not be added by default to metabolites.
     If you want to add SMILES strings as cross-references, set this to True.
     """
+
+    autoOpenCloseBioCycSession = True
+
 
     def __set__biocyc_password(self, value: str):
         self.__biocyc_password = value
