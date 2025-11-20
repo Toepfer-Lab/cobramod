@@ -16,23 +16,29 @@ logger.propagate = True
 # Ensure console output
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
-biocycTier1DB = ["Meta","ECOLI", "HUMAN", "ARA", "YEAST"]
+biocycTier1DB = ["Meta", "ECOLI", "HUMAN", "ARA", "YEAST"]
+
 
 class BioCyc(Database):
+    @overload
+    def getGenerellIdentifier(
+        self, dbIdentifier: str
+    ) -> GenerellIdentifiers: ...
 
     @overload
-    def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
-        ...
+    def getGenerellIdentifier(
+        self, dbIdentifier: str, BioCycSubDB: str
+    ) -> GenerellIdentifiers: ...
 
-    @overload
-    def getGenerellIdentifier(self, dbIdentifier: str, BioCycSubDB: str) -> GenerellIdentifiers:
-        ...
-
-    def getGenerellIdentifier(self, dbIdentifier: str, **kwargs) -> GenerellIdentifiers:
+    def getGenerellIdentifier(
+        self, dbIdentifier: str, **kwargs
+    ) -> GenerellIdentifiers:
         """
         Get InChI, InChI Key, and SMILES for a compound using BioCyc ID.
 
@@ -44,8 +50,7 @@ class BioCyc(Database):
             Dictionary with 'inchi', 'inchi_key', and 'smiles' keys
         """
 
-
-        BioCycSubDB = kwargs.get('BioCycSubDB')
+        BioCycSubDB = kwargs.get("BioCycSubDB")
 
         if BioCycSubDB is not None:
             db, biocyc_id = dbIdentifier, BioCycSubDB
@@ -55,17 +60,14 @@ class BioCyc(Database):
 
         url = f"https://websvc.biocyc.org/getxml"
 
-        params = {
-            'id': f"{db}:{biocyc_id}"
-        }
+        params = {"id": f"{db}:{biocyc_id}"}
 
         # BioCyc cuts the SMILES string short otherwise
-        headers = {
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "application/xml"
-        }
+        headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/xml"}
 
-        logger.debug(f"Querying BioCyc for compound {biocyc_id} in database {db}")
+        logger.debug(
+            f"Querying BioCyc for compound {biocyc_id} in database {db}"
+        )
         logger.debug(f"Request URL: {url}")
         logger.debug(f"Request parameters: {params}")
 
@@ -73,7 +75,9 @@ class BioCyc(Database):
         try:
             cSettings = cobramod.Settings()
             session = cSettings._biocycSession
-            response = session.get(url, params=params, headers=headers, timeout=30)
+            response = session.get(
+                url, params=params, headers=headers, timeout=30
+            )
             response.raise_for_status()
 
             if cSettings.autoOpenCloseBioCycSession:
@@ -82,10 +86,16 @@ class BioCyc(Database):
             logger.debug(f"Response status code: {response.status_code}")
 
             # Check if BioCyc is asking for account creation
-            if response.text and isinstance(response.text, str) and "<title>Create Account</title>" in response.text:
+            if (
+                response.text
+                and isinstance(response.text, str)
+                and "<title>Create Account</title>" in response.text
+            ):
                 logger.warning("BioCyc is requesting account creation.")
                 if not cSettings.BioCycLoggedIn:
-                    logger.error("BioCyc account information are not provided can't login.")
+                    logger.error(
+                        "BioCyc account information are not provided can't login."
+                    )
                 return result
 
             # Parse XML response
@@ -123,7 +133,9 @@ class BioCyc(Database):
         logger.debug(f"Final result: {result}")
         return result
 
-    def getDBIdentifierFromSmiles(self, smiles: Union[str, GenerellIdentifiers]) -> Optional[str]:
+    def getDBIdentifierFromSmiles(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Optional[str]:
         """
         Convert SMILES to BioCyc identifiers.
 
@@ -135,7 +147,7 @@ class BioCyc(Database):
         """
 
         try:
-            encoded_smiles = urllib.parse.quote(smiles, safe='')
+            encoded_smiles = urllib.parse.quote(smiles, safe="")
             url = f"https://websvc.biocyc.org/{orgid}/smiles-search?smiles={encoded_smiles}&exact=T&fmt=json"
 
             logger.info(f"Requesting BioCyc for SMILES: {smiles}")
@@ -155,20 +167,21 @@ class BioCyc(Database):
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
             return biocycID
 
-
         except requests.RequestException as e:
             logger.error(f"Error fetching data from BioCyc: {e}")
             return None
 
-    def getDBIdentifierFromInchi(self, smiles: Union[str, GenerellIdentifiers]) -> Optional[str]:
+    def getDBIdentifierFromInchi(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Optional[str]:
         """
-            Convert InChI to BioCyc identifiers.
+        Convert InChI to BioCyc identifiers.
 
-            Args:
-                inchi: InChI string of the compound
+        Args:
+            inchi: InChI string of the compound
 
-            Returns:
-                GenerellIdentifiers with BioCyc ID if found, otherwise empty
+        Returns:
+            GenerellIdentifiers with BioCyc ID if found, otherwise empty
         """
         try:
             url = f"https://websvc.biocyc.org/{orgid}/inchi-search?inchi={inchi}&exact=T&fmt=json"
@@ -188,14 +201,16 @@ class BioCyc(Database):
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
             return biocycID
 
-
         except requests.RequestException as e:
             logger.error(f"Error fetching data from BioCyc: {e}")
             return None
 
-    def getDBIdentifierFromInchiKey(self, smiles: Union[str, GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromInchiKey(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> str:
         pass
 
-    def validateGenerellIdentifiers(self, smiles: Union[str, GenerellIdentifiers]) -> Tuple[
-        GenerellIdentifiers, GenerellIdentifiers]:
+    def validateGenerellIdentifiers(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
         pass

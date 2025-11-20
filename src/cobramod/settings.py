@@ -13,9 +13,12 @@ logger.propagate = True
 # Ensure console output
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
+
 
 class SingletonMeta(type):
     """
@@ -32,8 +35,8 @@ class SingletonMeta(type):
                 cls._instances[cls] = instance
         return cls._instances[cls]
 
-class Settings(metaclass=SingletonMeta):
 
+class Settings(metaclass=SingletonMeta):
     def __init__(self):
         self.__setBioCycLoginFromEnv()
 
@@ -53,7 +56,6 @@ class Settings(metaclass=SingletonMeta):
 
     autoOpenCloseBioCycSession = True
 
-
     def __set__biocyc_password(self, value: str):
         self.__biocyc_password = value
 
@@ -66,20 +68,20 @@ class Settings(metaclass=SingletonMeta):
     biocyc_name = property(fset=__set__biocyc_name)
     del __set__biocyc_name
 
-    def SetBioCycLogin(self, file:Path):
+    def SetBioCycLogin(self, file: Path):
         user, pwd = cmod_utils.get_credentials(file)
         self.__biocyc_password = pwd
         self.__biocyc_name = user
 
     def __setBioCycLoginFromFile(self):
-            try:
-                self.SetBioCycLogin(Path.cwd().joinpath("credentials.txt"))
-            except FileNotFoundError:
-                logger.debug("No credentials.txt found.")
+        try:
+            self.SetBioCycLogin(Path.cwd().joinpath("credentials.txt"))
+        except FileNotFoundError:
+            logger.debug("No credentials.txt found.")
 
     def __setBioCycLoginFromEnv(self):
-        biocyc_name = os.getenv('BIOCYC_NAME')
-        biocyc_pwd = os.getenv('BIOCYC_PASSWORD')
+        biocyc_name = os.getenv("BIOCYC_NAME")
+        biocyc_pwd = os.getenv("BIOCYC_PASSWORD")
 
         if biocyc_name and biocyc_pwd:
             self.__biocyc_name = biocyc_name
@@ -92,13 +94,18 @@ class Settings(metaclass=SingletonMeta):
             logger.debug("Creating new BioCyc Session ...")
             self.__biocyc_session = requests.Session()
 
-        if self.__biocyc_login == False and self.__biocyc_name and self.__biocyc_password:
+        if (
+            self.__biocyc_login == False
+            and self.__biocyc_name
+            and self.__biocyc_password
+        ):
             logger.debug("Using BioCyc credentials to login ...")
             self.__biocyc_session.post(
                 "https://websvc.biocyc.org/credentials/login/",
                 data={
                     "email": self.__biocyc_name,
-                    "password": self.__biocyc_password},
+                    "password": self.__biocyc_password,
+                },
             )
 
             self.__biocyc_login = True

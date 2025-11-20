@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 from typing import Union
 
@@ -13,7 +12,9 @@ class Database(ABC):
     """
 
     @abstractmethod
-    def getGenerellIdentifier(self, dbIdentifier:str, **kwargs) -> GenerellIdentifiers:
+    def getGenerellIdentifier(
+        self, dbIdentifier: str, **kwargs
+    ) -> GenerellIdentifiers:
         """
         This methods queries SMILES, InChI and InChIKey from a database. If any is not available it will be set to None.
         Returns: A GenerellIdentifiers object containing containing SMILES, InChI and InChIKey if available.
@@ -22,13 +23,17 @@ class Database(ABC):
         ...
 
     @abstractmethod
-    def getDBIdentifierFromSmiles(self, smiles: Union[str,GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromSmiles(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> str:
         """
         This method queries the database identifier from a given SMILES string.
         """
 
     @abstractmethod
-    def getDBIdentifierFromInchi(self, smiles: Union[str,GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromInchi(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> str:
         """
         This method queries the database identifier from a given Inchi.
         """
@@ -36,7 +41,9 @@ class Database(ABC):
         ...
 
     @abstractmethod
-    def getDBIdentifierFromInchiKey(self, smiles: Union[str,GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromInchiKey(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> str:
         """
         This method queries the database identifier from a given InchIKey.
         """
@@ -44,7 +51,9 @@ class Database(ABC):
         ...
 
     @abstractmethod
-    def validateGenerellIdentifiers(self, smiles: Union[str,GenerellIdentifiers]) -> Tuple[GenerellIdentifiers,GenerellIdentifiers]:
+    def validateGenerellIdentifiers(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
         """
         This method queries available generell identifiers based on a databse identifier and validates them via checking if a generell identifier maps back to the original database identifier. If this is the case it will be added to the GenerellIdentifier object containing validated identifiers. If not it will be added to the GenerellIdentifiers object containing non verified identifiers..
         """

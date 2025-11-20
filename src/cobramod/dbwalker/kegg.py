@@ -13,31 +13,41 @@ logger.propagate = True
 # Ensure console output
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
-class Kegg(Database):
-    def getGenerellIdentifier(self, dbIdentifier:str) -> GenerellIdentifiers:
 
-        cid = self.get_cid_from_kegg_id(dbIdentifier = dbIdentifier)
+class Kegg(Database):
+    def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
+        cid = self.get_cid_from_kegg_id(dbIdentifier=dbIdentifier)
 
         # Kegg itself does not provide identifiers insteads it maps them to PubChem
         pubchem = PubChem()
-        generellIdentifier = pubchem.getGenerellIdentifier(dbIdentifier = cid)
+        generellIdentifier = pubchem.getGenerellIdentifier(dbIdentifier=cid)
 
         return generellIdentifier
 
-    def getDBIdentifierFromSmiles(self, smiles: Union[str,GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromSmiles(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> str:
         pass
 
-    def getDBIdentifierFromInchi(self, smiles: Union[str,GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromInchi(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> str:
         pass
 
-    def getDBIdentifierFromInchiKey(self, smiles: Union[str,GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromInchiKey(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> str:
         pass
 
-    def validateGenerellIdentifiers(self, smiles: Union[str,GenerellIdentifiers]) -> Tuple[GenerellIdentifiers,GenerellIdentifiers]:
+    def validateGenerellIdentifiers(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
         pass
 
     def get_kegg_id_from_cid(self, cid):
@@ -46,9 +56,11 @@ class Kegg(Database):
         """
         url = f"https://rest.kegg.jp/conv/compound/pubchem:{cid}"
         response = requests.get(url)
-        
+
         if response.status_code != 200:
-            logger.error(f"Error ({response.status_code}) getting KEGG compound ID from {cid}")
+            logger.error(
+                f"Error ({response.status_code}) getting KEGG compound ID from {cid}"
+            )
             return None
 
         lines = response.text.strip().split("\n")
@@ -83,7 +95,9 @@ class Kegg(Database):
         response = requests.get(url)
 
         if response.status_code != 200:
-            logger.error(f"Error ({response.status_code}) while getting CID for {compound_id}")
+            logger.error(
+                f"Error ({response.status_code}) while getting CID for {compound_id}"
+            )
             return None
 
         lines = response.text.strip().split("\n")
