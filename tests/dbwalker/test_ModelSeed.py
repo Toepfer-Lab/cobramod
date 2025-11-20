@@ -10,18 +10,18 @@ from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 
 
 class TestGetCompoundInfoByModelSeedId(TestCase):
-    
-
     def test_live_api_glucose(self):
         """Test with glucose (cpd00027) - a well-known compound."""
-        result = get_compound_info_by_modelseed_id('cpd00027')
-        
+        result = get_compound_info_by_modelseed_id("cpd00027")
+
         self.assertIsInstance(result, GenerellIdentifiers)
         # Glucose should have chemical identifiers
         has_identifier = any([result.smiles, result.inchi, result.inchi_key])
-        self.assertTrue(has_identifier, "Glucose should have chemical identifiers")
+        self.assertTrue(
+            has_identifier, "Glucose should have chemical identifiers"
+        )
         expected = GenerellIdentifiers(
-            smiles='OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O',
+            smiles="OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O",
             inchi=None,
             inchi_key="WQZGKKKJIJFFOK-GASJEMHNSA-N",
         )
@@ -32,8 +32,8 @@ class TestGetCompoundInfoByModelSeedId(TestCase):
 
     def test_live_api_empty_string(self):
         """Test with empty string as compound ID."""
-        result = get_compound_info_by_modelseed_id('')
-        
+        result = get_compound_info_by_modelseed_id("")
+
         self.assertIsInstance(result, GenerellIdentifiers)
         # Should return empty GenerellIdentifiers for empty string
         self.assertIsNone(result.smiles)
@@ -42,10 +42,9 @@ class TestGetCompoundInfoByModelSeedId(TestCase):
 
 
 class TestSmiles2ModelSeed(TestCase):
-    
-    def test_live_api_water_thioglycol (self):
+    def test_live_api_water_thioglycol(self):
         """Test conversion of water SMILES to ModelSEED ID."""
-        result = smiles2ModelSeed('OCCS')
+        result = smiles2ModelSeed("OCCS")
 
         if result is not None:
             self.assertIsInstance(result, str)
@@ -53,4 +52,4 @@ class TestSmiles2ModelSeed(TestCase):
 
         expected = "cpd00688"
 
-        self.assertEqual(result,expected)
+        self.assertEqual(result, expected)

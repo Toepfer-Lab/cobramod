@@ -9,6 +9,10 @@ from cobramod.core.crossreferences import (
     inchikey2pubchem_cid,
     add_crossreferences,
 )
+import logging
+from cobramod.debug import debug_log
+
+debug_log.setLevel(logging.DEBUG)
 from cobramod.debug import change_to_debug
 
 change_to_debug()
