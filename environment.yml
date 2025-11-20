@@ -29,5 +29,4 @@ dependencies:
 - conda-forge::furo
 - conda-forge::jupyter-sphinx
 - pip:
-  - escher-legacy
   - sphinx-autoapi

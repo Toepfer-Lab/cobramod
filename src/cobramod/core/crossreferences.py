@@ -669,6 +669,13 @@ def validate_id(identifier: str) -> bool:
             return False
 
         actual_id = f"{prefix}:{ID}"
+
+    # biocyc identifiers look like this: biocyc:orgid:ID
+    elif "biocyc" in identifier:
+        provider, prefix, ID = identifier.split(":")
+        ID = f"{prefix}:{ID}"
+        prefix = f"{provider}"
+        actual_id = ID
     else:
         prefix, ID = identifier.split(":")
         actual_id = ID

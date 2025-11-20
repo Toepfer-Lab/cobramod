@@ -14,7 +14,7 @@ from pathlib import Path
 
 import colorlog
 
-debug_log = logging.getLogger("debug_log")
+debug_log = logging.getLogger("cobramod.debug_log")
 debug_log.setLevel(logging.INFO)
 
 format_str = "%(log_color)s%(message)s"
