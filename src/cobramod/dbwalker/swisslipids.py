@@ -1,9 +1,6 @@
-import urllib
-
 import requests
 import logging
-from typing import Optional, Dict, Any
-from dataclasses import dataclass
+from typing import Optional
 
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 

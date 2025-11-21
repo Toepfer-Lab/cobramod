@@ -1,16 +1,11 @@
 import logging
-from typing import Union
+from typing import Union, Dict
 
 from cobra import Model, Reaction, Metabolite
 
 import cobramod
 from cobramod.core.crossreferences import validate_id, add2dict_unique
-from cobramod.dbwalker.BioCyc import (
-    get_compound_info_by_biocyc_id,
-    smiles2BioCyc,
-    InChI2BioCyc,
-)
-from cobramod.dbwalker.chebi import get_chebi_compound_info, getChebiID
+from cobramod.dbwalker.BioCyc import BioCyc
 from cobramod.dbwalker.modelSeed import (
     get_compound_info_by_modelseed_id,
     smiles2ModelSeed,
@@ -37,8 +32,10 @@ settings = cobramod.Settings()
 def add_crossreferences2metabolite(metabolite: Metabolite):
     annotations = metabolite.annotation
     present_identifiers = {}
-    verified_identifiers = {}
-    nonverified_identifiers = {}
+    verified_identifiers: Dict[str, str] = {}
+    nonverified_identifiers: Dict[str, str] = {}
+
+    bio_cyc = BioCyc()
 
     for identifier in general_identifiers:
         if identifier in annotations:
@@ -56,10 +53,14 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
 
         for ID in IDs:
             db, identifier = ID.split(":")
-            biocyc_result = get_compound_info_by_biocyc_id(identifier, db=db)
+            biocyc_result = bio_cyc.getGenerellIdentifier(
+                identifier, BioCycSubDB=db
+            )
 
             if biocyc_result.smiles is not None:
-                query = smiles2BioCyc(biocyc_result.smiles, orgid=db)
+                query = bio_cyc.getDBIdentifierFromSmiles(
+                    biocyc_result.smiles, BioCycSubDB=db
+                )
                 identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("smiles") is not None:
@@ -86,7 +87,9 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
                     )
 
             if biocyc_result.inchi is not None:
-                query = InChI2BioCyc(biocyc_result.inchi, orgid=db)
+                query = bio_cyc.getDBIdentifierFromInchi(
+                    biocyc_result.inchi, BioCycSubDB=db
+                )
                 identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("inchi") is not None:
@@ -142,10 +145,14 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
             IDs = [IDs]
 
         for ID in IDs:
-            biocyc_result = get_compound_info_by_biocyc_id(ID, db=db)
+            biocyc_result = bio_cyc.getGenerellIdentifier(
+                dbIdentifier=ID, BioCycSubDB=db
+            )
 
             if biocyc_result.smiles is not None:
-                query = smiles2BioCyc(biocyc_result.smiles, orgid=db)
+                query = bio_cyc.getDBIdentifierFromSmiles(
+                    smiles=biocyc_result.smiles, BioCycSubDB=db
+                )
                 identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("smiles") is not None:
@@ -173,7 +180,9 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
                     )
 
             if biocyc_result.inchi is not None:
-                query = InChI2BioCyc(biocyc_result.inchi, orgid=db)
+                query = bio_cyc.getDBIdentifierFromInchi(
+                    biocyc_result.inchi, BioCycSubDB=db
+                )
                 identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
 
                 if present_identifiers.get("inchi") is not None:
@@ -222,104 +231,6 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
                 )
                 nonverified_identifiers["inchikey"] = biocyc_result.inchi_key
 
-    if "chebi" in annotations:
-        IDs = annotations["chebi"]
-
-        if isinstance(IDs, str):
-            IDs = [IDs]
-
-        for ID in IDs:
-            chebi_result = get_chebi_compound_info(ID)
-
-            if chebi_result.smiles is not None:
-                if present_identifiers.get("smiles") is not None:
-                    if chebi_result.smiles != present_identifiers["smiles"]:
-                        logger.error(
-                            f"SMILES identifier mismatch for {ID} in ChEBI: {chebi_result.smiles} vs existing {present_identifiers['smiles']}"
-                        )
-                        logger.error(
-                            f"Please check the ChEBI ID ({ID}) and the present SMILES ({present_identifiers['smiles']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the SMILES match, we can ignore it as it exists already
-                        continue
-
-                query = getChebiID(
-                    chebi_result.smiles, identifier_type="SMILES"
-                )
-                identifiersORG_validation = validate_id(f"chebi:{query}")
-
-                if query == ID and identifiersORG_validation:
-                    logger.info(
-                        f"Found SMILES {chebi_result.smiles} in ChEBI for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="smiles",
-                        value=chebi_result.smiles,
-                        dictionary=verified_identifiers,
-                    )
-            if chebi_result.inchi is not None:
-                if present_identifiers.get("inchi") is not None:
-                    if chebi_result.inchi != present_identifiers["inchi"]:
-                        logger.error(
-                            f"InChI identifier mismatch for {ID} in ChEBI: {chebi_result.inchi} vs existing {present_identifiers['inchi']}"
-                        )
-                        logger.error(
-                            f"Please check the ChEBI ID ({ID}) and the present inchi ({present_identifiers['inchi']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the InChI match, we can ignore it as it exists already
-                        continue
-
-                query = getChebiID(chebi_result.inchi, identifier_type="InChI")
-                identifiersORG_validation = validate_id(f"chebi:{query}")
-
-                if query == ID and identifiersORG_validation:
-                    logger.info(
-                        f"Found InChI {chebi_result.inchi} in ChEBI for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="inchi",
-                        value=chebi_result.inchi,
-                        dictionary=verified_identifiers,
-                    )
-
-            if chebi_result.inchi_key is not None:
-                if present_identifiers.get("inchikey") is not None:
-                    if (
-                        present_identifiers.get("inchikey")
-                        == chebi_result.inchi_key
-                    ):
-                        # If the InChIKey match, we can ignore it as it exists already
-                        continue
-                    else:
-                        logger.error(
-                            f"InChIKey identifier mismatch for {ID} in ChEBI: {chebi_result.inchi_key} vs existing {present_identifiers['inchikey']}"
-                        )
-                        logger.error(
-                            f"Please check the ChEBI ID ({ID}) and the present InChIKey ({present_identifiers['inchikey']}) for {metabolite.id}."
-                        )
-                        continue
-
-                query = getChebiID(
-                    chebi_result.inchi_key, identifier_type="InChIKey"
-                )
-                identifiersORG_validation = validate_id(f"chebi:{query}")
-
-                if query == ID and identifiersORG_validation:
-                    logger.info(
-                        f"Found InChIKey {chebi_result.inchi_key} in ChEBI for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="inchikey",
-                        value=chebi_result.inchi_key,
-                        dictionary=verified_identifiers,
-                    )
     if "seed.compound" in annotations:
         IDs = annotations["seed.compound"]
 

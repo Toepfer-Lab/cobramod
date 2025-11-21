@@ -1,7 +1,7 @@
 import urllib
 
 import requests
-from typing import Optional, Union, Tuple, overload
+from typing import Optional, Union, Tuple, overload, List
 
 import xml.etree.ElementTree as ET
 import logging
@@ -154,24 +154,62 @@ class BioCyc(Database):
             smiles = smiles.smiles
 
         try:
-            encoded_smiles = urllib.parse.quote(smiles, safe="")
-            url = f"https://websvc.biocyc.org/{BioCycSubDB}/smiles-search?smiles={encoded_smiles}&exact=T&fmt=json"
-
-            logger.info(f"Requesting BioCyc for SMILES: {smiles}")
-            logger.debug(f"Request URL: {url}")
+            logger.info(f"Looking up BioCyc ID for SMILES: {smiles}")
 
             cSettings = cobramod.Settings()
             session = cSettings._biocycSession
 
-            response = session.get(url, timeout=30)
-            response.raise_for_status()
+            response = session.post(f'https://websvc.biocyc.org/{BioCycSubDB}/smiles-search',
+                              data={
+                                  'smiles': smiles,
+                                  'exact': 'T',
+                                  'fmt': 'json'
+                              })
 
-            cSettings._closeBiocycSession()
+            response.raise_for_status()
 
             data = response.json()
 
-            print(data)
-            biocycID = data["RESULTS"][0]["OBJECT-ID"]
+            results = data["RESULTS"]
+
+            if results is None:
+                logger.debug(
+                   f"BioCyc did not report any matches for SMILES ({smiles}). "
+                )
+                return None
+
+            if len(results)>1:
+                logger.debug(
+                    "BioCyc reported more than one exact match for SMILES. Now checking for string equality."
+                )
+
+            hits = 0
+            matches: List[str] = []
+            printable: List[str,str] = []
+
+            for result in results:
+                if result["SMILES"] == smiles:
+                    hits = hits + 1
+                    matches.append(result["OBJECT-ID"])
+                    printable.append((result["COMMON-NAME"],result["OBJECT-ID"]))
+
+            if hits > 1:
+                logger.error(
+                    f"Found more than one entry for SMILES ({smiles}) in BioCyc ({BioCycSubDB}). Wont add anything due to being uncertain which ones is correct. The following IDs were found for:\n {printable})"
+                )
+                # ToDo raise error for uncertain match
+                biocycID = None
+            elif hits == 1:
+                logger.debug(
+                    "Only one of the matches was exactly equal to the query. Proceeding normally."
+                )
+                biocycID = matches[0]
+            else:
+                logger.debug(
+                    "No matches were found. Proceeding without match."
+                )
+                biocycID = None
+
             return biocycID
 
         except requests.RequestException as e:
@@ -197,19 +235,18 @@ class BioCyc(Database):
             assert inchi.inchi is not None
             inchi = inchi.inchi
 
+        url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
+
+        logger.info(f"Requesting BioCyc for InChI: {inchi}\n"
+                    f"using {url}")
+
+        cSettings = cobramod.Settings()
+        session = cSettings._biocycSession
+
+        response = session.get(url, timeout=30)
 
         try:
-            url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
-
-            logger.info(f"Requesting BioCyc for InChI: {inchi}")
-
-            cSettings = cobramod.Settings()
-            session = cSettings._biocycSession
-
-            response = session.get(url, timeout=30)
             response.raise_for_status()
-
-            cSettings._closeBiocycSession()
 
             data = response.json()
 
@@ -221,9 +258,39 @@ class BioCyc(Database):
             return None
 
     def getDBIdentifierFromInchiKey(
-        self, smiles: Union[str, GenerellIdentifiers]
-    ) -> str:
-        raise NotImplementedError
+        self, inchikey: Union[str, GenerellIdentifiers], BioCycSubDB: Optional[str] = None
+    ) -> Optional[str]:
+        if BioCycSubDB is None:
+            BioCycSubDB = "META"
+
+        if isinstance(inchikey, GenerellIdentifiers):
+            assert inchikey.inchi is not None
+            inchikey = inchikey.inchi
+
+        url = f"https://biocyc.org/{BioCycSubDB}/search-query?type=COMPOUND&inchikey={inchikey}&exact=T&fmt=json"
+        logger.info(f"Requesting BioCyc for InChIKey: {inchikey}\n"
+                    f"using: {url}")
+
+        cSettings = cobramod.Settings()
+        session = cSettings._biocycSession
+
+        response = session.get(url, timeout=30)
+        print(response.json())
+
+        try:
+            response.raise_for_status()
+
+            data = response.json()
+            print(data)
+
+            biocycID = data["RESULTS"][0]["OBJECT-ID"]
+            return biocycID
+
+        except requests.RequestException as e:
+            logger.error(f"Error fetching data from BioCyc: {e}")
+
+            return None
+
 
     def validateGenerellIdentifiers(
         self, smiles: Union[str, GenerellIdentifiers]

@@ -11,9 +11,9 @@ from cobramod.core.crossreferences import (
 )
 import logging
 from cobramod.debug import debug_log
+from cobramod.debug import change_to_debug
 
 debug_log.setLevel(logging.DEBUG)
-from cobramod.debug import change_to_debug
 
 change_to_debug()
 

@@ -1,34 +1,56 @@
-from typing import Union, Tuple
+import logging
+from typing import Union, Tuple, List
 
 import requests
 
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 
+logger = logging.getLogger("cobramod.DBWalker.PubChem")
+logger.propagate = True
+
 
 class PubChem(Database):
     def getGenerellIdentifier(self, dbIdentifier: str, **kwargs) -> GenerellIdentifiers:
+
+        if "pubchem.compound:" in dbIdentifier:
+            dbIdentifier = dbIdentifier.replace("pubchem.compound:", "")
+
+        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{dbIdentifier}/property/MolecularFormula,InChIKey,InChI,SMILES/json"
+
+        logger.debug(f"Getting identifiers from PubChem using the following url:\n{url}")
+
+        response = requests.get(url=url)
+        response.raise_for_status()
+
+        value = response.json()
+
         generell_identifiers = GenerellIdentifiers()
 
-        for property_name in ["InChi", "InChIKey"]:
-            url = (
-                f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/"
-                f"{dbIdentifier}/property/{property_name}/txt"
-            )
+        for entry in value["PropertyTable"]["Properties"]:
 
-            response = requests.get(url=url)
-            response.raise_for_status()
-
-            value = response.text.rstrip()
-
-            # PubChem returns one value per line if multiple valid
-            if "\n" in value:
-                value = value.split("\n")
-
-            if property_name == "InChI":
-                generell_identifiers.inchi = value
+            inchi = entry.get("InChI")
+            if generell_identifiers.inchi is not None:
+                assert generell_identifiers.inchi == inchi
             else:
-                generell_identifiers.inchi_key = value
+                generell_identifiers.inchi = inchi
+
+            inchikey = entry.get("InChIKey")
+            if generell_identifiers.inchi_key is not None:
+                if not generell_identifiers.inchi_key == inchikey:
+                    logger.error(
+                        "Results from PubChem for InChiKeys dont match. Got at least two diffrent InChIKeys:"
+                        f"{generell_identifiers.inchi_key} and {inchikey}."
+                    )
+                    raise ValueError()
+            else:
+                generell_identifiers.inchi_key = inchikey
+
+            smiles = entry.get("SMILES")
+            if generell_identifiers.smiles is not None:
+                assert generell_identifiers.smiles == smiles
+            else:
+                generell_identifiers.smiles = smiles
 
         return generell_identifiers
 
