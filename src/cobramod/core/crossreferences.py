@@ -540,6 +540,7 @@ def add_crossreferences(  # noqa: C901
                 # fixed. (But then it is redundant)
                 if prefix == "chebi" and "CHEBI:" not in new_id:
                     new_id = "CHEBI:" + new_id
+                    print(f"prefix: {prefix}, new_id: {new_id}")
 
                 # obsolete ids are ignored
                 elif prefix == "deprecated":
@@ -550,15 +551,11 @@ def add_crossreferences(  # noqa: C901
 
                     if sort == "reac":
                         prefix_ = "metanetx.reaction"
-                        xrefs = add2dict_unique(prefix_, new_id, xrefs)
                     else:
                         prefix_ = "metanetx.chemical"
-                        xrefs = add2dict_unique(prefix_, new_id, xrefs)
 
-                else:
-                    total_found += 1
-                    xrefs = add2dict_unique(prefix, new_id, xrefs)
-
+                xrefs = add2dict_unique(prefix, new_id, xrefs)
+                total_found += 1
                 if validate_new:
                     new_xrefs = add2dict_unique(prefix, new_id, new_xrefs)
 

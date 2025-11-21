@@ -291,8 +291,80 @@ class BioCyc(Database):
 
             return None
 
+    def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
+        smilesBasedID = None
+        inchiBasedID = None
+        inchikeyBasedID = None
 
-    def validateGenerellIdentifiers(
-        self, smiles: Union[str, GenerellIdentifiers]
-    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
-        raise NotImplementedError
+        logger.debug(
+            "Querying all available GenerellIdentifier, to check whether they point to the same database ID."
+        )
+
+        if identifier.smiles is not None:
+            smilesBasedID = self.getDBIdentifierFromSmiles(identifier)
+
+        if identifier.inchi is not None:
+            inchiBasedID = self.getDBIdentifierFromInchi(identifier)
+
+        if identifier.inchi_key is not None:
+            inchikeyBasedID = self.getDBIdentifierFromInchiKey(identifier)
+
+        logger.debug("Queried all available GenerellIdentifier. Checking if they point to the same database ID.")
+
+        missmatch = False
+
+        # ugly implementation but easiest to understand and backwards compatible
+        if smilesBasedID is None:
+            if inchiBasedID is None:
+                if inchikeyBasedID is None:
+                    return None
+
+                return inchikeyBasedID
+
+            else:
+                # inchibasedID is defined
+                if inchiBasedID == inchikeyBasedID:
+                    return inchiBasedID
+
+                else:
+                    missmatch = True
+
+        else:
+            # smilesbasedOD is defined
+            if inchiBasedID is None:
+                if inchikeyBasedID is None:
+                    return smilesBasedID
+                else:
+                    if smilesBasedID == inchikeyBasedID:
+                        return smilesBasedID
+            else:
+                if inchikeyBasedID is None:
+                    if smilesBasedID == inchiBasedID:
+                        return smilesBasedID
+                    else:
+                        missmatch = True
+                else:
+                    if smilesBasedID == inchiBasedID == inchikeyBasedID:
+                        return smilesBasedID
+                    else:
+                        missmatch = True
+
+
+        if missmatch:
+            logger.error(
+                "Generell Identifier for supposedly the same object result in different DB IDs."
+                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
+                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
+                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
+            )
+        else:
+            logger.debug(
+                "All available Identifier point towards the same DB ID:"
+                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
+                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
+                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
+            )
+
+        #ToDo aise error due to uncertainty
+        return None
+

@@ -1,5 +1,5 @@
 import logging
-from typing import Union, Tuple
+from typing import Union, Tuple, Optional
 
 import requests
 
@@ -21,6 +21,9 @@ logger.addHandler(console_handler)
 
 
 class Kegg(Database):
+    def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
+        raise NotImplementedError
+
     def getGenerellIdentifier(self, dbIdentifier: str, **kwargs) -> GenerellIdentifiers:
         cid = self.get_cid_from_kegg_id(dbIdentifier=dbIdentifier)
 

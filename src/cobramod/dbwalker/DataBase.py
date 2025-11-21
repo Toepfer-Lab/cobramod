@@ -23,12 +23,23 @@ class Database(ABC):
         ...
 
     @abstractmethod
+    def getDBIdentifier(self, identifier:GenerellIdentifiers) -> Optional[str]:
+        """
+        This methods queries the database identifier from a given GenerellIdentifiers.
+        Therefore using all defined Generellidentifier and validating that they result in the same database identifier.
+        """
+
+        ...
+
+    @abstractmethod
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> Optional[str]:
         """
         This method queries the database identifier from a given SMILES string.
         """
+
+        ...
 
     @abstractmethod
     def getDBIdentifierFromInchi(
@@ -48,13 +59,4 @@ class Database(ABC):
         This method queries the database identifier from a given InchIKey.
         """
 
-        ...
-
-    @abstractmethod
-    def validateGenerellIdentifiers(
-        self, smiles: Union[str, GenerellIdentifiers]
-    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
-        """
-        This method queries available generell identifiers based on a databse identifier and validates them via checking if a generell identifier maps back to the original database identifier. If this is the case it will be added to the GenerellIdentifier object containing validated identifiers. If not it will be added to the GenerellIdentifiers object containing non verified identifiers..
-        """
         ...
