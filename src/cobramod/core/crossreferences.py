@@ -11,6 +11,7 @@ from pandas.core.interchange.dataframe_protocol import DataFrame
 from requests import HTTPError
 from tqdm import tqdm
 
+from cobramod.dbwalker.identifiersORG import Validator
 from cobramod.debug import debug_log
 
 
@@ -433,6 +434,10 @@ def add_crossreferences(  # noqa: C901
         validate_all = True
     elif validate == "only_new":
         validate_new = True
+    elif validate == "none":
+        pass
+    else:
+        raise ValueError("Invalid value for validate")
 
     if isinstance(directory, str):
         directory = Path(directory).absolute()
@@ -529,7 +534,7 @@ def add_crossreferences(  # noqa: C901
                 prefix = prefix.lower()
 
                 # MetaNetX does not provide correct CHEBI IDs. This is because
-                # they lack the correct prefix. "CHEBI:CHEBI:0000" is correct
+                # they lack the correct prefix. "chebi:CHEBI:0000" is correct
                 # but "CHEBI:0000" is delivered. Therefore the following if
                 # statement is used. This will also work if this condition is
                 # fixed. (But then it is redundant)
@@ -540,14 +545,24 @@ def add_crossreferences(  # noqa: C901
                 elif prefix == "deprecated":
                     continue
 
-                total_found += 1
-                xrefs = add2dict_unique(prefix, new_id, xrefs)
+                elif prefix == "mnx":
+                    total_found += 1
+
+                    if sort == "reac":
+                        prefix_ = "metanetx.reaction"
+                        xrefs = add2dict_unique(prefix_, new_id, xrefs)
+                    else:
+                        prefix_ = "metanetx.chemical"
+                        xrefs = add2dict_unique(prefix_, new_id, xrefs)
+
+                else:
+                    total_found += 1
+                    xrefs = add2dict_unique(prefix, new_id, xrefs)
 
                 if validate_new:
                     new_xrefs = add2dict_unique(prefix, new_id, new_xrefs)
 
         # pubchem.compound
-
         try:
             inchikey = xrefs["inchikey"]
             pubchem_compound = inchikey2pubchem_cid(inchikey, directory)
@@ -624,6 +639,7 @@ def add_crossreferences(  # noqa: C901
         else:
             object.annotation = xrefs
 
+validator = Validator()
 
 def validate_id_dict(
     xrefs: dict[str, Union[str, list[str]]],
@@ -632,16 +648,13 @@ def validate_id_dict(
 
     for prefix, identifiers in xrefs.items():
         if isinstance(identifiers, str):
-            print(identifiers)
-            print(f"{prefix}:{identifiers}")
-            if validate_id(f"{prefix}:{identifiers}"):
-                print(identifiers)
+            if validator.validate_id_pattern(prefix=prefix, identifier=identifiers):
                 validated_xrefs[prefix] = identifiers
         else:
             valid_list = []
             # Has to be list of identifiers
             for identifier in identifiers:
-                if validate_id(f"{prefix}:{identifier}"):
+                if validator.validate_id_pattern(prefix=prefix, identifier=identifier):
                     valid_list.append(identifier)
 
             # if at least one entry remains add those either as list
@@ -651,8 +664,8 @@ def validate_id_dict(
             elif len(valid_list) == 1:
                 validated_xrefs[prefix] = valid_list[0]
 
+    print(validated_xrefs)
     return validated_xrefs
-
 
 def validate_id(identifier: str) -> bool:
     debug_log.debug(f"Checking validity for identifier {identifier}")
@@ -683,20 +696,38 @@ def validate_id(identifier: str) -> bool:
     url_identifiers = f"https://resolver.api.identifiers.org/{prefix}:{ID}"
 
     response = requests.get(url_identifiers)
-    response.raise_for_status()
+
+    try:
+        response.raise_for_status()
+    except HTTPError as e:
+        debug_log.debug(
+            f"Validation request results in HTTP error: {e}"
+        )
+        return False
+
+
     answer = response.json()
     valid = True if answer["errorMessage"] is None else False
 
-    debug_log.debug(
-        f"Validation request results in error message: {answer['errorMessage']}"
-    )
-    debug_log.debug(
-        f"Identifier ({identifier}) prefix & structure is verified: {valid}"
-    )
+    if valid:
+        debug_log.debug(
+            f"Identifier ({identifier}) prefix & structure is verified: {valid}"
+        )
+    else:
+        debug_log.debug(
+            f"Validation request (identifiers.org) results in error message: {answer['errorMessage']}"
+        )
 
     url_in_sbml = f"https://identifiers.org/{prefix}/{actual_id}"
 
-    response = requests.get(url_in_sbml)
-    response.raise_for_status()
+    #response = requests.get(url_in_sbml)
+
+    #try:
+    #    response.raise_for_status()
+    #except HTTPError as e:
+    #    debug_log.debug(
+    #        f"Validation request (Database) results in HTTP error: {e}"
+    #    )
+    #    return False
 
     return valid
