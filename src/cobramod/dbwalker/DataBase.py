@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Union
+from typing import Union, Optional
 
 from typing_extensions import Tuple
 
@@ -13,7 +13,7 @@ class Database(ABC):
 
     @abstractmethod
     def getGenerellIdentifier(
-        self, dbIdentifier: str, **kwargs
+        self, dbIdentifier: str
     ) -> GenerellIdentifiers:
         """
         This methods queries SMILES, InChI and InChIKey from a database. If any is not available it will be set to None.
@@ -25,15 +25,15 @@ class Database(ABC):
     @abstractmethod
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
-    ) -> str:
+    ) -> Optional[str]:
         """
         This method queries the database identifier from a given SMILES string.
         """
 
     @abstractmethod
     def getDBIdentifierFromInchi(
-        self, smiles: Union[str, GenerellIdentifiers]
-    ) -> str:
+        self, inchi: Union[str, GenerellIdentifiers]
+    ) -> Optional[str]:
         """
         This method queries the database identifier from a given Inchi.
         """
@@ -42,7 +42,7 @@ class Database(ABC):
 
     @abstractmethod
     def getDBIdentifierFromInchiKey(
-        self, smiles: Union[str, GenerellIdentifiers]
+        self, inchikey: Union[str, GenerellIdentifiers]
     ) -> str:
         """
         This method queries the database identifier from a given InchIKey.

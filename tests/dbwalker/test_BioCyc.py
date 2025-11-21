@@ -1,13 +1,11 @@
 from unittest import TestCase
-import pytest
 from unittest.mock import patch, Mock
 import requests
 from requests import Session
 
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
-from cobramod.debug import change_to_debug
 
-from cobramod.dbwalker.BioCyc import get_compound_info_by_biocyc_id
+from cobramod.dbwalker.BioCyc import BioCyc
 
 import logging
 
@@ -23,6 +21,9 @@ logger.setLevel(logging.DEBUG)
 
 
 class TestGetCompoundInfoByBiocycId(TestCase):
+    def setUp(self):
+        self.biocyc = BioCyc()
+
     def test_successful_request_with_all_identifiers(self):
         """Test successful API call with all chemical identifiers present."""
         mock_xml = """<ptools-xml ptools-version="29.0" xml:base="http://BioCyc.org/getxml?META:CPD-123">
@@ -53,7 +54,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             mock_response.raise_for_status.return_value = None
             mock_get.return_value = mock_response
 
-            result = get_compound_info_by_biocyc_id("CPD-123")
+            result =  self.biocyc.getGenerellIdentifier("CPD-123")
 
             self.assertEqual(
                 result.inchi, "1S/C5H5NO2/c7-4-2-1-3-5(8)6-4/h1-3H,(H2,6,7,8)"
@@ -74,7 +75,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             mock_response.raise_for_status.return_value = None
             mock_get.return_value = mock_response
 
-            get_compound_info_by_biocyc_id("CPD-789", db="ECOLI")
+            self.biocyc.getGenerellIdentifier("CPD-789", BioCycSubDB="ECOLI")
 
             mock_get.assert_called_once()
             args, kwargs = mock_get.call_args
@@ -88,7 +89,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             with self.assertLogs(
                 "cobramod.DBWalker.BioCyc", level="ERROR"
             ) as cm:
-                result = get_compound_info_by_biocyc_id("CPD-123")
+                result =  self.biocyc.getGenerellIdentifier("CPD-123")
                 expected = GenerellIdentifiers()
 
                 self.assertEqual(result, expected)
@@ -112,7 +113,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             with self.assertLogs(
                 "cobramod.DBWalker.BioCyc", level="ERROR"
             ) as cm:
-                result = get_compound_info_by_biocyc_id("CPD-123")
+                result =  self.biocyc.getGenerellIdentifier("CPD-123")
                 expected = GenerellIdentifiers()
 
                 self.assertEqual(result, expected)
@@ -134,7 +135,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             mock_response.raise_for_status.return_value = None
             mock_get.return_value = mock_response
 
-            result = get_compound_info_by_biocyc_id("CPD-999")
+            result =  self.biocyc.getGenerellIdentifier("CPD-999")
 
             self.assertIsInstance(result, GenerellIdentifiers)
             self.assertEqual(result.inchi, None)
@@ -151,7 +152,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             mock_response.raise_for_status.return_value = None
             mock_get.return_value = mock_response
 
-            get_compound_info_by_biocyc_id("CPD-123")
+            self.biocyc.getGenerellIdentifier("CPD-123")
 
             expected_params = {"id": "META:CPD-123"}
             expected_header = {
@@ -168,7 +169,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
 
     def test_live_api_call(self):
         """Test against the live BioCyc API (may fail if API is unavailable)."""
-        result = get_compound_info_by_biocyc_id("GLC")
+        result =  self.biocyc.getGenerellIdentifier("GLC")
 
         self.assertIsInstance(result, GenerellIdentifiers)
         self.assertEqual(

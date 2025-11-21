@@ -25,7 +25,7 @@ class SingletonMeta(type):
     Threadsafe Singleton metalass.
     """
 
-    _instances = {}
+    _instances = {}  # type: ignore[var-annotated]
     _lock: Lock = Lock()
 
     def __call__(cls, *args, **kwargs):
@@ -95,7 +95,7 @@ class Settings(metaclass=SingletonMeta):
             self.__biocyc_session = requests.Session()
 
         if (
-            self.__biocyc_login == False
+            not self.__biocyc_login
             and self.__biocyc_name
             and self.__biocyc_password
         ):
@@ -127,3 +127,6 @@ class Settings(metaclass=SingletonMeta):
             self.__biocyc_session.close()
             self.__biocyc_session = None
             self.__biocyc_login = False
+
+    def __del__(self):
+        self._closeBiocycSession()

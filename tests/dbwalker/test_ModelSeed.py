@@ -1,7 +1,5 @@
 from unittest import TestCase
 
-import pytest
-import requests
 from cobramod.dbwalker.modelSeed import (
     get_compound_info_by_modelseed_id,
     smiles2ModelSeed,

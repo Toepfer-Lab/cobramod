@@ -23,12 +23,14 @@ import cobra.core as cobra_core
 import requests
 
 import cobramod.utils as cmod_utils
+from cobramod.settings import Settings
 from cobramod.core import creation, genes
 from cobramod.debug import debug_log
 from cobramod.parsing import bigg, biocyc, kegg, plantcyc, solcyc
 from cobramod.parsing import db_version as cmod_db
 
 db_configuration = cmod_db.DataVersionConfigurator()
+settings = Settings()
 
 BIOCYC = "https://websvc.biocyc.org/getxml?id="
 PMN = "https://pmn.plantcyc.org/getxml?id="
@@ -458,19 +460,9 @@ def get_response(
 
         return database, response
 
-    s = requests.Session()
-    if biocyc_credentials:
-        # FIXME: find a better way
-        user, pwd = cmod_utils.get_credentials(
-            Path.cwd().joinpath("credentials.txt")
-        )
-        s.post(
-            "https://websvc.biocyc.org/credentials/login/",
-            data={"email": user, "password": pwd},
-        )
+    s = settings._biocycSession
 
     response = s.get(url)
-    s.close()
     response.raise_for_status()
 
     # Not a valid content-type to process

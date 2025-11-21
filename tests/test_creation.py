@@ -570,6 +570,11 @@ class SimpleFunctions(unittest.TestCase):
 
 
 class ComplexFunctions(unittest.TestCase):
+    def setUp(self):
+        # ToDo Versioning should be tested in its own test class
+        data_conf = DataVersionConfigurator()
+        data_conf.ignore_db_versions = True
+
     def test_create_object(self):
         # CASE: metabolite from MetaCyc
         test_object = cr.create_object(

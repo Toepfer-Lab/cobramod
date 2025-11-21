@@ -1,6 +1,6 @@
 import requests
 import logging
-from typing import Optional, Dict, Any, Union, Tuple
+from typing import Union, Tuple
 
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
@@ -22,27 +22,27 @@ class Bigg(Database):
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
-        pass
+        raise NotImplementedError
 
     def getDBIdentifierFromInchi(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
-        pass
+        raise NotImplementedError
 
     def getDBIdentifierFromInchiKey(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
-        pass
+        raise NotImplementedError
 
     def validateGenerellIdentifiers(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
-        pass
+        raise NotImplementedError
 
     def __init__(self):
         super().__init__()
 
-    def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
+    def getGenerellIdentifier(self, dbIdentifier: str, **kwargs) -> GenerellIdentifiers:
         """
         Convert a BiGG metabolite ID to available general identifiers.
 

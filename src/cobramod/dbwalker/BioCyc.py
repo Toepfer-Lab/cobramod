@@ -1,7 +1,7 @@
 import urllib
 
 import requests
-from typing import Optional, Dict, Any, Union, Tuple, overload
+from typing import Optional, Union, Tuple, overload
 
 import xml.etree.ElementTree as ET
 import logging
@@ -37,28 +37,28 @@ class BioCyc(Database):
     ) -> GenerellIdentifiers: ...
 
     def getGenerellIdentifier(
-        self, dbIdentifier: str, **kwargs
+        self, dbIdentifier: str, BioCycSubDB: Optional[str] = None
     ) -> GenerellIdentifiers:
         """
         Get InChI, InChI Key, and SMILES for a compound using BioCyc ID.
 
         Args:
-            biocyc_id: BioCyc compound ID (e.g., 'CPD-123')
-            db: BioCyc database name (default: 'META' for MetaCyc)
+            dbIdentifier: BioCyc compound ID (e.g., 'CPD-123')
+            BioCycSubDB: BioCyc database name (default: 'META' for MetaCyc)
 
         Returns:
             Dictionary with 'inchi', 'inchi_key', and 'smiles' keys
         """
 
-        BioCycSubDB = kwargs.get("BioCycSubDB")
-
         if BioCycSubDB is not None:
-            db, biocyc_id = dbIdentifier, BioCycSubDB
+            db, biocyc_id = BioCycSubDB,dbIdentifier
             pass
-        else:
+        elif ":" in dbIdentifier:
             db, biocyc_id = dbIdentifier.split(":")
+        else:
+            db, biocyc_id = "META", dbIdentifier
 
-        url = f"https://websvc.biocyc.org/getxml"
+        url = "https://websvc.biocyc.org/getxml"
 
         params = {"id": f"{db}:{biocyc_id}"}
 
@@ -103,12 +103,12 @@ class BioCyc(Database):
 
             # Extract SMILES from XML
             smiles_element = root.find(".//string[@title='smiles']")
-            if smiles_element is not None:
+            if smiles_element is not None and smiles_element.text is not None:
                 result.smiles = smiles_element.text.strip()
 
             # Extract InChI from XML
             inchi_element = root.find(".//inchi[@datatype='string']")
-            if inchi_element is not None:
+            if inchi_element is not None and inchi_element.text is not None:
                 inchi = inchi_element.text.strip()
                 if inchi.startswith("InChI="):
                     result.inchi = inchi[6:]
@@ -117,7 +117,7 @@ class BioCyc(Database):
 
             # Extract InChI Key from XML
             inchikey_element = root.find(".//inchi-key[@datatype='string']")
-            if inchikey_element is not None:
+            if inchikey_element is not None and inchikey_element.text is not None:
                 inchikey = inchikey_element.text.strip()
 
                 if inchikey.startswith("InChIKey="):
@@ -134,7 +134,7 @@ class BioCyc(Database):
         return result
 
     def getDBIdentifierFromSmiles(
-        self, smiles: Union[str, GenerellIdentifiers]
+        self, smiles: Union[str, GenerellIdentifiers], BioCycSubDB: Optional[str] = None
     ) -> Optional[str]:
         """
         Convert SMILES to BioCyc identifiers.
@@ -146,9 +146,16 @@ class BioCyc(Database):
             GenerellIdentifiers with BioCyc ID if found, otherwise empty
         """
 
+        if BioCycSubDB is None:
+            BioCycSubDB = "META"
+
+        if isinstance(smiles, GenerellIdentifiers):
+            assert smiles.smiles is not None
+            smiles = smiles.smiles
+
         try:
             encoded_smiles = urllib.parse.quote(smiles, safe="")
-            url = f"https://websvc.biocyc.org/{orgid}/smiles-search?smiles={encoded_smiles}&exact=T&fmt=json"
+            url = f"https://websvc.biocyc.org/{BioCycSubDB}/smiles-search?smiles={encoded_smiles}&exact=T&fmt=json"
 
             logger.info(f"Requesting BioCyc for SMILES: {smiles}")
             logger.debug(f"Request URL: {url}")
@@ -172,7 +179,7 @@ class BioCyc(Database):
             return None
 
     def getDBIdentifierFromInchi(
-        self, smiles: Union[str, GenerellIdentifiers]
+        self, inchi: Union[str, GenerellIdentifiers], BioCycSubDB: Optional[str] = None
     ) -> Optional[str]:
         """
         Convert InChI to BioCyc identifiers.
@@ -183,8 +190,16 @@ class BioCyc(Database):
         Returns:
             GenerellIdentifiers with BioCyc ID if found, otherwise empty
         """
+        if BioCycSubDB is None:
+            BioCycSubDB = "META"
+
+        if isinstance(inchi, GenerellIdentifiers):
+            assert inchi.inchi is not None
+            inchi = inchi.inchi
+
+
         try:
-            url = f"https://websvc.biocyc.org/{orgid}/inchi-search?inchi={inchi}&exact=T&fmt=json"
+            url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
 
             logger.info(f"Requesting BioCyc for InChI: {inchi}")
 
@@ -208,9 +223,9 @@ class BioCyc(Database):
     def getDBIdentifierFromInchiKey(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
-        pass
+        raise NotImplementedError
 
     def validateGenerellIdentifiers(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
-        pass
+        raise NotImplementedError

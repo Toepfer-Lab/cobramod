@@ -1,7 +1,6 @@
 import logging
 from unittest import TestCase
 
-import pytest
 from unittest.mock import patch, Mock
 import requests
 from cobramod.dbwalker.swisslipids import (

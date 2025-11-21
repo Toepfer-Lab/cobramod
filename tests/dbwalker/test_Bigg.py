@@ -1,10 +1,8 @@
 from unittest import TestCase
-import pytest
 from unittest.mock import patch, Mock
 import requests
 
 from cobramod.dbwalker.bigg import Bigg
-from cobramod.debug import change_to_debug
 
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 

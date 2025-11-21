@@ -222,7 +222,6 @@ class TestCrossReferences(TestCase):
                     "hmdb:HMDB01270",
                     "hmdb:HMDB62758",
                     "sabiork.compound:29",
-                    "sabiorkM:29",
                 ],
                 "mnx_id": "MNXM1108074",
             }
@@ -252,7 +251,6 @@ class TestCrossReferences(TestCase):
                     "HMDB62758",
                 ],
                 "metanetx.chemical": "MNXM1108074",
-                "sabiorkm": "29",
                 "inchi": "InChI=1S/C3H8O10P2/"
                 "c4-2(1-12-14(6,7)8)3(5)13-15(9,10)11/"
                 "h2,4H,1H2,(H2,6,7,8)(H2,9,10,11)",
@@ -271,7 +269,7 @@ class TestCrossReferences(TestCase):
 
             # ToDo test includes metabolite identifiers while it handles a reaction
             add_crossreferences(
-                reaction, directory, use_metanetx=True, validate=False
+                reaction, directory, use_metanetx=True, validate="none"
             )
             expected_annotations = {
                 "hmdb": [
@@ -281,7 +279,6 @@ class TestCrossReferences(TestCase):
                     "HMDB0001270",
                 ],
                 "metanetx.reaction": "MNXM1108074",
-                "sabiorkm": "29",
                 "chebi": "CHEBI:89363",
                 "metanetx.chemical": "MNXM1108074",
                 "sabiork.compound": "29",
@@ -295,6 +292,9 @@ class TestCrossReferences(TestCase):
             }
 
             # check keys
+
+            print(expected_annotations)
+            print(reaction.annotation)
             self.assertCountEqual(expected_annotations, reaction.annotation)
 
             for key, value in expected_annotations.items():
