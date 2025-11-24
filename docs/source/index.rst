@@ -89,4 +89,5 @@ CobraMod, load and print :obj:`cobramod.retrieval.available_databases`.
    visualization.rst
    databases.rst
    installation.rst
+   settings.rst
    test_cases.ipynb

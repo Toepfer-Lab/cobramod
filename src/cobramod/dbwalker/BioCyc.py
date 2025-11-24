@@ -10,22 +10,19 @@ from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 import cobramod
 
-logger = logging.getLogger("cobramod.DBWalker.BioCyc")
-logger.propagate = True
-
-# Ensure console output
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-
-biocycTier1DB = ["Meta", "ECOLI", "HUMAN", "ARA", "YEAST"]
-
-
 class BioCyc(Database):
+    logger = logging.getLogger("cobramod.DBWalker.BioCyc")
+    logger.propagate = True
+
+    # Ensure console output
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
+    console_handler.setFormatter(formatter)
+    logger.addHandler(console_handler)
+
     @overload
     def getGenerellIdentifier(
         self, dbIdentifier: str
@@ -65,11 +62,11 @@ class BioCyc(Database):
         # BioCyc cuts the SMILES string short otherwise
         headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/xml"}
 
-        logger.debug(
+        BioCyc.logger.debug(
             f"Querying BioCyc for compound {biocyc_id} in database {db}"
         )
-        logger.debug(f"Request URL: {url}")
-        logger.debug(f"Request parameters: {params}")
+        self.logger.debug(f"Request URL: {url}")
+        self.logger.debug(f"Request parameters: {params}")
 
         result = GenerellIdentifiers()
         try:
@@ -83,7 +80,7 @@ class BioCyc(Database):
             if cSettings.autoOpenCloseBioCycSession:
                 cSettings._closeBiocycSession()
 
-            logger.debug(f"Response status code: {response.status_code}")
+            self.logger.debug(f"Response status code: {response.status_code}")
 
             # Check if BioCyc is asking for account creation
             if (
@@ -91,9 +88,9 @@ class BioCyc(Database):
                 and isinstance(response.text, str)
                 and "<title>Create Account</title>" in response.text
             ):
-                logger.warning("BioCyc is requesting account creation.")
+                self.logger.warning("BioCyc is requesting account creation.")
                 if not cSettings.BioCycLoggedIn:
-                    logger.error(
+                    self.logger.error(
                         "BioCyc account information are not provided can't login."
                     )
                 return result
@@ -126,11 +123,20 @@ class BioCyc(Database):
                     result.inchi_key = inchikey
 
         except requests.RequestException as e:
-            logger.error(f"Error fetching data from BioCyc: {e}")
+            self.logger.error(f"Error fetching data from BioCyc: {e}")
         except ET.ParseError as e:
-            logger.error(f"Error parsing XML response: {e}")
+            self.logger.error(f"Error parsing XML response: {e}")
 
-        logger.debug(f"Final result: {result}")
+        self.logger.debug(f"Final result: {result}")
+
+        self.logger.debug("Checking that the general identifiers map back to the original ID")
+
+        # ToDo validate that the moethod works on the object and not on a copy due to the namespace
+        self._validateGeneralIdentifiersWithDBIDs(
+            generelID= result,
+            identifier=dbIdentifier
+        )
+
         return result
 
     def getDBIdentifierFromSmiles(
@@ -154,7 +160,7 @@ class BioCyc(Database):
             smiles = smiles.smiles
 
         try:
-            logger.info(f"Looking up BioCyc ID for SMILES: {smiles}")
+            self.logger.info(f"Looking up BioCyc ID for SMILES: {smiles}")
 
             cSettings = cobramod.Settings()
             session = cSettings._biocycSession
@@ -173,13 +179,13 @@ class BioCyc(Database):
             results = data["RESULTS"]
 
             if results is None:
-                logger.debug(
+                self.logger.debug(
                    f"BioCyc did not report any matches for SMILES ({smiles}). "
                 )
                 return None
 
             if len(results)>1:
-                logger.debug(
+                self.logger.debug(
                     "BioCyc reported more than one exact match for SMILES. Now checking for string equality."
                 )
 
@@ -194,18 +200,18 @@ class BioCyc(Database):
                     printable.append((result["COMMON-NAME"],result["OBJECT-ID"]))
 
             if hits > 1:
-                logger.error(
+                self.logger.error(
                     f"Found more than one entry for SMILES ({smiles}) in BioCyc ({BioCycSubDB}). Wont add anything due to being uncertain which ones is correct. The following IDs were found for:\n {printable})"
                 )
                 # ToDo raise error for uncertain match
                 biocycID = None
             elif hits == 1:
-                logger.debug(
+                self.logger.debug(
                     "Only one of the matches was exactly equal to the query. Proceeding normally."
                 )
                 biocycID = matches[0]
             else:
-                logger.debug(
+                self.logger.debug(
                     "No matches were found. Proceeding without match."
                 )
                 biocycID = None
@@ -213,7 +219,7 @@ class BioCyc(Database):
             return biocycID
 
         except requests.RequestException as e:
-            logger.error(f"Error fetching data from BioCyc: {e}")
+            self.logger.error(f"Error fetching data from BioCyc: {e}")
             return None
 
     def getDBIdentifierFromInchi(
@@ -237,7 +243,7 @@ class BioCyc(Database):
 
         url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
 
-        logger.info(f"Requesting BioCyc for InChI: {inchi}\n"
+        self.logger.info(f"Requesting BioCyc for InChI: {inchi}\n"
                     f"using {url}")
 
         cSettings = cobramod.Settings()
@@ -254,7 +260,7 @@ class BioCyc(Database):
             return biocycID
 
         except requests.RequestException as e:
-            logger.error(f"Error fetching data from BioCyc: {e}")
+            self.logger.error(f"Error fetching data from BioCyc: {e}")
             return None
 
     def getDBIdentifierFromInchiKey(
@@ -268,7 +274,7 @@ class BioCyc(Database):
             inchikey = inchikey.inchi
 
         url = f"https://biocyc.org/{BioCycSubDB}/search-query?type=COMPOUND&inchikey={inchikey}&exact=T&fmt=json"
-        logger.info(f"Requesting BioCyc for InChIKey: {inchikey}\n"
+        self.logger.info(f"Requesting BioCyc for InChIKey: {inchikey}\n"
                     f"using: {url}")
 
         cSettings = cobramod.Settings()
@@ -287,7 +293,7 @@ class BioCyc(Database):
             return biocycID
 
         except requests.RequestException as e:
-            logger.error(f"Error fetching data from BioCyc: {e}")
+            self.logger.error(f"Error fetching data from BioCyc: {e}")
 
             return None
 
@@ -296,7 +302,7 @@ class BioCyc(Database):
         inchiBasedID = None
         inchikeyBasedID = None
 
-        logger.debug(
+        self.logger.debug(
             "Querying all available GenerellIdentifier, to check whether they point to the same database ID."
         )
 
@@ -309,7 +315,7 @@ class BioCyc(Database):
         if identifier.inchi_key is not None:
             inchikeyBasedID = self.getDBIdentifierFromInchiKey(identifier)
 
-        logger.debug("Queried all available GenerellIdentifier. Checking if they point to the same database ID.")
+        self.logger.debug("Queried all available GenerellIdentifier. Checking if they point to the same database ID.")
 
         missmatch = False
 
@@ -351,14 +357,14 @@ class BioCyc(Database):
 
 
         if missmatch:
-            logger.error(
+            self.logger.error(
                 "Generell Identifier for supposedly the same object result in different DB IDs."
                 f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
                 f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
                 f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
             )
         else:
-            logger.debug(
+            self.logger.debug(
                 "All available Identifier point towards the same DB ID:"
                 f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
                 f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
