@@ -4,6 +4,7 @@ from pathlib import Path
 from threading import Lock
 from typing import Optional
 
+import platformdirs
 import requests
 import cobramod.utils as cmod_utils
 
@@ -42,6 +43,14 @@ class Settings(metaclass=SingletonMeta):
 
         if self.__biocyc_name is None or self.__biocyc_password is None:
             self.__setBioCycLoginFromFile()
+
+        self.__cache_dir: Path = Path(
+            platformdirs.user_cache_dir(
+                appname="cobramod",
+                appauthor="cobramod",
+                ensure_exists=True,
+            )
+        )
 
     __biocyc_password: Optional[str] = None
     __biocyc_name: Optional[str] = None
@@ -121,6 +130,11 @@ class Settings(metaclass=SingletonMeta):
             bool: True if logged in, False otherwise.
         """
         return self.__biocyc_login
+
+    @property
+    def cacheDir(self) -> Path:
+        return self.__cache_dir
+
 
     def _closeBiocycSession(self):
         if self.__biocyc_session:
