@@ -10,6 +10,7 @@ from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 import cobramod
 
+
 class BioCyc(Database):
     logger = logging.getLogger("cobramod.DBWalker.BioCyc")
     logger.propagate = True
@@ -48,7 +49,7 @@ class BioCyc(Database):
         """
 
         if BioCycSubDB is not None:
-            db, biocyc_id = BioCycSubDB,dbIdentifier
+            db, biocyc_id = BioCycSubDB, dbIdentifier
             pass
         elif ":" in dbIdentifier:
             db, biocyc_id = dbIdentifier.split(":")
@@ -114,7 +115,10 @@ class BioCyc(Database):
 
             # Extract InChI Key from XML
             inchikey_element = root.find(".//inchi-key[@datatype='string']")
-            if inchikey_element is not None and inchikey_element.text is not None:
+            if (
+                inchikey_element is not None
+                and inchikey_element.text is not None
+            ):
                 inchikey = inchikey_element.text.strip()
 
                 if inchikey.startswith("InChIKey="):
@@ -129,18 +133,21 @@ class BioCyc(Database):
 
         self.logger.debug(f"Final result: {result}")
 
-        self.logger.debug("Checking that the general identifiers map back to the original ID")
+        self.logger.debug(
+            "Checking that the general identifiers map back to the original ID"
+        )
 
         # ToDo validate that the moethod works on the object and not on a copy due to the namespace
         self._validateGeneralIdentifiersWithDBIDs(
-            generelID= result,
-            identifier=dbIdentifier
+            generelID=result, identifier=dbIdentifier
         )
 
         return result
 
     def getDBIdentifierFromSmiles(
-        self, smiles: Union[str, GenerellIdentifiers], BioCycSubDB: Optional[str] = None
+        self,
+        smiles: Union[str, GenerellIdentifiers],
+        BioCycSubDB: Optional[str] = None,
     ) -> Optional[str]:
         """
         Convert SMILES to BioCyc identifiers.
@@ -165,12 +172,10 @@ class BioCyc(Database):
             cSettings = cobramod.Settings()
             session = cSettings._biocycSession
 
-            response = session.post(f'https://websvc.biocyc.org/{BioCycSubDB}/smiles-search',
-                              data={
-                                  'smiles': smiles,
-                                  'exact': 'T',
-                                  'fmt': 'json'
-                              })
+            response = session.post(
+                f"https://websvc.biocyc.org/{BioCycSubDB}/smiles-search",
+                data={"smiles": smiles, "exact": "T", "fmt": "json"},
+            )
 
             response.raise_for_status()
 
@@ -180,24 +185,26 @@ class BioCyc(Database):
 
             if results is None:
                 self.logger.debug(
-                   f"BioCyc did not report any matches for SMILES ({smiles}). "
+                    f"BioCyc did not report any matches for SMILES ({smiles}). "
                 )
                 return None
 
-            if len(results)>1:
+            if len(results) > 1:
                 self.logger.debug(
                     "BioCyc reported more than one exact match for SMILES. Now checking for string equality."
                 )
 
             hits = 0
             matches: List[str] = []
-            printable: List[str,str] = []
+            printable: List[str, str] = []
 
             for result in results:
                 if result["SMILES"] == smiles:
                     hits = hits + 1
                     matches.append(result["OBJECT-ID"])
-                    printable.append((result["COMMON-NAME"],result["OBJECT-ID"]))
+                    printable.append(
+                        (result["COMMON-NAME"], result["OBJECT-ID"])
+                    )
 
             if hits > 1:
                 self.logger.error(
@@ -223,7 +230,9 @@ class BioCyc(Database):
             return None
 
     def getDBIdentifierFromInchi(
-        self, inchi: Union[str, GenerellIdentifiers], BioCycSubDB: Optional[str] = None
+        self,
+        inchi: Union[str, GenerellIdentifiers],
+        BioCycSubDB: Optional[str] = None,
     ) -> Optional[str]:
         """
         Convert InChI to BioCyc identifiers.
@@ -243,8 +252,7 @@ class BioCyc(Database):
 
         url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
 
-        self.logger.info(f"Requesting BioCyc for InChI: {inchi}\n"
-                    f"using {url}")
+        self.logger.info(f"Requesting BioCyc for InChI: {inchi}\nusing {url}")
 
         cSettings = cobramod.Settings()
         session = cSettings._biocycSession
@@ -264,7 +272,9 @@ class BioCyc(Database):
             return None
 
     def getDBIdentifierFromInchiKey(
-        self, inchikey: Union[str, GenerellIdentifiers], BioCycSubDB: Optional[str] = None
+        self,
+        inchikey: Union[str, GenerellIdentifiers],
+        BioCycSubDB: Optional[str] = None,
     ) -> Optional[str]:
         if BioCycSubDB is None:
             BioCycSubDB = "META"
@@ -274,8 +284,9 @@ class BioCyc(Database):
             inchikey = inchikey.inchi
 
         url = f"https://biocyc.org/{BioCycSubDB}/search-query?type=COMPOUND&inchikey={inchikey}&exact=T&fmt=json"
-        self.logger.info(f"Requesting BioCyc for InChIKey: {inchikey}\n"
-                    f"using: {url}")
+        self.logger.info(
+            f"Requesting BioCyc for InChIKey: {inchikey}\nusing: {url}"
+        )
 
         cSettings = cobramod.Settings()
         session = cSettings._biocycSession
@@ -315,7 +326,9 @@ class BioCyc(Database):
         if identifier.inchi_key is not None:
             inchikeyBasedID = self.getDBIdentifierFromInchiKey(identifier)
 
-        self.logger.debug("Queried all available GenerellIdentifier. Checking if they point to the same database ID.")
+        self.logger.debug(
+            "Queried all available GenerellIdentifier. Checking if they point to the same database ID."
+        )
 
         missmatch = False
 
@@ -355,7 +368,6 @@ class BioCyc(Database):
                     else:
                         missmatch = True
 
-
         if missmatch:
             self.logger.error(
                 "Generell Identifier for supposedly the same object result in different DB IDs."
@@ -371,6 +383,5 @@ class BioCyc(Database):
                 f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
             )
 
-        #ToDo aise error due to uncertainty
+        # ToDo aise error due to uncertainty
         return None
-

@@ -17,13 +17,14 @@ formatter = logging.Formatter(
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
+
 class Validator(metaclass=SingletonMeta):
     def __init__(self):
         super().__init__()
 
         self.lookup: Dict[str, re.Pattern] = self.get_registry()
 
-    def get_registry(self) -> Dict[str,re.Pattern]:
+    def get_registry(self) -> Dict[str, re.Pattern]:
         """
         Getting the registry information from identifiers.org and constructing the lookup for the regex patterns of
         the IDs as defined by identifiers.org.
@@ -41,18 +42,18 @@ class Validator(metaclass=SingletonMeta):
         data = response.json()["payload"]["namespaces"]
         lookup: Dict[str, re.Pattern] = {}
 
-
         for entry in data:
             prefix = entry["prefix"]
             pattern = re.compile(entry["pattern"])
 
             lookup[prefix] = pattern
 
-        logger.info("Sucessfully retrieved registry info and created regex pattern.")
+        logger.info(
+            "Sucessfully retrieved registry info and created regex pattern."
+        )
         return lookup
 
-    def validate_id_pattern(self, prefix:str, identifier: str) -> bool:
-
+    def validate_id_pattern(self, prefix: str, identifier: str) -> bool:
         logger.debug(f"Validating {prefix}:{identifier}")
 
         try:

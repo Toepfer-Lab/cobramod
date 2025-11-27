@@ -1,9 +1,17 @@
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QApplication, QVBoxLayout, QPushButton
+from PyQt5.QtWidgets import (
+    QWidget,
+    QHBoxLayout,
+    QLabel,
+    QApplication,
+    QVBoxLayout,
+    QPushButton,
+)
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import Qt
 from rdkit import Chem
 from rdkit.Chem import Draw, AllChem
 from io import BytesIO
+
 
 def show_molecule_comparison(smiles1, smiles2):
     """
@@ -26,6 +34,7 @@ def show_molecule_comparison(smiles1, smiles2):
     widget.show()
 
     return app, widget
+
 
 class MoleculeComparisonWidget(QWidget):
     def __init__(self, smiles1, smiles2, size=(400, 400)):
@@ -87,7 +96,6 @@ class MoleculeComparisonWidget(QWidget):
 
         mol_layout.addWidget(self.label1)
         mol_layout.addWidget(self.label2)
-
 
         # Button layout
         button_layout = QHBoxLayout()

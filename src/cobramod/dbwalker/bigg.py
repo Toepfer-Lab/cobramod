@@ -42,7 +42,9 @@ class Bigg(Database):
     def __init__(self):
         super().__init__()
 
-    def getGenerellIdentifier(self, dbIdentifier: str, **kwargs) -> GenerellIdentifiers:
+    def getGenerellIdentifier(
+        self, dbIdentifier: str, **kwargs
+    ) -> GenerellIdentifiers:
         """
         Convert a BiGG metabolite ID to available general identifiers.
 

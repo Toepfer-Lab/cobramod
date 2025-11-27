@@ -11,12 +11,11 @@ class Database(ABC):
     """
     A Class defining the interface for interacting with databsed to aquire databse specific identifiers, SMILES, InChI and InChIKey.
     """
+
     logger = logging.getLogger("cobramod.DBWalker.DataBase")
 
     @abstractmethod
-    def getGenerellIdentifier(
-        self, dbIdentifier: str
-    ) -> GenerellIdentifiers:
+    def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
         """
         This methods queries SMILES, InChI and InChIKey from a database. If any is not available it will be set to None.
         Returns: A GenerellIdentifiers object containing containing SMILES, InChI and InChIKey if available.
@@ -25,7 +24,7 @@ class Database(ABC):
         ...
 
     @abstractmethod
-    def getDBIdentifier(self, identifier:GenerellIdentifiers) -> Optional[str]:
+    def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
         """
         This methods queries the database identifier from a given GenerellIdentifiers.
         Therefore using all defined Generellidentifier and validating that they result in the same database identifier.
@@ -53,7 +52,9 @@ class Database(ABC):
 
         ...
 
-    def _validateGeneralIdentifiersWithDBIDs(self, generelID:GenerellIdentifiers, identifier:str):
+    def _validateGeneralIdentifiersWithDBIDs(
+        self, generelID: GenerellIdentifiers, identifier: str
+    ):
         """
         Internal method that maps the entries of a GenerellIdenfiers object to a database identifier.
          With this it validates that they are equal to the passed identifier. This method is internally used to validate
@@ -79,13 +80,13 @@ class Database(ABC):
                 )
 
         if generelID.inchi_key is not None:
-            inchikey_databaseID = self.getDBIdentifierFromInchiKey(generelID.inchi_key)
+            inchikey_databaseID = self.getDBIdentifierFromInchiKey(
+                generelID.inchi_key
+            )
             if identifier != inchikey_databaseID:
                 self.logger.error(
                     f"The InChiKey ({generelID.inchi_key}) does not map back to the original Biocyc ID ({identifier}), instead it points to {inchikey_databaseID}. Ignoring the InChi"
                 )
-
-
 
     @abstractmethod
     def getDBIdentifierFromInchiKey(
@@ -93,6 +94,32 @@ class Database(ABC):
     ) -> str:
         """
         This method queries the database identifier from a given InchIKey.
+        """
+
+        ...
+
+
+class DependentDatabase(ABC):
+    """
+    A dependent Database is a database that maps its metabolites to another Database instead of having associations between their IDs and general IDs like smiles, inchi and InChiKey.
+    """
+
+    dependentOn: Database
+
+    @abstractmethod
+    def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
+        """
+        This methods queries SMILES, InChI and InChIKey from a database. If any is not available it will be set to None.
+        Returns: A GenerellIdentifiers object containing containing SMILES, InChI and InChIKey if available.
+        """
+
+        ...
+
+    @abstractmethod
+    def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
+        """
+        This methods queries the database identifier from a given GenerellIdentifiers.
+        Therefore using all defined Generellidentifier and validating that they result in the same database identifier.
         """
 
         ...

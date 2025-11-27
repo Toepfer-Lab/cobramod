@@ -24,7 +24,9 @@ class Kegg(Database):
     def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
         raise NotImplementedError
 
-    def getGenerellIdentifier(self, dbIdentifier: str, **kwargs) -> GenerellIdentifiers:
+    def getGenerellIdentifier(
+        self, dbIdentifier: str, **kwargs
+    ) -> GenerellIdentifiers:
         cid = self.get_cid_from_kegg_id(dbIdentifier=dbIdentifier)
 
         # Kegg itself does not provide identifiers insteads it maps them to PubChem

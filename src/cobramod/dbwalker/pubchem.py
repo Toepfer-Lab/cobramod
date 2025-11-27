@@ -11,14 +11,17 @@ logger.propagate = True
 
 
 class PubChem(Database):
-    def getGenerellIdentifier(self, dbIdentifier: str, **kwargs) -> GenerellIdentifiers:
-
+    def getGenerellIdentifier(
+        self, dbIdentifier: str, **kwargs
+    ) -> GenerellIdentifiers:
         if "pubchem.compound:" in dbIdentifier:
             dbIdentifier = dbIdentifier.replace("pubchem.compound:", "")
 
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{dbIdentifier}/property/MolecularFormula,InChIKey,InChI,SMILES/json"
 
-        logger.debug(f"Getting identifiers from PubChem using the following url:\n{url}")
+        logger.debug(
+            f"Getting identifiers from PubChem using the following url:\n{url}"
+        )
 
         response = requests.get(url=url)
         response.raise_for_status()
@@ -28,7 +31,6 @@ class PubChem(Database):
         generell_identifiers = GenerellIdentifiers()
 
         for entry in value["PropertyTable"]["Properties"]:
-
             inchi = entry.get("InChI")
             if generell_identifiers.inchi is not None:
                 assert generell_identifiers.inchi == inchi

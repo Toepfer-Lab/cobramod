@@ -636,7 +636,9 @@ def add_crossreferences(  # noqa: C901
         else:
             object.annotation = xrefs
 
+
 validator = Validator()
+
 
 def validate_id_dict(
     xrefs: dict[str, Union[str, list[str]]],
@@ -645,13 +647,17 @@ def validate_id_dict(
 
     for prefix, identifiers in xrefs.items():
         if isinstance(identifiers, str):
-            if validator.validate_id_pattern(prefix=prefix, identifier=identifiers):
+            if validator.validate_id_pattern(
+                prefix=prefix, identifier=identifiers
+            ):
                 validated_xrefs[prefix] = identifiers
         else:
             valid_list = []
             # Has to be list of identifiers
             for identifier in identifiers:
-                if validator.validate_id_pattern(prefix=prefix, identifier=identifier):
+                if validator.validate_id_pattern(
+                    prefix=prefix, identifier=identifier
+                ):
                     valid_list.append(identifier)
 
             # if at least one entry remains add those either as list
@@ -663,6 +669,7 @@ def validate_id_dict(
 
     print(validated_xrefs)
     return validated_xrefs
+
 
 def validate_id(identifier: str) -> bool:
     debug_log.debug(f"Checking validity for identifier {identifier}")
@@ -697,11 +704,8 @@ def validate_id(identifier: str) -> bool:
     try:
         response.raise_for_status()
     except HTTPError as e:
-        debug_log.debug(
-            f"Validation request results in HTTP error: {e}"
-        )
+        debug_log.debug(f"Validation request results in HTTP error: {e}")
         return False
-
 
     answer = response.json()
     valid = True if answer["errorMessage"] is None else False
@@ -717,11 +721,11 @@ def validate_id(identifier: str) -> bool:
 
     url_in_sbml = f"https://identifiers.org/{prefix}/{actual_id}"
 
-    #response = requests.get(url_in_sbml)
+    # response = requests.get(url_in_sbml)
 
-    #try:
+    # try:
     #    response.raise_for_status()
-    #except HTTPError as e:
+    # except HTTPError as e:
     #    debug_log.debug(
     #        f"Validation request (Database) results in HTTP error: {e}"
     #    )

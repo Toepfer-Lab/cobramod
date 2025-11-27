@@ -135,7 +135,6 @@ class Settings(metaclass=SingletonMeta):
     def cacheDir(self) -> Path:
         return self.__cache_dir
 
-
     def _closeBiocycSession(self):
         if self.__biocyc_session:
             self.__biocyc_session.close()

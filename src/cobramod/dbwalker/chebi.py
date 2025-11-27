@@ -22,7 +22,6 @@ logger.addHandler(console_handler)
 
 
 class Chebi(Database):
-
     chebi_ftp = "ftp://ftp.ebi.ac.uk/pub/databases/chebi/flat_files"
     settings = Settings()
 
@@ -53,7 +52,7 @@ class Chebi(Database):
         response = requests.get(url)
 
         if response.status_code == 200:
-            with open(cached_file, 'wb') as file:
+            with open(cached_file, "wb") as file:
                 file.write(response.content)
             logger.debug(
                 f"ChEBI structure file donwloaded and saved at {str(cached_file)}."
@@ -72,16 +71,22 @@ class Chebi(Database):
     def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
         raise NotImplementedError
 
-    def getDBIdentifierFromSmiles(self, smiles: Union[str, GenerellIdentifiers]) -> Optional[str]:
+    def getDBIdentifierFromSmiles(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Optional[str]:
         raise NotImplementedError
 
-    def getDBIdentifierFromInchi(self, inchi: Union[str, GenerellIdentifiers]) -> Optional[str]:
+    def getDBIdentifierFromInchi(
+        self, inchi: Union[str, GenerellIdentifiers]
+    ) -> Optional[str]:
         raise NotImplementedError
 
-    def getDBIdentifierFromInchiKey(self, inchikey: Union[str, GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromInchiKey(
+        self, inchikey: Union[str, GenerellIdentifiers]
+    ) -> str:
         raise NotImplementedError
 
-    def validateGenerellIdentifiers(self, smiles: Union[str, GenerellIdentifiers]) -> Tuple[
-        GenerellIdentifiers, GenerellIdentifiers]:
+    def validateGenerellIdentifiers(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
         raise NotImplementedError
-
