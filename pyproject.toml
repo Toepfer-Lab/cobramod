@@ -27,7 +27,8 @@ dependencies = [
     "webcolors>=1.13",
     "pyarrow>=14.0.2",
     "anywidget>=0.9.9",
-    "numpy>=1.15.0"
+    "numpy>=1.15.0",
+    "platformdirs>=4.5.1"
 ]
 
 [project.optional-dependencies]

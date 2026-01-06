@@ -21,6 +21,11 @@ logger.addHandler(console_handler)
 
 
 class Kegg(Database):
+
+    def __init__(self):
+        super().__init__()
+        self.__pubchem = PubChem()
+
     def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
         raise NotImplementedError
 
@@ -29,9 +34,9 @@ class Kegg(Database):
     ) -> GenerellIdentifiers:
         cid = self.get_cid_from_kegg_id(dbIdentifier=dbIdentifier)
 
-        # Kegg itself does not provide identifiers insteads it maps them to PubChem
-        pubchem = PubChem()
-        generellIdentifier = pubchem.getGenerellIdentifier(dbIdentifier=cid)
+        # Kegg itself does not provide identifiers instead it maps them to PubChem
+
+        generellIdentifier = self.__pubchem.getGenerellIdentifier(dbIdentifier=cid)
 
         return generellIdentifier
 
@@ -48,11 +53,6 @@ class Kegg(Database):
     def getDBIdentifierFromInchiKey(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
-        raise NotImplementedError
-
-    def validateGenerellIdentifiers(
-        self, smiles: Union[str, GenerellIdentifiers]
-    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
         raise NotImplementedError
 
     def get_kegg_id_from_cid(self, cid):

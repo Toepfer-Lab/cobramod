@@ -432,8 +432,6 @@ def get_response(
 
     subdatabase = ""
 
-    biocyc_credentials = False
-
     try:
         # e.g sol:META:water
         database, subdatabase, identifier = query.split(":")
@@ -447,7 +445,6 @@ def get_response(
             url = f"{databases['KEGG']}{encoded_id}"
         else:
             url = f"{databases['BIOCYC']}{database}:{encoded_id}"
-            biocyc_credentials = True
 
     if database == "BIGG":
         query = query.removeprefix("BIGG:")
