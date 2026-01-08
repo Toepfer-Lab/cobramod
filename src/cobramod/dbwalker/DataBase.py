@@ -23,14 +23,73 @@ class Database(ABC):
 
         ...
 
+    @property
     @abstractmethod
+    def name(self) -> str:
+
+        ...
+
+    @property
+    @abstractmethod
+    def AnnotationPrefix(self) -> str:
+
+        ...
+
     def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
         """
         This methods queries the database identifier from a given GenerellIdentifiers.
         Therefore using all defined Generellidentifier and validating that they result in the same database identifier.
         """
 
-        ...
+        smilesBasedID = None
+        inchiBasedID = None
+        inchikeyBasedID = None
+
+        self.logger.debug(
+            "Querying all available GenerellIdentifier, to check whether they point to the same database ID."
+        )
+        possible_IDs = []
+
+        if identifier.smiles is not None:
+            smilesBasedID = self.getDBIdentifierFromSmiles(identifier)
+            possible_IDs.append(smilesBasedID)
+
+        if identifier.inchi is not None:
+            inchiBasedID = self.getDBIdentifierFromInchi(identifier)
+            possible_IDs.append(inchiBasedID)
+
+        if identifier.inchi_key is not None:
+            inchikeyBasedID = self.getDBIdentifierFromInchiKey(identifier)
+            possible_IDs.append(inchikeyBasedID)
+
+        self.logger.debug(
+            "Queried all available GenerellIdentifier. Checking if they point to the same database ID."
+        )
+
+        if len(possible_IDs) == 0:
+            self.logger.warning(
+                "Did not find any DB IDs any of the GenerellIdentifiers."
+            )
+            return None
+
+        missmatch = possible_IDs.count(possible_IDs[0]) == len(possible_IDs)
+
+        if missmatch:
+            self.logger.error(
+                "Generell Identifier for supposedly the same object result in different DB IDs."
+                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
+                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
+                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
+            )
+            return None
+        else:
+            self.logger.debug(
+                "All available Identifier point towards the same DB ID:"
+                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
+                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
+                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
+            )
+            return possible_IDs[0]
 
     @abstractmethod
     def getDBIdentifierFromSmiles(

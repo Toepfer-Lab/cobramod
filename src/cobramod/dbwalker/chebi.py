@@ -65,9 +65,6 @@ class Chebi(Database):
 
         return cached_file
 
-    def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
-        pass
-
     def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
         raise NotImplementedError
 

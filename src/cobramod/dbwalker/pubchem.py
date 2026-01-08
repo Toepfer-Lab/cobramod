@@ -2,6 +2,7 @@ import logging
 from typing import Union, Tuple, List
 
 import requests
+from typing_extensions import overload
 
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
@@ -11,6 +12,15 @@ logger.propagate = True
 
 
 class PubChem(Database):
+
+    @property
+    def name(self) -> str:
+        return "PubChem"
+
+    @property
+    def AnnotationPrefix(self) -> str:
+        return "pubchem.compound"
+
     def getGenerellIdentifier(
         self, dbIdentifier: str, **kwargs
     ) -> GenerellIdentifiers:

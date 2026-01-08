@@ -1,5 +1,5 @@
 import logging
-from typing import Union, Tuple, Optional
+from typing import Union, Tuple, Optional, overload
 
 import requests
 
@@ -26,8 +26,13 @@ class Kegg(Database):
         super().__init__()
         self.__pubchem = PubChem()
 
-    def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
-        raise NotImplementedError
+    @property
+    def name(self) -> str:
+        return "Kegg"
+
+    @property
+    def AnnotationPrefix(self) -> str:
+        return "kegg"
 
     def getGenerellIdentifier(
         self, dbIdentifier: str, **kwargs
@@ -43,17 +48,28 @@ class Kegg(Database):
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
-        raise NotImplementedError
+        cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
+        kegg_id = self.get_kegg_id_from_cid(cid= cid)
+
+        return kegg_id
 
     def getDBIdentifierFromInchi(
-        self, smiles: Union[str, GenerellIdentifiers]
+        self, inchi: Union[str, GenerellIdentifiers]
     ) -> str:
-        raise NotImplementedError
+
+        cid = self.__pubchem.getDBIdentifierFromInchi(inchi = inchi)
+        kegg_id = self.get_kegg_id_from_cid(cid=cid)
+
+        return kegg_id
 
     def getDBIdentifierFromInchiKey(
-        self, smiles: Union[str, GenerellIdentifiers]
+        self, inchikey: Union[str, GenerellIdentifiers]
     ) -> str:
-        raise NotImplementedError
+
+        cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey = inchikey)
+        kegg_id = self.get_kegg_id_from_cid(cid=cid)
+
+        return kegg_id
 
     def get_kegg_id_from_cid(self, cid):
         """

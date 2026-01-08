@@ -1,16 +1,19 @@
 import logging
-from typing import Union, Dict
+from typing import Union, Dict, List, Any
 
 from cobra import Model, Reaction, Metabolite
+from rdkit.VLib.NodeLib.SmartsRemover import biggerTest
 
 import cobramod
 from cobramod.core.crossreferences import validate_id, add2dict_unique
 from cobramod.dbwalker.BioCyc import BioCyc
-from cobramod.dbwalker.modelSeed import (
-    get_compound_info_by_modelseed_id,
-    smiles2ModelSeed,
-    inchikey2modelseed,
-)
+from cobramod.dbwalker.DataBase import Database
+from cobramod.dbwalker.bigg import Bigg
+from cobramod.dbwalker.chebi import Chebi
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers
+from cobramod.dbwalker.kegg import Kegg
+
+from cobramod.dbwalker.pubchem import PubChem
 
 general_identifiers = ["inchikey", "inchi", "smiles"]
 
@@ -28,298 +31,43 @@ logger.addHandler(console_handler)
 
 settings = cobramod.Settings()
 
+supportedDatabases: List[Database]=[
+    BioCyc(),
+    Kegg(),
+    #Bigg(),
+    #Chebi(),
+    PubChem(),
+]
 
 def add_crossreferences2metabolite(metabolite: Metabolite):
     annotations = metabolite.annotation
-    present_identifiers = {}
-    verified_identifiers: Dict[str, str] = {}
-    nonverified_identifiers: Dict[str, str] = {}
+    general_identifiers = GenerellIdentifiers.fromAnnotation(metabolite.annotation)
 
-    bio_cyc = BioCyc()
-
-    for identifier in general_identifiers:
-        if identifier in annotations:
-            value = annotations[identifier]
-            if isinstance(value, str):
-                value = [value]
-            present_identifiers[identifier] = value
-
-    # biocyc
-    if "biocyc" in annotations:
-        IDs = annotations["biocyc"]
-
-        if isinstance(IDs, str):
-            IDs = [IDs]
-
-        for ID in IDs:
-            db, identifier = ID.split(":")
-            biocyc_result = bio_cyc.getGenerellIdentifier(
-                identifier, BioCycSubDB=db
-            )
-
-            if biocyc_result.smiles is not None:
-                query = bio_cyc.getDBIdentifierFromSmiles(
-                    biocyc_result.smiles, BioCycSubDB=db
-                )
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
-
-                if present_identifiers.get("smiles") is not None:
-                    if biocyc_result.smiles != present_identifiers["smiles"]:
-                        logger.error(
-                            f"SMILES identifier mismatch for {identifier} in BioCyc: {biocyc_result.smiles} vs existing {present_identifiers['smiles']}"
-                        )
-                        logger.error(
-                            f"Please check the BioCyc ID ({ID}) and the present SMILES ({present_identifiers['smiles']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the SMILES match, we can ignore it as it exists already
-                        continue
-
-                if query == identifier and identifiersORG_validation:
-                    logger.info(
-                        f"Found SMILES {biocyc_result.smiles} in BioCyc ({db}) for {metabolite.id}"
-                    )
-                    verified_identifiers = add2dict_unique(
-                        key="smiles",
-                        value=biocyc_result.smiles,
-                        dictionary=verified_identifiers,
-                    )
-
-            if biocyc_result.inchi is not None:
-                query = bio_cyc.getDBIdentifierFromInchi(
-                    biocyc_result.inchi, BioCycSubDB=db
-                )
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
-
-                if present_identifiers.get("inchi") is not None:
-                    if biocyc_result.inchi != present_identifiers["inchi"]:
-                        logger.error(
-                            f"InChI identifier mismatch for {identifier} in BioCyc: {biocyc_result.inchi} vs existing {present_identifiers['inchi']}"
-                        )
-                        logger.error(
-                            f"Please check the BioCyc ID ({ID}) and the present inchi ({present_identifiers['inchi']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the InChI match, we can ignore it as it exists already
-                        continue
-
-                if query == identifier and identifiersORG_validation:
-                    logger.info(
-                        f"Found InChI {biocyc_result.inchi} in BioCyc ({db}) for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="inchi",
-                        value=biocyc_result.inchi,
-                        dictionary=verified_identifiers,
-                    )
-            if biocyc_result.inchi_key is not None:
-                if present_identifiers.get("inchikey") is not None:
-                    if (
-                        present_identifiers.get("inchikey")
-                        == biocyc_result.inchi_key
-                    ):
-                        # If the InChIKey match, we can ignore it as it exists already
-                        continue
-                    else:
-                        logger.error(
-                            f"InChIKey identifier mismatch for {identifier} in BioCyc: {biocyc_result.inchi_key} vs existing {present_identifiers['inchikey']}"
-                        )
-                        logger.error(
-                            f"Please check the BioCyc ID ({ID}) and the present InChIKey ({present_identifiers['inchikey']}) for {metabolite.id}."
-                        )
-                        continue
-
-                logger.info(
-                    f"Found unverified InChIKey {biocyc_result.inchi_key} in BioCyc ({db}) for {metabolite.id}"
-                )
-                nonverified_identifiers["inchikey"] = biocyc_result.inchi_key
-
-    if "metacyc.compound" in annotations:
-        db = "META"
-        IDs = annotations["metacyc.compound"]
-
-        if isinstance(IDs, str):
-            IDs = [IDs]
-
-        for ID in IDs:
-            biocyc_result = bio_cyc.getGenerellIdentifier(
-                dbIdentifier=ID, BioCycSubDB=db
-            )
-
-            if biocyc_result.smiles is not None:
-                query = bio_cyc.getDBIdentifierFromSmiles(
-                    smiles=biocyc_result.smiles, BioCycSubDB=db
-                )
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
-
-                if present_identifiers.get("smiles") is not None:
-                    if biocyc_result.smiles != present_identifiers["smiles"]:
-                        logger.error(
-                            f"SMILES identifier mismatch for {ID} in BioCyc: {biocyc_result.smiles} vs existing {present_identifiers['smiles']}"
-                        )
-                        logger.error(
-                            f"Please check the BioCyc ID ({db}:{ID}) and the present SMILES ({present_identifiers['smiles']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the SMILES match, we can ignore it as it exists already
-                        continue
-
-                if query == ID and identifiersORG_validation:
-                    logger.info(
-                        f"Found SMILES {biocyc_result.smiles} in BioCyc ({db}) for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="smiles",
-                        value=biocyc_result.smiles,
-                        dictionary=verified_identifiers,
-                    )
-
-            if biocyc_result.inchi is not None:
-                query = bio_cyc.getDBIdentifierFromInchi(
-                    biocyc_result.inchi, BioCycSubDB=db
-                )
-                identifiersORG_validation = validate_id(f"biocyc:{db}:{query}")
-
-                if present_identifiers.get("inchi") is not None:
-                    if biocyc_result.inchi != present_identifiers["inchi"]:
-                        logger.error(
-                            f"InChI identifier mismatch for {ID} in BioCyc: {biocyc_result.inchi} vs existing {present_identifiers['inchi']}"
-                        )
-                        logger.error(
-                            f"Please check the BioCyc ID ({db}:{ID}) and the present inchi ({present_identifiers['inchi']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the InChI match, we can ignore it as it exists already
-                        continue
-
-                if query == ID and identifiersORG_validation:
-                    logger.info(
-                        f"Found InChI {biocyc_result.inchi} in BioCyc ({db}) for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="inchi",
-                        value=biocyc_result.inchi,
-                        dictionary=verified_identifiers,
-                    )
-
-            if biocyc_result.inchi_key is not None:
-                if present_identifiers.get("inchikey") is not None:
-                    if (
-                        present_identifiers.get("inchikey")
-                        == biocyc_result.inchi_key
-                    ):
-                        # If the InChIKey match, we can ignore it as it exists already
-                        continue
-                    else:
-                        logger.error(
-                            f"InChIKey identifier mismatch for {ID} in BioCyc: {biocyc_result.inchi_key} vs existing {present_identifiers['inchikey']}"
-                        )
-                        logger.error(
-                            f"Please check the BioCyc ID ({ID}) and the present InChIKey ({present_identifiers['inchikey']}) for {metabolite.id}."
-                        )
-                        continue
-
-                logger.info(
-                    f"Found unverified InChIKey {biocyc_result.inchi_key} in BioCyc ({db}) for {metabolite.id}"
-                )
-                nonverified_identifiers["inchikey"] = biocyc_result.inchi_key
-
-    if "seed.compound" in annotations:
-        IDs = annotations["seed.compound"]
-
-        if isinstance(IDs, str):
-            IDs = [IDs]
-
-        for ID in IDs:
-            modelseed_result = get_compound_info_by_modelseed_id(ID)
-
-            if modelseed_result.smiles is not None:
-                if present_identifiers.get("smiles") is not None:
-                    if modelseed_result.smiles != present_identifiers["smiles"]:
-                        logger.error(
-                            f"SMILES identifier mismatch for {ID} in ModelSEED: {modelseed_result.smiles} vs existing {present_identifiers['smiles']}"
-                        )
-                        logger.error(
-                            f"Please check the ModelSEED ID ({ID}) and the present SMILES ({present_identifiers['smiles']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the SMILES match, we can ignore it as it exists already
-                        continue
-
-                query = smiles2ModelSeed(modelseed_result.smiles)
-                identifiersORG_validation = validate_id(
-                    f"seed.compound:{query}"
-                )
-
-                if query == ID and identifiersORG_validation:
-                    logger.info(
-                        f"Found SMILES {modelseed_result.smiles} in ModelSEED for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="smiles",
-                        value=modelseed_result.smiles,
-                        dictionary=verified_identifiers,
-                    )
-            if modelseed_result.inchi_key is not None:
-                if present_identifiers.get("inchikey") is not None:
-                    if (
-                        modelseed_result.inchi_key
-                        != present_identifiers["inchikey"]
-                    ):
-                        logger.error(
-                            f"InChIKey identifier mismatch for {ID} in ModelSEED: {modelseed_result.inchi_key} vs existing {present_identifiers['inchikey']}"
-                        )
-                        logger.error(
-                            f"Please check the ModelSEED ID ({ID}) and the present inchikey ({present_identifiers['inchikey']}) for {metabolite.id}."
-                        )
-                        continue
-                    else:
-                        # If the InChIKey match, we can ignore it as it exists already
-                        continue
-
-                query = inchikey2modelseed(modelseed_result.inchi_key)
-                identifiersORG_validation = validate_id(
-                    f"seed.compound:{query}"
-                )
-
-                if query == ID and identifiersORG_validation:
-                    logger.info(
-                        f"Found InChIKey {modelseed_result.inchi_key} in ModelSEED for {metabolite.id}"
-                    )
-
-                    verified_identifiers = add2dict_unique(
-                        key="inchikey",
-                        value=modelseed_result.inchi_key,
-                        dictionary=verified_identifiers,
-                    )
-
-    # Add verified identifiers to the metabolite's annotation
-    # ToDo use set?
-    for key, values in verified_identifiers.items():
-        if key == "smiles" and not settings.add_smiles_as_cross_reference:
+    for database in supportedDatabases:
+        databaseID = metabolite.annotation.get(database.AnnotationPrefix, None)
+        if databaseID is None:
             continue
 
-        if isinstance(values, list):
+        general_identifier = database.getGenerellIdentifier(databaseID)
+
+        if general_identifiers.empty():
+            general_identifiers = general_identifier
+        elif general_identifiers.weakEq(general_identifier):
+            general_identifiers += general_identifier
+        else:
             logger.error(
-                f"Multiple entries found for {key} in verified identifiers: {values}. "
-                f"But {key} should only have one entry. None of those entries will be added."
-                f"You can check where those entries originated in the log using the INFO level."
+                f"While adding general identifiers from {database.name}, a missmatch occurred."
+                f"Previous identifiers are: {general_identifiers}, Database IDs are {general_identifier}."
             )
-            continue
 
-        metabolite.annotation = add2dict_unique(
-            key=key, value=values, dictionary=metabolite.annotation
+
+    for database in supportedDatabases:
+        dbID = database.getDBIdentifier(general_identifiers)
+        add2dict_unique(
+            key=database.AnnotationPrefix,
+            value=dbID,
+            dictionary=metabolite.annotation,
         )
-
 
 def add_crossreferences(
     object: Union[Model, Reaction, Metabolite], consider_subobjects: bool = True

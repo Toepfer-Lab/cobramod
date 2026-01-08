@@ -24,6 +24,14 @@ class BioCyc(Database):
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
+    @property
+    def name(self) -> str:
+        return "BioCyc"
+
+    @property
+    def AnnotationPrefix(self) -> str:
+        return "biocyc"
+
     @overload
     def getGenerellIdentifier(
         self, dbIdentifier: str
@@ -307,81 +315,3 @@ class BioCyc(Database):
             self.logger.error(f"Error fetching data from BioCyc: {e}")
 
             return None
-
-    def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
-        smilesBasedID = None
-        inchiBasedID = None
-        inchikeyBasedID = None
-
-        self.logger.debug(
-            "Querying all available GenerellIdentifier, to check whether they point to the same database ID."
-        )
-
-        if identifier.smiles is not None:
-            smilesBasedID = self.getDBIdentifierFromSmiles(identifier)
-
-        if identifier.inchi is not None:
-            inchiBasedID = self.getDBIdentifierFromInchi(identifier)
-
-        if identifier.inchi_key is not None:
-            inchikeyBasedID = self.getDBIdentifierFromInchiKey(identifier)
-
-        self.logger.debug(
-            "Queried all available GenerellIdentifier. Checking if they point to the same database ID."
-        )
-
-        missmatch = False
-
-        # ugly implementation but easiest to understand and backwards compatible
-        if smilesBasedID is None:
-            if inchiBasedID is None:
-                if inchikeyBasedID is None:
-                    return None
-
-                return inchikeyBasedID
-
-            else:
-                # inchibasedID is defined
-                if inchiBasedID == inchikeyBasedID:
-                    return inchiBasedID
-
-                else:
-                    missmatch = True
-
-        else:
-            # smilesbasedOD is defined
-            if inchiBasedID is None:
-                if inchikeyBasedID is None:
-                    return smilesBasedID
-                else:
-                    if smilesBasedID == inchikeyBasedID:
-                        return smilesBasedID
-            else:
-                if inchikeyBasedID is None:
-                    if smilesBasedID == inchiBasedID:
-                        return smilesBasedID
-                    else:
-                        missmatch = True
-                else:
-                    if smilesBasedID == inchiBasedID == inchikeyBasedID:
-                        return smilesBasedID
-                    else:
-                        missmatch = True
-
-        if missmatch:
-            self.logger.error(
-                "Generell Identifier for supposedly the same object result in different DB IDs."
-                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
-                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
-                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
-            )
-        else:
-            self.logger.debug(
-                "All available Identifier point towards the same DB ID:"
-                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
-                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
-                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
-            )
-
-        # ToDo aise error due to uncertainty
-        return None
