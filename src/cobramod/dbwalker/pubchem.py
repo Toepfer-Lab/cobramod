@@ -75,9 +75,16 @@ class PubChem(Database):
             assert smiles.smiles is not None
             smiles = smiles.smiles
 
-        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/{smiles}/cids/TXT"
+        url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/cids/TXT"
+        data = {
+            "smiles": smiles,
+        }
 
-        response = requests.get(url)
+        self.logger.debug(
+            f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
+        )
+        response = requests.post(url, files=data)
+
         response.raise_for_status()
 
         value = response.text.rstrip()
@@ -91,9 +98,18 @@ class PubChem(Database):
             assert inchi.inchi is not None
             inchi = inchi.inchi
 
-        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/{inchi}/cids/TXT"
 
-        response = requests.get(url)
+        url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchi/cids/TXT"
+
+        data = {
+            "inchi": inchi,
+        }
+
+        self.logger.debug(
+            f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
+        )
+        response = requests.post(url, files=data)
+
         response.raise_for_status()
 
         value = response.text.rstrip()
@@ -107,9 +123,15 @@ class PubChem(Database):
             assert inchikey.inchi_key is not None
             inchikey = inchikey.inchi_key
 
-        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/{inchikey}/cids/TXT"
 
-        response = requests.get(url)
+        url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/cids/TXT"
+
+        data = {
+            "inchikey": inchikey,
+        }
+
+        response = requests.post(url, files=data)
+
         response.raise_for_status()
 
         value = response.text.rstrip()

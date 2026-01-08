@@ -63,11 +63,21 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
 
     for database in supportedDatabases:
         dbID = database.getDBIdentifier(general_identifiers)
+
+        if dbID is None:
+            continue
+
         add2dict_unique(
             key=database.AnnotationPrefix,
             value=dbID,
             dictionary=metabolite.annotation,
         )
+
+def id2annotation(object: Model):
+
+    for metabolite in object.metabolites:
+        ID = metabolite.id
+        metabolite.annotation["kegg.compound"] = ID
 
 def add_crossreferences(
     object: Union[Model, Reaction, Metabolite], consider_subobjects: bool = True

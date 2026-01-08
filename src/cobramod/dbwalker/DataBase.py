@@ -72,9 +72,9 @@ class Database(ABC):
             )
             return None
 
-        missmatch = possible_IDs.count(possible_IDs[0]) == len(possible_IDs)
+        allEqual = all(entry == possible_IDs[0] for entry in possible_IDs)
 
-        if missmatch:
+        if not allEqual:
             self.logger.error(
                 "Generell Identifier for supposedly the same object result in different DB IDs."
                 f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"

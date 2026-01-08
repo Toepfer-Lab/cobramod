@@ -271,6 +271,11 @@ class BioCyc(Database):
             response.raise_for_status()
 
             data = response.json()
+            if data["RESULTS"] is None:
+                self.logger.warning(
+                    f"Could not find a Entry in BioCyc({BioCycSubDB}) for InChI: {inchi}"
+                )
+                return None
 
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
             return biocycID
@@ -300,7 +305,7 @@ class BioCyc(Database):
         session = cSettings._biocycSession
 
         response = session.get(url, timeout=30)
-        print(response.json())
+        print(response)
 
         try:
             response.raise_for_status()

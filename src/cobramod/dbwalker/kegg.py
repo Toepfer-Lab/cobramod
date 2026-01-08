@@ -32,7 +32,7 @@ class Kegg(Database):
 
     @property
     def AnnotationPrefix(self) -> str:
-        return "kegg"
+        return "kegg.compound"
 
     def getGenerellIdentifier(
         self, dbIdentifier: str, **kwargs
@@ -97,7 +97,7 @@ class Kegg(Database):
         if ":" in kegg_id:
             kegg_id = kegg_id.split(":")[1]
 
-        kegg_id = f"kegg.compound:{kegg_id}"
+        #kegg_id = f"kegg.compound:{kegg_id}"
 
         return kegg_id
 
