@@ -36,7 +36,7 @@ class Chebi(Database):
 
         """
 
-        logger.debug("Checking if local structure file")
+        logger.debug("Checking if local structure file exists")
 
         # structure file
         url = self.chebi_ftp + "/chebi-structure.tsv"
@@ -55,10 +55,10 @@ class Chebi(Database):
             with open(cached_file, "wb") as file:
                 file.write(response.content)
             logger.debug(
-                f"ChEBI structure file donwloaded and saved at {str(cached_file)}."
+                f"ChEBI structure file downloaded and saved at {str(cached_file)}."
             )
         else:
-            logger.debug(
+            logger.error(
                 f"Download failed with status code {response.status_code}"
             )
             response.raise_for_status()

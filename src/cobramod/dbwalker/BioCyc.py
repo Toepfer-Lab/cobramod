@@ -1,17 +1,33 @@
 import urllib
 
+import pandas as pd
 import requests
 from typing import Optional, Union, Tuple, overload, List
 
 import xml.etree.ElementTree as ET
 import logging
 
+from cobramod.settings import Settings
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 import cobramod
 
 
 class BioCyc(Database):
+
+    def __init__(self):
+        super().__init__()
+        self.__settings = Settings()
+        self.__cache_file = self.__settings.cacheDir / f"{self.name}.csv"
+        self._cache_added = 0
+
+        if not self.__cache_file.exists():
+            self.cache = pd.DataFrame(columns=["DB-ID", "SUBDB", "SMILES", "InChI", "InChIKey"])
+            self.cache.to_csv(self.__cache_file, index=False)
+        else:
+            self.cache = pd.read_csv(self.__cache_file)
+
+
     logger = logging.getLogger("cobramod.DBWalker.BioCyc")
     logger.propagate = True
 
@@ -64,6 +80,17 @@ class BioCyc(Database):
         else:
             db, biocyc_id = "META", dbIdentifier
 
+        try:
+            cached_results = self.cache.loc[self.cache["DB-ID"] == biocyc_id & self.cache["SUBDB"] == db]
+            gID = GenerellIdentifiers()
+            gID.smiles = cached_results["SMILES"]
+            gID.inchi = cached_results["InChI"]
+            gID.inchi_key = cached_results["InChIKey"]
+            return gID
+
+        except KeyError:
+            pass
+
         url = "https://websvc.biocyc.org/getxml"
 
         params = {"id": f"{db}:{biocyc_id}"}
@@ -79,15 +106,11 @@ class BioCyc(Database):
 
         result = GenerellIdentifiers()
         try:
-            cSettings = cobramod.Settings()
-            session = cSettings._biocycSession
+            session = self.__settings._biocycSession
             response = session.get(
                 url, params=params, headers=headers, timeout=30
             )
             response.raise_for_status()
-
-            if cSettings.autoOpenCloseBioCycSession:
-                cSettings._closeBiocycSession()
 
             self.logger.debug(f"Response status code: {response.status_code}")
 
@@ -98,7 +121,7 @@ class BioCyc(Database):
                 and "<title>Create Account</title>" in response.text
             ):
                 self.logger.warning("BioCyc is requesting account creation.")
-                if not cSettings.BioCycLoggedIn:
+                if not self.__settings.BioCycLoggedIn:
                     self.logger.error(
                         "BioCyc account information are not provided can't login."
                     )
@@ -149,6 +172,10 @@ class BioCyc(Database):
         self._validateGeneralIdentifiersWithDBIDs(
             generelID=result, identifier=dbIdentifier
         )
+        self.cache.loc[len(self.cache.index)] = [biocyc_id, db, result.smiles, result.inchi, result.inchi_key]
+        self._cache_added += 1
+        if self._cache_added % 10 == 0:
+            self.save_cache()
 
         return result
 
@@ -173,6 +200,14 @@ class BioCyc(Database):
         if isinstance(smiles, GenerellIdentifiers):
             assert smiles.smiles is not None
             smiles = smiles.smiles
+
+
+        try:
+            cached_results = self.cache.loc[self.cache["SMILES"] == smiles]["DB-ID"]
+            return cached_results.to_list()
+        except KeyError:
+            pass
+
 
         try:
             self.logger.info(f"Looking up BioCyc ID for SMILES: {smiles}")
@@ -258,6 +293,12 @@ class BioCyc(Database):
             assert inchi.inchi is not None
             inchi = inchi.inchi
 
+        try:
+            cached_results = self.cache.loc[self.cache["InChI"] == inchi]["DB-ID"]
+            return cached_results.to_list()
+        except KeyError:
+            pass
+
         url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
 
         self.logger.info(f"Requesting BioCyc for InChI: {inchi}\nusing {url}")
@@ -296,6 +337,12 @@ class BioCyc(Database):
             assert inchikey.inchi is not None
             inchikey = inchikey.inchi
 
+        try:
+            cached_results = self.cache.loc[self.cache["InChIKey"] == inchikey]["DB-ID"]
+            return cached_results.to_list()
+        except KeyError:
+            pass
+
         url = f"https://biocyc.org/{BioCycSubDB}/search-query?type=COMPOUND&inchikey={inchikey}&exact=T&fmt=json"
         self.logger.info(
             f"Requesting BioCyc for InChIKey: {inchikey}\nusing: {url}"
@@ -320,3 +367,12 @@ class BioCyc(Database):
             self.logger.error(f"Error fetching data from BioCyc: {e}")
 
             return None
+
+    def save_cache(self):
+        self.cache.to_csv(
+            self.__cache_file,
+            index=False,
+        )
+
+    def __del__(self):
+        self.save_cache()

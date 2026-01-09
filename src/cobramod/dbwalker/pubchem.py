@@ -1,9 +1,11 @@
 import logging
 from typing import Union, Tuple, List
 
+import pandas as pd
 import requests
 from typing_extensions import overload
 
+from cobramod import Settings
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 
@@ -12,6 +14,19 @@ logger.propagate = True
 
 
 class PubChem(Database):
+
+    def __init__(self):
+        super().__init__()
+        self.__settings = Settings()
+        self.__cache_file = self.__settings.cacheDir / f"{self.name}.csv"
+        self._cache_added = 0
+        self.__session = requests.Session()
+
+        if not self.__cache_file.exists():
+            self.cache = pd.DataFrame(columns=["DB-ID", "SMILES", "InChI", "InChIKey"])
+            self.cache.to_csv(self.__cache_file, index=False)
+        else:
+            self.cache = pd.read_csv(self.__cache_file)
 
     @property
     def name(self) -> str:
@@ -22,10 +37,23 @@ class PubChem(Database):
         return "pubchem.compound"
 
     def getGenerellIdentifier(
-        self, dbIdentifier: str, **kwargs
+        self, dbIdentifier: Union[str,int], **kwargs
     ) -> GenerellIdentifiers:
-        if "pubchem.compound:" in dbIdentifier:
-            dbIdentifier = dbIdentifier.replace("pubchem.compound:", "")
+        if isinstance(dbIdentifier, str) and "pubchem.compound:" in dbIdentifier:
+            dbIdentifier = int(dbIdentifier.replace("pubchem.compound:", ""))
+        elif isinstance(dbIdentifier, str) and dbIdentifier.isdigit():
+            dbIdentifier = int(dbIdentifier)
+
+        try:
+            cached_results = self.cache.loc[self.cache["DB-ID"] == dbIdentifier]
+            gID = GenerellIdentifiers()
+            gID.smiles = cached_results["SMILES"]
+            gID.inchi = cached_results["InChI"]
+            gID.inchi_key = cached_results["InChIKey"]
+            return gID
+
+        except KeyError:
+            pass
 
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{dbIdentifier}/property/MolecularFormula,InChIKey,InChI,SMILES/json"
 
@@ -33,7 +61,7 @@ class PubChem(Database):
             f"Getting identifiers from PubChem using the following url:\n{url}"
         )
 
-        response = requests.get(url=url)
+        response = self.__session.get(url=url, timeout=30)
         response.raise_for_status()
 
         value = response.json()
@@ -64,9 +92,15 @@ class PubChem(Database):
             else:
                 generell_identifiers.smiles = smiles
 
+        self.cache.loc[len(self.cache.index)] = [dbIdentifier, generell_identifiers.smiles, generell_identifiers.inchi, generell_identifiers.inchi_key]
+
+        self._cache_added += 1
+
+        if self._cache_added % 10 == 0:
+            self.save_cache()
+
         return generell_identifiers
 
-        pass
 
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
@@ -74,6 +108,14 @@ class PubChem(Database):
         if isinstance(smiles, GenerellIdentifiers):
             assert smiles.smiles is not None
             smiles = smiles.smiles
+
+        try:
+            cached_results = self.cache.loc[self.cache["SMILES"] == smiles]["DB-ID"]
+            if len(cached_results)> 0:
+                return cached_results.iloc[0]
+
+        except KeyError:
+            pass
 
         url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/cids/TXT"
         data = {
@@ -83,7 +125,7 @@ class PubChem(Database):
         self.logger.debug(
             f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
         )
-        response = requests.post(url, files=data)
+        response = self.__session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
 
@@ -98,6 +140,13 @@ class PubChem(Database):
             assert inchi.inchi is not None
             inchi = inchi.inchi
 
+        try:
+            cached_results = self.cache.loc[self.cache["InChI"] == inchi]["DB-ID"]
+            if len(cached_results)> 0:
+                return cached_results.iloc[0]
+
+        except KeyError:
+            pass
 
         url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchi/cids/TXT"
 
@@ -108,7 +157,7 @@ class PubChem(Database):
         self.logger.debug(
             f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
         )
-        response = requests.post(url, files=data)
+        response = self.__session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
 
@@ -123,6 +172,13 @@ class PubChem(Database):
             assert inchikey.inchi_key is not None
             inchikey = inchikey.inchi_key
 
+        try:
+            cached_results = self.cache.loc[self.cache["InChIKey"] == inchikey]["DB-ID"]
+            if len(cached_results)> 0:
+                return cached_results.iloc[0]
+
+        except KeyError:
+            pass
 
         url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/inchikey/cids/TXT"
 
@@ -130,7 +186,7 @@ class PubChem(Database):
             "inchikey": inchikey,
         }
 
-        response = requests.post(url, files=data)
+        response = self.__session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
 
@@ -159,9 +215,19 @@ class PubChem(Database):
             f"{cid}/property/MolecularFormula/txt"
         )
 
-        response = requests.get(url)
+        response = self.__session.get(url, timeout=30)
         response.raise_for_status()
 
         value = response.text.rstrip()
 
         return value
+
+    def save_cache(self):
+        self.cache.to_csv(
+            self.__cache_file,
+            index=False,
+        )
+
+    def __del__(self):
+        self.save_cache()
+        self.__session.close()
