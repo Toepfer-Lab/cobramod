@@ -1,4 +1,6 @@
-from dataclasses import dataclass
+from pydantic import ConfigDict
+from pydantic.dataclasses import dataclass
+
 from typing import Optional, Dict
 
 from jedi.inference.gradual import annotation
@@ -41,6 +43,8 @@ class GenerellIdentifiers:
         if self.inchi is None:
             self.inchi = other.inchi
 
+        return self
+
 
     def empty(self):
         l = [self.smiles, self.inchi, self.inchi_key]
@@ -60,3 +64,5 @@ class GenerellIdentifiers:
             inchi=inchi,
             inchi_key=inchi_key,
         )
+
+    __pydantic_config__ = ConfigDict(validate_assignment=True)

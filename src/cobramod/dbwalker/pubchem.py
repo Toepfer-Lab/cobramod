@@ -3,6 +3,7 @@ from typing import Union, Tuple, List
 
 import pandas as pd
 import requests
+from requests.adapters import HTTPAdapter, Retry
 from typing_extensions import overload
 
 from cobramod import Settings
@@ -21,6 +22,9 @@ class PubChem(Database):
         self.__cache_file = self.__settings.cacheDir / f"{self.name}.csv"
         self._cache_added = 0
         self.__session = requests.Session()
+        self.__session.mount('https://', HTTPAdapter(max_retries=Retry(total=5,
+                backoff_factor=0.5)
+        ))
 
         if not self.__cache_file.exists():
             self.cache = pd.DataFrame(columns=["DB-ID", "SMILES", "InChI", "InChIKey"])
@@ -47,10 +51,14 @@ class PubChem(Database):
         try:
             cached_results = self.cache.loc[self.cache["DB-ID"] == dbIdentifier]
             gID = GenerellIdentifiers()
-            gID.smiles = cached_results["SMILES"]
-            gID.inchi = cached_results["InChI"]
-            gID.inchi_key = cached_results["InChIKey"]
-            return gID
+
+            if len(cached_results) == 1:
+                gID.smiles = cached_results["SMILES"][0]
+                gID.inchi = cached_results["InChI"][0]
+                gID.inchi_key = cached_results["InChIKey"][0]
+
+
+                return gID
 
         except KeyError:
             pass
@@ -61,6 +69,7 @@ class PubChem(Database):
             f"Getting identifiers from PubChem using the following url:\n{url}"
         )
 
+        self.__settings.limiter.try_acquire("pubchem")
         response = self.__session.get(url=url, timeout=30)
         response.raise_for_status()
 
@@ -125,6 +134,8 @@ class PubChem(Database):
         self.logger.debug(
             f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
         )
+
+        self.__settings.limiter.try_acquire("pubchem")
         response = self.__session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
@@ -157,6 +168,8 @@ class PubChem(Database):
         self.logger.debug(
             f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
         )
+
+        self.__settings.limiter.try_acquire("pubchem")
         response = self.__session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
@@ -186,6 +199,7 @@ class PubChem(Database):
             "inchikey": inchikey,
         }
 
+        self.__settings.limiter.try_acquire("pubchem")
         response = self.__session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
@@ -215,6 +229,7 @@ class PubChem(Database):
             f"{cid}/property/MolecularFormula/txt"
         )
 
+        self.__settings.limiter.try_acquire("pubchem")
         response = self.__session.get(url, timeout=30)
         response.raise_for_status()
 

@@ -2,6 +2,7 @@ import requests
 import logging
 from typing import Union, Tuple
 
+from cobramod import Settings
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 
@@ -41,6 +42,7 @@ class Bigg(Database):
 
     def __init__(self):
         super().__init__()
+        self.__settings = Settings()
 
     def getGenerellIdentifier(
         self, dbIdentifier: str, **kwargs
@@ -64,6 +66,7 @@ class Bigg(Database):
             )
             logger.debug(f"Request URL: {url}")
 
+            self.__settings.limiter.try_acquire("bigg")
             response = requests.get(url)
             response.raise_for_status()
         except requests.RequestException as e:

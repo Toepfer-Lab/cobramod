@@ -1,24 +1,26 @@
 import logging
 import os
+import sys
 from pathlib import Path
 from threading import Lock
 from typing import Optional
 
 import platformdirs
 import requests
+from pyrate_limiter import Limiter, Rate, Duration
+from requests.adapters import HTTPAdapter
+
 import cobramod.utils as cmod_utils
 
-logger = logging.getLogger("cobramod.Settings")
-logger.propagate = True
-
-# Ensure console output
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler(sys.stderr)]
 )
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
+
+logger = logging.getLogger("cobramod.Settings")
+logger.setLevel(logging.DEBUG)
+logger.propagate = True
 
 
 class SingletonMeta(type):
@@ -51,6 +53,8 @@ class Settings(metaclass=SingletonMeta):
                 ensure_exists=True,
             )
         )
+
+        self.limiter = Limiter(Rate(1, Duration.SECOND),raise_when_fail=False, max_delay=3600)
 
     __biocyc_password: Optional[str] = None
     __biocyc_name: Optional[str] = None
@@ -102,6 +106,7 @@ class Settings(metaclass=SingletonMeta):
         if self.__biocyc_session is None:
             logger.debug("Creating new BioCyc Session ...")
             self.__biocyc_session = requests.Session()
+            self.__biocyc_session.mount('https://', HTTPAdapter(max_retries=5))
 
         if (
             not self.__biocyc_login

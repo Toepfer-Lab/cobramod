@@ -7,6 +7,8 @@ from typing import Optional, Union, Tuple, overload, List
 import xml.etree.ElementTree as ET
 import logging
 
+from rdkit.Chem import inchi
+
 from cobramod.settings import Settings
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
@@ -18,27 +20,40 @@ class BioCyc(Database):
     def __init__(self):
         super().__init__()
         self.__settings = Settings()
-        self.__cache_file = self.__settings.cacheDir / f"{self.name}.csv"
+        self._cacheDir = self.__settings.cacheDir / "biocyc"
+
+        if not self._cacheDir.exists():
+            self._cacheDir.mkdir()
+
+
+        self.__cache_file = self._cacheDir / f"{self.name}.csv"
         self._cache_added = 0
 
+        self._cache_smiles_not_found = set()
+        self._cache_inchi_not_found = set()
+        self._cache_inchikey_notfound = set()
+
         if not self.__cache_file.exists():
-            self.cache = pd.DataFrame(columns=["DB-ID", "SUBDB", "SMILES", "InChI", "InChIKey"])
-            self.cache.to_csv(self.__cache_file, index=False)
+            index = pd.MultiIndex(levels=[[], []], names=[u'SUBDB', u'BioCycID'], codes=[[], []])
+            self.cache = pd.DataFrame(index= index, columns=["SMILES", "InChI", "InChIKey"])
+            self.cache.to_csv(self.__cache_file)
         else:
-            self.cache = pd.read_csv(self.__cache_file)
+            self.cache = pd.read_csv(self.__cache_file, index_col = ["SUBDB", "BioCycID"])
+
+        self.logger = logging.getLogger("cobramod.DBWalker.BioCyc")
+        self.logger.propagate = True
 
 
-    logger = logging.getLogger("cobramod.DBWalker.BioCyc")
-    logger.propagate = True
 
-    # Ensure console output
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    )
-    console_handler.setFormatter(formatter)
-    logger.addHandler(console_handler)
+
+        # Ensure console output
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.DEBUG)
+        formatter = logging.Formatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
+        console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
 
     @property
     def name(self) -> str:
@@ -81,7 +96,7 @@ class BioCyc(Database):
             db, biocyc_id = "META", dbIdentifier
 
         try:
-            cached_results = self.cache.loc[self.cache["DB-ID"] == biocyc_id & self.cache["SUBDB"] == db]
+            cached_results = self.cache.loc[(db, biocyc_id)]
             gID = GenerellIdentifiers()
             gID.smiles = cached_results["SMILES"]
             gID.inchi = cached_results["InChI"]
@@ -91,6 +106,7 @@ class BioCyc(Database):
         except KeyError:
             pass
 
+        self.__settings.limiter.try_acquire("biocyc")
         url = "https://websvc.biocyc.org/getxml"
 
         params = {"id": f"{db}:{biocyc_id}"}
@@ -98,7 +114,7 @@ class BioCyc(Database):
         # BioCyc cuts the SMILES string short otherwise
         headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/xml"}
 
-        BioCyc.logger.debug(
+        self.logger.debug(
             f"Querying BioCyc for compound {biocyc_id} in database {db}"
         )
         self.logger.debug(f"Request URL: {url}")
@@ -172,7 +188,8 @@ class BioCyc(Database):
         self._validateGeneralIdentifiersWithDBIDs(
             generelID=result, identifier=dbIdentifier
         )
-        self.cache.loc[len(self.cache.index)] = [biocyc_id, db, result.smiles, result.inchi, result.inchi_key]
+        self.cache.loc[(db,biocyc_id),:] = [result.smiles, result.inchi, result.inchi_key]
+
         self._cache_added += 1
         if self._cache_added % 10 == 0:
             self.save_cache()
@@ -183,7 +200,7 @@ class BioCyc(Database):
         self,
         smiles: Union[str, GenerellIdentifiers],
         BioCycSubDB: Optional[str] = None,
-    ) -> Optional[str]:
+    ) -> Optional[Union[str, List[str]]]:
         """
         Convert SMILES to BioCyc identifiers.
 
@@ -201,19 +218,29 @@ class BioCyc(Database):
             assert smiles.smiles is not None
             smiles = smiles.smiles
 
+        assert isinstance(smiles, str)
 
         try:
-            cached_results = self.cache.loc[self.cache["SMILES"] == smiles]["DB-ID"]
-            return cached_results.to_list()
+
+            cached_results = self.cache.loc[self.cache["SMILES"] == smiles].index.to_list()
+
+            if len(cached_results) == 1:
+                return cached_results
+            elif len(cached_results) > 1:
+                raise LookupError
+
         except KeyError:
             pass
 
+        if smiles in self._cache_smiles_not_found:
+            return None
 
         try:
             self.logger.info(f"Looking up BioCyc ID for SMILES: {smiles}")
 
-            cSettings = cobramod.Settings()
-            session = cSettings._biocycSession
+            session = self.__settings._biocycSession
+
+            self.__settings.limiter.try_acquire("biocyc")
 
             response = session.post(
                 f"https://websvc.biocyc.org/{BioCycSubDB}/smiles-search",
@@ -230,6 +257,8 @@ class BioCyc(Database):
                 self.logger.debug(
                     f"BioCyc did not report any matches for SMILES ({smiles}). "
                 )
+
+                self._cache_smiles_not_found.add(smiles)
                 return None
 
             if len(results) > 1:
@@ -264,6 +293,7 @@ class BioCyc(Database):
                 self.logger.debug(
                     "No matches were found. Proceeding without match."
                 )
+                self._cache_smiles_not_found.add(smiles)
                 biocycID = None
 
             return biocycID
@@ -293,6 +323,9 @@ class BioCyc(Database):
             assert inchi.inchi is not None
             inchi = inchi.inchi
 
+        if inchi in self._cache_inchi_not_found:
+            return None
+
         try:
             cached_results = self.cache.loc[self.cache["InChI"] == inchi]["DB-ID"]
             return cached_results.to_list()
@@ -303,9 +336,9 @@ class BioCyc(Database):
 
         self.logger.info(f"Requesting BioCyc for InChI: {inchi}\nusing {url}")
 
-        cSettings = cobramod.Settings()
-        session = cSettings._biocycSession
+        session = self.__settings._biocycSession
 
+        self.__settings.limiter.try_acquire("biocyc")
         response = session.get(url, timeout=30)
 
         try:
@@ -316,13 +349,19 @@ class BioCyc(Database):
                 self.logger.warning(
                     f"Could not find a Entry in BioCyc({BioCycSubDB}) for InChI: {inchi}"
                 )
+                self._cache_inchi_not_found.add(inchi)
                 return None
 
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
+
+            if biocycID is None:
+                self._cache_inchi_not_found.add(inchi)
+
             return biocycID
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
+            self._cache_inchi_not_found.add(inchi)
             return None
 
     def getDBIdentifierFromInchiKey(
@@ -337,6 +376,9 @@ class BioCyc(Database):
             assert inchikey.inchi is not None
             inchikey = inchikey.inchi
 
+        if inchikey in self._cache_inchikey_notfound:
+            return None
+
         try:
             cached_results = self.cache.loc[self.cache["InChIKey"] == inchikey]["DB-ID"]
             return cached_results.to_list()
@@ -348,24 +390,27 @@ class BioCyc(Database):
             f"Requesting BioCyc for InChIKey: {inchikey}\nusing: {url}"
         )
 
-        cSettings = cobramod.Settings()
-        session = cSettings._biocycSession
+        session = self.__settings._biocycSession
+
+        self.__settings.limiter.try_acquire("biocyc")
 
         response = session.get(url, timeout=30)
-        print(response)
 
         try:
             response.raise_for_status()
 
             data = response.json()
-            print(data)
-
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
+
+            if biocycID is None:
+                self._cache_inchikey_notfound.add(inchikey)
+
             return biocycID
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
 
+            self._cache_inchikey_notfound.add(inchikey)
             return None
 
     def save_cache(self):

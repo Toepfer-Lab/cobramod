@@ -2,8 +2,10 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Union, Optional
 
+import pandas as pd
 from typing_extensions import Tuple
 
+from cobramod import Settings
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 
 
@@ -76,18 +78,18 @@ class Database(ABC):
 
         if not allEqual:
             self.logger.error(
-                "Generell Identifier for supposedly the same object result in different DB IDs."
+                f"Generell Identifier for supposedly the same object result in different DB IDs in {self.name}."
                 f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
                 f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
-                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
+                f"\n Smiles: {identifier.smiles} -> DB ID {smilesBasedID}"
             )
             return None
         else:
             self.logger.debug(
-                "All available Identifier point towards the same DB ID:"
+                f"All available Identifier point towards the same DB ID in {self.name}:"
                 f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
                 f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
-                f"\n Smiles: {smilesBasedID} -> DB ID {smilesBasedID}"
+                f"\n Smiles: {identifier.smiles} -> DB ID {smilesBasedID}"
             )
             return possible_IDs[0]
 

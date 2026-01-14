@@ -3,6 +3,7 @@ from typing import Union, Tuple, Optional, overload
 
 import pandas as pd
 import requests
+from requests.adapters import HTTPAdapter, Retry
 
 from cobramod import Settings
 from cobramod.dbwalker.DataBase import Database
@@ -28,6 +29,9 @@ class Kegg(Database):
         super().__init__()
         self.__pubchem = PubChem()
         self.__session = requests.Session()
+        self.__session.mount('https://', HTTPAdapter(max_retries=Retry(total=5,
+                backoff_factor=0.5)
+        ))
 
         self.__settings = Settings()
         self.__cache_file = self.__settings.cacheDir / f"{self.name}.csv"
@@ -98,6 +102,7 @@ class Kegg(Database):
         except KeyError:
             pass
 
+        self.__settings.limiter.try_acquire("kegg")
         url = f"https://rest.kegg.jp/conv/compound/pubchem:{cid}"
         response = self.__session.get(url)
 
@@ -148,6 +153,7 @@ class Kegg(Database):
         except KeyError:
             pass
 
+        self.__settings.limiter.try_acquire("kegg")
         url = f"https://rest.kegg.jp/conv/pubchem/cpd:{compound_id}"
         response = self.__session.get(url)
 
