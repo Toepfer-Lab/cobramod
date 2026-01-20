@@ -2,6 +2,7 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Union, Optional
 
+import numpy
 import pandas as pd
 from typing_extensions import Tuple
 
@@ -91,6 +92,10 @@ class Database(ABC):
                 f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
                 f"\n Smiles: {identifier.smiles} -> DB ID {smilesBasedID}"
             )
+
+            if not isinstance(possible_IDs[0], str):
+                return str(possible_IDs[0])
+
             return possible_IDs[0]
 
     @abstractmethod

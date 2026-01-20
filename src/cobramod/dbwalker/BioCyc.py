@@ -40,6 +40,7 @@ class BioCyc(Database):
         else:
             self.cache = pd.read_csv(self.__cache_file, index_col = ["SUBDB", "BioCycID"])
 
+
         self.logger = logging.getLogger("cobramod.DBWalker.BioCyc")
         self.logger.propagate = True
 
@@ -418,6 +419,15 @@ class BioCyc(Database):
             self.__cache_file,
             index=False,
         )
+
+        with open(self._cacheDir / 'smilesNotFound.txt', 'w') as file:
+            file.writelines(line + u'\n' for line in self._cache_smiles_not_found)
+
+        with open(self._cacheDir / 'inchiNotFound.txt', 'w') as file:
+            file.writelines(line + u'\n' for line in self._cache_inchi_not_found)
+
+        with open(self._cacheDir / 'inchikeyNotFound.txt', 'w') as file:
+            file.writelines(line + u'\n' for line in self._cache_inchikey_notfound)
 
     def __del__(self):
         self.save_cache()

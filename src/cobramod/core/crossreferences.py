@@ -1,3 +1,4 @@
+import logging
 import re
 from functools import lru_cache
 from pathlib import Path
@@ -14,6 +15,8 @@ from tqdm import tqdm
 from cobramod.dbwalker.identifiersORG import Validator
 from cobramod.debug import debug_log
 
+logger = logging.getLogger("cobramod.DBWalker.Crossreferences")
+logger.propagate = True
 
 def findXRefs(id: str, cache: DataFrame) -> Optional[Union[List[str], str]]:
     """ """
@@ -376,14 +379,22 @@ def add2dict_unique(
         The new dictionary.
     """
 
+    logger.debug(
+        f"Trying to add ({value}:{type(value)}) with key ({key}:{type(key)})"
+    )
+
     if key not in dictionary.keys():
         dictionary[key] = value
     else:
         ref = dictionary[key]
-        if isinstance(ref, str):
+        if isinstance(ref, str) or isinstance(ref, int):
             ref = [ref]
-        if isinstance(value, str):
+        if isinstance(value, str) or isinstance(value, int):
             value = [value]
+
+        logger.debug(
+            f"Trying to add ({value}:{type(value)}) to ({ref}:{type(ref)})"
+        )
 
         unique_pub = list(set(ref + value))
         if len(unique_pub) == 1:

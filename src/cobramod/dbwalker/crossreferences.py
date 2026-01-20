@@ -3,6 +3,8 @@ from typing import Union, Dict, List, Any
 
 from cobra import Model, Reaction, Metabolite
 from rdkit.VLib.NodeLib.SmartsRemover import biggerTest
+from tqdm import tqdm
+from tqdm.contrib.logging import logging_redirect_tqdm
 
 import cobramod
 from cobramod.core.crossreferences import validate_id, add2dict_unique
@@ -20,15 +22,6 @@ general_identifiers = ["inchikey", "inchi", "smiles"]
 logger = logging.getLogger("cobramod.DBWalker.CrossReferences")
 logger.propagate = True
 
-# Ensure console output
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-
 settings = cobramod.Settings()
 
 supportedDatabases: List[Database]=[
@@ -40,7 +33,6 @@ supportedDatabases: List[Database]=[
 ]
 
 def add_crossreferences2metabolite(metabolite: Metabolite):
-    annotations = metabolite.annotation
     general_identifiers = GenerellIdentifiers.fromAnnotation(metabolite.annotation)
 
     for database in supportedDatabases:
@@ -59,9 +51,15 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
                 f"While adding general identifiers from {database.name}, a missmatch occurred."
                 f"Previous identifiers are: {general_identifiers}, Database IDs are {general_identifier}."
             )
+            return
 
 
     for database in supportedDatabases:
+
+        logger.debug(
+            f"Getting DB ID for database {database.name} and object {metabolite.name}"
+        )
+
         dbID = database.getDBIdentifier(general_identifiers)
 
         if dbID is None:
@@ -93,15 +91,17 @@ def add_crossreferences(
     autoOpenCloseBioCycSession = settings.autoOpenCloseBioCycSession
     settings.autoOpenCloseBioCycSession = False
 
+
     if isinstance(object, Model):
-        if not consider_subobjects:
-            return
+        with logging_redirect_tqdm():
+            if not consider_subobjects:
+                return
 
-        for reaction in object.reactions:
-            pass
+            for reaction in object.reactions:
+                pass
 
-        for metabolite in object.metabolites:
-            add_crossreferences2metabolite(metabolite=metabolite)
+            for metabolite in tqdm(object.metabolites):
+                add_crossreferences2metabolite(metabolite=metabolite)
 
     elif isinstance(object, Reaction):
         pass

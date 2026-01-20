@@ -53,7 +53,7 @@ __all__ = [
     "Pathway",
     "model_convert",
     "add_crossreferences",
-    "Settings"
+    "Settings",
 ]
 
 __version__ = "1.4.0a2"
