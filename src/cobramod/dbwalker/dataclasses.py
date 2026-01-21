@@ -1,16 +1,31 @@
 from pydantic import ConfigDict
 from pydantic.dataclasses import dataclass
 
-from typing import Optional, Dict
+from typing import Dict, Union
 
-from jedi.inference.gradual import annotation
+@dataclass
+class Unavailable:
+    """
+    Defines the absence of an ID from a database
+    """
+
+    def __str__(self):
+        return "Unavailable"
+
+    pass
 
 
 @dataclass
 class GenerellIdentifiers:
-    inchi: Optional[str] = None
-    inchi_key: Optional[str] = None
-    smiles: Optional[str] = None
+    """
+    Identifiers can either be available eg. a string, unqueried defined as None or
+     Unavailable if the Database did not return a results-
+    """
+
+
+    inchi: Union[None, str, Unavailable] = None
+    inchi_key: Union[None, str, Unavailable] = None
+    smiles: Union[None, str, Unavailable] = None
 
     def weakEq(self, other):
 
@@ -64,5 +79,35 @@ class GenerellIdentifiers:
             inchi=inchi,
             inchi_key=inchi_key,
         )
+
+    def to_dict(self):
+        return {
+            "smiles": str(self.smiles),
+            "inchi": str(self.inchi),
+            "inchi_key": str(self.inchi_key),
+        }
+
+    @classmethod
+    def from_dict(cls, dict:Dict):
+
+        smiles = dict["smiles"]
+        inchi = dict["inchi"]
+        inchi_key = dict["inchi_key"]
+
+        if smiles == "Unavailable":
+            smiles = Unavailable()
+
+        if inchi_key == "Unavailable":
+            inchi_key = Unavailable()
+
+        if inchi == "Unavailable":
+            inchi = Unavailable()
+
+        return cls(
+            smiles=smiles,
+            inchi=inchi,
+            inchi_key=inchi_key,
+        )
+
 
     __pydantic_config__ = ConfigDict(validate_assignment=True)
