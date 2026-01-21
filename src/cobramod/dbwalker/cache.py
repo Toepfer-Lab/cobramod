@@ -1,16 +1,17 @@
 import json
+from pathlib import Path
 from typing import Union, Dict, Set
 
 import pandas as pd
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
 
-class MissmatchError:
+class MissmatchError( BaseException):
     pass
 
 
 class Cache:
-    def __init__(self):
+    def __init__(self, cache_dir: Union[Path, str, None] = None):
         super().__init__()
 
         self.id_dict: Dict[str, GenerellIdentifiers] = {}
@@ -22,10 +23,18 @@ class Cache:
         self._cache_inchi_not_found: Set[str] = set()
         self._cache_inchikey_not_found: Set[str] = set()
 
+        if isinstance(cache_dir, str):
+            cache_dir = Path(cache_dir)
+
         self._added:int = 0
-        self._cache_folder = None
+        self._cache_folder = cache_dir
 
     def save_cache(self):
+        self._cache_folder.mkdir(exist_ok = True)
+
+        if self._cache_folder is None:
+            raise KeyError
+
         with open(self._cache_folder / 'cache.xml', 'w') as file:
 
             dict_format = {}
@@ -44,6 +53,8 @@ class Cache:
             file.writelines(line + u'\n' for line in self._cache_inchikey_not_found)
 
     def load_cache(self):
+        if self._cache_folder is None:
+            raise KeyError
 
         with open(self._cache_folder / 'cache.xml', 'r') as file:
             load_data = json.load(file)
@@ -65,8 +76,14 @@ class Cache:
             for line in file:
                 self._cache_inchikey_not_found.add(line.strip())
 
+    def __added(self):
+        self._added += 1
+        if self._added % 10 == 0:
+            self.save_cache()
+
 
     def addSmiles(self, smiles, dbID):
+        self.__added()
 
         if isinstance(dbID, Unavailable):
             self._cache_smiles_not_found.add(smiles)
@@ -86,6 +103,8 @@ class Cache:
                 raise MissmatchError
 
     def addInchi(self, inchi, dbID):
+        self.__added()
+
 
         if isinstance(dbID, Unavailable):
             self._cache_inchi_not_found.add(inchi)
@@ -102,9 +121,12 @@ class Cache:
         else:
             entry = self.id_dict[dbID]
             if entry.inchi != inchi:
-                raise MissmatchError
+                raise MissmatchError(
+                    f"Found {entry.inchi}, while trying to add {inchi}, for DB-ID {dbID}"
+                )
 
     def addInchiKey(self, inchikey, dbID):
+        self.__added()
 
         if isinstance(dbID, Unavailable):
             self._cache_inchikey_not_found.add(inchikey)
@@ -124,6 +146,7 @@ class Cache:
                 raise MissmatchError
 
     def addGenerellIdentifiers(self, gID:GenerellIdentifiers, dbID):
+        self.__added()
 
         if dbID not in self.id_dict:
             self.id_dict[dbID] = gID
@@ -159,19 +182,23 @@ class Cache:
         if smiles in self._cache_smiles_not_found:
             return Unavailable()
 
-        return self.smiles_dict[smiles]
+        return self.smiles_dict.get(smiles, None)
 
     def getByInchi(self, inchi):
         if inchi in self._cache_inchi_not_found:
             return Unavailable()
 
-        return self.inchi_dict[inchi]
+        return self.inchi_dict.get(inchi, None)
 
     def getByInchiKey(self, inchikey):
         if inchikey in self._cache_inchi_not_found:
             return Unavailable()
 
-        return self.inchi_key_dict[inchikey]
+        return self.inchi_key_dict.get(inchikey, None)
 
     def getByID(self, dbIdentifier):
-        return self.id_dict[dbIdentifier]
+        if dbIdentifier in self.id_dict:
+            return self.id_dict[dbIdentifier]
+
+        else:
+            return None

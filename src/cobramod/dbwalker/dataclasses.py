@@ -109,5 +109,18 @@ class GenerellIdentifiers:
             inchi_key=inchi_key,
         )
 
+    def anyNoneEntries(self) -> bool:
+
+        if self.smiles is None:
+            return True
+
+        if self.inchi_key is None:
+            return True
+
+        if self.inchi is None:
+            return True
+
+        return False
+
 
     __pydantic_config__ = ConfigDict(validate_assignment=True)

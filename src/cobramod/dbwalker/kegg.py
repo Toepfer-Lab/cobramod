@@ -7,7 +7,8 @@ from requests.adapters import HTTPAdapter, Retry
 
 from cobramod import Settings
 from cobramod.dbwalker.DataBase import Database
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers
+from cobramod.dbwalker.cache import Cache
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 from cobramod.dbwalker.pubchem import PubChem
 
 logger = logging.getLogger("cobramod.DBWalker.Kegg")
@@ -34,15 +35,8 @@ class Kegg(Database):
         ))
 
         self.__settings = Settings()
-        self.__cache_file = self.__settings.cacheDir / f"{self.name}.csv"
-        self._cache_added = 0
-
-        if not self.__cache_file.exists():
-            self.cache = pd.DataFrame(columns=["DB-ID", "CID"])
-            self.cache.to_csv(self.__cache_file, index=False)
-        else:
-            self.cache = pd.read_csv(self.__cache_file)
-
+        self._cache_folder = self.__settings.cacheDir / self.name
+        self._cache = Cache(cache_dir= self._cache_folder)
 
     @property
     def name(self) -> str:
@@ -55,52 +49,99 @@ class Kegg(Database):
     def getGenerellIdentifier(
         self, dbIdentifier: str, **kwargs
     ) -> GenerellIdentifiers:
+
+        cached = self._cache.getByID(dbIdentifier)
+
+        if cached is not None and not cached.anyNoneEntries():
+            return cached
+
         cid = self.get_cid_from_kegg_id(dbIdentifier=dbIdentifier)
 
         # Kegg itself does not provide identifiers instead it maps them to PubChem
 
         generellIdentifier = self.__pubchem.getGenerellIdentifier(dbIdentifier=cid)
 
+        self._cache.addGenerellIdentifiers(generellIdentifier, dbID= dbIdentifier)
         return generellIdentifier
 
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
+
+        if isinstance(smiles, GenerellIdentifiers):
+            smiles = smiles.smiles
+
+        cached = self._cache.getBySmiles(smiles=smiles)
+        if isinstance(cached, Unavailable):
+            return None
+
+        elif isinstance(cached, set):
+            if len(cached) == 1:
+                return list(cached)[0]
+
+            else:
+                return cached
+
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
         kegg_id = self.get_kegg_id_from_cid(cid= cid)
 
+        self._cache.addSmiles(smiles=smiles, dbID= kegg_id)
         return kegg_id
 
     def getDBIdentifierFromInchi(
         self, inchi: Union[str, GenerellIdentifiers]
     ) -> str:
 
+        if isinstance(inchi, GenerellIdentifiers):
+            inchi = inchi.inchi
+
+        cached = self._cache.getByInchi(inchi= inchi)
+        if isinstance(cached, Unavailable):
+            return None
+
+        elif isinstance(cached, set):
+            if len(cached) == 1:
+                return list(cached)[0]
+
+            else:
+                return cached
+
+
         cid = self.__pubchem.getDBIdentifierFromInchi(inchi = inchi)
         kegg_id = self.get_kegg_id_from_cid(cid=cid)
 
+        self._cache.addInchi(inchi= inchi, dbID= kegg_id)
         return kegg_id
 
     def getDBIdentifierFromInchiKey(
         self, inchikey: Union[str, GenerellIdentifiers]
     ) -> str:
 
+        if isinstance(inchikey, GenerellIdentifiers):
+            inchikey = inchikey.inchi_key
+
+        cached = self._cache.getByInchiKey(inchikey = inchikey)
+        if isinstance(cached, Unavailable):
+            return None
+
+        elif isinstance(cached, set):
+            if len(cached) == 1:
+                return list(cached)[0]
+
+            else:
+                return cached
+
+
         cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey = inchikey)
         kegg_id = self.get_kegg_id_from_cid(cid=cid)
 
+        self._cache.addInchiKey(inchikey=inchikey, dbID= kegg_id)
         return kegg_id
 
     def get_kegg_id_from_cid(self, cid):
         """
         Given a PubChem CID, return the corresponding KEGG compound ID (e.g., 'C00022').
         """
-
-        try:
-            cached_results = self.cache.loc[self.cache["CID"] == cid]["DB-ID"]
-            if len(cached_results) > 0:
-                return cached_results.iloc[0]
-
-        except KeyError:
-            pass
 
         self.__settings.limiter.try_acquire("kegg")
         url = f"https://rest.kegg.jp/conv/compound/pubchem:{cid}"
@@ -110,27 +151,22 @@ class Kegg(Database):
             logger.error(
                 f"Error ({response.status_code}) getting KEGG compound ID from {cid}"
             )
-            return None
+            response.raise_for_status()
 
         lines = response.text.strip().split("\n")
         if not lines:
-            return None
+            return Unavailable()
 
         # Parse the first matching line
         try:
             kegg_id = lines[0].split("\t")[1]
         except IndexError:
-            return None
+            return Unavailable()
 
         if ":" in kegg_id:
             kegg_id = kegg_id.split(":")[1]
 
         #kegg_id = f"kegg.compound:{kegg_id}"
-
-        self.cache.loc[len(self.cache.index)] = [kegg_id,cid]
-        self._cache_added += 1
-        if self._cache_added % 10 == 0:
-            self.save_cache()
 
         return kegg_id
 
@@ -145,14 +181,6 @@ class Kegg(Database):
         else:
             compound_id = dbIdentifier
 
-        try:
-            cached_results = self.cache.loc[self.cache["DB-ID"] == dbIdentifier]["CID"]
-            if len(cached_results) > 0:
-                return cached_results.iloc[0]
-
-        except KeyError:
-            pass
-
         self.__settings.limiter.try_acquire("kegg")
         url = f"https://rest.kegg.jp/conv/pubchem/cpd:{compound_id}"
         response = self.__session.get(url)
@@ -161,12 +189,12 @@ class Kegg(Database):
             logger.error(
                 f"Error ({response.status_code}) while getting CID for {compound_id}"
             )
-            return None
+            response.raise_for_status()
 
         lines = response.text.strip().split("\n")
         if not lines:
             logger.info(f"No entry found for KEGG ID {dbIdentifier}")
-            return None
+            return Unavailable()
 
         # Parse the first matching line
         pubchem_entry = lines[0].split("\t")[1]
@@ -176,19 +204,8 @@ class Kegg(Database):
         else:
             cid = pubchem_entry
 
-        self.cache.loc[len(self.cache.index)] = [dbIdentifier, cid]
-        self._cache_added += 1
-        if self._cache_added % 10 == 0:
-            self.save_cache()
-
         return cid
 
-    def save_cache(self):
-        self.cache.to_csv(
-            self.__cache_file,
-            index=False,
-        )
-
     def __del__(self):
-        self.save_cache()
+        self._cache.save_cache()
         self.__session.close()
