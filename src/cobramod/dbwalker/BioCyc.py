@@ -9,9 +9,10 @@ import logging
 
 from rdkit.Chem import inchi
 
+from cobramod.dbwalker.cache import Cache
 from cobramod.settings import Settings
 from cobramod.dbwalker.DataBase import Database
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 import cobramod
 
 
@@ -20,41 +21,11 @@ class BioCyc(Database):
     def __init__(self):
         super().__init__()
         self.__settings = Settings()
-        self._cacheDir = self.__settings.cacheDir / "biocyc"
-
-        if not self._cacheDir.exists():
-            self._cacheDir.mkdir()
-
-
-        self.__cache_file = self._cacheDir / f"{self.name}.csv"
-        self._cache_added = 0
-
-        self._cache_smiles_not_found = set()
-        self._cache_inchi_not_found = set()
-        self._cache_inchikey_notfound = set()
-
-        if not self.__cache_file.exists():
-            index = pd.MultiIndex(levels=[[], []], names=[u'SUBDB', u'BioCycID'], codes=[[], []])
-            self.cache = pd.DataFrame(index= index, columns=["SMILES", "InChI", "InChIKey"])
-            self.cache.to_csv(self.__cache_file)
-        else:
-            self.cache = pd.read_csv(self.__cache_file, index_col = ["SUBDB", "BioCycID"])
-
+        self.__cache_base_dir = self.__settings.cacheDir / self.name
+        self._caches = {}
 
         self.logger = logging.getLogger("cobramod.DBWalker.BioCyc")
         self.logger.propagate = True
-
-
-
-
-        # Ensure console output
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(logging.DEBUG)
-        formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
-        console_handler.setFormatter(formatter)
-        self.logger.addHandler(console_handler)
 
     @property
     def name(self) -> str:
@@ -63,6 +34,14 @@ class BioCyc(Database):
     @property
     def AnnotationPrefix(self) -> str:
         return "biocyc"
+
+    def _get_cache(self, subDB):
+        try:
+            return self._caches[subDB]
+        except KeyError:
+            cache = Cache(cache_dir= self.__cache_base_dir / subDB)
+            self._caches[subDB] = cache
+            return cache
 
     @overload
     def getGenerellIdentifier(
@@ -96,16 +75,12 @@ class BioCyc(Database):
         else:
             db, biocyc_id = "META", dbIdentifier
 
-        try:
-            cached_results = self.cache.loc[(db, biocyc_id)]
-            gID = GenerellIdentifiers()
-            gID.smiles = cached_results["SMILES"]
-            gID.inchi = cached_results["InChI"]
-            gID.inchi_key = cached_results["InChIKey"]
-            return gID
 
-        except KeyError:
-            pass
+        cached = self._get_cache(db).getByID(dbIdentifier)
+
+        if cached is not None and not cached.anyNoneEntries():
+            return cached
+
 
         self.__settings.limiter.try_acquire("biocyc")
         url = "https://websvc.biocyc.org/getxml"
@@ -151,15 +126,17 @@ class BioCyc(Database):
             smiles_element = root.find(".//string[@title='smiles']")
             if smiles_element is not None and smiles_element.text is not None:
                 result.smiles = smiles_element.text.strip()
+            else:
+                result.smiles = Unavailable()
 
             # Extract InChI from XML
             inchi_element = root.find(".//inchi[@datatype='string']")
             if inchi_element is not None and inchi_element.text is not None:
                 inchi = inchi_element.text.strip()
-                if inchi.startswith("InChI="):
-                    result.inchi = inchi[6:]
-                else:
-                    result.inchi = inchi
+                result.inchi = inchi
+
+            else:
+                result.inchi = Unavailable()
 
             # Extract InChI Key from XML
             inchikey_element = root.find(".//inchi-key[@datatype='string']")
@@ -173,6 +150,8 @@ class BioCyc(Database):
                     result.inchi_key = inchikey[9:]
                 else:
                     result.inchi_key = inchikey
+            else:
+                result.inchi_key = Unavailable()
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
@@ -189,11 +168,8 @@ class BioCyc(Database):
         self._validateGeneralIdentifiersWithDBIDs(
             generelID=result, identifier=dbIdentifier
         )
-        self.cache.loc[(db,biocyc_id),:] = [result.smiles, result.inchi, result.inchi_key]
 
-        self._cache_added += 1
-        if self._cache_added % 10 == 0:
-            self.save_cache()
+        self._get_cache(db).addGenerellIdentifiers(result, dbID=(db, dbIdentifier))
 
         return result
 
@@ -221,20 +197,14 @@ class BioCyc(Database):
 
         assert isinstance(smiles, str)
 
-        try:
+        cached = self._get_cache(BioCycSubDB).getBySmiles(smiles=smiles)
 
-            cached_results = self.cache.loc[self.cache["SMILES"] == smiles].index.to_list()
+        if isinstance(cached, set):
+            if len(cached) == 1:
+                return list(cached)[0]
 
-            if len(cached_results) == 1:
-                return cached_results
-            elif len(cached_results) > 1:
-                raise LookupError
-
-        except KeyError:
-            pass
-
-        if smiles in self._cache_smiles_not_found:
-            return None
+            else:
+                return cached
 
         try:
             self.logger.info(f"Looking up BioCyc ID for SMILES: {smiles}")
@@ -259,8 +229,8 @@ class BioCyc(Database):
                     f"BioCyc did not report any matches for SMILES ({smiles}). "
                 )
 
-                self._cache_smiles_not_found.add(smiles)
-                return None
+                self._get_cache(BioCycSubDB).addSmiles(smiles= smiles, dbID= Unavailable())
+                return Unavailable()
 
             if len(results) > 1:
                 self.logger.debug(
@@ -281,10 +251,10 @@ class BioCyc(Database):
 
             if hits > 1:
                 self.logger.error(
-                    f"Found more than one entry for SMILES ({smiles}) in BioCyc ({BioCycSubDB}). Wont add anything due to being uncertain which ones is correct. The following IDs were found for:\n {printable})"
+                    f"Found more than one entry for SMILES ({smiles}) in BioCyc ({BioCycSubDB}). Wont add anything due to being uncertain which ones is correct. The following IDs were found for: {printable})"
                 )
                 # ToDo raise error for uncertain match
-                biocycID = None
+                biocycID = Unavailable()
             elif hits == 1:
                 self.logger.debug(
                     "Only one of the matches was exactly equal to the query. Proceeding normally."
@@ -294,9 +264,9 @@ class BioCyc(Database):
                 self.logger.debug(
                     "No matches were found. Proceeding without match."
                 )
-                self._cache_smiles_not_found.add(smiles)
-                biocycID = None
+                biocycID = Unavailable()
 
+            self._get_cache(BioCycSubDB).addSmiles(smiles=smiles, dbID= Unavailable())
             return biocycID
 
         except requests.RequestException as e:
@@ -324,18 +294,18 @@ class BioCyc(Database):
             assert inchi.inchi is not None
             inchi = inchi.inchi
 
-        if inchi in self._cache_inchi_not_found:
-            return None
+        cached = self._get_cache(BioCycSubDB).getByInchi(inchi=inchi)
 
-        try:
-            cached_results = self.cache.loc[self.cache["InChI"] == inchi]["DB-ID"]
-            return cached_results.to_list()
-        except KeyError:
-            pass
+        if isinstance(cached, set):
+            if len(cached) == 1:
+                return list(cached)[0]
+
+            else:
+                return cached
 
         url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
 
-        self.logger.info(f"Requesting BioCyc for InChI: {inchi}\nusing {url}")
+        self.logger.info(f"Requesting BioCyc for InChI: {inchi} using {url}")
 
         session = self.__settings._biocycSession
 
@@ -350,20 +320,21 @@ class BioCyc(Database):
                 self.logger.warning(
                     f"Could not find a Entry in BioCyc({BioCycSubDB}) for InChI: {inchi}"
                 )
-                self._cache_inchi_not_found.add(inchi)
-                return None
+                self._get_cache(BioCycSubDB).addInchi(inchi=inchi, dbID= Unavailable())
+                return Unavailable()
 
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
 
             if biocycID is None:
-                self._cache_inchi_not_found.add(inchi)
+                self._get_cache(BioCycSubDB).addInchi(inchi=inchi, dbID= Unavailable())
+                return Unavailable()
 
             return biocycID
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
-            self._cache_inchi_not_found.add(inchi)
-            return None
+            self._get_cache(BioCycSubDB).addInchi(inchi=inchi, dbID=Unavailable())
+            return Unavailable()
 
     def getDBIdentifierFromInchiKey(
         self,
@@ -377,18 +348,18 @@ class BioCyc(Database):
             assert inchikey.inchi is not None
             inchikey = inchikey.inchi
 
-        if inchikey in self._cache_inchikey_notfound:
-            return None
+        cached = self._get_cache(BioCycSubDB).getByInchiKey(inchikey = inchikey)
 
-        try:
-            cached_results = self.cache.loc[self.cache["InChIKey"] == inchikey]["DB-ID"]
-            return cached_results.to_list()
-        except KeyError:
-            pass
+        if isinstance(cached, set):
+            if len(cached) == 1:
+                return list(cached)[0]
+
+            else:
+                return cached
 
         url = f"https://biocyc.org/{BioCycSubDB}/search-query?type=COMPOUND&inchikey={inchikey}&exact=T&fmt=json"
         self.logger.info(
-            f"Requesting BioCyc for InChIKey: {inchikey}\nusing: {url}"
+            f"Requesting BioCyc for InChIKey: {inchikey} using: {url}"
         )
 
         session = self.__settings._biocycSession
@@ -404,30 +375,18 @@ class BioCyc(Database):
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
 
             if biocycID is None:
-                self._cache_inchikey_notfound.add(inchikey)
+                self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=Unavailable())
+                return Unavailable()
 
+            self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=biocycID)
             return biocycID
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
 
-            self._cache_inchikey_notfound.add(inchikey)
-            return None
-
-    def save_cache(self):
-        self.cache.to_csv(
-            self.__cache_file,
-            index=False,
-        )
-
-        with open(self._cacheDir / 'smilesNotFound.txt', 'w') as file:
-            file.writelines(line + u'\n' for line in self._cache_smiles_not_found)
-
-        with open(self._cacheDir / 'inchiNotFound.txt', 'w') as file:
-            file.writelines(line + u'\n' for line in self._cache_inchi_not_found)
-
-        with open(self._cacheDir / 'inchikeyNotFound.txt', 'w') as file:
-            file.writelines(line + u'\n' for line in self._cache_inchikey_notfound)
+            self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=Unavailable())
+            return Unavailable()
 
     def __del__(self):
-        self.save_cache()
+        for cache in self._caches.values():
+            cache.save_cache()

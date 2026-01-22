@@ -8,18 +8,11 @@ from typing import Optional
 import platformdirs
 import requests
 from pyrate_limiter import Limiter, Rate, Duration
-from requests.adapters import HTTPAdapter
+from requests.adapters import HTTPAdapter, Retry
 
 import cobramod.utils as cmod_utils
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(sys.stderr)]
-)
-
 logger = logging.getLogger("cobramod.Settings")
-logger.setLevel(logging.DEBUG)
 logger.propagate = True
 
 
@@ -106,8 +99,8 @@ class Settings(metaclass=SingletonMeta):
         if self.__biocyc_session is None:
             logger.debug("Creating new BioCyc Session ...")
             self.__biocyc_session = requests.Session()
-            self.__biocyc_session.mount('https://', HTTPAdapter(max_retries=5))
-
+            self.__biocyc_session.mount('https://', HTTPAdapter(max_retries=Retry(total=5,
+                backoff_factor=0.5,allowed_methods=frozenset(['GET', 'POST']))))
         if (
             not self.__biocyc_login
             and self.__biocyc_name

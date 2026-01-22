@@ -3,6 +3,8 @@ from pathlib import Path
 from typing import Union, Dict, Set
 
 import pandas as pd
+from notebook.terminal import initialize
+
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
 
@@ -13,6 +15,7 @@ class MissmatchError( BaseException):
 class Cache:
     def __init__(self, cache_dir: Union[Path, str, None] = None):
         super().__init__()
+        self.initialized = False
 
         self.id_dict: Dict[str, GenerellIdentifiers] = {}
         self.smiles_dict: Dict[str, set] = {}
@@ -29,8 +32,13 @@ class Cache:
         self._added:int = 0
         self._cache_folder = cache_dir
 
+        if cache_dir is not None and (self._cache_folder / 'cache.xml').exists():
+            self.load_cache()
+
+        self.initialized = True
+
     def save_cache(self):
-        self._cache_folder.mkdir(exist_ok = True)
+        self._cache_folder.mkdir(exist_ok = True, parents= True)
 
         if self._cache_folder is None:
             raise KeyError
@@ -77,12 +85,18 @@ class Cache:
                 self._cache_inchikey_not_found.add(line.strip())
 
     def __added(self):
+        if not self.initialized:
+            return
+
         self._added += 1
         if self._added % 10 == 0:
             self.save_cache()
 
 
     def addSmiles(self, smiles, dbID):
+        if not isinstance(smiles, str):
+            raise ValueError
+
         self.__added()
 
         if isinstance(dbID, Unavailable):
@@ -103,6 +117,9 @@ class Cache:
                 raise MissmatchError
 
     def addInchi(self, inchi, dbID):
+        if not isinstance(inchi, str):
+            raise ValueError
+
         self.__added()
 
 
@@ -126,6 +143,9 @@ class Cache:
                 )
 
     def addInchiKey(self, inchikey, dbID):
+        if not isinstance(inchikey, str):
+            raise ValueError
+
         self.__added()
 
         if isinstance(dbID, Unavailable):

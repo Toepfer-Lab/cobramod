@@ -80,17 +80,17 @@ class Database(ABC):
         if not allEqual:
             self.logger.error(
                 f"Generell Identifier for supposedly the same object result in different DB IDs in {self.name}."
-                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
-                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
-                f"\n Smiles: {identifier.smiles} -> DB ID {smilesBasedID}"
+                f"\n\t\t{"DB ID":<10}{str(inchiBasedID):<10}<-{"InChi":<10}{identifier.inchi:<10}"
+                f"\n\t\t{"DB ID":<10}{str(inchikeyBasedID):<10}<-{"InChiKey":<10}{identifier.inchi_key}"
+                f"\n\t\t{"DB ID":<10}{str(smilesBasedID):<10}<-{"Smiles":<10}{identifier.smiles}"
             )
             return None
         else:
             self.logger.debug(
                 f"All available Identifier point towards the same DB ID in {self.name}:"
-                f"\n InChi: {identifier.inchi} -> DB ID {inchiBasedID}"
-                f"\n InChiKey: {identifier.inchi_key} -> DB ID {inchikeyBasedID}"
-                f"\n Smiles: {identifier.smiles} -> DB ID {smilesBasedID}"
+                f"\n\t\t{"DB ID":<10}{str(inchiBasedID):<10}<-{"InChi":<10}{identifier.inchi:<10}"
+                f"\n\t\t{"DB ID":<10}{str(inchikeyBasedID):<10}<-{"InChiKey":<10}{identifier.inchi_key}"
+                f"\n\t\t{"DB ID":<10}{str(smilesBasedID):<10}<-{"Smiles":<10}{identifier.smiles}"
             )
 
             if not isinstance(possible_IDs[0], str):

@@ -11,10 +11,6 @@ from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.cache import Cache
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
-logger = logging.getLogger("cobramod.DBWalker.PubChem")
-logger.propagate = True
-
-
 class PubChem(Database):
 
     def __init__(self):
@@ -24,8 +20,11 @@ class PubChem(Database):
         self._cache = Cache(cache_dir= self.__cache_dir)
         self.__session = requests.Session()
         self.__session.mount('https://', HTTPAdapter(max_retries=Retry(total=5,
-                backoff_factor=0.5)
+                backoff_factor=0.5,allowed_methods=frozenset(['GET', 'POST']))
         ))
+
+        self.logger = logging.getLogger("cobramod.DBWalker.PubChem")
+        self.logger.propagate = True
 
     @property
     def name(self) -> str:
@@ -51,8 +50,8 @@ class PubChem(Database):
 
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{dbIdentifier}/property/MolecularFormula,InChIKey,InChI,SMILES/json"
 
-        logger.debug(
-            f"Getting identifiers from PubChem using the following url:\n{url}"
+        self.logger.debug(
+            f"Getting identifiers from PubChem using the following url: {url}"
         )
 
         self.__settings.limiter.try_acquire("pubchem")
@@ -73,7 +72,7 @@ class PubChem(Database):
             inchikey = entry.get("InChIKey")
             if generell_identifiers.inchi_key is not None:
                 if not generell_identifiers.inchi_key == inchikey:
-                    logger.error(
+                    self.logger.error(
                         "Results from PubChem for InChiKeys dont match. Got at least two diffrent InChIKeys:"
                         f"{generell_identifiers.inchi_key} and {inchikey}."
                     )
@@ -115,7 +114,7 @@ class PubChem(Database):
         }
 
         self.logger.debug(
-            f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
+            f"Getting identifiers from PubChem using the following url: {url} & Post data: {data}"
         )
 
         self.__settings.limiter.try_acquire("pubchem")
@@ -154,7 +153,7 @@ class PubChem(Database):
         }
 
         self.logger.debug(
-            f"Getting identifiers from PubChem using the following url:\n{url}\n & Post data: {data}"
+            f"Getting identifiers from PubChem using the following url: {url} & Post data: {data}"
         )
 
         self.__settings.limiter.try_acquire("pubchem")

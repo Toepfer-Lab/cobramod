@@ -1,6 +1,8 @@
 import logging
-from typing import Union, Dict, List, Any
+from pathlib import Path
+from typing import Union, Dict, List, Any, Optional
 
+import pandas
 from cobra import Model, Reaction, Metabolite
 from rdkit.VLib.NodeLib.SmartsRemover import biggerTest
 from tqdm import tqdm
@@ -32,7 +34,21 @@ supportedDatabases: List[Database]=[
     PubChem(),
 ]
 
-def add_crossreferences2metabolite(metabolite: Metabolite):
+class AnnotationLogger():
+    dict = {}
+
+    def add_entry(self, metabolite_id,db_name,GenerellIdentifiers: GenerellIdentifiers):
+        self.dict[(metabolite_id, db_name)] = GenerellIdentifiers
+
+
+    def to_dataframe(self):
+
+        return pandas.DataFrame(self.dict)
+
+
+
+
+def add_crossreferences2metabolite(metabolite: Metabolite, annotation_logger: Optional[AnnotationLogger] = None):
     general_identifiers = GenerellIdentifiers.fromAnnotation(metabolite.annotation)
 
     for database in supportedDatabases:
@@ -41,6 +57,12 @@ def add_crossreferences2metabolite(metabolite: Metabolite):
             continue
 
         general_identifier = database.getGenerellIdentifier(databaseID)
+        if annotation_logger:
+            annotation_logger.add_entry(
+                metabolite_id = metabolite.id,
+                db_name= database.name,
+                GenerellIdentifiers=general_identifiers,
+            )
 
         if general_identifiers.empty():
             general_identifiers = general_identifier
@@ -78,7 +100,9 @@ def id2annotation(object: Model):
         metabolite.annotation["kegg.compound"] = ID
 
 def add_crossreferences(
-    object: Union[Model, Reaction, Metabolite], consider_subobjects: bool = True
+        object: Union[Model, Reaction, Metabolite],
+        consider_subobjects: bool = True,
+        save_log:Optional[Path] = None
 ):
     """
     Add cross-references to the given object. This function works with a cobrapy
@@ -90,7 +114,7 @@ def add_crossreferences(
     """
     autoOpenCloseBioCycSession = settings.autoOpenCloseBioCycSession
     settings.autoOpenCloseBioCycSession = False
-
+    annotation_logger = AnnotationLogger()
 
     if isinstance(object, Model):
         with logging_redirect_tqdm():
@@ -100,8 +124,8 @@ def add_crossreferences(
             for reaction in object.reactions:
                 pass
 
-            for metabolite in tqdm(object.metabolites):
-                add_crossreferences2metabolite(metabolite=metabolite)
+            for metabolite in object.metabolites: #tqdm(object.metabolites):
+                add_crossreferences2metabolite(metabolite=metabolite, annotation_logger= annotation_logger)
 
     elif isinstance(object, Reaction):
         pass
@@ -114,3 +138,9 @@ def add_crossreferences(
     # close the session and restore original behaviour
     settings._closeBiocycSession()
     settings.autoOpenCloseBioCycSession = autoOpenCloseBioCycSession
+
+    if save_log:
+        df = annotation_logger.to_dataframe()
+        df.to_csv(
+            path_or_buf= save_log,
+        )
