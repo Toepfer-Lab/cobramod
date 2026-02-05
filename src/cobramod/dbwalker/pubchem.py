@@ -229,6 +229,9 @@ class PubChem(Database):
 
         return value
 
-    def __del__(self):
+    def save_cache(self):
         self._cache.save_cache()
+
+    def __del__(self):
+        self.save_cache()
         self.__session.close()

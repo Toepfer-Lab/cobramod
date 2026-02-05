@@ -11,16 +11,6 @@ from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 logger = logging.getLogger("cobramod.DBWalker.Chebi")
 logger.propagate = True
 
-# Ensure console output
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-
-
 class Chebi(Database):
     chebi_ftp = "ftp://ftp.ebi.ac.uk/pub/databases/chebi/flat_files"
     settings = Settings()

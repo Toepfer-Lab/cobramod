@@ -1,4 +1,5 @@
 import json
+import logging
 from pathlib import Path
 from typing import Union, Dict, Set
 
@@ -11,6 +12,8 @@ from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 class MissmatchError( BaseException):
     pass
 
+logger = logging.getLogger("cobramod.DBWalker.cache")
+logger.propagate = True
 
 class Cache:
     def __init__(self, cache_dir: Union[Path, str, None] = None):
@@ -98,7 +101,9 @@ class Cache:
             raise ValueError
 
         self.__added()
-
+        logger.debug(
+            f"Adding entry (SMILES:{smiles}, DBID:{dbID}) to the cache."
+        )
         if isinstance(dbID, Unavailable):
             self._cache_smiles_not_found.add(smiles)
             return
@@ -113,7 +118,7 @@ class Cache:
 
         else:
             entry = self.id_dict[dbID]
-            if entry.smiles != smiles:
+            if entry.smiles != smiles and entry.smiles is not None:
                 raise MissmatchError
 
     def addInchi(self, inchi, dbID):
@@ -122,6 +127,9 @@ class Cache:
 
         self.__added()
 
+        logger.debug(
+            f"Adding entry (InChI:{inchi}, DBID:{dbID}) to the cache."
+        )
 
         if isinstance(dbID, Unavailable):
             self._cache_inchi_not_found.add(inchi)
@@ -137,7 +145,7 @@ class Cache:
 
         else:
             entry = self.id_dict[dbID]
-            if entry.inchi != inchi:
+            if entry.inchi != inchi and entry.inchi is not None:
                 raise MissmatchError(
                     f"Found {entry.inchi}, while trying to add {inchi}, for DB-ID {dbID}"
                 )
@@ -147,6 +155,10 @@ class Cache:
             raise ValueError
 
         self.__added()
+
+        logger.debug(
+            f"Adding entry (InChIKey:{inchikey}, DBID:{dbID}) to the cache."
+        )
 
         if isinstance(dbID, Unavailable):
             self._cache_inchikey_not_found.add(inchikey)
@@ -162,11 +174,15 @@ class Cache:
 
         else:
             entry = self.id_dict[dbID]
-            if entry.inchi_key != inchikey:
+            if entry.inchi_key != inchikey and entry.inchi_key is not None:
                 raise MissmatchError
 
     def addGenerellIdentifiers(self, gID:GenerellIdentifiers, dbID):
         self.__added()
+
+        logger.debug(
+            f"Adding GID ({gID}) to the cache."
+        )
 
         if dbID not in self.id_dict:
             self.id_dict[dbID] = gID

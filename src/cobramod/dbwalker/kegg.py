@@ -14,16 +14,6 @@ from cobramod.dbwalker.pubchem import PubChem
 logger = logging.getLogger("cobramod.DBWalker.Kegg")
 logger.propagate = True
 
-# Ensure console output
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-
-
 class Kegg(Database):
 
     def __init__(self):
@@ -73,7 +63,7 @@ class Kegg(Database):
 
         cached = self._cache.getBySmiles(smiles=smiles)
         if isinstance(cached, Unavailable):
-            return None
+            return cached
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -97,7 +87,7 @@ class Kegg(Database):
 
         cached = self._cache.getByInchi(inchi= inchi)
         if isinstance(cached, Unavailable):
-            return None
+            return cached
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -122,7 +112,7 @@ class Kegg(Database):
 
         cached = self._cache.getByInchiKey(inchikey = inchikey)
         if isinstance(cached, Unavailable):
-            return None
+            return cached
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -206,6 +196,9 @@ class Kegg(Database):
 
         return cid
 
-    def __del__(self):
+    def save_cache(self):
         self._cache.save_cache()
+
+    def __del__(self):
+        self.save_cache()
         self.__session.close()

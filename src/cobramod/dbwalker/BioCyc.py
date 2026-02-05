@@ -7,13 +7,10 @@ from typing import Optional, Union, Tuple, overload, List
 import xml.etree.ElementTree as ET
 import logging
 
-from rdkit.Chem import inchi
-
 from cobramod.dbwalker.cache import Cache
 from cobramod.settings import Settings
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
-import cobramod
 
 
 class BioCyc(Database):
@@ -215,7 +212,7 @@ class BioCyc(Database):
 
             response = session.post(
                 f"https://websvc.biocyc.org/{BioCycSubDB}/smiles-search",
-                data={"smiles": smiles, "exact": "T", "fmt": "json"},
+                params={"smiles": smiles, "exact": "T", "fmt": "json"},
             )
 
             response.raise_for_status()
@@ -303,14 +300,19 @@ class BioCyc(Database):
             else:
                 return cached
 
-        url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search?inchi={inchi}&exact=T&fmt=json"
+        url = f"https://websvc.biocyc.org/{BioCycSubDB}/inchi-search"
+        param = {
+            "inchi": inchi,
+            "exact": "T",
+            "fmt": "json",
+        }
 
         self.logger.info(f"Requesting BioCyc for InChI: {inchi} using {url}")
 
         session = self.__settings._biocycSession
 
         self.__settings.limiter.try_acquire("biocyc")
-        response = session.get(url, timeout=30)
+        response = session.post(url = url, params = param)
 
         try:
             response.raise_for_status()
@@ -346,7 +348,7 @@ class BioCyc(Database):
 
         if isinstance(inchikey, GenerellIdentifiers):
             assert inchikey.inchi is not None
-            inchikey = inchikey.inchi
+            inchikey = inchikey.inchikey
 
         cached = self._get_cache(BioCycSubDB).getByInchiKey(inchikey = inchikey)
 
@@ -387,6 +389,9 @@ class BioCyc(Database):
             self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=Unavailable())
             return Unavailable()
 
-    def __del__(self):
+    def save_cache(self):
         for cache in self._caches.values():
             cache.save_cache()
+
+    def __del__(self):
+        self.save_cache()

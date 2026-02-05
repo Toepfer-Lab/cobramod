@@ -38,7 +38,7 @@ class AnnotationLogger():
     dict = {}
 
     def add_entry(self, metabolite_id,db_name,GenerellIdentifiers: GenerellIdentifiers):
-        self.dict[(metabolite_id, db_name)] = GenerellIdentifiers
+        self.dict[(metabolite_id, db_name)] = GenerellIdentifiers.to_dict()
 
 
     def to_dataframe(self):
@@ -93,6 +93,9 @@ def add_crossreferences2metabolite(metabolite: Metabolite, annotation_logger: Op
             dictionary=metabolite.annotation,
         )
 
+    for database in supportedDatabases:
+        database.save_cache()
+
 def id2annotation(object: Model):
 
     for metabolite in object.metabolites:
@@ -102,7 +105,7 @@ def id2annotation(object: Model):
 def add_crossreferences(
         object: Union[Model, Reaction, Metabolite],
         consider_subobjects: bool = True,
-        save_log:Optional[Path] = None
+        save_log:Union[None, str,Path] = None
 ):
     """
     Add cross-references to the given object. This function works with a cobrapy
@@ -144,3 +147,4 @@ def add_crossreferences(
         df.to_csv(
             path_or_buf= save_log,
         )
+

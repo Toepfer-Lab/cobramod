@@ -32,6 +32,11 @@ class Database(ABC):
 
         ...
 
+    @abstractmethod
+    def save_cache(self):
+
+        ...
+
     @property
     @abstractmethod
     def AnnotationPrefix(self) -> str:

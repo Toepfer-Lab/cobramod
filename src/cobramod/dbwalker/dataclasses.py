@@ -1,3 +1,5 @@
+from types import NoneType
+
 from pydantic import ConfigDict
 from pydantic.dataclasses import dataclass
 
@@ -15,7 +17,6 @@ class Unavailable:
     pass
 
 
-@dataclass
 class GenerellIdentifiers:
     """
     Identifiers can either be available eg. a string, unqueried defined as None or
@@ -23,9 +24,33 @@ class GenerellIdentifiers:
     """
 
 
-    inchi: Union[None, str, Unavailable] = None
+    __inchi: Union[None, str, Unavailable] = None
     inchi_key: Union[None, str, Unavailable] = None
     smiles: Union[None, str, Unavailable] = None
+
+    def __init__(self,
+                 inchi: Union[None, str, Unavailable] = None,
+                 inchi_key: Union[None, str, Unavailable] = None,
+                 smiles: Union[None, str, Unavailable] = None,
+                 ):
+        super().__init__()
+
+        self.inchi = inchi
+        self.inchi_key = inchi_key
+        self.smiles = smiles
+
+    @property
+    def inchi(self) -> Union[None, str, Unavailable]:
+        return self.__inchi
+
+    @inchi.setter
+    def inchi(self, inchi: Union[None, str, Unavailable]):
+        assert isinstance(inchi, (str, Unavailable, NoneType))
+
+        if isinstance(inchi, str):
+            assert inchi.startswith("InChI=")
+
+        self.__inchi = inchi
 
     def weakEq(self, other):
 
@@ -121,6 +146,3 @@ class GenerellIdentifiers:
             return True
 
         return False
-
-
-    __pydantic_config__ = ConfigDict(validate_assignment=True)
