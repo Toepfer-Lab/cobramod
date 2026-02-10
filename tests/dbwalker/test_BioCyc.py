@@ -47,7 +47,35 @@ class TestGetCompoundInfoByBiocycId(TestCase):
         self.assertEqual(first=biocycID, second="ATP")
 
     def test_get_BioCycIDviaInChI(self):
+        mock_session = MagicMock()
 
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+
+
+        self.biocyc.clear_caches()
+        mock_session.post.return_value.json.return_value = {'RESULTS': [{'OBJECT-ID': 'WATER', 'COMMON-NAME': 'H<sub>2</sub>O', 'INCHI-STRING': 'InChI=1S/H2O/h1H2', 'INCHI-KEYS': None}]}
+
+        with patch.object(Settings, "_biocycSession", new_callable=PropertyMock) as mock_prop:
+            mock_prop.return_value = mock_session
+
+            biocycID = self.biocyc.getDBIdentifierFromInchi("InChI=1S/H2O/h1H2")
+            self.assertEqual("WATER", biocycID)
+
+
+        # Not existing inchi
+        self.biocyc.clear_caches()
+        mock_session.post.return_value.json.return_value = {'RESULTS': None}
+
+        with patch.object(Settings, "_biocycSession", new_callable=PropertyMock) as mock_prop:
+            mock_prop.return_value = mock_session
+
+            biocycID = self.biocyc.getDBIdentifierFromInchi("InChI=1S/C3H9O6P/c4-1-3(5)2-9-10(6,7)8/h3-5H,1-2H2,(H2,6,7,8) ")
+            self.assertEqual(Unavailable(), biocycID)
+
+
+        # Live test
+        self.biocyc.clear_caches()
         biocycID = self.biocyc.getDBIdentifierFromInchi("InChI=1S/H2O/h1H2")
         self.assertEqual("WATER", biocycID)
 
