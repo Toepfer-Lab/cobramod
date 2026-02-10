@@ -137,7 +137,7 @@ class PubChem(Database):
 
         cached = self._cache.getByInchi(inchi= inchi)
         if isinstance(cached, Unavailable):
-            return None
+            return cached
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -219,6 +219,34 @@ class PubChem(Database):
         url = (
             f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/"
             f"{cid}/property/MolecularFormula/txt"
+        )
+
+        self.__settings.limiter.try_acquire("pubchem")
+        response = self.__session.get(url, timeout=30)
+        response.raise_for_status()
+
+        value = response.text.rstrip()
+
+        return value
+
+    def getCIDfromSID(self, sid: str) -> str:
+
+        url = (
+            f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/{sid}/cids/TXT"
+        )
+
+        self.__settings.limiter.try_acquire("pubchem")
+        response = self.__session.get(url, timeout=30)
+        response.raise_for_status()
+
+        value = response.text.rstrip()
+
+        return value
+
+    def getSIDfromCID(self, cid: str) -> str:
+
+        url = (
+            f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/cid/{cid}/sids/TXT"
         )
 
         self.__settings.limiter.try_acquire("pubchem")

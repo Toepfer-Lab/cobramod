@@ -1,4 +1,6 @@
+import re
 import urllib
+from io import StringIO
 
 import pandas as pd
 import requests
@@ -348,7 +350,7 @@ class BioCyc(Database):
 
         if isinstance(inchikey, GenerellIdentifiers):
             assert inchikey.inchi is not None
-            inchikey = inchikey.inchikey
+            inchikey = inchikey.inchi_key
 
         cached = self._get_cache(BioCycSubDB).getByInchiKey(inchikey = inchikey)
 
@@ -359,7 +361,8 @@ class BioCyc(Database):
             else:
                 return cached
 
-        url = f"https://biocyc.org/{BioCycSubDB}/search-query?type=COMPOUND&inchikey={inchikey}&exact=T&fmt=json"
+        url = f"https://websvc.biocyc.org/{BioCycSubDB}/metabolite-translation-service"
+
         self.logger.info(
             f"Requesting BioCyc for InChIKey: {inchikey} using: {url}"
         )
@@ -368,13 +371,50 @@ class BioCyc(Database):
 
         self.__settings.limiter.try_acquire("biocyc")
 
-        response = session.get(url, timeout=30)
+        files = {
+            'orgid': (None, "META"),
+            'file': ('', '', 'application/octet-stream'),  # Empty file
+            'strings-data': (None, f"InChIKey:{inchikey}"),
+            'output-type': (None, "TABULATED")
+        }
+
+        response = session.post(url,files=files, params={'file': ''}, timeout=30)
 
         try:
             response.raise_for_status()
 
-            data = response.json()
-            biocycID = data["RESULTS"][0]["OBJECT-ID"]
+            match = re.search(r"Successful queries(.*?)(Ambigous Queries|Unknown Queries)", response.text, re.S)
+            if not match:
+                raise ValueError("No Successful Queries section found")
+
+            table_text = match.group(1).strip()
+            df = pd.read_csv(StringIO(table_text), sep="\t")
+
+            if len(df) > 1:
+                logging.warning(
+                    "Found multiple matching results"
+                )
+                return Unavailable()
+
+            elif len(df) == 0:
+                return Unavailable()
+
+
+            with pd.option_context('display.max_rows', None, 'display.max_columns',None):  # more options can be specified also
+                print(df)
+
+            html_ref = df[["BioCyc"]].values[0][0]
+            inchikey_query = df[["Query"]].values[0][0]
+
+            m = re.search(r'orgid=([^&"]+).*id=([^&"]+)', html_ref)
+            orgid, biocycID = None, None
+
+            if m:
+                orgid, biocycID = m.group(1), m.group(2)
+
+            assert f"InChIKey:{inchikey}" == inchikey_query
+            assert orgid == BioCycSubDB
+
 
             if biocycID is None:
                 self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=Unavailable())
@@ -392,6 +432,10 @@ class BioCyc(Database):
     def save_cache(self):
         for cache in self._caches.values():
             cache.save_cache()
+
+    def clear_caches(self):
+        for cache in self._caches.values():
+            cache.clear_cache()
 
     def __del__(self):
         self.save_cache()

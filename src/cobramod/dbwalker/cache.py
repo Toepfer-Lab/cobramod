@@ -40,6 +40,16 @@ class Cache:
 
         self.initialized = True
 
+    def clear_cache(self):
+        self.id_dict: Dict[str, GenerellIdentifiers] = {}
+        self.smiles_dict: Dict[str, set] = {}
+        self.inchi_dict: Dict[str, set] = {}
+        self.inchi_key_dict: Dict[str, set] = {}
+
+        self._cache_smiles_not_found: Set[str] = set()
+        self._cache_inchi_not_found: Set[str] = set()
+        self._cache_inchikey_not_found: Set[str] = set()
+
     def save_cache(self):
         self._cache_folder.mkdir(exist_ok = True, parents= True)
 

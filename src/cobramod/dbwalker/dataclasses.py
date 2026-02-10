@@ -121,12 +121,18 @@ class GenerellIdentifiers:
 
         if smiles == "Unavailable":
             smiles = Unavailable()
+        elif smiles == "None":
+            smiles = None
 
         if inchi_key == "Unavailable":
             inchi_key = Unavailable()
+        elif inchi_key == "None":
+            inchi_key = None
 
         if inchi == "Unavailable":
             inchi = Unavailable()
+        elif inchi == "None":
+            inchi = None
 
         return cls(
             smiles=smiles,
