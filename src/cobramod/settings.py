@@ -47,7 +47,9 @@ class Settings(metaclass=SingletonMeta):
             )
         )
 
-        self.limiter = Limiter(Rate(1, Duration.SECOND),raise_when_fail=False, max_delay=3600)
+        self.limiter = Limiter(
+            Rate(1, Duration.SECOND), raise_when_fail=False, max_delay=3600
+        )
 
     __biocyc_password: Optional[str] = None
     __biocyc_name: Optional[str] = None
@@ -99,8 +101,16 @@ class Settings(metaclass=SingletonMeta):
         if self.__biocyc_session is None:
             logger.debug("Creating new BioCyc Session ...")
             self.__biocyc_session = requests.Session()
-            self.__biocyc_session.mount('https://', HTTPAdapter(max_retries=Retry(total=5,
-                backoff_factor=0.5,allowed_methods=frozenset(['GET', 'POST']))))
+            self.__biocyc_session.mount(
+                "https://",
+                HTTPAdapter(
+                    max_retries=Retry(
+                        total=5,
+                        backoff_factor=0.5,
+                        allowed_methods=frozenset(["GET", "POST"]),
+                    )
+                ),
+            )
         if (
             not self.__biocyc_login
             and self.__biocyc_name

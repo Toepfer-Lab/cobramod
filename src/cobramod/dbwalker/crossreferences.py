@@ -26,30 +26,33 @@ logger.propagate = True
 
 settings = cobramod.Settings()
 
-supportedDatabases: List[Database]=[
+supportedDatabases: List[Database] = [
     BioCyc(),
     Kegg(),
-    #Bigg(),
-    #Chebi(),
+    # Bigg(),
+    # Chebi(),
     PubChem(),
 ]
 
-class AnnotationLogger():
+
+class AnnotationLogger:
     dict = {}
 
-    def add_entry(self, metabolite_id,db_name,GenerellIdentifiers: GenerellIdentifiers):
+    def add_entry(
+        self, metabolite_id, db_name, GenerellIdentifiers: GenerellIdentifiers
+    ):
         self.dict[(metabolite_id, db_name)] = GenerellIdentifiers.to_dict()
 
-
     def to_dataframe(self):
-
         return pandas.DataFrame(self.dict)
 
 
-
-
-def add_crossreferences2metabolite(metabolite: Metabolite, annotation_logger: Optional[AnnotationLogger] = None):
-    general_identifiers = GenerellIdentifiers.fromAnnotation(metabolite.annotation)
+def add_crossreferences2metabolite(
+    metabolite: Metabolite, annotation_logger: Optional[AnnotationLogger] = None
+):
+    general_identifiers = GenerellIdentifiers.fromAnnotation(
+        metabolite.annotation
+    )
 
     for database in supportedDatabases:
         databaseID = metabolite.annotation.get(database.AnnotationPrefix, None)
@@ -59,8 +62,8 @@ def add_crossreferences2metabolite(metabolite: Metabolite, annotation_logger: Op
         general_identifier = database.getGenerellIdentifier(databaseID)
         if annotation_logger:
             annotation_logger.add_entry(
-                metabolite_id = metabolite.id,
-                db_name= database.name,
+                metabolite_id=metabolite.id,
+                db_name=database.name,
                 GenerellIdentifiers=general_identifiers,
             )
 
@@ -75,9 +78,7 @@ def add_crossreferences2metabolite(metabolite: Metabolite, annotation_logger: Op
             )
             return
 
-
     for database in supportedDatabases:
-
         logger.debug(
             f"Getting DB ID for database {database.name} and object {metabolite.name}"
         )
@@ -96,16 +97,17 @@ def add_crossreferences2metabolite(metabolite: Metabolite, annotation_logger: Op
     for database in supportedDatabases:
         database.save_cache()
 
-def id2annotation(object: Model):
 
+def id2annotation(object: Model):
     for metabolite in object.metabolites:
         ID = metabolite.id
         metabolite.annotation["kegg.compound"] = ID
 
+
 def add_crossreferences(
-        object: Union[Model, Reaction, Metabolite],
-        consider_subobjects: bool = True,
-        save_log:Union[None, str,Path] = None
+    object: Union[Model, Reaction, Metabolite],
+    consider_subobjects: bool = True,
+    save_log: Union[None, str, Path] = None,
 ):
     """
     Add cross-references to the given object. This function works with a cobrapy
@@ -127,8 +129,10 @@ def add_crossreferences(
             for reaction in object.reactions:
                 pass
 
-            for metabolite in object.metabolites: #tqdm(object.metabolites):
-                add_crossreferences2metabolite(metabolite=metabolite, annotation_logger= annotation_logger)
+            for metabolite in object.metabolites:  # tqdm(object.metabolites):
+                add_crossreferences2metabolite(
+                    metabolite=metabolite, annotation_logger=annotation_logger
+                )
 
     elif isinstance(object, Reaction):
         pass
@@ -145,6 +149,5 @@ def add_crossreferences(
     if save_log:
         df = annotation_logger.to_dataframe()
         df.to_csv(
-            path_or_buf= save_log,
+            path_or_buf=save_log,
         )
-

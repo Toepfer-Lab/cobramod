@@ -9,11 +9,13 @@ from notebook.terminal import initialize
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
 
-class MissmatchError( BaseException):
+class MissmatchError(BaseException):
     pass
+
 
 logger = logging.getLogger("cobramod.DBWalker.cache")
 logger.propagate = True
+
 
 class Cache:
     def __init__(self, cache_dir: Union[Path, str, None] = None):
@@ -32,10 +34,13 @@ class Cache:
         if isinstance(cache_dir, str):
             cache_dir = Path(cache_dir)
 
-        self._added:int = 0
+        self._added: int = 0
         self._cache_folder = cache_dir
 
-        if cache_dir is not None and (self._cache_folder / 'cache.xml').exists():
+        if (
+            cache_dir is not None
+            and (self._cache_folder / "cache.xml").exists()
+        ):
             self.load_cache()
 
         self.initialized = True
@@ -51,33 +56,36 @@ class Cache:
         self._cache_inchikey_not_found: Set[str] = set()
 
     def save_cache(self):
-        self._cache_folder.mkdir(exist_ok = True, parents= True)
+        self._cache_folder.mkdir(exist_ok=True, parents=True)
 
         if self._cache_folder is None:
             raise KeyError
 
-        with open(self._cache_folder / 'cache.xml', 'w') as file:
-
+        with open(self._cache_folder / "cache.xml", "w") as file:
             dict_format = {}
             for key, value in self.id_dict.items():
                 dict_format[key] = value.to_dict()
 
             file.write(json.dumps(dict_format, indent=4))
 
-        with open(self._cache_folder / 'smilesNotFound.txt', 'w') as file:
-            file.writelines(line + u'\n' for line in self._cache_smiles_not_found)
+        with open(self._cache_folder / "smilesNotFound.txt", "w") as file:
+            file.writelines(
+                line + "\n" for line in self._cache_smiles_not_found
+            )
 
-        with open(self._cache_folder / 'inchiNotFound.txt', 'w') as file:
-            file.writelines(line + u'\n' for line in self._cache_inchi_not_found)
+        with open(self._cache_folder / "inchiNotFound.txt", "w") as file:
+            file.writelines(line + "\n" for line in self._cache_inchi_not_found)
 
-        with open(self._cache_folder / 'inchikeyNotFound.txt', 'w') as file:
-            file.writelines(line + u'\n' for line in self._cache_inchikey_not_found)
+        with open(self._cache_folder / "inchikeyNotFound.txt", "w") as file:
+            file.writelines(
+                line + "\n" for line in self._cache_inchikey_not_found
+            )
 
     def load_cache(self):
         if self._cache_folder is None:
             raise KeyError
 
-        with open(self._cache_folder / 'cache.xml', 'r') as file:
+        with open(self._cache_folder / "cache.xml", "r") as file:
             load_data = json.load(file)
 
             for key, value in load_data.items():
@@ -85,15 +93,15 @@ class Cache:
 
                 self.addGenerellIdentifiers(gID, key)
 
-        with open(self._cache_folder / 'smilesNotFound.txt', 'r') as file:
+        with open(self._cache_folder / "smilesNotFound.txt", "r") as file:
             for line in file:
                 self._cache_smiles_not_found.add(line.strip())
 
-        with open(self._cache_folder / 'inchiNotFound.txt', 'r') as file:
+        with open(self._cache_folder / "inchiNotFound.txt", "r") as file:
             for line in file:
                 self._cache_inchi_not_found.add(line.strip())
 
-        with open(self._cache_folder / 'inchikeyNotFound.txt', 'r') as file:
+        with open(self._cache_folder / "inchikeyNotFound.txt", "r") as file:
             for line in file:
                 self._cache_inchikey_not_found.add(line.strip())
 
@@ -104,7 +112,6 @@ class Cache:
         self._added += 1
         if self._added % 10 == 0:
             self.save_cache()
-
 
     def addSmiles(self, smiles, dbID):
         if not isinstance(smiles, str):
@@ -124,7 +131,7 @@ class Cache:
         self.smiles_dict[smiles].add(dbID)
 
         if dbID not in self.id_dict:
-            self.id_dict[dbID] = GenerellIdentifiers(smiles = smiles)
+            self.id_dict[dbID] = GenerellIdentifiers(smiles=smiles)
 
         else:
             entry = self.id_dict[dbID]
@@ -137,9 +144,7 @@ class Cache:
 
         self.__added()
 
-        logger.debug(
-            f"Adding entry (InChI:{inchi}, DBID:{dbID}) to the cache."
-        )
+        logger.debug(f"Adding entry (InChI:{inchi}, DBID:{dbID}) to the cache.")
 
         if isinstance(dbID, Unavailable):
             self._cache_inchi_not_found.add(inchi)
@@ -151,7 +156,7 @@ class Cache:
         self.inchi_dict[inchi].add(dbID)
 
         if dbID not in self.id_dict:
-            self.id_dict[dbID] = GenerellIdentifiers(inchi = inchi)
+            self.id_dict[dbID] = GenerellIdentifiers(inchi=inchi)
 
         else:
             entry = self.id_dict[dbID]
@@ -180,19 +185,17 @@ class Cache:
         self.inchi_key_dict[inchikey].add(dbID)
 
         if dbID not in self.id_dict:
-            self.id_dict[dbID] = GenerellIdentifiers(inchi_key = inchikey)
+            self.id_dict[dbID] = GenerellIdentifiers(inchi_key=inchikey)
 
         else:
             entry = self.id_dict[dbID]
             if entry.inchi_key != inchikey and entry.inchi_key is not None:
                 raise MissmatchError
 
-    def addGenerellIdentifiers(self, gID:GenerellIdentifiers, dbID):
+    def addGenerellIdentifiers(self, gID: GenerellIdentifiers, dbID):
         self.__added()
 
-        logger.debug(
-            f"Adding GID ({gID}) to the cache."
-        )
+        logger.debug(f"Adding GID ({gID}) to the cache.")
 
         if dbID not in self.id_dict:
             self.id_dict[dbID] = gID
@@ -222,7 +225,6 @@ class Cache:
                 self.inchi_key_dict[gID.inchi_key] = set()
 
             self.inchi_key_dict[gID.inchi_key].add(dbID)
-
 
     def getBySmiles(self, smiles):
         if smiles in self._cache_smiles_not_found:

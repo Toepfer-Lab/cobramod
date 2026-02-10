@@ -11,6 +11,7 @@ from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 logger = logging.getLogger("cobramod.DBWalker.Chebi")
 logger.propagate = True
 
+
 class Chebi(Database):
     chebi_ftp = "ftp://ftp.ebi.ac.uk/pub/databases/chebi/flat_files"
     settings = Settings()

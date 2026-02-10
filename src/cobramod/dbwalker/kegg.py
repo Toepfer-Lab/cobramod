@@ -14,19 +14,20 @@ from cobramod.dbwalker.pubchem import PubChem
 logger = logging.getLogger("cobramod.DBWalker.Kegg")
 logger.propagate = True
 
-class Kegg(Database):
 
+class Kegg(Database):
     def __init__(self):
         super().__init__()
         self.__pubchem = PubChem()
         self.__session = requests.Session()
-        self.__session.mount('https://', HTTPAdapter(max_retries=Retry(total=5,
-                backoff_factor=0.5)
-        ))
+        self.__session.mount(
+            "https://",
+            HTTPAdapter(max_retries=Retry(total=5, backoff_factor=0.5)),
+        )
 
         self.__settings = Settings()
         self._cache_folder = self.__settings.cacheDir / self.name
-        self._cache = Cache(cache_dir= self._cache_folder)
+        self._cache = Cache(cache_dir=self._cache_folder)
 
     @property
     def name(self) -> str:
@@ -39,7 +40,6 @@ class Kegg(Database):
     def getGenerellIdentifier(
         self, dbIdentifier: str, **kwargs
     ) -> GenerellIdentifiers:
-
         cached = self._cache.getByID(dbIdentifier)
 
         if cached is not None and not cached.anyNoneEntries():
@@ -49,15 +49,18 @@ class Kegg(Database):
 
         # Kegg itself does not provide identifiers instead it maps them to PubChem
 
-        generellIdentifier = self.__pubchem.getGenerellIdentifier(dbIdentifier=cid)
+        generellIdentifier = self.__pubchem.getGenerellIdentifier(
+            dbIdentifier=cid
+        )
 
-        self._cache.addGenerellIdentifiers(generellIdentifier, dbID= dbIdentifier)
+        self._cache.addGenerellIdentifiers(
+            generellIdentifier, dbID=dbIdentifier
+        )
         return generellIdentifier
 
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> str:
-
         if isinstance(smiles, GenerellIdentifiers):
             smiles = smiles.smiles
 
@@ -73,19 +76,18 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
-        kegg_id = self.get_kegg_id_from_cid(cid= cid)
+        kegg_id = self.get_kegg_id_from_cid(cid=cid)
 
-        self._cache.addSmiles(smiles=smiles, dbID= kegg_id)
+        self._cache.addSmiles(smiles=smiles, dbID=kegg_id)
         return kegg_id
 
     def getDBIdentifierFromInchi(
         self, inchi: Union[str, GenerellIdentifiers]
     ) -> str:
-
         if isinstance(inchi, GenerellIdentifiers):
             inchi = inchi.inchi
 
-        cached = self._cache.getByInchi(inchi= inchi)
+        cached = self._cache.getByInchi(inchi=inchi)
         if isinstance(cached, Unavailable):
             return cached
 
@@ -96,21 +98,19 @@ class Kegg(Database):
             else:
                 return cached
 
-
-        cid = self.__pubchem.getDBIdentifierFromInchi(inchi = inchi)
+        cid = self.__pubchem.getDBIdentifierFromInchi(inchi=inchi)
         kegg_id = self.get_kegg_id_from_cid(cid=cid)
 
-        self._cache.addInchi(inchi= inchi, dbID= kegg_id)
+        self._cache.addInchi(inchi=inchi, dbID=kegg_id)
         return kegg_id
 
     def getDBIdentifierFromInchiKey(
         self, inchikey: Union[str, GenerellIdentifiers]
     ) -> str:
-
         if isinstance(inchikey, GenerellIdentifiers):
             inchikey = inchikey.inchi_key
 
-        cached = self._cache.getByInchiKey(inchikey = inchikey)
+        cached = self._cache.getByInchiKey(inchikey=inchikey)
         if isinstance(cached, Unavailable):
             return cached
 
@@ -121,11 +121,10 @@ class Kegg(Database):
             else:
                 return cached
 
-
-        cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey = inchikey)
+        cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey=inchikey)
         kegg_id = self.get_kegg_id_from_cid(cid=cid)
 
-        self._cache.addInchiKey(inchikey=inchikey, dbID= kegg_id)
+        self._cache.addInchiKey(inchikey=inchikey, dbID=kegg_id)
         return kegg_id
 
     def get_kegg_id_from_cid(self, cid):
@@ -156,7 +155,7 @@ class Kegg(Database):
         if ":" in kegg_id:
             kegg_id = kegg_id.split(":")[1]
 
-        #kegg_id = f"kegg.compound:{kegg_id}"
+        # kegg_id = f"kegg.compound:{kegg_id}"
 
         return kegg_id
 

@@ -16,7 +16,6 @@ from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
 
 class BioCyc(Database):
-
     def __init__(self):
         super().__init__()
         self.__settings = Settings()
@@ -38,7 +37,7 @@ class BioCyc(Database):
         try:
             return self._caches[subDB]
         except KeyError:
-            cache = Cache(cache_dir= self.__cache_base_dir / subDB)
+            cache = Cache(cache_dir=self.__cache_base_dir / subDB)
             self._caches[subDB] = cache
             return cache
 
@@ -74,12 +73,10 @@ class BioCyc(Database):
         else:
             db, biocyc_id = "META", dbIdentifier
 
-
         cached = self._get_cache(db).getByID(dbIdentifier)
 
         if cached is not None and not cached.anyNoneEntries():
             return cached
-
 
         self.__settings.limiter.try_acquire("biocyc")
         url = "https://websvc.biocyc.org/getxml"
@@ -168,7 +165,9 @@ class BioCyc(Database):
             generelID=result, identifier=dbIdentifier
         )
 
-        self._get_cache(db).addGenerellIdentifiers(result, dbID=(db, dbIdentifier))
+        self._get_cache(db).addGenerellIdentifiers(
+            result, dbID=(db, dbIdentifier)
+        )
 
         return result
 
@@ -228,7 +227,9 @@ class BioCyc(Database):
                     f"BioCyc did not report any matches for SMILES ({smiles}). "
                 )
 
-                self._get_cache(BioCycSubDB).addSmiles(smiles= smiles, dbID= Unavailable())
+                self._get_cache(BioCycSubDB).addSmiles(
+                    smiles=smiles, dbID=Unavailable()
+                )
                 return Unavailable()
 
             if len(results) > 1:
@@ -265,7 +266,9 @@ class BioCyc(Database):
                 )
                 biocycID = Unavailable()
 
-            self._get_cache(BioCycSubDB).addSmiles(smiles=smiles, dbID= Unavailable())
+            self._get_cache(BioCycSubDB).addSmiles(
+                smiles=smiles, dbID=Unavailable()
+            )
             return biocycID
 
         except requests.RequestException as e:
@@ -314,7 +317,7 @@ class BioCyc(Database):
         session = self.__settings._biocycSession
 
         self.__settings.limiter.try_acquire("biocyc")
-        response = session.post(url = url, params = param)
+        response = session.post(url=url, params=param)
 
         try:
             response.raise_for_status()
@@ -324,20 +327,26 @@ class BioCyc(Database):
                 self.logger.warning(
                     f"Could not find a Entry in BioCyc({BioCycSubDB}) for InChI: {inchi}"
                 )
-                self._get_cache(BioCycSubDB).addInchi(inchi=inchi, dbID= Unavailable())
+                self._get_cache(BioCycSubDB).addInchi(
+                    inchi=inchi, dbID=Unavailable()
+                )
                 return Unavailable()
 
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
 
             if biocycID is None:
-                self._get_cache(BioCycSubDB).addInchi(inchi=inchi, dbID= Unavailable())
+                self._get_cache(BioCycSubDB).addInchi(
+                    inchi=inchi, dbID=Unavailable()
+                )
                 return Unavailable()
 
             return biocycID
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
-            self._get_cache(BioCycSubDB).addInchi(inchi=inchi, dbID=Unavailable())
+            self._get_cache(BioCycSubDB).addInchi(
+                inchi=inchi, dbID=Unavailable()
+            )
             return Unavailable()
 
     def getDBIdentifierFromInchiKey(
@@ -352,7 +361,7 @@ class BioCyc(Database):
             assert inchikey.inchi is not None
             inchikey = inchikey.inchi_key
 
-        cached = self._get_cache(BioCycSubDB).getByInchiKey(inchikey = inchikey)
+        cached = self._get_cache(BioCycSubDB).getByInchiKey(inchikey=inchikey)
 
         if isinstance(cached, set):
             if len(cached) == 1:
@@ -372,18 +381,24 @@ class BioCyc(Database):
         self.__settings.limiter.try_acquire("biocyc")
 
         files = {
-            'orgid': (None, "META"),
-            'file': ('', '', 'application/octet-stream'),  # Empty file
-            'strings-data': (None, f"InChIKey:{inchikey}"),
-            'output-type': (None, "TABULATED")
+            "orgid": (None, "META"),
+            "file": ("", "", "application/octet-stream"),  # Empty file
+            "strings-data": (None, f"InChIKey:{inchikey}"),
+            "output-type": (None, "TABULATED"),
         }
 
-        response = session.post(url,files=files, params={'file': ''}, timeout=30)
+        response = session.post(
+            url, files=files, params={"file": ""}, timeout=30
+        )
 
         try:
             response.raise_for_status()
 
-            match = re.search(r"Successful queries(.*?)(Ambigous Queries|Unknown Queries)", response.text, re.S)
+            match = re.search(
+                r"Successful queries(.*?)(Ambigous Queries|Unknown Queries)",
+                response.text,
+                re.S,
+            )
             if not match:
                 raise ValueError("No Successful Queries section found")
 
@@ -391,16 +406,15 @@ class BioCyc(Database):
             df = pd.read_csv(StringIO(table_text), sep="\t")
 
             if len(df) > 1:
-                logging.warning(
-                    "Found multiple matching results"
-                )
+                logging.warning("Found multiple matching results")
                 return Unavailable()
 
             elif len(df) == 0:
                 return Unavailable()
 
-
-            with pd.option_context('display.max_rows', None, 'display.max_columns',None):  # more options can be specified also
+            with pd.option_context(
+                "display.max_rows", None, "display.max_columns", None
+            ):  # more options can be specified also
                 print(df)
 
             html_ref = df[["BioCyc"]].values[0][0]
@@ -415,18 +429,23 @@ class BioCyc(Database):
             assert f"InChIKey:{inchikey}" == inchikey_query
             assert orgid == BioCycSubDB
 
-
             if biocycID is None:
-                self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=Unavailable())
+                self._get_cache(BioCycSubDB).addInchiKey(
+                    inchikey=inchikey, dbID=Unavailable()
+                )
                 return Unavailable()
 
-            self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=biocycID)
+            self._get_cache(BioCycSubDB).addInchiKey(
+                inchikey=inchikey, dbID=biocycID
+            )
             return biocycID
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
 
-            self._get_cache(BioCycSubDB).addInchiKey(inchikey=inchikey, dbID=Unavailable())
+            self._get_cache(BioCycSubDB).addInchiKey(
+                inchikey=inchikey, dbID=Unavailable()
+            )
             return Unavailable()
 
     def save_cache(self):

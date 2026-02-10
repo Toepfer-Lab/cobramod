@@ -28,20 +28,14 @@ class Database(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> str:
-
-        ...
+    def name(self) -> str: ...
 
     @abstractmethod
-    def save_cache(self):
-
-        ...
+    def save_cache(self): ...
 
     @property
     @abstractmethod
-    def AnnotationPrefix(self) -> str:
-
-        ...
+    def AnnotationPrefix(self) -> str: ...
 
     def getDBIdentifier(self, identifier: GenerellIdentifiers) -> Optional[str]:
         """
@@ -85,17 +79,17 @@ class Database(ABC):
         if not allEqual:
             self.logger.error(
                 f"Generell Identifier for supposedly the same object result in different DB IDs in {self.name}."
-                f"\n\t\t{"DB ID":<10}{str(inchiBasedID):<10}<-{"InChi":<10}{identifier.inchi:<10}"
-                f"\n\t\t{"DB ID":<10}{str(inchikeyBasedID):<10}<-{"InChiKey":<10}{identifier.inchi_key}"
-                f"\n\t\t{"DB ID":<10}{str(smilesBasedID):<10}<-{"Smiles":<10}{identifier.smiles}"
+                f"\n\t\t{'DB ID':<10}{str(inchiBasedID):<10}<-{'InChi':<10}{identifier.inchi:<10}"
+                f"\n\t\t{'DB ID':<10}{str(inchikeyBasedID):<10}<-{'InChiKey':<10}{identifier.inchi_key}"
+                f"\n\t\t{'DB ID':<10}{str(smilesBasedID):<10}<-{'Smiles':<10}{identifier.smiles}"
             )
             return None
         else:
             self.logger.debug(
                 f"All available Identifier point towards the same DB ID in {self.name}:"
-                f"\n\t\t{"DB ID":<10}{str(inchiBasedID):<10}<-{"InChi":<10}{identifier.inchi:<10}"
-                f"\n\t\t{"DB ID":<10}{str(inchikeyBasedID):<10}<-{"InChiKey":<10}{identifier.inchi_key}"
-                f"\n\t\t{"DB ID":<10}{str(smilesBasedID):<10}<-{"Smiles":<10}{identifier.smiles}"
+                f"\n\t\t{'DB ID':<10}{str(inchiBasedID):<10}<-{'InChi':<10}{identifier.inchi:<10}"
+                f"\n\t\t{'DB ID':<10}{str(inchikeyBasedID):<10}<-{'InChiKey':<10}{identifier.inchi_key}"
+                f"\n\t\t{'DB ID':<10}{str(smilesBasedID):<10}<-{'Smiles':<10}{identifier.smiles}"
             )
 
             if not isinstance(possible_IDs[0], str):

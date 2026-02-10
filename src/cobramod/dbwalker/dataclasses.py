@@ -5,6 +5,7 @@ from pydantic.dataclasses import dataclass
 
 from typing import Dict, Union
 
+
 @dataclass
 class Unavailable:
     """
@@ -23,16 +24,16 @@ class GenerellIdentifiers:
      Unavailable if the Database did not return a results-
     """
 
-
     __inchi: Union[None, str, Unavailable] = None
     inchi_key: Union[None, str, Unavailable] = None
     smiles: Union[None, str, Unavailable] = None
 
-    def __init__(self,
-                 inchi: Union[None, str, Unavailable] = None,
-                 inchi_key: Union[None, str, Unavailable] = None,
-                 smiles: Union[None, str, Unavailable] = None,
-                 ):
+    def __init__(
+        self,
+        inchi: Union[None, str, Unavailable] = None,
+        inchi_key: Union[None, str, Unavailable] = None,
+        smiles: Union[None, str, Unavailable] = None,
+    ):
         super().__init__()
 
         self.inchi = inchi
@@ -53,18 +54,15 @@ class GenerellIdentifiers:
         self.__inchi = inchi
 
     def weakEq(self, other):
-
         if self.inchi_key is None or other.inchi_key is None:
             pass
         elif self.inchi_key != other.inchi_key:
             return False
 
-
         if self.smiles is None or other.smiles is None:
             pass
         elif self.smiles != other.smiles:
             return False
-
 
         if self.inchi_key is None or other.inchi_key is None:
             pass
@@ -84,7 +82,6 @@ class GenerellIdentifiers:
             self.inchi = other.inchi
 
         return self
-
 
     def empty(self):
         l = [self.smiles, self.inchi, self.inchi_key]
@@ -113,8 +110,7 @@ class GenerellIdentifiers:
         }
 
     @classmethod
-    def from_dict(cls, dict:Dict):
-
+    def from_dict(cls, dict: Dict):
         smiles = dict["smiles"]
         inchi = dict["inchi"]
         inchi_key = dict["inchi_key"]
@@ -141,7 +137,6 @@ class GenerellIdentifiers:
         )
 
     def anyNoneEntries(self) -> bool:
-
         if self.smiles is None:
             return True
 
