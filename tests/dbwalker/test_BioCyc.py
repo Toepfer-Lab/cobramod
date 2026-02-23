@@ -1,3 +1,5 @@
+import shutil
+import tempfile
 from unittest import TestCase
 from unittest.mock import patch, Mock, PropertyMock, MagicMock
 import requests
@@ -23,7 +25,22 @@ logger.setLevel(logging.DEBUG)
 
 class TestGetCompoundInfoByBiocycId(TestCase):
     def setUp(self):
-        self.biocyc = BioCyc()
+        self.test_dir = tempfile.mkdtemp()
+        self.biocyc = BioCyc(cachedir=self.test_dir)
+
+    def tearDown(self):
+        shutil.rmtree(self.test_dir)
+
+    def test_getGeneralIdentifiers(self):
+        biocycID = "ECOLI:LACTALD"
+
+        gID = self.biocyc.getGenerellIdentifier(biocycID)
+
+        self.assertIsInstance(gID, GenerellIdentifiers)
+        self.assertEqual("BSABBBMNWQWLLU-VKHMYHEASA-N",gID.inchi_key)
+        self.assertEqual("InChI=1S/C3H6O2/c1-3(5)2-4/h2-3,5H,1H3/t3-/m0/s1",gID.inchi)
+        self.assertEqual("C[C@@H](C=O)O",gID.smiles)
+
 
     def test_get_BioCycIDviaSmiles(self):
 
@@ -39,12 +56,12 @@ class TestGetCompoundInfoByBiocycId(TestCase):
         #complicated id
         smiles = "C(O)[C@H]2(O[C@@H](O)[C@H](O[C@@H]1([C@H](O)[C@H]([C@H](O)[C@@H](CO)O1)O))[C@@H](O)[C@H](O)2)"
         biocycID = self.biocyc.getDBIdentifierFromSmiles(smiles)
-        self.assertEqual(first=biocycID, second="BETA-KOJIBIOSE")
+        self.assertEqual(first=biocycID, second="META:BETA-KOJIBIOSE")
 
 
         smiles = r"C(OP(=O)([O-])OP(=O)([O-])OP(=O)([O-])[O-])[C@H]3(O[C@@H](N1(C2(\C(\N=C/1)=C(N)/N=C\N=2)))[C@H](O)[C@H](O)3)"
         biocycID = self.biocyc.getDBIdentifierFromSmiles(smiles)
-        self.assertEqual(first=biocycID, second="ATP")
+        self.assertEqual(first=biocycID, second="META:ATP")
 
     def test_get_BioCycIDviaInChI(self):
         mock_session = MagicMock()

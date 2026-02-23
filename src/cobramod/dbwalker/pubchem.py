@@ -18,8 +18,8 @@ class PubChem(Database):
         self.__settings = Settings()
         self.__cache_dir = self.__settings.cacheDir / self.name
         self._cache = Cache(cache_dir=self.__cache_dir)
-        self.__session = requests.Session()
-        self.__session.mount(
+        self.session = requests.Session()
+        self.session.mount(
             "https://",
             HTTPAdapter(
                 max_retries=Retry(
@@ -64,7 +64,7 @@ class PubChem(Database):
         )
 
         self.__settings.limiter.try_acquire("pubchem")
-        response = self.__session.get(url=url, timeout=30)
+        response = self.session.get(url=url, timeout=30)
         response.raise_for_status()
 
         value = response.json()
@@ -130,7 +130,7 @@ class PubChem(Database):
         )
 
         self.__settings.limiter.try_acquire("pubchem")
-        response = self.__session.post(url, files=data, timeout=30)
+        response = self.session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
 
@@ -170,7 +170,7 @@ class PubChem(Database):
         )
 
         self.__settings.limiter.try_acquire("pubchem")
-        response = self.__session.post(url, files=data, timeout=30)
+        response = self.session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
 
@@ -204,7 +204,7 @@ class PubChem(Database):
         }
 
         self.__settings.limiter.try_acquire("pubchem")
-        response = self.__session.post(url, files=data, timeout=30)
+        response = self.session.post(url, files=data, timeout=30)
 
         response.raise_for_status()
 
@@ -235,7 +235,7 @@ class PubChem(Database):
         )
 
         self.__settings.limiter.try_acquire("pubchem")
-        response = self.__session.get(url, timeout=30)
+        response = self.session.get(url, timeout=30)
         response.raise_for_status()
 
         value = response.text.rstrip()
@@ -246,7 +246,7 @@ class PubChem(Database):
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/{sid}/cids/TXT"
 
         self.__settings.limiter.try_acquire("pubchem")
-        response = self.__session.get(url, timeout=30)
+        response = self.session.get(url, timeout=30)
         response.raise_for_status()
 
         value = response.text.rstrip()
@@ -257,7 +257,7 @@ class PubChem(Database):
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/cid/{cid}/sids/TXT"
 
         self.__settings.limiter.try_acquire("pubchem")
-        response = self.__session.get(url, timeout=30)
+        response = self.session.get(url, timeout=30)
         response.raise_for_status()
 
         value = response.text.rstrip()
@@ -269,4 +269,4 @@ class PubChem(Database):
 
     def __del__(self):
         self.save_cache()
-        self.__session.close()
+        self.session.close()

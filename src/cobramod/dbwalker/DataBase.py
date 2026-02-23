@@ -99,7 +99,7 @@ class Database(ABC):
 
     @abstractmethod
     def getDBIdentifierFromSmiles(
-        self, smiles: Union[str, GenerellIdentifiers]
+        self, smiles: Union[str, GenerellIdentifiers], **kwargs
     ) -> Optional[str]:
         """
         This method queries the database identifier from a given SMILES string.
@@ -109,7 +109,7 @@ class Database(ABC):
 
     @abstractmethod
     def getDBIdentifierFromInchi(
-        self, inchi: Union[str, GenerellIdentifiers]
+        self, inchi: Union[str, GenerellIdentifiers], **kwargs
     ) -> Optional[str]:
         """
         This method queries the database identifier from a given Inchi.
@@ -118,7 +118,7 @@ class Database(ABC):
         ...
 
     def _validateGeneralIdentifiersWithDBIDs(
-        self, generelID: GenerellIdentifiers, identifier: str
+        self, generelID: GenerellIdentifiers, identifier: str, **kwargs
     ):
         """
         Internal method that maps the entries of a GenerellIdenfiers object to a database identifier.
@@ -130,7 +130,7 @@ class Database(ABC):
         """
 
         if generelID.smiles is not None:
-            smiles_databaseID = self.getDBIdentifierFromSmiles(generelID.smiles)
+            smiles_databaseID = self.getDBIdentifierFromSmiles(generelID.smiles, **kwargs)
             if identifier != smiles_databaseID:
                 self.logger.error(
                     f"The SMILES string ({generelID.smiles}) does not map back to the original BioCyc ID ({identifier}), instead it points to {smiles_databaseID}. Ignoring SMILES"
@@ -138,7 +138,7 @@ class Database(ABC):
                 generelID.smiles = None
 
         if generelID.inchi is not None:
-            inchi_databaseID = self.getDBIdentifierFromInchi(generelID.inchi)
+            inchi_databaseID = self.getDBIdentifierFromInchi(generelID.inchi, **kwargs)
             if identifier != inchi_databaseID:
                 self.logger.error(
                     f"The InChi ({generelID.inchi}) does not map back to the original Biocyc ID ({identifier}), instead it points to {inchi_databaseID}. Ignoring the InChi"
@@ -146,7 +146,8 @@ class Database(ABC):
 
         if generelID.inchi_key is not None:
             inchikey_databaseID = self.getDBIdentifierFromInchiKey(
-                generelID.inchi_key
+                generelID.inchi_key,
+                **kwargs
             )
             if identifier != inchikey_databaseID:
                 self.logger.error(
@@ -155,7 +156,7 @@ class Database(ABC):
 
     @abstractmethod
     def getDBIdentifierFromInchiKey(
-        self, inchikey: Union[str, GenerellIdentifiers]
+        self, inchikey: Union[str, GenerellIdentifiers], **kwargs
     ) -> str:
         """
         This method queries the database identifier from a given InchIKey.

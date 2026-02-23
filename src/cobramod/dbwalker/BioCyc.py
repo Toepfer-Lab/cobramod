@@ -1,6 +1,7 @@
 import re
 import urllib
 from io import StringIO
+from pathlib import Path
 
 import pandas as pd
 import requests
@@ -16,10 +17,17 @@ from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
 
 class BioCyc(Database):
-    def __init__(self):
+    def __init__(self, cachedir: Union[Path, str, None] = None):
         super().__init__()
         self.__settings = Settings()
-        self.__cache_base_dir = self.__settings.cacheDir / self.name
+
+        if cachedir:
+            if isinstance(cachedir, str):
+                cachedir = Path(cachedir)
+            self.__cache_base_dir = cachedir
+        else:
+            self.__cache_base_dir = self.__settings.cacheDir / self.name
+
         self._caches = {}
 
         self.logger = logging.getLogger("cobramod.DBWalker.BioCyc")
@@ -73,7 +81,7 @@ class BioCyc(Database):
         else:
             db, biocyc_id = "META", dbIdentifier
 
-        cached = self._get_cache(db).getByID(dbIdentifier)
+        cached = self._get_cache(db).getByID(biocyc_id)
 
         if cached is not None and not cached.anyNoneEntries():
             return cached
@@ -154,7 +162,7 @@ class BioCyc(Database):
         except ET.ParseError as e:
             self.logger.error(f"Error parsing XML response: {e}")
 
-        self.logger.debug(f"Final result: {result}")
+        self.logger.debug(f"Final result: {str(result)}")
 
         self.logger.debug(
             "Checking that the general identifiers map back to the original ID"
@@ -162,11 +170,11 @@ class BioCyc(Database):
 
         # ToDo validate that the moethod works on the object and not on a copy due to the namespace
         self._validateGeneralIdentifiersWithDBIDs(
-            generelID=result, identifier=dbIdentifier
+            generelID=result, identifier=dbIdentifier, BioCycSubDB = db,
         )
 
         self._get_cache(db).addGenerellIdentifiers(
-            result, dbID=(db, dbIdentifier)
+            result, biocyc_id
         )
 
         return result
@@ -174,7 +182,7 @@ class BioCyc(Database):
     def getDBIdentifierFromSmiles(
         self,
         smiles: Union[str, GenerellIdentifiers],
-        BioCycSubDB: Optional[str] = None,
+        **kwargs,
     ) -> Optional[Union[str, List[str]]]:
         """
         Convert SMILES to BioCyc identifiers.
@@ -186,8 +194,11 @@ class BioCyc(Database):
             GenerellIdentifiers with BioCyc ID if found, otherwise empty
         """
 
-        if BioCycSubDB is None:
+        if "BioCycSubDB" in kwargs:
+            BioCycSubDB = kwargs["BioCycSubDB"]
+        else:
             BioCycSubDB = "META"
+
 
         if isinstance(smiles, GenerellIdentifiers):
             assert smiles.smiles is not None
@@ -239,7 +250,7 @@ class BioCyc(Database):
 
             hits = 0
             matches: List[str] = []
-            printable: List[str, str] = []
+            printable: List[Tuple[str, str]] = []
 
             for result in results:
                 if result["SMILES"] == smiles:
@@ -257,7 +268,7 @@ class BioCyc(Database):
                 biocycID = Unavailable()
             elif hits == 1:
                 self.logger.debug(
-                    "Only one of the matches was exactly equal to the query. Proceeding normally."
+                    f"Only one of the matches was exactly equal to the query (ID:{matches[0]}). Proceeding normally."
                 )
                 biocycID = matches[0]
             else:
@@ -267,9 +278,12 @@ class BioCyc(Database):
                 biocycID = Unavailable()
 
             self._get_cache(BioCycSubDB).addSmiles(
-                smiles=smiles, dbID=Unavailable()
+                smiles=smiles, dbID=biocycID
             )
-            return biocycID
+            if isinstance(biocycID, Unavailable):
+                return biocycID
+
+            return f"{BioCycSubDB}:{biocycID}"
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
@@ -278,7 +292,7 @@ class BioCyc(Database):
     def getDBIdentifierFromInchi(
         self,
         inchi: Union[str, GenerellIdentifiers],
-        BioCycSubDB: Optional[str] = None,
+        **kwargs
     ) -> Optional[str]:
         """
         Convert InChI to BioCyc identifiers.
@@ -289,7 +303,9 @@ class BioCyc(Database):
         Returns:
             GenerellIdentifiers with BioCyc ID if found, otherwise empty
         """
-        if BioCycSubDB is None:
+        if "BioCycSubDB" in kwargs:
+            BioCycSubDB = kwargs["BioCycSubDB"]
+        else:
             BioCycSubDB = "META"
 
         if isinstance(inchi, GenerellIdentifiers):
@@ -340,7 +356,7 @@ class BioCyc(Database):
                 )
                 return Unavailable()
 
-            return biocycID
+            return f"{BioCycSubDB}:{biocycID}"
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
@@ -352,9 +368,11 @@ class BioCyc(Database):
     def getDBIdentifierFromInchiKey(
         self,
         inchikey: Union[str, GenerellIdentifiers],
-        BioCycSubDB: Optional[str] = None,
+        **kwargs,
     ) -> Optional[str]:
-        if BioCycSubDB is None:
+        if "BioCycSubDB" in kwargs:
+            BioCycSubDB = kwargs["BioCycSubDB"]
+        else:
             BioCycSubDB = "META"
 
         if isinstance(inchikey, GenerellIdentifiers):
@@ -412,11 +430,6 @@ class BioCyc(Database):
             elif len(df) == 0:
                 return Unavailable()
 
-            with pd.option_context(
-                "display.max_rows", None, "display.max_columns", None
-            ):  # more options can be specified also
-                print(df)
-
             html_ref = df[["BioCyc"]].values[0][0]
             inchikey_query = df[["Query"]].values[0][0]
 
@@ -438,7 +451,7 @@ class BioCyc(Database):
             self._get_cache(BioCycSubDB).addInchiKey(
                 inchikey=inchikey, dbID=biocycID
             )
-            return biocycID
+            return f"{BioCycSubDB}:{biocycID}"
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
