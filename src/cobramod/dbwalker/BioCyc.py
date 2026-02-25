@@ -1,19 +1,18 @@
+import logging
 import re
 import urllib
+import xml.etree.ElementTree as ET
 from io import StringIO
 from pathlib import Path
+from typing import List, Optional, Tuple, Union, overload
 
 import pandas as pd
 import requests
-from typing import Optional, Union, Tuple, overload, List
-
-import xml.etree.ElementTree as ET
-import logging
 
 from cobramod.dbwalker.cache import Cache
-from cobramod.settings import Settings
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
+from cobramod.settings import Settings
 
 
 class BioCyc(Database):
@@ -170,12 +169,12 @@ class BioCyc(Database):
 
         # ToDo validate that the moethod works on the object and not on a copy due to the namespace
         self._validateGeneralIdentifiersWithDBIDs(
-            generelID=result, identifier=dbIdentifier, BioCycSubDB = db,
+            generelID=result,
+            identifier=dbIdentifier,
+            BioCycSubDB=db,
         )
 
-        self._get_cache(db).addGenerellIdentifiers(
-            result, biocyc_id
-        )
+        self._get_cache(db).addGenerellIdentifiers(result, biocyc_id)
 
         return result
 
@@ -198,7 +197,6 @@ class BioCyc(Database):
             BioCycSubDB = kwargs["BioCycSubDB"]
         else:
             BioCycSubDB = "META"
-
 
         if isinstance(smiles, GenerellIdentifiers):
             assert smiles.smiles is not None
@@ -277,9 +275,7 @@ class BioCyc(Database):
                 )
                 biocycID = Unavailable()
 
-            self._get_cache(BioCycSubDB).addSmiles(
-                smiles=smiles, dbID=biocycID
-            )
+            self._get_cache(BioCycSubDB).addSmiles(smiles=smiles, dbID=biocycID)
             if isinstance(biocycID, Unavailable):
                 return biocycID
 
@@ -290,9 +286,7 @@ class BioCyc(Database):
             return None
 
     def getDBIdentifierFromInchi(
-        self,
-        inchi: Union[str, GenerellIdentifiers],
-        **kwargs
+            self, inchi: Union[str, GenerellIdentifiers], **kwargs
     ) -> Optional[str]:
         """
         Convert InChI to BioCyc identifiers.

@@ -1,13 +1,13 @@
 import logging
-from typing import Union, Tuple, Optional, overload
+from typing import Optional, Tuple, Union, overload
 
 import pandas as pd
 import requests
 from requests.adapters import HTTPAdapter, Retry
 
 from cobramod import Settings
-from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.cache import Cache
+from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 from cobramod.dbwalker.pubchem import PubChem
 
@@ -78,7 +78,7 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
-        sid = self.__pubchem.getSIDsFromCIDs(cid= cid)
+        sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
 
         kegg_id = self.get_kegg_id_from_sid(sid=sid)
 
@@ -103,7 +103,7 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromInchi(inchi=inchi)
-        sid = self.__pubchem.getSIDsFromCIDs( cid= cid)
+        sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
 
         kegg_id = self.get_kegg_id_from_sid(sid=sid)
 
@@ -128,7 +128,7 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey=inchikey)
-        sid = self.__pubchem.getSIDsFromCIDs(cid= cid)
+        sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
 
         kegg_id = self.get_kegg_id_from_sid(sid=sid)
 
@@ -201,7 +201,7 @@ class Kegg(Database):
         else:
             sid = pubchem_entry
 
-        cid = self.__pubchem.getCIDsFromSIDs(sid = sid)
+        cid = self.__pubchem.getCIDsFromSIDs(sid=sid)
 
         if isinstance(cid, Unavailable):
             return cid

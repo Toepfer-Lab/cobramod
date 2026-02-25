@@ -1,6 +1,6 @@
 import logging
 from pathlib import Path
-from typing import Union, Tuple, List
+from typing import List, Tuple, Union
 
 import pandas as pd
 import requests
@@ -9,9 +9,13 @@ from requests.adapters import HTTPAdapter, Retry
 from typing_extensions import overload
 
 from cobramod import Settings
-from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.cache import Cache
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable, Uncertain
+from cobramod.dbwalker.DataBase import Database
+from cobramod.dbwalker.dataclasses import (
+    GenerellIdentifiers,
+    Unavailable,
+    Uncertain,
+)
 
 
 class PubChem(Database):
@@ -73,15 +77,14 @@ class PubChem(Database):
         keggSIDs = response.text.splitlines()
         self.__keggSIDs = keggSIDs
 
-        with open(file, 'w') as file_writer:
-            data_to_write = '\n'.join(keggSIDs)
+        with open(file, "w") as file_writer:
+            data_to_write = "\n".join(keggSIDs)
             file_writer.write(data_to_write)
 
         return keggSIDs
 
     def getSIDsFromCIDs(self, cid: str) -> List[str]:
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid}/sids/TXT"
-
 
         self.__settings.limiter.try_acquire("pubchem")
         response = self.session.get(url=url, timeout=30)
@@ -92,31 +95,33 @@ class PubChem(Database):
         return SIDs
 
     def getKeggSpecificSIDs(self, cid) -> List[str]:
-        all_sids = self.getSIDsFromCIDs(cid= cid)
+        all_sids = self.getSIDsFromCIDs(cid=cid)
         sidsFromKegg = self.KEGGprovidedSIDs
 
         keggSIDs = [x for x in all_sids if x in sidsFromKegg]
 
         return keggSIDs
 
-    def getCIDsFromSIDs(self, sid:str) -> Union[List[str], Unavailable]:
+    def getCIDsFromSIDs(self, sid: str) -> Union[List[str], Unavailable]:
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/{sid}/cids/TXT"
 
         self.__settings.limiter.try_acquire("pubchem")
         response = self.session.get(url=url, timeout=30)
 
-        not_found_text="""Status: 404
+        not_found_text = """Status: 404
 Code: PUGREST.NotFound
 Message: No CIDs found for the given SID(s)"""
 
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as err:
-            if err.response.status_code == 404 and err.response.text.strip() == not_found_text.strip():
+            if (
+                    err.response.status_code == 404
+                    and err.response.text.strip() == not_found_text.strip()
+            ):
                 return Unavailable()
             else:
                 raise err
-
 
         cids = response.text.splitlines()
 
@@ -216,7 +221,9 @@ Message: No CIDs found for the given SID(s)"""
         response.raise_for_status()
 
         value = response.text.rstrip()
-        if value == "0": # PubChem returns 0 for SMILES with a valid structure but no entry
+        if (
+                value == "0"
+        ):  # PubChem returns 0 for SMILES with a valid structure but no entry
             return Unavailable()
 
         self._cache.addSmiles(smiles=smiles, dbID=value)
@@ -294,10 +301,7 @@ Message: No CIDs found for the given SID(s)"""
         value = response.text.rstrip()
 
         if "\n" in value:
-            return Uncertain(
-                possibilities= value.splitlines(),
-                type= "DBID"
-            )
+            return Uncertain(possibilities=value.splitlines(), type="DBID")
 
         self._cache.addInchiKey(inchikey=inchikey, dbID=value)
         return value

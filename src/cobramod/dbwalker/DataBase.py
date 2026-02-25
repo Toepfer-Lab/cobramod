@@ -1,6 +1,6 @@
 import logging
 from abc import ABC, abstractmethod
-from typing import Union, Optional
+from typing import Optional, Union
 
 import numpy
 import pandas as pd
@@ -130,7 +130,9 @@ class Database(ABC):
         """
 
         if generelID.smiles is not None:
-            smiles_databaseID = self.getDBIdentifierFromSmiles(generelID.smiles, **kwargs)
+            smiles_databaseID = self.getDBIdentifierFromSmiles(
+                generelID.smiles, **kwargs
+            )
             if identifier != smiles_databaseID:
                 self.logger.error(
                     f"The SMILES string ({generelID.smiles}) does not map back to the original BioCyc ID ({identifier}), instead it points to {smiles_databaseID}. Ignoring SMILES"
@@ -138,7 +140,9 @@ class Database(ABC):
                 generelID.smiles = None
 
         if generelID.inchi is not None:
-            inchi_databaseID = self.getDBIdentifierFromInchi(generelID.inchi, **kwargs)
+            inchi_databaseID = self.getDBIdentifierFromInchi(
+                generelID.inchi, **kwargs
+            )
             if identifier != inchi_databaseID:
                 self.logger.error(
                     f"The InChi ({generelID.inchi}) does not map back to the original Biocyc ID ({identifier}), instead it points to {inchi_databaseID}. Ignoring the InChi"
@@ -146,8 +150,7 @@ class Database(ABC):
 
         if generelID.inchi_key is not None:
             inchikey_databaseID = self.getDBIdentifierFromInchiKey(
-                generelID.inchi_key,
-                **kwargs
+                generelID.inchi_key, **kwargs
             )
             if identifier != inchikey_databaseID:
                 self.logger.error(

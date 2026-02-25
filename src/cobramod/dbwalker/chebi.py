@@ -1,7 +1,6 @@
 import logging
 from pathlib import Path
-
-from typing import Optional, Union, Tuple
+from typing import Optional, Tuple, Union
 
 import pandas as pd
 import requests
@@ -15,7 +14,6 @@ logger.propagate = True
 
 
 class Chebi(Database):
-
     chebi_ftp = "https://ftp.ebi.ac.uk/pub/databases/chebi"
     settings = Settings()
 
@@ -46,9 +44,10 @@ class Chebi(Database):
 
         # structure file
         url = self.chebi_ftp + "/flat_files/structures.tsv.gz"
-        cached_file = Path(self.settings.cacheDir / "chebi" / "chebi-structure.tsv")
+        cached_file = Path(
+            self.settings.cacheDir / "chebi" / "chebi-structure.tsv"
+        )
         cached_file.parent.mkdir(parents=True, exist_ok=True)
-
 
         if cached_file.exists():
             logger.debug("Found local structure file")
@@ -73,9 +72,13 @@ class Chebi(Database):
         return
 
     def __load_structure_file(self):
-        structure_file = self.settings.cacheDir / "chebi" / "chebi-structure.tsv"
+        structure_file = (
+                self.settings.cacheDir / "chebi" / "chebi-structure.tsv"
+        )
 
-        self.structure_file = pd.read_csv(structure_file, sep="\t", compression='gzip')
+        self.structure_file = pd.read_csv(
+            structure_file, sep="\t", compression="gzip"
+        )
 
     def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
         raise NotImplementedError
@@ -83,17 +86,17 @@ class Chebi(Database):
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> Optional[str]:
-
         if isinstance(smiles, GenerellIdentifiers):
             inchi = smiles.smiles
 
-        result = self.structure_file.loc[self.structure_file['smiles'] == smiles, 'compound_id']
+        result = self.structure_file.loc[
+            self.structure_file["smiles"] == smiles, "compound_id"
+        ]
 
         if len(result) == 1:
             return str(result.iloc[0])
 
         elif len(result) > 1:
-
             logger.warning(
                 f"Found multiple ({len(result)}) entries for SMILES ({smiles}) in Chebi"
             )
@@ -101,26 +104,24 @@ class Chebi(Database):
             return Unavailable()
 
         else:
-            logger.warning(
-                f"Found no match for SMILES ({smiles}) in Chebi)"
-            )
+            logger.warning(f"Found no match for SMILES ({smiles}) in Chebi)")
 
             return Unavailable()
 
     def getDBIdentifierFromInchi(
         self, inchi: Union[str, GenerellIdentifiers]
     ) -> Optional[str]:
-
         if isinstance(inchi, GenerellIdentifiers):
             inchi = inchi.inchi
 
-        result = self.structure_file.loc[self.structure_file['standard_inchi'] == inchi, 'compound_id']
+        result = self.structure_file.loc[
+            self.structure_file["standard_inchi"] == inchi, "compound_id"
+        ]
 
         if len(result) == 1:
             return str(result.iloc[0])
 
         elif len(result) > 1:
-
             logger.warning(
                 f"Found multiple ({len(result)}) entries for InChI ({inchi}) in Chebi"
             )
@@ -128,28 +129,24 @@ class Chebi(Database):
             return Unavailable()
 
         else:
-            logger.warning(
-                f"Found no match for InChI ({inchi}) in Chebi)"
-            )
+            logger.warning(f"Found no match for InChI ({inchi}) in Chebi)")
 
             return Unavailable()
-
 
     def getDBIdentifierFromInchiKey(
         self, inchikey: Union[str, GenerellIdentifiers]
     ) -> Union[str, Unavailable]:
-
         if isinstance(inchikey, GenerellIdentifiers):
             inchikey = inchikey.inchi_key
 
-
-        result = self.structure_file.loc[self.structure_file['standard_inchi_key'] == inchikey, 'compound_id']
+        result = self.structure_file.loc[
+            self.structure_file["standard_inchi_key"] == inchikey, "compound_id"
+        ]
 
         if len(result) == 1:
             return str(result.iloc[0])
 
         elif len(result) > 1:
-
             logger.warning(
                 f"Found multiple ({len(result)}) entries for InChIKey ({inchikey}) in Chebi"
             )
