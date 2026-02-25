@@ -14,7 +14,7 @@ from cobramod.dbwalker.BioCyc import BioCyc
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.bigg import Bigg
 from cobramod.dbwalker.chebi import Chebi
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 from cobramod.dbwalker.kegg import Kegg
 
 from cobramod.dbwalker.pubchem import PubChem
@@ -54,12 +54,26 @@ def add_crossreferences2metabolite(
         metabolite.annotation
     )
 
+    logger.debug(
+        f"For Metabolite ({metabolite.id}) the following GID was already present {general_identifiers}"
+    )
+
     for database in supportedDatabases:
         databaseID = metabolite.annotation.get(database.AnnotationPrefix, None)
         if databaseID is None:
             continue
 
         general_identifier = database.getGenerellIdentifier(databaseID)
+        if isinstance(general_identifier, Unavailable):
+            logger.debug(
+                f"No GIDs available in {database.name} for ID {databaseID}"
+            )
+            continue
+
+        logger.debug(
+            f"Found in {database.name} the following GIDs {general_identifier}."
+        )
+
         if annotation_logger:
             annotation_logger.add_entry(
                 metabolite_id=metabolite.id,
@@ -73,8 +87,8 @@ def add_crossreferences2metabolite(
             general_identifiers += general_identifier
         else:
             logger.error(
-                f"While adding general identifiers from {database.name}, a missmatch occurred."
-                f"Previous identifiers are: {general_identifiers}, Database IDs are {general_identifier}."
+                f"While adding general identifiers from {database.name} for ID {databaseID}, a missmatch occurred."
+                f" Previous identifiers are: {general_identifiers}, Database IDs are {general_identifier}."
             )
             return
 

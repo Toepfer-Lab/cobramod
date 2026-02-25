@@ -46,6 +46,8 @@ class Kegg(Database):
             return cached
 
         cid = self.get_cid_from_kegg_id(dbIdentifier=dbIdentifier)
+        if isinstance(cid, Unavailable):
+            return Unavailable()
 
         # Kegg itself does not provide identifiers instead it maps them to PubChem
 
@@ -76,7 +78,9 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
-        kegg_id = self.get_kegg_id_from_cid(cid=cid)
+        sid = self.__pubchem.getSIDsFromCIDs(cid= cid)
+
+        kegg_id = self.get_kegg_id_from_sid(sid=sid)
 
         self._cache.addSmiles(smiles=smiles, dbID=kegg_id)
         return kegg_id
@@ -99,7 +103,9 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromInchi(inchi=inchi)
-        kegg_id = self.get_kegg_id_from_cid(cid=cid)
+        sid = self.__pubchem.getSIDsFromCIDs( cid= cid)
+
+        kegg_id = self.get_kegg_id_from_sid(sid=sid)
 
         self._cache.addInchi(inchi=inchi, dbID=kegg_id)
         return kegg_id
@@ -122,23 +128,25 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey=inchikey)
-        kegg_id = self.get_kegg_id_from_cid(cid=cid)
+        sid = self.__pubchem.getSIDsFromCIDs(cid= cid)
+
+        kegg_id = self.get_kegg_id_from_sid(sid=sid)
 
         self._cache.addInchiKey(inchikey=inchikey, dbID=kegg_id)
         return kegg_id
 
-    def get_kegg_id_from_cid(self, cid):
+    def get_kegg_id_from_sid(self, sid):
         """
         Given a PubChem CID, return the corresponding KEGG compound ID (e.g., 'C00022').
         """
 
         self.__settings.limiter.try_acquire("kegg")
-        url = f"https://rest.kegg.jp/conv/compound/pubchem:{cid}"
+        url = f"https://rest.kegg.jp/conv/compound/pubchem:{sid}"
         response = self.__session.get(url)
 
         if response.status_code != 200:
             logger.error(
-                f"Error ({response.status_code}) getting KEGG compound ID from {cid}"
+                f"Error ({response.status_code}) getting KEGG compound ID from {sid}"
             )
             response.raise_for_status()
 
@@ -189,9 +197,18 @@ class Kegg(Database):
         pubchem_entry = lines[0].split("\t")[1]
 
         if ":" in pubchem_entry:
-            cid = pubchem_entry.split(":")[1]
+            sid = pubchem_entry.split(":")[1]
         else:
-            cid = pubchem_entry
+            sid = pubchem_entry
+
+        cid = self.__pubchem.getCIDsFromSIDs(sid = sid)
+
+        if isinstance(cid, Unavailable):
+            return cid
+        elif len(cid) == 1:
+            cid = cid[0]
+        else:
+            return Unavailable()
 
         return cid
 

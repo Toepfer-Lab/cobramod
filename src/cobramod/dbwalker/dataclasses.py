@@ -3,7 +3,7 @@ from types import NoneType
 from pydantic import ConfigDict
 from pydantic.dataclasses import dataclass
 
-from typing import Dict, Union
+from typing import Dict, Union, List
 
 
 @dataclass
@@ -16,7 +16,6 @@ class Unavailable:
         return "Unavailable"
 
     pass
-
 
 class GenerellIdentifiers:
     """
@@ -147,3 +146,20 @@ class GenerellIdentifiers:
             return True
 
         return False
+
+    def __str__(self):
+        return f"SMILES: {self.smiles}, INCHI: {self.inchi}, INCHI_KEY: {self.inchi_key}"
+
+
+@dataclass
+class Uncertain:
+    """
+    This class is used if multiple options are available and the correct one is not clear.
+    It contains a list of entrys possible and their type eg SMILES. Also the origin ID is saved to be able to match the entry to a model.
+    """
+
+    possibilities: List[str]
+    type: str
+
+    def __str__(self):
+        return "Uncertain"

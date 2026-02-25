@@ -1,22 +1,32 @@
 import logging
+from pathlib import Path
 from typing import Union, Tuple, List
 
 import pandas as pd
 import requests
+from exceptiongroup import catch
 from requests.adapters import HTTPAdapter, Retry
 from typing_extensions import overload
 
 from cobramod import Settings
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.cache import Cache
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable, Uncertain
 
 
 class PubChem(Database):
-    def __init__(self):
+    def __init__(self, cachedir: Union[Path, str, None] = None):
         super().__init__()
         self.__settings = Settings()
-        self.__cache_dir = self.__settings.cacheDir / self.name
+
+        if cachedir:
+            if isinstance(cachedir, str):
+                cachedir = Path(cachedir)
+            self.__cache_dir = cachedir
+        else:
+            self.__cache_dir = self.__settings.cacheDir / self.name
+
+        self.__keggSIDs = None
         self._cache = Cache(cache_dir=self.__cache_dir)
         self.session = requests.Session()
         self.session.mount(
@@ -40,6 +50,77 @@ class PubChem(Database):
     @property
     def AnnotationPrefix(self) -> str:
         return "pubchem.compound"
+
+    @property
+    def KEGGprovidedSIDs(self) -> List[str]:
+        if self.__keggSIDs is not None:
+            return self.__keggSIDs
+
+        file = self.__cache_dir / "KEGGprovidedSIDs.txt"
+
+        if file.exists():
+            with file.open() as f:
+                keggSIDs = f.readlines()
+                self.__keggSIDs = keggSIDs
+                return keggSIDs
+
+        url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sourceall/KEGG/sids/TXT"
+
+        self.__settings.limiter.try_acquire("pubchem")
+        response = self.session.get(url=url, timeout=30)
+        response.raise_for_status()
+
+        keggSIDs = response.text.splitlines()
+        self.__keggSIDs = keggSIDs
+
+        with open(file, 'w') as file_writer:
+            data_to_write = '\n'.join(keggSIDs)
+            file_writer.write(data_to_write)
+
+        return keggSIDs
+
+    def getSIDsFromCIDs(self, cid: str) -> List[str]:
+        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid}/sids/TXT"
+
+
+        self.__settings.limiter.try_acquire("pubchem")
+        response = self.session.get(url=url, timeout=30)
+        response.raise_for_status()
+
+        SIDs = response.text.splitlines()
+
+        return SIDs
+
+    def getKeggSpecificSIDs(self, cid) -> List[str]:
+        all_sids = self.getSIDsFromCIDs(cid= cid)
+        sidsFromKegg = self.KEGGprovidedSIDs
+
+        keggSIDs = [x for x in all_sids if x in sidsFromKegg]
+
+        return keggSIDs
+
+    def getCIDsFromSIDs(self, sid:str) -> Union[List[str], Unavailable]:
+        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/{sid}/cids/TXT"
+
+        self.__settings.limiter.try_acquire("pubchem")
+        response = self.session.get(url=url, timeout=30)
+
+        not_found_text="""Status: 404
+Code: PUGREST.NotFound
+Message: No CIDs found for the given SID(s)"""
+
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as err:
+            if err.response.status_code == 404 and err.response.text.strip() == not_found_text.strip():
+                return Unavailable()
+            else:
+                raise err
+
+
+        cids = response.text.splitlines()
+
+        return cids
 
     def getGenerellIdentifier(
         self, dbIdentifier: Union[str, int], **kwargs
@@ -210,6 +291,12 @@ class PubChem(Database):
 
         value = response.text.rstrip()
 
+        if "\n" in value:
+            return Uncertain(
+                possibilities= value.splitlines(),
+                type= "DBID"
+            )
+
         self._cache.addInchiKey(inchikey=inchikey, dbID=value)
         return value
 
@@ -233,28 +320,6 @@ class PubChem(Database):
             f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/"
             f"{cid}/property/MolecularFormula/txt"
         )
-
-        self.__settings.limiter.try_acquire("pubchem")
-        response = self.session.get(url, timeout=30)
-        response.raise_for_status()
-
-        value = response.text.rstrip()
-
-        return value
-
-    def getCIDfromSID(self, sid: str) -> str:
-        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/{sid}/cids/TXT"
-
-        self.__settings.limiter.try_acquire("pubchem")
-        response = self.session.get(url, timeout=30)
-        response.raise_for_status()
-
-        value = response.text.rstrip()
-
-        return value
-
-    def getSIDfromCID(self, cid: str) -> str:
-        url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/cid/{cid}/sids/TXT"
 
         self.__settings.limiter.try_acquire("pubchem")
         response = self.session.get(url, timeout=30)

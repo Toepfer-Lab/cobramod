@@ -195,7 +195,7 @@ class Cache:
     def addGenerellIdentifiers(self, gID: GenerellIdentifiers, dbID):
         self.__added()
 
-        logger.debug(f"Adding GID ({gID}) to the cache.")
+        logger.debug(f"Adding for ID ({dbID}) GID ({gID}) to the cache.")
 
         if dbID not in self.id_dict:
             self.id_dict[dbID] = gID
