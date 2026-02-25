@@ -216,6 +216,8 @@ Message: No CIDs found for the given SID(s)"""
         response.raise_for_status()
 
         value = response.text.rstrip()
+        if value == "0": # PubChem returns 0 for SMILES with a valid structure but no entry
+            return Unavailable()
 
         self._cache.addSmiles(smiles=smiles, dbID=value)
         return value
