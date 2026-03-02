@@ -1,3 +1,4 @@
+import atexit
 import logging
 import re
 import urllib
@@ -31,6 +32,8 @@ class BioCyc(Database):
 
         self.logger = logging.getLogger("cobramod.DBWalker.BioCyc")
         self.logger.propagate = True
+
+        atexit.register(self.save_cache)
 
     @property
     def name(self) -> str:
@@ -283,7 +286,7 @@ class BioCyc(Database):
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
-            return None
+            return Unavailable()  # ToDo should we catch this?
 
     def getDBIdentifierFromInchi(
             self, inchi: Union[str, GenerellIdentifiers], **kwargs
@@ -462,6 +465,3 @@ class BioCyc(Database):
     def clear_caches(self):
         for cache in self._caches.values():
             cache.clear_cache()
-
-    def __del__(self):
-        self.save_cache()

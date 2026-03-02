@@ -1,22 +1,21 @@
 import logging
 from pathlib import Path
-from typing import Union, Dict, List, Any, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import pandas
-from cobra import Model, Reaction, Metabolite
+from cobra import Metabolite, Model, Reaction
 from rdkit.VLib.NodeLib.SmartsRemover import biggerTest
 from tqdm import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 
 import cobramod
-from cobramod.core.crossreferences import validate_id, add2dict_unique
-from cobramod.dbwalker.BioCyc import BioCyc
-from cobramod.dbwalker.DataBase import Database
+from cobramod.core.crossreferences import add2dict_unique, validate_id
 from cobramod.dbwalker.bigg import Bigg
+from cobramod.dbwalker.BioCyc import BioCyc
 from cobramod.dbwalker.chebi import Chebi
+from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 from cobramod.dbwalker.kegg import Kegg
-
 from cobramod.dbwalker.pubchem import PubChem
 
 general_identifiers = ["inchikey", "inchi", "smiles"]
@@ -94,19 +93,30 @@ def add_crossreferences2metabolite(
 
     for database in supportedDatabases:
         logger.debug(
-            f"Getting DB ID for database {database.name} and object {metabolite.name}"
+            f"Getting DB ID for database {database.name} and object {metabolite.id}"
         )
 
         dbID = database.getDBIdentifier(general_identifiers)
 
-        if dbID is None:
+        if isinstance(dbID, Unavailable):
             continue
+
+        assert dbID != "Unavailable"
+        assert dbID is not None
+        assert not isinstance(dbID, Unavailable)
 
         add2dict_unique(
             key=database.AnnotationPrefix,
             value=dbID,
             dictionary=metabolite.annotation,
         )
+
+    if "inchi" not in metabolite.annotation and isinstance(general_identifiers.inchi, str):
+        metabolite.annotation["inchi"] = general_identifiers.inchi
+    if "inchikey" not in metabolite.annotation and isinstance(general_identifiers.inchi_key, str):
+        metabolite.annotation["inchikey"] = general_identifiers.inchi_key
+    if "smiles" not in metabolite.annotation and isinstance(general_identifiers.smiles, str):
+        metabolite.annotation["smiles"] = general_identifiers.smiles
 
     for database in supportedDatabases:
         database.save_cache()

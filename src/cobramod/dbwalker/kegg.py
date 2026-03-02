@@ -1,3 +1,4 @@
+import atexit
 import logging
 from typing import Optional, Tuple, Union, overload
 
@@ -28,6 +29,8 @@ class Kegg(Database):
         self.__settings = Settings()
         self._cache_folder = self.__settings.cacheDir / self.name
         self._cache = Cache(cache_dir=self._cache_folder)
+
+        atexit.register(self.save_cache)
 
     @property
     def name(self) -> str:
@@ -103,6 +106,11 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromInchi(inchi=inchi)
+
+        if isinstance(cid, Unavailable):
+            self._cache.addInchi(inchi=inchi, dbID=Unavailable())
+            return Unavailable()
+
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
 
         kegg_id = self.get_kegg_id_from_sid(sid=sid)
@@ -214,7 +222,3 @@ class Kegg(Database):
 
     def save_cache(self):
         self._cache.save_cache()
-
-    def __del__(self):
-        self.save_cache()
-        self.__session.close()

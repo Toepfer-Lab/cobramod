@@ -4,13 +4,11 @@ from unittest import TestCase
 import cobra.io
 from cobra import Metabolite, Model
 
-from cobramod.dbwalker.crossreferences import add_crossreferences2metabolite, add_crossreferences, id2annotation
-
-#logging.basicConfig(
-#    level=logging.DEBUG,
-#    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-#    handlers=[logging.StreamHandler()],
-#)
+from cobramod.dbwalker.crossreferences import (
+    add_crossreferences,
+    add_crossreferences2metabolite,
+    id2annotation,
+)
 
 logger = logging.getLogger("cobramod")
 logger.setLevel(logging.DEBUG)
@@ -33,15 +31,23 @@ class TestCrossReferences(TestCase):
         metabolite.annotation = {"pubchem.compound": "24578"}
         model.add_metabolites([metabolite])
 
-        metabolite = Metabolite(id="Kegg")
-        metabolite.annotation = {"kegg.compound": "C12458"}
-        model.add_metabolites([metabolite])
+        metabolite_kegg = Metabolite(id="Kegg")
+        metabolite_kegg.annotation = {"kegg.compound": "C12458"}
+        model.add_metabolites([metabolite_kegg])
 
 
         add_crossreferences(model, save_log= "./annotation_log.csv")
 
-        print(metabolite.annotation)
-        self.assertTrue(True)
+        print(metabolite_kegg.annotation)
+        metabolite_kegg_expected_annotation = {
+            "kegg.compound": "C12458",
+            "pubchem.compound": "443852",
+            "inchi": "InChI=1S/C12H14O3/c1-8(2)3-4-9-7-10(12(14)15)5-6-11(9)13/h3,5-7,13H,4H2,1-2H3,(H,14,15)",
+            "inchikey": "LBSJJNAMGVDGCU-UHFFFAOYSA-N",
+            "smiles": "CC(=CCC1=C(C=CC(=C1)C(=O)O)O)C",
+        }
+
+        self.assertDictEqual(metabolite_kegg.annotation, metabolite_kegg_expected_annotation)
 
     def test_add_crossreferences2metabolite(self):
         """Test adding cross-references to a metabolite."""

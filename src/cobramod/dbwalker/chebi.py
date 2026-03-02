@@ -7,7 +7,11 @@ import requests
 
 from cobramod import Settings
 from cobramod.dbwalker.DataBase import Database
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
+from cobramod.dbwalker.dataclasses import (
+    GenerellIdentifiers,
+    Unavailable,
+    Uncertain,
+)
 
 logger = logging.getLogger("cobramod.DBWalker.Chebi")
 logger.propagate = True
@@ -101,7 +105,10 @@ class Chebi(Database):
                 f"Found multiple ({len(result)}) entries for SMILES ({smiles}) in Chebi"
             )
 
-            return Unavailable()
+            return Uncertain(
+                type="DBID",
+                possibilities=result,
+            )
 
         else:
             logger.warning(f"Found no match for SMILES ({smiles}) in Chebi)")
@@ -126,8 +133,10 @@ class Chebi(Database):
                 f"Found multiple ({len(result)}) entries for InChI ({inchi}) in Chebi"
             )
 
-            return Unavailable()
-
+            return Uncertain(
+                type="DBID",
+                possibilities=result,
+            )
         else:
             logger.warning(f"Found no match for InChI ({inchi}) in Chebi)")
 
@@ -151,8 +160,10 @@ class Chebi(Database):
                 f"Found multiple ({len(result)}) entries for InChIKey ({inchikey}) in Chebi"
             )
 
-            return Unavailable()
-
+            return Uncertain(
+                type="DBID",
+                possibilities=result,
+            )
         else:
             logger.warning(
                 f"Found no match for InChIKey ({inchikey}) in Chebi)"

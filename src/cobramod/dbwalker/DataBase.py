@@ -7,7 +7,7 @@ import pandas as pd
 from typing_extensions import Tuple
 
 from cobramod import Settings
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
 
 class Database(ABC):
@@ -70,9 +70,9 @@ class Database(ABC):
 
         if len(possible_IDs) == 0:
             self.logger.warning(
-                "Did not find any DB IDs any of the GenerellIdentifiers."
+                "Did not find any DB IDs based on the GenerellIdentifiers."
             )
-            return None
+            return Unavailable()
 
         allEqual = all(entry == possible_IDs[0] for entry in possible_IDs)
 
@@ -83,7 +83,7 @@ class Database(ABC):
                 f"\n\t\t{'DB ID':<10}{str(inchikeyBasedID):<10}<-{'InChiKey':<10}{identifier.inchi_key}"
                 f"\n\t\t{'DB ID':<10}{str(smilesBasedID):<10}<-{'Smiles':<10}{identifier.smiles}"
             )
-            return None
+            return Unavailable()  # ToDo change to uncertain
         else:
             self.logger.debug(
                 f"All available Identifier point towards the same DB ID in {self.name}:"
@@ -91,8 +91,9 @@ class Database(ABC):
                 f"\n\t\t{'DB ID':<10}{str(inchikeyBasedID):<10}<-{'InChiKey':<10}{identifier.inchi_key}"
                 f"\n\t\t{'DB ID':<10}{str(smilesBasedID):<10}<-{'Smiles':<10}{identifier.smiles}"
             )
-
-            if not isinstance(possible_IDs[0], str):
+            if isinstance(possible_IDs[0], Unavailable):
+                return possible_IDs[0]
+            elif not isinstance(possible_IDs[0], str):
                 return str(possible_IDs[0])
 
             return possible_IDs[0]

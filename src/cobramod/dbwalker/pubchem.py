@@ -1,3 +1,4 @@
+import atexit
 import logging
 from pathlib import Path
 from typing import List, Tuple, Union
@@ -46,6 +47,8 @@ class PubChem(Database):
 
         self.logger = logging.getLogger("cobramod.DBWalker.PubChem")
         self.logger.propagate = True
+
+        atexit.register(self.save_cache)
 
     @property
     def name(self) -> str:
@@ -266,6 +269,9 @@ Message: No CIDs found for the given SID(s)"""
 
         value = response.text.rstrip()
 
+        if value == 0 or value == '0':
+            value = Unavailable()
+
         self._cache.addInchi(inchi=inchi, dbID=value)
         return value
 
@@ -303,6 +309,9 @@ Message: No CIDs found for the given SID(s)"""
         if "\n" in value:
             return Uncertain(possibilities=value.splitlines(), type="DBID")
 
+        if value == 0:
+            value = Unavailable()
+
         self._cache.addInchiKey(inchikey=inchikey, dbID=value)
         return value
 
@@ -337,7 +346,3 @@ Message: No CIDs found for the given SID(s)"""
 
     def save_cache(self):
         self._cache.save_cache()
-
-    def __del__(self):
-        self.save_cache()
-        self.session.close()

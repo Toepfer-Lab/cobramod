@@ -1,7 +1,7 @@
 import json
 import logging
 from pathlib import Path
-from typing import Union, Dict, Set
+from typing import Dict, Set, Union
 
 import pandas as pd
 from notebook.terminal import initialize
@@ -39,7 +39,7 @@ class Cache:
 
         if (
             cache_dir is not None
-            and (self._cache_folder / "cache.xml").exists()
+                and (cache_dir / "cache.xml").exists()
         ):
             self.load_cache()
 
