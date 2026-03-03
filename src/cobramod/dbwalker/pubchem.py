@@ -127,6 +127,7 @@ Message: No CIDs found for the given SID(s)"""
                 raise err
 
         cids = response.text.splitlines()
+        logging.info(f"Got CID ({cids}) for SID({sid})")
 
         return cids
 

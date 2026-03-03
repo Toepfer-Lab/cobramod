@@ -81,9 +81,26 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
-        sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
+        if isinstance(cid, Unavailable):
+            logger.info(
+                f"Did not find a hit for SMILES ({smiles}) in PubChem."
+            )
+            return cid
 
-        kegg_id = self.get_kegg_id_from_sid(sid=sid)
+        sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
+        if isinstance(sid, Unavailable):
+            logger.info(
+                f"No SIDs found for CID ({cid})"
+            )
+
+        kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
+        if isinstance(kegg_specific_sid, Unavailable):
+            logger.info(
+                f"No Kegg specific SID found in SIDs ({sid})"
+            )
+
+        kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
+        logger.info(f"Got Kegg ID ({kegg_id}) for Kegg specific SID ({sid})")
 
         self._cache.addSmiles(smiles=smiles, dbID=kegg_id)
         return kegg_id
@@ -112,8 +129,8 @@ class Kegg(Database):
             return Unavailable()
 
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
-
-        kegg_id = self.get_kegg_id_from_sid(sid=sid)
+        kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
+        kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
 
         self._cache.addInchi(inchi=inchi, dbID=kegg_id)
         return kegg_id
@@ -137,8 +154,9 @@ class Kegg(Database):
 
         cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey=inchikey)
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
+        kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
 
-        kegg_id = self.get_kegg_id_from_sid(sid=sid)
+        kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
 
         self._cache.addInchiKey(inchikey=inchikey, dbID=kegg_id)
         return kegg_id
@@ -160,18 +178,22 @@ class Kegg(Database):
 
         lines = response.text.strip().split("\n")
         if not lines:
+            logger.info(f"No KEGG compound ID found for SID({sid})")
             return Unavailable()
 
         # Parse the first matching line
         try:
             kegg_id = lines[0].split("\t")[1]
         except IndexError:
+            logger.info(f"No KEGG compound ID found for SID({sid})")
             return Unavailable()
 
         if ":" in kegg_id:
             kegg_id = kegg_id.split(":")[1]
 
         # kegg_id = f"kegg.compound:{kegg_id}"
+
+        logger.info(f"Got Kegg ID ({kegg_id}) for SID ({sid})")
 
         return kegg_id
 
@@ -209,6 +231,7 @@ class Kegg(Database):
         else:
             sid = pubchem_entry
 
+        logger.info(f"Found SID ({sid}) for KEGG ID {dbIdentifier}")
         cid = self.__pubchem.getCIDsFromSIDs(sid=sid)
 
         if isinstance(cid, Unavailable):

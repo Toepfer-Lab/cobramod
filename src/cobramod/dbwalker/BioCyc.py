@@ -211,10 +211,10 @@ class BioCyc(Database):
 
         if isinstance(cached, set):
             if len(cached) == 1:
-                return list(cached)[0]
+                return f"{BioCycSubDB}:{list(cached)[0]}"
 
             else:
-                return cached
+                return f"{BioCycSubDB}:{cached}"
 
         try:
             self.logger.info(f"Looking up BioCyc ID for SMILES: {smiles}")
