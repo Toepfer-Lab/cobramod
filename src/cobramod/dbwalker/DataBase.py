@@ -75,7 +75,11 @@ class Database(ABC):
             return Unavailable
 
         # compare identifiers but ignore Unavailable ones or Uncertain ones
-        allEqual = all(entry == possible_IDs[0] for entry in possible_IDs if isinstance(entry, str))
+        allEqual = all(
+            entry == possible_IDs[0]
+            for entry in possible_IDs
+            if isinstance(entry, str)
+        )
 
         if not allEqual:
             self.logger.error(

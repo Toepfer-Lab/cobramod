@@ -21,6 +21,7 @@ class UnavailableType(metaclass=SingletonMeta):
 
 Unavailable = UnavailableType()
 
+
 class GenerellIdentifiers:
     """
     Identifiers can either be available eg. a string, unqueried defined as None or
@@ -33,9 +34,9 @@ class GenerellIdentifiers:
 
     def __init__(
         self,
-            inchi: Union[None, str, UnavailableType] = None,
-            inchi_key: Union[None, str, UnavailableType] = None,
-            smiles: Union[None, str, UnavailableType] = None,
+        inchi: Union[None, str, UnavailableType] = None,
+        inchi_key: Union[None, str, UnavailableType] = None,
+        smiles: Union[None, str, UnavailableType] = None,
     ):
         super().__init__()
 

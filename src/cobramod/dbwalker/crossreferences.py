@@ -112,11 +112,17 @@ def add_crossreferences2metabolite(
             dictionary=metabolite.annotation,
         )
 
-    if "inchi" not in metabolite.annotation and isinstance(general_identifiers.inchi, str):
+    if "inchi" not in metabolite.annotation and isinstance(
+        general_identifiers.inchi, str
+    ):
         metabolite.annotation["inchi"] = general_identifiers.inchi
-    if "inchikey" not in metabolite.annotation and isinstance(general_identifiers.inchi_key, str):
+    if "inchikey" not in metabolite.annotation and isinstance(
+        general_identifiers.inchi_key, str
+    ):
         metabolite.annotation["inchikey"] = general_identifiers.inchi_key
-    if "smiles" not in metabolite.annotation and isinstance(general_identifiers.smiles, str):
+    if "smiles" not in metabolite.annotation and isinstance(
+        general_identifiers.smiles, str
+    ):
         metabolite.annotation["smiles"] = general_identifiers.smiles
 
     for database in supportedDatabases:

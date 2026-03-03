@@ -82,25 +82,19 @@ class Kegg(Database):
 
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
         if cid is Unavailable:
-            logger.info(
-                f"Did not find a hit for SMILES ({smiles}) in PubChem."
-            )
+            logger.info(f"Did not find a hit for SMILES ({smiles}) in PubChem.")
             self._cache.addSmiles(smiles=smiles, dbID=Unavailable)
             return Unavailable
 
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
         if sid is Unavailable:
-            logger.info(
-                f"No SIDs found for CID ({cid})"
-            )
+            logger.info(f"No SIDs found for CID ({cid})")
             self._cache.addSmiles(smiles=smiles, dbID=Unavailable)
             return Unavailable
 
         kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
         if kegg_specific_sid is Unavailable:
-            logger.info(
-                f"No Kegg specific SID found in SIDs ({sid})"
-            )
+            logger.info(f"No Kegg specific SID found in SIDs ({sid})")
             self._cache.addSmiles(smiles=smiles, dbID=Unavailable)
             return Unavailable
 
@@ -130,24 +124,19 @@ class Kegg(Database):
         cid = self.__pubchem.getDBIdentifierFromInchi(inchi=inchi)
 
         if cid is Unavailable:
-            logger.info(
-                f"No CID found for InChI ({inchi})"
-            )
+            logger.info(f"No CID found for InChI ({inchi})")
             self._cache.addInchi(inchi=inchi, dbID=Unavailable)
             return Unavailable
 
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
         if sid is Unavailable:
-            logger.info(
-                f"No SIDs found for CID ({cid})"
-            )
+            logger.info(f"No SIDs found for CID ({cid})")
             self._cache.addInchi(inchi=inchi, dbID=Unavailable)
             return Unavailable
 
         kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
         if kegg_specific_sid is Unavailable:
-            logger.info(
-                f"No Kegg specific SIDs found in SIDs ({sid})")
+            logger.info(f"No Kegg specific SIDs found in SIDs ({sid})")
             self._cache.addInchi(inchi=inchi, dbID=Unavailable)
             return Unavailable
 
@@ -176,25 +165,19 @@ class Kegg(Database):
 
         cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey=inchikey)
         if cid is Unavailable:
-            logger.info(
-                f"No CID found for InChIKey ({inchikey})"
-            )
+            logger.info(f"No CID found for InChIKey ({inchikey})")
             self._cache.addInchiKey(inchikey=inchikey, dbID=Unavailable)
             return Unavailable
 
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
         if sid is Unavailable:
-            logger.info(
-                f"No SIDs found for CID ({cid})"
-            )
+            logger.info(f"No SIDs found for CID ({cid})")
             self._cache.addInchiKey(inchikey=inchikey, dbID=Unavailable)
             return Unavailable
 
         kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
         if kegg_specific_sid is Unavailable:
-            logger.info(
-                f"No Kegg specific SID found in SIDs ({sid})"
-            )
+            logger.info(f"No Kegg specific SID found in SIDs ({sid})")
 
         kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
 

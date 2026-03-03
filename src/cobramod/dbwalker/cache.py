@@ -37,10 +37,7 @@ class Cache:
         self._added: int = 0
         self._cache_folder = cache_dir
 
-        if (
-            cache_dir is not None
-                and (cache_dir / "cache.xml").exists()
-        ):
+        if cache_dir is not None and (cache_dir / "cache.xml").exists():
             self.load_cache()
 
         self.initialized = True

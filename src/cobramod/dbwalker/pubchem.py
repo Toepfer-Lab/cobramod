@@ -117,8 +117,8 @@ Message: No CIDs found for the given SID(s)"""
             response.raise_for_status()
         except requests.exceptions.HTTPError as err:
             if (
-                    err.response.status_code == 404
-                    and err.response.text.strip() == not_found_text.strip()
+                err.response.status_code == 404
+                and err.response.text.strip() == not_found_text.strip()
             ):
                 return Unavailable
             else:
@@ -225,7 +225,7 @@ Message: No CIDs found for the given SID(s)"""
 
         value = response.text.rstrip()
         if (
-                value == "0"
+            value == "0"
         ):  # PubChem returns 0 for SMILES with a valid structure but no entry
             return Unavailable
 
@@ -269,7 +269,7 @@ Message: No CIDs found for the given SID(s)"""
 
         value = response.text.rstrip()
 
-        if value == 0 or value == '0':
+        if value == 0 or value == "0":
             value = Unavailable
 
         self._cache.addInchi(inchi=inchi, dbID=value)

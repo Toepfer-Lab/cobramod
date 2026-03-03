@@ -289,7 +289,7 @@ class BioCyc(Database):
             return Unavailable  # ToDo should we catch this?
 
     def getDBIdentifierFromInchi(
-            self, inchi: Union[str, GenerellIdentifiers], **kwargs
+        self, inchi: Union[str, GenerellIdentifiers], **kwargs
     ) -> Optional[str]:
         """
         Convert InChI to BioCyc identifiers.
@@ -357,9 +357,7 @@ class BioCyc(Database):
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
-            self._get_cache(BioCycSubDB).addInchi(
-                inchi=inchi, dbID=Unavailable
-            )
+            self._get_cache(BioCycSubDB).addInchi(inchi=inchi, dbID=Unavailable)
             return Unavailable
 
     def getDBIdentifierFromInchiKey(

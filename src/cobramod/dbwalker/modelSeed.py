@@ -7,6 +7,7 @@ from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 logger = logging.getLogger("cobramod.DBWalker.ModelSeed")
 logger.propagate = True
 
+
 class ModelSeed(Database):
     def __init__(self):
         super().__init__()
@@ -31,12 +32,17 @@ class ModelSeed(Database):
     def AnnotationPrefix(self) -> str:
         return "seed.compound"
 
-    def getDBIdentifierFromSmiles(self, smiles: Union[str, GenerellIdentifiers]) -> Optional[str]:
+    def getDBIdentifierFromSmiles(
+        self, smiles: Union[str, GenerellIdentifiers]
+    ) -> Optional[str]:
         pass
 
-    def getDBIdentifierFromInchi(self, inchi: Union[str, GenerellIdentifiers]) -> Optional[str]:
+    def getDBIdentifierFromInchi(
+        self, inchi: Union[str, GenerellIdentifiers]
+    ) -> Optional[str]:
         pass
 
-    def getDBIdentifierFromInchiKey(self, inchikey: Union[str, GenerellIdentifiers]) -> str:
+    def getDBIdentifierFromInchiKey(
+        self, inchikey: Union[str, GenerellIdentifiers]
+    ) -> str:
         pass
-

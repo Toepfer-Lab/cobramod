@@ -77,7 +77,7 @@ class Chebi(Database):
 
     def __load_structure_file(self):
         structure_file = (
-                self.settings.cacheDir / "chebi" / "chebi-structure.tsv"
+            self.settings.cacheDir / "chebi" / "chebi-structure.tsv"
         )
 
         self.structure_file = pd.read_csv(
