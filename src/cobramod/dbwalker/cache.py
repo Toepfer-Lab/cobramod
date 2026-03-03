@@ -121,7 +121,7 @@ class Cache:
         logger.debug(
             f"Adding entry (SMILES:{smiles}, DBID:{dbID}) to the cache."
         )
-        if isinstance(dbID, Unavailable):
+        if dbID is Unavailable:
             self._cache_smiles_not_found.add(smiles)
             return
 
@@ -146,7 +146,7 @@ class Cache:
 
         logger.debug(f"Adding entry (InChI:{inchi}, DBID:{dbID}) to the cache.")
 
-        if isinstance(dbID, Unavailable):
+        if dbID is Unavailable:
             self._cache_inchi_not_found.add(inchi)
             return
 
@@ -175,7 +175,7 @@ class Cache:
             f"Adding entry (InChIKey:{inchikey}, DBID:{dbID}) to the cache."
         )
 
-        if isinstance(dbID, Unavailable):
+        if dbID is Unavailable:
             self._cache_inchikey_not_found.add(inchikey)
             return
 
@@ -228,19 +228,19 @@ class Cache:
 
     def getBySmiles(self, smiles):
         if smiles in self._cache_smiles_not_found:
-            return Unavailable()
+            return Unavailable
 
         return self.smiles_dict.get(smiles, None)
 
     def getByInchi(self, inchi):
         if inchi in self._cache_inchi_not_found:
-            return Unavailable()
+            return Unavailable
 
         return self.inchi_dict.get(inchi, None)
 
     def getByInchiKey(self, inchikey):
         if inchikey in self._cache_inchi_not_found:
-            return Unavailable()
+            return Unavailable
 
         return self.inchi_key_dict.get(inchikey, None)
 

@@ -1,13 +1,14 @@
 from types import NoneType
+from typing import Dict, List, Union
 
 from pydantic import ConfigDict
 from pydantic.dataclasses import dataclass
 
-from typing import Dict, Union, List
+from cobramod.settings import SingletonMeta
 
 
 @dataclass
-class Unavailable:
+class UnavailableType(metaclass=SingletonMeta):
     """
     Defines the absence of an ID from a database
     """
@@ -17,21 +18,24 @@ class Unavailable:
 
     pass
 
+
+Unavailable = UnavailableType()
+
 class GenerellIdentifiers:
     """
     Identifiers can either be available eg. a string, unqueried defined as None or
      Unavailable if the Database did not return a results-
     """
 
-    __inchi: Union[None, str, Unavailable] = None
-    inchi_key: Union[None, str, Unavailable] = None
-    smiles: Union[None, str, Unavailable] = None
+    __inchi: Union[None, str, UnavailableType] = None
+    inchi_key: Union[None, str, UnavailableType] = None
+    smiles: Union[None, str, UnavailableType] = None
 
     def __init__(
         self,
-        inchi: Union[None, str, Unavailable] = None,
-        inchi_key: Union[None, str, Unavailable] = None,
-        smiles: Union[None, str, Unavailable] = None,
+            inchi: Union[None, str, UnavailableType] = None,
+            inchi_key: Union[None, str, UnavailableType] = None,
+            smiles: Union[None, str, UnavailableType] = None,
     ):
         super().__init__()
 
@@ -40,12 +44,12 @@ class GenerellIdentifiers:
         self.smiles = smiles
 
     @property
-    def inchi(self) -> Union[None, str, Unavailable]:
+    def inchi(self) -> Union[None, str, UnavailableType]:
         return self.__inchi
 
     @inchi.setter
-    def inchi(self, inchi: Union[None, str, Unavailable]):
-        assert isinstance(inchi, (str, Unavailable, NoneType))
+    def inchi(self, inchi: Union[None, str, UnavailableType]):
+        assert isinstance(inchi, (str, UnavailableType, NoneType))
 
         if isinstance(inchi, str):
             assert inchi.startswith("InChI=")
@@ -115,17 +119,17 @@ class GenerellIdentifiers:
         inchi_key = dict["inchi_key"]
 
         if smiles == "Unavailable":
-            smiles = Unavailable()
+            smiles = Unavailable
         elif smiles == "None":
             smiles = None
 
         if inchi_key == "Unavailable":
-            inchi_key = Unavailable()
+            inchi_key = Unavailable
         elif inchi_key == "None":
             inchi_key = None
 
         if inchi == "Unavailable":
-            inchi = Unavailable()
+            inchi = Unavailable
         elif inchi == "None":
             inchi = None
 

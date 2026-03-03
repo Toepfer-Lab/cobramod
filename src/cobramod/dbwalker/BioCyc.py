@@ -133,7 +133,7 @@ class BioCyc(Database):
             if smiles_element is not None and smiles_element.text is not None:
                 result.smiles = smiles_element.text.strip()
             else:
-                result.smiles = Unavailable()
+                result.smiles = Unavailable
 
             # Extract InChI from XML
             inchi_element = root.find(".//inchi[@datatype='string']")
@@ -142,7 +142,7 @@ class BioCyc(Database):
                 result.inchi = inchi
 
             else:
-                result.inchi = Unavailable()
+                result.inchi = Unavailable
 
             # Extract InChI Key from XML
             inchikey_element = root.find(".//inchi-key[@datatype='string']")
@@ -157,7 +157,7 @@ class BioCyc(Database):
                 else:
                     result.inchi_key = inchikey
             else:
-                result.inchi_key = Unavailable()
+                result.inchi_key = Unavailable
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
@@ -240,9 +240,9 @@ class BioCyc(Database):
                 )
 
                 self._get_cache(BioCycSubDB).addSmiles(
-                    smiles=smiles, dbID=Unavailable()
+                    smiles=smiles, dbID=Unavailable
                 )
-                return Unavailable()
+                return Unavailable
 
             if len(results) > 1:
                 self.logger.debug(
@@ -266,7 +266,7 @@ class BioCyc(Database):
                     f"Found more than one entry for SMILES ({smiles}) in BioCyc ({BioCycSubDB}). Wont add anything due to being uncertain which ones is correct. The following IDs were found for: {printable})"
                 )
                 # ToDo raise error for uncertain match
-                biocycID = Unavailable()
+                biocycID = Unavailable
             elif hits == 1:
                 self.logger.debug(
                     f"Only one of the matches was exactly equal to the query (ID:{matches[0]}). Proceeding normally."
@@ -276,17 +276,17 @@ class BioCyc(Database):
                 self.logger.debug(
                     "No matches were found. Proceeding without match."
                 )
-                biocycID = Unavailable()
+                biocycID = Unavailable
 
             self._get_cache(BioCycSubDB).addSmiles(smiles=smiles, dbID=biocycID)
-            if isinstance(biocycID, Unavailable):
-                return biocycID
+            if biocycID is Unavailable:
+                return Unavailable
 
             return f"{BioCycSubDB}:{biocycID}"
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
-            return Unavailable()  # ToDo should we catch this?
+            return Unavailable  # ToDo should we catch this?
 
     def getDBIdentifierFromInchi(
             self, inchi: Union[str, GenerellIdentifiers], **kwargs
@@ -341,26 +341,26 @@ class BioCyc(Database):
                     f"Could not find a Entry in BioCyc({BioCycSubDB}) for InChI: {inchi}"
                 )
                 self._get_cache(BioCycSubDB).addInchi(
-                    inchi=inchi, dbID=Unavailable()
+                    inchi=inchi, dbID=Unavailable
                 )
-                return Unavailable()
+                return Unavailable
 
             biocycID = data["RESULTS"][0]["OBJECT-ID"]
 
             if biocycID is None:
                 self._get_cache(BioCycSubDB).addInchi(
-                    inchi=inchi, dbID=Unavailable()
+                    inchi=inchi, dbID=Unavailable
                 )
-                return Unavailable()
+                return Unavailable
 
             return f"{BioCycSubDB}:{biocycID}"
 
         except requests.RequestException as e:
             self.logger.error(f"Error fetching data from BioCyc: {e}")
             self._get_cache(BioCycSubDB).addInchi(
-                inchi=inchi, dbID=Unavailable()
+                inchi=inchi, dbID=Unavailable
             )
-            return Unavailable()
+            return Unavailable
 
     def getDBIdentifierFromInchiKey(
         self,
@@ -422,10 +422,10 @@ class BioCyc(Database):
 
             if len(df) > 1:
                 logging.warning("Found multiple matching results")
-                return Unavailable()
+                return Unavailable
 
             elif len(df) == 0:
-                return Unavailable()
+                return Unavailable
 
             html_ref = df[["BioCyc"]].values[0][0]
             inchikey_query = df[["Query"]].values[0][0]
@@ -441,9 +441,9 @@ class BioCyc(Database):
 
             if biocycID is None:
                 self._get_cache(BioCycSubDB).addInchiKey(
-                    inchikey=inchikey, dbID=Unavailable()
+                    inchikey=inchikey, dbID=Unavailable
                 )
-                return Unavailable()
+                return Unavailable
 
             self._get_cache(BioCycSubDB).addInchiKey(
                 inchikey=inchikey, dbID=biocycID
@@ -454,9 +454,9 @@ class BioCyc(Database):
             self.logger.error(f"Error fetching data from BioCyc: {e}")
 
             self._get_cache(BioCycSubDB).addInchiKey(
-                inchikey=inchikey, dbID=Unavailable()
+                inchikey=inchikey, dbID=Unavailable
             )
-            return Unavailable()
+            return Unavailable
 
     def save_cache(self):
         for cache in self._caches.values():

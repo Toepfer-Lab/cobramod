@@ -72,7 +72,7 @@ class Database(ABC):
             self.logger.warning(
                 "Did not find any DB IDs based on the GenerellIdentifiers."
             )
-            return Unavailable()
+            return Unavailable
 
         # compare identifiers but ignore Unavailable ones or Uncertain ones
         allEqual = all(entry == possible_IDs[0] for entry in possible_IDs if isinstance(entry, str))
@@ -84,7 +84,7 @@ class Database(ABC):
                 f"\n\t\t{'DB ID':<10}{str(inchikeyBasedID):<10}<-{'InChiKey':<10}{identifier.inchi_key}"
                 f"\n\t\t{'DB ID':<10}{str(smilesBasedID):<10}<-{'Smiles':<10}{identifier.smiles}"
             )
-            return Unavailable()  # ToDo change to uncertain
+            return Unavailable  # ToDo change to uncertain
         else:
             self.logger.debug(
                 f"All available Identifier point towards the same DB ID in {self.name}:"
@@ -92,7 +92,8 @@ class Database(ABC):
                 f"\n\t\t{'DB ID':<10}{str(inchikeyBasedID):<10}<-{'InChiKey':<10}{identifier.inchi_key}"
                 f"\n\t\t{'DB ID':<10}{str(smilesBasedID):<10}<-{'Smiles':<10}{identifier.smiles}"
             )
-            if isinstance(possible_IDs[0], Unavailable):
+
+            if possible_IDs[0] is Unavailable:
                 return possible_IDs[0]
             elif not isinstance(possible_IDs[0], str):
                 return str(possible_IDs[0])

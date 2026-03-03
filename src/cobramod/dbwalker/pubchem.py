@@ -3,11 +3,8 @@ import logging
 from pathlib import Path
 from typing import List, Tuple, Union
 
-import pandas as pd
 import requests
-from exceptiongroup import catch
 from requests.adapters import HTTPAdapter, Retry
-from typing_extensions import overload
 
 from cobramod import Settings
 from cobramod.dbwalker.cache import Cache
@@ -15,6 +12,7 @@ from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import (
     GenerellIdentifiers,
     Unavailable,
+    UnavailableType,
     Uncertain,
 )
 
@@ -105,7 +103,7 @@ class PubChem(Database):
 
         return keggSIDs
 
-    def getCIDsFromSIDs(self, sid: str) -> Union[List[str], Unavailable]:
+    def getCIDsFromSIDs(self, sid: str) -> Union[List[str], UnavailableType]:
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sid/{sid}/cids/TXT"
 
         self.__settings.limiter.try_acquire("pubchem")
@@ -122,7 +120,7 @@ Message: No CIDs found for the given SID(s)"""
                     err.response.status_code == 404
                     and err.response.text.strip() == not_found_text.strip()
             ):
-                return Unavailable()
+                return Unavailable
             else:
                 raise err
 
@@ -198,8 +196,9 @@ Message: No CIDs found for the given SID(s)"""
             smiles = smiles.smiles
 
         cached = self._cache.getBySmiles(smiles=smiles)
-        if isinstance(cached, Unavailable):
-            return None
+
+        if cached is Unavailable:
+            return Unavailable
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -228,7 +227,7 @@ Message: No CIDs found for the given SID(s)"""
         if (
                 value == "0"
         ):  # PubChem returns 0 for SMILES with a valid structure but no entry
-            return Unavailable()
+            return Unavailable
 
         self._cache.addSmiles(smiles=smiles, dbID=value)
         return value
@@ -241,8 +240,8 @@ Message: No CIDs found for the given SID(s)"""
             inchi = inchi.inchi
 
         cached = self._cache.getByInchi(inchi=inchi)
-        if isinstance(cached, Unavailable):
-            return cached
+        if cached is Unavailable:
+            return Unavailable
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -271,7 +270,7 @@ Message: No CIDs found for the given SID(s)"""
         value = response.text.rstrip()
 
         if value == 0 or value == '0':
-            value = Unavailable()
+            value = Unavailable
 
         self._cache.addInchi(inchi=inchi, dbID=value)
         return value
@@ -284,8 +283,8 @@ Message: No CIDs found for the given SID(s)"""
             inchikey = inchikey.inchi_key
 
         cached = self._cache.getByInchiKey(inchikey=inchikey)
-        if isinstance(cached, Unavailable):
-            return None
+        if cached is Unavailable:
+            return Unavailable
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -311,7 +310,7 @@ Message: No CIDs found for the given SID(s)"""
             return Uncertain(possibilities=value.splitlines(), type="DBID")
 
         if value == 0:
-            value = Unavailable()
+            value = Unavailable
 
         self._cache.addInchiKey(inchikey=inchikey, dbID=value)
         return value

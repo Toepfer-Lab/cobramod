@@ -63,7 +63,8 @@ def add_crossreferences2metabolite(
             continue
 
         general_identifier = database.getGenerellIdentifier(databaseID)
-        if isinstance(general_identifier, Unavailable):
+
+        if general_identifier is Unavailable:
             logger.debug(
                 f"No GIDs available in {database.name} for ID {databaseID}"
             )
@@ -98,12 +99,12 @@ def add_crossreferences2metabolite(
 
         dbID = database.getDBIdentifier(general_identifiers)
 
-        if isinstance(dbID, Unavailable):
+        if dbID is Unavailable:
             continue
 
         assert dbID != "Unavailable"
         assert dbID is not None
-        assert not isinstance(dbID, Unavailable)
+        assert dbID is not Unavailable
 
         add2dict_unique(
             key=database.AnnotationPrefix,

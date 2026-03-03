@@ -49,8 +49,8 @@ class Kegg(Database):
             return cached
 
         cid = self.get_cid_from_kegg_id(dbIdentifier=dbIdentifier)
-        if isinstance(cid, Unavailable):
-            return Unavailable()
+        if cid is Unavailable:
+            return Unavailable
 
         # Kegg itself does not provide identifiers instead it maps them to PubChem
 
@@ -70,8 +70,8 @@ class Kegg(Database):
             smiles = smiles.smiles
 
         cached = self._cache.getBySmiles(smiles=smiles)
-        if isinstance(cached, Unavailable):
-            return cached
+        if cached is Unavailable:
+            return Unavailable
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -81,23 +81,28 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
-        if isinstance(cid, Unavailable):
+        if cid is Unavailable:
             logger.info(
                 f"Did not find a hit for SMILES ({smiles}) in PubChem."
             )
-            return cid
+            self._cache.addSmiles(smiles=smiles, dbID=Unavailable)
+            return Unavailable
 
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
-        if isinstance(sid, Unavailable):
+        if sid is Unavailable:
             logger.info(
                 f"No SIDs found for CID ({cid})"
             )
+            self._cache.addSmiles(smiles=smiles, dbID=Unavailable)
+            return Unavailable
 
         kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
-        if isinstance(kegg_specific_sid, Unavailable):
+        if kegg_specific_sid is Unavailable:
             logger.info(
                 f"No Kegg specific SID found in SIDs ({sid})"
             )
+            self._cache.addSmiles(smiles=smiles, dbID=Unavailable)
+            return Unavailable
 
         kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
         logger.info(f"Got Kegg ID ({kegg_id}) for Kegg specific SID ({sid})")
@@ -112,7 +117,7 @@ class Kegg(Database):
             inchi = inchi.inchi
 
         cached = self._cache.getByInchi(inchi=inchi)
-        if isinstance(cached, Unavailable):
+        if cached is Unavailable:
             return cached
 
         elif isinstance(cached, set):
@@ -124,13 +129,30 @@ class Kegg(Database):
 
         cid = self.__pubchem.getDBIdentifierFromInchi(inchi=inchi)
 
-        if isinstance(cid, Unavailable):
-            self._cache.addInchi(inchi=inchi, dbID=Unavailable())
-            return Unavailable()
+        if cid is Unavailable:
+            logger.info(
+                f"No CID found for InChI ({inchi})"
+            )
+            self._cache.addInchi(inchi=inchi, dbID=Unavailable)
+            return Unavailable
 
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
+        if sid is Unavailable:
+            logger.info(
+                f"No SIDs found for CID ({cid})"
+            )
+            self._cache.addInchi(inchi=inchi, dbID=Unavailable)
+            return Unavailable
+
         kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
+        if kegg_specific_sid is Unavailable:
+            logger.info(
+                f"No Kegg specific SIDs found in SIDs ({sid})")
+            self._cache.addInchi(inchi=inchi, dbID=Unavailable)
+            return Unavailable
+
         kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
+        logger.info(f"Found Kegg ID ({kegg_id}) for Kegg specific SID ({sid})")
 
         self._cache.addInchi(inchi=inchi, dbID=kegg_id)
         return kegg_id
@@ -142,8 +164,8 @@ class Kegg(Database):
             inchikey = inchikey.inchi_key
 
         cached = self._cache.getByInchiKey(inchikey=inchikey)
-        if isinstance(cached, Unavailable):
-            return cached
+        if cached is Unavailable:
+            return Unavailable
 
         elif isinstance(cached, set):
             if len(cached) == 1:
@@ -153,8 +175,26 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey=inchikey)
+        if cid is Unavailable:
+            logger.info(
+                f"No CID found for InChIKey ({inchikey})"
+            )
+            self._cache.addInchiKey(inchikey=inchikey, dbID=Unavailable)
+            return Unavailable
+
         sid = self.__pubchem.getSIDsFromCIDs(cid=cid)
+        if sid is Unavailable:
+            logger.info(
+                f"No SIDs found for CID ({cid})"
+            )
+            self._cache.addInchiKey(inchikey=inchikey, dbID=Unavailable)
+            return Unavailable
+
         kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
+        if kegg_specific_sid is Unavailable:
+            logger.info(
+                f"No Kegg specific SID found in SIDs ({sid})"
+            )
 
         kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
 
@@ -179,14 +219,14 @@ class Kegg(Database):
         lines = response.text.strip().split("\n")
         if not lines:
             logger.info(f"No KEGG compound ID found for SID({sid})")
-            return Unavailable()
+            return Unavailable
 
         # Parse the first matching line
         try:
             kegg_id = lines[0].split("\t")[1]
         except IndexError:
             logger.info(f"No KEGG compound ID found for SID({sid})")
-            return Unavailable()
+            return Unavailable
 
         if ":" in kegg_id:
             kegg_id = kegg_id.split(":")[1]
@@ -221,7 +261,7 @@ class Kegg(Database):
         lines = response.text.strip().split("\n")
         if not lines:
             logger.info(f"No entry found for KEGG ID {dbIdentifier}")
-            return Unavailable()
+            return Unavailable
 
         # Parse the first matching line
         pubchem_entry = lines[0].split("\t")[1]
@@ -234,12 +274,12 @@ class Kegg(Database):
         logger.info(f"Found SID ({sid}) for KEGG ID {dbIdentifier}")
         cid = self.__pubchem.getCIDsFromSIDs(sid=sid)
 
-        if isinstance(cid, Unavailable):
-            return cid
+        if cid is Unavailable:
+            return Unavailable
         elif len(cid) == 1:
             cid = cid[0]
         else:
-            return Unavailable()
+            return Unavailable  # ToDo Uncertain?
 
         return cid
 

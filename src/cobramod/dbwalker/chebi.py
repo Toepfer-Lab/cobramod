@@ -113,7 +113,7 @@ class Chebi(Database):
         else:
             logger.warning(f"Found no match for SMILES ({smiles}) in Chebi)")
 
-            return Unavailable()
+            return Unavailable
 
     def getDBIdentifierFromInchi(
         self, inchi: Union[str, GenerellIdentifiers]
@@ -140,11 +140,11 @@ class Chebi(Database):
         else:
             logger.warning(f"Found no match for InChI ({inchi}) in Chebi)")
 
-            return Unavailable()
+            return Unavailable
 
     def getDBIdentifierFromInchiKey(
         self, inchikey: Union[str, GenerellIdentifiers]
-    ) -> Union[str, Unavailable]:
+    ) -> Union[str, UnavailableType]:
         if isinstance(inchikey, GenerellIdentifiers):
             inchikey = inchikey.inchi_key
 
@@ -169,7 +169,7 @@ class Chebi(Database):
                 f"Found no match for InChIKey ({inchikey}) in Chebi)"
             )
 
-            return Unavailable()
+            return Unavailable
 
     def validateGenerellIdentifiers(
         self, smiles: Union[str, GenerellIdentifiers]
