@@ -6,8 +6,8 @@ sphinx:
 build:
   os: "ubuntu-22.04"
   tools:
-    python: "mambaforge-22.9"
-    nodejs: "latest"
+    python: "miniforge3-25.11"
+    nodejs: "24"
   jobs:
       pre_create_environment:
         - npm install --global yarn
