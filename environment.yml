@@ -17,8 +17,7 @@ dependencies:
 - pyarrow
 - docutils
 - pandoc
-- pyrate_limiter
-- platformdirs
+- pyrate-limiter
 - conda-forge::webcolors
 - conda-forge::openpyxl
 - conda-forge::tox
@@ -32,3 +31,4 @@ dependencies:
 - conda-forge::jupyter-sphinx
 - pip:
   - sphinx-autoapi
+  - platformdirs

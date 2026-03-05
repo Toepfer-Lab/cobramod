@@ -29,7 +29,7 @@ dependencies = [
     "anywidget>=0.9.9",
     "numpy>=1.15.0",
     "platformdirs>=4.5.1",
-    "pyrate_limiter>=3.9.0"
+    "pyrate-limiter>=3.9.0"
 ]
 
 [project.optional-dependencies]
