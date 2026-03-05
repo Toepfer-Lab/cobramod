@@ -17,6 +17,8 @@ dependencies:
 - pyarrow
 - docutils
 - pandoc
+- pyrate_limiter
+- platformdirs
 - conda-forge::webcolors
 - conda-forge::openpyxl
 - conda-forge::tox
