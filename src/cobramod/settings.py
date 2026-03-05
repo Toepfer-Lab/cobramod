@@ -7,7 +7,7 @@ from typing import Optional
 
 import platformdirs
 import requests
-from pyrate_limiter import Limiter, Rate, Duration
+from pyrate_limiter import Duration, Limiter, Rate
 from requests.adapters import HTTPAdapter, Retry
 
 import cobramod.utils as cmod_utils
@@ -48,7 +48,7 @@ class Settings(metaclass=SingletonMeta):
         )
 
         self.limiter = Limiter(
-            Rate(1, Duration.SECOND), raise_when_fail=False, max_delay=3600
+            Rate(1, Duration.SECOND),
         )
 
     __biocyc_password: Optional[str] = None
