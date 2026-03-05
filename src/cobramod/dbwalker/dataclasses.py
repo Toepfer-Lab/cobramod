@@ -57,6 +57,21 @@ class GenerellIdentifiers:
 
         self.__inchi = inchi
 
+    def __eq__(self, other):
+        if not isinstance(other, GenerellIdentifiers):
+            return False
+
+        if self.inchi_key != other.inchi_key:
+            return False
+
+        if self.smiles != other.smiles:
+            return False
+
+        if self.inchi != other.inchi:
+            return False
+
+        return True
+
     def weakEq(self, other):
         if self.inchi_key is None or other.inchi_key is None:
             pass

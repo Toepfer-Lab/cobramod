@@ -3,9 +3,12 @@ import tempfile
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
-from cobramod.dbwalker.dataclasses import Uncertain, Unavailable
+from cobramod.dbwalker.dataclasses import (
+    GenerellIdentifiers,
+    Unavailable,
+    Uncertain,
+)
 from cobramod.dbwalker.pubchem import PubChem
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers
 
 
 class TestGetPubChem(TestCase):
@@ -185,7 +188,7 @@ class TestGetPubChem(TestCase):
             pubchemID = self.pubchem.getDBIdentifierFromSmiles(
                 "C1[C@H]([C@@H]([C@@H]([C@H](C(O1)OO)O)O)O)O"
             )
-            self.assertEqual(Unavailable(), pubchemID)
+            self.assertEqual(Unavailable, pubchemID)
 
         # with GenerellIdentifiers object
         mock_session.reset_mock()
@@ -207,7 +210,7 @@ class TestGetPubChem(TestCase):
         pubchemID = self.pubchem.getDBIdentifierFromSmiles(
             "C1[C@H]([C@@H]([C@@H]([C@H](C(O1)OO)O)O)O)O"
         )
-        self.assertEqual(Unavailable(), pubchemID)
+        self.assertEqual(Unavailable, pubchemID)
 
     def test_getDBIdentifierFromInchi(self):
         mock_session = MagicMock()
@@ -315,6 +318,10 @@ class TestGetPubChem(TestCase):
         self.assertEqual("1426", pubchemID)
 
     def test_KEGGprovidedSIDs(self):
+        # recreate pubchem object to ensure it does not reuse cache files
+        test_dir = tempfile.mkdtemp()
+        pubchem = PubChem(cachedir=self.test_dir)
+
         mock_session = MagicMock()
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -323,14 +330,9 @@ class TestGetPubChem(TestCase):
         mock_response.text = "\n".join(str(i) for i in range(3303, 3365))
         mock_session.get.return_value = mock_response
 
-        # cache file resides in a temp folder see setUp()
-        cache_file = self.pubchem._PubChem__cache_dir / "KEGGprovidedSIDs.txt"
-        if cache_file.exists():
-            os.remove(cache_file)
-
-        with patch.object(self.pubchem, "session", mock_session):
-            self.pubchem._PubChem__keggSIDs = None
-            keggSIDs = self.pubchem.KEGGprovidedSIDs
+        with patch.object(pubchem, "session", mock_session):
+            pubchem._PubChem__keggSIDs = None
+            keggSIDs = pubchem.KEGGprovidedSIDs
 
             mock_session.get.assert_called_with(
                 url="https://pubchem.ncbi.nlm.nih.gov/rest/pug/substance/sourceall/KEGG/sids/TXT",

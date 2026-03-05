@@ -2,7 +2,8 @@ import tempfile
 from pathlib import Path
 from typing import List
 from unittest import TestCase
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 import pandas as pd
 from rdkit import Chem
 
@@ -30,8 +31,7 @@ class TestCache(TestCase):
         self.assertEqual(len(cache._cache_inchi_not_found), 0)
         self.assertEqual(len(cache._cache_inchikey_not_found), 0)
 
-
-        cache.addSmiles("[H]O[H]", Unavailable())
+        cache.addSmiles("[H]O[H]", Unavailable)
 
         hit = cache.getBySmiles("[H]O[H]")
         self.assertIsInstance(hit, Unavailable)
@@ -80,7 +80,7 @@ class TestCache(TestCase):
 
         cache.addInchiKey("XLYOFNOQVPJJNP-UHFFFAOYSA-N", "CHEBI:15377")
         cache.addInchiKey(
-            "InChI=1S/H2O/h1H2", Unavailable() )
+            "InChI=1S/H2O/h1H2", Unavailable)
 
         #with tempfile.TemporaryDirectory() as tmpdirname:
         cache._cache_folder = Path("./") #= tmpdirname

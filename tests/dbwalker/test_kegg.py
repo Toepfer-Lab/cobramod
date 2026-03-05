@@ -5,6 +5,17 @@ import requests
 
 from cobramod.dbwalker.kegg import Kegg
 
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler()],
+)
+
+logger = logging.getLogger("cobramod")
+logger.propagate = True
+logger.setLevel(logging.DEBUG)
 
 class TestGetKeggIdFromCid(TestCase):
     def setUp(self):

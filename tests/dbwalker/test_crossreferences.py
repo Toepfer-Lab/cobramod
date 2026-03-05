@@ -19,9 +19,9 @@ class TestCrossReferences(TestCase):
     def test_example_model_with5Metabolite(self):
         model = Model()
 
-        metabolite = Metabolite(id = "BioCyc")
-        metabolite.annotation = {"biocyc": "ECOLI:CPD-12457"}
-        model.add_metabolites([metabolite])
+        metabolite_biocyc = Metabolite(id="BioCyc")
+        metabolite_biocyc.annotation = {"biocyc": "ECOLI:CPD-12457"}
+        model.add_metabolites([metabolite_biocyc])
 
         metabolite = Metabolite(id = "CHEBI")
         metabolite.annotation = {"CHEBI": "16454"}
@@ -38,7 +38,16 @@ class TestCrossReferences(TestCase):
 
         add_crossreferences(model, save_log= "./annotation_log.csv")
 
-        print(metabolite_kegg.annotation)
+        metabolite_biocyc_expected_annotation = {
+            "biocyc": ['ECOLI:CPD-12457', 'META:CPD-12457'],
+            "pubchem.compound": "9548793",
+            "kegg.compound": "C05463",
+            "inchi": "InChI=1S/C26H45NO6S/c1-16(4-9-24(30)27-12-13-34(31,32)33)20-7-8-21-19-6-5-17-14-18(28)10-11-25(17,2)22(19)15-23(29)26(20,21)3/h16-23,28-29H,4-15H2,1-3H3,(H,27,30)(H,31,32,33)/p-1/t16-,17-,18-,19+,20-,21+,22+,23+,25+,26-/m1/s1",
+            "inchikey": "AWDRATDZQPNJFN-VAYUFCLWSA-M",
+            "smiles": "C[C@@H]([C@H]3(CC[C@H]4([C@@H]2(CC[C@@H]1(C[C@H](O)CC[C@@](C)1[C@H]2C[C@H](O)[C@](C)34)))))CCC(=O)NCCS([O-])(=O)=O",
+        }
+        self.assertDictEqual(metabolite_biocyc.annotation, metabolite_biocyc_expected_annotation)
+
         metabolite_kegg_expected_annotation = {
             "kegg.compound": "C12458",
             "pubchem.compound": "443852",
@@ -46,7 +55,6 @@ class TestCrossReferences(TestCase):
             "inchikey": "LBSJJNAMGVDGCU-UHFFFAOYSA-N",
             "smiles": "CC(=CCC1=C(C=CC(=C1)C(=O)O)O)C",
         }
-
         self.assertDictEqual(metabolite_kegg.annotation, metabolite_kegg_expected_annotation)
 
     def test_add_crossreferences2metabolite(self):

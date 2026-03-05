@@ -54,12 +54,12 @@ class TestGetCompoundInfoByBiocycId(TestCase):
     def test_get_BioCycIDviaSmiles(self):
         # simple smiles but not unique
         biocycID = self.biocyc.getDBIdentifierFromSmiles("O")
-        self.assertIsInstance(biocycID, Unavailable)
+        self.assertEqual(biocycID, Unavailable)
 
         # identifier not present
         smiles = "CC(=O)OCOC(=O)C"
         biocycID = self.biocyc.getDBIdentifierFromSmiles(smiles)
-        self.assertIsInstance(biocycID, Unavailable)
+        self.assertEqual(biocycID, Unavailable)
 
         # complicated id
         smiles = "C(O)[C@H]2(O[C@@H](O)[C@H](O[C@@H]1([C@H](O)[C@H]([C@H](O)[C@@H](CO)O1)O))[C@@H](O)[C@H](O)2)"
@@ -108,7 +108,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             biocycID = self.biocyc.getDBIdentifierFromInchi(
                 "InChI=1S/C3H9O6P/c4-1-3(5)2-9-10(6,7)8/h3-5H,1-2H2,(H2,6,7,8) "
             )
-            self.assertEqual(Unavailable(), biocycID)
+            self.assertEqual(Unavailable, biocycID)
 
         # Live test
         self.biocyc.clear_caches()
@@ -161,7 +161,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             biocycID = self.biocyc.getDBIdentifierFromInchiKey(
                 "GUBGYTA-KSR-RQ-ASMJ-ISFSA-N"
             )
-            self.assertEqual(Unavailable(), biocycID)
+            self.assertEqual(Unavailable, biocycID)
 
         # Returns multiple results
         self.biocyc.clear_caches()
@@ -176,7 +176,7 @@ class TestGetCompoundInfoByBiocycId(TestCase):
             biocycID = self.biocyc.getDBIdentifierFromInchiKey(
                 "GUBGYTABKSRVRQ-ASMJPISFSA-N"
             )
-            self.assertEqual(Unavailable(), biocycID)
+            self.assertEqual(Unavailable, biocycID)
 
         # Live test
         self.biocyc.clear_caches()
