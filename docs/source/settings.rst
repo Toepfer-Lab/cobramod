@@ -2,6 +2,7 @@ Settings
 *************************
 
 Cobramod's settings object is the central point for controlling its behaviour, setting local save paths, and managing login information.
+
 --------------------
 BioCyc-Login
 --------------------
@@ -30,6 +31,7 @@ This file can then be used via a settings object, as shown in the following:
 
 .. note::
 Cobramod also automatically checks the local folder for a file called 'credentials.txt' and, if found, loads the login information from it.
+
 Environment Variables
 ---------------------
 
@@ -52,4 +54,18 @@ Last but not least, the login information can also be directly passed to the set
 
    settings.biocyc_name = "someone"
    settings.biocyc_password = "APassword"
+
+--------------------
+SMILES as identifier
+--------------------
+Since SMILES are not recognized by 'identifiers.org' as allowed cross-references, we do not add them to CobraPy objects (Metabolites) by default. We do allow them to be introduced as identifiers, but this behaviour must be explicitly enabled by setting the 'add_smiles_as_cross_reference' boolean in the settings object to True.
+
+.. code-block:: python
+
+   from cobramod import Settings
+
+   settings = Settings()
+
+   settings.add_smiles_as_cross_reference = True
+
 

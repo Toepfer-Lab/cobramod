@@ -10,6 +10,7 @@ from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import (
     GenerellIdentifiers,
     Unavailable,
+    UnavailableType,
     Uncertain,
 )
 

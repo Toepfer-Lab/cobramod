@@ -14,14 +14,13 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('../../src/'))
 
-from ipywidgets.embed import DEFAULT_EMBED_REQUIREJS_URL
-
 import pybtex.plugin
+from ipywidgets.embed import DEFAULT_EMBED_REQUIREJS_URL
 from pybtex.style.formatting.unsrt import Style as UnsrtStyle
 from pybtex.style.template import (
-    node,
     FieldIsMissing,
     join,
+    node,
     sentence,
 )  # ... and anything else needed
 
@@ -47,6 +46,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinxcontrib.bibtex",
     "jupyter_sphinx",
+    "sphinx_panels"
 ]
 
 bibtex_bibfiles = ["biblio.bib"]

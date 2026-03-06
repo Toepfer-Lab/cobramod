@@ -32,3 +32,4 @@ dependencies:
 - pip:
   - sphinx-autoapi
   - platformdirs
+  - sphinx_panels

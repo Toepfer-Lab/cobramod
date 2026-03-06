@@ -71,7 +71,7 @@ methods of the COBRApy :py:class:`~cobra.core.group.Group` and additionally incl
 the method :py:meth:`~cobramod.Pathway.visualize` for visualizing flux maps.
 
 For more information see the docstrings of the respective functions using
-`help()` or read the :doc:`documentation <module/cobramod/index>`.
+`help()` or read the documentation.
 
 To see all metabolic pathway databases that are currently supported by
 CobraMod, load and print :obj:`cobramod.retrieval.available_databases`.
@@ -83,11 +83,13 @@ CobraMod, load and print :obj:`cobramod.retrieval.available_databases`.
 .. toctree::
    :maxdepth: 2
    :numbered:
+   :hidden:
    :caption: Table of content
 
    guides
-   visualization.rst
-   databases.rst
    installation.rst
    settings.rst
+   dbwalker.rst
+   visualization.rst
+   databases.rst
    test_cases.ipynb

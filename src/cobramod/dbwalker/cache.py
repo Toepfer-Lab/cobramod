@@ -134,6 +134,7 @@ class Cache:
             entry = self.id_dict[dbID]
             if entry.smiles != smiles and entry.smiles is not None:
                 raise MissmatchError
+            entry.smiles = smiles
 
     def addInchi(self, inchi, dbID):
         if not isinstance(inchi, str):
@@ -161,6 +162,8 @@ class Cache:
                 raise MissmatchError(
                     f"Found {entry.inchi}, while trying to add {inchi}, for DB-ID {dbID}"
                 )
+            
+            entry.inchi = inchi
 
     def addInchiKey(self, inchikey, dbID):
         if not isinstance(inchikey, str):
@@ -188,6 +191,7 @@ class Cache:
             entry = self.id_dict[dbID]
             if entry.inchi_key != inchikey and entry.inchi_key is not None:
                 raise MissmatchError
+            entry.inchi_key = inchikey
 
     def addGenerellIdentifiers(self, gID: GenerellIdentifiers, dbID):
         self.__added()
@@ -236,7 +240,7 @@ class Cache:
         return self.inchi_dict.get(inchi, None)
 
     def getByInchiKey(self, inchikey):
-        if inchikey in self._cache_inchi_not_found:
+        if inchikey in self._cache_inchikey_not_found:
             return Unavailable
 
         return self.inchi_key_dict.get(inchikey, None)
