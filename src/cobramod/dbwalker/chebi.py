@@ -50,7 +50,7 @@ class Chebi(Database):
         # structure file
         url = self.chebi_ftp + "/flat_files/structures.tsv.gz"
         cached_file = Path(
-            self.settings.cacheDir / "chebi" / "chebi-structure.tsv"
+            self.settings.cacheDir / "chebi" / "chebi-structure.tsv.gz"
         )
         cached_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -78,7 +78,7 @@ class Chebi(Database):
 
     def __load_structure_file(self):
         structure_file = (
-            self.settings.cacheDir / "chebi" / "chebi-structure.tsv"
+                self.settings.cacheDir / "chebi" / "chebi-structure.tsv.gz"
         )
 
         self.structure_file = pd.read_csv(
@@ -86,7 +86,26 @@ class Chebi(Database):
         )
 
     def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
-        raise NotImplementedError
+
+        row = self.structure_file.loc[self.structure_file["compound_id"] == dbIdentifier]
+
+        if len(row) == 0:
+            return Unavailable
+
+        if len(row) > 1:
+            raise ValueError("The CHEBI flat file contains one ID two times. Please check that the flat file is valid and create an issue at our GitHub repository: https://github.com/Toepfer-Lab/cobramod")
+
+        smiles = row["smiles"].iloc[0]
+        inchi = row["standard_inchi"].iloc[0]
+        inchikey = row["standard_inchi_key"].iloc[0]
+
+        gID = GenerellIdentifiers(
+            smiles=smiles if pd.notna(smiles) else Unavailable,
+            inchi=inchi if pd.notna(inchi) else Unavailable,
+            inchi_key=inchikey if pd.notna(inchikey) else Unavailable,
+        )
+
+        return gID
 
     def getDBIdentifierFromSmiles(
         self, smiles: Union[str, GenerellIdentifiers]
