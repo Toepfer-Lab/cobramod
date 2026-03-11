@@ -158,7 +158,7 @@ class Chebi(Database):
 
             return Uncertain(
                 type="DBID",
-                possibilities=result,
+                possibilities=result.astype(str).tolist(),
             )
         else:
             logger.warning(f"Found no match for InChI ({inchi}) in Chebi)")

@@ -136,10 +136,29 @@ class TestChebi(TestCase):
         self.assertEqual("196474", result)
 
     def test_getDBIdentifierFromInchi(self):
+        # 1. Single match — returns compound_id as string
         chebi_id = self.chebi.getDBIdentifierFromInchi(
             "InChI=1S/C15H12O4/c1-11(16)18-14-10-6-5-9-13(14)15(17)19-12-7-3-2-4-8-12/h2-10H,1H3"
         )
         self.assertEqual("135050", chebi_id)
+
+        # 2. No match — returns Unavailable
+        result = self.chebi.getDBIdentifierFromInchi("InChI=1S/NONEXISTENT")
+        self.assertEqual(result, Unavailable)
+
+        # 3. Multiple matches — returns Uncertain
+        result = self.chebi.getDBIdentifierFromInchi("InChI=1S/C8H15N3O4/c1-4(9)7(13)11-5(8(14)15)2-3-6(10)12/h4-5H,2-3,9H2,1H3,(H2,10,12)(H,11,13)(H,14,15)/t4-,5-/m0/s1")
+        self.assertIsInstance(result, Uncertain)
+        self.assertCountEqual(result.possibilities, ["74387", "73788"])
+
+        # 4. GenerellIdentifiers input — extracts .inchi field
+        gid = GenerellIdentifiers(
+            smiles=Unavailable,
+            inchi="InChI=1S/C15H12O4/c1-11(16)18-14-10-6-5-9-13(14)15(17)19-12-7-3-2-4-8-12/h2-10H,1H3",
+            inchi_key=Unavailable,
+        )
+        result = self.chebi.getDBIdentifierFromInchi(gid)
+        self.assertEqual("135050", result)
 
     def test_getDBIdentifierFromInchiKey(self):
         chebi_id = self.chebi.getDBIdentifierFromInchiKey(
