@@ -61,7 +61,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip setuptools wheel build pkginfo
+          python -m pip install --upgrade pip setuptools wheel build pkginfo packaging
           yarn install
 
       - name: Build JS
@@ -145,7 +145,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip setuptools wheel twine build pkginfo
+        python -m pip install --upgrade pip setuptools wheel twine build pkginfo packaging
 
     - name: Check the package
       run: twine check dist/*
