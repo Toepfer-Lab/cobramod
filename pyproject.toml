@@ -17,7 +17,8 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 keywords = [ "genome-scale metabolic model", "constraint-based modelling", "COBRApy", "Escher", "metabolic model curation" ]
-license= { file = "LICENSE" }
+license-files = ["LICENSE", "src/cobramod/static/LICENSES.txt"]
+
 dependencies = [
     "colorlog",
     "cobra>=0.29.0",
