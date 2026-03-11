@@ -4,6 +4,9 @@ import anywidget from "@anywidget/vite";
 import license from 'rollup-plugin-license';
 
 export default defineConfig({
+	resolve: {
+		dedupe: ['three'],
+	},
 	build: {
 		outDir: "./src/cobramod/static",
 		lib: {
