@@ -38,7 +38,7 @@ from cobramod.core.creation import (
     create_object,
 )
 from cobramod.core.crossreferences import add_crossreferences
-from cobramod.core.extension import test_non_zero_flux, add_pathway
+from cobramod.core.extension import add_pathway, test_non_zero_flux
 from cobramod.core.pathway import Pathway, model_convert
 from cobramod.retrieval import get_data
 
@@ -54,4 +54,4 @@ __all__ = [
     "add_crossreferences",
 ]
 
-__version__ = "1.3.0"
+__version__ = "1.3.1"
