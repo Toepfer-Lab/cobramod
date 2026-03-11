@@ -161,10 +161,29 @@ class TestChebi(TestCase):
         self.assertEqual("135050", result)
 
     def test_getDBIdentifierFromInchiKey(self):
+        # 1. Single match — returns compound_id as string
         chebi_id = self.chebi.getDBIdentifierFromInchiKey(
             "ZKHQWZAMYRWXGA-KQYNXXCUSA-N"
         )
         self.assertEqual("15422", chebi_id)
+
+        # 2. No match — returns Unavailable
+        result = self.chebi.getDBIdentifierFromInchiKey("XXXXXXXXXX-NONEXISTENT-X")
+        self.assertEqual(result, Unavailable)
+
+        # 3. Multiple matches — returns Uncertain
+        result = self.chebi.getDBIdentifierFromInchiKey("HJCMDXDYPOUFDY-WHFBIAKZSA-N")
+        self.assertIsInstance(result, Uncertain)
+        self.assertCountEqual(result.possibilities, ["74387", "73788"])
+
+        # 4. GenerellIdentifiers input — extracts .inchi_key field
+        gid = GenerellIdentifiers(
+            smiles=Unavailable,
+            inchi=Unavailable,
+            inchi_key="ZKHQWZAMYRWXGA-KQYNXXCUSA-N",
+        )
+        result = self.chebi.getDBIdentifierFromInchiKey(gid)
+        self.assertEqual("15422", result)
 
     def test_CheckIfCurrentCHEBIFlatFileHasDuplicateCompoundIDs(self):
         duplicates = self.chebi.structure_file[
