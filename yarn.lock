@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"3d-force-graph@^1.73.3":
+"3d-force-graph@^1.79.1":
   version "1.79.1"
   resolved "https://registry.yarnpkg.com/3d-force-graph/-/3d-force-graph-1.79.1.tgz#f5eabaf6d7077037f6cba69fc9cb94d51624628f"
   integrity sha512-iscIVt4jWjJ11KEEswgOIOWk8Ew4EFKHRyERJXJ0ouycqzHCtWwb9E5imnxS5rYF1f1IESkFNAfB+h3EkU0Irw==
