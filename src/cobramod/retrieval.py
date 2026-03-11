@@ -329,7 +329,7 @@ class Data:
 
         """
         identifier = replacement.get(self.identifier, self.identifier)
-        identifier = f"{identifier.replace('-','_')}_{compartment}"
+        identifier = f"{identifier.replace('-', '_')}_{compartment}"
 
         if self.mode == "Metabolite":
             try:
