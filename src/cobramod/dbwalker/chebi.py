@@ -114,7 +114,7 @@ class Chebi(Database):
         self, smiles: Union[str, GenerellIdentifiers]
     ) -> Optional[str]:
         if isinstance(smiles, GenerellIdentifiers):
-            inchi = smiles.smiles
+            smiles = smiles.smiles
 
         result = self.structure_file.loc[
             self.structure_file["smiles"] == smiles, "compound_id"
@@ -130,7 +130,7 @@ class Chebi(Database):
 
             return Uncertain(
                 type="DBID",
-                possibilities=result,
+                possibilities=result.astype(str).tolist(),
             )
 
         else:

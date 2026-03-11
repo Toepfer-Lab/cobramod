@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 
 from cobramod.dbwalker.chebi import Chebi
-from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable, Uncertain
 
 
 class TestChebi(TestCase):
@@ -111,12 +111,29 @@ class TestChebi(TestCase):
             self.chebi.getGenerellIdentifier("11111")
         self.chebi.structure_file = original_df
 
-
     def test_getDBIdentifierFromSmiles(self):
+        # 1. Single match — returns compound_id as string
         chebi_id = self.chebi.getDBIdentifierFromSmiles(
-            "CC(=O)N[C@@H]1[C@@H](O)[C@H](O[C@@H]2O[C@H](CO)[C@@H](O[C@@H]3O[C@H](CO[C@H]4O[C@H](CO)[C@@H](O)[C@H](O[C@H]5O[C@H](CO)[C@@H](O)[C@H](O)[C@@H]5O)[C@@H]4O)[C@@H](O)[C@H](O[C@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@@H]4O[C@@H]4O[C@H](CO)[C@@H](O[C@@H]5O[C@H](CO)[C@H](O)[C@H](O[C@]6(C(=O)O)C[C@H](O)[C@@H](NC(C)=O)[C@H]([C@H](O)[C@H](O)CO)O6)[C@H]5O)[C@H](O)[C@H]4NC(C)=O)[C@@H]3O)[C@H](O)[C@H]2NC(C)=O)[C@@H](CO[C@@H]2O[C@@H](C)[C@@H](O)[C@@H](O)[C@@H]2O)O[C@H]1O"
+            "CC[C@H](C)[C@H](NC(=O)N[C@@H]1CCCCNC(=O)[C@H](COC(C)=O)NC(=O)[C@H](CCc2ccc(O)cc2)N(C)C(=O)[C@H](CCc2ccccc2)NC(=O)[C@H](CCS(C)=O)NC1=O)C(=O)O"  # existing long SMILES
         )
-        self.assertEqual("156845", chebi_id)
+        self.assertEqual("204065", chebi_id)
+
+        # 2. No match — returns Unavailable
+        result = self.chebi.getDBIdentifierFromSmiles("XXXXXXXXXXX_NONEXISTENT")
+        self.assertEqual(result, Unavailable)
+
+        # 3. Multiple matches — returns Uncertain
+        result = self.chebi.getDBIdentifierFromSmiles("*C(=O)O[C@H](CO)COP(=O)([O-])[O-]")
+        self.assertIsInstance(result, Uncertain)
+
+        # 4. GenerellIdentifiers input
+        gid = GenerellIdentifiers(
+            smiles="CCC1CCCC2(CC[C@@H](C)O2)O1",  # same SMILES as test 1
+            inchi=Unavailable,
+            inchi_key=Unavailable,
+        )
+        result = self.chebi.getDBIdentifierFromSmiles(gid)
+        self.assertEqual("196474", result)
 
     def test_getDBIdentifierFromInchi(self):
         chebi_id = self.chebi.getDBIdentifierFromInchi(
