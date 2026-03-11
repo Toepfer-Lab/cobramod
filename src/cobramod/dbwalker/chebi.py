@@ -87,6 +87,9 @@ class Chebi(Database):
 
     def getGenerellIdentifier(self, dbIdentifier: str) -> GenerellIdentifiers:
 
+        if isinstance(dbIdentifier, str):
+            dbIdentifier = int(dbIdentifier)
+
         row = self.structure_file.loc[self.structure_file["compound_id"] == dbIdentifier]
 
         if len(row) == 0:

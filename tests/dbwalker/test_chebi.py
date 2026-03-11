@@ -7,6 +7,7 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 
 from cobramod.dbwalker.chebi import Chebi
+from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 
 
 class TestChebi(TestCase):
@@ -66,6 +67,50 @@ class TestChebi(TestCase):
 
     def test_AnnotationPrefix(self):
         self.assertEqual("CHEBI", self.chebi.AnnotationPrefix)
+
+    def test_getGenerellIdentifier(self):
+        # 1. Valid ID — returns GenerellIdentifiers with all fields
+        result = self.chebi.getGenerellIdentifier("15422")  # known compound
+        self.assertIsInstance(result, GenerellIdentifiers)
+        self.assertEqual(result.smiles, "Nc1ncnc2c1ncn2[C@@H]1O[C@H](COP(=O)(O)OP(=O)(O)OP(=O)(O)O)[C@@H](O)[C@H]1O")
+        self.assertEqual(result.inchi, "InChI=1S/C10H16N5O13P3/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(17)6(16)4(26-10)1-25-30(21,22)28-31(23,24)27-29(18,19)20/h2-4,6-7,10,16-17H,1H2,(H,21,22)(H,23,24)(H2,11,12,13)(H2,18,19,20)/t4-,6-,7-,10-/m1/s1")
+        self.assertEqual(result.inchi_key, "ZKHQWZAMYRWXGA-KQYNXXCUSA-N")
+
+        # should return identical entry to the string variant
+        result_2 = self.chebi.getGenerellIdentifier(15422)
+        self.assertEqual(result, result_2)
+
+        # 2. Non-existent ID — returns Unavailable
+        result = self.chebi.getGenerellIdentifier("-999")
+        self.assertEqual(result, Unavailable)
+
+        # 3. NaN fields → individual fields become Unavailable
+        result = self.chebi.getGenerellIdentifier("37906")
+        self.assertIsInstance(result, GenerellIdentifiers)
+        self.assertEqual(result.smiles, "*C(=O)C(N)Cc1cncn1")
+        self.assertEqual(result.inchi, Unavailable)
+        self.assertEqual(result.inchi_key, Unavailable)
+
+        result = self.chebi.getGenerellIdentifier("46622")
+        self.assertIsInstance(result, GenerellIdentifiers)
+        self.assertEqual(result.smiles, Unavailable)
+        self.assertEqual(result.inchi, Unavailable)
+        self.assertEqual(result.inchi_key, Unavailable)
+
+
+        # 4. Duplicate compound_id → raises ValueError
+        original_df = self.chebi.structure_file
+        dup_df = pd.DataFrame({
+            "compound_id": [11111, 11111],
+            "smiles": ["C", "CC"],
+            "standard_inchi": ["x", "y"],
+            "standard_inchi_key": ["a", "b"],
+        })
+        self.chebi.structure_file = dup_df
+        with self.assertRaises(ValueError):
+            self.chebi.getGenerellIdentifier("11111")
+        self.chebi.structure_file = original_df
+
 
     def test_getDBIdentifierFromSmiles(self):
         chebi_id = self.chebi.getDBIdentifierFromSmiles(
