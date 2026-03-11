@@ -1,16 +1,15 @@
 import atexit
 import logging
-from typing import Optional, Tuple, Union, overload
+from typing import Union
 
-import pandas as pd
 import requests
 from requests.adapters import HTTPAdapter, Retry
 
-from cobramod import Settings
 from cobramod.dbwalker.cache import Cache
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 from cobramod.dbwalker.pubchem import PubChem
+from cobramod.settings import Settings
 
 logger = logging.getLogger("cobramod.DBWalker.Kegg")
 logger.propagate = True
@@ -69,6 +68,8 @@ class Kegg(Database):
         if isinstance(smiles, GenerellIdentifiers):
             smiles = smiles.smiles
 
+        logger.info(f"Getting Kegg ID for SMILES string: {smiles}")
+
         cached = self._cache.getBySmiles(smiles=smiles)
         if cached is Unavailable:
             return Unavailable
@@ -80,6 +81,7 @@ class Kegg(Database):
             else:
                 return cached
 
+        logger.info("Did not find entry for SMILES in cache. Trying to get ID via the Kegg API.")
         cid = self.__pubchem.getDBIdentifierFromSmiles(smiles=smiles)
         if cid is Unavailable:
             logger.info(f"Did not find a hit for SMILES ({smiles}) in PubChem.")
@@ -164,6 +166,8 @@ class Kegg(Database):
                 return cached
 
         cid = self.__pubchem.getDBIdentifierFromInchiKey(inchikey=inchikey)
+        logger.debug(f"Found the following CIDs for the InChIKey ({inchikey}): {cid}")
+
         if cid is Unavailable:
             logger.info(f"No CID found for InChIKey ({inchikey})")
             self._cache.addInchiKey(inchikey=inchikey, dbID=Unavailable)
@@ -175,11 +179,17 @@ class Kegg(Database):
             self._cache.addInchiKey(inchikey=inchikey, dbID=Unavailable)
             return Unavailable
 
+        logger.debug(f"Found the following SIDs for the CIDs ({cid}): {sid}")
+
         kegg_specific_sid = self.__pubchem.getKeggSpecificSIDs(sid)
         if kegg_specific_sid is Unavailable:
             logger.info(f"No Kegg specific SID found in SIDs ({sid})")
 
+        logger.debug(f"Found the following Kegg specific SIDs within all SIDs ({sid}): {kegg_specific_sid}")
+
         kegg_id = self.get_kegg_id_from_sid(sid=kegg_specific_sid)
+
+        logger.debug(f"Got the following Kegg ID for Kegg specific SIDs ({kegg_specific_sid}): {kegg_id}")
 
         self._cache.addInchiKey(inchikey=inchikey, dbID=kegg_id)
         return kegg_id

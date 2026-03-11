@@ -6,7 +6,6 @@ from typing import List, Tuple, Union
 import requests
 from requests.adapters import HTTPAdapter, Retry
 
-from cobramod import Settings
 from cobramod.dbwalker.cache import Cache
 from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import (
@@ -15,6 +14,7 @@ from cobramod.dbwalker.dataclasses import (
     UnavailableType,
     Uncertain,
 )
+from cobramod.settings import Settings
 
 
 class PubChem(Database):
@@ -61,6 +61,8 @@ class PubChem(Database):
         if self.__keggSIDs is not None:
             return self.__keggSIDs
 
+        self.logger.debug("List of Kegg specific SIDs not found downloading...")
+
         file = self.__cache_dir / "KEGGprovidedSIDs.txt"
 
         if file.exists():
@@ -75,17 +77,22 @@ class PubChem(Database):
         response = self.session.get(url=url, timeout=30)
         response.raise_for_status()
 
+        self.logger.debug(f"Succesfully downloaded Kegg specific SIDs saving at ({file})")
+
         keggSIDs = response.text.splitlines()
         self.__keggSIDs = keggSIDs
 
+        file.parent.mkdir(exist_ok=True, parents=True)
         with open(file, "w") as file_writer:
             data_to_write = "\n".join(keggSIDs)
             file_writer.write(data_to_write)
 
         return keggSIDs
 
-    def getSIDsFromCIDs(self, cid: str) -> List[str]:
+    def getSIDsFromCIDs(self, cid: Union[str, List[str]]) -> List[str]:
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid}/sids/TXT"
+
+        self.logger.debug(f"Getting SIDs for CID ({cid}) using the url: {url}")
 
         self.__settings.limiter.try_acquire("pubchem")
         response = self.session.get(url=url, timeout=30)
@@ -95,11 +102,10 @@ class PubChem(Database):
 
         return SIDs
 
-    def getKeggSpecificSIDs(self, cid) -> List[str]:
-        all_sids = self.getSIDsFromCIDs(cid=cid)
+    def getKeggSpecificSIDs(self, sid) -> List[str]:
         sidsFromKegg = self.KEGGprovidedSIDs
 
-        keggSIDs = [x for x in all_sids if x in sidsFromKegg]
+        keggSIDs = [x for x in sid if x in sidsFromKegg]
 
         return keggSIDs
 

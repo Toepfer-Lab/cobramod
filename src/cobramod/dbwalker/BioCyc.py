@@ -15,7 +15,6 @@ from cobramod.dbwalker.DataBase import Database
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 from cobramod.settings import Settings
 
-
 class BioCyc(Database):
     def __init__(self, cachedir: Union[Path, str, None] = None):
         super().__init__()
@@ -378,8 +377,7 @@ class BioCyc(Database):
 
         if isinstance(cached, set):
             if len(cached) == 1:
-                return list(cached)[0]
-
+                return f"{BioCycSubDB}:{list(cached)[0]}"
             else:
                 return cached
 
@@ -407,19 +405,29 @@ class BioCyc(Database):
         try:
             response.raise_for_status()
 
+            if "<title>Create Account</title>" in response.text:
+                self.logger.warning("BioCyc is requesting account creation.")
+                if not self.__settings.BioCycLoggedIn:
+                    self.logger.error(
+                        "BioCyc account information are not provided can't login."
+                    )
+                return Unavailable
+
             match = re.search(
                 r"Successful queries(.*?)(Ambigous Queries|Unknown Queries)",
                 response.text,
                 re.S,
             )
+
             if not match:
+                self.logger.info(f"Did not find an entry for InChIKey ({inchikey}) in BioCyc (SubDB: {BioCycSubDB})")
                 raise ValueError("No Successful Queries section found")
 
             table_text = match.group(1).strip()
             df = pd.read_csv(StringIO(table_text), sep="\t")
 
             if len(df) > 1:
-                logging.warning("Found multiple matching results")
+                self.logger.warning("Found multiple matching results")
                 return Unavailable
 
             elif len(df) == 0:

@@ -194,7 +194,3 @@ class Chebi(Database):
 
             return Unavailable
 
-    def validateGenerellIdentifiers(
-        self, smiles: Union[str, GenerellIdentifiers]
-    ) -> Tuple[GenerellIdentifiers, GenerellIdentifiers]:
-        raise NotImplementedError

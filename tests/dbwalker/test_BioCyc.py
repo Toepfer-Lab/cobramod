@@ -4,9 +4,6 @@ import tempfile
 from unittest import TestCase
 from unittest.mock import MagicMock, Mock, PropertyMock, patch
 
-import requests
-from requests import Session
-
 from cobramod.dbwalker.BioCyc import BioCyc
 from cobramod.dbwalker.dataclasses import GenerellIdentifiers, Unavailable
 from cobramod.settings import Settings

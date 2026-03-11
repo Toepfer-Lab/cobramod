@@ -29,7 +29,7 @@ supportedDatabases: List[Database] = [
     BioCyc(),
     Kegg(),
     # Bigg(),
-    # Chebi(),
+    Chebi(),
     PubChem(),
 ]
 
