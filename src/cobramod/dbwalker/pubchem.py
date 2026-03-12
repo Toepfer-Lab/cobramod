@@ -67,7 +67,7 @@ class PubChem(Database):
 
         if file.exists():
             with file.open() as f:
-                keggSIDs = f.readlines()
+                keggSIDs = f.read().splitlines()
                 self.__keggSIDs = keggSIDs
                 return keggSIDs
 
@@ -233,7 +233,7 @@ Message: No CIDs found for the given SID(s)"""
         if (
             value == "0"
         ):  # PubChem returns 0 for SMILES with a valid structure but no entry
-            return Unavailable
+            value = Unavailable
 
         self._cache.addSmiles(smiles=smiles, dbID=value)
         return value
@@ -275,7 +275,7 @@ Message: No CIDs found for the given SID(s)"""
 
         value = response.text.rstrip()
 
-        if value == 0 or value == "0":
+        if value == "0" or value == "":
             value = Unavailable
 
         self._cache.addInchi(inchi=inchi, dbID=value)
@@ -315,7 +315,7 @@ Message: No CIDs found for the given SID(s)"""
         if "\n" in value:
             return Uncertain(possibilities=value.splitlines(), type="DBID")
 
-        if value == 0:
+        if value == "0":
             value = Unavailable
 
         self._cache.addInchiKey(inchikey=inchikey, dbID=value)

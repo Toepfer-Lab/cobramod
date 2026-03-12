@@ -88,6 +88,7 @@ CobraMod, load and print :obj:`cobramod.retrieval.available_databases`.
 
    guides
    installation.rst
+   modelcuration.rst
    settings.rst
    dbwalker.rst
    visualization.rst

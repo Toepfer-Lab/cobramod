@@ -3,6 +3,8 @@ import tempfile
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
+import requests
+
 from cobramod.dbwalker.dataclasses import (
     GenerellIdentifiers,
     Unavailable,
@@ -247,7 +249,7 @@ class TestGetPubChem(TestCase):
             pubchemID = self.pubchem.getDBIdentifierFromInchi(
                 "InChI=1S/INVALID"
             )
-            self.assertEqual("", pubchemID)
+            self.assertEqual(Unavailable, pubchemID)
 
         # with GenerellIdentifiers object
         mock_session.reset_mock()
@@ -286,19 +288,17 @@ class TestGetPubChem(TestCase):
             )
             self.assertEqual("945872", pubchemID)
 
-        # does not exist
-        # using cache from previous query
+        # using cache from previous query (should not call API)
         mock_response.text = "1264\n102212881\n"
         mock_session.post.return_value = mock_response
 
         with patch.object(self.pubchem, "session", mock_session):
+            mock_session.reset_mock()
             pubchemID = self.pubchem.getDBIdentifierFromInchiKey(
                 "NELACKPYIURSBY-MRXNPFEDSA-N"
             )
-            expected = Uncertain(
-                possibilities=["1264", "102212881"], type="DBID"
-            )
             self.assertEqual("945872", pubchemID)
+            mock_session.post.assert_not_called()
 
             # multiple results returning uncertain
             self.pubchem._cache.clear_cache()
@@ -320,7 +320,7 @@ class TestGetPubChem(TestCase):
     def test_KEGGprovidedSIDs(self):
         # recreate pubchem object to ensure it does not reuse cache files
         test_dir = tempfile.mkdtemp()
-        pubchem = PubChem(cachedir=self.test_dir)
+        pubchem = PubChem(cachedir=test_dir)
 
         mock_session = MagicMock()
         mock_response = MagicMock()
@@ -341,3 +341,139 @@ class TestGetPubChem(TestCase):
 
             expected = [str(i) for i in range(3303, 3365)]
             self.assertEqual(keggSIDs, expected)
+
+    def test_getSIDsFromCIDs(self):
+        mock_session = MagicMock()
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = "12345\n67890\n11111\n"
+        mock_session.get.return_value = mock_response
+
+        with patch.object(self.pubchem, "session", mock_session):
+            sids = self.pubchem.getSIDsFromCIDs("702")
+
+            self.assertEqual(["12345", "67890", "11111"], sids)
+            mock_session.get.assert_called_once()
+
+    def test_getKeggSpecificSIDs(self):
+        mock_session = MagicMock()
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = "3303\n3304\n3305\n"
+        mock_session.get.return_value = mock_response
+
+        with patch.object(self.pubchem, "session", mock_session):
+            # Force fresh download of KEGG SIDs
+            self.pubchem._PubChem__keggSIDs = None
+            self.pubchem._PubChem__cache_dir.mkdir(parents=True, exist_ok=True)
+
+            # Input SIDs where only some overlap with KEGG list
+            input_sids = ["3303", "99999", "3305", "00000"]
+            kegg_sids = self.pubchem.getKeggSpecificSIDs(input_sids)
+
+            self.assertEqual(["3303", "3305"], kegg_sids)
+
+    def test_getCIDsFromSIDs(self):
+        mock_session = MagicMock()
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = "702\n5793\n"
+        mock_session.get.return_value = mock_response
+
+        # Normal case
+        with patch.object(self.pubchem, "session", mock_session):
+            cids = self.pubchem.getCIDsFromSIDs("12345")
+            self.assertEqual(["702", "5793"], cids)
+            mock_session.get.assert_called_once()
+
+        # 404 not found returns Unavailable
+        mock_session.reset_mock()
+        mock_404_response = MagicMock()
+        mock_404_response.status_code = 404
+        mock_404_response.text = (
+            "Status: 404\n"
+            "Code: PUGREST.NotFound\n"
+            "Message: No CIDs found for the given SID(s)"
+        )
+        http_error = requests.exceptions.HTTPError(response=mock_404_response)
+        mock_404_response.raise_for_status.side_effect = http_error
+        mock_session.get.return_value = mock_404_response
+
+        with patch.object(self.pubchem, "session", mock_session):
+            result = self.pubchem.getCIDsFromSIDs("99999")
+            self.assertIs(Unavailable, result)
+
+        # Other HTTP errors are re-raised
+        mock_session.reset_mock()
+        mock_500_response = MagicMock()
+        mock_500_response.status_code = 500
+        mock_500_response.text = "Server Error"
+        http_error = requests.exceptions.HTTPError(response=mock_500_response)
+        mock_500_response.raise_for_status.side_effect = http_error
+        mock_session.get.return_value = mock_500_response
+
+        with patch.object(self.pubchem, "session", mock_session):
+            with self.assertRaises(requests.exceptions.HTTPError):
+                self.pubchem.getCIDsFromSIDs("88888")
+
+    def test_getChemicalFormular(self):
+        mock_session = MagicMock()
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = "C2H6O\n"
+        mock_session.get.return_value = mock_response
+
+        with patch.object(self.pubchem, "session", mock_session):
+            formula = self.pubchem.getChemicalFormular("702")
+            self.assertEqual("C2H6O", formula)
+            mock_session.get.assert_called_once()
+
+    def test_save_cache(self):
+        with patch.object(self.pubchem._cache, "save_cache") as mock_save:
+            self.pubchem.save_cache()
+            mock_save.assert_called_once()
+
+    def test_getDBIdentifier(self):
+        # All three identifiers agree on the same DB ID
+        with patch.object(self.pubchem, "getDBIdentifierFromSmiles", return_value="702"), \
+            patch.object(self.pubchem, "getDBIdentifierFromInchi", return_value="702"), \
+            patch.object(self.pubchem, "getDBIdentifierFromInchiKey", return_value="702"):
+
+            gid = GenerellIdentifiers(
+                smiles="CCO",
+                inchi="InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3",
+                inchi_key="LFQSCWFLJHTTHZ-UHFFFAOYSA-N",
+            )
+            result = self.pubchem.getDBIdentifier(gid)
+            self.assertEqual("702", result)
+
+        # Mismatch between identifiers returns Unavailable
+        with patch.object(self.pubchem, "getDBIdentifierFromSmiles", return_value="702"), \
+            patch.object(self.pubchem, "getDBIdentifierFromInchi", return_value="999"), \
+            patch.object(self.pubchem, "getDBIdentifierFromInchiKey", return_value="702"):
+
+            gid = GenerellIdentifiers(
+                smiles="CCO",
+                inchi="InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3",
+                inchi_key="LFQSCWFLJHTTHZ-UHFFFAOYSA-N",
+            )
+            result = self.pubchem.getDBIdentifier(gid)
+            self.assertIs(Unavailable, result)
+
+        # No identifiers at all returns Unavailable
+        gid = GenerellIdentifiers()
+        result = self.pubchem.getDBIdentifier(gid)
+        self.assertIs(Unavailable, result)
+
+        # Some identifiers Unavailable, others agree
+        with patch.object(self.pubchem, "getDBIdentifierFromSmiles", return_value="702"), \
+            patch.object(self.pubchem, "getDBIdentifierFromInchi", return_value=Unavailable), \
+            patch.object(self.pubchem, "getDBIdentifierFromInchiKey", return_value="702"):
+
+            gid = GenerellIdentifiers(
+                smiles="CCO",
+                inchi="InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3",
+                inchi_key="LFQSCWFLJHTTHZ-UHFFFAOYSA-N",
+            )
+            result = self.pubchem.getDBIdentifier(gid)
+            self.assertEqual("702", result)

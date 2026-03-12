@@ -83,9 +83,9 @@ class GenerellIdentifiers:
         elif self.smiles != other.smiles:
             return False
 
-        if self.inchi_key is None or other.inchi_key is None:
+        if self.inchi is None or other.inchi is None:
             pass
-        elif self.inchi_key != other.inchi_key:
+        elif self.inchi != other.inchi:
             return False
 
         return True

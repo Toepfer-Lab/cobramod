@@ -9,12 +9,28 @@ from cobramod.dbwalker.crossreferences import (
     add_crossreferences2metabolite,
     id2annotation,
 )
+from cobramod.settings import Settings
 
 logger = logging.getLogger("cobramod")
 logger.setLevel(logging.DEBUG)
 
-
 class TestCrossReferences(TestCase):
+
+    def assertDictWithListsEqual(self, expected, actual, msg=None):
+        self.assertEqual(expected.keys(), actual.keys(), msg=msg)
+        for key in expected:
+            exp_val = expected[key]
+            act_val = actual[key]
+            if isinstance(exp_val, list):
+                try:
+                    self.assertCountEqual(exp_val, act_val)
+                except AssertionError:
+                    detail = f"Mismatch at key '{key}':\n  expected: {exp_val}\n  actual:   {act_val}"
+                    self.fail(f"{detail}\n{msg}" if msg else detail)
+            else:
+                if exp_val != act_val:
+                    detail = f"Mismatch at key '{key}':\n  expected: {exp_val!r}\n  actual:   {act_val!r}"
+                    self.fail(f"{detail}\n{msg}" if msg else detail)
 
     def test_example_model_with_Metabolite_BioCyc(self):
         model = Model()
@@ -32,7 +48,7 @@ class TestCrossReferences(TestCase):
             "inchikey": "AWDRATDZQPNJFN-VAYUFCLWSA-M",
             "smiles": "C[C@@H]([C@H]3(CC[C@H]4([C@@H]2(CC[C@@H]1(C[C@H](O)CC[C@@](C)1[C@H]2C[C@H](O)[C@](C)34)))))CCC(=O)NCCS([O-])(=O)=O",
         }
-        self.assertCountEqual(metabolite_biocyc.annotation, metabolite_biocyc_expected_annotation, msg=f"Expected: \n{metabolite_biocyc_expected_annotation}\n Got:\n{metabolite_biocyc.annotation}")
+        self.assertDictWithListsEqual(metabolite_biocyc_expected_annotation, metabolite_biocyc.annotation, msg=f"Expected: \n{metabolite_biocyc_expected_annotation}\n Got:\n{metabolite_biocyc.annotation}")
 
 
     def test_example_model_with_Metabolite_CHEBI(self):
@@ -65,7 +81,7 @@ class TestCrossReferences(TestCase):
             "inchikey": "LBSJJNAMGVDGCU-UHFFFAOYSA-N",
             "smiles": "CC(=CCC1=C(C=CC(=C1)C(=O)O)O)C",
         }
-        self.assertCountEqual(metabolite_kegg.annotation, metabolite_kegg_expected_annotation, msg=f"Expected: \n{metabolite_kegg_expected_annotation}\n Got:\n{metabolite_kegg.annotation}")
+        self.assertDictWithListsEqual(metabolite_kegg_expected_annotation, metabolite_kegg.annotation, msg=f"Expected: \n{metabolite_kegg_expected_annotation}\n Got:\n{metabolite_kegg.annotation}")
 
 
     def test_add_crossreferences2metabolite(self):
