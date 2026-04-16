@@ -332,6 +332,45 @@ def _resolve_edge_collisions(
     return met_pos
 
 
+def _resolve_rxn_overlaps(
+    pos: dict,
+    rxn_nodes: list[str],
+    x0: float, x1: float, y0: float, y1: float,
+    min_dist: float = 10,
+    iterations: int = 200,
+    margin: float = 0.05,
+) -> dict:
+    """Push reaction nodes apart so they don't visually overlap, then clip
+    them back inside their compartment region."""
+    pos = dict(pos)
+    rxns = [r for r in rxn_nodes if r in pos]
+    for _ in range(iterations):
+        any_moved = False
+        for i in range(len(rxns)):
+            for j in range(i + 1, len(rxns)):
+                r1, r2 = rxns[i], rxns[j]
+                x1n, y1n = pos[r1]
+                x2n, y2n = pos[r2]
+                dx, dy = x2n - x1n, y2n - y1n
+                dist = float(np.hypot(dx, dy))
+                if dist < min_dist and dist > 1e-9:
+                    push = (min_dist - dist) * 0.5
+                    ndx, ndy = dx / dist, dy / dist
+                    pos[r1] = (x1n - ndx * push, y1n - ndy * push)
+                    pos[r2] = (x2n + ndx * push, y2n + ndy * push)
+                    any_moved = True
+        if not any_moved:
+            break
+    # Clip back inside compartment bounds
+    for r in rxns:
+        rx, ry = pos[r]
+        pos[r] = (
+            float(np.clip(rx, x0 + margin, x1 - margin)),
+            float(np.clip(ry, y0 + margin, y1 - margin)),
+        )
+    return pos
+
+
 def _scale_to_region(
     lp: dict, x0: float, x1: float, y0: float, y1: float, pad: float = 0.1,
 ) -> dict:
@@ -1118,10 +1157,14 @@ class FluxNetworkIntegration(anywidget.AnyWidget):
                     for j in range(i + 1, len(local_rxns)):
                         local_G.add_edge(local_rxns[i], local_rxns[j])
             lp = nx.spring_layout(
-                local_G, k=1.4, iterations=150,
+                local_G, k=1.4,  iterations=150,
                 seed=abs(hash(comp_key)) % (2 ** 31),
             )
             pos.update(_scale_to_region(lp, x0, x1, y0, y1))
+            pos.update(_resolve_rxn_overlaps(
+                pos, rxns_here, x0, x1, y0, y1,
+                min_dist=0.4 * self._collision_modifier,
+            ))
 
         # Metabolite positions (centroid of neighbours)
         for met_id in self._met_nodes:

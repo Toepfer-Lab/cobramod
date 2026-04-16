@@ -107,19 +107,27 @@ function H({ model: S, el: I }) {
         x(), r.style.display = "none";
         return;
       }
-      const n = e.toLowerCase(), l = [];
-      for (let o = 0; o < t.rxn_ids.length && l.length < 20; o++)
-        (t.rxn_ids[o].toLowerCase().indexOf(n) >= 0 || t.rxn_names[o].toLowerCase().indexOf(n) >= 0) && l.push({ type: "rxn", idx: o });
-      for (let o = 0; o < t.met_ids.length && l.length < 20; o++)
-        (t.met_ids[o].toLowerCase().indexOf(n) >= 0 || t.met_names[o].toLowerCase().indexOf(n) >= 0) && l.push({ type: "met", idx: o });
-      if (!l.length) {
+      const n = e.toLowerCase();
+      // Collect ALL matches for highlight dots (uncapped)
+      const hx = [], hy = [], l = [];
+      for (let o = 0; o < t.rxn_ids.length; o++) {
+        if (t.rxn_ids[o].toLowerCase().indexOf(n) >= 0 || t.rxn_names[o].toLowerCase().indexOf(n) >= 0) {
+          hx.push(t.rxn_x[o]); hy.push(t.rxn_y[o]);
+          if (l.length < 20) l.push({ type: "rxn", idx: o });
+        }
+      }
+      for (let o = 0; o < t.met_ids.length; o++) {
+        if (t.met_ids[o].toLowerCase().indexOf(n) >= 0 || t.met_names[o].toLowerCase().indexOf(n) >= 0) {
+          hx.push(t.met_flux_x[c][o]); hy.push(t.met_flux_y[c][o]);
+          if (l.length < 20) l.push({ type: "met", idx: o });
+        }
+      }
+      if (!hx.length) {
         r.innerHTML = '<div style="padding:4px 8px;color:#999;font-size:11px;">No matches</div>', r.style.display = "block", x();
         return;
       }
-      const m = [], b = [];
-      for (const o of l)
-        m.push(o.type === "rxn" ? t.rxn_x[o.idx] : t.met_flux_x[c][o.idx]), b.push(o.type === "rxn" ? t.rxn_y[o.idx] : t.met_flux_y[c][o.idx]);
-      y(m, b), l.length === 1 && f(m, b);
+      // Highlight all matches; zoom only when there is exactly one result
+      y(hx, hy); if (hx.length === 1) f(hx, hy);
       for (const o of l) {
         const h = o.type === "rxn" ? t.rxn_ids[o.idx] : t.met_ids[o.idx], E = o.type === "rxn" ? t.rxn_names[o.idx] : t.met_names[o.idx], B = o.type === "rxn" ? "rxn" : "met", P = document.createElement("div");
         P.style.cssText = "padding:3px 8px;cursor:pointer;font-size:11px;border-top:1px solid #f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;", P.title = h + (E && E !== h ? " — " + E : ""), P.innerHTML = "<b>" + h + "</b>" + (E && E !== h ? ' <span style="color:#555;">— ' + E + "</span>" : "") + ' <span style="color:#aaa;font-size:10px;">[' + B + "]</span>", P.onmouseenter = function() {
