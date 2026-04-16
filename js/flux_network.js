@@ -80,10 +80,10 @@ function H({ model: S, el: I }) {
       Number.isInteger(_) && (_ = null, v = null, M = null, i.style.cursor = w ? "crosshair" : "");
     }), w && (i.style.cursor = "crosshair");
     const d = document.createElement("div");
-    d.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", d.innerHTML = '<input id="fluxSrchIn" type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div id="fluxSrchRes" style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
+    d.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", d.innerHTML = '<input type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
     const s = i.parentElement || document.body;
     s.style.position = "relative", s.appendChild(d);
-    const u = document.getElementById("fluxSrchIn"), r = document.getElementById("fluxSrchRes");
+    const u = d.querySelector("input"), r = d.querySelector("div");
     function x() {
       a.restyle(i, { x: [[]], y: [[]] }, [t.highlight_idx]);
     }
