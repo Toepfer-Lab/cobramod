@@ -1,0 +1,1571 @@
+"""
+flux_network.py — Plotly-based 2D metabolic flux network widget for Jupyter
+
+An anywidget that renders an interactive Plotly visualisation of flux
+distributions on any COBRA-compatible SBML metabolic model, designed
+to be integrated into the CobraMod package.
+
+Usage (Jupyter)
+---------------
+    from flux_network import FluxNetworkIntegration
+    import cobra
+
+    model = cobra.io.read_sbml_model("AraCore_v2_1.xml")
+    widget = FluxNetworkIntegration()
+    widget.compartments = "config/aracore.toml"
+    widget.model = model
+    widget.add_view("FBA", model.optimize())
+    widget  # display
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import re
+from dataclasses import dataclass, field
+from importlib import resources
+from pathlib import Path
+from typing import Union, Optional
+
+try:
+    import tomllib
+except ImportError:
+    try:
+        import tomli as tomllib  # type: ignore[no-redef]
+    except ImportError:
+        tomllib = None  # type: ignore[assignment]
+
+import anywidget
+import cobra
+import networkx as nx
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+from cobra import Solution
+from scipy.spatial import ConvexHull
+from traitlets import traitlets
+
+
+# ==========================================================================
+# CONSTANTS
+# ==========================================================================
+
+ACTIVE_EDGE_EPS = 1e-6
+MIN_MET_RXN_DIST = 0.5
+MIN_MET_EDGE_DIST = 0.5
+EDGE_BINS = 6
+_MET_COLOR = "#aab7b8"
+EDGE_LOG_STRETCH = 99.0
+EDGE_MIN_VIS_NORM = 0.22
+
+
+# ==========================================================================
+# DATA CLASSES
+# ==========================================================================
+
+@dataclass
+class ViewSpec:
+    """One flux view shown in the visualisation."""
+    label: str
+    flux_dict: dict[str, float]
+    std_dict: dict[str, float] = field(default_factory=dict)
+    hover_extra: dict[str, str] = field(default_factory=dict)
+    pipeline_tag: str = ""
+# ==========================================================================
+# DEFAULTS  (AraCore layout — overridden by TOML config)
+# ==========================================================================
+
+_DEFAULT_COMPARTMENTS: dict[str, dict] = {
+    "h": dict(region=(-11.5, -2.5, -4.5, 6.0), color="#1e8449",
+              fill="rgba(30,132,73,0.06)", label="Chloroplast"),
+    "c": dict(region=(-2.0, 2.0, -4.5, 6.0), color="#2471a3",
+              fill="rgba(36,113,163,0.06)", label="Cytosol"),
+    "m": dict(region=(2.5, 7.5, 0.0, 6.0), color="#ca6f1e",
+              fill="rgba(202,111,30,0.06)", label="Mitochondria"),
+    "p": dict(region=(2.5, 6.5, -4.5, -0.5), color="#7d3c98",
+              fill="rgba(125,60,152,0.06)", label="Peroxisome"),
+    "u": dict(region=(-11.5, 7.5, -8.5, -5.0), color="#7f8c8d",
+              fill="rgba(127,140,141,0.06)", label="Exchange / Transport"),
+}
+
+_DEFAULT_CURRENCY_KW: set[str] = {
+    "atp", "adp", "amp", "nad", "nadh", "nadp", "nadph",
+    "water", "h2o", "proton", "h+", "orthophosphate", "pyrophosphate",
+    "phosphate", "co2", "carbon dioxide", "oxygen", " o2",
+    "coa", "coenzyme a", "fad", "fadh2",
+}
+
+_DEFAULT_IMPORT_PREFIX: tuple[str, ...] = ("Im_",)
+_DEFAULT_EXPORT_PREFIX: tuple[str, ...] = ("Ex_", "Si_")
+_DEFAULT_BIOMASS_PREFIX: tuple[str, ...] = ("Bio_",)
+_DEFAULT_EXCHANGE_KEY = "u"
+
+
+# ==========================================================================
+# CONFIG LOADING
+# ==========================================================================
+
+def _load_toml(path: Path) -> dict:
+    if tomllib is None:
+        raise ImportError(
+            "TOML config requires Python >= 3.11 or 'pip install tomli'."
+        )
+    with open(path, "rb") as fh:
+        return tomllib.load(fh)
+
+
+def _parse_config(cfg: dict) -> dict:
+    """Parse a TOML config dict into internal config format."""
+    compartments: dict[str, dict] = {}
+    comp_raw = cfg.get("compartment", {})
+    if comp_raw:
+        for key, entry in comp_raw.items():
+            x0, x1, y0, y1 = [float(v) for v in entry["region"]]
+            compartments[key] = dict(
+                region=(x0, x1, y0, y1),
+                color=entry.get("color", "#888888"),
+                fill=entry.get("fill", "rgba(128,128,128,0.06)"),
+                label=entry.get("label", key),
+            )
+    else:
+        compartments = dict(_DEFAULT_COMPARTMENTS)
+
+    lay = cfg.get("layout", {})
+    exchange_key = lay.get("exchange_key", _DEFAULT_EXCHANGE_KEY)
+    currency_kw = set(lay.get("currency_keywords", list(_DEFAULT_CURRENCY_KW)))
+    import_prefix = tuple(lay.get("import_prefixes", list(_DEFAULT_IMPORT_PREFIX)))
+    export_prefix = tuple(lay.get("export_prefixes", list(_DEFAULT_EXPORT_PREFIX)))
+    biomass_prefix = tuple(lay.get("biomass_prefixes", list(_DEFAULT_BIOMASS_PREFIX)))
+
+    # Build compartment-aware regex patterns
+    _alts = "|".join(
+        re.escape(k) for k in sorted(compartments.keys(), key=len, reverse=True)
+    )
+    suffix_re = re.compile(rf"_({_alts})(?:_[a-z])?$", re.IGNORECASE)
+    bracket_re = re.compile(rf"\[({_alts})\]$", re.IGNORECASE)
+
+    return dict(
+        compartments=compartments,
+        exchange_key=exchange_key,
+        currency_kw=currency_kw,
+        import_prefix=import_prefix,
+        export_prefix=export_prefix,
+        biomass_prefix=biomass_prefix,
+        suffix_re=suffix_re,
+        bracket_re=bracket_re,
+    )
+
+
+# ==========================================================================
+# HELPER FUNCTIONS (stateless — take config as parameter)
+# ==========================================================================
+
+def _rxn_comp(rxn_id: str, cfg: dict) -> str:
+    m = cfg["suffix_re"].search(rxn_id)
+    if m:
+        return m.group(1).lower()
+    m = cfg["bracket_re"].search(rxn_id)
+    return m.group(1).lower() if m else cfg["exchange_key"]
+
+def _met_comp_str(met_id: str, cfg: dict) -> str:
+    m = cfg["bracket_re"].search(met_id)
+    if m:
+        return m.group(1).lower()
+    m = cfg["suffix_re"].search(met_id)
+    return m.group(1).lower() if m else cfg["exchange_key"]
+
+
+def _met_comp(met: cobra.Metabolite, cfg: dict) -> str:
+    if met.compartment:
+        key = met.compartment.lower()
+        if key in cfg["compartments"]:
+            return key
+    return _met_comp_str(met.id, cfg)
+
+
+def _is_currency(met: cobra.Metabolite, cfg: dict) -> bool:
+    t = (met.name or "").lower() + " " + met.id.lower()
+    return any(kw in t for kw in cfg["currency_kw"])
+
+
+def _normalise_met_token(raw: str, cfg: dict) -> str:
+    """Strip compartment suffix/bracket, collapse repeated underscores, and
+    remove any residual trailing token.  Used by _is_proton on both the
+    metabolite id and its name (TAIR10 stores names as 'H_plus__c0')."""
+    s = cfg["bracket_re"].sub("", raw).lower().strip()
+    s = cfg["suffix_re"].sub("", s).strip("_")
+    s = re.sub(r"_+", "_", s)           # collapse __  →  _
+    s = re.sub(r"_[a-z0-9]+$", "", s)   # strip residual compartment token
+    if s.startswith("m_"):
+        s = s[2:]
+    return s
+
+
+def _is_proton(met: cobra.Metabolite, cfg: dict) -> bool:
+    name_lower = (met.name or "").lower().strip()
+    # TAIR10 uses KEGG IDs (cpd00067_c0) and encodes the human name as
+    # 'H_plus__c0', so we normalise *both* id and name the same way.
+    id_base   = _normalise_met_token(met.id, cfg)
+    name_base = _normalise_met_token(name_lower, cfg)
+    _proton_tokens = {"h", "h_plus", "hplus"}
+    return (
+        id_base   in _proton_tokens
+        or name_base in _proton_tokens
+        or name_lower in {"h+", "proton", "h"}
+        or "proton" in name_lower
+    )
+
+
+def _rxn_kind(rxn: cobra.Reaction, cfg: dict) -> str:
+    if any(rxn.id.startswith(p) for p in cfg["import_prefix"]):
+        return "import"
+    if any(rxn.id.startswith(p) for p in cfg["export_prefix"]):
+        return "export"
+    if any(rxn.id.startswith(p) for p in cfg["biomass_prefix"]):
+        return "biomass"
+    return "regular"
+
+
+def _stable_unit(met_id: str) -> float:
+    digest = hashlib.md5(met_id.encode("utf-8")).hexdigest()
+    v = int(digest[:8], 16) / float(0xFFFFFFFF)
+    return 2.0 * v - 1.0
+
+
+def _has_flux_data(flux: float) -> bool:
+    return (not np.isnan(flux)) and (abs(float(flux)) > ACTIVE_EDGE_EPS)
+
+# ==========================================================================
+# LAYOUT HELPERS
+# ==========================================================================
+
+def _push_away_from_reactions(
+    mx: float, my: float, rxn_nbrs: list[str], met_id: str,
+    pos: dict, collision_modifier: float,
+) -> tuple[float, float]:
+    dist_req = MIN_MET_RXN_DIST * collision_modifier
+    for rxn_id in rxn_nbrs:
+        rx, ry = pos[rxn_id]
+        if float(np.hypot(mx - rx, my - ry)) < dist_req:
+            angle = np.pi * _stable_unit(met_id)
+            return (
+                rx + dist_req * float(np.cos(angle)),
+                ry + dist_req * float(np.sin(angle)),
+            )
+    return mx, my
+
+
+def _point_to_segment_dist(
+    px: float, py: float,
+    ax: float, ay: float,
+    bx: float, by: float,
+) -> tuple[float, float, float]:
+    dx, dy = bx - ax, by - ay
+    seg_len_sq = dx * dx + dy * dy
+    if seg_len_sq < 1e-12:
+        return float(np.hypot(px - ax, py - ay)), ax, ay
+    t = float(np.clip(((px - ax) * dx + (py - ay) * dy) / seg_len_sq, 0.0, 1.0))
+    cx, cy = ax + t * dx, ay + t * dy
+    return float(np.hypot(px - cx, py - cy)), cx, cy
+
+
+def _push_away_from_edge(
+    mx: float, my: float, met_id: str,
+    edge_segments: list[tuple[tuple[float, float], tuple[float, float]]],
+    collision_modifier: float,
+) -> tuple[float, float]:
+    dist_req = MIN_MET_EDGE_DIST * collision_modifier
+    best_dist = dist_req
+    best_cx: float | None = None
+    best_cy: float | None = None
+    for (ax, ay), (bx, by) in edge_segments:
+        dist, cx, cy = _point_to_segment_dist(mx, my, ax, ay, bx, by)
+        if dist < best_dist:
+            best_dist = dist
+            best_cx, best_cy = cx, cy
+    if best_cx is None:
+        return mx, my
+    dx, dy = mx - best_cx, my - best_cy
+    d = float(np.hypot(dx, dy))
+    if d < 1e-9:
+        angle = np.pi * _stable_unit(met_id)
+        dx, dy = float(np.cos(angle)), float(np.sin(angle))
+    else:
+        dx /= d
+        dy /= d
+    return best_cx + dist_req * dx, best_cy + dist_req * dy
+
+
+def _resolve_edge_collisions(
+    met_pos: dict[str, tuple[float, float]],
+    met_nodes: list[str],
+    G: nx.Graph,
+    pos: dict,
+    collision_modifier: float,
+    iterations: int = 3,
+) -> dict[str, tuple[float, float]]:
+    met_rxn_adj: dict[str, set[str]] = {m: set() for m in met_nodes}
+    for n1, n2 in G.edges():
+        if G.nodes[n1]["ntype"] == "rxn" and G.nodes[n2]["ntype"] == "met":
+            met_rxn_adj[n2].add(n1)
+        elif G.nodes[n2]["ntype"] == "rxn" and G.nodes[n1]["ntype"] == "met":
+            met_rxn_adj[n1].add(n2)
+    for _ in range(iterations):
+        new_pos = dict(met_pos)
+        for met_id in met_nodes:
+            mx, my = met_pos[met_id]
+            own_rxns = met_rxn_adj[met_id]
+            segments: list[tuple[tuple[float, float], tuple[float, float]]] = []
+            for m2_id in met_nodes:
+                if m2_id == met_id:
+                    continue
+                m2x, m2y = met_pos[m2_id]
+                for rxn_id in met_rxn_adj[m2_id]:
+                    if rxn_id in own_rxns or rxn_id not in pos:
+                        continue
+                    segments.append((pos[rxn_id], (m2x, m2y)))
+            new_pos[met_id] = _push_away_from_edge(
+                mx, my, met_id, segments, collision_modifier
+            )
+        met_pos = new_pos
+    return met_pos
+
+
+def _scale_to_region(
+    lp: dict, x0: float, x1: float, y0: float, y1: float, pad: float = 0.1,
+) -> dict:
+    xs = np.array([v[0] for v in lp.values()])
+    ys = np.array([v[1] for v in lp.values()])
+    xr = xs.max() - xs.min() or 1.0
+    yr = ys.max() - ys.min() or 1.0
+    xs_n = (xs - xs.min()) / xr
+    ys_n = (ys - ys.min()) / yr
+    w = (x1 - x0) * (1 - 2 * pad)
+    h = (y1 - y0) * (1 - 2 * pad)
+    xs_s = x0 + pad * (x1 - x0) + xs_n * w
+    ys_s = y0 + pad * (y1 - y0) + ys_n * h
+    return {n: (float(xs_s[i]), float(ys_s[i])) for i, n in enumerate(lp)}
+
+
+def _flux_weighted_met_positions(
+    edge_flux: dict[str, float],
+    met_nodes: list[str],
+    G: nx.Graph,
+    pos: dict,
+    collision_modifier: float,
+) -> dict[str, tuple[float, float]]:
+    met_pos: dict[str, tuple[float, float]] = {}
+
+    for met_id in met_nodes:
+        nbrs = [r for r in G.neighbors(met_id)
+                if G.nodes[r]["ntype"] == "rxn" and r in pos]
+        if not nbrs:
+            met_pos[met_id] = pos.get(met_id, (0.0, 0.0))
+            continue
+
+        weights, xs, ys = [], [], []
+        for r in nbrs:
+            f = edge_flux.get(r, np.nan)
+            w = abs(float(f)) + 0.01 if _has_flux_data(float(f)) else 0.02
+            w = w ** 3
+            weights.append(w)
+            xs.append(pos[r][0])
+            ys.append(pos[r][1])
+        wsum = float(np.sum(weights))
+        if wsum <= 0:
+            met_pos[met_id] = pos.get(met_id, (0.0, 0.0))
+        else:
+            met_pos[met_id] = (
+                float(np.dot(xs, weights) / wsum),
+                float(np.dot(ys, weights) / wsum),
+            )
+
+    for met_id in met_nodes:
+        rxn_nbrs = [r for r in G.neighbors(met_id)
+                    if G.nodes[r]["ntype"] == "rxn" and r in pos]
+        if not rxn_nbrs:
+            continue
+        mx, my = met_pos[met_id]
+        ucx = float(np.mean([pos[r][0] for r in rxn_nbrs]))
+        ucy = float(np.mean([pos[r][1] for r in rxn_nbrs]))
+        dist_req = 0.22 * collision_modifier
+        for rxn_id in rxn_nbrs:
+            rx, ry = pos[rxn_id]
+            d = float(np.hypot(mx - rx, my - ry))
+            if d < dist_req:
+                pull_dx, pull_dy = ucx - rx, ucy - ry
+                pull_d = float(np.hypot(pull_dx, pull_dy))
+                if pull_d > 1e-6:
+                    mx = rx + dist_req * (pull_dx / pull_d)
+                    my = ry + dist_req * (pull_dy / pull_d)
+                else:
+                    if d > 1e-9:
+                        mx = rx + dist_req * ((mx - rx) / d)
+                        my = ry + dist_req * ((my - ry) / d)
+                    else:
+                        angle = np.pi * _stable_unit(met_id)
+                        mx = rx + dist_req * float(np.cos(angle))
+                        my = ry + dist_req * float(np.sin(angle))
+        met_pos[met_id] = (mx, my)
+
+    return met_pos
+
+
+# ==========================================================================
+# EDGE HELPERS
+# ==========================================================================
+
+def _edge_bucket(flux: float, abs_max: float) -> tuple[int, float, int]:
+    abs_flux = abs(flux)
+    if abs_max > 1e-9:
+        rel = abs_flux / abs_max
+        mag_norm = np.log1p(EDGE_LOG_STRETCH * rel) / np.log1p(EDGE_LOG_STRETCH)
+        if abs_flux > 0.0:
+            mag_norm = EDGE_MIN_VIS_NORM + (1.0 - EDGE_MIN_VIS_NORM) * mag_norm
+    else:
+        mag_norm = 0.0
+    b = int(np.clip(np.floor(mag_norm * EDGE_BINS), 0, EDGE_BINS - 1))
+    sign = 1 if flux >= 0 else -1
+    return b, float(mag_norm), sign
+
+
+def _edge_rgba(mag_norm: float, sign: int, has_flux: bool) -> str:
+    if not has_flux:
+        return "rgba(149,165,166,0.25)"
+    alpha = 0.50 + 0.50 * mag_norm
+    if sign > 0:
+        r = int(247 - (247 - 178) * mag_norm)
+        g = int(247 - (247 - 24) * mag_norm)
+        b_ = int(247 - (247 - 43) * mag_norm)
+    else:
+        r = int(247 - (247 - 33) * mag_norm)
+        g = int(247 - (247 - 102) * mag_norm)
+        b_ = int(247 - (247 - 172) * mag_norm)
+    return f"rgba({r},{g},{b_},{alpha:.3f})"
+
+
+def _edge_coords(
+    pairs: list[tuple[str, str]],
+    met_positions: dict[str, tuple[float, float]],
+    pos: dict,
+) -> tuple[list[float | None], list[float | None], list[str]]:
+    ex, ey = [], []
+    met_ids: list[str] = []
+    for rxn_id, met_id in pairs:
+        x0_, y0_ = pos[rxn_id]
+        x1_, y1_ = met_positions.get(met_id, pos.get(met_id, (0.0, 0.0)))
+        ex.extend([x0_, x1_, None])
+        ey.extend([y0_, y1_, None])
+        met_ids.append(met_id)
+    return ex, ey, met_ids
+
+
+def _build_edge_coords_for_view(
+    edge_flux: dict[str, float],
+    met_positions: dict[str, tuple[float, float]],
+    oriented_edges: list[tuple[str, str, str, float]],
+    pos: dict,
+    scale_by_stoich: bool = False,
+) -> tuple[list[list[float | None]], list[list[float | None]], list[list[str]]]:
+    if scale_by_stoich:
+        scaled = [abs(stoich) * abs(float(edge_flux[rxn_id]))
+                  for _, rxn_id, _, stoich in oriented_edges
+                  if rxn_id in edge_flux and _has_flux_data(float(edge_flux[rxn_id]))]
+        abs_max = max(float(np.nanmax(scaled)) if scaled else 1.0, 1e-9)
+    else:
+        valid = [abs(v) for v in edge_flux.values() if _has_flux_data(float(v))]
+        abs_max = max(float(np.nanmax(valid)) if valid else 1.0, 1e-9)
+
+    buckets: dict[tuple[str, int, int], list[tuple[str, str]]] = {}
+    for edge_class, rxn_id, met_id, stoich in oriented_edges:
+        f = edge_flux.get(rxn_id, np.nan)
+        if not _has_flux_data(float(f)):
+            continue
+        f_eff = float(f) * abs(stoich) if scale_by_stoich else float(f)
+        b, _, sign = _edge_bucket(f_eff, abs_max)
+        buckets.setdefault((edge_class, b, sign), []).append((rxn_id, met_id))
+
+    x_lists: list[list[float | None]] = []
+    y_lists: list[list[float | None]] = []
+    met_id_lists: list[list[str]] = []
+    for edge_class in ("reg", "ss"):
+        for sign in (1, -1):
+            for b in range(EDGE_BINS):
+                pairs = buckets.get((edge_class, b, sign), [])
+                ex, ey, met_ids = _edge_coords(pairs, met_positions, pos)
+                x_lists.append(ex if ex else [None])
+                y_lists.append(ey if ey else [None])
+                met_id_lists.append(met_ids)
+    return x_lists, y_lists, met_id_lists
+
+
+# ==========================================================================
+# SHAPE HELPERS
+# ==========================================================================
+
+def _smooth_hull_path(verts: np.ndarray, tension: float = 0.4) -> str:
+    n = len(verts)
+    parts = [f"M {verts[0][0]:.4f},{verts[0][1]:.4f}"]
+    for i in range(n):
+        p0 = verts[(i - 1) % n]
+        p1 = verts[i % n]
+        p2 = verts[(i + 1) % n]
+        p3 = verts[(i + 2) % n]
+        cp1 = p1 + tension * (p2 - p0) / 3.0
+        cp2 = p2 - tension * (p3 - p1) / 3.0
+        parts.append(
+            f"C {cp1[0]:.4f},{cp1[1]:.4f} "
+            f"{cp2[0]:.4f},{cp2[1]:.4f} "
+            f"{p2[0]:.4f},{p2[1]:.4f}"
+        )
+    parts.append("Z")
+    return " ".join(parts)
+
+
+# ==========================================================================
+# TRACE BUILDING
+# ==========================================================================
+
+def _symbol_list(
+    fluxes: np.ndarray, rxn_nodes: list[str], rxn_kind_map: dict[str, str],
+) -> list[str]:
+    syms = []
+    for i, r in enumerate(rxn_nodes):
+        k = rxn_kind_map.get(r, "regular")
+        if k == "import":
+            syms.append("triangle-up")
+        elif k in ("export", "biomass"):
+            f = fluxes[i]
+            syms.append("cross" if not _has_flux_data(float(f)) else "triangle-down")
+        else:
+            syms.append("circle")
+    return syms
+
+
+def _make_rxn_trace(
+    spec: ViewSpec,
+    rxn_nodes: list[str],
+    pos: dict,
+    G: nx.Graph,
+    cobra_model: cobra.Model,
+    compartments: dict[str, dict],
+    exchange_key: str,
+    rxn_kind_map: dict[str, str],
+    rxn_substrates: dict[str, list[str]],
+    rxn_products: dict[str, list[str]],
+) -> go.Scatter:
+    fluxes = np.array([spec.flux_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
+    stds = np.array([spec.std_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
+    valid = np.array([_has_flux_data(float(f)) for f in fluxes], dtype=bool)
+
+    abs_max = max(float(np.nanmax(np.abs(fluxes))) if valid.any() else 1.0, 1e-9)
+    log_abs = np.log1p(np.where(valid, np.abs(fluxes), 0.0))
+    sizes = (log_abs / np.log1p(abs_max) * 26 + 7).tolist()
+
+    _exch_cfg = compartments.get(exchange_key, {"color": "#888888", "label": exchange_key})
+    border_colors = [
+        compartments.get(G.nodes[r]["comp"], _exch_cfg)["color"]
+        for r in rxn_nodes
+    ]
+    border_widths = [
+        2.5 if rxn_kind_map.get(r, "regular") != "regular" else 1.8
+        for r in rxn_nodes
+    ]
+    opacities = [0.22 if not v else 0.90 for v in valid]
+
+    hover = []
+    for i, r in enumerate(rxn_nodes):
+        f, sd = fluxes[i], stds[i]
+        rxn_o = cobra_model.reactions.get_by_id(r)
+        comp = G.nodes[r]["comp"]
+        comp_lbl = compartments.get(comp, _exch_cfg)["label"]
+        kind = rxn_kind_map.get(r, "regular")
+
+        f_str = f"{f:+.4f} mmol/gDW/h" if _has_flux_data(float(f)) else "--- (no data)"
+        sd_str = f"<br><i>std = {sd:.4f}</i>" if not np.isnan(sd) else ""
+        kind_str = f"<br><b>{kind.upper()}</b>" if kind != "regular" else ""
+        pipe_str = f" | Pipeline: {spec.pipeline_tag}" if spec.pipeline_tag else ""
+        extra = spec.hover_extra.get(r, "")
+
+        subs = ", ".join(rxn_substrates.get(r, [])[:5]) or "---"
+        prds = ", ".join(rxn_products.get(r, [])[:5]) or "---"
+
+        display_name = rxn_o.name or r
+        id_str = f" <i>({r})</i>" if rxn_o.name else ""
+        hover.append(
+            f"<b>{display_name}</b>{id_str}{kind_str}<br>"
+            f"<i>{comp_lbl}</i>{pipe_str}<br>"
+            f"Flux: {f_str}{sd_str}<br>"
+            f"Substrates: {subs}<br>"
+            f"Products: {prds}"
+            f"{extra}"
+            f"<extra>{spec.label}</extra>"
+        )
+
+    return go.Scatter(
+        x=[pos[r][0] for r in rxn_nodes],
+        y=[pos[r][1] for r in rxn_nodes],
+        mode="markers",
+        marker=dict(
+            size=sizes,
+            symbol=_symbol_list(fluxes, rxn_nodes, rxn_kind_map),
+            color=np.where(valid, fluxes, 0.0).tolist(),
+            colorscale="RdBu_r",
+            cmin=-abs_max, cmid=0, cmax=abs_max,
+            colorbar=dict(
+                title=dict(text="Flux<br>(mmol/gDW/h)",
+                           side="right", font=dict(size=11)),
+                x=-0.12, xanchor="left",
+                thickness=14, len=0.50, y=0.5,
+                tickfont=dict(size=9), outlinewidth=0,
+            ),
+            line=dict(color=border_colors, width=border_widths),
+            opacity=opacities,
+        ),
+        customdata=rxn_nodes,
+        hovertemplate=hover,
+        name=spec.label, showlegend=False,
+    )
+
+
+# ==========================================================================
+# CSV LOADER
+# ==========================================================================
+
+def _load_ignore_csv(path: Union[str, Path]) -> tuple[set[str], set[str]]:
+    """Parse a CSV listing reaction and metabolite IDs to exclude from the graph.
+
+    Expected format — two columns, order does not matter, extra columns ignored::
+
+        reactions,metabolites
+        RXN_001,cpd00067_c0
+        RXN_002,cpd00009_m0
+        ,cpd00012_d0
+
+    Empty cells are skipped.  Column headers are matched case-insensitively;
+    accepted names are ``reactions``/``rxn``/``rxn_id`` and
+    ``metabolites``/``met``/``met_id``.
+
+    Returns
+    -------
+    rxn_ids : set[str]
+        Reaction IDs to ignore.
+    met_ids : set[str]
+        Metabolite IDs to ignore.
+    """
+    df = pd.read_csv(Path(path), dtype=str)
+    df.columns = df.columns.str.strip().str.lower()
+
+    _rxn_kw = ["reactions", "rxn", "rxn_id", "reaction"]
+    _met_kw = ["metabolites", "met", "met_id", "metabolite"]
+
+    rxn_col = next((c for c in _rxn_kw if c in df.columns), None)
+    met_col = next((c for c in _met_kw if c in df.columns), None)
+
+    rxn_ids: set[str] = set()
+    met_ids: set[str] = set()
+
+    if rxn_col:
+        rxn_ids = {v.strip() for v in df[rxn_col].dropna() if v.strip()}
+    if met_col:
+        met_ids = {v.strip() for v in df[met_col].dropna() if v.strip()}
+
+    return rxn_ids, met_ids
+
+
+def _load_single_csv(path: Path) -> pd.Series:
+    df = pd.read_csv(path)
+    df.columns = df.columns.str.strip()
+    _id_kw = ["reaction_id", "rxn_id", "rxn", "id", "reaction"]
+    _val_kw = ["flux", "value", "fba_flux", "v"]
+    id_col = next((c for c in _id_kw if c in df.columns), df.columns[0])
+    val_col = next((c for c in _val_kw if c in df.columns), df.columns[1])
+    return pd.Series(
+        pd.to_numeric(df[val_col], errors="coerce").values,
+        index=df[id_col].astype(str).str.strip(),
+    )
+
+
+# ==========================================================================
+# MAIN WIDGET CLASS
+# ==========================================================================
+
+class FluxNetworkIntegration(anywidget.AnyWidget):
+    """
+    Interactive 2D Plotly-based metabolic flux network widget for Jupyter.
+
+    Renders a bipartite graph (reactions <-> metabolites) with
+    compartment-aware layout, flux-coloured edges and nodes,
+    view switching, search, and metabolite dragging.
+
+    Usage::
+
+        widget = FluxNetworkIntegration()
+        widget.compartments = "config/aracore.toml"  # or dict
+        widget.model = cobra.io.read_sbml_model("model.xml")
+        widget.add_view("FBA", model.optimize())
+        widget  # display in Jupyter
+    """
+
+    # anywidget trait synced to frontend
+    _figure_json = traitlets.Unicode("{}").tag(sync=True)
+
+    def __init__(
+        self,
+        drop_no_data: bool = False,
+        drop_protons: bool = False,
+        stoich_flux: bool = False,
+        scale_compartments: bool = False,
+        hull_tension: float = 0.4,
+        collision_modifier: float = 0.001,
+        **kwargs,
+    ):
+        super().__init__(**kwargs)
+
+        # Internal state (must exist before setters run)
+        self._graph_built = False
+        self._cobra_model: Optional[cobra.Model] = None
+        self._cfg: dict = _parse_config({})  # defaults
+        self._views: list[ViewSpec] = []
+
+        # Graph state (populated on model set)
+        self._G: Optional[nx.Graph] = None
+        self._pos: dict[str, tuple[float, float]] = {}
+        self._rxn_nodes: list[str] = []
+        self._met_nodes: list[str] = []
+        self._met_to_rxns: dict[str, list[tuple[str, float]]] = {}
+        self._rxn_kind_map: dict[str, str] = {}
+        self._rxn_substrates: dict[str, list[str]] = {}
+        self._rxn_products: dict[str, list[str]] = {}
+
+        # Configuration — use setters so future assignments behave identically
+        # _graph_built is False here so no rebuild is triggered during init
+        self.on_msg(self._handle_custom_msg)
+        self._drop_no_data = drop_no_data
+        self._drop_protons = drop_protons
+        self._stoich_flux = stoich_flux
+        self._scale_compartments = scale_compartments
+        self._hull_tension = hull_tension
+        self._collision_modifier = collision_modifier
+        self._ignored_rxns: set[str] = set()
+        self._ignored_mets: set[str] = set()
+
+    # -- Properties --
+
+    @property
+    def compartments(self) -> dict[str, dict]:
+        """Current compartment configuration."""
+        return self._cfg["compartments"]
+
+    @compartments.setter
+    def compartments(self, value: Union[str, Path, dict]):
+        """Set compartments from TOML file path or pre-parsed dict."""
+        if isinstance(value, (str, Path)):
+            raw = _load_toml(Path(value))
+            self._cfg = _parse_config(raw)
+        elif isinstance(value, dict):
+            self._cfg = _parse_config(value)
+        else:
+            raise TypeError(f"Expected str, Path, or dict, got {type(value)}")
+        if self._cobra_model is not None:
+            self._build_graph()
+            self._rebuild_figure()
+
+    @property
+    def model(self) -> Optional[cobra.Model]:
+        """The COBRA metabolic model."""
+        return self._cobra_model
+
+    @model.setter
+    def model(self, value: cobra.Model):
+        self._cobra_model = value
+        self._build_graph()
+        if self._views:
+            self._rebuild_figure()
+
+    @property
+    def drop_no_data(self) -> bool:
+        """Remove reactions with no flux data in any view."""
+        return self._drop_no_data
+
+    @drop_no_data.setter
+    def drop_no_data(self, value: bool) -> None:
+        self._drop_no_data = value
+        if self._graph_built:
+            self._rebuild_figure()
+
+    @property
+    def stoich_flux(self) -> bool:
+        """Scale edge width by stoichiometric coefficient × flux."""
+        return self._stoich_flux
+
+    @stoich_flux.setter
+    def stoich_flux(self, value: bool) -> None:
+        self._stoich_flux = value
+        if self._graph_built:
+            self._rebuild_figure()
+
+    @property
+    def hull_tension(self) -> float:
+        """Smoothness of compartment hull outlines (0=sharp, 1=very round)."""
+        return self._hull_tension
+
+    @hull_tension.setter
+    def hull_tension(self, value: float) -> None:
+        self._hull_tension = value
+        if self._graph_built:
+            self._rebuild_figure()
+
+    @property
+    def scale_compartments(self) -> bool:
+        """Scale compartment regions proportionally to sqrt(n_reactions)."""
+        return self._scale_compartments
+
+    @scale_compartments.setter
+    def scale_compartments(self, value: bool) -> None:
+        self._scale_compartments = value
+        if self._graph_built:
+            self._compute_layout()
+            self._rebuild_figure()
+
+    @property
+    def collision_modifier(self) -> float:
+        """Scale factor for node collision avoidance."""
+        return self._collision_modifier
+
+    @collision_modifier.setter
+    def collision_modifier(self, value: float) -> None:
+        self._collision_modifier = value
+        if self._graph_built:
+            self._compute_layout()
+            self._rebuild_figure()
+
+    @property
+    def drop_protons(self) -> bool:
+        """Exclude proton (H+) metabolites from the graph."""
+        return self._drop_protons
+
+    @drop_protons.setter
+    def drop_protons(self, value: bool) -> None:
+        self._drop_protons = value
+        if self._cobra_model is not None:
+            self._build_graph()
+            self._rebuild_figure()
+
+    @property
+    def ignore(self) -> tuple[set[str], set[str]]:
+        """Reaction and metabolite IDs excluded from the graph."""
+        return self._ignored_rxns, self._ignored_mets
+
+    @ignore.setter
+    def ignore(self, value: Union[str, Path, tuple, None]) -> None:
+        if value is None:
+            self._ignored_rxns, self._ignored_mets = set(), set()
+        elif isinstance(value, (str, Path)):
+            self._ignored_rxns, self._ignored_mets = _load_ignore_csv(value)
+        elif isinstance(value, tuple) and len(value) == 2:
+            self._ignored_rxns, self._ignored_mets = set(value[0]), set(value[1])
+        else:
+            raise TypeError("ignore expects a file path, a (rxn_set, met_set) tuple, or None")
+        if self._cobra_model is not None:
+            self._build_graph()
+            self._rebuild_figure()
+
+    # -- Public API --
+
+    def add_view(
+        self,
+        label: str,
+        flux_data: Union[Solution, dict, pd.Series, str, Path],
+        std_data: Optional[dict] = None,
+        pipeline_tag: str = "",
+    ) -> None:
+        """
+        Add a flux view to the visualisation.
+
+        Parameters
+        ----------
+        label : str
+            Display name for this view.
+        flux_data : Solution, dict, pd.Series, str, or Path
+            Flux values. Accepts cobra.Solution, {rxn_id: flux} dict,
+            pd.Series, or path to a CSV file.
+        std_data : dict, optional
+            Standard deviations {rxn_id: std}.
+        pipeline_tag : str, optional
+            Tag shown in hover text.
+        """
+        if isinstance(flux_data, Solution):
+            fd = {str(k): float(v) for k, v in flux_data.fluxes.items()}
+        elif isinstance(flux_data, (pd.Series, dict)):
+            fd = {str(k): float(v) for k, v in flux_data.items()}
+        elif isinstance(flux_data, (str, Path)):
+            s = _load_single_csv(Path(flux_data))
+            fd = {str(k): float(v) for k, v in s.items()}
+        else:
+            raise TypeError(f"Unsupported flux_data type: {type(flux_data)}")
+
+        spec = ViewSpec(
+            label=label,
+            flux_dict=fd,
+            std_dict=std_data or {},
+            pipeline_tag=pipeline_tag or label,
+        )
+        for i, existing in enumerate(self._views):
+            if existing.label == label:
+                self._views[i] = spec
+                break
+        else:
+            self._views.append(spec)
+        if self._graph_built:
+            self._rebuild_figure()
+
+    def clear_views(self) -> None:
+        """Remove all flux views."""
+        self._views.clear()
+        self._figure_json = "{}"
+
+    def run_fba(self, label: str = "FBA") -> None:
+        """Run FBA on the model and add as a view."""
+        if self._cobra_model is None:
+            raise ValueError("No model set.")
+        sol = self._cobra_model.optimize()
+        if sol.status != "optimal":
+            raise RuntimeError(f"FBA status: {sol.status}")
+        self.add_view(label, sol)
+
+    def run_pfba(self, label: str = "pFBA") -> None:
+        """Run parsimonious FBA on the model and add as a view."""
+        if self._cobra_model is None:
+            raise ValueError("No model set.")
+        sol = cobra.flux_analysis.pfba(self._cobra_model)
+        self.add_view(label, sol)
+
+    def _handle_custom_msg(self, _widget, content: dict, _buffers) -> None:
+        if content.get("type") == "run_pfba":
+            self.run_pfba()
+        elif content.get("type") == "run_fba":
+            self.run_fba()
+
+    # -- Internal: graph building --
+
+    def _build_graph(self) -> None:
+        """Build the bipartite reaction-metabolite graph from the COBRA model."""
+        mdl = self._cobra_model
+        if mdl is None:
+            return
+        cfg = self._cfg
+
+        # Classify reactions
+        self._rxn_kind_map = {}
+        exch_comp: dict[str, str] = {}
+        for rxn in mdl.reactions:
+            k = _rxn_kind(rxn, cfg)
+            self._rxn_kind_map[rxn.id] = k
+            if k != "regular":
+                mets = list(rxn.metabolites.keys())
+                exch_comp[rxn.id] = _met_comp(mets[0], cfg) if mets else cfg["exchange_key"]
+
+        # Build substrates/products for hover
+        self._rxn_substrates = {}
+        self._rxn_products = {}
+        for rxn in mdl.reactions:
+            self._rxn_substrates[rxn.id] = [
+                f"{abs(s):.1f}x {m.name or m.id}"
+                for m, s in rxn.metabolites.items() if s < 0
+            ]
+            self._rxn_products[rxn.id] = [
+                f"{s:.1f}x {m.name or m.id}"
+                for m, s in rxn.metabolites.items() if s > 0
+            ]
+
+        # Count metabolite connections (excluding currency).
+        # Protons are currency but must be counted when drop_protons=False,
+        # otherwise their count stays 0 and the ">= 2" filter discards them.
+        met_rxn_count: dict[str, int] = {}
+        for rxn in mdl.reactions:
+            for met in rxn.metabolites:
+                is_p = _is_proton(met, cfg)
+                if not _is_currency(met, cfg) or (is_p and not self._drop_protons):
+                    met_rxn_count[met.id] = met_rxn_count.get(met.id, 0) + 1
+
+        self._met_to_rxns = {}
+        for rxn in mdl.reactions:
+            for met, stoich in rxn.metabolites.items():
+                is_proton = _is_proton(met, cfg)
+                # When drop_protons=False the user explicitly wants protons
+                # visible, so don't let the currency filter swallow them first.
+                if _is_currency(met, cfg) and not (is_proton and not self._drop_protons):
+                    continue
+                if is_proton and self._drop_protons:
+                    continue
+                if met_rxn_count.get(met.id, 0) < 2:
+                    continue
+                self._met_to_rxns.setdefault(met.id, []).append(
+                    (rxn.id, float(stoich))
+                )
+
+        # Build networkx graph
+        G = nx.Graph()
+        for rxn in mdl.reactions:
+            if rxn.id in self._ignored_rxns:
+                continue
+            comp = (_rxn_comp(rxn.id, cfg) if self._rxn_kind_map[rxn.id] == "regular"
+                    else exch_comp.get(rxn.id, cfg["exchange_key"]))
+            G.add_node(rxn.id, ntype="rxn", comp=comp,
+                       name=rxn.name or rxn.id, kind=self._rxn_kind_map[rxn.id])
+        for met_id, rxn_list in self._met_to_rxns.items():
+            if met_id in self._ignored_mets:
+                continue
+            met_obj = mdl.metabolites.get_by_id(met_id)
+            mc = _met_comp(met_obj, cfg)
+            G.add_node(met_id, ntype="met", comp=mc, name=met_obj.name or met_id)
+            for rxn_id, stoich in rxn_list:
+                if rxn_id not in self._ignored_rxns:
+                    G.add_edge(rxn_id, met_id, stoich=stoich)
+
+        self._G = G
+        self._rxn_nodes = [n for n, d in G.nodes(data=True) if d["ntype"] == "rxn"]
+        self._met_nodes = [n for n, d in G.nodes(data=True) if d["ntype"] == "met"]
+
+        # Layout
+        self._compute_layout()
+        self._graph_built = True
+        if self._ignored_rxns or self._ignored_mets:
+            self._report_ignore(mdl, cfg, met_rxn_count)
+
+    def _report_ignore(
+        self, mdl: cobra.Model, cfg: dict, met_rxn_count: dict[str, int]
+    ) -> None:
+        """Print a summary of ignored IDs, noting if they were already hidden."""
+        all_rxn_ids = {r.id for r in mdl.reactions}
+        all_met_ids = {m.id for m in mdl.metabolites}
+
+        # Merge flux dicts across all views for zero-flux check
+        all_fluxes: dict[str, float] = {}
+        for spec in self._views:
+            all_fluxes.update(spec.flux_dict)
+
+        if self._ignored_rxns:
+            print("── Ignored reactions ──")
+            for rid in sorted(self._ignored_rxns):
+                if rid not in all_rxn_ids:
+                    print(f"  {rid}: not in model (check ID)")
+                elif all_fluxes and abs(all_fluxes.get(rid, 0.0)) < 1e-9:
+                    print(f"  {rid}: redundant — already carries no flux")
+                else:
+                    print(f"  {rid}: removed from graph")
+
+        if self._ignored_mets:
+            print("── Ignored metabolites ──")
+            for mid in sorted(self._ignored_mets):
+                if mid not in all_met_ids:
+                    print(f"  {mid}: not in model (check ID)")
+                    continue
+                met_obj = mdl.metabolites.get_by_id(mid)
+                if _is_currency(met_obj, cfg):
+                    print(f"  {mid}: redundant — already filtered as currency")
+                elif _is_proton(met_obj, cfg) and self._drop_protons:
+                    print(f"  {mid}: redundant — already filtered as proton")
+                elif met_rxn_count.get(mid, 0) < 2:
+                    print(f"  {mid}: redundant — already hidden (< 2 connections)")
+                else:
+                    print(f"  {mid}: removed from graph")
+
+    def _compute_layout(self) -> None:
+        """Compute compartment-aware spring layout for all nodes."""
+        G = self._G
+        if G is None:
+            return
+        cfg = self._cfg
+        compartments = cfg["compartments"]
+        pos: dict[str, tuple[float, float]] = {}
+
+        _rxn_counts = {
+            ck: sum(1 for r in self._rxn_nodes if G.nodes[r]["comp"] == ck)
+            for ck in compartments
+        }
+        _nonempty_counts = [c for c in _rxn_counts.values() if c > 0]
+        _ref_count = float(np.mean(_nonempty_counts)) if _nonempty_counts else 1.0
+
+        def _effective_region(comp_key: str) -> tuple[float, float, float, float]:
+            x0, x1, y0, y1 = compartments[comp_key]["region"]
+            if not self._scale_compartments:
+                return x0, x1, y0, y1
+            n = _rxn_counts.get(comp_key, 0)
+            scale = float(np.sqrt(max(n, 1) / _ref_count))
+            cx, cy = (x0 + x1) / 2.0, (y0 + y1) / 2.0
+            hw = (x1 - x0) / 2.0 * scale
+            hh = (y1 - y0) / 2.0 * scale
+            return cx - hw, cx + hw, cy - hh, cy + hh
+
+        # Per-compartment spring layout for reactions
+        for comp_key in compartments:
+            x0, x1, y0, y1 = _effective_region(comp_key)
+            rxns_here = [r for r in self._rxn_nodes if G.nodes[r]["comp"] == comp_key]
+            if not rxns_here:
+                continue
+            if len(rxns_here) == 1:
+                pos[rxns_here[0]] = ((x0 + x1) / 2, (y0 + y1) / 2)
+                continue
+            rxn_set = set(rxns_here)
+            local_G = nx.Graph()
+            local_G.add_nodes_from(rxns_here)
+            for met_id_l, rxn_list in self._met_to_rxns.items():
+                local_rxns = [r for r, _ in rxn_list if r in rxn_set]
+                for i in range(len(local_rxns)):
+                    for j in range(i + 1, len(local_rxns)):
+                        local_G.add_edge(local_rxns[i], local_rxns[j])
+            lp = nx.spring_layout(
+                local_G, k=1.4, iterations=150,
+                seed=abs(hash(comp_key)) % (2 ** 31),
+            )
+            pos.update(_scale_to_region(lp, x0, x1, y0, y1))
+
+        # Metabolite positions (centroid of neighbours)
+        for met_id in self._met_nodes:
+            nbrs = [n for n in G.neighbors(met_id)
+                    if G.nodes[n]["ntype"] == "rxn" and n in pos]
+            if nbrs:
+                cx = float(np.mean([pos[n][0] for n in nbrs]))
+                cy = float(np.mean([pos[n][1] for n in nbrs]))
+                cx, cy = _push_away_from_reactions(
+                    cx, cy, nbrs, met_id, pos, self._collision_modifier
+                )
+                pos[met_id] = (cx, cy)
+            else:
+                pos[met_id] = (0.0, 0.0)
+
+            met_c = G.nodes[met_id].get("comp", cfg["exchange_key"])
+            if met_c in compartments:
+                x0, x1, y0, y1 = _effective_region(met_c)
+                mx, my = pos[met_id]
+                margin = 0.2
+                pos[met_id] = (
+                    float(np.clip(mx, x0 + margin, x1 - margin)),
+                    float(np.clip(my, y0 + margin, y1 - margin)),
+                )
+
+        # Resolve edge collisions
+        _base_resolved = _resolve_edge_collisions(
+            {m: pos[m] for m in self._met_nodes},
+            self._met_nodes, G, pos, self._collision_modifier,
+        )
+        for _m in self._met_nodes:
+            pos[_m] = _base_resolved[_m]
+
+        self._pos = pos
+
+        # Store effective region function for later use
+        self._effective_region = _effective_region
+
+    # -- Internal: figure building --
+
+    def _rebuild_figure(self) -> None:
+        """Rebuild the complete Plotly figure JSON and sync to frontend."""
+        if not self._graph_built or not self._views:
+            return
+
+        G = self._G
+        pos = self._pos
+        cfg = self._cfg
+        compartments = cfg["compartments"]
+        exchange_key = cfg["exchange_key"]
+        views = self._views
+        mdl = self._cobra_model
+
+        # Drop-no-data filtering (on copies)
+        rxn_nodes = list(self._rxn_nodes)
+        met_nodes = list(self._met_nodes)
+        met_to_rxns = dict(self._met_to_rxns)
+
+        if self._drop_no_data:
+            rxns_with_data: set[str] = set()
+            for view in views:
+                for rxn_id, flux in view.flux_dict.items():
+                    if _has_flux_data(float(flux)):
+                        rxns_with_data.add(rxn_id)
+            rxn_nodes = [r for r in rxn_nodes if r in rxns_with_data]
+            # Remove orphaned metabolites
+            remaining = set(rxn_nodes)
+            met_nodes = [m for m in met_nodes if any(
+                r in remaining for r, _ in met_to_rxns.get(m, [])
+            )]
+
+        # Active compartments
+        _active_comps = (
+            {G.nodes[r]["comp"] for r in rxn_nodes}
+            if self._drop_no_data else set(compartments)
+        )
+        # Flux-weighted metabolite positions per view
+        flux_met_pos_by_view = [
+            _flux_weighted_met_positions(
+                v.flux_dict, met_nodes, G, pos, self._collision_modifier
+            )
+            for v in views
+        ]
+
+        # Build oriented edges
+        rxn_set = set(rxn_nodes)
+        met_set = set(met_nodes)
+        oriented_edges: list[tuple[str, str, str, float]] = []
+        for n1, n2, edata in G.edges(data=True):
+            if G.nodes[n1]["ntype"] == "rxn" and G.nodes[n2]["ntype"] == "met":
+                rxn_id, met_id = n1, n2
+            elif G.nodes[n2]["ntype"] == "rxn" and G.nodes[n1]["ntype"] == "met":
+                rxn_id, met_id = n2, n1
+            else:
+                continue
+            if rxn_id not in pos or met_id not in pos:
+                continue
+            if rxn_id not in rxn_set or met_id not in met_set:
+                continue
+            edge_class = ("ss" if self._rxn_kind_map.get(rxn_id, "regular") != "regular"
+                          else "reg")
+            stoich = float(edata.get("stoich", 1.0))
+            oriented_edges.append((edge_class, rxn_id, met_id, stoich))
+
+        # Edge coordinates per view
+        edge_flux_x_by_view = []
+        edge_flux_y_by_view = []
+        edge_met_ids_by_view = []
+        for i, view in enumerate(views):
+            exf, eyf, emids = _build_edge_coords_for_view(
+                view.flux_dict, flux_met_pos_by_view[i],
+                oriented_edges, pos, self._stoich_flux,
+            )
+            edge_flux_x_by_view.append(exf)
+            edge_flux_y_by_view.append(eyf)
+            edge_met_ids_by_view.append(emids)
+
+        # Build Plotly traces
+        regular_edge_traces = []
+        source_sink_edge_traces = []
+        idx = 0
+        for edge_class in ("reg", "ss"):
+            for sign in (1, -1):
+                for b in range(EDGE_BINS):
+                    mag_norm = (b + 0.5) / EDGE_BINS
+                    width = 1.2 + 3.4 * mag_norm
+                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True)
+                    tr = go.Scatter(
+                        x=edge_flux_x_by_view[0][idx],
+                        y=edge_flux_y_by_view[0][idx],
+                        mode="lines",
+                        line=dict(width=width, color=color,
+                                  dash=("dot" if edge_class == "ss" else "solid")),
+                        hoverinfo="none", showlegend=False, visible=False,
+                        name=("_edges_sourcesink" if edge_class == "ss"
+                              else "_edges_regular"),
+                    )
+                    if edge_class == "ss":
+                        source_sink_edge_traces.append(tr)
+                    else:
+                        regular_edge_traces.append(tr)
+                    idx += 1
+
+        # Metabolite nodes
+        met_hover = []
+        met_labels = []
+        for n in met_nodes:
+            consumers = [r for r, s in met_to_rxns.get(n, []) if s < 0]
+            producers = [r for r, s in met_to_rxns.get(n, []) if s > 0]
+            met_c = G.nodes[n].get("comp", "?")
+            comp_label = compartments.get(met_c, {}).get("label", met_c)
+            met_name = G.nodes[n]["name"]
+            met_labels.append(f"{met_name} [{met_c}]")
+            met_hover.append(
+                f"<b>{met_name}</b><br>"
+                f"<i>{comp_label}</i><br>"
+                f"ID: {n}<br>"
+                f"Consumed by: {', '.join(consumers[:5]) or '---'}<br>"
+                f"Produced by: {', '.join(producers[:5]) or '---'}"
+                f"<extra>Metabolite</extra>"
+            )
+        met_trace = go.Scatter(
+            x=[flux_met_pos_by_view[0][n][0] for n in met_nodes],
+            y=[flux_met_pos_by_view[0][n][1] for n in met_nodes],
+            text=met_labels,
+            mode="markers",
+            marker=dict(size=7, color=_MET_COLOR, symbol="diamond",
+                        line=dict(color="white", width=0.5)),
+            customdata=met_nodes,
+            hovertemplate=met_hover, showlegend=False, visible=False,
+            name="_metabolites",
+        )
+
+        # Reaction labels
+        label_trace = go.Scatter(
+            x=[pos[r][0] for r in rxn_nodes],
+            y=[pos[r][1] for r in rxn_nodes],
+            mode="text", text=[G.nodes[r]["name"] for r in rxn_nodes],
+            textfont=dict(size=7, color="#2c3e50"),
+            textposition="top center",
+            hoverinfo="none", showlegend=False, visible=False,
+            name="_labels",
+        )
+
+        # Per-view reaction traces
+        rxn_traces = [
+            _make_rxn_trace(
+                v, rxn_nodes, pos, G, mdl, compartments, exchange_key,
+                self._rxn_kind_map, self._rxn_substrates, self._rxn_products,
+            )
+            for v in views
+        ]
+        n_rxn_traces = len(rxn_traces)
+        for i, t in enumerate(rxn_traces):
+            t.visible = (i == 0)
+
+        n_regular_edges = len(regular_edge_traces)
+        n_ss_edges = len(source_sink_edge_traces)
+        MET_TRACE_IDX = n_regular_edges + n_ss_edges
+        LABEL_TRACE_IDX = MET_TRACE_IDX + 1
+        RXN_START = LABEL_TRACE_IDX + 1
+        edge_indices = list(range(0, n_regular_edges + n_ss_edges))
+
+        met_flux_x_by_view = [
+            [flux_met_pos_by_view[i][n][0] for n in met_nodes]
+            for i in range(n_rxn_traces)
+        ]
+        met_flux_y_by_view = [
+            [flux_met_pos_by_view[i][n][1] for n in met_nodes]
+            for i in range(n_rxn_traces)
+        ]
+
+        # Legend dummies
+        legend_traces = [
+            go.Scatter(x=[None], y=[None], mode="markers",
+                       marker=dict(size=12, color=cfg_c["color"],
+                                   line=dict(color=cfg_c["color"], width=2)),
+                       name=cfg_c["label"], showlegend=True)
+            for comp_key, cfg_c in compartments.items()
+            if comp_key in _active_comps
+        ] + [
+            go.Scatter(x=[None], y=[None], mode="markers",
+                       marker=dict(size=11, color="#888", symbol="triangle-up"),
+                       name="Import", showlegend=True),
+            go.Scatter(x=[None], y=[None], mode="markers",
+                       marker=dict(size=11, color="#888", symbol="triangle-down"),
+                       name="Export / sink", showlegend=True),
+            go.Scatter(x=[None], y=[None], mode="lines",
+                       line=dict(color="rgba(52,152,219,0.8)", width=2),
+                       name="Substrate edge", showlegend=True),
+            go.Scatter(x=[None], y=[None], mode="lines",
+                       line=dict(color="rgba(230,126,34,0.8)", width=2),
+                       name="Product edge", showlegend=True),
+        ]
+
+        all_traces = [
+            *regular_edge_traces,
+            *source_sink_edge_traces,
+            met_trace, label_trace,
+            *rxn_traces,
+            *legend_traces,
+        ]
+
+        rxn_indices = list(range(RXN_START, RXN_START + n_rxn_traces))
+        view_labels = [v.label for v in views]
+
+        # Build update menus
+        mode_buttons = [
+            dict(label=lbl, method="skip", args=[]) for lbl in view_labels
+        ]
+        met_toggle = [
+            dict(label="Show metabolites", method="restyle",
+                 args=[{"visible": True},
+                       list(range(0, n_regular_edges)) + [MET_TRACE_IDX]]),
+            dict(label="Hide metabolites", method="restyle",
+                 args=[{"visible": False},
+                       list(range(0, n_regular_edges)) + [MET_TRACE_IDX]]),
+        ]
+        source_sink_toggle = [
+            dict(label="Show source/sink lines", method="restyle",
+                 args=[{"visible": True},
+                       list(range(n_regular_edges, n_regular_edges + n_ss_edges))]),
+            dict(label="Hide source/sink lines", method="restyle",
+                 args=[{"visible": False},
+                       list(range(n_regular_edges, n_regular_edges + n_ss_edges))]),
+        ]
+        label_toggle = [
+            dict(label="Show labels", method="restyle",
+                 args=[{"visible": True}, [LABEL_TRACE_IDX]]),
+            dict(label="Hide labels", method="restyle",
+                 args=[{"visible": False}, [LABEL_TRACE_IDX]]),
+        ]
+        drag_toggle = [
+            dict(label="Enable drag", method="skip", args=[]),
+            dict(label="Disable drag", method="skip", args=[]),
+        ]
+
+        _menu_base = dict(
+            type="buttons", direction="right",
+            xanchor="left", x=0.0,
+            pad={"r": 6, "t": 4, "b": 4}, showactive=True,
+            bgcolor="#f4f6f7", bordercolor="#aab7b8",
+            font=dict(size=11, family="Arial, sans-serif"),
+        )
+        _menu_items = [
+            (1.14, mode_buttons),
+            (1.07, met_toggle),
+            (1.00, source_sink_toggle),
+            (0.93, label_toggle),
+            (0.86, drag_toggle),
+        ]
+
+        fig = go.Figure(data=all_traces)
+
+        # Compartment convex-hull shapes + labels
+        for comp_key, cfg_c in compartments.items():
+            regular_here = [r for r in rxn_nodes
+                            if G.nodes[r]["comp"] == comp_key
+                            and G.nodes[r]["kind"] == "regular"
+                            and r in pos]
+            if len(regular_here) < 3:
+                continue
+            pts = np.array([[pos[r][0], pos[r][1]] for r in regular_here])
+            try:
+                hull = ConvexHull(pts)
+                verts = pts[hull.vertices]
+                centre = verts.mean(axis=0)
+                verts = centre + (verts - centre) * 1.22
+                path = _smooth_hull_path(verts, tension=self._hull_tension)
+                fig.add_shape(
+                    type="path", path=path, layer="below",
+                    fillcolor=cfg_c["fill"],
+                    line=dict(color=cfg_c["color"], width=1.5, dash="dot"),
+                )
+                fig.add_annotation(
+                    x=float(verts[:, 0].mean()),
+                    y=float(verts[:, 1].max()) + 0.2,
+                    text=f"<b>{cfg_c['label']}</b>",
+                    showarrow=False,
+                    font=dict(size=12, color=cfg_c["color"],
+                              family="Arial, sans-serif"),
+                    xanchor="center", yanchor="bottom",
+                )
+            except Exception:
+                pass
+
+        model_name = (self._cobra_model.id or "Model") if self._cobra_model else "Model"
+        plot_title = f"Metabolic Flux Network — {model_name}"
+
+        _label_base = dict(
+            xref="paper", yref="paper", showarrow=False,
+            xanchor="right", x=-0.005,
+            font=dict(size=11, family="Arial, sans-serif"),
+        )
+        _sidebar_labels = [
+            (1.145, "Flux view"),
+            (1.075, "Metabolites"),
+            (1.005, "Source/Sink"),
+            (0.935, "Labels"),
+            (0.865, "Drag (Shift+click)"),
+        ]
+
+        fig.update_layout(
+            title=dict(
+                text=(
+                    f"{plot_title}<br>"
+                    "<sup>Size = log|flux| | Colour = direction (blue ← 0 → red) | "
+                    "Border = compartment | Each view shows ONLY its own pipeline data</sup>"
+                ),
+                x=0.5, xanchor="center",
+                font=dict(size=15, family="Arial, sans-serif"),
+            ),
+            updatemenus=[
+                dict(**_menu_base, y=y, buttons=btns)
+                for y, btns in _menu_items
+            ],
+            annotations=fig.layout.annotations + tuple(
+                dict(**_label_base, y=y, text=f"<b>{txt}</b>")
+                for y, txt in _sidebar_labels
+            ),
+            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            plot_bgcolor="white",
+            paper_bgcolor="#fdfefe",
+            legend=dict(
+                title=dict(text="<b>Compartment / Edge type</b>",
+                           font=dict(size=11)),
+                x=1.02, y=1.0, yanchor="top",
+                bgcolor="rgba(255,255,255,0.92)",
+                bordercolor="#ccc", borderwidth=1,
+                font=dict(size=10, family="Arial, sans-serif"),
+            ),
+            height=940,
+            hovermode="closest",
+            dragmode="pan",
+            margin=dict(t=160, r=230, b=20, l=120),
+            font=dict(family="Arial, sans-serif"),
+        )
+
+        # Search highlight trace
+        met_comp_bounds = [
+            list(compartments.get(
+                G.nodes[n].get("comp", exchange_key),
+                dict(region=(-1e9, 1e9, -1e9, 1e9)),
+            )["region"])
+            for n in met_nodes
+        ]
+
+        fig.add_trace(go.Scatter(
+            x=[], y=[],
+            mode="markers",
+            marker=dict(size=24, color="rgba(255,220,0,0.55)", symbol="circle",
+                        line=dict(color="#e67e22", width=3)),
+            hoverinfo="none", showlegend=False, visible=True,
+            name="_search_highlight",
+        ))
+        HIGHLIGHT_TRACE_IDX = len(fig.data) - 1
+
+        rxn_names_search = [
+            mdl.reactions.get_by_id(r).name or r for r in rxn_nodes
+        ]
+        rxn_x_search = [pos[r][0] for r in rxn_nodes]
+        rxn_y_search = [pos[r][1] for r in rxn_nodes]
+        met_names_search = [G.nodes[n].get("name", n) for n in met_nodes]
+
+        # Pack interactivity data into the figure JSON for the frontend
+        interactivity_data = {
+            "view_labels": view_labels,
+            "rxn_indices": rxn_indices,
+            "edge_indices": edge_indices,
+            "met_idx": MET_TRACE_IDX,
+            "edge_flux_x": edge_flux_x_by_view,
+            "edge_flux_y": edge_flux_y_by_view,
+            "edge_met_ids": edge_met_ids_by_view,
+            "met_flux_x": met_flux_x_by_view,
+            "met_flux_y": met_flux_y_by_view,
+            "met_ids": met_nodes,
+            "met_bounds": met_comp_bounds,
+            "rxn_ids": rxn_nodes,
+            "rxn_names": rxn_names_search,
+            "rxn_x": rxn_x_search,
+            "rxn_y": rxn_y_search,
+            "met_names": met_names_search,
+            "highlight_idx": HIGHLIGHT_TRACE_IDX,
+        }
+
+        # Combine figure JSON + interactivity data
+        fig_dict = fig.to_dict()
+        fig_dict["_interactivity"] = interactivity_data
+
+        self._figure_json = json.dumps(fig_dict, cls=_PlotlyJSONEncoder)
+
+    # -- Frontend ESM --
+
+    _esm = resources.files("cobramod.static").joinpath("flux_network.mjs").read_text()
+
+
+class _PlotlyJSONEncoder(json.JSONEncoder):
+    """Handle numpy types in JSON serialization."""
+    def default(self, obj):
+        if isinstance(obj, (np.integer,)):
+            return int(obj)
+        if isinstance(obj, (np.floating,)):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)

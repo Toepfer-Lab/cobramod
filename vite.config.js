@@ -12,7 +12,8 @@ export default defineConfig({
 		lib: {
 			entry: {
                 escher: "./js/escher.ts",
-                force_graph: "./js/force_graph.ts"
+                force_graph: "./js/force_graph.ts",
+                flux_network: "./js/flux_network.js"
             },
 			formats: ["es"],
 		},
