@@ -7,11 +7,11 @@ to be integrated into the CobraMod package.
 
 Usage (Jupyter)
 ---------------
-    from flux_network import FluxNetworkIntegration
+    from flux_network import FLoV
     import cobra
 
     model = cobra.io.read_sbml_model("AraCore_v2_1.xml")
-    widget = FluxNetworkIntegration()
+    widget = FLoV()
     widget.compartments = "config/aracore.toml"
     widget.model = model
     widget.add_view("FBA", model.optimize())
@@ -336,8 +336,8 @@ def _resolve_rxn_overlaps(
     pos: dict,
     rxn_nodes: list[str],
     x0: float, x1: float, y0: float, y1: float,
-    min_dist: float = 10,
-    iterations: int = 200,
+    min_dist: float = 0.1,
+    iterations: int = 30,
     margin: float = 0.05,
 ) -> dict:
     """Push reaction nodes apart so they don't visually overlap, then clip
@@ -393,8 +393,11 @@ def _flux_weighted_met_positions(
     G: nx.Graph,
     pos: dict,
     collision_modifier: float,
+    cfg: Optional[dict] = None,
+    effective_region=None,
 ) -> dict[str, tuple[float, float]]:
     met_pos: dict[str, tuple[float, float]] = {}
+    compartments = cfg["compartments"] if cfg else {}
 
     for met_id in met_nodes:
         nbrs = [r for r in G.neighbors(met_id)
@@ -403,8 +406,14 @@ def _flux_weighted_met_positions(
             met_pos[met_id] = pos.get(met_id, (0.0, 0.0))
             continue
 
+        # Prefer same-compartment neighbours — cross-compartment reactions
+        # (transporters) should not pull the metabolite out of its compartment.
+        met_c = G.nodes[met_id].get("comp", "")
+        same_comp = [r for r in nbrs if G.nodes[r].get("comp") == met_c]
+        weight_nbrs = same_comp if same_comp else nbrs
+
         weights, xs, ys = [], [], []
-        for r in nbrs:
+        for r in weight_nbrs:
             f = edge_flux.get(r, np.nan)
             w = abs(float(f)) + 0.01 if _has_flux_data(float(f)) else 0.02
             w = w ** 3
@@ -415,10 +424,16 @@ def _flux_weighted_met_positions(
         if wsum <= 0:
             met_pos[met_id] = pos.get(met_id, (0.0, 0.0))
         else:
-            met_pos[met_id] = (
-                float(np.dot(xs, weights) / wsum),
-                float(np.dot(ys, weights) / wsum),
-            )
+            raw_x = float(np.dot(xs, weights) / wsum)
+            raw_y = float(np.dot(ys, weights) / wsum)
+            # Clip to compartment bounds so cross-compartment pull cannot
+            # move the metabolite outside its own region.
+            if effective_region and met_c in compartments:
+                x0_, x1_, y0_, y1_ = effective_region(met_c)
+                margin = 0.2
+                raw_x = float(np.clip(raw_x, x0_ + margin, x1_ - margin))
+                raw_y = float(np.clip(raw_y, y0_ + margin, y1_ - margin))
+            met_pos[met_id] = (raw_x, raw_y)
 
     for met_id in met_nodes:
         rxn_nbrs = [r for r in G.neighbors(met_id)
@@ -730,7 +745,7 @@ def _load_single_csv(path: Path) -> pd.Series:
 # MAIN WIDGET CLASS
 # ==========================================================================
 
-class FluxNetworkIntegration(anywidget.AnyWidget):
+class FLoV(anywidget.AnyWidget):
     """
     Interactive 2D Plotly-based metabolic flux network widget for Jupyter.
 
@@ -740,7 +755,7 @@ class FluxNetworkIntegration(anywidget.AnyWidget):
 
     Usage::
 
-        widget = FluxNetworkIntegration()
+        widget = FLoV()
         widget.compartments = "config/aracore.toml"  # or dict
         widget.model = cobra.io.read_sbml_model("model.xml")
         widget.add_view("FBA", model.optimize())
@@ -789,6 +804,9 @@ class FluxNetworkIntegration(anywidget.AnyWidget):
         self._collision_modifier = collision_modifier
         self._ignored_rxns: set[str] = set()
         self._ignored_mets: set[str] = set()
+        self._animate_flux = False
+        self._anim_min_period = 0.4   # seconds — fastest pulse at peak flux
+        self._anim_max_period = 3.0   # seconds — slowest pulse at minimal flux
 
     # -- Properties --
 
@@ -1171,8 +1189,14 @@ class FluxNetworkIntegration(anywidget.AnyWidget):
             nbrs = [n for n in G.neighbors(met_id)
                     if G.nodes[n]["ntype"] == "rxn" and n in pos]
             if nbrs:
-                cx = float(np.mean([pos[n][0] for n in nbrs]))
-                cy = float(np.mean([pos[n][1] for n in nbrs]))
+                # Prefer same-compartment neighbours so cross-compartment
+                # reactions (transporters) don't pull the metabolite out of
+                # its own compartment and into the clipping boundary.
+                met_c_local = G.nodes[met_id].get("comp", cfg["exchange_key"])
+                same_comp_nbrs = [n for n in nbrs if G.nodes[n].get("comp") == met_c_local]
+                centroid_nbrs = same_comp_nbrs if same_comp_nbrs else nbrs
+                cx = float(np.mean([pos[n][0] for n in centroid_nbrs]))
+                cy = float(np.mean([pos[n][1] for n in centroid_nbrs]))
                 cx, cy = _push_away_from_reactions(
                     cx, cy, nbrs, met_id, pos, self._collision_modifier
                 )
@@ -1244,7 +1268,8 @@ class FluxNetworkIntegration(anywidget.AnyWidget):
         # Flux-weighted metabolite positions per view
         flux_met_pos_by_view = [
             _flux_weighted_met_positions(
-                v.flux_dict, met_nodes, G, pos, self._collision_modifier
+                v.flux_dict, met_nodes, G, pos, self._collision_modifier,
+                cfg=cfg, effective_region=self._effective_region,
             )
             for v in views
         ]

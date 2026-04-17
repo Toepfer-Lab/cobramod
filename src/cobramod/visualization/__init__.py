@@ -14,4 +14,4 @@ Moreover, there is a debug module, which helps debugging the objects and the
 initialization of the module. Please refer to each individual module for more
 in-depth information.
 """
-from cobramod.visualization.flux_network import FluxNetworkIntegration
+from cobramod.visualization.flux_network import FLoV
