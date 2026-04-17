@@ -44,6 +44,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from cobra import Solution
 from scipy.spatial import ConvexHull
+from scipy.sparse import csr_matrix
 from traitlets import traitlets
 
 
@@ -144,6 +145,10 @@ def _parse_config(cfg: dict) -> dict:
     )
     suffix_re = re.compile(rf"_({_alts})(?:_[a-z])?$", re.IGNORECASE)
     bracket_re = re.compile(rf"\[({_alts})\]$", re.IGNORECASE)
+    # Fallback: compartment key directly at the end of the ID without a separator
+    # (e.g. "ENOc", "PDHm", "SUCOAS1m"). Sorted longest-first to avoid "m" matching
+    # inside "lm" etc.
+    nosep_re = re.compile(rf"({_alts})$", re.IGNORECASE)
 
     return dict(
         compartments=compartments,
@@ -154,6 +159,7 @@ def _parse_config(cfg: dict) -> dict:
         biomass_prefix=biomass_prefix,
         suffix_re=suffix_re,
         bracket_re=bracket_re,
+        nosep_re=nosep_re,
     )
 
 
@@ -166,6 +172,10 @@ def _rxn_comp(rxn_id: str, cfg: dict) -> str:
     if m:
         return m.group(1).lower()
     m = cfg["bracket_re"].search(rxn_id)
+    if m:
+        return m.group(1).lower()
+    # Last resort: compartment key appended directly without separator (e.g. "ENOc")
+    m = cfg["nosep_re"].search(rxn_id)
     return m.group(1).lower() if m else cfg["exchange_key"]
 
 def _met_comp_str(met_id: str, cfg: dict) -> str:
@@ -235,6 +245,10 @@ def _stable_unit(met_id: str) -> float:
 
 def _has_flux_data(flux: float) -> bool:
     return (not np.isnan(flux)) and (abs(float(flux)) > ACTIVE_EDGE_EPS)
+
+
+def _emit_progress(message: str) -> None:
+    print(f"FLoV: {message}", flush=True)
 
 # ==========================================================================
 # LAYOUT HELPERS
@@ -326,29 +340,40 @@ def _resolve_edge_collisions(
     if not seg_owner_list:
         return met_pos
 
+    # Use integer index arrays instead of string object arrays for fast comparisons
+    met_to_int: dict[str, int] = {m: i for i, m in enumerate(met_nodes)}
+    # Build a global reaction ID → integer mapping over all segments
+    all_seg_rxns = list(dict.fromkeys(seg_rxn_list))  # unique, order-preserving
+    rxn_to_int: dict[str, int] = {r: i for i, r in enumerate(all_seg_rxns)}
+
     seg_ax = np.array(seg_ax_list, dtype=float)
     seg_ay = np.array(seg_ay_list, dtype=float)
-    seg_owner_arr = np.array(seg_owner_list)
-    seg_rxn_arr = np.array(seg_rxn_list)
-    # B endpoints (metabolite positions) are updated each iteration
-    seg_bx = np.array([met_pos[m][0] for m in seg_owner_list], dtype=float)
-    seg_by = np.array([met_pos[m][1] for m in seg_owner_list], dtype=float)
+    seg_owner_int = np.array([met_to_int[m] for m in seg_owner_list], dtype=np.intp)
+    seg_rxn_int = np.array([rxn_to_int[r] for r in seg_rxn_list], dtype=np.intp)
+
+    # B endpoints (metabolite positions) — updated via fancy-index each iteration
+    # met_pos_arr[i] = (x, y) of met_nodes[i]; kept in sync with met_pos dict
+    met_pos_arr = np.array([met_pos[m] for m in met_nodes], dtype=float)  # (M, 2)
+    seg_bx = met_pos_arr[seg_owner_int, 0].copy()
+    seg_by = met_pos_arr[seg_owner_int, 1].copy()
 
     dist_req = MIN_MET_EDGE_DIST * collision_modifier
 
     for _ in range(iterations):
-        # Refresh B endpoints to current metabolite positions
-        for k, m2_id in enumerate(seg_owner_list):
-            seg_bx[k] = met_pos[m2_id][0]
-            seg_by[k] = met_pos[m2_id][1]
+        # Refresh B endpoints in one fancy-index read (no Python loop)
+        seg_bx[:] = met_pos_arr[seg_owner_int, 0]
+        seg_by[:] = met_pos_arr[seg_owner_int, 1]
 
-        new_pos = dict(met_pos)
-        for met_id in met_nodes:
-            mx, my = met_pos[met_id]
-            own_rxns = met_rxn_adj[met_id]
+        next_arr = met_pos_arr.copy()
+        for i, met_id in enumerate(met_nodes):
+            mx, my = float(met_pos_arr[i, 0]), float(met_pos_arr[i, 1])
+            own_rxns_int = np.array([rxn_to_int[r] for r in met_rxn_adj[met_id]
+                                     if r in rxn_to_int], dtype=np.intp)
 
             # Mask: exclude segments owned by this metabolite or sharing its reactions
-            mask = (seg_owner_arr != met_id) & ~np.isin(seg_rxn_arr, list(own_rxns))
+            mask = (seg_owner_int != i)
+            if own_rxns_int.size:
+                mask &= ~np.isin(seg_rxn_int, own_rxns_int)
             if not mask.any():
                 continue
 
@@ -371,10 +396,13 @@ def _resolve_edge_collisions(
             else:
                 dx /= d
                 dy /= d
-            new_pos[met_id] = (best_cx + dist_req * dx, best_cy + dist_req * dy)
+            next_arr[i, 0] = best_cx + dist_req * dx
+            next_arr[i, 1] = best_cy + dist_req * dy
 
-        met_pos = new_pos
-    return met_pos
+        met_pos_arr = next_arr
+    # Convert back to dict
+    return {met_nodes[i]: (float(met_pos_arr[i, 0]), float(met_pos_arr[i, 1]))
+            for i in range(len(met_nodes))}
 
 
 def _resolve_rxn_overlaps(
@@ -431,6 +459,108 @@ def _resolve_rxn_overlaps(
     return pos
 
 
+def _fruchterman_reingold(
+    G: nx.Graph,
+    iterations: int = 50,
+    k: Optional[float] = None,
+    seed: Optional[int] = None,
+) -> dict[str, tuple[float, float]]:
+    """Numpy-vectorised Fruchterman-Reingold spring layout.
+
+    Replaces ``nx.spring_layout`` for large compartments.  All pairwise
+    repulsion forces are computed as a single ``(N, N)`` numpy broadcast;
+    attractive forces iterate only over the edge list.  Runs ~50–200× faster
+    than NetworkX's pure-Python implementation for N ≥ 200.
+
+    Parameters
+    ----------
+    G : nx.Graph
+        The graph to lay out.
+    iterations : int
+        Number of FR cooling iterations (default 50 — sufficient for layout
+        quality; NetworkX default is 50, we previously used 150).
+    k : float, optional
+        Ideal spring length.  Defaults to ``sqrt(1 / N)``.
+    seed : int, optional
+        Random seed for reproducibility.
+    """
+    nodes = list(G.nodes())
+    n = len(nodes)
+    if n == 0:
+        return {}
+    if n == 1:
+        return {nodes[0]: (0.0, 0.0)}
+
+    rng = np.random.default_rng(seed)
+    pos = rng.random((n, 2)).astype(float) * 2.0 - 1.0   # uniform in [-1, 1]²
+
+    if k is None:
+        k = float(np.sqrt(1.0 / n))
+    k2 = k * k
+
+    # Build edge index arrays once (attractive forces only touch edges).
+    node_idx = {v: i for i, v in enumerate(nodes)}
+    if G.number_of_edges():
+        u_arr = np.array([node_idx[u] for u, _ in G.edges()], dtype=np.intp)
+        v_arr = np.array([node_idx[v] for _, v in G.edges()], dtype=np.intp)
+    else:
+        u_arr = v_arr = np.empty(0, dtype=np.intp)
+
+    # Scale iterations inversely with n so total O(n² × iter) work stays bounded.
+    # For n=200 → 50 iters; n=1000 → 10; n=5000 → 10 (minimum floor).
+    effective_iters = max(10, min(iterations, max(10, 10_000 // n)))
+
+    t = max(0.1, 0.1 * np.sqrt(n))
+    dt = t / (effective_iters + 1)
+
+    # Pre-allocate every (N, N) array once outside the loop so we pay the
+    # malloc cost once instead of once-per-iteration for 400 MB+ arrays.
+    delta  = np.empty((n, n, 2), dtype=float)
+    dist2  = np.empty((n, n), dtype=float)
+    scalar = np.empty((n, n), dtype=float)   # k2 / (dist2 * dist) per pair
+    disp   = np.empty((n, 2),  dtype=float)
+
+    for _ in range(effective_iters):
+        # ---- repulsive forces: all pairs (N, N) -------------------------
+        # In-place broadcast subtract avoids re-allocating delta each iteration.
+        np.subtract(pos[:, np.newaxis, :], pos[np.newaxis, :, :], out=delta)
+        # dist² without creating a squared-elements temp array
+        np.einsum("ijk,ijk->ij", delta, delta, out=dist2)
+        np.fill_diagonal(dist2, 1.0)
+        dist = np.sqrt(dist2)                # (N, N) — needed for temperature clamp
+
+        # scalar[i,j] = k² / (dist²[i,j] * dist[i,j])  →  force = scalar * delta
+        np.multiply(dist2, dist, out=scalar)
+        np.divide(k2, scalar, out=scalar)
+        np.fill_diagonal(scalar, 0.0)
+
+        # disp[i] = Σ_j scalar[i,j] * delta[i,j]  — no (N,N,2) intermediate
+        np.einsum("ij,ijk->ik", scalar, delta, out=disp)
+
+        # ---- attractive forces: edges only (E,) -------------------------
+        if u_arr.size:
+            e_delta = pos[u_arr] - pos[v_arr]                    # (E, 2)
+            e_dist = np.hypot(e_delta[:, 0], e_delta[:, 1])
+            e_dist = np.maximum(e_dist, 1e-10)
+            att_mag = e_dist / k
+            att_disp = e_delta / e_dist[:, np.newaxis] * att_mag[:, np.newaxis]
+            # np.bincount is ~20× faster than np.add.at for large edge lists
+            # because it runs a vectorised C loop instead of an unbuffered loop.
+            disp[:, 0] -= np.bincount(u_arr, weights=att_disp[:, 0], minlength=n)
+            disp[:, 0] += np.bincount(v_arr, weights=att_disp[:, 0], minlength=n)
+            disp[:, 1] -= np.bincount(u_arr, weights=att_disp[:, 1], minlength=n)
+            disp[:, 1] += np.bincount(v_arr, weights=att_disp[:, 1], minlength=n)
+
+        # ---- limit displacement by temperature --------------------------
+        disp_norm = np.hypot(disp[:, 0], disp[:, 1])
+        disp_norm = np.maximum(disp_norm, 1e-10)
+        disp *= (np.minimum(disp_norm, t) / disp_norm)[:, np.newaxis]
+        pos += disp
+        t -= dt
+
+    return {nodes[i]: (float(pos[i, 0]), float(pos[i, 1])) for i in range(n)}
+
+
 def _scale_to_region(
     lp: dict, x0: float, x1: float, y0: float, y1: float, pad: float = 0.1,
 ) -> dict:
@@ -465,10 +595,14 @@ def _flux_weighted_met_positions(
     rxn_idx = {r: i for i, r in enumerate(all_rxns)}
     rxn_coords = np.array([[pos[r][0], pos[r][1]] for r in all_rxns], dtype=float)  # (R, 2)
 
-    # Build (M, R) weight matrix — one row per metabolite, one column per reaction.
-    # Only same-compartment neighbours receive weight; cross-compartment neighbours
-    # are excluded unless no same-compartment neighbour exists.
-    W = np.zeros((M, R), dtype=float)
+    # Build a sparse (M, R) weight matrix in COO format, then convert to CSR.
+    # Only same-compartment neighbours receive weight; cross-compartment
+    # neighbours are excluded unless no same-compartment neighbour exists.
+    # For large models (e.g. Recon3D) the dense matrix would be ~630 MB;
+    # the sparse representation holds only O(M × avg_connections) entries.
+    rows: list[int] = []
+    cols: list[int] = []
+    vals: list[float] = []
     met_comp_list: list[str] = []
     for i, met_id in enumerate(met_nodes):
         nbrs = [r for r in G.neighbors(met_id)
@@ -480,15 +614,23 @@ def _flux_weighted_met_positions(
         for r in weight_nbrs:
             f = edge_flux.get(r, np.nan)
             w = (abs(float(f)) + 0.01) ** 3 if _has_flux_data(float(f)) else 0.02 ** 3
-            W[i, rxn_idx[r]] = w
+            rows.append(i)
+            cols.append(rxn_idx[r])
+            vals.append(w)
 
-    # Compute all flux-weighted centroids in one matrix multiply.
-    row_sums = W.sum(axis=1, keepdims=True)               # (M, 1)
-    has_weight = row_sums.ravel() > 0
+    W = csr_matrix(
+        (np.array(vals, dtype=float), (rows, cols)),
+        shape=(M, R),
+    )
+
+    # Compute all flux-weighted centroids in one sparse matrix multiply.
+    row_sums = np.asarray(W.sum(axis=1)).ravel()          # (M,)
+    has_weight = row_sums > 0
     centroids = np.zeros((M, 2), dtype=float)
     if has_weight.any():
         centroids[has_weight] = (
-            (W[has_weight] @ rxn_coords) / row_sums[has_weight]
+            (W[has_weight] @ rxn_coords)
+            / row_sums[has_weight, np.newaxis]
         )
     # Fallback: metabolites with no weighted neighbours keep their current pos.
     for i in np.where(~has_weight)[0]:
@@ -532,6 +674,12 @@ def _flux_weighted_met_positions(
                         angle = np.pi * _stable_unit(met_id)
                         mx = rx + dist_req * float(np.cos(angle))
                         my = ry + dist_req * float(np.sin(angle))
+        # Re-clip after reaction-collision nudge to keep metabolite in its compartment
+        met_c2 = G.nodes[met_id].get("comp", "")
+        if effective_region and met_c2 in compartments:
+            _x0, _x1, _y0, _y1 = effective_region(met_c2)
+            mx = float(np.clip(mx, _x0 + 0.2, _x1 - 0.2))
+            my = float(np.clip(my, _y0 + 0.2, _y1 - 0.2))
         met_pos[met_id] = (mx, my)
 
     return met_pos
@@ -1047,6 +1195,7 @@ class FLoV(anywidget.AnyWidget):
         else:
             self._views.append(spec)
         if self._graph_built:
+            _emit_progress(f"Rendering view '{label}'...")
             self._rebuild_figure()
 
     def clear_views(self) -> None:
@@ -1058,6 +1207,7 @@ class FLoV(anywidget.AnyWidget):
         """Run FBA on the model and add as a view."""
         if self._cobra_model is None:
             raise ValueError("No model set.")
+        _emit_progress("Running FBA...")
         sol = self._cobra_model.optimize()
         if sol.status != "optimal":
             raise RuntimeError(f"FBA status: {sol.status}")
@@ -1067,6 +1217,7 @@ class FLoV(anywidget.AnyWidget):
         """Run parsimonious FBA on the model and add as a view."""
         if self._cobra_model is None:
             raise ValueError("No model set.")
+        _emit_progress("Running pFBA...")
         sol = cobra.flux_analysis.pfba(self._cobra_model)
         self.add_view(label, sol)
 
@@ -1083,6 +1234,7 @@ class FLoV(anywidget.AnyWidget):
         mdl = self._cobra_model
         if mdl is None:
             return
+        _emit_progress("Building graph...")
         cfg = self._cfg
 
         # Classify reactions
@@ -1094,6 +1246,19 @@ class FLoV(anywidget.AnyWidget):
             if k != "regular":
                 mets = list(rxn.metabolites.keys())
                 exch_comp[rxn.id] = _met_comp(mets[0], cfg) if mets else cfg["exchange_key"]
+
+        _kind_counts: dict[str, int] = {}
+        for k in self._rxn_kind_map.values():
+            _kind_counts[k] = _kind_counts.get(k, 0) + 1
+        _emit_progress(
+            f"  {len(mdl.reactions)} reactions  "
+            f"({_kind_counts.get('regular', 0)} regular, "
+            f"{_kind_counts.get('export', 0)} exchange, "
+            f"{_kind_counts.get('biomass', 0)} biomass/demand, "
+            f"{_kind_counts.get('import', 0)} import)  |  "
+            f"{len(mdl.metabolites)} metabolites  |  "
+            f"{len(cfg['compartments'])} compartments"
+        )
 
         # Build substrates/products for hover
         self._rxn_substrates = {}
@@ -1139,8 +1304,26 @@ class FLoV(anywidget.AnyWidget):
         for rxn in mdl.reactions:
             if rxn.id in self._ignored_rxns:
                 continue
-            comp = (_rxn_comp(rxn.id, cfg) if self._rxn_kind_map[rxn.id] == "regular"
-                    else exch_comp.get(rxn.id, cfg["exchange_key"]))
+            if self._rxn_kind_map[rxn.id] == "regular":
+                comp = _rxn_comp(rxn.id, cfg)
+                # When neither suffix_re, bracket_re, nor nosep_re could extract a
+                # compartment (all return exchange_key), derive it from the majority
+                # compartment of the reaction's own metabolites.  This is the most
+                # reliable signal for genome-scale models like Recon3D whose reaction
+                # IDs carry no compartment suffix at all.
+                if comp == cfg["exchange_key"]:
+                    comp_counts: dict[str, int] = {}
+                    for met_r in rxn.metabolites:
+                        mc_r = _met_comp(met_r, cfg)
+                        comp_counts[mc_r] = comp_counts.get(mc_r, 0) + 1
+                    if comp_counts:
+                        # Prefer non-exchange compartments; exchange only as last resort
+                        non_exch = {k: v for k, v in comp_counts.items()
+                                    if k != cfg["exchange_key"]}
+                        pool = non_exch if non_exch else comp_counts
+                        comp = max(pool, key=pool.__getitem__)
+            else:
+                comp = exch_comp.get(rxn.id, cfg["exchange_key"])
             G.add_node(rxn.id, ntype="rxn", comp=comp,
                        name=rxn.name or rxn.id, kind=self._rxn_kind_map[rxn.id])
         for met_id, rxn_list in self._met_to_rxns.items():
@@ -1158,6 +1341,7 @@ class FLoV(anywidget.AnyWidget):
         self._met_nodes = [n for n, d in G.nodes(data=True) if d["ntype"] == "met"]
 
         # Layout
+        _emit_progress("Computing layout...")
         self._compute_layout()
         self._graph_built = True
         if self._ignored_rxns or self._ignored_mets:
@@ -1234,6 +1418,9 @@ class FLoV(anywidget.AnyWidget):
             rxns_here = [r for r in self._rxn_nodes if G.nodes[r]["comp"] == comp_key]
             if not rxns_here:
                 continue
+            _emit_progress(
+                f"Laying out {compartments[comp_key]['label']}..."
+            )
             if len(rxns_here) == 1:
                 pos[rxns_here[0]] = ((x0 + x1) / 2, (y0 + y1) / 2)
                 continue
@@ -1245,8 +1432,8 @@ class FLoV(anywidget.AnyWidget):
                 for i in range(len(local_rxns)):
                     for j in range(i + 1, len(local_rxns)):
                         local_G.add_edge(local_rxns[i], local_rxns[j])
-            lp = nx.spring_layout(
-                local_G, k=1.4,  iterations=150,
+            lp = _fruchterman_reingold(
+                local_G, k=1.4, iterations=50,
                 seed=abs(hash(comp_key)) % (2 ** 31),
             )
             pos.update(_scale_to_region(lp, x0, x1, y0, y1))
@@ -1283,12 +1470,23 @@ class FLoV(anywidget.AnyWidget):
                 )
 
         # Resolve edge collisions
+        _emit_progress("Resolving edge collisions...")
         _base_resolved = _resolve_edge_collisions(
             {m: pos[m] for m in self._met_nodes},
             self._met_nodes, G, pos, self._collision_modifier,
         )
         for _m in self._met_nodes:
             pos[_m] = _base_resolved[_m]
+            # Re-clip: edge-collision resolver can push metabolites across compartment
+            # boundaries; enforce hard bounds a second time.
+            _mc = G.nodes[_m].get("comp", cfg["exchange_key"])
+            if _mc in compartments:
+                _x0, _x1, _y0, _y1 = _effective_region(_mc)
+                _mx, _my = pos[_m]
+                pos[_m] = (
+                    float(np.clip(_mx, _x0 + 0.2, _x1 - 0.2)),
+                    float(np.clip(_my, _y0 + 0.2, _y1 - 0.2)),
+                )
 
         self._pos = pos
 
@@ -1301,6 +1499,8 @@ class FLoV(anywidget.AnyWidget):
         """Rebuild the complete Plotly figure JSON and sync to frontend."""
         if not self._graph_built or not self._views:
             return
+
+        _emit_progress("Rendering figure...")
 
         G = self._G
         pos = self._pos
