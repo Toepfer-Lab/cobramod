@@ -256,45 +256,35 @@ def _push_away_from_reactions(
     return mx, my
 
 
-def _point_to_segment_dist(
+def _batch_point_to_segment_dist(
     px: float, py: float,
-    ax: float, ay: float,
-    bx: float, by: float,
-) -> tuple[float, float, float]:
+    ax: np.ndarray, ay: np.ndarray,
+    bx: np.ndarray, by: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Vectorised: compute distance from point (px, py) to each of S segments.
+
+    Parameters
+    ----------
+    ax, ay : (S,) arrays — segment start points
+    bx, by : (S,) arrays — segment end points
+
+    Returns
+    -------
+    dist, cx, cy : (S,) arrays — distance and closest point on each segment
+    """
     dx, dy = bx - ax, by - ay
     seg_len_sq = dx * dx + dy * dy
-    if seg_len_sq < 1e-12:
-        return float(np.hypot(px - ax, py - ay)), ax, ay
-    t = float(np.clip(((px - ax) * dx + (py - ay) * dy) / seg_len_sq, 0.0, 1.0))
+    safe = seg_len_sq > 1e-12
+    t = np.where(
+        safe,
+        np.clip(
+            ((px - ax) * dx + (py - ay) * dy) / np.where(safe, seg_len_sq, 1.0),
+            0.0, 1.0,
+        ),
+        0.0,
+    )
     cx, cy = ax + t * dx, ay + t * dy
-    return float(np.hypot(px - cx, py - cy)), cx, cy
-
-
-def _push_away_from_edge(
-    mx: float, my: float, met_id: str,
-    edge_segments: list[tuple[tuple[float, float], tuple[float, float]]],
-    collision_modifier: float,
-) -> tuple[float, float]:
-    dist_req = MIN_MET_EDGE_DIST * collision_modifier
-    best_dist = dist_req
-    best_cx: float | None = None
-    best_cy: float | None = None
-    for (ax, ay), (bx, by) in edge_segments:
-        dist, cx, cy = _point_to_segment_dist(mx, my, ax, ay, bx, by)
-        if dist < best_dist:
-            best_dist = dist
-            best_cx, best_cy = cx, cy
-    if best_cx is None:
-        return mx, my
-    dx, dy = mx - best_cx, my - best_cy
-    d = float(np.hypot(dx, dy))
-    if d < 1e-9:
-        angle = np.pi * _stable_unit(met_id)
-        dx, dy = float(np.cos(angle)), float(np.sin(angle))
-    else:
-        dx /= d
-        dy /= d
-    return best_cx + dist_req * dx, best_cy + dist_req * dy
+    return np.hypot(px - cx, py - cy), cx, cy
 
 
 def _resolve_edge_collisions(
@@ -305,29 +295,84 @@ def _resolve_edge_collisions(
     collision_modifier: float,
     iterations: int = 3,
 ) -> dict[str, tuple[float, float]]:
+    """Push metabolites away from edges that belong to other metabolites.
+
+    The inner per-segment loop is replaced by a single call to
+    `_batch_point_to_segment_dist` per metabolite per iteration.
+    """
     met_rxn_adj: dict[str, set[str]] = {m: set() for m in met_nodes}
     for n1, n2 in G.edges():
         if G.nodes[n1]["ntype"] == "rxn" and G.nodes[n2]["ntype"] == "met":
             met_rxn_adj[n2].add(n1)
         elif G.nodes[n2]["ntype"] == "rxn" and G.nodes[n1]["ntype"] == "met":
             met_rxn_adj[n1].add(n2)
+
+    # Pre-build flat segment arrays.  Segment k = edge from seg_rxn[k] → seg_met[k].
+    # seg_owner[k] is the metabolite that "owns" the edge (i.e. met_pos endpoint).
+    seg_owner_list: list[str] = []
+    seg_rxn_list: list[str] = []
+    seg_ax_list: list[float] = []
+    seg_ay_list: list[float] = []
+
+    for m2_id in met_nodes:
+        for rxn_id in met_rxn_adj[m2_id]:
+            if rxn_id not in pos:
+                continue
+            seg_owner_list.append(m2_id)
+            seg_rxn_list.append(rxn_id)
+            seg_ax_list.append(pos[rxn_id][0])
+            seg_ay_list.append(pos[rxn_id][1])
+
+    if not seg_owner_list:
+        return met_pos
+
+    seg_ax = np.array(seg_ax_list, dtype=float)
+    seg_ay = np.array(seg_ay_list, dtype=float)
+    seg_owner_arr = np.array(seg_owner_list)
+    seg_rxn_arr = np.array(seg_rxn_list)
+    # B endpoints (metabolite positions) are updated each iteration
+    seg_bx = np.array([met_pos[m][0] for m in seg_owner_list], dtype=float)
+    seg_by = np.array([met_pos[m][1] for m in seg_owner_list], dtype=float)
+
+    dist_req = MIN_MET_EDGE_DIST * collision_modifier
+
     for _ in range(iterations):
+        # Refresh B endpoints to current metabolite positions
+        for k, m2_id in enumerate(seg_owner_list):
+            seg_bx[k] = met_pos[m2_id][0]
+            seg_by[k] = met_pos[m2_id][1]
+
         new_pos = dict(met_pos)
         for met_id in met_nodes:
             mx, my = met_pos[met_id]
             own_rxns = met_rxn_adj[met_id]
-            segments: list[tuple[tuple[float, float], tuple[float, float]]] = []
-            for m2_id in met_nodes:
-                if m2_id == met_id:
-                    continue
-                m2x, m2y = met_pos[m2_id]
-                for rxn_id in met_rxn_adj[m2_id]:
-                    if rxn_id in own_rxns or rxn_id not in pos:
-                        continue
-                    segments.append((pos[rxn_id], (m2x, m2y)))
-            new_pos[met_id] = _push_away_from_edge(
-                mx, my, met_id, segments, collision_modifier
+
+            # Mask: exclude segments owned by this metabolite or sharing its reactions
+            mask = (seg_owner_arr != met_id) & ~np.isin(seg_rxn_arr, list(own_rxns))
+            if not mask.any():
+                continue
+
+            dists, cx_arr, cy_arr = _batch_point_to_segment_dist(
+                mx, my,
+                seg_ax[mask], seg_ay[mask],
+                seg_bx[mask], seg_by[mask],
             )
+
+            closest = int(np.argmin(dists))
+            if dists[closest] >= dist_req:
+                continue
+
+            best_cx, best_cy = float(cx_arr[closest]), float(cy_arr[closest])
+            dx, dy = mx - best_cx, my - best_cy
+            d = float(np.hypot(dx, dy))
+            if d < 1e-9:
+                angle = np.pi * _stable_unit(met_id)
+                dx, dy = float(np.cos(angle)), float(np.sin(angle))
+            else:
+                dx /= d
+                dy /= d
+            new_pos[met_id] = (best_cx + dist_req * dx, best_cy + dist_req * dy)
+
         met_pos = new_pos
     return met_pos
 
@@ -341,33 +386,48 @@ def _resolve_rxn_overlaps(
     margin: float = 0.05,
 ) -> dict:
     """Push reaction nodes apart so they don't visually overlap, then clip
-    them back inside their compartment region."""
+    them back inside their compartment region.
+
+    Uses a Jacobi-style vectorised update: all pairwise displacements are
+    computed from the start-of-iteration positions and applied simultaneously,
+    eliminating the O(R²) Python loop.
+    """
     pos = dict(pos)
     rxns = [r for r in rxn_nodes if r in pos]
+    n = len(rxns)
+    if n < 2:
+        return pos
+
+    coords = np.array([pos[r] for r in rxns], dtype=float)  # (N, 2)
+
     for _ in range(iterations):
-        any_moved = False
-        for i in range(len(rxns)):
-            for j in range(i + 1, len(rxns)):
-                r1, r2 = rxns[i], rxns[j]
-                x1n, y1n = pos[r1]
-                x2n, y2n = pos[r2]
-                dx, dy = x2n - x1n, y2n - y1n
-                dist = float(np.hypot(dx, dy))
-                if dist < min_dist and dist > 1e-9:
-                    push = (min_dist - dist) * 0.5
-                    ndx, ndy = dx / dist, dy / dist
-                    pos[r1] = (x1n - ndx * push, y1n - ndy * push)
-                    pos[r2] = (x2n + ndx * push, y2n + ndy * push)
-                    any_moved = True
-        if not any_moved:
+        # diff[i, j] = coords[j] - coords[i]  →  (N, N, 2)
+        diff = coords[np.newaxis, :, :] - coords[:, np.newaxis, :]
+        dist = np.hypot(diff[..., 0], diff[..., 1])          # (N, N)
+
+        needs = np.triu((dist < min_dist) & (dist > 1e-9), k=1)
+        if not needs.any():
             break
-    # Clip back inside compartment bounds
-    for r in rxns:
-        rx, ry = pos[r]
-        pos[r] = (
-            float(np.clip(rx, x0 + margin, x1 - margin)),
-            float(np.clip(ry, y0 + margin, y1 - margin)),
-        )
+
+        with np.errstate(divide="ignore", invalid="ignore"):
+            nd = np.where(
+                dist[..., np.newaxis] > 1e-9,
+                diff / dist[..., np.newaxis],
+                0.0,
+            )  # (N, N, 2) normalised direction i→j
+
+        # push[i,j] = half-overlap for pairs that need separating (upper tri)
+        push = np.where(needs, (min_dist - dist) * 0.5, 0.0)
+        push_sym = push + push.T  # make symmetric so both i→j and j→i contribute
+
+        # displace[i] = -Σ_j  nd[i,j] * push_sym[i,j]
+        # (i is pushed away from every j that is too close)
+        coords -= (nd * push_sym[..., np.newaxis]).sum(axis=1)
+
+    coords[:, 0] = np.clip(coords[:, 0], x0 + margin, x1 - margin)
+    coords[:, 1] = np.clip(coords[:, 1], y0 + margin, y1 - margin)
+    for i, r in enumerate(rxns):
+        pos[r] = (float(coords[i, 0]), float(coords[i, 1]))
     return pos
 
 
@@ -396,44 +456,55 @@ def _flux_weighted_met_positions(
     cfg: Optional[dict] = None,
     effective_region=None,
 ) -> dict[str, tuple[float, float]]:
-    met_pos: dict[str, tuple[float, float]] = {}
     compartments = cfg["compartments"] if cfg else {}
+    M = len(met_nodes)
 
-    for met_id in met_nodes:
+    # All reactions that have a known position — used as the column index space.
+    all_rxns = [r for r in pos if r not in set(met_nodes)]
+    R = len(all_rxns)
+    rxn_idx = {r: i for i, r in enumerate(all_rxns)}
+    rxn_coords = np.array([[pos[r][0], pos[r][1]] for r in all_rxns], dtype=float)  # (R, 2)
+
+    # Build (M, R) weight matrix — one row per metabolite, one column per reaction.
+    # Only same-compartment neighbours receive weight; cross-compartment neighbours
+    # are excluded unless no same-compartment neighbour exists.
+    W = np.zeros((M, R), dtype=float)
+    met_comp_list: list[str] = []
+    for i, met_id in enumerate(met_nodes):
         nbrs = [r for r in G.neighbors(met_id)
-                if G.nodes[r]["ntype"] == "rxn" and r in pos]
-        if not nbrs:
-            met_pos[met_id] = pos.get(met_id, (0.0, 0.0))
-            continue
-
-        # Prefer same-compartment neighbours — cross-compartment reactions
-        # (transporters) should not pull the metabolite out of its compartment.
+                if G.nodes[r]["ntype"] == "rxn" and r in rxn_idx]
         met_c = G.nodes[met_id].get("comp", "")
+        met_comp_list.append(met_c)
         same_comp = [r for r in nbrs if G.nodes[r].get("comp") == met_c]
         weight_nbrs = same_comp if same_comp else nbrs
-
-        weights, xs, ys = [], [], []
         for r in weight_nbrs:
             f = edge_flux.get(r, np.nan)
-            w = abs(float(f)) + 0.01 if _has_flux_data(float(f)) else 0.02
-            w = w ** 3
-            weights.append(w)
-            xs.append(pos[r][0])
-            ys.append(pos[r][1])
-        wsum = float(np.sum(weights))
-        if wsum <= 0:
-            met_pos[met_id] = pos.get(met_id, (0.0, 0.0))
-        else:
-            raw_x = float(np.dot(xs, weights) / wsum)
-            raw_y = float(np.dot(ys, weights) / wsum)
-            # Clip to compartment bounds so cross-compartment pull cannot
-            # move the metabolite outside its own region.
-            if effective_region and met_c in compartments:
-                x0_, x1_, y0_, y1_ = effective_region(met_c)
-                margin = 0.2
-                raw_x = float(np.clip(raw_x, x0_ + margin, x1_ - margin))
-                raw_y = float(np.clip(raw_y, y0_ + margin, y1_ - margin))
-            met_pos[met_id] = (raw_x, raw_y)
+            w = (abs(float(f)) + 0.01) ** 3 if _has_flux_data(float(f)) else 0.02 ** 3
+            W[i, rxn_idx[r]] = w
+
+    # Compute all flux-weighted centroids in one matrix multiply.
+    row_sums = W.sum(axis=1, keepdims=True)               # (M, 1)
+    has_weight = row_sums.ravel() > 0
+    centroids = np.zeros((M, 2), dtype=float)
+    if has_weight.any():
+        centroids[has_weight] = (
+            (W[has_weight] @ rxn_coords) / row_sums[has_weight]
+        )
+    # Fallback: metabolites with no weighted neighbours keep their current pos.
+    for i in np.where(~has_weight)[0]:
+        centroids[i] = pos.get(met_nodes[i], (0.0, 0.0))
+
+    # Clip each metabolite to its compartment bounds.
+    for i, met_c in enumerate(met_comp_list):
+        if effective_region and met_c in compartments:
+            x0_, x1_, y0_, y1_ = effective_region(met_c)
+            centroids[i, 0] = float(np.clip(centroids[i, 0], x0_ + 0.2, x1_ - 0.2))
+            centroids[i, 1] = float(np.clip(centroids[i, 1], y0_ + 0.2, y1_ - 0.2))
+
+    met_pos: dict[str, tuple[float, float]] = {
+        met_nodes[i]: (float(centroids[i, 0]), float(centroids[i, 1]))
+        for i in range(M)
+    }
 
     for met_id in met_nodes:
         rxn_nbrs = [r for r in G.neighbors(met_id)
@@ -1184,19 +1255,18 @@ class FLoV(anywidget.AnyWidget):
                 min_dist=0.4 * self._collision_modifier,
             ))
 
-        # Metabolite positions (centroid of neighbours)
-        for met_id in self._met_nodes:
+        # Metabolite positions — same-compartment-preferred uniform centroid,
+        # computed with numpy means over batches of neighbour coordinates,
+        # followed by compartment clipping.
+        for i, met_id in enumerate(self._met_nodes):
             nbrs = [n for n in G.neighbors(met_id)
                     if G.nodes[n]["ntype"] == "rxn" and n in pos]
+            met_c = G.nodes[met_id].get("comp", cfg["exchange_key"])
             if nbrs:
-                # Prefer same-compartment neighbours so cross-compartment
-                # reactions (transporters) don't pull the metabolite out of
-                # its own compartment and into the clipping boundary.
-                met_c_local = G.nodes[met_id].get("comp", cfg["exchange_key"])
-                same_comp_nbrs = [n for n in nbrs if G.nodes[n].get("comp") == met_c_local]
-                centroid_nbrs = same_comp_nbrs if same_comp_nbrs else nbrs
-                cx = float(np.mean([pos[n][0] for n in centroid_nbrs]))
-                cy = float(np.mean([pos[n][1] for n in centroid_nbrs]))
+                same = [n for n in nbrs if G.nodes[n].get("comp") == met_c]
+                active = same if same else nbrs
+                pts = np.array([[pos[n][0], pos[n][1]] for n in active], dtype=float)
+                cx, cy = float(pts[:, 0].mean()), float(pts[:, 1].mean())
                 cx, cy = _push_away_from_reactions(
                     cx, cy, nbrs, met_id, pos, self._collision_modifier
                 )
@@ -1204,14 +1274,12 @@ class FLoV(anywidget.AnyWidget):
             else:
                 pos[met_id] = (0.0, 0.0)
 
-            met_c = G.nodes[met_id].get("comp", cfg["exchange_key"])
             if met_c in compartments:
                 x0, x1, y0, y1 = _effective_region(met_c)
                 mx, my = pos[met_id]
-                margin = 0.2
                 pos[met_id] = (
-                    float(np.clip(mx, x0 + margin, x1 - margin)),
-                    float(np.clip(my, y0 + margin, y1 - margin)),
+                    float(np.clip(mx, x0 + 0.2, x1 - 0.2)),
+                    float(np.clip(my, y0 + 0.2, y1 - 0.2)),
                 )
 
         # Resolve edge collisions
