@@ -1,18 +1,27 @@
+// anywidget render function — mounts the Plotly flux network into `el`
+// State: C=plotly ready, i=graph div, t=interactivity data, c=active view index,
+//        w=drag enabled, L=hovered met index, _=dragged met index, v/M=last mouse pos
 function H({ model: S, el: I }) {
   const k = document.createElement("div");
   I.appendChild(k);
   let C = !1, i = null, t = null, c = 0, w = !0, L = null, _ = null, v = null, M = null;
+
+  // Load Plotly from CDN if not already present
   function N() {
     return window.Plotly ? Promise.resolve() : new Promise((a, d) => {
       const s = document.createElement("script");
       s.src = "https://cdn.plot.ly/plotly-2.35.2.min.js", s.onload = () => a(), s.onerror = () => d(new Error("Failed to load Plotly.js")), document.head.appendChild(s);
     });
   }
+
+  // Clamp (x, y) for metabolite `a` to its compartment bounding box
   function T(a, d, s) {
     const u = t.met_bounds[a] || [-1e9, 1e9, -1e9, 1e9], [r, x, y, f] = u, p = 0.2;
     let g = r + p, e = x - p, n = y + p, l = f - p;
     return g > e && (g = r, e = x), n > l && (n = y, l = f), [Math.max(g, Math.min(e, d)), Math.max(n, Math.min(l, s))];
   }
+
+  // Move metabolite `a` to (d, s) and update all connected edge control points live
   function z(a, d, s) {
     const u = window.Plotly, [r, x] = T(a, d, s);
     t.met_flux_x[c][a] = r, t.met_flux_y[c][a] = x;
@@ -27,12 +36,16 @@ function H({ model: S, el: I }) {
     }
     u.restyle(i, { x: [t.met_flux_x[c]], y: [t.met_flux_y[c]] }, [t.met_idx]), u.restyle(i, { x: t.edge_flux_x[c], y: t.edge_flux_y[c] }, t.edge_indices);
   }
+
+  // Convert pixel mouse delta to data-space delta (Y negated for screen flip)
   function O(a, d) {
     const s = i._fullLayout && i._fullLayout.xaxis, u = i._fullLayout && i._fullLayout.yaxis;
     if (!s || !u) return [0, 0];
     const r = s.range || [0, 1], x = u.range || [0, 1], y = r[1] - r[0], f = x[1] - x[0], p = s._length || 1, g = u._length || 1;
     return [a / p * y, -d / g * f];
   }
+
+  // Switch the displayed view to index c: show correct reaction trace and edge/met coords
   function X() {
     const a = window.Plotly, d = t.rxn_indices.map((s, u) => u === c);
     a.restyle(i, { visible: d }, t.rxn_indices), a.restyle(i, {
@@ -43,6 +56,8 @@ function H({ model: S, el: I }) {
       y: [t.met_flux_y[c]]
     }, [t.met_idx]);
   }
+
+  // Attach all event listeners (toolbar buttons, hover/drag, search box) after first render
   function Y() {
     const a = window.Plotly;
     i.on("plotly_buttonclicked", (e) => {
@@ -80,16 +95,22 @@ function H({ model: S, el: I }) {
       Number.isInteger(_) && (_ = null, v = null, M = null, i.style.cursor = w ? "crosshair" : "");
     }), w && (i.style.cursor = "crosshair");
     const d = document.createElement("div");
-    d.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", d.innerHTML = '<input type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
+    d.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", d.innerHTML = '<input type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
     const s = i.parentElement || document.body;
     s.style.position = "relative", s.appendChild(d);
     const u = d.querySelector("input"), r = d.querySelector("div");
+
+    // Clear all search highlight dots
     function x() {
       a.restyle(i, { x: [[]], y: [[]] }, [t.highlight_idx]);
     }
+
+    // Draw highlight dots at the given coordinate arrays
     function y(e, n) {
       a.restyle(i, { x: [e], y: [n] }, [t.highlight_idx]);
     }
+
+    // Zoom axes to fit the bounding box of the given coordinates (25 % padding)
     function f(e, n) {
       if (!e.length) return;
       const l = Math.min(...e), m = Math.max(...e), b = Math.min(...n), o = Math.max(...n), h = Math.max((m - l + o - b) * 0.25, 2);
@@ -98,10 +119,14 @@ function H({ model: S, el: I }) {
         "yaxis.range": [b - h, o + h]
       });
     }
+
+    // Select a result: highlight + zoom to it, fill input with its name, close dropdown
     function p(e, n) {
       const l = e === "rxn" ? t.rxn_x[n] : t.met_flux_x[c][n], m = e === "rxn" ? t.rxn_y[n] : t.met_flux_y[c][n];
       y([l], [m]), f([l], [m]), r.style.display = "none", u.value = e === "rxn" ? t.rxn_names[n] || t.rxn_ids[n] : t.met_names[n] || t.met_ids[n];
     }
+
+    // Run search: highlight all matches, show up to 20 results in dropdown, zoom if exactly one match
     function g(e) {
       if (r.innerHTML = "", !e.trim()) {
         x(), r.style.display = "none";
@@ -151,6 +176,8 @@ function H({ model: S, el: I }) {
       d.contains(e.target) || (r.style.display = "none");
     });
   }
+
+  // Parse _figure_json from the model, extract interactivity bundle, and render/update Plotly
   function D() {
     const a = window.Plotly, d = S.get("_figure_json");
     if (!d || d === "{}") return;
@@ -168,10 +195,13 @@ function H({ model: S, el: I }) {
       displaylogo: !1,
       toImageButtonOptions: { format: "svg", filename: "flux_network" }
     };
+    // First render: newPlot → store div, attach listeners; subsequent: react (in-place update)
     i ? a.react(i, u, r, y) : a.newPlot(k, u, r, y).then(() => {
       i = k, t && (c = 0, Y());
     });
   }
+
+  // Bootstrap: load Plotly → first render; re-render on model change; relayout on resize
   N().then(() => {
     C = !0, D();
   }), S.on("change:_figure_json", () => {
