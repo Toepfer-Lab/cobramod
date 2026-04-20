@@ -1,176 +1,169 @@
-function B({ model: N, el: k }) {
-  const P = document.createElement("div");
-  k.appendChild(P);
-  let C = !1, i = null, e = null, u = 0, M = null, b = null, v = null, L = null;
-  function z() {
-    return window.Plotly ? Promise.resolve() : new Promise((d, a) => {
-      const s = document.createElement("script");
-      s.src = "https://cdn.plot.ly/plotly-2.35.2.min.js", s.onload = () => d(), s.onerror = () => a(new Error("Failed to load Plotly.js")), document.head.appendChild(s);
+function S({ model: T, el: P }) {
+  const N = document.createElement("div");
+  P.appendChild(N);
+  let C = !1, i = null, e = null, a = 0, E = null, f = null, M = null, k = null, b = null, w = 0, v = 0;
+  function I() {
+    return window.Plotly ? Promise.resolve() : new Promise((l, d) => {
+      const r = document.createElement("script");
+      r.src = "https://cdn.plot.ly/plotly-2.35.2.min.js", r.onload = () => l(), r.onerror = () => d(new Error("Failed to load Plotly.js")), document.head.appendChild(r);
     });
   }
-  function T(d, a, s) {
-    const c = e.met_bounds[d] || [-1e9, 1e9, -1e9, 1e9], [r, x, y, p] = c, m = 0.2;
-    let h = r + m, t = x - m, n = y + m, l = p - m;
-    return h > t && (h = r, t = x), n > l && (n = y, l = p), [Math.max(h, Math.min(t, a)), Math.max(n, Math.min(l, s))];
+  function H(l, d, r) {
+    const m = e.met_bounds[l] || [-1e9, 1e9, -1e9, 1e9], [s, p, y, c] = m, t = 0.2;
+    let n = s + t, u = p - t, x = y + t, _ = c - t;
+    return n > u && (n = s, u = p), x > _ && (x = y, _ = c), [Math.max(n, Math.min(u, d)), Math.max(x, Math.min(_, r))];
   }
-  function I(d, a, s) {
-    const c = window.Plotly, [r, x] = T(d, a, s);
-    e.met_flux_x[u][d] = r, e.met_flux_y[u][d] = x;
-    const y = e.met_ids[d];
-    for (let p = 0; p < e.edge_indices.length; p++) {
-      const m = e.edge_met_ids[u][p] || [], h = e.edge_flux_x[u][p], t = e.edge_flux_y[u][p];
-      for (let n = 0; n < m.length; n++) {
-        if (m[n] !== y)
+  function j(l, d, r) {
+    const m = window.Plotly, [s, p] = H(l, d, r);
+    e.met_flux_x[a][l] = s, e.met_flux_y[a][l] = p;
+    const y = e.met_ids[l];
+    for (let c = 0; c < e.edge_indices.length; c++) {
+      const t = e.edge_met_ids[a][c] || [], n = e.edge_flux_x[a][c], u = e.edge_flux_y[a][c];
+      for (let x = 0; x < t.length; x++) {
+        if (t[x] !== y)
           continue;
-        const l = n * 3 + 1;
-        l < h.length && l < t.length && (h[l] = r, t[l] = x);
+        const _ = x * 3 + 1;
+        _ < n.length && _ < u.length && (n[_] = s, u[_] = p);
       }
     }
-    c.restyle(i, { x: [e.met_flux_x[u]], y: [e.met_flux_y[u]] }, [e.met_idx]), c.restyle(i, { x: e.edge_flux_x[u], y: e.edge_flux_y[u] }, e.edge_indices);
+    m.restyle(i, { x: [e.met_flux_x[a], ...e.edge_flux_x[a]], y: [e.met_flux_y[a], ...e.edge_flux_y[a]] }, [e.met_idx, ...e.edge_indices]);
   }
-  function H(d, a) {
-    const s = i._fullLayout && i._fullLayout.xaxis, c = i._fullLayout && i._fullLayout.yaxis;
-    if (!s || !c)
+  function q(l, d) {
+    const r = i._fullLayout && i._fullLayout.xaxis, m = i._fullLayout && i._fullLayout.yaxis;
+    if (!r || !m)
       return [0, 0];
-    const r = s.range || [0, 1], x = c.range || [0, 1], y = r[1] - r[0], p = x[1] - x[0], m = s._length || 1, h = c._length || 1;
-    return [d / m * y, -a / h * p];
+    const s = r.range || [0, 1], p = m.range || [0, 1], y = s[1] - s[0], c = p[1] - p[0], t = r._length || 1, n = m._length || 1;
+    return [l / t * y, -d / n * c];
   }
-  function X() {
-    const d = window.Plotly, a = e.rxn_indices.map((s, c) => c === u);
-    d.restyle(i, { visible: a }, e.rxn_indices), d.restyle(i, {
-      x: e.edge_flux_x[u],
-      y: e.edge_flux_y[u]
-    }, e.edge_indices), d.restyle(i, {
-      x: [e.met_flux_x[u]],
-      y: [e.met_flux_y[u]]
+  function A() {
+    const l = window.Plotly, d = e.rxn_indices.map((r, m) => m === a);
+    l.restyle(i, { visible: d }, e.rxn_indices), l.restyle(i, {
+      x: e.edge_flux_x[a],
+      y: e.edge_flux_y[a]
+    }, e.edge_indices), l.restyle(i, {
+      x: [e.met_flux_x[a]],
+      y: [e.met_flux_y[a]]
     }, [e.met_idx]);
   }
-  function Y() {
-    const d = window.Plotly;
+  function D() {
+    const l = window.Plotly;
     i.on("plotly_buttonclicked", (t) => {
       if (!t || !t.button || !t.button.label)
         return;
-      const n = t.button.label, l = e.view_labels.indexOf(n);
-      l >= 0 && (u = l, X());
+      const n = e.view_labels.indexOf(t.button.label);
+      n >= 0 && (a = n, A());
     }), i.on("plotly_hover", (t) => {
-      if (M = null, !t || !t.points || !t.points.length)
+      if (E = null, !t || !t.points || !t.points.length)
         return;
       const n = t.points[0];
-      n.curveNumber === e.met_idx && Number.isInteger(n.pointNumber) && (M = n.pointNumber, i.style.cursor = "grab");
+      n.curveNumber === e.met_idx && Number.isInteger(n.pointNumber) && (E = n.pointNumber, i.style.cursor = "grab");
     }), i.on("plotly_unhover", () => {
-      M = null, Number.isInteger(b) || (i.style.cursor = "crosshair");
+      E = null, Number.isInteger(f) || (i.style.cursor = "crosshair");
     }), i.addEventListener("mousedown", (t) => {
-      t.button !== 0 || !t.shiftKey || Number.isInteger(M) && (b = M, v = t.clientX, L = t.clientY, i.style.cursor = "grabbing", t.preventDefault(), t.stopPropagation(), typeof t.stopImmediatePropagation == "function" && t.stopImmediatePropagation());
+      t.button !== 0 || !t.shiftKey || !Number.isInteger(E) || (f = E, M = t.clientX, k = t.clientY, w = v = 0, i.style.cursor = "grabbing", t.preventDefault(), t.stopPropagation(), typeof t.stopImmediatePropagation == "function" && t.stopImmediatePropagation());
     }, !0), window.addEventListener("mousemove", (t) => {
-      if (!Number.isInteger(b))
-        return;
-      if (v === null || L === null) {
-        v = t.clientX, L = t.clientY;
-        return;
-      }
-      const n = t.clientX - v, l = t.clientY - L;
-      v = t.clientX, L = t.clientY;
-      const [f, g] = H(n, l), o = e.met_flux_x[u][b], _ = e.met_flux_y[u][b];
-      I(b, o + f, _ + g);
+      Number.isInteger(f) && (w += t.clientX - M, v += t.clientY - k, M = t.clientX, k = t.clientY, b === null && (b = requestAnimationFrame(() => {
+        if (b = null, !Number.isInteger(f)) {
+          w = v = 0;
+          return;
+        }
+        const [n, u] = q(w, v);
+        w = v = 0, j(f, e.met_flux_x[a][f] + n, e.met_flux_y[a][f] + u);
+      })));
     }), window.addEventListener("mouseup", () => {
-      Number.isInteger(b) && (b = null, v = null, L = null, i.style.cursor = "crosshair");
+      Number.isInteger(f) && (b !== null && (cancelAnimationFrame(b), b = null), w = v = 0, f = null, M = null, k = null, i.style.cursor = "crosshair");
     }), i.style.cursor = "crosshair";
-    const a = document.createElement("div");
-    a.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", a.innerHTML = '<input type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
-    const s = i.parentElement || document.body;
-    s.style.position = "relative", s.appendChild(a);
-    const c = a.querySelector("input"), r = a.querySelector("div");
-    function x() {
-      d.restyle(i, { x: [[]], y: [[]] }, [e.highlight_idx]);
-    }
-    function y(t, n) {
-      d.restyle(i, { x: [t], y: [n] }, [e.highlight_idx]);
-    }
+    const d = document.createElement("div");
+    d.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", d.innerHTML = '<input type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
+    const r = i.parentElement || document.body;
+    r.style.position = "relative", r.appendChild(d);
+    const m = d.querySelector("input"), s = d.querySelector("div");
     function p(t, n) {
       if (!t.length)
         return;
-      const l = Math.min(...t), f = Math.max(...t), g = Math.min(...n), o = Math.max(...n), _ = Math.max((f - l + o - g) * 0.25, 2);
-      d.relayout(i, {
-        "xaxis.range": [l - _, f + _],
-        "yaxis.range": [g - _, o + _]
+      const u = Math.min(...t), x = Math.max(...t), _ = Math.min(...n), o = Math.max(...n), h = Math.max((x - u + o - _) * 0.25, 2);
+      l.relayout(i, {
+        "xaxis.range": [u - h, x + h],
+        "yaxis.range": [_ - h, o + h]
       });
     }
-    function m(t, n) {
-      const l = t === "rxn" ? e.rxn_x[n] : e.met_flux_x[u][n], f = t === "rxn" ? e.rxn_y[n] : e.met_flux_y[u][n];
-      y([l], [f]), p([l], [f]), r.style.display = "none", c.value = t === "rxn" ? e.rxn_names[n] || e.rxn_ids[n] : e.met_names[n] || e.met_ids[n];
+    function y(t, n) {
+      const u = t === "rxn" ? e.rxn_x[n] : e.met_flux_x[a][n], x = t === "rxn" ? e.rxn_y[n] : e.met_flux_y[a][n];
+      l.restyle(i, { x: [[u]], y: [[x]] }, [e.highlight_idx]), p([u], [x]), s.style.display = "none", m.value = t === "rxn" ? e.rxn_names[n] || e.rxn_ids[n] : e.met_names[n] || e.met_ids[n];
     }
-    function h(t) {
-      if (r.innerHTML = "", !t.trim()) {
-        x(), r.style.display = "none";
+    function c(t) {
+      if (s.innerHTML = "", !t.trim()) {
+        l.restyle(i, { x: [[]], y: [[]] }, [e.highlight_idx]), s.style.display = "none";
         return;
       }
-      const n = t.toLowerCase(), l = [], f = [], g = [];
+      const n = t.toLowerCase(), u = [], x = [], _ = [];
       for (let o = 0; o < e.rxn_ids.length; o++)
-        (e.rxn_ids[o].toLowerCase().indexOf(n) >= 0 || e.rxn_names[o].toLowerCase().indexOf(n) >= 0) && (l.push(e.rxn_x[o]), f.push(e.rxn_y[o]), g.length < 20 && g.push({ type: "rxn", idx: o }));
+        (e._rxn_ids_lc[o].indexOf(n) >= 0 || e._rxn_names_lc[o].indexOf(n) >= 0) && (u.push(e.rxn_x[o]), x.push(e.rxn_y[o]), _.length < 20 && _.push({ type: "rxn", idx: o }));
       for (let o = 0; o < e.met_ids.length; o++)
-        (e.met_ids[o].toLowerCase().indexOf(n) >= 0 || e.met_names[o].toLowerCase().indexOf(n) >= 0) && (l.push(e.met_flux_x[u][o]), f.push(e.met_flux_y[u][o]), g.length < 20 && g.push({ type: "met", idx: o }));
-      if (!l.length) {
-        r.innerHTML = '<div style="padding:4px 8px;color:#999;font-size:11px;">No matches</div>', r.style.display = "block", x();
+        (e._met_ids_lc[o].indexOf(n) >= 0 || e._met_names_lc[o].indexOf(n) >= 0) && (u.push(e.met_flux_x[a][o]), x.push(e.met_flux_y[a][o]), _.length < 20 && _.push({ type: "met", idx: o }));
+      if (!u.length) {
+        s.innerHTML = '<div style="padding:4px 8px;color:#999;font-size:11px;">No matches</div>', s.style.display = "block", l.restyle(i, { x: [[]], y: [[]] }, [e.highlight_idx]);
         return;
       }
-      y(l, f), l.length === 1 && p(l, f);
-      for (const o of g) {
-        const _ = o.type === "rxn" ? e.rxn_ids[o.idx] : e.met_ids[o.idx], E = o.type === "rxn" ? e.rxn_names[o.idx] : e.met_names[o.idx], j = o.type === "rxn" ? "rxn" : "met", w = document.createElement("div");
-        w.style.cssText = "padding:3px 8px;cursor:pointer;font-size:11px;border-top:1px solid #f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;", w.title = _ + (E && E !== _ ? " — " + E : ""), w.innerHTML = "<b>" + _ + "</b>" + (E && E !== _ ? ' <span style="color:#555;">— ' + E + "</span>" : "") + ' <span style="color:#aaa;font-size:10px;">[' + j + "]</span>", w.onmouseenter = function() {
+      l.restyle(i, { x: [u], y: [x] }, [e.highlight_idx]), u.length === 1 && p(u, x);
+      for (const o of _) {
+        const h = o.type === "rxn" ? e.rxn_ids[o.idx] : e.met_ids[o.idx], L = o.type === "rxn" ? e.rxn_names[o.idx] : e.met_names[o.idx], g = document.createElement("div");
+        g.style.cssText = "padding:3px 8px;cursor:pointer;font-size:11px;border-top:1px solid #f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;", g.title = h + (L && L !== h ? " — " + L : ""), g.innerHTML = "<b>" + h + "</b>" + (L && L !== h ? ' <span style="color:#555;">— ' + L + "</span>" : "") + ' <span style="color:#aaa;font-size:10px;">[' + o.type + "]</span>", g.onmouseenter = function() {
           this.style.background = "#f4f6f7";
-        }, w.onmouseleave = function() {
+        }, g.onmouseleave = function() {
           this.style.background = "";
-        }, w.onclick = /* @__PURE__ */ ((S, q) => () => m(S, q))(o.type, o.idx), r.appendChild(w);
+        }, g.onclick = () => y(o.type, o.idx), s.appendChild(g);
       }
-      r.style.display = "block";
+      s.style.display = "block";
     }
-    c.addEventListener("input", function() {
-      h(this.value);
-    }), c.addEventListener("keydown", function(t) {
+    m.addEventListener("input", function() {
+      c(this.value);
+    }), m.addEventListener("keydown", function(t) {
       if (t.key === "Escape")
-        this.value = "", x(), r.style.display = "none";
+        this.value = "", l.restyle(i, { x: [[]], y: [[]] }, [e.highlight_idx]), s.style.display = "none";
       else if (t.key === "Enter") {
-        const n = r.querySelector("div[style*=cursor]");
+        const n = s.querySelector("div[style*=cursor]");
         n && n.click();
       }
     }), document.addEventListener("click", (t) => {
-      a.contains(t.target) || (r.style.display = "none");
+      d.contains(t.target) || (s.style.display = "none");
     });
   }
-  function O() {
-    const d = window.Plotly, a = N.get("_figure_json");
-    if (!a || a === "{}")
+  function z() {
+    const l = window.Plotly, d = T.get("_figure_json");
+    if (!d || d === "{}")
       return;
-    let s;
+    let r;
     try {
-      s = JSON.parse(a);
+      r = JSON.parse(d);
     } catch {
       return;
     }
-    e = s._interactivity, delete s._interactivity;
-    const c = s.data || [], r = s.layout || {}, x = k.getBoundingClientRect().width || 900;
-    r.width = x, r.height = Math.max(r.height || 940, 600);
+    e = r._interactivity, delete r._interactivity, e._rxn_ids_lc = e.rxn_ids.map((c) => c.toLowerCase()), e._rxn_names_lc = e.rxn_names.map((c) => c.toLowerCase()), e._met_ids_lc = e.met_ids.map((c) => c.toLowerCase()), e._met_names_lc = e.met_names.map((c) => c.toLowerCase());
+    const m = r.data || [], s = r.layout || {}, p = P.getBoundingClientRect().width || 900;
+    s.width = p, s.height = Math.max(s.height || 940, 600);
     const y = {
       scrollZoom: !0,
       displaylogo: !1,
       toImageButtonOptions: { format: "svg", filename: "flux_network" }
     };
-    i ? d.react(i, c, r, y) : d.newPlot(P, c, r, y).then(() => {
-      i = P, e && (u = 0, Y());
+    i ? l.react(i, m, s, y) : l.newPlot(N, m, s, y).then(() => {
+      i = N, e && (a = 0, D());
     });
   }
-  z().then(() => {
-    C = !0, O();
-  }), N.on("change:_figure_json", () => {
-    C && O();
-  }), new ResizeObserver((d) => {
-    for (const a of d) {
-      const s = a.contentRect.width;
-      s > 0 && i && C && window.Plotly.relayout(i, { width: s });
+  let O = null;
+  I().then(() => {
+    C = !0, z();
+  }), T.on("change:_figure_json", () => {
+    C && z();
+  }), new ResizeObserver((l) => {
+    for (const d of l) {
+      const r = d.contentRect.width;
+      r <= 0 || !i || !C || (clearTimeout(O), O = setTimeout(() => window.Plotly.relayout(i, { width: r }), 100));
     }
-  }).observe(k);
+  }).observe(P);
 }
-const R = { render: B };
+const X = { render: S };
 export {
-  R as default
+  X as default
 };

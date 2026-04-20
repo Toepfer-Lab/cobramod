@@ -1,10 +1,12 @@
 // anywidget render function — mounts the Plotly flux network into `el`
 // State: C=plotly ready, i=graph div, t=interactivity data, c=active view index,
-//        L=hovered met index, _=dragged met index, v/M=last mouse pos
+//        L=hovered met index, _=dragged met index, v/M=last rendered mouse pos,
+//        pendingDx/pendingDy=accumulated pixel delta for rAF, rafId=pending frame
 function H({ model: S, el: I }) {
   const k = document.createElement("div");
   I.appendChild(k);
   let C = !1, i = null, t = null, c = 0, L = null, _ = null, v = null, M = null;
+  let rafId = null, pendingDx = 0, pendingDy = 0;
 
   // Load Plotly from CDN if not already present
   function N() {
@@ -34,7 +36,8 @@ function H({ model: S, el: I }) {
         l < g.length && l < e.length && (g[l] = r, e[l] = x);
       }
     }
-    u.restyle(i, { x: [t.met_flux_x[c]], y: [t.met_flux_y[c]] }, [t.met_idx]), u.restyle(i, { x: t.edge_flux_x[c], y: t.edge_flux_y[c] }, t.edge_indices);
+    // Single restyle for met + all edges — halves Plotly renders per drag tick
+    u.restyle(i, { x: [t.met_flux_x[c], ...t.edge_flux_x[c]], y: [t.met_flux_y[c], ...t.edge_flux_y[c]] }, [t.met_idx, ...t.edge_indices]);
   }
 
   // Convert pixel mouse delta to data-space delta (Y negated for screen flip)
@@ -62,8 +65,7 @@ function H({ model: S, el: I }) {
     const a = window.Plotly;
     i.on("plotly_buttonclicked", (e) => {
       if (!e || !e.button || !e.button.label) return;
-      const n = e.button.label;
-      const l = t.view_labels.indexOf(n);
+      const l = t.view_labels.indexOf(e.button.label);
       l >= 0 && (c = l, X());
     }), i.on("plotly_hover", (e) => {
       if (L = null, !e || !e.points || !e.points.length) return;
@@ -72,19 +74,30 @@ function H({ model: S, el: I }) {
     }), i.on("plotly_unhover", () => {
       L = null, Number.isInteger(_) || (i.style.cursor = "crosshair");
     }), i.addEventListener("mousedown", (e) => {
-      e.button !== 0 || !e.shiftKey || Number.isInteger(L) && (_ = L, v = e.clientX, M = e.clientY, i.style.cursor = "grabbing", e.preventDefault(), e.stopPropagation(), typeof e.stopImmediatePropagation == "function" && e.stopImmediatePropagation());
+      if (e.button !== 0 || !e.shiftKey || !Number.isInteger(L)) return;
+      _ = L; v = e.clientX; M = e.clientY; pendingDx = pendingDy = 0;
+      i.style.cursor = "grabbing";
+      e.preventDefault(); e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === "function") e.stopImmediatePropagation();
     }, !0), window.addEventListener("mousemove", (e) => {
       if (!Number.isInteger(_)) return;
-      if (v === null || M === null) {
-        v = e.clientX, M = e.clientY;
-        return;
-      }
-      const n = e.clientX - v, l = e.clientY - M;
-      v = e.clientX, M = e.clientY;
-      const [m, b] = O(n, l), o = t.met_flux_x[c][_], h = t.met_flux_y[c][_];
-      z(_, o + m, h + b);
+      // Accumulate pixel deltas; render at most once per animation frame
+      pendingDx += e.clientX - v; pendingDy += e.clientY - M;
+      v = e.clientX; M = e.clientY;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!Number.isInteger(_)) { pendingDx = pendingDy = 0; return; }
+        const [m, b] = O(pendingDx, pendingDy);
+        pendingDx = pendingDy = 0;
+        z(_, t.met_flux_x[c][_] + m, t.met_flux_y[c][_] + b);
+      });
     }), window.addEventListener("mouseup", () => {
-      Number.isInteger(_) && (_ = null, v = null, M = null, i.style.cursor = "crosshair");
+      if (!Number.isInteger(_)) return;
+      if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+      pendingDx = pendingDy = 0;
+      _ = null; v = null; M = null;
+      i.style.cursor = "crosshair";
     }), i.style.cursor = "crosshair";
     const d = document.createElement("div");
     d.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", d.innerHTML = '<input type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
@@ -92,17 +105,7 @@ function H({ model: S, el: I }) {
     s.style.position = "relative", s.appendChild(d);
     const u = d.querySelector("input"), r = d.querySelector("div");
 
-    // Clear all search highlight dots
-    function x() {
-      a.restyle(i, { x: [[]], y: [[]] }, [t.highlight_idx]);
-    }
-
-    // Draw highlight dots at the given coordinate arrays
-    function y(e, n) {
-      a.restyle(i, { x: [e], y: [n] }, [t.highlight_idx]);
-    }
-
-    // Zoom axes to fit the bounding box of the given coordinates (25 % padding)
+    // Zoom axes to fit the bounding box of the given coordinates (25% padding)
     function f(e, n) {
       if (!e.length) return;
       const l = Math.min(...e), m = Math.max(...e), b = Math.min(...n), o = Math.max(...n), h = Math.max((m - l + o - b) * 0.25, 2);
@@ -115,43 +118,44 @@ function H({ model: S, el: I }) {
     // Select a result: highlight + zoom to it, fill input with its name, close dropdown
     function p(e, n) {
       const l = e === "rxn" ? t.rxn_x[n] : t.met_flux_x[c][n], m = e === "rxn" ? t.rxn_y[n] : t.met_flux_y[c][n];
-      y([l], [m]), f([l], [m]), r.style.display = "none", u.value = e === "rxn" ? t.rxn_names[n] || t.rxn_ids[n] : t.met_names[n] || t.met_ids[n];
+      a.restyle(i, { x: [[l]], y: [[m]] }, [t.highlight_idx]);
+      f([l], [m]), r.style.display = "none", u.value = e === "rxn" ? t.rxn_names[n] || t.rxn_ids[n] : t.met_names[n] || t.met_ids[n];
     }
 
     // Run search: highlight all matches, show up to 20 results in dropdown, zoom if exactly one match
     function g(e) {
       if (r.innerHTML = "", !e.trim()) {
-        x(), r.style.display = "none";
+        a.restyle(i, { x: [[]], y: [[]] }, [t.highlight_idx]), r.style.display = "none";
         return;
       }
       const n = e.toLowerCase();
-      // Collect ALL matches for highlight dots (uncapped)
       const hx = [], hy = [], l = [];
       for (let o = 0; o < t.rxn_ids.length; o++) {
-        if (t.rxn_ids[o].toLowerCase().indexOf(n) >= 0 || t.rxn_names[o].toLowerCase().indexOf(n) >= 0) {
+        if (t._rxn_ids_lc[o].indexOf(n) >= 0 || t._rxn_names_lc[o].indexOf(n) >= 0) {
           hx.push(t.rxn_x[o]); hy.push(t.rxn_y[o]);
           if (l.length < 20) l.push({ type: "rxn", idx: o });
         }
       }
       for (let o = 0; o < t.met_ids.length; o++) {
-        if (t.met_ids[o].toLowerCase().indexOf(n) >= 0 || t.met_names[o].toLowerCase().indexOf(n) >= 0) {
+        if (t._met_ids_lc[o].indexOf(n) >= 0 || t._met_names_lc[o].indexOf(n) >= 0) {
           hx.push(t.met_flux_x[c][o]); hy.push(t.met_flux_y[c][o]);
           if (l.length < 20) l.push({ type: "met", idx: o });
         }
       }
       if (!hx.length) {
-        r.innerHTML = '<div style="padding:4px 8px;color:#999;font-size:11px;">No matches</div>', r.style.display = "block", x();
+        r.innerHTML = '<div style="padding:4px 8px;color:#999;font-size:11px;">No matches</div>', r.style.display = "block";
+        a.restyle(i, { x: [[]], y: [[]] }, [t.highlight_idx]);
         return;
       }
-      // Highlight all matches; zoom only when there is exactly one result
-      y(hx, hy); if (hx.length === 1) f(hx, hy);
+      a.restyle(i, { x: [hx], y: [hy] }, [t.highlight_idx]);
+      if (hx.length === 1) f(hx, hy);
       for (const o of l) {
-        const h = o.type === "rxn" ? t.rxn_ids[o.idx] : t.met_ids[o.idx], E = o.type === "rxn" ? t.rxn_names[o.idx] : t.met_names[o.idx], B = o.type === "rxn" ? "rxn" : "met", P = document.createElement("div");
-        P.style.cssText = "padding:3px 8px;cursor:pointer;font-size:11px;border-top:1px solid #f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;", P.title = h + (E && E !== h ? " — " + E : ""), P.innerHTML = "<b>" + h + "</b>" + (E && E !== h ? ' <span style="color:#555;">— ' + E + "</span>" : "") + ' <span style="color:#aaa;font-size:10px;">[' + B + "]</span>", P.onmouseenter = function() {
+        const h = o.type === "rxn" ? t.rxn_ids[o.idx] : t.met_ids[o.idx], E = o.type === "rxn" ? t.rxn_names[o.idx] : t.met_names[o.idx], P = document.createElement("div");
+        P.style.cssText = "padding:3px 8px;cursor:pointer;font-size:11px;border-top:1px solid #f0f0f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;", P.title = h + (E && E !== h ? " — " + E : ""), P.innerHTML = "<b>" + h + "</b>" + (E && E !== h ? ' <span style="color:#555;">— ' + E + "</span>" : "") + ' <span style="color:#aaa;font-size:10px;">[' + o.type + "]</span>", P.onmouseenter = function() {
           this.style.background = "#f4f6f7";
         }, P.onmouseleave = function() {
           this.style.background = "";
-        }, P.onclick = /* @__PURE__ */ ((R, j) => () => p(R, j))(o.type, o.idx), r.appendChild(P);
+        }, P.onclick = () => p(o.type, o.idx), r.appendChild(P);
       }
       r.style.display = "block";
     }
@@ -159,7 +163,7 @@ function H({ model: S, el: I }) {
       g(this.value);
     }), u.addEventListener("keydown", function(e) {
       if (e.key === "Escape")
-        this.value = "", x(), r.style.display = "none";
+        this.value = "", a.restyle(i, { x: [[]], y: [[]] }, [t.highlight_idx]), r.style.display = "none";
       else if (e.key === "Enter") {
         const n = r.querySelector("div[style*=cursor]");
         n && n.click();
@@ -180,6 +184,11 @@ function H({ model: S, el: I }) {
       return;
     }
     t = s._interactivity, delete s._interactivity;
+    // Pre-lowercase search arrays once so per-keystroke search is O(N) comparisons only
+    t._rxn_ids_lc = t.rxn_ids.map(q => q.toLowerCase());
+    t._rxn_names_lc = t.rxn_names.map(q => q.toLowerCase());
+    t._met_ids_lc = t.met_ids.map(q => q.toLowerCase());
+    t._met_names_lc = t.met_names.map(q => q.toLowerCase());
     const u = s.data || [], r = s.layout || {}, x = I.getBoundingClientRect().width || 900;
     r.width = x, r.height = Math.max(r.height || 940, 600);
     const y = {
@@ -193,6 +202,7 @@ function H({ model: S, el: I }) {
     });
   }
 
+  let resizeTimer = null;
   // Bootstrap: load Plotly → first render; re-render on model change; relayout on resize
   N().then(() => {
     C = !0, D();
@@ -201,7 +211,10 @@ function H({ model: S, el: I }) {
   }), new ResizeObserver((a) => {
     for (const d of a) {
       const s = d.contentRect.width;
-      s > 0 && i && C && window.Plotly.relayout(i, { width: s });
+      if (s <= 0 || !i || !C) continue;
+      // Debounce so relayout fires once after resize settles, not on every pixel change
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => window.Plotly.relayout(i, { width: s }), 100);
     }
   }).observe(I);
 }

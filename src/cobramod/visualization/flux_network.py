@@ -23,6 +23,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from importlib import resources
 from pathlib import Path
@@ -703,10 +704,11 @@ def _edge_bucket(flux: float, abs_max: float) -> tuple[int, float, int]:
     return b, float(mag_norm), sign
 
 
-def _edge_rgba(mag_norm: float, sign: int, has_flux: bool) -> str:
+def _edge_rgba(mag_norm: float, sign: int, has_flux: bool, density_scale: float = 1.0) -> str:
     if not has_flux:
         return "rgba(149,165,166,0.25)"
-    alpha = 0.50 + 0.50 * mag_norm
+    # Alpha scales down for dense networks so overlapping edges don't saturate
+    alpha = (0.50 + 0.50 * mag_norm) * (0.55 + 0.45 * density_scale)
     if sign > 0:
         r = int(247 - (247 - 178) * mag_norm)
         g = int(247 - (247 - 24) * mag_norm)
@@ -827,6 +829,7 @@ def _make_rxn_trace(
     rxn_kind_map: dict[str, str],
     rxn_substrates: dict[str, list[str]],
     rxn_products: dict[str, list[str]],
+    density_scale: float = 1.0,
 ) -> go.Scatter:
     fluxes = np.array([spec.flux_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
     stds = np.array([spec.std_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
@@ -834,7 +837,7 @@ def _make_rxn_trace(
 
     abs_max = max(float(np.nanmax(np.abs(fluxes))) if valid.any() else 1.0, 1e-9)
     log_abs = np.log1p(np.where(valid, np.abs(fluxes), 0.0))
-    sizes = (log_abs / np.log1p(abs_max) * 26 + 7).tolist()
+    sizes = (log_abs / np.log1p(abs_max) * (26 * density_scale) + max(4, round(7 * density_scale))).tolist()
 
     _exch_cfg = compartments.get(exchange_key, {"color": "#888888", "label": exchange_key})
     border_colors = [
@@ -992,6 +995,7 @@ class FLoV(anywidget.AnyWidget):
         scale_compartments: bool = False,
         hull_tension: float = 0.4,
         collision_modifier: float = 0.001,
+        density_scale: Optional[float] = None,
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -1021,8 +1025,11 @@ class FLoV(anywidget.AnyWidget):
         self._scale_compartments = scale_compartments
         self._hull_tension = hull_tension
         self._collision_modifier = collision_modifier
+        self._density_scale = density_scale
         self._ignored_rxns: set[str] = set()
         self._ignored_mets: set[str] = set()
+        self._batch_depth: int = 0
+        self._batch_needs: set[str] = set()
         self._animate_flux = False
         self._anim_min_period = 0.4   # seconds — fastest pulse at peak flux
         self._anim_max_period = 3.0   # seconds — slowest pulse at minimal flux
@@ -1044,9 +1051,7 @@ class FLoV(anywidget.AnyWidget):
             self._cfg = _parse_config(value)
         else:
             raise TypeError(f"Expected str, Path, or dict, got {type(value)}")
-        if self._cobra_model is not None:
-            self._build_graph()
-            self._rebuild_figure()
+        self._trigger("graph")
 
     @property
     def model(self) -> Optional[cobra.Model]:
@@ -1068,8 +1073,7 @@ class FLoV(anywidget.AnyWidget):
     @drop_no_data.setter
     def drop_no_data(self, value: bool) -> None:
         self._drop_no_data = value
-        if self._graph_built:
-            self._rebuild_figure()
+        self._trigger("figure")
 
     @property
     def stoich_flux(self) -> bool:
@@ -1079,8 +1083,7 @@ class FLoV(anywidget.AnyWidget):
     @stoich_flux.setter
     def stoich_flux(self, value: bool) -> None:
         self._stoich_flux = value
-        if self._graph_built:
-            self._rebuild_figure()
+        self._trigger("figure")
 
     @property
     def hull_tension(self) -> float:
@@ -1090,8 +1093,7 @@ class FLoV(anywidget.AnyWidget):
     @hull_tension.setter
     def hull_tension(self, value: float) -> None:
         self._hull_tension = value
-        if self._graph_built:
-            self._rebuild_figure()
+        self._trigger("figure")
 
     @property
     def scale_compartments(self) -> bool:
@@ -1101,9 +1103,7 @@ class FLoV(anywidget.AnyWidget):
     @scale_compartments.setter
     def scale_compartments(self, value: bool) -> None:
         self._scale_compartments = value
-        if self._graph_built:
-            self._compute_layout()
-            self._rebuild_figure()
+        self._trigger("layout")
 
     @property
     def collision_modifier(self) -> float:
@@ -1113,9 +1113,67 @@ class FLoV(anywidget.AnyWidget):
     @collision_modifier.setter
     def collision_modifier(self, value: float) -> None:
         self._collision_modifier = value
-        if self._graph_built:
+        self._trigger("layout")
+
+    @property
+    def density_scale(self) -> Optional[float]:
+        """Visual density scale in [0, 1] applied to marker sizes, edge widths, and
+        colour alpha. ``None`` (default) auto-computes the scale from network size,
+        shrinking visuals for models with more than ~80 rendered reactions."""
+        return self._density_scale
+
+    @density_scale.setter
+    def density_scale(self, value: Optional[float]) -> None:
+        self._density_scale = value
+        self._trigger("figure")
+
+    @contextmanager
+    def configure(self):
+        """Suppress all rebuilds while setting configuration properties.
+
+        Without this, each assignment on an already-built widget triggers its
+        own expensive rebuild immediately.  Wrap configuration assignments in
+        this block, then trigger one rebuild explicitly afterwards::
+
+            with widget.configure():
+                widget.drop_protons = True
+                widget.density_scale = 0.6
+                widget.collision_modifier = 0.5
+            widget.model = model  # single rebuild here
+        """
+        self._batch_depth += 1
+        try:
+            yield
+        finally:
+            self._batch_depth -= 1
+            # Discard queued flags — the caller is responsible for triggering
+            # the rebuild explicitly (e.g. widget.model = model) after the block.
+            if self._batch_depth == 0:
+                self._batch_needs.clear()
+
+    def _trigger(self, level: str) -> None:
+        """Schedule or immediately execute a rebuild at the given level.
+
+        ``level`` is one of ``'figure'``, ``'layout'``, or ``'graph'``
+        (each implies all cheaper levels).  When inside a ``configure()``
+        block the rebuild is deferred; otherwise it runs immediately.
+        """
+        if not self._graph_built:
+            return
+        if self._batch_depth:
+            self._batch_needs.add(level)
+            return
+        if level == "graph":
+            self._build_graph()
+        elif level == "layout":
             self._compute_layout()
-            self._rebuild_figure()
+        self._rebuild_figure()
+
+    def _resolve_density_scale(self, n_rxns: int) -> float:
+        """Return the effective density scale: user value if set, else auto from network size."""
+        if self._density_scale is not None:
+            return float(np.clip(self._density_scale, 0.0, 1.0))
+        return max(0.40, min(1.0, (80.0 / max(80, n_rxns)) ** 0.5))
 
     @property
     def drop_protons(self) -> bool:
@@ -1125,9 +1183,7 @@ class FLoV(anywidget.AnyWidget):
     @drop_protons.setter
     def drop_protons(self, value: bool) -> None:
         self._drop_protons = value
-        if self._cobra_model is not None:
-            self._build_graph()
-            self._rebuild_figure()
+        self._trigger("graph")
 
     @property
     def ignore(self) -> tuple[set[str], set[str]]:
@@ -1144,9 +1200,7 @@ class FLoV(anywidget.AnyWidget):
             self._ignored_rxns, self._ignored_mets = set(value[0]), set(value[1])
         else:
             raise TypeError("ignore expects a file path, a (rxn_set, met_set) tuple, or None")
-        if self._cobra_model is not None:
-            self._build_graph()
-            self._rebuild_figure()
+        self._trigger("graph")
 
     # -- Public API --
 
@@ -1576,6 +1630,9 @@ class FLoV(anywidget.AnyWidget):
             edge_met_ids_by_view.append(emids)
 
         # Build Plotly traces
+        ds = self._resolve_density_scale(len(rxn_nodes))
+        _edge_wmin = max(0.5, 1.2 * ds)
+        _edge_wmax = max(_edge_wmin + 0.4, 4.6 * ds)
         regular_edge_traces = []
         source_sink_edge_traces = []
         idx = 0
@@ -1583,8 +1640,8 @@ class FLoV(anywidget.AnyWidget):
             for sign in (1, -1):
                 for b in range(EDGE_BINS):
                     mag_norm = (b + 0.5) / EDGE_BINS
-                    width = 1.2 + 3.4 * mag_norm
-                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True)
+                    width = _edge_wmin + (_edge_wmax - _edge_wmin) * mag_norm
+                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True, density_scale=ds)
                     tr = go.Scatter(
                         x=edge_flux_x_by_view[0][idx],
                         y=edge_flux_y_by_view[0][idx],
@@ -1647,6 +1704,7 @@ class FLoV(anywidget.AnyWidget):
             _make_rxn_trace(
                 v, rxn_nodes, pos, G, mdl, compartments, exchange_key,
                 self._rxn_kind_map, self._rxn_substrates, self._rxn_products,
+                density_scale=ds,
             )
             for v in views
         ]
@@ -1657,8 +1715,7 @@ class FLoV(anywidget.AnyWidget):
         n_regular_edges = len(regular_edge_traces)
         n_ss_edges = len(source_sink_edge_traces)
         MET_TRACE_IDX = n_regular_edges + n_ss_edges
-        LABEL_TRACE_IDX = MET_TRACE_IDX + 1
-        RXN_START = LABEL_TRACE_IDX + 1
+        RXN_START = MET_TRACE_IDX + 2  # +1 for label_trace (hidden, still in all_traces)
         edge_indices = list(range(0, n_regular_edges + n_ss_edges))
 
         met_flux_x_by_view = [
