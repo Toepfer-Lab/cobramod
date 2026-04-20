@@ -1724,17 +1724,6 @@ class FLoV(anywidget.AnyWidget):
                  args=[{"visible": False},
                        list(range(n_regular_edges, n_regular_edges + n_ss_edges))]),
         ]
-        label_toggle = [
-            dict(label="Show labels", method="restyle",
-                 args=[{"visible": True}, [LABEL_TRACE_IDX]]),
-            dict(label="Hide labels", method="restyle",
-                 args=[{"visible": False}, [LABEL_TRACE_IDX]]),
-        ]
-        drag_toggle = [
-            dict(label="Enable drag", method="skip", args=[]),
-            dict(label="Disable drag", method="skip", args=[]),
-        ]
-
         _menu_base = dict(
             type="buttons", direction="right",
             xanchor="left", x=0.0,
@@ -1746,8 +1735,6 @@ class FLoV(anywidget.AnyWidget):
             (1.14, mode_buttons),
             (1.07, met_toggle),
             (1.00, source_sink_toggle),
-            (0.93, label_toggle),
-            (0.86, drag_toggle),
         ]
 
         fig = go.Figure(data=all_traces)
@@ -1796,8 +1783,6 @@ class FLoV(anywidget.AnyWidget):
             (1.145, "Flux view"),
             (1.075, "Metabolites"),
             (1.005, "Source/Sink"),
-            (0.935, "Labels"),
-            (0.865, "Drag (Shift+click)"),
         ]
 
         fig.update_layout(

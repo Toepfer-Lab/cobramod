@@ -1,10 +1,10 @@
 // anywidget render function — mounts the Plotly flux network into `el`
 // State: C=plotly ready, i=graph div, t=interactivity data, c=active view index,
-//        w=drag enabled, L=hovered met index, _=dragged met index, v/M=last mouse pos
+//        L=hovered met index, _=dragged met index, v/M=last mouse pos
 function H({ model: S, el: I }) {
   const k = document.createElement("div");
   I.appendChild(k);
-  let C = !1, i = null, t = null, c = 0, w = !0, L = null, _ = null, v = null, M = null;
+  let C = !1, i = null, t = null, c = 0, L = null, _ = null, v = null, M = null;
 
   // Load Plotly from CDN if not already present
   function N() {
@@ -63,24 +63,16 @@ function H({ model: S, el: I }) {
     i.on("plotly_buttonclicked", (e) => {
       if (!e || !e.button || !e.button.label) return;
       const n = e.button.label;
-      if (n === "Enable drag") {
-        w = !0, i.style.cursor = "crosshair";
-        return;
-      }
-      if (n === "Disable drag") {
-        w = !1, L = null, _ = null, i.style.cursor = "";
-        return;
-      }
       const l = t.view_labels.indexOf(n);
       l >= 0 && (c = l, X());
     }), i.on("plotly_hover", (e) => {
-      if (L = null, !w || !e || !e.points || !e.points.length) return;
+      if (L = null, !e || !e.points || !e.points.length) return;
       const n = e.points[0];
       n.curveNumber === t.met_idx && Number.isInteger(n.pointNumber) && (L = n.pointNumber, i.style.cursor = "grab");
     }), i.on("plotly_unhover", () => {
-      L = null, Number.isInteger(_) || (i.style.cursor = w ? "crosshair" : "");
+      L = null, Number.isInteger(_) || (i.style.cursor = "crosshair");
     }), i.addEventListener("mousedown", (e) => {
-      !w || e.button !== 0 || !e.shiftKey || Number.isInteger(L) && (_ = L, v = e.clientX, M = e.clientY, i.style.cursor = "grabbing", e.preventDefault(), e.stopPropagation(), typeof e.stopImmediatePropagation == "function" && e.stopImmediatePropagation());
+      e.button !== 0 || !e.shiftKey || Number.isInteger(L) && (_ = L, v = e.clientX, M = e.clientY, i.style.cursor = "grabbing", e.preventDefault(), e.stopPropagation(), typeof e.stopImmediatePropagation == "function" && e.stopImmediatePropagation());
     }, !0), window.addEventListener("mousemove", (e) => {
       if (!Number.isInteger(_)) return;
       if (v === null || M === null) {
@@ -92,8 +84,8 @@ function H({ model: S, el: I }) {
       const [m, b] = O(n, l), o = t.met_flux_x[c][_], h = t.met_flux_y[c][_];
       z(_, o + m, h + b);
     }), window.addEventListener("mouseup", () => {
-      Number.isInteger(_) && (_ = null, v = null, M = null, i.style.cursor = w ? "crosshair" : "");
-    }), w && (i.style.cursor = "crosshair");
+      Number.isInteger(_) && (_ = null, v = null, M = null, i.style.cursor = "crosshair");
+    }), i.style.cursor = "crosshair";
     const d = document.createElement("div");
     d.style.cssText = "position:absolute;top:10px;right:240px;z-index:1000;background:white;border:1px solid #aab7b8;border-radius:4px;padding:4px 8px;box-shadow:0 2px 6px rgba(0,0,0,0.18);width:230px;font-family:Arial,sans-serif;", d.innerHTML = '<input type="text" placeholder="🔍 Search reaction / metabolite…" style="width:100%;border:none;outline:none;font-size:11px;padding:2px 0;box-sizing:border-box;"><div style="display:none;max-height:190px;overflow-y:auto;margin-top:3px;"></div>';
     const s = i.parentElement || document.body;
