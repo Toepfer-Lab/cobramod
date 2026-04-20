@@ -830,7 +830,7 @@ def _make_rxn_trace(
     rxn_substrates: dict[str, list[str]],
     rxn_products: dict[str, list[str]],
     density_scale: float = 1.0,
-) -> go.Scatter:
+) -> go.Scattergl:
     fluxes = np.array([spec.flux_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
     stds = np.array([spec.std_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
     valid = np.array([_has_flux_data(float(f)) for f in fluxes], dtype=bool)
@@ -879,7 +879,7 @@ def _make_rxn_trace(
             f"<extra>{spec.label}</extra>"
         )
 
-    return go.Scatter(
+    return go.Scattergl(
         x=[pos[r][0] for r in rxn_nodes],
         y=[pos[r][1] for r in rxn_nodes],
         mode="markers",
@@ -1642,7 +1642,7 @@ class FLoV(anywidget.AnyWidget):
                     mag_norm = (b + 0.5) / EDGE_BINS
                     width = _edge_wmin + (_edge_wmax - _edge_wmin) * mag_norm
                     color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True, density_scale=ds)
-                    tr = go.Scatter(
+                    tr = go.Scattergl(
                         x=edge_flux_x_by_view[0][idx],
                         y=edge_flux_y_by_view[0][idx],
                         mode="lines",
@@ -1888,7 +1888,7 @@ class FLoV(anywidget.AnyWidget):
             for n in met_nodes
         ]
 
-        fig.add_trace(go.Scatter(
+        fig.add_trace(go.Scattergl(
             x=[], y=[],
             mode="markers",
             marker=dict(size=24, color="rgba(255,220,0,0.55)", symbol="circle",
