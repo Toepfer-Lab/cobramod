@@ -1455,7 +1455,11 @@ class FLoV(anywidget.AnyWidget):
         _nonempty_counts = [c for c in _rxn_counts.values() if c > 0]
         _ref_count = float(np.mean(_nonempty_counts)) if _nonempty_counts else 1.0
 
-        def _effective_region(comp_key: str) -> tuple[float, float, float, float]:
+        # Compute scaled regions, then run a cheap bbox-repulsion pass so that
+        # compartments that grow into each other are pushed apart until non-overlapping.
+        _active_keys = [ck for ck in compartments if _rxn_counts.get(ck, 0) > 0]
+
+        def _scaled_region(comp_key: str) -> tuple[float, float, float, float]:
             x0, x1, y0, y1 = compartments[comp_key]["region"]
             if not self._scale_compartments:
                 return x0, x1, y0, y1
@@ -1465,6 +1469,51 @@ class FLoV(anywidget.AnyWidget):
             hw = (x1 - x0) / 2.0 * scale
             hh = (y1 - y0) / 2.0 * scale
             return cx - hw, cx + hw, cy - hh, cy + hh
+
+        # Mutable centers — repulsion moves centers only, half-widths stay fixed
+        _centers: dict[str, list[float]] = {}
+        _half: dict[str, tuple[float, float]] = {}
+        for ck in _active_keys:
+            x0, x1, y0, y1 = _scaled_region(ck)
+            _centers[ck] = [(x0 + x1) / 2.0, (y0 + y1) / 2.0]
+            _half[ck] = ((x1 - x0) / 2.0, (y1 - y0) / 2.0)
+
+        if self._scale_compartments and len(_active_keys) > 1:
+            _GAP = 0.3          # minimum clearance between boxes after separation
+            for _ in range(50): # converges in far fewer iterations for ~5 compartments
+                moved = False
+                for i, a in enumerate(_active_keys):
+                    for b in _active_keys[i + 1:]:
+                        ax, ay = _centers[a]
+                        bx, by = _centers[b]
+                        ahw, ahh = _half[a]
+                        bhw, bhh = _half[b]
+                        # Overlap on each axis
+                        ox = (ahw + bhw + _GAP) - abs(bx - ax)
+                        oy = (ahh + bhh + _GAP) - abs(by - ay)
+                        if ox <= 0 or oy <= 0:
+                            continue  # already separated
+                        # Resolve along the axis of least penetration
+                        if ox < oy:
+                            shift = ox / 2.0 * (1.0 if bx >= ax else -1.0)
+                            _centers[a][0] -= shift
+                            _centers[b][0] += shift
+                        else:
+                            shift = oy / 2.0 * (1.0 if by >= ay else -1.0)
+                            _centers[a][1] -= shift
+                            _centers[b][1] += shift
+                        moved = True
+                if not moved:
+                    break
+
+        def _effective_region(comp_key: str) -> tuple[float, float, float, float]:
+            if comp_key in _centers:
+                cx, cy = _centers[comp_key]
+                hw, hh = _half[comp_key]
+                return cx - hw, cx + hw, cy - hh, cy + hh
+            # Inactive compartment — return base region unchanged
+            x0, x1, y0, y1 = compartments[comp_key]["region"]
+            return x0, x1, y0, y1
 
         # Per-compartment spring layout for reactions
         for comp_key in compartments:
@@ -1648,7 +1697,7 @@ class FLoV(anywidget.AnyWidget):
                         mode="lines",
                         line=dict(width=width, color=color,
                                   dash=("dot" if edge_class == "ss" else "solid")),
-                        hoverinfo="none", showlegend=False, visible=False,
+                        hoverinfo="skip", showlegend=False, visible=False,
                         name=("_edges_sourcesink" if edge_class == "ss"
                               else "_edges_regular"),
                     )
@@ -1676,7 +1725,7 @@ class FLoV(anywidget.AnyWidget):
                 f"Produced by: {', '.join(producers[:5]) or '---'}"
                 f"<extra>Metabolite</extra>"
             )
-        met_trace = go.Scatter(
+        met_trace = go.Scattergl(
             x=[flux_met_pos_by_view[0][n][0] for n in met_nodes],
             y=[flux_met_pos_by_view[0][n][1] for n in met_nodes],
             text=met_labels,
@@ -1695,7 +1744,7 @@ class FLoV(anywidget.AnyWidget):
             mode="text", text=[G.nodes[r]["name"] for r in rxn_nodes],
             textfont=dict(size=7, color="#2c3e50"),
             textposition="top center",
-            hoverinfo="none", showlegend=False, visible=False,
+            hoverinfo="skip", showlegend=False, visible=False,
             name="_labels",
         )
 
@@ -1874,6 +1923,7 @@ class FLoV(anywidget.AnyWidget):
             ),
             height=940,
             hovermode="closest",
+            hoverdistance=20,
             dragmode="pan",
             margin=dict(t=160, r=230, b=20, l=120),
             font=dict(family="Arial, sans-serif"),
@@ -1893,7 +1943,7 @@ class FLoV(anywidget.AnyWidget):
             mode="markers",
             marker=dict(size=24, color="rgba(255,220,0,0.55)", symbol="circle",
                         line=dict(color="#e67e22", width=3)),
-            hoverinfo="none", showlegend=False, visible=True,
+            hoverinfo="skip", showlegend=False, visible=True,
             name="_search_highlight",
         ))
         HIGHLIGHT_TRACE_IDX = len(fig.data) - 1
