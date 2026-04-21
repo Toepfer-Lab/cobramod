@@ -235,6 +235,9 @@ def _rxn_kind(rxn: cobra.Reaction, cfg: dict) -> str:
         return "export"
     if any(rxn.id.startswith(p) for p in cfg["biomass_prefix"]):
         return "biomass"
+    non_exch = {_met_comp(m, cfg) for m in rxn.metabolites} - {cfg["exchange_key"]}
+    if len(non_exch) > 1:
+        return "transport"
     return "regular"
 
 
@@ -777,6 +780,16 @@ def _build_edge_coords_for_view(
 
 
 # ==========================================================================
+# COLOUR HELPERS
+# ==========================================================================
+
+def _tint_hex(hex_color: str, alpha: float = 0.15) -> str:
+    h = hex_color.lstrip("#")
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return f"rgba({r},{g},{b},{alpha})"
+
+
+# ==========================================================================
 # SHAPE HELPERS
 # ==========================================================================
 
@@ -814,6 +827,8 @@ def _symbol_list(
         elif k in ("export", "biomass"):
             f = fluxes[i]
             syms.append("cross" if not _has_flux_data(float(f)) else "triangle-down")
+        elif k == "transport":
+            syms.append("hexagon2")
         else:
             syms.append("circle")
     return syms
@@ -852,6 +867,7 @@ def _make_rxn_trace(
     opacities = [0.22 if not v else 0.90 for v in valid]
 
     hover = []
+    bg_colors = [_tint_hex(c) for c in border_colors]
     for i, r in enumerate(rxn_nodes):
         f, sd = fluxes[i], stds[i]
         rxn_o = cobra_model.reactions.get_by_id(r)
@@ -861,7 +877,7 @@ def _make_rxn_trace(
 
         f_str = f"{f:+.4f} mmol/gDW/h" if _has_flux_data(float(f)) else "--- (no data)"
         sd_str = f"<br><i>std = {sd:.4f}</i>" if not np.isnan(sd) else ""
-        kind_str = f"<br><b>{kind.upper()}</b>" if kind != "regular" else ""
+        kind_badge = f" <b>[{kind.upper()}]</b>" if kind != "regular" else ""
         pipe_str = f" | Pipeline: {spec.pipeline_tag}" if spec.pipeline_tag else ""
         extra = spec.hover_extra.get(r, "")
 
@@ -871,13 +887,14 @@ def _make_rxn_trace(
         display_name = rxn_o.name or r
         id_str = f" <i>({r})</i>" if rxn_o.name else ""
         hover.append(
-            f"<b>{display_name}</b>{id_str}{kind_str}<br>"
+            f"<b>{display_name}</b>{id_str}{kind_badge}<br>"
+            f"<span style='color:#888'>─────────────────────────</span><br>"
             f"<i>{comp_lbl}</i>{pipe_str}<br>"
             f"Flux: {f_str}{sd_str}<br>"
             f"Substrates: {subs}<br>"
             f"Products: {prds}"
             f"{extra}"
-            f"<extra>{spec.label}</extra>"
+            f"<extra></extra>"
         )
 
     return go.Scattergl(
@@ -902,6 +919,11 @@ def _make_rxn_trace(
         ),
         customdata=rxn_nodes,
         hovertemplate=hover,
+        hoverlabel=dict(
+            bgcolor=bg_colors,
+            bordercolor=border_colors,
+            font=dict(color="#2c3e50", size=12),
+        ),
         name=spec.label, showlegend=False,
     )
 
@@ -1389,6 +1411,13 @@ class FLoV(anywidget.AnyWidget):
                                     if k != cfg["exchange_key"]}
                         pool = non_exch if non_exch else comp_counts
                         comp = max(pool, key=pool.__getitem__)
+            elif self._rxn_kind_map[rxn.id] == "transport":
+                comp_counts_t: dict[str, int] = {}
+                for met_r in rxn.metabolites:
+                    mc_r = _met_comp(met_r, cfg)
+                    if mc_r != cfg["exchange_key"]:
+                        comp_counts_t[mc_r] = comp_counts_t.get(mc_r, 0) + 1
+                comp = max(comp_counts_t, key=comp_counts_t.__getitem__) if comp_counts_t else cfg["exchange_key"]
             else:
                 comp = exch_comp.get(rxn.id, cfg["exchange_key"])
             G.add_node(rxn.id, ntype="rxn", comp=comp,
@@ -1723,20 +1752,27 @@ class FLoV(anywidget.AnyWidget):
         # Metabolite nodes
         met_hover = []
         met_labels = []
+        met_border_colors = []
+        met_bg_colors = []
         for n in met_nodes:
             consumers = [r for r, s in met_to_rxns.get(n, []) if s < 0]
             producers = [r for r, s in met_to_rxns.get(n, []) if s > 0]
             met_c = G.nodes[n].get("comp", "?")
-            comp_label = compartments.get(met_c, {}).get("label", met_c)
+            comp_cfg = compartments.get(met_c, {})
+            comp_label = comp_cfg.get("label", met_c)
+            comp_color = comp_cfg.get("color", "#888888")
             met_name = G.nodes[n]["name"]
             met_labels.append(f"{met_name} [{met_c}]")
+            met_border_colors.append(comp_color)
+            met_bg_colors.append(_tint_hex(comp_color))
             met_hover.append(
                 f"<b>{met_name}</b><br>"
+                f"<span style='color:#888'>─────────────────────────</span><br>"
                 f"<i>{comp_label}</i><br>"
                 f"ID: {n}<br>"
                 f"Consumed by: {', '.join(consumers[:5]) or '---'}<br>"
                 f"Produced by: {', '.join(producers[:5]) or '---'}"
-                f"<extra>Metabolite</extra>"
+                f"<extra></extra>"
             )
         met_trace = go.Scattergl(
             x=[flux_met_pos_by_view[0][n][0] for n in met_nodes],
@@ -1746,7 +1782,13 @@ class FLoV(anywidget.AnyWidget):
             marker=dict(size=7, color=_MET_COLOR, symbol="diamond",
                         line=dict(color="white", width=0.5)),
             customdata=met_nodes,
-            hovertemplate=met_hover, showlegend=False, visible=False,
+            hovertemplate=met_hover,
+            hoverlabel=dict(
+                bgcolor=met_bg_colors,
+                bordercolor=met_border_colors,
+                font=dict(color="#2c3e50", size=12),
+            ),
+            showlegend=False, visible=False,
             name="_metabolites",
         )
 
