@@ -704,19 +704,20 @@ def _edge_bucket(flux: float, abs_max: float) -> tuple[int, float, int]:
     return b, float(mag_norm), sign
 
 
-def _edge_rgba(mag_norm: float, sign: int, has_flux: bool, density_scale: float = 1.0) -> str:
+def _edge_rgba(mag_norm: float, sign: int, has_flux: bool, density_scale: float = 1.0, color_modifier: float = 1.0) -> str:
     if not has_flux:
         return "rgba(149,165,166,0.25)"
     # Alpha scales down for dense networks so overlapping edges don't saturate
     alpha = (0.50 + 0.50 * mag_norm) * (0.55 + 0.45 * density_scale)
+    eff_norm = float(np.clip(mag_norm * color_modifier, 0.0, 1.0))
     if sign > 0:
-        r = int(247 - (247 - 178) * mag_norm)
-        g = int(247 - (247 - 24) * mag_norm)
-        b_ = int(247 - (247 - 43) * mag_norm)
+        r = int(247 - (247 - 178) * eff_norm)
+        g = int(247 - (247 - 24) * eff_norm)
+        b_ = int(247 - (247 - 43) * eff_norm)
     else:
-        r = int(247 - (247 - 33) * mag_norm)
-        g = int(247 - (247 - 102) * mag_norm)
-        b_ = int(247 - (247 - 172) * mag_norm)
+        r = int(247 - (247 - 33) * eff_norm)
+        g = int(247 - (247 - 102) * eff_norm)
+        b_ = int(247 - (247 - 172) * eff_norm)
     return f"rgba({r},{g},{b_},{alpha:.3f})"
 
 
@@ -996,6 +997,7 @@ class FLoV(anywidget.AnyWidget):
         hull_tension: float = 0.4,
         collision_modifier: float = 0.001,
         density_scale: Optional[float] = None,
+        color_modifier: float = 1.0,
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -1026,6 +1028,7 @@ class FLoV(anywidget.AnyWidget):
         self._hull_tension = hull_tension
         self._collision_modifier = collision_modifier
         self._density_scale = density_scale
+        self._color_modifier = color_modifier
         self._ignored_rxns: set[str] = set()
         self._ignored_mets: set[str] = set()
         self._batch_depth: int = 0
@@ -1125,6 +1128,16 @@ class FLoV(anywidget.AnyWidget):
     @density_scale.setter
     def density_scale(self, value: Optional[float]) -> None:
         self._density_scale = value
+        self._trigger("figure")
+
+    @property
+    def color_modifier(self) -> float:
+        """Scale factor for edge colour saturation. 1.0 = default; >1 more vivid, <1 more faded."""
+        return self._color_modifier
+
+    @color_modifier.setter
+    def color_modifier(self, value: float) -> None:
+        self._color_modifier = value
         self._trigger("figure")
 
     @contextmanager
@@ -1690,7 +1703,7 @@ class FLoV(anywidget.AnyWidget):
                 for b in range(EDGE_BINS):
                     mag_norm = (b + 0.5) / EDGE_BINS
                     width = _edge_wmin + (_edge_wmax - _edge_wmin) * mag_norm
-                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True, density_scale=ds)
+                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True, density_scale=ds, color_modifier=self._color_modifier)
                     tr = go.Scattergl(
                         x=edge_flux_x_by_view[0][idx],
                         y=edge_flux_y_by_view[0][idx],
