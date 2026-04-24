@@ -42,7 +42,6 @@ import cobra
 import networkx as nx
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
 from cobra import Solution
 from scipy.spatial import ConvexHull
 from scipy.sparse import csr_matrix
@@ -57,7 +56,7 @@ ACTIVE_EDGE_EPS = 1e-6
 MIN_MET_RXN_DIST = 0.5
 MIN_MET_EDGE_DIST = 0.5
 EDGE_BINS = 6
-_MET_COLOR = "#aab7b8"
+_MET_COLOR = "#58a6ff"
 EDGE_LOG_STRETCH = 99.0
 EDGE_MIN_VIS_NORM = 0.22
 
@@ -79,16 +78,16 @@ class ViewSpec:
 # ==========================================================================
 
 _DEFAULT_COMPARTMENTS: dict[str, dict] = {
-    "h": dict(region=(-11.5, -2.5, -4.5, 6.0), color="#1e8449",
-              fill="rgba(30,132,73,0.06)", label="Chloroplast"),
-    "c": dict(region=(-2.0, 2.0, -4.5, 6.0), color="#2471a3",
-              fill="rgba(36,113,163,0.06)", label="Cytosol"),
-    "m": dict(region=(2.5, 7.5, 0.0, 6.0), color="#ca6f1e",
-              fill="rgba(202,111,30,0.06)", label="Mitochondria"),
-    "p": dict(region=(2.5, 6.5, -4.5, -0.5), color="#7d3c98",
-              fill="rgba(125,60,152,0.06)", label="Peroxisome"),
-    "u": dict(region=(-11.5, 7.5, -8.5, -5.0), color="#7f8c8d",
-              fill="rgba(127,140,141,0.06)", label="Exchange / Transport"),
+    "h": dict(region=(-11.5, -2.5, -4.5, 6.0), color="#3fb950",
+              fill="rgba(63,185,80,0.15)", label="Chloroplast"),
+    "c": dict(region=(-2.0, 2.0, -4.5, 6.0), color="#58a6ff",
+              fill="rgba(88,166,255,0.15)", label="Cytosol"),
+    "m": dict(region=(2.5, 7.5, 0.0, 6.0), color="#ffa657",
+              fill="rgba(255,166,87,0.15)", label="Mitochondria"),
+    "p": dict(region=(2.5, 6.5, -4.5, -0.5), color="#d2a8ff",
+              fill="rgba(210,168,255,0.15)", label="Peroxisome"),
+    "u": dict(region=(-11.5, 7.5, -8.5, -5.0), color="#8b949e",
+              fill="rgba(139,148,158,0.10)", label="Exchange / Transport"),
 }
 
 _DEFAULT_CURRENCY_KW: set[str] = {
@@ -127,7 +126,7 @@ def _parse_config(cfg: dict) -> dict:
             compartments[key] = dict(
                 region=(x0, x1, y0, y1),
                 color=entry.get("color", "#888888"),
-                fill=entry.get("fill", "rgba(128,128,128,0.06)"),
+                fill=entry.get("fill", "rgba(128,128,128,0.14)"),
                 label=entry.get("label", key),
             )
     else:
@@ -709,19 +708,39 @@ def _edge_bucket(flux: float, abs_max: float) -> tuple[int, float, int]:
 
 def _edge_rgba(mag_norm: float, sign: int, has_flux: bool, density_scale: float = 1.0, color_modifier: float = 1.0) -> str:
     if not has_flux:
-        return "rgba(149,165,166,0.25)"
-    # Alpha scales down for dense networks so overlapping edges don't saturate
-    alpha = (0.50 + 0.50 * mag_norm) * (0.55 + 0.45 * density_scale)
+        return "rgba(110,118,129,0.20)"
+    # Higher alpha on dark background — vivid colours don't need to be subdued
+    alpha = (0.55 + 0.45 * mag_norm) * (0.60 + 0.40 * density_scale)
     eff_norm = float(np.clip(mag_norm * color_modifier, 0.0, 1.0))
     if sign > 0:
-        r = int(247 - (247 - 178) * eff_norm)
-        g = int(247 - (247 - 24) * eff_norm)
-        b_ = int(247 - (247 - 43) * eff_norm)
+        # Positive: warm orange → vivid red
+        r = int(255)
+        g = int(180 - 180 * eff_norm)
+        b_ = int(70 - 70 * eff_norm)
     else:
-        r = int(247 - (247 - 33) * eff_norm)
-        g = int(247 - (247 - 102) * eff_norm)
-        b_ = int(247 - (247 - 172) * eff_norm)
+        # Negative: vivid sky-blue → deep blue
+        r = int(100 - 50 * eff_norm)
+        g = int(190 - 90 * eff_norm)
+        b_ = int(255)
     return f"rgba({r},{g},{b_},{alpha:.3f})"
+
+
+def _flux_to_hex(flux: float, abs_max: float) -> str:
+    """Map a flux value to a dark-mode hex colour using a diverging red/blue scale."""
+    if abs_max < 1e-9 or not _has_flux_data(flux):
+        return "#6e7681"
+    t = float(np.clip(abs(flux) / abs_max, 0.0, 1.0))
+    if flux >= 0:
+        # Low positive: #ef9a9a  High positive: #c62828
+        r = int(239 + (198 - 239) * t)
+        g = int(154 + (40 - 154) * t)
+        b_ = int(154 + (40 - 154) * t)
+    else:
+        # Low negative: #90caf9  High negative: #1565c0
+        r = int(144 + (21 - 144) * t)
+        g = int(202 + (101 - 202) * t)
+        b_ = int(249 + (192 - 249) * t)
+    return f"#{r:02x}{g:02x}{b_:02x}"
 
 
 def _edge_coords(
@@ -1432,6 +1451,17 @@ class FLoV(anywidget.AnyWidget):
                 if rxn_id not in self._ignored_rxns:
                     G.add_edge(rxn_id, met_id, stoich=stoich)
 
+        # Currency/proton filtering can leave reactions with no rendered
+        # metabolite neighbours at all. Drop those orphaned reactions so
+        # proton-only or energy-carrier-only fluxes do not appear as lone nodes.
+        orphan_rxns = [
+            node_id
+            for node_id, data in G.nodes(data=True)
+            if data["ntype"] == "rxn" and G.degree(node_id) == 0
+        ]
+        if orphan_rxns:
+            G.remove_nodes_from(orphan_rxns)
+
         self._G = G
         self._rxn_nodes = [n for n, d in G.nodes(data=True) if d["ntype"] == "rxn"]
         self._met_nodes = [n for n, d in G.nodes(data=True) if d["ntype"] == "met"]
@@ -1641,7 +1671,7 @@ class FLoV(anywidget.AnyWidget):
     # -- Internal: figure building --
 
     def _rebuild_figure(self) -> None:
-        """Rebuild the complete Plotly figure JSON and sync to frontend."""
+        """Rebuild the D3 figure JSON and sync to frontend."""
         if not self._graph_built or not self._views:
             return
 
@@ -1667,17 +1697,11 @@ class FLoV(anywidget.AnyWidget):
                     if _has_flux_data(float(flux)):
                         rxns_with_data.add(rxn_id)
             rxn_nodes = [r for r in rxn_nodes if r in rxns_with_data]
-            # Remove orphaned metabolites
             remaining = set(rxn_nodes)
             met_nodes = [m for m in met_nodes if any(
                 r in remaining for r, _ in met_to_rxns.get(m, [])
             )]
 
-        # Active compartments
-        _active_comps = (
-            {G.nodes[r]["comp"] for r in rxn_nodes}
-            if self._drop_no_data else set(compartments)
-        )
         # Flux-weighted metabolite positions per view
         flux_met_pos_by_view = [
             _flux_weighted_met_positions(
@@ -1708,199 +1732,145 @@ class FLoV(anywidget.AnyWidget):
             oriented_edges.append((edge_class, rxn_id, met_id, stoich))
 
         # Edge coordinates per view
-        edge_flux_x_by_view = []
-        edge_flux_y_by_view = []
-        edge_met_ids_by_view = []
-        for i, view in enumerate(views):
-            exf, eyf, emids = _build_edge_coords_for_view(
-                view.flux_dict, flux_met_pos_by_view[i],
+        edge_flux_x_by_view: list[list[list[float | None]]] = []
+        edge_flux_y_by_view: list[list[list[float | None]]] = []
+        for vi, view in enumerate(views):
+            exf, eyf, _ = _build_edge_coords_for_view(
+                view.flux_dict, flux_met_pos_by_view[vi],
                 oriented_edges, pos, self._stoich_flux,
             )
             edge_flux_x_by_view.append(exf)
             edge_flux_y_by_view.append(eyf)
-            edge_met_ids_by_view.append(emids)
 
-        # Build Plotly traces
+        # Edge visual styles — same bucket ordering as _build_edge_coords_for_view
         ds = self._resolve_density_scale(len(rxn_nodes))
         _edge_wmin = max(0.5, 1.2 * ds)
         _edge_wmax = max(_edge_wmin + 0.4, 4.6 * ds)
-        regular_edge_traces = []
-        source_sink_edge_traces = []
-        idx = 0
+        edge_styles: list[dict] = []
         for edge_class in ("reg", "ss"):
             for sign in (1, -1):
                 for b in range(EDGE_BINS):
                     mag_norm = (b + 0.5) / EDGE_BINS
                     width = _edge_wmin + (_edge_wmax - _edge_wmin) * mag_norm
-                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True, density_scale=ds, color_modifier=self._color_modifier)
-                    tr = go.Scattergl(
-                        x=edge_flux_x_by_view[0][idx],
-                        y=edge_flux_y_by_view[0][idx],
-                        mode="lines",
-                        line=dict(width=width, color=color,
-                                  dash=("dot" if edge_class == "ss" else "solid")),
-                        hoverinfo="skip", showlegend=False, visible=False,
-                        name=("_edges_sourcesink" if edge_class == "ss"
-                              else "_edges_regular"),
-                    )
-                    if edge_class == "ss":
-                        source_sink_edge_traces.append(tr)
-                    else:
-                        regular_edge_traces.append(tr)
-                    idx += 1
+                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True,
+                                       density_scale=ds, color_modifier=self._color_modifier)
+                    edge_styles.append({"class": edge_class, "color": color, "width": width})
 
-        # Metabolite nodes
-        met_hover = []
-        met_labels = []
-        met_border_colors = []
-        met_bg_colors = []
+        # Global abs_max across all views (consistent colorscale)
+        all_valid: list[float] = [
+            float(f)
+            for view in views
+            for f in view.flux_dict.values()
+            if _has_flux_data(float(f))
+        ]
+        abs_max_flux = max(float(np.nanmax(np.abs(all_valid))) if all_valid else 1.0, 1e-9)
+
+        n_views = len(views)
+        _exch_cfg = compartments.get(exchange_key, {"color": "#8b949e", "label": exchange_key})
+
+        # Per-view data
+        views_data: list[dict] = []
+        for vi, view in enumerate(views):
+            fluxes = np.array([view.flux_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
+            stds = np.array([view.std_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
+            valid = np.array([_has_flux_data(float(f)) for f in fluxes], dtype=bool)
+            log_abs = np.log1p(np.where(valid, np.abs(fluxes), 0.0))
+            abs_max_local = max(float(np.nanmax(np.abs(fluxes))) if valid.any() else 1.0, 1e-9)
+            sizes = (log_abs / np.log1p(abs_max_local) * (26 * ds) + max(4, round(7 * ds))).tolist()
+
+            rxn_node_list: list[dict] = []
+            for i, r in enumerate(rxn_nodes):
+                rxn_o = mdl.reactions.get_by_id(r)
+                comp = G.nodes[r]["comp"]
+                comp_cfg = compartments.get(comp, _exch_cfg)
+                comp_lbl = comp_cfg["label"]
+                border_color = comp_cfg["color"]
+                kind = self._rxn_kind_map.get(r, "regular")
+                f, sd = float(fluxes[i]), float(stds[i])
+                is_valid = bool(valid[i])
+                fill_color = _flux_to_hex(f, abs_max_flux) if is_valid else "#6e7681"
+                f_str = f"{f:+.4f} mmol/gDW/h" if is_valid else "--- (no data)"
+                sd_str = f"{sd:.4f}" if not np.isnan(sd) else ""
+                kind_badge = kind.upper() if kind != "regular" else ""
+                display_name = rxn_o.name or r
+                subs = ", ".join(self._rxn_substrates.get(r, [])[:5]) or "---"
+                prds = ", ".join(self._rxn_products.get(r, [])[:5]) or "---"
+                if kind in ("export", "biomass"):
+                    symbol = "cross" if not is_valid else "triangle-down"
+                elif kind == "import":
+                    symbol = "triangle-up"
+                elif kind == "transport":
+                    symbol = "hexagon"
+                else:
+                    symbol = "circle"
+                rxn_node_list.append({
+                    "id": r,
+                    "name": display_name,
+                    "x": pos[r][0],
+                    "y": pos[r][1],
+                    "comp": comp,
+                    "kind": kind,
+                    "flux": f if is_valid else None,
+                    "fill_color": fill_color,
+                    "border_color": border_color,
+                    "border_width": 2.5 if kind != "regular" else 1.8,
+                    "opacity": 0.22 if not is_valid else 0.90,
+                    "r": float(sizes[i]),
+                    "symbol": symbol,
+                    "hover": {
+                        "display_name": display_name,
+                        "id": r if rxn_o.name else "",
+                        "kind_badge": kind_badge,
+                        "comp_label": comp_lbl,
+                        "pipeline_tag": view.pipeline_tag,
+                        "flux_str": f_str,
+                        "std_str": sd_str,
+                        "substrates": subs,
+                        "products": prds,
+                        "extra": view.hover_extra.get(r, ""),
+                    },
+                })
+
+            edge_groups: list[dict] = []
+            for gi, style in enumerate(edge_styles):
+                edge_groups.append({
+                    "class": style["class"],
+                    "x": edge_flux_x_by_view[vi][gi],
+                    "y": edge_flux_y_by_view[vi][gi],
+                    "color": style["color"],
+                    "width": style["width"],
+                })
+
+            views_data.append({
+                "label": view.label,
+                "rxn_nodes": rxn_node_list,
+                "met_positions": [
+                    {"x": flux_met_pos_by_view[vi][n][0],
+                     "y": flux_met_pos_by_view[vi][n][1]}
+                    for n in met_nodes
+                ],
+                "edge_groups": edge_groups,
+            })
+
+        # Metabolite node data
+        met_node_list: list[dict] = []
         for n in met_nodes:
             consumers = [r for r, s in met_to_rxns.get(n, []) if s < 0]
             producers = [r for r, s in met_to_rxns.get(n, []) if s > 0]
             met_c = G.nodes[n].get("comp", "?")
             comp_cfg = compartments.get(met_c, {})
-            comp_label = comp_cfg.get("label", met_c)
-            comp_color = comp_cfg.get("color", "#888888")
-            met_name = G.nodes[n]["name"]
-            met_labels.append(f"{met_name} [{met_c}]")
-            met_border_colors.append(comp_color)
-            met_bg_colors.append(_tint_hex(comp_color))
-            met_hover.append(
-                f"<b>{met_name}</b><br>"
-                f"<span style='color:#888'>─────────────────────────</span><br>"
-                f"<i>{comp_label}</i><br>"
-                f"ID: {n}<br>"
-                f"Consumed by: {', '.join(consumers[:5]) or '---'}<br>"
-                f"Produced by: {', '.join(producers[:5]) or '---'}"
-                f"<extra></extra>"
-            )
-        met_trace = go.Scattergl(
-            x=[flux_met_pos_by_view[0][n][0] for n in met_nodes],
-            y=[flux_met_pos_by_view[0][n][1] for n in met_nodes],
-            text=met_labels,
-            mode="markers",
-            marker=dict(size=7, color=_MET_COLOR, symbol="diamond",
-                        line=dict(color="white", width=0.5)),
-            customdata=met_nodes,
-            hovertemplate=met_hover,
-            hoverlabel=dict(
-                bgcolor=met_bg_colors,
-                bordercolor=met_border_colors,
-                font=dict(color="#2c3e50", size=12),
-            ),
-            showlegend=False, visible=False,
-            name="_metabolites",
-        )
+            met_node_list.append({
+                "id": n,
+                "name": G.nodes[n]["name"],
+                "comp": met_c,
+                "comp_label": comp_cfg.get("label", met_c),
+                "comp_color": comp_cfg.get("color", "#8b949e"),
+                "consumers": consumers[:8],
+                "producers": producers[:8],
+            })
 
-        # Reaction labels
-        label_trace = go.Scatter(
-            x=[pos[r][0] for r in rxn_nodes],
-            y=[pos[r][1] for r in rxn_nodes],
-            mode="text", text=[G.nodes[r]["name"] for r in rxn_nodes],
-            textfont=dict(size=7, color="#2c3e50"),
-            textposition="top center",
-            hoverinfo="skip", showlegend=False, visible=False,
-            name="_labels",
-        )
-
-        # Per-view reaction traces
-        rxn_traces = [
-            _make_rxn_trace(
-                v, rxn_nodes, pos, G, mdl, compartments, exchange_key,
-                self._rxn_kind_map, self._rxn_substrates, self._rxn_products,
-                density_scale=ds,
-            )
-            for v in views
-        ]
-        n_rxn_traces = len(rxn_traces)
-        for i, t in enumerate(rxn_traces):
-            t.visible = (i == 0)
-
-        n_regular_edges = len(regular_edge_traces)
-        n_ss_edges = len(source_sink_edge_traces)
-        MET_TRACE_IDX = n_regular_edges + n_ss_edges
-        RXN_START = MET_TRACE_IDX + 2  # +1 for label_trace (hidden, still in all_traces)
-        edge_indices = list(range(0, n_regular_edges + n_ss_edges))
-
-        met_flux_x_by_view = [
-            [flux_met_pos_by_view[i][n][0] for n in met_nodes]
-            for i in range(n_rxn_traces)
-        ]
-        met_flux_y_by_view = [
-            [flux_met_pos_by_view[i][n][1] for n in met_nodes]
-            for i in range(n_rxn_traces)
-        ]
-
-        # Legend dummies
-        legend_traces = [
-            go.Scatter(x=[None], y=[None], mode="markers",
-                       marker=dict(size=12, color=cfg_c["color"],
-                                   line=dict(color=cfg_c["color"], width=2)),
-                       name=cfg_c["label"], showlegend=True)
-            for comp_key, cfg_c in compartments.items()
-            if comp_key in _active_comps
-        ] + [
-            go.Scatter(x=[None], y=[None], mode="markers",
-                       marker=dict(size=11, color="#888", symbol="triangle-up"),
-                       name="Import", showlegend=True),
-            go.Scatter(x=[None], y=[None], mode="markers",
-                       marker=dict(size=11, color="#888", symbol="triangle-down"),
-                       name="Export / sink", showlegend=True),
-            go.Scatter(x=[None], y=[None], mode="lines",
-                       line=dict(color="rgba(52,152,219,0.8)", width=2),
-                       name="Substrate edge", showlegend=True),
-            go.Scatter(x=[None], y=[None], mode="lines",
-                       line=dict(color="rgba(230,126,34,0.8)", width=2),
-                       name="Product edge", showlegend=True),
-        ]
-
-        all_traces = [
-            *regular_edge_traces,
-            *source_sink_edge_traces,
-            met_trace, label_trace,
-            *rxn_traces,
-            *legend_traces,
-        ]
-
-        rxn_indices = list(range(RXN_START, RXN_START + n_rxn_traces))
-        view_labels = [v.label for v in views]
-
-        # Build update menus
-        mode_buttons = [
-            dict(label=lbl, method="skip", args=[]) for lbl in view_labels
-        ]
-        met_toggle = [
-            dict(label="Show metabolites", method="restyle",
-                 args=[{"visible": True},
-                       list(range(0, n_regular_edges)) + [MET_TRACE_IDX]]),
-            dict(label="Hide metabolites", method="restyle",
-                 args=[{"visible": False},
-                       list(range(0, n_regular_edges)) + [MET_TRACE_IDX]]),
-        ]
-        source_sink_toggle = [
-            dict(label="Show source/sink lines", method="restyle",
-                 args=[{"visible": True},
-                       list(range(n_regular_edges, n_regular_edges + n_ss_edges))]),
-            dict(label="Hide source/sink lines", method="restyle",
-                 args=[{"visible": False},
-                       list(range(n_regular_edges, n_regular_edges + n_ss_edges))]),
-        ]
-        _menu_base = dict(
-            type="buttons", direction="right",
-            xanchor="left", x=0.0,
-            pad={"r": 6, "t": 4, "b": 4}, showactive=True,
-            bgcolor="#f4f6f7", bordercolor="#aab7b8",
-            font=dict(size=11, family="Arial, sans-serif"),
-        )
-        _menu_items = [
-            (1.14, mode_buttons),
-            (1.07, met_toggle),
-            (1.00, source_sink_toggle),
-        ]
-
-        fig = go.Figure(data=all_traces)
-
-        # Compartment convex-hull shapes + labels
+        # Compartment hull vertices (data space — D3 renders paths via catmull-rom)
+        compartment_list: list[dict] = []
         for comp_key, cfg_c in compartments.items():
             regular_here = [r for r in rxn_nodes
                             if G.nodes[r]["comp"] == comp_key
@@ -1914,128 +1884,67 @@ class FLoV(anywidget.AnyWidget):
                 verts = pts[hull.vertices]
                 centre = verts.mean(axis=0)
                 verts = centre + (verts - centre) * 1.22
-                path = _smooth_hull_path(verts, tension=self._hull_tension)
-                fig.add_shape(
-                    type="path", path=path, layer="below",
-                    fillcolor=cfg_c["fill"],
-                    line=dict(color=cfg_c["color"], width=1.5, dash="dot"),
-                )
-                fig.add_annotation(
-                    x=float(verts[:, 0].mean()),
-                    y=float(verts[:, 1].max()) + 0.2,
-                    text=f"<b>{cfg_c['label']}</b>",
-                    showarrow=False,
-                    font=dict(size=12, color=cfg_c["color"],
-                              family="Arial, sans-serif"),
-                    xanchor="center", yanchor="bottom",
-                )
+                compartment_list.append({
+                    "key": comp_key,
+                    "label": cfg_c["label"],
+                    "color": cfg_c["color"],
+                    "fill": cfg_c["fill"],
+                    "hull_vertices": verts.tolist(),
+                    "hull_tension": self._hull_tension,
+                    "label_x": float(verts[:, 0].mean()),
+                    "label_y": float(verts[:, 1].max()) + 0.2,
+                })
             except Exception:
                 pass
 
-        model_name = (self._cobra_model.id or "Model") if self._cobra_model else "Model"
-        plot_title = f"Metabolic Flux Network — {model_name}"
+        # Data extent for D3 scales
+        all_x = [pos[r][0] for r in rxn_nodes]
+        all_y = [pos[r][1] for r in rxn_nodes]
+        for view_pos in flux_met_pos_by_view:
+            for n in met_nodes:
+                all_x.append(view_pos[n][0])
+                all_y.append(view_pos[n][1])
+        pad = 1.0
+        x_range = [min(all_x) - pad, max(all_x) + pad] if all_x else [-12.0, 8.0]
+        y_range = [min(all_y) - pad, max(all_y) + pad] if all_y else [-9.0, 7.0]
 
-        _label_base = dict(
-            xref="paper", yref="paper", showarrow=False,
-            xanchor="right", x=-0.005,
-            font=dict(size=11, family="Arial, sans-serif"),
-        )
-        _sidebar_labels = [
-            (1.145, "Flux view"),
-            (1.075, "Metabolites"),
-            (1.005, "Source/Sink"),
+        model_name = (mdl.id or "Model") if mdl else "Model"
+        met_flux_x_by_view = [
+            [flux_met_pos_by_view[vi][n][0] for n in met_nodes]
+            for vi in range(n_views)
+        ]
+        met_flux_y_by_view = [
+            [flux_met_pos_by_view[vi][n][1] for n in met_nodes]
+            for vi in range(n_views)
         ]
 
-        fig.update_layout(
-            title=dict(
-                text=(
-                    f"{plot_title}<br>"
-                    "<sup>Size = log|flux| | Colour = direction (blue ← 0 → red) | "
-                    "Border = compartment | Each view shows ONLY its own pipeline data</sup>"
-                ),
-                x=0.5, xanchor="center",
-                font=dict(size=15, family="Arial, sans-serif"),
-            ),
-            updatemenus=[
-                dict(**_menu_base, y=y, buttons=btns)
-                for y, btns in _menu_items
-            ],
-            annotations=fig.layout.annotations + tuple(
-                dict(**_label_base, y=y, text=f"<b>{txt}</b>")
-                for y, txt in _sidebar_labels
-            ),
-            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-            yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-            plot_bgcolor="white",
-            paper_bgcolor="#fdfefe",
-            legend=dict(
-                title=dict(text="<b>Compartment / Edge type</b>",
-                           font=dict(size=11)),
-                x=1.02, y=1.0, yanchor="top",
-                bgcolor="rgba(255,255,255,0.92)",
-                bordercolor="#ccc", borderwidth=1,
-                font=dict(size=10, family="Arial, sans-serif"),
-            ),
-            height=940,
-            hovermode="closest",
-            hoverdistance=20,
-            dragmode="pan",
-            margin=dict(t=160, r=230, b=20, l=120),
-            font=dict(family="Arial, sans-serif"),
-        )
-
-        # Search highlight trace
-        met_comp_bounds = [
-            list(compartments.get(
-                G.nodes[n].get("comp", exchange_key),
-                dict(region=(-1e9, 1e9, -1e9, 1e9)),
-            )["region"])
-            for n in met_nodes
-        ]
-
-        fig.add_trace(go.Scattergl(
-            x=[], y=[],
-            mode="markers",
-            marker=dict(size=24, color="rgba(255,220,0,0.55)", symbol="circle",
-                        line=dict(color="#e67e22", width=3)),
-            hoverinfo="skip", showlegend=False, visible=True,
-            name="_search_highlight",
-        ))
-        HIGHLIGHT_TRACE_IDX = len(fig.data) - 1
-
-        rxn_names_search = [
-            mdl.reactions.get_by_id(r).name or r for r in rxn_nodes
-        ]
-        rxn_x_search = [pos[r][0] for r in rxn_nodes]
-        rxn_y_search = [pos[r][1] for r in rxn_nodes]
-        met_names_search = [G.nodes[n].get("name", n) for n in met_nodes]
-
-        # Pack interactivity data into the figure JSON for the frontend
-        interactivity_data = {
-            "view_labels": view_labels,
-            "rxn_indices": rxn_indices,
-            "edge_indices": edge_indices,
-            "met_idx": MET_TRACE_IDX,
-            "edge_flux_x": edge_flux_x_by_view,
-            "edge_flux_y": edge_flux_y_by_view,
-            "edge_met_ids": edge_met_ids_by_view,
-            "met_flux_x": met_flux_x_by_view,
-            "met_flux_y": met_flux_y_by_view,
-            "met_ids": met_nodes,
-            "met_bounds": met_comp_bounds,
-            "rxn_ids": rxn_nodes,
-            "rxn_names": rxn_names_search,
-            "rxn_x": rxn_x_search,
-            "rxn_y": rxn_y_search,
-            "met_names": met_names_search,
-            "highlight_idx": HIGHLIGHT_TRACE_IDX,
+        d3_data = {
+            "meta": {
+                "model_name": model_name,
+                "x_range": x_range,
+                "y_range": y_range,
+                "height": 940,
+                "abs_max_flux": float(abs_max_flux),
+                "density_scale": float(ds),
+            },
+            "compartments": compartment_list,
+            "view_labels": [v.label for v in views],
+            "views": views_data,
+            "met_nodes": met_node_list,
+            "interactivity": {
+                "view_labels": [v.label for v in views],
+                "rxn_ids": rxn_nodes,
+                "rxn_names": [mdl.reactions.get_by_id(r).name or r for r in rxn_nodes],
+                "rxn_x": [pos[r][0] for r in rxn_nodes],
+                "rxn_y": [pos[r][1] for r in rxn_nodes],
+                "met_ids": met_nodes,
+                "met_names": [G.nodes[n].get("name", n) for n in met_nodes],
+                "met_flux_x": met_flux_x_by_view,
+                "met_flux_y": met_flux_y_by_view,
+            },
         }
 
-        # Combine figure JSON + interactivity data
-        fig_dict = fig.to_dict()
-        fig_dict["_interactivity"] = interactivity_data
-
-        self._figure_json = json.dumps(fig_dict, cls=_PlotlyJSONEncoder)
+        self._figure_json = json.dumps(d3_data, cls=_PlotlyJSONEncoder)
 
     # -- Frontend ESM --
 

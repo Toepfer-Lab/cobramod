@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "3d-force-graph": "^1.73.3",
+    "d3": "^7.9.0",
     "escher": "^1.7.3"
   },
   "devDependencies": {

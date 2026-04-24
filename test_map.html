@@ -1,0 +1,26 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <title>Escher</title>
+        
+            <script src="https://unpkg.com/escher@1.7.3/dist/escher.min.js"></script>
+        
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+          </head>
+          <body>
+            <div style="height: 100%; width: 100%;" id="map-container"></div>
+        
+            <script>
+             escher.Builder(
+                [{"map_name": "", "map_id": "", "map_description": "", "homepage": "", "schema": "https://escher.github.io/escher/jsonschema/1-0-0#"}, {"reactions": {"0": {"name": "R1", "bigg_id": "R1", "reversibility": true, "label_x": 307.0, "label_y": 45.0, "gene_reaction_rule": "", "genes": [], "segments": {"0": {"from_node_id": "4", "to_node_id": "5", "b1": null, "b2": null}, "1": {"from_node_id": "6", "to_node_id": "5", "b1": null, "b2": null}, "2": {"from_node_id": "0", "to_node_id": "4", "b1": null, "b2": null}, "3": {"from_node_id": "1", "to_node_id": "4", "b1": null, "b2": null}, "4": {"from_node_id": "2", "to_node_id": "6", "b1": null, "b2": null}, "5": {"from_node_id": "3", "to_node_id": "6", "b1": null, "b2": null}}, "metabolites": [{"bigg_id": "C01001_c", "coefficient": -1.0}, {"bigg_id": "C01002_c", "coefficient": -1.0}, {"bigg_id": "C01003_c", "coefficient": 1.0}, {"bigg_id": "C01004_c", "coefficient": 1.0}]}}, "nodes": {"0": {"node_type": "metabolite", "x": 30.0, "y": 150.0, "label_x": 0.0, "label_y": 130.0, "bigg_id": "C01001_c", "name": "C01001_c", "node_is_primary": false}, "1": {"node_type": "metabolite", "x": 30.0, "y": 300.0, "label_x": 0.0, "label_y": 280.0, "bigg_id": "C01002_c", "name": "C01002_c", "node_is_primary": false}, "2": {"node_type": "metabolite", "x": 550.0, "y": 150.0, "label_x": 520.0, "label_y": 130.0, "bigg_id": "C01003_c", "name": "C01003_c", "node_is_primary": false}, "3": {"node_type": "metabolite", "x": 550.0, "y": 300.0, "label_x": 520.0, "label_y": 280.0, "bigg_id": "C01004_c", "name": "C01004_c", "node_is_primary": false}, "4": {"node_type": "multimarker", "x": 335.0, "y": 225.0}, "5": {"node_type": "midmarker", "x": 355.0, "y": 225.0}, "6": {"node_type": "multimarker", "x": 375.0, "y": 225.0}}, "text_labels": {}, "canvas": {"x": 0, "y": 0, "width": 650, "height": 450}}], 
+                null, 
+                null,
+                escher.libs.d3_select('#map-container'), 
+                {'reaction_styles': ['color', 'text'], 'reaction_data': {'R1': 2, 'R2': -1}, 'reaction_scale': {}, 'never_ask_before_quit': 'false'},
+             );
+            </script>
+          </body>
+        </html>
+        
