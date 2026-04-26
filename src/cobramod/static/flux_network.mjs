@@ -1184,6 +1184,39 @@ function pointer_default(event, node) {
   return [event.pageX, event.pageY];
 }
 
+// node_modules/d3-drag/src/noevent.js
+var nonpassivecapture = { capture: true, passive: false };
+function noevent_default(event) {
+  event.preventDefault();
+  event.stopImmediatePropagation();
+}
+
+// node_modules/d3-drag/src/nodrag.js
+function nodrag_default(view) {
+  var root2 = view.document.documentElement, selection2 = select_default2(view).on("dragstart.drag", noevent_default, nonpassivecapture);
+  if ("onselectstart" in root2) {
+    selection2.on("selectstart.drag", noevent_default, nonpassivecapture);
+  } else {
+    root2.__noselect = root2.style.MozUserSelect;
+    root2.style.MozUserSelect = "none";
+  }
+}
+function yesdrag(view, noclick) {
+  var root2 = view.document.documentElement, selection2 = select_default2(view).on("dragstart.drag", null);
+  if (noclick) {
+    selection2.on("click.drag", noevent_default, nonpassivecapture);
+    setTimeout(function() {
+      selection2.on("click.drag", null);
+    }, 0);
+  }
+  if ("onselectstart" in root2) {
+    selection2.on("selectstart.drag", null);
+  } else {
+    root2.style.MozUserSelect = root2.__noselect;
+    delete root2.__noselect;
+  }
+}
+
 // node_modules/d3-color/src/define.js
 function define_default(constructor, factory, prototype) {
   constructor.prototype = factory.prototype = prototype;
@@ -3870,39 +3903,6 @@ var catmullRomClosed_default = function custom4(alpha) {
   return catmullRom;
 }(0.5);
 
-// node_modules/d3-zoom/node_modules/d3-drag/src/noevent.js
-var nonpassivecapture = { capture: true, passive: false };
-function noevent_default2(event) {
-  event.preventDefault();
-  event.stopImmediatePropagation();
-}
-
-// node_modules/d3-zoom/node_modules/d3-drag/src/nodrag.js
-function nodrag_default(view) {
-  var root2 = view.document.documentElement, selection2 = select_default2(view).on("dragstart.drag", noevent_default2, nonpassivecapture);
-  if ("onselectstart" in root2) {
-    selection2.on("selectstart.drag", noevent_default2, nonpassivecapture);
-  } else {
-    root2.__noselect = root2.style.MozUserSelect;
-    root2.style.MozUserSelect = "none";
-  }
-}
-function yesdrag(view, noclick) {
-  var root2 = view.document.documentElement, selection2 = select_default2(view).on("dragstart.drag", null);
-  if (noclick) {
-    selection2.on("click.drag", noevent_default2, nonpassivecapture);
-    setTimeout(function() {
-      selection2.on("click.drag", null);
-    }, 0);
-  }
-  if ("onselectstart" in root2) {
-    selection2.on("selectstart.drag", null);
-  } else {
-    root2.style.MozUserSelect = root2.__noselect;
-    delete root2.__noselect;
-  }
-}
-
 // node_modules/d3-zoom/src/constant.js
 var constant_default5 = (x2) => () => x2;
 
@@ -4424,6 +4424,15 @@ function hullPath(verts, xS, yS) {
   const gen = line_default().x((d) => xS(d[0])).y((d) => yS(d[1])).curve(catmullRomClosed_default.alpha(0.5));
   return gen(verts) ?? "";
 }
+function polylinePath(pts, xS, yS) {
+  if (!pts.length)
+    return "";
+  let d = `M${xS(pts[0][0]).toFixed(1)} ${yS(pts[0][1]).toFixed(1)}`;
+  for (let i = 1; i < pts.length; i++) {
+    d += ` L${xS(pts[i][0]).toFixed(1)} ${yS(pts[i][1]).toFixed(1)}`;
+  }
+  return d;
+}
 function rxnTooltipHTML(h) {
   const badge = h.kind_badge ? `<span class="ft-badge">${h.kind_badge}</span>` : "";
   const id2 = h.id ? ` <span style="color:#8b949e;font-size:11px">(${h.id})</span>` : "";
@@ -4434,6 +4443,29 @@ function rxnTooltipHTML(h) {
 }
 function metTooltipHTML(m) {
   return `<b>${m.name}</b><br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br><span class="ft-comp">${m.comp_label}</span><br><span style="color:#8b949e">ID:</span> ${m.id}<br><span style="color:#8b949e">Consumed:</span> ${m.consumers.join(", ") || "\u2014"}<br><span style="color:#8b949e">Produced:</span> ${m.producers.join(", ") || "\u2014"}`;
+}
+var KLASS_COLORS = {
+  amino_acid: "#22c55e",
+  sugar: "#f59e0b",
+  cofactor: "#a855f7",
+  inorganic: "#06b6d4",
+  other: "#ec4899"
+};
+function stationTooltipHTML(st) {
+  const head = `<b>${st.comp_a_label} \u2194 ${st.comp_b_label}</b> <span class="ft-badge">${st.n_rxns} rxn${st.n_rxns === 1 ? "" : "s"}</span><br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br>`;
+  const lineRows = st.lines.map((ln) => {
+    const swatchColor = KLASS_COLORS[ln.klass] ?? "#6e7681";
+    const swatch = `<span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${swatchColor};margin-right:5px;vertical-align:-1px"></span>`;
+    const rxns = ln.rxn_summaries.slice(0, 5).map(
+      (r) => `<div style="margin-left:8px"><span style="color:#8b949e">${r.id}</span> ${r.name && r.name !== r.id ? "\xB7 " + r.name : ""}<br><span style="margin-left:10px;color:#7d8590;font-size:10px">${r.flux_per_view.join(" \xB7 ")}</span></div>`
+    ).join("");
+    const more = ln.rxn_summaries.length > 5 ? `<div style="margin-left:8px;color:#7d8590;font-size:10px">\u2026+${ln.rxn_summaries.length - 5} more</div>` : "";
+    return `<div>${swatch}<b style="color:${swatchColor}">${ln.klass}</b></div>${rxns}${more}`;
+  }).join("");
+  return head + lineRows;
+}
+function branchTooltipHTML(b) {
+  return `<b>Branch hub</b><br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br><span style="color:#8b949e">Diverging routes:</span><br>` + b.branches.map((p) => `<div style="margin-left:8px">${p.replace("|", " \u2194 ")}</div>`).join("");
 }
 function render({ model: S, el: I }) {
   injectCSS();
@@ -4529,6 +4561,10 @@ function render({ model: S, el: I }) {
   }
   function drawAll(zoomLayer, data, svgW) {
     const gComp = zoomLayer.append("g").attr("class", "g-comp");
+    const gInner = zoomLayer.append("g").attr("class", "g-inner").style("display", "none");
+    const gRoute = zoomLayer.append("g").attr("class", "g-route");
+    const gStn = zoomLayer.append("g").attr("class", "g-stn");
+    const gBHub = zoomLayer.append("g").attr("class", "g-bhub");
     const gSSEdge = zoomLayer.append("g").attr("class", "g-ss").style("display", "none");
     const gEdge = zoomLayer.append("g").attr("class", "g-edge");
     const gRxn = zoomLayer.append("g").attr("class", "g-rxn");
@@ -4547,6 +4583,60 @@ function render({ model: S, el: I }) {
     }));
     gMetHitSel = gMetSel.selectAll("path.met-hit").data(metData).join("path").attr("class", "met-hit").attr("d", metPath()).attr("transform", (d) => metTransform(d.pos, currentTransform)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", MET_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d.node), d.node.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
     gMetSel.selectAll("path.met-shape").data(metData).join("path").attr("class", "met-shape").attr("d", metPath()).attr("transform", (d) => metTransform(d.pos, currentTransform)).attr("fill", (d) => d.node.comp_color).attr("fill-opacity", 0.85).attr("stroke", "#0d1117").attr("stroke-width", 0.7).style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d.node), d.node.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
+    const routeData = [];
+    data.stations.forEach((st) => {
+      st.lines.forEach((ln, li) => {
+        routeData.push({
+          pair_id: st.pair_id,
+          klass: ln.klass,
+          path: ln.path,
+          lineIndex: li
+        });
+      });
+    });
+    const stationByPairView = /* @__PURE__ */ new Map();
+    view0.stations.forEach((s) => stationByPairView.set(s.pair_id, s));
+    function lineStyle(d, view) {
+      const sv = view.stations.find((s) => s.pair_id === d.pair_id);
+      if (!sv || !sv.lines[d.lineIndex]) {
+        return { color: "#6e7681", width: 2 };
+      }
+      const lv = sv.lines[d.lineIndex];
+      return { color: lv.color, width: lv.width };
+    }
+    gRoute.selectAll("path").data(routeData).join("path").attr("class", "route-line").attr("d", (d) => polylinePath(d.path, xS, yS)).attr("fill", "none").attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("vector-effect", "non-scaling-stroke").attr("stroke", (d) => lineStyle(d, view0).color).attr("stroke-width", (d) => lineStyle(d, view0).width).style("pointer-events", "none");
+    const pillData = [];
+    data.stations.forEach((st) => {
+      pillData.push({ st, side: "a" });
+      pillData.push({ st, side: "b" });
+    });
+    function pillRotation(p) {
+      const t = p.side === "a" ? p.st.tangent_a : p.st.tangent_b;
+      const ang = Math.atan2(-t[1], t[0]) * 180 / Math.PI + 90;
+      return ang;
+    }
+    function pillTransform(p) {
+      const a = p.side === "a" ? p.st.anchor_a : p.st.anchor_b;
+      return `translate(${xS(a[0]).toFixed(1)},${yS(a[1]).toFixed(1)}) rotate(${pillRotation(p).toFixed(1)})`;
+    }
+    function pillPixelHeight(p) {
+      const px0 = yS(0), px1 = yS(p.st.pill_height);
+      return Math.max(7, Math.abs(px1 - px0));
+    }
+    function pillPixelWidth(p) {
+      return Math.max(3, pillPixelHeight(p) * 0.35);
+    }
+    gStn.selectAll("rect.stn-pill").data(pillData).join("rect").attr("class", "stn-pill").attr("x", (p) => -pillPixelWidth(p) / 2).attr("y", (p) => -pillPixelHeight(p) / 2).attr("width", (p) => pillPixelWidth(p)).attr("height", (p) => pillPixelHeight(p)).attr("rx", (p) => pillPixelWidth(p) / 2).attr("ry", (p) => pillPixelWidth(p) / 2).attr("fill", "#ffffff").attr("stroke", (p) => p.side === "a" ? p.st.comp_a_color : p.st.comp_b_color).attr("stroke-width", 2.2).attr("vector-effect", "non-scaling-stroke").attr("transform", pillTransform).style("cursor", "pointer").on("mouseover", (ev, p) => showTT(
+      ev,
+      stationTooltipHTML(p.st),
+      p.side === "a" ? p.st.comp_a_color : p.st.comp_b_color
+    )).on("mousemove", moveTT).on("mouseout", hideTT);
+    gStn.selectAll("text.stn-lbl").data(pillData).join("text").attr("class", "stn-lbl").attr("text-anchor", "middle").attr("font-size", 9).attr("font-family", "'Inter',Arial,sans-serif").attr("font-weight", 600).attr("fill", (p) => p.side === "a" ? p.st.comp_a_color : p.st.comp_b_color).attr("transform", (p) => {
+      const a = p.side === "a" ? p.st.anchor_a : p.st.anchor_b;
+      return `translate(${xS(a[0]).toFixed(1)},${(yS(a[1]) - pillPixelHeight(p) / 2 - 4).toFixed(1)})`;
+    }).style("pointer-events", "none").text((p) => p.side === "a" ? p.st.comp_a_label : p.st.comp_b_label);
+    gBHub.selectAll("rect.bhub").data(data.branch_hubs).join("rect").attr("class", "bhub").attr("x", -4).attr("y", -10).attr("width", 8).attr("height", 20).attr("rx", 4).attr("ry", 4).attr("fill", "#ffffff").attr("stroke", "#8b949e").attr("stroke-width", 1.6).attr("vector-effect", "non-scaling-stroke").attr("transform", (b) => `translate(${xS(b.x).toFixed(1)},${yS(b.y).toFixed(1)})`).style("cursor", "pointer").on("mouseover", (ev, b) => showTT(ev, branchTooltipHTML(b), "#8b949e")).on("mousemove", moveTT).on("mouseout", hideTT);
+    gInner.selectAll("path").data(data.inner_edges).join("path").attr("d", (e) => `M${xS(e.x[0]).toFixed(1)} ${yS(e.y[0]).toFixed(1)} L${xS(e.x[1]).toFixed(1)} ${yS(e.y[1]).toFixed(1)}`).attr("stroke", "rgba(139,148,158,0.50)").attr("stroke-width", 0.8).attr("stroke-dasharray", "3,3").attr("fill", "none").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
     gRxnHitSel = gRxn.selectAll("path.rxn-hit").data(view0.rxn_nodes).join("path").attr("class", "rxn-hit").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", RXN_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT);
     gRxnSel = gRxn.selectAll("path.rxn-shape").data(view0.rxn_nodes).join("path").attr("class", "rxn-shape").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", (d) => d.fill_color).attr("stroke", (d) => d.border_color).attr("stroke-width", (d) => d.border_width).attr("opacity", (d) => d.opacity).style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT);
     gLbl.selectAll("text").data(view0.rxn_nodes).join("text").attr("x", (d) => xS(d.x)).attr("y", (d) => yS(d.y) - d.r - 2).attr("text-anchor", "middle").attr("fill", "#8b949e").attr("font-size", 7).attr("font-family", "'Inter',Arial,sans-serif").style("pointer-events", "none").text((d) => d.name);
@@ -4573,8 +4663,10 @@ function render({ model: S, el: I }) {
     mkToggle(bar, "Metabolites", "Show", "Hide", false, (on) => {
       gMetSel.style("display", on ? "" : "none");
     });
-    mkToggle(bar, "Exchange / Transp.", "Show", "Hide", false, (on) => {
-      wrapper.querySelector(".g-ss").style.display = on ? "" : "none";
+    mkToggle(bar, "Inner connections", "Show", "Hide", false, (on) => {
+      const el = wrapper.querySelector(".g-inner");
+      if (el)
+        el.style.display = on ? "" : "none";
     });
     const themeGroup = btnGroup(bar, "Theme");
     const themeBtn = mkBtn("Dark mode", true);
@@ -4647,6 +4739,15 @@ function render({ model: S, el: I }) {
     select_default2(zl).select(".g-edge").selectAll("path").data(regEgs).attr("d", (eg) => edgePath(eg.x, eg.y, xS, yS)).attr("stroke", (eg) => eg.color).attr("stroke-width", (eg) => eg.width);
     select_default2(zl).select(".g-ss").selectAll("path").data(ssEgs).attr("d", (eg) => edgePath(eg.x, eg.y, xS, yS)).attr("stroke", (eg) => eg.color).attr("stroke-width", (eg) => eg.width);
     select_default2(zl).select(".g-rxn").selectAll("path.rxn-shape").data(view.rxn_nodes).attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", (d) => d.fill_color).attr("opacity", (d) => d.opacity);
+    select_default2(zl).select(".g-route").selectAll("path.route-line").each(function(d) {
+      const sv = view.stations.find((s) => s.pair_id === d.pair_id);
+      const lv = sv ? sv.lines[d.lineIndex] : void 0;
+      if (lv) {
+        select_default2(this).attr("stroke", lv.color).attr("stroke-width", lv.width);
+      } else {
+        select_default2(this).attr("stroke", "#6e7681").attr("stroke-width", 1);
+      }
+    });
     const metData = fig.met_nodes.map((node, i) => ({
       node,
       pos: view.met_positions[i]
@@ -4674,9 +4775,7 @@ function render({ model: S, el: I }) {
   function moveTT(ev) {
     if (!tooltipEl)
       return;
-    if (!cachedWrapperRect)
-      cachedWrapperRect = wrapper.getBoundingClientRect();
-    const rect = cachedWrapperRect;
+    const rect = wrapper.getBoundingClientRect();
     let tx = ev.clientX - rect.left + 14;
     let ty = ev.clientY - rect.top - 10;
     const tw = tooltipEl.offsetWidth || 220;

@@ -41,6 +41,7 @@ from cobramod.core.crossreferences import add_crossreferences
 from cobramod.core.extension import add_pathway, test_non_zero_flux
 from cobramod.core.pathway import Pathway, model_convert
 from cobramod.retrieval import get_data
+from cobramod.visualization.flux_network import FLoV
 
 __all__ = [
     "get_data",
@@ -52,6 +53,7 @@ __all__ = [
     "Pathway",
     "model_convert",
     "add_crossreferences",
+    "FLoV",
 ]
 
 __version__ = "1.3.1"

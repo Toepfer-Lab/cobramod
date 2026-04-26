@@ -832,6 +832,383 @@ def _smooth_hull_path(verts: np.ndarray, tension: float = 0.4) -> str:
 
 
 # ==========================================================================
+# RAILWAY / STATION HELPERS
+# ==========================================================================
+#
+# Renders transport / exchange / import / export / biomass reactions as
+# subway-map "stations" sitting on the compartment hull, with hub-to-hub
+# routes drawn as orthogonal-or-45° polylines through the exchange region.
+# Per-pair lines are sub-grouped by metabolite class — same spine, parallel
+# offsets — and never cross compartment borders.
+
+import heapq
+
+# Standard 20 amino-acid 3-letter codes (lowercase). Used by _met_class.
+_AA_CODES: frozenset[str] = frozenset({
+    "ala", "arg", "asn", "asp", "cys", "gln", "glu", "gly", "his", "ile",
+    "leu", "lys", "met", "phe", "pro", "ser", "thr", "trp", "tyr", "val",
+})
+# Cheap keyword sets — order matters only inside each class (first hit wins).
+_SUGAR_KW: tuple[str, ...] = (
+    "glc", "fru", "gal", "man", "lac", "suc", "rib", "xyl", "ara", "tre",
+    "malt", "starch", "sorb",
+)
+_INORG_KW: tuple[str, ...] = (
+    "pi", "ppi", "o2", "co2", "h2o", "nh3", "nh4", "no3", "no2",
+    "so3", "so4", "hco3", "hco2",
+)
+_COFAC_KW: tuple[str, ...] = (
+    "atp", "adp", "amp", "gtp", "gdp", "ctp", "utp", "ttp",
+    "nad", "nadp", "fad", "fmn", "coa", "ubq", "q8", "q10",
+)
+# Public order — fixes the spine_offset_idx and gives stable colours.
+_LINE_KLASSES: tuple[str, ...] = (
+    "amino_acid", "sugar", "cofactor", "inorganic", "other",
+)
+# Per-class palette for railway lines. Distinct hues for at-a-glance class
+# identification; flux is still conveyed by line width. Greyed-out when the
+# line carries no flux in the current view.
+_LINE_KLASS_COLORS: dict[str, str] = {
+    "amino_acid": "#22c55e",  # green
+    "sugar":      "#f59e0b",  # amber
+    "cofactor":   "#a855f7",  # purple
+    "inorganic":  "#06b6d4",  # cyan
+    "other":      "#ec4899",  # pink
+}
+_LINE_KLASS_INACTIVE = "#6e7681"
+MAX_LINES_PER_PAIR = 10
+MAX_RXNS_PER_LINE = 10
+
+
+def _met_class(rxn: cobra.Reaction, cfg: dict) -> str:
+    """Classify a transport/exchange reaction by its dominant non-proton
+    metabolite. Cheap, static, no DB lookups — keep it fast.
+    """
+    cands = [
+        (abs(s), m) for m, s in rxn.metabolites.items()
+        if not _is_proton(m, cfg)
+    ]
+    if not cands:
+        return "other"
+    cands.sort(key=lambda t: t[0], reverse=True)
+    primary = cands[0][1]
+    name = (primary.name or "").lower()
+    base = _normalise_met_token(primary.id, cfg)
+    # AA: 3-letter code prefix on the normalised id, or whole-word in the name
+    for aa in _AA_CODES:
+        if base == aa or base.startswith(aa + "_") or base.startswith(aa + "-"):
+            return "amino_acid"
+    name_padded = f" {name} "
+    for aa in _AA_CODES:
+        if f" {aa} " in name_padded:
+            return "amino_acid"
+    if any(kw in base or kw in name for kw in _SUGAR_KW):
+        return "sugar"
+    if any(kw in base for kw in _COFAC_KW):
+        return "cofactor"
+    for kw in _INORG_KW:
+        if base == kw or base.startswith(kw + "_"):
+            return "inorganic"
+    return "other"
+
+
+def _pair_key(
+    kind: str, non_exch_comps: set[str], cfg: dict,
+) -> Optional[tuple[str, str]]:
+    """Canonical (compA, compB) pair for a non-regular reaction.
+
+    For ``transport``: the two non-exchange compartments it touches
+    (lex-sorted). For ``import``/``export``/``biomass``: ``(comp, exchange)``.
+    Returns ``None`` if no compartment can be resolved (the user's
+    "ignore reactions that lead to no compartment" rule).
+    """
+    exch = cfg["exchange_key"]
+    comps = sorted(non_exch_comps - {exch})
+    if kind in ("import", "export", "biomass"):
+        return (comps[0], exch) if comps else None
+    if kind == "transport":
+        return (comps[0], comps[1]) if len(comps) >= 2 else None
+    return None
+
+
+@dataclass
+class HubLine:
+    """One coloured line on a station route (≈ one metabolite class)."""
+    klass: str
+    rxn_ids: list[str]
+    spine_offset_idx: int = 0
+
+
+@dataclass
+class StationPair:
+    """A pair of hubs (one per compartment) connected by a routed spine."""
+    pair_id: str
+    comp_a: str
+    comp_b: str
+    lines: list[HubLine]
+    anchor_a: tuple[float, float] = (0.0, 0.0)
+    anchor_b: tuple[float, float] = (0.0, 0.0)
+    tangent_a: tuple[float, float] = (0.0, 1.0)
+    tangent_b: tuple[float, float] = (0.0, 1.0)
+    spine: list[tuple[float, float]] = field(default_factory=list)
+
+
+def _grid_snap(x: float, y: float, step: float) -> tuple[float, float]:
+    return (round(x / step) * step, round(y / step) * step)
+
+
+def _hull_curve_samples(
+    verts: np.ndarray, tension: float = 0.4, n_per_seg: int = 12,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Sample (point, unit-tangent) along the smoothed Catmull-Rom hull.
+
+    Mirrors :func:`_smooth_hull_path` so anchors land exactly on the rendered
+    curve, not the raw polygon.
+    """
+    n = len(verts)
+    if n < 3:
+        return np.zeros((0, 2)), np.zeros((0, 2))
+    pts: list[np.ndarray] = []
+    tans: list[np.ndarray] = []
+    ts = np.linspace(0.0, 1.0, n_per_seg, endpoint=False)
+    for i in range(n):
+        p0 = verts[(i - 1) % n]
+        p1 = verts[i]
+        p2 = verts[(i + 1) % n]
+        p3 = verts[(i + 2) % n]
+        cp1 = p1 + tension * (p2 - p0) / 3.0
+        cp2 = p2 - tension * (p3 - p1) / 3.0
+        for t in ts:
+            mt = 1.0 - t
+            pt = (mt ** 3) * p1 + 3 * (mt ** 2) * t * cp1 \
+                + 3 * mt * (t ** 2) * cp2 + (t ** 3) * p2
+            tan = (-3 * (mt ** 2) * p1
+                   + 3 * (mt ** 2 - 2 * mt * t) * cp1
+                   + 3 * (2 * mt * t - t ** 2) * cp2
+                   + 3 * (t ** 2) * p2)
+            pts.append(pt)
+            tans.append(tan)
+    pts_arr = np.asarray(pts)
+    tans_arr = np.asarray(tans)
+    norms = np.linalg.norm(tans_arr, axis=1, keepdims=True)
+    norms[norms < 1e-9] = 1.0
+    tans_arr = tans_arr / norms
+    return pts_arr, tans_arr
+
+
+def _project_to_curve(
+    target: tuple[float, float], samples: np.ndarray,
+) -> int:
+    """Index of the curve sample closest to ``target``."""
+    if len(samples) == 0:
+        return -1
+    diffs = samples - np.asarray(target)
+    return int(np.argmin((diffs ** 2).sum(axis=1)))
+
+
+def _polygon_mask(
+    polygon: np.ndarray, gx: np.ndarray, gy: np.ndarray,
+) -> np.ndarray:
+    """Vectorised ray-casting point-in-polygon over a meshgrid.
+
+    ``polygon`` is an Nx2 array of vertices (open ring is fine — last edge
+    closes the polygon implicitly). ``gx``/``gy`` are 2-D meshgrid arrays.
+    Returns a bool mask the same shape as ``gx``.
+    """
+    inside = np.zeros(gx.shape, dtype=bool)
+    n = len(polygon)
+    if n < 3:
+        return inside
+    j = n - 1
+    eps = 1e-30
+    for i in range(n):
+        xi, yi = polygon[i]
+        xj, yj = polygon[j]
+        cond1 = (yi > gy) != (yj > gy)
+        cond2 = gx < (xj - xi) * (gy - yi) / (yj - yi + eps) + xi
+        inside ^= (cond1 & cond2)
+        j = i
+    return inside
+
+
+# 8 grid headings (drow, dcol) — N, NE, E, SE, S, SW, W, NW
+_GRID_DIRS: tuple[tuple[int, int], ...] = (
+    (-1, 0), (-1, 1), (0, 1), (1, 1),
+    (1, 0), (1, -1), (0, -1), (-1, -1),
+)
+_DIR_COSTS: tuple[float, ...] = tuple(
+    (dr * dr + dc * dc) ** 0.5 for dr, dc in _GRID_DIRS
+)
+_BEND_PENALTY = 0.4
+
+
+def _a_star_grid(
+    start: tuple[int, int], end: tuple[int, int], forbidden: np.ndarray,
+) -> Optional[list[tuple[int, int]]]:
+    """8-direction A* with bend penalty. Returns cell list start→end or None.
+
+    Heuristic: octile distance (admissible for 8-direction grids).
+    Bend penalty is added on every direction change, which collapses
+    stairway routes into single straights or one-bend Ls.
+    """
+    H, W = forbidden.shape
+    if not (0 <= start[0] < H and 0 <= start[1] < W):
+        return None
+    if not (0 <= end[0] < H and 0 <= end[1] < W):
+        return None
+    if forbidden[start] or forbidden[end]:
+        return None
+
+    def heuristic(c: tuple[int, int]) -> float:
+        dx = abs(c[1] - end[1]); dy = abs(c[0] - end[0])
+        return (max(dx, dy) - min(dx, dy)) + (2 ** 0.5) * min(dx, dy)
+
+    g_score: dict[tuple[tuple[int, int], int], float] = {(start, -1): 0.0}
+    came_from: dict[tuple[tuple[int, int], int], tuple[tuple[int, int], int]] = {}
+    heap: list[tuple[float, float, int, tuple[int, int], int]] = []
+    counter = 0
+    heapq.heappush(heap, (heuristic(start), 0.0, counter, start, -1))
+    closed: set[tuple[tuple[int, int], int]] = set()
+
+    while heap:
+        _, g, _, cell, prev_di = heapq.heappop(heap)
+        state = (cell, prev_di)
+        if state in closed:
+            continue
+        closed.add(state)
+        if cell == end:
+            path = [cell]
+            while state in came_from:
+                state = came_from[state]
+                path.append(state[0])
+            return list(reversed(path))
+        r, c = cell
+        for di, (dr, dc) in enumerate(_GRID_DIRS):
+            nr, nc = r + dr, c + dc
+            if not (0 <= nr < H and 0 <= nc < W):
+                continue
+            if forbidden[nr, nc] and (nr, nc) != end:
+                continue
+            ng = g + _DIR_COSTS[di]
+            if prev_di != -1 and prev_di != di:
+                ng += _BEND_PENALTY
+            ns = ((nr, nc), di)
+            if ng < g_score.get(ns, float("inf")):
+                g_score[ns] = ng
+                came_from[ns] = state
+                counter += 1
+                heapq.heappush(
+                    heap, (ng + heuristic((nr, nc)), ng, counter, (nr, nc), di),
+                )
+    return None
+
+
+def _simplify_polyline(pts: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    """Drop collinear interior vertices — keeps only direction-change points."""
+    if len(pts) <= 2:
+        return list(pts)
+    out = [pts[0]]
+    for i in range(1, len(pts) - 1):
+        ax, ay = pts[i - 1]
+        bx, by = pts[i]
+        cx, cy = pts[i + 1]
+        # Cross-product test: zero ⇒ collinear
+        if abs((bx - ax) * (cy - by) - (by - ay) * (cx - bx)) > 1e-9:
+            out.append(pts[i])
+    out.append(pts[-1])
+    return out
+
+
+def _offset_polyline(
+    spine: list[tuple[float, float]], offset: float,
+) -> list[tuple[float, float]]:
+    """Offset a polyline perpendicular to its segments, on the right-hand side.
+
+    Used to draw N parallel lines along one routed spine.  Corners are
+    handled by averaging adjacent segment normals (good enough for the
+    small number of bends typical of A* paths).
+    """
+    if len(spine) < 2 or abs(offset) < 1e-9:
+        return list(spine)
+    pts = np.asarray(spine, dtype=float)
+    n = len(pts)
+    # Per-segment unit normals (rotate tangent 90° CW)
+    seg = pts[1:] - pts[:-1]
+    seg_len = np.linalg.norm(seg, axis=1, keepdims=True)
+    seg_len[seg_len < 1e-9] = 1.0
+    seg_unit = seg / seg_len
+    seg_norm = np.stack([seg_unit[:, 1], -seg_unit[:, 0]], axis=1)
+    # Per-vertex normals: average of adjacent segment normals
+    vert_norm = np.zeros((n, 2))
+    vert_norm[0] = seg_norm[0]
+    vert_norm[-1] = seg_norm[-1]
+    for i in range(1, n - 1):
+        vert_norm[i] = seg_norm[i - 1] + seg_norm[i]
+    # Re-normalise (corners shrink the average — rescale so |n| = 1)
+    vlen = np.linalg.norm(vert_norm, axis=1, keepdims=True)
+    vlen[vlen < 1e-9] = 1.0
+    vert_norm = vert_norm / vlen
+    out = pts + vert_norm * offset
+    return [tuple(p) for p in out]
+
+
+def _detect_branch_hubs(
+    stations: list[StationPair], step: float,
+) -> list[dict]:
+    """Find cells where two spines sharing an anchor diverge.
+
+    Returns a list of ``{"x", "y", "branches": [pair_id, ...]}`` dicts.
+    The first cell at which the spines part ways becomes a small branch
+    pill in the rendered figure.
+    """
+    if not stations:
+        return []
+    # Group by starting anchor cell. Each station contributes both ends.
+    by_anchor: dict[tuple[float, float], list[tuple[StationPair, list[tuple[float, float]]]]] = {}
+    for st in stations:
+        if not st.spine:
+            continue
+        # spine starts at anchor_a, ends at anchor_b — also include the
+        # reversed view so divergence is detected from either side.
+        snapped_a = _grid_snap(st.spine[0][0], st.spine[0][1], step)
+        snapped_b = _grid_snap(st.spine[-1][0], st.spine[-1][1], step)
+        by_anchor.setdefault(snapped_a, []).append((st, list(st.spine)))
+        by_anchor.setdefault(snapped_b, []).append((st, list(reversed(st.spine))))
+
+    branch_pts: list[dict] = []
+    seen: set[tuple[float, float]] = set()
+    for anchor, group in by_anchor.items():
+        if len(group) < 2:
+            continue
+        # Walk in lock-step — the first index where any two spines disagree
+        # is the branch point. Quantise positions to step so floating-point
+        # noise in the spine doesn't fake a divergence.
+        max_len = min(len(s[1]) for s in group)
+        diverged_at = None
+        for k in range(1, max_len):
+            cells = {_grid_snap(s[1][k][0], s[1][k][1], step) for s in group}
+            if len(cells) > 1:
+                diverged_at = k
+                break
+        if diverged_at is None:
+            continue
+        # Branch hub sits at the cell *just before* divergence (last shared cell).
+        bx, by = _grid_snap(
+            group[0][1][diverged_at - 1][0],
+            group[0][1][diverged_at - 1][1],
+            step,
+        )
+        if (bx, by) in seen or (bx, by) == anchor:
+            continue
+        seen.add((bx, by))
+        branch_pts.append({
+            "x": float(bx), "y": float(by),
+            "branches": [s[0].pair_id for s in group],
+        })
+    return branch_pts
+
+
+# ==========================================================================
 # TRACE BUILDING
 # ==========================================================================
 
@@ -1668,6 +2045,279 @@ class FLoV(anywidget.AnyWidget):
         # Store effective region function for later use
         self._effective_region = _effective_region
 
+        # ── Compartment hulls (shared by station builder & figure renderer) ──
+        # Computed once here so view switches don't re-run the convex-hull pass
+        # and stations stay anchored on the same curve as the rendered hulls.
+        self._compartment_hulls: dict[str, np.ndarray] = {}
+        self._compartment_curve_samples: dict[str, np.ndarray] = {}
+        self._compartment_curve_tangents: dict[str, np.ndarray] = {}
+        for comp_key, _cfg_c in compartments.items():
+            regular_here = [r for r in self._rxn_nodes
+                            if G.nodes[r]["comp"] == comp_key
+                            and G.nodes[r]["kind"] == "regular"
+                            and r in pos]
+            if len(regular_here) < 3:
+                continue
+            pts_h = np.array([[pos[r][0], pos[r][1]] for r in regular_here])
+            try:
+                hull = ConvexHull(pts_h)
+            except Exception:
+                continue
+            verts = pts_h[hull.vertices]
+            centre = verts.mean(axis=0)
+            verts = centre + (verts - centre) * 1.22  # match render-time inflation
+            self._compartment_hulls[comp_key] = verts
+            samples, tangents = _hull_curve_samples(verts, self._hull_tension)
+            self._compartment_curve_samples[comp_key] = samples
+            self._compartment_curve_tangents[comp_key] = tangents
+
+    # -- Internal: station / railway builder --
+
+    def _compute_stations(
+        self, active_rxn_set: set[str],
+    ) -> tuple[list[StationPair], list[dict], float, list[dict]]:
+        """Build station list, run A* routing, detect branch hubs.
+
+        Returns ``(stations, branch_hubs, grid_step, inner_edges)``.
+        ``inner_edges`` are the rxn→met edges of non-regular reactions —
+        kept as JSON so the frontend can toggle them on demand.
+        """
+        mdl = self._cobra_model
+        cfg = self._cfg
+        exch = cfg["exchange_key"]
+        compartments = cfg["compartments"]
+        G = self._G
+        pos = self._pos
+        if mdl is None or G is None or not pos:
+            return [], [], 0.5, []
+
+        # ── 1. Bucket reactions by (compA, compB) → klass → rxn_ids ──
+        pair_buckets: dict[tuple[str, str], dict[str, list[str]]] = {}
+        for rxn in mdl.reactions:
+            if rxn.id not in active_rxn_set:
+                continue
+            kind = self._rxn_kind_map.get(rxn.id, "regular")
+            if kind not in ("transport", "import", "export", "biomass"):
+                continue
+            non_exch = {_met_comp(m, cfg) for m in rxn.metabolites} - {exch}
+            pk = _pair_key(kind, non_exch, cfg)
+            if pk is None:
+                continue
+            # Only keep pairs whose endpoints both have a hull (or where one
+            # endpoint is the exchange compartment — render that as a virtual
+            # anchor in the exchange region).
+            if pk[0] not in self._compartment_hulls and pk[0] != exch:
+                continue
+            if pk[1] not in self._compartment_hulls and pk[1] != exch:
+                continue
+            klass = _met_class(rxn, cfg)
+            pair_buckets.setdefault(pk, {}).setdefault(klass, []).append(rxn.id)
+
+        if not pair_buckets:
+            return [], [], 0.5, []
+
+        # ── 2. Cap to MAX_LINES_PER_PAIR per pair, MAX_RXNS_PER_LINE per line ──
+        # Class ordering follows _LINE_KLASSES so the spine_offset_idx is stable.
+        stations: list[StationPair] = []
+        for (a, b), klass_map in pair_buckets.items():
+            ordered_lines: list[HubLine] = []
+            for ki, klass in enumerate(_LINE_KLASSES):
+                rxn_ids = klass_map.get(klass, [])
+                if not rxn_ids:
+                    continue
+                # Overflow inside one class: keep first MAX_RXNS_PER_LINE; the
+                # rest stay reachable via hover (already in `rxn_ids`, just
+                # truncate visible representative for width sums later).
+                ordered_lines.append(HubLine(
+                    klass=klass,
+                    rxn_ids=rxn_ids[:MAX_RXNS_PER_LINE]
+                            if len(rxn_ids) > MAX_RXNS_PER_LINE else list(rxn_ids),
+                    spine_offset_idx=ki,
+                ))
+                if len(ordered_lines) >= MAX_LINES_PER_PAIR:
+                    break
+            if not ordered_lines:
+                continue
+            stations.append(StationPair(
+                pair_id=f"{a}|{b}",
+                comp_a=a, comp_b=b,
+                lines=ordered_lines,
+            ))
+
+        # ── 3. Anchor each station on its compartment's smoothed hull curve ──
+        # Anchor target = centroid of the *other* compartment's hull (or the
+        # midpoint of the global region if the other side is the exchange).
+        all_x = [p[0] for p in pos.values()]
+        all_y = [p[1] for p in pos.values()]
+        x_min, x_max = (min(all_x), max(all_x)) if all_x else (-12.0, 8.0)
+        y_min, y_max = (min(all_y), max(all_y)) if all_y else (-9.0, 7.0)
+        # Pad so anchors snap inside the bitmap
+        pad = 2.0
+        x_min -= pad; x_max += pad; y_min -= pad; y_max += pad
+        span = max(x_max - x_min, y_max - y_min)
+        step = max(0.4, span / 50.0)
+
+        def _comp_centroid(ck: str) -> tuple[float, float]:
+            if ck in self._compartment_hulls:
+                v = self._compartment_hulls[ck]
+                return float(v[:, 0].mean()), float(v[:, 1].mean())
+            # Exchange compartment: use the geometric centre of the region
+            if ck in compartments:
+                x0, x1, y0, y1 = compartments[ck]["region"]
+                return (x0 + x1) / 2.0, (y0 + y1) / 2.0
+            return (x_min + x_max) / 2.0, (y_min + y_max) / 2.0
+
+        def _exch_anchor(other_centroid: tuple[float, float]) -> tuple[
+            tuple[float, float], tuple[float, float],
+        ]:
+            """Synthesise an anchor for the exchange compartment along the
+            edge of the global bounding box closest to *other_centroid*."""
+            ox, oy = other_centroid
+            cx, cy = (x_min + x_max) / 2.0, (y_min + y_max) / 2.0
+            # Project to the nearest box edge
+            dx, dy = ox - cx, oy - cy
+            if abs(dx) > abs(dy):
+                ax = x_max - 0.5 if dx > 0 else x_min + 0.5
+                ay = oy
+                tan = (0.0, 1.0)
+            else:
+                ay = y_max - 0.5 if dy > 0 else y_min + 0.5
+                ax = ox
+                tan = (1.0, 0.0)
+            return (ax, ay), tan
+
+        for st in stations:
+            cb_x, cb_y = _comp_centroid(st.comp_b)
+            ca_x, ca_y = _comp_centroid(st.comp_a)
+            # Anchor A
+            if st.comp_a in self._compartment_curve_samples:
+                samples = self._compartment_curve_samples[st.comp_a]
+                tans = self._compartment_curve_tangents[st.comp_a]
+                idx = _project_to_curve((cb_x, cb_y), samples)
+                ax, ay = samples[idx]
+                tx, ty = tans[idx]
+            else:  # exchange
+                (ax, ay), (tx, ty) = _exch_anchor((ca_x, ca_y))
+            sx, sy = _grid_snap(ax, ay, step)
+            st.anchor_a = (float(sx), float(sy))
+            st.tangent_a = (float(tx), float(ty))
+            # Anchor B
+            if st.comp_b in self._compartment_curve_samples:
+                samples = self._compartment_curve_samples[st.comp_b]
+                tans = self._compartment_curve_tangents[st.comp_b]
+                idx = _project_to_curve((ca_x, ca_y), samples)
+                bx, by = samples[idx]
+                tx2, ty2 = tans[idx]
+            else:  # exchange
+                (bx, by), (tx2, ty2) = _exch_anchor((cb_x, cb_y))
+            sx, sy = _grid_snap(bx, by, step)
+            st.anchor_b = (float(sx), float(sy))
+            st.tangent_b = (float(tx2), float(ty2))
+
+        # ── 4. De-overlap multiple anchors at the same compartment ──
+        # Group by compartment, sort along curve sample-index, push apart any
+        # pair within 2*step of each other.
+        for ck, samples in self._compartment_curve_samples.items():
+            stationed = [(st, "a") for st in stations if st.comp_a == ck] + \
+                        [(st, "b") for st in stations if st.comp_b == ck]
+            if len(stationed) < 2:
+                continue
+            # Re-project to get sample-indices and sort by them
+            indexed = []
+            for st, side in stationed:
+                anchor = st.anchor_a if side == "a" else st.anchor_b
+                idx = _project_to_curve(anchor, samples)
+                indexed.append((idx, st, side))
+            indexed.sort(key=lambda t: t[0])
+            # If two anchors share an index, slide the later one forward.
+            min_gap = max(2, len(samples) // 30)
+            prev_idx = -10 ** 9
+            for k, (idx, st, side) in enumerate(indexed):
+                if idx - prev_idx < min_gap:
+                    idx = prev_idx + min_gap
+                    if idx >= len(samples):
+                        idx = len(samples) - 1
+                    pt = samples[idx]
+                    tan = self._compartment_curve_tangents[ck][idx]
+                    sx, sy = _grid_snap(pt[0], pt[1], step)
+                    if side == "a":
+                        st.anchor_a = (float(sx), float(sy))
+                        st.tangent_a = (float(tan[0]), float(tan[1]))
+                    else:
+                        st.anchor_b = (float(sx), float(sy))
+                        st.tangent_b = (float(tan[0]), float(tan[1]))
+                prev_idx = idx
+
+        # ── 5. Build forbidden bitmap from compartment hulls ──
+        n_cols = int(np.ceil((x_max - x_min) / step)) + 1
+        n_rows = int(np.ceil((y_max - y_min) / step)) + 1
+        cols = np.arange(n_cols)
+        rows = np.arange(n_rows)
+        gx, gy = np.meshgrid(x_min + cols * step, y_min + rows * step, indexing="xy")
+        forbidden = np.zeros((n_rows, n_cols), dtype=bool)
+        for ck, verts in self._compartment_hulls.items():
+            forbidden |= _polygon_mask(verts, gx, gy)
+
+        def to_cell(p: tuple[float, float]) -> tuple[int, int]:
+            r = int(round((p[1] - y_min) / step))
+            c = int(round((p[0] - x_min) / step))
+            r = max(0, min(n_rows - 1, r))
+            c = max(0, min(n_cols - 1, c))
+            return r, c
+
+        def to_xy(cell: tuple[int, int]) -> tuple[float, float]:
+            return (x_min + cell[1] * step, y_min + cell[0] * step)
+
+        # ── 6. Route every station spine. Cells under the endpoint hulls are
+        # temporarily allowed at the anchor cell only.
+        for st in stations:
+            sa = to_cell(st.anchor_a)
+            sb = to_cell(st.anchor_b)
+            saved = bool(forbidden[sa]), bool(forbidden[sb])
+            forbidden[sa] = False
+            forbidden[sb] = False
+            cells = _a_star_grid(sa, sb, forbidden)
+            forbidden[sa] = saved[0]
+            forbidden[sb] = saved[1]
+            if not cells:
+                # Routing failed — drop a straight line so the figure still renders
+                st.spine = [st.anchor_a, st.anchor_b]
+                continue
+            poly = [to_xy(c) for c in cells]
+            poly[0] = st.anchor_a
+            poly[-1] = st.anchor_b
+            st.spine = _simplify_polyline(poly)
+
+        # ── 7. Branch hubs ──
+        branch_hubs = _detect_branch_hubs(stations, step)
+
+        # ── 8. Inner edges (transport/exchange rxn ↔ metabolite) for the
+        # toggleable "show inner connections" view. Coordinates are flat per
+        # view, so the frontend reads them once per view switch.
+        inner_edges: list[dict] = []
+        non_regular_active = {
+            r for r in active_rxn_set
+            if self._rxn_kind_map.get(r) in ("transport", "import", "export", "biomass")
+            and r in pos
+        }
+        for rxn_id in non_regular_active:
+            rx, ry = pos[rxn_id]
+            for n1, n2 in G.edges(rxn_id):
+                met_id = n2 if n1 == rxn_id else n1
+                if G.nodes[met_id].get("ntype") != "met":
+                    continue
+                if met_id not in pos:
+                    continue
+                mx, my = pos[met_id]
+                inner_edges.append({
+                    "rxn_id": rxn_id,
+                    "met_id": met_id,
+                    "x": [float(rx), float(mx)],
+                    "y": [float(ry), float(my)],
+                })
+
+        return stations, branch_hubs, step, inner_edges
+
     # -- Internal: figure building --
 
     def _rebuild_figure(self) -> None:
@@ -1685,18 +2335,30 @@ class FLoV(anywidget.AnyWidget):
         views = self._views
         mdl = self._cobra_model
 
-        # Drop-no-data filtering (on copies)
-        rxn_nodes = list(self._rxn_nodes)
+        # Drop-no-data filtering (on copies). Non-regular reactions are now
+        # rendered as railway-station hubs, so they are stripped from the
+        # per-reaction node list regardless of drop_no_data.
+        rxn_nodes = [r for r in self._rxn_nodes
+                     if self._rxn_kind_map.get(r, "regular") == "regular"]
         met_nodes = list(self._met_nodes)
         met_to_rxns = dict(self._met_to_rxns)
 
+        # Active set across all views (used by the station builder to skip
+        # zero-flux non-regular reactions per the user's "ignore no flux
+        # connections" rule).
+        active_rxn_set: set[str] = set()
+        for view in views:
+            for rxn_id, flux in view.flux_dict.items():
+                if _has_flux_data(float(flux)):
+                    active_rxn_set.add(rxn_id)
+        if not active_rxn_set:
+            # No flux loaded yet: fall back to "all reactions are candidates"
+            # so the figure renders something on first model assignment.
+            active_rxn_set = {r for r in self._rxn_nodes
+                              if self._rxn_kind_map.get(r) != "regular"}
+
         if self._drop_no_data:
-            rxns_with_data: set[str] = set()
-            for view in views:
-                for rxn_id, flux in view.flux_dict.items():
-                    if _has_flux_data(float(flux)):
-                        rxns_with_data.add(rxn_id)
-            rxn_nodes = [r for r in rxn_nodes if r in rxns_with_data]
+            rxn_nodes = [r for r in rxn_nodes if r in active_rxn_set]
             remaining = set(rxn_nodes)
             met_nodes = [m for m in met_nodes if any(
                 r in remaining for r, _ in met_to_rxns.get(m, [])
@@ -1711,7 +2373,9 @@ class FLoV(anywidget.AnyWidget):
             for v in views
         ]
 
-        # Build oriented edges
+        # Build oriented edges. Non-regular reactions never appear here —
+        # their connections live in the railway-station spines + (toggleable)
+        # inner_edges instead.
         rxn_set = set(rxn_nodes)
         met_set = set(met_nodes)
         oriented_edges: list[tuple[str, str, str, float]] = []
@@ -1726,10 +2390,8 @@ class FLoV(anywidget.AnyWidget):
                 continue
             if rxn_id not in rxn_set or met_id not in met_set:
                 continue
-            edge_class = ("ss" if self._rxn_kind_map.get(rxn_id, "regular") != "regular"
-                          else "reg")
             stoich = float(edata.get("stoich", 1.0))
-            oriented_edges.append((edge_class, rxn_id, met_id, stoich))
+            oriented_edges.append(("reg", rxn_id, met_id, stoich))
 
         # Edge coordinates per view
         edge_flux_x_by_view: list[list[list[float | None]]] = []
@@ -1742,7 +2404,8 @@ class FLoV(anywidget.AnyWidget):
             edge_flux_x_by_view.append(exf)
             edge_flux_y_by_view.append(eyf)
 
-        # Edge visual styles — same bucket ordering as _build_edge_coords_for_view
+        # Edge visual styles — same bucket ordering as _build_edge_coords_for_view.
+        # Only "reg" edges remain; non-regular reactions render as stations.
         ds = self._resolve_density_scale(len(rxn_nodes))
         _edge_wmin = max(0.5, 1.2 * ds)
         _edge_wmax = max(_edge_wmin + 0.4, 4.6 * ds)
@@ -1755,6 +2418,32 @@ class FLoV(anywidget.AnyWidget):
                     color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True,
                                        density_scale=ds, color_modifier=self._color_modifier)
                     edge_styles.append({"class": edge_class, "color": color, "width": width})
+
+        # ── Stations & routes (replaces per-reaction transport/exchange nodes) ──
+        stations, branch_hubs, grid_step, inner_edges = self._compute_stations(
+            active_rxn_set,
+        )
+        # Pill geometry: vertical-pill aspect (taller than wide); height scales
+        # with reaction count, then a per-pair median normalises across pairs.
+        pair_rxn_counts = [
+            sum(len(line.rxn_ids) for line in st.lines) for st in stations
+        ]
+        median_count = float(np.median(pair_rxn_counts)) if pair_rxn_counts else 1.0
+        median_count = max(median_count, 1.0)
+        ROUTE_WMIN = max(1.5, 2.0 * ds)
+        ROUTE_WMAX = max(ROUTE_WMIN + 1.5, 7.0 * ds)
+
+        def _hull_short_dim(comp_key: str) -> float:
+            v = self._compartment_hulls.get(comp_key)
+            if v is not None and len(v) >= 3:
+                return float(min(v[:, 0].max() - v[:, 0].min(),
+                                 v[:, 1].max() - v[:, 1].min()))
+            # Exchange / virtual anchors fall back to a small constant in
+            # model units — they don't have a hull to scale to.
+            return 4.0
+        # Line spacing across the spine: total bundle width must fit inside pill.
+        # We use 0.6 * pill_width as the half-bundle range.
+        # (pill_width = 0.35 * pill_height per the design spec.)
 
         # Global abs_max across all views (consistent colorscale)
         all_valid: list[float] = [
@@ -1785,42 +2474,32 @@ class FLoV(anywidget.AnyWidget):
                 comp_cfg = compartments.get(comp, _exch_cfg)
                 comp_lbl = comp_cfg["label"]
                 border_color = comp_cfg["color"]
-                kind = self._rxn_kind_map.get(r, "regular")
                 f, sd = float(fluxes[i]), float(stds[i])
                 is_valid = bool(valid[i])
                 fill_color = _flux_to_hex(f, abs_max_flux) if is_valid else "#6e7681"
                 f_str = f"{f:+.4f} mmol/gDW/h" if is_valid else "--- (no data)"
                 sd_str = f"{sd:.4f}" if not np.isnan(sd) else ""
-                kind_badge = kind.upper() if kind != "regular" else ""
                 display_name = rxn_o.name or r
                 subs = ", ".join(self._rxn_substrates.get(r, [])[:5]) or "---"
                 prds = ", ".join(self._rxn_products.get(r, [])[:5]) or "---"
-                if kind in ("export", "biomass"):
-                    symbol = "cross" if not is_valid else "triangle-down"
-                elif kind == "import":
-                    symbol = "triangle-up"
-                elif kind == "transport":
-                    symbol = "hexagon"
-                else:
-                    symbol = "circle"
                 rxn_node_list.append({
                     "id": r,
                     "name": display_name,
                     "x": pos[r][0],
                     "y": pos[r][1],
                     "comp": comp,
-                    "kind": kind,
+                    "kind": "regular",
                     "flux": f if is_valid else None,
                     "fill_color": fill_color,
                     "border_color": border_color,
-                    "border_width": 2.5 if kind != "regular" else 1.8,
+                    "border_width": 1.8,
                     "opacity": 0.22 if not is_valid else 0.90,
                     "r": float(sizes[i]),
-                    "symbol": symbol,
+                    "symbol": "circle",
                     "hover": {
                         "display_name": display_name,
                         "id": r if rxn_o.name else "",
-                        "kind_badge": kind_badge,
+                        "kind_badge": "",
                         "comp_label": comp_lbl,
                         "pipeline_tag": view.pipeline_tag,
                         "flux_str": f_str,
@@ -1829,6 +2508,32 @@ class FLoV(anywidget.AnyWidget):
                         "products": prds,
                         "extra": view.hover_extra.get(r, ""),
                     },
+                })
+
+            # ── Per-view station line widths/colours (geometry pinned across views) ──
+            station_views_data: list[dict] = []
+            for st in stations:
+                line_view: list[dict] = []
+                for ln in st.lines:
+                    flux_sum = 0.0
+                    for rid in ln.rxn_ids:
+                        f = view.flux_dict.get(rid, np.nan)
+                        if _has_flux_data(float(f)):
+                            flux_sum += abs(float(f))
+                    norm = float(np.clip(flux_sum / abs_max_flux, 0.0, 1.0))
+                    width = ROUTE_WMIN + (ROUTE_WMAX - ROUTE_WMIN) * norm
+                    color = (_LINE_KLASS_COLORS.get(ln.klass, "#ec4899")
+                             if flux_sum > ACTIVE_EDGE_EPS
+                             else _LINE_KLASS_INACTIVE)
+                    line_view.append({
+                        "klass": ln.klass,
+                        "flux_sum": flux_sum,
+                        "width": float(width),
+                        "color": color,
+                    })
+                station_views_data.append({
+                    "pair_id": st.pair_id,
+                    "lines": line_view,
                 })
 
             edge_groups: list[dict] = []
@@ -1850,6 +2555,7 @@ class FLoV(anywidget.AnyWidget):
                     for n in met_nodes
                 ],
                 "edge_groups": edge_groups,
+                "stations": station_views_data,
             })
 
         # Metabolite node data
@@ -1869,33 +2575,24 @@ class FLoV(anywidget.AnyWidget):
                 "producers": producers[:8],
             })
 
-        # Compartment hull vertices (data space — D3 renders paths via catmull-rom)
+        # Compartment hull vertices — reuse the cache built in _compute_layout
+        # so the rendered hulls are byte-identical to the ones used for station
+        # anchoring and the forbidden-cell bitmap.
         compartment_list: list[dict] = []
         for comp_key, cfg_c in compartments.items():
-            regular_here = [r for r in rxn_nodes
-                            if G.nodes[r]["comp"] == comp_key
-                            and G.nodes[r]["kind"] == "regular"
-                            and r in pos]
-            if len(regular_here) < 3:
+            verts = self._compartment_hulls.get(comp_key)
+            if verts is None or len(verts) < 3:
                 continue
-            pts = np.array([[pos[r][0], pos[r][1]] for r in regular_here])
-            try:
-                hull = ConvexHull(pts)
-                verts = pts[hull.vertices]
-                centre = verts.mean(axis=0)
-                verts = centre + (verts - centre) * 1.22
-                compartment_list.append({
-                    "key": comp_key,
-                    "label": cfg_c["label"],
-                    "color": cfg_c["color"],
-                    "fill": cfg_c["fill"],
-                    "hull_vertices": verts.tolist(),
-                    "hull_tension": self._hull_tension,
-                    "label_x": float(verts[:, 0].mean()),
-                    "label_y": float(verts[:, 1].max()) + 0.2,
-                })
-            except Exception:
-                pass
+            compartment_list.append({
+                "key": comp_key,
+                "label": cfg_c["label"],
+                "color": cfg_c["color"],
+                "fill": cfg_c["fill"],
+                "hull_vertices": verts.tolist(),
+                "hull_tension": self._hull_tension,
+                "label_x": float(verts[:, 0].mean()),
+                "label_y": float(verts[:, 1].max()) + 0.2,
+            })
 
         # Data extent for D3 scales
         all_x = [pos[r][0] for r in rxn_nodes]
@@ -1918,6 +2615,68 @@ class FLoV(anywidget.AnyWidget):
             for vi in range(n_views)
         ]
 
+        # ── Station geometry (pinned across views; widths/colors live in views_data) ──
+        stations_geometry: list[dict] = []
+        for st in stations:
+            n_rxns_total = sum(len(line.rxn_ids) for line in st.lines)
+            # Logarithmic scaling — compresses outliers so a 100-reaction hub
+            # doesn't dwarf a 5-reaction one.
+            scale = float(np.log1p(n_rxns_total) / max(np.log1p(median_count), 1e-6))
+            scale = float(np.clip(scale, 0.85, 1.4))
+            # Pill base size scales with the smaller of the two compartments'
+            # hulls so a tiny compartment gets a tiny station, never an
+            # oversized one that overruns its host.
+            local_size = min(_hull_short_dim(st.comp_a), _hull_short_dim(st.comp_b))
+            pill_h = max(0.25, 0.10 * local_size * scale)
+            pill_w = 0.35 * pill_h
+            n_lines = len(st.lines)
+            line_pitch = (0.6 * pill_w) / max(n_lines, 1)
+            comp_a_cfg = compartments.get(st.comp_a, _exch_cfg)
+            comp_b_cfg = compartments.get(st.comp_b, _exch_cfg)
+            line_geom: list[dict] = []
+            for li, ln in enumerate(st.lines):
+                offset = (li - (n_lines - 1) / 2.0) * line_pitch
+                offset_path = _offset_polyline(st.spine, offset)
+                # Per-line hover: list each reaction with its name + per-view fluxes
+                rxn_summaries: list[dict] = []
+                for rid in ln.rxn_ids:
+                    rxn_o = mdl.reactions.get_by_id(rid)
+                    flux_per_view = []
+                    for view in views:
+                        f = view.flux_dict.get(rid, np.nan)
+                        if _has_flux_data(float(f)):
+                            flux_per_view.append(f"{view.label}: {float(f):+.3f}")
+                        else:
+                            flux_per_view.append(f"{view.label}: ---")
+                    rxn_summaries.append({
+                        "id": rid,
+                        "name": rxn_o.name or rid,
+                        "flux_per_view": flux_per_view,
+                    })
+                line_geom.append({
+                    "klass": ln.klass,
+                    "rxn_ids": ln.rxn_ids,
+                    "rxn_summaries": rxn_summaries,
+                    "spine_offset_idx": ln.spine_offset_idx,
+                    "path": [[float(p[0]), float(p[1])] for p in offset_path],
+                })
+            stations_geometry.append({
+                "pair_id": st.pair_id,
+                "comp_a": st.comp_a, "comp_b": st.comp_b,
+                "comp_a_label": comp_a_cfg["label"],
+                "comp_b_label": comp_b_cfg["label"],
+                "comp_a_color": comp_a_cfg["color"],
+                "comp_b_color": comp_b_cfg["color"],
+                "anchor_a": [st.anchor_a[0], st.anchor_a[1]],
+                "anchor_b": [st.anchor_b[0], st.anchor_b[1]],
+                "tangent_a": [st.tangent_a[0], st.tangent_a[1]],
+                "tangent_b": [st.tangent_b[0], st.tangent_b[1]],
+                "pill_height": float(pill_h),
+                "pill_width": float(pill_w),
+                "n_rxns": int(n_rxns_total),
+                "lines": line_geom,
+            })
+
         d3_data = {
             "meta": {
                 "model_name": model_name,
@@ -1926,11 +2685,15 @@ class FLoV(anywidget.AnyWidget):
                 "height": 940,
                 "abs_max_flux": float(abs_max_flux),
                 "density_scale": float(ds),
+                "grid_step": float(grid_step),
             },
             "compartments": compartment_list,
             "view_labels": [v.label for v in views],
             "views": views_data,
             "met_nodes": met_node_list,
+            "stations": stations_geometry,
+            "branch_hubs": branch_hubs,
+            "inner_edges": inner_edges,
             "interactivity": {
                 "view_labels": [v.label for v in views],
                 "rxn_ids": rxn_nodes,

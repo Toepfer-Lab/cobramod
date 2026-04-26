@@ -22,9 +22,48 @@ interface EdgeGroup {
   x: (number | null)[]; y: (number | null)[];
   color: string; width: number;
 }
+interface StationLineView {
+  klass: string;
+  flux_sum: number;
+  width: number;
+  color: string;
+}
+interface StationViewEntry {
+  pair_id: string;
+  lines: StationLineView[];
+}
 interface ViewData {
   label: string; rxn_nodes: RxnNode[];
   met_positions: MetPosition[]; edge_groups: EdgeGroup[];
+  stations: StationViewEntry[];
+}
+interface RxnSummary {
+  id: string; name: string; flux_per_view: string[];
+}
+interface StationLineGeom {
+  klass: string;
+  rxn_ids: string[];
+  rxn_summaries: RxnSummary[];
+  spine_offset_idx: number;
+  path: [number, number][];
+}
+interface StationGeom {
+  pair_id: string;
+  comp_a: string; comp_b: string;
+  comp_a_label: string; comp_b_label: string;
+  comp_a_color: string; comp_b_color: string;
+  anchor_a: [number, number]; anchor_b: [number, number];
+  tangent_a: [number, number]; tangent_b: [number, number];
+  pill_height: number; pill_width: number;
+  n_rxns: number;
+  lines: StationLineGeom[];
+}
+interface BranchHub {
+  x: number; y: number; branches: string[];
+}
+interface InnerEdge {
+  rxn_id: string; met_id: string;
+  x: [number, number]; y: [number, number];
 }
 interface MetDatum {
   node: MetNode; pos: MetPosition;
@@ -42,6 +81,7 @@ interface Compartment {
 interface Meta {
   model_name: string; x_range: [number, number]; y_range: [number, number];
   height: number; abs_max_flux: number; density_scale: number;
+  grid_step: number;
 }
 interface Interactivity {
   view_labels: string[];
@@ -53,6 +93,9 @@ interface D3FigureData {
   meta: Meta; compartments: Compartment[];
   view_labels: string[]; views: ViewData[];
   met_nodes: MetNode[]; interactivity: Interactivity;
+  stations: StationGeom[];
+  branch_hubs: BranchHub[];
+  inner_edges: InnerEdge[];
 }
 
 // ── CSS ───────────────────────────────────────────────────────────────────────
@@ -168,6 +211,21 @@ function hullPath(
   return gen(verts) ?? '';
 }
 
+// Polyline path through orthogonal/45° spine vertices (no curve smoothing —
+// the bend penalty in the A* router has already collapsed stairways into
+// single straights or one-bend Ls).
+function polylinePath(
+  pts: [number, number][],
+  xS: d3.ScaleLinear<number, number>, yS: d3.ScaleLinear<number, number>
+): string {
+  if (!pts.length) return '';
+  let d = `M${xS(pts[0][0]).toFixed(1)} ${yS(pts[0][1]).toFixed(1)}`;
+  for (let i = 1; i < pts.length; i++) {
+    d += ` L${xS(pts[i][0]).toFixed(1)} ${yS(pts[i][1]).toFixed(1)}`;
+  }
+  return d;
+}
+
 // ── Tooltip HTML ──────────────────────────────────────────────────────────────
 
 function rxnTooltipHTML(h: HoverData): string {
@@ -194,6 +252,49 @@ function metTooltipHTML(m: MetNode): string {
     `<span style="color:#8b949e">ID:</span> ${m.id}<br>` +
     `<span style="color:#8b949e">Consumed:</span> ${m.consumers.join(', ') || '—'}<br>` +
     `<span style="color:#8b949e">Produced:</span> ${m.producers.join(', ') || '—'}`
+  );
+}
+
+// Per-class colour palette — must mirror _LINE_KLASS_COLORS in
+// flux_network.py.  Used for the swatch shown next to each class header in
+// the station tooltip so the on-route colour is immediately legible.
+const KLASS_COLORS: Record<string, string> = {
+  amino_acid: '#22c55e',
+  sugar:      '#f59e0b',
+  cofactor:   '#a855f7',
+  inorganic:  '#06b6d4',
+  other:      '#ec4899',
+};
+
+// Station tooltip: lists every reaction grouped under the station,
+// sub-grouped by metabolite class with per-view fluxes.
+function stationTooltipHTML(st: StationGeom): string {
+  const head =
+    `<b>${st.comp_a_label} ↔ ${st.comp_b_label}</b> ` +
+    `<span class="ft-badge">${st.n_rxns} rxn${st.n_rxns === 1 ? '' : 's'}</span><br>` +
+    `<span class="ft-div">──────────────────────</span><br>`;
+  const lineRows = st.lines.map(ln => {
+    const swatchColor = KLASS_COLORS[ln.klass] ?? '#6e7681';
+    const swatch = `<span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${swatchColor};margin-right:5px;vertical-align:-1px"></span>`;
+    const rxns = ln.rxn_summaries.slice(0, 5).map(r =>
+      `<div style="margin-left:8px"><span style="color:#8b949e">${r.id}</span> ` +
+      `${r.name && r.name !== r.id ? '· ' + r.name : ''}<br>` +
+      `<span style="margin-left:10px;color:#7d8590;font-size:10px">${r.flux_per_view.join(' · ')}</span></div>`
+    ).join('');
+    const more = ln.rxn_summaries.length > 5
+      ? `<div style="margin-left:8px;color:#7d8590;font-size:10px">…+${ln.rxn_summaries.length - 5} more</div>`
+      : '';
+    return `<div>${swatch}<b style="color:${swatchColor}">${ln.klass}</b></div>${rxns}${more}`;
+  }).join('');
+  return head + lineRows;
+}
+
+function branchTooltipHTML(b: BranchHub): string {
+  return (
+    `<b>Branch hub</b><br>` +
+    `<span class="ft-div">──────────────────────</span><br>` +
+    `<span style="color:#8b949e">Diverging routes:</span><br>` +
+    b.branches.map(p => `<div style="margin-left:8px">${p.replace('|', ' ↔ ')}</div>`).join('')
   );
 }
 
@@ -322,6 +423,10 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     svgW: number
   ): void {
     const gComp  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-comp');
+    const gInner = zoomLayer.append<SVGGElement>('g').attr('class', 'g-inner').style('display', 'none');
+    const gRoute = zoomLayer.append<SVGGElement>('g').attr('class', 'g-route');
+    const gStn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-stn');
+    const gBHub  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-bhub');
     const gSSEdge = zoomLayer.append<SVGGElement>('g').attr('class', 'g-ss').style('display', 'none');
     const gEdge  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-edge');
     const gRxn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rxn');
@@ -413,6 +518,146 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .on('mousemove', moveTT)
       .on('mouseout',  hideTT);
 
+    // ── Routes (railway lines between hub stations) ──
+    // Each station emits one path per metabolite-class line. Width and color
+    // come from the per-view StationViewEntry; geometry is pinned across views.
+    interface RouteDatum {
+      pair_id: string;
+      klass: string;
+      path: [number, number][];
+      lineIndex: number;
+    }
+    const routeData: RouteDatum[] = [];
+    data.stations.forEach(st => {
+      st.lines.forEach((ln, li) => {
+        routeData.push({
+          pair_id: st.pair_id, klass: ln.klass,
+          path: ln.path, lineIndex: li,
+        });
+      });
+    });
+    const stationByPairView = new Map<string, StationViewEntry>();
+    view0.stations.forEach(s => stationByPairView.set(s.pair_id, s));
+    function lineStyle(d: RouteDatum, view: ViewData): { color: string; width: number } {
+      const sv = view.stations.find(s => s.pair_id === d.pair_id);
+      if (!sv || !sv.lines[d.lineIndex]) {
+        return { color: '#6e7681', width: 2 };
+      }
+      const lv = sv.lines[d.lineIndex];
+      return { color: lv.color, width: lv.width };
+    }
+
+    gRoute.selectAll<SVGPathElement, RouteDatum>('path')
+      .data(routeData).join('path')
+      .attr('class', 'route-line')
+      .attr('d', d => polylinePath(d.path, xS, yS))
+      .attr('fill', 'none')
+      .attr('stroke-linejoin', 'round')
+      .attr('stroke-linecap', 'round')
+      .attr('vector-effect', 'non-scaling-stroke')
+      .attr('stroke', d => lineStyle(d, view0).color)
+      .attr('stroke-width', d => lineStyle(d, view0).width)
+      .style('pointer-events', 'none');
+
+    // ── Stations (vertical pills at compartment hull edges) ──
+    interface PillDatum { st: StationGeom; side: 'a' | 'b'; }
+    const pillData: PillDatum[] = [];
+    data.stations.forEach(st => {
+      pillData.push({ st, side: 'a' });
+      pillData.push({ st, side: 'b' });
+    });
+    function pillRotation(p: PillDatum): number {
+      // Pill long axis = aligned with the local hull tangent (i.e. parallel
+      // to the compartment edge), so the rail line meets the pill broadside —
+      // matches Birmingham-tube station pill orientation.
+      const t = p.side === 'a' ? p.st.tangent_a : p.st.tangent_b;
+      // Screen y is inverted (yS scale flips), so negate ty for screen-space angle.
+      // +90° puts the pill's long (vertical-in-local) axis along the tangent.
+      const ang = Math.atan2(-t[1], t[0]) * 180 / Math.PI + 90;
+      return ang;
+    }
+    function pillTransform(p: PillDatum): string {
+      const a = p.side === 'a' ? p.st.anchor_a : p.st.anchor_b;
+      return `translate(${xS(a[0]).toFixed(1)},${yS(a[1]).toFixed(1)}) rotate(${pillRotation(p).toFixed(1)})`;
+    }
+    // Pill: drawn centred at origin; long axis = pill_height (vertical),
+    // short axis = pill_width (horizontal). The user-facing requirement is
+    // "larger in the vertical direction than in the horizontal direction".
+    // Use a fixed pixel scale so pills don't shrink to invisibility on small
+    // grids; convert model-space pill_height to pixels via the scale.
+    function pillPixelHeight(p: PillDatum): number {
+      const px0 = yS(0), px1 = yS(p.st.pill_height);
+      return Math.max(7, Math.abs(px1 - px0));
+    }
+    function pillPixelWidth(p: PillDatum): number {
+      return Math.max(3, pillPixelHeight(p) * 0.35);
+    }
+
+    gStn.selectAll<SVGRectElement, PillDatum>('rect.stn-pill')
+      .data(pillData).join('rect')
+      .attr('class', 'stn-pill')
+      .attr('x', p => -pillPixelWidth(p) / 2)
+      .attr('y', p => -pillPixelHeight(p) / 2)
+      .attr('width',  p => pillPixelWidth(p))
+      .attr('height', p => pillPixelHeight(p))
+      .attr('rx', p => pillPixelWidth(p) / 2)
+      .attr('ry', p => pillPixelWidth(p) / 2)
+      .attr('fill', '#ffffff')
+      .attr('stroke', p => p.side === 'a' ? p.st.comp_a_color : p.st.comp_b_color)
+      .attr('stroke-width', 2.2)
+      .attr('vector-effect', 'non-scaling-stroke')
+      .attr('transform', pillTransform)
+      .style('cursor', 'pointer')
+      .on('mouseover', (ev: MouseEvent, p) =>
+        showTT(ev, stationTooltipHTML(p.st),
+          p.side === 'a' ? p.st.comp_a_color : p.st.comp_b_color))
+      .on('mousemove', moveTT)
+      .on('mouseout', hideTT);
+
+    // Station labels — printed beside the pill at right angles to the tangent.
+    gStn.selectAll<SVGTextElement, PillDatum>('text.stn-lbl')
+      .data(pillData).join('text')
+      .attr('class', 'stn-lbl')
+      .attr('text-anchor', 'middle')
+      .attr('font-size', 9)
+      .attr('font-family', "'Inter',Arial,sans-serif")
+      .attr('font-weight', 600)
+      .attr('fill', p => p.side === 'a' ? p.st.comp_a_color : p.st.comp_b_color)
+      .attr('transform', p => {
+        const a = p.side === 'a' ? p.st.anchor_a : p.st.anchor_b;
+        return `translate(${xS(a[0]).toFixed(1)},${(yS(a[1]) - pillPixelHeight(p) / 2 - 4).toFixed(1)})`;
+      })
+      .style('pointer-events', 'none')
+      .text(p => p.side === 'a' ? p.st.comp_a_label : p.st.comp_b_label);
+
+    // ── Branch hubs (small pills at divergence points) ──
+    gBHub.selectAll<SVGRectElement, BranchHub>('rect.bhub')
+      .data(data.branch_hubs).join('rect')
+      .attr('class', 'bhub')
+      .attr('x', -4).attr('y', -10)
+      .attr('width', 8).attr('height', 20)
+      .attr('rx', 4).attr('ry', 4)
+      .attr('fill', '#ffffff')
+      .attr('stroke', '#8b949e')
+      .attr('stroke-width', 1.6)
+      .attr('vector-effect', 'non-scaling-stroke')
+      .attr('transform', b => `translate(${xS(b.x).toFixed(1)},${yS(b.y).toFixed(1)})`)
+      .style('cursor', 'pointer')
+      .on('mouseover', (ev: MouseEvent, b) => showTT(ev, branchTooltipHTML(b), '#8b949e'))
+      .on('mousemove', moveTT)
+      .on('mouseout', hideTT);
+
+    // ── Inner edges (transport/exchange rxn ↔ metabolite, hidden by default) ──
+    gInner.selectAll<SVGPathElement, InnerEdge>('path')
+      .data(data.inner_edges).join('path')
+      .attr('d', e => `M${xS(e.x[0]).toFixed(1)} ${yS(e.y[0]).toFixed(1)} L${xS(e.x[1]).toFixed(1)} ${yS(e.y[1]).toFixed(1)}`)
+      .attr('stroke', 'rgba(139,148,158,0.50)')
+      .attr('stroke-width', 0.8)
+      .attr('stroke-dasharray', '3,3')
+      .attr('fill', 'none')
+      .attr('vector-effect', 'non-scaling-stroke')
+      .style('pointer-events', 'none');
+
     // Reactions
     gRxnHitSel = gRxn.selectAll<SVGPathElement, RxnNode>('path.rxn-hit')
       .data(view0.rxn_nodes).join('path')
@@ -497,9 +742,10 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       gMetSel!.style('display', on ? '' : 'none');
     });
 
-    // Exchange / Transp.
-    mkToggle(bar, 'Exchange / Transp.', 'Show', 'Hide', false, on => {
-      wrapper.querySelector<HTMLElement>('.g-ss')!.style.display = on ? '' : 'none';
+    // Inner connections (rxn → metabolite edges of transport/exchange reactions)
+    mkToggle(bar, 'Inner connections', 'Show', 'Hide', false, on => {
+      const el = wrapper.querySelector<HTMLElement>('.g-inner');
+      if (el) el.style.display = on ? '' : 'none';
     });
 
     // Dark/light mode
@@ -594,6 +840,18 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('fill', d => d.fill_color)
       .attr('opacity', d => d.opacity);
 
+    // Update route line widths & colors for the new view
+    d3.select(zl).select('.g-route').selectAll<SVGPathElement, {pair_id:string; lineIndex:number}>('path.route-line')
+      .each(function(d: {pair_id:string; lineIndex:number}) {
+        const sv = view.stations.find(s => s.pair_id === d.pair_id);
+        const lv = sv ? sv.lines[d.lineIndex] : undefined;
+        if (lv) {
+          d3.select(this).attr('stroke', lv.color).attr('stroke-width', lv.width);
+        } else {
+          d3.select(this).attr('stroke', '#6e7681').attr('stroke-width', 1);
+        }
+      });
+
     const metData: MetDatum[] = fig.met_nodes.map((node, i) => ({
       node, pos: view.met_positions[i],
     }));
@@ -636,8 +894,10 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
 
   function moveTT(ev: MouseEvent): void {
     if (!tooltipEl) return;
-    if (!cachedWrapperRect) cachedWrapperRect = wrapper.getBoundingClientRect();
-    const rect = cachedWrapperRect;
+    // Always read a fresh rect — caching across resizes / scrolls / dev-tool
+    // toggles puts the tooltip far from the cursor. getBoundingClientRect is
+    // cheap (single DOM read) and runs only on mousemove inside the SVG.
+    const rect = wrapper.getBoundingClientRect();
     let tx = ev.clientX - rect.left + 14;
     let ty = ev.clientY - rect.top - 10;
     const tw = tooltipEl.offsetWidth || 220;
