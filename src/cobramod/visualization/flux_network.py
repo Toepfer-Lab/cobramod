@@ -571,6 +571,8 @@ def _flux_weighted_met_positions(
     collision_modifier: float,
     cfg: Optional[dict] = None,
     effective_region=None,
+    drop_protons: bool = False,
+    drop_biomass: bool = False,
 ) -> dict[str, tuple[float, float]]:
     compartments = cfg["compartments"] if cfg else {}
     M = len(met_nodes)
@@ -582,8 +584,8 @@ def _flux_weighted_met_positions(
     rxn_coords = np.array([[pos[r][0], pos[r][1]] for r in all_rxns], dtype=float)  # (R, 2)
 
     # Build a sparse (M, R) weight matrix in COO format, then convert to CSR.
-    # Only same-compartment neighbours receive weight; cross-compartment
-    # neighbours are excluded unless no same-compartment neighbour exists.
+    # Only same-compartment neighbours receive weight — cross-compartment
+    # reactions never influence a metabolite's position.
     # For large models (e.g. Recon3D) the dense matrix would be ~630 MB;
     # the sparse representation holds only O(M × avg_connections) entries.
     rows: list[int] = []
@@ -591,13 +593,14 @@ def _flux_weighted_met_positions(
     vals: list[float] = []
     met_comp_list: list[str] = []
     for i, met_id in enumerate(met_nodes):
-        nbrs = [r for r in G.neighbors(met_id)
-                if G.nodes[r]["ntype"] == "rxn" and r in rxn_idx]
         met_c = G.nodes[met_id].get("comp", "")
         met_comp_list.append(met_c)
-        same_comp = [r for r in nbrs if G.nodes[r].get("comp") == met_c]
-        weight_nbrs = same_comp if same_comp else nbrs
-        for r in weight_nbrs:
+        # Same-compartment neighbours only — no cross-compartment fallback.
+        nbrs = [r for r in G.neighbors(met_id)
+                if G.nodes[r]["ntype"] == "rxn" and r in rxn_idx
+                and G.nodes[r].get("comp") == met_c
+                and not (drop_biomass and G.nodes[r].get("kind") == "biomass")]
+        for r in nbrs:
             f = edge_flux.get(r, np.nan)
             w = (abs(float(f)) + 0.01) ** 3 if _has_flux_data(float(f)) else 0.02 ** 3
             rows.append(i)
@@ -618,16 +621,15 @@ def _flux_weighted_met_positions(
             (W[has_weight] @ rxn_coords)
             / row_sums[has_weight, np.newaxis]
         )
-    # Fallback: metabolites with no weighted neighbours keep their current pos.
+    # Fallback for metabolites with no same-compartment neighbours: place at
+    # the compartment centre instead of pulling cross-compartment.
     for i in np.where(~has_weight)[0]:
-        centroids[i] = pos.get(met_nodes[i], (0.0, 0.0))
-
-    # Clip each metabolite to its compartment bounds.
-    for i, met_c in enumerate(met_comp_list):
+        met_c = met_comp_list[i]
         if effective_region and met_c in compartments:
             x0_, x1_, y0_, y1_ = effective_region(met_c)
-            centroids[i, 0] = float(np.clip(centroids[i, 0], x0_ + 0.2, x1_ - 0.2))
-            centroids[i, 1] = float(np.clip(centroids[i, 1], y0_ + 0.2, y1_ - 0.2))
+            centroids[i] = ((x0_ + x1_) / 2.0, (y0_ + y1_) / 2.0)
+        else:
+            centroids[i] = pos.get(met_nodes[i], (0.0, 0.0))
 
     met_pos: dict[str, tuple[float, float]] = {
         met_nodes[i]: (float(centroids[i, 0]), float(centroids[i, 1]))
@@ -635,8 +637,13 @@ def _flux_weighted_met_positions(
     }
 
     for met_id in met_nodes:
+        if drop_protons and G.nodes[met_id].get("is_proton", False):
+            continue
+        met_c = G.nodes[met_id].get("comp", "")
         rxn_nbrs = [r for r in G.neighbors(met_id)
-                    if G.nodes[r]["ntype"] == "rxn" and r in pos]
+                    if G.nodes[r]["ntype"] == "rxn" and r in pos
+                    and G.nodes[r].get("comp") == met_c
+                    and not (drop_biomass and G.nodes[r].get("kind") == "biomass")]
         if not rxn_nbrs:
             continue
         mx, my = met_pos[met_id]
@@ -660,12 +667,6 @@ def _flux_weighted_met_positions(
                         angle = np.pi * _stable_unit(met_id)
                         mx = rx + dist_req * float(np.cos(angle))
                         my = ry + dist_req * float(np.sin(angle))
-        # Re-clip after reaction-collision nudge to keep metabolite in its compartment
-        met_c2 = G.nodes[met_id].get("comp", "")
-        if effective_region and met_c2 in compartments:
-            _x0, _x1, _y0, _y1 = effective_region(met_c2)
-            mx = float(np.clip(mx, _x0 + 0.2, _x1 - 0.2))
-            my = float(np.clip(my, _y0 + 0.2, _y1 - 0.2))
         met_pos[met_id] = (mx, my)
 
     return met_pos
@@ -1395,6 +1396,7 @@ class FLoV(anywidget.AnyWidget):
         self,
         drop_no_data: bool = False,
         drop_protons: bool = False,
+        drop_biomass: bool = False,
         stoich_flux: bool = False,
         scale_compartments: bool = False,
         hull_tension: float = 0.4,
@@ -1426,8 +1428,10 @@ class FLoV(anywidget.AnyWidget):
         self.on_msg(self._handle_custom_msg)
         self._drop_no_data = drop_no_data
         self._drop_protons = drop_protons
+        self._drop_biomass = drop_biomass
         self._stoich_flux = stoich_flux
         self._scale_compartments = scale_compartments
+        self._spread = 1.0
         self._hull_tension = hull_tension
         self._collision_modifier = collision_modifier
         self._density_scale = density_scale
@@ -1509,6 +1513,16 @@ class FLoV(anywidget.AnyWidget):
     @scale_compartments.setter
     def scale_compartments(self, value: bool) -> None:
         self._scale_compartments = value
+        self._trigger("layout")
+
+    @property
+    def spread(self) -> float:
+        """Scale factor for distances between compartment centers (1.0 = original)."""
+        return self._spread
+
+    @spread.setter
+    def spread(self, value: float) -> None:
+        self._spread = float(value)
         self._trigger("layout")
 
     @property
@@ -1600,6 +1614,16 @@ class FLoV(anywidget.AnyWidget):
     def drop_protons(self, value: bool) -> None:
         self._drop_protons = value
         self._trigger("graph")
+
+    @property
+    def drop_biomass(self) -> bool:
+        """Exclude biomass reactions from metabolite centroid calculation."""
+        return self._drop_biomass
+
+    @drop_biomass.setter
+    def drop_biomass(self, value: bool) -> None:
+        self._drop_biomass = value
+        self._trigger("figure")
 
     @property
     def ignore(self) -> tuple[set[str], set[str]]:
@@ -1799,7 +1823,8 @@ class FLoV(anywidget.AnyWidget):
                 continue
             met_obj = mdl.metabolites.get_by_id(met_id)
             mc = _met_comp(met_obj, cfg)
-            G.add_node(met_id, ntype="met", comp=mc, name=met_obj.name or met_id)
+            G.add_node(met_id, ntype="met", comp=mc, name=met_obj.name or met_id,
+                       is_proton=_is_proton(met_obj, cfg))
             for rxn_id, stoich in rxn_list:
                 if rxn_id not in self._ignored_rxns:
                     G.add_edge(rxn_id, met_id, stoich=stoich)
@@ -1903,6 +1928,13 @@ class FLoV(anywidget.AnyWidget):
             _centers[ck] = [(x0 + x1) / 2.0, (y0 + y1) / 2.0]
             _half[ck] = ((x1 - x0) / 2.0, (y1 - y0) / 2.0)
 
+        if self._spread != 1.0 and len(_active_keys) > 1:
+            gcx = sum(c[0] for c in _centers.values()) / len(_centers)
+            gcy = sum(c[1] for c in _centers.values()) / len(_centers)
+            for ck in _active_keys:
+                _centers[ck][0] = gcx + (_centers[ck][0] - gcx) * self._spread
+                _centers[ck][1] = gcy + (_centers[ck][1] - gcy) * self._spread
+
         if self._scale_compartments and len(_active_keys) > 1:
             _GAP = 0.3          # minimum clearance between boxes after separation
             for _ in range(50): # converges in far fewer iterations for ~5 compartments
@@ -1970,32 +2002,25 @@ class FLoV(anywidget.AnyWidget):
                 min_dist=0.4 * self._collision_modifier,
             ))
 
-        # Metabolite positions — same-compartment-preferred uniform centroid,
-        # computed with numpy means over batches of neighbour coordinates,
-        # followed by compartment clipping.
+        # Metabolite positions — uniform centroid over same-compartment
+        # reaction neighbours only. No cross-compartment fallback.
         for i, met_id in enumerate(self._met_nodes):
-            nbrs = [n for n in G.neighbors(met_id)
-                    if G.nodes[n]["ntype"] == "rxn" and n in pos]
             met_c = G.nodes[met_id].get("comp", cfg["exchange_key"])
+            nbrs = [n for n in G.neighbors(met_id)
+                    if G.nodes[n]["ntype"] == "rxn" and n in pos
+                    and G.nodes[n].get("comp") == met_c]
             if nbrs:
-                same = [n for n in nbrs if G.nodes[n].get("comp") == met_c]
-                active = same if same else nbrs
-                pts = np.array([[pos[n][0], pos[n][1]] for n in active], dtype=float)
+                pts = np.array([[pos[n][0], pos[n][1]] for n in nbrs], dtype=float)
                 cx, cy = float(pts[:, 0].mean()), float(pts[:, 1].mean())
                 cx, cy = _push_away_from_reactions(
                     cx, cy, nbrs, met_id, pos, self._collision_modifier
                 )
                 pos[met_id] = (cx, cy)
+            elif met_c in compartments:
+                x0, x1, y0, y1 = _effective_region(met_c)
+                pos[met_id] = ((x0 + x1) / 2.0, (y0 + y1) / 2.0)
             else:
                 pos[met_id] = (0.0, 0.0)
-
-            if met_c in compartments:
-                x0, x1, y0, y1 = _effective_region(met_c)
-                mx, my = pos[met_id]
-                pos[met_id] = (
-                    float(np.clip(mx, x0 + 0.2, x1 - 0.2)),
-                    float(np.clip(my, y0 + 0.2, y1 - 0.2)),
-                )
 
         # Resolve edge collisions
         _emit_progress("Resolving edge collisions...")
@@ -2005,16 +2030,6 @@ class FLoV(anywidget.AnyWidget):
         )
         for _m in self._met_nodes:
             pos[_m] = _base_resolved[_m]
-            # Re-clip: edge-collision resolver can push metabolites across compartment
-            # boundaries; enforce hard bounds a second time.
-            _mc = G.nodes[_m].get("comp", cfg["exchange_key"])
-            if _mc in compartments:
-                _x0, _x1, _y0, _y1 = _effective_region(_mc)
-                _mx, _my = pos[_m]
-                pos[_m] = (
-                    float(np.clip(_mx, _x0 + 0.2, _x1 - 0.2)),
-                    float(np.clip(_my, _y0 + 0.2, _y1 - 0.2)),
-                )
 
         self._pos = pos
 
@@ -2345,6 +2360,8 @@ class FLoV(anywidget.AnyWidget):
             _flux_weighted_met_positions(
                 v.flux_dict, met_nodes, G, pos, self._collision_modifier,
                 cfg=cfg, effective_region=self._effective_region,
+                drop_protons=self._drop_protons,
+                drop_biomass=self._drop_biomass,
             )
             for v in views
         ]
