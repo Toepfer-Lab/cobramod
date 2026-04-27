@@ -148,8 +148,6 @@ def _parse_config(cfg: dict) -> dict:
     # Fallback: compartment key directly at the end of the ID without a separator
     # (e.g. "ENOc", "PDHm", "SUCOAS1m"). Sorted longest-first to avoid "m" matching
     # inside "lm" etc.
-    nosep_re = re.compile(rf"({_alts})$", re.IGNORECASE)
-
     return dict(
         compartments=compartments,
         exchange_key=exchange_key,
@@ -159,7 +157,6 @@ def _parse_config(cfg: dict) -> dict:
         biomass_prefix=biomass_prefix,
         suffix_re=suffix_re,
         bracket_re=bracket_re,
-        nosep_re=nosep_re,
     )
 
 
@@ -167,31 +164,12 @@ def _parse_config(cfg: dict) -> dict:
 # HELPER FUNCTIONS (stateless — take config as parameter)
 # ==========================================================================
 
-def _rxn_comp(rxn_id: str, cfg: dict) -> str:
-    m = cfg["suffix_re"].search(rxn_id)
-    if m:
-        return m.group(1).lower()
-    m = cfg["bracket_re"].search(rxn_id)
-    if m:
-        return m.group(1).lower()
-    # Last resort: compartment key appended directly without separator (e.g. "ENOc")
-    m = cfg["nosep_re"].search(rxn_id)
-    return m.group(1).lower() if m else cfg["exchange_key"]
-
-def _met_comp_str(met_id: str, cfg: dict) -> str:
-    m = cfg["bracket_re"].search(met_id)
-    if m:
-        return m.group(1).lower()
-    m = cfg["suffix_re"].search(met_id)
-    return m.group(1).lower() if m else cfg["exchange_key"]
-
-
 def _met_comp(met: cobra.Metabolite, cfg: dict) -> str:
     if met.compartment:
         key = met.compartment.lower()
         if key in cfg["compartments"]:
             return key
-    return _met_comp_str(met.id, cfg)
+    return cfg["exchange_key"]
 
 
 def _is_currency(met: cobra.Metabolite, cfg: dict) -> bool:
@@ -234,8 +212,13 @@ def _rxn_kind(rxn: cobra.Reaction, cfg: dict) -> str:
         return "export"
     if any(rxn.id.startswith(p) for p in cfg["biomass_prefix"]):
         return "biomass"
-    non_exch = {_met_comp(m, cfg) for m in rxn.metabolites} - {cfg["exchange_key"]}
-    if len(non_exch) > 1:
+    all_comps = {_met_comp(m, cfg) for m in rxn.metabolites}
+    non_exch = all_comps - {cfg["exchange_key"]}
+    if non_exch and len(all_comps) > 1:
+        return "transport"
+    # Degree-1 reactions (sink/demand): single metabolite in a real compartment
+    # implicitly drains to the exchange boundary.
+    if len(rxn.metabolites) == 1 and non_exch:
         return "transport"
     return "regular"
 
@@ -927,7 +910,9 @@ def _pair_key(
     if kind in ("import", "export", "biomass"):
         return (comps[0], exch) if comps else None
     if kind == "transport":
-        return (comps[0], comps[1]) if len(comps) >= 2 else None
+        if len(comps) >= 2:
+            return (comps[0], comps[1])
+        return (comps[0], exch) if comps else None
     return None
 
 
@@ -1790,23 +1775,14 @@ class FLoV(anywidget.AnyWidget):
             if rxn.id in self._ignored_rxns:
                 continue
             if self._rxn_kind_map[rxn.id] == "regular":
-                comp = _rxn_comp(rxn.id, cfg)
-                # When neither suffix_re, bracket_re, nor nosep_re could extract a
-                # compartment (all return exchange_key), derive it from the majority
-                # compartment of the reaction's own metabolites.  This is the most
-                # reliable signal for genome-scale models like Recon3D whose reaction
-                # IDs carry no compartment suffix at all.
-                if comp == cfg["exchange_key"]:
-                    comp_counts: dict[str, int] = {}
-                    for met_r in rxn.metabolites:
-                        mc_r = _met_comp(met_r, cfg)
-                        comp_counts[mc_r] = comp_counts.get(mc_r, 0) + 1
-                    if comp_counts:
-                        # Prefer non-exchange compartments; exchange only as last resort
-                        non_exch = {k: v for k, v in comp_counts.items()
-                                    if k != cfg["exchange_key"]}
-                        pool = non_exch if non_exch else comp_counts
-                        comp = max(pool, key=pool.__getitem__)
+                comp_counts: dict[str, int] = {}
+                for met_r in rxn.metabolites:
+                    mc_r = _met_comp(met_r, cfg)
+                    comp_counts[mc_r] = comp_counts.get(mc_r, 0) + 1
+                non_exch = {k: v for k, v in comp_counts.items()
+                            if k != cfg["exchange_key"]}
+                pool = non_exch if non_exch else comp_counts
+                comp = max(pool, key=pool.__getitem__) if pool else cfg["exchange_key"]
             elif self._rxn_kind_map[rxn.id] == "transport":
                 comp_counts_t: dict[str, int] = {}
                 for met_r in rxn.metabolites:
