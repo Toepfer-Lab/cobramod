@@ -532,6 +532,34 @@ _LINE_KLASS_INACTIVE = "#6e7681"
 MAX_LINES_PER_PAIR = 10
 MAX_RXNS_PER_LINE = 10
 
+# Stable per-route colour palette for intra-compartment rail lanes.
+# Cycles for models with more routes than colours.  Chosen for contrast
+# on both light and dark backgrounds and against each other.
+_RAIL_ROUTE_PALETTE: tuple[str, ...] = (
+    "#f97316",  # orange
+    "#22c55e",  # green
+    "#a855f7",  # purple
+    "#06b6d4",  # cyan
+    "#f43f5e",  # rose
+    "#eab308",  # yellow
+    "#3b82f6",  # blue
+    "#84cc16",  # lime
+    "#ec4899",  # pink
+    "#14b8a6",  # teal
+    "#8b5cf6",  # violet
+    "#fb923c",  # amber
+)
+
+
+def _modulate_route_color(base_hex: str, mag_norm: float, has_flux: bool) -> str:
+    """Return an rgba color keeping the base hue; opacity scaled by flux magnitude."""
+    if not has_flux:
+        return "rgba(110,118,129,0.18)"
+    h = base_hex.lstrip("#")
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    alpha = 0.42 + 0.58 * float(mag_norm)
+    return f"rgba({r},{g},{b},{alpha:.3f})"
+
 
 def _met_class(rxn: cobra.Reaction, cfg: dict) -> str:
     """Classify a transport/exchange reaction by its dominant non-proton
@@ -2240,6 +2268,7 @@ class FLoV(anywidget.AnyWidget):
                     str(rec["line_id"]),
                 )
             )
+            comp_start_idx = len(routes_geom)
             for rec in records:
                 start = node_to_cell.get(rec["rxn_id"])
                 end = node_to_cell.get(rec["met_id"])
@@ -2277,6 +2306,45 @@ class FLoV(anywidget.AnyWidget):
                 if node_id in routed_rxns or node_id in routed_mets
             }
             route_hubs.extend(_detect_route_hubs(route_cells, excluded_cells, to_xy))
+
+            # ── Lane-offset: assign per-route palette colors and per-segment
+            # slot values.  The actual pixel offset is computed by the frontend
+            # using a fixed pixel gap divided by the zoom scale, so the gap is
+            # constant in screen pixels regardless of zoom level.
+            comp_routes = routes_geom[comp_start_idx:]
+            for ci, r in enumerate(comp_routes):
+                r["base_color"] = _RAIL_ROUTE_PALETTE[ci % len(_RAIL_ROUTE_PALETTE)]
+                r["seg_slots"] = [0.0] * (len(r["path"]) - 1)  # filled below
+            if len(comp_routes) > 1:
+                seg_to_ci: dict[tuple, list[int]] = defaultdict(list)
+                for ci, r in enumerate(comp_routes):
+                    pth = r["path"]
+                    for k in range(len(pth) - 1):
+                        ra = (round(float(pth[k][0]), 3), round(float(pth[k][1]), 3))
+                        rb = (round(float(pth[k+1][0]), 3), round(float(pth[k+1][1]), 3))
+                        seg_key = (min(ra, rb), max(ra, rb))
+                        if ci not in seg_to_ci[seg_key]:
+                            seg_to_ci[seg_key].append(ci)
+                for ci, r in enumerate(comp_routes):
+                    pth = r["path"]
+                    n_pts = len(pth)
+                    slots: list[float] = []
+                    for k in range(n_pts - 1):
+                        ra = (round(float(pth[k][0]), 3), round(float(pth[k][1]), 3))
+                        rb = (round(float(pth[k+1][0]), 3), round(float(pth[k+1][1]), 3))
+                        seg_key = (min(ra, rb), max(ra, rb))
+                        lane_list = seg_to_ci.get(seg_key, [ci])
+                        n_lanes = len(lane_list)
+                        if n_lanes < 2:
+                            slots.append(0.0)
+                            continue
+                        try:
+                            my_pos = lane_list.index(ci)
+                        except ValueError:
+                            slots.append(0.0)
+                            continue
+                        slots.append((my_pos - (n_lanes - 1) / 2.0))
+                    r["seg_slots"] = slots
 
         for rxn_id in rxn_nodes:
             routed_rxn_pos.setdefault(rxn_id, pos[rxn_id])
@@ -2377,8 +2445,8 @@ class FLoV(anywidget.AnyWidget):
         ]
         median_count = float(np.median(pair_rxn_counts)) if pair_rxn_counts else 1.0
         median_count = max(median_count, 1.0)
-        ROUTE_WMIN = max(1.5, 2.0 * ds)
-        ROUTE_WMAX = max(ROUTE_WMIN + 1.5, 7.0 * ds)
+        ROUTE_WMIN = max(2.5, 3.0 * ds)
+        ROUTE_WMAX = max(ROUTE_WMIN + 2.0, 10.0 * ds)
 
         def _hull_short_dim(comp_key: str) -> float:
             v = self._compartment_hulls.get(comp_key)
@@ -2414,8 +2482,8 @@ class FLoV(anywidget.AnyWidget):
         )
 
         _exch_cfg = compartments.get(exchange_key, {"color": "#8b949e", "label": exchange_key})
-        rail_wmin = max(0.9, 1.4 * ds)
-        rail_wmax = max(rail_wmin + 0.7, 4.4 * ds)
+        rail_wmin = max(1.5, 2.2 * ds)
+        rail_wmax = max(rail_wmin + 1.2, 7.0 * ds)
 
         # Per-view data
         views_data: list[dict] = []
@@ -2508,12 +2576,10 @@ class FLoV(anywidget.AnyWidget):
                     )
                     _, mag_norm, sign = _edge_bucket(eff_flux, abs_max_route_flux)
                     width = rail_wmin + (rail_wmax - rail_wmin) * mag_norm
-                    color = _edge_rgba(
-                        mag_norm=mag_norm,
-                        sign=sign,
-                        has_flux=True,
-                        density_scale=ds,
-                        color_modifier=self._color_modifier,
+                    color = _modulate_route_color(
+                        route.get("base_color", "#58a6ff"),
+                        mag_norm,
+                        True,
                     )
                 else:
                     width = rail_wmin * 0.55

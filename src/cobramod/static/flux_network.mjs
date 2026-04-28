@@ -4423,6 +4423,57 @@ function polylinePath(pts, xS, yS) {
   }
   return d;
 }
+var LANE_W_PX = 3.5;
+function railOffsetPath(pts, seg_slots, xS, yS, k_zoom) {
+  const n = pts.length;
+  if (n < 2)
+    return "";
+  const sx = pts.map((p) => xS(p[0]));
+  const sy = pts.map((p) => yS(p[1]));
+  const ux = [], uy = [];
+  const nx = [], ny = [];
+  for (let k = 0; k < n - 1; k++) {
+    const dx = sx[k + 1] - sx[k], dy = sy[k + 1] - sy[k];
+    const len = Math.hypot(dx, dy) || 1;
+    ux.push(dx / len);
+    uy.push(dy / len);
+    nx.push(dy / len);
+    ny.push(-dx / len);
+  }
+  const off = seg_slots.map((s) => s * LANE_W_PX / k_zoom);
+  const MITER_CAP = 4 * LANE_W_PX / k_zoom;
+  const ox = new Float64Array(n);
+  const oy = new Float64Array(n);
+  ox[0] = sx[0] + off[0] * nx[0];
+  oy[0] = sy[0] + off[0] * ny[0];
+  ox[n - 1] = sx[n - 1] + off[n - 2] * nx[n - 2];
+  oy[n - 1] = sy[n - 1] + off[n - 2] * ny[n - 2];
+  for (let k = 1; k < n - 1; k++) {
+    const Ax = sx[k] + off[k - 1] * nx[k - 1], Ay = sy[k] + off[k - 1] * ny[k - 1];
+    const Bx = sx[k] + off[k] * nx[k], By = sy[k] + off[k] * ny[k];
+    const cross = ux[k - 1] * uy[k] - uy[k - 1] * ux[k];
+    if (Math.abs(cross) < 1e-9) {
+      ox[k] = (Ax + Bx) / 2;
+      oy[k] = (Ay + By) / 2;
+    } else {
+      const ddx = Bx - Ax, ddy = By - Ay;
+      const t = (ddx * uy[k] - ddy * ux[k]) / cross;
+      const mx = Ax + t * ux[k - 1], my = Ay + t * uy[k - 1];
+      const dist = Math.hypot(mx - sx[k], my - sy[k]);
+      if (dist > MITER_CAP) {
+        ox[k] = (Ax + Bx) / 2;
+        oy[k] = (Ay + By) / 2;
+      } else {
+        ox[k] = mx;
+        oy[k] = my;
+      }
+    }
+  }
+  let d = `M${ox[0].toFixed(1)} ${oy[0].toFixed(1)}`;
+  for (let i = 1; i < n; i++)
+    d += ` L${ox[i].toFixed(1)} ${oy[i].toFixed(1)}`;
+  return d;
+}
 function rxnTooltipHTML(h) {
   const badge = h.kind_badge ? `<span class="ft-badge">${h.kind_badge}</span>` : "";
   const id2 = h.id ? ` <span style="color:#8b949e;font-size:11px">(${h.id})</span>` : "";
@@ -4483,15 +4534,22 @@ function render({ model: S, el: I }) {
   const MET_HOVER_STROKE = 12;
   const RXN_HOVER_STROKE = 14;
   function metTransform(node, transform2) {
-    const sx = transform2.applyX(xS(node.x)).toFixed(1);
-    const sy = transform2.applyY(yS(node.y)).toFixed(1);
-    return `translate(${sx},${sy})`;
+    const tx = xS(node.x).toFixed(1);
+    const ty = yS(node.y).toFixed(1);
+    const inv = (1 / transform2.k).toFixed(6);
+    return `matrix(${inv},0,0,${inv},${tx},${ty})`;
   }
   function updateMetZoom(transform2) {
     if (!gMetSel)
       return;
     gMetSel.selectAll("path.met-shape").attr("transform", (d) => metTransform(d, transform2));
     gMetHitSel?.attr("transform", (d) => metTransform(d, transform2));
+  }
+  function updateRailZoom(transform2) {
+    const zl = wrapper.querySelector(".zoom-layer");
+    if (!zl || !fig)
+      return;
+    select_default2(zl).select(".g-rail").selectAll("path.rail-line").attr("d", (d) => railOffsetPath(d.path, d.seg_slots, xS, yS, transform2.k));
   }
   function updateRxnZoom(transform2) {
     if (!gRxnSel || !gRxnHitSel)
@@ -4522,7 +4580,6 @@ function render({ model: S, el: I }) {
     wrapper.classList.toggle("light-mode", lightMode);
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
-    gMetSel = svg.insert("g", ".zoom-layer").attr("class", "g-met");
     buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
     buildSearch(wrapper, data, svg.node(), svgW, svgH);
     buildTooltip(wrapper);
@@ -4536,6 +4593,7 @@ function render({ model: S, el: I }) {
         rafId = null;
         updateRxnZoom(currentTransform);
         updateMetZoom(currentTransform);
+        updateRailZoom(currentTransform);
       });
     });
     svg.call(zoomB);
@@ -4558,6 +4616,7 @@ function render({ model: S, el: I }) {
     const gRoute = zoomLayer.append("g").attr("class", "g-route");
     const gStn = zoomLayer.append("g").attr("class", "g-stn");
     const gBHub = zoomLayer.append("g").attr("class", "g-bhub");
+    gMetSel = zoomLayer.append("g").attr("class", "g-met");
     const gRxn = zoomLayer.append("g").attr("class", "g-rxn");
     const gLbl = zoomLayer.append("g").attr("class", "g-lbl").style("display", "none");
     const gHL = zoomLayer.append("g").attr("class", "g-hl");
@@ -4567,7 +4626,7 @@ function render({ model: S, el: I }) {
     gGuide.selectAll("path").data(data.guide_links).join("path").attr("d", (g) => `M${xS(g.x[0]).toFixed(1)} ${yS(g.y[0]).toFixed(1)} L${xS(g.x[1]).toFixed(1)} ${yS(g.y[1]).toFixed(1)}`).attr("stroke", "rgba(139,148,158,0.55)").attr("stroke-width", 0.9).attr("fill", "none").attr("stroke-dasharray", "4,3").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
     const railStyleById = /* @__PURE__ */ new Map();
     view0.rail_routes.forEach((rt) => railStyleById.set(rt.line_id, rt));
-    gRail.selectAll("path").data(data.rail_routes).join("path").attr("class", "rail-line").attr("d", (d) => polylinePath(d.path, xS, yS)).attr("stroke", (d) => railStyleById.get(d.line_id)?.color ?? "rgba(110,118,129,0.18)").attr("stroke-width", (d) => railStyleById.get(d.line_id)?.width ?? 0.8).attr("fill", "none").attr("stroke-linecap", "round").attr("stroke-linejoin", "round").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
+    gRail.selectAll("path").data(data.rail_routes).join("path").attr("class", "rail-line").attr("d", (d) => railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k)).attr("stroke", (d) => railStyleById.get(d.line_id)?.color ?? "rgba(110,118,129,0.18)").attr("stroke-width", (d) => railStyleById.get(d.line_id)?.width ?? 0.8).attr("fill", "none").attr("stroke-linecap", "round").attr("stroke-linejoin", "round").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
     gMetHitSel = gMetSel.selectAll("path.met-hit").data(data.met_nodes).join("path").attr("class", "met-hit").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", MET_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
     gMetSel.selectAll("path.met-shape").data(data.met_nodes).join("path").attr("class", "met-shape").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", (d) => d.display_kind === "stop" ? "#ffffff" : d.comp_color).attr("fill-opacity", (d) => d.display_kind === "stop" ? 1 : 0.85).attr("stroke", (d) => d.display_kind === "stop" ? d.comp_color : "#0d1117").attr("stroke-width", (d) => d.display_kind === "stop" ? 1.3 : 0.7).style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
     const routeData = [];

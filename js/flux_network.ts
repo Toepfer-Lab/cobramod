@@ -40,6 +40,8 @@ interface RxnSummary {
 interface RailRouteGeom {
   line_id: string; rxn_id: string; met_id: string;
   comp: string; stoich: number;
+  base_color: string;
+  seg_slots: number[];
   path: [number, number][];
 }
 interface StationLineGeom {
@@ -221,6 +223,70 @@ function polylinePath(
   return d;
 }
 
+// Rail path with pixel-constant lane offset.
+// Each segment is shifted right-perpendicularly by seg_slots[k] * LANE_W_PX
+// divided by the current zoom scale k_zoom, so the screen-pixel gap stays
+// constant as the user zooms. Miter intersections keep every segment truly
+// parallel; sharp corners fall back to a bevel midpoint.
+const LANE_W_PX = 3.5;
+function railOffsetPath(
+  pts: [number, number][],
+  seg_slots: number[],
+  xS: d3.ScaleLinear<number, number>,
+  yS: d3.ScaleLinear<number, number>,
+  k_zoom: number
+): string {
+  const n = pts.length;
+  if (n < 2) return '';
+  // SVG-pixel coordinates of the center-line path.
+  const sx = pts.map(p => xS(p[0]));
+  const sy = pts.map(p => yS(p[1]));
+  // Per-segment unit directions and right-hand normals in SVG-pixel space.
+  const ux: number[] = [], uy: number[] = [];
+  const nx: number[] = [], ny: number[] = [];
+  for (let k = 0; k < n - 1; k++) {
+    const dx = sx[k + 1] - sx[k], dy = sy[k + 1] - sy[k];
+    const len = Math.hypot(dx, dy) || 1;
+    ux.push(dx / len); uy.push(dy / len);
+    nx.push(dy / len); ny.push(-dx / len);  // right-hand ⊥
+  }
+  // Pixel offset per segment (constant in screen space regardless of zoom).
+  const off = seg_slots.map(s => (s * LANE_W_PX) / k_zoom);
+  // Build offset path vertices using miter joins at interior vertices.
+  const MITER_CAP = (4 * LANE_W_PX) / k_zoom;
+  const ox = new Float64Array(n);
+  const oy = new Float64Array(n);
+  // Endpoints: offset perpendicular to adjacent segment.
+  ox[0]   = sx[0]   + off[0]     * nx[0];
+  oy[0]   = sy[0]   + off[0]     * ny[0];
+  ox[n-1] = sx[n-1] + off[n-2]   * nx[n-2];
+  oy[n-1] = sy[n-1] + off[n-2]   * ny[n-2];
+  for (let k = 1; k < n - 1; k++) {
+    // Offset base points on each adjacent segment at vertex k.
+    const Ax = sx[k] + off[k-1] * nx[k-1], Ay = sy[k] + off[k-1] * ny[k-1];
+    const Bx = sx[k] + off[k]   * nx[k],   By = sy[k] + off[k]   * ny[k];
+    // Miter: intersect the two offset lines.
+    const cross = ux[k-1] * uy[k] - uy[k-1] * ux[k];
+    if (Math.abs(cross) < 1e-9) {
+      // Parallel — average.
+      ox[k] = (Ax + Bx) / 2; oy[k] = (Ay + By) / 2;
+    } else {
+      const ddx = Bx - Ax, ddy = By - Ay;
+      const t = (ddx * uy[k] - ddy * ux[k]) / cross;
+      const mx = Ax + t * ux[k-1], my = Ay + t * uy[k-1];
+      const dist = Math.hypot(mx - sx[k], my - sy[k]);
+      if (dist > MITER_CAP) {
+        ox[k] = (Ax + Bx) / 2; oy[k] = (Ay + By) / 2;
+      } else {
+        ox[k] = mx; oy[k] = my;
+      }
+    }
+  }
+  let d = `M${ox[0].toFixed(1)} ${oy[0].toFixed(1)}`;
+  for (let i = 1; i < n; i++) d += ` L${ox[i].toFixed(1)} ${oy[i].toFixed(1)}`;
+  return d;
+}
+
 // ── Tooltip HTML ──────────────────────────────────────────────────────────────
 
 function rxnTooltipHTML(h: HoverData): string {
@@ -335,9 +401,10 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   const RXN_HOVER_STROKE = 14;
 
   function metTransform(node: MetNode, transform: d3.ZoomTransform): string {
-    const sx = transform.applyX(xS(node.x)).toFixed(1);
-    const sy = transform.applyY(yS(node.y)).toFixed(1);
-    return `translate(${sx},${sy})`;
+    const tx = xS(node.x).toFixed(1);
+    const ty = yS(node.y).toFixed(1);
+    const inv = (1 / transform.k).toFixed(6);
+    return `matrix(${inv},0,0,${inv},${tx},${ty})`;
   }
 
   function updateMetZoom(transform: d3.ZoomTransform): void {
@@ -345,6 +412,14 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     gMetSel.selectAll<SVGPathElement, MetNode>('path.met-shape')
       .attr('transform', d => metTransform(d, transform));
     gMetHitSel?.attr('transform', d => metTransform(d, transform));
+  }
+
+  function updateRailZoom(transform: d3.ZoomTransform): void {
+    const zl = wrapper.querySelector<SVGGElement>('.zoom-layer');
+    if (!zl || !fig) return;
+    d3.select(zl).select('.g-rail')
+      .selectAll<SVGPathElement, RailRouteGeom>('path.rail-line')
+      .attr('d', d => railOffsetPath(d.path, d.seg_slots, xS, yS, transform.k));
   }
 
   function updateRxnZoom(transform: d3.ZoomTransform): void {
@@ -378,7 +453,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     wrapper.classList.toggle('light-mode', lightMode);
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
-    gMetSel = svg.insert<SVGGElement>('g', '.zoom-layer').attr('class', 'g-met');
     buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
     buildSearch(wrapper, data, svg.node()!, svgW, svgH);
     buildTooltip(wrapper);
@@ -395,6 +469,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
           rafId = null;
           updateRxnZoom(currentTransform);
           updateMetZoom(currentTransform);
+          updateRailZoom(currentTransform);
         });
       });
     svg.call(zoomB);
@@ -434,6 +509,9 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     const gRoute = zoomLayer.append<SVGGElement>('g').attr('class', 'g-route');
     const gStn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-stn');
     const gBHub  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-bhub');
+    // g-met is inside the zoom layer so it tracks pan/zoom correctly, but
+    // sits below g-rxn so reactions always paint on top of metabolite pills.
+    gMetSel      = zoomLayer.append<SVGGElement>('g').attr('class', 'g-met');
     const gRxn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rxn');
     const gLbl   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-lbl').style('display', 'none');
     const gHL    = zoomLayer.append<SVGGElement>('g').attr('class', 'g-hl');
@@ -480,7 +558,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     gRail.selectAll<SVGPathElement, RailRouteGeom>('path')
       .data(data.rail_routes).join('path')
       .attr('class', 'rail-line')
-      .attr('d', d => polylinePath(d.path, xS, yS))
+      .attr('d', d => railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k))
       .attr('stroke', d => railStyleById.get(d.line_id)?.color ?? 'rgba(110,118,129,0.18)')
       .attr('stroke-width', d => railStyleById.get(d.line_id)?.width ?? 0.8)
       .attr('fill', 'none')
