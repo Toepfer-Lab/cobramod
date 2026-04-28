@@ -16,11 +16,8 @@ interface RxnNode {
   border_width: number; opacity: number; r: number;
   symbol: string; hover: HoverData;
 }
-interface MetPosition { x: number; y: number; }
-interface EdgeGroup {
-  class: 'reg' | 'ss';
-  x: (number | null)[]; y: (number | null)[];
-  color: string; width: number;
+interface RailRouteView {
+  line_id: string; width: number; color: string;
 }
 interface StationLineView {
   klass: string;
@@ -34,11 +31,16 @@ interface StationViewEntry {
 }
 interface ViewData {
   label: string; rxn_nodes: RxnNode[];
-  met_positions: MetPosition[]; edge_groups: EdgeGroup[];
+  rail_routes: RailRouteView[];
   stations: StationViewEntry[];
 }
 interface RxnSummary {
   id: string; name: string; flux_per_view: string[];
+}
+interface RailRouteGeom {
+  line_id: string; rxn_id: string; met_id: string;
+  comp: string; stoich: number;
+  path: [number, number][];
 }
 interface StationLineGeom {
   klass: string;
@@ -65,12 +67,17 @@ interface InnerEdge {
   rxn_id: string; met_id: string;
   x: [number, number]; y: [number, number];
 }
-interface MetDatum {
-  node: MetNode; pos: MetPosition;
+interface RailHub {
+  x: number; y: number; role: string; routes: string[];
+}
+interface GuideLink {
+  node_id: string; node_type: 'rxn' | 'met';
+  x: [number, number]; y: [number, number];
 }
 interface MetNode {
-  id: string; name: string;
+  id: string; name: string; x: number; y: number;
   comp: string; comp_label: string; comp_color: string;
+  display_kind: 'stop' | 'detached';
   consumers: string[]; producers: string[];
 }
 interface Compartment {
@@ -86,13 +93,13 @@ interface Meta {
 interface Interactivity {
   view_labels: string[];
   rxn_ids: string[]; rxn_names: string[]; rxn_x: number[]; rxn_y: number[];
-  met_ids: string[]; met_names: string[];
-  met_flux_x: number[][]; met_flux_y: number[][];
+  met_ids: string[]; met_names: string[]; met_x: number[]; met_y: number[];
 }
 interface D3FigureData {
   meta: Meta; compartments: Compartment[];
   view_labels: string[]; views: ViewData[];
   met_nodes: MetNode[]; interactivity: Interactivity;
+  rail_routes: RailRouteGeom[]; rail_hubs: RailHub[]; guide_links: GuideLink[];
   stations: StationGeom[];
   branch_hubs: BranchHub[];
   inner_edges: InnerEdge[];
@@ -180,26 +187,14 @@ function symPath(symbol: string, r: number): string {
   }
 }
 
-// Fixed 4-pixel-radius diamond for metabolites
-function metPath(): string {
+function metPath(m: MetNode): string {
+  if (m.display_kind === 'stop') {
+    return d3.symbol(d3.symbolCircle, Math.PI * 20)(null) ?? '';
+  }
   return d3.symbol(d3.symbolDiamond, Math.PI * 16)(null) ?? '';
 }
 
 // ── Path utilities ────────────────────────────────────────────────────────────
-
-function edgePath(
-  xs: (number | null)[], ys: (number | null)[],
-  xS: d3.ScaleLinear<number, number>, yS: d3.ScaleLinear<number, number>
-): string {
-  let d = '', open = false;
-  for (let i = 0; i < xs.length; i++) {
-    if (xs[i] === null) { open = false; continue; }
-    const px = xS(xs[i]!).toFixed(1), py = yS(ys[i]!).toFixed(1);
-    d += open ? ` L${px} ${py}` : `M${px} ${py}`;
-    open = true;
-  }
-  return d;
-}
 
 function hullPath(
   verts: [number, number][],
@@ -298,6 +293,15 @@ function branchTooltipHTML(b: BranchHub): string {
   );
 }
 
+function railHubTooltipHTML(h: RailHub): string {
+  return (
+    `<b>${h.role}</b><br>` +
+    `<span class="ft-div">──────────────────────</span><br>` +
+    `<span style="color:#8b949e">Connected rails:</span><br>` +
+    h.routes.map(r => `<div style="margin-left:8px">${r.replace('->', ' → ')}</div>`).join('')
+  );
+}
+
 // ── Main render function ──────────────────────────────────────────────────────
 
 function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
@@ -318,7 +322,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   let tooltipEl: HTMLDivElement | null = null;
   let resizeTimer: ReturnType<typeof setTimeout> | null = null;
   let gMetSel: d3.Selection<SVGGElement, unknown, null, undefined> | null = null;
-  let gMetHitSel: d3.Selection<SVGPathElement, MetDatum, SVGGElement, unknown> | null = null;
+  let gMetHitSel: d3.Selection<SVGPathElement, MetNode, SVGGElement, unknown> | null = null;
   let gRxnSel: d3.Selection<SVGPathElement, RxnNode, SVGGElement, unknown> | null = null;
   let gRxnHitSel: d3.Selection<SVGPathElement, RxnNode, SVGGElement, unknown> | null = null;
   let currentTransform: d3.ZoomTransform = d3.zoomIdentity;
@@ -330,17 +334,17 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   const MET_HOVER_STROKE = 12;
   const RXN_HOVER_STROKE = 14;
 
-  function metTransform(pos: MetPosition, transform: d3.ZoomTransform): string {
-    const sx = transform.applyX(xS(pos.x)).toFixed(1);
-    const sy = transform.applyY(yS(pos.y)).toFixed(1);
+  function metTransform(node: MetNode, transform: d3.ZoomTransform): string {
+    const sx = transform.applyX(xS(node.x)).toFixed(1);
+    const sy = transform.applyY(yS(node.y)).toFixed(1);
     return `translate(${sx},${sy})`;
   }
 
   function updateMetZoom(transform: d3.ZoomTransform): void {
     if (!gMetSel) return;
-    gMetSel.selectAll<SVGPathElement, MetDatum>('path.met-shape')
-      .attr('transform', d => metTransform(d.pos, transform));
-    gMetHitSel?.attr('transform', d => metTransform(d.pos, transform));
+    gMetSel.selectAll<SVGPathElement, MetNode>('path.met-shape')
+      .attr('transform', d => metTransform(d, transform));
+    gMetHitSel?.attr('transform', d => metTransform(d, transform));
   }
 
   function updateRxnZoom(transform: d3.ZoomTransform): void {
@@ -374,7 +378,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     wrapper.classList.toggle('light-mode', lightMode);
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
-    gMetSel = svg.insert<SVGGElement>('g', '.zoom-layer').attr('class', 'g-met').style('display', 'none');
+    gMetSel = svg.insert<SVGGElement>('g', '.zoom-layer').attr('class', 'g-met');
     buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
     buildSearch(wrapper, data, svg.node()!, svgW, svgH);
     buildTooltip(wrapper);
@@ -423,12 +427,13 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     svgW: number
   ): void {
     const gComp  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-comp');
+    const gGuide = zoomLayer.append<SVGGElement>('g').attr('class', 'g-guide');
     const gInner = zoomLayer.append<SVGGElement>('g').attr('class', 'g-inner').style('display', 'none');
+    const gRail  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rail');
+    const gRHub  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rhub');
     const gRoute = zoomLayer.append<SVGGElement>('g').attr('class', 'g-route');
     const gStn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-stn');
     const gBHub  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-bhub');
-    const gSSEdge = zoomLayer.append<SVGGElement>('g').attr('class', 'g-ss').style('display', 'none');
-    const gEdge  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-edge');
     const gRxn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rxn');
     const gLbl   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-lbl').style('display', 'none');
     const gHL    = zoomLayer.append<SVGGElement>('g').attr('class', 'g-hl');
@@ -459,62 +464,57 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .style('pointer-events', 'none')
       .text(c => c.label);
 
-    // Edges (view 0)
-    const regEgs = view0.edge_groups.filter(e => e.class === 'reg');
-    const ssEgs  = view0.edge_groups.filter(e => e.class === 'ss');
-
-    gEdge.selectAll<SVGPathElement, EdgeGroup>('path')
-      .data(regEgs).join('path')
-      .attr('d', eg => edgePath(eg.x, eg.y, xS, yS))
-      .attr('stroke', eg => eg.color)
-      .attr('stroke-width', eg => eg.width)
-      .attr('fill', 'none')
-      .attr('stroke-linecap', 'round')
-      .attr('vector-effect', 'non-scaling-stroke')
-      .style('pointer-events', 'none');
-
-    gSSEdge.selectAll<SVGPathElement, EdgeGroup>('path')
-      .data(ssEgs).join('path')
-      .attr('d', eg => edgePath(eg.x, eg.y, xS, yS))
-      .attr('stroke', eg => eg.color)
-      .attr('stroke-width', eg => eg.width)
+    gGuide.selectAll<SVGPathElement, GuideLink>('path')
+      .data(data.guide_links).join('path')
+      .attr('d', g => `M${xS(g.x[0]).toFixed(1)} ${yS(g.y[0]).toFixed(1)} L${xS(g.x[1]).toFixed(1)} ${yS(g.y[1]).toFixed(1)}`)
+      .attr('stroke', 'rgba(139,148,158,0.55)')
+      .attr('stroke-width', 0.9)
       .attr('fill', 'none')
       .attr('stroke-dasharray', '4,3')
-      .attr('stroke-linecap', 'round')
       .attr('vector-effect', 'non-scaling-stroke')
       .style('pointer-events', 'none');
 
-    // Metabolites (initially hidden)
-    const metData: MetDatum[] = data.met_nodes.map((node, i) => ({
-      node, pos: view0.met_positions[i],
-    }));
+    const railStyleById = new Map<string, RailRouteView>();
+    view0.rail_routes.forEach(rt => railStyleById.set(rt.line_id, rt));
 
-    gMetHitSel = gMetSel!.selectAll<SVGPathElement, MetDatum>('path.met-hit')
-      .data(metData).join('path')
+    gRail.selectAll<SVGPathElement, RailRouteGeom>('path')
+      .data(data.rail_routes).join('path')
+      .attr('class', 'rail-line')
+      .attr('d', d => polylinePath(d.path, xS, yS))
+      .attr('stroke', d => railStyleById.get(d.line_id)?.color ?? 'rgba(110,118,129,0.18)')
+      .attr('stroke-width', d => railStyleById.get(d.line_id)?.width ?? 0.8)
+      .attr('fill', 'none')
+      .attr('stroke-linecap', 'round')
+      .attr('stroke-linejoin', 'round')
+      .attr('vector-effect', 'non-scaling-stroke')
+      .style('pointer-events', 'none');
+
+    gMetHitSel = gMetSel!.selectAll<SVGPathElement, MetNode>('path.met-hit')
+      .data(data.met_nodes).join('path')
       .attr('class', 'met-hit')
-      .attr('d', metPath())
-      .attr('transform', d => metTransform(d.pos, currentTransform))
+      .attr('d', d => metPath(d))
+      .attr('transform', d => metTransform(d, currentTransform))
       .attr('fill', 'transparent')
       .attr('stroke', 'transparent')
       .attr('stroke-width', MET_HOVER_STROKE)
       .attr('vector-effect', 'non-scaling-stroke')
       .style('pointer-events', 'all')
       .style('cursor', 'default')
-      .on('mouseover', (ev: MouseEvent, d) => showTT(ev, metTooltipHTML(d.node), d.node.comp_color))
+      .on('mouseover', (ev: MouseEvent, d) => showTT(ev, metTooltipHTML(d), d.comp_color))
       .on('mousemove', moveTT)
       .on('mouseout', hideTT);
 
-    gMetSel!.selectAll<SVGPathElement, MetDatum>('path.met-shape')
-      .data(metData).join('path')
+    gMetSel!.selectAll<SVGPathElement, MetNode>('path.met-shape')
+      .data(data.met_nodes).join('path')
       .attr('class', 'met-shape')
-      .attr('d', metPath())
-      .attr('transform', d => metTransform(d.pos, currentTransform))
-      .attr('fill', d => d.node.comp_color)
-      .attr('fill-opacity', 0.85)
-      .attr('stroke', '#0d1117')
-      .attr('stroke-width', 0.7)
+      .attr('d', d => metPath(d))
+      .attr('transform', d => metTransform(d, currentTransform))
+      .attr('fill', d => d.display_kind === 'stop' ? '#ffffff' : d.comp_color)
+      .attr('fill-opacity', d => d.display_kind === 'stop' ? 1.0 : 0.85)
+      .attr('stroke', d => d.display_kind === 'stop' ? d.comp_color : '#0d1117')
+      .attr('stroke-width', d => d.display_kind === 'stop' ? 1.3 : 0.7)
       .style('cursor', 'default')
-      .on('mouseover', (ev: MouseEvent, d) => showTT(ev, metTooltipHTML(d.node), d.node.comp_color))
+      .on('mouseover', (ev: MouseEvent, d) => showTT(ev, metTooltipHTML(d), d.comp_color))
       .on('mousemove', moveTT)
       .on('mouseout',  hideTT);
 
@@ -613,23 +613,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
           p.side === 'a' ? p.st.comp_a_color : p.st.comp_b_color))
       .on('mousemove', moveTT)
       .on('mouseout', hideTT);
-
-    // Station labels — printed beside the pill at right angles to the tangent.
-    gStn.selectAll<SVGTextElement, PillDatum>('text.stn-lbl')
-      .data(pillData).join('text')
-      .attr('class', 'stn-lbl')
-      .attr('text-anchor', 'middle')
-      .attr('font-size', 9)
-      .attr('font-family', "'Inter',Arial,sans-serif")
-      .attr('font-weight', 600)
-      .attr('fill', p => p.side === 'a' ? p.st.comp_a_color : p.st.comp_b_color)
-      .attr('transform', p => {
-        const a = p.side === 'a' ? p.st.anchor_a : p.st.anchor_b;
-        return `translate(${xS(a[0]).toFixed(1)},${(yS(a[1]) - pillPixelHeight(p) / 2 - 4).toFixed(1)})`;
-      })
-      .style('pointer-events', 'none')
-      .text(p => p.side === 'a' ? p.st.comp_a_label : p.st.comp_b_label);
-
     // ── Branch hubs (small pills at divergence points) ──
     gBHub.selectAll<SVGRectElement, BranchHub>('rect.bhub')
       .data(data.branch_hubs).join('rect')
@@ -738,7 +721,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     }
 
     // Metabolites
-    mkToggle(bar, 'Metabolites', 'Show', 'Hide', false, on => {
+    mkToggle(bar, 'Metabolites', 'Show', 'Hide', true, on => {
       gMetSel!.style('display', on ? '' : 'none');
     });
 
@@ -818,20 +801,15 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     const zl = wrapper.querySelector<SVGGElement>('.zoom-layer');
     if (!zl) return;
 
-    const regEgs = view.edge_groups.filter(e => e.class === 'reg');
-    const ssEgs  = view.edge_groups.filter(e => e.class === 'ss');
-
-    d3.select(zl).select('.g-edge').selectAll<SVGPathElement, EdgeGroup>('path')
-      .data(regEgs)
-      .attr('d', eg => edgePath(eg.x, eg.y, xS, yS))
-      .attr('stroke', eg => eg.color)
-      .attr('stroke-width', eg => eg.width);
-
-    d3.select(zl).select('.g-ss').selectAll<SVGPathElement, EdgeGroup>('path')
-      .data(ssEgs)
-      .attr('d', eg => edgePath(eg.x, eg.y, xS, yS))
-      .attr('stroke', eg => eg.color)
-      .attr('stroke-width', eg => eg.width);
+    const railViewById = new Map<string, RailRouteView>();
+    view.rail_routes.forEach(rt => railViewById.set(rt.line_id, rt));
+    d3.select(zl).select('.g-rail').selectAll<SVGPathElement, RailRouteGeom>('path.rail-line')
+      .each(function(d: RailRouteGeom) {
+        const rv = railViewById.get(d.line_id);
+        d3.select(this)
+          .attr('stroke', rv?.color ?? 'rgba(110,118,129,0.18)')
+          .attr('stroke-width', rv?.width ?? 0.8);
+      });
 
     d3.select(zl).select('.g-rxn').selectAll<SVGPathElement, RxnNode>('path.rxn-shape')
       .data(view.rxn_nodes)
@@ -851,16 +829,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
           d3.select(this).attr('stroke', '#6e7681').attr('stroke-width', 1);
         }
       });
-
-    const metData: MetDatum[] = fig.met_nodes.map((node, i) => ({
-      node, pos: view.met_positions[i],
-    }));
-    gMetSel!.selectAll<SVGPathElement, MetDatum>('path.met-shape')
-      .data(metData)
-      .attr('transform', d => metTransform(d.pos, currentTransform));
-    gMetHitSel!
-      .data(metData)
-      .attr('transform', d => metTransform(d.pos, currentTransform));
 
     gRxnHitSel!
       .data(view.rxn_nodes)
@@ -1020,8 +988,8 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
 
     function rxnPX(i: number): number { return xS(ia.rxn_x[i]); }
     function rxnPY(i: number): number { return yS(ia.rxn_y[i]); }
-    function metPX(i: number): number { return xS(ia.met_flux_x[currentView][i]); }
-    function metPY(i: number): number { return yS(ia.met_flux_y[currentView][i]); }
+    function metPX(i: number): number { return xS(ia.met_x[i]); }
+    function metPY(i: number): number { return yS(ia.met_y[i]); }
 
     function selectResult(type: 'rxn' | 'met', idx: number): void {
       const px = type === 'rxn' ? rxnPX(idx) : metPX(idx);

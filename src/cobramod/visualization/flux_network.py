@@ -23,6 +23,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections import defaultdict
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 from importlib import resources
@@ -42,9 +43,9 @@ import cobra
 import networkx as nx
 import numpy as np
 import pandas as pd
+import plotly.graph_objects as go
 from cobra import Solution
 from scipy.spatial import ConvexHull
-from scipy.sparse import csr_matrix
 from traitlets import traitlets
 
 
@@ -53,8 +54,6 @@ from traitlets import traitlets
 # ==========================================================================
 
 ACTIVE_EDGE_EPS = 1e-6
-MIN_MET_RXN_DIST = 0.5
-MIN_MET_EDGE_DIST = 0.5
 EDGE_BINS = 6
 _MET_COLOR = "#58a6ff"
 EDGE_LOG_STRETCH = 99.0
@@ -236,214 +235,50 @@ def _has_flux_data(flux: float) -> bool:
 def _emit_progress(message: str) -> None:
     print(f"FLoV: {message}", flush=True)
 
+
+def _parse_spread(
+    value: Union[float, int, str],
+) -> tuple[float, float, float, float]:
+    """Parse a spread specification into ``(u, d, l, r)`` scale factors.
+
+    Accepts:
+
+    * A plain number – applies uniformly in all four directions.
+    * A string of one or more ``<number><direction>`` tokens (case-insensitive,
+      optional whitespace between tokens).  Direction letters are
+      ``u`` (up / +y), ``d`` (down / -y), ``l`` (left / -x),
+      ``r`` (right / +x).  Any direction not mentioned defaults to ``1.0``
+      (no change).  Examples::
+
+          "2u"          # double distance upward, keep everything else
+          "2u1.5r"      # spread up ×2, right ×1.5
+          "2u 0.8d 1.5r 1.2l"  # all four directions independently
+    """
+    if isinstance(value, (int, float)):
+        s = float(value)
+        return s, s, s, s
+    s = str(value).strip()
+    # Try plain numeric string first
+    try:
+        v = float(s)
+        return v, v, v, v
+    except ValueError:
+        pass
+    tokens = re.findall(r'([0-9]*\.?[0-9]+)\s*([udlrUDLR])', s)
+    if not tokens:
+        raise ValueError(
+            f"Invalid spread value {value!r}. "
+            "Use a number or tokens like '2u', '1.5r', '2u1.5l'."
+        )
+    result: dict[str, float] = {"u": 1.0, "d": 1.0, "l": 1.0, "r": 1.0}
+    for num_str, direction in tokens:
+        result[direction.lower()] = float(num_str)
+    return result["u"], result["d"], result["l"], result["r"]
+
+
 # ==========================================================================
 # LAYOUT HELPERS
 # ==========================================================================
-
-def _push_away_from_reactions(
-    mx: float, my: float, rxn_nbrs: list[str], met_id: str,
-    pos: dict, collision_modifier: float,
-) -> tuple[float, float]:
-    dist_req = MIN_MET_RXN_DIST * collision_modifier
-    for rxn_id in rxn_nbrs:
-        rx, ry = pos[rxn_id]
-        if float(np.hypot(mx - rx, my - ry)) < dist_req:
-            angle = np.pi * _stable_unit(met_id)
-            return (
-                rx + dist_req * float(np.cos(angle)),
-                ry + dist_req * float(np.sin(angle)),
-            )
-    return mx, my
-
-
-def _batch_point_to_segment_dist(
-    px: float, py: float,
-    ax: np.ndarray, ay: np.ndarray,
-    bx: np.ndarray, by: np.ndarray,
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Vectorised: compute distance from point (px, py) to each of S segments.
-
-    Parameters
-    ----------
-    ax, ay : (S,) arrays — segment start points
-    bx, by : (S,) arrays — segment end points
-
-    Returns
-    -------
-    dist, cx, cy : (S,) arrays — distance and closest point on each segment
-    """
-    dx, dy = bx - ax, by - ay
-    seg_len_sq = dx * dx + dy * dy
-    safe = seg_len_sq > 1e-12
-    t = np.where(
-        safe,
-        np.clip(
-            ((px - ax) * dx + (py - ay) * dy) / np.where(safe, seg_len_sq, 1.0),
-            0.0, 1.0,
-        ),
-        0.0,
-    )
-    cx, cy = ax + t * dx, ay + t * dy
-    return np.hypot(px - cx, py - cy), cx, cy
-
-
-def _resolve_edge_collisions(
-    met_pos: dict[str, tuple[float, float]],
-    met_nodes: list[str],
-    G: nx.Graph,
-    pos: dict,
-    collision_modifier: float,
-    iterations: int = 3,
-) -> dict[str, tuple[float, float]]:
-    """Push metabolites away from edges that belong to other metabolites.
-
-    The inner per-segment loop is replaced by a single call to
-    `_batch_point_to_segment_dist` per metabolite per iteration.
-    """
-    met_rxn_adj: dict[str, set[str]] = {m: set() for m in met_nodes}
-    for n1, n2 in G.edges():
-        if G.nodes[n1]["ntype"] == "rxn" and G.nodes[n2]["ntype"] == "met":
-            met_rxn_adj[n2].add(n1)
-        elif G.nodes[n2]["ntype"] == "rxn" and G.nodes[n1]["ntype"] == "met":
-            met_rxn_adj[n1].add(n2)
-
-    # Pre-build flat segment arrays.  Segment k = edge from seg_rxn[k] → seg_met[k].
-    # seg_owner[k] is the metabolite that "owns" the edge (i.e. met_pos endpoint).
-    seg_owner_list: list[str] = []
-    seg_rxn_list: list[str] = []
-    seg_ax_list: list[float] = []
-    seg_ay_list: list[float] = []
-
-    for m2_id in met_nodes:
-        for rxn_id in met_rxn_adj[m2_id]:
-            if rxn_id not in pos:
-                continue
-            seg_owner_list.append(m2_id)
-            seg_rxn_list.append(rxn_id)
-            seg_ax_list.append(pos[rxn_id][0])
-            seg_ay_list.append(pos[rxn_id][1])
-
-    if not seg_owner_list:
-        return met_pos
-
-    # Use integer index arrays instead of string object arrays for fast comparisons
-    met_to_int: dict[str, int] = {m: i for i, m in enumerate(met_nodes)}
-    # Build a global reaction ID → integer mapping over all segments
-    all_seg_rxns = list(dict.fromkeys(seg_rxn_list))  # unique, order-preserving
-    rxn_to_int: dict[str, int] = {r: i for i, r in enumerate(all_seg_rxns)}
-
-    seg_ax = np.array(seg_ax_list, dtype=float)
-    seg_ay = np.array(seg_ay_list, dtype=float)
-    seg_owner_int = np.array([met_to_int[m] for m in seg_owner_list], dtype=np.intp)
-    seg_rxn_int = np.array([rxn_to_int[r] for r in seg_rxn_list], dtype=np.intp)
-
-    # B endpoints (metabolite positions) — updated via fancy-index each iteration
-    # met_pos_arr[i] = (x, y) of met_nodes[i]; kept in sync with met_pos dict
-    met_pos_arr = np.array([met_pos[m] for m in met_nodes], dtype=float)  # (M, 2)
-    seg_bx = met_pos_arr[seg_owner_int, 0].copy()
-    seg_by = met_pos_arr[seg_owner_int, 1].copy()
-
-    dist_req = MIN_MET_EDGE_DIST * collision_modifier
-
-    for _ in range(iterations):
-        # Refresh B endpoints in one fancy-index read (no Python loop)
-        seg_bx[:] = met_pos_arr[seg_owner_int, 0]
-        seg_by[:] = met_pos_arr[seg_owner_int, 1]
-
-        next_arr = met_pos_arr.copy()
-        for i, met_id in enumerate(met_nodes):
-            mx, my = float(met_pos_arr[i, 0]), float(met_pos_arr[i, 1])
-            own_rxns_int = np.array([rxn_to_int[r] for r in met_rxn_adj[met_id]
-                                     if r in rxn_to_int], dtype=np.intp)
-
-            # Mask: exclude segments owned by this metabolite or sharing its reactions
-            mask = (seg_owner_int != i)
-            if own_rxns_int.size:
-                mask &= ~np.isin(seg_rxn_int, own_rxns_int)
-            if not mask.any():
-                continue
-
-            dists, cx_arr, cy_arr = _batch_point_to_segment_dist(
-                mx, my,
-                seg_ax[mask], seg_ay[mask],
-                seg_bx[mask], seg_by[mask],
-            )
-
-            closest = int(np.argmin(dists))
-            if dists[closest] >= dist_req:
-                continue
-
-            best_cx, best_cy = float(cx_arr[closest]), float(cy_arr[closest])
-            dx, dy = mx - best_cx, my - best_cy
-            d = float(np.hypot(dx, dy))
-            if d < 1e-9:
-                angle = np.pi * _stable_unit(met_id)
-                dx, dy = float(np.cos(angle)), float(np.sin(angle))
-            else:
-                dx /= d
-                dy /= d
-            next_arr[i, 0] = best_cx + dist_req * dx
-            next_arr[i, 1] = best_cy + dist_req * dy
-
-        met_pos_arr = next_arr
-    # Convert back to dict
-    return {met_nodes[i]: (float(met_pos_arr[i, 0]), float(met_pos_arr[i, 1]))
-            for i in range(len(met_nodes))}
-
-
-def _resolve_rxn_overlaps(
-    pos: dict,
-    rxn_nodes: list[str],
-    x0: float, x1: float, y0: float, y1: float,
-    min_dist: float = 0.1,
-    iterations: int = 30,
-    margin: float = 0.05,
-) -> dict:
-    """Push reaction nodes apart so they don't visually overlap, then clip
-    them back inside their compartment region.
-
-    Uses a Jacobi-style vectorised update: all pairwise displacements are
-    computed from the start-of-iteration positions and applied simultaneously,
-    eliminating the O(R²) Python loop.
-    """
-    pos = dict(pos)
-    rxns = [r for r in rxn_nodes if r in pos]
-    n = len(rxns)
-    if n < 2:
-        return pos
-
-    coords = np.array([pos[r] for r in rxns], dtype=float)  # (N, 2)
-
-    for _ in range(iterations):
-        # diff[i, j] = coords[j] - coords[i]  →  (N, N, 2)
-        diff = coords[np.newaxis, :, :] - coords[:, np.newaxis, :]
-        dist = np.hypot(diff[..., 0], diff[..., 1])          # (N, N)
-
-        needs = np.triu((dist < min_dist) & (dist > 1e-9), k=1)
-        if not needs.any():
-            break
-
-        with np.errstate(divide="ignore", invalid="ignore"):
-            nd = np.where(
-                dist[..., np.newaxis] > 1e-9,
-                diff / dist[..., np.newaxis],
-                0.0,
-            )  # (N, N, 2) normalised direction i→j
-
-        # push[i,j] = half-overlap for pairs that need separating (upper tri)
-        push = np.where(needs, (min_dist - dist) * 0.5, 0.0)
-        push_sym = push + push.T  # make symmetric so both i→j and j→i contribute
-
-        # displace[i] = -Σ_j  nd[i,j] * push_sym[i,j]
-        # (i is pushed away from every j that is too close)
-        coords -= (nd * push_sym[..., np.newaxis]).sum(axis=1)
-
-    coords[:, 0] = np.clip(coords[:, 0], x0 + margin, x1 - margin)
-    coords[:, 1] = np.clip(coords[:, 1], y0 + margin, y1 - margin)
-    for i, r in enumerate(rxns):
-        pos[r] = (float(coords[i, 0]), float(coords[i, 1]))
-    return pos
-
 
 def _fruchterman_reingold(
     G: nx.Graph,
@@ -562,118 +397,8 @@ def _scale_to_region(
     ys_s = y0 + pad * (y1 - y0) + ys_n * h
     return {n: (float(xs_s[i]), float(ys_s[i])) for i, n in enumerate(lp)}
 
-
-def _flux_weighted_met_positions(
-    edge_flux: dict[str, float],
-    met_nodes: list[str],
-    G: nx.Graph,
-    pos: dict,
-    collision_modifier: float,
-    cfg: Optional[dict] = None,
-    effective_region=None,
-    drop_protons: bool = False,
-    drop_biomass: bool = False,
-) -> dict[str, tuple[float, float]]:
-    compartments = cfg["compartments"] if cfg else {}
-    M = len(met_nodes)
-
-    # All reactions that have a known position — used as the column index space.
-    all_rxns = [r for r in pos if r not in set(met_nodes)]
-    R = len(all_rxns)
-    rxn_idx = {r: i for i, r in enumerate(all_rxns)}
-    rxn_coords = np.array([[pos[r][0], pos[r][1]] for r in all_rxns], dtype=float)  # (R, 2)
-
-    # Build a sparse (M, R) weight matrix in COO format, then convert to CSR.
-    # Only same-compartment neighbours receive weight — cross-compartment
-    # reactions never influence a metabolite's position.
-    # For large models (e.g. Recon3D) the dense matrix would be ~630 MB;
-    # the sparse representation holds only O(M × avg_connections) entries.
-    rows: list[int] = []
-    cols: list[int] = []
-    vals: list[float] = []
-    met_comp_list: list[str] = []
-    for i, met_id in enumerate(met_nodes):
-        met_c = G.nodes[met_id].get("comp", "")
-        met_comp_list.append(met_c)
-        # Same-compartment neighbours only — no cross-compartment fallback.
-        nbrs = [r for r in G.neighbors(met_id)
-                if G.nodes[r]["ntype"] == "rxn" and r in rxn_idx
-                and G.nodes[r].get("comp") == met_c
-                and not (drop_biomass and G.nodes[r].get("kind") == "biomass")]
-        for r in nbrs:
-            f = edge_flux.get(r, np.nan)
-            w = (abs(float(f)) + 0.01) ** 3 if _has_flux_data(float(f)) else 0.02 ** 3
-            rows.append(i)
-            cols.append(rxn_idx[r])
-            vals.append(w)
-
-    W = csr_matrix(
-        (np.array(vals, dtype=float), (rows, cols)),
-        shape=(M, R),
-    )
-
-    # Compute all flux-weighted centroids in one sparse matrix multiply.
-    row_sums = np.asarray(W.sum(axis=1)).ravel()          # (M,)
-    has_weight = row_sums > 0
-    centroids = np.zeros((M, 2), dtype=float)
-    if has_weight.any():
-        centroids[has_weight] = (
-            (W[has_weight] @ rxn_coords)
-            / row_sums[has_weight, np.newaxis]
-        )
-    # Fallback for metabolites with no same-compartment neighbours: place at
-    # the compartment centre instead of pulling cross-compartment.
-    for i in np.where(~has_weight)[0]:
-        met_c = met_comp_list[i]
-        if effective_region and met_c in compartments:
-            x0_, x1_, y0_, y1_ = effective_region(met_c)
-            centroids[i] = ((x0_ + x1_) / 2.0, (y0_ + y1_) / 2.0)
-        else:
-            centroids[i] = pos.get(met_nodes[i], (0.0, 0.0))
-
-    met_pos: dict[str, tuple[float, float]] = {
-        met_nodes[i]: (float(centroids[i, 0]), float(centroids[i, 1]))
-        for i in range(M)
-    }
-
-    for met_id in met_nodes:
-        if drop_protons and G.nodes[met_id].get("is_proton", False):
-            continue
-        met_c = G.nodes[met_id].get("comp", "")
-        rxn_nbrs = [r for r in G.neighbors(met_id)
-                    if G.nodes[r]["ntype"] == "rxn" and r in pos
-                    and G.nodes[r].get("comp") == met_c
-                    and not (drop_biomass and G.nodes[r].get("kind") == "biomass")]
-        if not rxn_nbrs:
-            continue
-        mx, my = met_pos[met_id]
-        ucx = float(np.mean([pos[r][0] for r in rxn_nbrs]))
-        ucy = float(np.mean([pos[r][1] for r in rxn_nbrs]))
-        dist_req = 0.22 * collision_modifier
-        for rxn_id in rxn_nbrs:
-            rx, ry = pos[rxn_id]
-            d = float(np.hypot(mx - rx, my - ry))
-            if d < dist_req:
-                pull_dx, pull_dy = ucx - rx, ucy - ry
-                pull_d = float(np.hypot(pull_dx, pull_dy))
-                if pull_d > 1e-6:
-                    mx = rx + dist_req * (pull_dx / pull_d)
-                    my = ry + dist_req * (pull_dy / pull_d)
-                else:
-                    if d > 1e-9:
-                        mx = rx + dist_req * ((mx - rx) / d)
-                        my = ry + dist_req * ((my - ry) / d)
-                    else:
-                        angle = np.pi * _stable_unit(met_id)
-                        mx = rx + dist_req * float(np.cos(angle))
-                        my = ry + dist_req * float(np.sin(angle))
-        met_pos[met_id] = (mx, my)
-
-    return met_pos
-
-
 # ==========================================================================
-# EDGE HELPERS
+# EDGE / FLUX STYLE HELPERS
 # ==========================================================================
 
 def _edge_bucket(flux: float, abs_max: float) -> tuple[int, float, int]:
@@ -725,62 +450,6 @@ def _flux_to_hex(flux: float, abs_max: float) -> str:
         g = int(202 + (101 - 202) * t)
         b_ = int(249 + (192 - 249) * t)
     return f"#{r:02x}{g:02x}{b_:02x}"
-
-
-def _edge_coords(
-    pairs: list[tuple[str, str]],
-    met_positions: dict[str, tuple[float, float]],
-    pos: dict,
-) -> tuple[list[float | None], list[float | None], list[str]]:
-    ex, ey = [], []
-    met_ids: list[str] = []
-    for rxn_id, met_id in pairs:
-        x0_, y0_ = pos[rxn_id]
-        x1_, y1_ = met_positions.get(met_id, pos.get(met_id, (0.0, 0.0)))
-        ex.extend([x0_, x1_, None])
-        ey.extend([y0_, y1_, None])
-        met_ids.append(met_id)
-    return ex, ey, met_ids
-
-
-def _build_edge_coords_for_view(
-    edge_flux: dict[str, float],
-    met_positions: dict[str, tuple[float, float]],
-    oriented_edges: list[tuple[str, str, str, float]],
-    pos: dict,
-    scale_by_stoich: bool = False,
-) -> tuple[list[list[float | None]], list[list[float | None]], list[list[str]]]:
-    if scale_by_stoich:
-        scaled = [abs(stoich) * abs(float(edge_flux[rxn_id]))
-                  for _, rxn_id, _, stoich in oriented_edges
-                  if rxn_id in edge_flux and _has_flux_data(float(edge_flux[rxn_id]))]
-        abs_max = max(float(np.nanmax(scaled)) if scaled else 1.0, 1e-9)
-    else:
-        valid = [abs(v) for v in edge_flux.values() if _has_flux_data(float(v))]
-        abs_max = max(float(np.nanmax(valid)) if valid else 1.0, 1e-9)
-
-    buckets: dict[tuple[str, int, int], list[tuple[str, str]]] = {}
-    for edge_class, rxn_id, met_id, stoich in oriented_edges:
-        f = edge_flux.get(rxn_id, np.nan)
-        if not _has_flux_data(float(f)):
-            continue
-        f_eff = float(f) * abs(stoich) if scale_by_stoich else float(f)
-        b, _, sign = _edge_bucket(f_eff, abs_max)
-        buckets.setdefault((edge_class, b, sign), []).append((rxn_id, met_id))
-
-    x_lists: list[list[float | None]] = []
-    y_lists: list[list[float | None]] = []
-    met_id_lists: list[list[str]] = []
-    for edge_class in ("reg", "ss"):
-        for sign in (1, -1):
-            for b in range(EDGE_BINS):
-                pairs = buckets.get((edge_class, b, sign), [])
-                ex, ey, met_ids = _edge_coords(pairs, met_positions, pos)
-                x_lists.append(ex if ex else [None])
-                y_lists.append(ey if ey else [None])
-                met_id_lists.append(met_ids)
-    return x_lists, y_lists, met_id_lists
-
 
 # ==========================================================================
 # COLOUR HELPERS
@@ -857,7 +526,7 @@ _LINE_KLASS_COLORS: dict[str, str] = {
     "sugar":      "#f59e0b",  # amber
     "cofactor":   "#a855f7",  # purple
     "inorganic":  "#06b6d4",  # cyan
-    "other":      "#ec4899",  # pink
+    "other":      "#B9B84E",  # yellowish
 }
 _LINE_KLASS_INACTIVE = "#6e7681"
 MAX_LINES_PER_PAIR = 10
@@ -1029,7 +698,10 @@ _BEND_PENALTY = 0.4
 
 
 def _a_star_grid(
-    start: tuple[int, int], end: tuple[int, int], forbidden: np.ndarray,
+    start: tuple[int, int],
+    end: tuple[int, int],
+    forbidden: np.ndarray,
+    cell_penalty: Optional[np.ndarray] = None,
 ) -> Optional[list[tuple[int, int]]]:
     """8-direction A* with bend penalty. Returns cell list start→end or None.
 
@@ -1044,6 +716,8 @@ def _a_star_grid(
         return None
     if forbidden[start] or forbidden[end]:
         return None
+    if cell_penalty is not None and cell_penalty.shape != forbidden.shape:
+        raise ValueError("cell_penalty must match forbidden.shape")
 
     def heuristic(c: tuple[int, int]) -> float:
         dx = abs(c[1] - end[1]); dy = abs(c[0] - end[0])
@@ -1076,6 +750,8 @@ def _a_star_grid(
             if forbidden[nr, nc] and (nr, nc) != end:
                 continue
             ng = g + _DIR_COSTS[di]
+            if cell_penalty is not None:
+                ng += float(cell_penalty[nr, nc])
             if prev_di != -1 and prev_di != di:
                 ng += _BEND_PENALTY
             ns = ((nr, nc), di)
@@ -1192,6 +868,62 @@ def _detect_branch_hubs(
             "branches": [s[0].pair_id for s in group],
         })
     return branch_pts
+
+
+def _nearest_open_cell(
+    target_xy: tuple[float, float],
+    allowed_cells: np.ndarray,
+    allowed_xy: np.ndarray,
+    reserved: set[tuple[int, int]],
+) -> Optional[tuple[int, int]]:
+    """Nearest allowed cell to ``target_xy`` that is not reserved."""
+    if allowed_cells.size == 0:
+        return None
+    if reserved:
+        free_mask = np.array(
+            [(int(rc[0]), int(rc[1])) not in reserved for rc in allowed_cells],
+            dtype=bool,
+        )
+        if not free_mask.any():
+            return None
+        free_cells = allowed_cells[free_mask]
+        free_xy = allowed_xy[free_mask]
+    else:
+        free_cells = allowed_cells
+        free_xy = allowed_xy
+    deltas = free_xy - np.asarray(target_xy, dtype=float)
+    idx = int(np.argmin(np.einsum("ij,ij->i", deltas, deltas)))
+    row, col = free_cells[idx]
+    return int(row), int(col)
+
+
+def _detect_route_hubs(
+    route_cells: dict[str, list[tuple[int, int]]],
+    excluded_cells: set[tuple[int, int]],
+    to_xy,
+) -> list[dict]:
+    """Detect small merge/diverge hubs from routed cell topology."""
+    neighbors: dict[tuple[int, int], set[tuple[int, int]]] = defaultdict(set)
+    route_map: dict[tuple[int, int], set[str]] = defaultdict(set)
+    for line_id, cells in route_cells.items():
+        for cell in cells:
+            route_map[cell].add(line_id)
+        for a, b in zip(cells, cells[1:]):
+            neighbors[a].add(b)
+            neighbors[b].add(a)
+    hubs: list[dict] = []
+    for cell, nbrs in neighbors.items():
+        if cell in excluded_cells or len(nbrs) <= 2:
+            continue
+        x, y = to_xy(cell)
+        hubs.append({
+            "x": float(x),
+            "y": float(y),
+            "role": "merge/diverge",
+            "routes": sorted(route_map[cell]),
+        })
+    hubs.sort(key=lambda h: (h["x"], h["y"]))
+    return hubs
 
 
 # ==========================================================================
@@ -1400,7 +1132,6 @@ class FLoV(anywidget.AnyWidget):
         stoich_flux: bool = False,
         scale_compartments: bool = False,
         hull_tension: float = 0.4,
-        collision_modifier: float = 0.001,
         density_scale: Optional[float] = None,
         color_modifier: float = 1.0,
         **kwargs,
@@ -1431,9 +1162,9 @@ class FLoV(anywidget.AnyWidget):
         self._drop_biomass = drop_biomass
         self._stoich_flux = stoich_flux
         self._scale_compartments = scale_compartments
-        self._spread = 1.0
+        self._spread: tuple[float, float, float, float] = (1.0, 1.0, 1.0, 1.0)
+        self._radial_spread = 1.0
         self._hull_tension = hull_tension
-        self._collision_modifier = collision_modifier
         self._density_scale = density_scale
         self._color_modifier = color_modifier
         self._ignored_rxns: set[str] = set()
@@ -1516,23 +1247,50 @@ class FLoV(anywidget.AnyWidget):
         self._trigger("layout")
 
     @property
-    def spread(self) -> float:
-        """Scale factor for distances between compartment centers (1.0 = original)."""
-        return self._spread
+    def spread(self) -> Union[float, str]:
+        """Scale factor(s) for inter-compartment distances.
+
+        Accepts a plain number (applies uniformly) **or** a string of
+        ``<number><direction>`` tokens where direction is one of
+        ``u`` (up), ``d`` (down), ``l`` (left), ``r`` (right).
+        Any omitted direction defaults to ``1.0`` (no change).
+
+        Examples::
+
+            widget.spread = 1.5          # expand all directions equally
+            widget.spread = "2u"         # push compartments apart vertically upward
+            widget.spread = "2u1.5r"     # up ×2, right ×1.5, other axes unchanged
+            widget.spread = "2u0.8d1.5r" # all three independent
+        """
+        u, d, l, r = self._spread
+        if u == d == l == r:
+            return u
+        parts = []
+        for val, letter in zip((u, d, l, r), "udlr"):
+            if val != 1.0:
+                parts.append(f"{val:g}{letter}")
+        return "".join(parts)
 
     @spread.setter
-    def spread(self, value: float) -> None:
-        self._spread = float(value)
+    def spread(self, value: Union[float, str]) -> None:
+        self._spread = _parse_spread(value)
         self._trigger("layout")
 
     @property
-    def collision_modifier(self) -> float:
-        """Scale factor for node collision avoidance."""
-        return self._collision_modifier
+    def radial_spread(self) -> float:
+        """Radial spread factor applied after Fruchterman-Reingold layout.
 
-    @collision_modifier.setter
-    def collision_modifier(self, value: float) -> None:
-        self._collision_modifier = value
+        Nodes are displaced from their compartment centroid by a factor that
+        varies linearly from ``radial_spread`` (at the centroid) down to
+        ``1 + 0.2 * (radial_spread - 1)`` (at the outermost node), so central
+        nodes are pushed apart the most and edge nodes are barely moved.
+        ``1.0`` (default) disables the effect entirely.
+        """
+        return self._radial_spread
+
+    @radial_spread.setter
+    def radial_spread(self, value: float) -> None:
+        self._radial_spread = float(value)
         self._trigger("layout")
 
     @property
@@ -1568,7 +1326,6 @@ class FLoV(anywidget.AnyWidget):
             with widget.configure():
                 widget.drop_protons = True
                 widget.density_scale = 0.6
-                widget.collision_modifier = 0.5
             widget.model = model  # single rebuild here
         """
         self._batch_depth += 1
@@ -1928,12 +1685,18 @@ class FLoV(anywidget.AnyWidget):
             _centers[ck] = [(x0 + x1) / 2.0, (y0 + y1) / 2.0]
             _half[ck] = ((x1 - x0) / 2.0, (y1 - y0) / 2.0)
 
-        if self._spread != 1.0 and len(_active_keys) > 1:
+        _su, _sd, _sl, _sr = self._spread
+        if (_su, _sd, _sl, _sr) != (1.0, 1.0, 1.0, 1.0) and len(_active_keys) > 1:
             gcx = sum(c[0] for c in _centers.values()) / len(_centers)
             gcy = sum(c[1] for c in _centers.values()) / len(_centers)
             for ck in _active_keys:
-                _centers[ck][0] = gcx + (_centers[ck][0] - gcx) * self._spread
-                _centers[ck][1] = gcy + (_centers[ck][1] - gcy) * self._spread
+                dx = _centers[ck][0] - gcx
+                dy = _centers[ck][1] - gcy
+                # Choose scale per axis based on which side of the centroid
+                x_sc = _sr if dx >= 0 else _sl
+                y_sc = _su if dy >= 0 else _sd
+                _centers[ck][0] = gcx + dx * x_sc
+                _centers[ck][1] = gcy + dy * y_sc
 
         if self._scale_compartments and len(_active_keys) > 1:
             _GAP = 0.3          # minimum clearance between boxes after separation
@@ -1997,10 +1760,6 @@ class FLoV(anywidget.AnyWidget):
                 seed=abs(hash(comp_key)) % (2 ** 31),
             )
             pos.update(_scale_to_region(lp, x0, x1, y0, y1))
-            pos.update(_resolve_rxn_overlaps(
-                pos, rxns_here, x0, x1, y0, y1,
-                min_dist=0.4 * self._collision_modifier,
-            ))
 
         # Metabolite positions — uniform centroid over same-compartment
         # reaction neighbours only. No cross-compartment fallback.
@@ -2011,27 +1770,42 @@ class FLoV(anywidget.AnyWidget):
                     and G.nodes[n].get("comp") == met_c]
             if nbrs:
                 pts = np.array([[pos[n][0], pos[n][1]] for n in nbrs], dtype=float)
-                cx, cy = float(pts[:, 0].mean()), float(pts[:, 1].mean())
-                cx, cy = _push_away_from_reactions(
-                    cx, cy, nbrs, met_id, pos, self._collision_modifier
-                )
-                pos[met_id] = (cx, cy)
+                pos[met_id] = (float(pts[:, 0].mean()), float(pts[:, 1].mean()))
             elif met_c in compartments:
                 x0, x1, y0, y1 = _effective_region(met_c)
                 pos[met_id] = ((x0 + x1) / 2.0, (y0 + y1) / 2.0)
             else:
                 pos[met_id] = (0.0, 0.0)
 
-        # Resolve edge collisions
-        _emit_progress("Resolving edge collisions...")
-        _base_resolved = _resolve_edge_collisions(
-            {m: pos[m] for m in self._met_nodes},
-            self._met_nodes, G, pos, self._collision_modifier,
-        )
-        for _m in self._met_nodes:
-            pos[_m] = _base_resolved[_m]
-
         self._pos = pos
+
+        # Radial spread: re-scale each node's distance from its compartment
+        # centroid. The scale factor decays linearly from `radial_spread` at
+        # the centre to `1 + 0.2*(radial_spread-1)` at the outermost node,
+        # so inner nodes are pushed apart more than already-peripheral ones.
+        if self._radial_spread != 1.0:
+            G = self._G
+            for comp_key in compartments:
+                nodes_here = [
+                    n for n in (self._rxn_nodes + self._met_nodes)
+                    if G.nodes[n].get("comp") == comp_key and n in pos
+                ]
+                if len(nodes_here) < 2:
+                    continue
+                pts = np.array([[pos[n][0], pos[n][1]] for n in nodes_here], dtype=float)
+                cx, cy = pts.mean(axis=0)
+                deltas = pts - np.array([cx, cy])
+                dists = np.hypot(deltas[:, 0], deltas[:, 1])
+                max_dist = dists.max()
+                if max_dist == 0.0:
+                    continue
+                r_norm = dists / max_dist  # 0 = at centroid, 1 = outermost
+                f = self._radial_spread
+                # scale factor: f at centre, 1+0.2*(f-1) at edge
+                scale = 1.0 + (f - 1.0) * (1.0 - 0.95 * r_norm)
+                new_pts = np.array([cx, cy]) + deltas * scale[:, np.newaxis]
+                for i, n in enumerate(nodes_here):
+                    pos[n] = (float(new_pts[i, 0]), float(new_pts[i, 1]))
 
         # Store effective region function for later use
         self._effective_region = _effective_region
@@ -2309,6 +2083,241 @@ class FLoV(anywidget.AnyWidget):
 
         return stations, branch_hubs, step, inner_edges
 
+    def _compute_regular_rails(
+        self,
+        rxn_nodes: list[str],
+        met_nodes: list[str],
+        views: list[ViewSpec],
+    ) -> dict:
+        """Route regular in-compartment reaction↔metabolite links on a grid."""
+        G = self._G
+        pos = self._pos
+        if G is None or not pos:
+            return {
+                "routes": [],
+                "hubs": [],
+                "guides": [],
+                "rxn_pos": {r: pos.get(r, (0.0, 0.0)) for r in rxn_nodes},
+                "met_pos": {m: pos.get(m, (0.0, 0.0)) for m in met_nodes},
+                "routed_rxns": set(),
+                "routed_mets": set(),
+                "grid_step": 0.4,
+            }
+
+        edge_records: dict[str, list[dict]] = defaultdict(list)
+        node_degree: dict[str, int] = defaultdict(int)
+        flux_priority: dict[str, float] = defaultdict(float)
+        for view in views:
+            for rxn_id, flux in view.flux_dict.items():
+                if _has_flux_data(float(flux)):
+                    flux_priority[rxn_id] += abs(float(flux))
+
+        rxn_set = set(rxn_nodes)
+        met_set = set(met_nodes)
+        for n1, n2, edata in G.edges(data=True):
+            if G.nodes[n1]["ntype"] == "rxn" and G.nodes[n2]["ntype"] == "met":
+                rxn_id, met_id = n1, n2
+            elif G.nodes[n2]["ntype"] == "rxn" and G.nodes[n1]["ntype"] == "met":
+                rxn_id, met_id = n2, n1
+            else:
+                continue
+            if rxn_id not in rxn_set or met_id not in met_set:
+                continue
+            if self._rxn_kind_map.get(rxn_id, "regular") != "regular":
+                continue
+            comp = G.nodes[rxn_id].get("comp")
+            if comp != G.nodes[met_id].get("comp") or comp is None:
+                continue
+            stoich = float(edata.get("stoich", 1.0))
+            line_id = f"{rxn_id}->{met_id}"
+            edge_records[comp].append({
+                "line_id": line_id,
+                "rxn_id": rxn_id,
+                "met_id": met_id,
+                "comp": comp,
+                "stoich": stoich,
+                "priority": float(flux_priority.get(rxn_id, 0.0)) + abs(stoich),
+            })
+            node_degree[rxn_id] += 1
+            node_degree[met_id] += 1
+
+        if not edge_records:
+            return {
+                "routes": [],
+                "hubs": [],
+                "guides": [],
+                "rxn_pos": {r: pos.get(r, (0.0, 0.0)) for r in rxn_nodes},
+                "met_pos": {m: pos.get(m, (0.0, 0.0)) for m in met_nodes},
+                "routed_rxns": set(),
+                "routed_mets": set(),
+                "grid_step": 0.4,
+            }
+
+        routed_rxn_pos: dict[str, tuple[float, float]] = {}
+        routed_met_pos: dict[str, tuple[float, float]] = {}
+        routed_rxns: set[str] = set()
+        routed_mets: set[str] = set()
+        routes_geom: list[dict] = []
+        route_hubs: list[dict] = []
+        guide_links: list[dict] = []
+        guide_seen: set[tuple[str, str]] = set()
+        step_values: list[float] = []
+        comp_track_xy: dict[str, np.ndarray] = {}
+
+        for comp, records in edge_records.items():
+            node_ids = sorted(
+                {rec["rxn_id"] for rec in records} | {rec["met_id"] for rec in records},
+                key=lambda nid: (-node_degree.get(nid, 0), nid),
+            )
+            if not node_ids:
+                continue
+            verts = self._compartment_hulls.get(comp)
+            if verts is None or len(verts) < 3:
+                x0, x1, y0, y1 = self._effective_region(comp)
+                verts = np.array([[x0, y0], [x1, y0], [x1, y1], [x0, y1]])
+            x_span = float(max(verts[:, 0].max() - verts[:, 0].min(), 1.0))
+            y_span = float(max(verts[:, 1].max() - verts[:, 1].min(), 1.0))
+            area = max(x_span * y_span, 1.0)
+            step = float(np.clip((area / max(len(node_ids) * 7.0, 64.0)) ** 0.5, 0.16, 0.45))
+            step_values.append(step)
+            pad = step * 1.5
+            x_min = float(verts[:, 0].min() - pad)
+            x_max = float(verts[:, 0].max() + pad)
+            y_min = float(verts[:, 1].min() - pad)
+            y_max = float(verts[:, 1].max() + pad)
+            n_cols = int(np.ceil((x_max - x_min) / step)) + 1
+            n_rows = int(np.ceil((y_max - y_min) / step)) + 1
+            cols = np.arange(n_cols)
+            rows = np.arange(n_rows)
+            gx, gy = np.meshgrid(
+                x_min + cols * step,
+                y_min + rows * step,
+                indexing="xy",
+            )
+            allowed = _polygon_mask(verts, gx, gy)
+            if int(allowed.sum()) < len(node_ids):
+                allowed[:] = True
+
+            allowed_cells = np.argwhere(allowed)
+            allowed_xy = np.column_stack(
+                (
+                    x_min + allowed_cells[:, 1] * step,
+                    y_min + allowed_cells[:, 0] * step,
+                )
+            )
+
+            def to_xy(cell: tuple[int, int]) -> tuple[float, float]:
+                return (
+                    float(x_min + cell[1] * step),
+                    float(y_min + cell[0] * step),
+                )
+
+            node_to_cell: dict[str, tuple[int, int]] = {}
+            reserved: set[tuple[int, int]] = set()
+            for node_id in node_ids:
+                cell = _nearest_open_cell(pos[node_id], allowed_cells, allowed_xy, reserved)
+                if cell is None:
+                    continue
+                node_to_cell[node_id] = cell
+                reserved.add(cell)
+                anchor_xy = to_xy(cell)
+                if node_id in rxn_set:
+                    routed_rxn_pos[node_id] = anchor_xy
+                    routed_rxns.add(node_id)
+                if node_id in met_set:
+                    routed_met_pos[node_id] = anchor_xy
+                    routed_mets.add(node_id)
+
+            blocked = ~allowed
+            track_usage = np.zeros((n_rows, n_cols), dtype=np.int16)
+            route_cells: dict[str, list[tuple[int, int]]] = {}
+            comp_used_cells: set[tuple[int, int]] = set()
+            records.sort(
+                key=lambda rec: (
+                    -float(rec["priority"]),
+                    -node_degree.get(rec["rxn_id"], 0),
+                    -node_degree.get(rec["met_id"], 0),
+                    str(rec["line_id"]),
+                )
+            )
+            for rec in records:
+                start = node_to_cell.get(rec["rxn_id"])
+                end = node_to_cell.get(rec["met_id"])
+                if start is None or end is None:
+                    continue
+                penalty = np.where(track_usage > 0, 0.0, 0.22)
+                saved = bool(blocked[start]), bool(blocked[end])
+                blocked[start] = False
+                blocked[end] = False
+                cells = _a_star_grid(start, end, blocked, cell_penalty=penalty)
+                blocked[start] = saved[0]
+                blocked[end] = saved[1]
+                if not cells:
+                    cells = [start, end]
+                route_cells[str(rec["line_id"])] = list(cells)
+                for cell in cells:
+                    track_usage[cell] += 1
+                    comp_used_cells.add(cell)
+                base_path = _simplify_polyline([to_xy(cell) for cell in cells])
+                routes_geom.append({
+                    "line_id": rec["line_id"],
+                    "rxn_id": rec["rxn_id"],
+                    "met_id": rec["met_id"],
+                    "comp": comp,
+                    "stoich": float(rec["stoich"]),
+                    "path": [[float(p[0]), float(p[1])] for p in base_path],
+                })
+
+            comp_track_xy[comp] = np.asarray(
+                [to_xy(cell) for cell in sorted(comp_used_cells)],
+                dtype=float,
+            )
+            excluded_cells = {
+                cell for node_id, cell in node_to_cell.items()
+                if node_id in routed_rxns or node_id in routed_mets
+            }
+            route_hubs.extend(_detect_route_hubs(route_cells, excluded_cells, to_xy))
+
+        for rxn_id in rxn_nodes:
+            routed_rxn_pos.setdefault(rxn_id, pos[rxn_id])
+        for met_id in met_nodes:
+            routed_met_pos.setdefault(met_id, pos[met_id])
+
+        for node_id in rxn_nodes + met_nodes:
+            comp = G.nodes[node_id].get("comp")
+            track_xy = comp_track_xy.get(comp)
+            if track_xy is None or track_xy.size == 0:
+                continue
+            routed = node_id in routed_rxns or node_id in routed_mets
+            if routed:
+                continue
+            src = pos[node_id]
+            deltas = track_xy - np.asarray(src, dtype=float)
+            idx = int(np.argmin(np.einsum("ij,ij->i", deltas, deltas)))
+            gx_, gy_ = track_xy[idx]
+            node_type = "rxn" if node_id in rxn_set else "met"
+            key = (node_type, node_id)
+            if key in guide_seen:
+                continue
+            guide_seen.add(key)
+            guide_links.append({
+                "node_id": node_id,
+                "node_type": node_type,
+                "x": [float(src[0]), float(gx_)],
+                "y": [float(src[1]), float(gy_)],
+            })
+
+        return {
+            "routes": routes_geom,
+            "hubs": route_hubs,
+            "guides": guide_links,
+            "rxn_pos": routed_rxn_pos,
+            "met_pos": routed_met_pos,
+            "routed_rxns": routed_rxns,
+            "routed_mets": routed_mets,
+            "grid_step": min(step_values) if step_values else 0.4,
+        }
+
     # -- Internal: figure building --
 
     def _rebuild_figure(self) -> None:
@@ -2326,9 +2335,8 @@ class FLoV(anywidget.AnyWidget):
         views = self._views
         mdl = self._cobra_model
 
-        # Drop-no-data filtering (on copies). Non-regular reactions are now
-        # rendered as railway-station hubs, so they are stripped from the
-        # per-reaction node list regardless of drop_no_data.
+        # Drop-no-data filtering (on copies). Non-regular reactions render as
+        # stations; regular reactions render as in-compartment rail nodes.
         rxn_nodes = [r for r in self._rxn_nodes
                      if self._rxn_kind_map.get(r, "regular") == "regular"]
         met_nodes = list(self._met_nodes)
@@ -2355,62 +2363,8 @@ class FLoV(anywidget.AnyWidget):
                 r in remaining for r, _ in met_to_rxns.get(m, [])
             )]
 
-        # Flux-weighted metabolite positions per view
-        flux_met_pos_by_view = [
-            _flux_weighted_met_positions(
-                v.flux_dict, met_nodes, G, pos, self._collision_modifier,
-                cfg=cfg, effective_region=self._effective_region,
-                drop_protons=self._drop_protons,
-                drop_biomass=self._drop_biomass,
-            )
-            for v in views
-        ]
-
-        # Build oriented edges. Non-regular reactions never appear here —
-        # their connections live in the railway-station spines + (toggleable)
-        # inner_edges instead.
-        rxn_set = set(rxn_nodes)
-        met_set = set(met_nodes)
-        oriented_edges: list[tuple[str, str, str, float]] = []
-        for n1, n2, edata in G.edges(data=True):
-            if G.nodes[n1]["ntype"] == "rxn" and G.nodes[n2]["ntype"] == "met":
-                rxn_id, met_id = n1, n2
-            elif G.nodes[n2]["ntype"] == "rxn" and G.nodes[n1]["ntype"] == "met":
-                rxn_id, met_id = n2, n1
-            else:
-                continue
-            if rxn_id not in pos or met_id not in pos:
-                continue
-            if rxn_id not in rxn_set or met_id not in met_set:
-                continue
-            stoich = float(edata.get("stoich", 1.0))
-            oriented_edges.append(("reg", rxn_id, met_id, stoich))
-
-        # Edge coordinates per view
-        edge_flux_x_by_view: list[list[list[float | None]]] = []
-        edge_flux_y_by_view: list[list[list[float | None]]] = []
-        for vi, view in enumerate(views):
-            exf, eyf, _ = _build_edge_coords_for_view(
-                view.flux_dict, flux_met_pos_by_view[vi],
-                oriented_edges, pos, self._stoich_flux,
-            )
-            edge_flux_x_by_view.append(exf)
-            edge_flux_y_by_view.append(eyf)
-
-        # Edge visual styles — same bucket ordering as _build_edge_coords_for_view.
-        # Only "reg" edges remain; non-regular reactions render as stations.
         ds = self._resolve_density_scale(len(rxn_nodes))
-        _edge_wmin = max(0.5, 1.2 * ds)
-        _edge_wmax = max(_edge_wmin + 0.4, 4.6 * ds)
-        edge_styles: list[dict] = []
-        for edge_class in ("reg", "ss"):
-            for sign in (1, -1):
-                for b in range(EDGE_BINS):
-                    mag_norm = (b + 0.5) / EDGE_BINS
-                    width = _edge_wmin + (_edge_wmax - _edge_wmin) * mag_norm
-                    color = _edge_rgba(mag_norm=mag_norm, sign=sign, has_flux=True,
-                                       density_scale=ds, color_modifier=self._color_modifier)
-                    edge_styles.append({"class": edge_class, "color": color, "width": width})
+        rail_data = self._compute_regular_rails(rxn_nodes, met_nodes, views)
 
         # ── Stations & routes (replaces per-reaction transport/exchange nodes) ──
         stations, branch_hubs, grid_step, inner_edges = self._compute_stations(
@@ -2446,13 +2400,29 @@ class FLoV(anywidget.AnyWidget):
             if _has_flux_data(float(f))
         ]
         abs_max_flux = max(float(np.nanmax(np.abs(all_valid))) if all_valid else 1.0, 1e-9)
+        all_route_valid: list[float] = []
+        for view in views:
+            for route in rail_data["routes"]:
+                f = view.flux_dict.get(route["rxn_id"], np.nan)
+                if not _has_flux_data(float(f)):
+                    continue
+                factor = abs(float(route["stoich"])) if self._stoich_flux else 1.0
+                all_route_valid.append(abs(float(f)) * factor)
+        abs_max_route_flux = max(
+            float(np.nanmax(all_route_valid)) if all_route_valid else 1.0,
+            1e-9,
+        )
 
-        n_views = len(views)
         _exch_cfg = compartments.get(exchange_key, {"color": "#8b949e", "label": exchange_key})
+        rail_wmin = max(0.9, 1.4 * ds)
+        rail_wmax = max(rail_wmin + 0.7, 4.4 * ds)
 
         # Per-view data
         views_data: list[dict] = []
-        for vi, view in enumerate(views):
+        rxn_render_pos = rail_data["rxn_pos"]
+        met_render_pos = rail_data["met_pos"]
+        routed_mets = rail_data["routed_mets"]
+        for view in views:
             fluxes = np.array([view.flux_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
             stds = np.array([view.std_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
             valid = np.array([_has_flux_data(float(f)) for f in fluxes], dtype=bool)
@@ -2478,8 +2448,8 @@ class FLoV(anywidget.AnyWidget):
                 rxn_node_list.append({
                     "id": r,
                     "name": display_name,
-                    "x": pos[r][0],
-                    "y": pos[r][1],
+                    "x": rxn_render_pos[r][0],
+                    "y": rxn_render_pos[r][1],
                     "comp": comp,
                     "kind": "regular",
                     "flux": f if is_valid else None,
@@ -2529,25 +2499,35 @@ class FLoV(anywidget.AnyWidget):
                     "lines": line_view,
                 })
 
-            edge_groups: list[dict] = []
-            for gi, style in enumerate(edge_styles):
-                edge_groups.append({
-                    "class": style["class"],
-                    "x": edge_flux_x_by_view[vi][gi],
-                    "y": edge_flux_y_by_view[vi][gi],
-                    "color": style["color"],
-                    "width": style["width"],
+            rail_views_data: list[dict] = []
+            for route in rail_data["routes"]:
+                f = view.flux_dict.get(route["rxn_id"], np.nan)
+                if _has_flux_data(float(f)):
+                    eff_flux = float(f) * (
+                        abs(float(route["stoich"])) if self._stoich_flux else 1.0
+                    )
+                    _, mag_norm, sign = _edge_bucket(eff_flux, abs_max_route_flux)
+                    width = rail_wmin + (rail_wmax - rail_wmin) * mag_norm
+                    color = _edge_rgba(
+                        mag_norm=mag_norm,
+                        sign=sign,
+                        has_flux=True,
+                        density_scale=ds,
+                        color_modifier=self._color_modifier,
+                    )
+                else:
+                    width = rail_wmin * 0.55
+                    color = "rgba(110,118,129,0.18)"
+                rail_views_data.append({
+                    "line_id": route["line_id"],
+                    "width": float(width),
+                    "color": color,
                 })
 
             views_data.append({
                 "label": view.label,
                 "rxn_nodes": rxn_node_list,
-                "met_positions": [
-                    {"x": flux_met_pos_by_view[vi][n][0],
-                     "y": flux_met_pos_by_view[vi][n][1]}
-                    for n in met_nodes
-                ],
-                "edge_groups": edge_groups,
+                "rail_routes": rail_views_data,
                 "stations": station_views_data,
             })
 
@@ -2561,9 +2541,12 @@ class FLoV(anywidget.AnyWidget):
             met_node_list.append({
                 "id": n,
                 "name": G.nodes[n]["name"],
+                "x": met_render_pos[n][0],
+                "y": met_render_pos[n][1],
                 "comp": met_c,
                 "comp_label": comp_cfg.get("label", met_c),
                 "comp_color": comp_cfg.get("color", "#8b949e"),
+                "display_kind": "stop" if n in routed_mets else "detached",
                 "consumers": consumers[:8],
                 "producers": producers[:8],
             })
@@ -2587,26 +2570,7 @@ class FLoV(anywidget.AnyWidget):
                 "label_y": float(verts[:, 1].max()) + 0.2,
             })
 
-        # Data extent for D3 scales
-        all_x = [pos[r][0] for r in rxn_nodes]
-        all_y = [pos[r][1] for r in rxn_nodes]
-        for view_pos in flux_met_pos_by_view:
-            for n in met_nodes:
-                all_x.append(view_pos[n][0])
-                all_y.append(view_pos[n][1])
-        pad = 1.0
-        x_range = [min(all_x) - pad, max(all_x) + pad] if all_x else [-12.0, 8.0]
-        y_range = [min(all_y) - pad, max(all_y) + pad] if all_y else [-9.0, 7.0]
-
         model_name = (mdl.id or "Model") if mdl else "Model"
-        met_flux_x_by_view = [
-            [flux_met_pos_by_view[vi][n][0] for n in met_nodes]
-            for vi in range(n_views)
-        ]
-        met_flux_y_by_view = [
-            [flux_met_pos_by_view[vi][n][1] for n in met_nodes]
-            for vi in range(n_views)
-        ]
 
         # ── Station geometry (pinned across views; widths/colors live in views_data) ──
         stations_geometry: list[dict] = []
@@ -2670,6 +2634,30 @@ class FLoV(anywidget.AnyWidget):
                 "lines": line_geom,
             })
 
+        # Data extent for D3 scales
+        all_x = [rxn_render_pos[r][0] for r in rxn_nodes] + [met_render_pos[n][0] for n in met_nodes]
+        all_y = [rxn_render_pos[r][1] for r in rxn_nodes] + [met_render_pos[n][1] for n in met_nodes]
+        for route in rail_data["routes"]:
+            for px, py in route["path"]:
+                all_x.append(float(px))
+                all_y.append(float(py))
+        for hub in rail_data["hubs"] + branch_hubs:
+            all_x.append(float(hub["x"]))
+            all_y.append(float(hub["y"]))
+        for guide in rail_data["guides"] + inner_edges:
+            all_x.extend(float(v) for v in guide["x"])
+            all_y.extend(float(v) for v in guide["y"])
+        for st in stations_geometry:
+            all_x.extend([float(st["anchor_a"][0]), float(st["anchor_b"][0])])
+            all_y.extend([float(st["anchor_a"][1]), float(st["anchor_b"][1])])
+            for line in st["lines"]:
+                for px, py in line["path"]:
+                    all_x.append(float(px))
+                    all_y.append(float(py))
+        pad = 1.0
+        x_range = [min(all_x) - pad, max(all_x) + pad] if all_x else [-12.0, 8.0]
+        y_range = [min(all_y) - pad, max(all_y) + pad] if all_y else [-9.0, 7.0]
+
         d3_data = {
             "meta": {
                 "model_name": model_name,
@@ -2678,12 +2666,15 @@ class FLoV(anywidget.AnyWidget):
                 "height": 940,
                 "abs_max_flux": float(abs_max_flux),
                 "density_scale": float(ds),
-                "grid_step": float(grid_step),
+                "grid_step": float(min(grid_step, rail_data["grid_step"])),
             },
             "compartments": compartment_list,
             "view_labels": [v.label for v in views],
             "views": views_data,
             "met_nodes": met_node_list,
+            "rail_routes": rail_data["routes"],
+            "rail_hubs": rail_data["hubs"],
+            "guide_links": rail_data["guides"],
             "stations": stations_geometry,
             "branch_hubs": branch_hubs,
             "inner_edges": inner_edges,
@@ -2691,12 +2682,12 @@ class FLoV(anywidget.AnyWidget):
                 "view_labels": [v.label for v in views],
                 "rxn_ids": rxn_nodes,
                 "rxn_names": [mdl.reactions.get_by_id(r).name or r for r in rxn_nodes],
-                "rxn_x": [pos[r][0] for r in rxn_nodes],
-                "rxn_y": [pos[r][1] for r in rxn_nodes],
+                "rxn_x": [rxn_render_pos[r][0] for r in rxn_nodes],
+                "rxn_y": [rxn_render_pos[r][1] for r in rxn_nodes],
                 "met_ids": met_nodes,
                 "met_names": [G.nodes[n].get("name", n) for n in met_nodes],
-                "met_flux_x": met_flux_x_by_view,
-                "met_flux_y": met_flux_y_by_view,
+                "met_x": [met_render_pos[n][0] for n in met_nodes],
+                "met_y": [met_render_pos[n][1] for n in met_nodes],
             },
         }
 

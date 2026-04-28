@@ -4404,21 +4404,11 @@ function symPath(symbol, r) {
       return Symbol2(circle_default, area)(null) ?? "";
   }
 }
-function metPath() {
-  return Symbol2(diamond_default, Math.PI * 16)(null) ?? "";
-}
-function edgePath(xs, ys, xS, yS) {
-  let d = "", open = false;
-  for (let i = 0; i < xs.length; i++) {
-    if (xs[i] === null) {
-      open = false;
-      continue;
-    }
-    const px = xS(xs[i]).toFixed(1), py = yS(ys[i]).toFixed(1);
-    d += open ? ` L${px} ${py}` : `M${px} ${py}`;
-    open = true;
+function metPath(m) {
+  if (m.display_kind === "stop") {
+    return Symbol2(circle_default, Math.PI * 20)(null) ?? "";
   }
-  return d;
+  return Symbol2(diamond_default, Math.PI * 16)(null) ?? "";
 }
 function hullPath(verts, xS, yS) {
   const gen = line_default().x((d) => xS(d[0])).y((d) => yS(d[1])).curve(catmullRomClosed_default.alpha(0.5));
@@ -4492,16 +4482,16 @@ function render({ model: S, el: I }) {
   const MARGIN = { t: 10, r: 90, b: 10, l: 20 };
   const MET_HOVER_STROKE = 12;
   const RXN_HOVER_STROKE = 14;
-  function metTransform(pos, transform2) {
-    const sx = transform2.applyX(xS(pos.x)).toFixed(1);
-    const sy = transform2.applyY(yS(pos.y)).toFixed(1);
+  function metTransform(node, transform2) {
+    const sx = transform2.applyX(xS(node.x)).toFixed(1);
+    const sy = transform2.applyY(yS(node.y)).toFixed(1);
     return `translate(${sx},${sy})`;
   }
   function updateMetZoom(transform2) {
     if (!gMetSel)
       return;
-    gMetSel.selectAll("path.met-shape").attr("transform", (d) => metTransform(d.pos, transform2));
-    gMetHitSel?.attr("transform", (d) => metTransform(d.pos, transform2));
+    gMetSel.selectAll("path.met-shape").attr("transform", (d) => metTransform(d, transform2));
+    gMetHitSel?.attr("transform", (d) => metTransform(d, transform2));
   }
   function updateRxnZoom(transform2) {
     if (!gRxnSel || !gRxnHitSel)
@@ -4532,7 +4522,7 @@ function render({ model: S, el: I }) {
     wrapper.classList.toggle("light-mode", lightMode);
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
-    gMetSel = svg.insert("g", ".zoom-layer").attr("class", "g-met").style("display", "none");
+    gMetSel = svg.insert("g", ".zoom-layer").attr("class", "g-met");
     buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
     buildSearch(wrapper, data, svg.node(), svgW, svgH);
     buildTooltip(wrapper);
@@ -4561,28 +4551,25 @@ function render({ model: S, el: I }) {
   }
   function drawAll(zoomLayer, data, svgW) {
     const gComp = zoomLayer.append("g").attr("class", "g-comp");
+    const gGuide = zoomLayer.append("g").attr("class", "g-guide");
     const gInner = zoomLayer.append("g").attr("class", "g-inner").style("display", "none");
+    const gRail = zoomLayer.append("g").attr("class", "g-rail");
+    const gRHub = zoomLayer.append("g").attr("class", "g-rhub");
     const gRoute = zoomLayer.append("g").attr("class", "g-route");
     const gStn = zoomLayer.append("g").attr("class", "g-stn");
     const gBHub = zoomLayer.append("g").attr("class", "g-bhub");
-    const gSSEdge = zoomLayer.append("g").attr("class", "g-ss").style("display", "none");
-    const gEdge = zoomLayer.append("g").attr("class", "g-edge");
     const gRxn = zoomLayer.append("g").attr("class", "g-rxn");
     const gLbl = zoomLayer.append("g").attr("class", "g-lbl").style("display", "none");
     const gHL = zoomLayer.append("g").attr("class", "g-hl");
     const view0 = data.views[0];
     gComp.selectAll("path").data(data.compartments).join("path").attr("d", (c) => hullPath(c.hull_vertices, xS, yS)).attr("fill", (c) => c.fill).attr("stroke", (c) => c.color).attr("stroke-width", 1.8).attr("stroke-dasharray", "5,3").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
     gComp.selectAll("text").data(data.compartments).join("text").attr("x", (c) => xS(c.label_x)).attr("y", (c) => yS(c.label_y)).attr("text-anchor", "middle").attr("dominant-baseline", "auto").attr("fill", (c) => c.color).attr("font-size", 12).attr("font-weight", "bold").attr("font-family", "'Inter',Arial,sans-serif").style("pointer-events", "none").text((c) => c.label);
-    const regEgs = view0.edge_groups.filter((e) => e.class === "reg");
-    const ssEgs = view0.edge_groups.filter((e) => e.class === "ss");
-    gEdge.selectAll("path").data(regEgs).join("path").attr("d", (eg) => edgePath(eg.x, eg.y, xS, yS)).attr("stroke", (eg) => eg.color).attr("stroke-width", (eg) => eg.width).attr("fill", "none").attr("stroke-linecap", "round").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
-    gSSEdge.selectAll("path").data(ssEgs).join("path").attr("d", (eg) => edgePath(eg.x, eg.y, xS, yS)).attr("stroke", (eg) => eg.color).attr("stroke-width", (eg) => eg.width).attr("fill", "none").attr("stroke-dasharray", "4,3").attr("stroke-linecap", "round").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
-    const metData = data.met_nodes.map((node, i) => ({
-      node,
-      pos: view0.met_positions[i]
-    }));
-    gMetHitSel = gMetSel.selectAll("path.met-hit").data(metData).join("path").attr("class", "met-hit").attr("d", metPath()).attr("transform", (d) => metTransform(d.pos, currentTransform)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", MET_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d.node), d.node.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
-    gMetSel.selectAll("path.met-shape").data(metData).join("path").attr("class", "met-shape").attr("d", metPath()).attr("transform", (d) => metTransform(d.pos, currentTransform)).attr("fill", (d) => d.node.comp_color).attr("fill-opacity", 0.85).attr("stroke", "#0d1117").attr("stroke-width", 0.7).style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d.node), d.node.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
+    gGuide.selectAll("path").data(data.guide_links).join("path").attr("d", (g) => `M${xS(g.x[0]).toFixed(1)} ${yS(g.y[0]).toFixed(1)} L${xS(g.x[1]).toFixed(1)} ${yS(g.y[1]).toFixed(1)}`).attr("stroke", "rgba(139,148,158,0.55)").attr("stroke-width", 0.9).attr("fill", "none").attr("stroke-dasharray", "4,3").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
+    const railStyleById = /* @__PURE__ */ new Map();
+    view0.rail_routes.forEach((rt) => railStyleById.set(rt.line_id, rt));
+    gRail.selectAll("path").data(data.rail_routes).join("path").attr("class", "rail-line").attr("d", (d) => polylinePath(d.path, xS, yS)).attr("stroke", (d) => railStyleById.get(d.line_id)?.color ?? "rgba(110,118,129,0.18)").attr("stroke-width", (d) => railStyleById.get(d.line_id)?.width ?? 0.8).attr("fill", "none").attr("stroke-linecap", "round").attr("stroke-linejoin", "round").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
+    gMetHitSel = gMetSel.selectAll("path.met-hit").data(data.met_nodes).join("path").attr("class", "met-hit").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", MET_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
+    gMetSel.selectAll("path.met-shape").data(data.met_nodes).join("path").attr("class", "met-shape").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", (d) => d.display_kind === "stop" ? "#ffffff" : d.comp_color).attr("fill-opacity", (d) => d.display_kind === "stop" ? 1 : 0.85).attr("stroke", (d) => d.display_kind === "stop" ? d.comp_color : "#0d1117").attr("stroke-width", (d) => d.display_kind === "stop" ? 1.3 : 0.7).style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
     const routeData = [];
     data.stations.forEach((st) => {
       st.lines.forEach((ln, li) => {
@@ -4631,10 +4618,6 @@ function render({ model: S, el: I }) {
       stationTooltipHTML(p.st),
       p.side === "a" ? p.st.comp_a_color : p.st.comp_b_color
     )).on("mousemove", moveTT).on("mouseout", hideTT);
-    gStn.selectAll("text.stn-lbl").data(pillData).join("text").attr("class", "stn-lbl").attr("text-anchor", "middle").attr("font-size", 9).attr("font-family", "'Inter',Arial,sans-serif").attr("font-weight", 600).attr("fill", (p) => p.side === "a" ? p.st.comp_a_color : p.st.comp_b_color).attr("transform", (p) => {
-      const a = p.side === "a" ? p.st.anchor_a : p.st.anchor_b;
-      return `translate(${xS(a[0]).toFixed(1)},${(yS(a[1]) - pillPixelHeight(p) / 2 - 4).toFixed(1)})`;
-    }).style("pointer-events", "none").text((p) => p.side === "a" ? p.st.comp_a_label : p.st.comp_b_label);
     gBHub.selectAll("rect.bhub").data(data.branch_hubs).join("rect").attr("class", "bhub").attr("x", -4).attr("y", -10).attr("width", 8).attr("height", 20).attr("rx", 4).attr("ry", 4).attr("fill", "#ffffff").attr("stroke", "#8b949e").attr("stroke-width", 1.6).attr("vector-effect", "non-scaling-stroke").attr("transform", (b) => `translate(${xS(b.x).toFixed(1)},${yS(b.y).toFixed(1)})`).style("cursor", "pointer").on("mouseover", (ev, b) => showTT(ev, branchTooltipHTML(b), "#8b949e")).on("mousemove", moveTT).on("mouseout", hideTT);
     gInner.selectAll("path").data(data.inner_edges).join("path").attr("d", (e) => `M${xS(e.x[0]).toFixed(1)} ${yS(e.y[0]).toFixed(1)} L${xS(e.x[1]).toFixed(1)} ${yS(e.y[1]).toFixed(1)}`).attr("stroke", "rgba(139,148,158,0.50)").attr("stroke-width", 0.8).attr("stroke-dasharray", "3,3").attr("fill", "none").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
     gRxnHitSel = gRxn.selectAll("path.rxn-hit").data(view0.rxn_nodes).join("path").attr("class", "rxn-hit").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", RXN_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT);
@@ -4660,7 +4643,7 @@ function render({ model: S, el: I }) {
         viewBtns.push(btn);
       });
     }
-    mkToggle(bar, "Metabolites", "Show", "Hide", false, (on) => {
+    mkToggle(bar, "Metabolites", "Show", "Hide", true, (on) => {
       gMetSel.style("display", on ? "" : "none");
     });
     mkToggle(bar, "Inner connections", "Show", "Hide", false, (on) => {
@@ -4734,10 +4717,12 @@ function render({ model: S, el: I }) {
     const zl = wrapper.querySelector(".zoom-layer");
     if (!zl)
       return;
-    const regEgs = view.edge_groups.filter((e) => e.class === "reg");
-    const ssEgs = view.edge_groups.filter((e) => e.class === "ss");
-    select_default2(zl).select(".g-edge").selectAll("path").data(regEgs).attr("d", (eg) => edgePath(eg.x, eg.y, xS, yS)).attr("stroke", (eg) => eg.color).attr("stroke-width", (eg) => eg.width);
-    select_default2(zl).select(".g-ss").selectAll("path").data(ssEgs).attr("d", (eg) => edgePath(eg.x, eg.y, xS, yS)).attr("stroke", (eg) => eg.color).attr("stroke-width", (eg) => eg.width);
+    const railViewById = /* @__PURE__ */ new Map();
+    view.rail_routes.forEach((rt) => railViewById.set(rt.line_id, rt));
+    select_default2(zl).select(".g-rail").selectAll("path.rail-line").each(function(d) {
+      const rv = railViewById.get(d.line_id);
+      select_default2(this).attr("stroke", rv?.color ?? "rgba(110,118,129,0.18)").attr("stroke-width", rv?.width ?? 0.8);
+    });
     select_default2(zl).select(".g-rxn").selectAll("path.rxn-shape").data(view.rxn_nodes).attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", (d) => d.fill_color).attr("opacity", (d) => d.opacity);
     select_default2(zl).select(".g-route").selectAll("path.route-line").each(function(d) {
       const sv = view.stations.find((s) => s.pair_id === d.pair_id);
@@ -4748,12 +4733,6 @@ function render({ model: S, el: I }) {
         select_default2(this).attr("stroke", "#6e7681").attr("stroke-width", 1);
       }
     });
-    const metData = fig.met_nodes.map((node, i) => ({
-      node,
-      pos: view.met_positions[i]
-    }));
-    gMetSel.selectAll("path.met-shape").data(metData).attr("transform", (d) => metTransform(d.pos, currentTransform));
-    gMetHitSel.data(metData).attr("transform", (d) => metTransform(d.pos, currentTransform));
     gRxnHitSel.data(view.rxn_nodes).attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d));
     select_default2(zl).select(".g-lbl").selectAll("text").data(view.rxn_nodes).attr("x", (d) => xS(d.x)).attr("y", (d) => yS(d.y) - d.r - 2);
     viewBtns.forEach((b, i) => b.classList.toggle("active", i === vi));
@@ -4866,10 +4845,10 @@ function render({ model: S, el: I }) {
       return yS(ia.rxn_y[i]);
     }
     function metPX(i) {
-      return xS(ia.met_flux_x[currentView][i]);
+      return xS(ia.met_x[i]);
     }
     function metPY(i) {
-      return yS(ia.met_flux_y[currentView][i]);
+      return yS(ia.met_y[i]);
     }
     function selectResult(type2, idx) {
       const px = type2 === "rxn" ? rxnPX(idx) : metPX(idx);
