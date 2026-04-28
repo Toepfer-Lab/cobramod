@@ -2269,6 +2269,8 @@ class FLoV(anywidget.AnyWidget):
                 )
             )
             comp_start_idx = len(routes_geom)
+            rec_by_lid: dict[str, dict] = {}
+            ordered_lids: list[str] = []
             for rec in records:
                 start = node_to_cell.get(rec["rxn_id"])
                 end = node_to_cell.get(rec["met_id"])
@@ -2283,18 +2285,100 @@ class FLoV(anywidget.AnyWidget):
                 blocked[end] = saved[1]
                 if not cells:
                     cells = [start, end]
-                route_cells[str(rec["line_id"])] = list(cells)
+                lid = str(rec["line_id"])
+                route_cells[lid] = list(cells)
+                rec_by_lid[lid] = rec
+                ordered_lids.append(lid)
                 for cell in cells:
                     track_usage[cell] += 1
                     comp_used_cells.add(cell)
-                base_path = _simplify_polyline([to_xy(cell) for cell in cells])
+
+            # Lane membership at cell-edge resolution: any two routes that
+            # traverse the same physical grid edge belong to the same lane
+            # group on that edge, regardless of how their A* paths simplify.
+            cell_edge_lines: dict[tuple, list[str]] = defaultdict(list)
+            for lid in ordered_lids:
+                cells = route_cells[lid]
+                for i in range(len(cells) - 1):
+                    a, b = cells[i], cells[i + 1]
+                    edge = (min(a, b), max(a, b))
+                    if lid not in cell_edge_lines[edge]:
+                        cell_edge_lines[edge].append(lid)
+
+            # Junction cells: any cell that hosts a routed rxn/met node.  At
+            # each junction we restart lane assignment so the offsets emerging
+            # from a node are recentred for whichever routes continue together.
+            node_cells = set(node_to_cell.values())
+
+            for lid in ordered_lids:
+                rec = rec_by_lid[lid]
+                cells = route_cells[lid]
+                if len(cells) < 2:
+                    path_pts = [to_xy(cells[0])] if cells else []
+                    seg_slots: list[float] = []
+                else:
+                    edge_sigs: list[tuple[tuple, bool]] = []
+                    for i in range(len(cells) - 1):
+                        a, b = cells[i], cells[i + 1]
+                        edge = (min(a, b), max(a, b))
+                        forward = (a, b) == edge
+                        edge_sigs.append((tuple(cell_edge_lines[edge]), forward))
+                    # Find leg boundaries: route endpoints plus any internal
+                    # cell that is also a node anchor for some other route.
+                    leg_breaks = {0, len(cells) - 1}
+                    for i in range(1, len(cells) - 1):
+                        if cells[i] in node_cells:
+                            leg_breaks.add(i)
+                    leg_breaks_sorted = sorted(leg_breaks)
+                    # Within each leg, pick one raw anchor slot from the leg's
+                    # dominant lane group.  Constant slot per leg → partners
+                    # stay perfectly parallel until the next node, where the
+                    # offsets are recentred for whoever continues together.
+                    leg_raw: list[float] = []
+                    for li in range(len(leg_breaks_sorted) - 1):
+                        i0, i1 = leg_breaks_sorted[li], leg_breaks_sorted[li + 1]
+                        raw = 0.0
+                        best_n = 1
+                        for ei in range(i0, i1):
+                            lane_list, _ = edge_sigs[ei]
+                            n_lanes = len(lane_list)
+                            if n_lanes <= best_n or lid not in lane_list:
+                                continue
+                            my_pos = lane_list.index(lid)
+                            raw = my_pos - (n_lanes - 1) / 2.0
+                            best_n = n_lanes
+                        leg_raw.append(raw)
+                    # Vertices: leg breaks + interior direction changes.
+                    keep_set = set(leg_breaks)
+                    for li in range(len(leg_breaks_sorted) - 1):
+                        i0, i1 = leg_breaks_sorted[li], leg_breaks_sorted[li + 1]
+                        for i in range(i0 + 1, i1):
+                            ax, ay = cells[i - 1]
+                            bx, by = cells[i]
+                            cx, cy = cells[i + 1]
+                            if (bx - ax) * (cy - by) != (by - ay) * (cx - bx):
+                                keep_set.add(i)
+                    keep_idx = sorted(keep_set)
+                    path_pts = [to_xy(cells[i]) for i in keep_idx]
+                    # Apply leg raw slot per segment, flipping for reversed
+                    # canonical traversal so the rendered side stays consistent.
+                    seg_slots = []
+                    li = 0
+                    for s in range(len(keep_idx) - 1):
+                        i0 = keep_idx[s]
+                        while li + 1 < len(leg_breaks_sorted) and i0 >= leg_breaks_sorted[li + 1]:
+                            li += 1
+                        raw = leg_raw[li]
+                        forward = edge_sigs[i0][1]
+                        seg_slots.append(raw if forward else -raw)
                 routes_geom.append({
                     "line_id": rec["line_id"],
                     "rxn_id": rec["rxn_id"],
                     "met_id": rec["met_id"],
                     "comp": comp,
                     "stoich": float(rec["stoich"]),
-                    "path": [[float(p[0]), float(p[1])] for p in base_path],
+                    "path": [[float(p[0]), float(p[1])] for p in path_pts],
+                    "seg_slots": seg_slots,
                 })
 
             comp_track_xy[comp] = np.asarray(
@@ -2307,44 +2391,9 @@ class FLoV(anywidget.AnyWidget):
             }
             route_hubs.extend(_detect_route_hubs(route_cells, excluded_cells, to_xy))
 
-            # ── Lane-offset: assign per-route palette colors and per-segment
-            # slot values.  The actual pixel offset is computed by the frontend
-            # using a fixed pixel gap divided by the zoom scale, so the gap is
-            # constant in screen pixels regardless of zoom level.
             comp_routes = routes_geom[comp_start_idx:]
             for ci, r in enumerate(comp_routes):
                 r["base_color"] = _RAIL_ROUTE_PALETTE[ci % len(_RAIL_ROUTE_PALETTE)]
-                r["seg_slots"] = [0.0] * (len(r["path"]) - 1)  # filled below
-            if len(comp_routes) > 1:
-                seg_to_ci: dict[tuple, list[int]] = defaultdict(list)
-                for ci, r in enumerate(comp_routes):
-                    pth = r["path"]
-                    for k in range(len(pth) - 1):
-                        ra = (round(float(pth[k][0]), 3), round(float(pth[k][1]), 3))
-                        rb = (round(float(pth[k+1][0]), 3), round(float(pth[k+1][1]), 3))
-                        seg_key = (min(ra, rb), max(ra, rb))
-                        if ci not in seg_to_ci[seg_key]:
-                            seg_to_ci[seg_key].append(ci)
-                for ci, r in enumerate(comp_routes):
-                    pth = r["path"]
-                    n_pts = len(pth)
-                    slots: list[float] = []
-                    for k in range(n_pts - 1):
-                        ra = (round(float(pth[k][0]), 3), round(float(pth[k][1]), 3))
-                        rb = (round(float(pth[k+1][0]), 3), round(float(pth[k+1][1]), 3))
-                        seg_key = (min(ra, rb), max(ra, rb))
-                        lane_list = seg_to_ci.get(seg_key, [ci])
-                        n_lanes = len(lane_list)
-                        if n_lanes < 2:
-                            slots.append(0.0)
-                            continue
-                        try:
-                            my_pos = lane_list.index(ci)
-                        except ValueError:
-                            slots.append(0.0)
-                            continue
-                        slots.append((my_pos - (n_lanes - 1) / 2.0))
-                    r["seg_slots"] = slots
 
         for rxn_id in rxn_nodes:
             routed_rxn_pos.setdefault(rxn_id, pos[rxn_id])
@@ -2445,8 +2494,8 @@ class FLoV(anywidget.AnyWidget):
         ]
         median_count = float(np.median(pair_rxn_counts)) if pair_rxn_counts else 1.0
         median_count = max(median_count, 1.0)
-        ROUTE_WMIN = max(2.5, 3.0 * ds)
-        ROUTE_WMAX = max(ROUTE_WMIN + 2.0, 10.0 * ds)
+        ROUTE_WMIN = max(1.5, 2.0 * ds)
+        ROUTE_WMAX = max(ROUTE_WMIN + 1.5, 7.0 * ds)
 
         def _hull_short_dim(comp_key: str) -> float:
             v = self._compartment_hulls.get(comp_key)
@@ -2482,8 +2531,8 @@ class FLoV(anywidget.AnyWidget):
         )
 
         _exch_cfg = compartments.get(exchange_key, {"color": "#8b949e", "label": exchange_key})
-        rail_wmin = max(1.5, 2.2 * ds)
-        rail_wmax = max(rail_wmin + 1.2, 7.0 * ds)
+        rail_wmin = max(0.9, 1.4 * ds)
+        rail_wmax = max(rail_wmin + 0.7, 4.4 * ds)
 
         # Per-view data
         views_data: list[dict] = []
@@ -2575,14 +2624,14 @@ class FLoV(anywidget.AnyWidget):
                         abs(float(route["stoich"])) if self._stoich_flux else 1.0
                     )
                     _, mag_norm, sign = _edge_bucket(eff_flux, abs_max_route_flux)
-                    width = rail_wmin + (rail_wmax - rail_wmin) * mag_norm
+                    width = rail_wmax  # fixed width — no flux thickness scaling
                     color = _modulate_route_color(
                         route.get("base_color", "#58a6ff"),
                         mag_norm,
                         True,
                     )
                 else:
-                    width = rail_wmin * 0.55
+                    width = rail_wmax  # fixed width — no flux thickness scaling
                     color = "rgba(110,118,129,0.18)"
                 rail_views_data.append({
                     "line_id": route["line_id"],

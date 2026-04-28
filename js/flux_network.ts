@@ -254,13 +254,9 @@ function railOffsetPath(
   const off = seg_slots.map(s => (s * LANE_W_PX) / k_zoom);
   // Build offset path vertices using miter joins at interior vertices.
   const MITER_CAP = (4 * LANE_W_PX) / k_zoom;
-  const ox = new Float64Array(n);
-  const oy = new Float64Array(n);
-  // Endpoints: offset perpendicular to adjacent segment.
-  ox[0]   = sx[0]   + off[0]     * nx[0];
-  oy[0]   = sy[0]   + off[0]     * ny[0];
-  ox[n-1] = sx[n-1] + off[n-2]   * nx[n-2];
-  oy[n-1] = sy[n-1] + off[n-2]   * ny[n-2];
+  const pts_out: [number, number][] = [];
+  // First endpoint: offset perpendicular to first segment.
+  pts_out.push([sx[0] + off[0] * nx[0], sy[0] + off[0] * ny[0]]);
   for (let k = 1; k < n - 1; k++) {
     // Offset base points on each adjacent segment at vertex k.
     const Ax = sx[k] + off[k-1] * nx[k-1], Ay = sy[k] + off[k-1] * ny[k-1];
@@ -268,22 +264,35 @@ function railOffsetPath(
     // Miter: intersect the two offset lines.
     const cross = ux[k-1] * uy[k] - uy[k-1] * ux[k];
     if (Math.abs(cross) < 1e-9) {
-      // Parallel — average.
-      ox[k] = (Ax + Bx) / 2; oy[k] = (Ay + By) / 2;
+      // Collinear segments. If the lane offset changes (e.g. a sibling route
+      // just terminated at this junction), emit two distinct corner points
+      // so the line steps perpendicularly between lanes — a sharp jog at the
+      // node instead of a diagonal across the whole segment.
+      if (Math.abs(off[k] - off[k-1]) < 1e-6) {
+        pts_out.push([(Ax + Bx) / 2, (Ay + By) / 2]);
+      } else {
+        pts_out.push([Ax, Ay]);
+        pts_out.push([Bx, By]);
+      }
+      continue;
     } else {
       const ddx = Bx - Ax, ddy = By - Ay;
       const t = (ddx * uy[k] - ddy * ux[k]) / cross;
       const mx = Ax + t * ux[k-1], my = Ay + t * uy[k-1];
       const dist = Math.hypot(mx - sx[k], my - sy[k]);
       if (dist > MITER_CAP) {
-        ox[k] = (Ax + Bx) / 2; oy[k] = (Ay + By) / 2;
+        pts_out.push([(Ax + Bx) / 2, (Ay + By) / 2]);
       } else {
-        ox[k] = mx; oy[k] = my;
+        pts_out.push([mx, my]);
       }
     }
   }
-  let d = `M${ox[0].toFixed(1)} ${oy[0].toFixed(1)}`;
-  for (let i = 1; i < n; i++) d += ` L${ox[i].toFixed(1)} ${oy[i].toFixed(1)}`;
+  // Last endpoint: offset perpendicular to last segment.
+  pts_out.push([sx[n-1] + off[n-2] * nx[n-2], sy[n-1] + off[n-2] * ny[n-2]]);
+  let d = `M${pts_out[0][0].toFixed(1)} ${pts_out[0][1].toFixed(1)}`;
+  for (let i = 1; i < pts_out.length; i++) {
+    d += ` L${pts_out[i][0].toFixed(1)} ${pts_out[i][1].toFixed(1)}`;
+  }
   return d;
 }
 
