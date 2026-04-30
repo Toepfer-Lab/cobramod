@@ -1830,7 +1830,7 @@ class FLoV(anywidget.AnyWidget):
                 r_norm = dists / max_dist  # 0 = at centroid, 1 = outermost
                 f = self._radial_spread
                 # scale factor: f at centre, 1+0.2*(f-1) at edge
-                scale = 1.0 + (f - 1.0) * (1.0 - 0.95 * r_norm)
+                scale = 1.0 + (f - 1.0) * (1.0 - 0.99 * r_norm)
                 new_pts = np.array([cx, cy]) + deltas * scale[:, np.newaxis]
                 for i, n in enumerate(nodes_here):
                     pos[n] = (float(new_pts[i, 0]), float(new_pts[i, 1]))
@@ -2305,9 +2305,67 @@ class FLoV(anywidget.AnyWidget):
                     if lid not in cell_edge_lines[edge]:
                         cell_edge_lines[edge].append(lid)
 
-            # Junction cells: any cell that hosts a routed rxn/met node.  At
-            # each junction we restart lane assignment so the offsets emerging
-            # from a node are recentred for whichever routes continue together.
+            route_edge_sigs: dict[str, list[tuple[tuple, bool]]] = {}
+            for lid in ordered_lids:
+                cells = route_cells[lid]
+                sigs: list[tuple[tuple, bool]] = []
+                for i in range(len(cells) - 1):
+                    a, b = cells[i], cells[i + 1]
+                    edge = (min(a, b), max(a, b))
+                    sigs.append((edge, (a, b) == edge))
+                route_edge_sigs[lid] = sigs
+
+            def lane_slot_candidates(
+                max_lanes: int, n_routes: int,
+            ) -> list[float]:
+                """Route-local lane slots, ordered from visually centred out."""
+                span = max(max_lanes, n_routes, 1)
+                if max_lanes <= 1:
+                    slots = [0.0]
+                    for k in range(span):
+                        slots.extend([-(k + 0.5), k + 0.5])
+                    return slots
+                if max_lanes % 2 == 0:
+                    slots = []
+                    for k in range(span):
+                        slots.extend([-(k + 0.5), k + 0.5])
+                    slots.append(0.0)
+                    return slots
+                slots = [0.0]
+                for k in range(1, span + 1):
+                    slots.extend([-float(k), float(k)])
+                return slots
+
+            # Reserve one route-local lane for the full source-to-destination
+            # path.
+            # A candidate is accepted only if its physical slot is free on every
+            # grid edge the route traverses, which avoids lane jumps later.
+            used_edge_slots: dict[tuple, set[float]] = defaultdict(set)
+            route_slots: dict[str, float] = {}
+            for lid in ordered_lids:
+                edge_sigs = route_edge_sigs[lid]
+                max_lanes = max(
+                    (len(cell_edge_lines[edge]) for edge, _ in edge_sigs),
+                    default=1,
+                )
+                chosen_slot = 0.0
+                candidates = lane_slot_candidates(max_lanes, len(ordered_lids))
+                for candidate in candidates:
+                    if all(
+                        (candidate if forward else -candidate)
+                        not in used_edge_slots[edge]
+                        for edge, forward in edge_sigs
+                    ):
+                        chosen_slot = candidate
+                        break
+                route_slots[lid] = chosen_slot
+                for edge, forward in edge_sigs:
+                    used_edge_slots[edge].add(
+                        chosen_slot if forward else -chosen_slot
+                    )
+
+            # Junction cells still become explicit vertices so routes connect
+            # cleanly, but lane assignment stays fixed for the whole route.
             node_cells = set(node_to_cell.values())
 
             for lid in ordered_lids:
@@ -2317,12 +2375,6 @@ class FLoV(anywidget.AnyWidget):
                     path_pts = [to_xy(cells[0])] if cells else []
                     seg_slots: list[float] = []
                 else:
-                    edge_sigs: list[tuple[tuple, bool]] = []
-                    for i in range(len(cells) - 1):
-                        a, b = cells[i], cells[i + 1]
-                        edge = (min(a, b), max(a, b))
-                        forward = (a, b) == edge
-                        edge_sigs.append((tuple(cell_edge_lines[edge]), forward))
                     # Find leg boundaries: route endpoints plus any internal
                     # cell that is also a node anchor for some other route.
                     leg_breaks = {0, len(cells) - 1}
@@ -2330,28 +2382,11 @@ class FLoV(anywidget.AnyWidget):
                         if cells[i] in node_cells:
                             leg_breaks.add(i)
                     leg_breaks_sorted = sorted(leg_breaks)
-                    # Within each leg, pick one raw anchor slot from the leg's
-                    # dominant lane group.  Constant slot per leg → partners
-                    # stay perfectly parallel until the next node, where the
-                    # offsets are recentred for whoever continues together.
-                    leg_raw: list[float] = []
-                    for li in range(len(leg_breaks_sorted) - 1):
-                        i0, i1 = leg_breaks_sorted[li], leg_breaks_sorted[li + 1]
-                        raw = 0.0
-                        best_n = 1
-                        for ei in range(i0, i1):
-                            lane_list, _ = edge_sigs[ei]
-                            n_lanes = len(lane_list)
-                            if n_lanes <= best_n or lid not in lane_list:
-                                continue
-                            my_pos = lane_list.index(lid)
-                            raw = my_pos - (n_lanes - 1) / 2.0
-                            best_n = n_lanes
-                        leg_raw.append(raw)
                     # Vertices: leg breaks + interior direction changes.
                     keep_set = set(leg_breaks)
                     for li in range(len(leg_breaks_sorted) - 1):
-                        i0, i1 = leg_breaks_sorted[li], leg_breaks_sorted[li + 1]
+                        i0 = leg_breaks_sorted[li]
+                        i1 = leg_breaks_sorted[li + 1]
                         for i in range(i0 + 1, i1):
                             ax, ay = cells[i - 1]
                             bx, by = cells[i]
@@ -2360,17 +2395,8 @@ class FLoV(anywidget.AnyWidget):
                                 keep_set.add(i)
                     keep_idx = sorted(keep_set)
                     path_pts = [to_xy(cells[i]) for i in keep_idx]
-                    # Apply leg raw slot per segment, flipping for reversed
-                    # canonical traversal so the rendered side stays consistent.
-                    seg_slots = []
-                    li = 0
-                    for s in range(len(keep_idx) - 1):
-                        i0 = keep_idx[s]
-                        while li + 1 < len(leg_breaks_sorted) and i0 >= leg_breaks_sorted[li + 1]:
-                            li += 1
-                        raw = leg_raw[li]
-                        forward = edge_sigs[i0][1]
-                        seg_slots.append(raw if forward else -raw)
+                    route_slot = route_slots.get(lid, 0.0)
+                    seg_slots = [route_slot] * (len(keep_idx) - 1)
                 routes_geom.append({
                     "line_id": rec["line_id"],
                     "rxn_id": rec["rxn_id"],
