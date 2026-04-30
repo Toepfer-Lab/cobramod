@@ -146,7 +146,12 @@ const CSS = `
 .flov-search-result{padding:3px 8px;cursor:pointer;font-size:11px;border-top:1px solid #21262d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#e6edf3;}
 .flov-search-result:hover{background:#21262d;}
 @keyframes flov-pulse{0%,100%{stroke-opacity:1;stroke-width:3}50%{stroke-opacity:.35;stroke-width:7}}
+@keyframes flov-flow-forward{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
+@keyframes flov-flow-reverse{from{stroke-dashoffset:0}to{stroke-dashoffset:28}}
 .flov-hl{animation:flov-pulse 1.3s ease-in-out infinite;}
+.flov-flow-arrow{stroke-dasharray:9 5;}
+.flov-flow-forward{animation:flov-flow-forward 1s linear infinite;}
+.flov-flow-reverse{animation:flov-flow-reverse 1s linear infinite;}
 .flov-wrapper.light-mode{background:#f6f8fa;color:#24292f;}
 .flov-wrapper.light-mode .flov-toolbar{background:#ffffff;border-bottom-color:#d0d7de;}
 .flov-wrapper.light-mode .flov-btn-group{color:#24292f;}
@@ -427,6 +432,8 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   let cachedWrapperRect: DOMRect | null = null;
   let lightMode = true;
   let focusState: FocusState | null = null;
+  const arrowMarkerEndId = `flov-arrow-end-${Math.random().toString(36).slice(2)}`;
+  const arrowMarkerStartId = `flov-arrow-start-${Math.random().toString(36).slice(2)}`;
 
   const MARGIN = { t: 10, r: 90, b: 10, l: 20 };
   const MET_HOVER_STROKE = 12;
@@ -532,6 +539,29 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('width', svgW)
       .attr('height', svgH)
       .style('background', lightMode ? '#f6f8fa' : '#0d1117');
+    const defs = svg.append('defs');
+    defs.append('marker')
+      .attr('id', arrowMarkerEndId)
+      .attr('viewBox', '0 0 8 8')
+      .attr('refX', 7.2)
+      .attr('refY', 4)
+      .attr('markerWidth', 3.5)
+      .attr('markerHeight', 3.5)
+      .attr('orient', 'auto')
+      .append('path')
+      .attr('d', 'M0,0 L8,4 L0,8 Z')
+      .attr('fill', 'context-stroke');
+    defs.append('marker')
+      .attr('id', arrowMarkerStartId)
+      .attr('viewBox', '0 0 8 8')
+      .attr('refX', 7.2)
+      .attr('refY', 4)
+      .attr('markerWidth', 3.5)
+      .attr('markerHeight', 3.5)
+      .attr('orient', 'auto-start-reverse')
+      .append('path')
+      .attr('d', 'M0,0 L8,4 L0,8 Z')
+      .attr('fill', 'context-stroke');
     svgEl = svg.node();
     const zoomLayer = svg.append<SVGGElement>('g').attr('class', 'zoom-layer').style('will-change', 'transform');
     return { svg, zoomLayer };
@@ -890,6 +920,52 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     return st.lines.some(ln => ln.rxn_ids.some(rid => focusState!.rxnIds.has(rid)));
   }
 
+  function flowDirection(
+    rxnId: string,
+    metId: string,
+    stoich?: number
+  ): 'rxn-to-met' | 'met-to-rxn' | null {
+    if (typeof stoich === 'number' && Number.isFinite(stoich) && stoich !== 0) {
+      return stoich > 0 ? 'rxn-to-met' : 'met-to-rxn';
+    }
+    const met = fig?.met_nodes.find(m => m.id === metId);
+    if (met?.producers.includes(rxnId)) return 'rxn-to-met';
+    if (met?.consumers.includes(rxnId)) return 'met-to-rxn';
+    return null;
+  }
+
+  function flowMagnitude(rxnId: string, metId: string, stoich?: number): number {
+    if (typeof stoich === 'number' && Number.isFinite(stoich) && stoich !== 0) {
+      return Math.max(1, Math.abs(stoich));
+    }
+    if (!fig) return 1;
+    let m = 0;
+    for (const r of fig.rail_routes) {
+      if (r.rxn_id === rxnId && r.met_id === metId) m += Math.abs(r.stoich) || 1;
+    }
+    if (m === 0) {
+      for (const e of fig.inner_edges) {
+        if (e.rxn_id === rxnId && e.met_id === metId) m += 1;
+      }
+    }
+    return Math.max(1, m);
+  }
+
+  function applyFlowArrow(
+    sel: d3.Selection<SVGPathElement, any, any, any>,
+    isFocus: boolean,
+    direction: 'rxn-to-met' | 'met-to-rxn' | null,
+    magnitude: number = 1
+  ): void {
+    const activeArrow = focusState !== null && isFocus && direction !== null;
+    sel.classed('flov-flow-arrow', activeArrow)
+      .classed('flov-flow-forward', activeArrow && direction === 'rxn-to-met')
+      .classed('flov-flow-reverse', activeArrow && direction === 'met-to-rxn')
+      .style('animation-duration', activeArrow ? `${1 / magnitude}s` : '')
+      .attr('marker-end', null)
+      .attr('marker-start', null);
+  }
+
   function applyFocus(): void {
     if (!fig) return;
     const zl = wrapper.querySelector<SVGGElement>('.zoom-layer');
@@ -908,18 +984,25 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
         (g.node_type === 'met' && focusState!.metIds.has(g.node_id)) ? 1 : 0.08);
 
     d3.select(zl).select('.g-inner').selectAll<SVGPathElement, InnerEdge>('path')
-      .attr('stroke', e => !active || (focusState!.rxnIds.has(e.rxn_id) && focusState!.metIds.has(e.met_id))
-        ? 'rgba(139,148,158,0.50)' : dimStroke)
-      .attr('opacity', e => !active || (focusState!.rxnIds.has(e.rxn_id) && focusState!.metIds.has(e.met_id)) ? 1 : 0.10);
+      .each(function(e: InnerEdge) {
+        const isFocus = active && focusState!.rxnIds.has(e.rxn_id) && focusState!.metIds.has(e.met_id);
+        const sel = d3.select(this);
+        sel
+          .attr('stroke', !active || isFocus ? 'rgba(139,148,158,0.50)' : dimStroke)
+          .attr('opacity', !active || isFocus ? 1 : 0.10);
+        applyFlowArrow(sel, isFocus, flowDirection(e.rxn_id, e.met_id), flowMagnitude(e.rxn_id, e.met_id));
+      });
 
     d3.select(zl).select('.g-rail').selectAll<SVGPathElement, RailRouteGeom>('path.rail-line')
       .each(function(d: RailRouteGeom) {
         const rv = railViewById.get(d.line_id);
         const isFocus = active && focusState!.rxnIds.has(d.rxn_id) && focusState!.metIds.has(d.met_id);
-        d3.select(this)
+        const sel = d3.select(this);
+        sel
           .attr('stroke', !active || isFocus ? (rv?.color ?? 'rgba(110,118,129,0.18)') : dimStroke)
           .attr('stroke-width', rv?.width ?? 0.8)
           .attr('opacity', !active || isFocus ? 1 : 0.12);
+        applyFlowArrow(sel, isFocus, flowDirection(d.rxn_id, d.met_id, d.stoich), flowMagnitude(d.rxn_id, d.met_id, d.stoich));
       });
 
     d3.select(zl).select('.g-route').selectAll<SVGPathElement, {rxn_ids?: string[]; pair_id:string; lineIndex:number}>('path.route-line')
@@ -928,6 +1011,12 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
         const lv = sv ? sv.lines[d.lineIndex] : undefined;
         const isFocus = active && (d.rxn_ids ?? []).some(rid => focusState!.rxnIds.has(rid));
         d3.select(this)
+          .classed('flov-flow-arrow', false)
+          .classed('flov-flow-forward', false)
+          .classed('flov-flow-reverse', false)
+          .style('animation-duration', '')
+          .attr('marker-end', null)
+          .attr('marker-start', null)
           .attr('stroke', !active || isFocus ? (lv?.color ?? '#6e7681') : dimStroke)
           .attr('stroke-width', lv?.width ?? 1)
           .attr('opacity', !active || isFocus ? 1 : 0.10);

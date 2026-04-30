@@ -98,7 +98,7 @@ _DEFAULT_CURRENCY_KW: set[str] = {
 
 _DEFAULT_IMPORT_PREFIX: tuple[str, ...] = ("Im_",)
 _DEFAULT_EXPORT_PREFIX: tuple[str, ...] = ("Ex_", "Si_")
-_DEFAULT_BIOMASS_PREFIX: tuple[str, ...] = ("Bio_",)
+_DEFAULT_BIOMASS_PREFIX: tuple[str, ...] = ("Bio_", "BIOMASS")
 _DEFAULT_EXCHANGE_KEY = "u"
 
 
@@ -205,11 +205,14 @@ def _is_proton(met: cobra.Metabolite, cfg: dict) -> bool:
 
 
 def _rxn_kind(rxn: cobra.Reaction, cfg: dict) -> str:
-    if any(rxn.id.startswith(p) for p in cfg["import_prefix"]):
+    rxn_id_lower = rxn.id.lower()
+    if any(rxn_id_lower.startswith(p.lower()) for p in cfg["import_prefix"]):
         return "import"
-    if any(rxn.id.startswith(p) for p in cfg["export_prefix"]):
+    if any(rxn_id_lower.startswith(p.lower()) for p in cfg["export_prefix"]):
         return "export"
-    if any(rxn.id.startswith(p) for p in cfg["biomass_prefix"]):
+    if rxn_id_lower.startswith("biomass"):
+        return "biomass"
+    if any(rxn_id_lower.startswith(p.lower()) for p in cfg["biomass_prefix"]):
         return "biomass"
     all_comps = {_met_comp(m, cfg) for m in rxn.metabolites}
     non_exch = all_comps - {cfg["exchange_key"]}
@@ -1412,7 +1415,7 @@ class FLoV(anywidget.AnyWidget):
     @drop_biomass.setter
     def drop_biomass(self, value: bool) -> None:
         self._drop_biomass = value
-        self._mark_dirty("figure")
+        self._mark_dirty("graph")
 
     @property
     def ignore(self) -> tuple[set[str], set[str]]:
@@ -1563,6 +1566,8 @@ class FLoV(anywidget.AnyWidget):
         # otherwise their count stays 0 and the ">= 2" filter discards them.
         met_rxn_count: dict[str, int] = {}
         for rxn in mdl.reactions:
+            if self._drop_biomass and self._rxn_kind_map.get(rxn.id) == "biomass":
+                continue
             for met in rxn.metabolites:
                 is_p = _is_proton(met, cfg)
                 if not _is_currency(met, cfg) or (is_p and not self._drop_protons):
@@ -1570,6 +1575,8 @@ class FLoV(anywidget.AnyWidget):
 
         self._met_to_rxns = {}
         for rxn in mdl.reactions:
+            if self._drop_biomass and self._rxn_kind_map.get(rxn.id) == "biomass":
+                continue
             for met, stoich in rxn.metabolites.items():
                 is_proton = _is_proton(met, cfg)
                 # When drop_protons=False the user explicitly wants protons
@@ -1588,6 +1595,8 @@ class FLoV(anywidget.AnyWidget):
         G = nx.Graph()
         for rxn in mdl.reactions:
             if rxn.id in self._ignored_rxns:
+                continue
+            if self._drop_biomass and self._rxn_kind_map[rxn.id] == "biomass":
                 continue
             if self._rxn_kind_map[rxn.id] == "regular":
                 comp_counts: dict[str, int] = {}
@@ -1617,7 +1626,7 @@ class FLoV(anywidget.AnyWidget):
             G.add_node(met_id, ntype="met", comp=mc, name=met_obj.name or met_id,
                        is_proton=_is_proton(met_obj, cfg))
             for rxn_id, stoich in rxn_list:
-                if rxn_id not in self._ignored_rxns:
+                if rxn_id not in self._ignored_rxns and rxn_id in G:
                     G.add_edge(rxn_id, met_id, stoich=stoich)
 
         # Currency/proton filtering can leave reactions with no rendered
