@@ -1143,9 +1143,9 @@ class FLoV(anywidget.AnyWidget):
     Usage::
 
         widget = FLoV()
-        widget.compartments = "config/aracore.toml"  # or dict
-        widget.model = cobra.io.read_sbml_model("model.xml")
         widget.add_view("FBA", model.optimize())
+        widget.compartments = "config/aracore.toml"  # or dict
+        widget.model = cobra.io.read_sbml_model("model.xml")  # single build
         widget  # display in Jupyter
     """
 
@@ -1197,8 +1197,7 @@ class FLoV(anywidget.AnyWidget):
         self._color_modifier = color_modifier
         self._ignored_rxns: set[str] = set()
         self._ignored_mets: set[str] = set()
-        self._batch_depth: int = 0
-        self._batch_needs: set[str] = set()
+        self._dirty_level: Optional[str] = None
         self._animate_flux = False
         self._anim_min_period = 0.4   # seconds — fastest pulse at peak flux
         self._anim_max_period = 3.0   # seconds — slowest pulse at minimal flux
@@ -1220,7 +1219,7 @@ class FLoV(anywidget.AnyWidget):
             self._cfg = _parse_config(value)
         else:
             raise TypeError(f"Expected str, Path, or dict, got {type(value)}")
-        self._trigger("graph")
+        self._mark_dirty("graph")
 
     @property
     def model(self) -> Optional[cobra.Model]:
@@ -1233,6 +1232,7 @@ class FLoV(anywidget.AnyWidget):
         self._build_graph()
         if self._views:
             self._rebuild_figure()
+        self._dirty_level = None
 
     @property
     def drop_no_data(self) -> bool:
@@ -1242,7 +1242,7 @@ class FLoV(anywidget.AnyWidget):
     @drop_no_data.setter
     def drop_no_data(self, value: bool) -> None:
         self._drop_no_data = value
-        self._trigger("figure")
+        self._mark_dirty("figure")
 
     @property
     def stoich_flux(self) -> bool:
@@ -1252,7 +1252,7 @@ class FLoV(anywidget.AnyWidget):
     @stoich_flux.setter
     def stoich_flux(self, value: bool) -> None:
         self._stoich_flux = value
-        self._trigger("figure")
+        self._mark_dirty("figure")
 
     @property
     def hull_tension(self) -> float:
@@ -1262,7 +1262,7 @@ class FLoV(anywidget.AnyWidget):
     @hull_tension.setter
     def hull_tension(self, value: float) -> None:
         self._hull_tension = value
-        self._trigger("figure")
+        self._mark_dirty("figure")
 
     @property
     def scale_compartments(self) -> bool:
@@ -1272,7 +1272,7 @@ class FLoV(anywidget.AnyWidget):
     @scale_compartments.setter
     def scale_compartments(self, value: bool) -> None:
         self._scale_compartments = value
-        self._trigger("layout")
+        self._mark_dirty("layout")
 
     @property
     def spread(self) -> Union[float, str]:
@@ -1302,7 +1302,7 @@ class FLoV(anywidget.AnyWidget):
     @spread.setter
     def spread(self, value: Union[float, str]) -> None:
         self._spread = _parse_spread(value)
-        self._trigger("layout")
+        self._mark_dirty("layout")
 
     @property
     def radial_spread(self) -> float:
@@ -1319,7 +1319,7 @@ class FLoV(anywidget.AnyWidget):
     @radial_spread.setter
     def radial_spread(self, value: float) -> None:
         self._radial_spread = float(value)
-        self._trigger("layout")
+        self._mark_dirty("layout")
 
     @property
     def density_scale(self) -> Optional[float]:
@@ -1331,7 +1331,7 @@ class FLoV(anywidget.AnyWidget):
     @density_scale.setter
     def density_scale(self, value: Optional[float]) -> None:
         self._density_scale = value
-        self._trigger("figure")
+        self._mark_dirty("figure")
 
     @property
     def color_modifier(self) -> float:
@@ -1341,48 +1341,52 @@ class FLoV(anywidget.AnyWidget):
     @color_modifier.setter
     def color_modifier(self, value: float) -> None:
         self._color_modifier = value
-        self._trigger("figure")
+        self._mark_dirty("figure")
 
     @contextmanager
     def configure(self):
-        """Suppress all rebuilds while setting configuration properties.
+        """Group configuration assignments without rebuilding.
 
-        Without this, each assignment on an already-built widget triggers its
-        own expensive rebuild immediately.  Wrap configuration assignments in
-        this block, then trigger one rebuild explicitly afterwards::
+        Configuration changes only mark the widget dirty.  Trigger one build
+        explicitly afterwards by assigning ``model`` or calling ``rebuild()``::
 
             with widget.configure():
                 widget.drop_protons = True
                 widget.density_scale = 0.6
             widget.model = model  # single rebuild here
         """
-        self._batch_depth += 1
-        try:
-            yield
-        finally:
-            self._batch_depth -= 1
-            # Discard queued flags — the caller is responsible for triggering
-            # the rebuild explicitly (e.g. widget.model = model) after the block.
-            if self._batch_depth == 0:
-                self._batch_needs.clear()
+        yield
 
-    def _trigger(self, level: str) -> None:
-        """Schedule or immediately execute a rebuild at the given level.
+    def _mark_dirty(self, level: str) -> None:
+        """Mark that a future explicit rebuild is needed.
 
         ``level`` is one of ``'figure'``, ``'layout'``, or ``'graph'``
-        (each implies all cheaper levels).  When inside a ``configure()``
-        block the rebuild is deferred; otherwise it runs immediately.
+        (each implies all cheaper levels).  Rebuilds are intentionally not run
+        from property setters, so several settings can be changed cheaply before
+        assigning ``model`` or calling ``rebuild()`` once.
         """
         if not self._graph_built:
             return
-        if self._batch_depth:
-            self._batch_needs.add(level)
-            return
-        if level == "graph":
+        rank = {"figure": 0, "layout": 1, "graph": 2}
+        if level not in rank:
+            raise ValueError("level must be one of 'figure', 'layout', or 'graph'")
+        if self._dirty_level is None or rank[level] > rank[self._dirty_level]:
+            self._dirty_level = level
+
+    def rebuild(self) -> None:
+        """Explicitly rebuild the widget after changing configuration or views."""
+        if self._cobra_model is None:
+            raise ValueError("No model set.")
+
+        level = self._dirty_level
+        if level == "graph" or not self._graph_built:
             self._build_graph()
         elif level == "layout":
             self._compute_layout()
-        self._rebuild_figure()
+
+        if self._views:
+            self._rebuild_figure()
+        self._dirty_level = None
 
     def _resolve_density_scale(self, n_rxns: int) -> float:
         """Return the effective density scale: user value if set, else auto from network size."""
@@ -1398,7 +1402,7 @@ class FLoV(anywidget.AnyWidget):
     @drop_protons.setter
     def drop_protons(self, value: bool) -> None:
         self._drop_protons = value
-        self._trigger("graph")
+        self._mark_dirty("graph")
 
     @property
     def drop_biomass(self) -> bool:
@@ -1408,7 +1412,7 @@ class FLoV(anywidget.AnyWidget):
     @drop_biomass.setter
     def drop_biomass(self, value: bool) -> None:
         self._drop_biomass = value
-        self._trigger("figure")
+        self._mark_dirty("figure")
 
     @property
     def ignore(self) -> tuple[set[str], set[str]]:
@@ -1425,7 +1429,7 @@ class FLoV(anywidget.AnyWidget):
             self._ignored_rxns, self._ignored_mets = set(value[0]), set(value[1])
         else:
             raise TypeError("ignore expects a file path, a (rxn_set, met_set) tuple, or None")
-        self._trigger("graph")
+        self._mark_dirty("graph")
 
     # -- Public API --
 
@@ -1474,13 +1478,13 @@ class FLoV(anywidget.AnyWidget):
         else:
             self._views.append(spec)
         if self._graph_built:
-            _emit_progress(f"Rendering view '{label}'...")
-            self._rebuild_figure()
+            self._mark_dirty("figure")
 
     def clear_views(self) -> None:
         """Remove all flux views."""
         self._views.clear()
         self._figure_json = "{}"
+        self._mark_dirty("figure")
 
     def run_fba(self, label: str = "FBA") -> None:
         """Run FBA on the model and add as a view."""
@@ -1491,6 +1495,7 @@ class FLoV(anywidget.AnyWidget):
         if sol.status != "optimal":
             raise RuntimeError(f"FBA status: {sol.status}")
         self.add_view(label, sol)
+        self.rebuild()
 
     def run_pfba(self, label: str = "pFBA") -> None:
         """Run parsimonious FBA on the model and add as a view."""
@@ -1499,6 +1504,7 @@ class FLoV(anywidget.AnyWidget):
         _emit_progress("Running pFBA...")
         sol = cobra.flux_analysis.pfba(self._cobra_model)
         self.add_view(label, sol)
+        self.rebuild()
 
     def _handle_custom_msg(self, _widget, content: dict, _buffers) -> None:
         if content.get("type") == "run_pfba":
