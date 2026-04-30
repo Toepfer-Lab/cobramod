@@ -4531,6 +4531,7 @@ function render({ model: S, el: I }) {
   let rafId = null;
   let cachedWrapperRect = null;
   let lightMode = true;
+  let focusState = null;
   const MARGIN = { t: 10, r: 90, b: 10, l: 20 };
   const MET_HOVER_STROKE = 12;
   const RXN_HOVER_STROKE = 14;
@@ -4567,6 +4568,7 @@ function render({ model: S, el: I }) {
     gRxnSel = null;
     gRxnHitSel = null;
     cachedWrapperRect = null;
+    focusState = null;
     if (rafId !== null) {
       cancelAnimationFrame(rafId);
       rafId = null;
@@ -4601,6 +4603,7 @@ function render({ model: S, el: I }) {
     svg.on("dblclick.zoom", () => {
       svg.transition().duration(380).call(zoomB.transform, identity3);
     });
+    svg.on("click.focus", () => clearFocus());
   }
   function buildSVG(svgW, svgH) {
     const svg = select_default2(wrapper).append("svg").attr("class", "flov-svg").attr("width", svgW).attr("height", svgH).style("background", lightMode ? "#f6f8fa" : "#0d1117");
@@ -4628,14 +4631,15 @@ function render({ model: S, el: I }) {
     const railStyleById = /* @__PURE__ */ new Map();
     view0.rail_routes.forEach((rt) => railStyleById.set(rt.line_id, rt));
     gRail.selectAll("path").data(data.rail_routes).join("path").attr("class", "rail-line").attr("d", (d) => railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k)).attr("stroke", (d) => railStyleById.get(d.line_id)?.color ?? "rgba(110,118,129,0.18)").attr("stroke-width", (d) => railStyleById.get(d.line_id)?.width ?? 0.8).attr("fill", "none").attr("stroke-linecap", "round").attr("stroke-linejoin", "round").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
-    gMetHitSel = gMetSel.selectAll("path.met-hit").data(data.met_nodes).join("path").attr("class", "met-hit").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", MET_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
-    gMetSel.selectAll("path.met-shape").data(data.met_nodes).join("path").attr("class", "met-shape").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", (d) => d.display_kind === "stop" ? "#ffffff" : d.comp_color).attr("fill-opacity", (d) => d.display_kind === "stop" ? 1 : 0.85).attr("stroke", (d) => d.display_kind === "stop" ? d.comp_color : "#0d1117").attr("stroke-width", (d) => d.display_kind === "stop" ? 1.3 : 0.7).style("cursor", "default").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT);
+    gMetHitSel = gMetSel.selectAll("path.met-hit").data(data.met_nodes).join("path").attr("class", "met-hit").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", MET_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT).on("click", (ev, d) => setMetFocus(d, ev));
+    gMetSel.selectAll("path.met-shape").data(data.met_nodes).join("path").attr("class", "met-shape").attr("d", (d) => metPath(d)).attr("transform", (d) => metTransform(d, currentTransform)).attr("fill", (d) => d.display_kind === "stop" ? "#ffffff" : d.comp_color).attr("fill-opacity", (d) => d.display_kind === "stop" ? 1 : 0.85).attr("stroke", (d) => d.display_kind === "stop" ? d.comp_color : "#0d1117").attr("stroke-width", (d) => d.display_kind === "stop" ? 1.3 : 0.7).style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, metTooltipHTML(d), d.comp_color)).on("mousemove", moveTT).on("mouseout", hideTT).on("click", (ev, d) => setMetFocus(d, ev));
     const routeData = [];
     data.stations.forEach((st) => {
       st.lines.forEach((ln, li) => {
         routeData.push({
           pair_id: st.pair_id,
           klass: ln.klass,
+          rxn_ids: ln.rxn_ids,
           path: ln.path,
           lineIndex: li
         });
@@ -4680,15 +4684,131 @@ function render({ model: S, el: I }) {
     )).on("mousemove", moveTT).on("mouseout", hideTT);
     gBHub.selectAll("rect.bhub").data(data.branch_hubs).join("rect").attr("class", "bhub").attr("x", -4).attr("y", -10).attr("width", 8).attr("height", 20).attr("rx", 4).attr("ry", 4).attr("fill", "#ffffff").attr("stroke", "#8b949e").attr("stroke-width", 1.6).attr("vector-effect", "non-scaling-stroke").attr("transform", (b) => `translate(${xS(b.x).toFixed(1)},${yS(b.y).toFixed(1)})`).style("cursor", "pointer").on("mouseover", (ev, b) => showTT(ev, branchTooltipHTML(b), "#8b949e")).on("mousemove", moveTT).on("mouseout", hideTT);
     gInner.selectAll("path").data(data.inner_edges).join("path").attr("d", (e) => `M${xS(e.x[0]).toFixed(1)} ${yS(e.y[0]).toFixed(1)} L${xS(e.x[1]).toFixed(1)} ${yS(e.y[1]).toFixed(1)}`).attr("stroke", "rgba(139,148,158,0.50)").attr("stroke-width", 0.8).attr("stroke-dasharray", "3,3").attr("fill", "none").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
-    gRxnHitSel = gRxn.selectAll("path.rxn-hit").data(view0.rxn_nodes).join("path").attr("class", "rxn-hit").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", RXN_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT);
-    gRxnSel = gRxn.selectAll("path.rxn-shape").data(view0.rxn_nodes).join("path").attr("class", "rxn-shape").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", (d) => d.fill_color).attr("stroke", (d) => d.border_color).attr("stroke-width", (d) => d.border_width).attr("opacity", (d) => d.opacity).style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT);
+    gRxnHitSel = gRxn.selectAll("path.rxn-hit").data(view0.rxn_nodes).join("path").attr("class", "rxn-hit").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", RXN_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT).on("click", (ev, d) => setRxnFocus(d, ev));
+    gRxnSel = gRxn.selectAll("path.rxn-shape").data(view0.rxn_nodes).join("path").attr("class", "rxn-shape").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", (d) => d.fill_color).attr("stroke", (d) => d.border_color).attr("stroke-width", (d) => d.border_width).attr("opacity", (d) => d.opacity).style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT).on("click", (ev, d) => setRxnFocus(d, ev));
     gLbl.selectAll("text").data(view0.rxn_nodes).join("text").attr("x", (d) => xS(d.x)).attr("y", (d) => yS(d.y) - d.r - 2).attr("text-anchor", "middle").attr("fill", "#8b949e").attr("font-size", 7).attr("font-family", "'Inter',Arial,sans-serif").style("pointer-events", "none").text((d) => d.name);
     gHL.append("circle").attr("class", "flov-hl").attr("r", 14).attr("fill", "none").attr("stroke", "#f0a030").attr("stroke-width", 3).attr("opacity", 0).style("pointer-events", "none");
+    applyFocus();
   }
   function rxnTransform(d, transform2 = currentTransform) {
     const tx = xS(d.x).toFixed(1), ty = yS(d.y).toFixed(1);
     const inv = (1 / transform2.k).toFixed(6);
     return d.symbol === "triangle-down" ? `matrix(-${inv},0,0,-${inv},${tx},${ty})` : `matrix(${inv},0,0,${inv},${tx},${ty})`;
+  }
+  function connectedMetIdsForRxn(rxnId) {
+    const ids = /* @__PURE__ */ new Set();
+    if (!fig)
+      return ids;
+    fig.rail_routes.forEach((rt) => {
+      if (rt.rxn_id === rxnId)
+        ids.add(rt.met_id);
+    });
+    fig.inner_edges.forEach((e) => {
+      if (e.rxn_id === rxnId)
+        ids.add(e.met_id);
+    });
+    fig.met_nodes.forEach((m) => {
+      if (m.consumers.includes(rxnId) || m.producers.includes(rxnId))
+        ids.add(m.id);
+    });
+    return ids;
+  }
+  function connectedRxnIdsForMet(metId) {
+    const ids = /* @__PURE__ */ new Set();
+    if (!fig)
+      return ids;
+    fig.rail_routes.forEach((rt) => {
+      if (rt.met_id === metId)
+        ids.add(rt.rxn_id);
+    });
+    fig.inner_edges.forEach((e) => {
+      if (e.met_id === metId)
+        ids.add(e.rxn_id);
+    });
+    const met = fig.met_nodes.find((m) => m.id === metId);
+    met?.consumers.forEach((r) => ids.add(r));
+    met?.producers.forEach((r) => ids.add(r));
+    return ids;
+  }
+  function setRxnFocus(d, ev) {
+    ev.stopPropagation();
+    if (focusState?.type === "rxn" && focusState.id === d.id) {
+      clearFocus();
+      return;
+    }
+    focusState = {
+      type: "rxn",
+      id: d.id,
+      rxnIds: /* @__PURE__ */ new Set([d.id]),
+      metIds: connectedMetIdsForRxn(d.id)
+    };
+    applyFocus();
+  }
+  function setMetFocus(d, ev) {
+    ev.stopPropagation();
+    if (focusState?.type === "met" && focusState.id === d.id) {
+      clearFocus();
+      return;
+    }
+    focusState = {
+      type: "met",
+      id: d.id,
+      rxnIds: connectedRxnIdsForMet(d.id),
+      metIds: /* @__PURE__ */ new Set([d.id])
+    };
+    applyFocus();
+  }
+  function clearFocus() {
+    if (!focusState)
+      return;
+    focusState = null;
+    applyFocus();
+  }
+  function focusHasStation(st) {
+    if (!focusState)
+      return false;
+    return st.lines.some((ln) => ln.rxn_ids.some((rid) => focusState.rxnIds.has(rid)));
+  }
+  function applyFocus() {
+    if (!fig)
+      return;
+    const zl = wrapper.querySelector(".zoom-layer");
+    if (!zl)
+      return;
+    const active = focusState !== null;
+    const dimStroke = lightMode ? "#8c959f" : "#484f58";
+    const dimFill = lightMode ? "#d8dee4" : "#30363d";
+    const view = fig.views[currentView];
+    const railViewById = /* @__PURE__ */ new Map();
+    view.rail_routes.forEach((rt) => railViewById.set(rt.line_id, rt));
+    select_default2(zl).select(".g-guide").selectAll("path").attr("opacity", (g) => !active || g.node_type === "rxn" && focusState.rxnIds.has(g.node_id) || g.node_type === "met" && focusState.metIds.has(g.node_id) ? 1 : 0.08);
+    select_default2(zl).select(".g-inner").selectAll("path").attr("stroke", (e) => !active || focusState.rxnIds.has(e.rxn_id) && focusState.metIds.has(e.met_id) ? "rgba(139,148,158,0.50)" : dimStroke).attr("opacity", (e) => !active || focusState.rxnIds.has(e.rxn_id) && focusState.metIds.has(e.met_id) ? 1 : 0.1);
+    select_default2(zl).select(".g-rail").selectAll("path.rail-line").each(function(d) {
+      const rv = railViewById.get(d.line_id);
+      const isFocus = active && focusState.rxnIds.has(d.rxn_id) && focusState.metIds.has(d.met_id);
+      select_default2(this).attr("stroke", !active || isFocus ? rv?.color ?? "rgba(110,118,129,0.18)" : dimStroke).attr("stroke-width", rv?.width ?? 0.8).attr("opacity", !active || isFocus ? 1 : 0.12);
+    });
+    select_default2(zl).select(".g-route").selectAll("path.route-line").each(function(d) {
+      const sv = view.stations.find((s) => s.pair_id === d.pair_id);
+      const lv = sv ? sv.lines[d.lineIndex] : void 0;
+      const isFocus = active && (d.rxn_ids ?? []).some((rid) => focusState.rxnIds.has(rid));
+      select_default2(this).attr("stroke", !active || isFocus ? lv?.color ?? "#6e7681" : dimStroke).attr("stroke-width", lv?.width ?? 1).attr("opacity", !active || isFocus ? 1 : 0.1);
+    });
+    select_default2(zl).select(".g-stn").selectAll("rect.stn-pill").each(function(p) {
+      const stroke = p.side === "a" ? p.st.comp_a_color : p.st.comp_b_color;
+      const isFocus = active && focusHasStation(p.st);
+      select_default2(this).attr("fill", !active || isFocus ? "#ffffff" : dimFill).attr("stroke", !active || isFocus ? stroke : dimStroke).attr("opacity", !active || isFocus ? 1 : 0.16);
+    });
+    select_default2(zl).select(".g-bhub").selectAll("rect.bhub").attr("fill", active ? dimFill : "#ffffff").attr("stroke", active ? dimStroke : "#8b949e").attr("opacity", active ? 0.12 : 1);
+    gMetSel?.selectAll("path.met-shape").each(function(d) {
+      const isFocus = active && focusState.metIds.has(d.id);
+      select_default2(this).attr("fill", !active || isFocus ? d.display_kind === "stop" ? "#ffffff" : d.comp_color : dimFill).attr("fill-opacity", !active || isFocus ? d.display_kind === "stop" ? 1 : 0.85 : 0.55).attr("stroke", !active || isFocus ? d.display_kind === "stop" ? d.comp_color : "#0d1117" : dimStroke).attr("opacity", !active || isFocus ? 1 : 0.18);
+    });
+    gRxnSel?.each(function(d) {
+      const isFocus = active && focusState.rxnIds.has(d.id);
+      select_default2(this).attr("fill", !active || isFocus ? d.fill_color : dimFill).attr("stroke", !active || isFocus ? d.border_color : dimStroke).attr("stroke-width", d.border_width).attr("opacity", !active || isFocus ? d.opacity : 0.16);
+    });
+    select_default2(zl).select(".g-lbl").selectAll("text").attr("opacity", (d) => !active || focusState.rxnIds.has(d.id) ? 1 : 0.1);
   }
   function buildToolbar(data, parent) {
     const bar = document.createElement("div");
@@ -4719,6 +4839,7 @@ function render({ model: S, el: I }) {
         svgEl.style.background = lightMode ? "#f6f8fa" : "#0d1117";
       themeBtn.textContent = lightMode ? "Dark mode" : "Light mode";
       themeBtn.classList.toggle("active", lightMode);
+      applyFocus();
     };
     themeBtn.onclick = () => {
       lightMode = !lightMode;
@@ -4796,6 +4917,7 @@ function render({ model: S, el: I }) {
     gRxnHitSel.data(view.rxn_nodes).attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d));
     select_default2(zl).select(".g-lbl").selectAll("text").data(view.rxn_nodes).attr("x", (d) => xS(d.x)).attr("y", (d) => yS(d.y) - d.r - 2);
     viewBtns.forEach((b, i) => b.classList.toggle("active", i === vi));
+    applyFocus();
   }
   function buildTooltip(parent) {
     const el = document.createElement("div");

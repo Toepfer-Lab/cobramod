@@ -106,6 +106,12 @@ interface D3FigureData {
   branch_hubs: BranchHub[];
   inner_edges: InnerEdge[];
 }
+interface FocusState {
+  type: 'rxn' | 'met';
+  id: string;
+  rxnIds: Set<string>;
+  metIds: Set<string>;
+}
 
 // ── CSS ───────────────────────────────────────────────────────────────────────
 
@@ -404,6 +410,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   let rafId: number | null = null;
   let cachedWrapperRect: DOMRect | null = null;
   let lightMode = true;
+  let focusState: FocusState | null = null;
 
   const MARGIN = { t: 10, r: 90, b: 10, l: 20 };
   const MET_HOVER_STROKE = 12;
@@ -448,6 +455,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     gRxnSel = null;
     gRxnHitSel = null;
     cachedWrapperRect = null;
+    focusState = null;
     if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
     wrapper.innerHTML = '';
     tooltipEl = null;
@@ -485,6 +493,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     svg.on('dblclick.zoom', () => {
       svg.transition().duration(380).call(zoomB!.transform, d3.zoomIdentity);
     });
+    svg.on('click.focus', () => clearFocus());
   }
 
   // ── SVG skeleton ──
@@ -586,10 +595,11 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('stroke-width', MET_HOVER_STROKE)
       .attr('vector-effect', 'non-scaling-stroke')
       .style('pointer-events', 'all')
-      .style('cursor', 'default')
+      .style('cursor', 'pointer')
       .on('mouseover', (ev: MouseEvent, d) => showTT(ev, metTooltipHTML(d), d.comp_color))
       .on('mousemove', moveTT)
-      .on('mouseout', hideTT);
+      .on('mouseout', hideTT)
+      .on('click', (ev: MouseEvent, d) => setMetFocus(d, ev));
 
     gMetSel!.selectAll<SVGPathElement, MetNode>('path.met-shape')
       .data(data.met_nodes).join('path')
@@ -600,10 +610,11 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('fill-opacity', d => d.display_kind === 'stop' ? 1.0 : 0.85)
       .attr('stroke', d => d.display_kind === 'stop' ? d.comp_color : '#0d1117')
       .attr('stroke-width', d => d.display_kind === 'stop' ? 1.3 : 0.7)
-      .style('cursor', 'default')
+      .style('cursor', 'pointer')
       .on('mouseover', (ev: MouseEvent, d) => showTT(ev, metTooltipHTML(d), d.comp_color))
       .on('mousemove', moveTT)
-      .on('mouseout',  hideTT);
+      .on('mouseout',  hideTT)
+      .on('click', (ev: MouseEvent, d) => setMetFocus(d, ev));
 
     // ── Routes (railway lines between hub stations) ──
     // Each station emits one path per metabolite-class line. Width and color
@@ -611,6 +622,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     interface RouteDatum {
       pair_id: string;
       klass: string;
+      rxn_ids: string[];
       path: [number, number][];
       lineIndex: number;
     }
@@ -619,6 +631,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       st.lines.forEach((ln, li) => {
         routeData.push({
           pair_id: st.pair_id, klass: ln.klass,
+          rxn_ids: ln.rxn_ids,
           path: ln.path, lineIndex: li,
         });
       });
@@ -742,7 +755,8 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .style('cursor', 'pointer')
       .on('mouseover', (ev: MouseEvent, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color))
       .on('mousemove', moveTT)
-      .on('mouseout', hideTT);
+      .on('mouseout', hideTT)
+      .on('click', (ev: MouseEvent, d) => setRxnFocus(d, ev));
 
     gRxnSel = gRxn.selectAll<SVGPathElement, RxnNode>('path.rxn-shape')
       .data(view0.rxn_nodes).join('path')
@@ -756,7 +770,8 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .style('cursor', 'pointer')
       .on('mouseover', (ev: MouseEvent, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color))
       .on('mousemove', moveTT)
-      .on('mouseout',  hideTT);
+      .on('mouseout',  hideTT)
+      .on('click', (ev: MouseEvent, d) => setRxnFocus(d, ev));
 
     // Labels
     gLbl.selectAll<SVGTextElement, RxnNode>('text')
@@ -779,6 +794,8 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('stroke-width', 3)
       .attr('opacity', 0)
       .style('pointer-events', 'none');
+
+    applyFocus();
   }
 
   function rxnTransform(d: RxnNode, transform: d3.ZoomTransform = currentTransform): string {
@@ -787,6 +804,152 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     return d.symbol === 'triangle-down'
       ? `matrix(-${inv},0,0,-${inv},${tx},${ty})`
       : `matrix(${inv},0,0,${inv},${tx},${ty})`;
+  }
+
+  // ── Click focus ──
+
+  function connectedMetIdsForRxn(rxnId: string): Set<string> {
+    const ids = new Set<string>();
+    if (!fig) return ids;
+    fig.rail_routes.forEach(rt => { if (rt.rxn_id === rxnId) ids.add(rt.met_id); });
+    fig.inner_edges.forEach(e => { if (e.rxn_id === rxnId) ids.add(e.met_id); });
+    fig.met_nodes.forEach(m => {
+      if (m.consumers.includes(rxnId) || m.producers.includes(rxnId)) ids.add(m.id);
+    });
+    return ids;
+  }
+
+  function connectedRxnIdsForMet(metId: string): Set<string> {
+    const ids = new Set<string>();
+    if (!fig) return ids;
+    fig.rail_routes.forEach(rt => { if (rt.met_id === metId) ids.add(rt.rxn_id); });
+    fig.inner_edges.forEach(e => { if (e.met_id === metId) ids.add(e.rxn_id); });
+    const met = fig.met_nodes.find(m => m.id === metId);
+    met?.consumers.forEach(r => ids.add(r));
+    met?.producers.forEach(r => ids.add(r));
+    return ids;
+  }
+
+  function setRxnFocus(d: RxnNode, ev: MouseEvent): void {
+    ev.stopPropagation();
+    if (focusState?.type === 'rxn' && focusState.id === d.id) {
+      clearFocus();
+      return;
+    }
+    focusState = {
+      type: 'rxn',
+      id: d.id,
+      rxnIds: new Set([d.id]),
+      metIds: connectedMetIdsForRxn(d.id),
+    };
+    applyFocus();
+  }
+
+  function setMetFocus(d: MetNode, ev: MouseEvent): void {
+    ev.stopPropagation();
+    if (focusState?.type === 'met' && focusState.id === d.id) {
+      clearFocus();
+      return;
+    }
+    focusState = {
+      type: 'met',
+      id: d.id,
+      rxnIds: connectedRxnIdsForMet(d.id),
+      metIds: new Set([d.id]),
+    };
+    applyFocus();
+  }
+
+  function clearFocus(): void {
+    if (!focusState) return;
+    focusState = null;
+    applyFocus();
+  }
+
+  function focusHasStation(st: StationGeom): boolean {
+    if (!focusState) return false;
+    return st.lines.some(ln => ln.rxn_ids.some(rid => focusState!.rxnIds.has(rid)));
+  }
+
+  function applyFocus(): void {
+    if (!fig) return;
+    const zl = wrapper.querySelector<SVGGElement>('.zoom-layer');
+    if (!zl) return;
+
+    const active = focusState !== null;
+    const dimStroke = lightMode ? '#8c959f' : '#484f58';
+    const dimFill = lightMode ? '#d8dee4' : '#30363d';
+    const view = fig.views[currentView];
+    const railViewById = new Map<string, RailRouteView>();
+    view.rail_routes.forEach(rt => railViewById.set(rt.line_id, rt));
+
+    d3.select(zl).select('.g-guide').selectAll<SVGPathElement, GuideLink>('path')
+      .attr('opacity', g => !active ||
+        (g.node_type === 'rxn' && focusState!.rxnIds.has(g.node_id)) ||
+        (g.node_type === 'met' && focusState!.metIds.has(g.node_id)) ? 1 : 0.08);
+
+    d3.select(zl).select('.g-inner').selectAll<SVGPathElement, InnerEdge>('path')
+      .attr('stroke', e => !active || (focusState!.rxnIds.has(e.rxn_id) && focusState!.metIds.has(e.met_id))
+        ? 'rgba(139,148,158,0.50)' : dimStroke)
+      .attr('opacity', e => !active || (focusState!.rxnIds.has(e.rxn_id) && focusState!.metIds.has(e.met_id)) ? 1 : 0.10);
+
+    d3.select(zl).select('.g-rail').selectAll<SVGPathElement, RailRouteGeom>('path.rail-line')
+      .each(function(d: RailRouteGeom) {
+        const rv = railViewById.get(d.line_id);
+        const isFocus = active && focusState!.rxnIds.has(d.rxn_id) && focusState!.metIds.has(d.met_id);
+        d3.select(this)
+          .attr('stroke', !active || isFocus ? (rv?.color ?? 'rgba(110,118,129,0.18)') : dimStroke)
+          .attr('stroke-width', rv?.width ?? 0.8)
+          .attr('opacity', !active || isFocus ? 1 : 0.12);
+      });
+
+    d3.select(zl).select('.g-route').selectAll<SVGPathElement, {rxn_ids?: string[]; pair_id:string; lineIndex:number}>('path.route-line')
+      .each(function(d) {
+        const sv = view.stations.find(s => s.pair_id === d.pair_id);
+        const lv = sv ? sv.lines[d.lineIndex] : undefined;
+        const isFocus = active && (d.rxn_ids ?? []).some(rid => focusState!.rxnIds.has(rid));
+        d3.select(this)
+          .attr('stroke', !active || isFocus ? (lv?.color ?? '#6e7681') : dimStroke)
+          .attr('stroke-width', lv?.width ?? 1)
+          .attr('opacity', !active || isFocus ? 1 : 0.10);
+      });
+
+    d3.select(zl).select('.g-stn').selectAll<SVGRectElement, {st: StationGeom; side: 'a' | 'b'}>('rect.stn-pill')
+      .each(function(p) {
+        const stroke = p.side === 'a' ? p.st.comp_a_color : p.st.comp_b_color;
+        const isFocus = active && focusHasStation(p.st);
+        d3.select(this)
+          .attr('fill', !active || isFocus ? '#ffffff' : dimFill)
+          .attr('stroke', !active || isFocus ? stroke : dimStroke)
+          .attr('opacity', !active || isFocus ? 1 : 0.16);
+      });
+
+    d3.select(zl).select('.g-bhub').selectAll<SVGRectElement, BranchHub>('rect.bhub')
+      .attr('fill', active ? dimFill : '#ffffff')
+      .attr('stroke', active ? dimStroke : '#8b949e')
+      .attr('opacity', active ? 0.12 : 1);
+
+    gMetSel?.selectAll<SVGPathElement, MetNode>('path.met-shape')
+      .each(function(d) {
+        const isFocus = active && focusState!.metIds.has(d.id);
+        d3.select(this)
+          .attr('fill', !active || isFocus ? (d.display_kind === 'stop' ? '#ffffff' : d.comp_color) : dimFill)
+          .attr('fill-opacity', !active || isFocus ? (d.display_kind === 'stop' ? 1.0 : 0.85) : 0.55)
+          .attr('stroke', !active || isFocus ? (d.display_kind === 'stop' ? d.comp_color : '#0d1117') : dimStroke)
+          .attr('opacity', !active || isFocus ? 1 : 0.18);
+      });
+
+    gRxnSel?.each(function(d) {
+      const isFocus = active && focusState!.rxnIds.has(d.id);
+      d3.select(this)
+        .attr('fill', !active || isFocus ? d.fill_color : dimFill)
+        .attr('stroke', !active || isFocus ? d.border_color : dimStroke)
+        .attr('stroke-width', d.border_width)
+        .attr('opacity', !active || isFocus ? d.opacity : 0.16);
+    });
+
+    d3.select(zl).select('.g-lbl').selectAll<SVGTextElement, RxnNode>('text')
+      .attr('opacity', d => !active || focusState!.rxnIds.has(d.id) ? 1 : 0.10);
   }
 
   // ── Toolbar ──
@@ -826,6 +989,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       if (svgEl) svgEl.style.background = lightMode ? '#f6f8fa' : '#0d1117';
       themeBtn.textContent = lightMode ? 'Dark mode' : 'Light mode';
       themeBtn.classList.toggle('active', lightMode);
+      applyFocus();
     };
     themeBtn.onclick = () => {
       lightMode = !lightMode;
@@ -928,6 +1092,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('y', d => yS(d.y) - d.r - 2);
 
     viewBtns.forEach((b, i) => b.classList.toggle('active', i === vi));
+    applyFocus();
   }
 
   // ── Tooltip ──
