@@ -4414,16 +4414,13 @@ function hullPath(verts, xS, yS) {
   const gen = line_default().x((d) => xS(d[0])).y((d) => yS(d[1])).curve(catmullRomClosed_default.alpha(0.5));
   return gen(verts) ?? "";
 }
-function polylinePath(pts, xS, yS) {
-  if (!pts.length)
-    return "";
-  let d = `M${xS(pts[0][0]).toFixed(1)} ${yS(pts[0][1]).toFixed(1)}`;
-  for (let i = 1; i < pts.length; i++) {
-    d += ` L${xS(pts[i][0]).toFixed(1)} ${yS(pts[i][1]).toFixed(1)}`;
-  }
-  return d;
-}
 var LANE_W_PX = 3.5;
+var MAX_RENDER_LANE_SLOT = 6;
+function renderLaneSlot(slot) {
+  if (!Number.isFinite(slot))
+    return 0;
+  return MAX_RENDER_LANE_SLOT * Math.tanh(slot / MAX_RENDER_LANE_SLOT);
+}
 function railOffsetPath(pts, seg_slots, xS, yS, k_zoom) {
   const n = pts.length;
   if (n < 2)
@@ -4440,7 +4437,7 @@ function railOffsetPath(pts, seg_slots, xS, yS, k_zoom) {
     nx.push(dy / len);
     ny.push(-dx / len);
   }
-  const off = seg_slots.map((s) => s * LANE_W_PX / k_zoom);
+  const off = seg_slots.map((s) => renderLaneSlot(s) * LANE_W_PX / k_zoom);
   const MITER_CAP = 4 * LANE_W_PX / k_zoom;
   const pts_out = [];
   pts_out.push([sx[0] + off[0] * nx[0], sy[0] + off[0] * ny[0]]);
@@ -4553,6 +4550,12 @@ function render({ model: S, el: I }) {
       return;
     select_default2(zl).select(".g-rail").selectAll("path.rail-line").attr("d", (d) => railOffsetPath(d.path, d.seg_slots, xS, yS, transform2.k));
   }
+  function updateRouteZoom(transform2) {
+    const zl = wrapper.querySelector(".zoom-layer");
+    if (!zl || !fig)
+      return;
+    select_default2(zl).select(".g-route").selectAll("path.route-line").attr("d", (d) => railOffsetPath(d.path, d.seg_slots, xS, yS, transform2.k));
+  }
   function updateRxnZoom(transform2) {
     if (!gRxnSel || !gRxnHitSel)
       return;
@@ -4597,6 +4600,7 @@ function render({ model: S, el: I }) {
         updateRxnZoom(currentTransform);
         updateMetZoom(currentTransform);
         updateRailZoom(currentTransform);
+        updateRouteZoom(currentTransform);
       });
     });
     svg.call(zoomB);
@@ -4640,6 +4644,7 @@ function render({ model: S, el: I }) {
           pair_id: st.pair_id,
           klass: ln.klass,
           rxn_ids: ln.rxn_ids,
+          seg_slots: ln.seg_slots,
           path: ln.path,
           lineIndex: li
         });
@@ -4655,7 +4660,7 @@ function render({ model: S, el: I }) {
       const lv = sv.lines[d.lineIndex];
       return { color: lv.color, width: lv.width };
     }
-    gRoute.selectAll("path").data(routeData).join("path").attr("class", "route-line").attr("d", (d) => polylinePath(d.path, xS, yS)).attr("fill", "none").attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("vector-effect", "non-scaling-stroke").attr("stroke", (d) => lineStyle(d, view0).color).attr("stroke-width", (d) => lineStyle(d, view0).width).style("pointer-events", "none");
+    gRoute.selectAll("path").data(routeData).join("path").attr("class", "route-line").attr("d", (d) => railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k)).attr("fill", "none").attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("vector-effect", "non-scaling-stroke").attr("stroke", (d) => lineStyle(d, view0).color).attr("stroke-width", (d) => lineStyle(d, view0).width).style("pointer-events", "none");
     const pillData = [];
     data.stations.forEach((st) => {
       pillData.push({ st, side: "a" });
@@ -4909,9 +4914,9 @@ function render({ model: S, el: I }) {
       const sv = view.stations.find((s) => s.pair_id === d.pair_id);
       const lv = sv ? sv.lines[d.lineIndex] : void 0;
       if (lv) {
-        select_default2(this).attr("stroke", lv.color).attr("stroke-width", lv.width);
+        select_default2(this).attr("d", railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k)).attr("stroke", lv.color).attr("stroke-width", lv.width);
       } else {
-        select_default2(this).attr("stroke", "#6e7681").attr("stroke-width", 1);
+        select_default2(this).attr("d", railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k)).attr("stroke", "#6e7681").attr("stroke-width", 1);
       }
     });
     gRxnHitSel.data(view.rxn_nodes).attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d));

@@ -49,6 +49,7 @@ interface StationLineGeom {
   rxn_ids: string[];
   rxn_summaries: RxnSummary[];
   spine_offset_idx: number;
+  seg_slots: number[];
   path: [number, number][];
 }
 interface StationGeom {
@@ -61,6 +62,14 @@ interface StationGeom {
   pill_height: number; pill_width: number;
   n_rxns: number;
   lines: StationLineGeom[];
+}
+interface RouteDatum {
+  pair_id: string;
+  klass: string;
+  rxn_ids: string[];
+  seg_slots: number[];
+  path: [number, number][];
+  lineIndex: number;
 }
 interface BranchHub {
   x: number; y: number; branches: string[];
@@ -235,6 +244,13 @@ function polylinePath(
 // constant as the user zooms. Miter intersections keep every segment truly
 // parallel; sharp corners fall back to a bevel midpoint.
 const LANE_W_PX = 3.5;
+const MAX_RENDER_LANE_SLOT = 6.0;
+
+function renderLaneSlot(slot: number): number {
+  if (!Number.isFinite(slot)) return 0.0;
+  return MAX_RENDER_LANE_SLOT * Math.tanh(slot / MAX_RENDER_LANE_SLOT);
+}
+
 function railOffsetPath(
   pts: [number, number][],
   seg_slots: number[],
@@ -257,7 +273,7 @@ function railOffsetPath(
     nx.push(dy / len); ny.push(-dx / len);  // right-hand ⊥
   }
   // Pixel offset per segment (constant in screen space regardless of zoom).
-  const off = seg_slots.map(s => (s * LANE_W_PX) / k_zoom);
+  const off = seg_slots.map(s => (renderLaneSlot(s) * LANE_W_PX) / k_zoom);
   // Build offset path vertices using miter joins at interior vertices.
   const MITER_CAP = (4 * LANE_W_PX) / k_zoom;
   const pts_out: [number, number][] = [];
@@ -438,6 +454,14 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('d', d => railOffsetPath(d.path, d.seg_slots, xS, yS, transform.k));
   }
 
+  function updateRouteZoom(transform: d3.ZoomTransform): void {
+    const zl = wrapper.querySelector<SVGGElement>('.zoom-layer');
+    if (!zl || !fig) return;
+    d3.select(zl).select('.g-route')
+      .selectAll<SVGPathElement, RouteDatum>('path.route-line')
+      .attr('d', d => railOffsetPath(d.path, d.seg_slots, xS, yS, transform.k));
+  }
+
   function updateRxnZoom(transform: d3.ZoomTransform): void {
     if (!gRxnSel || !gRxnHitSel) return;
     gRxnSel.attr('transform', (d: RxnNode) => rxnTransform(d, transform));
@@ -487,6 +511,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
           updateRxnZoom(currentTransform);
           updateMetZoom(currentTransform);
           updateRailZoom(currentTransform);
+          updateRouteZoom(currentTransform);
         });
       });
     svg.call(zoomB);
@@ -619,19 +644,13 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     // ── Routes (railway lines between hub stations) ──
     // Each station emits one path per metabolite-class line. Width and color
     // come from the per-view StationViewEntry; geometry is pinned across views.
-    interface RouteDatum {
-      pair_id: string;
-      klass: string;
-      rxn_ids: string[];
-      path: [number, number][];
-      lineIndex: number;
-    }
     const routeData: RouteDatum[] = [];
     data.stations.forEach(st => {
       st.lines.forEach((ln, li) => {
         routeData.push({
           pair_id: st.pair_id, klass: ln.klass,
           rxn_ids: ln.rxn_ids,
+          seg_slots: ln.seg_slots,
           path: ln.path, lineIndex: li,
         });
       });
@@ -650,7 +669,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     gRoute.selectAll<SVGPathElement, RouteDatum>('path')
       .data(routeData).join('path')
       .attr('class', 'route-line')
-      .attr('d', d => polylinePath(d.path, xS, yS))
+      .attr('d', d => railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k))
       .attr('fill', 'none')
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round')
@@ -1070,14 +1089,20 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('opacity', d => d.opacity);
 
     // Update route line widths & colors for the new view
-    d3.select(zl).select('.g-route').selectAll<SVGPathElement, {pair_id:string; lineIndex:number}>('path.route-line')
-      .each(function(d: {pair_id:string; lineIndex:number}) {
+    d3.select(zl).select('.g-route').selectAll<SVGPathElement, RouteDatum>('path.route-line')
+      .each(function(d: RouteDatum) {
         const sv = view.stations.find(s => s.pair_id === d.pair_id);
         const lv = sv ? sv.lines[d.lineIndex] : undefined;
         if (lv) {
-          d3.select(this).attr('stroke', lv.color).attr('stroke-width', lv.width);
+          d3.select(this)
+            .attr('d', railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k))
+            .attr('stroke', lv.color)
+            .attr('stroke-width', lv.width);
         } else {
-          d3.select(this).attr('stroke', '#6e7681').attr('stroke-width', 1);
+          d3.select(this)
+            .attr('d', railOffsetPath(d.path, d.seg_slots, xS, yS, currentTransform.k))
+            .attr('stroke', '#6e7681')
+            .attr('stroke-width', 1);
         }
       });
 

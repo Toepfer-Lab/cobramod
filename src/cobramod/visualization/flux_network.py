@@ -2728,13 +2728,11 @@ class FLoV(anywidget.AnyWidget):
             pill_h = max(0.25, 0.10 * local_size * scale)
             pill_w = 0.35 * pill_h
             n_lines = len(st.lines)
-            line_pitch = (0.6 * pill_w) / max(n_lines, 1)
             comp_a_cfg = compartments.get(st.comp_a, _exch_cfg)
             comp_b_cfg = compartments.get(st.comp_b, _exch_cfg)
             line_geom: list[dict] = []
             for li, ln in enumerate(st.lines):
-                offset = (li - (n_lines - 1) / 2.0) * line_pitch
-                offset_path = _offset_polyline(st.spine, offset)
+                lane_slot = float(li - (n_lines - 1) / 2.0)
                 # Per-line hover: list each reaction with its name + per-view fluxes
                 rxn_summaries: list[dict] = []
                 for rid in ln.rxn_ids:
@@ -2756,7 +2754,8 @@ class FLoV(anywidget.AnyWidget):
                     "rxn_ids": ln.rxn_ids,
                     "rxn_summaries": rxn_summaries,
                     "spine_offset_idx": ln.spine_offset_idx,
-                    "path": [[float(p[0]), float(p[1])] for p in offset_path],
+                    "path": [[float(p[0]), float(p[1])] for p in st.spine],
+                    "seg_slots": [lane_slot] * max(len(st.spine) - 1, 0),
                 })
             stations_geometry.append({
                 "pair_id": st.pair_id,
