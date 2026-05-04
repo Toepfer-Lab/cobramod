@@ -689,10 +689,23 @@ class _BuilderMixin:
 
         if self._drop_no_data:
             rxn_nodes = [r for r in rxn_nodes if r in active_rxn_set]
-            remaining = set(rxn_nodes)
+            regular_remaining = set(rxn_nodes)
+            active_station_mets: set[str] = set()
+            for rxn_id in active_rxn_set:
+                if self._rxn_kind_map.get(rxn_id, "regular") == "regular":
+                    continue
+                if rxn_id not in G:
+                    continue
+                for nb in G.neighbors(rxn_id):
+                    if G.nodes[nb].get("ntype") != "met":
+                        continue
+                    active_station_mets.add(nb)
+                    nb_comp = G.nodes[nb].get("comp")
+                    if nb_comp in compartments:
+                        active_compartments.add(nb_comp)
             met_nodes = [m for m in met_nodes if any(
-                r in remaining for r, _ in met_to_rxns.get(m, [])
-            )]
+                r in regular_remaining for r, _ in met_to_rxns.get(m, [])
+            ) or m in active_station_mets]
 
         ds = self._resolve_density_scale(len(rxn_nodes))
         rail_data = self._compute_regular_rails(rxn_nodes, met_nodes, views)
