@@ -4367,14 +4367,16 @@ var CSS = `
 .flov-station-map{width:100%;height:auto;margin:5px 0 10px;overflow:visible;}
 .flov-station-branch{cursor:pointer;}
 .flov-station-branch:hover .flov-station-map-line{stroke-width:2.4;}
+.flov-station-branch.search-hit .flov-station-map-line{stroke-width:3.1;}
+.flov-station-branch.search-hidden{display:none;}
+.flov-station-map.search-hidden{display:none;}
+.flov-station-group.search-hidden{display:none;}
 .flov-station-map-line{stroke-linecap:round;stroke-linejoin:round;}
 .flov-station-map-label{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#8b949e;}
 .flov-station-map-flux{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#7d8590;}
 .flov-station-map-met{font:9px 'Inter',Arial,sans-serif;fill:#8b949e;}
-@keyframes flov-pulse{0%,100%{stroke-opacity:1;stroke-width:3}50%{stroke-opacity:.35;stroke-width:7}}
 @keyframes flov-flow-forward{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
 @keyframes flov-flow-reverse{from{stroke-dashoffset:0}to{stroke-dashoffset:28}}
-.flov-hl{animation:flov-pulse 1.3s ease-in-out infinite;}
 .flov-flow-arrow{stroke-dasharray:9 5;}
 .flov-flow-forward{animation:flov-flow-forward 1s linear infinite;}
 .flov-flow-reverse{animation:flov-flow-reverse 1s linear infinite;}
@@ -4537,9 +4539,6 @@ var STATION_BRANCH_COLORS = [
   "#ec4899",
   "#a855f7"
 ];
-function branchTooltipHTML(b) {
-  return `<b>Branch hub</b><br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br><span style="color:#8b949e">Diverging routes:</span><br>` + b.branches.map((p) => `<div style="margin-left:8px">${p.replace("|", " \u2194 ")}</div>`).join("");
-}
 function render({ model: S, el: I }) {
   injectCSS();
   const wrapper = document.createElement("div");
@@ -4554,6 +4553,7 @@ function render({ model: S, el: I }) {
   let viewBtns = [];
   let tooltipEl = null;
   let stationPanelEl = null;
+  let currentStationSearch = "";
   let resizeTimer = null;
   let gMetSel = null;
   let gMetHitSel = null;
@@ -4623,7 +4623,7 @@ function render({ model: S, el: I }) {
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
     buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
-    buildSearch(wrapper, data, svg.node(), svgW, svgH);
+    buildSearch(wrapper, data);
     buildStationPanel(wrapper);
     buildTooltip(wrapper);
     drawAll(zoomLayer, data, svgW);
@@ -4662,11 +4662,9 @@ function render({ model: S, el: I }) {
     const gRail = zoomLayer.append("g").attr("class", "g-rail");
     const gRoute = zoomLayer.append("g").attr("class", "g-route");
     const gStn = zoomLayer.append("g").attr("class", "g-stn");
-    const gBHub = zoomLayer.append("g").attr("class", "g-bhub");
     gMetSel = zoomLayer.append("g").attr("class", "g-met");
     const gRxn = zoomLayer.append("g").attr("class", "g-rxn");
     const gLbl = zoomLayer.append("g").attr("class", "g-lbl").style("display", "none");
-    const gHL = zoomLayer.append("g").attr("class", "g-hl");
     const view0 = data.views[0];
     gComp.selectAll("path").data(data.compartments).join("path").attr("d", (c) => hullPath(c.hull_vertices, xS, yS)).attr("fill", (c) => c.fill).attr("stroke", (c) => c.color).attr("stroke-width", 1.8).attr("stroke-dasharray", "5,3").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
     gComp.selectAll("text").data(data.compartments).join("text").attr("x", (c) => xS(c.label_x)).attr("y", (c) => yS(c.label_y)).attr("text-anchor", "middle").attr("dominant-baseline", "auto").attr("fill", (c) => c.color).attr("font-size", 12).attr("font-weight", "bold").attr("font-family", "'Inter',Arial,sans-serif").style("pointer-events", "none").text((c) => c.label);
@@ -4723,12 +4721,10 @@ function render({ model: S, el: I }) {
       setStationFocus(p.st, ev);
       showStationPanel(p.st);
     });
-    gBHub.selectAll("rect.bhub").data(data.branch_hubs).join("rect").attr("class", "bhub").attr("x", -4).attr("y", -10).attr("width", 8).attr("height", 20).attr("rx", 4).attr("ry", 4).attr("fill", "#ffffff").attr("stroke", "#8b949e").attr("stroke-width", 1.6).attr("vector-effect", "non-scaling-stroke").attr("transform", (b) => `translate(${xS(b.x).toFixed(1)},${yS(b.y).toFixed(1)})`).style("cursor", "pointer").on("mouseover", (ev, b) => showTT(ev, branchTooltipHTML(b), "#8b949e")).on("mousemove", moveTT).on("mouseout", hideTT);
     gInner.selectAll("path").data(data.inner_edges).join("path").attr("d", (e) => `M${xS(e.x[0]).toFixed(1)} ${yS(e.y[0]).toFixed(1)} L${xS(e.x[1]).toFixed(1)} ${yS(e.y[1]).toFixed(1)}`).attr("stroke", "rgba(139,148,158,0.50)").attr("stroke-width", 0.8).attr("stroke-dasharray", "3,3").attr("fill", "none").attr("vector-effect", "non-scaling-stroke").style("pointer-events", "none");
     gRxnHitSel = gRxn.selectAll("path.rxn-hit").data(view0.rxn_nodes).join("path").attr("class", "rxn-hit").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", "transparent").attr("stroke", "transparent").attr("stroke-width", RXN_HOVER_STROKE).attr("vector-effect", "non-scaling-stroke").style("pointer-events", "all").style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT).on("click", (ev, d) => setRxnFocus(d, ev));
     gRxnSel = gRxn.selectAll("path.rxn-shape").data(view0.rxn_nodes).join("path").attr("class", "rxn-shape").attr("d", (d) => symPath(d.symbol, d.r)).attr("transform", (d) => rxnTransform(d)).attr("fill", (d) => d.fill_color).attr("stroke", (d) => d.border_color).attr("stroke-width", (d) => d.border_width).attr("opacity", (d) => d.opacity).style("cursor", "pointer").on("mouseover", (ev, d) => showTT(ev, rxnTooltipHTML(d.hover), d.border_color)).on("mousemove", moveTT).on("mouseout", hideTT).on("click", (ev, d) => setRxnFocus(d, ev));
     gLbl.selectAll("text").data(view0.rxn_nodes).join("text").attr("x", (d) => xS(d.x)).attr("y", (d) => yS(d.y) - d.r - 2).attr("text-anchor", "middle").attr("fill", "#8b949e").attr("font-size", 7).attr("font-family", "'Inter',Arial,sans-serif").style("pointer-events", "none").text((d) => d.name);
-    gHL.append("circle").attr("class", "flov-hl").attr("r", 14).attr("fill", "none").attr("stroke", "#f0a030").attr("stroke-width", 3).attr("opacity", 0).style("pointer-events", "none");
     applyFocus();
   }
   function rxnTransform(d, transform2 = currentTransform) {
@@ -4808,6 +4804,15 @@ function render({ model: S, el: I }) {
     };
     applyFocus();
   }
+  function focusMetaboliteById(metId) {
+    focusState = {
+      type: "met",
+      id: metId,
+      rxnIds: connectedRxnIdsForMet(metId),
+      metIds: /* @__PURE__ */ new Set([metId])
+    };
+    applyFocus();
+  }
   function setStationFocus(st, ev) {
     ev.stopPropagation();
     hideTT();
@@ -4829,6 +4834,9 @@ function render({ model: S, el: I }) {
   }
   function setStationReactionFocus(rxnId, ev) {
     ev.stopPropagation();
+    focusStationReactionById(rxnId);
+  }
+  function focusStationReactionById(rxnId) {
     const neighborhood = reactionNeighborhood(rxnId);
     focusState = {
       type: "rxn",
@@ -4921,7 +4929,6 @@ function render({ model: S, el: I }) {
       const isFocus = active && focusHasStation(p.st);
       select_default2(this).attr("fill", !active || isFocus ? "#ffffff" : dimFill).attr("stroke", !active || isFocus ? stroke : dimStroke).attr("opacity", !active || isFocus ? 1 : 0.16);
     });
-    select_default2(zl).select(".g-bhub").selectAll("rect.bhub").attr("fill", active ? dimFill : "#ffffff").attr("stroke", active ? dimStroke : "#8b949e").attr("opacity", active ? 0.12 : 1);
     gMetSel?.selectAll("path.met-shape").each(function(d) {
       const isFocus = active && focusState.metIds.has(d.id);
       select_default2(this).attr("fill", !active || isFocus ? d.display_kind === "stop" ? "#ffffff" : d.comp_color : dimFill).attr("fill-opacity", !active || isFocus ? d.display_kind === "stop" ? 1 : 0.85 : 0.55).attr("stroke", !active || isFocus ? d.display_kind === "stop" ? d.comp_color : "#0d1117" : dimStroke).attr("opacity", !active || isFocus ? 1 : 0.18);
@@ -5050,6 +5057,15 @@ function render({ model: S, el: I }) {
     const idx = raw.indexOf(":");
     return idx >= 0 ? raw.slice(idx + 1).trim() : raw;
   }
+  function stationReactionSearchText(rxn) {
+    return [
+      rxn.id,
+      rxn.name,
+      ...rxn.substrates ?? [],
+      ...rxn.products ?? [],
+      ...rxn.flux_per_view ?? []
+    ].join(" ").toLowerCase();
+  }
   function buildStationPanel(parent) {
     const el = document.createElement("div");
     el.className = "flov-station-panel";
@@ -5103,6 +5119,7 @@ function render({ model: S, el: I }) {
     st.lines.forEach((ln) => {
       const group = document.createElement("div");
       group.className = "flov-station-group";
+      group.dataset.stationClass = ln.klass;
       const toggle = document.createElement("button");
       toggle.className = "flov-station-toggle";
       toggle.type = "button";
@@ -5137,6 +5154,49 @@ function render({ model: S, el: I }) {
     stationPanelEl.appendChild(body);
     stationPanelEl.style.display = "block";
     stationPanelEl.scrollTop = 0;
+    applyStationPanelSearch(currentStationSearch);
+  }
+  function applyStationPanelSearch(query, scrollToRxnId) {
+    if (!stationPanelEl || stationPanelEl.style.display === "none")
+      return;
+    const lq = query.trim().toLowerCase();
+    const shouldFilter = lq.length > 0;
+    stationPanelEl.querySelectorAll(".flov-station-group").forEach((group) => {
+      const branches = Array.from(group.querySelectorAll(".flov-station-branch"));
+      let groupHasMatch = false;
+      branches.forEach((branch) => {
+        const isTarget = scrollToRxnId !== void 0 && branch.dataset.rxnId === scrollToRxnId;
+        const isMatch = !shouldFilter || (branch.dataset.searchText ?? "").includes(lq);
+        groupHasMatch ||= isMatch || isTarget;
+        branch.classList.toggle("search-hidden", shouldFilter && !isMatch && !isTarget);
+        branch.classList.toggle("search-hit", shouldFilter && isMatch || isTarget);
+      });
+      group.querySelectorAll(".flov-station-map").forEach((svg) => {
+        const hasVisibleBranch = Array.from(
+          svg.querySelectorAll(".flov-station-branch")
+        ).some((branch) => !branch.classList.contains("search-hidden"));
+        svg.classList.toggle("search-hidden", shouldFilter && !hasVisibleBranch);
+      });
+      group.classList.toggle("search-hidden", shouldFilter && !groupHasMatch);
+      const caret = group.querySelector(".flov-station-caret");
+      if (shouldFilter && groupHasMatch) {
+        group.classList.add("open");
+        if (caret)
+          caret.textContent = "\u25BE";
+      } else if (!shouldFilter) {
+        branches.forEach((branch) => branch.classList.remove("search-hit", "search-hidden"));
+        group.querySelectorAll(".flov-station-map").forEach((svg) => {
+          svg.classList.remove("search-hidden");
+        });
+        group.classList.remove("search-hidden");
+      }
+    });
+    if (scrollToRxnId) {
+      const target = Array.from(
+        stationPanelEl.querySelectorAll(".flov-station-branch")
+      ).find((branch) => branch.dataset.rxnId === scrollToRxnId);
+      target?.scrollIntoView({ block: "center", inline: "nearest" });
+    }
   }
   function appendStationRailMaps(parent, line, station) {
     const svgNS = "http://www.w3.org/2000/svg";
@@ -5197,6 +5257,8 @@ function render({ model: S, el: I }) {
         const product = compactMetList(rxn.products);
         const g = document.createElementNS(svgNS, "g");
         g.setAttribute("class", "flov-station-branch");
+        g.dataset.rxnId = rxn.id;
+        g.dataset.searchText = stationReactionSearchText(rxn);
         g.addEventListener("click", (ev) => setStationReactionFocus(rxn.id, ev));
         const subLabel = document.createElementNS(svgNS, "text");
         subLabel.setAttribute("class", "flov-station-map-met");
@@ -5329,7 +5391,7 @@ ${rxn.flux_per_view.join("\n")}`;
     });
     cb.append("text").attr("x", 11).attr("y", 9).attr("text-anchor", "middle").attr("fill", "#7d8590").attr("font-size", 8).attr("font-family", "'Inter',Arial,sans-serif").text("mmol/gDW/h");
   }
-  function buildSearch(parent, data, svgNode2, svgW, svgH) {
+  function buildSearch(parent, data) {
     const ia = data.interactivity;
     const rxnIdsLc = ia.rxn_ids.map((s) => s.toLowerCase());
     const rxnNamesLc = ia.rxn_names.map((s) => s.toLowerCase());
@@ -5346,111 +5408,80 @@ ${rxn.flux_per_view.join("\n")}`;
     wrap.appendChild(inp);
     wrap.appendChild(res);
     parent.appendChild(wrap);
-    const hlCircle = () => wrapper.querySelector(".flov-hl");
-    function clearHL() {
-      const c = hlCircle();
-      if (c)
-        c.setAttribute("opacity", "0");
-    }
-    function setHL(px, py) {
-      const c = hlCircle();
-      if (!c)
-        return;
-      c.setAttribute("cx", String(px));
-      c.setAttribute("cy", String(py));
-      c.setAttribute("opacity", "1");
-    }
-    function zoomToPoint(px, py) {
-      const k = 5;
-      const t = identity3.translate(svgW / 2 - px * k, svgH / 2 - py * k).scale(k);
-      select_default2(svgNode2).transition().duration(400).call(zoomB.transform, t);
-    }
-    function zoomToFit(pxs, pys) {
-      const x0 = Math.min(...pxs), x1 = Math.max(...pxs);
-      const y0 = Math.min(...pys), y1 = Math.max(...pys);
-      const pad = 60;
-      const k = Math.min(8, svgW / (x1 - x0 + pad * 2), svgH / (y1 - y0 + pad * 2));
-      const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-      const t = identity3.translate(svgW / 2 - cx * k, svgH / 2 - cy * k).scale(k);
-      select_default2(svgNode2).transition().duration(400).call(zoomB.transform, t);
-    }
-    function rxnPX(i) {
-      return xS(ia.rxn_x[i]);
-    }
-    function rxnPY(i) {
-      return yS(ia.rxn_y[i]);
-    }
-    function metPX(i) {
-      return xS(ia.met_x[i]);
-    }
-    function metPY(i) {
-      return yS(ia.met_y[i]);
-    }
     function selectResult(type2, idx) {
-      const px = type2 === "rxn" ? rxnPX(idx) : metPX(idx);
-      const py = type2 === "rxn" ? rxnPY(idx) : metPY(idx);
-      setHL(px, py);
       inp.value = type2 === "rxn" ? ia.rxn_names[idx] || ia.rxn_ids[idx] : ia.met_names[idx] || ia.met_ids[idx];
       res.style.display = "none";
-      zoomToPoint(px, py);
+      if (type2 === "rxn") {
+        focusStationReactionById(ia.rxn_ids[idx]);
+      } else {
+        focusMetaboliteById(ia.met_ids[idx]);
+      }
+    }
+    function selectStationResult(hit) {
+      showStationPanel(hit.station);
+      focusStationReactionById(hit.rxn.id);
+      inp.value = hit.rxn.name && hit.rxn.name !== hit.rxn.id ? hit.rxn.name : hit.rxn.id;
+      currentStationSearch = inp.value;
+      applyStationPanelSearch(currentStationSearch, hit.rxn.id);
+      res.style.display = "none";
     }
     function runSearch(q) {
       res.innerHTML = "";
+      currentStationSearch = q;
+      applyStationPanelSearch(q);
       if (!q.trim()) {
-        clearHL();
         res.style.display = "none";
         return;
       }
       const lq = q.toLowerCase();
-      const hpxs = [], hpys = [];
       const hits = [];
       for (let i = 0; i < ia.rxn_ids.length; i++) {
         if (rxnIdsLc[i].includes(lq) || rxnNamesLc[i].includes(lq)) {
-          hpxs.push(rxnPX(i));
-          hpys.push(rxnPY(i));
           if (hits.length < 20)
             hits.push({ type: "rxn", idx: i });
         }
       }
       for (let i = 0; i < ia.met_ids.length; i++) {
         if (metIdsLc[i].includes(lq) || metNamesLc[i].includes(lq)) {
-          hpxs.push(metPX(i));
-          hpys.push(metPY(i));
           if (hits.length < 20)
             hits.push({ type: "met", idx: i });
         }
       }
-      if (!hpxs.length) {
+      for (const station of data.stations) {
+        for (const line of station.lines) {
+          for (const rxn of line.rxn_summaries) {
+            if (!stationReactionSearchText(rxn).includes(lq))
+              continue;
+            if (hits.length < 20)
+              hits.push({ type: "station-rxn", station, line, rxn });
+          }
+        }
+      }
+      if (!hits.length) {
         const d = document.createElement("div");
         d.className = "flov-search-result";
         d.style.color = "#7d8590";
         d.textContent = "No matches";
         res.appendChild(d);
         res.style.display = "block";
-        clearHL();
         return;
       }
-      if (hpxs.length === 1)
-        zoomToPoint(hpxs[0], hpys[0]);
-      else
-        zoomToFit(hpxs, hpys);
-      if (hits.length === 1) {
-        const h = hits[0];
-        setHL(
-          h.type === "rxn" ? rxnPX(h.idx) : metPX(h.idx),
-          h.type === "rxn" ? rxnPY(h.idx) : metPY(h.idx)
-        );
-      } else {
-        clearHL();
-      }
       for (const h of hits) {
-        const id2 = h.type === "rxn" ? ia.rxn_ids[h.idx] : ia.met_ids[h.idx];
-        const name = h.type === "rxn" ? ia.rxn_names[h.idx] : ia.met_names[h.idx];
         const el = document.createElement("div");
         el.className = "flov-search-result";
-        el.title = id2 + (name && name !== id2 ? " \u2014 " + name : "");
-        el.innerHTML = `<b>${id2}</b>` + (name && name !== id2 ? ` <span style="color:#7d8590">\u2014 ${name}</span>` : "") + ` <span style="color:#444c56;font-size:10px">[${h.type}]</span>`;
-        el.onclick = () => selectResult(h.type, h.idx);
+        if (h.type === "station-rxn") {
+          const id2 = h.rxn.id;
+          const name = h.rxn.name;
+          el.title = `${id2}${name && name !== id2 ? " \u2014 " + name : ""}`;
+          el.innerHTML = `<b>${id2}</b>` + (name && name !== id2 ? ` <span style="color:#7d8590">\u2014 ${name}</span>` : "") + ` <span style="color:#444c56;font-size:10px">[station ${stationClassLabel(h.line.klass)}]</span>`;
+          el.onclick = () => selectStationResult(h);
+        } else {
+          const id2 = h.type === "rxn" ? ia.rxn_ids[h.idx] : ia.met_ids[h.idx];
+          const name = h.type === "rxn" ? ia.rxn_names[h.idx] : ia.met_names[h.idx];
+          el.title = id2 + (name && name !== id2 ? " \u2014 " + name : "");
+          el.innerHTML = `<b>${id2}</b>` + (name && name !== id2 ? ` <span style="color:#7d8590">\u2014 ${name}</span>` : "") + ` <span style="color:#444c56;font-size:10px">[${h.type}]</span>`;
+          el.onclick = () => selectResult(h.type, h.idx);
+        }
         res.appendChild(el);
       }
       res.style.display = "block";
@@ -5461,7 +5492,12 @@ ${rxn.flux_per_view.join("\n")}`;
     inp.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         inp.value = "";
-        clearHL();
+        currentStationSearch = "";
+        applyStationPanelSearch("");
+        if (focusState) {
+          focusState = null;
+          applyFocus();
+        }
         res.style.display = "none";
       }
     });

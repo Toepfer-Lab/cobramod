@@ -72,9 +72,6 @@ interface RouteDatum {
   path: [number, number][];
   lineIndex: number;
 }
-interface BranchHub {
-  x: number; y: number; branches: string[];
-}
 interface InnerEdge {
   rxn_id: string; met_id: string;
   x: [number, number]; y: [number, number];
@@ -110,7 +107,6 @@ interface D3FigureData {
   met_nodes: MetNode[]; interactivity: Interactivity;
   rail_routes: RailRouteGeom[]; guide_links: GuideLink[];
   stations: StationGeom[];
-  branch_hubs: BranchHub[];
   inner_edges: InnerEdge[];
 }
 interface FocusState {
@@ -163,14 +159,16 @@ const CSS = `
 .flov-station-map{width:100%;height:auto;margin:5px 0 10px;overflow:visible;}
 .flov-station-branch{cursor:pointer;}
 .flov-station-branch:hover .flov-station-map-line{stroke-width:2.4;}
+.flov-station-branch.search-hit .flov-station-map-line{stroke-width:3.1;}
+.flov-station-branch.search-hidden{display:none;}
+.flov-station-map.search-hidden{display:none;}
+.flov-station-group.search-hidden{display:none;}
 .flov-station-map-line{stroke-linecap:round;stroke-linejoin:round;}
 .flov-station-map-label{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#8b949e;}
 .flov-station-map-flux{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#7d8590;}
 .flov-station-map-met{font:9px 'Inter',Arial,sans-serif;fill:#8b949e;}
-@keyframes flov-pulse{0%,100%{stroke-opacity:1;stroke-width:3}50%{stroke-opacity:.35;stroke-width:7}}
 @keyframes flov-flow-forward{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
 @keyframes flov-flow-reverse{from{stroke-dashoffset:0}to{stroke-dashoffset:28}}
-.flov-hl{animation:flov-pulse 1.3s ease-in-out infinite;}
 .flov-flow-arrow{stroke-dasharray:9 5;}
 .flov-flow-forward{animation:flov-flow-forward 1s linear infinite;}
 .flov-flow-reverse{animation:flov-flow-reverse 1s linear infinite;}
@@ -383,15 +381,6 @@ const STATION_BRANCH_COLORS = [
   '#22c55e', '#f59e0b', '#38bdf8', '#ec4899', '#a855f7',
 ];
 
-function branchTooltipHTML(b: BranchHub): string {
-  return (
-    `<b>Branch hub</b><br>` +
-    `<span class="ft-div">──────────────────────</span><br>` +
-    `<span style="color:#8b949e">Diverging routes:</span><br>` +
-    b.branches.map(p => `<div style="margin-left:8px">${p.replace('|', ' ↔ ')}</div>`).join('')
-  );
-}
-
 // ── Main render function ──────────────────────────────────────────────────────
 
 function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
@@ -411,6 +400,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   let viewBtns: HTMLButtonElement[] = [];
   let tooltipEl: HTMLDivElement | null = null;
   let stationPanelEl: HTMLDivElement | null = null;
+  let currentStationSearch = '';
   let resizeTimer: ReturnType<typeof setTimeout> | null = null;
   let gMetSel: d3.Selection<SVGGElement, unknown, null, undefined> | null = null;
   let gMetHitSel: d3.Selection<SVGPathElement, MetNode, SVGGElement, unknown> | null = null;
@@ -490,7 +480,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
     buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
-    buildSearch(wrapper, data, svg.node()!, svgW, svgH);
+    buildSearch(wrapper, data);
     buildStationPanel(wrapper);
     buildTooltip(wrapper);
     drawAll(zoomLayer, data, svgW);
@@ -569,13 +559,11 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     const gRail  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rail');
     const gRoute = zoomLayer.append<SVGGElement>('g').attr('class', 'g-route');
     const gStn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-stn');
-    const gBHub  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-bhub');
     // g-met is inside the zoom layer so it tracks pan/zoom correctly, but
     // sits below g-rxn so reactions always paint on top of metabolite pills.
     gMetSel      = zoomLayer.append<SVGGElement>('g').attr('class', 'g-met');
     const gRxn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rxn');
     const gLbl   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-lbl').style('display', 'none');
-    const gHL    = zoomLayer.append<SVGGElement>('g').attr('class', 'g-hl');
 
     const view0 = data.views[0];
 
@@ -747,23 +735,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
         setStationFocus(p.st, ev);
         showStationPanel(p.st);
       });
-    // ── Branch hubs (small pills at divergence points) ──
-    gBHub.selectAll<SVGRectElement, BranchHub>('rect.bhub')
-      .data(data.branch_hubs).join('rect')
-      .attr('class', 'bhub')
-      .attr('x', -4).attr('y', -10)
-      .attr('width', 8).attr('height', 20)
-      .attr('rx', 4).attr('ry', 4)
-      .attr('fill', '#ffffff')
-      .attr('stroke', '#8b949e')
-      .attr('stroke-width', 1.6)
-      .attr('vector-effect', 'non-scaling-stroke')
-      .attr('transform', b => `translate(${xS(b.x).toFixed(1)},${yS(b.y).toFixed(1)})`)
-      .style('cursor', 'pointer')
-      .on('mouseover', (ev: MouseEvent, b) => showTT(ev, branchTooltipHTML(b), '#8b949e'))
-      .on('mousemove', moveTT)
-      .on('mouseout', hideTT);
-
     // ── Inner edges (transport/exchange rxn ↔ metabolite, hidden by default) ──
     gInner.selectAll<SVGPathElement, InnerEdge>('path')
       .data(data.inner_edges).join('path')
@@ -818,16 +789,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       .attr('font-family', "'Inter',Arial,sans-serif")
       .style('pointer-events', 'none')
       .text(d => d.name);
-
-    // Highlight circle (search)
-    gHL.append('circle')
-      .attr('class', 'flov-hl')
-      .attr('r', 14)
-      .attr('fill', 'none')
-      .attr('stroke', '#f0a030')
-      .attr('stroke-width', 3)
-      .attr('opacity', 0)
-      .style('pointer-events', 'none');
 
     applyFocus();
   }
@@ -904,6 +865,16 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     applyFocus();
   }
 
+  function focusMetaboliteById(metId: string): void {
+    focusState = {
+      type: 'met',
+      id: metId,
+      rxnIds: connectedRxnIdsForMet(metId),
+      metIds: new Set([metId]),
+    };
+    applyFocus();
+  }
+
   function setStationFocus(st: StationGeom, ev: MouseEvent): void {
     ev.stopPropagation();
     hideTT();
@@ -926,6 +897,10 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
 
   function setStationReactionFocus(rxnId: string, ev: MouseEvent): void {
     ev.stopPropagation();
+    focusStationReactionById(rxnId);
+  }
+
+  function focusStationReactionById(rxnId: string): void {
     const neighborhood = reactionNeighborhood(rxnId);
     focusState = {
       type: 'rxn',
@@ -1059,11 +1034,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
           .attr('stroke', !active || isFocus ? stroke : dimStroke)
           .attr('opacity', !active || isFocus ? 1 : 0.16);
       });
-
-    d3.select(zl).select('.g-bhub').selectAll<SVGRectElement, BranchHub>('rect.bhub')
-      .attr('fill', active ? dimFill : '#ffffff')
-      .attr('stroke', active ? dimStroke : '#8b949e')
-      .attr('opacity', active ? 0.12 : 1);
 
     gMetSel?.selectAll<SVGPathElement, MetNode>('path.met-shape')
       .each(function(d) {
@@ -1249,6 +1219,16 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     return idx >= 0 ? raw.slice(idx + 1).trim() : raw;
   }
 
+  function stationReactionSearchText(rxn: RxnSummary): string {
+    return [
+      rxn.id,
+      rxn.name,
+      ...(rxn.substrates ?? []),
+      ...(rxn.products ?? []),
+      ...(rxn.flux_per_view ?? []),
+    ].join(' ').toLowerCase();
+  }
+
   function buildStationPanel(parent: HTMLElement): void {
     const el = document.createElement('div');
     el.className = 'flov-station-panel';
@@ -1304,6 +1284,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     st.lines.forEach(ln => {
       const group = document.createElement('div');
       group.className = 'flov-station-group';
+      group.dataset.stationClass = ln.klass;
       const toggle = document.createElement('button');
       toggle.className = 'flov-station-toggle';
       toggle.type = 'button';
@@ -1341,6 +1322,51 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     stationPanelEl.appendChild(body);
     stationPanelEl.style.display = 'block';
     stationPanelEl.scrollTop = 0;
+    applyStationPanelSearch(currentStationSearch);
+  }
+
+  function applyStationPanelSearch(query: string, scrollToRxnId?: string): void {
+    if (!stationPanelEl || stationPanelEl.style.display === 'none') return;
+    const lq = query.trim().toLowerCase();
+    const shouldFilter = lq.length > 0;
+
+    stationPanelEl.querySelectorAll<HTMLElement>('.flov-station-group').forEach(group => {
+      const branches = Array.from(group.querySelectorAll<SVGGElement>('.flov-station-branch'));
+      let groupHasMatch = false;
+      branches.forEach(branch => {
+        const isTarget = scrollToRxnId !== undefined && branch.dataset.rxnId === scrollToRxnId;
+        const isMatch = !shouldFilter || (branch.dataset.searchText ?? '').includes(lq);
+        groupHasMatch ||= isMatch || isTarget;
+        branch.classList.toggle('search-hidden', shouldFilter && !isMatch && !isTarget);
+        branch.classList.toggle('search-hit', (shouldFilter && isMatch) || isTarget);
+      });
+      group.querySelectorAll<SVGSVGElement>('.flov-station-map').forEach(svg => {
+        const hasVisibleBranch = Array.from(
+          svg.querySelectorAll<SVGGElement>('.flov-station-branch')
+        ).some(branch => !branch.classList.contains('search-hidden'));
+        svg.classList.toggle('search-hidden', shouldFilter && !hasVisibleBranch);
+      });
+
+      group.classList.toggle('search-hidden', shouldFilter && !groupHasMatch);
+      const caret = group.querySelector<HTMLElement>('.flov-station-caret');
+      if (shouldFilter && groupHasMatch) {
+        group.classList.add('open');
+        if (caret) caret.textContent = '▾';
+      } else if (!shouldFilter) {
+        branches.forEach(branch => branch.classList.remove('search-hit', 'search-hidden'));
+        group.querySelectorAll<SVGSVGElement>('.flov-station-map').forEach(svg => {
+          svg.classList.remove('search-hidden');
+        });
+        group.classList.remove('search-hidden');
+      }
+    });
+
+    if (scrollToRxnId) {
+      const target = Array.from(
+        stationPanelEl.querySelectorAll<SVGGElement>('.flov-station-branch')
+      ).find(branch => branch.dataset.rxnId === scrollToRxnId);
+      target?.scrollIntoView({ block: 'center', inline: 'nearest' });
+    }
   }
 
   function appendStationRailMaps(
@@ -1415,6 +1441,8 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
 
         const g = document.createElementNS(svgNS, 'g');
         g.setAttribute('class', 'flov-station-branch');
+        g.dataset.rxnId = rxn.id;
+        g.dataset.searchText = stationReactionSearchText(rxn);
         g.addEventListener('click', ev => setStationReactionFocus(rxn.id, ev as MouseEvent));
 
         const subLabel = document.createElementNS(svgNS, 'text');
@@ -1590,10 +1618,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
 
   // ── Search ──
 
-  function buildSearch(
-    parent: HTMLElement, data: D3FigureData,
-    svgNode: SVGSVGElement, svgW: number, svgH: number
-  ): void {
+  function buildSearch(parent: HTMLElement, data: D3FigureData): void {
     const ia = data.interactivity;
     const rxnIdsLc   = ia.rxn_ids.map(s => s.toLowerCase());
     const rxnNamesLc = ia.rxn_names.map(s => s.toLowerCase());
@@ -1612,106 +1637,93 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     wrap.appendChild(res);
     parent.appendChild(wrap);
 
-    const hlCircle = (): SVGCircleElement | null =>
-      wrapper.querySelector<SVGCircleElement>('.flov-hl');
-
-    function clearHL(): void {
-      const c = hlCircle(); if (c) c.setAttribute('opacity', '0');
-    }
-
-    function setHL(px: number, py: number): void {
-      const c = hlCircle();
-      if (!c) return;
-      c.setAttribute('cx', String(px));
-      c.setAttribute('cy', String(py));
-      c.setAttribute('opacity', '1');
-    }
-
-    function zoomToPoint(px: number, py: number): void {
-      const k = 5;
-      const t = d3.zoomIdentity.translate(svgW / 2 - px * k, svgH / 2 - py * k).scale(k);
-      d3.select(svgNode).transition().duration(400).call(zoomB!.transform, t);
-    }
-
-    function zoomToFit(pxs: number[], pys: number[]): void {
-      const x0 = Math.min(...pxs), x1 = Math.max(...pxs);
-      const y0 = Math.min(...pys), y1 = Math.max(...pys);
-      const pad = 60;
-      const k = Math.min(8, svgW / (x1 - x0 + pad * 2), svgH / (y1 - y0 + pad * 2));
-      const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-      const t = d3.zoomIdentity.translate(svgW / 2 - cx * k, svgH / 2 - cy * k).scale(k);
-      d3.select(svgNode).transition().duration(400).call(zoomB!.transform, t);
-    }
-
-    function rxnPX(i: number): number { return xS(ia.rxn_x[i]); }
-    function rxnPY(i: number): number { return yS(ia.rxn_y[i]); }
-    function metPX(i: number): number { return xS(ia.met_x[i]); }
-    function metPY(i: number): number { return yS(ia.met_y[i]); }
-
     function selectResult(type: 'rxn' | 'met', idx: number): void {
-      const px = type === 'rxn' ? rxnPX(idx) : metPX(idx);
-      const py = type === 'rxn' ? rxnPY(idx) : metPY(idx);
-      setHL(px, py);
       inp.value = type === 'rxn'
         ? (ia.rxn_names[idx] || ia.rxn_ids[idx])
         : (ia.met_names[idx] || ia.met_ids[idx]);
       res.style.display = 'none';
-      zoomToPoint(px, py);
+      if (type === 'rxn') {
+        focusStationReactionById(ia.rxn_ids[idx]);
+      } else {
+        focusMetaboliteById(ia.met_ids[idx]);
+      }
+    }
+
+    type StationHit = {
+      type: 'station-rxn';
+      station: StationGeom;
+      line: StationLineGeom;
+      rxn: RxnSummary;
+    };
+
+    function selectStationResult(hit: StationHit): void {
+      showStationPanel(hit.station);
+      focusStationReactionById(hit.rxn.id);
+      inp.value = hit.rxn.name && hit.rxn.name !== hit.rxn.id ? hit.rxn.name : hit.rxn.id;
+      currentStationSearch = inp.value;
+      applyStationPanelSearch(currentStationSearch, hit.rxn.id);
+      res.style.display = 'none';
     }
 
     function runSearch(q: string): void {
       res.innerHTML = '';
-      if (!q.trim()) { clearHL(); res.style.display = 'none'; return; }
+      currentStationSearch = q;
+      applyStationPanelSearch(q);
+      if (!q.trim()) { res.style.display = 'none'; return; }
       const lq = q.toLowerCase();
-      const hpxs: number[] = [], hpys: number[] = [];
-      const hits: { type: 'rxn' | 'met'; idx: number }[] = [];
+      const hits: ({ type: 'rxn' | 'met'; idx: number } | StationHit)[] = [];
 
       for (let i = 0; i < ia.rxn_ids.length; i++) {
         if (rxnIdsLc[i].includes(lq) || rxnNamesLc[i].includes(lq)) {
-          hpxs.push(rxnPX(i)); hpys.push(rxnPY(i));
           if (hits.length < 20) hits.push({ type: 'rxn', idx: i });
         }
       }
       for (let i = 0; i < ia.met_ids.length; i++) {
         if (metIdsLc[i].includes(lq) || metNamesLc[i].includes(lq)) {
-          hpxs.push(metPX(i)); hpys.push(metPY(i));
           if (hits.length < 20) hits.push({ type: 'met', idx: i });
         }
       }
+      for (const station of data.stations) {
+        for (const line of station.lines) {
+          for (const rxn of line.rxn_summaries) {
+            if (!stationReactionSearchText(rxn).includes(lq)) continue;
+            if (hits.length < 20) hits.push({ type: 'station-rxn', station, line, rxn });
+          }
+        }
+      }
 
-      if (!hpxs.length) {
+      if (!hits.length) {
         const d = document.createElement('div');
         d.className = 'flov-search-result';
         d.style.color = '#7d8590';
         d.textContent = 'No matches';
         res.appendChild(d);
         res.style.display = 'block';
-        clearHL();
         return;
       }
 
-      if (hpxs.length === 1) zoomToPoint(hpxs[0], hpys[0]);
-      else zoomToFit(hpxs, hpys);
-
-      if (hits.length === 1) {
-        const h = hits[0];
-        setHL(h.type === 'rxn' ? rxnPX(h.idx) : metPX(h.idx),
-               h.type === 'rxn' ? rxnPY(h.idx) : metPY(h.idx));
-      } else {
-        clearHL();
-      }
-
       for (const h of hits) {
-        const id   = h.type === 'rxn' ? ia.rxn_ids[h.idx]   : ia.met_ids[h.idx];
-        const name = h.type === 'rxn' ? ia.rxn_names[h.idx]  : ia.met_names[h.idx];
         const el = document.createElement('div');
         el.className = 'flov-search-result';
-        el.title = id + (name && name !== id ? ' — ' + name : '');
-        el.innerHTML =
-          `<b>${id}</b>` +
-          (name && name !== id ? ` <span style="color:#7d8590">— ${name}</span>` : '') +
-          ` <span style="color:#444c56;font-size:10px">[${h.type}]</span>`;
-        el.onclick = () => selectResult(h.type, h.idx);
+        if (h.type === 'station-rxn') {
+          const id = h.rxn.id;
+          const name = h.rxn.name;
+          el.title = `${id}${name && name !== id ? ' — ' + name : ''}`;
+          el.innerHTML =
+            `<b>${id}</b>` +
+            (name && name !== id ? ` <span style="color:#7d8590">— ${name}</span>` : '') +
+            ` <span style="color:#444c56;font-size:10px">[station ${stationClassLabel(h.line.klass)}]</span>`;
+          el.onclick = () => selectStationResult(h);
+        } else {
+          const id   = h.type === 'rxn' ? ia.rxn_ids[h.idx]   : ia.met_ids[h.idx];
+          const name = h.type === 'rxn' ? ia.rxn_names[h.idx]  : ia.met_names[h.idx];
+          el.title = id + (name && name !== id ? ' — ' + name : '');
+          el.innerHTML =
+            `<b>${id}</b>` +
+            (name && name !== id ? ` <span style="color:#7d8590">— ${name}</span>` : '') +
+            ` <span style="color:#444c56;font-size:10px">[${h.type}]</span>`;
+          el.onclick = () => selectResult(h.type, h.idx);
+        }
         res.appendChild(el);
       }
       res.style.display = 'block';
@@ -1719,7 +1731,16 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
 
     inp.addEventListener('input', function (this: HTMLInputElement) { runSearch(this.value); });
     inp.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { inp.value = ''; clearHL(); res.style.display = 'none'; }
+      if (e.key === 'Escape') {
+        inp.value = '';
+        currentStationSearch = '';
+        applyStationPanelSearch('');
+        if (focusState) {
+          focusState = null;
+          applyFocus();
+        }
+        res.style.display = 'none';
+      }
     });
     // Self-removing click-outside handler
     document.addEventListener('click', function outside(e: MouseEvent) {

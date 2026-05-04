@@ -105,7 +105,7 @@ _LINE_KLASS_COLORS: dict[str, str] = {
 }
 _LINE_KLASS_INACTIVE = "#6e7681"
 MAX_LINES_PER_PAIR = 10
-MAX_RXNS_PER_LINE = 10
+MAX_RXNS_PER_LINE: int | None = None
 
 _RAIL_ROUTE_PALETTE: tuple[str, ...] = (
     "#f97316", "#22c55e", "#a855f7", "#06b6d4", "#f43f5e",

@@ -1,8 +1,7 @@
 """Layout and routing primitives for the FLoV widget.
 
 Includes Fruchterman-Reingold spring layout, region scaling, hull-curve
-sampling, A* grid routing, polyline simplification, and station branch
-hub detection.
+sampling, A* grid routing, and polyline simplification.
 
 Split out of ``flux_network.py`` so the main file holds the widget class only.
 """
@@ -321,59 +320,6 @@ def _simplify_polyline(pts: list[tuple[float, float]]) -> list[tuple[float, floa
             out.append(pts[i])
     out.append(pts[-1])
     return out
-
-
-# ==========================================================================
-# BRANCH / MERGE HUB DETECTION
-# ==========================================================================
-
-def _detect_branch_hubs(
-    stations: list[StationPair], step: float,
-) -> list[dict]:
-    """Find cells where two spines sharing an anchor diverge.
-
-    Returns a list of ``{"x", "y", "branches": [pair_id, ...]}`` dicts.
-    The first cell at which the spines part ways becomes a small branch
-    pill in the rendered figure.
-    """
-    if not stations:
-        return []
-    by_anchor: dict[tuple[float, float], list[tuple[StationPair, list[tuple[float, float]]]]] = {}
-    for st in stations:
-        if not st.spine:
-            continue
-        snapped_a = _grid_snap(st.spine[0][0], st.spine[0][1], step)
-        snapped_b = _grid_snap(st.spine[-1][0], st.spine[-1][1], step)
-        by_anchor.setdefault(snapped_a, []).append((st, list(st.spine)))
-        by_anchor.setdefault(snapped_b, []).append((st, list(reversed(st.spine))))
-
-    branch_pts: list[dict] = []
-    seen: set[tuple[float, float]] = set()
-    for anchor, group in by_anchor.items():
-        if len(group) < 2:
-            continue
-        max_len = min(len(s[1]) for s in group)
-        diverged_at = None
-        for k in range(1, max_len):
-            cells = {_grid_snap(s[1][k][0], s[1][k][1], step) for s in group}
-            if len(cells) > 1:
-                diverged_at = k
-                break
-        if diverged_at is None:
-            continue
-        bx, by = _grid_snap(
-            group[0][1][diverged_at - 1][0],
-            group[0][1][diverged_at - 1][1],
-            step,
-        )
-        if (bx, by) in seen or (bx, by) == anchor:
-            continue
-        seen.add((bx, by))
-        branch_pts.append({
-            "x": float(bx), "y": float(by),
-            "branches": [s[0].pair_id for s in group],
-        })
-    return branch_pts
 
 
 def _nearest_open_cell(

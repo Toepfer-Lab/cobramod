@@ -43,7 +43,6 @@ from ._flux_layout import (
     HubLine,
     StationPair,
     _a_star_grid,
-    _detect_branch_hubs,
     _grid_snap,
     _nearest_open_cell,
     _polygon_mask,
@@ -67,10 +66,10 @@ class _BuilderMixin:
 
     def _compute_stations(
         self, active_rxn_set: set[str], active_compartments: set[str],
-    ) -> tuple[list[StationPair], list[dict], float, list[dict]]:
-        """Build station list, run A* routing, detect branch hubs.
+    ) -> tuple[list[StationPair], float, list[dict]]:
+        """Build station list and run A* routing.
 
-        Returns ``(stations, branch_hubs, grid_step, inner_edges)``.
+        Returns ``(stations, grid_step, inner_edges)``.
         ``inner_edges`` are the rxn→met edges of non-regular reactions —
         kept as JSON so the frontend can toggle them on demand.
         """
@@ -81,7 +80,7 @@ class _BuilderMixin:
         G = self._G
         pos = self._pos
         if mdl is None or G is None or not pos:
-            return [], [], 0.5, []
+            return [], 0.5, []
 
         # ── 1. Bucket reactions by (compA, compB) → klass → rxn_ids ──
         pair_buckets: dict[tuple[str, str], dict[str, list[str]]] = {}
@@ -103,9 +102,9 @@ class _BuilderMixin:
             pair_buckets.setdefault(pk, {}).setdefault(klass, []).append(rxn.id)
 
         if not pair_buckets:
-            return [], [], 0.5, []
+            return [], 0.5, []
 
-        # ── 2. Cap to MAX_LINES_PER_PAIR per pair, MAX_RXNS_PER_LINE per line ──
+        # ── 2. Build station lines ──
         stations: list[StationPair] = []
         for (a, b), klass_map in pair_buckets.items():
             ordered_lines: list[HubLine] = []
@@ -113,10 +112,11 @@ class _BuilderMixin:
                 rxn_ids = klass_map.get(klass, [])
                 if not rxn_ids:
                     continue
+                if MAX_RXNS_PER_LINE is not None:
+                    rxn_ids = rxn_ids[:MAX_RXNS_PER_LINE]
                 ordered_lines.append(HubLine(
                     klass=klass,
-                    rxn_ids=rxn_ids[:MAX_RXNS_PER_LINE]
-                            if len(rxn_ids) > MAX_RXNS_PER_LINE else list(rxn_ids),
+                    rxn_ids=list(rxn_ids),
                     spine_offset_idx=ki,
                 ))
                 if len(ordered_lines) >= MAX_LINES_PER_PAIR:
@@ -343,10 +343,7 @@ class _BuilderMixin:
             poly[-1] = st.anchor_b
             st.spine = _simplify_polyline(poly)
 
-        # ── 7. Branch hubs ──
-        branch_hubs = _detect_branch_hubs(stations, step)
-
-        # ── 8. Inner edges ──
+        # ── 7. Inner edges ──
         inner_edges: list[dict] = []
         non_regular_active = {
             r for r in active_rxn_set
@@ -369,7 +366,7 @@ class _BuilderMixin:
                     "y": [float(ry), float(my)],
                 })
 
-        return stations, branch_hubs, step, inner_edges
+        return stations, step, inner_edges
 
     def _compute_regular_rails(
         self,
@@ -779,7 +776,7 @@ class _BuilderMixin:
         rail_data = self._compute_regular_rails(rxn_nodes, met_nodes, views)
 
         # ── Stations & routes ──
-        stations, branch_hubs, grid_step, inner_edges = self._compute_stations(
+        stations, grid_step, inner_edges = self._compute_stations(
             active_rxn_set,
             active_compartments,
         )
@@ -1040,9 +1037,6 @@ class _BuilderMixin:
             for px, py in route["path"]:
                 all_x.append(float(px))
                 all_y.append(float(py))
-        for hub in branch_hubs:
-            all_x.append(float(hub["x"]))
-            all_y.append(float(hub["y"]))
         for guide in rail_data["guides"] + inner_edges:
             all_x.extend(float(v) for v in guide["x"])
             all_y.extend(float(v) for v in guide["y"])
@@ -1074,7 +1068,6 @@ class _BuilderMixin:
             "rail_routes": rail_data["routes"],
             "guide_links": rail_data["guides"],
             "stations": stations_geometry,
-            "branch_hubs": branch_hubs,
             "inner_edges": inner_edges,
             "interactivity": {
                 "view_labels": [v.label for v in views],
