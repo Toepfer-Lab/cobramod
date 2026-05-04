@@ -79,9 +79,6 @@ interface InnerEdge {
   rxn_id: string; met_id: string;
   x: [number, number]; y: [number, number];
 }
-interface RailHub {
-  x: number; y: number; role: string; routes: string[];
-}
 interface GuideLink {
   node_id: string; node_type: 'rxn' | 'met';
   x: [number, number]; y: [number, number];
@@ -111,7 +108,7 @@ interface D3FigureData {
   meta: Meta; compartments: Compartment[];
   view_labels: string[]; views: ViewData[];
   met_nodes: MetNode[]; interactivity: Interactivity;
-  rail_routes: RailRouteGeom[]; rail_hubs: RailHub[]; guide_links: GuideLink[];
+  rail_routes: RailRouteGeom[]; guide_links: GuideLink[];
   stations: StationGeom[];
   branch_hubs: BranchHub[];
   inner_edges: InnerEdge[];
@@ -264,21 +261,6 @@ function hullPath(
   return gen(verts) ?? '';
 }
 
-// Polyline path through orthogonal/45° spine vertices (no curve smoothing —
-// the bend penalty in the A* router has already collapsed stairways into
-// single straights or one-bend Ls).
-function polylinePath(
-  pts: [number, number][],
-  xS: d3.ScaleLinear<number, number>, yS: d3.ScaleLinear<number, number>
-): string {
-  if (!pts.length) return '';
-  let d = `M${xS(pts[0][0]).toFixed(1)} ${yS(pts[0][1]).toFixed(1)}`;
-  for (let i = 1; i < pts.length; i++) {
-    d += ` L${xS(pts[i][0]).toFixed(1)} ${yS(pts[i][1]).toFixed(1)}`;
-  }
-  return d;
-}
-
 // Rail path with pixel-constant lane offset.
 // Each segment is shifted right-perpendicularly by seg_slots[k] * LANE_W_PX
 // divided by the current zoom scale k_zoom, so the screen-pixel gap stays
@@ -410,15 +392,6 @@ function branchTooltipHTML(b: BranchHub): string {
   );
 }
 
-function railHubTooltipHTML(h: RailHub): string {
-  return (
-    `<b>${h.role}</b><br>` +
-    `<span class="ft-div">──────────────────────</span><br>` +
-    `<span style="color:#8b949e">Connected rails:</span><br>` +
-    h.routes.map(r => `<div style="margin-left:8px">${r.replace('->', ' → ')}</div>`).join('')
-  );
-}
-
 // ── Main render function ──────────────────────────────────────────────────────
 
 function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
@@ -445,7 +418,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   let gRxnHitSel: d3.Selection<SVGPathElement, RxnNode, SVGGElement, unknown> | null = null;
   let currentTransform: d3.ZoomTransform = d3.zoomIdentity;
   let rafId: number | null = null;
-  let cachedWrapperRect: DOMRect | null = null;
   let lightMode = true;
   let focusState: FocusState | null = null;
   const arrowMarkerEndId = `flov-arrow-end-${Math.random().toString(36).slice(2)}`;
@@ -501,7 +473,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     gMetHitSel = null;
     gRxnSel = null;
     gRxnHitSel = null;
-    cachedWrapperRect = null;
     focusState = null;
     if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
     wrapper.innerHTML = '';
@@ -596,7 +567,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     const gGuide = zoomLayer.append<SVGGElement>('g').attr('class', 'g-guide');
     const gInner = zoomLayer.append<SVGGElement>('g').attr('class', 'g-inner').style('display', 'none');
     const gRail  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rail');
-    const gRHub  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-rhub');
     const gRoute = zoomLayer.append<SVGGElement>('g').attr('class', 'g-route');
     const gStn   = zoomLayer.append<SVGGElement>('g').attr('class', 'g-stn');
     const gBHub  = zoomLayer.append<SVGGElement>('g').attr('class', 'g-bhub');
@@ -703,8 +673,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
         });
       });
     });
-    const stationByPairView = new Map<string, StationViewEntry>();
-    view0.stations.forEach(s => stationByPairView.set(s.pair_id, s));
     function lineStyle(d: RouteDatum, view: ViewData): { color: string; width: number } {
       const sv = view.stations.find(s => s.pair_id === d.pair_id);
       if (!sv || !sv.lines[d.lineIndex]) {
@@ -1141,12 +1109,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     // Metabolites
     mkToggle(bar, 'Metabolites', 'Show', 'Hide', true, on => {
       gMetSel!.style('display', on ? '' : 'none');
-    });
-
-    // Inner connections (rxn → metabolite edges of transport/exchange reactions)
-    mkToggle(bar, 'Inner connections', 'Show', 'Hide', false, on => {
-      const el = wrapper.querySelector<HTMLElement>('.g-inner');
-      if (el) el.style.display = on ? '' : 'none';
     });
 
     // Dark/light mode
@@ -1772,7 +1734,6 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     for (const entry of entries) {
       const w = entry.contentRect.width;
       if (w <= 0) continue;
-      cachedWrapperRect = null;
       if (!fig) continue;
       clearTimeout(resizeTimer!);
       resizeTimer = setTimeout(() => buildUI(fig!), 120);

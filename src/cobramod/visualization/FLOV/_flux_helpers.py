@@ -1,8 +1,8 @@
 """Stateless helpers used by the FLoV widget.
 
 Includes model classification (compartment, currency, proton, reaction kind),
-edge/flux/colour mapping, spread parsing, hull-path rendering, station
-metabolite-class detection, pair-key resolution, and CSV loaders.
+flux/colour mapping, spread parsing, station metabolite-class detection,
+pair-key resolution, and CSV loaders.
 
 Split out of ``flux_network.py`` so the main file holds the widget class only.
 """
@@ -166,22 +166,6 @@ def _edge_bucket(flux: float, abs_max: float) -> tuple[int, float, int]:
     return b, float(mag_norm), sign
 
 
-def _edge_rgba(mag_norm: float, sign: int, has_flux: bool, density_scale: float = 1.0, color_modifier: float = 1.0) -> str:
-    if not has_flux:
-        return "rgba(110,118,129,0.20)"
-    alpha = (0.55 + 0.45 * mag_norm) * (0.60 + 0.40 * density_scale)
-    eff_norm = float(np.clip(mag_norm * color_modifier, 0.0, 1.0))
-    if sign > 0:
-        r = int(255)
-        g = int(180 - 180 * eff_norm)
-        b_ = int(70 - 70 * eff_norm)
-    else:
-        r = int(100 - 50 * eff_norm)
-        g = int(190 - 90 * eff_norm)
-        b_ = int(255)
-    return f"rgba({r},{g},{b_},{alpha:.3f})"
-
-
 def _flux_to_hex(flux: float, abs_max: float) -> str:
     """Map a flux value to a dark-mode hex colour using a diverging red/blue scale."""
     if abs_max < 1e-9 or not _has_flux_data(flux):
@@ -198,16 +182,6 @@ def _flux_to_hex(flux: float, abs_max: float) -> str:
     return f"#{r:02x}{g:02x}{b_:02x}"
 
 
-# ==========================================================================
-# COLOUR HELPERS
-# ==========================================================================
-
-def _tint_hex(hex_color: str, alpha: float = 0.15) -> str:
-    h = hex_color.lstrip("#")
-    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
-    return f"rgba({r},{g},{b},{alpha})"
-
-
 def _modulate_route_color(base_hex: str, mag_norm: float, has_flux: bool) -> str:
     """Return an rgba color keeping the base hue; opacity scaled by flux magnitude."""
     if not has_flux:
@@ -216,29 +190,6 @@ def _modulate_route_color(base_hex: str, mag_norm: float, has_flux: bool) -> str
     r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
     alpha = 0.42 + 0.58 * float(mag_norm)
     return f"rgba({r},{g},{b},{alpha:.3f})"
-
-
-# ==========================================================================
-# SHAPE HELPERS
-# ==========================================================================
-
-def _smooth_hull_path(verts: np.ndarray, tension: float = 0.4) -> str:
-    n = len(verts)
-    parts = [f"M {verts[0][0]:.4f},{verts[0][1]:.4f}"]
-    for i in range(n):
-        p0 = verts[(i - 1) % n]
-        p1 = verts[i % n]
-        p2 = verts[(i + 1) % n]
-        p3 = verts[(i + 2) % n]
-        cp1 = p1 + tension * (p2 - p0) / 3.0
-        cp2 = p2 - tension * (p3 - p1) / 3.0
-        parts.append(
-            f"C {cp1[0]:.4f},{cp1[1]:.4f} "
-            f"{cp2[0]:.4f},{cp2[1]:.4f} "
-            f"{p2[0]:.4f},{p2[1]:.4f}"
-        )
-    parts.append("Z")
-    return " ".join(parts)
 
 
 # ==========================================================================

@@ -1,28 +1,20 @@
 """Layout and routing primitives for the FLoV widget.
 
 Includes Fruchterman-Reingold spring layout, region scaling, hull-curve
-sampling, A* grid routing, polyline simplification/offsetting, branch / merge
-hub detection, and the Plotly trace builder for reactions.
+sampling, A* grid routing, polyline simplification, and station branch
+hub detection.
 
 Split out of ``flux_network.py`` so the main file holds the widget class only.
 """
 from __future__ import annotations
 
 import heapq
-from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Optional
 
 import cobra
 import networkx as nx
 import numpy as np
-import plotly.graph_objects as go
-
-from ._flux_config import ViewSpec
-from ._flux_helpers import (
-    _has_flux_data,
-    _tint_hex,
-)
 
 
 # ==========================================================================
@@ -160,8 +152,8 @@ def _hull_curve_samples(
 ) -> tuple[np.ndarray, np.ndarray]:
     """Sample (point, unit-tangent) along the smoothed Catmull-Rom hull.
 
-    Mirrors :func:`_smooth_hull_path` so anchors land exactly on the rendered
-    curve, not the raw polygon.
+    Mirrors the Catmull-Rom hull path rendered by the frontend so anchors land
+    exactly on the rendered curve, not the raw polygon.
     """
     n = len(verts)
     if n < 3:
@@ -331,36 +323,6 @@ def _simplify_polyline(pts: list[tuple[float, float]]) -> list[tuple[float, floa
     return out
 
 
-def _offset_polyline(
-    spine: list[tuple[float, float]], offset: float,
-) -> list[tuple[float, float]]:
-    """Offset a polyline perpendicular to its segments, on the right-hand side.
-
-    Used to draw N parallel lines along one routed spine.  Corners are
-    handled by averaging adjacent segment normals (good enough for the
-    small number of bends typical of A* paths).
-    """
-    if len(spine) < 2 or abs(offset) < 1e-9:
-        return list(spine)
-    pts = np.asarray(spine, dtype=float)
-    n = len(pts)
-    seg = pts[1:] - pts[:-1]
-    seg_len = np.linalg.norm(seg, axis=1, keepdims=True)
-    seg_len[seg_len < 1e-9] = 1.0
-    seg_unit = seg / seg_len
-    seg_norm = np.stack([seg_unit[:, 1], -seg_unit[:, 0]], axis=1)
-    vert_norm = np.zeros((n, 2))
-    vert_norm[0] = seg_norm[0]
-    vert_norm[-1] = seg_norm[-1]
-    for i in range(1, n - 1):
-        vert_norm[i] = seg_norm[i - 1] + seg_norm[i]
-    vlen = np.linalg.norm(vert_norm, axis=1, keepdims=True)
-    vlen[vlen < 1e-9] = 1.0
-    vert_norm = vert_norm / vlen
-    out = pts + vert_norm * offset
-    return [tuple(p) for p in out]
-
-
 # ==========================================================================
 # BRANCH / MERGE HUB DETECTION
 # ==========================================================================
@@ -439,148 +401,3 @@ def _nearest_open_cell(
     idx = int(np.argmin(np.einsum("ij,ij->i", deltas, deltas)))
     row, col = free_cells[idx]
     return int(row), int(col)
-
-
-def _detect_route_hubs(
-    route_cells: dict[str, list[tuple[int, int]]],
-    excluded_cells: set[tuple[int, int]],
-    to_xy,
-) -> list[dict]:
-    """Detect small merge/diverge hubs from routed cell topology."""
-    neighbors: dict[tuple[int, int], set[tuple[int, int]]] = defaultdict(set)
-    route_map: dict[tuple[int, int], set[str]] = defaultdict(set)
-    for line_id, cells in route_cells.items():
-        for cell in cells:
-            route_map[cell].add(line_id)
-        for a, b in zip(cells, cells[1:]):
-            neighbors[a].add(b)
-            neighbors[b].add(a)
-    hubs: list[dict] = []
-    for cell, nbrs in neighbors.items():
-        if cell in excluded_cells or len(nbrs) <= 2:
-            continue
-        x, y = to_xy(cell)
-        hubs.append({
-            "x": float(x),
-            "y": float(y),
-            "role": "merge/diverge",
-            "routes": sorted(route_map[cell]),
-        })
-    hubs.sort(key=lambda h: (h["x"], h["y"]))
-    return hubs
-
-
-# ==========================================================================
-# PLOTLY TRACE BUILDER
-# ==========================================================================
-
-def _symbol_list(
-    fluxes: np.ndarray, rxn_nodes: list[str], rxn_kind_map: dict[str, str],
-) -> list[str]:
-    syms = []
-    for i, r in enumerate(rxn_nodes):
-        k = rxn_kind_map.get(r, "regular")
-        if k == "import":
-            syms.append("triangle-up")
-        elif k in ("export", "biomass"):
-            f = fluxes[i]
-            syms.append("cross" if not _has_flux_data(float(f)) else "triangle-down")
-        elif k == "transport":
-            syms.append("hexagon2")
-        else:
-            syms.append("circle")
-    return syms
-
-
-def _make_rxn_trace(
-    spec: ViewSpec,
-    rxn_nodes: list[str],
-    pos: dict,
-    G: nx.Graph,
-    cobra_model: cobra.Model,
-    compartments: dict[str, dict],
-    exchange_key: str,
-    rxn_kind_map: dict[str, str],
-    rxn_substrates: dict[str, list[str]],
-    rxn_products: dict[str, list[str]],
-    density_scale: float = 1.0,
-) -> go.Scattergl:
-    fluxes = np.array([spec.flux_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
-    stds = np.array([spec.std_dict.get(r, np.nan) for r in rxn_nodes], dtype=float)
-    valid = np.array([_has_flux_data(float(f)) for f in fluxes], dtype=bool)
-
-    abs_max = max(float(np.nanmax(np.abs(fluxes))) if valid.any() else 1.0, 1e-9)
-    log_abs = np.log1p(np.where(valid, np.abs(fluxes), 0.0))
-    sizes = (log_abs / np.log1p(abs_max) * (26 * density_scale) + max(4, round(7 * density_scale))).tolist()
-
-    _exch_cfg = compartments.get(exchange_key, {"color": "#888888", "label": exchange_key})
-    border_colors = [
-        compartments.get(G.nodes[r]["comp"], _exch_cfg)["color"]
-        for r in rxn_nodes
-    ]
-    border_widths = [
-        2.5 if rxn_kind_map.get(r, "regular") != "regular" else 1.8
-        for r in rxn_nodes
-    ]
-    opacities = [0.22 if not v else 0.90 for v in valid]
-
-    hover = []
-    bg_colors = [_tint_hex(c) for c in border_colors]
-    for i, r in enumerate(rxn_nodes):
-        f, sd = fluxes[i], stds[i]
-        rxn_o = cobra_model.reactions.get_by_id(r)
-        comp = G.nodes[r]["comp"]
-        comp_lbl = compartments.get(comp, _exch_cfg)["label"]
-        kind = rxn_kind_map.get(r, "regular")
-
-        f_str = f"{f:+.4f} mmol/gDW/h" if _has_flux_data(float(f)) else "--- (no data)"
-        sd_str = f"<br><i>std = {sd:.4f}</i>" if not np.isnan(sd) else ""
-        kind_badge = f" <b>[{kind.upper()}]</b>" if kind != "regular" else ""
-        pipe_str = f" | Pipeline: {spec.pipeline_tag}" if spec.pipeline_tag else ""
-        extra = spec.hover_extra.get(r, "")
-
-        subs = ", ".join(rxn_substrates.get(r, [])[:5]) or "---"
-        prds = ", ".join(rxn_products.get(r, [])[:5]) or "---"
-
-        display_name = rxn_o.name or r
-        id_str = f" <i>({r})</i>" if rxn_o.name else ""
-        hover.append(
-            f"<b>{display_name}</b>{id_str}{kind_badge}<br>"
-            f"<span style='color:#888'>─────────────────────────</span><br>"
-            f"<i>{comp_lbl}</i>{pipe_str}<br>"
-            f"Flux: {f_str}{sd_str}<br>"
-            f"Substrates: {subs}<br>"
-            f"Products: {prds}"
-            f"{extra}"
-            f"<extra></extra>"
-        )
-
-    return go.Scattergl(
-        x=[pos[r][0] for r in rxn_nodes],
-        y=[pos[r][1] for r in rxn_nodes],
-        mode="markers",
-        marker=dict(
-            size=sizes,
-            symbol=_symbol_list(fluxes, rxn_nodes, rxn_kind_map),
-            color=np.where(valid, fluxes, 0.0).tolist(),
-            colorscale="RdBu_r",
-            cmin=-abs_max, cmid=0, cmax=abs_max,
-            colorbar=dict(
-                title=dict(text="Flux<br>(mmol/gDW/h)",
-                           side="right", font=dict(size=11)),
-                x=-0.12, xanchor="left",
-                thickness=14, len=0.50, y=0.5,
-                tickfont=dict(size=9), outlinewidth=0,
-            ),
-            line=dict(color=border_colors, width=border_widths),
-            opacity=opacities,
-        ),
-        customdata=rxn_nodes,
-        hovertemplate=hover,
-        hoverlabel=dict(
-            bgcolor=bg_colors,
-            bordercolor=border_colors,
-            font=dict(color="#2c3e50", size=12),
-        ),
-        name=spec.label, showlegend=False,
-    )

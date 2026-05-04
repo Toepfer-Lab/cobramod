@@ -4561,7 +4561,6 @@ function render({ model: S, el: I }) {
   let gRxnHitSel = null;
   let currentTransform = identity3;
   let rafId = null;
-  let cachedWrapperRect = null;
   let lightMode = true;
   let focusState = null;
   const arrowMarkerEndId = `flov-arrow-end-${Math.random().toString(36).slice(2)}`;
@@ -4607,7 +4606,6 @@ function render({ model: S, el: I }) {
     gMetHitSel = null;
     gRxnSel = null;
     gRxnHitSel = null;
-    cachedWrapperRect = null;
     focusState = null;
     if (rafId !== null) {
       cancelAnimationFrame(rafId);
@@ -4662,7 +4660,6 @@ function render({ model: S, el: I }) {
     const gGuide = zoomLayer.append("g").attr("class", "g-guide");
     const gInner = zoomLayer.append("g").attr("class", "g-inner").style("display", "none");
     const gRail = zoomLayer.append("g").attr("class", "g-rail");
-    const gRHub = zoomLayer.append("g").attr("class", "g-rhub");
     const gRoute = zoomLayer.append("g").attr("class", "g-route");
     const gStn = zoomLayer.append("g").attr("class", "g-stn");
     const gBHub = zoomLayer.append("g").attr("class", "g-bhub");
@@ -4692,8 +4689,6 @@ function render({ model: S, el: I }) {
         });
       });
     });
-    const stationByPairView = /* @__PURE__ */ new Map();
-    view0.stations.forEach((s) => stationByPairView.set(s.pair_id, s));
     function lineStyle(d, view) {
       const sv = view.stations.find((s) => s.pair_id === d.pair_id);
       if (!sv || !sv.lines[d.lineIndex]) {
@@ -4952,11 +4947,6 @@ function render({ model: S, el: I }) {
     }
     mkToggle(bar, "Metabolites", "Show", "Hide", true, (on) => {
       gMetSel.style("display", on ? "" : "none");
-    });
-    mkToggle(bar, "Inner connections", "Show", "Hide", false, (on) => {
-      const el = wrapper.querySelector(".g-inner");
-      if (el)
-        el.style.display = on ? "" : "none";
     });
     const themeGroup = btnGroup(bar, "Theme");
     const themeBtn = mkBtn("Dark mode", true);
@@ -5489,7 +5479,6 @@ ${rxn.flux_per_view.join("\n")}`;
       const w = entry.contentRect.width;
       if (w <= 0)
         continue;
-      cachedWrapperRect = null;
       if (!fig)
         continue;
       clearTimeout(resizeTimer);

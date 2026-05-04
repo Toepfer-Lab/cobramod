@@ -44,7 +44,6 @@ from ._flux_layout import (
     StationPair,
     _a_star_grid,
     _detect_branch_hubs,
-    _detect_route_hubs,
     _grid_snap,
     _nearest_open_cell,
     _polygon_mask,
@@ -247,16 +246,95 @@ class _BuilderMixin:
         def to_xy(cell: tuple[int, int]) -> tuple[float, float]:
             return (x_min + cell[1] * step, y_min + cell[0] * step)
 
+        def _anchor_candidates(
+            comp_key: str,
+            current_anchor: tuple[float, float],
+            current_tangent: tuple[float, float],
+            toward: tuple[float, float],
+            max_candidates: int = 14,
+        ) -> list[tuple[tuple[float, float], tuple[float, float]]]:
+            if comp_key not in self._compartment_curve_samples:
+                return [(current_anchor, current_tangent)]
+            samples = self._compartment_curve_samples[comp_key]
+            tangents = self._compartment_curve_tangents[comp_key]
+            if len(samples) == 0:
+                return [(current_anchor, current_tangent)]
+
+            target_idx = _project_to_curve(toward, samples)
+            if target_idx < 0:
+                return [(current_anchor, current_tangent)]
+            stride = max(1, len(samples) // max_candidates)
+            offsets = [0]
+            for k in range(1, max_candidates // 2 + 1):
+                offsets.extend([k * stride, -k * stride])
+
+            candidates: list[tuple[tuple[float, float], tuple[float, float]]] = []
+            seen: set[tuple[float, float]] = set()
+            for off in offsets:
+                idx = (target_idx + off) % len(samples)
+                pt = samples[idx]
+                tan = tangents[idx]
+                anchor = _grid_snap(float(pt[0]), float(pt[1]), step)
+                key = (float(anchor[0]), float(anchor[1]))
+                if key in seen:
+                    continue
+                seen.add(key)
+                candidates.append((
+                    (float(anchor[0]), float(anchor[1])),
+                    (float(tan[0]), float(tan[1])),
+                ))
+            return candidates or [(current_anchor, current_tangent)]
+
+        def _route_cells_between(
+            a: tuple[float, float], b: tuple[float, float],
+        ) -> list[tuple[int, int]] | None:
+            ca = to_cell(a)
+            cb = to_cell(b)
+            saved = bool(forbidden[ca]), bool(forbidden[cb])
+            forbidden[ca] = False
+            forbidden[cb] = False
+            cells = _a_star_grid(ca, cb, forbidden)
+            forbidden[ca] = saved[0]
+            forbidden[cb] = saved[1]
+            return cells
+
+        def _route_score(cells: list[tuple[int, int]] | None) -> float:
+            if not cells:
+                return float("inf")
+            score = 0.0
+            for a, b in zip(cells, cells[1:]):
+                dr = a[0] - b[0]
+                dc = a[1] - b[1]
+                score += float((dr * dr + dc * dc) ** 0.5)
+            return score
+
+        def _optimise_station_anchors(st: StationPair) -> list[tuple[int, int]] | None:
+            ca = _comp_centroid(st.comp_a)
+            cb = _comp_centroid(st.comp_b)
+            cand_a = _anchor_candidates(st.comp_a, st.anchor_a, st.tangent_a, cb)
+            cand_b = _anchor_candidates(st.comp_b, st.anchor_b, st.tangent_b, ca)
+            best: tuple[float, tuple[float, float], tuple[float, float],
+                        tuple[float, float], tuple[float, float],
+                        list[tuple[int, int]] | None] | None = None
+            for anchor_a, tangent_a in cand_a:
+                for anchor_b, tangent_b in cand_b:
+                    cells = _route_cells_between(anchor_a, anchor_b)
+                    score = _route_score(cells)
+                    if best is None or score < best[0]:
+                        best = (score, anchor_a, tangent_a, anchor_b, tangent_b, cells)
+            if best is None or best[5] is None:
+                return None
+            st.anchor_a = best[1]
+            st.tangent_a = best[2]
+            st.anchor_b = best[3]
+            st.tangent_b = best[4]
+            return best[5]
+
         # ── 6. Route every station spine. ──
         for st in stations:
-            sa = to_cell(st.anchor_a)
-            sb = to_cell(st.anchor_b)
-            saved = bool(forbidden[sa]), bool(forbidden[sb])
-            forbidden[sa] = False
-            forbidden[sb] = False
-            cells = _a_star_grid(sa, sb, forbidden)
-            forbidden[sa] = saved[0]
-            forbidden[sb] = saved[1]
+            cells = _optimise_station_anchors(st)
+            if cells is None:
+                cells = _route_cells_between(st.anchor_a, st.anchor_b)
             if not cells:
                 st.spine = [st.anchor_a, st.anchor_b]
                 continue
@@ -305,7 +383,6 @@ class _BuilderMixin:
         if G is None or not pos:
             return {
                 "routes": [],
-                "hubs": [],
                 "guides": [],
                 "rxn_pos": {r: pos.get(r, (0.0, 0.0)) for r in rxn_nodes},
                 "met_pos": {m: pos.get(m, (0.0, 0.0)) for m in met_nodes},
@@ -354,7 +431,6 @@ class _BuilderMixin:
         if not edge_records:
             return {
                 "routes": [],
-                "hubs": [],
                 "guides": [],
                 "rxn_pos": {r: pos.get(r, (0.0, 0.0)) for r in rxn_nodes},
                 "met_pos": {m: pos.get(m, (0.0, 0.0)) for m in met_nodes},
@@ -368,7 +444,6 @@ class _BuilderMixin:
         routed_rxns: set[str] = set()
         routed_mets: set[str] = set()
         routes_geom: list[dict] = []
-        route_hubs: list[dict] = []
         guide_links: list[dict] = []
         guide_seen: set[tuple[str, str]] = set()
         step_values: list[float] = []
@@ -581,12 +656,6 @@ class _BuilderMixin:
                 [to_xy(cell) for cell in sorted(comp_used_cells)],
                 dtype=float,
             )
-            excluded_cells = {
-                cell for node_id, cell in node_to_cell.items()
-                if node_id in routed_rxns or node_id in routed_mets
-            }
-            route_hubs.extend(_detect_route_hubs(route_cells, excluded_cells, to_xy))
-
             comp_routes = routes_geom[comp_start_idx:]
             for ci, r in enumerate(comp_routes):
                 r["base_color"] = _RAIL_ROUTE_PALETTE[ci % len(_RAIL_ROUTE_PALETTE)]
@@ -622,7 +691,6 @@ class _BuilderMixin:
 
         return {
             "routes": routes_geom,
-            "hubs": route_hubs,
             "guides": guide_links,
             "rxn_pos": routed_rxn_pos,
             "met_pos": routed_met_pos,
@@ -972,7 +1040,7 @@ class _BuilderMixin:
             for px, py in route["path"]:
                 all_x.append(float(px))
                 all_y.append(float(py))
-        for hub in rail_data["hubs"] + branch_hubs:
+        for hub in branch_hubs:
             all_x.append(float(hub["x"]))
             all_y.append(float(hub["y"]))
         for guide in rail_data["guides"] + inner_edges:
@@ -1004,7 +1072,6 @@ class _BuilderMixin:
             "views": views_data,
             "met_nodes": met_node_list,
             "rail_routes": rail_data["routes"],
-            "rail_hubs": rail_data["hubs"],
             "guide_links": rail_data["guides"],
             "stations": stations_geometry,
             "branch_hubs": branch_hubs,
