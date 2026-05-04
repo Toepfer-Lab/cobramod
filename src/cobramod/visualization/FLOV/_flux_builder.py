@@ -924,6 +924,8 @@ class _BuilderMixin:
                         "id": rid,
                         "name": rxn_o.name or rid,
                         "flux_per_view": flux_per_view,
+                        "substrates": self._rxn_substrates.get(rid, [])[:5],
+                        "products": self._rxn_products.get(rid, [])[:5],
                     })
                 line_geom.append({
                     "klass": ln.klass,

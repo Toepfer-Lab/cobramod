@@ -325,6 +325,77 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
             return float(np.clip(self._density_scale, 0.0, 1.0))
         return max(0.40, min(1.0, (80.0 / max(80, n_rxns)) ** 0.5))
 
+    def diagnose_reaction(self, reaction_id: str) -> dict:
+        """Explain how one reaction and its metabolites are represented.
+
+        This is intended for notebook debugging when a reaction has flux but
+        some or all of its metabolites do not appear in the rendered network.
+        """
+        mdl = self._cobra_model
+        if mdl is None:
+            raise ValueError("No model set.")
+        if reaction_id not in mdl.reactions:
+            raise KeyError(f"{reaction_id!r} is not in the model.")
+        if not self._graph_built:
+            self._build_graph()
+
+        cfg = self._cfg
+        rxn = mdl.reactions.get_by_id(reaction_id)
+        G = self._G
+        flux_by_view = {
+            view.label: view.flux_dict.get(reaction_id, np.nan)
+            for view in self._views
+        }
+
+        met_rxn_count: dict[str, int] = {}
+        for rxn_o in mdl.reactions:
+            if self._drop_biomass and self._rxn_kind_map.get(rxn_o.id) == "biomass":
+                continue
+            for met_o in rxn_o.metabolites:
+                is_p = _is_proton(met_o, cfg)
+                if not _is_currency(met_o, cfg) or (is_p and not self._drop_protons):
+                    met_rxn_count[met_o.id] = met_rxn_count.get(met_o.id, 0) + 1
+
+        metabolites = []
+        for met, stoich in rxn.metabolites.items():
+            is_proton = _is_proton(met, cfg)
+            is_currency = _is_currency(met, cfg)
+            rendered = bool(G is not None and met.id in G)
+            has_edge = bool(G is not None and G.has_edge(reaction_id, met.id))
+            reasons = []
+            if met.id in self._ignored_mets:
+                reasons.append("explicitly ignored")
+            if is_currency and not (is_proton and not self._drop_protons):
+                reasons.append("filtered as currency")
+            if is_proton and self._drop_protons:
+                reasons.append("filtered as proton")
+            if met_rxn_count.get(met.id, 0) < 2:
+                reasons.append("< 2 non-currency/proton connections")
+            if not reasons and not rendered:
+                reasons.append("not present in rendered graph")
+            metabolites.append({
+                "id": met.id,
+                "name": met.name or met.id,
+                "compartment": _met_comp(met, cfg),
+                "stoich": float(stoich),
+                "connection_count": met_rxn_count.get(met.id, 0),
+                "currency": bool(is_currency),
+                "proton": bool(is_proton),
+                "rendered_metabolite": rendered,
+                "rendered_edge": has_edge,
+                "hidden_reasons": reasons,
+            })
+
+        result = {
+            "reaction_id": reaction_id,
+            "name": rxn.name or reaction_id,
+            "kind": self._rxn_kind_map.get(reaction_id, "unknown"),
+            "in_rendered_graph": bool(G is not None and reaction_id in G),
+            "flux_by_view": flux_by_view,
+            "metabolites": metabolites,
+        }
+        return result
+
     @property
     def drop_protons(self) -> bool:
         """Exclude proton (H+) metabolites from the graph."""
