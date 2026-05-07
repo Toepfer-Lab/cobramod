@@ -40,6 +40,7 @@ class ViewSpec:
     std_dict: dict[str, float] = field(default_factory=dict)
     hover_extra: dict[str, str] = field(default_factory=dict)
     pipeline_tag: str = ""
+    is_diff: bool = False
 
 
 # ==========================================================================
