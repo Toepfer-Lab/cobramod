@@ -29,10 +29,11 @@ The implementation is split across four sibling modules:
 
 from __future__ import annotations
 
+import logging
 from contextlib import contextmanager
 from importlib import resources
 from pathlib import Path
-from typing import Optional, Union
+from typing import Literal, Optional, Union
 
 import anywidget
 import cobra
@@ -44,10 +45,11 @@ from scipy.spatial import ConvexHull
 from traitlets import traitlets
 
 from ._flux_builder import _BuilderMixin
-from ._flux_config import ACTIVE_EDGE_EPS, ViewSpec, _parse_config
+from ._flux_config import ViewSpec, _parse_config
 from ._flux_config import _load_toml as _flux_load_toml
 from ._flux_helpers import (
     _emit_progress,
+    _has_flux_data,
     _is_currency,
     _is_proton,
     _load_ignore_csv,
@@ -61,6 +63,24 @@ from ._flux_layout import (
     _hull_curve_samples,
     _scale_to_region,
 )
+
+
+@contextmanager
+def _suppress_cobra_merge_duplicate_logs():
+    """Silence COBRApy duplicate-reaction logs during model union merges."""
+    loggers = [
+        logging.getLogger("cobra.core.model"),
+        logging.getLogger("cobra.core"),
+        logging.getLogger("cobra"),
+    ]
+    previous = [(logger, logger.level) for logger in loggers]
+    try:
+        for logger in loggers:
+            logger.setLevel(logging.ERROR)
+        yield
+    finally:
+        for logger, level in previous:
+            logger.setLevel(level)
 
 
 class FLoV(_BuilderMixin, anywidget.AnyWidget):
@@ -93,6 +113,7 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         hull_tension: float = 0.4,
         density_scale: Optional[float] = None,
         color_modifier: float = 1.0,
+        report_ignore: bool = False,
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -128,6 +149,7 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         self._color_modifier = color_modifier
         self._ignored_rxns: set[str] = set()
         self._ignored_mets: set[str] = set()
+        self._report_ignore_enabled = report_ignore
         self._dirty_level: Optional[str] = None
         self._animate_flux = False
         self._anim_min_period = 0.4   # seconds — fastest pulse at peak flux
@@ -433,6 +455,15 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
             raise TypeError("ignore expects a file path, a (rxn_set, met_set) tuple, or None")
         self._mark_dirty("graph")
 
+    @property
+    def report_ignore(self) -> bool:
+        """Whether rebuilds print a summary of explicitly ignored IDs."""
+        return self._report_ignore_enabled
+
+    @report_ignore.setter
+    def report_ignore(self, value: bool) -> None:
+        self._report_ignore_enabled = bool(value)
+
     # -- Public API --
 
     def add_view(
@@ -441,7 +472,6 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         flux_data: Union[Solution, dict, pd.Series, str, Path],
         std_data: Optional[dict] = None,
         pipeline_tag: str = "",
-        is_diff: bool = False,
     ) -> None:
         """
         Add a flux view to the visualisation.
@@ -457,10 +487,18 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
             Standard deviations {rxn_id: std}.
         pipeline_tag : str, optional
             Tag shown in hover text.
-        is_diff : bool, optional
-            Mark this view as a computed diff (skipped by the
-            auto-diff logic that triggers when two views exist).
         """
+        self._add_view_spec(label, flux_data, std_data, pipeline_tag, is_diff=False)
+        self._refresh_auto_diff()
+
+    def _add_view_spec(
+        self,
+        label: str,
+        flux_data: Union[Solution, dict, pd.Series, str, Path],
+        std_data: Optional[dict] = None,
+        pipeline_tag: str = "",
+        is_diff: bool = False,
+    ) -> None:
         if isinstance(flux_data, Solution):
             fd = {str(k): float(v) for k, v in flux_data.fluxes.items()}
         elif isinstance(flux_data, (pd.Series, dict)):
@@ -486,8 +524,6 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
             self._views.append(spec)
         if self._graph_built:
             self._mark_dirty("figure")
-        if not is_diff:
-            self._refresh_auto_diff()
 
     def clear_views(self) -> None:
         """Remove all flux views."""
@@ -525,8 +561,7 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
 
         ``label_a`` and ``label_b`` must already be present as views.
         Reactions only in one of the two contribute their own flux (the
-        missing side is treated as 0). Appears as another button in the
-        toolbar's Flux view group.
+        missing side is treated as 0).
 
         Called automatically once two non-diff views exist (e.g. after
         ``run_fba()`` then ``run_pfba()``); call directly if you want a
@@ -540,10 +575,10 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         fb = view_by_label[label_b].flux_dict
         diff = {
             r: d
-            for r in set(fa) | set(fb)
-            if abs(d := fb.get(r, 0.0) - fa.get(r, 0.0)) > ACTIVE_EDGE_EPS
+            for r in fa.keys() | fb.keys()
+            if _has_flux_data(d := fb.get(r, 0.0) - fa.get(r, 0.0))
         }
-        self.add_view(
+        self._add_view_spec(
             label, diff,
             pipeline_tag=f"{label_b} − {label_a}",
             is_diff=True,
@@ -556,10 +591,14 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         it from the current pair so the diff stays in sync when a view is
         replaced. Skips when there are not exactly two non-diff views.
         """
-        non_diff = [v for v in self._views if not v.is_diff]
-        self._views = [v for v in self._views if not v.is_diff]
+        self._views = non_diff = [v for v in self._views if not v.is_diff]
         if len(non_diff) == 2:
             self.add_diff_view(non_diff[0].label, non_diff[1].label)
+
+    _SOLVERS = {
+        "fba": lambda m: m.optimize(),
+        "pfba": lambda m: cobra.flux_analysis.pfba(m),
+    }
 
     def compare_models(
         self,
@@ -567,7 +606,7 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         model_b: cobra.Model,
         label_a: str = "A",
         label_b: str = "B",
-        method: str = "fba",
+        method: Literal["fba", "pfba"] = "fba",
     ) -> None:
         """Solve two models and load both as views to diff fluxes.
 
@@ -583,17 +622,16 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         Parameters
         ----------
         model_a, model_b : cobra.Model
-            The two models to compare.
+            The two models to compare. ``self.model`` is replaced with
+            their union before views are added.
         label_a, label_b : str
             Display names for the two views.
         method : {"fba", "pfba"}
             Flux method to apply to both models.
         """
-        if method == "fba":
-            solve = lambda m: m.optimize()
-        elif method == "pfba":
-            solve = lambda m: cobra.flux_analysis.pfba(m)
-        else:
+        try:
+            solve = self._SOLVERS[method]
+        except KeyError:
             raise ValueError(f"method must be 'fba' or 'pfba', got {method!r}")
 
         _emit_progress(f"Solving {label_a} ({method})...")
@@ -602,7 +640,8 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         sol_b = solve(model_b)
 
         _emit_progress("Merging models for union layout...")
-        union = model_a.merge(model_b, inplace=False, objective="left")
+        with _suppress_cobra_merge_duplicate_logs():
+            union = model_a.merge(model_b, inplace=False, objective="left")
 
         self.model = union
         self.add_view(label_a, sol_a)
@@ -748,7 +787,9 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         _emit_progress("Computing layout...")
         self._compute_layout()
         self._graph_built = True
-        if self._ignored_rxns or self._ignored_mets:
+        if self._report_ignore_enabled and (
+            self._ignored_rxns or self._ignored_mets
+        ):
             self._report_ignore(mdl, cfg, met_rxn_count)
 
     def _report_ignore(
