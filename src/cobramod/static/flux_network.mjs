@@ -4767,13 +4767,11 @@ function render({ model: S, el: I }) {
     met?.producers.forEach((r) => ids.add(r));
     return ids;
   }
-  function reactionNeighborhood(rxnId) {
-    const metIds = connectedMetIdsForRxn(rxnId);
-    const rxnIds = /* @__PURE__ */ new Set([rxnId]);
-    metIds.forEach((metId) => {
-      connectedRxnIdsForMet(metId).forEach((id2) => rxnIds.add(id2));
-    });
-    return { rxnIds, metIds };
+  function reactionFocusSet(rxnId) {
+    return {
+      rxnIds: /* @__PURE__ */ new Set([rxnId]),
+      metIds: connectedMetIdsForRxn(rxnId)
+    };
   }
   function setRxnFocus(d, ev) {
     ev.stopPropagation();
@@ -4781,7 +4779,7 @@ function render({ model: S, el: I }) {
       clearFocus();
       return;
     }
-    const neighborhood = reactionNeighborhood(d.id);
+    const neighborhood = reactionFocusSet(d.id);
     focusState = {
       type: "rxn",
       id: d.id,
@@ -4837,7 +4835,7 @@ function render({ model: S, el: I }) {
     focusStationReactionById(rxnId);
   }
   function focusStationReactionById(rxnId) {
-    const neighborhood = reactionNeighborhood(rxnId);
+    const neighborhood = reactionFocusSet(rxnId);
     focusState = {
       type: "rxn",
       id: rxnId,

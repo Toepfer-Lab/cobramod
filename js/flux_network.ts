@@ -825,13 +825,11 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     return ids;
   }
 
-  function reactionNeighborhood(rxnId: string): { rxnIds: Set<string>; metIds: Set<string> } {
-    const metIds = connectedMetIdsForRxn(rxnId);
-    const rxnIds = new Set<string>([rxnId]);
-    metIds.forEach(metId => {
-      connectedRxnIdsForMet(metId).forEach(id => rxnIds.add(id));
-    });
-    return { rxnIds, metIds };
+  function reactionFocusSet(rxnId: string): { rxnIds: Set<string>; metIds: Set<string> } {
+    return {
+      rxnIds: new Set<string>([rxnId]),
+      metIds: connectedMetIdsForRxn(rxnId),
+    };
   }
 
   function setRxnFocus(d: RxnNode, ev: MouseEvent): void {
@@ -840,7 +838,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       clearFocus();
       return;
     }
-    const neighborhood = reactionNeighborhood(d.id);
+    const neighborhood = reactionFocusSet(d.id);
     focusState = {
       type: 'rxn',
       id: d.id,
@@ -901,7 +899,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   }
 
   function focusStationReactionById(rxnId: string): void {
-    const neighborhood = reactionNeighborhood(rxnId);
+    const neighborhood = reactionFocusSet(rxnId);
     focusState = {
       type: 'rxn',
       id: rxnId,

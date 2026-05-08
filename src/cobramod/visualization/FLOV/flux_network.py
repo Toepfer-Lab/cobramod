@@ -29,6 +29,7 @@ The implementation is split across four sibling modules:
 
 from __future__ import annotations
 
+import hashlib
 import logging
 from contextlib import contextmanager
 from importlib import resources
@@ -243,11 +244,11 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
             widget.spread = "2u1.5r"     # up ×2, right ×1.5, other axes unchanged
             widget.spread = "2u0.8d1.5r" # all three independent
         """
-        u, d, l, r = self._spread
-        if u == d == l == r:
+        u, d, left, r = self._spread
+        if u == d == left == r:
             return u
         parts = []
-        for val, letter in zip((u, d, l, r), "udlr"):
+        for val, letter in zip((u, d, left, r), "udlr"):
             if val != 1.0:
                 parts.append(f"{val:g}{letter}")
         return "".join(parts)
@@ -568,7 +569,10 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         custom label or a diff between non-adjacent views.
         """
         view_by_label = {v.label: v for v in self._views}
-        missing = [l for l in (label_a, label_b) if l not in view_by_label]
+        missing = [
+            label for label in (label_a, label_b)
+            if label not in view_by_label
+        ]
         if missing:
             raise ValueError(f"Unknown view label(s): {missing}")
         fa = view_by_label[label_a].flux_dict
@@ -960,6 +964,20 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
                 pos[met_id] = ((x0 + x1) / 2.0, (y0 + y1) / 2.0)
             else:
                 pos[met_id] = (0.0, 0.0)
+
+        # Node jitter: break identical starts before radial spread.
+        for node_id in self._rxn_nodes + self._met_nodes:
+            if node_id not in pos:
+                continue
+            digest = hashlib.blake2b(node_id.encode("utf-8"), digest_size=8).digest()
+            seed = int.from_bytes(digest, "big")
+            angle = (seed / 2**64) * 2.0 * np.pi
+            distance = 0.15 + 0.35 * ((seed >> 8) & 0xFFFF) / 0xFFFF
+            x, y = pos[node_id]
+            pos[node_id] = (
+                float(x + np.cos(angle) * distance),
+                float(y + np.sin(angle) * distance),
+            )
 
         self._pos = pos
 
