@@ -4441,16 +4441,26 @@ function railOffsetPath(pts, seg_slots, xS, yS, k_zoom) {
   }
   return d;
 }
+var HTML_ESCAPES = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+};
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
+}
 function rxnTooltipHTML(h) {
-  const badge = h.kind_badge ? `<span class="ft-badge">${h.kind_badge}</span>` : "";
-  const id2 = h.id ? ` <span style="color:#8b949e;font-size:11px">(${h.id})</span>` : "";
-  const pipe = h.pipeline_tag ? ` \xB7 ${h.pipeline_tag}` : "";
-  const std = h.std_str ? `<br><span style="color:#7d8590;font-size:10px">\u03C3 = ${h.std_str}</span>` : "";
-  const extra = h.extra ? `<br>${h.extra}` : "";
-  return `<b>${h.display_name}</b>${id2} ${badge}<br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br><span class="ft-comp">${h.comp_label}${pipe}</span><br>Flux: <span class="ft-flux">${h.flux_str}</span>${std}<br><span style="color:#8b949e">Sub:</span> ${h.substrates}<br><span style="color:#8b949e">Prd:</span> ${h.products}${extra}`;
+  const badge = h.kind_badge ? `<span class="ft-badge">${escapeHTML(h.kind_badge)}</span>` : "";
+  const id2 = h.id ? ` <span style="color:#8b949e;font-size:11px">(${escapeHTML(h.id)})</span>` : "";
+  const pipe = h.pipeline_tag ? ` \xB7 ${escapeHTML(h.pipeline_tag)}` : "";
+  const std = h.std_str ? `<br><span style="color:#7d8590;font-size:10px">\u03C3 = ${escapeHTML(h.std_str)}</span>` : "";
+  const extra = h.extra ? `<br>${escapeHTML(h.extra)}` : "";
+  return `<b>${escapeHTML(h.display_name)}</b>${id2} ${badge}<br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br><span class="ft-comp">${escapeHTML(h.comp_label)}${pipe}</span><br>Flux: <span class="ft-flux">${escapeHTML(h.flux_str)}</span>${std}<br><span style="color:#8b949e">Sub:</span> ${escapeHTML(h.substrates)}<br><span style="color:#8b949e">Prd:</span> ${escapeHTML(h.products)}${extra}`;
 }
 function metTooltipHTML(m) {
-  return `<b>${m.name}</b><br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br><span class="ft-comp">${m.comp_label}</span><br><span style="color:#8b949e">ID:</span> ${m.id}<br><span style="color:#8b949e">Consumed:</span> ${m.consumers.join(", ") || "\u2014"}<br><span style="color:#8b949e">Produced:</span> ${m.producers.join(", ") || "\u2014"}`;
+  return `<b>${escapeHTML(m.name)}</b><br><span class="ft-div">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span><br><span class="ft-comp">${escapeHTML(m.comp_label)}</span><br><span style="color:#8b949e">ID:</span> ${escapeHTML(m.id)}<br><span style="color:#8b949e">Consumed:</span> ${escapeHTML(m.consumers.join(", ") || "\u2014")}<br><span style="color:#8b949e">Produced:</span> ${escapeHTML(m.producers.join(", ") || "\u2014")}`;
 }
 var KLASS_COLORS = {
   amino_acid: "#22c55e",
@@ -5447,13 +5457,13 @@ ${rxn.flux_per_view.join("\n")}`;
       row(sec, sv1, "Reaction node", "Fill = flux  \xB7  Border = compartment");
       const sv2 = mkSvg(28, 20);
       sv2.appendChild(mkEl("circle", { cx: 14, cy: 10, r: 7, fill: "#6e7681", stroke: "#58a6ff", "stroke-width": 2, opacity: 0.22 }));
-      row(sec, sv2, "No flux data", "Faded grey fill");
+      row(sec, sv2, "No flux data with this solver", "Faded grey fill");
     }
     {
       const sec = section("Metabolites");
       const sv1 = mkSvg(28, 20);
       sv1.appendChild(mkEl("circle", { cx: 14, cy: 10, r: 6.5, fill: "#ffffff", stroke: "#58a6ff", "stroke-width": 1.6 }));
-      row(sec, sv1, "Routed metabolite", "White stop on a rail line");
+      row(sec, sv1, "Metabolite", "Stop on a rail line");
       const sv2 = mkSvg(28, 20);
       sv2.appendChild(mkEl("path", {
         d: "M14,3 L21,10 L14,17 L7,10 Z",
@@ -5462,7 +5472,7 @@ ${rxn.flux_per_view.join("\n")}`;
         stroke: "#0d1117",
         "stroke-width": 0.7
       }));
-      row(sec, sv2, "Detached metabolite", "Off-rail, no station");
+      row(sec, sv2, "Detached metabolite", "Only connected to other compartment");
     }
     if (data.compartments && data.compartments.length) {
       const sec = section("Compartments");
@@ -5484,32 +5494,19 @@ ${rxn.flux_per_view.join("\n")}`;
     }
     {
       const sec = section("Stations");
-      const sv = mkSvg(28, 28);
-      const g = mkEl("g", { transform: "translate(14,14)" });
-      g.appendChild(mkEl("rect", {
-        x: -4,
-        y: -10,
-        width: 8,
-        height: 10,
-        rx: 4,
-        ry: 4,
-        fill: "#ffffff",
-        stroke: "#3fb950",
-        "stroke-width": 1.8
-      }));
-      g.appendChild(mkEl("rect", {
-        x: -4,
-        y: 0,
-        width: 8,
-        height: 10,
+      const sv = mkSvg(32, 18);
+      sv.appendChild(mkEl("rect", {
+        x: 4,
+        y: 5,
+        width: 24,
+        height: 8,
         rx: 4,
         ry: 4,
         fill: "#ffffff",
         stroke: "#58a6ff",
-        "stroke-width": 1.8
+        "stroke-width": 2.2
       }));
-      sv.appendChild(g);
-      row(sec, sv, "Station hub", "Hub between two compartments");
+      row(sec, sv, "Station hub", "Compartment interconnect");
     }
     {
       const sec = section("Station line classes");
@@ -5570,7 +5567,7 @@ ${rxn.flux_per_view.join("\n")}`;
       });
       ln2.setAttribute("class", "flov-flow-arrow flov-flow-forward");
       sv2.appendChild(ln2);
-      row(sec, sv2, "Flow: rxn \u2192 met", "Forward direction (striped)");
+      row(sec, sv2, "Flow: rxn \u2192 met", "Produced by reaction");
       const sv3 = mkSvg(28, 14);
       const ln3 = mkEl("line", {
         x1: 2,
@@ -5583,7 +5580,7 @@ ${rxn.flux_per_view.join("\n")}`;
       });
       ln3.setAttribute("class", "flov-flow-arrow flov-flow-reverse");
       sv3.appendChild(ln3);
-      row(sec, sv3, "Flow: met \u2192 rxn", "Reverse direction (striped)");
+      row(sec, sv3, "Flow: met \u2192 rxn", "Consumed by reaction");
       const sv4 = mkSvg(28, 14);
       sv4.appendChild(mkEl("line", {
         x1: 2,
@@ -5595,7 +5592,7 @@ ${rxn.flux_per_view.join("\n")}`;
         "stroke-linecap": "round",
         opacity: 0.6
       }));
-      row(sec, sv4, "Inactive", "Grey: no flux on this edge");
+      row(sec, sv4, "Inactive", "No flux with this solver");
     }
   }
   function buildSearch(parent, data) {
@@ -5608,7 +5605,7 @@ ${rxn.flux_per_view.join("\n")}`;
     wrap.className = "flov-search-wrap";
     const inp = document.createElement("input");
     inp.className = "flov-search-input";
-    inp.placeholder = "\u{1F50D}  Search reaction / metabolite\u2026";
+    inp.placeholder = "\u{1F50D} Search reaction / metabolite\u2026";
     inp.type = "text";
     const res = document.createElement("div");
     res.className = "flov-search-results";
@@ -5623,6 +5620,22 @@ ${rxn.flux_per_view.join("\n")}`;
       } else {
         focusMetaboliteById(ia.met_ids[idx]);
       }
+    }
+    function appendSearchResultText(el, id2, name, suffix) {
+      const idEl = document.createElement("b");
+      idEl.textContent = id2;
+      el.appendChild(idEl);
+      if (name && name !== id2) {
+        const nameEl = document.createElement("span");
+        nameEl.style.color = "#7d8590";
+        nameEl.textContent = ` \u2014 ${name}`;
+        el.appendChild(nameEl);
+      }
+      const suffixEl = document.createElement("span");
+      suffixEl.style.color = "#444c56";
+      suffixEl.style.fontSize = "10px";
+      suffixEl.textContent = ` ${suffix}`;
+      el.appendChild(suffixEl);
     }
     function selectStationResult(hit) {
       showStationPanel(hit.station);
@@ -5680,13 +5693,13 @@ ${rxn.flux_per_view.join("\n")}`;
           const id2 = h.rxn.id;
           const name = h.rxn.name;
           el.title = `${id2}${name && name !== id2 ? " \u2014 " + name : ""}`;
-          el.innerHTML = `<b>${id2}</b>` + (name && name !== id2 ? ` <span style="color:#7d8590">\u2014 ${name}</span>` : "") + ` <span style="color:#444c56;font-size:10px">[station ${stationClassLabel(h.line.klass)}]</span>`;
+          appendSearchResultText(el, id2, name, `[station ${stationClassLabel(h.line.klass)}]`);
           el.onclick = () => selectStationResult(h);
         } else {
           const id2 = h.type === "rxn" ? ia.rxn_ids[h.idx] : ia.met_ids[h.idx];
           const name = h.type === "rxn" ? ia.rxn_names[h.idx] : ia.met_names[h.idx];
           el.title = id2 + (name && name !== id2 ? " \u2014 " + name : "");
-          el.innerHTML = `<b>${id2}</b>` + (name && name !== id2 ? ` <span style="color:#7d8590">\u2014 ${name}</span>` : "") + ` <span style="color:#444c56;font-size:10px">[${h.type}]</span>`;
+          appendSearchResultText(el, id2, name, `[${h.type}]`);
           el.onclick = () => selectResult(h.type, h.idx);
         }
         res.appendChild(el);

@@ -251,30 +251,42 @@ export function railOffsetPath(
 
 // ── Tooltip HTML ──────────────────────────────────────────────────────────────
 
+const HTML_ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+
+function escapeHTML(value: unknown): string {
+  return String(value ?? '').replace(/[&<>"']/g, c => HTML_ESCAPES[c]);
+}
+
 export function rxnTooltipHTML(h: HoverData): string {
-  const badge = h.kind_badge ? `<span class="ft-badge">${h.kind_badge}</span>` : '';
-  const id    = h.id ? ` <span style="color:#8b949e;font-size:11px">(${h.id})</span>` : '';
-  const pipe  = h.pipeline_tag ? ` · ${h.pipeline_tag}` : '';
-  const std   = h.std_str ? `<br><span style="color:#7d8590;font-size:10px">σ = ${h.std_str}</span>` : '';
-  const extra = h.extra ? `<br>${h.extra}` : '';
+  const badge = h.kind_badge ? `<span class="ft-badge">${escapeHTML(h.kind_badge)}</span>` : '';
+  const id    = h.id ? ` <span style="color:#8b949e;font-size:11px">(${escapeHTML(h.id)})</span>` : '';
+  const pipe  = h.pipeline_tag ? ` · ${escapeHTML(h.pipeline_tag)}` : '';
+  const std   = h.std_str ? `<br><span style="color:#7d8590;font-size:10px">σ = ${escapeHTML(h.std_str)}</span>` : '';
+  const extra = h.extra ? `<br>${escapeHTML(h.extra)}` : '';
   return (
-    `<b>${h.display_name}</b>${id} ${badge}<br>` +
+    `<b>${escapeHTML(h.display_name)}</b>${id} ${badge}<br>` +
     `<span class="ft-div">──────────────────────</span><br>` +
-    `<span class="ft-comp">${h.comp_label}${pipe}</span><br>` +
-    `Flux: <span class="ft-flux">${h.flux_str}</span>${std}<br>` +
-    `<span style="color:#8b949e">Sub:</span> ${h.substrates}<br>` +
-    `<span style="color:#8b949e">Prd:</span> ${h.products}${extra}`
+    `<span class="ft-comp">${escapeHTML(h.comp_label)}${pipe}</span><br>` +
+    `Flux: <span class="ft-flux">${escapeHTML(h.flux_str)}</span>${std}<br>` +
+    `<span style="color:#8b949e">Sub:</span> ${escapeHTML(h.substrates)}<br>` +
+    `<span style="color:#8b949e">Prd:</span> ${escapeHTML(h.products)}${extra}`
   );
 }
 
 export function metTooltipHTML(m: MetNode): string {
   return (
-    `<b>${m.name}</b><br>` +
+    `<b>${escapeHTML(m.name)}</b><br>` +
     `<span class="ft-div">──────────────────────</span><br>` +
-    `<span class="ft-comp">${m.comp_label}</span><br>` +
-    `<span style="color:#8b949e">ID:</span> ${m.id}<br>` +
-    `<span style="color:#8b949e">Consumed:</span> ${m.consumers.join(', ') || '—'}<br>` +
-    `<span style="color:#8b949e">Produced:</span> ${m.producers.join(', ') || '—'}`
+    `<span class="ft-comp">${escapeHTML(m.comp_label)}</span><br>` +
+    `<span style="color:#8b949e">ID:</span> ${escapeHTML(m.id)}<br>` +
+    `<span style="color:#8b949e">Consumed:</span> ${escapeHTML(m.consumers.join(', ') || '—')}<br>` +
+    `<span style="color:#8b949e">Produced:</span> ${escapeHTML(m.producers.join(', ') || '—')}`
   );
 }
 
@@ -290,4 +302,3 @@ export const KLASS_COLORS: Record<string, string> = {
 export const STATION_BRANCH_COLORS = [
   '#22c55e', '#f59e0b', '#38bdf8', '#ec4899', '#a855f7',
 ];
-

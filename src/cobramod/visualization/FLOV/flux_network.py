@@ -113,7 +113,6 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         scale_compartments: bool = True,
         hull_tension: float = 0.4,
         density_scale: Optional[float] = None,
-        color_modifier: float = 1.0,
         report_ignore: bool = False,
         **kwargs,
     ):
@@ -147,7 +146,6 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
         self._radial_spread = 3.0
         self._hull_tension = hull_tension
         self._density_scale = density_scale
-        self._color_modifier = color_modifier
         self._ignored_rxns: set[str] = set()
         self._ignored_mets: set[str] = set()
         self._report_ignore_enabled = report_ignore
@@ -285,16 +283,6 @@ class FLoV(_BuilderMixin, anywidget.AnyWidget):
     @density_scale.setter
     def density_scale(self, value: Optional[float]) -> None:
         self._density_scale = value
-        self._mark_dirty("figure")
-
-    @property
-    def color_modifier(self) -> float:
-        """Scale factor for edge colour saturation. 1.0 = default; >1 more vivid, <1 more faded."""
-        return self._color_modifier
-
-    @color_modifier.setter
-    def color_modifier(self, value: float) -> None:
-        self._color_modifier = value
         self._mark_dirty("figure")
 
     @contextmanager

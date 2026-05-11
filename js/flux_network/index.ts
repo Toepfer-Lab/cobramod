@@ -1382,7 +1382,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       // Faded (no flux data)
       const sv2 = mkSvg(28, 20);
       sv2.appendChild(mkEl('circle', { cx: 14, cy: 10, r: 7, fill: '#6e7681', stroke: '#58a6ff', 'stroke-width': 2, opacity: 0.22 }));
-      row(sec, sv2, 'No flux data', 'Faded grey fill');
+      row(sec, sv2, 'No flux data with this solver', 'Faded grey fill');
     }
 
     // ── Metabolites ──
@@ -1391,7 +1391,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       // Stop: white circle with comp border (routed)
       const sv1 = mkSvg(28, 20);
       sv1.appendChild(mkEl('circle', { cx: 14, cy: 10, r: 6.5, fill: '#ffffff', stroke: '#58a6ff', 'stroke-width': 1.6 }));
-      row(sec, sv1, 'Routed metabolite', 'White stop on a rail line');
+      row(sec, sv1, 'Metabolite', 'Stop on a rail line');
 
       // Detached: filled diamond
       const sv2 = mkSvg(28, 20);
@@ -1399,7 +1399,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
         d: 'M14,3 L21,10 L14,17 L7,10 Z',
         fill: '#58a6ff', 'fill-opacity': 0.85, stroke: '#0d1117', 'stroke-width': 0.7,
       }));
-      row(sec, sv2, 'Detached metabolite', 'Off-rail, no station');
+      row(sec, sv2, 'Detached metabolite', 'Only connected to other compartment');
     }
 
     // ── Compartments (dynamic from data) ──
@@ -1419,20 +1419,12 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     // ── Stations ──
     {
       const sec = section('Stations');
-      // Pill: rotated rounded rectangle, two compartment-colored ends
-      const sv = mkSvg(28, 28);
-      const g = mkEl('g', { transform: 'translate(14,14)' });
-      // Two stacked pills representing the two compartment sides (a top, b bottom)
-      g.appendChild(mkEl('rect', {
-        x: -4, y: -10, width: 8, height: 10, rx: 4, ry: 4,
-        fill: '#ffffff', stroke: '#3fb950', 'stroke-width': 1.8,
+      const sv = mkSvg(32, 18);
+      sv.appendChild(mkEl('rect', {
+        x: 4, y: 5, width: 24, height: 8, rx: 4, ry: 4,
+        fill: '#ffffff', stroke: '#58a6ff', 'stroke-width': 2.2,
       }));
-      g.appendChild(mkEl('rect', {
-        x: -4, y: 0, width: 8, height: 10, rx: 4, ry: 4,
-        fill: '#ffffff', stroke: '#58a6ff', 'stroke-width': 1.8,
-      }));
-      sv.appendChild(g);
-      row(sec, sv, 'Station hub', 'Hub between two compartments');
+      row(sec, sv, 'Station hub', 'Compartment interconnect');
     }
 
     // ── Station classes (route line colours) ──
@@ -1483,7 +1475,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       });
       ln2.setAttribute('class', 'flov-flow-arrow flov-flow-forward');
       sv2.appendChild(ln2);
-      row(sec, sv2, 'Flow: rxn → met', 'Forward direction (striped)');
+      row(sec, sv2, 'Flow: rxn → met', 'Produced by reaction');
 
       // Striped reverse flow (met → rxn)
       const sv3 = mkSvg(28, 14);
@@ -1493,7 +1485,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       });
       ln3.setAttribute('class', 'flov-flow-arrow flov-flow-reverse');
       sv3.appendChild(ln3);
-      row(sec, sv3, 'Flow: met → rxn', 'Reverse direction (striped)');
+      row(sec, sv3, 'Flow: met → rxn', 'Consumed by reaction');
 
       // Inactive grey line
       const sv4 = mkSvg(28, 14);
@@ -1501,7 +1493,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
         x1: 2, y1: 7, x2: 26, y2: 7, stroke: '#6e7681',
         'stroke-width': 2.2, 'stroke-linecap': 'round', opacity: 0.6,
       }));
-      row(sec, sv4, 'Inactive', 'Grey: no flux on this edge');
+      row(sec, sv4, 'Inactive', 'No flux with this solver');
     }
   }
 
@@ -1518,7 +1510,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     wrap.className = 'flov-search-wrap';
     const inp = document.createElement('input');
     inp.className = 'flov-search-input';
-    inp.placeholder = '🔍  Search reaction / metabolite…';
+    inp.placeholder = '🔍 Search reaction / metabolite…';
     inp.type = 'text';
     const res = document.createElement('div');
     res.className = 'flov-search-results';
@@ -1544,6 +1536,30 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
       line: StationLineGeom;
       rxn: RxnSummary;
     };
+
+    function appendSearchResultText(
+      el: HTMLElement,
+      id: string,
+      name: string,
+      suffix: string
+    ): void {
+      const idEl = document.createElement('b');
+      idEl.textContent = id;
+      el.appendChild(idEl);
+
+      if (name && name !== id) {
+        const nameEl = document.createElement('span');
+        nameEl.style.color = '#7d8590';
+        nameEl.textContent = ` — ${name}`;
+        el.appendChild(nameEl);
+      }
+
+      const suffixEl = document.createElement('span');
+      suffixEl.style.color = '#444c56';
+      suffixEl.style.fontSize = '10px';
+      suffixEl.textContent = ` ${suffix}`;
+      el.appendChild(suffixEl);
+    }
 
     function selectStationResult(hit: StationHit): void {
       showStationPanel(hit.station);
@@ -1598,19 +1614,13 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
           const id = h.rxn.id;
           const name = h.rxn.name;
           el.title = `${id}${name && name !== id ? ' — ' + name : ''}`;
-          el.innerHTML =
-            `<b>${id}</b>` +
-            (name && name !== id ? ` <span style="color:#7d8590">— ${name}</span>` : '') +
-            ` <span style="color:#444c56;font-size:10px">[station ${stationClassLabel(h.line.klass)}]</span>`;
+          appendSearchResultText(el, id, name, `[station ${stationClassLabel(h.line.klass)}]`);
           el.onclick = () => selectStationResult(h);
         } else {
           const id   = h.type === 'rxn' ? ia.rxn_ids[h.idx]   : ia.met_ids[h.idx];
           const name = h.type === 'rxn' ? ia.rxn_names[h.idx]  : ia.met_names[h.idx];
           el.title = id + (name && name !== id ? ' — ' + name : '');
-          el.innerHTML =
-            `<b>${id}</b>` +
-            (name && name !== id ? ` <span style="color:#7d8590">— ${name}</span>` : '') +
-            ` <span style="color:#444c56;font-size:10px">[${h.type}]</span>`;
+          appendSearchResultText(el, id, name, `[${h.type}]`);
           el.onclick = () => selectResult(h.type, h.idx);
         }
         res.appendChild(el);
