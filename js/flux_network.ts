@@ -400,6 +400,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
   let viewBtns: HTMLButtonElement[] = [];
   let tooltipEl: HTMLDivElement | null = null;
   let stationPanelEl: HTMLDivElement | null = null;
+  let activeStationPanel: StationGeom | null = null;
   let currentStationSearch = '';
   let resizeTimer: ReturnType<typeof setTimeout> | null = null;
   let gMetSel: d3.Selection<SVGGElement, unknown, null, undefined> | null = null;
@@ -464,6 +465,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     gRxnSel = null;
     gRxnHitSel = null;
     focusState = null;
+    activeStationPanel = null;
     if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
     wrapper.innerHTML = '';
     tooltipEl = null;
@@ -1197,6 +1199,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
 
     viewBtns.forEach((b, i) => b.classList.toggle('active', i === vi));
     applyFocus();
+    refreshStationPanelForView();
   }
 
   // ── Station panel ──
@@ -1239,10 +1242,27 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     if (!stationPanelEl) return;
     stationPanelEl.style.display = 'none';
     stationPanelEl.innerHTML = '';
+    activeStationPanel = null;
   }
 
-  function showStationPanel(st: StationGeom): void {
+  function refreshStationPanelForView(): void {
+    if (!stationPanelEl || stationPanelEl.style.display === 'none' || !activeStationPanel) {
+      return;
+    }
+    showStationPanel(activeStationPanel, true);
+  }
+
+  function showStationPanel(st: StationGeom, preserveState = false): void {
     if (!stationPanelEl) return;
+    const scrollTop = preserveState ? stationPanelEl.scrollTop : 0;
+    const openGroups = preserveState
+      ? new Set(
+          Array.from(stationPanelEl.querySelectorAll<HTMLElement>('.flov-station-group.open'))
+            .map(group => group.dataset.stationClass ?? '')
+            .filter(Boolean)
+        )
+      : new Set<string>();
+    activeStationPanel = st;
     stationPanelEl.innerHTML = '';
     stationPanelEl.style.borderColor = st.comp_a_color;
 
@@ -1319,7 +1339,17 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     stationPanelEl.appendChild(head);
     stationPanelEl.appendChild(body);
     stationPanelEl.style.display = 'block';
-    stationPanelEl.scrollTop = 0;
+    if (preserveState) {
+      stationPanelEl.querySelectorAll<HTMLElement>('.flov-station-group').forEach(group => {
+        if (!openGroups.has(group.dataset.stationClass ?? '')) return;
+        group.classList.add('open');
+        const caret = group.querySelector<HTMLElement>('.flov-station-caret');
+        if (caret) caret.textContent = '▾';
+      });
+      stationPanelEl.scrollTop = scrollTop;
+    } else {
+      stationPanelEl.scrollTop = 0;
+    }
     applyStationPanelSearch(currentStationSearch);
   }
 

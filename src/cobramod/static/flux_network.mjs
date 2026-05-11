@@ -4553,6 +4553,7 @@ function render({ model: S, el: I }) {
   let viewBtns = [];
   let tooltipEl = null;
   let stationPanelEl = null;
+  let activeStationPanel = null;
   let currentStationSearch = "";
   let resizeTimer = null;
   let gMetSel = null;
@@ -4607,6 +4608,7 @@ function render({ model: S, el: I }) {
     gRxnSel = null;
     gRxnHitSel = null;
     focusState = null;
+    activeStationPanel = null;
     if (rafId !== null) {
       cancelAnimationFrame(rafId);
       rafId = null;
@@ -5040,6 +5042,7 @@ function render({ model: S, el: I }) {
     select_default2(zl).select(".g-lbl").selectAll("text").data(view.rxn_nodes).attr("x", (d) => xS(d.x)).attr("y", (d) => yS(d.y) - d.r - 2);
     viewBtns.forEach((b, i) => b.classList.toggle("active", i === vi));
     applyFocus();
+    refreshStationPanelForView();
   }
   function stationClassLabel(klass) {
     return klass.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -5076,10 +5079,22 @@ function render({ model: S, el: I }) {
       return;
     stationPanelEl.style.display = "none";
     stationPanelEl.innerHTML = "";
+    activeStationPanel = null;
   }
-  function showStationPanel(st) {
+  function refreshStationPanelForView() {
+    if (!stationPanelEl || stationPanelEl.style.display === "none" || !activeStationPanel) {
+      return;
+    }
+    showStationPanel(activeStationPanel, true);
+  }
+  function showStationPanel(st, preserveState = false) {
     if (!stationPanelEl)
       return;
+    const scrollTop = preserveState ? stationPanelEl.scrollTop : 0;
+    const openGroups = preserveState ? new Set(
+      Array.from(stationPanelEl.querySelectorAll(".flov-station-group.open")).map((group) => group.dataset.stationClass ?? "").filter(Boolean)
+    ) : /* @__PURE__ */ new Set();
+    activeStationPanel = st;
     stationPanelEl.innerHTML = "";
     stationPanelEl.style.borderColor = st.comp_a_color;
     const head = document.createElement("div");
@@ -5151,7 +5166,19 @@ function render({ model: S, el: I }) {
     stationPanelEl.appendChild(head);
     stationPanelEl.appendChild(body);
     stationPanelEl.style.display = "block";
-    stationPanelEl.scrollTop = 0;
+    if (preserveState) {
+      stationPanelEl.querySelectorAll(".flov-station-group").forEach((group) => {
+        if (!openGroups.has(group.dataset.stationClass ?? ""))
+          return;
+        group.classList.add("open");
+        const caret = group.querySelector(".flov-station-caret");
+        if (caret)
+          caret.textContent = "\u25BE";
+      });
+      stationPanelEl.scrollTop = scrollTop;
+    } else {
+      stationPanelEl.scrollTop = 0;
+    }
     applyStationPanelSearch(currentStationSearch);
   }
   function applyStationPanelSearch(query, scrollToRxnId) {
