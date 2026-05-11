@@ -4227,7 +4227,7 @@ function zoom_default2() {
   return zoom;
 }
 
-// js/flux_network.ts
+// js/flux_network/rendering.ts
 var CSS = `
 .flov-wrapper{background:#0d1117;position:relative;font-family:'Inter',Arial,sans-serif;overflow:hidden;}
 .flov-toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;background:#161b22;border-bottom:1px solid #30363d;align-items:flex-end;}
@@ -4466,6 +4466,8 @@ var STATION_BRANCH_COLORS = [
   "#ec4899",
   "#a855f7"
 ];
+
+// js/flux_network/index.ts
 function render({ model: S, el: I }) {
   injectCSS();
   const wrapper = document.createElement("div");

@@ -5,7 +5,7 @@ import license from 'rollup-plugin-license';
 import { build as esbuildBundle } from 'esbuild';
 import { resolve } from 'path';
 
-// flux_network.ts must be a single self-contained file — anywidget loads it as
+// flux_network must be built as a single self-contained file — anywidget loads it as
 // a Blob URL, so relative chunk imports produced by Rollup/Vite would fail.
 // Build it with esbuild (which never splits chunks) after the main Vite build.
 function bundleFluxNetwork() {
@@ -14,7 +14,7 @@ function bundleFluxNetwork() {
 		apply: 'build',
 		async closeBundle() {
 			await esbuildBundle({
-				entryPoints: [resolve('./js/flux_network.ts')],
+				entryPoints: [resolve('./js/flux_network/index.ts')],
 				bundle: true,
 				format: 'esm',
 				outfile: resolve('./src/cobramod/static/flux_network.mjs'),
