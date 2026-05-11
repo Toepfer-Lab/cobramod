@@ -20,7 +20,7 @@ function bisector(f) {
     compare2 = f;
     delta = f;
   }
-  function left2(a, x2, lo = 0, hi = a.length) {
+  function left(a, x2, lo = 0, hi = a.length) {
     if (lo < hi) {
       if (compare1(x2, x2) !== 0)
         return hi;
@@ -34,7 +34,7 @@ function bisector(f) {
     }
     return lo;
   }
-  function right2(a, x2, lo = 0, hi = a.length) {
+  function right(a, x2, lo = 0, hi = a.length) {
     if (lo < hi) {
       if (compare1(x2, x2) !== 0)
         return hi;
@@ -48,11 +48,11 @@ function bisector(f) {
     }
     return lo;
   }
-  function center2(a, x2, lo = 0, hi = a.length) {
-    const i = left2(a, x2, lo, hi - 1);
+  function center(a, x2, lo = 0, hi = a.length) {
+    const i = left(a, x2, lo, hi - 1);
     return i > lo && delta(a[i - 1], x2) > -delta(a[i], x2) ? i - 1 : i;
   }
-  return { left: left2, center: center2, right: right2 };
+  return { left, center, right };
 }
 function zero() {
   return 0;
@@ -134,104 +134,6 @@ function tickStep(start2, stop, count) {
   stop = +stop, start2 = +start2, count = +count;
   const reverse = stop < start2, inc = reverse ? tickIncrement(stop, start2, count) : tickIncrement(start2, stop, count);
   return (reverse ? -1 : 1) * (inc < 0 ? 1 / -inc : inc);
-}
-
-// node_modules/d3-axis/src/identity.js
-function identity_default(x2) {
-  return x2;
-}
-
-// node_modules/d3-axis/src/axis.js
-var top = 1;
-var right = 2;
-var bottom = 3;
-var left = 4;
-var epsilon = 1e-6;
-function translateX(x2) {
-  return "translate(" + x2 + ",0)";
-}
-function translateY(y2) {
-  return "translate(0," + y2 + ")";
-}
-function number2(scale) {
-  return (d) => +scale(d);
-}
-function center(scale, offset) {
-  offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
-  if (scale.round())
-    offset = Math.round(offset);
-  return (d) => +scale(d) + offset;
-}
-function entering() {
-  return !this.__axis;
-}
-function axis(orient, scale) {
-  var tickArguments = [], tickValues = null, tickFormat2 = null, tickSizeInner = 6, tickSizeOuter = 6, tickPadding = 3, offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5, k = orient === top || orient === left ? -1 : 1, x2 = orient === left || orient === right ? "x" : "y", transform2 = orient === top || orient === bottom ? translateX : translateY;
-  function axis2(context) {
-    var values = tickValues == null ? scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain() : tickValues, format2 = tickFormat2 == null ? scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity_default : tickFormat2, spacing = Math.max(tickSizeInner, 0) + tickPadding, range = scale.range(), range0 = +range[0] + offset, range1 = +range[range.length - 1] + offset, position = (scale.bandwidth ? center : number2)(scale.copy(), offset), selection2 = context.selection ? context.selection() : context, path2 = selection2.selectAll(".domain").data([null]), tick = selection2.selectAll(".tick").data(values, scale).order(), tickExit = tick.exit(), tickEnter = tick.enter().append("g").attr("class", "tick"), line = tick.select("line"), text = tick.select("text");
-    path2 = path2.merge(path2.enter().insert("path", ".tick").attr("class", "domain").attr("stroke", "currentColor"));
-    tick = tick.merge(tickEnter);
-    line = line.merge(tickEnter.append("line").attr("stroke", "currentColor").attr(x2 + "2", k * tickSizeInner));
-    text = text.merge(tickEnter.append("text").attr("fill", "currentColor").attr(x2, k * spacing).attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
-    if (context !== selection2) {
-      path2 = path2.transition(context);
-      tick = tick.transition(context);
-      line = line.transition(context);
-      text = text.transition(context);
-      tickExit = tickExit.transition(context).attr("opacity", epsilon).attr("transform", function(d) {
-        return isFinite(d = position(d)) ? transform2(d + offset) : this.getAttribute("transform");
-      });
-      tickEnter.attr("opacity", epsilon).attr("transform", function(d) {
-        var p = this.parentNode.__axis;
-        return transform2((p && isFinite(p = p(d)) ? p : position(d)) + offset);
-      });
-    }
-    tickExit.remove();
-    path2.attr("d", orient === left || orient === right ? tickSizeOuter ? "M" + k * tickSizeOuter + "," + range0 + "H" + offset + "V" + range1 + "H" + k * tickSizeOuter : "M" + offset + "," + range0 + "V" + range1 : tickSizeOuter ? "M" + range0 + "," + k * tickSizeOuter + "V" + offset + "H" + range1 + "V" + k * tickSizeOuter : "M" + range0 + "," + offset + "H" + range1);
-    tick.attr("opacity", 1).attr("transform", function(d) {
-      return transform2(position(d) + offset);
-    });
-    line.attr(x2 + "2", k * tickSizeInner);
-    text.attr(x2, k * spacing).text(format2);
-    selection2.filter(entering).attr("fill", "none").attr("font-size", 10).attr("font-family", "sans-serif").attr("text-anchor", orient === right ? "start" : orient === left ? "end" : "middle");
-    selection2.each(function() {
-      this.__axis = position;
-    });
-  }
-  axis2.scale = function(_) {
-    return arguments.length ? (scale = _, axis2) : scale;
-  };
-  axis2.ticks = function() {
-    return tickArguments = Array.from(arguments), axis2;
-  };
-  axis2.tickArguments = function(_) {
-    return arguments.length ? (tickArguments = _ == null ? [] : Array.from(_), axis2) : tickArguments.slice();
-  };
-  axis2.tickValues = function(_) {
-    return arguments.length ? (tickValues = _ == null ? null : Array.from(_), axis2) : tickValues && tickValues.slice();
-  };
-  axis2.tickFormat = function(_) {
-    return arguments.length ? (tickFormat2 = _, axis2) : tickFormat2;
-  };
-  axis2.tickSize = function(_) {
-    return arguments.length ? (tickSizeInner = tickSizeOuter = +_, axis2) : tickSizeInner;
-  };
-  axis2.tickSizeInner = function(_) {
-    return arguments.length ? (tickSizeInner = +_, axis2) : tickSizeInner;
-  };
-  axis2.tickSizeOuter = function(_) {
-    return arguments.length ? (tickSizeOuter = +_, axis2) : tickSizeOuter;
-  };
-  axis2.tickPadding = function(_) {
-    return arguments.length ? (tickPadding = +_, axis2) : tickPadding;
-  };
-  axis2.offset = function(_) {
-    return arguments.length ? (offset = +_, axis2) : offset;
-  };
-  return axis2;
-}
-function axisRight(scale) {
-  return axis(right, scale);
 }
 
 // node_modules/d3-dispatch/src/dispatch.js
@@ -2810,7 +2712,7 @@ var { abs, max, min } = Math;
 function number1(e) {
   return [+e[0], +e[1]];
 }
-function number22(e) {
+function number2(e) {
   return [number1(e[0]), number1(e[1])];
 }
 var X = {
@@ -2837,7 +2739,7 @@ var XY = {
   name: "xy",
   handles: ["n", "w", "e", "s", "nw", "ne", "sw", "se"].map(type),
   input: function(xy) {
-    return xy == null ? null : number22(xy);
+    return xy == null ? null : number2(xy);
   },
   output: function(xy) {
     return xy;
@@ -2850,8 +2752,8 @@ function type(t) {
 // node_modules/d3-path/src/path.js
 var pi = Math.PI;
 var tau = 2 * pi;
-var epsilon3 = 1e-6;
-var tauEpsilon = tau - epsilon3;
+var epsilon = 1e-6;
+var tauEpsilon = tau - epsilon;
 function append(strings) {
   this._ += strings[0];
   for (let i = 1, n = strings.length; i < n; ++i) {
@@ -2904,13 +2806,13 @@ var Path = class {
     let x0 = this._x1, y0 = this._y1, x21 = x2 - x1, y21 = y2 - y1, x01 = x0 - x1, y01 = y0 - y1, l01_2 = x01 * x01 + y01 * y01;
     if (this._x1 === null) {
       this._append`M${this._x1 = x1},${this._y1 = y1}`;
-    } else if (!(l01_2 > epsilon3))
+    } else if (!(l01_2 > epsilon))
       ;
-    else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon3) || !r) {
+    else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon) || !r) {
       this._append`L${this._x1 = x1},${this._y1 = y1}`;
     } else {
       let x20 = x2 - x0, y20 = y2 - y0, l21_2 = x21 * x21 + y21 * y21, l20_2 = x20 * x20 + y20 * y20, l21 = Math.sqrt(l21_2), l01 = Math.sqrt(l01_2), l = r * Math.tan((pi - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2), t01 = l / l01, t21 = l / l21;
-      if (Math.abs(t01 - 1) > epsilon3) {
+      if (Math.abs(t01 - 1) > epsilon) {
         this._append`L${x1 + t01 * x01},${y1 + t01 * y01}`;
       }
       this._append`A${r},${r},0,0,${+(y01 * x20 > x01 * y20)},${this._x1 = x1 + t21 * x21},${this._y1 = y1 + t21 * y21}`;
@@ -2923,7 +2825,7 @@ var Path = class {
     let dx = r * Math.cos(a0), dy = r * Math.sin(a0), x0 = x2 + dx, y0 = y2 + dy, cw = 1 ^ ccw, da = ccw ? a0 - a1 : a1 - a0;
     if (this._x1 === null) {
       this._append`M${x0},${y0}`;
-    } else if (Math.abs(this._x1 - x0) > epsilon3 || Math.abs(this._y1 - y0) > epsilon3) {
+    } else if (Math.abs(this._x1 - x0) > epsilon || Math.abs(this._y1 - y0) > epsilon) {
       this._append`L${x0},${y0}`;
     }
     if (!r)
@@ -2932,7 +2834,7 @@ var Path = class {
       da = da % tau + tau;
     if (da > tauEpsilon) {
       this._append`A${r},${r},0,1,${cw},${x2 - dx},${y2 - dy}A${r},${r},0,1,${cw},${this._x1 = x0},${this._y1 = y0}`;
-    } else if (da > epsilon3) {
+    } else if (da > epsilon) {
       this._append`A${r},${r},0,${+(da >= pi)},${cw},${this._x1 = x2 + r * Math.cos(a1)},${this._y1 = y2 + r * Math.sin(a1)}`;
     }
   }
@@ -3089,7 +2991,7 @@ var formatTypes_default = {
 };
 
 // node_modules/d3-format/src/identity.js
-function identity_default2(x2) {
+function identity_default(x2) {
   return x2;
 }
 
@@ -3097,7 +2999,7 @@ function identity_default2(x2) {
 var map = Array.prototype.map;
 var prefixes = ["y", "z", "a", "f", "p", "n", "\xB5", "m", "", "k", "M", "G", "T", "P", "E", "Z", "Y"];
 function locale_default(locale2) {
-  var group = locale2.grouping === void 0 || locale2.thousands === void 0 ? identity_default2 : formatGroup_default(map.call(locale2.grouping, Number), locale2.thousands + ""), currencyPrefix = locale2.currency === void 0 ? "" : locale2.currency[0] + "", currencySuffix = locale2.currency === void 0 ? "" : locale2.currency[1] + "", decimal = locale2.decimal === void 0 ? "." : locale2.decimal + "", numerals = locale2.numerals === void 0 ? identity_default2 : formatNumerals_default(map.call(locale2.numerals, String)), percent = locale2.percent === void 0 ? "%" : locale2.percent + "", minus = locale2.minus === void 0 ? "\u2212" : locale2.minus + "", nan = locale2.nan === void 0 ? "NaN" : locale2.nan + "";
+  var group = locale2.grouping === void 0 || locale2.thousands === void 0 ? identity_default : formatGroup_default(map.call(locale2.grouping, Number), locale2.thousands + ""), currencyPrefix = locale2.currency === void 0 ? "" : locale2.currency[0] + "", currencySuffix = locale2.currency === void 0 ? "" : locale2.currency[1] + "", decimal = locale2.decimal === void 0 ? "." : locale2.decimal + "", numerals = locale2.numerals === void 0 ? identity_default : formatNumerals_default(map.call(locale2.numerals, String)), percent = locale2.percent === void 0 ? "%" : locale2.percent + "", minus = locale2.minus === void 0 ? "\u2212" : locale2.minus + "", nan = locale2.nan === void 0 ? "NaN" : locale2.nan + "";
   function newFormat(specifier, options) {
     specifier = formatSpecifier(specifier);
     var fill = specifier.fill, align = specifier.align, sign = specifier.sign, symbol = specifier.symbol, zero3 = specifier.zero, width = specifier.width, comma = specifier.comma, precision = specifier.precision, trim = specifier.trim, type2 = specifier.type;
@@ -3417,7 +3319,7 @@ function constant_default4(x2) {
 
 // node_modules/d3-shape/src/math.js
 var sqrt = Math.sqrt;
-var epsilon4 = 1e-12;
+var epsilon3 = 1e-12;
 var pi2 = Math.PI;
 var halfPi = pi2 / 2;
 var tau2 = 2 * pi2;
@@ -3756,12 +3658,12 @@ var cardinalClosed_default = function custom2(tension) {
 // node_modules/d3-shape/src/curve/catmullRom.js
 function point2(that, x2, y2) {
   var x1 = that._x1, y1 = that._y1, x22 = that._x2, y22 = that._y2;
-  if (that._l01_a > epsilon4) {
+  if (that._l01_a > epsilon3) {
     var a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a, n = 3 * that._l01_a * (that._l01_a + that._l12_a);
     x1 = (x1 * a - that._x0 * that._l12_2a + that._x2 * that._l01_2a) / n;
     y1 = (y1 * a - that._y0 * that._l12_2a + that._y2 * that._l01_2a) / n;
   }
-  if (that._l23_a > epsilon4) {
+  if (that._l23_a > epsilon3) {
     var b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a, m = 3 * that._l23_a * (that._l23_a + that._l12_a);
     x22 = (x22 * b + that._x1 * that._l23_2a - x2 * that._l12_2a) / m;
     y22 = (y22 * b + that._y1 * that._l23_2a - y2 * that._l12_2a) / m;
@@ -4375,6 +4277,31 @@ var CSS = `
 .flov-station-map-label{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#8b949e;}
 .flov-station-map-flux{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#7d8590;}
 .flov-station-map-met{font:9px 'Inter',Arial,sans-serif;fill:#8b949e;}
+.flov-legend{position:absolute;top:52px;right:8px;z-index:90;width:230px;overflow-y:auto;background:#161b22;border:1px solid #30363d;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,0.55);color:#e6edf3;font:11px/1.45 'Inter',Arial,sans-serif;}
+.flov-legend-head{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid #30363d;cursor:pointer;user-select:none;background:#1c2128;border-top-left-radius:8px;border-top-right-radius:8px;}
+.flov-legend-title{font-weight:700;color:#fff;flex:1;font-size:12px;letter-spacing:.02em;}
+.flov-legend-caret{color:#8b949e;font-size:11px;}
+.flov-legend-body{padding:4px 10px 10px;}
+.flov-legend.collapsed .flov-legend-body{display:none;}
+.flov-legend.collapsed{border-bottom-left-radius:8px;border-bottom-right-radius:8px;}
+.flov-legend.collapsed .flov-legend-head{border-bottom:0;}
+.flov-legend-section{margin:8px 0 4px;}
+.flov-legend-section + .flov-legend-section{border-top:1px solid #21262d;padding-top:6px;}
+.flov-legend-section-title{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8b949e;margin-bottom:4px;font-weight:600;}
+.flov-legend-row{display:flex;align-items:center;gap:8px;margin:3px 0;}
+.flov-legend-swatch{flex:0 0 30px;display:flex;justify-content:center;align-items:center;}
+.flov-legend-text{flex:1;min-width:0;}
+.flov-legend-label{color:#e6edf3;font-size:11px;line-height:1.25;}
+.flov-legend-sub{color:#7d8590;font-size:9.5px;line-height:1.2;margin-top:1px;}
+.flov-legend-fluxbar{margin:2px 0 0;}
+.flov-legend-note{color:#7d8590;font-size:9.5px;margin-top:2px;font-style:italic;}
+.flov-wrapper.light-mode .flov-legend{background:#ffffff;border-color:#d0d7de;color:#24292f;box-shadow:0 8px 24px rgba(31,35,40,0.12);}
+.flov-wrapper.light-mode .flov-legend-head{background:#f6f8fa;border-bottom-color:#d0d7de;}
+.flov-wrapper.light-mode .flov-legend-title{color:#24292f;}
+.flov-wrapper.light-mode .flov-legend-caret{color:#57606a;}
+.flov-wrapper.light-mode .flov-legend-section + .flov-legend-section{border-top-color:#d8dee4;}
+.flov-wrapper.light-mode .flov-legend-section-title,.flov-wrapper.light-mode .flov-legend-sub,.flov-wrapper.light-mode .flov-legend-note{color:#57606a;}
+.flov-wrapper.light-mode .flov-legend-label{color:#24292f;}
 @keyframes flov-flow-forward{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
 @keyframes flov-flow-reverse{from{stroke-dashoffset:0}to{stroke-dashoffset:28}}
 .flov-flow-arrow{stroke-dasharray:9 5;}
@@ -4624,7 +4551,7 @@ function render({ model: S, el: I }) {
     wrapper.classList.toggle("light-mode", lightMode);
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
-    buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
+    buildLegend(wrapper, data, svgH);
     buildSearch(wrapper, data);
     buildStationPanel(wrapper);
     buildTooltip(wrapper);
@@ -5393,28 +5320,281 @@ ${rxn.flux_per_view.join("\n")}`;
     if (tooltipEl)
       tooltipEl.style.display = "none";
   }
-  function buildColorbar(parent, absMax, svgH) {
-    const cbH = 210, cbW = 52;
-    const cb = select_default2(parent).append("svg").attr("width", cbW).attr("height", cbH).style("position", "absolute").style("right", "8px").style("top", Math.max(52, (svgH - cbH) / 2 + 40) + "px");
-    const defs = cb.append("defs");
-    const grad = defs.append("linearGradient").attr("id", "flov-cb-grad").attr("x1", "0").attr("y1", "0").attr("x2", "0").attr("y2", "1");
-    [
-      ["0%", "#c62828"],
-      ["25%", "#ef9a9a"],
-      ["50%", "#6e7681"],
-      ["75%", "#90caf9"],
-      ["100%", "#1565c0"]
-    ].forEach(([off, col]) => grad.append("stop").attr("offset", off).attr("stop-color", col));
-    cb.append("rect").attr("x", 2).attr("y", 12).attr("width", 18).attr("height", cbH - 24).attr("fill", "url(#flov-cb-grad)").attr("rx", 3);
-    const sc = linear2().domain([absMax, -absMax]).range([12, cbH - 12]);
-    cb.append("g").attr("transform", "translate(20,0)").call(
-      axisRight(sc).ticks(5).tickFormat(format("+.1f"))
-    ).call((g) => {
-      g.select(".domain").attr("stroke", "#444c56");
-      g.selectAll("text").attr("fill", "#8b949e").attr("font-size", 9);
-      g.selectAll(".tick line").attr("stroke", "#444c56");
-    });
-    cb.append("text").attr("x", 11).attr("y", 9).attr("text-anchor", "middle").attr("fill", "#7d8590").attr("font-size", 8).attr("font-family", "'Inter',Arial,sans-serif").text("mmol/gDW/h");
+  function buildLegend(parent, data, svgH) {
+    const SVG_NS = "http://www.w3.org/2000/svg";
+    const gradId = `flov-legend-grad-${Math.random().toString(36).slice(2)}`;
+    const panel = document.createElement("div");
+    panel.className = "flov-legend";
+    panel.style.maxHeight = Math.max(svgH - 70, 280) + "px";
+    parent.appendChild(panel);
+    const head = document.createElement("div");
+    head.className = "flov-legend-head";
+    const headTitle = document.createElement("span");
+    headTitle.className = "flov-legend-title";
+    headTitle.textContent = "Legend";
+    const headCaret = document.createElement("span");
+    headCaret.className = "flov-legend-caret";
+    headCaret.textContent = "\u25BE";
+    head.appendChild(headTitle);
+    head.appendChild(headCaret);
+    panel.appendChild(head);
+    const body = document.createElement("div");
+    body.className = "flov-legend-body";
+    panel.appendChild(body);
+    head.onclick = () => {
+      const open = !panel.classList.contains("collapsed");
+      panel.classList.toggle("collapsed", open);
+      headCaret.textContent = open ? "\u25B8" : "\u25BE";
+    };
+    function section(title) {
+      const sec = document.createElement("div");
+      sec.className = "flov-legend-section";
+      const t = document.createElement("div");
+      t.className = "flov-legend-section-title";
+      t.textContent = title;
+      sec.appendChild(t);
+      body.appendChild(sec);
+      return sec;
+    }
+    function row(sec, swatch, label, sub) {
+      const r = document.createElement("div");
+      r.className = "flov-legend-row";
+      const sw = document.createElement("div");
+      sw.className = "flov-legend-swatch";
+      sw.appendChild(swatch);
+      const text = document.createElement("div");
+      text.className = "flov-legend-text";
+      const main = document.createElement("div");
+      main.className = "flov-legend-label";
+      main.textContent = label;
+      text.appendChild(main);
+      if (sub) {
+        const s = document.createElement("div");
+        s.className = "flov-legend-sub";
+        s.textContent = sub;
+        text.appendChild(s);
+      }
+      r.appendChild(sw);
+      r.appendChild(text);
+      sec.appendChild(r);
+    }
+    function mkSvg(w, h) {
+      const s = document.createElementNS(SVG_NS, "svg");
+      s.setAttribute("width", String(w));
+      s.setAttribute("height", String(h));
+      s.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      return s;
+    }
+    function mkEl(tag, attrs) {
+      const e = document.createElementNS(SVG_NS, tag);
+      for (const [k, v] of Object.entries(attrs))
+        e.setAttribute(k, String(v));
+      return e;
+    }
+    {
+      const sec = section("Flux (mmol/gDW/h)");
+      const cbW = 198, cbH = 38;
+      const svg = mkSvg(cbW, cbH);
+      const defs = mkEl("defs", {});
+      const grad = mkEl("linearGradient", { id: gradId, x1: "0", y1: "0", x2: "1", y2: "0" });
+      const stops = [
+        ["0%", "#1565c0"],
+        ["25%", "#90caf9"],
+        ["50%", "#6e7681"],
+        ["75%", "#ef9a9a"],
+        ["100%", "#c62828"]
+      ];
+      stops.forEach(([off, col]) => {
+        grad.appendChild(mkEl("stop", { offset: off, "stop-color": col }));
+      });
+      defs.appendChild(grad);
+      svg.appendChild(defs);
+      svg.appendChild(mkEl("rect", { x: 2, y: 4, width: cbW - 4, height: 12, rx: 3, fill: `url(#${gradId})` }));
+      const absMax = data.meta.abs_max_flux;
+      const fmt = format("+.2f");
+      const labels = [
+        [2, fmt(-absMax)],
+        [cbW / 2, "0"],
+        [cbW - 2, fmt(absMax)]
+      ];
+      labels.forEach(([x2, txt], i) => {
+        const t = mkEl("text", {
+          x: x2,
+          y: 28,
+          "text-anchor": i === 0 ? "start" : i === labels.length - 1 ? "end" : "middle",
+          "font-size": 9,
+          "font-family": "'Inter',Arial,sans-serif",
+          fill: "#8b949e"
+        });
+        t.textContent = txt;
+        svg.appendChild(t);
+      });
+      const wrap = document.createElement("div");
+      wrap.className = "flov-legend-fluxbar";
+      wrap.appendChild(svg);
+      sec.appendChild(wrap);
+      const note = document.createElement("div");
+      note.className = "flov-legend-note";
+      note.textContent = "Grey = inactive / no data";
+      sec.appendChild(note);
+    }
+    {
+      const sec = section("Reactions");
+      const sv1 = mkSvg(28, 20);
+      sv1.appendChild(mkEl("circle", { cx: 14, cy: 10, r: 7, fill: "#ef9a9a", stroke: "#58a6ff", "stroke-width": 2 }));
+      row(sec, sv1, "Reaction node", "Fill = flux  \xB7  Border = compartment");
+      const sv2 = mkSvg(28, 20);
+      sv2.appendChild(mkEl("circle", { cx: 14, cy: 10, r: 7, fill: "#6e7681", stroke: "#58a6ff", "stroke-width": 2, opacity: 0.22 }));
+      row(sec, sv2, "No flux data", "Faded grey fill");
+    }
+    {
+      const sec = section("Metabolites");
+      const sv1 = mkSvg(28, 20);
+      sv1.appendChild(mkEl("circle", { cx: 14, cy: 10, r: 6.5, fill: "#ffffff", stroke: "#58a6ff", "stroke-width": 1.6 }));
+      row(sec, sv1, "Routed metabolite", "White stop on a rail line");
+      const sv2 = mkSvg(28, 20);
+      sv2.appendChild(mkEl("path", {
+        d: "M14,3 L21,10 L14,17 L7,10 Z",
+        fill: "#58a6ff",
+        "fill-opacity": 0.85,
+        stroke: "#0d1117",
+        "stroke-width": 0.7
+      }));
+      row(sec, sv2, "Detached metabolite", "Off-rail, no station");
+    }
+    if (data.compartments && data.compartments.length) {
+      const sec = section("Compartments");
+      for (const c of data.compartments) {
+        const sv = mkSvg(28, 20);
+        sv.appendChild(mkEl("rect", {
+          x: 3,
+          y: 4,
+          width: 22,
+          height: 12,
+          rx: 3,
+          fill: c.fill,
+          stroke: c.color,
+          "stroke-width": 1.4,
+          "stroke-dasharray": "4,2"
+        }));
+        row(sec, sv, c.label || c.key);
+      }
+    }
+    {
+      const sec = section("Stations");
+      const sv = mkSvg(28, 28);
+      const g = mkEl("g", { transform: "translate(14,14)" });
+      g.appendChild(mkEl("rect", {
+        x: -4,
+        y: -10,
+        width: 8,
+        height: 10,
+        rx: 4,
+        ry: 4,
+        fill: "#ffffff",
+        stroke: "#3fb950",
+        "stroke-width": 1.8
+      }));
+      g.appendChild(mkEl("rect", {
+        x: -4,
+        y: 0,
+        width: 8,
+        height: 10,
+        rx: 4,
+        ry: 4,
+        fill: "#ffffff",
+        stroke: "#58a6ff",
+        "stroke-width": 1.8
+      }));
+      sv.appendChild(g);
+      row(sec, sv, "Station hub", "Hub between two compartments");
+    }
+    {
+      const sec = section("Station line classes");
+      const entries = [
+        ["amino_acid", "Amino acids"],
+        ["sugar", "Sugars"],
+        ["cofactor", "Cofactors"],
+        ["inorganic", "Inorganics"],
+        ["other", "Other"]
+      ];
+      for (const [k, lbl] of entries) {
+        const sv = mkSvg(28, 14);
+        sv.appendChild(mkEl("line", {
+          x1: 2,
+          y1: 7,
+          x2: 26,
+          y2: 7,
+          stroke: KLASS_COLORS[k] ?? "#ec4899",
+          "stroke-width": 3.4,
+          "stroke-linecap": "round"
+        }));
+        row(sec, sv, lbl);
+      }
+      const svI = mkSvg(28, 14);
+      svI.appendChild(mkEl("line", {
+        x1: 2,
+        y1: 7,
+        x2: 26,
+        y2: 7,
+        stroke: "#6e7681",
+        "stroke-width": 2.2,
+        "stroke-linecap": "round"
+      }));
+      row(sec, svI, "Inactive class", "No flux on this line");
+    }
+    {
+      const sec = section("Lines");
+      const sv1 = mkSvg(28, 14);
+      sv1.appendChild(mkEl("line", {
+        x1: 2,
+        y1: 7,
+        x2: 26,
+        y2: 7,
+        stroke: "#58a6ff",
+        "stroke-width": 2.6,
+        "stroke-linecap": "round"
+      }));
+      row(sec, sv1, "Active line", "Solid: flux on this edge");
+      const sv2 = mkSvg(28, 14);
+      const ln2 = mkEl("line", {
+        x1: 2,
+        y1: 7,
+        x2: 26,
+        y2: 7,
+        stroke: "#58a6ff",
+        "stroke-width": 2.6,
+        "stroke-linecap": "round"
+      });
+      ln2.setAttribute("class", "flov-flow-arrow flov-flow-forward");
+      sv2.appendChild(ln2);
+      row(sec, sv2, "Flow: rxn \u2192 met", "Forward direction (striped)");
+      const sv3 = mkSvg(28, 14);
+      const ln3 = mkEl("line", {
+        x1: 2,
+        y1: 7,
+        x2: 26,
+        y2: 7,
+        stroke: "#58a6ff",
+        "stroke-width": 2.6,
+        "stroke-linecap": "round"
+      });
+      ln3.setAttribute("class", "flov-flow-arrow flov-flow-reverse");
+      sv3.appendChild(ln3);
+      row(sec, sv3, "Flow: met \u2192 rxn", "Reverse direction (striped)");
+      const sv4 = mkSvg(28, 14);
+      sv4.appendChild(mkEl("line", {
+        x1: 2,
+        y1: 7,
+        x2: 26,
+        y2: 7,
+        stroke: "#6e7681",
+        "stroke-width": 2.2,
+        "stroke-linecap": "round",
+        opacity: 0.6
+      }));
+      row(sec, sv4, "Inactive", "Grey: no flux on this edge");
+    }
   }
   function buildSearch(parent, data) {
     const ia = data.interactivity;

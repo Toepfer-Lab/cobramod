@@ -167,6 +167,31 @@ const CSS = `
 .flov-station-map-label{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#8b949e;}
 .flov-station-map-flux{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#7d8590;}
 .flov-station-map-met{font:9px 'Inter',Arial,sans-serif;fill:#8b949e;}
+.flov-legend{position:absolute;top:52px;right:8px;z-index:90;width:230px;overflow-y:auto;background:#161b22;border:1px solid #30363d;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,0.55);color:#e6edf3;font:11px/1.45 'Inter',Arial,sans-serif;}
+.flov-legend-head{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid #30363d;cursor:pointer;user-select:none;background:#1c2128;border-top-left-radius:8px;border-top-right-radius:8px;}
+.flov-legend-title{font-weight:700;color:#fff;flex:1;font-size:12px;letter-spacing:.02em;}
+.flov-legend-caret{color:#8b949e;font-size:11px;}
+.flov-legend-body{padding:4px 10px 10px;}
+.flov-legend.collapsed .flov-legend-body{display:none;}
+.flov-legend.collapsed{border-bottom-left-radius:8px;border-bottom-right-radius:8px;}
+.flov-legend.collapsed .flov-legend-head{border-bottom:0;}
+.flov-legend-section{margin:8px 0 4px;}
+.flov-legend-section + .flov-legend-section{border-top:1px solid #21262d;padding-top:6px;}
+.flov-legend-section-title{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8b949e;margin-bottom:4px;font-weight:600;}
+.flov-legend-row{display:flex;align-items:center;gap:8px;margin:3px 0;}
+.flov-legend-swatch{flex:0 0 30px;display:flex;justify-content:center;align-items:center;}
+.flov-legend-text{flex:1;min-width:0;}
+.flov-legend-label{color:#e6edf3;font-size:11px;line-height:1.25;}
+.flov-legend-sub{color:#7d8590;font-size:9.5px;line-height:1.2;margin-top:1px;}
+.flov-legend-fluxbar{margin:2px 0 0;}
+.flov-legend-note{color:#7d8590;font-size:9.5px;margin-top:2px;font-style:italic;}
+.flov-wrapper.light-mode .flov-legend{background:#ffffff;border-color:#d0d7de;color:#24292f;box-shadow:0 8px 24px rgba(31,35,40,0.12);}
+.flov-wrapper.light-mode .flov-legend-head{background:#f6f8fa;border-bottom-color:#d0d7de;}
+.flov-wrapper.light-mode .flov-legend-title{color:#24292f;}
+.flov-wrapper.light-mode .flov-legend-caret{color:#57606a;}
+.flov-wrapper.light-mode .flov-legend-section + .flov-legend-section{border-top-color:#d8dee4;}
+.flov-wrapper.light-mode .flov-legend-section-title,.flov-wrapper.light-mode .flov-legend-sub,.flov-wrapper.light-mode .flov-legend-note{color:#57606a;}
+.flov-wrapper.light-mode .flov-legend-label{color:#24292f;}
 @keyframes flov-flow-forward{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
 @keyframes flov-flow-reverse{from{stroke-dashoffset:0}to{stroke-dashoffset:28}}
 .flov-flow-arrow{stroke-dasharray:9 5;}
@@ -481,7 +506,7 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     wrapper.classList.toggle('light-mode', lightMode);
     buildToolbar(data, wrapper);
     const { svg, zoomLayer } = buildSVG(svgW, svgH);
-    buildColorbar(wrapper, data.meta.abs_max_flux, svgH);
+    buildLegend(wrapper, data, svgH);
     buildSearch(wrapper, data);
     buildStationPanel(wrapper);
     buildTooltip(wrapper);
@@ -1593,55 +1618,270 @@ function render({ model: S, el: I }: { model: any; el: HTMLElement }): void {
     if (tooltipEl) tooltipEl.style.display = 'none';
   }
 
-  // ── Colorbar ──
+  // ── Legend ──
 
-  function buildColorbar(parent: HTMLElement, absMax: number, svgH: number): void {
-    const cbH = 210, cbW = 52;
-    const cb = d3.select(parent).append<SVGSVGElement>('svg')
-      .attr('width', cbW).attr('height', cbH)
-      .style('position', 'absolute')
-      .style('right', '8px')
-      .style('top', Math.max(52, (svgH - cbH) / 2 + 40) + 'px');
+  function buildLegend(parent: HTMLElement, data: D3FigureData, svgH: number): void {
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const gradId = `flov-legend-grad-${Math.random().toString(36).slice(2)}`;
 
-    const defs = cb.append('defs');
-    const grad = defs.append('linearGradient')
-      .attr('id', 'flov-cb-grad')
-      .attr('x1', '0').attr('y1', '0').attr('x2', '0').attr('y2', '1');
-    // top → bottom: dark red → light red → grey → light blue → dark blue
-    [
-      ['0%',   '#c62828'],
-      ['25%',  '#ef9a9a'],
-      ['50%',  '#6e7681'],
-      ['75%',  '#90caf9'],
-      ['100%', '#1565c0'],
-    ].forEach(([off, col]) => grad.append('stop').attr('offset', off).attr('stop-color', col));
+    const panel = document.createElement('div');
+    panel.className = 'flov-legend';
+    panel.style.maxHeight = Math.max(svgH - 70, 280) + 'px';
+    parent.appendChild(panel);
 
-    cb.append('rect')
-      .attr('x', 2).attr('y', 12)
-      .attr('width', 18).attr('height', cbH - 24)
-      .attr('fill', 'url(#flov-cb-grad)')
-      .attr('rx', 3);
+    const head = document.createElement('div');
+    head.className = 'flov-legend-head';
+    const headTitle = document.createElement('span');
+    headTitle.className = 'flov-legend-title';
+    headTitle.textContent = 'Legend';
+    const headCaret = document.createElement('span');
+    headCaret.className = 'flov-legend-caret';
+    headCaret.textContent = '▾';
+    head.appendChild(headTitle);
+    head.appendChild(headCaret);
+    panel.appendChild(head);
 
-    const sc = d3.scaleLinear().domain([absMax, -absMax]).range([12, cbH - 12]);
-    cb.append<SVGGElement>('g')
-      .attr('transform', 'translate(20,0)')
-      .call(
-        d3.axisRight(sc).ticks(5)
-          .tickFormat(d3.format('+.1f') as (d: d3.NumberValue) => string)
-      )
-      .call(g => {
-        g.select('.domain').attr('stroke', '#444c56');
-        g.selectAll<SVGTextElement, unknown>('text').attr('fill', '#8b949e').attr('font-size', 9);
-        g.selectAll<SVGLineElement, unknown>('.tick line').attr('stroke', '#444c56');
+    const body = document.createElement('div');
+    body.className = 'flov-legend-body';
+    panel.appendChild(body);
+
+    head.onclick = () => {
+      const open = !panel.classList.contains('collapsed');
+      panel.classList.toggle('collapsed', open);
+      headCaret.textContent = open ? '▸' : '▾';
+    };
+
+    function section(title: string): HTMLDivElement {
+      const sec = document.createElement('div');
+      sec.className = 'flov-legend-section';
+      const t = document.createElement('div');
+      t.className = 'flov-legend-section-title';
+      t.textContent = title;
+      sec.appendChild(t);
+      body.appendChild(sec);
+      return sec;
+    }
+
+    function row(sec: HTMLDivElement, swatch: SVGSVGElement, label: string, sub?: string): void {
+      const r = document.createElement('div');
+      r.className = 'flov-legend-row';
+      const sw = document.createElement('div');
+      sw.className = 'flov-legend-swatch';
+      sw.appendChild(swatch);
+      const text = document.createElement('div');
+      text.className = 'flov-legend-text';
+      const main = document.createElement('div');
+      main.className = 'flov-legend-label';
+      main.textContent = label;
+      text.appendChild(main);
+      if (sub) {
+        const s = document.createElement('div');
+        s.className = 'flov-legend-sub';
+        s.textContent = sub;
+        text.appendChild(s);
+      }
+      r.appendChild(sw);
+      r.appendChild(text);
+      sec.appendChild(r);
+    }
+
+    function mkSvg(w: number, h: number): SVGSVGElement {
+      const s = document.createElementNS(SVG_NS, 'svg') as SVGSVGElement;
+      s.setAttribute('width', String(w));
+      s.setAttribute('height', String(h));
+      s.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      return s;
+    }
+    function mkEl(tag: string, attrs: Record<string, string | number>): SVGElement {
+      const e = document.createElementNS(SVG_NS, tag);
+      for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, String(v));
+      return e;
+    }
+
+    // ── Flux scale (horizontal gradient bar) ──
+    {
+      const sec = section('Flux (mmol/gDW/h)');
+      const cbW = 198, cbH = 38;
+      const svg = mkSvg(cbW, cbH);
+      const defs = mkEl('defs', {});
+      const grad = mkEl('linearGradient', { id: gradId, x1: '0', y1: '0', x2: '1', y2: '0' });
+      // left → right: dark blue → light blue → grey → light red → dark red
+      const stops: [string, string][] = [
+        ['0%',   '#1565c0'],
+        ['25%',  '#90caf9'],
+        ['50%',  '#6e7681'],
+        ['75%',  '#ef9a9a'],
+        ['100%', '#c62828'],
+      ];
+      stops.forEach(([off, col]) => {
+        grad.appendChild(mkEl('stop', { offset: off, 'stop-color': col }));
+      });
+      defs.appendChild(grad);
+      svg.appendChild(defs);
+      svg.appendChild(mkEl('rect', { x: 2, y: 4, width: cbW - 4, height: 12, rx: 3, fill: `url(#${gradId})` }));
+
+      const absMax = data.meta.abs_max_flux;
+      const fmt = d3.format('+.2f');
+      const labels: [number, string][] = [
+        [2,        fmt(-absMax)],
+        [cbW / 2,  '0'],
+        [cbW - 2,  fmt(absMax)],
+      ];
+      labels.forEach(([x, txt], i) => {
+        const t = mkEl('text', {
+          x, y: 28,
+          'text-anchor': i === 0 ? 'start' : i === labels.length - 1 ? 'end' : 'middle',
+          'font-size': 9,
+          'font-family': "'Inter',Arial,sans-serif",
+          fill: '#8b949e',
+        });
+        t.textContent = txt;
+        svg.appendChild(t);
       });
 
-    cb.append('text')
-      .attr('x', 11).attr('y', 9)
-      .attr('text-anchor', 'middle')
-      .attr('fill', '#7d8590')
-      .attr('font-size', 8)
-      .attr('font-family', "'Inter',Arial,sans-serif")
-      .text('mmol/gDW/h');
+      const wrap = document.createElement('div');
+      wrap.className = 'flov-legend-fluxbar';
+      wrap.appendChild(svg);
+      sec.appendChild(wrap);
+
+      const note = document.createElement('div');
+      note.className = 'flov-legend-note';
+      note.textContent = 'Grey = inactive / no data';
+      sec.appendChild(note);
+    }
+
+    // ── Reactions ──
+    {
+      const sec = section('Reactions');
+      // Circle with flux fill + compartment border (the standard node)
+      const sv1 = mkSvg(28, 20);
+      sv1.appendChild(mkEl('circle', { cx: 14, cy: 10, r: 7, fill: '#ef9a9a', stroke: '#58a6ff', 'stroke-width': 2 }));
+      row(sec, sv1, 'Reaction node', 'Fill = flux  ·  Border = compartment');
+
+      // Faded (no flux data)
+      const sv2 = mkSvg(28, 20);
+      sv2.appendChild(mkEl('circle', { cx: 14, cy: 10, r: 7, fill: '#6e7681', stroke: '#58a6ff', 'stroke-width': 2, opacity: 0.22 }));
+      row(sec, sv2, 'No flux data', 'Faded grey fill');
+    }
+
+    // ── Metabolites ──
+    {
+      const sec = section('Metabolites');
+      // Stop: white circle with comp border (routed)
+      const sv1 = mkSvg(28, 20);
+      sv1.appendChild(mkEl('circle', { cx: 14, cy: 10, r: 6.5, fill: '#ffffff', stroke: '#58a6ff', 'stroke-width': 1.6 }));
+      row(sec, sv1, 'Routed metabolite', 'White stop on a rail line');
+
+      // Detached: filled diamond
+      const sv2 = mkSvg(28, 20);
+      sv2.appendChild(mkEl('path', {
+        d: 'M14,3 L21,10 L14,17 L7,10 Z',
+        fill: '#58a6ff', 'fill-opacity': 0.85, stroke: '#0d1117', 'stroke-width': 0.7,
+      }));
+      row(sec, sv2, 'Detached metabolite', 'Off-rail, no station');
+    }
+
+    // ── Compartments (dynamic from data) ──
+    if (data.compartments && data.compartments.length) {
+      const sec = section('Compartments');
+      for (const c of data.compartments) {
+        const sv = mkSvg(28, 20);
+        sv.appendChild(mkEl('rect', {
+          x: 3, y: 4, width: 22, height: 12, rx: 3,
+          fill: c.fill, stroke: c.color, 'stroke-width': 1.4,
+          'stroke-dasharray': '4,2',
+        }));
+        row(sec, sv, c.label || c.key);
+      }
+    }
+
+    // ── Stations ──
+    {
+      const sec = section('Stations');
+      // Pill: rotated rounded rectangle, two compartment-colored ends
+      const sv = mkSvg(28, 28);
+      const g = mkEl('g', { transform: 'translate(14,14)' });
+      // Two stacked pills representing the two compartment sides (a top, b bottom)
+      g.appendChild(mkEl('rect', {
+        x: -4, y: -10, width: 8, height: 10, rx: 4, ry: 4,
+        fill: '#ffffff', stroke: '#3fb950', 'stroke-width': 1.8,
+      }));
+      g.appendChild(mkEl('rect', {
+        x: -4, y: 0, width: 8, height: 10, rx: 4, ry: 4,
+        fill: '#ffffff', stroke: '#58a6ff', 'stroke-width': 1.8,
+      }));
+      sv.appendChild(g);
+      row(sec, sv, 'Station hub', 'Hub between two compartments');
+    }
+
+    // ── Station classes (route line colours) ──
+    {
+      const sec = section('Station line classes');
+      const entries: [string, string][] = [
+        ['amino_acid', 'Amino acids'],
+        ['sugar',      'Sugars'],
+        ['cofactor',   'Cofactors'],
+        ['inorganic',  'Inorganics'],
+        ['other',      'Other'],
+      ];
+      for (const [k, lbl] of entries) {
+        const sv = mkSvg(28, 14);
+        sv.appendChild(mkEl('line', {
+          x1: 2, y1: 7, x2: 26, y2: 7,
+          stroke: KLASS_COLORS[k] ?? '#ec4899',
+          'stroke-width': 3.4,
+          'stroke-linecap': 'round',
+        }));
+        row(sec, sv, lbl);
+      }
+      // Inactive
+      const svI = mkSvg(28, 14);
+      svI.appendChild(mkEl('line', {
+        x1: 2, y1: 7, x2: 26, y2: 7,
+        stroke: '#6e7681', 'stroke-width': 2.2, 'stroke-linecap': 'round',
+      }));
+      row(sec, svI, 'Inactive class', 'No flux on this line');
+    }
+
+    // ── Line types ──
+    {
+      const sec = section('Lines');
+      // Solid rail line (rxn ↔ met, active)
+      const sv1 = mkSvg(28, 14);
+      sv1.appendChild(mkEl('line', {
+        x1: 2, y1: 7, x2: 26, y2: 7, stroke: '#58a6ff',
+        'stroke-width': 2.6, 'stroke-linecap': 'round',
+      }));
+      row(sec, sv1, 'Active line', 'Solid: flux on this edge');
+
+      // Striped forward flow (rxn → met)
+      const sv2 = mkSvg(28, 14);
+      const ln2 = mkEl('line', {
+        x1: 2, y1: 7, x2: 26, y2: 7, stroke: '#58a6ff',
+        'stroke-width': 2.6, 'stroke-linecap': 'round',
+      });
+      ln2.setAttribute('class', 'flov-flow-arrow flov-flow-forward');
+      sv2.appendChild(ln2);
+      row(sec, sv2, 'Flow: rxn → met', 'Forward direction (striped)');
+
+      // Striped reverse flow (met → rxn)
+      const sv3 = mkSvg(28, 14);
+      const ln3 = mkEl('line', {
+        x1: 2, y1: 7, x2: 26, y2: 7, stroke: '#58a6ff',
+        'stroke-width': 2.6, 'stroke-linecap': 'round',
+      });
+      ln3.setAttribute('class', 'flov-flow-arrow flov-flow-reverse');
+      sv3.appendChild(ln3);
+      row(sec, sv3, 'Flow: met → rxn', 'Reverse direction (striped)');
+
+      // Inactive grey line
+      const sv4 = mkSvg(28, 14);
+      sv4.appendChild(mkEl('line', {
+        x1: 2, y1: 7, x2: 26, y2: 7, stroke: '#6e7681',
+        'stroke-width': 2.2, 'stroke-linecap': 'round', opacity: 0.6,
+      }));
+      row(sec, sv4, 'Inactive', 'Grey: no flux on this edge');
+    }
   }
 
   // ── Search ──
