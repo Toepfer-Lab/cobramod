@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any, Literal, Optional, Union
 
 import cobra.core as cobra_core
+from cobramod.settings import Settings
 import requests
 
 import cobramod.utils as cmod_utils
@@ -28,6 +29,7 @@ from cobramod.debug import debug_log
 from cobramod.parsing import bigg, biocyc, kegg, plantcyc, solcyc
 from cobramod.parsing import db_version as cmod_db
 
+settings = Settings()
 db_configuration = cmod_db.DataVersionConfigurator()
 
 BIOCYC = "https://websvc.biocyc.org/getxml?id="
@@ -430,8 +432,6 @@ def get_response(
 
     subdatabase = ""
 
-    biocyc_credentials = False
-
     try:
         # e.g sol:META:water
         database, subdatabase, identifier = query.split(":")
@@ -445,7 +445,6 @@ def get_response(
             url = f"{databases['KEGG']}{encoded_id}"
         else:
             url = f"{databases['BIOCYC']}{database}:{encoded_id}"
-            biocyc_credentials = True
 
     if database == "BIGG":
         query = query.removeprefix("BIGG:")
@@ -458,28 +457,18 @@ def get_response(
 
         return database, response
 
-    s = requests.Session()
-    if biocyc_credentials:
-        # FIXME: find a better way
-        user, pwd = cmod_utils.get_credentials(
-            Path.cwd().joinpath("credentials.txt")
-        )
-        s.post(
-            "https://websvc.biocyc.org/credentials/login/",
-            data={"email": user, "password": pwd},
-        )
+    s = settings._biocycSession
 
     response = s.get(url)
-    s.close()
     response.raise_for_status()
 
     # Not a valid content-type to process
     header = response.headers.get("Content-Type", "").lower()
-
-    if response.text[:300].find("Subscription") != -1 and "html" in header:
+    if "html" in header and "<title>Create Account</title>" in response.text:
         raise requests.HTTPError(
-            f"Cannot retrieve data from '{url}'. It is possible that a "
-            "subscription is required. Try using 'META'"
+            f"Cannot retrieve data from '{url}'. Received BioCyc Create "
+            "Account page instead of database content. Please check "
+            "credentials and subscription access or try using 'META' instead."
         )
 
     return database, response
@@ -598,6 +587,7 @@ def get_data(
         directory = Path(directory).absolute()
 
     main_dir = directory
+    print(identifier)
 
     # Biocyc db families
     family = ""

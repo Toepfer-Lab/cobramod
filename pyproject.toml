@@ -13,10 +13,11 @@ requires-python = ">=3.10"
 dynamic = ["version", "readme"]
 classifiers = [
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 keywords = [ "genome-scale metabolic model", "constraint-based modelling", "COBRApy", "Escher", "metabolic model curation" ]
+
+license = "GPL-3.0-only"
 license-files = ["LICENSE", "src/cobramod/static/LICENSES.txt"]
 
 dependencies = [
@@ -27,7 +28,10 @@ dependencies = [
     "openpyxl>=3.1.2",
     "webcolors>=1.13",
     "pyarrow>=14.0.2",
-    "anywidget>=0.9.9"
+    "anywidget>=0.9.9",
+    "pyrate_limiter>=4.0.2",
+    "platformdirs>=4.9.4",
+    "escher>=1.8.1"
 ]
 
 [project.optional-dependencies]
