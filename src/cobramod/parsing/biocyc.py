@@ -58,7 +58,7 @@ def reaction_str_from_xml(root: et.Element) -> str:
 
         for i, item in enumerate(side):
             element = item.find("coefficient")
-            if not element:
+            if element is None:
                 coefficient: float = 1.0
 
             else:

@@ -142,7 +142,7 @@ def get_crossreferences(  # noqa: C901
     try:
         response.raise_for_status()
     except HTTPError as error:
-        if error.response.status_code == 413:
+        if error.response is not None and error.response.status_code == 413:
             size = len(querys)
             half = round(size / 2)
             chunk1 = querys[1:half]
