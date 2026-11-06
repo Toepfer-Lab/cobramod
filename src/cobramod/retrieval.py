@@ -23,6 +23,7 @@ import cobra.core as cobra_core
 from cobramod.settings import Settings
 import requests
 
+import cobramod.error as cmod_error
 import cobramod.utils as cmod_utils
 from cobramod.core import creation, genes
 from cobramod.debug import debug_log
@@ -75,6 +76,11 @@ class Databases:
             "PMN:META       Plantcyc, subdatabase META\n"
             "PMN:ARA        Plantcyc, subdatabase ARA\n"
             "This applies for all subdatabases from SolCyc, BioCyc and Plantcyc\n"
+            "\n"
+            "Note: PlantCyc (PMN) currently blocks programmatic access to its "
+            "database through a bot protection. This is a decision on "
+            "PlantCyc's side. Data that is already stored locally can still "
+            "be used.\n"
         )
 
         return self.msg + self.msg2
@@ -128,6 +134,10 @@ class Databases:
     </tbody>
 </table>
 <p>This applies for all subdatabases from BioCyc and Plantcyc
+</p>
+<p><strong>Note:</strong> PlantCyc (PMN) currently blocks programmatic access
+to its database through a bot protection. This is a decision on PlantCyc's
+side. Data that is already stored locally can still be used.
 </p>
         """
 
@@ -469,6 +479,19 @@ def get_response(
             f"Cannot retrieve data from '{url}'. Received BioCyc Create "
             "Account page instead of database content. Please check "
             "credentials and subscription access or try using 'META' instead."
+        )
+
+    # PlantCyc answers automated requests with an Imperva/Incapsula challenge
+    # page. Its regular "Not Found" page does not count as a block
+    if (
+        database == "PMN"
+        and "_Incapsula_Resource" in response.text
+        and "<title>Not Found</title>" not in response.text
+    ):
+        raise cmod_error.BotProtectionError(
+            f"Cannot retrieve data from '{url}'. The request was most likely "
+            "blocked by PlantCyc's bot protection, which currently rejects "
+            "automated access to its database."
         )
 
     return database, response

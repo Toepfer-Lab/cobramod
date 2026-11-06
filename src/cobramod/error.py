@@ -4,6 +4,8 @@ This module creates special errors for CobraMod. Read each error for their
 explanation.
 """
 
+import requests
+
 from cobramod.debug import debug_log
 
 
@@ -114,6 +116,15 @@ class SuperpathwayException(Exception):
     """
     Simple Warning that should be raised if a pathway is identified as a
     Superpathway
+    """
+
+    pass
+
+
+class BotProtectionError(requests.HTTPError):
+    """
+    Simple error that should be raised if a database blocks the request with
+    its bot protection instead of returning the requested data.
     """
 
     pass

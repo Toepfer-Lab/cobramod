@@ -11,6 +11,7 @@ the different databases. The module is separated according to the databases:
 - TestSolcyc: For SolCyc
 """
 
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -306,16 +307,38 @@ class TestPlantCyc(unittest.TestCase):
     def setUpClass(cls):
         data_conf.force_same_version = True
 
-    def test_get_data(self):
+    def test_get_data_not_found(self):
         # CASE: ID not found
-        self.assertRaises(
-            requests.HTTPError,
-            cmod_retrieval.get_data,
-            directory=dir_data,
-            identifier="WATER_fake",
-            database="pmn:PLANT",
-        )
+        try:
+            cmod_retrieval.get_data(
+                directory=dir_data,
+                identifier="WATER_fake",
+                database="pmn:PLANT",
+            )
+        except cmod_error.BotProtectionError:
+            self.skipTest(
+                "PlantCyc blocked the request with its bot protection"
+            )
+        except requests.HTTPError:
+            pass
+        else:
+            self.fail("requests.HTTPError not raised")
 
+    @unittest.skip(
+        "PlantCyc currently blocks automated access with its bot protection"
+    )
+    def test_get_data_live(self):
+        # CASE: Regular PLANT retrieved from PlantCyc instead of local files
+        with tempfile.TemporaryDirectory() as directory:
+            test_data = cmod_retrieval.get_data(
+                directory=Path(directory),
+                identifier="WATER",
+                database="pmn:PLANT",
+            )
+            self.assertIsInstance(obj=test_data, cls=cmod_retrieval.Data)
+            self.assertEqual(test_data.mode, "Metabolite")
+
+    def test_get_data(self):
         # CASE: Regular PLANT
         test_data = cmod_retrieval.get_data(
             directory=dir_data, identifier="WATER", database="pmn:PLANT"

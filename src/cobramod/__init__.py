@@ -56,4 +56,4 @@ __all__ = [
     "Settings",
 ]
 
-__version__ = "1.4.a1"
+__version__ = "1.4.0"
