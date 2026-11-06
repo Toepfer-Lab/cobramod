@@ -10,7 +10,8 @@ dependencies:
 - jupytext
 - matplotlib
 - mypy
-- python
+- python=3.12
+- pip
 - ruff
 - pre-commit
 - tqdm
