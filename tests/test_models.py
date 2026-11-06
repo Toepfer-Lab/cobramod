@@ -90,7 +90,7 @@ class ShortModel(unittest.TestCase):
         )
 
         # Adding aspartate and asparagine biosynthesis
-        # Before 27.1 in Metacyc, this was a pathway
+        # Before 27.1 in MetaCyc, this was a pathway
         self.assertRaises(
             cmod_error.SuperpathwayException,
             ex.add_pathway,
