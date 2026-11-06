@@ -11,6 +11,9 @@ build:
         - yarn install
         - yarn run vite build
 
+sphinx:
+  configuration: docs/source/conf.py
+
 conda:
   environment: environment.yml
 
