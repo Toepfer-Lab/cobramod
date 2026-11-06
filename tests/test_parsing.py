@@ -260,6 +260,11 @@ class TestBiocyc(unittest.TestCase):
         self.assertEqual(len(test_reaction.genes), 0)
 
         self.assertEqual(test_reaction.bounds, (0, 1000))
+        # Coefficients must be read from the XML
+        self.assertEqual(test_reaction.get_coefficient("WATER_c"), -4)
+        self.assertEqual(test_reaction.get_coefficient("GTP_c"), -1)
+        self.assertEqual(test_reaction.get_coefficient("PROTON_c"), 3)
+        self.assertEqual(test_reaction.get_coefficient("Pi_c"), 2)
 
         # CASE: Reaction in small subdatabase
         test_data = cmod_retrieval.get_data(

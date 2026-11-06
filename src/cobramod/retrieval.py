@@ -610,7 +610,6 @@ def get_data(
         directory = Path(directory).absolute()
 
     main_dir = directory
-    print(identifier)
 
     # Biocyc db families
     family = ""
