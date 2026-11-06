@@ -1,34 +1,39 @@
 name: cobramod-dev
 channels:
-- defaults
-- bioconda
-- conda-forge
+  - conda-forge
 dependencies:
-- colorlog
-- conda-forge::cobra
-- jupyter
-- jupytext
-- matplotlib
-- mypy
-- python=3.12
-- pip
-- ruff
-- pre-commit
-- tqdm
-- pyarrow
-- docutils
-- pandoc
-- conda-forge::webcolors
-- conda-forge::openpyxl
-- conda-forge::tox
-- conda-forge::sphinx
-- conda-forge::nbsphinx
-- conda-forge::jupyter_contrib_nbextensions
-- conda-forge::sphinx-rtd-theme
-- conda-forge::sphinxcontrib-bibtex
-- conda-forge::anywidget
-- conda-forge::furo
-- conda-forge::jupyter-sphinx
-- pip:
-  - escher-legacy
-  - sphinx-autoapi==3.1.0b0
+  - python=3.14
+  - pip=26.2.2
+  # cobramod and its dependencies
+  - colorlog=6.12.0
+  - cobra=0.32.1
+  - requests=2.34.2
+  - tqdm=4.70.1
+  - openpyxl=3.1.5
+  - webcolors=25.10.0
+  - pyarrow=26.0.1
+  - anywidget=0.11.0
+  - platformdirs=4.14.5
+  - pyrate-limiter=4.5.1
+  # notebooks
+  - jupyter=1.1.1
+  - jupytext=1.19.6
+  - matplotlib=3.11.2
+  # development
+  - ruff=0.17.4
+  - mypy=2.4.1
+  - pre-commit=4.7.0
+  - tox=4.67.12
+  - pytest=8.4.2          # escher needs pytest<9
+  # documentation
+  - sphinx=9.2.0
+  - nbsphinx=0.9.8
+  - sphinx-autoapi=3.9.0
+  - sphinxcontrib-bibtex=2.7.0
+  - furo=2025.12.19
+  - jupyter-sphinx=0.5.3
+  - pandoc=3.13
+  - docutils=0.22.4
+  - pip:
+      - escher==1.8.1
+      - escher-legacy==1.7.4
