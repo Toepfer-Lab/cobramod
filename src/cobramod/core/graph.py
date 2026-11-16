@@ -15,7 +15,7 @@ from __future__ import annotations
 from collections import Counter
 from contextlib import suppress
 from itertools import chain
-from typing import Any, Dict, Union
+from typing import Any, Dict, Optional, Union
 
 from cobramod.error import GraphKeyError
 
@@ -150,7 +150,7 @@ def back(
     graph: dict[str, Union[str, tuple[str]]],
     value: str,
     path: list[str],
-    stop_list: list = [],
+    stop_list: Optional[list] = None,
 ) -> list[str]:
     """
     Returns a list with a linear path. The function creates a sequence from
@@ -175,6 +175,8 @@ def back(
     """
     # Check for each key if the value matches the argument value. Extend path
     # and call recursive
+    if stop_list is None:
+        stop_list = []
     for key, val in graph.items():
         if isinstance(val, tuple):
             # In case of tuples, test each single case

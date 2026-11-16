@@ -322,7 +322,7 @@ class Data:
         self,
         model: cobra_core.Model,
         compartment: str,
-        replacement: dict[str, str] = {},
+        replacement: Optional[dict[str, str]] = None,
     ) -> cobra_core.Object:
         """
         Parses information and creates a cobrapy Object. This can be a
@@ -340,6 +340,8 @@ class Data:
             cobra.core.Object This can be a Reaction or Metabolites
 
         """
+        if replacement is None:
+            replacement = {}
         identifier = replacement.get(self.identifier, self.identifier)
         identifier = f"{identifier.replace('-', '_')}_{compartment}"
 
@@ -534,6 +536,7 @@ def file_to_Data_class(
             warnings.warn(
                 "Database Solcyc is being deprecated for next version",
                 DeprecationWarning,
+                stacklevel=2,
             )
         return Data.from_xml(identifier, et.fromstring(text), parent, filename)
 
@@ -635,12 +638,12 @@ def get_data(
             response_database, response = get_response(identifier)
 
             if response_database == "bigg":
-                extra = getattr(response, "extra")
+                extra = response.extra  # type: ignore[attr-defined]
 
                 if not extra:
                     raise AttributeError(
                         "The 'extra' attribute was not found in the response"
-                    )
+                    ) from None
                 directory = directory.joinpath(extra)
 
             filename = write(identifier, directory, response)
@@ -694,18 +697,19 @@ def get_data(
                     warnings.warn(
                         "Database Solcyc is being deprecated for next version",
                         DeprecationWarning,
+                        stacklevel=2,
                     )
                     solcyc.retrieve_gene_information(
                         directory, identifier, database
                     )
 
             if response_database == "BIGG":
-                extra = getattr(response, "extra")
+                extra = response.extra  # type: ignore[attr-defined]
 
                 if not extra:
                     raise AttributeError(
                         "The 'extra' attribute was not found in the response"
-                    )
+                    ) from None
                 directory = directory.joinpath("BIGG", extra)
 
                 if not directory.exists():

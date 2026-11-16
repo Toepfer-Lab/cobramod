@@ -69,7 +69,7 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
                 f'Object "{identifier}_gene.xml" saved in '
                 f'directory "{database}/GENES".'
             )
-        except requests.HTTPError:
+        except requests.HTTPError as error:
             raise AttributeError(
                 f"Object {identifier} does not have gene information"
-            )
+            ) from error

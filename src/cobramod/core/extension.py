@@ -731,9 +731,9 @@ def add_pathway(
     compartment: str,
     database: Optional[str] = None,
     group: Optional[str] = None,
-    avoid_list: list[str] = [],
-    replacement: dict = {},
-    ignore_list: list[str] = [],
+    avoid_list: Optional[list[str]] = None,
+    replacement: Optional[dict] = None,
+    ignore_list: Optional[list[str]] = None,
     filename: Optional[Union[str, Path]] = None,
     stop_imbalance: bool = False,
     show_imbalance: bool = True,
@@ -792,6 +792,12 @@ def add_pathway(
             species involved. Genes will be obtained for this species.
             List available at https://www.genome.jp/kegg/catalog/org_list.html
     """
+    if ignore_list is None:
+        ignore_list = []
+    if replacement is None:
+        replacement = {}
+    if avoid_list is None:
+        avoid_list = []
     if not isinstance(model, cobra_core.Model):
         raise TypeError("Model is invalid")
 

@@ -144,9 +144,9 @@ class Segment(UserDict):
         for key in ("from_node_id", "to_node_id", "b1", "b2"):
             try:
                 self.data[key]
-            except KeyError:
+            except KeyError as error:
                 if key in ("from_node_id", "to_node_id"):
-                    raise ValueError(f"Argument '{key}' missing")
+                    raise ValueError(f"Argument '{key}' missing") from error
                 elif key in ("b1", "b2"):
                     self.data[key] = None
 
@@ -197,7 +197,7 @@ class Reaction(UserDict):
         ):
             try:
                 self.data[key]
-            except KeyError:
+            except KeyError as error:
                 # Arguments must be passed this way, otherway UserDict loses
                 # its functionalities.
                 if key in (
@@ -208,7 +208,7 @@ class Reaction(UserDict):
                     "label_y",
                 ):
                     # Obligatory arguments
-                    raise ValueError(f"Argument '{key}' missing")
+                    raise ValueError(f"Argument '{key}' missing") from error
                 elif key == "gene_reaction_rule":
                     self.data[key] = ""
                 elif key in ("genes", "metabolites"):

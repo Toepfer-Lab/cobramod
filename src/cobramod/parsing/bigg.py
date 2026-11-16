@@ -83,8 +83,10 @@ def build_reference(json_data: dict[str, Any]) -> dict[str, str]:
     references = json_data["database_links"]
     try:
         return {item: references[item][0]["id"] for item in references}
-    except KeyError:
-        raise KeyError("Problem with given json dictionary. Inform maintainers")
+    except KeyError as error:
+        raise KeyError(
+            "Problem with given json dictionary. Inform maintainers"
+        ) from error
 
 
 def parse_reaction_attributes(

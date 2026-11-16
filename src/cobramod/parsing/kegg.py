@@ -180,10 +180,10 @@ def ko_generator(identifier: str) -> Generator[str, None, None]:
             # [rn:R00001, ko:k00001]
             if identifier not in single
         )
-    except requests.HTTPError:
+    except requests.HTTPError as error:
         raise requests.HTTPError(
             f'No K-Identifiers could be retrieved for "{identifier}".'
-        )
+        ) from error
 
 
 def parse_ko_to_genes(
@@ -265,10 +265,10 @@ def retrieve_kegg_genes(directory: Path, identifier: str):
 
                     with open(file=filename, mode="a+") as file:
                         file.write(response.text)
-                except requests.HTTPError:
+                except requests.HTTPError as error:
                     raise requests.HTTPError(
                         f'Gene information for "{identifier}" unavailable'
-                    )
+                    ) from error
                 except StopIteration:
                     break
 

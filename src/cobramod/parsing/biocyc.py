@@ -35,8 +35,8 @@ def build_cross_references_xml(root: Any) -> dict[str, str]:
                 "dblink-oid"
             ).text
         return references
-    except IndexError:
-        raise IndexError("No references can be found in given XML.")
+    except IndexError as error:
+        raise IndexError("No references can be found in given XML.") from error
 
 
 def reaction_str_from_xml(root: et.Element) -> str:
@@ -259,10 +259,10 @@ def get_graph(root: et.Element) -> dict:
                 raise TypeError("Not a valid Element")
             name = element.attrib["frameid"]
             graph[name] = None
-        except AttributeError:
+        except AttributeError as error:
             raise cmod_error.WrongParserError(
                 "Given root does not belong to a Pathway"
-            )
+            ) from error
 
     return graph
 
@@ -353,10 +353,10 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
                 f'Object "{identifier}_gene.xml" saved in '
                 f'directory "{database}/GENES".'
             )
-        except requests.HTTPError:
+        except requests.HTTPError as error:
             raise AttributeError(
                 f"Object {identifier} does not have gene information"
-            )
+            ) from error
 
 
 def parse_genes(identifier: str, directory: Path) -> dict:

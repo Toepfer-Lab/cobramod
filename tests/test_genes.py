@@ -38,10 +38,12 @@ class TestComplexGenes(unittest.TestCase):
                 database="KEGG",
                 genome="fake",
             )
-            self.assertIn(
-                "abbreviation as a specie. No genes will be added.",
-                cm.output[0],
+        self.assertTrue(
+            any(
+                "abbreviation as a specie. No genes will be added." in line
+                for line in cm.output
             )
+        )
         test_reaction = create_object(
             identifier="R02736",
             directory=dir_data,
@@ -62,10 +64,12 @@ class TestComplexGenes(unittest.TestCase):
                 compartment="c",
                 database="KEGG",
             )
-            self.assertIn(
-                "Nothing was specified in argument ",
-                cm.output[-1],
+        self.assertTrue(
+            any(
+                "Nothing was specified in argument " in line
+                for line in cm.output
             )
+        )
         test_reaction = create_object(
             identifier="R02736",
             directory=dir_data,

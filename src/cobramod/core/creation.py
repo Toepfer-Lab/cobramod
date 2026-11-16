@@ -119,7 +119,7 @@ def metabolite_from_string(
 def metabolite_from_data(
     data: cmod_retrieval.Data,
     compartment: str,
-    model: cobra_core.Model = cobra_core.Model(),
+    model: Optional[cobra_core.Model] = None,
 ) -> cobra_core.Metabolite:
     """
     Parses the metabolite information from a Data object and creates a
@@ -129,6 +129,9 @@ def metabolite_from_data(
     Returns:
         Metabolite
     """
+    if model is None:
+        model = cobra_core.Model()
+
     # Try to obtain available translation
     xref = cmod_utils.find_intersection(
         dictlist=model.metabolites,
@@ -342,7 +345,7 @@ def reaction_from_string(
     show_imbalance: bool,
     replacement: dict[str, str],
     model_id: Optional[str],
-    model: cobra_core.Model = cobra_core.Model(),
+    model: Optional[cobra_core.Model] = None,
 ) -> cobra_core.Reaction:
     """
     Returns a custom reaction from a string that includes the information
@@ -388,13 +391,16 @@ def reaction_from_string(
     Returns:
         Reaction
     """
+    if model is None:
+        model = cobra_core.Model()
+
     # Remove blank and obtains information
     try:
         info, reaction_str = [
             string.strip().rstrip() for string in line_string.split("|")
         ]
-    except ValueError:
-        raise cmod_error.NoDelimiter(line_string)
+    except ValueError as error:
+        raise cmod_error.NoDelimiter(line_string) from error
 
     # It is possible to pass only the identifier
     if "," in info:
@@ -619,10 +625,10 @@ def create_object(
     directory: Union[Path, str],
     database: Optional[str],
     compartment: str,
-    replacement: dict[str, str] = {},
+    replacement: Optional[dict[str, str]] = None,
     show_imbalance: bool = True,
     stop_imbalance: bool = False,
-    model: cobra_core.Model = cobra_core.Model(),
+    model: Optional[cobra_core.Model] = None,
     model_id: Optional[str] = None,
     genome: Optional[str] = None,
 ) -> cobra_core.Object:
@@ -661,6 +667,10 @@ def create_object(
     Returns:
         cobra.core.Object: A Reaction or Metabolite object
     """
+    if replacement is None:
+        replacement = {}
+    if model is None:
+        model = cobra_core.Model()
     query = replacement.get(identifier, identifier)
 
     if not isinstance(directory, Path):
@@ -705,7 +715,7 @@ def create_object(
 def add_metabolites(
     model: cobra_core.Model,
     obj: Union[Path, str, list[cobra_core.Object], list[str]],
-    directory: Union[Path, str] = Path.cwd().joinpath("data"),
+    directory: Optional[Union[Path, str]] = None,
     database: Optional[str] = None,
     **kwargs,
 ):
@@ -761,6 +771,9 @@ def add_metabolites(
     include_metanetx_specific_ec = kwargs.pop(
         "include_metanetx_specific_ec", False
     )
+    if directory is None:
+        directory = Path.cwd().joinpath("data")
+
     if not isinstance(directory, Path):
         directory = Path(directory).absolute()
 

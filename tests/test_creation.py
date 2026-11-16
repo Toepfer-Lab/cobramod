@@ -570,6 +570,26 @@ class SimpleFunctions(unittest.TestCase):
 
 
 class ComplexFunctions(unittest.TestCase):
+    def test_create_object_default_model(self):
+        # CASE: Calls without a model must not share objects through a
+        # common default model
+        first = cr.create_object(
+            identifier="GTP-CYCLOHYDRO-II-RXN",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+        )
+        first.bounds = (0, 5)
+
+        second = cr.create_object(
+            identifier="GTP-CYCLOHYDRO-II-RXN",
+            directory=dir_data,
+            compartment="c",
+            database="META",
+        )
+        self.assertIsNot(first, second)
+        self.assertEqual(second.bounds, (0, 1000))
+
     def test_create_object(self):
         # CASE: metabolite from MetaCyc
         test_object = cr.create_object(
@@ -579,7 +599,7 @@ class ComplexFunctions(unittest.TestCase):
             database="META",
         )
         self.assertIsInstance(obj=test_object, cls=cobra_core.Metabolite)
-        self.assertEqual(first=getattr(test_object, "compartment"), second="c")
+        self.assertEqual(first=test_object.compartment, second="c")
         # CASE: metabolite from KEGG
         test_object = cr.create_object(
             identifier="C00026",
@@ -588,7 +608,7 @@ class ComplexFunctions(unittest.TestCase):
             database="KEGG",
         )
         self.assertIsInstance(obj=test_object, cls=cobra_core.Metabolite)
-        self.assertEqual(first=getattr(test_object, "compartment"), second="p")
+        self.assertEqual(first=test_object.compartment, second="p")
         # CASE: reaction from MetaCyc
         test_object = cr.create_object(
             identifier="2.6.1.58-RXN",
@@ -597,9 +617,7 @@ class ComplexFunctions(unittest.TestCase):
             database="META",
         )
         self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
-        self.assertIn(
-            member="p", container=getattr(test_object, "compartments")
-        )
+        self.assertIn(member="p", container=test_object.compartments)
         # CASE: reaction from KEGG
         test_object = cr.create_object(
             identifier="R02736",
@@ -609,11 +627,9 @@ class ComplexFunctions(unittest.TestCase):
             genome="hsa",
         )
         self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
-        self.assertIn(
-            member="c", container=getattr(test_object, "compartments")
-        )
+        self.assertIn(member="c", container=test_object.compartments)
         self.assertCountEqual(
-            first=[gene.id for gene in getattr(test_object, "genes")],
+            first=[gene.id for gene in test_object.genes],
             second=["9563", "2539"],
         )
 
@@ -656,8 +672,8 @@ class ComplexFunctions(unittest.TestCase):
             replacement=test_replacement,
         )
         self.assertIsInstance(obj=test_object, cls=cobra_core.Metabolite)
-        self.assertEqual(first=getattr(test_object, "compartment"), second="c")
-        self.assertEqual(first=getattr(test_object, "id"), second="GLUCOSE_c")
+        self.assertEqual(first=test_object.compartment, second="c")
+        self.assertEqual(first=test_object.id, second="GLUCOSE_c")
 
         # CASE: Replacing names (Reaction)
         test_object = cr.create_object(
@@ -668,15 +684,11 @@ class ComplexFunctions(unittest.TestCase):
             replacement=test_replacement,
         )
         self.assertIsInstance(obj=test_object, cls=cobra_core.Reaction)
-        self.assertCountEqual(
-            first=getattr(test_object, "compartments"), second={"c"}
-        )
-        self.assertEqual(
-            first=getattr(test_object, "id"), second="monooxygenase_c"
-        )
+        self.assertCountEqual(first=test_object.compartments, second={"c"})
+        self.assertEqual(first=test_object.id, second="monooxygenase_c")
         self.assertIn(
             member="Donor_new_name_c",
-            container=[meta.id for meta in getattr(test_object, "metabolites")],
+            container=[meta.id for meta in test_object.metabolites],
         )
 
     def test_add_metabolites(self):

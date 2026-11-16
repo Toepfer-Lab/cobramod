@@ -264,11 +264,11 @@ class Pathway(cobra_core.Group):
                 )
             self.notes["ORDER"][reaction] = next_reaction
             debug_log.info(msg=msg)
-        except KeyError:
+        except KeyError as error:
             raise GraphKeyError(
                 f'Pathway "{self.id}" does not have a reaction '
                 + f'{reaction}". Check that the reaction exist.'
-            )
+            ) from error
 
     def visualize(
         self,
@@ -362,7 +362,8 @@ class Pathway(cobra_core.Group):
                 "Package Escher was not found. No visualization in available. "
                 "You can install this extra-dependency running "
                 "'pip install cobramod[escher]'. Alternatively, you can use CobraMod's own integration of Escher. "
-                "To use it, just specify 'escher-custom' for the 'vis' argument."
+                "To use it, just specify 'escher-custom' for the 'vis' argument.",
+                stacklevel=2,
             )
             return None
 

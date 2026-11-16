@@ -201,7 +201,7 @@ def format_matrix(matrix: List[list], max_length: int) -> List[list]:
             # new_matrix.append(row)
             continue
         previous_row: list = matrix[index_j - 1].copy()
-        for index_i, item in enumerate(row):
+        for index_i, _item in enumerate(row):
             # Non-zero positions
             if index_i not in positions:
                 continue
@@ -237,4 +237,4 @@ def transpose(matrix: List[list]) -> List[list]:
     """
     Returns a transpose matrix for given matrix.
     """
-    return list(map(list, zip(*matrix)))
+    return list(map(list, zip(*matrix, strict=False)))
