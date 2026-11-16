@@ -1,7 +1,7 @@
 Requirements
 ============
 
-CobraMod supports  **Python 3.10 or higher**. Following dependencies are
+CobraMod supports  **Python 3.11 or higher**. Following dependencies are
 needed:
  - colorlog
  - cobra>=0.29.0

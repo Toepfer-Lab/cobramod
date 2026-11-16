@@ -1,6 +1,6 @@
 <div align="center">
 
-![Static Badge](https://img.shields.io/badge/python-3.10%7C3.11%7C3.12-%20blue)
+![Static Badge](https://img.shields.io/badge/python-3.11%7C3.12%7C3.13%7C3.14-%20blue)
 ![GitHub](https://img.shields.io/github/license/Toepfer-Lab/cobramod)
 [![Downloads](https://img.shields.io/pepy/dt/cobramod
 )](https://pepy.tech/project/cobramod)

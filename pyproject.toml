@@ -9,7 +9,7 @@ authors = [
 maintainers = [
   { name="Nadine Töpfer", email="ntoepfer@uni-koeln.de" },
 ] 
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dynamic = ["version", "readme"]
 classifiers = [
     "Intended Audience :: Science/Research",
