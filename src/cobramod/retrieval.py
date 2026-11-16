@@ -405,7 +405,9 @@ class Data:
 
                 directory = self.path.parents[1]
 
-                if self.database == "BIGG":
+                # BIGG and families such as PMN store their data one level
+                # deeper (e.g. PMN/ARA), get_data adds that level again
+                if self.database == "BIGG" or ":" in self.database:
                     directory = self.path.parents[2]
 
                 build_reaction_from_str(

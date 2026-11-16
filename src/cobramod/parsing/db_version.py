@@ -20,7 +20,8 @@ from cobramod.debug import debug_log
 class DataVersionConfigurator(metaclass=Singleton):
     def __init__(self):
         self.ignore_db_versions: bool = False
-        self.database_version: Optional[pd.DataFrame] = None
+        # One version table per data directory, keyed by the resolved path
+        self.database_versions: dict[Path, pd.DataFrame] = {}
         self.force_same_version: bool = False
 
     def get_database_version(self, directory: Union[str, Path]) -> pd.DataFrame:
@@ -34,18 +35,18 @@ class DataVersionConfigurator(metaclass=Singleton):
             (pd.DataFrame): A DataFrame containing the orgid and version, at
                 the time of the first retrieval, for all databases used so far.
         """
-        if isinstance(directory, str):
-            directory = Path(directory)
+        directory = Path(directory).resolve()
 
-        if self.database_version is not None:
-            return self.database_version
-        try:
-            file = directory / "DatabaseVersions.csv"
-            self.database_version = pd.read_csv(file)
-        except FileNotFoundError:
-            self.database_version = pd.DataFrame(columns=["orgid", "version"])
+        if directory not in self.database_versions:
+            try:
+                file = directory / "DatabaseVersions.csv"
+                self.database_versions[directory] = pd.read_csv(file)
+            except FileNotFoundError:
+                self.database_versions[directory] = pd.DataFrame(
+                    columns=["orgid", "version"]
+                )
 
-        return self.database_version
+        return self.database_versions[directory]
 
     def get_local_databases(self, directory: Union[Path, str]) -> pd.Series:
         if isinstance(directory, str):
@@ -67,16 +68,8 @@ class DataVersionConfigurator(metaclass=Singleton):
             database (str): Identifier of the database.
             version (str): The version of the database.
         """
-        if isinstance(directory, str):
-            directory = Path(directory).absolute()
-
-        if self.database_version is None:
-            self.get_database_version(directory=directory)
-
-        assert isinstance(self.database_version, pd.DataFrame)
-        row = self.database_version.loc[
-            self.database_version["orgid"] == database
-        ]
+        database_version = self.get_database_version(directory=directory)
+        row = database_version.loc[database_version["orgid"] == database]
 
         if row.shape[0] == 0:
             return self.set_database_version(directory, database, version)
@@ -135,22 +128,18 @@ class DataVersionConfigurator(metaclass=Singleton):
              (bool): Returns True if the addition was successful.
 
         """
-        if isinstance(directory, str):
-            directory = Path(directory).absolute()
+        directory = Path(directory).resolve()
 
-        if self.database_version is None:
-            self.get_database_version(directory=directory)
-
-        assert isinstance(self.database_version, pd.DataFrame)
-        self.database_version = pd.concat(
+        database_version = pd.concat(
             [
-                self.database_version,
+                self.get_database_version(directory=directory),
                 pd.DataFrame({"orgid": [database], "version": [version]}),
             ],
             ignore_index=True,
         )
+        self.database_versions[directory] = database_version
 
-        self.database_version.to_csv(
+        database_version.to_csv(
             path_or_buf=str(directory / "DatabaseVersions.csv"), index=False
         )
 

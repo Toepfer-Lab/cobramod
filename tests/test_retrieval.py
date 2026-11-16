@@ -4,6 +4,7 @@ Unit-test for data retrieval and Data version configuration. It checks that
 the files are loaded and saved properly
 """
 
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -30,15 +31,17 @@ class RetrievalTesting(unittest.TestCase):
         data_conf.ignore_db_versions = True
 
     def test_get_data(self):
-        dir_data.joinpath("META", "WATER.xml").unlink(True)
-        self.assertFalse(dir_data.joinpath("META", "WATER.xml").exists())
-
-        # Simple retrieval from Biocyc (metabolite)
-        test_data = cmod_retrieval.get_data(
-            directory=dir_data, database="META", identifier="WATER"
-        )
-        self.assertEqual(test_data.path, dir_data.joinpath("META", "WATER.xml"))
-        self.assertTrue(test_data.path.exists())
+        # Simple retrieval from Biocyc (metabolite). An empty directory is
+        # used, so that the stored test data is not overwritten
+        with tempfile.TemporaryDirectory() as directory:
+            temp_dir = Path(directory)
+            test_data = cmod_retrieval.get_data(
+                directory=temp_dir, database="META", identifier="WATER"
+            )
+            self.assertEqual(
+                test_data.path, temp_dir.joinpath("META", "WATER.xml")
+            )
+            self.assertTrue(test_data.path.exists())
 
         # simple retrieval from Biocyc (reaction)
         test_data = cmod_retrieval.get_data(

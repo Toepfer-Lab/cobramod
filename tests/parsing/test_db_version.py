@@ -19,9 +19,6 @@ class DataVersion(unittest.TestCase):
 
     @classmethod
     def setUp(cls):
-        # removing metadata belonging to other tests_ui_old that affect this one
-        data_conf.database_version = None
-
         cls.directory = tempfile.mkdtemp()
         data_conf.ignore_db_versions = False
         cls.versions = pd.DataFrame.from_dict(
@@ -36,8 +33,6 @@ class DataVersion(unittest.TestCase):
     @classmethod
     def tearDown(cls):
         shutil.rmtree(cls.directory)
-        # Removing metadata
-        data_conf.database_version = None
 
     def test_get_database_version(self):
         database = data_conf.get_database_version(self.directory)
@@ -64,6 +59,35 @@ class DataVersion(unittest.TestCase):
         )
 
         assert_frame_equal(database, self.versions)
+
+    def test_multiple_directories(self):
+        # CASE: Each data directory keeps its own versioning file
+        with tempfile.TemporaryDirectory() as other_directory:
+            data_conf.check_database_version(
+                Path(other_directory), "pmn:META", "2.0"
+            )
+            data_conf.check_database_version(
+                Path(self.directory), "kegg", "3.0"
+            )
+
+            other_versions = pd.read_csv(
+                Path(other_directory) / "DatabaseVersions.csv", dtype=str
+            )
+
+        versions = pd.read_csv(
+            Path(self.directory) / "DatabaseVersions.csv", dtype=str
+        )
+
+        assert_frame_equal(
+            other_versions,
+            pd.DataFrame({"orgid": ["pmn:META"], "version": ["2.0"]}),
+        )
+        assert_frame_equal(
+            versions,
+            pd.DataFrame(
+                {"orgid": ["bigg", "kegg"], "version": ["1.0.0", "3.0"]}
+            ),
+        )
 
     def test_check_database_version(self):
         (Path(self.directory) / "DatabaseVersions.csv").unlink()
