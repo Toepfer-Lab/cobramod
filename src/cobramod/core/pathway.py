@@ -276,7 +276,7 @@ class Pathway(cobra_core.Group):
             Union[cobra_core.Solution, dict[str, float]]
         ] = None,
         filename: Optional[Union[str, Path]] = None,
-        vis: Literal["escher", "escher-custom", "3d-force"] = "escher",
+        vis: Literal["escher", "escher-custom", "3d-force"] = "escher-custom",
         never_ask_before_quit: bool = False,
     ) -> Union[escher.Builder, EscherIntegration, ForceGraphIntegration, None]:
         """
@@ -296,10 +296,9 @@ class Pathway(cobra_core.Group):
             Escher integration [escher], the one embedded in CobraMod [escher-custom] and a 3-dimensional
             force directed graph visualization [3d-force].
 
-            .. deprecated:: 1.3.0
-                The original python integration of Escher will be removed in a future version due to dependency
-                conflicts with Jupyter. The integration embedded in CobraMod will take its place in the future.
-                This can already be used by setting 'vis' to "escher-custom".
+            .. versionchanged:: 1.4.0
+                The integration embedded in CobraMod [escher-custom] is now the default. The original Python
+                integration of Escher [escher] requires the optional dependency 'cobramod[escher]'.
 
         :param never_ask_before_quit:
             .. versionadded:: 1.3.0

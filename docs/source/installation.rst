@@ -21,8 +21,9 @@ CobraMod can easily be installed using pip. ::
 By default, required packages will be installed when installing CobraMod. We
 recommend using a virtual environment.
 
-To use the escher visualization tool with cobramod, you can install the optional
-dependencies escher-legacy that needs to be used instead of *escher* ::
+CobraMod includes its own binding of the Escher visualization tool, which is
+used by default. To use Escher's original Python binding instead, install the
+optional dependency *escher* ::
 
   pip install cobramod[escher]
 

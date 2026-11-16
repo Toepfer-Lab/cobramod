@@ -36,4 +36,3 @@ dependencies:
   - docutils=0.22.4
   - pip:
       - escher==1.8.1
-      - escher-legacy==1.7.4

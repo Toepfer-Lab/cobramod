@@ -35,7 +35,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-escher = ["escher-legacy>=1.7.4"]
+escher = ["escher>=1.8.1"]
 dev = [
     "ruff",
     "tox",

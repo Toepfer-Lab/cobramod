@@ -4,6 +4,7 @@
 This module contains an alternative Python integration for `Escher <https://github.com/zakandrewking/escher>`_ .
 """
 
+import json
 from importlib import resources
 from pathlib import Path
 from typing import Any, Optional, Dict, TypedDict, Literal, List, Union
@@ -13,6 +14,18 @@ import numpy as np
 from traitlets import traitlets
 
 from cobramod import static
+
+
+def _json_default(value: Any) -> Any:
+    """
+    Converts numpy scalars (e.g. fluxes from COBRApy) into Python types so
+    that they can be serialized to JSON.
+    """
+    if isinstance(value, np.generic):
+        return value.item()
+    raise TypeError(
+        f"Object of type {type(value).__name__} is not JSON serializable"
+    )
 
 
 class ReactionScale(TypedDict):
@@ -103,35 +116,18 @@ class EscherIntegration(anywidget.AnyWidget):
 
     @property
     def options(self):
-        #  numpy currently creates values that are incapsulated in an np.float(x)
-        # this does not work with JS/Escher => cast them individually
+        # numpy values (e.g. fluxes from COBRApy) are converted by _json_default
+        # when the options are serialized in save_html
+        options = {
+            "reaction_styles": self.reaction_styles or None,
+            "reaction_data": self.reaction_data or None,
+            "reaction_scale": self.reaction_scale or None,
+            "never_ask_before_quit": self.never_ask_before_quit,
+        }
 
-        reaction_scale = "null"
-        if self.reaction_scale is not None:
-            reaction_scale = []
-            for reaction_scale_point in self.reaction_scale:
-                new_point = {}
-
-                if isinstance(reaction_scale_point["value"], np.float64):
-                    new_point["type"] = "value"
-                    new_point["value"] = reaction_scale_point["value"].item()
-                    new_point["color"] = reaction_scale_point["color"]
-                else:
-                    new_point = reaction_scale_point
-
-                reaction_scale.append(new_point)
-
+        # Like Escher's own integration, only pass options that are set
         return {
-            "reaction_styles": self.reaction_styles
-            if self.reaction_styles
-            else "null",
-            "reaction_data": self.reaction_data
-            if self.reaction_data
-            else "null",
-            "reaction_scale": reaction_scale,
-            "never_ask_before_quit": "true"
-            if self.never_ask_before_quit
-            else "false",
+            key: value for key, value in options.items() if value is not None
         }
 
     def save_html(self, filepath: Union[str, Path]):
@@ -164,7 +160,7 @@ class EscherIntegration(anywidget.AnyWidget):
                 {self.model_data}, 
                 {self.embedded_css},
                 escher.libs.d3_select('#map-container'), 
-                {self.options},
+                {json.dumps(self.options, default=_json_default)},
              );
             </script>
           </body>
