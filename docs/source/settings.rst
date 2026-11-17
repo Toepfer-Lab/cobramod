@@ -26,7 +26,7 @@ This file can then be used via a settings object, as shown in the following:
 
    settings = Settings()
 
-   settings.SetBioCycLogin("./fileWithLoginInfo.txt")
+   settings.set_biocyc_login("./fileWithLoginInfo.txt")
 
 .. note::
    CobraMod also automatically checks the current working directory for a file called 'credentials.txt' and, if found, loads the login information from it.

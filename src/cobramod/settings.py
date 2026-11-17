@@ -33,10 +33,10 @@ class SingletonMeta(type):
 
 class Settings(metaclass=SingletonMeta):
     def __init__(self):
-        self.__setBioCycLoginFromEnv()
+        self.__set_biocyc_login_from_env()
 
         if self.__biocyc_name is None or self.__biocyc_password is None:
-            self.__setBioCycLoginFromFile()
+            self.__set_biocyc_login_from_file()
 
         self.__cache_dir: Path = Path(
             platformdirs.user_cache_dir(
@@ -80,7 +80,7 @@ class Settings(metaclass=SingletonMeta):
     .. versionadded:: 1.4.0
     """
 
-    autoOpenCloseBioCycSession = True
+    auto_open_close_biocyc_session = True
 
     def __set__biocyc_password(self, value: str):
         self.__biocyc_password = value
@@ -94,18 +94,18 @@ class Settings(metaclass=SingletonMeta):
     biocyc_name = property(fset=__set__biocyc_name)
     del __set__biocyc_name
 
-    def SetBioCycLogin(self, file: Path):
+    def set_biocyc_login(self, file: Path):
         user, pwd = cmod_utils.get_credentials(file)
         self.__biocyc_password = pwd
         self.__biocyc_name = user
 
-    def __setBioCycLoginFromFile(self):
+    def __set_biocyc_login_from_file(self):
         try:
-            self.SetBioCycLogin(Path.cwd().joinpath("credentials.txt"))
+            self.set_biocyc_login(Path.cwd().joinpath("credentials.txt"))
         except FileNotFoundError:
             logger.debug("No credentials.txt found.")
 
-    def __setBioCycLoginFromEnv(self):
+    def __set_biocyc_login_from_env(self):
         biocyc_name = os.getenv("BIOCYC_NAME")
         biocyc_pwd = os.getenv("BIOCYC_PASSWORD")
 
@@ -115,7 +115,7 @@ class Settings(metaclass=SingletonMeta):
             logger.debug("BioCyc credentials set from environment variables.")
 
     @property
-    def _biocycSession(self) -> requests.Session:
+    def _biocyc_session(self) -> requests.Session:
         if self.__biocyc_session is None:
             logger.debug("Creating new BioCyc Session ...")
             self.__biocyc_session = requests.Session()
@@ -148,7 +148,7 @@ class Settings(metaclass=SingletonMeta):
         return self.__biocyc_session
 
     @property
-    def BioCycLoggedIn(self) -> bool:
+    def biocyc_logged_in(self) -> bool:
         """
         Check if the BioCyc session is logged in.
 
@@ -158,14 +158,14 @@ class Settings(metaclass=SingletonMeta):
         return self.__biocyc_login
 
     @property
-    def cacheDir(self) -> Path:
+    def cache_dir(self) -> Path:
         return self.__cache_dir
 
-    def _closeBiocycSession(self):
+    def _close_biocyc_session(self):
         if self.__biocyc_session:
             self.__biocyc_session.close()
             self.__biocyc_session = None
             self.__biocyc_login = False
 
     def __del__(self):
-        self._closeBiocycSession()
+        self._close_biocyc_session()

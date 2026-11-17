@@ -471,7 +471,7 @@ def get_response(
 
         return database, response
 
-    s = settings._biocycSession
+    s = settings._biocyc_session
 
     response = s.get(url)
     response.raise_for_status()
