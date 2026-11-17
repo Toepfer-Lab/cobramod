@@ -1,7 +1,7 @@
 import re
 from functools import lru_cache
 from pathlib import Path
-from typing import Set, Union, List, Any
+from typing import Set, Union, List, Any, Optional
 
 import pandas as pd
 import requests
@@ -110,11 +110,72 @@ def confirms_query(query: str, answer: dict) -> bool:
     )
 
 
-def is_envipath(query: str) -> bool:
+# Prefixes used only by MetaNetX in lower case (as stored in annotations) and
+# in the spelling MetaNetX expects. MetaNetX returns most identifiers with
+# both, such a prefix and the identifiers.org one (e.g. keggC:C00031 and
+# kegg.compound:C00031)
+METANETX_PREFIXES = {
+    "biggm": "biggM",
+    "biggr": "biggR",
+    "envipathm": "envipathM",
+    "keggc": "keggC",
+    "keggd": "keggD",
+    "keggg": "keggG",
+    "keggr": "keggR",
+    "lipidmapsm": "lipidmapsM",
+    "metacycm": "metacycM",
+    "metacycr": "metacycR",
+    "reactomem": "reactomeM",
+    "rh": "rh",
+    "sabiorkm": "sabiorkM",
+    "sabiorkr": "sabiorkR",
+    "seedm": "seedM",
+    "seedr": "seedR",
+    "vmhm": "vmhM",
+    "vmhr": "vmhR",
+}
+
+# Prefixes that MetaNetX does not resolve. In addition, if enviPath IDs are
+# part of a request, other IDs of that request get no cross-references
+UNSUPPORTED_PREFIXES = {
+    "brenda",
+    "ec-code",
+    "envipath",
+    "envipathm",
+    "inchi",
+    "inchikey",
+    "pubchem.compound",
+    "smiles",
+}
+
+
+def to_metanetx_query(query: str) -> Optional[str]:
     """
-    Checks whether a query is an enviPath ID ("envipath" or "envipathM").
+    Converts an identifier of the form "prefix:identifier", as it is
+    stored in annotations, into the form that MetaNetX resolves.
+    Identifiers without a prefix are returned unchanged.
+    Args:
+        query: The identifier to convert.
+
+    Returns:
+        The converted identifier or None if MetaNetX cannot resolve it.
     """
-    return query.split(":", 1)[0].lower() in ("envipath", "envipathm")
+    if ":" not in query:
+        return query
+
+    prefix, identifier = query.split(":", 1)
+    prefix = prefix.lower()
+
+    if prefix in UNSUPPORTED_PREFIXES:
+        return None
+    # identifiers.org stores ChEBI as "CHEBI:1234", MetaNetX expects "1234"
+    if prefix == "chebi":
+        return "chebi:" + identifier.removeprefix("CHEBI:")
+    # MetaNetX IDs are only resolved without a prefix
+    if prefix in ("metanetx.chemical", "metanetx.reaction"):
+        return identifier
+
+    return METANETX_PREFIXES.get(prefix, prefix) + ":" + identifier
 
 
 def get_crossreferences(  # noqa: C901
@@ -143,12 +204,14 @@ def get_crossreferences(  # noqa: C901
     cache = load_cache_from_disk(sort, directory)
     crossreferences: Set[str] = set()
 
-    # MetaNetX does not resolve enviPath IDs. In addition, if they are part
-    # of a request, other IDs of that request get no cross-references
     if isinstance(querys, list):
-        querys = [query for query in querys if not is_envipath(query)]
-    elif is_envipath(querys):
-        return crossreferences
+        converted = (to_metanetx_query(query) for query in querys)
+        querys = list(dict.fromkeys(query for query in converted if query))
+    else:
+        query = to_metanetx_query(querys)
+        if query is None:
+            return crossreferences
+        querys = query
 
     if isinstance(querys, list):
         all_querys = querys.copy()
@@ -540,6 +603,12 @@ def add_crossreferences(  # noqa: C901
 
             # obsolete ids are ignored
             elif prefix == "deprecated":
+                continue
+
+            elif (
+                prefix in METANETX_PREFIXES
+                and not settings.add_metanetx_specific_prefixes
+            ):
                 continue
 
             total_found += 1

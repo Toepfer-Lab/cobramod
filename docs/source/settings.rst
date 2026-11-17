@@ -70,3 +70,48 @@ Since SMILES are not recognized by 'identifiers.org' as allowed cross-references
 
 .. note::
    This setting only affects cross-references that are retrieved from MetaNetX after it is changed. Cross-references that are already cached in the data directory (folder 'XRef') are used as they are, with or without SMILES.
+
+-----------------------------
+MetaNetX specific prefixes
+-----------------------------
+MetaNetX returns most identifiers two times: once with the prefix registered in 'identifiers.org' and once with a MetaNetX specific prefix, e.g. 'kegg.compound:C00031' and 'keggC:C00031'. We do not add cross-references with a MetaNetX specific prefix, such as 'keggC' or 'biggM', to CobraPy objects by default. To add them anyway, set the 'add_metanetx_specific_prefixes' boolean in the settings object to True.
+
+.. code-block:: python
+
+   from cobramod import Settings
+
+   settings = Settings()
+
+   settings.add_metanetx_specific_prefixes = True
+
+Example
+-------
+
+For D-glucose with the annotation ``{"kegg.compound": "C00031"}``, MetaNetX returns 36 cross-references. The table shows how CobraMod adds the ones for BiGG, KEGG and SEED to the annotation:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Returned by MetaNetX
+     - Default (False)
+     - True
+   * - bigg.metabolite:glc__D
+     - added as ``bigg.metabolite``
+     - added as ``bigg.metabolite``
+   * - biggM:glc__D, biggM:M_glc__D, biggM:glc, biggM:glc-D
+     - ignored
+     - added as ``biggm``
+   * - kegg.compound:C00031
+     - added as ``kegg.compound``
+     - added as ``kegg.compound``
+   * - keggC:C00031, keggC:M_C00031
+     - ignored
+     - added as ``keggc``
+   * - seed.compound:cpd00027
+     - added as ``seed.compound``
+     - added as ``seed.compound``
+   * - seedM:cpd00027, seedM:M_cpd00027
+     - ignored
+     - added as ``seedm``
+
+The other MetaNetX specific prefixes (e.g. 'keggD', 'metacycM', 'sabiorkM' or 'vmhM') are handled the same way. Their values mostly repeat the 'identifiers.org' identifiers, partly with an additional 'M\_' prefix. A few, such as the old BiGG identifiers 'glc' and 'glc-D' above, are only available with the MetaNetX specific prefixes.

@@ -69,6 +69,17 @@ class Settings(metaclass=SingletonMeta):
         SMILES.
     """
 
+    add_metanetx_specific_prefixes: bool = False
+    """
+    MetaNetX returns most identifiers two times: once with the prefix
+    registered in identifiers.org and once with a MetaNetX specific prefix,
+    e.g. 'kegg.compound:C00031' and 'keggC:C00031'. Cross-references with a
+    MetaNetX specific prefix, such as 'keggC' or 'biggM', will not be added
+    by default. If you want to add them as cross-references, set this to True.
+
+    .. versionadded:: 1.4.0
+    """
+
     autoOpenCloseBioCycSession = True
 
     def __set__biocyc_password(self, value: str):

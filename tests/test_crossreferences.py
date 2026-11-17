@@ -21,6 +21,7 @@ from cobramod.core.crossreferences import (
     inchikey2pubchem_cid,
     load_cache_from_disk,
     metanetx2ec,
+    to_metanetx_query,
 )
 from cobramod.debug import debug_log
 from cobramod.parsing.db_version import DataVersionConfigurator
@@ -259,8 +260,9 @@ class TestCrossReferences(TestCase):
     def test_add_crossreferences_colon_in_identifier(self, mocked_post):
         # CASE: Identifiers can contain ":" (real answer for MNXM102298)
         mocked_post.return_value.status_code = 200
+        # MetaNetX IDs are sent without prefix
         mocked_post.return_value.json.return_value = {
-            "metanetx.chemical:MNXM102298": {
+            "MNXM102298": {
                 "mnx_id": "MNXM102298",
                 "xrefs": [
                     "metacyc.compound:A-DARA-PEN-1:4",
@@ -274,12 +276,64 @@ class TestCrossReferences(TestCase):
         with tempfile.TemporaryDirectory() as directory:
             load_cache_from_disk.cache_clear()
             add_crossreferences(metabolite, Path(directory))
-            load_cache_from_disk.cache_clear()
 
-        self.assertEqual(
-            metabolite.annotation["metacyc.compound"], "A-DARA-PEN-1:4"
-        )
+            self.assertEqual(
+                metabolite.annotation["metacyc.compound"], "A-DARA-PEN-1:4"
+            )
+            # CASE: MetaNetX specific prefixes are not added by default
+            self.assertNotIn("metacycm", metabolite.annotation)
+
+            # CASE: MetaNetX specific prefixes are added if enabled, cached
+            # results are included
+            settings = Settings()
+            settings.add_metanetx_specific_prefixes = True
+            try:
+                mocked_post.reset_mock()
+                metabolite = Metabolite()
+                metabolite.annotation = {"metanetx.chemical": "MNXM102298"}
+                add_crossreferences(metabolite, Path(directory))
+                mocked_post.assert_not_called()
+            finally:
+                settings.add_metanetx_specific_prefixes = False
+                load_cache_from_disk.cache_clear()
+
         self.assertEqual(metabolite.annotation["metacycm"], "A-DARA-PEN-1:4")
+
+    def test_to_metanetx_query(self):
+        # CASE: identifiers.org prefixes are kept
+        self.assertEqual(
+            to_metanetx_query("kegg.compound:C00031"), "kegg.compound:C00031"
+        )
+        # CASE: ChEBI without the embedded prefix
+        self.assertEqual(to_metanetx_query("chebi:CHEBI:13419"), "chebi:13419")
+        self.assertEqual(to_metanetx_query("chebi:13419"), "chebi:13419")
+        # CASE: MetaNetX IDs without prefix
+        self.assertEqual(
+            to_metanetx_query("metanetx.chemical:MNXM1104823"), "MNXM1104823"
+        )
+        self.assertEqual(
+            to_metanetx_query("metanetx.reaction:MNXR94688"), "MNXR94688"
+        )
+        # CASE: MetaNetX specific prefixes in their original spelling
+        self.assertEqual(to_metanetx_query("keggc:C01328"), "keggC:C01328")
+        self.assertEqual(to_metanetx_query("biggr:PYK"), "biggR:PYK")
+        # CASE: Identifiers with ":" are kept
+        self.assertEqual(
+            to_metanetx_query("metacycm:A-DARA-PEN-1:4"),
+            "metacycM:A-DARA-PEN-1:4",
+        )
+        # CASE: Prefixes that MetaNetX cannot resolve
+        for query in (
+            "envipath:abc",
+            "envipathm:abc",
+            "inchikey:XLYOFNOQVPJJNP-UHFFFAOYSA-M",
+            "pubchem.compound:961",
+            "ec-code:2.7.1.40",
+            "brenda:2.7.1.40",
+        ):
+            self.assertIsNone(to_metanetx_query(query))
+        # CASE: Identifiers without prefix are unchanged
+        self.assertEqual(to_metanetx_query("glc__D"), "glc__D")
 
     @patch("pandas.read_csv")
     def test_metanetx2ec(self, mock):
@@ -425,7 +479,6 @@ class TestCrossReferences(TestCase):
                     "HMDB62758",
                 ],
                 "metanetx.chemical": "MNXM1108074",
-                "sabiorkm": "29",
                 "inchi": "InChI=1S/C3H8O10P2/"
                 "c4-2(1-12-14(6,7)8)3(5)13-15(9,10)11/"
                 "h2,4H,1H2,(H2,6,7,8)(H2,9,10,11)",
@@ -451,7 +504,6 @@ class TestCrossReferences(TestCase):
                     "HMDB0001270",
                 ],
                 "metanetx.reaction": "MNXM1108074",
-                "sabiorkm": "29",
                 "chebi": "CHEBI:89363",
                 "metanetx.chemical": "MNXM1108074",
                 "sabiork.compound": "29",
