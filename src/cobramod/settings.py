@@ -59,6 +59,14 @@ class Settings(metaclass=SingletonMeta):
     SMILES strings are not registered in indentifiers.org therefore they are
     not considered as valid identifiers and will not be added by default to metabolites.
     If you want to add SMILES strings as cross-references, set this to True.
+
+    .. versionadded:: 1.4.0
+
+    .. note::
+        This setting only affects cross-references that are retrieved from
+        MetaNetX after it is changed. Cross-references that are already
+        cached in the data directory are used as they are, with or without
+        SMILES.
     """
 
     autoOpenCloseBioCycSession = True

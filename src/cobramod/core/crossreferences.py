@@ -11,6 +11,9 @@ from requests import HTTPError
 from tqdm import tqdm
 
 from cobramod.debug import debug_log
+from cobramod.settings import Settings
+
+settings = Settings()
 
 
 def inchikey2pubchem_cid(
@@ -84,6 +87,27 @@ def load_cache_from_disk(sort: str, directory: Path) -> pd.DataFrame:
         df = pd.DataFrame({"ID": [], "XRefs": []})
 
     return df
+
+
+def confirms_query(query: str, answer: dict) -> bool:
+    """
+    Checks whether an answer from MetaNetX contains the query as an
+    identifier. Either the MetaNetX ID or the identifier part of a
+    cross-reference must match the query exactly.
+    Args:
+        query: The identifier sent to MetaNetX.
+        answer: The answer of MetaNetX for this query.
+
+    Returns:
+        True if the query is found among the identifiers of the answer.
+    """
+    if answer.get("mnx_id") == query:
+        return True
+
+    return any(
+        xref == query or xref.split(":", 1)[-1] == query
+        for xref in answer.get("xrefs", [])
+    )
 
 
 def get_crossreferences(  # noqa: C901
@@ -163,6 +187,18 @@ def get_crossreferences(  # noqa: C901
             continue
 
         xrefs: List[str] = []
+
+        # MetaNetX also matches queries without a prefix (e.g. object IDs)
+        # loosely, for example against names. Such answers are only used if
+        # the query is part of the returned identifiers. Rejected answers are
+        # cached without cross-references, so they are not requested again
+        if ":" not in query and not confirms_query(query, answer):
+            debug_log.debug(
+                f'MetaNetX result for "{query}" does not contain the query '
+                f"as identifier and is ignored."
+            )
+            answer = {}
+
         try:
             xrefs = answer["xrefs"]
         except KeyError:
@@ -176,6 +212,9 @@ def get_crossreferences(  # noqa: C901
             xrefs.append("inchikey:" + inchikey)
         except KeyError:
             pass
+        # Only applies to new results, cached ones are used as they are
+        if settings.add_smiles_as_cross_reference and answer.get("SMILES"):
+            xrefs.append("smiles:" + answer["SMILES"])
 
         replace = {"chem": "metanetx.chemical", "reac": "metanetx.reaction"}
 
@@ -469,8 +508,10 @@ def add_crossreferences(  # noqa: C901
         potential_xrefs = get_crossreferences(sort, ids, directory)
 
         for potential_xref in potential_xrefs:
+            # Prefixes never contain ":", but identifiers can (e.g. MetaCyc
+            # "A-DARA-PEN-1:4" or SMILES). Therefore, split only once
             try:
-                prefix, new_id = potential_xref.split(":")
+                prefix, new_id = potential_xref.split(":", 1)
             except ValueError:
                 continue
             prefix = prefix.lower()

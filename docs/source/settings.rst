@@ -67,3 +67,6 @@ Since SMILES are not recognized by 'identifiers.org' as allowed cross-references
    settings = Settings()
 
    settings.add_smiles_as_cross_reference = True
+
+.. note::
+   This setting only affects cross-references that are retrieved from MetaNetX after it is changed. Cross-references that are already cached in the data directory (folder 'XRef') are used as they are, with or without SMILES.

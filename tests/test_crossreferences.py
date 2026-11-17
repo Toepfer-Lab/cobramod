@@ -15,6 +15,7 @@ from cobramod import __version__ as cmod_version
 from cobramod.core.crossreferences import (
     add2dict_unique,
     add_crossreferences,
+    confirms_query,
     get_crossreferences,
     get_reac_prop_with_ec,
     inchikey2pubchem_cid,
@@ -23,6 +24,7 @@ from cobramod.core.crossreferences import (
 )
 from cobramod.debug import debug_log
 from cobramod.parsing.db_version import DataVersionConfigurator
+from cobramod.settings import Settings
 
 debug_log.setLevel(DEBUG)
 data_conf = DataVersionConfigurator()
@@ -127,6 +129,114 @@ class TestCrossReferences(TestCase):
                 "chem", ["hmdb:HMDB62758", "hmdb:HMDB62758"], directory
             )
             self.assertEqual(value, expected)
+
+    def test_confirms_query(self):
+        # CASE: Query is the MetaNetX ID or part of a cross-reference
+        answer = {
+            "mnx_id": "MNXM1364061",
+            "xrefs": ["kegg.compound:C00031", "bigg.metabolite:glc__D"],
+        }
+        self.assertTrue(confirms_query("MNXM1364061", answer))
+        self.assertTrue(confirms_query("C00031", answer))
+        self.assertTrue(confirms_query("glc__D", answer))
+        # CASE: Only exact and case-sensitive matches count
+        self.assertFalse(confirms_query("glc__d", answer))
+        self.assertFalse(confirms_query("C0003", answer))
+        # CASE: Match against the name only (real answer for "m")
+        answer = {
+            "mnx_id": "MNXM1511782",
+            "name": "Petrosaspongiolide m",
+            "xrefs": ["hmdb:HMDB0256357"],
+        }
+        self.assertFalse(confirms_query("m", answer))
+
+    @patch("requests.post")
+    def test_get_crossreferences_unprefixed(self, mocked_post):
+        # CASE: Answers for queries without prefix are only used if they
+        # contain the query as identifier
+        mocked_post.return_value.status_code = 200
+        mocked_post.return_value.json.return_value = {
+            "m": {
+                "mnx_id": "MNXM1511782",
+                "name": "Petrosaspongiolide m",
+                "xrefs": ["hmdb:HMDB0256357"],
+            },
+            "C00031": {
+                "mnx_id": "MNXM1364061",
+                "xrefs": ["kegg.compound:C00031", "chebi:4167"],
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            load_cache_from_disk.cache_clear()
+
+            value = get_crossreferences("chem", ["m", "C00031"], directory)
+            self.assertEqual(
+                value,
+                {
+                    "kegg.compound:C00031",
+                    "chebi:4167",
+                    "metanetx.chemical:MNXM1364061",
+                },
+            )
+
+            # Rejected answers are cached and not requested again
+            mocked_post.reset_mock()
+            self.assertEqual(get_crossreferences("chem", "m", directory), set())
+            mocked_post.assert_not_called()
+            load_cache_from_disk.cache_clear()
+
+    @patch("requests.post")
+    def test_get_crossreferences_smiles(self, mocked_post):
+        # CASE: SMILES are only added if enabled in the settings
+        mocked_post.return_value.status_code = 200
+        mocked_post.return_value.json.return_value = {
+            "hmdb:HMDB62758": {
+                "SMILES": "c1:c:c:c:c:c:1",
+                "xrefs": ["hmdb:HMDB62758"],
+            }
+        }
+        metabolite = Metabolite()
+        metabolite.annotation = {"hmdb": "HMDB62758"}
+
+        settings = Settings()
+        settings.add_smiles_as_cross_reference = True
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                load_cache_from_disk.cache_clear()
+                add_crossreferences(metabolite, Path(directory))
+        finally:
+            settings.add_smiles_as_cross_reference = False
+            load_cache_from_disk.cache_clear()
+
+        self.assertEqual(metabolite.annotation["smiles"], "c1:c:c:c:c:c:1")
+
+    @patch("requests.post")
+    def test_add_crossreferences_colon_in_identifier(self, mocked_post):
+        # CASE: Identifiers can contain ":" (real answer for MNXM102298)
+        mocked_post.return_value.status_code = 200
+        mocked_post.return_value.json.return_value = {
+            "metanetx.chemical:MNXM102298": {
+                "mnx_id": "MNXM102298",
+                "xrefs": [
+                    "metacyc.compound:A-DARA-PEN-1:4",
+                    "metacycM:A-DARA-PEN-1:4",
+                ],
+            }
+        }
+        metabolite = Metabolite()
+        metabolite.annotation = {"metanetx.chemical": "MNXM102298"}
+
+        with tempfile.TemporaryDirectory() as directory:
+            load_cache_from_disk.cache_clear()
+            add_crossreferences(metabolite, Path(directory))
+            load_cache_from_disk.cache_clear()
+
+        self.assertEqual(
+            metabolite.annotation["metacyc.compound"], "A-DARA-PEN-1:4"
+        )
+        self.assertEqual(metabolite.annotation["metacycm"], "A-DARA-PEN-1:4")
 
     @patch("pandas.read_csv")
     def test_metanetx2ec(self, mock):
