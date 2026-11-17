@@ -19,7 +19,7 @@ class TestBioCycLogin(unittest.TestCase):
         self.settings = Settings()
         self.name = self.settings._Settings__biocyc_name
         self.password = self.settings._Settings__biocyc_password
-        self.settings._close_biocyc_session()
+        self.settings._close_session("BIOCYC")
 
         # Status code that the mocked BioCyc login returns
         self.status = 200
@@ -29,7 +29,7 @@ class TestBioCycLogin(unittest.TestCase):
         self.addCleanup(patcher.stop)
 
     def tearDown(self):
-        self.settings._close_biocyc_session()
+        self.settings._close_session("BIOCYC")
         self.settings._Settings__biocyc_name = self.name
         self.settings._Settings__biocyc_password = self.password
 
@@ -43,7 +43,7 @@ class TestBioCycLogin(unittest.TestCase):
 
     def request(self):
         # Every BioCyc request uses this session and logs in if necessary
-        return self.settings._biocyc_session
+        return self.settings._session("BIOCYC")
 
     def test_new_credentials(self):
         # CASE: First request logs in
@@ -128,6 +128,24 @@ class TestBioCycLogin(unittest.TestCase):
         self.request()
         self.assertEqual(self.logins, ["user", "user"])
         self.assertTrue(self.settings.biocyc_logged_in)
+
+    def test_sessions_per_database(self):
+        # CASE: Only the BioCyc session logs in
+        self.settings.biocyc_name = "user"
+        self.settings.biocyc_password = "password"
+        kegg = self.settings._session("KEGG")
+        self.assertEqual(self.logins, [])
+
+        biocyc = self.request()
+        self.assertEqual(self.logins, ["user"])
+        self.assertIsNot(kegg, biocyc)
+        self.assertIs(self.settings._session("KEGG"), kegg)
+
+        # CASE: New login information only replaces the BioCyc session
+        self.settings.biocyc_password = "new_password"
+        self.assertIs(self.settings._session("KEGG"), kegg)
+        self.assertIsNot(self.request(), biocyc)
+        self.settings._close_session("KEGG")
 
 
 if __name__ == "__main__":

@@ -21,6 +21,9 @@ import requests
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
 from cobramod.error import WrongParserError
+from cobramod.settings import Settings
+
+settings = Settings()
 
 KO_LINK = "http://rest.kegg.jp/link/ko/"
 
@@ -171,7 +174,7 @@ def ko_generator(identifier: str) -> Generator[str, None, None]:
     """
     url_text = f"http://rest.kegg.jp/link/ko/{identifier}"
     try:
-        response = requests.get(url_text)
+        response = settings._session("KEGG").get(url_text)
         response.raise_for_status()
         return (
             single
@@ -247,7 +250,7 @@ def retrieve_kegg_genes(directory: Path, identifier: str):
         try:
             string = "+".join(ko_generator(identifier))
             url_text = f"http://rest.kegg.jp/link/genes/{string}"
-            response = requests.get(url_text)
+            response = settings._session("KEGG").get(url_text)
             response.raise_for_status()
 
             with open(file=filename, mode="w") as file:
@@ -260,7 +263,7 @@ def retrieve_kegg_genes(directory: Path, identifier: str):
                 try:
                     ko = next(generator)
                     url_text = f"http://rest.kegg.jp/link/genes/{ko}"
-                    response = requests.get(url_text)
+                    response = settings._session("KEGG").get(url_text)
                     response.raise_for_status()
 
                     with open(file=filename, mode="a+") as file:

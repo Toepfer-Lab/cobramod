@@ -12,6 +12,9 @@ from typing import Any
 import requests
 
 from cobramod.debug import debug_log
+from cobramod.settings import Settings
+
+settings = Settings()
 
 
 def retrieve_gene_information(directory: Path, identifier: str, database: str):
@@ -53,7 +56,7 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
             f"https://pmn.plantcyc.org/apixml?fn=genes-of-reaction&id="
             f"{database}:{encoded_id}&detail=full"
         )
-        response = requests.get(url_text)
+        response = settings._session("PMN").get(url_text)
         try:
             response.raise_for_status()
             root = et.fromstring(response.text)

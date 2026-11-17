@@ -21,6 +21,9 @@ import requests
 import cobramod.error as cmod_error
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
+from cobramod.settings import Settings
+
+settings = Settings()
 
 
 def build_cross_references_xml(root: Any) -> dict[str, str]:
@@ -322,17 +325,7 @@ def retrieve_gene_information(directory: Path, identifier: str, database: str):
             f"{database}:{encoded_id}&detail=full"
         )
 
-        # FIXME: find a better way
-        user, pwd = cmod_utils.get_credentials(
-            Path.cwd().joinpath("credentials.txt")
-        )
-        s = requests.Session()
-        s.post(
-            "https://websvc.biocyc.org/credentials/login/",
-            data={"email": user, "password": pwd},
-        )
-        response = s.get(url_text)
-        s.close()
+        response = settings._session("BIOCYC").get(url_text)
         try:
             response.raise_for_status()
             root = et.fromstring(response.text)

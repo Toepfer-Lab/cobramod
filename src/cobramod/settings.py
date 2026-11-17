@@ -33,6 +33,9 @@ class SingletonMeta(type):
 
 class Settings(metaclass=SingletonMeta):
     def __init__(self):
+        # One session per database, e.g. "BIOCYC" or "KEGG", see _session
+        self.__sessions: dict[str, requests.Session] = {}
+
         self.__set_biocyc_login_from_env()
 
         if self.__biocyc_name is None or self.__biocyc_password is None:
@@ -52,7 +55,6 @@ class Settings(metaclass=SingletonMeta):
 
     __biocyc_password: Optional[str] = None
     __biocyc_name: Optional[str] = None
-    __biocyc_session: Optional[requests.Session] = None
     __biocyc_login: bool = False
     # Message from BioCyc if it rejected the login information
     __biocyc_login_error: Optional[str] = None
@@ -88,7 +90,7 @@ class Settings(metaclass=SingletonMeta):
         if value != self.__biocyc_password:
             self.__biocyc_password = value
             # The next request logs in again with the new credentials
-            self._close_biocyc_session()
+            self._close_session("BIOCYC")
 
     biocyc_password = property(fset=__set__biocyc_password)
     del __set__biocyc_password
@@ -97,7 +99,7 @@ class Settings(metaclass=SingletonMeta):
         if value != self.__biocyc_name:
             self.__biocyc_name = value
             # The next request logs in again with the new credentials
-            self._close_biocyc_session()
+            self._close_session("BIOCYC")
 
     biocyc_name = property(fset=__set__biocyc_name)
     del __set__biocyc_name
@@ -122,28 +124,50 @@ class Settings(metaclass=SingletonMeta):
             self.__biocyc_password = biocyc_pwd
             logger.debug("BioCyc credentials set from environment variables.")
 
-    @property
-    def _biocyc_session(self) -> requests.Session:
-        if self.__biocyc_session is None:
-            logger.debug("Creating new BioCyc Session ...")
-            self.__biocyc_session = requests.Session()
-            self.__biocyc_session.mount(
-                "https://",
-                HTTPAdapter(
-                    max_retries=Retry(
-                        total=5,
-                        backoff_factor=0.5,
-                        allowed_methods=frozenset(["GET", "POST"]),
-                    )
-                ),
+    def _session(self, database: str) -> requests.Session:
+        """
+        Returns the session for a database and creates it if necessary. Each
+        database has its own session, so that login information is only sent
+        to the database it belongs to.
+
+        Args:
+            database (str): The database as named in
+                cobramod.retrieval.databases, i.e. "BIOCYC", "PMN", "SOL",
+                "KEGG" or "BIGG".
+
+        Returns:
+            requests.Session: The session. For "BIOCYC", it is logged in if
+                login information is available.
+        """
+        session = self.__sessions.get(database)
+
+        if session is None:
+            logger.debug(f"Creating new {database} session ...")
+            session = requests.Session()
+            retries = HTTPAdapter(
+                max_retries=Retry(
+                    total=5,
+                    backoff_factor=0.5,
+                    allowed_methods=frozenset(["GET", "POST"]),
+                )
             )
+            session.mount("https://", retries)
+            session.mount("http://", retries)
+            self.__sessions[database] = session
+
+        if database == "BIOCYC":
+            self.__login_biocyc(session)
+
+        return session
+
+    def __login_biocyc(self, session: requests.Session):
         if (
             not self.__biocyc_login
             and self.__biocyc_login_error is None
             and self._has_biocyc_credentials
         ):
             logger.debug("Using BioCyc credentials to login ...")
-            response = self.__biocyc_session.post(
+            response = session.post(
                 "https://websvc.biocyc.org/credentials/login/",
                 data={
                     "email": self.__biocyc_name,
@@ -168,8 +192,6 @@ class Settings(metaclass=SingletonMeta):
                     f"BioCyc login failed with status {response.status_code}."
                     " It is tried again with the next request."
                 )
-
-        return self.__biocyc_session
 
     @property
     def _has_biocyc_credentials(self) -> bool:
@@ -197,13 +219,19 @@ class Settings(metaclass=SingletonMeta):
     def cache_dir(self) -> Path:
         return self.__cache_dir
 
-    def _close_biocyc_session(self):
-        if self.__biocyc_session:
-            self.__biocyc_session.close()
-            self.__biocyc_session = None
-        # A new session tries to log in again
-        self.__biocyc_login = False
-        self.__biocyc_login_error = None
+    def _close_session(self, database: str):
+        """
+        Closes the session of a database. The next request creates a new one.
+        """
+        session = self.__sessions.pop(database, None)
+        if session is not None:
+            session.close()
+
+        if database == "BIOCYC":
+            # A new session tries to log in again
+            self.__biocyc_login = False
+            self.__biocyc_login_error = None
 
     def __del__(self):
-        self._close_biocyc_session()
+        for database in list(self.__sessions):
+            self._close_session(database)

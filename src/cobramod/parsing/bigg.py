@@ -20,6 +20,9 @@ import requests
 
 import cobramod.utils as cmod_utils
 from cobramod.debug import debug_log
+from cobramod.settings import Settings
+
+settings = Settings()
 
 
 def find_url(model_id: str, query: str) -> tuple[requests.Response, str]:
@@ -59,10 +62,10 @@ def find_url(model_id: str, query: str) -> tuple[requests.Response, str]:
             )
             debug_log.debug(f"Searching {url_text} for biochemical data.")
             # Get and check for errors
-            response = requests.get(url_text)
+            response = settings._session("BIGG").get(url_text)
             response.raise_for_status()
 
-            info_response = requests.get(
+            info_response = settings._session("BIGG").get(
                 "http://bigg.ucsd.edu/api/v2/database_version"
             )
             info_response.raise_for_status()

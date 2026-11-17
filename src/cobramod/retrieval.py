@@ -204,7 +204,7 @@ class Data:
             with open(path.parents[1].joinpath("database_version"), "r") as f:
                 version = json.load(f).get("bigg_models_version")
         else:
-            info_response = requests.get(
+            info_response = settings._session("BIGG").get(
                 "http://bigg.ucsd.edu/api/v2/database_version"
             )
             info_response.raise_for_status()
@@ -249,7 +249,9 @@ class Data:
             with open(path.parent.joinpath("database_version"), "r") as f:
                 version = cmod_utils.kegg_info_to_version(f.read())
         else:
-            info_response = requests.get("http://rest.kegg.jp/info/kegg")
+            info_response = settings._session("KEGG").get(
+                "http://rest.kegg.jp/info/kegg"
+            )
             info_response.raise_for_status()
 
             with path.parent.joinpath("database_version").open(mode="w+") as f:
@@ -507,7 +509,8 @@ def get_response(
 
         return database, response
 
-    s = settings._biocyc_session
+    # BioCyc databases are named after their organism, e.g. "YEAST"
+    s = settings._session(database if database in databases else "BIOCYC")
 
     response = s.get(url)
     response.raise_for_status()
