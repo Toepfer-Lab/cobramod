@@ -7,7 +7,7 @@ mocked, so no data is sent.
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from cobramod.settings import Settings
 
@@ -21,11 +21,10 @@ class TestBioCycLogin(unittest.TestCase):
         self.password = self.settings._Settings__biocyc_password
         self.settings._close_biocyc_session()
 
+        # Status code that the mocked BioCyc login returns
+        self.status = 200
         self.logins: list[str] = []
-        patcher = patch(
-            "requests.Session.post",
-            side_effect=lambda url, data: self.logins.append(data["email"]),
-        )
+        patcher = patch("requests.Session.post", side_effect=self.login)
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -33,6 +32,14 @@ class TestBioCycLogin(unittest.TestCase):
         self.settings._close_biocyc_session()
         self.settings._Settings__biocyc_name = self.name
         self.settings._Settings__biocyc_password = self.password
+
+    def login(self, url, data):
+        self.logins.append(data["email"])
+        response = MagicMock(ok=self.status < 400, status_code=self.status)
+        response.json.return_value = {
+            "error": "no match for email and password"
+        }
+        return response
 
     def request(self):
         # Every BioCyc request uses this session and logs in if necessary
@@ -79,6 +86,48 @@ class TestBioCycLogin(unittest.TestCase):
 
         self.request()
         self.assertEqual(self.logins, ["first_user", "file_user"])
+
+    def test_rejected_login(self):
+        # CASE: Rejected login information is reported and not sent again
+        self.status = 401
+        self.settings.biocyc_name = "user"
+        self.settings.biocyc_password = "wrong_password"
+
+        with self.assertLogs("cobramod.Settings", "WARNING") as logs:
+            self.request()
+        self.assertIn("no match for email and password", logs.output[0])
+        self.assertFalse(self.settings.biocyc_logged_in)
+        self.assertEqual(
+            self.settings._biocyc_login_error,
+            "no match for email and password",
+        )
+
+        self.request()
+        self.assertEqual(self.logins, ["user"])
+
+        # CASE: New login information is tried again
+        self.status = 200
+        self.settings.biocyc_password = "correct_password"
+        self.assertIsNone(self.settings._biocyc_login_error)
+        self.request()
+        self.assertEqual(self.logins, ["user", "user"])
+        self.assertTrue(self.settings.biocyc_logged_in)
+
+    def test_failed_login(self):
+        # CASE: Other errors are tried again with the next request
+        self.status = 503
+        self.settings.biocyc_name = "user"
+        self.settings.biocyc_password = "password"
+
+        with self.assertLogs("cobramod.Settings", "WARNING"):
+            self.request()
+        self.assertFalse(self.settings.biocyc_logged_in)
+        self.assertIsNone(self.settings._biocyc_login_error)
+
+        self.status = 200
+        self.request()
+        self.assertEqual(self.logins, ["user", "user"])
+        self.assertTrue(self.settings.biocyc_logged_in)
 
 
 if __name__ == "__main__":

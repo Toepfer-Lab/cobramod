@@ -430,6 +430,42 @@ class Data:
             raise AttributeError("Cannot parse given data. Contact maintainers")
 
 
+def biocyc_access_message(database: str) -> str:
+    """
+    Returns the reason why BioCyc answered with its "Create Account" page
+    instead of data, based on the login state of the settings.
+
+    Args:
+        database (str): The BioCyc database, e.g. "ECOLI".
+
+    Returns:
+        str: Explanation for the user.
+    """
+    free = (
+        "EcoCyc (ECOLI) and Faecalibacterium prausnitzii A2-165 (GCF_002734145)"
+    )
+    docs = "https://cobramod.readthedocs.io/en/latest/settings.html"
+
+    if not settings._has_biocyc_credentials:
+        return (
+            f"BioCyc requires a login, also for its free databases {free}. "
+            "Create a free BioCyc account and provide the login information, "
+            f"see {docs}"
+        )
+    if settings._biocyc_login_error is not None:
+        return (
+            "BioCyc rejected the login information: "
+            f"{settings._biocyc_login_error}. Please check it, see {docs}"
+        )
+    if not settings.biocyc_logged_in:
+        return "The BioCyc login was not successful. Please try again later."
+
+    return (
+        f"Your BioCyc account has no access to '{database}'. Without a "
+        f"subscription, only {free} are accessible."
+    )
+
+
 def get_response(
     query: str, model_id: Optional[str] = None
 ) -> tuple[str, requests.Response]:
@@ -480,9 +516,8 @@ def get_response(
     header = response.headers.get("Content-Type", "").lower()
     if "html" in header and "<title>Create Account</title>" in response.text:
         raise requests.HTTPError(
-            f"Cannot retrieve data from '{url}'. Received BioCyc Create "
-            "Account page instead of database content. Please check "
-            "credentials and subscription access or try using 'META' instead."
+            f"Cannot retrieve data from '{url}'. "
+            + biocyc_access_message(database)
         )
 
     # PlantCyc answers automated requests with an Imperva/Incapsula challenge

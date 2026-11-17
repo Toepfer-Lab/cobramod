@@ -7,6 +7,7 @@ the files are loaded and saved properly
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import PropertyMock, patch
 
 from cobra import __version__ as cobra_version
 
@@ -14,6 +15,7 @@ import cobramod.retrieval as cmod_retrieval
 from cobramod import __version__ as cmod_version
 from cobramod.debug import change_to_debug
 from cobramod.parsing.db_version import DataVersionConfigurator
+from cobramod.settings import Settings
 
 change_to_debug()
 
@@ -135,6 +137,53 @@ class RetrievalTesting(unittest.TestCase):
                 "PMN", "CORN", "GENES", "RXN-11501_genes.xml"
             ).exists(),
         )
+
+
+class BioCycAccessMessage(unittest.TestCase):
+    def message(self, credentials, error, logged_in):
+        with (
+            patch.object(
+                Settings,
+                "_has_biocyc_credentials",
+                new_callable=PropertyMock,
+                return_value=credentials,
+            ),
+            patch.object(
+                Settings,
+                "_biocyc_login_error",
+                new_callable=PropertyMock,
+                return_value=error,
+            ),
+            patch.object(
+                Settings,
+                "biocyc_logged_in",
+                new_callable=PropertyMock,
+                return_value=logged_in,
+            ),
+        ):
+            return cmod_retrieval.biocyc_access_message("YEAST")
+
+    def test_biocyc_access_message(self):
+        # CASE: No login information
+        message = self.message(False, None, False)
+        self.assertIn("BioCyc requires a login", message)
+        self.assertIn("ECOLI", message)
+        self.assertNotIn("META", message)
+
+        # CASE: Login information rejected by BioCyc
+        message = self.message(True, "no match for email and password", False)
+        self.assertIn("rejected", message)
+        self.assertIn("no match for email and password", message)
+
+        # CASE: Login failed for another reason
+        message = self.message(True, None, False)
+        self.assertIn("not successful", message)
+
+        # CASE: Logged in, but no access to the database
+        message = self.message(True, None, True)
+        self.assertIn("no access to 'YEAST'", message)
+        self.assertIn("ECOLI", message)
+        self.assertIn("GCF_002734145", message)
 
 
 if __name__ == "__main__":

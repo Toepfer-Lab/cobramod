@@ -54,6 +54,8 @@ class Settings(metaclass=SingletonMeta):
     __biocyc_name: Optional[str] = None
     __biocyc_session: Optional[requests.Session] = None
     __biocyc_login: bool = False
+    # Message from BioCyc if it rejected the login information
+    __biocyc_login_error: Optional[str] = None
     add_smiles_as_cross_reference: bool = False
     """
     SMILES strings are not registered in indentifiers.org therefore they are
@@ -137,11 +139,11 @@ class Settings(metaclass=SingletonMeta):
             )
         if (
             not self.__biocyc_login
-            and self.__biocyc_name
-            and self.__biocyc_password
+            and self.__biocyc_login_error is None
+            and self._has_biocyc_credentials
         ):
             logger.debug("Using BioCyc credentials to login ...")
-            self.__biocyc_session.post(
+            response = self.__biocyc_session.post(
                 "https://websvc.biocyc.org/credentials/login/",
                 data={
                     "email": self.__biocyc_name,
@@ -149,9 +151,37 @@ class Settings(metaclass=SingletonMeta):
                 },
             )
 
-            self.__biocyc_login = True
+            if response.ok:
+                self.__biocyc_login = True
+            elif response.status_code == 401:
+                # Wrong login information. It is not sent again until new
+                # login information is set
+                try:
+                    self.__biocyc_login_error = response.json()["error"]
+                except (ValueError, KeyError, TypeError):
+                    self.__biocyc_login_error = response.text[:200]
+                logger.warning(
+                    f"BioCyc login failed: {self.__biocyc_login_error}"
+                )
+            else:
+                logger.warning(
+                    f"BioCyc login failed with status {response.status_code}."
+                    " It is tried again with the next request."
+                )
 
         return self.__biocyc_session
+
+    @property
+    def _has_biocyc_credentials(self) -> bool:
+        return bool(self.__biocyc_name and self.__biocyc_password)
+
+    @property
+    def _biocyc_login_error(self) -> Optional[str]:
+        """
+        Message from BioCyc if it rejected the login information, otherwise
+        None.
+        """
+        return self.__biocyc_login_error
 
     @property
     def biocyc_logged_in(self) -> bool:
@@ -171,7 +201,9 @@ class Settings(metaclass=SingletonMeta):
         if self.__biocyc_session:
             self.__biocyc_session.close()
             self.__biocyc_session = None
-            self.__biocyc_login = False
+        # A new session tries to log in again
+        self.__biocyc_login = False
+        self.__biocyc_login_error = None
 
     def __del__(self):
         self._close_biocyc_session()
