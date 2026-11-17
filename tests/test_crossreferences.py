@@ -188,6 +188,49 @@ class TestCrossReferences(TestCase):
             load_cache_from_disk.cache_clear()
 
     @patch("requests.post")
+    def test_get_crossreferences_envipath(self, mocked_post):
+        # CASE: enviPath IDs are not sent to MetaNetX
+        envipath = (
+            "650babc9-9d68-4b73-9332-11972ca26f7b/compound/"
+            "98255e64-a8b2-4151-b5f1-08b2ea3a3171"
+        )
+        mocked_post.return_value.status_code = 200
+        mocked_post.return_value.json.return_value = {
+            "kegg.compound:C01328": {
+                "mnx_id": "MNXM02",
+                "xrefs": ["kegg.compound:C01328", f"envipath:{envipath}"],
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            load_cache_from_disk.cache_clear()
+
+            value = get_crossreferences(
+                "chem",
+                [
+                    "kegg.compound:C01328",
+                    f"envipath:{envipath}",
+                    f"envipathm:{envipath}",
+                ],
+                directory,
+            )
+            self.assertEqual(
+                mocked_post.call_args.kwargs["data"]["query_list"],
+                "kegg.compound:C01328",
+            )
+            # enviPath IDs returned as cross-references are kept
+            self.assertIn(f"envipath:{envipath}", value)
+
+            mocked_post.reset_mock()
+            value = get_crossreferences(
+                "chem", f"envipath:{envipath}", directory
+            )
+            self.assertEqual(value, set())
+            mocked_post.assert_not_called()
+            load_cache_from_disk.cache_clear()
+
+    @patch("requests.post")
     def test_get_crossreferences_smiles(self, mocked_post):
         # CASE: SMILES are only added if enabled in the settings
         mocked_post.return_value.status_code = 200

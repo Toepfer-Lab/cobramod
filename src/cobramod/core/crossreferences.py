@@ -110,6 +110,13 @@ def confirms_query(query: str, answer: dict) -> bool:
     )
 
 
+def is_envipath(query: str) -> bool:
+    """
+    Checks whether a query is an enviPath ID ("envipath" or "envipathM").
+    """
+    return query.split(":", 1)[0].lower() in ("envipath", "envipathm")
+
+
 def get_crossreferences(  # noqa: C901
     sort: str, querys: Union[str, List[str]], directory: Path
 ) -> Set[str]:
@@ -134,7 +141,14 @@ def get_crossreferences(  # noqa: C901
 
     query_list: str
     cache = load_cache_from_disk(sort, directory)
-    crossreferences = set()
+    crossreferences: Set[str] = set()
+
+    # MetaNetX does not resolve enviPath IDs. In addition, if they are part
+    # of a request, other IDs of that request get no cross-references
+    if isinstance(querys, list):
+        querys = [query for query in querys if not is_envipath(query)]
+    elif is_envipath(querys):
+        return crossreferences
 
     if isinstance(querys, list):
         all_querys = querys.copy()
