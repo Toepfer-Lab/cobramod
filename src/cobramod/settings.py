@@ -83,21 +83,27 @@ class Settings(metaclass=SingletonMeta):
     auto_open_close_biocyc_session = True
 
     def __set__biocyc_password(self, value: str):
-        self.__biocyc_password = value
+        if value != self.__biocyc_password:
+            self.__biocyc_password = value
+            # The next request logs in again with the new credentials
+            self._close_biocyc_session()
 
     biocyc_password = property(fset=__set__biocyc_password)
     del __set__biocyc_password
 
     def __set__biocyc_name(self, value: str):
-        self.__biocyc_name = value
+        if value != self.__biocyc_name:
+            self.__biocyc_name = value
+            # The next request logs in again with the new credentials
+            self._close_biocyc_session()
 
     biocyc_name = property(fset=__set__biocyc_name)
     del __set__biocyc_name
 
     def set_biocyc_login(self, file: Path):
         user, pwd = cmod_utils.get_credentials(file)
-        self.__biocyc_password = pwd
-        self.__biocyc_name = user
+        self.biocyc_password = pwd
+        self.biocyc_name = user
 
     def __set_biocyc_login_from_file(self):
         try:
