@@ -53,7 +53,7 @@ Documentation = "https://cobramod.readthedocs.io/"
 bugtracker = "https://github.com/Toepfer-Lab/cobramod/issues"
 
 [build-system]
-requires = ["setuptools >= 61.0"]
+requires = ["setuptools >= 77.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.package-data]
