@@ -28,18 +28,21 @@ This file can then be used via a settings object, as shown in the following:
 
    settings.SetBioCycLogin("./fileWithLoginInfo.txt")
 
-
 .. note::
-Cobramod also automatically checks the local folder for a file called 'credentials.txt' and, if found, loads the login information from it.
+   CobraMod also automatically checks the current working directory for a file called 'credentials.txt' and, if found, loads the login information from it.
 
 Environment Variables
 ---------------------
 
-Instead of using a file, CobraMod also supports environment variables. For this, the username needs to be assigned to a variable called 'BIOCYC_NAME', and the password to a variable called 'BIOCYC_PASSWORD'. If no login information is provided, CobraMod checks automatically for the presence of those variables and uses them when necessary.
+Instead of using a file, CobraMod also supports environment variables. For this, the username needs to be assigned to a variable called 'BIOCYC_NAME', and the password to a variable called 'BIOCYC_PASSWORD', for example:
 
-.. code-block:: text
-    BIOCYC_NAME
-    BIOCYC_PASSWORD
+.. code-block:: bash
+
+   export BIOCYC_NAME="someone"
+   export BIOCYC_PASSWORD="APassword"
+
+.. note::
+   CobraMod reads the login information automatically when it is imported. The environment variables take precedence over the file 'credentials.txt', which is only used when they are not set. Login information that is set via the settings object, as described above and below, replaces both.
 
 Via a Settings object
 -----------------------
@@ -58,7 +61,7 @@ Last but not least, the login information can also be directly passed to the set
 --------------------
 SMILES as identifier
 --------------------
-Since SMILES are not recognized by 'identifiers.org' as allowed cross-references, we do not add them to CobraPy objects (Metabolites) by default. We do allow them to be introduced as identifiers, but this behaviour must be explicitly enabled by setting the 'add_smiles_as_cross_reference' boolean in the settings object to True.
+Since SMILES are not recognized by 'identifiers.org' as allowed cross-references, we do not add them to COBRApy objects (Metabolites) by default. We do allow them to be introduced as identifiers, but this behaviour must be explicitly enabled by setting the 'add_smiles_as_cross_reference' boolean in the settings object to True.
 
 .. code-block:: python
 
@@ -74,7 +77,7 @@ Since SMILES are not recognized by 'identifiers.org' as allowed cross-references
 -----------------------------
 MetaNetX specific prefixes
 -----------------------------
-MetaNetX returns most identifiers two times: once with the prefix registered in 'identifiers.org' and once with a MetaNetX specific prefix, e.g. 'kegg.compound:C00031' and 'keggC:C00031'. We do not add cross-references with a MetaNetX specific prefix, such as 'keggC' or 'biggM', to CobraPy objects by default. To add them anyway, set the 'add_metanetx_specific_prefixes' boolean in the settings object to True.
+MetaNetX returns most identifiers two times: once with the prefix registered in 'identifiers.org' and once with a MetaNetX specific prefix, e.g. 'kegg.compound:C00031' and 'keggC:C00031'. We do not add cross-references with a MetaNetX specific prefix, such as 'keggC' or 'biggM', to COBRApy objects by default. To add them anyway, set the 'add_metanetx_specific_prefixes' boolean in the settings object to True.
 
 .. code-block:: python
 

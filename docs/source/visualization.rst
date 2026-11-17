@@ -12,7 +12,7 @@ and
 `WebGL <https://www.khronos.org/webgl/>`_.
 
 CobraMod effortlessly combines both tools into the curation and retrieval process. Additionally, they can
-operate separately to provide visual representations of `CobraPy <https://opencobra.github.io/cobrapy/>`_ objects.
+operate separately to provide visual representations of `COBRApy <https://opencobra.github.io/cobrapy/>`_ objects.
 
 -----------
  Escher
@@ -122,7 +122,7 @@ remains unrestricted.
 CobraMod provides an integration of
 '`3d-force-directed-graph <https://github.com/vasturiano/3d-force-graph?tab=readme-ov-file>`_'
 that enables a direct representation of a
-CobraPy :py:class:`~cobra.core.group.Group`, :py:class:`~cobra.Reaction`, or CobraMod :py:class:`~cobramod.Pathway` object in a three-dimensional format. This offers the
+COBRApy :py:class:`~cobra.core.group.Group`, :py:class:`~cobra.Reaction`, or CobraMod :py:class:`~cobramod.Pathway` object in a three-dimensional format. This offers the
 benefit of increased space compared to a two-dimensional representation. Moreover, it facilitates the
 visualization of data, such as fluxes, through animated representations, thereby enhancing the overall
 comprehension of the information.

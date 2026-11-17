@@ -17,3 +17,7 @@ directory from which CobraMod is run. Here's an example of the proper formatting
 
    <Username>
    <Password>
+
+Alternatively, the login information can be provided via the environment variables
+'BIOCYC_NAME' and 'BIOCYC_PASSWORD' or directly via the settings object. See
+:doc:`settings` for all options.

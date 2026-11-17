@@ -487,7 +487,7 @@ def add_crossreferences(  # noqa: C901
     the number of objects this function can take some time).
 
     Args:
-        object: The CobraPy object to be extended.
+        object: The COBRApy object to be extended.
         directory: The directory for storing the data. This is where
             the cache is stored in a folder called XRef.
         consider_sub_elements: Specifies whether additional cross-references
